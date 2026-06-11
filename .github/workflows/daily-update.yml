@@ -25,6 +25,15 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
+      # Offline gate: compile + regression tests run BEFORE any network fetch.
+      # A failure here stops the job, so fetch/build/summarize never run on a
+      # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
+      - name: Compile pipeline scripts
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py
+
+      - name: Run offline regression tests
+        run: python -m unittest discover -s tests
+
       - name: Fetch raw updates
         run: python scripts/fetch_updates.py
 

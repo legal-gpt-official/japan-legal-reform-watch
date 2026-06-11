@@ -154,13 +154,17 @@ The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MO
 
 `.github/workflows/daily-update.yml` can be run manually from the GitHub Actions tab (`workflow_dispatch`) and is scheduled daily at `0 21 * * *` UTC (06:00 JST).
 
-The workflow uses `ubuntu-latest`, Python 3.11, installs `requirements.txt`, then runs:
+The workflow uses `ubuntu-latest`, Python 3.11, installs `requirements.txt`, then runs the **offline regression tests as a gate before any network access**:
 
 ```
+python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py
+python -m unittest discover -s tests
 python scripts/fetch_updates.py
 python scripts/build_public_data.py
 python scripts/summarize_updates.py --limit 10
 ```
+
+If compilation or any test fails, the job stops there — no fetch, no rebuild, no API call, and no commit. The test steps do not receive `ANTHROPIC_API_KEY`; the secret is exposed only to the summarize step.
 
 Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries. If the secret is missing, the summarization script exits cleanly after printing usage.
 
@@ -176,6 +180,8 @@ python -m pytest tests                   # equivalent, if pytest is installed
 ```
 
 When changing classification rules, ranking, or the `SOURCES` list, update these tests in the same change so the expected behavior stays pinned.
+
+The same suite runs in the daily GitHub Actions workflow as a gate: a failure aborts the run **before** the network fetch and the Claude API step (see [Scheduled updates](#scheduled-updates-github-actions)).
 
 ## Deployment (GitHub Pages)
 
