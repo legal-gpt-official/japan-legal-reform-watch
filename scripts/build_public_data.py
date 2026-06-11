@@ -112,6 +112,11 @@ WEIGHT_STRONG, WEIGHT_MODERATE, WEIGHT_TOPICAL, WEIGHT_WEAK = 5, 3, 2, 1
 ADDITIONAL_BOOST_STRONG = (
     "法改正", "命令", "勧告", "行政処分", "注意喚起", "ガイドライン", "指針",
     "規制", "省令", "告示", "通達", "パブリックコメント", "意見募集",
+    "個人情報保護法", "漏えい", "漏洩", "マイナンバー", "特定個人情報",
+    "国際移転", "越境移転", "データ利活用", "独占禁止法", "下請法", "取適法",
+    "フリーランス法", "スマホソフトウェア競争促進法", "優越的地位",
+    "カルテル", "入札談合", "企業結合", "確約手続", "排除措置命令",
+    "課徴金", "報告書", "実態調査",
 )
 ADDITIONAL_BOOST_TOPICAL = (
     "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
@@ -120,6 +125,8 @@ ADDITIONAL_BOOST_TOPICAL = (
     "中小企業", "下請", "取引適正化",
     "景品表示法", "表示", "広告", "ステルスマーケティング",
     "消費者契約法", "消費者", "取引", "勧誘", "公益通報", "食品表示",
+    "個人情報", "個人データ", "保有個人データ", "仮名加工情報", "匿名加工情報",
+    "Q&A", "Ｑ＆Ａ", "Q＆A", "フリーランス", "公正取引委員会",
 )
 
 # Low-value signals (deliberative / statistical / pure page updates). These are
@@ -129,6 +136,9 @@ DEBOOST = {
     "議事録": -6, "会議資料": -6, "検討会": -3, "審議会": -3,
     "統計": -5, "概数": -5, "月報": -4, "年報": -4,
     "更新されました": -4, "更新しました": -4, "ページを更新": -4,
+    "委員会開催情報": -8, "議事概要": -6, "懇話会": -5, "委員会を開催": -6,
+    "主な意見": -3, "ポスターコンクール": -7, "シンボルマーク": -7,
+    "採用": -8, "調達": -8, "キッズ": -8,
 }
 
 # Clear administrative noise. Excluded outright UNLESS a BOOST_STRONG keyword is
@@ -140,6 +150,7 @@ HARD_EXCLUDE = (
 )
 ADDITIONAL_HARD_EXCLUDE = (
     "会談", "表敬", "出張", "意見交換を行いました", "開催します", "開催しました",
+    "採用", "調達", "キッズ", "ポスターコンクール", "シンボルマーク",
 )
 
 SOURCE_BONUS = {"public_comment_rss": 4}  # req 5: prioritise e-Gov public comments
@@ -151,8 +162,8 @@ UNKNOWN_DATE_PENALTY = 8.0  # req 8: unknown/invalid dates rank low
 PUBLIC_COMMENT_OPEN_ORDERING_BONUS = 4.0
 DRAFT_GUIDELINE_ORDERING_BONUS = 2.0
 PUBLIC_COMMENT_RESULTS_ORDERING_BONUS = 1.0
-PUBLIC_COMMENT_CLOSED_ORDERING_PENALTY = 10.0
-PUBLIC_COMMENT_CLOSED_IMPORTANT_SIGNAL_RELIEF = 4.0
+PUBLIC_COMMENT_CLOSED_ORDERING_PENALTY = 14.0
+PUBLIC_COMMENT_CLOSED_IMPORTANT_SIGNAL_RELIEF = 2.0
 
 # Closed public comments stay visible, but are usually less urgent than open
 # consultations. These strong signals soften, but do not remove, the demotion.
@@ -252,6 +263,8 @@ AREA_SOURCE_FALLBACK = (
     ("Finance / AML", ("金融庁", "FSA")),
     ("Data / Privacy / AI", ("デジタル庁", "Digital Agency")),
     ("Consumer / Advertising", ("消費者庁", "CAA")),
+    ("Data / Privacy / AI", ("個人情報保護委員会", "PPC")),
+    ("Antitrust / Fair Trade", ("公正取引委員会", "JFTC")),
 )
 
 # Source-expansion area rules. These run before the broader legacy table so
@@ -279,6 +292,22 @@ CAA_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
         "消費者契約法", "消費者", "取引", "勧誘", "食品表示",
     )),
 ]
+PPC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Data / Privacy / AI", (
+        "個人情報", "個人情報保護法", "個人データ", "保有個人データ",
+        "仮名加工情報", "匿名加工情報", "漏えい", "漏洩", "マイナンバー",
+        "特定個人情報", "国際移転", "越境移転", "AI", "データ利活用",
+        "ガイドライン", "Q&A", "Ｑ＆Ａ", "Q＆A",
+    )),
+]
+JFTC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Antitrust / Fair Trade", (
+        "独占禁止法", "下請法", "取適法", "フリーランス",
+        "スマホソフトウェア競争促進法", "優越的地位", "カルテル", "入札談合",
+        "企業結合", "確約手続", "排除措置命令", "課徴金", "勧告",
+        "不公正な取引方法", "公正な取引", "公正取引委員会",
+    )),
+]
 ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
     ("Economic Security / FDI", (
         "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
@@ -288,9 +317,15 @@ ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
     )),
     ("Data / Privacy / AI", (
         "サイバー", "セキュリティ", "AI", "デジタル", "データ",
+        "個人情報", "個人情報保護法", "個人データ", "保有個人データ",
+        "仮名加工情報", "匿名加工情報", "漏えい", "漏洩", "マイナンバー",
+        "特定個人情報", "国際移転", "越境移転", "データ利活用",
     )),
     ("Antitrust / Fair Trade", (
-        "中小企業", "下請", "取引適正化",
+        "中小企業", "下請", "取引適正化", "独占禁止法", "下請法", "取適法",
+        "フリーランス", "スマホソフトウェア競争促進法", "優越的地位",
+        "カルテル", "入札談合", "企業結合", "確約手続", "排除措置命令",
+        "課徴金", "不公正な取引方法", "公正な取引", "公正取引委員会",
     )),
     ("Corporate / Governance", (
         "公益通報",
@@ -311,6 +346,14 @@ def classify_area(title_ja: str, source_name: str) -> str:
         for area, keywords in CAA_AREA_RULES:
             if any(kw in title_ja for kw in keywords):
                 return area
+    if any(hint in source_name for hint in ("個人情報保護委員会", "PPC")):
+        for area, keywords in PPC_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if any(hint in source_name for hint in ("公正取引委員会", "JFTC")):
+        for area, keywords in JFTC_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
     for area, keywords in ADDITIONAL_AREA_RULES:
         if any(kw in title_ja for kw in keywords):
             return area
@@ -323,7 +366,10 @@ def classify_area(title_ja: str, source_name: str) -> str:
     return "Other"
 
 
-_PC_KEYWORDS = ("意見募集", "パブリックコメント", "パブリック・コメント", "意見の募集", "御意見の募集", "ご意見の募集")
+_PC_KEYWORDS = (
+    "意見募集", "パブリックコメント", "パブリック・コメント", "パブコメ",
+    "意見の募集", "御意見の募集", "ご意見の募集",
+)
 _PC_RESULT_MARKERS = (
     "意見募集結果", "意見募集の結果", "意見の募集の結果", "募集の結果",
     "結果の公示", "結果について", "パブリックコメントの結果",
@@ -360,7 +406,7 @@ def classify_stage(title_ja: str, source_type: str) -> str:
         return "Enacted"
     if "法案" in title_ja or "法律案" in title_ja or ("提出" in title_ja and ("法律" in title_ja or "法案" in title_ja or "国会" in title_ja)):
         return "Bill Submitted"
-    if "案" in title_ja and any(kw in title_ja for kw in ("指針", "ガイドライン", "Q&A", "Ｑ＆Ａ", "FAQ", "考え方")):
+    if "案" in title_ja and any(kw in title_ja for kw in ("指針", "ガイドライン", "Q&A", "Ｑ＆Ａ", "Q＆A", "FAQ", "考え方")):
         return "Draft Guideline"
     return "Government Announcement"
 

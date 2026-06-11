@@ -44,6 +44,7 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -104,6 +105,22 @@ SOURCES = [
         "source_type": "agency_rss",
         "source_language": "ja",
     },
+    {
+        "name": "個人情報保護委員会 (PPC) 新着情報",
+        "url": "https://www.ppc.go.jp/information/",
+        "source_type": "regulator_html",
+        "source_language": "ja",
+        "html_parser": "ppc_information",
+    },
+    {
+        "name": "公正取引委員会 (JFTC) 報道発表",
+        "url": "https://www.jftc.go.jp/houdou/pressrelease/shuyohodoR8.html",
+        "source_type": "regulator_html",
+        "source_language": "ja",
+        "html_parser": "jftc_pressrelease",
+        "prefer_urllib": True,
+        "user_agent": "JapanLegalReformWatch/0.1",
+    },
 ]
 
 USER_AGENT = (
@@ -151,13 +168,24 @@ def setup_logging() -> None:
 # Fetch + parse (with stdlib fallbacks)
 # --------------------------------------------------------------------------- #
 
-def http_get(url: str, timeout: int) -> bytes:
+def http_get(
+    url: str,
+    timeout: int,
+    prefer_urllib: bool = False,
+    accept_html: bool = False,
+    user_agent: str = USER_AGENT,
+) -> bytes:
     """Fetch raw bytes. Prefer `requests`; fall back to urllib. Sets UA + timeout."""
+    accept = (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        if accept_html else
+        "application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml, */*"
+    )
     headers = {
-        "User-Agent": USER_AGENT,
-        "Accept": "application/rss+xml, application/rdf+xml, application/atom+xml, application/xml, text/xml, */*",
+        "User-Agent": user_agent,
+        "Accept": accept,
     }
-    if requests is not None:
+    if requests is not None and not prefer_urllib:
         resp = requests.get(url, headers=headers, timeout=timeout)
         resp.raise_for_status()
         return resp.content
@@ -174,6 +202,82 @@ def parse_feed(content: bytes) -> list[dict]:
     if feedparser is not None:
         return _parse_with_feedparser(content)
     return _parse_with_stdlib(content)
+
+
+def parse_source_entries(content: bytes, source: dict) -> list[dict]:
+    """Parse RSS/RDF/Atom sources, or a small allow-list of official HTML pages."""
+    if str(source.get("source_type", "")).endswith("_html"):
+        return parse_html_source(content, source)
+    return parse_feed(content)
+
+
+def parse_html_source(content: bytes, source: dict) -> list[dict]:
+    parser_name = source.get("html_parser")
+    text = content.decode("utf-8", errors="replace")
+    if parser_name == "ppc_information":
+        return _parse_ppc_information_html(text, source["url"])
+    if parser_name == "jftc_pressrelease":
+        return _parse_jftc_pressrelease_html(text, source["url"])
+    raise ValueError(f"Unsupported html_parser: {parser_name}")
+
+
+_PPC_ITEM_RE = re.compile(
+    r"<li>\s*"
+    r"<time[^>]+datetime=[\"'](?P<date>\d{4}-\d{2}-\d{2})[\"'][^>]*>.*?</time>\s*"
+    r"<div[^>]+class=[\"'][^\"']*news-label-wrap[^\"']*[\"'][^>]*>(?P<label_html>.*?)</div>\s*"
+    r"<div[^>]+class=[\"'][^\"']*news-text[^\"']*[\"'][^>]*>\s*"
+    r"<a\s+href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<title_html>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _parse_ppc_information_html(text: str, base_url: str) -> list[dict]:
+    items: list[dict] = []
+    for match in _PPC_ITEM_RE.finditer(text):
+        title = clean_text(match.group("title_html"))
+        href = html.unescape(match.group("href")).strip()
+        label = clean_text(match.group("label_html"))
+        if not title or not href:
+            continue
+        items.append(
+            {
+                "title": title,
+                "link": urllib.parse.urljoin(base_url, href),
+                "summary": label,
+                "published_iso": match.group("date"),
+            }
+        )
+    return items
+
+
+_JFTC_LIST_RE = re.compile(r"<ul[^>]+class=[\"'][^\"']*norcor[^\"']*[\"'][^>]*>(?P<body>.*?)</ul>", re.IGNORECASE | re.DOTALL)
+_JFTC_LINK_RE = re.compile(r"<li>\s*<a\s+href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<title_html>.*?)</a>\s*</li>", re.IGNORECASE | re.DOTALL)
+_JFTC_DATE_TITLE_RE = re.compile(r"^\((?P<date>[^)]+)\)\s*(?P<title>.+)$")
+
+
+def _parse_jftc_pressrelease_html(text: str, base_url: str) -> list[dict]:
+    items: list[dict] = []
+    for list_match in _JFTC_LIST_RE.finditer(text):
+        for match in _JFTC_LINK_RE.finditer(list_match.group("body")):
+            raw_title = clean_text(match.group("title_html"))
+            href = html.unescape(match.group("href")).strip()
+            if not raw_title or not href:
+                continue
+            published_iso = ""
+            title = raw_title
+            date_match = _JFTC_DATE_TITLE_RE.match(raw_title)
+            if date_match:
+                published_iso = _normalize_japanese_date(date_match.group("date"))
+                title = date_match.group("title").strip()
+            items.append(
+                {
+                    "title": title,
+                    "link": urllib.parse.urljoin(base_url, href),
+                    "summary": "報道発表",
+                    "published_iso": published_iso,
+                }
+            )
+    return items
 
 
 def _parse_with_feedparser(content: bytes) -> list[dict]:
@@ -281,6 +385,27 @@ def _normalize_date(value: str) -> str:
     # Date only, e.g. "2026-06-10"
     try:
         return datetime.strptime(value[:10], "%Y-%m-%d").strftime("%Y-%m-%d")
+    except ValueError:
+        return ""
+
+
+_JP_ERA_DATE_RE = re.compile(r"^(?P<era>令和|平成|昭和)(?P<year>\d+|元)年(?P<month>\d{1,2})月(?P<day>\d{1,2})日")
+_JP_ERA_BASE_YEAR = {"令和": 2018, "平成": 1988, "昭和": 1925}
+
+
+def _normalize_japanese_date(value: str) -> str:
+    """Parse explicit Japanese era dates such as '令和8年6月10日'."""
+    value = clean_text(value)
+    match = _JP_ERA_DATE_RE.match(value)
+    if not match:
+        return ""
+    year_text = match.group("year")
+    era_year = 1 if year_text == "元" else int(year_text)
+    year = _JP_ERA_BASE_YEAR[match.group("era")] + era_year
+    month = int(match.group("month"))
+    day = int(match.group("day"))
+    try:
+        return datetime(year, month, day).strftime("%Y-%m-%d")
     except ValueError:
         return ""
 
@@ -403,8 +528,14 @@ def run(timeout: int, dry_run: bool) -> int:
         checked_sources += 1
         name, url = source["name"], source["url"]
         try:
-            content = http_get(url, timeout)
-            entries = parse_feed(content)[:MAX_ITEMS_PER_SOURCE]
+            content = http_get(
+                url,
+                timeout,
+                prefer_urllib=bool(source.get("prefer_urllib")),
+                accept_html=str(source.get("source_type", "")).endswith("_html"),
+                user_agent=str(source.get("user_agent") or USER_AGENT),
+            )
+            entries = parse_source_entries(content, source)[:MAX_ITEMS_PER_SOURCE]
             fetched_items += len(entries)
             logger.info("OK   %s — %d entries from %s", name, len(entries), url)
             if not entries:
