@@ -81,7 +81,7 @@ Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at`
 
 `scripts/build_public_data.py` maps the raw items in `data/raw_items.json` into the schema the dashboard expects and writes [`docs/data/legal_updates.json`](docs/data/legal_updates.json).
 
-> **This stage does not use AI and does not translate or interpret anything.** It is a provisional, rule-based placeholder so the dashboard can show *that* an item exists and prompt the reader to check the official Japanese source. `title_en` is a labelled passthrough of the Japanese title; `summary_en`, `business_impact_en`, and `recommended_action_en` are fixed template sentences. `area`, `stage`, and `impact_level` are assigned by simple keyword rules (conservative — `impact_level` never exceeds `Medium` at this stage).
+> **This stage does not use AI and does not provide official translations or legal interpretation.** It is a provisional, rule-based placeholder so the dashboard can show *that* an item exists and prompt the reader to check the official Japanese source. `title_en` is a conservative rule-based English label for triage; `summary_en`, `business_impact_en`, and `recommended_action_en` are fixed template sentences. `area`, `stage`, and `impact_level` are assigned by simple keyword rules (conservative — `impact_level` never exceeds `Medium` at this stage).
 
 **Run** (after `fetch_updates.py` has produced `data/raw_items.json`):
 
@@ -250,7 +250,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | Field                    | Description                                                              |
 | ------------------------ | ------------------------------------------------------------------------ |
 | `id`                     | Stable identifier (e.g. `jlrw-2026-001`).                                |
-| `title_en`               | Informal English title.                                                  |
+| `title_en`               | Unofficial English title label; rule-based at Stage 2, AI-generated only after Stage 3. |
 | `title_ja`               | Original Japanese title.                                                 |
 | `area`                   | Subject area (e.g. Data Privacy, Financial Regulation).                  |
 | `stage`                  | Legislative / regulatory stage (e.g. Public Comment Open, Public Comment Closed, Public Comment Results Published, Bill Submitted). |

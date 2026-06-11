@@ -61,7 +61,7 @@ requirements.txt                 # Ingestion/summarization dependencies (request
 Each entry contains:
 
 - `id` — stable string id (e.g., `jlrw-2026-001`).
-- `title_en` — informal English title.
+- `title_en` — unofficial English title label; rule-based at Stage 2, AI-generated only after Stage 3.
 - `title_ja` — original Japanese title.
 - `area` — e.g., `Data Privacy`, `Financial Regulation`, `Corporate Governance`, `Cybersecurity`, `Labor & Employment`.
 - `stage` — e.g., `Public Comment Open`, `Public Comment Closed`, `Public Comment Results Published`, `Bill Submitted`, `In Force`.
@@ -82,7 +82,7 @@ Each entry contains:
 ## Provisional public data (`scripts/build_public_data.py`)
 
 - Maps `data/raw_items.json` → `docs/data/legal_updates.json` (the published file), backing up the previous file to `docs/data/legal_updates.backup.json` first.
-- **Interim, rule-based, pre-AI stage. It does NOT translate, summarize, or make any legal/business judgement.** `title_en` is `"Japanese Regulatory Update: " + title_ja` (a labelled passthrough); `summary_en` / `business_impact_en` / `recommended_action_en` are FIXED template sentences that tell the reader to check the official Japanese source. Never present this output as analysis.
+- **Interim, rule-based, pre-AI stage. It does NOT provide official translation, summarization, or legal/business judgement.** `title_en` is a conservative rule-based English label for triage; `summary_en` / `business_impact_en` / `recommended_action_en` are FIXED template sentences that tell the reader to check the official Japanese source. Never present this output as analysis.
 - `area` / `stage` / `impact_level` come from simple keyword rules over controlled vocabularies. Conservative by design: `impact_level` is only `Low` or `Medium` here — `High` is reserved for a later evidence-based (AI/human) stage.
 - **Ranking is a technical heuristic, NOT a legal judgement.** Items are scored by an internal keyword `relevance_score` (boosts law-reform / regulation / public-comment / guideline keywords; penalises minutes, statistics, web magazines, bare page updates; e-Gov public comments get a source bonus) and ordered by `relevance_score` → impact weight (Medium > Low) → recency (light penalty for old items). It only decides *what to surface*, never legal importance. The score is written as an optional `relevance_score` field (the UI ignores it).
 - Public-comment stages distinguish `Public Comment Open`, `Public Comment Closed`, and `Public Comment Results Published`. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally rank higher; strong legal/regulatory signals can soften that demotion.

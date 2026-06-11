@@ -13,7 +13,8 @@ What this script does
   reform / regulation / public comments / guidelines rank above minutes,
   statistics, and bare page updates.
 - Classifies area / stage / impact_level with simple, conservative RULES.
-- Emits MODEST English PLACEHOLDER copy (no translation, no interpretation).
+- Emits controlled rule-based English titles and MODEST English PLACEHOLDER copy
+  (no official translation, no interpretation).
 - Preserves existing Claude summary fields for matching id/source_url records.
 - Orders by an internal ordering score, then impact weight (Medium > Low), then recency;
   caps the output, backs up the previous file, and writes
@@ -23,8 +24,10 @@ What this script deliberately does NOT do
 ------------------------------------------
 - No Claude / LLM calls and NO AI translation or summarization.
 - No legal judgement. The relevance score is a TECHNICAL HEURISTIC for narrowing
-  which items to surface — not an assessment of legal importance. title_en /
-  summary_en / business_impact_en / recommended_action_en are fixed templates.
+  which items to surface — not an assessment of legal importance. title_en is a
+  conservative rule-based label, not an official translation; summary_en /
+  business_impact_en / recommended_action_en are fixed templates unless Stage 3
+  summaries are preserved.
 - Does not add sources, change the UI, or paginate.
 
 Security posture
@@ -77,6 +80,7 @@ AI_PRESERVE_FIELDS = (
 
 # Modest, NON-interpretive placeholder copy (no AI, no legal conclusion).
 TITLE_EN_PREFIX = "Japanese Regulatory Update: "
+TITLE_MAX_CHARS = 120
 SUMMARY_EN = (
     "This is a rule-based preview and has not yet been reviewed or summarized by AI. "
     "A Japanese government source has published an item related to the original "
@@ -478,6 +482,246 @@ def classify_impact(title_ja: str, source_type: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
+# Rule-based English title labels (triage aid; NOT official translation)
+# --------------------------------------------------------------------------- #
+
+TITLE_SUBJECT_MARKERS = (
+    "に対する意見募集及び公聴会",
+    "に対する意見募集",
+    "に関する御意見の募集",
+    "に関する意見・情報の募集",
+    "についての意見・情報の募集",
+    "に係る意見の募集",
+    "に関する意見の募集",
+    "に関する意見募集",
+    "への意見募集",
+    "の公表について",
+    "について公表しました",
+)
+
+TITLE_TRAILING_PHRASES = (
+    "について",
+    "を掲載しました。",
+    "を掲載しました",
+    "を公表しました。",
+    "を公表しました",
+    "公表しました。",
+    "公表しました",
+)
+
+TITLE_TOPIC_RULES: list[tuple[tuple[str, ...], str]] = [
+    (("薬局製剤指針",), "Pharmacy Preparation Guidelines"),
+    (("鉄道車両", "容器", "検査", "再検査"), "Inspection Standards for Containers Fixed to Railway Vehicles"),
+    (("重要電源開発地点",), "Rules on Designation of Important Power Source Development Sites"),
+    (("中小・地域金融機関", "監督指針"), "Supervisory Guidelines for Small and Regional Financial Institutions"),
+    (("流通・取引慣行", "独占禁止法"), "Antimonopoly Act Guidelines on Distribution and Trade Practices"),
+    (("優越的地位", "知的財産権"), "Guidelines on Abuse of Superior Bargaining Position in IP, Know-How and Data Transactions"),
+    (("優越的地位",), "Guidelines on Abuse of Superior Bargaining Position"),
+    (("不公正な取引方法", "特定荷主"), "Unfair Trade Practices Rules for Specified Shippers"),
+    (("不公正な取引方法",), "Unfair Trade Practices Rules"),
+    (("国民年金法施行規則",), "Ordinance for Enforcement of the National Pension Act"),
+    (("原子力政策",), "Nuclear Energy Policy Direction and Action Guidelines"),
+    (("空家等", "基本的な指針"), "Basic Guidelines on Measures for Vacant Houses"),
+    (("鳥獣", "基本的な指針"), "Basic Wildlife Protection and Management Guidelines"),
+    (("食品、添加物等の規格基準",), "Food and Food Additive Standards"),
+    (("受入事業主", "送出事業主"), "Guidelines for Receiving and Sending-Out Business Operators"),
+    (("人とペットの災害対策ガイドライン",), "Disaster Preparedness Guidelines for People and Pets"),
+    (("動物用医薬品等取締規則",), "Veterinary Pharmaceuticals Control Rules"),
+    (("知床国立公園", "知床五湖"), "Visitor Limits for Shiretoko Five Lakes Use Adjustment Area"),
+    (("個人情報の保護に関する法律", "閣議決定"), "Cabinet Decision on Bill to Amend the Act on the Protection of Personal Information"),
+    (("特定個人情報", "漏えい"), "Response to Leakage Incidents Involving Specific Personal Information"),
+    (("機能性表示食品制度届出データベース",), "Functional Claims Food Notification Database"),
+    (("景品表示法",), "Act against Unjustifiable Premiums and Misleading Representations"),
+    (("ステルスマーケティング",), "Stealth Marketing Advertising Rules"),
+    (("食品表示",), "Food Labeling Rules"),
+    (("生成AI", "実態調査報告書"), "Market Survey Report on Generative AI"),
+    (("排除措置命令", "課徴金"), "Cease-and-Desist and Surcharge Payment Orders"),
+    (("取適法", "運用状況"), "Enforcement Status of the Transaction Optimization Act"),
+    (("労働者派遣事業", "許可", "取り消し"), "Revocation of Worker Dispatch Business Permit"),
+    (("IOSCO", "集団投資スキーム"), "IOSCO Final Report on Valuation of Collective Investment Schemes"),
+    (("マレーシア医療機器庁",), "MOU with Malaysia Medical Device Authority to Strengthen Regulatory Cooperation"),
+    (("第221回国会", "提出法律案"), "Bills Submitted to the 221st Diet Session"),
+    (("RegTech", "ミート"), "RegTech Meet Materials on Analog Regulation Review"),
+    (("一般海域", "占用公募制度"), "Revision to Operational Guidelines for the General Sea Area Occupancy Tender System"),
+    (("愛媛県", "ドローン"), "Local Government Analog Regulation Review: Drone Use Case in Ehime Prefecture"),
+    (("特定保健用食品", "表示許可"), "Permission for Labeling of Foods for Specified Health Uses"),
+    (("スマホソフトウェア競争促進法", "遵守報告書"), "Compliance Reports under the Smartphone Software Competition Promotion Act"),
+    (("COCoLiS",), "Consumer Organization Litigation System COCoLiS Updated"),
+    (("白書", "年次報告書"), "White Papers and Annual Reports"),
+    (("知的財産取引適正化", "ワーキンググループ報告書"), "Working Group Report on Fairness in Intellectual Property Transactions"),
+    (("電通グループ", "課徴金額"), "Decision Changing Surcharge Amount for Dentsu Group"),
+    (("特定石綿被害建設業務労働者", "認定審査会"), "Special Review Committee Meeting on Asbestos-Related Construction Worker Certification"),
+    (("経済安全保障",), "Economic Security Policy"),
+    (("安全保障貿易",), "Security Trade Control"),
+    (("輸出管理",), "Export Control Rules"),
+    (("外為",), "Foreign Exchange and Foreign Trade Act Rules"),
+    (("重要物資",), "Critical Goods Policy"),
+    (("エネルギー",), "Energy Policy"),
+    (("電力",), "Electricity Policy"),
+    (("ガス",), "Gas Policy"),
+    (("GX",), "GX Policy"),
+    (("脱炭素",), "Decarbonization Policy"),
+    (("個人情報",), "Personal Information Protection Rules"),
+    (("マイナンバー",), "My Number Rules"),
+    (("独占禁止法",), "Antimonopoly Act Rules"),
+    (("下請法",), "Subcontract Act Rules"),
+    (("フリーランス",), "Freelance Act Rules"),
+]
+
+
+def strip_outer_quotes(value: str) -> str:
+    text = value.strip()
+    quote_pairs = (("「", "」"), ("『", "』"), ('"', '"'), ("'", "'"))
+    changed = True
+    while changed and len(text) >= 2:
+        changed = False
+        for left, right in quote_pairs:
+            if text.startswith(left) and text.endswith(right):
+                text = text[len(left): -len(right)].strip()
+                changed = True
+                break
+    return text
+
+
+def clean_japanese_title_subject(title_ja: str) -> str:
+    text = (title_ja or "").strip()
+    text = re.sub(r"^[（(]\s*受付終了\s*[）)]", "", text).strip()
+    quoted = re.match(r"^「([^」]+)」", text)
+    if quoted and any(marker in text for marker in ("掲載", "ページ")):
+        text = quoted.group(1)
+    else:
+        for marker in TITLE_SUBJECT_MARKERS:
+            if marker in text:
+                text = text.split(marker, 1)[0]
+                break
+    text = strip_outer_quotes(text)
+    for phrase in TITLE_TRAILING_PHRASES:
+        if text.endswith(phrase):
+            text = text[: -len(phrase)].strip()
+    text = strip_outer_quotes(text)
+    return re.sub(r"\s+", " ", text).strip(" 。")
+
+
+def topic_english(subject_ja: str, title_ja: str) -> str:
+    haystack = subject_ja + " " + title_ja
+    for keywords, english in TITLE_TOPIC_RULES:
+        if all(keyword in haystack for keyword in keywords):
+            return english
+    return ""
+
+
+def has_draft_marker(subject_ja: str) -> bool:
+    return any(
+        marker in subject_ja
+        for marker in ("（案）", "(案)", "改正案", "案等", "案）", "案に", "案及び", "案又は")
+    )
+
+
+def infer_subject_title_en(subject_ja: str, title_ja: str) -> str:
+    topic = topic_english(subject_ja, title_ja)
+    if topic:
+        if topic.endswith("Updated"):
+            return topic
+        if topic.startswith((
+            "Cabinet Decision",
+            "Response to",
+            "Market Survey",
+            "Cease-and-Desist",
+            "Enforcement Status",
+            "Revocation",
+            "IOSCO",
+            "MOU",
+            "Bills Submitted",
+            "RegTech",
+            "Revision to",
+            "Local Government",
+            "Permission for",
+            "Compliance Reports",
+            "White Papers",
+            "Working Group",
+            "Decision Changing",
+            "Special Review",
+        )):
+            return topic
+        if "閣議決定" in title_ja and not topic.startswith("Cabinet Decision"):
+            return "Cabinet Decision on " + topic
+        if any(marker in title_ja for marker in ("漏えい", "漏洩")) and not topic.startswith("Response to"):
+            return topic
+        if "更新" in title_ja:
+            return topic + " Updated"
+        if any(marker in subject_ja for marker in ("改訂案", "変更案")):
+            return "Draft Revision to " + topic
+        if any(marker in subject_ja for marker in ("一部改正", "一部を改正", "改正案")):
+            return "Draft Amendment to " + topic
+        if has_draft_marker(subject_ja) and any(marker in subject_ja for marker in ("指針", "ガイドライン", "考え方")):
+            return "Draft " + topic
+        if has_draft_marker(subject_ja):
+            return "Draft " + topic
+        return topic
+
+    if any(marker in subject_ja for marker in ("一部改正", "一部を改正", "改正案")):
+        return "Draft Amendment to " + subject_ja
+    if any(marker in subject_ja for marker in ("改訂案", "変更案")):
+        return "Draft Revision to " + subject_ja
+    if has_draft_marker(subject_ja) and any(marker in subject_ja for marker in ("指針", "ガイドライン", "規程")):
+        return "Draft Guidelines or Rules: " + subject_ja
+    return subject_ja
+
+
+def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
+    if "公正取引委員会" in source_name or "JFTC" in source_name:
+        return "JFTC Public Comment" if stage.startswith("Public Comment") else "JFTC Update"
+    if "個人情報保護委員会" in source_name or "PPC" in source_name:
+        return "PPC Update"
+    if "消費者庁" in source_name or "CAA" in source_name:
+        return "CAA Update"
+    if "経済産業省" in source_name or "METI" in source_name:
+        if any(keyword in title_ja for keyword in ("エネルギー", "電力", "ガス", "GX", "脱炭素", "カーボン")):
+            return "METI Energy Update"
+        return "METI Update"
+    if "Financial Services Agency" in source_name or "金融庁" in source_name or "FSA" in source_name:
+        return "FSA Update"
+    if "Ministry of Health" in source_name or "厚生労働省" in source_name or "MHLW" in source_name:
+        return "MHLW Update"
+    if "Digital Agency" in source_name or "デジタル庁" in source_name:
+        return "Digital Agency Update"
+    if stage == "Public Comment Results Published":
+        return "Public Comment Results"
+    if stage == "Public Comment Closed":
+        return "Closed Public Comment"
+    if stage == "Public Comment Open":
+        return "Public Comment"
+    if stage == "Draft Guideline":
+        return "Draft Guideline"
+    return "Japanese Regulatory Update"
+
+
+def shorten_title(value: str, max_chars: int = TITLE_MAX_CHARS) -> str:
+    if len(value) <= max_chars:
+        return value
+    cut = value[: max_chars - 3].rstrip()
+    space = cut.rfind(" ")
+    if space >= 72:
+        cut = cut[:space].rstrip()
+    return cut + "..."
+
+
+def generate_title_en(title_ja: str, source_name: str, stage: str) -> str:
+    subject_ja = clean_japanese_title_subject(title_ja)
+    subject_en = infer_subject_title_en(subject_ja, title_ja)
+    prefix = title_prefix(source_name, stage, title_ja)
+
+    if stage == "Public Comment Closed" and "Public Comment" not in prefix:
+        title = f"{prefix}: Closed public comment on {subject_en}"
+    elif stage == "Public Comment Results Published" and "Public Comment" not in prefix:
+        title = f"{prefix}: Public comment results on {subject_en}"
+    else:
+        title = f"{prefix}: {subject_en}"
+
+    return shorten_title(title)
+
+
+# --------------------------------------------------------------------------- #
 # Dates
 # --------------------------------------------------------------------------- #
 
@@ -523,13 +767,11 @@ def build_public_item(raw: dict, build_date: str, score: float) -> dict:
     source_type = raw.get("source_type") or ""
     _, display_date = parse_published(raw.get("published_at", ""))
     stage = classify_stage(title_ja, source_type)
-    title_en = TITLE_EN_PREFIX + title_ja
-    if stage == "Public Comment Closed":
-        title_en = "Closed public comment: " + title_ja
+    title_en = generate_title_en(title_ja, source_name, stage)
 
     return {
         "id": raw.get("id") or "",                 # reuse the stable raw id (traceable)
-        "title_en": title_en,                      # NOT a translation — a labelled passthrough
+        "title_en": title_en,                      # rule-based label — NOT an official translation
         "title_ja": title_ja,
         "area": classify_area(title_ja, source_name),
         "stage": stage,
