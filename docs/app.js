@@ -215,10 +215,14 @@
         </div>
         <footer class="card-footer">
           <div class="source">
-            <span class="source-label">Source</span>
-            <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
-      u.source_name
-    )}</a>
+            <div class="source-meta">
+              <span class="source-label">Source name</span>
+              <span class="source-name">${escapeHtml(u.source_name)}</span>
+            </div>
+            <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
+              View Original Japanese Source &rarr;
+            </a>
+            <p class="source-note">Original Japanese source remains authoritative.</p>
           </div>
           <div class="dates">
             <span>Published: ${escapeHtml(u.published_at)}</span>
