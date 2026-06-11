@@ -21,6 +21,7 @@
     source: "",
     impact: "",
     search: "",
+    aiSummaryOnly: false,
   };
 
   // -------- DOM helpers --------
@@ -33,6 +34,7 @@
     filterStage,
     filterSource,
     filterImpact,
+    quickFilterButtons,
     cardsEl,
     emptyEl,
     errorEl,
@@ -46,6 +48,7 @@
     filterStage = $("#filter-stage");
     filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
+    quickFilterButtons = Array.from(document.querySelectorAll("[data-quick-filter]"));
     cardsEl = $("#cards");
     emptyEl = $("#empty-state");
     errorEl = $("#error-state");
@@ -153,6 +156,62 @@
       impacts.filter((i) => !IMPACT_ORDER.includes(i))
     );
     orderedImpacts.forEach((i) => filterImpact.appendChild(new Option(i, i)));
+    syncFilterControls();
+  }
+
+  function syncFilterControls() {
+    searchInput.value = filters.search;
+    filterArea.value = filters.area;
+    filterStage.value = filters.stage;
+    filterSource.value = filters.source;
+    filterImpact.value = filters.impact;
+  }
+
+  function setQuickButtonState(button, active) {
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  }
+
+  function updateQuickFilterState() {
+    quickFilterButtons.forEach((button) => {
+      const action = button.getAttribute("data-quick-filter");
+      if (action === "reset") {
+        setQuickButtonState(button, false);
+      } else if (action === "public-comment-open") {
+        setQuickButtonState(button, filters.stage === "Public Comment Open");
+      } else if (action === "ai-summary") {
+        setQuickButtonState(button, filters.aiSummaryOnly);
+      } else if (action === "medium-impact") {
+        setQuickButtonState(button, filters.impact === "Medium");
+      }
+    });
+  }
+
+  function resetFilters() {
+    filters.area = "";
+    filters.stage = "";
+    filters.source = "";
+    filters.impact = "";
+    filters.search = "";
+    filters.aiSummaryOnly = false;
+    syncFilterControls();
+    render();
+  }
+
+  function handleQuickFilter(action) {
+    if (action === "reset") {
+      resetFilters();
+      return;
+    }
+    if (action === "public-comment-open") {
+      filters.stage = filters.stage === "Public Comment Open" ? "" : "Public Comment Open";
+    } else if (action === "ai-summary") {
+      filters.aiSummaryOnly = !filters.aiSummaryOnly;
+    } else if (action === "medium-impact") {
+      filters.impact = filters.impact === "Medium" ? "" : "Medium";
+    }
+    syncFilterControls();
+    render();
   }
 
   // -------- Rendering --------
@@ -258,6 +317,7 @@
       if (filters.stage && u.stage !== filters.stage) return false;
       if (filters.source && u.source_name !== filters.source) return false;
       if (filters.impact && u.impact_level !== filters.impact) return false;
+      if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
       if (q) {
         const hay = (
           (u.title_en || "") +
@@ -295,6 +355,7 @@
 
   function render() {
     const filtered = applyFilters();
+    updateQuickFilterState();
     errorEl.hidden = true;
     if (filtered.length === 0) {
       cardsEl.innerHTML = "";
@@ -338,6 +399,11 @@
     filterImpact.addEventListener("change", (e) => {
       filters.impact = e.target.value;
       render();
+    });
+    quickFilterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        handleQuickFilter(button.getAttribute("data-quick-filter"));
+      });
     });
   }
 

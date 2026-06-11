@@ -175,6 +175,64 @@ code {
   align-items: end;
 }
 
+.quick-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.quick-filters-label {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quick-filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-filter-btn {
+  border: 1px solid #d3d7dc;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-navy);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.2;
+  padding: 7px 12px;
+  transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.quick-filter-btn:hover,
+.quick-filter-btn:focus {
+  border-color: #aeb8c4;
+  background: #f5f7fa;
+}
+
+.quick-filter-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
+}
+
+.quick-filter-btn.is-active {
+  border-color: #9eb1c8;
+  background: #e8eef6;
+  color: #173a5f;
+}
+
+.quick-filter-reset {
+  background: #faf9f5;
+  color: var(--color-text-muted);
+}
+
 .control-label {
   display: flex;
   flex-direction: column;
@@ -646,6 +704,10 @@ code {
 @media (max-width: 600px) {
   .controls-grid {
     grid-template-columns: 1fr;
+  }
+  .quick-filters {
+    align-items: flex-start;
+    flex-direction: column;
   }
   .header-inner {
     flex-direction: column;

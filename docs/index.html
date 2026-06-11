@@ -86,6 +86,23 @@
   <!-- Filter / Search Controls -->
   <section class="controls" aria-label="Filters">
     <div class="container">
+      <div class="quick-filters" aria-label="Quick filters">
+        <span class="quick-filters-label">Quick filters</span>
+        <div class="quick-filter-actions">
+          <button type="button" class="quick-filter-btn" data-quick-filter="public-comment-open" aria-pressed="false">
+            Public Comment Open
+          </button>
+          <button type="button" class="quick-filter-btn" data-quick-filter="ai-summary" aria-pressed="false">
+            AI Summary
+          </button>
+          <button type="button" class="quick-filter-btn" data-quick-filter="medium-impact" aria-pressed="false">
+            Medium Impact
+          </button>
+          <button type="button" class="quick-filter-btn quick-filter-reset" data-quick-filter="reset">
+            Reset
+          </button>
+        </div>
+      </div>
       <div class="controls-grid">
         <label class="control-label">
           <span class="control-label-text">Search</span>
@@ -181,6 +198,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=source-filter-20260611"></script>
+  <script src="app.js?v=quick-filters-20260611"></script>
 </body>
 </html>
