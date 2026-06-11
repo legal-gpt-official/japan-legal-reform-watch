@@ -95,6 +95,7 @@ Behaviour:
 - **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally appear first; strong legal/regulatory signals can soften that demotion.
 - **METI / CAA classification.** Additional keyword rules map METI and CAA items into areas such as `Economic Security / FDI`, `Energy / Environment`, `Data / Privacy / AI`, `Antitrust / Fair Trade`, `Consumer / Advertising`, and `Corporate / Governance` where the Japanese title supports that provisional classification.
 - **PPC / JFTC classification.** PPC items are biased toward `Data / Privacy / AI`; JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates are excluded or heavily downranked unless strong legal/regulatory keywords are present.
+- **Additional area classification.** Rule-based area labels also cover `Healthcare / Pharmaceuticals`, `Food / Agriculture`, `Transport / Infrastructure`, `Real Estate / Land Use`, and `Public Safety / Disaster Management` where source titles contain clear signals.
 - **Display order.** The dashboard displays records in the array order of `docs/data/legal_updates.json`. `build_public_data.py` owns the ranking/order; `docs/app.js` must not re-sort records by `published_at` or any other field.
 - **Exclusion.** Drops obvious administrative noise (recruitment, procurement, bidding, events, press conferences, web magazines) and items with no net legal / regulatory signal — **unless** a strong keyword (改正 / 施行 / 案 / ガイドライン / 意見募集 / 法律 …) is present. Public-comment items are always kept.
 - Backs up the current `docs/data/legal_updates.json` to `docs/data/legal_updates.backup.json` before overwriting.
@@ -252,7 +253,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `id`                     | Stable identifier (e.g. `jlrw-2026-001`).                                |
 | `title_en`               | Unofficial English title label; rule-based at Stage 2, AI-generated only after Stage 3. |
 | `title_ja`               | Original Japanese title.                                                 |
-| `area`                   | Subject area (e.g. Data Privacy, Financial Regulation).                  |
+| `area`                   | Rule-based subject area (e.g. Data / Privacy / AI, Finance / AML, Healthcare / Pharmaceuticals). |
 | `stage`                  | Legislative / regulatory stage (e.g. Public Comment Open, Public Comment Closed, Public Comment Results Published, Bill Submitted). |
 | `impact_level`           | `High` \| `Medium` \| `Low`.                                             |
 | `summary_en`             | Short factual summary in English.                                        |

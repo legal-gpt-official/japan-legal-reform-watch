@@ -277,6 +277,7 @@ AREA_SOURCE_FALLBACK = (
     ("Consumer / Advertising", ("消費者庁", "CAA")),
     ("Data / Privacy / AI", ("個人情報保護委員会", "PPC")),
     ("Antitrust / Fair Trade", ("公正取引委員会", "JFTC")),
+    ("Labor / Employment", ("厚生労働省", "MHLW", "Ministry of Health, Labour and Welfare")),
 )
 
 # Source-expansion area rules. These run before the broader legacy table so
@@ -318,6 +319,45 @@ JFTC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
         "スマホソフトウェア競争促進法", "優越的地位", "カルテル", "入札談合",
         "企業結合", "確約手続", "排除措置命令", "課徴金", "勧告",
         "不公正な取引方法", "公正な取引", "公正取引委員会",
+    )),
+]
+
+# Additional UTF-8 area rules for business-friendly dashboard filters. These run
+# before the legacy broad table so public-comment items do not fall back to Other.
+UTF8_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Energy / Environment", (
+        "電源", "重要電源", "原子力", "エネルギー", "電力", "ガス", "再エネ",
+        "GX", "脱炭素", "環境", "鳥獣保護", "鳥獣の保護", "wildlife protection",
+        "nuclear", "power source", "一般海域", "占用公募制度",
+    )),
+    ("Food / Agriculture", (
+        "食品", "添加物", "食品表示", "農薬", "動物用医薬品", "鳥獣", "農林",
+        "畜産", "veterinary", "food additive", "pesticide", "agriculture",
+    )),
+    ("Healthcare / Pharmaceuticals", (
+        "薬局", "薬局製剤", "医薬品", "医療機器", "薬機法", "薬事", "医療",
+        "pharmaceutical", "pharmacy", "medical device",
+    )),
+    ("Transport / Infrastructure", (
+        "鉄道", "車両", "容器", "高圧ガス", "運輸", "交通", "港湾", "道路",
+        "railway", "transport", "container", "infrastructure",
+    )),
+    ("Real Estate / Land Use", (
+        "空家", "空き家", "建築", "都市計画", "不動産", "土地", "住宅",
+        "国立公園", "利用調整地区", "vacant house", "real estate", "land use",
+        "urban planning",
+    )),
+    ("Public Safety / Disaster Management", (
+        "災害", "防災", "感染症", "ペットの災害対策", "安全対策",
+        "disaster", "public safety", "emergency",
+    )),
+    ("Consumer / Advertising", (
+        "景品表示法", "表示", "広告", "ステルスマーケティング", "消費者",
+        "消費者契約", "機能性表示食品", "food labeling", "advertising", "consumer",
+    )),
+    ("Labor / Employment", (
+        "労働", "雇用", "派遣", "受入事業主", "送出事業主", "事業主が講ずべき措置",
+        "labor", "employment", "worker dispatch",
     )),
 ]
 ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
@@ -366,6 +406,9 @@ def classify_area(title_ja: str, source_name: str) -> str:
         for area, keywords in JFTC_AREA_RULES:
             if any(kw in title_ja for kw in keywords):
                 return area
+    for area, keywords in UTF8_AREA_RULES:
+        if any(kw in title_ja for kw in keywords):
+            return area
     for area, keywords in ADDITIONAL_AREA_RULES:
         if any(kw in title_ja for kw in keywords):
             return area

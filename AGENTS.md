@@ -63,7 +63,7 @@ Each entry contains:
 - `id` — stable string id (e.g., `jlrw-2026-001`).
 - `title_en` — unofficial English title label; rule-based at Stage 2, AI-generated only after Stage 3.
 - `title_ja` — original Japanese title.
-- `area` — e.g., `Data Privacy`, `Financial Regulation`, `Corporate Governance`, `Cybersecurity`, `Labor & Employment`.
+- `area` — rule-based subject area, e.g. `Data / Privacy / AI`, `Finance / AML`, `Healthcare / Pharmaceuticals`, `Food / Agriculture`, `Transport / Infrastructure`.
 - `stage` — e.g., `Public Comment Open`, `Public Comment Closed`, `Public Comment Results Published`, `Bill Submitted`, `In Force`.
 - `impact_level` — `High` | `Medium` | `Low`.
 - `summary_en`, `business_impact_en`, `recommended_action_en` — short paragraphs.
@@ -88,6 +88,7 @@ Each entry contains:
 - Public-comment stages distinguish `Public Comment Open`, `Public Comment Closed`, and `Public Comment Results Published`. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally rank higher; strong legal/regulatory signals can soften that demotion.
 - METI / CAA source expansion uses additional title keyword rules for provisional area classification, including economic security / FDI, energy / environment, data / privacy / AI, antitrust / fair trade, consumer / advertising, and corporate governance. These labels remain triage metadata, not legal conclusions.
 - PPC / JFTC source expansion uses additional keyword rules: PPC items are biased toward `Data / Privacy / AI`, and JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates should be excluded or heavily downranked unless strong legal/regulatory keywords are present.
+- Additional public-comment area rules classify clear healthcare/pharma, food/agriculture, transport/infrastructure, real-estate/land-use, and public-safety/disaster-management signals so `Other` is reserved for genuinely unclear items.
 - Excludes clear administrative noise and items with no net legal/regulatory signal — unless a strong keyword rescues them; public comments are always kept. Caps output at 50; unknown/invalid dates rank last. Keeps `source_url` verbatim; input is untrusted (the UI escapes on render).
 - If the previous published file contains `summary_source: "claude"` for the same `id` and unchanged `source_url`, Stage 2 preserves the Claude summary fields while refreshing build-owned metadata such as `area`, `stage`, `impact_level`, `relevance_score`, titles, source, and dates.
 - Stage 3 may replace the template English fields for selected top-ranked records, but the keyword-derived `area` / `stage` / `impact_level` labels remain preliminary triage metadata unless a later reviewed process changes them. Keep the output escaping and the disclaimer intact.
