@@ -64,7 +64,7 @@ except ImportError:  # pragma: no cover
 # Configuration
 # --------------------------------------------------------------------------- #
 
-# Fetch targets. Keep this small (3-5) for the first iteration and prefer RSS /
+# Fetch targets. Keep this curated and prefer RSS /
 # RDF / Atom feeds that are easy to retrieve. All values here are operator-chosen
 # and trusted; the *content* returned by these URLs is treated as untrusted.
 SOURCES = [
@@ -81,6 +81,12 @@ SOURCES = [
         "source_language": "ja",
     },
     {
+        "name": "経済産業省 (METI) ニュースリリース",
+        "url": "https://www.meti.go.jp/ml_index_release_atom.xml",
+        "source_type": "ministry_rss",
+        "source_language": "ja",
+    },
+    {
         "name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
         "url": "https://www.mhlw.go.jp/stf/news.rdf",
         "source_type": "ministry_rss",
@@ -89,6 +95,12 @@ SOURCES = [
     {
         "name": "Digital Agency (デジタル庁) 新着・更新",
         "url": "https://www.digital.go.jp/rss/news.xml",
+        "source_type": "agency_rss",
+        "source_language": "ja",
+    },
+    {
+        "name": "消費者庁 (CAA) 新着情報",
+        "url": "https://www.caa.go.jp/news.rss",
         "source_type": "agency_rss",
         "source_language": "ja",
     },

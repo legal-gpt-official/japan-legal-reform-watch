@@ -107,6 +107,21 @@ BOOST_WEAK = ("報告",)
 
 WEIGHT_STRONG, WEIGHT_MODERATE, WEIGHT_TOPICAL, WEIGHT_WEAK = 5, 3, 2, 1
 
+# Additional clean UTF-8 keywords for newer source expansion. These supplement
+# the original keyword sets without changing the earlier scoring design.
+ADDITIONAL_BOOST_STRONG = (
+    "法改正", "命令", "勧告", "行政処分", "注意喚起", "ガイドライン", "指針",
+    "規制", "省令", "告示", "通達", "パブリックコメント", "意見募集",
+)
+ADDITIONAL_BOOST_TOPICAL = (
+    "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
+    "エネルギー", "電力", "ガス", "再エネ", "GX", "脱炭素", "カーボン",
+    "サイバー", "セキュリティ", "AI", "デジタル", "データ",
+    "中小企業", "下請", "取引適正化",
+    "景品表示法", "表示", "広告", "ステルスマーケティング",
+    "消費者契約法", "消費者", "取引", "勧誘", "公益通報", "食品表示",
+)
+
 # Low-value signals (deliberative / statistical / pure page updates). These are
 # NOT auto-excluded — they get a strong penalty so they fall below the cut unless
 # rescued by a strong/moderate boost above.
@@ -122,6 +137,9 @@ HARD_EXCLUDE = (
     "採用", "求人", "入札", "落札", "調達", "競争入札", "人事異動", "幹部名簿",
     "表彰", "セミナー", "シンポジウム", "イベント", "記者会見", "メールマガジン",
     "広報誌", "ＷＥＢマガジン", "WEBマガジン", "Webマガジン", "ウェブマガジン",
+)
+ADDITIONAL_HARD_EXCLUDE = (
+    "会談", "表敬", "出張", "意見交換を行いました", "開催します", "開催しました",
 )
 
 SOURCE_BONUS = {"public_comment_rss": 4}  # req 5: prioritise e-Gov public comments
@@ -143,16 +161,18 @@ def is_public_comment(source_type: str) -> bool:
 
 
 def is_hard_excluded(title_ja: str) -> bool:
-    if any(kw in title_ja for kw in BOOST_STRONG):
+    if any(kw in title_ja for kw in BOOST_STRONG) or any(kw in title_ja for kw in ADDITIONAL_BOOST_STRONG):
         return False  # rescued by a strong legal/regulatory signal
-    return any(kw in title_ja for kw in HARD_EXCLUDE)
+    return any(kw in title_ja for kw in HARD_EXCLUDE) or any(kw in title_ja for kw in ADDITIONAL_HARD_EXCLUDE)
 
 
 def keyword_score(title_ja: str) -> int:
     score = 0
     score += sum(WEIGHT_STRONG for kw in BOOST_STRONG if kw in title_ja)
+    score += sum(WEIGHT_STRONG for kw in ADDITIONAL_BOOST_STRONG if kw in title_ja)
     score += sum(WEIGHT_MODERATE for kw in BOOST_MODERATE if kw in title_ja)
     score += sum(WEIGHT_TOPICAL for kw in BOOST_TOPICAL if kw in title_ja)
+    score += sum(WEIGHT_TOPICAL for kw in ADDITIONAL_BOOST_TOPICAL if kw in title_ja)
     score += sum(WEIGHT_WEAK for kw in BOOST_WEAK if kw in title_ja)
     score += sum(weight for kw, weight in DEBOOST.items() if kw in title_ja)
     return score
@@ -220,10 +240,69 @@ AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 AREA_SOURCE_FALLBACK = (
     ("Finance / AML", ("金融庁", "FSA")),
     ("Data / Privacy / AI", ("デジタル庁", "Digital Agency")),
+    ("Consumer / Advertising", ("消費者庁", "CAA")),
 )
+
+# Source-expansion area rules. These run before the broader legacy table so
+# METI/CAA items with clear keywords land in more useful business categories.
+METI_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Economic Security / FDI", (
+        "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
+    )),
+    ("Energy / Environment", (
+        "エネルギー", "電力", "ガス", "再エネ", "GX", "脱炭素", "カーボン",
+    )),
+    ("Data / Privacy / AI", (
+        "サイバー", "セキュリティ", "AI", "デジタル", "データ",
+    )),
+    ("Antitrust / Fair Trade", (
+        "中小企業", "下請", "取引適正化",
+    )),
+]
+CAA_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Corporate / Governance", (
+        "公益通報",
+    )),
+    ("Consumer / Advertising", (
+        "景品表示法", "表示", "広告", "ステルスマーケティング",
+        "消費者契約法", "消費者", "取引", "勧誘", "食品表示",
+    )),
+]
+ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Economic Security / FDI", (
+        "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
+    )),
+    ("Energy / Environment", (
+        "エネルギー", "電力", "ガス", "再エネ", "GX", "脱炭素", "カーボン",
+    )),
+    ("Data / Privacy / AI", (
+        "サイバー", "セキュリティ", "AI", "デジタル", "データ",
+    )),
+    ("Antitrust / Fair Trade", (
+        "中小企業", "下請", "取引適正化",
+    )),
+    ("Corporate / Governance", (
+        "公益通報",
+    )),
+    ("Consumer / Advertising", (
+        "景品表示法", "表示", "広告", "ステルスマーケティング",
+        "消費者契約法", "消費者", "取引", "勧誘", "食品表示",
+    )),
+]
 
 
 def classify_area(title_ja: str, source_name: str) -> str:
+    if any(hint in source_name for hint in ("経済産業省", "METI")):
+        for area, keywords in METI_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if any(hint in source_name for hint in ("消費者庁", "CAA")):
+        for area, keywords in CAA_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    for area, keywords in ADDITIONAL_AREA_RULES:
+        if any(kw in title_ja for kw in keywords):
+            return area
     for area, keywords in AREA_RULES:
         if any(kw in title_ja for kw in keywords):
             return area
