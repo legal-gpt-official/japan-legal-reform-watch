@@ -233,6 +233,23 @@ code {
   color: #fff;
 }
 
+.badge-summary {
+  text-transform: none;
+  letter-spacing: 0.2px;
+}
+
+.badge-summary-ai {
+  background: #e7edf6;
+  border-color: #b8c7dd;
+  color: #1f4169;
+}
+
+.badge-summary-rule {
+  background: #f4f2ed;
+  border-color: #ded8cb;
+  color: #6b6254;
+}
+
 .card.impact-high .badge-impact {
   background: var(--color-impact-high);
 }

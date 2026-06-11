@@ -145,6 +145,22 @@
     return "";
   }
 
+  function summarySourceMeta(source) {
+    if (source === "claude") {
+      return {
+        label: "AI Summary",
+        className: "badge-summary-ai",
+        title:
+          "This item includes an AI-generated English summary. It is not an official translation or legal advice.",
+      };
+    }
+    return {
+      label: "Rule-based Preview",
+      className: "badge-summary-rule",
+      title: "This item has not yet been summarized by AI and uses a rule-based placeholder.",
+    };
+  }
+
   function escapeHtml(str) {
     if (str == null) return "";
     return String(str)
@@ -167,6 +183,10 @@
     // through escapeHtml(); source_url is additionally scheme-checked via safeUrl()
     // AND attribute-escaped before being placed in the href.
     const sourceUrl = safeUrl(u.source_url);
+    const summaryMeta = summarySourceMeta(u.summary_source);
+    const summaryBadge = `<span class="badge badge-summary ${escapeHtml(
+      summaryMeta.className
+    )}" title="${escapeHtml(summaryMeta.title)}">${escapeHtml(summaryMeta.label)}</span>`;
     return `
       <article class="card ${impactClass(u.impact_level)}" data-id="${escapeHtml(u.id)}">
         <header class="card-header">
@@ -174,6 +194,7 @@
             <span class="badge badge-area">${escapeHtml(u.area)}</span>
             <span class="badge badge-stage">${escapeHtml(u.stage)}</span>
             <span class="badge badge-impact">${escapeHtml(u.impact_level)} Impact</span>
+            ${summaryBadge}
           </div>
           <h2 class="card-title">${escapeHtml(u.title_en)}</h2>
           <p class="card-title-ja" lang="ja">${escapeHtml(u.title_ja)}</p>
@@ -226,6 +247,29 @@
     });
   }
 
+  function maxLastChecked(updates) {
+    const dates = updates
+      .map((u) => (typeof u.last_checked === "string" ? u.last_checked.trim() : ""))
+      .filter((v) => /^\d{4}-\d{2}-\d{2}$/.test(v));
+    if (dates.length === 0) return "";
+    dates.sort();
+    return dates[dates.length - 1];
+  }
+
+  function renderResultsMeta(filtered) {
+    // AI summary count and last-checked date are based on the currently displayed set.
+    const aiSummaryCount = filtered.filter((u) => u.summary_source === "claude").length;
+    const lastChecked = maxLastChecked(filtered);
+    const parts = [
+      "Showing " + filtered.length + " of " + allUpdates.length + " updates",
+      "AI summaries: " + aiSummaryCount,
+    ];
+    if (lastChecked) {
+      parts.push("Last checked: " + lastChecked);
+    }
+    metaEl.textContent = parts.join(" · ");
+  }
+
   function render() {
     const filtered = applyFilters();
     errorEl.hidden = true;
@@ -236,8 +280,7 @@
       cardsEl.innerHTML = filtered.map(renderCard).join("");
       emptyEl.hidden = true;
     }
-    metaEl.textContent =
-      "Showing " + filtered.length + " of " + allUpdates.length + " updates";
+    renderResultsMeta(filtered);
   }
 
   // -------- Events --------
