@@ -14,7 +14,7 @@ What this script does
   statistics, and bare page updates.
 - Classifies area / stage / impact_level with simple, conservative RULES.
 - Emits MODEST English PLACEHOLDER copy (no translation, no interpretation).
-- Orders by relevance_score, then impact weight (Medium > Low), then recency;
+- Orders by an internal ordering score, then impact weight (Medium > Low), then recency;
   caps the output, backs up the previous file, and writes
   docs/data/legal_updates.json.
 
@@ -148,7 +148,18 @@ SOURCE_BONUS = {"public_comment_rss": 4}  # req 5: prioritise e-Gov public comme
 RECENCY_PENALTY_PER_DAY = 0.15
 RECENCY_PENALTY_CAP = 6.0
 UNKNOWN_DATE_PENALTY = 8.0  # req 8: unknown/invalid dates rank low
-PUBLIC_COMMENT_CLOSED_RANKING_PENALTY = 2.0  # keep closed comments, but rank below open ones
+PUBLIC_COMMENT_OPEN_ORDERING_BONUS = 4.0
+DRAFT_GUIDELINE_ORDERING_BONUS = 2.0
+PUBLIC_COMMENT_RESULTS_ORDERING_BONUS = 1.0
+PUBLIC_COMMENT_CLOSED_ORDERING_PENALTY = 10.0
+PUBLIC_COMMENT_CLOSED_IMPORTANT_SIGNAL_RELIEF = 4.0
+
+# Closed public comments stay visible, but are usually less urgent than open
+# consultations. These strong signals soften, but do not remove, the demotion.
+IMPORTANT_CLOSED_KEYWORDS = (
+    "法律", "改正", "施行", "政令", "省令", "告示", "個人情報", "AI", "金融",
+    "労働", "経済安全保障", "エネルギー",
+)
 
 # Minimum score to be a candidate (administrative-only items net out below this).
 RELEVANCE_FLOOR = 1.0
@@ -354,9 +365,23 @@ def classify_stage(title_ja: str, source_type: str) -> str:
     return "Government Announcement"
 
 
-def stage_ranking_penalty(stage: str) -> float:
+def has_important_closed_signal(title_ja: str) -> bool:
+    return any(keyword in title_ja for keyword in IMPORTANT_CLOSED_KEYWORDS)
+
+
+def stage_ordering_adjustment(stage: str, title_ja: str) -> float:
+    """Display-order adjustment only; relevance_score remains content-based."""
+    if stage == "Public Comment Open":
+        return PUBLIC_COMMENT_OPEN_ORDERING_BONUS
+    if stage == "Draft Guideline":
+        return DRAFT_GUIDELINE_ORDERING_BONUS
+    if stage == "Public Comment Results Published":
+        return PUBLIC_COMMENT_RESULTS_ORDERING_BONUS
     if stage == "Public Comment Closed":
-        return PUBLIC_COMMENT_CLOSED_RANKING_PENALTY
+        penalty = PUBLIC_COMMENT_CLOSED_ORDERING_PENALTY
+        if has_important_closed_signal(title_ja):
+            penalty -= PUBLIC_COMMENT_CLOSED_IMPORTANT_SIGNAL_RELIEF
+        return -penalty
     return 0.0
 
 
@@ -502,7 +527,7 @@ def main(argv: list[str] | None = None) -> int:
     raw_items = load_raw(RAW_PATH)
     input_items = len(raw_items)
 
-    # ranked[i] = (relevance_score, impact_weight, sort_ts_for_tiebreak, item)
+    # ranked[i] = (ordering_score, impact_weight, sort_ts_for_tiebreak, item)
     ranked: list[tuple[float, int, float, dict]] = []
     excluded_items = 0
 
@@ -526,15 +551,19 @@ def main(argv: list[str] | None = None) -> int:
 
         item = build_public_item(raw, build_date, score)
         weight = IMPACT_WEIGHT.get(item["impact_level"], 1)
-        # Ranking applies light penalties so stale / closed items don't linger at
-        # the top, without removing relevant older items from the candidate set.
-        ranking_score = score - recency_penalty(sort_ts, build_ts) - stage_ranking_penalty(item["stage"])
+        # Ordering applies recency and stage adjustments without changing the
+        # content-based relevance_score written to the public JSON.
+        ordering_score = (
+            score
+            + stage_ordering_adjustment(item["stage"], title_ja)
+            - recency_penalty(sort_ts, build_ts)
+        )
         tiebreak_ts = sort_ts if sort_ts is not None else float("-inf")
-        ranked.append((ranking_score, weight, tiebreak_ts, item))
+        ranked.append((ordering_score, weight, tiebreak_ts, item))
 
     candidate_items = len(ranked)
 
-    # Order: relevance_score desc, then impact weight (Medium > Low), then recency.
+    # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
     ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
     output = [item for _, _, _, item in ranked[: args.limit]]
 
