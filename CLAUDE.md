@@ -11,7 +11,8 @@ The audience cannot read Japanese fluently and is using this tool to triage whic
 - Static browser dashboard, no backend, no build step.
 - The **published file `docs/data/legal_updates.json` is generated** by `scripts/build_public_data.py` from `data/raw_items.json` (provisional, rule-based). `data/legal_updates.json` remains only as the original hand-curated sample / schema reference and is no longer kept in sync with the published file.
 - Published for **GitHub Pages serving from `/docs`** — the site under `docs/` is self-contained.
-- **Three pipeline scripts exist:** `scripts/fetch_updates.py` (→ `data/raw_items.json`, raw fetch), `scripts/build_public_data.py` (→ `docs/data/legal_updates.json`, provisional rule-based mapping), and `scripts/summarize_updates.py` (optional Stage 3 Claude summarization for top-N items). AI summaries are generated only after `summarize_updates.py` is run with `ANTHROPIC_API_KEY`; Stage 3 real API application may not yet have been completed in the current checkout. There are still **no GitHub Actions** and no scheduled jobs.
+- **Three pipeline scripts exist:** `scripts/fetch_updates.py` (→ `data/raw_items.json`, raw fetch), `scripts/build_public_data.py` (→ `docs/data/legal_updates.json`, provisional rule-based mapping), and `scripts/summarize_updates.py` (optional Stage 3 Claude summarization for top-N items). AI summaries are generated only after `summarize_updates.py` is run with `ANTHROPIC_API_KEY`; Stage 3 real API application may not yet have been completed in the current checkout.
+- **GitHub Actions daily update workflow exists** at `.github/workflows/daily-update.yml` for manual runs and a daily 21:00 UTC schedule (06:00 JST). It commits only `data/raw_items.json`, `data/summary_cache.json`, and `docs/data/legal_updates.json` when the published data file changes.
 
 ## File structure
 
@@ -19,6 +20,7 @@ The audience cannot read Japanese fluently and is using this tool to triage whic
 scripts/fetch_updates.py         # Stage 1 raw ingestion (fetch → normalize → dedupe → log).
 scripts/build_public_data.py     # Stage 2 provisional rule-based build of the published data.
 scripts/summarize_updates.py     # Stage 3 optional Claude summarization for top-N items.
+.github/workflows/daily-update.yml  # Manual/daily pipeline run (GitHub Actions).
 data/legal_updates.json          # Original hand-curated sample (schema reference only).
 data/raw_items.json              # Raw fetched items (output of fetch_updates.py; untrusted).
 data/summary_cache.json          # Stage 3 cache (created/updated by summarize_updates.py).
@@ -114,7 +116,7 @@ python -m http.server 8000
 
 - Ingestion scripts for FSA, METI, PPC, JFTC, MHLW, MOJ, MIC, e-Gov public comments, etc.
 - First real Stage 3 API run and review of generated summaries before broader use.
-- GitHub Actions to run scheduled ingestion and publish to GitHub Pages.
+- Broader automation beyond the existing daily update workflow.
 - Subscription / email digest features.
 
 ## What NOT to do
@@ -122,6 +124,6 @@ python -m http.server 8000
 - Do not phrase summaries as advice or as definitive interpretations of Japanese law.
 - Do not silently drop the disclaimer modal or weaken its language.
 - Do not introduce external runtime dependencies without explicit approval.
-- Raw fetch, the **provisional** rule-based build, and the optional Stage 3 summarization script are in scope. Do **not** run the real Claude API unless the user explicitly asks and `ANTHROPIC_API_KEY` is set. Do not add GitHub Actions until explicitly requested. Never present template English copy or AI output as official, certified, comprehensive, or legal advice; keep rule-based `impact_level` conservative (no rule-based `High`).
+- Raw fetch, the **provisional** rule-based build, the optional Stage 3 summarization script, and the existing daily update workflow are in scope. Do **not** run the real Claude API locally unless the user explicitly asks and `ANTHROPIC_API_KEY` is set. Do not add broader GitHub Actions automation until explicitly requested. Never present template English copy or AI output as official, certified, comprehensive, or legal advice; keep rule-based `impact_level` conservative (no rule-based `High`).
 - Do not localize the UI into Japanese — the target audience is English-reading professionals.
 - Do not remove or weaken the output escaping in `docs/app.js` (`escapeHtml` / `safeUrl`), and never render a source field as raw HTML. Treat ingested data as untrusted.

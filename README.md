@@ -17,7 +17,8 @@ A free, browser-based dashboard that summarizes Japanese legal, regulatory, publ
 This repository is the **minimum viable static version**:
 
 - The **published file [`docs/data/legal_updates.json`](docs/data/legal_updates.json) is generated** from fetched data by `scripts/fetch_updates.py` (raw fetch) → `scripts/build_public_data.py` (provisional, rule-based mapping).
-- **Stage 3 script exists, but AI summaries are generated only after `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`.** Before Stage 3 has been run, `docs/data/legal_updates.json` may contain only fixed-template English and may not yet include `summary_source`. When Stage 3 runs, top-N items receive `summary_source: "claude"`; untouched or failed items are marked `summary_source: "rule_based"`. `area` / `stage` / `impact_level` and ranking remain keyword rules (a technical heuristic, not a legal judgement), and there are no scheduled jobs.
+- **Stage 3 script exists, but AI summaries are generated only after `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`.** Before Stage 3 has been run, `docs/data/legal_updates.json` may contain only fixed-template English and may not yet include `summary_source`. When Stage 3 runs, top-N items receive `summary_source: "claude"`; untouched or failed items are marked `summary_source: "rule_based"`. `area` / `stage` / `impact_level` and ranking remain keyword rules (a technical heuristic, not a legal judgement).
+- **GitHub Actions daily update workflow exists** at `.github/workflows/daily-update.yml` for manual runs and a daily 21:00 UTC schedule (06:00 JST).
 - The original hand-curated sample is kept at [`data/legal_updates.json`](data/legal_updates.json) as a schema reference only.
 - The dashboard runs entirely in the browser from the `docs/` folder.
 
@@ -144,6 +145,22 @@ Behaviour:
 
 The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MODEL`). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
 
+## Scheduled updates (GitHub Actions)
+
+`.github/workflows/daily-update.yml` can be run manually from the GitHub Actions tab (`workflow_dispatch`) and is scheduled daily at `0 21 * * *` UTC (06:00 JST).
+
+The workflow uses `ubuntu-latest`, Python 3.11, installs `requirements.txt`, then runs:
+
+```
+python scripts/fetch_updates.py
+python scripts/build_public_data.py
+python scripts/summarize_updates.py --limit 10
+```
+
+Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries. If the secret is missing, the summarization script exits cleanly after printing usage.
+
+The workflow commits only when `docs/data/legal_updates.json` changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits.
+
 ## Deployment (GitHub Pages)
 
 This project is designed to be published with **GitHub Pages set to serve from the `/docs` folder**. Everything required at runtime lives under `docs/`, so the published site is self-contained:
@@ -177,6 +194,9 @@ japan-legal-reform-watch/
 ├── CLAUDE.md                     # Notes for Claude Code working on this repo
 ├── requirements.txt              # Dependencies (requests, feedparser, anthropic)
 ├── .gitignore
+├── .github/
+│   └── workflows/
+│       └── daily-update.yml      # Manual/daily data update workflow
 ├── scripts/
 │   ├── fetch_updates.py          # Stage 1 raw ingestion (fetch → normalize → dedupe → log)
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
@@ -235,9 +255,8 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 
 ## Roadmap (not yet implemented)
 
-- **A three-stage pipeline exists** (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py`), but Stage 3 requires an explicit API-key-backed run and is not scheduled.
+- **A three-stage pipeline exists** (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py`), and `.github/workflows/daily-update.yml` can run it manually or daily once GitHub Secrets are configured.
 - First real Stage 3 API run, review of generated summaries, and expansion beyond top-N once the guardrails are accepted.
-- Scheduled updates via GitHub Actions.
 - Public hosting on GitHub Pages.
 
 ## License & use
