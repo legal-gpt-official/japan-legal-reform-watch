@@ -197,6 +197,7 @@ code {
   gap: 8px;
 }
 
+.quick-filter-button,
 .quick-filter-btn {
   border: 1px solid #d3d7dc;
   border-radius: 999px;
@@ -211,17 +212,21 @@ code {
   transition: background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
 }
 
+.quick-filter-button:hover,
+.quick-filter-button:focus,
 .quick-filter-btn:hover,
 .quick-filter-btn:focus {
   border-color: #aeb8c4;
   background: #f5f7fa;
 }
 
+.quick-filter-button:focus,
 .quick-filter-btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
 }
 
+.quick-filter-button.is-active,
 .quick-filter-btn.is-active {
   border-color: #9eb1c8;
   background: #e8eef6;
