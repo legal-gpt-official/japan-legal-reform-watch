@@ -49,6 +49,7 @@ requirements.txt                 # Ingestion/summarization dependencies (request
 - All copy must be framed as **summary, not advice**. Never imply a legal conclusion for a specific party.
 - Never claim our summaries are official, certified, or comprehensive.
 - Source attribution is **mandatory** for every item (`source_name` + `source_url`).
+- The dashboard-level trust notice must clarify that AI summaries and rule-based previews are monitoring aids, not legal advice, and that original Japanese official sources remain authoritative.
 - Card source buttons must link to each record's original Japanese official source using `source_url`. English summaries and previews are triage aids only; the original Japanese official source remains authoritative.
 - The dashboard footer includes modest links to Legal GPT, the Japan Legal Reform Watch landing page, and Japan legal updates, while keeping the EN/JA disclaimer links visible.
 - Do not introduce external runtime dependencies (CDN fonts, analytics, trackers, JS frameworks) without explicit approval. The current dashboard is deliberately dependency-free.

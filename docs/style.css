@@ -126,6 +126,37 @@ code {
   border-color: rgba(255, 255, 255, 0.52);
 }
 
+/* -------- Trust Notice -------- */
+.trust-section {
+  background: #eef3f6;
+  border-bottom: 1px solid #d7e0e6;
+}
+
+.trust-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 0 13px 14px;
+  border-left: 3px solid var(--color-accent);
+  color: #263746;
+}
+
+.trust-notice strong {
+  flex: 0 0 auto;
+  color: var(--color-navy);
+  font-size: 12px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trust-notice p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #334556;
+}
+
 /* -------- Controls -------- */
 .controls {
   background: #fff;
@@ -622,6 +653,11 @@ code {
   }
   .header-link {
     margin-top: 0;
+  }
+  .trust-notice {
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0 12px 12px;
   }
   .brand h1 {
     font-size: 24px;
