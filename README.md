@@ -166,6 +166,17 @@ Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summari
 
 The workflow commits only when `docs/data/legal_updates.json` changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits.
 
+## Tests
+
+Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, the published-file JSON schema, and the Stage 1 parsers / `SOURCES` configuration. They make **no network calls and write no files** — the published data is validated read-only.
+
+```
+python -m unittest discover -s tests     # standard library, no extra dependencies
+python -m pytest tests                   # equivalent, if pytest is installed
+```
+
+When changing classification rules, ranking, or the `SOURCES` list, update these tests in the same change so the expected behavior stays pinned.
+
 ## Deployment (GitHub Pages)
 
 This project is designed to be published with **GitHub Pages set to serve from the `/docs` folder**. Everything required at runtime lives under `docs/`, so the published site is self-contained:
@@ -208,6 +219,10 @@ japan-legal-reform-watch/
 │   ├── fetch_updates.py          # Stage 1 raw ingestion (fetch → normalize → dedupe → log)
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
 │   └── summarize_updates.py      # Stage 3 Claude AI summarization of the top-N items
+├── tests/
+│   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI preservation
+│   ├── test_published_data_schema.py # Schema checks for docs/data/legal_updates.json (read-only)
+│   └── test_fetch_updates.py         # Stage 1 SOURCES config, parsers, id/hash stability (offline)
 ├── data/
 │   ├── legal_updates.json        # Original hand-curated sample (schema reference only)
 │   ├── raw_items.json            # Raw fetched items (output of fetch_updates.py)

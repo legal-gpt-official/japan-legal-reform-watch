@@ -20,6 +20,7 @@ The audience cannot read Japanese fluently and is using this tool to triage whic
 scripts/fetch_updates.py         # Stage 1 raw ingestion (fetch → normalize → dedupe → log).
 scripts/build_public_data.py     # Stage 2 provisional rule-based build of the published data.
 scripts/summarize_updates.py     # Stage 3 optional Claude summarization for top-N items.
+tests/                           # Offline regression tests (unittest; pytest-compatible).
 .github/workflows/daily-update.yml  # Manual/daily pipeline run (GitHub Actions).
 data/legal_updates.json          # Original hand-curated sample (schema reference only).
 data/raw_items.json              # Raw fetched items (output of fetch_updates.py; untrusted).
@@ -102,6 +103,13 @@ Each entry contains:
 - `docs/data/legal_updates.before_ai.json` is an initial pre-AI baseline created once on the first non-dry-run Stage 3 execution. It is not a per-run timestamped backup. Stage 2 continues to use `docs/data/legal_updates.backup.json` for the previous generated public file.
 - Guardrails are load-bearing: do not invent facts; do not provide legal advice; do not state that a law has been enacted, promulgated, or entered into force unless the provided source text clearly supports it; clearly label public comments, drafts, proposals, consultations, draft guidelines, and government announcements; treat Japanese official sources as authoritative. `area`, `stage`, and `impact_level` are preliminary rule-based labels, not legally verified conclusions.
 - Stage 3 logs obvious definitive/legal-advice wording as caution warnings for review. These warnings are not a substitute for human or qualified legal review.
+
+## Tests
+
+- Offline regression tests live in `tests/` (stdlib `unittest`; also runnable with `pytest`). No network, no file writes; `docs/data/legal_updates.json` is validated read-only.
+- Run with `python -m unittest discover -s tests` (or `python -m pytest tests`).
+- Coverage: Stage 2 stage/area/impact classification, rule-based `title_en` generation (source prefixes, draft markers, 120-char shortening), Public Comment Closed ordering demotion + strong-signal relief, Stage 3 AI-summary preservation rules, published-file schema (14 fields, vocabularies, ≤50 items, claude items carry AI metadata), and Stage 1 `SOURCES` config / feed + PPC/JFTC HTML parsers / id + hash stability.
+- **When changing classification rules, ranking weights, title rules, or `SOURCES`, update these tests in the same change** — they pin the published behavior. The schema test reads the checked-in published file, so regenerating it may legitimately change test inputs; rerun the suite after any rebuild.
 
 ## How to run locally
 
