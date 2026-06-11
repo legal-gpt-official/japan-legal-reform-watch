@@ -88,6 +88,7 @@ Each entry contains:
 - PPC / JFTC source expansion uses additional keyword rules: PPC items are biased toward `Data / Privacy / AI`, and JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates should be excluded or heavily downranked unless strong legal/regulatory keywords are present.
 - **Display order is owned by `build_public_data.py`.** The browser must respect the array order in `docs/data/legal_updates.json`, including after filtering and searching. Do not re-sort records in `docs/app.js` by `published_at` or any other field.
 - Excludes clear administrative noise and items with no net legal/regulatory signal — unless a strong keyword rescues them; public comments are always kept. Caps output at 50; unknown/invalid dates rank last. Keeps `source_url` verbatim; input is untrusted (the UI escapes on render).
+- If the previous published file contains `summary_source: "claude"` for the same `id` and unchanged `source_url`, Stage 2 preserves the Claude summary fields while refreshing build-owned metadata such as `area`, `stage`, `impact_level`, `relevance_score`, titles, source, and dates.
 - Stage 3 may replace the template English fields for selected top-ranked records, but the keyword-derived `area` / `stage` / `impact_level` labels remain preliminary triage metadata unless a later reviewed process changes them. Keep the output escaping and the disclaimer intact.
 
 ## AI summarization (`scripts/summarize_updates.py`)

@@ -98,6 +98,7 @@ Behaviour:
 - **Display order.** The dashboard displays records in the array order of `docs/data/legal_updates.json`. `build_public_data.py` owns the ranking/order; `docs/app.js` must not re-sort records by `published_at` or any other field.
 - **Exclusion.** Drops obvious administrative noise (recruitment, procurement, bidding, events, press conferences, web magazines) and items with no net legal / regulatory signal — **unless** a strong keyword (改正 / 施行 / 案 / ガイドライン / 意見募集 / 法律 …) is present. Public-comment items are always kept.
 - Backs up the current `docs/data/legal_updates.json` to `docs/data/legal_updates.backup.json` before overwriting.
+- Preserves existing Stage 3 Claude summary fields when the rebuilt item has the same `id` and unchanged `source_url`; fresh build metadata such as `area`, `stage`, `impact_level`, `relevance_score`, titles, source, and dates still comes from Stage 2.
 - Caps output at 50 items; items with no / invalid date rank last.
 - Prints a console summary: `input_items`, `excluded_items`, `candidate_items`, `output_items`, `backup_created`, `top_relevance_score`, `lowest_output_relevance_score`, `output_path`.
 - Keeps `source_url` verbatim and treats all input as untrusted (the browser escapes every field on render).

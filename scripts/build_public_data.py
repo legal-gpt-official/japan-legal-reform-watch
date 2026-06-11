@@ -14,6 +14,7 @@ What this script does
   statistics, and bare page updates.
 - Classifies area / stage / impact_level with simple, conservative RULES.
 - Emits MODEST English PLACEHOLDER copy (no translation, no interpretation).
+- Preserves existing Claude summary fields for matching id/source_url records.
 - Orders by an internal ordering score, then impact weight (Medium > Low), then recency;
   caps the output, backs up the previous file, and writes
   docs/data/legal_updates.json.
@@ -65,6 +66,13 @@ REQUIRED_FIELDS = (
     "id", "title_en", "title_ja", "area", "stage", "impact_level",
     "summary_en", "business_impact_en", "recommended_action_en",
     "source_name", "source_url", "published_at", "last_checked",
+)
+
+# Stage 3 fields that may be carried forward when Stage 2 rebuilds the same item.
+# Core metadata (title/source/stage/area/score/date) always comes from the fresh build.
+AI_PRESERVE_FIELDS = (
+    "summary_en", "business_impact_en", "recommended_action_en",
+    "summary_source", "confidence", "ai_notes", "summarized_at", "summary_model",
 )
 
 # Modest, NON-interpretive placeholder copy (no AI, no legal conclusion).
@@ -545,6 +553,44 @@ def load_raw(path: Path) -> list[dict]:
     return [x for x in data if isinstance(x, dict)]
 
 
+def load_existing_public_items(path: Path) -> list[dict]:
+    """Best-effort load of the current published file for AI summary preservation."""
+    if not path.exists():
+        return []
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"WARNING: could not read existing {path.name} for AI preservation: {exc}", file=sys.stderr)
+        return []
+    if not isinstance(data, list):
+        print(f"WARNING: existing {path.name} is not a JSON array; skipping AI preservation.", file=sys.stderr)
+        return []
+    return [x for x in data if isinstance(x, dict)]
+
+
+def existing_items_by_id(items: list[dict]) -> dict[str, dict]:
+    by_id: dict[str, dict] = {}
+    for item in items:
+        item_id = item.get("id")
+        if isinstance(item_id, str) and item_id:
+            by_id[item_id] = item
+    return by_id
+
+
+def preserve_ai_summary_fields(item: dict, existing_by_id: dict[str, dict]) -> bool:
+    """Carry forward Claude summary fields only when id and source_url still match."""
+    existing = existing_by_id.get(item.get("id") or "")
+    if not existing or existing.get("summary_source") != "claude":
+        return False
+    if (existing.get("source_url") or "") != (item.get("source_url") or ""):
+        return False
+    for field in AI_PRESERVE_FIELDS:
+        if field in existing:
+            item[field] = existing[field]
+    return item.get("summary_source") == "claude"
+
+
 def save_json(path: Path, data: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
@@ -572,6 +618,13 @@ def main(argv: list[str] | None = None) -> int:
 
     raw_items = load_raw(RAW_PATH)
     input_items = len(raw_items)
+    existing_public_items = load_existing_public_items(OUTPUT_PATH)
+    existing_public_by_id = existing_items_by_id(existing_public_items)
+    existing_ai_ids = {
+        item.get("id")
+        for item in existing_public_items
+        if item.get("summary_source") == "claude" and item.get("id")
+    }
 
     # ranked[i] = (ordering_score, impact_weight, sort_ts_for_tiebreak, item)
     ranked: list[tuple[float, int, float, dict]] = []
@@ -613,6 +666,14 @@ def main(argv: list[str] | None = None) -> int:
     ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
     output = [item for _, _, _, item in ranked[: args.limit]]
 
+    preserved_ai_ids: set[str] = set()
+    for item in output:
+        if preserve_ai_summary_fields(item, existing_public_by_id):
+            preserved_ai_ids.add(item["id"])
+    preserved_ai_count = len(preserved_ai_ids)
+    rule_based_or_unsummarized_count = len(output) - preserved_ai_count
+    dropped_old_ai_count = len(existing_ai_ids - preserved_ai_ids)
+
     # Self-check: guarantee the UI schema before writing.
     for it in output:
         missing = [k for k in REQUIRED_FIELDS if k not in it]
@@ -636,6 +697,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"excluded_items                : {excluded_items}")
     print(f"candidate_items               : {candidate_items}")
     print(f"output_items                  : {len(output)}")
+    print(f"preserved_ai_summaries        : {preserved_ai_count}")
+    print(f"rule_based_or_unsummarized    : {rule_based_or_unsummarized_count}")
+    print(f"dropped_old_ai_summaries      : {dropped_old_ai_count}")
     print(f"backup_created                : {backup_created}")
     print(f"top_relevance_score           : {top_score}")
     print(f"lowest_output_relevance_score : {lowest_score}")
