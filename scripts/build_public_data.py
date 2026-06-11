@@ -130,6 +130,7 @@ SOURCE_BONUS = {"public_comment_rss": 4}  # req 5: prioritise e-Gov public comme
 RECENCY_PENALTY_PER_DAY = 0.15
 RECENCY_PENALTY_CAP = 6.0
 UNKNOWN_DATE_PENALTY = 8.0  # req 8: unknown/invalid dates rank low
+PUBLIC_COMMENT_CLOSED_RANKING_PENALTY = 2.0  # keep closed comments, but rank below open ones
 
 # Minimum score to be a candidate (administrative-only items net out below this).
 RELEVANCE_FLOOR = 1.0
@@ -237,13 +238,27 @@ _PC_RESULT_MARKERS = (
     "意見募集結果", "意見募集の結果", "意見の募集の結果", "募集の結果",
     "結果の公示", "結果について", "パブリックコメントの結果",
 )
+_PC_RESULT_MARKERS_EN = ("results published",)
+_PC_CLOSED_MARKERS = ("受付終了", "終了しました", "意見募集を終了", "募集を終了")
+_PC_CLOSED_MARKERS_EN = ("closed",)
+
+
+def contains_any(value: str, markers: tuple[str, ...]) -> bool:
+    return any(marker in value for marker in markers)
+
+
+def is_public_comment_title(title_ja: str) -> bool:
+    title_lower = title_ja.lower()
+    return contains_any(title_ja, _PC_KEYWORDS) or "public comment" in title_lower
 
 
 def classify_stage(title_ja: str, source_type: str) -> str:
-    is_pc = is_public_comment(source_type) or any(kw in title_ja for kw in _PC_KEYWORDS)
-    if is_pc:
-        if any(m in title_ja for m in _PC_RESULT_MARKERS) or "結果" in title_ja:
-            return "Public Comment Results Published"
+    title_lower = title_ja.lower()
+    if contains_any(title_ja, _PC_RESULT_MARKERS) or contains_any(title_lower, _PC_RESULT_MARKERS_EN):
+        return "Public Comment Results Published"
+    if contains_any(title_ja, _PC_CLOSED_MARKERS) or contains_any(title_lower, _PC_CLOSED_MARKERS_EN):
+        return "Public Comment Closed"
+    if is_public_comment(source_type) or is_public_comment_title(title_ja):
         return "Public Comment Open"
     if any(m in title_ja for m in ("施行されました", "施行しました")):
         return "In Force"
@@ -258,6 +273,12 @@ def classify_stage(title_ja: str, source_type: str) -> str:
     if "案" in title_ja and any(kw in title_ja for kw in ("指針", "ガイドライン", "Q&A", "Ｑ＆Ａ", "FAQ", "考え方")):
         return "Draft Guideline"
     return "Government Announcement"
+
+
+def stage_ranking_penalty(stage: str) -> float:
+    if stage == "Public Comment Closed":
+        return PUBLIC_COMMENT_CLOSED_RANKING_PENALTY
+    return 0.0
 
 
 # Keywords that lift a non-public-comment item from Low to Medium.
@@ -343,13 +364,17 @@ def build_public_item(raw: dict, build_date: str, score: float) -> dict:
     source_name = raw.get("source_name") or ""
     source_type = raw.get("source_type") or ""
     _, display_date = parse_published(raw.get("published_at", ""))
+    stage = classify_stage(title_ja, source_type)
+    title_en = TITLE_EN_PREFIX + title_ja
+    if stage == "Public Comment Closed":
+        title_en = "Closed public comment: " + title_ja
 
     return {
         "id": raw.get("id") or "",                 # reuse the stable raw id (traceable)
-        "title_en": TITLE_EN_PREFIX + title_ja,    # NOT a translation — a labelled passthrough
+        "title_en": title_en,                      # NOT a translation — a labelled passthrough
         "title_ja": title_ja,
         "area": classify_area(title_ja, source_name),
-        "stage": classify_stage(title_ja, source_type),
+        "stage": stage,
         "impact_level": classify_impact(title_ja, source_type),
         "summary_en": SUMMARY_EN,
         "business_impact_en": BUSINESS_IMPACT_EN,
@@ -422,9 +447,9 @@ def main(argv: list[str] | None = None) -> int:
 
         item = build_public_item(raw, build_date, score)
         weight = IMPACT_WEIGHT.get(item["impact_level"], 1)
-        # Ranking applies a light recency penalty so stale items don't linger at the
-        # top, without removing relevant older items from the candidate set.
-        ranking_score = score - recency_penalty(sort_ts, build_ts)
+        # Ranking applies light penalties so stale / closed items don't linger at
+        # the top, without removing relevant older items from the candidate set.
+        ranking_score = score - recency_penalty(sort_ts, build_ts) - stage_ranking_penalty(item["stage"])
         tiebreak_ts = sort_ts if sort_ts is not None else float("-inf")
         ranked.append((ranking_score, weight, tiebreak_ts, item))
 

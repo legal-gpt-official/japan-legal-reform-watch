@@ -92,6 +92,7 @@ python scripts/build_public_data.py
 Behaviour:
 
 - **Relevance ranking.** Each item gets an internal keyword-based `relevance_score` that rewards law-reform / regulation / public-comment / guideline signals (改正, 施行, 公布, 法律 / 政令 / 省令, 意見募集, 指針 / ガイドライン, 義務, 個人情報, 金融, 労働, …) and penalises minutes, statistics, web magazines, and bare page updates. e-Gov public comments get a source bonus. Output is ordered by `relevance_score`, then impact weight (Medium > Low), then recency (older items get a light penalty so they don't linger at the top). The score is written to each record as an optional `relevance_score` field (the UI ignores unknown fields).
+- **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. Closed public comments are kept as useful regulatory history, but receive a light ordering penalty so open consultations generally appear first.
 - **Display order.** The dashboard displays records in the array order of `docs/data/legal_updates.json`. `build_public_data.py` owns the ranking/order; `docs/app.js` must not re-sort records by `published_at` or any other field.
 - **Exclusion.** Drops obvious administrative noise (recruitment, procurement, bidding, events, press conferences, web magazines) and items with no net legal / regulatory signal — **unless** a strong keyword (改正 / 施行 / 案 / ガイドライン / 意見募集 / 法律 …) is present. Public-comment items are always kept.
 - Backs up the current `docs/data/legal_updates.json` to `docs/data/legal_updates.backup.json` before overwriting.
@@ -243,7 +244,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `title_en`               | Informal English title.                                                  |
 | `title_ja`               | Original Japanese title.                                                 |
 | `area`                   | Subject area (e.g. Data Privacy, Financial Regulation).                  |
-| `stage`                  | Legislative / regulatory stage (e.g. Public Comment, Diet Submission).   |
+| `stage`                  | Legislative / regulatory stage (e.g. Public Comment Open, Public Comment Closed, Public Comment Results Published, Bill Submitted). |
 | `impact_level`           | `High` \| `Medium` \| `Low`.                                             |
 | `summary_en`             | Short factual summary in English.                                        |
 | `business_impact_en`     | Short note on practical impact on businesses.                            |

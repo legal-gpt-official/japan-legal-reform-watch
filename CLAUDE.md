@@ -60,7 +60,7 @@ Each entry contains:
 - `title_en` — informal English title.
 - `title_ja` — original Japanese title.
 - `area` — e.g., `Data Privacy`, `Financial Regulation`, `Corporate Governance`, `Cybersecurity`, `Labor & Employment`.
-- `stage` — e.g., `Public Comment`, `Diet Submission`, `Cabinet Decision`, `Enacted`, `Effective`.
+- `stage` — e.g., `Public Comment Open`, `Public Comment Closed`, `Public Comment Results Published`, `Bill Submitted`, `In Force`.
 - `impact_level` — `High` | `Medium` | `Low`.
 - `summary_en`, `business_impact_en`, `recommended_action_en` — short paragraphs.
 - `source_name`, `source_url` — original Japanese authority and link.
@@ -81,6 +81,7 @@ Each entry contains:
 - **Interim, rule-based, pre-AI stage. It does NOT translate, summarize, or make any legal/business judgement.** `title_en` is `"Japanese Regulatory Update: " + title_ja` (a labelled passthrough); `summary_en` / `business_impact_en` / `recommended_action_en` are FIXED template sentences that tell the reader to check the official Japanese source. Never present this output as analysis.
 - `area` / `stage` / `impact_level` come from simple keyword rules over controlled vocabularies. Conservative by design: `impact_level` is only `Low` or `Medium` here — `High` is reserved for a later evidence-based (AI/human) stage.
 - **Ranking is a technical heuristic, NOT a legal judgement.** Items are scored by an internal keyword `relevance_score` (boosts law-reform / regulation / public-comment / guideline keywords; penalises minutes, statistics, web magazines, bare page updates; e-Gov public comments get a source bonus) and ordered by `relevance_score` → impact weight (Medium > Low) → recency (light penalty for old items). It only decides *what to surface*, never legal importance. The score is written as an optional `relevance_score` field (the UI ignores it).
+- Public-comment stages distinguish `Public Comment Open`, `Public Comment Closed`, and `Public Comment Results Published`. Closed public comments remain displayable, but receive a light ordering penalty so open consultations generally rank higher.
 - **Display order is owned by `build_public_data.py`.** The browser must respect the array order in `docs/data/legal_updates.json`, including after filtering and searching. Do not re-sort records in `docs/app.js` by `published_at` or any other field.
 - Excludes clear administrative noise and items with no net legal/regulatory signal — unless a strong keyword rescues them; public comments are always kept. Caps output at 50; unknown/invalid dates rank last. Keeps `source_url` verbatim; input is untrusted (the UI escapes on render).
 - Stage 3 may replace the template English fields for selected top-ranked records, but the keyword-derived `area` / `stage` / `impact_level` labels remain preliminary triage metadata unless a later reviewed process changes them. Keep the output escaping and the disclaimer intact.
