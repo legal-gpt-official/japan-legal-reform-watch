@@ -1,0 +1,20 @@
+# Japan Legal Reform Watch by LegalOS
+#
+# Ingestion and summarization dependencies.
+#
+# Stage 1 (scripts/fetch_updates.py): requests + feedparser are RECOMMENDED but
+# OPTIONAL — the fetcher falls back to the Python standard library when missing.
+# Stage 3 (scripts/summarize_updates.py): the anthropic SDK is REQUIRED.
+#
+# Python 3.11+.
+
+requests>=2.31          # Stage 1 HTTP client (timeouts, headers, redirects)
+feedparser>=6.0         # Stage 1 RSS / Atom / RDF feed parsing
+anthropic>=0.69         # Stage 3 Claude SDK (recent version recommended for
+                        # structured outputs; falls back to prompt-based JSON on older SDKs)
+
+# --- Reserved for later iterations (NOT used yet) ---
+# beautifulsoup4>=4.12   # HTML parsing for non-RSS source pages
+# lxml>=5.2              # Fast XML/HTML backend for bs4
+# python-dateutil>=2.9   # Lenient date parsing
+# pydantic>=2.7          # Schema validation for ingested records

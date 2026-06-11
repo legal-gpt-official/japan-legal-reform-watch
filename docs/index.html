@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
+  <title>Japan Legal Reform Watch by LegalOS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Disclaimer Modal -->
+  <div id="disclaimer-modal" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Important Notice — Please Read Before Using</h2>
+      <div class="modal-body">
+        <p>
+          <strong>Japan Legal Reform Watch by LegalOS</strong> provides English-language summaries of
+          Japanese legal, regulatory, and administrative developments for general informational
+          purposes only.
+        </p>
+        <ul>
+          <li>
+            This site is <strong>not an official translation</strong>. Always refer to the original
+            Japanese-language source for authoritative text.
+          </li>
+          <li>
+            The content is <strong>not legal advice</strong> and does not create an attorney-client
+            relationship.
+          </li>
+          <li>
+            We do <strong>not warrant the accuracy, completeness, or currentness</strong> of any
+            information presented.
+          </li>
+          <li>
+            For business or compliance decisions, please consult qualified Japanese legal counsel.
+          </li>
+        </ul>
+        <p>
+          By continuing, you acknowledge and accept these terms. To the maximum extent permitted by
+          applicable law, LegalOS disclaims all liability arising from use of this site.
+        </p>
+        <p class="modal-link">
+          <a href="legal/disclaimer_en.html" target="_blank" rel="noopener">
+            Read the full Legal Notice &amp; Disclaimer &rarr;
+          </a>
+        </p>
+      </div>
+      <div class="modal-actions">
+        <button id="accept-disclaimer" class="btn-primary" type="button">
+          I Understand and Agree
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <h1>
+          Japan Legal Reform Watch
+          <span class="brand-by">by LegalOS</span>
+        </h1>
+        <p class="tagline">Free Japan Legal &amp; Regulatory Update Monitor</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter / Search Controls -->
+  <section class="controls" aria-label="Filters">
+    <div class="container">
+      <div class="controls-grid">
+        <label class="control-label">
+          <span class="control-label-text">Search</span>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search title or summary..."
+            autocomplete="off"
+          />
+        </label>
+        <label class="control-label">
+          <span class="control-label-text">Area</span>
+          <select id="filter-area">
+            <option value="">All Areas</option>
+          </select>
+        </label>
+        <label class="control-label">
+          <span class="control-label-text">Stage</span>
+          <select id="filter-stage">
+            <option value="">All Stages</option>
+          </select>
+        </label>
+        <label class="control-label">
+          <span class="control-label-text">Impact Level</span>
+          <select id="filter-impact">
+            <option value="">All Impact Levels</option>
+          </select>
+        </label>
+      </div>
+      <div id="results-meta" class="results-meta" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Cards Feed -->
+  <main class="container">
+    <div id="cards" class="cards-grid"></div>
+    <div id="empty-state" class="empty-state" hidden>
+      <p>No matching updates found.</p>
+      <p class="empty-state-hint">Try clearing filters or adjusting your search terms.</p>
+    </div>
+    <div id="error-state" class="error-state" hidden>
+      <p>
+        <strong>Unable to load updates.</strong>
+      </p>
+      <p>
+        This dashboard loads its data via <code>fetch()</code>, which requires the page to be served
+        over HTTP. If you opened this file directly (<code>file://</code>), please serve the project
+        root with a local web server (see the project <code>README.md</code>).
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>Japan Legal Reform Watch by LegalOS</strong>
+        <p>Free Japan Legal &amp; Regulatory Update Monitor</p>
+      </div>
+      <nav class="footer-links" aria-label="Legal">
+        <a href="legal/disclaimer_en.html" target="_blank" rel="noopener">
+          Legal Notice / Disclaimer (EN)
+        </a>
+        <a href="legal/disclaimer_ja.html" target="_blank" rel="noopener">
+          免責事項 (JA)
+        </a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <small>
+        This site provides English summaries for informational purposes only. It is not an official
+        translation and not legal advice. See the full Legal Notice for details.
+      </small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
