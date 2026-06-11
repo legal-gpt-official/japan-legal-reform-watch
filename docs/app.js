@@ -18,6 +18,7 @@
   const filters = {
     area: "",
     stage: "",
+    source: "",
     impact: "",
     search: "",
   };
@@ -30,6 +31,7 @@
     searchInput,
     filterArea,
     filterStage,
+    filterSource,
     filterImpact,
     cardsEl,
     emptyEl,
@@ -42,6 +44,7 @@
     searchInput = $("#search-input");
     filterArea = $("#filter-area");
     filterStage = $("#filter-stage");
+    filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
     cardsEl = $("#cards");
     emptyEl = $("#empty-state");
@@ -122,13 +125,28 @@
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }
 
+  function uniqueByCount(arr, key) {
+    const counts = new Map();
+    arr.forEach((x) => {
+      if (x && x[key] != null && x[key] !== "") {
+        counts.set(x[key], (counts.get(x[key]) || 0) + 1);
+      }
+    });
+    return Array.from(counts.keys()).sort((a, b) => {
+      const countDiff = counts.get(b) - counts.get(a);
+      return countDiff || a.localeCompare(b);
+    });
+  }
+
   function populateFilterOptions() {
     const areas = unique(allUpdates, "area");
     const stages = unique(allUpdates, "stage");
+    const sources = uniqueByCount(allUpdates, "source_name");
     const impacts = unique(allUpdates, "impact_level");
 
     areas.forEach((a) => filterArea.appendChild(new Option(a, a)));
     stages.forEach((s) => filterStage.appendChild(new Option(s, s)));
+    sources.forEach((s) => filterSource.appendChild(new Option(s, s)));
 
     // Impact levels in canonical order (High > Medium > Low) when present.
     const orderedImpacts = IMPACT_ORDER.filter((i) => impacts.includes(i)).concat(
@@ -238,6 +256,7 @@
     return allUpdates.filter((u) => {
       if (filters.area && u.area !== filters.area) return false;
       if (filters.stage && u.stage !== filters.stage) return false;
+      if (filters.source && u.source_name !== filters.source) return false;
       if (filters.impact && u.impact_level !== filters.impact) return false;
       if (q) {
         const hay = (
@@ -310,6 +329,10 @@
     });
     filterStage.addEventListener("change", (e) => {
       filters.stage = e.target.value;
+      render();
+    });
+    filterSource.addEventListener("change", (e) => {
+      filters.source = e.target.value;
       render();
     });
     filterImpact.addEventListener("change", (e) => {
