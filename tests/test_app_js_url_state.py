@@ -1,4 +1,4 @@
-"""Static checks for docs/app.js URL filter state and source mappings.
+"""Static checks for docs/app.js URL filter state, copy actions, and source mappings.
 
 These are lightweight string/regex checks because the dashboard intentionally
 has no JavaScript test runner or build step.
@@ -17,6 +17,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 import fetch_updates as fu  # noqa: E402
 
 APP_JS = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
+STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 
 
 def object_body(name: str) -> str:
@@ -68,6 +69,44 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
+
+    def test_copy_actions_exist(self):
+        for snippet in (
+            "Copy summary",
+            "Copy source link",
+            'data-copy-action="summary"',
+            'data-copy-action="source-link"',
+            "function buildCopySummaryText",
+            "function sourceUrlForCopy",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_clipboard_copy_support_exists(self):
+        for snippet in (
+            "navigator.clipboard.writeText",
+            'document.execCommand("copy")',
+            "function fallbackCopyText",
+            "function copyTextToClipboard",
+            'aria-live="polite"',
+            "Summary copied",
+            "Source link copied",
+            "Copy failed",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_copy_action_styles_exist(self):
+        for snippet in (
+            ".source-actions",
+            ".copy-actions",
+            ".copy-button",
+            ".copy-status",
+            ".copy-button.is-copy-success",
+            ".copy-button.is-copy-error",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, STYLE_CSS)
 
 
 if __name__ == "__main__":

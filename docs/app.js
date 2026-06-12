@@ -387,6 +387,131 @@
     return "#";
   }
 
+  function plainText(value) {
+    if (value == null) return "";
+    return String(value).replace(/\s+/g, " ").trim();
+  }
+
+  function sourceUrlForCopy(update) {
+    const sourceUrl = safeUrl(update.source_url);
+    return sourceUrl === "#" ? "" : sourceUrl;
+  }
+
+  function copySection(label, value) {
+    return label + ":\n" + plainText(value);
+  }
+
+  function buildCopySummaryText(update) {
+    const sourceUrl = sourceUrlForCopy(update);
+    return [
+      copySection("Title", update.title_en),
+      copySection("Original title", update.title_ja),
+      copySection("Area", update.area),
+      copySection("Stage", update.stage),
+      copySection("Impact", update.impact_level),
+      copySection("Source", formatSourceDisplayName(update.source_name)),
+      copySection("Published", update.published_at),
+      copySection("Summary", update.summary_en),
+      copySection("Business impact", update.business_impact_en),
+      copySection("Recommended action", update.recommended_action_en),
+      copySection("Official Japanese source", sourceUrl),
+      copySection(
+        "Note",
+        "This is an English monitoring aid. The original Japanese official source remains authoritative."
+      ),
+    ].join("\n\n");
+  }
+
+  function fallbackCopyText(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-9999px";
+    textarea.style.left = "-9999px";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } catch (e) {
+      copied = false;
+    } finally {
+      document.body.removeChild(textarea);
+    }
+    return copied;
+  }
+
+  async function copyTextToClipboard(text) {
+    if (!text) return false;
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) {
+        // Fall back below for browsers or contexts that block the async Clipboard API.
+      }
+    }
+    return fallbackCopyText(text);
+  }
+
+  function showCopyFeedback(button, message, isSuccess) {
+    const defaultLabel = button.getAttribute("data-copy-label") || button.textContent.trim();
+    const card = button.closest(".card");
+    const statusEl = card ? card.querySelector(".copy-status") : null;
+
+    window.clearTimeout(button._copyResetTimer);
+    button.textContent = message;
+    button.classList.toggle("is-copy-success", isSuccess);
+    button.classList.toggle("is-copy-error", !isSuccess);
+    if (statusEl) {
+      statusEl.textContent = message;
+    }
+
+    button._copyResetTimer = window.setTimeout(() => {
+      button.textContent = defaultLabel;
+      button.classList.remove("is-copy-success", "is-copy-error");
+      if (statusEl && statusEl.textContent === message) {
+        statusEl.textContent = "";
+      }
+    }, 1800);
+  }
+
+  async function handleCopyAction(event) {
+    const button = event.target.closest("[data-copy-action]");
+    if (!button || !cardsEl.contains(button)) return;
+
+    const action = button.getAttribute("data-copy-action");
+    const id = button.getAttribute("data-copy-id");
+    const update = allUpdates.find((item) => String(item.id) === id);
+    if (!update) {
+      showCopyFeedback(button, "Copy failed", false);
+      return;
+    }
+
+    let text = "";
+    let successMessage = "Copied";
+    if (action === "summary") {
+      text = buildCopySummaryText(update);
+      successMessage = "Summary copied";
+    } else if (action === "source-link") {
+      text = sourceUrlForCopy(update);
+      successMessage = "Source link copied";
+    } else {
+      return;
+    }
+
+    const copied = await copyTextToClipboard(text);
+    if (!copied) {
+      console.warn("[JLRW] Copy action failed.");
+    }
+    showCopyFeedback(button, copied ? successMessage : "Copy failed", copied);
+  }
+
   function renderCard(u) {
     // Treat every record field as untrusted. All interpolated values are passed
     // through escapeHtml(); source_url is additionally scheme-checked via safeUrl()
@@ -430,9 +555,20 @@
       formatSourceDisplayName(u.source_name)
     )}</span>
             </div>
-            <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
-              View Original Japanese Source &rarr;
-            </a>
+            <div class="source-actions">
+              <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
+                View Original Japanese Source &rarr;
+              </a>
+              <div class="copy-actions" aria-label="Copy actions">
+                <button type="button" class="copy-button" data-copy-action="summary" data-copy-id="${escapeHtml(
+                  u.id
+                )}" data-copy-label="Copy summary">Copy summary</button>
+                <button type="button" class="copy-button" data-copy-action="source-link" data-copy-id="${escapeHtml(
+                  u.id
+                )}" data-copy-label="Copy source link">Copy source link</button>
+              </div>
+            </div>
+            <span class="copy-status" aria-live="polite" role="status"></span>
             <p class="source-note">Original Japanese source remains authoritative.</p>
           </div>
           <div class="dates">
@@ -556,6 +692,7 @@
         render();
       });
     }
+    cardsEl.addEventListener("click", handleCopyAction);
     window.addEventListener("popstate", () => {
       restoreFiltersFromUrl();
       render();
