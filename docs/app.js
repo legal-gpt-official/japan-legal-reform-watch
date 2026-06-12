@@ -37,10 +37,41 @@
     "総務省 (MIC) 新着情報": "Ministry of Internal Affairs and Communications (MIC)",
   };
 
+  // Compact URL slugs for shareable filter state. Values are the exact internal
+  // source_name strings; do not change those internal names.
+  const SOURCE_SLUGS = {
+    "egov": "e-Gov Public Comment (意見募集案件一覧)",
+    "fsa": "Financial Services Agency (金融庁) 新着情報",
+    "mhlw": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+    "digital-agency": "Digital Agency (デジタル庁) 新着・更新",
+    "meti": "経済産業省 (METI) ニュースリリース",
+    "caa": "消費者庁 (CAA) 新着情報",
+    "ppc": "個人情報保護委員会 (PPC) 新着情報",
+    "jftc": "公正取引委員会 (JFTC) 報道発表",
+    "moj": "法務省 (MOJ) 新着情報",
+    "moe": "環境省 (MOE) 報道発表",
+    "mof": "財務省 (MOF) 新着情報",
+    "mic": "総務省 (MIC) 新着情報",
+  };
+
+  const SOURCE_SLUGS_BY_NAME = Object.keys(SOURCE_SLUGS).reduce((acc, slug) => {
+    acc[SOURCE_SLUGS[slug]] = slug;
+    return acc;
+  }, {});
+
   // Untrusted-safe: returns a display label for known sources, otherwise the
   // raw value unchanged. Output is always escaped at render time regardless.
   function formatSourceDisplayName(sourceName) {
     return SOURCE_DISPLAY_NAMES[sourceName] || sourceName;
+  }
+
+  function getSourceSlug(sourceName) {
+    return SOURCE_SLUGS_BY_NAME[sourceName] || "";
+  }
+
+  function getSourceNameFromSlug(slug) {
+    if (typeof slug !== "string") return "";
+    return SOURCE_SLUGS[slug.trim().toLowerCase()] || "";
   }
 
   // -------- State --------
@@ -145,6 +176,7 @@
       // Preserve the published JSON order. build_public_data.py owns relevance ranking.
       allUpdates = data.slice();
       populateFilterOptions();
+      restoreFiltersFromUrl();
       render();
     } catch (err) {
       console.error("[JLRW] Failed to load data:", err);
@@ -201,6 +233,66 @@
     syncFilterControls();
   }
 
+  function hasOption(selectEl, value) {
+    if (!value) return false;
+    return Array.from(selectEl.options).some((option) => option.value === value);
+  }
+
+  function ensureSourceOption(sourceName) {
+    if (!sourceName || hasOption(filterSource, sourceName)) return;
+    filterSource.appendChild(new Option(formatSourceDisplayName(sourceName), sourceName));
+  }
+
+  function restoreFiltersFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const area = params.get("area") || "";
+    const stage = params.get("stage") || "";
+    const source = getSourceNameFromSlug(params.get("source") || "");
+    const impact = params.get("impact") || "";
+
+    filters.search = params.get("q") || "";
+    filters.area = hasOption(filterArea, area) ? area : "";
+    filters.stage = hasOption(filterStage, stage) ? stage : "";
+    filters.source = source || "";
+    filters.impact = hasOption(filterImpact, impact) ? impact : "";
+    filters.aiSummaryOnly = params.get("ai") === "1";
+
+    if (filters.source) {
+      ensureSourceOption(filters.source);
+    }
+    resetVisibleCount();
+    syncFilterControls();
+  }
+
+  function updateUrlFromFilters() {
+    if (!window.history || !window.history.replaceState) return;
+
+    const params = new URLSearchParams();
+    const query = filters.search.trim();
+    const sourceSlug = getSourceSlug(filters.source);
+
+    if (query) params.set("q", query);
+    if (filters.area) params.set("area", filters.area);
+    if (filters.stage) params.set("stage", filters.stage);
+    if (sourceSlug) params.set("source", sourceSlug);
+    if (filters.impact) params.set("impact", filters.impact);
+    if (filters.aiSummaryOnly) params.set("ai", "1");
+
+    const queryString = params.toString();
+    const nextUrl =
+      window.location.pathname +
+      (queryString ? "?" + queryString : "") +
+      window.location.hash;
+    window.history.replaceState(null, "", nextUrl);
+  }
+
+  function applyFilterChange() {
+    resetVisibleCount();
+    syncFilterControls();
+    render();
+    updateUrlFromFilters();
+  }
+
   function syncFilterControls() {
     searchInput.value = filters.search;
     filterArea.value = filters.area;
@@ -236,9 +328,7 @@
     filters.impact = "";
     filters.search = "";
     filters.aiSummaryOnly = false;
-    resetVisibleCount();
-    syncFilterControls();
-    render();
+    applyFilterChange();
   }
 
   function handleQuickFilter(action) {
@@ -253,9 +343,7 @@
     } else if (action === "medium-impact") {
       filters.impact = filters.impact === "Medium" ? "" : "Medium";
     }
-    resetVisibleCount();
-    syncFilterControls();
-    render();
+    applyFilterChange();
   }
 
   // -------- Rendering --------
@@ -437,30 +525,25 @@
   function wireEvents() {
     const onSearch = debounce((e) => {
       filters.search = e.target.value;
-      resetVisibleCount();
-      render();
+      applyFilterChange();
     }, 120);
     searchInput.addEventListener("input", onSearch);
 
     filterArea.addEventListener("change", (e) => {
       filters.area = e.target.value;
-      resetVisibleCount();
-      render();
+      applyFilterChange();
     });
     filterStage.addEventListener("change", (e) => {
       filters.stage = e.target.value;
-      resetVisibleCount();
-      render();
+      applyFilterChange();
     });
     filterSource.addEventListener("change", (e) => {
       filters.source = e.target.value;
-      resetVisibleCount();
-      render();
+      applyFilterChange();
     });
     filterImpact.addEventListener("change", (e) => {
       filters.impact = e.target.value;
-      resetVisibleCount();
-      render();
+      applyFilterChange();
     });
     quickFilterButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -473,6 +556,10 @@
         render();
       });
     }
+    window.addEventListener("popstate", () => {
+      restoreFiltersFromUrl();
+      render();
+    });
   }
 
   // -------- Init --------
