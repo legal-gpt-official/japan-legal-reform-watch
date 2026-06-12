@@ -49,6 +49,19 @@ class TestSourcesConfig(unittest.TestCase):
         for token in ("法務省 (MOJ)", "環境省 (MOE)", "財務省 (MOF)", "総務省 (MIC)"):
             self.assertIn(token, names)
 
+    def test_every_source_has_a_ui_display_name(self):
+        """docs/app.js maps every source_name to an English-first display label.
+
+        The UI shows English labels while filter values keep the raw
+        source_name; forgetting the mapping for a new source would leak a
+        Japanese-first label into the English UI.
+        """
+        app_js = (Path(__file__).resolve().parents[1] / "docs" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("SOURCE_DISPLAY_NAMES", app_js)
+        for source in fu.SOURCES:
+            with self.subTest(source=source["name"]):
+                self.assertIn(f'"{source["name"]}":', app_js)
+
     def test_html_sources_declare_a_known_parser(self):
         for source in fu.SOURCES:
             if str(source["source_type"]).endswith("_html"):

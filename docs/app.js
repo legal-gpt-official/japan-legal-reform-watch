@@ -17,6 +17,32 @@
   // search always evaluate the FULL public dataset, not just rendered cards.
   const PAGE_SIZE = 50;
 
+  // English-first display labels for sources (audience: non-Japanese-reading
+  // professionals). Keys are the EXACT `source_name` values produced by
+  // scripts/fetch_updates.py — those internal values stay unchanged and remain
+  // the filter <option> values; only the visible label is translated.
+  // When adding a source to fetch_updates.py, add its display name here too.
+  const SOURCE_DISPLAY_NAMES = {
+    "e-Gov Public Comment (意見募集案件一覧)": "e-Gov Public Comment",
+    "Financial Services Agency (金融庁) 新着情報": "Financial Services Agency (FSA)",
+    "経済産業省 (METI) ニュースリリース": "Ministry of Economy, Trade and Industry (METI)",
+    "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報": "Ministry of Health, Labour and Welfare (MHLW)",
+    "Digital Agency (デジタル庁) 新着・更新": "Digital Agency",
+    "消費者庁 (CAA) 新着情報": "Consumer Affairs Agency (CAA)",
+    "個人情報保護委員会 (PPC) 新着情報": "Personal Information Protection Commission (PPC)",
+    "公正取引委員会 (JFTC) 報道発表": "Japan Fair Trade Commission (JFTC)",
+    "法務省 (MOJ) 新着情報": "Ministry of Justice (MOJ)",
+    "環境省 (MOE) 報道発表": "Ministry of the Environment (MOE)",
+    "財務省 (MOF) 新着情報": "Ministry of Finance (MOF)",
+    "総務省 (MIC) 新着情報": "Ministry of Internal Affairs and Communications (MIC)",
+  };
+
+  // Untrusted-safe: returns a display label for known sources, otherwise the
+  // raw value unchanged. Output is always escaped at render time regardless.
+  function formatSourceDisplayName(sourceName) {
+    return SOURCE_DISPLAY_NAMES[sourceName] || sourceName;
+  }
+
   // -------- State --------
   let allUpdates = [];
   let visibleCount = PAGE_SIZE;
@@ -163,7 +189,9 @@
 
     areas.forEach((a) => filterArea.appendChild(new Option(a, a)));
     stages.forEach((s) => filterStage.appendChild(new Option(s, s)));
-    sources.forEach((s) => filterSource.appendChild(new Option(s, s)));
+    // Label is the English-first display name; the option VALUE stays the raw
+    // source_name so filtering still matches records exactly.
+    sources.forEach((s) => filterSource.appendChild(new Option(formatSourceDisplayName(s), s)));
 
     // Impact levels in canonical order (High > Medium > Low) when present.
     const orderedImpacts = IMPACT_ORDER.filter((i) => impacts.includes(i)).concat(
@@ -310,7 +338,9 @@
           <div class="source">
             <div class="source-meta">
               <span class="source-label">Source name</span>
-              <span class="source-name">${escapeHtml(u.source_name)}</span>
+              <span class="source-name" title="${escapeHtml(u.source_name)}">${escapeHtml(
+      formatSourceDisplayName(u.source_name)
+    )}</span>
             </div>
             <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
               View Original Japanese Source &rarr;
