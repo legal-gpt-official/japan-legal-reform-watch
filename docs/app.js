@@ -13,8 +13,13 @@
   // Preferred display order for impact level.
   const IMPACT_ORDER = ["High", "Medium", "Low"];
 
+  // Cards render in pages: 50 on load, +50 per "Load more" click. Filters and
+  // search always evaluate the FULL public dataset, not just rendered cards.
+  const PAGE_SIZE = 50;
+
   // -------- State --------
   let allUpdates = [];
+  let visibleCount = PAGE_SIZE;
   const filters = {
     area: "",
     stage: "",
@@ -38,7 +43,9 @@
     cardsEl,
     emptyEl,
     errorEl,
-    metaEl;
+    metaEl,
+    loadMoreWrap,
+    loadMoreBtn;
 
   function cacheDom() {
     modalEl = $("#disclaimer-modal");
@@ -53,6 +60,13 @@
     emptyEl = $("#empty-state");
     errorEl = $("#error-state");
     metaEl = $("#results-meta");
+    loadMoreWrap = $("#load-more-wrap");
+    loadMoreBtn = $("#load-more");
+  }
+
+  // Any filter/search change restarts paging at the first 50 matches.
+  function resetVisibleCount() {
+    visibleCount = PAGE_SIZE;
   }
 
   // -------- Disclaimer Modal --------
@@ -194,6 +208,7 @@
     filters.impact = "";
     filters.search = "";
     filters.aiSummaryOnly = false;
+    resetVisibleCount();
     syncFilterControls();
     render();
   }
@@ -210,6 +225,7 @@
     } else if (action === "medium-impact") {
       filters.impact = filters.impact === "Medium" ? "" : "Medium";
     }
+    resetVisibleCount();
     syncFilterControls();
     render();
   }
@@ -340,17 +356,26 @@
   }
 
   function renderResultsMeta(filtered) {
-    // AI summary count and last-checked date are based on the currently displayed set.
+    // AI summary count and last-checked date cover the FULL filtered set,
+    // not only the cards currently rendered on screen.
+    const shown = Math.min(visibleCount, filtered.length);
     const aiSummaryCount = filtered.filter((u) => u.summary_source === "claude").length;
     const lastChecked = maxLastChecked(filtered);
     const parts = [
-      "Showing " + filtered.length + " of " + allUpdates.length + " updates",
+      "Showing " + shown + " of " + filtered.length + " matching updates",
+      allUpdates.length + " total updates",
       "AI summaries: " + aiSummaryCount,
     ];
     if (lastChecked) {
       parts.push("Last checked: " + lastChecked);
     }
     metaEl.textContent = parts.join(" · ");
+  }
+
+  function updateLoadMore(matchingCount) {
+    if (!loadMoreWrap) return;
+    // Hidden when everything that matches is already rendered (or nothing matches).
+    loadMoreWrap.hidden = matchingCount === 0 || visibleCount >= matchingCount;
   }
 
   function render() {
@@ -361,9 +386,11 @@
       cardsEl.innerHTML = "";
       emptyEl.hidden = false;
     } else {
-      cardsEl.innerHTML = filtered.map(renderCard).join("");
+      // Render only the visible page window — never all (up to 1000) cards at once.
+      cardsEl.innerHTML = filtered.slice(0, visibleCount).map(renderCard).join("");
       emptyEl.hidden = true;
     }
+    updateLoadMore(filtered.length);
     renderResultsMeta(filtered);
   }
 
@@ -380,24 +407,29 @@
   function wireEvents() {
     const onSearch = debounce((e) => {
       filters.search = e.target.value;
+      resetVisibleCount();
       render();
     }, 120);
     searchInput.addEventListener("input", onSearch);
 
     filterArea.addEventListener("change", (e) => {
       filters.area = e.target.value;
+      resetVisibleCount();
       render();
     });
     filterStage.addEventListener("change", (e) => {
       filters.stage = e.target.value;
+      resetVisibleCount();
       render();
     });
     filterSource.addEventListener("change", (e) => {
       filters.source = e.target.value;
+      resetVisibleCount();
       render();
     });
     filterImpact.addEventListener("change", (e) => {
       filters.impact = e.target.value;
+      resetVisibleCount();
       render();
     });
     quickFilterButtons.forEach((button) => {
@@ -405,6 +437,12 @@
         handleQuickFilter(button.getAttribute("data-quick-filter"));
       });
     });
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", () => {
+        visibleCount += PAGE_SIZE;
+        render();
+      });
+    }
   }
 
   // -------- Init --------

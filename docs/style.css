@@ -500,6 +500,38 @@ code {
   letter-spacing: 0.2px;
 }
 
+/* -------- Load more -------- */
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0 44px;
+}
+
+.load-more-button {
+  background: #fff;
+  color: var(--color-navy);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  padding: 11px 30px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.load-more-button:hover {
+  background: #f6f5f1;
+  border-color: var(--color-navy);
+}
+
+.load-more-button:focus {
+  outline: none;
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
+}
+
 /* -------- Empty / Error -------- */
 .empty-state,
 .error-state {

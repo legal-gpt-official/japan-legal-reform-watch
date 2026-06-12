@@ -168,5 +168,45 @@
     "ai_notes": "Based mainly on the Japanese title and rule-based triage labels; specific content, deadlines, and scope are unverified. This is a draft out for public comment, not enacted law; verify against the official JFTC source.",
     "summarized_at": "2026-06-11T04:43:53Z",
     "summary_model": "claude-opus-4-8"
+  },
+  "672529ed763c74eff31981d52361027bf09d5565b505e04a8279739d0e8603d2": {
+    "title_en": "Public Comment on Draft Cabinet Order Amending the Environmental Impact Assessment Act Enforcement Order",
+    "summary_en": "The Ministry of the Environment (MOE) has announced a public comment period (public comment) on a draft Cabinet Order to partially amend the Enforcement Order of the Environmental Impact Assessment Act. The item is a proposed amendment open for public comment, not an enacted measure. Details beyond the announcement title are not provided in the metadata.",
+    "business_impact_en": "Organizations subject to environmental impact assessment requirements may wish to monitor this draft, as a finalized amendment could affect related procedures or obligations.",
+    "recommended_action_en": "Review the official MOE announcement and the draft Cabinet Order text to understand the proposed changes and any public comment deadlines.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and rule-based labels; the raw summary ('総合政策') and substantive details are limited and unverified. Verify against the authoritative MOE source.",
+    "summarized_at": "2026-06-12T01:20:46Z",
+    "summary_model": "claude-opus-4-8"
+  },
+  "bfbe98b1338ca20935e9c24df40de4ed4f1a0395f32a5d83b948d6188ebd4257": {
+    "title_en": "MIC: Results of Public Comments on Draft Amendment to Technical Conditions for Specified Low-Power Radio Stations",
+    "summary_en": "Japan's Ministry of Internal Affairs and Communications (MIC) has published the results of a public comment process concerning a draft notification (kokuji) that would partially amend technical conditions for specified low-power radio stations. The draft addresses items such as devices not required to be housed in a single enclosure, transmission time limiting devices, and carrier sense requirements. This item reflects the outcome of the consultation; the metadata does not confirm whether the amendment has been finalized or has taken effect.",
+    "business_impact_en": "Organizations that design, manufacture, or operate specified low-power radio equipment may need to consider whether the proposed technical conditions could affect product compliance.",
+    "recommended_action_en": "Review the official MIC source to verify the scope, status, and any effective dates of the draft amendment and the published comment results.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and summary; the metadata does not confirm finalization or effective date. Preliminary 'Energy / Environment' label appears keyword-driven and may not reflect the radio/telecom nature of the item; treat as weak context.",
+    "summarized_at": "2026-06-12T01:20:53Z",
+    "summary_model": "claude-opus-4-8"
+  },
+  "dab6ab109ab49576a5fb8c56f93bf724b3df263a91a3f59e11eacf728e77cf62": {
+    "title_en": "MIC Publishes Results of Public Comments on Draft Amendment to 2003 MIC Notice No. 213",
+    "summary_en": "The Ministry of Internal Affairs and Communications (MIC) has published the results of a public comment process concerning a draft amendment to part of MIC Notice No. 213 of 2003 (Heisei 15). According to the metadata, this item reports the outcome of soliciting opinions on the proposed amendment. The specific content and any subsequent steps are not detailed in the provided metadata.",
+    "business_impact_en": "Entities affected by the underlying 2003 MIC notice may wish to monitor this matter, as the proposed amendment and the comment results could affect future regulatory requirements.",
+    "recommended_action_en": "Review the official MIC source to confirm the scope of the proposed amendment and the published comment results.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the substance of the draft amendment and the comment results is unverified. This appears to report public comment results on a draft (proposed) amendment, not an enacted change.",
+    "summarized_at": "2026-06-12T01:20:59Z",
+    "summary_model": "claude-opus-4-8"
+  },
+  "69feae8051f01068bc4f50fec7aadd919d19f7de5af1573c4f10f607f573e64f": {
+    "title_en": "Cabinet Decision on Partial Amendment to Enforcement Order of the Chemical Substances Control Act",
+    "summary_en": "According to a Ministry of the Environment (MOE) press release, a Cabinet decision was made on a Cabinet Order partially amending the Enforcement Order of the Act on the Regulation of Manufacture and Evaluation of Chemical Substances (the Chemical Substances Control Act). The release is dated 2026-05-19. The raw summary references health-protection measures, but specific details are not provided in the metadata.",
+    "business_impact_en": "Businesses involved in manufacturing, importing, or handling regulated chemical substances may be affected if the amended enforcement order changes applicable requirements.",
+    "recommended_action_en": "Consider reviewing the official MOE press release and the underlying Cabinet Order text to confirm the scope, content, and timing of any changes.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and a very brief raw summary; substantive details are unverified. A Cabinet decision on a Cabinet Order is indicated, but this differs from promulgation or entry into force, which is not confirmed here. Triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-06-12T01:21:05Z",
+    "summary_model": "claude-opus-4-8"
   }
 }

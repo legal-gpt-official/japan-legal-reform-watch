@@ -60,7 +60,7 @@ RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 OUTPUT_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.json"
 BACKUP_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.backup.json"
 
-MAX_OUTPUT_ITEMS = 50  # initial conservative cap
+MAX_OUTPUT_ITEMS = 1000  # public dataset cap; the UI renders 50 at a time (Load more)
 JST = timezone(timedelta(hours=9))  # display Japanese-source dates on the JST calendar
 
 # The 13 fields the existing dashboard UI expects. (relevance_score is an extra,
@@ -151,6 +151,11 @@ DEBOOST = {
     "委員会開催情報": -8, "議事概要": -6, "懇話会": -5, "委員会を開催": -6,
     "主な意見": -3, "ポスターコンクール": -7, "シンボルマーク": -7,
     "採用": -8, "調達": -8, "キッズ": -8,
+    # Ministry-source noise (MOJ/MOE/MOF/MIC expansion): market data, speeches,
+    # maintenance notices, exams, subsidy adoptions/calls, PR-style items.
+    "国債金利情報": -8, "入札情報": -8, "スピーチ": -5, "講演": -4, "挨拶": -4,
+    "メンテナンス": -6, "試験": -4, "出願状況": -5, "白書": -3, "見学": -7,
+    "採択": -6, "公募": -4, "表彰式": -7, "コンクール": -7, "フォトコンテスト": -8,
 }
 
 # Clear administrative noise. Excluded outright UNLESS a BOOST_STRONG keyword is
@@ -271,6 +276,7 @@ AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 ]
 
 # Source-name fallback when no keyword matched (only the unambiguous ones).
+# MIC is deliberately absent: its scope is broad, so unmatched items stay "Other".
 AREA_SOURCE_FALLBACK = (
     ("Finance / AML", ("金融庁", "FSA")),
     ("Data / Privacy / AI", ("デジタル庁", "Digital Agency")),
@@ -278,6 +284,9 @@ AREA_SOURCE_FALLBACK = (
     ("Data / Privacy / AI", ("個人情報保護委員会", "PPC")),
     ("Antitrust / Fair Trade", ("公正取引委員会", "JFTC")),
     ("Labor / Employment", ("厚生労働省", "MHLW", "Ministry of Health, Labour and Welfare")),
+    ("Corporate / Governance", ("法務省", "MOJ")),
+    ("Energy / Environment", ("環境省", "MOE")),
+    ("Finance / AML", ("財務省", "MOF")),
 )
 
 # Source-expansion area rules. These run before the broader legacy table so
@@ -321,6 +330,54 @@ JFTC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
         "不公正な取引方法", "公正な取引", "公正取引委員会",
     )),
 ]
+# Ministry expansion (MOJ / MOE / MOF / MIC). Source-gated like METI/CAA/PPC/JFTC;
+# narrower topics come before broader ones.
+MOJ_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Finance / AML", (
+        "犯罪収益", "マネー・ローンダリング", "マネロン", "テロ資金", "FATF",
+    )),
+    ("Data / Privacy / AI", (
+        "個人情報", "個人データ",
+    )),
+    ("Labor / Employment", (
+        "入管", "在留資格", "外国人", "技能実習", "特定技能", "出入国", "育成就労",
+    )),
+    ("Real Estate / Land Use", (
+        "不動産登記", "所有者不明土地", "相続登記",
+    )),
+    ("Corporate / Governance", (
+        "会社法", "商業登記", "法人登記", "登記", "民法", "契約", "債権", "担保",
+        "民事", "法制審議会", "司法制度",
+    )),
+]
+MOE_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Public Safety / Disaster Management", (
+        "災害", "防災",
+    )),
+    ("Energy / Environment", (
+        "環境", "脱炭素", "気候変動", "GX", "温室効果ガス", "カーボン", "排出",
+        "廃棄物", "リサイクル", "資源循環", "化学物質", "PRTR", "フロン", "PFOS",
+        "水質", "大気", "自然公園", "国立公園", "鳥獣", "生物多様性", "エネルギー", "再エネ",
+    )),
+]
+MOF_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Economic Security / FDI", (
+        "外為", "外国為替", "対内直接投資", "輸出入", "輸出管理", "経済安全保障", "安全保障",
+    )),
+    ("Finance / AML", (
+        "関税", "税制", "税法", "マネロン", "マネー・ローンダリング", "テロ資金",
+        "犯罪収益", "FATF", "金融",
+    )),
+]
+MIC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Data / Privacy / AI", (
+        "通信", "電気通信", "電波", "放送", "情報通信", "ネットワーク", "サイバー",
+        "マイナンバー", "デジタル", "行政手続",
+    )),
+    ("Corporate / Governance", (
+        "地方制度", "地方自治", "地方公共団体",
+    )),
+]
 
 # Additional UTF-8 area rules for business-friendly dashboard filters. These run
 # before the legacy broad table so public-comment items do not fall back to Other.
@@ -329,6 +386,7 @@ UTF8_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
         "電源", "重要電源", "原子力", "エネルギー", "電力", "ガス", "再エネ",
         "GX", "脱炭素", "環境", "鳥獣保護", "鳥獣の保護", "wildlife protection",
         "nuclear", "power source", "一般海域", "占用公募制度",
+        "グリーンボンド", "グリーンローン",
     )),
     ("Food / Agriculture", (
         "食品", "添加物", "食品表示", "農薬", "動物用医薬品", "鳥獣", "農林",
@@ -406,6 +464,22 @@ def classify_area(title_ja: str, source_name: str) -> str:
         for area, keywords in JFTC_AREA_RULES:
             if any(kw in title_ja for kw in keywords):
                 return area
+    if any(hint in source_name for hint in ("法務省", "MOJ")):
+        for area, keywords in MOJ_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if any(hint in source_name for hint in ("環境省", "MOE")):
+        for area, keywords in MOE_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if any(hint in source_name for hint in ("財務省", "MOF")):
+        for area, keywords in MOF_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if any(hint in source_name for hint in ("総務省", "MIC")):
+        for area, keywords in MIC_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
     for area, keywords in UTF8_AREA_RULES:
         if any(kw in title_ja for kw in keywords):
             return area
@@ -425,10 +499,14 @@ _PC_KEYWORDS = (
     "意見募集", "パブリックコメント", "パブリック・コメント", "パブコメ",
     "意見の募集", "御意見の募集", "ご意見の募集",
 )
-_PC_RESULT_MARKERS = (
-    "意見募集結果", "意見募集の結果", "意見の募集の結果", "募集の結果",
-    "結果の公示", "結果について", "パブリックコメントの結果",
+# Explicit markers always mean public-comment results. Generic result wording
+# ("結果について" etc.) appears in plenty of non-PC ministry announcements
+# (selection results, survey results), so it only counts inside a PC context.
+_PC_RESULT_MARKERS_EXPLICIT = (
+    "意見募集結果", "意見募集の結果", "意見の募集の結果",
+    "パブリックコメントの結果", "結果の公示",
 )
+_PC_RESULT_MARKERS_GENERIC = ("結果について", "募集の結果", "結果")
 _PC_RESULT_MARKERS_EN = ("results published",)
 _PC_CLOSED_MARKERS = ("受付終了", "終了しました", "意見募集を終了", "募集を終了")
 _PC_CLOSED_MARKERS_EN = ("closed",)
@@ -445,11 +523,14 @@ def is_public_comment_title(title_ja: str) -> bool:
 
 def classify_stage(title_ja: str, source_type: str) -> str:
     title_lower = title_ja.lower()
-    if contains_any(title_ja, _PC_RESULT_MARKERS) or contains_any(title_lower, _PC_RESULT_MARKERS_EN):
+    pc_context = is_public_comment(source_type) or is_public_comment_title(title_ja)
+    if contains_any(title_ja, _PC_RESULT_MARKERS_EXPLICIT) or contains_any(title_lower, _PC_RESULT_MARKERS_EN):
+        return "Public Comment Results Published"
+    if pc_context and contains_any(title_ja, _PC_RESULT_MARKERS_GENERIC):
         return "Public Comment Results Published"
     if contains_any(title_ja, _PC_CLOSED_MARKERS) or contains_any(title_lower, _PC_CLOSED_MARKERS_EN):
         return "Public Comment Closed"
-    if is_public_comment(source_type) or is_public_comment_title(title_ja):
+    if pc_context:
         return "Public Comment Open"
     if any(m in title_ja for m in ("施行されました", "施行しました")):
         return "In Force"
@@ -594,6 +675,32 @@ TITLE_TOPIC_RULES: list[tuple[tuple[str, ...], str]] = [
     (("知的財産取引適正化", "ワーキンググループ報告書"), "Working Group Report on Fairness in Intellectual Property Transactions"),
     (("電通グループ", "課徴金額"), "Decision Changing Surcharge Amount for Dentsu Group"),
     (("特定石綿被害建設業務労働者", "認定審査会"), "Special Review Committee Meeting on Asbestos-Related Construction Worker Certification"),
+    # Ministry expansion (MOJ / MOE / MOF / MIC) recurring topics.
+    (("環境影響評価",), "Environmental Impact Assessment Rules"),
+    (("グリーンボンド",), "Green Bond and Green Loan Guidelines"),
+    (("道路交通法",), "Road Traffic Act Rules"),
+    (("商業登記",), "Commercial Registration Rules"),
+    (("不動産登記",), "Real Estate Registration Rules"),
+    (("法制審議会",), "Legislative Council Deliberations"),
+    (("会社法",), "Companies Act Rules"),
+    (("民法",), "Civil Code Rules"),
+    (("在留資格",), "Residence Status Rules"),
+    (("育成就労",), "Employment for Skill Development Program Rules"),
+    (("入管",), "Immigration Control Rules"),
+    (("関税",), "Customs and Tariff Rules"),
+    (("外国為替",), "Foreign Exchange and Foreign Trade Act Rules"),
+    (("税制",), "Tax System Measures"),
+    (("電気通信事業",), "Telecommunications Business Rules"),
+    (("電波法",), "Radio Act Rules"),
+    (("電波",), "Radio Spectrum Policy"),
+    (("放送",), "Broadcasting Policy"),
+    (("廃棄物",), "Waste Management Rules"),
+    (("資源循環",), "Resource Circulation Policy"),
+    (("化学物質",), "Chemical Substances Regulation"),
+    (("PFOS",), "PFOS-Related Measures"),
+    (("気候変動",), "Climate Change Policy"),
+    (("生物多様性",), "Biodiversity Policy"),
+    (("国立公園",), "National Park Rules"),
     (("経済安全保障",), "Economic Security Policy"),
     (("安全保障貿易",), "Security Trade Control"),
     (("輸出管理",), "Export Control Rules"),
@@ -728,6 +835,14 @@ def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
         return "MHLW Update"
     if "Digital Agency" in source_name or "デジタル庁" in source_name:
         return "Digital Agency Update"
+    if "法務省" in source_name or "MOJ" in source_name:
+        return "MOJ Update"
+    if "環境省" in source_name or "MOE" in source_name:
+        return "MOE Update"
+    if "財務省" in source_name or "MOF" in source_name:
+        return "MOF Update"
+    if "総務省" in source_name or "MIC" in source_name:
+        return "MIC Update"
     if stage == "Public Comment Results Published":
         return "Public Comment Results"
     if stage == "Public Comment Closed":

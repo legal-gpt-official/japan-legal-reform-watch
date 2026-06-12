@@ -53,6 +53,7 @@ requirements.txt                 # Ingestion/summarization dependencies (request
 - The dashboard-level trust notice must clarify that AI summaries and rule-based previews are monitoring aids, not legal advice, and that original Japanese official sources remain authoritative.
 - Card source buttons must link to each record's original Japanese official source using `source_url`. English summaries and previews are triage aids only; the original Japanese official source remains authoritative.
 - Dashboard filters include `Area`, `Stage`, `Source`, and `Impact Level`; the Source filter is populated from `source_name`. Quick filters provide one-click views for `Public Comment Open`, `AI Summary`, and `Medium Impact`, plus a full Reset.
+- The dashboard initially renders **50 cards** and adds 50 per **Load more** click (never all ~1000 at once). Search, filters, quick filters, filter options, and the results meta line all operate on the **full published dataset**; any filter change or Reset returns the visible window to 50.
 - The dashboard footer includes modest links to Legal GPT, the Japan Legal Reform Watch landing page, and Japan legal updates, while keeping the EN/JA disclaimer links visible.
 - Do not introduce external runtime dependencies (CDN fonts, analytics, trackers, JS frameworks) without explicit approval. The current dashboard is deliberately dependency-free.
 - **Treat all record/source data as untrusted.** Every value rendered into the DOM must pass through `escapeHtml()`; `source_url` must also pass `safeUrl()` (scheme allow-list) **and** `escapeHtml()` before being placed in an `href`. This boundary prevents markup/script injection once automated ingestion is added.
@@ -73,7 +74,8 @@ Each entry contains:
 
 ## Ingestion (`scripts/fetch_updates.py`)
 
-- Stage 1 **raw fetch only**: pulls a small `SOURCES` list of Japanese government / regulator feeds and official update pages into `data/raw_items.json`. Current sources include e-Gov Public Comment, FSA, METI, MHLW, Digital Agency, CAA, PPC, and JFTC; PPC and JFTC use lightweight official HTML parsing because stable RSS endpoints were not found. It does **fetch → normalize → de-duplicate → log** and nothing else.
+- Stage 1 **raw fetch only**: pulls a curated `SOURCES` list of Japanese government / regulator feeds and official update pages into `data/raw_items.json`. Current sources: e-Gov Public Comment, FSA, METI, MHLW, Digital Agency, CAA, PPC, JFTC, **MOJ (法務省, RSS), MOE (環境省, official-HTML parser), MOF (財務省, RSS), and MIC (総務省, RSS — Shift_JIS, handled by both parsers)**. PPC / JFTC / MOE use lightweight official HTML parsing because stable RSS endpoints were not found. **NTA (国税庁) was investigated and deliberately skipped**: no RSS, legacy Shift_JIS news page dominated by statistics/PDF notices — revisit if a stable feed appears. It does **fetch → normalize → de-duplicate → log** and nothing else.
+- `data/raw_items.json` is the **accumulated source history**: re-runs only append genuinely new items, and it must never be trimmed to fit the published cap.
 - **Untrusted input — do not trust `source_url`, `title_ja`, or `raw_summary`.** They come from third-party feeds. The script stores them verbatim (with light text normalization for readability), stores `source_url` unchanged, and never renders or executes any of them. Any downstream stage that renders these fields must escape them (see `docs/app.js`).
 - De-duplicates by `id` (derived from `source_url`, or from `title_ja` + `source_name` + `published_at` when there is no URL) and by `source_url`; re-running only appends genuinely new items (idempotent).
 - A failing source is logged and skipped — it must never stop the whole run.
@@ -90,7 +92,9 @@ Each entry contains:
 - METI / CAA source expansion uses additional title keyword rules for provisional area classification, including economic security / FDI, energy / environment, data / privacy / AI, antitrust / fair trade, consumer / advertising, and corporate governance. These labels remain triage metadata, not legal conclusions.
 - PPC / JFTC source expansion uses additional keyword rules: PPC items are biased toward `Data / Privacy / AI`, and JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates should be excluded or heavily downranked unless strong legal/regulatory keywords are present.
 - Additional public-comment area rules classify clear healthcare/pharma, food/agriculture, transport/infrastructure, real-estate/land-use, and public-safety/disaster-management signals so `Other` is reserved for genuinely unclear items.
-- Excludes clear administrative noise and items with no net legal/regulatory signal — unless a strong keyword rescues them; public comments are always kept. Caps output at 50; unknown/invalid dates rank last. Keeps `source_url` verbatim; input is untrusted (the UI escapes on render).
+- Excludes clear administrative noise and items with no net legal/regulatory signal — unless a strong keyword rescues them; public comments are always kept. Ministry-source noise (recruitment, procurement, events, bare meeting/committee announcements, exams, market data, speeches, subsidy adoptions/calls, web magazines, statistics-only, white-paper-only, kids/PR pages) is excluded or heavily downranked.
+- **Caps the published dataset at 1000 items** (`MAX_OUTPUT_ITEMS`); unknown/invalid dates rank last. The dashboard initially renders only 50 cards and pages further results via Load more. If the dataset outgrows 1000, the planned enhancement is splitting older data into year-based archive JSON files (not implemented). Keeps `source_url` verbatim; input is untrusted (the UI escapes on render).
+- MOJ / MOE / MOF / MIC area rules are source-gated like METI/CAA/PPC/JFTC (MOJ → corporate/registry/civil-law/immigration/AML; MOE → environment/waste/chemicals, disaster items to Public Safety; MOF → FX/FDI/customs/tax to Finance or Economic Security; MIC → telecom/spectrum/broadcast/digital-administration to Data / Privacy / AI). MIC deliberately has **no** source fallback — unmatched items stay `Other`.
 - If the previous published file contains `summary_source: "claude"` for the same `id` and unchanged `source_url`, Stage 2 preserves the Claude summary fields while refreshing build-owned metadata such as `area`, `stage`, `impact_level`, `relevance_score`, titles, source, and dates.
 - Stage 3 may replace the template English fields for selected top-ranked records, but the keyword-derived `area` / `stage` / `impact_level` labels remain preliminary triage metadata unless a later reviewed process changes them. Keep the output escaping and the disclaimer intact.
 
@@ -108,7 +112,8 @@ Each entry contains:
 
 - Offline regression tests live in `tests/` (stdlib `unittest`; also runnable with `pytest`). No network, no file writes; `docs/data/legal_updates.json` is validated read-only.
 - Run with `python -m unittest discover -s tests` (or `python -m pytest tests`).
-- Coverage: Stage 2 stage/area/impact classification, rule-based `title_en` generation (source prefixes, draft markers, 120-char shortening), Public Comment Closed ordering demotion + strong-signal relief, Stage 3 AI-summary preservation rules, published-file schema (14 fields, vocabularies, ≤50 items, claude items carry AI metadata), and Stage 1 `SOURCES` config / feed + PPC/JFTC HTML parsers / id + hash stability.
+- Coverage: Stage 2 stage/area/impact classification (incl. MOJ/MOE/MOF/MIC rules), rule-based `title_en` generation (source prefixes, draft markers, 120-char shortening), Public Comment Closed ordering demotion + strong-signal relief, ministry-noise exclusion/downranking, Stage 3 AI-summary preservation rules, published-file schema (14 fields, vocabularies, ≤1000 items, claude items carry AI metadata), and Stage 1 `SOURCES` config / feed + PPC/JFTC/MOE HTML parsers / id + hash stability.
+- The Load more UI has no automated JS tests; verify manually after UI changes: initial render is 50 cards; Load more adds 50 per click and hides when all matches are shown; any Search / Area / Stage / Source / Impact / quick-filter change (and Reset) returns the window to 50; filters and the meta line (`Showing X of Y matching updates · Z total updates · AI summaries: N · Last checked: D`) operate on the full published dataset, not just rendered cards.
 - **When changing classification rules, ranking weights, title rules, or `SOURCES`, update these tests in the same change** — they pin the published behavior. The schema test reads the checked-in published file, so regenerating it may legitimately change test inputs; rerun the suite after any rebuild.
 
 ## How to run locally
@@ -131,7 +136,8 @@ python -m http.server 8000
 
 ## Roadmap (not in this iteration)
 
-- Ingestion scripts for FSA, METI, PPC, JFTC, MHLW, MOJ, MIC, e-Gov public comments, etc.
+- Additional sources beyond the current twelve (e.g. NTA once a stable feed exists, MLIT, MAFF).
+- Year-based archive JSON files for older data if the published dataset outgrows the 1000-item cap.
 - First real Stage 3 API run and review of generated summaries before broader use.
 - Broader automation beyond the existing daily update workflow.
 - Subscription / email digest features.

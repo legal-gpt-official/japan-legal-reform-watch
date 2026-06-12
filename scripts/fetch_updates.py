@@ -121,6 +121,31 @@ SOURCES = [
         "prefer_urllib": True,
         "user_agent": "JapanLegalReformWatch/0.1",
     },
+    {
+        "name": "法務省 (MOJ) 新着情報",
+        "url": "https://www.moj.go.jp/news.xml",
+        "source_type": "ministry_rss",
+        "source_language": "ja",
+    },
+    {
+        "name": "環境省 (MOE) 報道発表",
+        "url": "https://www.env.go.jp/press/",
+        "source_type": "ministry_html",
+        "source_language": "ja",
+        "html_parser": "moe_press",
+    },
+    {
+        "name": "財務省 (MOF) 新着情報",
+        "url": "https://www.mof.go.jp/news.rss",
+        "source_type": "ministry_rss",
+        "source_language": "ja",
+    },
+    {
+        "name": "総務省 (MIC) 新着情報",
+        "url": "https://www.soumu.go.jp/news.rdf",  # Shift_JIS feed; parsers honor the XML declaration
+        "source_type": "ministry_rss",
+        "source_language": "ja",
+    },
 ]
 
 USER_AGENT = (
@@ -218,6 +243,8 @@ def parse_html_source(content: bytes, source: dict) -> list[dict]:
         return _parse_ppc_information_html(text, source["url"])
     if parser_name == "jftc_pressrelease":
         return _parse_jftc_pressrelease_html(text, source["url"])
+    if parser_name == "moe_press":
+        return _parse_moe_press_html(text, source["url"])
     raise ValueError(f"Unsupported html_parser: {parser_name}")
 
 
@@ -280,6 +307,59 @@ def _parse_jftc_pressrelease_html(text: str, base_url: str) -> list[dict]:
     return items
 
 
+# MOE press-release list (env.go.jp/press/): <details> blocks grouped by a
+# "YYYY年MM月DD日発表" heading, each containing c-news-link__item entries.
+_MOE_BLOCK_RE = re.compile(
+    r"<span[^>]+class=[\"'][^\"']*p-press-release-list__heading[^\"']*[\"'][^>]*>\s*"
+    r"(?P<year>\d{4})年(?P<month>\d{1,2})月(?P<day>\d{1,2})日発表\s*</span>"
+    r"(?P<body>.*?)</details>",
+    re.IGNORECASE | re.DOTALL,
+)
+_MOE_ITEM_RE = re.compile(
+    r"<li[^>]+class=[\"'][^\"']*c-news-link__item[^\"']*[\"'][^>]*>(?P<item>.*?)</li>",
+    re.IGNORECASE | re.DOTALL,
+)
+_MOE_LINK_RE = re.compile(
+    r"<a\s+(?=[^>]*class=[\"'][^\"']*c-news-link__link[^\"']*[\"'])[^>]*href=[\"'](?P<href>[^\"']+)[\"'][^>]*>"
+    r"(?P<title_html>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+_MOE_TAG_RE = re.compile(
+    r"<span[^>]+class=[\"'][^\"']*c-tag[^\"']*[\"'][^>]*>(?P<tag>.*?)</span>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _parse_moe_press_html(text: str, base_url: str) -> list[dict]:
+    items: list[dict] = []
+    for block in _MOE_BLOCK_RE.finditer(text):
+        try:
+            published_iso = datetime(
+                int(block.group("year")), int(block.group("month")), int(block.group("day"))
+            ).strftime("%Y-%m-%d")
+        except ValueError:
+            published_iso = ""  # malformed heading date — never guess
+        for item_match in _MOE_ITEM_RE.finditer(block.group("body")):
+            item_html = item_match.group("item")
+            link = _MOE_LINK_RE.search(item_html)
+            if not link:
+                continue
+            title = clean_text(link.group("title_html"))
+            href = html.unescape(link.group("href")).strip()
+            if not title or not href:
+                continue
+            tag = _MOE_TAG_RE.search(item_html)
+            items.append(
+                {
+                    "title": title,
+                    "link": urllib.parse.urljoin(base_url, href),
+                    "summary": clean_text(tag.group("tag")) if tag else "報道発表",
+                    "published_iso": published_iso,
+                }
+            )
+    return items
+
+
 def _parse_with_feedparser(content: bytes) -> list[dict]:
     parsed = feedparser.parse(content)
     items: list[dict] = []
@@ -311,8 +391,22 @@ def _parse_with_stdlib(content: bytes) -> list[dict]:
     """Minimal RSS 2.0 / RSS 1.0 (RDF) / Atom parser using xml.etree."""
     import xml.etree.ElementTree as ET
 
-    text = content.decode("utf-8", errors="replace").lstrip("﻿")
-    root = ET.fromstring(text)
+    # Parse raw bytes first so the XML-declared encoding is honored where expat
+    # supports it. expat rejects multi-byte encodings such as Shift_JIS (the MIC
+    # feed) with ValueError, so fall back to decoding with the declared encoding
+    # and stripping the declaration (expat also refuses str input that still
+    # carries an encoding declaration).
+    try:
+        root = ET.fromstring(content)
+    except (ET.ParseError, ValueError):
+        declared = re.search(rb"encoding=[\"']([A-Za-z0-9_.-]+)[\"']", content[:200])
+        encoding = declared.group(1).decode("ascii", "replace") if declared else "utf-8"
+        try:
+            text = content.decode(encoding, errors="replace")
+        except LookupError:
+            text = content.decode("utf-8", errors="replace")
+        text = re.sub(r"^\s*<\?xml[^>]*\?>", "", text.lstrip("﻿"), count=1)
+        root = ET.fromstring(text)
     items: list[dict] = []
 
     # Atom: <feed><entry>...

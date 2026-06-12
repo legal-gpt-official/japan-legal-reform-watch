@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=quick-filters-20260611" />
+  <link rel="stylesheet" href="./style.css?v=load-more-20260612" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -145,6 +145,9 @@
   <!-- Cards Feed -->
   <main class="container">
     <div id="cards" class="cards-grid"></div>
+    <div id="load-more-wrap" class="load-more-wrap" hidden>
+      <button id="load-more" class="load-more-button" type="button">Load more updates</button>
+    </div>
     <div id="empty-state" class="empty-state" hidden>
       <p>No matching updates found.</p>
       <p class="empty-state-hint">Try clearing filters or adjusting your search terms.</p>
@@ -198,6 +201,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=quick-filters-20260611"></script>
+  <script src="app.js?v=load-more-20260612"></script>
 </body>
 </html>

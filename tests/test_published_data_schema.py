@@ -48,6 +48,7 @@ def allowed_areas() -> set:
     for table in (
         bpd.AREA_RULES, bpd.UTF8_AREA_RULES, bpd.ADDITIONAL_AREA_RULES,
         bpd.METI_AREA_RULES, bpd.CAA_AREA_RULES, bpd.PPC_AREA_RULES, bpd.JFTC_AREA_RULES,
+        bpd.MOJ_AREA_RULES, bpd.MOE_AREA_RULES, bpd.MOF_AREA_RULES, bpd.MIC_AREA_RULES,
     ):
         areas.update(area for area, _ in table)
     areas.update(area for area, _ in bpd.AREA_SOURCE_FALLBACK)
@@ -60,10 +61,10 @@ class TestPublishedDataSchema(unittest.TestCase):
         with open(PUBLISHED_PATH, encoding="utf-8") as f:
             cls.items = json.load(f)
 
-    def test_is_nonempty_array_capped_at_50(self):
+    def test_is_nonempty_array_within_cap(self):
         self.assertIsInstance(self.items, list)
         self.assertGreater(len(self.items), 0)
-        self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)
+        self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)  # cap is 1000
 
     def test_ids_are_unique(self):
         ids = [it["id"] for it in self.items]

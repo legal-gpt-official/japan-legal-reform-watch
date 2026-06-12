@@ -81,6 +81,17 @@ class TestStageClassification(unittest.TestCase):
             "Government Announcement",
         )
 
+    def test_generic_result_wording_outside_pc_context_is_not_pc_results(self):
+        # Ministry "selection/survey results" must not be mislabeled as
+        # public-comment results; the generic marker needs a PC context.
+        for title in (
+            "令和８年度モデル事業対象事業の選定結果について",
+            "実態調査の結果について",
+            "研究開発に係る提案公募の結果",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_stage(title, "ministry_rss"), "Government Announcement")
+
     def test_law_lifecycle_stages(self):
         self.assertEqual(bpd.classify_stage("改正個人情報保護法が施行されました", "regulator_rss"), "In Force")
         self.assertEqual(bpd.classify_stage("○○法の施行期日を定める政令について", "ministry_rss"), "Scheduled to Take Effect")
@@ -130,6 +141,64 @@ class TestAreaClassification(unittest.TestCase):
 
     def test_other_is_reserved_for_genuinely_unclear(self):
         self.assertEqual(bpd.classify_area("ありふれた一般的なお知らせ", "Unknown Agency"), "Other")
+
+    # --- Ministry expansion (MOJ / MOE / MOF / MIC) ---
+
+    MOJ = "法務省 (MOJ) 新着情報"
+    MOE = "環境省 (MOE) 報道発表"
+    MOF = "財務省 (MOF) 新着情報"
+    MIC = "総務省 (MIC) 新着情報"
+
+    def test_moj_area_rules(self):
+        cases = [
+            ("Corporate / Governance", "会社法の一部を改正する法律案について"),
+            ("Corporate / Governance", "商業登記規則の一部改正について"),
+            ("Real Estate / Land Use", "不動産登記規則の一部改正について"),
+            ("Labor / Employment", "在留資格「特定技能」に関する省令改正について"),
+            ("Finance / AML", "犯罪収益移転防止法の改正について"),
+            ("Data / Privacy / AI", "個人情報の取扱いに関する留意事項について"),
+            ("Corporate / Governance", "法制審議会民法（契約関係）部会の開催について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MOJ), expected)
+
+    def test_moe_area_rules(self):
+        cases = [
+            ("Energy / Environment", "廃棄物処理法施行令の一部を改正する政令について"),
+            ("Energy / Environment", "化学物質の審査及び製造等の規制に関する法律の改正について"),
+            ("Energy / Environment", "温室効果ガス排出量算定・報告・公表制度について"),
+            ("Public Safety / Disaster Management", "災害廃棄物対策に関する指針の改定について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MOE), expected)
+
+    def test_mof_area_rules(self):
+        cases = [
+            ("Economic Security / FDI", "外国為替及び外国貿易法に基づく対内直接投資等の届出について"),
+            ("Finance / AML", "関税定率法等の一部を改正する法律案について"),
+            ("Finance / AML", "令和９年度税制改正要望について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MOF), expected)
+
+    def test_mic_area_rules(self):
+        cases = [
+            ("Data / Privacy / AI", "電気通信事業法施行規則の一部改正に関する意見募集"),
+            ("Data / Privacy / AI", "電波法関係審査基準の一部を改正する訓令案について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MIC), expected)
+
+    def test_ministry_source_fallbacks(self):
+        self.assertEqual(bpd.classify_area("特になし", self.MOJ), "Corporate / Governance")
+        self.assertEqual(bpd.classify_area("特になし", self.MOE), "Energy / Environment")
+        self.assertEqual(bpd.classify_area("特になし", self.MOF), "Finance / AML")
+        # MIC deliberately has no fallback — broad scope stays "Other".
+        self.assertEqual(bpd.classify_area("特になし", self.MIC), "Other")
 
 
 class TestTitleEnGeneration(unittest.TestCase):
@@ -231,6 +300,31 @@ class TestRelevanceScoring(unittest.TestCase):
     def test_deliberative_noise_scores_negative(self):
         self.assertLess(bpd.keyword_score("第65回審議会 議事録"), 0)
 
+    def test_admin_noise_is_hard_excluded(self):
+        for title in (
+            "職員採用のお知らせ",
+            "調達情報を掲載しました",
+            "入札公告について",
+            "記念イベントの開催について",
+            "シンポジウムを開催します",
+        ):
+            with self.subTest(title=title):
+                self.assertTrue(bpd.is_hard_excluded(title))
+
+    def test_ministry_noise_scores_below_floor(self):
+        # MOF market data / speeches, MOJ exams, MOE subsidy adoptions, plain
+        # meeting announcements: all must fall below the relevance floor.
+        for title in (
+            "国債金利情報(令和8年6月11日)",
+            "大臣のスピーチについて",
+            "令和８年度司法書士試験の出願状況について",
+            "令和８年度モデル構築事業の採択について",
+            "対策技術の実証事業の二次公募について",
+            "検討会（第16回）の開催について",
+        ):
+            with self.subTest(title=title):
+                self.assertLess(bpd.relevance_score(title, "ministry_rss"), bpd.RELEVANCE_FLOOR)
+
     def test_egov_source_bonus(self):
         title = "○○省令案に関する意見募集"
         self.assertEqual(
@@ -238,8 +332,9 @@ class TestRelevanceScoring(unittest.TestCase):
             bpd.relevance_score(title, "ministry_rss") + bpd.SOURCE_BONUS["public_comment_rss"],
         )
 
-    def test_output_cap_is_50(self):
-        self.assertEqual(bpd.MAX_OUTPUT_ITEMS, 50)
+    def test_output_cap_is_1000(self):
+        # Public dataset cap; the UI pages 50 at a time via Load more.
+        self.assertEqual(bpd.MAX_OUTPUT_ITEMS, 1000)
 
     def test_rule_based_impact_never_high(self):
         aggressive_titles = [

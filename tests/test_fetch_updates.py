@@ -16,9 +16,10 @@ if str(SCRIPTS_DIR) not in sys.path:
 import fetch_updates as fu  # noqa: E402
 
 ALLOWED_SOURCE_TYPES = {
-    "public_comment_rss", "regulator_rss", "ministry_rss", "agency_rss", "regulator_html",
+    "public_comment_rss", "regulator_rss", "ministry_rss", "agency_rss",
+    "regulator_html", "ministry_html",
 }
-ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease"}
+ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press"}
 
 
 class TestSourcesConfig(unittest.TestCase):
@@ -42,6 +43,11 @@ class TestSourcesConfig(unittest.TestCase):
     def test_names_are_unique(self):
         names = [s["name"] for s in fu.SOURCES]
         self.assertEqual(len(names), len(set(names)))
+
+    def test_ministry_expansion_sources_present(self):
+        names = " / ".join(s["name"] for s in fu.SOURCES)
+        for token in ("法務省 (MOJ)", "環境省 (MOE)", "財務省 (MOF)", "総務省 (MIC)"):
+            self.assertIn(token, names)
 
     def test_html_sources_declare_a_known_parser(self):
         for source in fu.SOURCES:
@@ -174,6 +180,46 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertEqual(items[0]["link"], "https://www.ppc.go.jp/news/2026/0601.html")  # urljoin applied
         self.assertEqual(items[0]["published_iso"], "2026-06-01")
         self.assertEqual(items[0]["summary"], "お知らせ")
+
+    def test_moe_press_parser(self):
+        html_text = """
+        <div class="p-press-release-list__section">
+        <details class="p-press-release-list__block" open>
+        <summary class="p-press-release-list__head">
+        <span class="p-press-release-list__head__content">
+        <span class="p-press-release-list__button"></span>
+        <span class="p-press-release-list__heading">2026年06月11日発表</span>
+        </span>
+        </summary>
+        <div class="p-press-release-list__body">
+        <ul class="p-news-link c-news-link">
+        <li class="c-news-link__item">
+        <div class="c-news-link__item__col">
+        <span class="p-news-link__tag c-tag c-tag--water-soil">水・土壌</span>
+        </div>
+        <div class="c-news-link__item__col">
+        <a href="/press/press_05099.html" class="c-news-link__link">化学物質対策技術の実証事業について</a>
+        </div>
+        </li>
+        <li class="c-news-link__item">
+        <div class="c-news-link__item__col">
+        <a href="/press/press_05100.html" class="c-news-link__link">タグなし項目の発表</a>
+        </div>
+        </li>
+        </ul>
+        </div>
+        </details>
+        </div>
+        """.encode("utf-8")
+        source = {"html_parser": "moe_press", "url": "https://www.env.go.jp/press/"}
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0]["title"], "化学物質対策技術の実証事業について")
+        self.assertEqual(items[0]["link"], "https://www.env.go.jp/press/press_05099.html")  # urljoin applied
+        self.assertEqual(items[0]["published_iso"], "2026-06-11")  # from the date heading
+        self.assertEqual(items[0]["summary"], "水・土壌")  # category tag
+        self.assertEqual(items[1]["published_iso"], "2026-06-11")
+        self.assertEqual(items[1]["summary"], "報道発表")  # default when no tag
 
     def test_jftc_pressrelease_parser(self):
         html_text = """
