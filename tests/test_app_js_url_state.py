@@ -141,7 +141,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "data-status-20260612",
+            "csv-export-20260612",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -209,6 +209,44 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, combined)
+
+    def test_csv_export_controls_exist(self):
+        for snippet in (
+            "Export CSV",
+            'id="export-csv"',
+            'id="export-status"',
+            "Export matching updates to CSV",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+        for snippet in (
+            "function buildCsvText",
+            "function csvCell",
+            "function protectCsvFormula",
+            "function exportCurrentCsv",
+            "function currentFilteredUpdates",
+            "text/csv;charset=utf-8",
+            "new Blob",
+            "URL.createObjectURL",
+            "URL.revokeObjectURL",
+            "link.download",
+            "\\uFEFF",
+            "formatSourceDisplayName(update.source_name)",
+            "safeUrl(update.source_url)",
+            "summarySourceLabel",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+        for snippet in (
+            ".export-actions",
+            ".export-csv-button",
+            ".export-status",
+            ".controls-footer",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, STYLE_CSS)
 
 
 if __name__ == "__main__":

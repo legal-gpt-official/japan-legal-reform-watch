@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=data-status-20260612" />
+  <link rel="stylesheet" href="./style.css?v=csv-export-20260612" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -171,7 +171,22 @@
           </label>
         </div>
       </div>
-      <div id="results-meta" class="results-meta" aria-live="polite"></div>
+      <div class="controls-footer">
+        <div id="results-meta" class="results-meta" aria-live="polite"></div>
+        <div class="export-actions">
+          <button
+            id="export-csv"
+            class="export-csv-button"
+            type="button"
+            disabled
+            aria-label="Export matching updates to CSV"
+            title="Export matching updates to CSV"
+          >
+            Export CSV
+          </button>
+          <span id="export-status" class="export-status" aria-live="polite" role="status"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -234,6 +249,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=data-status-20260612"></script>
+  <script src="app.js?v=csv-export-20260612"></script>
 </body>
 </html>

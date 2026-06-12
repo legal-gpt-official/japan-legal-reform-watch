@@ -114,6 +114,8 @@
     errorEl,
     metaEl,
     dataStatusList,
+    exportCsvBtn,
+    exportStatusEl,
     loadMoreWrap,
     loadMoreBtn;
 
@@ -135,6 +137,8 @@
     errorEl = $("#error-state");
     metaEl = $("#results-meta");
     dataStatusList = $("#data-status-list");
+    exportCsvBtn = $("#export-csv");
+    exportStatusEl = $("#export-status");
     loadMoreWrap = $("#load-more-wrap");
     loadMoreBtn = $("#load-more");
   }
@@ -209,6 +213,7 @@
     errorEl.hidden = false;
     metaEl.textContent = "";
     renderDataStatusUnavailable();
+    updateExportState([]);
   }
 
   // -------- Filter options --------
@@ -580,6 +585,135 @@
     showCopyFeedback(button, copied ? successMessage : "Copy failed", copied);
   }
 
+  function summarySourceLabel(value) {
+    return value === "claude" ? "AI Summary" : "Rule-based Preview";
+  }
+
+  function csvPlainText(value) {
+    return plainText(value).replace(/[\r\n]+/g, " ");
+  }
+
+  function protectCsvFormula(value) {
+    const text = csvPlainText(value);
+    if (/^[=+\-@]/.test(text)) return "'" + text;
+    return text;
+  }
+
+  function csvCell(value) {
+    const text = protectCsvFormula(value).replace(/"/g, '""');
+    return '"' + text + '"';
+  }
+
+  function csvSourceUrl(update) {
+    const sourceUrl = safeUrl(update.source_url);
+    return sourceUrl === "#" ? "" : sourceUrl;
+  }
+
+  function csvRow(update) {
+    return [
+      update.title_en,
+      update.title_ja,
+      update.area,
+      update.stage,
+      update.impact_level,
+      formatSourceDisplayName(update.source_name),
+      csvSourceUrl(update),
+      update.published_at,
+      update.last_checked,
+      summarySourceLabel(update.summary_source),
+      update.summary_en,
+      update.business_impact_en,
+      update.recommended_action_en,
+      update.relevance_score,
+      update.id,
+    ].map(csvCell);
+  }
+
+  function buildCsvText(updates) {
+    const headers = [
+      "title_en",
+      "title_ja",
+      "area",
+      "stage",
+      "impact_level",
+      "source",
+      "source_url",
+      "published_at",
+      "last_checked",
+      "summary_source",
+      "summary_en",
+      "business_impact_en",
+      "recommended_action_en",
+      "relevance_score",
+      "id",
+    ];
+    const rows = [headers.map(csvCell)];
+    updates.forEach((update) => {
+      rows.push(csvRow(update));
+    });
+    return "\uFEFF" + rows.map((row) => row.join(",")).join("\r\n");
+  }
+
+  function csvFilename() {
+    const datePart = maxLastChecked(allUpdates) || new Date().toISOString().slice(0, 10);
+    return "japan-legal-reform-watch-" + datePart + ".csv";
+  }
+
+  function showExportFeedback(message, isSuccess) {
+    if (!exportStatusEl) return;
+    window.clearTimeout(exportStatusEl._exportResetTimer);
+    exportStatusEl.textContent = message;
+    exportStatusEl.classList.toggle("is-export-success", isSuccess);
+    exportStatusEl.classList.toggle("is-export-error", !isSuccess);
+    exportStatusEl._exportResetTimer = window.setTimeout(() => {
+      if (exportStatusEl.textContent === message) {
+        exportStatusEl.textContent = "";
+        exportStatusEl.classList.remove("is-export-success", "is-export-error");
+      }
+    }, 2200);
+  }
+
+  function currentFilteredUpdates() {
+    return sortUpdates(applyFilters());
+  }
+
+  function updateExportState(filtered) {
+    if (!exportCsvBtn) return;
+    const count = filtered.length;
+    exportCsvBtn.disabled = count === 0;
+    const label =
+      count === 0 ? "No matching updates to export" : "Export " + count + " matching updates to CSV";
+    exportCsvBtn.setAttribute("aria-label", label);
+    exportCsvBtn.setAttribute("title", label);
+  }
+
+  function exportCurrentCsv() {
+    const filtered = currentFilteredUpdates();
+    updateExportState(filtered);
+    if (filtered.length === 0) {
+      showExportFeedback("No matching updates to export", false);
+      return;
+    }
+
+    try {
+      const csvText = buildCsvText(filtered);
+      const blob = new Blob([csvText], { type: "text/csv;charset=utf-8" });
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = csvFilename();
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(objectUrl);
+      showExportFeedback("Exported " + filtered.length + " updates", true);
+    } catch (e) {
+      console.warn("[JLRW] CSV export failed.");
+      showExportFeedback("Export failed", false);
+    }
+  }
+
   function renderCard(u) {
     // Treat every record field as untrusted. All interpolated values are passed
     // through escapeHtml(); source_url is additionally scheme-checked via safeUrl()
@@ -800,9 +934,10 @@
   }
 
   function render() {
-    const filtered = sortUpdates(applyFilters());
+    const filtered = currentFilteredUpdates();
     updateQuickFilterState();
     updateActiveFilterSummary();
+    updateExportState(filtered);
     errorEl.hidden = true;
     if (filtered.length === 0) {
       cardsEl.innerHTML = "";
@@ -869,6 +1004,9 @@
         visibleCount += PAGE_SIZE;
         render();
       });
+    }
+    if (exportCsvBtn) {
+      exportCsvBtn.addEventListener("click", exportCurrentCsv);
     }
     cardsEl.addEventListener("click", handleCopyAction);
     window.addEventListener("popstate", () => {
