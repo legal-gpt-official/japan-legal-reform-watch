@@ -170,7 +170,7 @@ code {
 
 .controls-grid {
   display: grid;
-  grid-template-columns: minmax(220px, 2fr) repeat(4, minmax(140px, 1fr));
+  grid-template-columns: minmax(220px, 2fr) repeat(5, minmax(125px, 1fr));
   gap: 14px;
   align-items: end;
 }

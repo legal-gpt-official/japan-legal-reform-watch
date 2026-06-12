@@ -17,6 +17,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 import fetch_updates as fu  # noqa: E402
 
 APP_JS = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
+INDEX_HTML = (REPO_ROOT / "docs" / "index.html").read_text(encoding="utf-8")
 STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 
 
@@ -64,8 +65,33 @@ class TestAppJsUrlState(unittest.TestCase):
             'params.set("stage"',
             'params.set("source"',
             'params.set("impact"',
+            'params.set("sort"',
             'params.set("ai", "1")',
             'window.addEventListener("popstate"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_sort_control_and_url_state_exist(self):
+        for snippet in (
+            'id="filter-sort"',
+            'value="relevance">Relevance',
+            'value="published">Published date',
+            'value="checked">Last checked',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+        for snippet in (
+            'const DEFAULT_SORT = "relevance"',
+            '"published"',
+            '"checked"',
+            'params.get("sort")',
+            'function sortUpdates',
+            "relevance_score",
+            "published_at",
+            "last_checked",
+            "dateValue",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)

@@ -12,6 +12,8 @@
 
   // Preferred display order for impact level.
   const IMPACT_ORDER = ["High", "Medium", "Low"];
+  const DEFAULT_SORT = "relevance";
+  const SORT_VALUES = ["relevance", "published", "checked"];
 
   // Cards render in pages: 50 on load, +50 per "Load more" click. Filters and
   // search always evaluate the FULL public dataset, not just rendered cards.
@@ -82,6 +84,7 @@
     stage: "",
     source: "",
     impact: "",
+    sort: DEFAULT_SORT,
     search: "",
     aiSummaryOnly: false,
   };
@@ -96,6 +99,7 @@
     filterStage,
     filterSource,
     filterImpact,
+    filterSort,
     quickFilterButtons,
     cardsEl,
     emptyEl,
@@ -112,6 +116,7 @@
     filterStage = $("#filter-stage");
     filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
+    filterSort = $("#filter-sort");
     quickFilterButtons = Array.from(document.querySelectorAll("[data-quick-filter]"));
     cardsEl = $("#cards");
     emptyEl = $("#empty-state");
@@ -243,18 +248,24 @@
     filterSource.appendChild(new Option(formatSourceDisplayName(sourceName), sourceName));
   }
 
+  function isValidSort(value) {
+    return SORT_VALUES.includes(value);
+  }
+
   function restoreFiltersFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const area = params.get("area") || "";
     const stage = params.get("stage") || "";
     const source = getSourceNameFromSlug(params.get("source") || "");
     const impact = params.get("impact") || "";
+    const sort = params.get("sort") || DEFAULT_SORT;
 
     filters.search = params.get("q") || "";
     filters.area = hasOption(filterArea, area) ? area : "";
     filters.stage = hasOption(filterStage, stage) ? stage : "";
     filters.source = source || "";
     filters.impact = hasOption(filterImpact, impact) ? impact : "";
+    filters.sort = isValidSort(sort) ? sort : DEFAULT_SORT;
     filters.aiSummaryOnly = params.get("ai") === "1";
 
     if (filters.source) {
@@ -276,6 +287,7 @@
     if (filters.stage) params.set("stage", filters.stage);
     if (sourceSlug) params.set("source", sourceSlug);
     if (filters.impact) params.set("impact", filters.impact);
+    if (filters.sort !== DEFAULT_SORT) params.set("sort", filters.sort);
     if (filters.aiSummaryOnly) params.set("ai", "1");
 
     const queryString = params.toString();
@@ -299,6 +311,7 @@
     filterStage.value = filters.stage;
     filterSource.value = filters.source;
     filterImpact.value = filters.impact;
+    filterSort.value = filters.sort;
   }
 
   function setQuickButtonState(button, active) {
@@ -326,6 +339,7 @@
     filters.stage = "";
     filters.source = "";
     filters.impact = "";
+    filters.sort = DEFAULT_SORT;
     filters.search = "";
     filters.aiSummaryOnly = false;
     applyFilterChange();
@@ -600,6 +614,54 @@
     });
   }
 
+  function numberValue(value) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function dateValue(value) {
+    if (typeof value !== "string") return 0;
+    const trimmed = value.trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return 0;
+    const time = Date.parse(trimmed + "T00:00:00Z");
+    return Number.isNaN(time) ? 0 : time;
+  }
+
+  function compareDesc(a, b) {
+    return b - a;
+  }
+
+  function originalOrder(a, b) {
+    return allUpdates.indexOf(a) - allUpdates.indexOf(b);
+  }
+
+  function sortUpdates(updates) {
+    const sorted = updates.slice();
+    sorted.sort((a, b) => {
+      if (filters.sort === "published") {
+        return (
+          compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
+          compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
+          originalOrder(a, b)
+        );
+      }
+      if (filters.sort === "checked") {
+        return (
+          compareDesc(dateValue(a.last_checked), dateValue(b.last_checked)) ||
+          compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
+          compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
+          originalOrder(a, b)
+        );
+      }
+      return (
+        compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
+        compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
+        originalOrder(a, b)
+      );
+    });
+    return sorted;
+  }
+
   function maxLastChecked(updates) {
     const dates = updates
       .map((u) => (typeof u.last_checked === "string" ? u.last_checked.trim() : ""))
@@ -633,7 +695,7 @@
   }
 
   function render() {
-    const filtered = applyFilters();
+    const filtered = sortUpdates(applyFilters());
     updateQuickFilterState();
     errorEl.hidden = true;
     if (filtered.length === 0) {
@@ -679,6 +741,10 @@
     });
     filterImpact.addEventListener("change", (e) => {
       filters.impact = e.target.value;
+      applyFilterChange();
+    });
+    filterSort.addEventListener("change", (e) => {
+      filters.sort = isValidSort(e.target.value) ? e.target.value : DEFAULT_SORT;
       applyFilterChange();
     });
     quickFilterButtons.forEach((button) => {
