@@ -391,7 +391,13 @@ class TestTitleEnGeneration(unittest.TestCase):
                 "MAFF Update: Food safety and labeling regulation information updated",
             ),
             (
+                # Quarantine now takes precedence over the import/export bucket.
                 "動物検疫及び輸入規制に関する情報について",
+                "Food / Agriculture",
+                "MAFF Update: Animal and plant quarantine information updated",
+            ),
+            (
+                "牛肉の輸出証明書発行手続の見直しについて",
                 "Food / Agriculture",
                 "MAFF Update: Agricultural import and export regulation information updated",
             ),
@@ -591,6 +597,115 @@ class TestAiSummaryPreservation(unittest.TestCase):
         before = dict(item)
         self.assertFalse(bpd.preserve_ai_summary_fields(item, {}))
         self.assertEqual(item, before)
+
+
+class TestFallbackTitleVariety(unittest.TestCase):
+    """M-1: frequent duplicate groups get more specific English fallbacks."""
+
+    MOE = "環境省 (MOE) 報道発表"
+
+    def _title(self, title_ja, source_name):
+        stage = bpd.classify_stage(title_ja, "ministry_html")
+        area = bpd.classify_area(title_ja, source_name)
+        return bpd.generate_title_en(title_ja, source_name, stage, area)
+
+    def test_jftc_law_specific_recommendation_fallbacks(self):
+        self.assertEqual(
+            self._title("下請代金支払遅延等防止法第７条に基づく勧告について", JFTC),
+            "JFTC Update: Recommendation issued under the Subcontract Act",
+        )
+        self.assertEqual(
+            self._title("特定受託事業者に係る取引の適正化等に関する法律に基づく勧告について", JFTC),
+            "JFTC Update: Recommendation issued under the Freelance Act",
+        )
+        self.assertEqual(
+            self._title("株式会社ヘリテージに対する勧告について", JFTC),
+            "JFTC Update: Recommendation issued to a company",
+        )
+        self.assertEqual(
+            self._title("○○株式会社から申請があった確約計画の認定について", JFTC),
+            "JFTC Update: Commitment plan procedure under the Antimonopoly Act",
+        )
+
+    def test_moe_topic_fallbacks(self):
+        # 廃棄物 is already covered by TITLE_TOPIC_RULES (English topic path).
+        self.assertEqual(
+            self._title("産業廃棄物処理施設の設置状況等について", self.MOE),
+            "MOE Update: Waste Management Rules",
+        )
+        self.assertEqual(
+            self._title("（仮称）○○ウィンドファーム事業に係る計画段階環境配慮書に対する環境大臣意見の提出について", self.MOE),
+            "MOE Update: Environmental minister opinion issued on a project environmental review",
+        )
+
+    def test_mlit_recall_and_guideline_fallbacks(self):
+        self.assertEqual(
+            self._title("リコールの届出について（ホンダ ○○ 他）", MLIT),
+            "MLIT Update: Vehicle recall notification filed",
+        )
+        self.assertEqual(
+            self._title("○○のためのガイドラインを策定 ～対応方針をとりまとめ～", MLIT),
+            "MLIT Update: Guideline formulation or revision announced",
+        )
+
+    def test_maff_quarantine_fallback(self):
+        self.assertEqual(
+            self._title("動物検疫所における家きん肉等の取扱いについて", MAFF),
+            "MAFF Update: Animal and plant quarantine information updated",
+        )
+
+    def test_caa_premiums_and_food_labeling_fallbacks(self):
+        # Full law name hits the existing English topic rule; the abbreviated
+        # 景表法 form exercises the new keyword fallback.
+        self.assertEqual(
+            self._title("景品表示法に基づく措置命令について（○○株式会社）", CAA),
+            "CAA Update: Act against Unjustifiable Premiums and Misleading Representations",
+        )
+        self.assertEqual(
+            self._title("景表法に基づく措置命令について（○○株式会社）", CAA),
+            "CAA Update: Measure under the Act against Unjustifiable Premiums and Misleading Representations",
+        )
+
+    def test_mhlw_occupational_accident_fallback(self):
+        self.assertEqual(
+            self._title("令和７年の労働災害発生状況を公表", MHLW),
+            "MHLW Update: Occupational accident prevention information updated",
+        )
+
+
+class TestDisambiguateDuplicateTitles(unittest.TestCase):
+    """M-1: only colliding titles get a published-date suffix."""
+
+    @staticmethod
+    def _item(title, date="2026-06-10"):
+        return {"title_en": title, "published_at": date}
+
+    def test_duplicates_get_dated_and_uniques_stay_clean(self):
+        items = [
+            self._item("JFTC Update: Recommendation issued to a company", "2026-06-11"),
+            self._item("JFTC Update: Recommendation issued to a company", "2026-06-04"),
+            self._item("Unique title stays as-is", "2026-06-12"),
+        ]
+        bpd.disambiguate_duplicate_titles(items)
+        self.assertEqual(items[0]["title_en"], "JFTC Update: Recommendation issued to a company (2026-06-11)")
+        self.assertEqual(items[1]["title_en"], "JFTC Update: Recommendation issued to a company (2026-06-04)")
+        self.assertEqual(items[2]["title_en"], "Unique title stays as-is")
+
+    def test_duplicate_without_date_is_left_unchanged(self):
+        items = [self._item("Same title", ""), self._item("Same title", "")]
+        bpd.disambiguate_duplicate_titles(items)
+        self.assertEqual(items[0]["title_en"], "Same title")
+        self.assertEqual(items[1]["title_en"], "Same title")
+
+    def test_dated_title_respects_length_cap_and_stays_english(self):
+        long_title = "A" * (bpd.TITLE_MAX_CHARS - 1)
+        items = [self._item(long_title, "2026-06-10"), self._item(long_title, "2026-06-11")]
+        bpd.disambiguate_duplicate_titles(items)
+        for item in items:
+            with self.subTest(title=item["title_en"]):
+                self.assertLessEqual(len(item["title_en"]), bpd.TITLE_MAX_CHARS)
+                self.assertTrue(item["title_en"].endswith(")"))
+                self.assertFalse(bpd.contains_japanese(item["title_en"]))
 
 
 if __name__ == "__main__":

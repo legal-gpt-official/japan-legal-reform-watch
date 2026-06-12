@@ -165,6 +165,30 @@
     document.body.classList.remove("modal-open");
   }
 
+  // Keep keyboard focus inside the dialog while it is open, so the behavior
+  // matches aria-modal="true". Escape intentionally does NOT close the modal.
+  function trapModalFocus(event) {
+    if (event.key !== "Tab" || !modalEl || modalEl.hidden) return;
+    const focusables = modalEl.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+    const insideModal = modalEl.contains(active);
+
+    if (event.shiftKey) {
+      if (!insideModal || active === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (!insideModal || active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   function initModal() {
     let accepted = null;
     try {
@@ -177,6 +201,8 @@
     if (!accepted) {
       showModal();
     }
+
+    document.addEventListener("keydown", trapModalFocus, true);
 
     acceptBtn.addEventListener("click", () => {
       try {
@@ -599,7 +625,9 @@
 
   function protectCsvFormula(value) {
     const text = csvPlainText(value);
-    if (/^[=+\-@]/.test(text)) return "'" + text;
+    // Neutralize spreadsheet formula triggers, including tab/CR-prefixed
+    // variants. Normal sentences, dates, and https URLs are unaffected.
+    if (/^[=+\-@\t\r]/.test(text)) return "'" + text;
     return text;
   }
 
@@ -713,7 +741,7 @@
       URL.revokeObjectURL(objectUrl);
       showExportFeedback("Exported " + filtered.length + " updates", true);
     } catch (e) {
-      console.warn("[JLRW] CSV export failed.");
+      console.warn("[JLRW] CSV export failed.", e);
       showExportFeedback("Export failed", false);
     }
   }
@@ -795,8 +823,12 @@
       if (filters.impact && u.impact_level !== filters.impact) return false;
       if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
       if (q) {
+        // Search covers the English title, the original Japanese title, and the
+        // English summary, so both English and Japanese keywords match.
         const hay = (
           (u.title_en || "") +
+          " " +
+          (u.title_ja || "") +
           " " +
           (u.summary_en || "")
         ).toLowerCase();

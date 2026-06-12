@@ -766,6 +766,12 @@ TITLE_TOPIC_RULES: list[tuple[tuple[str, ...], str]] = [
     (("ガス",), "Gas Policy"),
     (("GX",), "GX Policy"),
     (("脱炭素",), "Decarbonization Policy"),
+    # More-specific personal-information topics first, so frequent PPC items do
+    # not all collapse into the broad "Personal Information Protection Rules".
+    (("個人情報", "実態調査"), "Survey on Personal Information Security Measures"),
+    (("個人情報", "行政上の対応"), "Administrative Response under the Personal Information Protection Act"),
+    (("個人情報", "懇談会"), "Personal Information Policy Roundtable"),
+    (("個人情報", "漏えい"), "Personal Information Leakage Response Guidance"),
     (("個人情報",), "Personal Information Protection Rules"),
     (("マイナンバー",), "My Number Rules"),
     (("独占禁止法",), "Antimonopoly Act Rules"),
@@ -984,8 +990,16 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
             return pc
         if "排除措置命令" in title_ja:
             return "JFTC Update: Cease and desist order issued"
+        if "確約計画" in title_ja or "確約手続" in title_ja:
+            return "JFTC Update: Commitment plan procedure under the Antimonopoly Act"
+        if "課徴金" in title_ja:
+            return "JFTC Update: Surcharge payment order issued"
         if "措置命令" in title_ja:
             return "JFTC Update: Administrative order issued"
+        if "勧告" in title_ja and "下請" in title_ja:
+            return "JFTC Update: Recommendation issued under the Subcontract Act"
+        if "勧告" in title_ja and any(k in title_ja for k in ("フリーランス", "取適法", "特定受託")):
+            return "JFTC Update: Recommendation issued under the Freelance Act"
         if "勧告" in title_ja:
             return "JFTC Update: Recommendation issued to a company"
 
@@ -996,6 +1010,10 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
             return "CAA Update: Injunction request consultation resolved"
         if "機能性表示食品" in title_ja:
             return "CAA Update: Functional claims food information updated"
+        if "景品表示法" in title_ja or "景表法" in title_ja:
+            return "CAA Update: Measure under the Act against Unjustifiable Premiums and Misleading Representations"
+        if "食品表示" in title_ja:
+            return "CAA Update: Food labeling regulation information updated"
 
     if source_has(source_name, "FSA", "Financial Services Agency"):
         if any(keyword in title_ja for keyword in ("主要行", "地域銀行", "決算")):
@@ -1018,10 +1036,24 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
             return "MOE Update: Environmental impact assessment rules updated"
         if "地熱発電" in title_ja:
             return "MOE Update: Environmental minister opinion issued on geothermal power project"
+        if "環境大臣意見" in title_ja or "環境配慮書" in title_ja:
+            return "MOE Update: Environmental minister opinion issued on a project environmental review"
         if "水環境" in title_ja:
             return "MOE Update: Water environment improvement project information published"
         if "化学物質" in title_ja:
             return "MOE Update: Chemical substances regulation information updated"
+        if any(keyword in title_ja for keyword in ("廃棄物", "リサイクル", "資源循環")):
+            return "MOE Update: Waste management and resource circulation information updated"
+        if any(keyword in title_ja for keyword in ("脱炭素", "カーボンニュートラル", "GX")):
+            return "MOE Update: Decarbonization policy information updated"
+        if "気候変動" in title_ja or "温室効果ガス" in title_ja:
+            return "MOE Update: Climate change policy information updated"
+        if any(keyword in title_ja for keyword in ("国立公園", "自然公園", "自然環境")):
+            return "MOE Update: Nature conservation and national park information updated"
+        if "鳥獣" in title_ja:
+            return "MOE Update: Wildlife protection and management information updated"
+        if "生物多様性" in title_ja or "生物の多様性" in title_ja:
+            return "MOE Update: Biodiversity policy information updated"
 
     if source_has(source_name, "MOF"):
         if "製造たばこ" in title_ja or "小売定価" in title_ja:
@@ -1039,6 +1071,10 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
         pc = public_comment_fallback(stage, "MLIT Public Comment")
         if pc:
             return pc
+        if "リコール" in title_ja:
+            return "MLIT Update: Vehicle recall notification filed"
+        if "ガイドライン" in title_ja:
+            return "MLIT Update: Guideline formulation or revision announced"
         if any(keyword in title_ja for keyword in ("建築基準", "建築")):
             return "MLIT Update: Building standards regulation information updated"
         if any(keyword in title_ja for keyword in ("不動産", "土地", "住宅", "マンション", "地籍")):
@@ -1065,7 +1101,9 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
             return "MAFF Update: Fisheries regulation information updated"
         if any(keyword in title_ja for keyword in ("林業", "林野")):
             return "MAFF Update: Forestry regulation information updated"
-        if any(keyword in title_ja for keyword in ("動物検疫", "植物検疫", "輸出", "輸入", "輸出入")):
+        if any(keyword in title_ja for keyword in ("動物検疫", "植物検疫", "検疫")):
+            return "MAFF Update: Animal and plant quarantine information updated"
+        if any(keyword in title_ja for keyword in ("輸出", "輸入", "輸出入")):
             return "MAFF Update: Agricultural import and export regulation information updated"
         if any(keyword in title_ja for keyword in ("鳥インフルエンザ", "家畜伝染病", "病害虫")):
             return "MAFF Update: Animal health and disease control information published"
@@ -1074,6 +1112,8 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
         return "MAFF Update: Agricultural, food, forestry, or fisheries policy information published"
 
     if source_has(source_name, "MHLW", "Ministry of Health"):
+        if "労働災害" in title_ja:
+            return "MHLW Update: Occupational accident prevention information updated"
         if "労働" in title_ja or "雇用" in title_ja:
             return "MHLW Update: Labor and employment policy information updated"
         if any(keyword in title_ja for keyword in ("医薬品", "薬局")):
@@ -1130,6 +1170,30 @@ def generate_title_en(title_ja: str, source_name: str, stage: str, area: str = "
         title = f"{prefix}: {subject_en}"
 
     return clean_english_title(title, title_ja, area, stage, source_name)
+
+
+def disambiguate_duplicate_titles(items: list[dict]) -> None:
+    """Append the published date to `title_en` when several items share a title.
+
+    Generic English fallbacks keep titles Japanese-free but can collide (e.g.
+    JFTC recommendation press releases whose Japanese titles differ only by
+    company name). Dating only the colliding titles keeps unique titles clean
+    while making duplicated cards distinguishable. The suffix is ASCII, so the
+    no-Japanese guarantee and the title length cap are preserved.
+    """
+    counts: dict[str, int] = {}
+    for item in items:
+        title = item.get("title_en") or ""
+        counts[title] = counts.get(title, 0) + 1
+    for item in items:
+        title = item.get("title_en") or ""
+        date = item.get("published_at") or ""
+        if counts.get(title, 0) > 1 and date:
+            suffix = f" ({date})"
+            base = title
+            if len(base) + len(suffix) > TITLE_MAX_CHARS:
+                base = shorten_title(base, TITLE_MAX_CHARS - len(suffix))
+            item["title_en"] = base + suffix
 
 
 # --------------------------------------------------------------------------- #
@@ -1256,7 +1320,7 @@ def save_json(path: Path, data: list[dict]) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build provisional, relevance-ranked public data from raw items.")
-    parser.add_argument("--limit", type=int, default=MAX_OUTPUT_ITEMS, help="Max output items (default 50).")
+    parser.add_argument("--limit", type=int, default=MAX_OUTPUT_ITEMS, help=f"Max output items (default {MAX_OUTPUT_ITEMS}).")
     parser.add_argument("--floor", type=float, default=RELEVANCE_FLOOR, help="Minimum relevance_score to be a candidate.")
     parser.add_argument("--dry-run", action="store_true", help="Build and report, but do not back up or write.")
     args = parser.parse_args(argv)
@@ -1319,6 +1383,8 @@ def main(argv: list[str] | None = None) -> int:
     # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
     ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
     output = [item for _, _, _, item in ranked[: args.limit]]
+
+    disambiguate_duplicate_titles(output)
 
     preserved_ai_ids: set[str] = set()
     for item in output:

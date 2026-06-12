@@ -93,6 +93,10 @@ class TestPublishedDataSchema(unittest.TestCase):
         ]
         self.assertFalse(bad, f"title_en contains Japanese characters: {bad[:5]}")
 
+    def test_title_en_within_length_cap(self):
+        for it in self.items:
+            self.assertLessEqual(len(it["title_en"]), bpd.TITLE_MAX_CHARS, it["id"])
+
     def test_impact_level_vocabulary(self):
         for it in self.items:
             self.assertIn(it["impact_level"], ("Low", "Medium", "High"), it["id"])

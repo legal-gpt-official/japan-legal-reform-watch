@@ -143,7 +143,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "mlit-maff-20260612",
+            "search-trap-20260612",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -211,6 +211,69 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, combined)
+
+    def test_search_haystack_includes_japanese_title(self):
+        """Search must cover title_en, title_ja, and summary_en (M-2)."""
+        for snippet in (
+            '(u.title_en || "")',
+            '(u.title_ja || "")',
+            '(u.summary_en || "")',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+        # title_ja sits inside the same haystack expression as title_en.
+        hay = re.search(r"const hay = \((?P<body>.*?)\)\.toLowerCase\(\)", APP_JS, re.S)
+        self.assertIsNotNone(hay)
+        self.assertIn("u.title_ja", hay.group("body"))
+
+    def test_modal_focus_trap_exists(self):
+        """aria-modal behavior is backed by a real Tab focus trap (M-4)."""
+        for snippet in (
+            "function trapModalFocus",
+            'document.addEventListener("keydown", trapModalFocus, true)',
+            'event.key !== "Tab"',
+            "event.shiftKey",
+            "modalEl.contains(active)",
+            "event.preventDefault()",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+        # Escape must still NOT close the modal.
+        self.assertNotIn('"Escape"', APP_JS)
+
+    def test_csv_formula_protection_covers_tab_and_cr(self):
+        # = + - @ plus tab/CR-prefixed payloads are neutralized with a leading quote (L-5).
+        self.assertIn("/^[=+\\-@\\t\\r]/", APP_JS)
+        self.assertIn('return "\'" + text', APP_JS)
+
+    def test_csv_export_failure_logs_error_object(self):
+        self.assertIn('console.warn("[JLRW] CSV export failed.", e)', APP_JS)
+
+    def test_csv_headers_exact_order(self):
+        match = re.search(r"const headers = \[(?P<body>.*?)\];", APP_JS, re.S)
+        self.assertIsNotNone(match, "CSV headers array not found")
+        headers = re.findall(r'"([^"]+)"', match.group("body"))
+        self.assertEqual(
+            headers,
+            [
+                "English title",
+                "Original Japanese title",
+                "Area",
+                "Stage",
+                "Impact level",
+                "Source",
+                "Official source URL",
+                "Published date",
+                "Last checked",
+                "Summary type",
+                "Summary",
+                "Business impact",
+                "Recommended action",
+                "Ranking score",
+                "Internal ID",
+            ],
+        )
+        self.assertEqual(headers[-1], "Internal ID")
 
     def test_csv_export_controls_exist(self):
         for snippet in (
