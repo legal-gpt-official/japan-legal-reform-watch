@@ -43,7 +43,7 @@ jobs:
       - name: Summarize top updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/summarize_updates.py --limit 10
+        run: python scripts/summarize_updates.py --limit 30
 
       - name: Check published data changes
         id: changes
