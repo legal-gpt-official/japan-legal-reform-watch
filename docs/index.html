@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=mobile-controls-20260612" />
+  <link rel="stylesheet" href="./style.css?v=data-status-20260612" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -78,6 +78,15 @@
           This dashboard summarizes official Japanese government and regulator sources.
           AI summaries and rule-based previews are monitoring aids only; original Japanese
           sources remain authoritative and should be reviewed before taking action.
+        </p>
+      </div>
+      <div class="data-status" aria-label="Data status">
+        <div class="data-status-heading">Data status</div>
+        <div id="data-status-list" class="data-status-list" aria-live="polite">
+          <span class="data-status-chip">Loading public dataset...</span>
+        </div>
+        <p class="data-status-note">
+          Monitoring aid only. Original Japanese official sources remain authoritative.
         </p>
       </div>
     </div>
@@ -225,6 +234,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=mobile-controls-20260612"></script>
+  <script src="app.js?v=data-status-20260612"></script>
 </body>
 </html>

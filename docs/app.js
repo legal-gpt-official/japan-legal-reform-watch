@@ -113,6 +113,7 @@
     emptyEl,
     errorEl,
     metaEl,
+    dataStatusList,
     loadMoreWrap,
     loadMoreBtn;
 
@@ -133,6 +134,7 @@
     emptyEl = $("#empty-state");
     errorEl = $("#error-state");
     metaEl = $("#results-meta");
+    dataStatusList = $("#data-status-list");
     loadMoreWrap = $("#load-more-wrap");
     loadMoreBtn = $("#load-more");
   }
@@ -192,6 +194,7 @@
       // Preserve the published JSON order. build_public_data.py owns relevance ranking.
       allUpdates = data.slice();
       populateFilterOptions();
+      renderDataStatus();
       restoreFiltersFromUrl();
       render();
     } catch (err) {
@@ -205,6 +208,7 @@
     emptyEl.hidden = true;
     errorEl.hidden = false;
     metaEl.textContent = "";
+    renderDataStatusUnavailable();
   }
 
   // -------- Filter options --------
@@ -719,6 +723,57 @@
     if (dates.length === 0) return "";
     dates.sort();
     return dates[dates.length - 1];
+  }
+
+  function distinctCount(updates, key) {
+    const values = new Set();
+    updates.forEach((u) => {
+      if (u && typeof u[key] === "string" && u[key].trim() !== "") {
+        values.add(u[key].trim());
+      }
+    });
+    return values.size;
+  }
+
+  function makeStatusChip(label, value) {
+    const chip = document.createElement("span");
+    chip.className = "data-status-chip";
+
+    const labelEl = document.createElement("span");
+    labelEl.className = "data-status-chip-label";
+    labelEl.textContent = label + ":";
+
+    const valueEl = document.createElement("span");
+    valueEl.className = "data-status-chip-value";
+    valueEl.textContent = value;
+
+    chip.append(labelEl, valueEl);
+    return chip;
+  }
+
+  function renderDataStatus() {
+    if (!dataStatusList) return;
+    const stats = [
+      ["Updates", String(allUpdates.length)],
+      ["Sources represented", String(distinctCount(allUpdates, "source_name"))],
+      ["AI summaries", String(allUpdates.filter((u) => u.summary_source === "claude").length)],
+      [
+        "Open public comments",
+        String(allUpdates.filter((u) => u.stage === "Public Comment Open").length),
+      ],
+      ["Latest checked", maxLastChecked(allUpdates) || "Unknown"],
+    ];
+
+    dataStatusList.innerHTML = "";
+    stats.forEach(([label, value]) => {
+      dataStatusList.appendChild(makeStatusChip(label, value));
+    });
+  }
+
+  function renderDataStatusUnavailable() {
+    if (!dataStatusList) return;
+    dataStatusList.innerHTML = "";
+    dataStatusList.appendChild(makeStatusChip("Data status", "Unavailable"));
   }
 
   function renderResultsMeta(filtered) {

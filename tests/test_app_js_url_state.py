@@ -141,7 +141,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "mobile-controls-20260612",
+            "data-status-20260612",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -166,6 +166,49 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, STYLE_CSS)
+
+    def test_data_status_controls_exist(self):
+        for snippet in (
+            "Data status",
+            'id="data-status-list"',
+            "Sources represented",
+            "Open public comments",
+            "Latest checked",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML + APP_JS)
+
+        for snippet in (
+            "function renderDataStatus",
+            "function distinctCount",
+            'u.summary_source === "claude"',
+            'u.stage === "Public Comment Open"',
+            "maxLastChecked(allUpdates)",
+            "last_checked",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+        for snippet in (
+            ".data-status",
+            ".data-status-list",
+            ".data-status-chip",
+            ".data-status-note",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, STYLE_CSS)
+
+    def test_data_status_avoids_overclaims(self):
+        combined = INDEX_HTML + APP_JS + STYLE_CSS
+        for forbidden in (
+            "All sources checked successfully",
+            "Complete coverage",
+            "Real-time",
+            "No missed updates",
+            "Official translation",
+        ):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, combined)
 
 
 if __name__ == "__main__":

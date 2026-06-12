@@ -51,6 +51,7 @@ requirements.txt                 # Ingestion/summarization dependencies (request
 - Never claim our summaries are official, certified, or comprehensive.
 - Source attribution is **mandatory** for every item (`source_name` + `source_url`).
 - The dashboard-level trust notice must clarify that AI summaries and rule-based previews are monitoring aids, not legal advice, and that original Japanese official sources remain authoritative.
+- The dashboard displays a compact Data status summary computed client-side from the public JSON: total updates, sources represented, AI summary count, open public comment count, and latest checked date. It must not claim complete coverage or successful checking of every source.
 - Card source buttons must link to each record's original Japanese official source using `source_url`. English summaries and previews are triage aids only; the original Japanese official source remains authoritative.
 - Each update card includes client-side copy actions. `Copy summary` copies a plain-text English monitoring summary with the official source URL; `Copy source link` copies the original Japanese official source URL. These actions do not change data, and original Japanese official sources remain authoritative.
 - Dashboard filters include `Area`, `Stage`, `Source`, and `Impact Level`; the Source filter is populated from `source_name`. Quick filters provide one-click views for `Public Comment Open`, `AI Summary`, and `Medium Impact`, plus a full Reset.
