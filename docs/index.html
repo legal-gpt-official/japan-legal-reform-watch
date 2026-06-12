@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=sort-20260612" />
+  <link rel="stylesheet" href="./style.css?v=mobile-controls-20260612" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -86,65 +86,81 @@
   <!-- Filter / Search Controls -->
   <section class="controls" aria-label="Filters">
     <div class="container">
-      <div class="quick-filters" aria-label="Quick filters">
-        <span class="quick-filters-label">Quick filters</span>
-        <div class="quick-filter-actions">
-          <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="public-comment-open" aria-pressed="false">
-            Public Comment Open
-          </button>
-          <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="ai-summary" aria-pressed="false">
-            AI Summary
-          </button>
-          <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="medium-impact" aria-pressed="false">
-            Medium Impact
-          </button>
-          <button type="button" class="quick-filter-button quick-filter-btn quick-filter-reset" data-quick-filter="reset">
-            Reset
-          </button>
+      <div class="mobile-controls-bar">
+        <button
+          id="mobile-filters-toggle"
+          class="mobile-filters-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="filter-panel"
+        >
+          Filters &amp; Search
+        </button>
+        <div id="active-filter-summary" class="active-filter-summary" aria-live="polite">
+          No active filters
         </div>
       </div>
-      <div class="controls-grid">
-        <label class="control-label">
-          <span class="control-label-text">Search</span>
-          <input
-            type="search"
-            id="search-input"
-            placeholder="Search title or summary..."
-            autocomplete="off"
-          />
-        </label>
-        <label class="control-label">
-          <span class="control-label-text">Area</span>
-          <select id="filter-area">
-            <option value="">All Areas</option>
-          </select>
-        </label>
-        <label class="control-label">
-          <span class="control-label-text">Stage</span>
-          <select id="filter-stage">
-            <option value="">All Stages</option>
-          </select>
-        </label>
-        <label class="control-label">
-          <span class="control-label-text">Source</span>
-          <select id="filter-source">
-            <option value="">All Sources</option>
-          </select>
-        </label>
-        <label class="control-label">
-          <span class="control-label-text">Impact Level</span>
-          <select id="filter-impact">
-            <option value="">All Impact Levels</option>
-          </select>
-        </label>
-        <label class="control-label">
-          <span class="control-label-text">Sort</span>
-          <select id="filter-sort">
-            <option value="relevance">Relevance</option>
-            <option value="published">Published date</option>
-            <option value="checked">Last checked</option>
-          </select>
-        </label>
+      <div id="filter-panel" class="filter-panel">
+        <div class="quick-filters" aria-label="Quick filters">
+          <span class="quick-filters-label">Quick filters</span>
+          <div class="quick-filter-actions">
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="public-comment-open" aria-pressed="false">
+              Public Comment Open
+            </button>
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="ai-summary" aria-pressed="false">
+              AI Summary
+            </button>
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="medium-impact" aria-pressed="false">
+              Medium Impact
+            </button>
+            <button type="button" class="quick-filter-button quick-filter-btn quick-filter-reset" data-quick-filter="reset">
+              Reset
+            </button>
+          </div>
+        </div>
+        <div class="controls-grid">
+          <label class="control-label">
+            <span class="control-label-text">Search</span>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Search title or summary..."
+              autocomplete="off"
+            />
+          </label>
+          <label class="control-label">
+            <span class="control-label-text">Area</span>
+            <select id="filter-area">
+              <option value="">All Areas</option>
+            </select>
+          </label>
+          <label class="control-label">
+            <span class="control-label-text">Stage</span>
+            <select id="filter-stage">
+              <option value="">All Stages</option>
+            </select>
+          </label>
+          <label class="control-label">
+            <span class="control-label-text">Source</span>
+            <select id="filter-source">
+              <option value="">All Sources</option>
+            </select>
+          </label>
+          <label class="control-label">
+            <span class="control-label-text">Impact Level</span>
+            <select id="filter-impact">
+              <option value="">All Impact Levels</option>
+            </select>
+          </label>
+          <label class="control-label">
+            <span class="control-label-text">Sort</span>
+            <select id="filter-sort">
+              <option value="relevance">Relevance</option>
+              <option value="published">Published date</option>
+              <option value="checked">Last checked</option>
+            </select>
+          </label>
+        </div>
       </div>
       <div id="results-meta" class="results-meta" aria-live="polite"></div>
     </div>
@@ -209,6 +225,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=sort-20260612"></script>
+  <script src="app.js?v=mobile-controls-20260612"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
   const IMPACT_ORDER = ["High", "Medium", "Low"];
   const DEFAULT_SORT = "relevance";
   const SORT_VALUES = ["relevance", "published", "checked"];
+  const SORT_LABELS = {
+    relevance: "Relevance",
+    published: "Published date",
+    checked: "Last checked",
+  };
 
   // Cards render in pages: 50 on load, +50 per "Load more" click. Filters and
   // search always evaluate the FULL public dataset, not just rendered cards.
@@ -100,6 +105,9 @@
     filterSource,
     filterImpact,
     filterSort,
+    mobileFiltersToggle,
+    filterPanel,
+    activeFilterSummary,
     quickFilterButtons,
     cardsEl,
     emptyEl,
@@ -117,6 +125,9 @@
     filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
     filterSort = $("#filter-sort");
+    mobileFiltersToggle = $("#mobile-filters-toggle");
+    filterPanel = $("#filter-panel");
+    activeFilterSummary = $("#active-filter-summary");
     quickFilterButtons = Array.from(document.querySelectorAll("[data-quick-filter]"));
     cardsEl = $("#cards");
     emptyEl = $("#empty-state");
@@ -252,6 +263,10 @@
     return SORT_VALUES.includes(value);
   }
 
+  function sortLabel(value) {
+    return SORT_LABELS[value] || SORT_LABELS[DEFAULT_SORT];
+  }
+
   function restoreFiltersFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const area = params.get("area") || "";
@@ -314,6 +329,40 @@
     filterSort.value = filters.sort;
   }
 
+  function setMobileFiltersOpen(isOpen) {
+    if (!mobileFiltersToggle || !filterPanel) return;
+    filterPanel.classList.toggle("is-open", isOpen);
+    mobileFiltersToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    mobileFiltersToggle.textContent = isOpen ? "Hide filters" : "Filters & Search";
+  }
+
+  function shortenSummaryPart(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength - 1).trim() + "...";
+  }
+
+  function activeFilterSummaryText() {
+    const parts = [];
+    const query = filters.search.trim();
+
+    if (query) parts.push('Search: "' + shortenSummaryPart(query, 24) + '"');
+    if (filters.area) parts.push("Area: " + filters.area);
+    if (filters.stage) parts.push("Stage: " + filters.stage);
+    if (filters.source) parts.push("Source: " + formatSourceDisplayName(filters.source));
+    if (filters.impact) parts.push("Impact: " + filters.impact);
+    if (filters.sort !== DEFAULT_SORT) parts.push("Sort: " + sortLabel(filters.sort));
+    if (filters.aiSummaryOnly) parts.push("AI Summary");
+
+    if (parts.length === 0) return "No active filters";
+    if (parts.length <= 3) return "Active: " + parts.join(" · ");
+    return "Active: " + parts.length + " filters";
+  }
+
+  function updateActiveFilterSummary() {
+    if (!activeFilterSummary) return;
+    activeFilterSummary.textContent = activeFilterSummaryText();
+  }
+
   function setQuickButtonState(button, active) {
     button.classList.toggle("is-active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
@@ -342,6 +391,7 @@
     filters.sort = DEFAULT_SORT;
     filters.search = "";
     filters.aiSummaryOnly = false;
+    setMobileFiltersOpen(false);
     applyFilterChange();
   }
 
@@ -697,6 +747,7 @@
   function render() {
     const filtered = sortUpdates(applyFilters());
     updateQuickFilterState();
+    updateActiveFilterSummary();
     errorEl.hidden = true;
     if (filtered.length === 0) {
       cardsEl.innerHTML = "";
@@ -747,6 +798,12 @@
       filters.sort = isValidSort(e.target.value) ? e.target.value : DEFAULT_SORT;
       applyFilterChange();
     });
+    if (mobileFiltersToggle) {
+      mobileFiltersToggle.addEventListener("click", () => {
+        const isOpen = mobileFiltersToggle.getAttribute("aria-expanded") === "true";
+        setMobileFiltersOpen(!isOpen);
+      });
+    }
     quickFilterButtons.forEach((button) => {
       button.addEventListener("click", () => {
         handleQuickFilter(button.getAttribute("data-quick-filter"));

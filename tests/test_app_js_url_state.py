@@ -134,6 +134,39 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, STYLE_CSS)
 
+    def test_mobile_filter_controls_exist(self):
+        for snippet in (
+            'id="mobile-filters-toggle"',
+            'aria-expanded="false"',
+            'aria-controls="filter-panel"',
+            'id="active-filter-summary"',
+            'id="filter-panel"',
+            "mobile-controls-20260612",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+        for snippet in (
+            "function setMobileFiltersOpen",
+            "function activeFilterSummaryText",
+            "function updateActiveFilterSummary",
+            "Hide filters",
+            "Filters & Search",
+            "No active filters",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+        for snippet in (
+            ".mobile-controls-bar",
+            ".mobile-filters-toggle",
+            ".filter-panel.is-open",
+            ".active-filter-summary",
+            "@media (max-width: 720px)",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, STYLE_CSS)
+
 
 if __name__ == "__main__":
     unittest.main()
