@@ -1,7 +1,7 @@
 [
   {
     "id": "raw-61b07e64e33a0287",
-    "title_en": "Public Comment: Draft Partial Amendment to Pharmacy Preparation Guidelines (Overview)",
+    "title_en": "Public Comment: Draft Amendment to Pharmacy Preparation Guidelines",
     "title_ja": "「薬局製剤指針の一部改正（案）について（概要）」に関する意見募集について",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Public Comment Open",
@@ -22,7 +22,7 @@
   },
   {
     "id": "raw-c3a218b464f8a335",
-    "title_en": "Public Comment: Draft Partial Amendment to Standards for Inspection and Re-inspection of Containers Fixed to Railway Vehicles",
+    "title_en": "Public Comment: Draft Amendment to Inspection Standards for Containers Fixed to Railway Vehicles",
     "title_ja": "鉄道車両に固定する容器等の検査及び再検査における規格を定める件の一部を改正する告示（案）に対する意見募集",
     "area": "Transport / Infrastructure",
     "stage": "Public Comment Open",
@@ -43,7 +43,7 @@
   },
   {
     "id": "raw-55db966ad401aa9d",
-    "title_en": "Public Comment on Draft Amendment to Rules on Designation of Important Power Source Development Sites",
+    "title_en": "Public Comment: Draft Amendment to Rules on Designation of Important Power Source Development Sites",
     "title_ja": "重要電源開発地点の指定に関する規程の一部を改正する告示（案）に対する意見募集について",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
@@ -64,7 +64,7 @@
   },
   {
     "id": "raw-e497d7ce032b5de6",
-    "title_en": "(Closed) Public comment on draft order amending My Number Act-related ministerial orders on prescribed affairs and data provision",
+    "title_en": "Digital Agency Update: Closed public comment on Draft Amendment to Personal Information Protection Rules",
     "title_ja": "（受付終了）「行政手続における特定の個人を識別するための番号の利用等に関する法律別表の主務省令で定める事務を定める命令及び行政手続における特定の個人を識別するための番号の利用等に関する法律第十九条第八号に基づく利用特定個人情報の提供に関する命令の一部を改正する命令案」等に対する意見募集を行います",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Closed",
@@ -85,7 +85,7 @@
   },
   {
     "id": "raw-37aa7abbc0cafff8",
-    "title_en": "Public Comment on Draft Cabinet Order Amending the Environmental Impact Assessment Act Enforcement Order",
+    "title_en": "MOE Update: Draft Amendment to Environmental Impact Assessment Rules",
     "title_ja": "「環境影響評価法施行令の一部を改正する政令案」に関する意見の募集（パブリックコメント）について",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
@@ -98,15 +98,15 @@
     "published_at": "2026-06-02",
     "last_checked": "2026-06-12",
     "relevance_score": 30.0,
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and rule-based labels; the raw summary ('総合政策') and substantive details are limited and unverified. Verify against the authoritative MOE source.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-12T01:20:46Z",
     "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-734ca1f51b494cbe",
-    "title_en": "Public Comment on Draft Amendment to JFTC Guidelines on Distribution and Business Practices under the Antimonopoly Act",
+    "title_en": "JFTC Public Comment: Draft Amendment to Antimonopoly Act Guidelines on Distribution and Trade Practices",
     "title_ja": "「流通・取引慣行に関する独占禁止法上の指針」改正案に対する意見募集について",
     "area": "Antitrust / Fair Trade",
     "stage": "Public Comment Open",
@@ -127,7 +127,7 @@
   },
   {
     "id": "raw-d0886887c16f41a5",
-    "title_en": "MIC: Results of Public Comments on Draft Amendment to Technical Conditions for Specified Low-Power Radio Stations",
+    "title_en": "MIC Update: Public comment results on Draft Amendment to Electricity Policy",
     "title_ja": "特定小電力無線局の無線設備の一の筐体に収めることを要しない装置、送信時間制限装置及びキャリアセンスの技術的条件等を定める件の一部を改正する告示案等に係る意見募集の結果",
     "area": "Energy / Environment",
     "stage": "Public Comment Results Published",
@@ -140,9 +140,9 @@
     "published_at": "2026-06-11",
     "last_checked": "2026-06-12",
     "relevance_score": 30.0,
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and summary; the metadata does not confirm finalization or effective date. Preliminary 'Energy / Environment' label appears keyword-driven and may not reflect the radio/telecom nature of the item; treat as weak context.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-12T01:20:53Z",
     "summary_model": "claude-opus-4-8"
   },
@@ -169,7 +169,7 @@
   },
   {
     "id": "raw-fffdee93bac064fe",
-    "title_en": "MIC Publishes Results of Public Comments on Draft Amendment to 2003 MIC Notice No. 213",
+    "title_en": "Public Comment Results: Regulatory comment results published",
     "title_ja": "平成15年総務省告示第213号の一部を改正する 告示案に対する意見募集の結果",
     "area": "Other",
     "stage": "Public Comment Results Published",
@@ -182,9 +182,9 @@
     "published_at": "2026-06-10",
     "last_checked": "2026-06-12",
     "relevance_score": 28.0,
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and limited metadata; the substance of the draft amendment and the comment results is unverified. This appears to report public comment results on a draft (proposed) amendment, not an enacted change.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-12T01:20:59Z",
     "summary_model": "claude-opus-4-8"
   },
@@ -265,12 +265,11 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=225026045&Mode=0",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 25.0,
-    "summary_source": "rule_based"
+    "relevance_score": 25.0
   },
   {
     "id": "raw-6872de8f21374530",
-    "title_en": "JFTC Public Comment on Draft Guideline and Model Contract for IP, Know-How, and Data Transactions",
+    "title_en": "JFTC Public Comment: Draft Guidelines on Abuse of Superior Bargaining Position in IP, Know-How and Data Transactions",
     "title_ja": "「知的財産権・ノウハウ・データの適切な取引のための優越的地位の濫用等に関する指針」（案）及び「契約書ひな形」（案）に対する意見募集について",
     "area": "Antitrust / Fair Trade",
     "stage": "Public Comment Open",
@@ -303,8 +302,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260016&Mode=0",
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
-    "relevance_score": 22.0,
-    "summary_source": "rule_based"
+    "relevance_score": 22.0
   },
   {
     "id": "raw-76c326ab246d4ac5",
@@ -320,8 +318,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=235110031&Mode=0",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 22.0,
-    "summary_source": "rule_based"
+    "relevance_score": 22.0
   },
   {
     "id": "raw-70619b685fa69637",
@@ -337,12 +334,11 @@
     "source_url": "https://www.env.go.jp/press/press_05086.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
-    "relevance_score": 21.0,
-    "summary_source": "rule_based"
+    "relevance_score": 21.0
   },
   {
     "id": "raw-6a8f872ad167c082",
-    "title_en": "Cabinet Decision on Partial Amendment to Enforcement Order of the Chemical Substances Control Act",
+    "title_en": "MOE Update: Cabinet Decision on Chemical Substances Regulation",
     "title_ja": "化学物質の審査及び製造等の規制に関する法律施行令の一部を改正する政令の閣議決定について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -355,9 +351,9 @@
     "published_at": "2026-05-19",
     "last_checked": "2026-06-12",
     "relevance_score": 28.0,
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and a very brief raw summary; substantive details are unverified. A Cabinet decision on a Cabinet Order is indicated, but this differs from promulgation or entry into force, which is not confirmed here. Triage labels are keyword-based and not authoritative.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-12T01:21:05Z",
     "summary_model": "claude-opus-4-8"
   },
@@ -375,8 +371,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260074&Mode=0",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 20.0,
-    "summary_source": "rule_based"
+    "relevance_score": 20.0
   },
   {
     "id": "raw-152695a4fc786292",
@@ -392,8 +387,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260014&Mode=0",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 20.0,
-    "summary_source": "rule_based"
+    "relevance_score": 20.0
   },
   {
     "id": "raw-318a3a25ad1652c7",
@@ -409,8 +403,7 @@
     "source_url": "https://www.fsa.go.jp/news/r7/sonota/20260608/20260608.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 21.0,
-    "summary_source": "rule_based"
+    "relevance_score": 21.0
   },
   {
     "id": "raw-ce86328cd6febc99",
@@ -426,12 +419,11 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=120260017&Mode=0",
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
-    "relevance_score": 17.0,
-    "summary_source": "rule_based"
+    "relevance_score": 17.0
   },
   {
     "id": "raw-6ac75794f8dfe315",
-    "title_en": "Public Comment: 「指定確認検査機関の処分等の基準」及び「指定構造計算適合性判定機関の処分等の基準」の改定案",
+    "title_en": "Public Comment: Regulatory proposal open for comment",
     "title_ja": "「指定確認検査機関の処分等の基準」及び「指定構造計算適合性判定機関の処分等の基準」の改定案に関する意見募集について",
     "area": "Other",
     "stage": "Public Comment Open",
@@ -443,8 +435,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=155260716&Mode=0",
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
-    "relevance_score": 17.0,
-    "summary_source": "rule_based"
+    "relevance_score": 17.0
   },
   {
     "id": "raw-e52b56f452414961",
@@ -460,8 +451,7 @@
     "source_url": "https://www.env.go.jp/press/press_05100.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
-    "relevance_score": 16.0,
-    "summary_source": "rule_based"
+    "relevance_score": 16.0
   },
   {
     "id": "raw-7ad6c3981ac383ee",
@@ -477,8 +467,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260312_pubcomme_kotyokai.html",
     "published_at": "2026-03-12",
     "last_checked": "2026-06-11",
-    "relevance_score": 20.0,
-    "summary_source": "rule_based"
+    "relevance_score": 20.0
   },
   {
     "id": "raw-57aeb38932dfac5c",
@@ -494,12 +483,11 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004360&Mode=0",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-10",
-    "relevance_score": 12.0,
-    "summary_source": "rule_based"
+    "relevance_score": 12.0
   },
   {
     "id": "raw-8008869f4fd2d3d7",
-    "title_en": "MOE Update: 「遺伝子組換え生物等の使用等の規制による生物の多様性の確保に関する法律」に基づく措置命令",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "「遺伝子組換え生物等の使用等の規制による生物の多様性の確保に関する法律」に基づく措置命令について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -511,8 +499,7 @@
     "source_url": "https://www.env.go.jp/press/press_04736.html",
     "published_at": "2026-05-27",
     "last_checked": "2026-06-12",
-    "relevance_score": 18.0,
-    "summary_source": "rule_based"
+    "relevance_score": 18.0
   },
   {
     "id": "raw-60e372834237824e",
@@ -528,8 +515,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046565/",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 13.0,
-    "summary_source": "rule_based"
+    "relevance_score": 13.0
   },
   {
     "id": "raw-ed40b10d3d033428",
@@ -545,8 +531,7 @@
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260017&Mode=0",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-5687d1d1e79ca29a",
@@ -562,8 +547,7 @@
     "source_url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban16_04000942.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
-    "relevance_score": 10.0,
-    "summary_source": "rule_based"
+    "relevance_score": 10.0
   },
   {
     "id": "raw-c0aedfee47301303",
@@ -579,8 +563,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2026/260407?ref=ninf",
     "published_at": "2026-04-07",
     "last_checked": "2026-06-11",
-    "relevance_score": 17.0,
-    "summary_source": "rule_based"
+    "relevance_score": 17.0
   },
   {
     "id": "raw-5755f6b03eccf780",
@@ -596,8 +579,7 @@
     "source_url": "https://www.ppc.go.jp/legal/rouei?ref=ninf",
     "published_at": "2025-09-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 17.0,
-    "summary_source": "rule_based"
+    "relevance_score": 17.0
   },
   {
     "id": "raw-93866f380873f184",
@@ -613,8 +595,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/apr/260416_generativeai.html",
     "published_at": "2026-04-16",
     "last_checked": "2026-06-11",
-    "relevance_score": 15.0,
-    "summary_source": "rule_based"
+    "relevance_score": 15.0
   },
   {
     "id": "raw-a9763ed425d7c146",
@@ -630,8 +611,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/apr/260422_yonjyo.shutoko.html",
     "published_at": "2026-04-22",
     "last_checked": "2026-06-11",
-    "relevance_score": 15.0,
-    "summary_source": "rule_based"
+    "relevance_score": 15.0
   },
   {
     "id": "raw-59ac59729d5e419c",
@@ -647,12 +627,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73121.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 11.0,
-    "summary_source": "rule_based"
+    "relevance_score": 11.0
   },
   {
     "id": "raw-5bf05fa1cac015e2",
-    "title_en": "MOE Update: 自然環境保全法施行規則の改正",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "自然環境保全法施行規則の改正について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -664,8 +643,7 @@
     "source_url": "https://www.env.go.jp/press/press_04745.html",
     "published_at": "2026-05-22",
     "last_checked": "2026-06-12",
-    "relevance_score": 12.0,
-    "summary_source": "rule_based"
+    "relevance_score": 12.0
   },
   {
     "id": "raw-e1b2476ddb0941c8",
@@ -681,8 +659,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260610.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-92894d9dcaf5f755",
@@ -698,8 +675,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046529/",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-70da042c9b1dee77",
@@ -715,8 +691,7 @@
     "source_url": "https://www.fsa.go.jp/inter/ios/20260608/20260608.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-674b1d4478741382",
@@ -732,8 +707,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046474/",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-caa67978d1dea7ca",
@@ -749,8 +723,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73760.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-73370514e612a64b",
@@ -766,8 +739,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260610_FL.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-08f7eabbed4e5be6",
@@ -783,8 +755,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/topics/bukyoku/soumu/houritu/221.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-2b68e399069f0f9e",
@@ -800,8 +771,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046435/",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-b8ab768bcd6ff700",
@@ -817,8 +787,7 @@
     "source_url": "https://www.digital.go.jp/policies/digital-extraordinary-administrative-research-committee/regtechconsortium/regtechmeet",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-ba649c63d61c7939",
@@ -834,8 +803,7 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/legal/leakAction?ref=ninf#cloud",
     "published_at": "2025-12-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 13.0,
-    "summary_source": "rule_based"
+    "relevance_score": 13.0
   },
   {
     "id": "raw-9b6ee69ccfd0d6d1",
@@ -851,8 +819,7 @@
     "source_url": "https://www.digital.go.jp/policies/digital-extraordinary-administrative-research-committee/local-government",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-10",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-f0b80af2f1ab2ad6",
@@ -868,8 +835,7 @@
     "source_url": "https://www.digital.go.jp/resources/govdashboard/mynumber_card_penetration_usage",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 7.0,
-    "summary_source": "rule_based"
+    "relevance_score": 7.0
   },
   {
     "id": "raw-9819ef13bb7624a2",
@@ -885,8 +851,7 @@
     "source_url": "https://www.env.go.jp/press/press_05093.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
-    "relevance_score": 7.0,
-    "summary_source": "rule_based"
+    "relevance_score": 7.0
   },
   {
     "id": "raw-cd1c35f32cacd3e6",
@@ -902,8 +867,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/250625_houdo?ref=ninf",
     "published_at": "2025-06-25",
     "last_checked": "2026-06-11",
-    "relevance_score": 12.0,
-    "summary_source": "rule_based"
+    "relevance_score": 12.0
   },
   {
     "id": "raw-e131228b05bf7748",
@@ -919,8 +883,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260311_chizai.html",
     "published_at": "2026-03-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 12.0,
-    "summary_source": "rule_based"
+    "relevance_score": 12.0
   },
   {
     "id": "raw-a5f7577b0be3990a",
@@ -936,8 +899,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046322/",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-11",
-    "relevance_score": 7.0,
-    "summary_source": "rule_based"
+    "relevance_score": 7.0
   },
   {
     "id": "raw-48dc35ed9a11a042",
@@ -953,12 +915,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260217_sumaho_junshuhoukoku.html",
     "published_at": "2026-02-17",
     "last_checked": "2026-06-11",
-    "relevance_score": 11.0,
-    "summary_source": "rule_based"
+    "relevance_score": 11.0
   },
   {
     "id": "raw-a6c4278f83f4f08f",
-    "title_en": "JFTC Update: 株式会社ヘリテージに対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社ヘリテージに対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -970,12 +931,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260611_heritage.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-54f11a9b797090f9",
-    "title_en": "JFTC Update: 株式会社ＫＡＤＯＫＡＷＡに対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社ＫＡＤＯＫＡＷＡに対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -987,8 +947,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260611_kadokawa.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-a2c247f6c7d4bec3",
@@ -1004,12 +963,11 @@
     "source_url": "https://www.digital.go.jp/news/6ab4fb26-5de0-4c7c-b055-f0ee303e6ebc",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-414a8599e61c47ea",
-    "title_en": "MIC Update: 未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第4回）開催案内",
+    "title_en": "MIC Update: Policy study group meeting announced",
     "title_ja": "未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第4回）開催案内",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1021,8 +979,7 @@
     "source_url": "https://www.soumu.go.jp/main_sosiki/kenkyu/miraishakaiomisueta/04_kaisai.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-0556253c6156c64d",
@@ -1038,8 +995,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046514/",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-72846c0ca09d870f",
@@ -1055,8 +1011,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260608_kanki.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-338d5b75bf30d44d",
@@ -1072,8 +1027,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/251029?ref=ninf",
     "published_at": "2025-10-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 10.0,
-    "summary_source": "rule_based"
+    "relevance_score": 10.0
   },
   {
     "id": "raw-66d1e2b4eb50048a",
@@ -1089,8 +1043,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260311_chizaiwg_hokokusho.html",
     "published_at": "2026-03-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 10.0,
-    "summary_source": "rule_based"
+    "relevance_score": 10.0
   },
   {
     "id": "raw-24742b14655ae0ed",
@@ -1106,12 +1059,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260311_daiichi.html",
     "published_at": "2026-03-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 10.0,
-    "summary_source": "rule_based"
+    "relevance_score": 10.0
   },
   {
     "id": "raw-235124db45b128fe",
-    "title_en": "Digital Agency Update: 「行政の進化と革新のための生成AIの調達·利活用に係るガイドライン（第2.0版）」を策定しました",
+    "title_en": "Digital Agency Update: Generative AI procurement and use guidelines updated",
     "title_ja": "「行政の進化と革新のための生成AIの調達·利活用に係るガイドライン（第2.0版）」を策定しました",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1123,8 +1075,7 @@
     "source_url": "https://www.digital.go.jp/news/decb64eb-f26e-41cb-8d37-f3dd173108b8",
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-4731cbb188e21bf3",
@@ -1140,8 +1091,7 @@
     "source_url": "https://www.digital.go.jp/policies/mynumber/private-business/info",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-904d5b3513c5927d",
@@ -1157,12 +1107,11 @@
     "source_url": "https://www.digital.go.jp/policies/mynumber/local-government/info",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-4c9375fed498315a",
-    "title_en": "CAA Update: 消費者安全法に基づく重大事故等以外の消費者事故等の事故情報データバンク登録について(6月11日)",
+    "title_en": "CAA Update: Consumer accident information published",
     "title_ja": "消費者安全法に基づく重大事故等以外の消費者事故等の事故情報データバンク登録について(6月11日)",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1174,8 +1123,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046563/",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-c83f4c5848d0fdd7",
@@ -1191,8 +1139,7 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260611004/20260611004.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-12",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-04de6a55ea0a54d9",
@@ -1208,12 +1155,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73437.html",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-028b3917d01e69df",
-    "title_en": "JFTC Update: 株式会社ホンダ茨城南に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社ホンダ茨城南に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -1225,12 +1171,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260604_hondacars-ibarakiminami.html",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-827eac05b1132bd7",
-    "title_en": "CAA Update: 令和6年度補正 機能性表示食品に係る機能性関与成分に関する買上調査",
+    "title_en": "CAA Update: Functional claims food information updated",
     "title_ja": "「令和6年度補正 機能性表示食品に係る機能性関与成分に関する買上調査」を掲載しました",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1242,12 +1187,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046500/",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-376bd7b600d99218",
-    "title_en": "MOF Update: 欧州復興開発銀行（EBRD）に設置する民間セクター促進基金（JIDAIファンド）に関する署名式を行いました（令和8年6月6日）",
+    "title_en": "MOF Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "欧州復興開発銀行（EBRD）に設置する民間セクター促進基金（JIDAIファンド）に関する署名式を行いました（令和8年6月6日）",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1259,12 +1203,11 @@
     "source_url": "https://www.mof.go.jp/policy/international_policy/others/20260606.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-d0623953af2503f9",
-    "title_en": "MHLW Update: 人事労務マガジン 特集第245号 中小企業事業者の皆さまへ 高年齢者の労働災害防止のための設備改善等を支援する補助金 ～令和8年度「エイジフレンドリー補助金」の受け付けが始まりました～",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "人事労務マガジン 特集第245号 中小企業事業者の皆さまへ 高年齢者の労働災害防止のための設備改善等を支援する補助金 ～令和8年度「エイジフレンドリー補助金」の受け付けが始まりました～",
     "area": "Public Safety / Disaster Management",
     "stage": "Government Announcement",
@@ -1276,8 +1219,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73723.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-d6b27df101359b3f",
@@ -1293,8 +1235,7 @@
     "source_url": "https://www.ppc.go.jp/news/surveillance?ref=ninf",
     "published_at": "2026-03-30",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-877ff602f8225f00",
@@ -1310,8 +1251,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/260225?ref=ninf",
     "published_at": "2026-02-25",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-98fd7718d3dab9e0",
@@ -1327,8 +1267,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/250910?ref=ninf",
     "published_at": "2025-09-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 9.0,
-    "summary_source": "rule_based"
+    "relevance_score": 9.0
   },
   {
     "id": "raw-f5c208076ef6d22f",
@@ -1344,12 +1283,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260605004/20260605004.html",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-3ae13ed6a7771825",
-    "title_en": "MHLW Update: 労働基準関係法令違反に係る公表事案",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "労働基準関係法令違反に係る公表事案",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -1361,12 +1299,11 @@
     "source_url": "https://www.mhlw.go.jp/kinkyu/151106.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-e69359550270a431",
-    "title_en": "JFTC Update: 株式会社Ｔｉｍｅｗｉｔｃｈに対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社Ｔｉｍｅｗｉｔｃｈに対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -1378,12 +1315,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/May/260529_timewitch.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-246369a48e2f684b",
-    "title_en": "CAA Update: 消費者安全法に基づく重大事故等以外の消費者事故等の事故情報データバンク登録について(6月4日)",
+    "title_en": "CAA Update: Consumer accident information published",
     "title_ja": "消費者安全法に基づく重大事故等以外の消費者事故等の事故情報データバンク登録について(6月4日)",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1395,12 +1331,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046489/",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-b37de986bcf0cc67",
-    "title_en": "FSA Update: 主要行等の令和８年３月期決算の概要",
+    "title_en": "FSA Update: Overview of bank financial results",
     "title_ja": "主要行等の令和８年３月期決算の概要について公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1412,12 +1347,11 @@
     "source_url": "https://www.fsa.go.jp/news/r7/ginkou/20260610-2/20260610.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-eb8a66b3cdfd084c",
-    "title_en": "FSA Update: 地域銀行の令和８年３月期決算の概要",
+    "title_en": "FSA Update: Overview of bank financial results",
     "title_ja": "地域銀行の令和８年３月期決算の概要について公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1429,12 +1363,11 @@
     "source_url": "https://www.fsa.go.jp/news/r7/ginkou/20260610-3/20260610.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-57fa362c8d461c57",
-    "title_en": "MOF Update: 製造たばこの小売定価の認可",
+    "title_en": "MOF Update: Approval of retail prices for tobacco products",
     "title_ja": "製造たばこの小売定価の認可",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1446,8 +1379,7 @@
     "source_url": "https://www.mof.go.jp/policy/tab_salt/topics/kouriteika.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-e650feae4671abc0",
@@ -1463,12 +1395,11 @@
     "source_url": "https://www.ppc.go.jp/kensyu_material?ref=ninf#gyosei_mynum",
     "published_at": "2026-05-28",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-16333de455a58063",
-    "title_en": "FSA Update: 国際関係,バーゼル銀行監督委員会による「ICTリスク管理に関する実務集」",
+    "title_en": "FSA Update: ICT risk management practices published",
     "title_ja": "国際関係,バーゼル銀行監督委員会による「ICTリスク管理に関する実務集」について公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1480,12 +1411,11 @@
     "source_url": "https://www.fsa.go.jp/inter/bis/20260609/20260609.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-10",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-8eb77bd336529d90",
-    "title_en": "PPC Update: 令和７年度第４四半期における監視・監督の状況",
+    "title_en": "PPC Update: Monitoring and supervision status published",
     "title_ja": "令和７年度第４四半期における監視・監督の状況について公表しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1497,8 +1427,7 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/activity?ref=ninf",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-e115696f366d1aff",
@@ -1514,8 +1443,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73587.html",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-10",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-42aa275485c57e75",
@@ -1531,12 +1459,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260608001/20260608001.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-177c0d8740d01e18",
-    "title_en": "MOF Update: 令和8年4月中 国際収支状況（速報）の概要",
+    "title_en": "MOF Update: Balance of payments preliminary overview published",
     "title_ja": "令和8年4月中 国際収支状況（速報）の概要",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1548,12 +1475,11 @@
     "source_url": "https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/preliminary/pg202604.htm",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-68b9e05951645139",
-    "title_en": "MHLW Update: 官庁合同業務説明会 厚生労働省（デジタル・電気・電子区分）",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "官庁合同業務説明会 厚生労働省（デジタル・電気・電子区分）",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -1565,8 +1491,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/kokka-den/gousetsu2026.html",
     "published_at": "2026-06-01",
     "last_checked": "2026-06-10",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-f487eeb7469ba780",
@@ -1582,12 +1507,11 @@
     "source_url": "https://www.ppc.go.jp/aboutus/report?ref=ninf",
     "published_at": "2025-11-12",
     "last_checked": "2026-06-11",
-    "relevance_score": 8.0,
-    "summary_source": "rule_based"
+    "relevance_score": 8.0
   },
   {
     "id": "raw-a6170eaa2af2570d",
-    "title_en": "Digital Agency Update: デジタル社会推進標準ガイドライン：「DS-920 行政の進化と革新のための生成AIの調達・利活用に係るガイドライン 」を更新しました",
+    "title_en": "Digital Agency Update: Generative AI procurement and use guidelines updated",
     "title_ja": "デジタル社会推進標準ガイドライン：「DS-920 行政の進化と革新のための生成AIの調達・利活用に係るガイドライン 」を更新しました",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1599,12 +1523,11 @@
     "source_url": "https://www.digital.go.jp/resources/standard_guidelines",
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-e86da1982697b545",
-    "title_en": "METI Update: 総額約10億円の懸賞金・計算リソースを提供するAIコンテスト「GENIAC-PRIZE 2026」が始動します",
+    "title_en": "METI Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "総額約10億円の懸賞金・計算リソースを提供するAIコンテスト「GENIAC-PRIZE 2026」が始動します",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1616,12 +1539,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/05/20260529003/20260529003.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-d5d845e3c8179346",
-    "title_en": "PPC Update: オプトアウト届出書を新たに公表しました。（届出番号2025-100486～2025-100488）",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "オプトアウト届出書を新たに公表しました。（届出番号2025-100486～2025-100488）",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1633,12 +1555,11 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/preparation/optout/publication_2021/?ref=ninf",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-e729c1f7638e4268",
-    "title_en": "CAA Update: 消費者安全法の重大事故等に係る公表について(6月11日)",
+    "title_en": "CAA Update: Consumer accident information published",
     "title_ja": "消費者安全法の重大事故等に係る公表について(6月11日)",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1650,12 +1571,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046562/",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-8ae70e703f56907b",
-    "title_en": "MOF Update: 法人企業景気予測調査時系列データ(BSI項目)",
+    "title_en": "MOF Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "法人企業景気予測調査時系列データ(BSI項目)",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1667,8 +1587,7 @@
     "source_url": "https://www.mof.go.jp/insideLink/20260609153823.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a2963ab760f638ca",
@@ -1684,12 +1603,11 @@
     "source_url": "https://www.env.go.jp/press/press_04829.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-12",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-71310e10e417ad38",
-    "title_en": "FSA Update: その他,令和８年４月に開催された業界団体との意見交換会において、金融庁が提起した主な論点",
+    "title_en": "FSA Update: Key discussion points from industry association meetings",
     "title_ja": "その他,令和８年４月に開催された業界団体との意見交換会において、金融庁が提起した主な論点を公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1701,12 +1619,11 @@
     "source_url": "https://www.fsa.go.jp/common/ronten/index.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-56f987f3d4d4221d",
-    "title_en": "MOE Update: 「令和８年度アジア水環境改善モデル事業」対象事業の選定結果",
+    "title_en": "MOE Update: Water environment improvement project information published",
     "title_ja": "「令和８年度アジア水環境改善モデル事業」対象事業の選定結果について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -1718,12 +1635,11 @@
     "source_url": "https://www.env.go.jp/press/press_04875.html",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-ba36b12d1a4eb031",
-    "title_en": "CAA Update: 消費者被害防止ネットワーク東海とForward株式会社との間の差止請求に関する協議が調ったこと",
+    "title_en": "CAA Update: Injunction request consultation resolved",
     "title_ja": "消費者被害防止ネットワーク東海とForward株式会社との間の差止請求に関する協議が調ったことについて",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1735,12 +1651,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046497/",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-721ca684ed6809f6",
-    "title_en": "CAA Update: なら消費者ねっとと株式会社心整体との間の差止請求に関する協議が調ったこと",
+    "title_en": "CAA Update: Injunction request consultation resolved",
     "title_ja": "なら消費者ねっとと株式会社心整体との間の差止請求に関する協議が調ったことについて",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1752,12 +1667,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046495/",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-13a192a735e2543e",
-    "title_en": "MOF Update: 令和８年度補正予算（第１号）政府案が閣議決定されました",
+    "title_en": "MOF Update: Regulatory announcement related to Finance / AML",
     "title_ja": "令和８年度補正予算（第１号）政府案が閣議決定されました",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1769,12 +1683,11 @@
     "source_url": "https://www.mof.go.jp/insideLink/20260603101238.html",
     "published_at": "2026-06-03",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-d7fc1fb89b4140ed",
-    "title_en": "MOE Update: マレーシア政府との間の環境とサステナビリティに関する協力覚書への署名",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "マレーシア政府との間の環境とサステナビリティに関する協力覚書への署名について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -1786,12 +1699,11 @@
     "source_url": "https://www.env.go.jp/press/press_05085.html",
     "published_at": "2026-06-10",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-0135e14a7986a6a6",
-    "title_en": "CAA Update: とちぎ消費者リンクと第一三共ヘルスケアダイレクト株式会社との間の差止請求に関する協議が調ったこと",
+    "title_en": "CAA Update: Injunction request consultation resolved",
     "title_ja": "とちぎ消費者リンクと第一三共ヘルスケアダイレクト株式会社との間の差止請求に関する協議が調ったことについて",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1803,8 +1715,7 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046521/",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-109779cbb398c0a5",
@@ -1820,12 +1731,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260602004/20260602004.html",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-1d37d2eb59dd4aec",
-    "title_en": "MOF Update: 財政資金対民間収支（令和8年5月中実績）の概要",
+    "title_en": "MOF Update: Regulatory announcement related to Finance / AML",
     "title_ja": "財政資金対民間収支（令和8年5月中実績）の概要",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1837,12 +1747,11 @@
     "source_url": "https://www.mof.go.jp/policy/exchequer/reference/receipts_payments/202605gaiyo.htm",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-c905aee6e5e1cb2e",
-    "title_en": "MIC Update: デジタル空間における情報流通の諸課題への対処に関する検討会（第10回）・青少年保護ワーキンググループ（第7回）合同会合 開催案内",
+    "title_en": "MIC Update: Digital information distribution policy meeting announced",
     "title_ja": "デジタル空間における情報流通の諸課題への対処に関する検討会（第10回）・青少年保護ワーキンググループ（第7回）合同会合 開催案内",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1854,12 +1763,11 @@
     "source_url": "https://www.soumu.go.jp/main_sosiki/kenkyu/digital_shokadai/02ryutsu02_04000577.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a31c4bee6ff9b7d6",
-    "title_en": "FSA Update: （株）出前館との契約締結交渉者の従業員から伝達を受けた海外居住者による内部者取引審判事件の第１回審判手続期日開催",
+    "title_en": "FSA Update: Regulatory announcement related to Consumer / Advertising",
     "title_ja": "（株）出前館との契約締結交渉者の従業員から伝達を受けた海外居住者による内部者取引審判事件の第１回審判手続期日開催について公表しました。",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -1871,12 +1779,11 @@
     "source_url": "https://www.fsa.go.jp/news/r7/shouken/20260608.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-74ca906bc339f513",
-    "title_en": "MOE Update: 白水越地区地熱発電計画（仮称）に係る計画段階環境配慮書に対する環境大臣意見の提出",
+    "title_en": "MOE Update: Environmental minister opinion issued on geothermal power project",
     "title_ja": "白水越地区地熱発電計画（仮称）に係る計画段階環境配慮書に対する環境大臣意見の提出について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -1888,12 +1795,11 @@
     "source_url": "https://www.env.go.jp/press/press_05068.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-ee86a60cfba37f82",
-    "title_en": "Digital Agency Update: シンガポール共和国・プットゥチェリーGovTech担当大臣とデジタル分野における協力覚書（MoC）の署名を行いました",
+    "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "シンガポール共和国・プットゥチェリーGovTech担当大臣とデジタル分野における協力覚書（MoC）の署名を行いました",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -1905,46 +1811,11 @@
     "source_url": "https://www.digital.go.jp/news/ad6470b1-ef56-4381-9098-7069e16cf5f4",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-69c767050f7495de",
-    "title_en": "MOE Update: 環境省行政事業レビュー公開プロセス",
-    "title_ja": "環境省行政事業レビュー公開プロセスについて",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_05084.html",
-    "published_at": "2026-06-08",
-    "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-02d07c6609cb3f1b",
-    "title_en": "MOE Update: 令和８年度環境技術実証（ETV）事業における説明会及び研修会の開催",
-    "title_ja": "令和８年度環境技術実証（ETV）事業における説明会及び研修会の開催について",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_05092.html",
-    "published_at": "2026-06-08",
-    "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-647c981421dc8d72",
-    "title_en": "JFTC Update: シアー株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "シアー株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -1956,8 +1827,39 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/May/260519_sheer.html",
     "published_at": "2026-05-19",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
+  },
+  {
+    "id": "raw-69c767050f7495de",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
+    "title_ja": "環境省行政事業レビュー公開プロセスについて",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_05084.html",
+    "published_at": "2026-06-08",
+    "last_checked": "2026-06-12",
+    "relevance_score": 2.0
+  },
+  {
+    "id": "raw-02d07c6609cb3f1b",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
+    "title_ja": "令和８年度環境技術実証（ETV）事業における説明会及び研修会の開催について",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_05092.html",
+    "published_at": "2026-06-08",
+    "last_checked": "2026-06-12",
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a254fe9d25efaaf0",
@@ -1973,12 +1875,11 @@
     "source_url": "https://www.env.go.jp/press/press_04871.html",
     "published_at": "2026-06-01",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-111691614ff538aa",
-    "title_en": "FSA Update: 「金融サービス利用者相談室」における相談等の受付状況等（期間：令和８年１月１日～同年３月31日）",
+    "title_en": "FSA Update: Regulatory announcement related to Finance / AML",
     "title_ja": "「金融サービス利用者相談室」における相談等の受付状況等（期間：令和８年１月１日～同年３月31日）について公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -1990,12 +1891,11 @@
     "source_url": "https://www.fsa.go.jp/soudan/2026soudan01-03/2026_01-03.html",
     "published_at": "2026-06-06",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-65a06cf6919e79d6",
-    "title_en": "FSA Update: その他,「金融サービス利用者相談室」における相談等の受付状況等（期間：令和７年10月１日～同年12月31日）の計数の訂正",
+    "title_en": "FSA Update: Regulatory announcement related to Finance / AML",
     "title_ja": "その他,「金融サービス利用者相談室」における相談等の受付状況等（期間：令和７年10月１日～同年12月31日）の計数の訂正について公表しました。",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -2007,8 +1907,7 @@
     "source_url": "https://www.fsa.go.jp/soudan/2025soudan10-12/teisei.html",
     "published_at": "2026-06-06",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-d19785ba384eaab6",
@@ -2024,8 +1923,7 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/kentohkai/kondankai_1?ref=ninf",
     "published_at": "2025-10-08",
     "last_checked": "2026-06-11",
-    "relevance_score": 7.0,
-    "summary_source": "rule_based"
+    "relevance_score": 7.0
   },
   {
     "id": "raw-0e28e48637a7e892",
@@ -2041,8 +1939,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260227_flchubu.html",
     "published_at": "2026-02-27",
     "last_checked": "2026-06-11",
-    "relevance_score": 7.0,
-    "summary_source": "rule_based"
+    "relevance_score": 7.0
   },
   {
     "id": "raw-449de05b10f770dc",
@@ -2058,12 +1955,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260605003/20260605003.html",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-43bd56aab58bbf1a",
-    "title_en": "Digital Agency Update: 三角デジタル監が2026年OECD閣僚理事会に出席しました",
+    "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "三角デジタル監が2026年OECD閣僚理事会に出席しました",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2075,12 +1971,11 @@
     "source_url": "https://www.digital.go.jp/news/1261eec6-7ea5-4e5f-8935-b867a49d3d52",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-d0a02de9953f1c99",
-    "title_en": "Digital Agency Update: 2026年夏頃に提供予定の「マイナアプリ」のアプリアイコンを公開しました（デジタル庁ウェブサービス・アプリケーション）",
+    "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "2026年夏頃に提供予定の「マイナアプリ」のアプリアイコンを公開しました（デジタル庁ウェブサービス・アプリケーション）",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2092,12 +1987,11 @@
     "source_url": "https://services.digital.go.jp/mynaapp/news/20260605-01/",
     "published_at": "2026-06-05",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-9211c0423ef62675",
-    "title_en": "MHLW Update: 第32回過労死等防止対策推進協議会（ペーパーレス）開催案内",
+    "title_en": "MHLW Update: Regulatory announcement related to Labor / Employment",
     "title_ja": "第32回過労死等防止対策推進協議会（ペーパーレス）開催案内",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2109,8 +2003,7 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73564.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-c453829a4a860fa1",
@@ -2126,12 +2019,11 @@
     "source_url": "https://www.mhlw.go.jp/toukei_hakusho/hakusho/index.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-a9816a26be1a79d4",
-    "title_en": "MOF Update: 対外及び対内証券売買契約等の状況(週次・指定報告機関ベース)",
+    "title_en": "MOF Update: Weekly report on cross-border securities transactions",
     "title_ja": "対外及び対内証券売買契約等の状況(週次・指定報告機関ベース)",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -2143,8 +2035,7 @@
     "source_url": "https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/week.pdf",
     "published_at": "2026-06-11",
     "last_checked": "2026-06-12",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-cae16f1e14a678c2",
@@ -2160,12 +2051,11 @@
     "source_url": "https://www.env.go.jp/press/press_04727.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-e0cebdf123d6980b",
-    "title_en": "CAA Update: 消費者安全法の重大事故等に係る公表について(6月4日)",
+    "title_en": "CAA Update: Consumer accident information published",
     "title_ja": "消費者安全法の重大事故等に係る公表について(6月4日)",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -2177,12 +2067,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046488/",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-22ac33c1d1a9eef0",
-    "title_en": "CAA Update: 佐賀消費者フォーラムとガーデンテラス佐賀ホテル&リゾートとの間の差止請求に関する協議が調ったこと",
+    "title_en": "CAA Update: Injunction request consultation resolved",
     "title_ja": "佐賀消費者フォーラムとガーデンテラス佐賀ホテル&リゾートとの間の差止請求に関する協議が調ったことについて",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -2194,12 +2083,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046452/",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-ebaf18782e372198",
-    "title_en": "Digital Agency Update: 第5回各府省庁DX推進連絡会議・第22回デジタル社会推進会議幹事会 合同会議（令和8年（2026年）6月3日開催）の議事次第および資料",
+    "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "第5回各府省庁DX推進連絡会議・第22回デジタル社会推進会議幹事会 合同会議（令和8年（2026年）6月3日開催）の議事次第および資料を掲載しました",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2211,8 +2099,7 @@
     "source_url": "https://www.digital.go.jp/councils/social-promotion-executive/ae866c14-3ed0-4b12-bdf8-db16c4fdc858",
     "published_at": "2026-06-03",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-9a90d2d23c13ca2c",
@@ -2228,12 +2115,11 @@
     "source_url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2003.htm",
     "published_at": "2026-06-03",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-368a417d1189e5ff",
-    "title_en": "Digital Agency Update: G7 デジタル・技術大臣会合の開催結果",
+    "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "G7 デジタル・技術大臣会合の開催結果",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2245,12 +2131,11 @@
     "source_url": "https://www.digital.go.jp/news/2111e77e-8684-43d4-ba3a-d1611d57852f",
     "published_at": "2026-06-03",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-566c6098d8a292a3",
-    "title_en": "CAA Update: 令和8年度国際消費者政策研究センターに関する研究運営懇談会(第1回)の議事要旨",
+    "title_en": "CAA Update: Regulatory announcement related to Consumer / Advertising",
     "title_ja": "令和8年度国際消費者政策研究センターに関する研究運営懇談会(第1回)の議事要旨について",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -2262,12 +2147,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046409/",
     "published_at": "2026-06-03",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-1d6d69db9e460464",
-    "title_en": "MHLW Update: 戦没者の遺骨収集事業の実施状況等に関する報告を行いました",
+    "title_en": "MHLW Update: Regulatory announcement related to Labor / Employment",
     "title_ja": "戦没者の遺骨収集事業の実施状況等に関する報告を行いました",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2279,12 +2163,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73744.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-a184431eddab3405",
-    "title_en": "MHLW Update: 臓器移植の実施状況等の報告",
+    "title_en": "MHLW Update: Organ transplantation implementation status reported",
     "title_ja": "臓器移植の実施状況等の報告について",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2296,12 +2179,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73714.html",
     "published_at": "2026-06-09",
     "last_checked": "2026-06-10",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-f41281552477ccc1",
-    "title_en": "METI Update: デジタル推進人材育成プログラム「マナビDX（デラックス）Quest」の 2026年度受講生を募集します",
+    "title_en": "METI Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "デジタル推進人材育成プログラム「マナビDX（デラックス）Quest」の 2026年度受講生を募集します",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2313,12 +2195,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/06/20260602002/20260602002.html",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-1b54ad744e7ed8cc",
-    "title_en": "MHLW Update: 人口動態統計のICD-11準拠の統計分類適用に係るワーキンググループ 報告書",
+    "title_en": "MHLW Update: Regulatory announcement related to Labor / Employment",
     "title_ja": "人口動態統計のICD-11準拠の統計分類適用に係るワーキンググループ 報告書",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2330,12 +2211,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73734.html",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-10",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-bcf0786251230d97",
-    "title_en": "MOE Update: 地域と共生する再エネ優良事例を紹介する特設Webサイト「Good Echo」の公開",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "地域と共生する再エネ優良事例を紹介する特設Webサイト「Good Echo」の公開について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2347,12 +2227,11 @@
     "source_url": "https://www.env.go.jp/press/press_04867.html",
     "published_at": "2026-06-02",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-470bb70e59a3f53e",
-    "title_en": "MOF Update: 対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
+    "title_en": "MOF Update: Weekly report on cross-border securities transactions",
     "title_ja": "対外及び対内証券売買契約等の状況(月次・指定報告機関ベース)",
     "area": "Finance / AML",
     "stage": "Government Announcement",
@@ -2364,29 +2243,11 @@
     "source_url": "https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/month.pdf",
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-684a4d7b3bdfe4b3",
-    "title_en": "MOE Update: 令和８年度教職員等環境教育・学習推進リーダー養成研修の開催",
-    "title_ja": "令和８年度教職員等環境教育・学習推進リーダー養成研修の開催について",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_04792.html",
-    "published_at": "2026-06-01",
-    "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-e65d0d8277c15b65",
-    "title_en": "JFTC Update: 琉球倉庫運輸株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "琉球倉庫運輸株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2398,12 +2259,27 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/May/260512_ryukyusokounyu.html",
     "published_at": "2026-05-12",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
+  },
+  {
+    "id": "raw-684a4d7b3bdfe4b3",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
+    "title_ja": "令和８年度教職員等環境教育・学習推進リーダー養成研修の開催について",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_04792.html",
+    "published_at": "2026-06-01",
+    "last_checked": "2026-06-12",
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a2d84c4bccb695e4",
-    "title_en": "PPC Update: 令和８年度予算案・機構定員の概要",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "令和８年度予算案・機構定員の概要を公表しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -2415,8 +2291,7 @@
     "source_url": "https://www.ppc.go.jp/aboutus/budget/budget_R8?ref=ninf",
     "published_at": "2025-12-26",
     "last_checked": "2026-06-11",
-    "relevance_score": 6.0,
-    "summary_source": "rule_based"
+    "relevance_score": 6.0
   },
   {
     "id": "raw-019b50071f8f8772",
@@ -2432,8 +2307,7 @@
     "source_url": "https://www.mof.go.jp/policy/international_policy/reference/feio/data/monthly/20260529.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a06bfdd4e9f63433",
@@ -2449,12 +2323,11 @@
     "source_url": "https://www.meti.go.jp/press/2026/05/20260529002/20260529002.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-78db30b23825165d",
-    "title_en": "MHLW Update: 労働災害発生状況",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "労働災害発生状況",
     "area": "Public Safety / Disaster Management",
     "stage": "Government Announcement",
@@ -2466,12 +2339,11 @@
     "source_url": "https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei11/rousai-hassei/index.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-07fdb60ec5197102",
-    "title_en": "MHLW Update: 労働保険の電子申請に関する特設サイト",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "労働保険の電子申請に関する特設サイト",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2483,12 +2355,11 @@
     "source_url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/denshi-shinsei/tokusetusaito.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-f3368a4f8f2eafd3",
-    "title_en": "CAA Update: 第6回デジタル取引・特定商取引法等検討会の開催",
+    "title_en": "CAA Update: Regulatory announcement related to Consumer / Advertising",
     "title_ja": "第6回デジタル取引・特定商取引法等検討会の開催について",
     "area": "Consumer / Advertising",
     "stage": "Government Announcement",
@@ -2500,12 +2371,11 @@
     "source_url": "https://www.caa.go.jp/notice/entry/046468/",
     "published_at": "2026-06-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-13a1a0159165e4ef",
-    "title_en": "MOE Update: 令和８年度絶滅のおそれのある野生動植物の種の保存に関する法律の在り方検討会（第６回）の開催",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和８年度絶滅のおそれのある野生動植物の種の保存に関する法律の在り方検討会（第６回）の開催について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2517,12 +2387,11 @@
     "source_url": "https://www.env.go.jp/press/press_04653.html",
     "published_at": "2026-05-28",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-c9906d71574b560d",
-    "title_en": "MOE Update: 令和８年度「環境の日」及び「環境月間」の取組",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和８年度「環境の日」及び「環境月間」の取組について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2534,12 +2403,11 @@
     "source_url": "https://www.env.go.jp/press/press_04864.html",
     "published_at": "2026-05-28",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-62aa0af9b0fb547d",
-    "title_en": "MOE Update: （仮称）壮瞥・伊達風力発電事業に係る計画段階環境配慮書に対する環境大臣意見の提出",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "（仮称）壮瞥・伊達風力発電事業に係る計画段階環境配慮書に対する環境大臣意見の提出について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2551,12 +2419,11 @@
     "source_url": "https://www.env.go.jp/press/press_04762.html",
     "published_at": "2026-05-28",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-9b923c5dba0554bb",
-    "title_en": "MHLW Update: 令和７年の労働災害発生状況を公表",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "令和７年の労働災害発生状況を公表",
     "area": "Public Safety / Disaster Management",
     "stage": "Government Announcement",
@@ -2568,12 +2435,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/newpage_73382.html",
     "published_at": "2026-05-27",
     "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-9078e09d406c0ec8",
-    "title_en": "MHLW Update: 令和８年高年齢者・障害者雇用状況等報告の提出",
+    "title_en": "MHLW Update: Labor and employment policy information updated",
     "title_ja": "令和８年高年齢者・障害者雇用状況等報告の提出について",
     "area": "Labor / Employment",
     "stage": "Government Announcement",
@@ -2585,12 +2451,11 @@
     "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koureisha/index_00001.html",
     "published_at": "2026-06-01",
     "last_checked": "2026-06-10",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-25c32ffb2b499e80",
-    "title_en": "MOE Update: 令和８年度環境測定分析統一精度管理調査の実施について（参加機関の募集）",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和８年度環境測定分析統一精度管理調査の実施について（参加機関の募集）",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2602,8 +2467,7 @@
     "source_url": "https://www.env.go.jp/press/press_04803.html",
     "published_at": "2026-05-25",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-8ace079721b2caf9",
@@ -2619,8 +2483,7 @@
     "source_url": "https://www.env.go.jp/press/press_04758.html",
     "published_at": "2026-05-25",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-5844aa9532141408",
@@ -2636,12 +2499,11 @@
     "source_url": "https://www.env.go.jp/press/press_04639.html",
     "published_at": "2026-05-18",
     "last_checked": "2026-06-12",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-8769288de75ff2be",
-    "title_en": "JFTC Update: 令和８年度官製談合防止に向けた発注機関の取組に関する実態調査",
+    "title_en": "JFTC Update: Regulatory announcement related to Antitrust / Fair Trade",
     "title_ja": "令和８年度官製談合防止に向けた発注機関の取組に関する実態調査について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2653,12 +2515,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/apr/260427_R8_kandan_chousa.html",
     "published_at": "2026-04-27",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-403c47711193c613",
-    "title_en": "JFTC Update: 軽油販売業者による価格カルテルに係る告発",
+    "title_en": "JFTC Update: Regulatory announcement related to Antitrust / Fair Trade",
     "title_ja": "軽油販売業者による価格カルテルに係る告発について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2670,8 +2531,7 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/apr/keiyu_kokuhatsu.html",
     "published_at": "2026-04-17",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-8a26190f90ad13cb",
@@ -2687,12 +2547,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260331_flkinki.html",
     "published_at": "2026-03-31",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-ec44104df9d2be04",
-    "title_en": "JFTC Update: 矢崎部品株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "矢崎部品株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2704,12 +2563,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260330_yazaki.html",
     "published_at": "2026-03-30",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-ea45c9cad9b8b04a",
-    "title_en": "JFTC Update: 徳島トヨタ自動車株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "徳島トヨタ自動車株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2721,12 +2579,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260326_tokushimatoyotajidousya.html",
     "published_at": "2026-03-26",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-89b6b90392f2bb2c",
-    "title_en": "JFTC Update: 富士通フロンテック株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "富士通フロンテック株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2738,12 +2595,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260324_fujitsufrontech.html",
     "published_at": "2026-03-24",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-33302163202619b5",
-    "title_en": "JFTC Update: 株式会社松尾製作所に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社松尾製作所に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2755,12 +2611,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260317_chubutoriteki.html",
     "published_at": "2026-03-17",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-42863da7f8268cef",
-    "title_en": "JFTC Update: 株式会社テレビ北海道に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社テレビ北海道に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2772,12 +2627,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260316_flhokkaido.html",
     "published_at": "2026-03-16",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-18793ad98449d6aa",
-    "title_en": "JFTC Update: 日本トーカンパッケージ株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "日本トーカンパッケージ株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2789,12 +2643,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260313_nippontokan.html",
     "published_at": "2026-03-13",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-bc46a5925d7a1b83",
-    "title_en": "JFTC Update: ＹＫＫ ＡＰ株式会社、株式会社ＹＫＫ ＡＰ沖縄及び琉球ＹＫＫ ＡＰ工業株式会社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "ＹＫＫ ＡＰ株式会社、株式会社ＹＫＫ ＡＰ沖縄及び琉球ＹＫＫ ＡＰ工業株式会社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2806,12 +2659,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/mar/260310_ykkap.html",
     "published_at": "2026-03-10",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-3b9e690ddc87439a",
-    "title_en": "JFTC Update: 株式会社共同通信社に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社共同通信社に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2823,12 +2675,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260225_fl_kyodotsuushin.html",
     "published_at": "2026-02-25",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-52ea2497d24239f1",
-    "title_en": "JFTC Update: 株式会社ティラドに対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社ティラドに対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2840,12 +2691,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260224_trad.html",
     "published_at": "2026-02-24",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-49ba9b3f1109cdc3",
-    "title_en": "JFTC Update: 日産東京販売株式会社に対する勧告等",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "日産東京販売株式会社に対する勧告等について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2857,12 +2707,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260220_nissantoukyouhanbai.html",
     "published_at": "2026-02-20",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-7d0c736a7ebe74ff",
-    "title_en": "JFTC Update: 株式会社長登屋に対する勧告",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "株式会社長登屋に対する勧告について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2874,12 +2723,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/feb/260202_chubu_toriteki.html",
     "published_at": "2026-02-02",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-795df87692f3456d",
-    "title_en": "JFTC Update: 東芝産業機器システム株式会社及び東芝ホクト電子株式会社に対する勧告等",
+    "title_en": "JFTC Update: Recommendation issued to a company",
     "title_ja": "東芝産業機器システム株式会社及び東芝ホクト電子株式会社に対する勧告等について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -2891,12 +2739,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jan/260115_toshiba.html",
     "published_at": "2026-01-15",
     "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "summary_source": "rule_based"
+    "relevance_score": 5.0
   },
   {
     "id": "raw-1964341bb4656cd6",
-    "title_en": "MOE Update: JCMの更なる推進に向け、パリ協定6条に基づく我が国の初期報告をUNFCCC事務局へ提出しました",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "JCMの更なる推進に向け、パリ協定6条に基づく我が国の初期報告をUNFCCC事務局へ提出しました",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2908,12 +2755,11 @@
     "source_url": "https://www.env.go.jp/press/press_01324.html",
     "published_at": "2026-05-29",
     "last_checked": "2026-06-12",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-38e6670169bf2479",
-    "title_en": "MOE Update: 令和７年度東京湾環境一斉調査 調査結果",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和７年度東京湾環境一斉調査 調査結果の公表について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2925,8 +2771,7 @@
     "source_url": "https://www.env.go.jp/press/press_04743.html",
     "published_at": "2026-05-22",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-9cc00bb8f9f99c73",
@@ -2942,12 +2787,11 @@
     "source_url": "https://www.env.go.jp/press/press_04687.html",
     "published_at": "2026-05-22",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a72843a1485024db",
-    "title_en": "MOE Update: 令和８年度瀬戸内海環境保全推進ポスターの決定",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和８年度瀬戸内海環境保全推進ポスターの決定について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2959,12 +2803,11 @@
     "source_url": "https://www.env.go.jp/press/press_04656.html",
     "published_at": "2026-05-22",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-f8e661427c59fb24",
-    "title_en": "MOE Update: 第２回日本・インドネシア環境ウィークの開催結果",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "第２回日本・インドネシア環境ウィークの開催結果について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -2976,8 +2819,7 @@
     "source_url": "https://www.env.go.jp/press/press_04733.html",
     "published_at": "2026-05-21",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-178819e76608c77d",
@@ -2993,12 +2835,11 @@
     "source_url": "https://www.env.go.jp/press/press_04550.html",
     "published_at": "2026-05-21",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-3558a0e47587726c",
-    "title_en": "MOE Update: 「令和８年度良好な環境の創出・活用推進事業（良好な環境を活用した観光モデル事業）」の実施団体の選定",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "「令和８年度良好な環境の創出・活用推進事業（良好な環境を活用した観光モデル事業）」の実施団体の選定について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -3010,12 +2851,11 @@
     "source_url": "https://www.env.go.jp/press/press_04750.html",
     "published_at": "2026-05-21",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-8f70a7f1cdee6705",
-    "title_en": "MOE Update: 製品・サービスのカーボンフットプリントに係るモデル事業（業界団体・企業群支援／地域人材育成支援）",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "「製品・サービスのカーボンフットプリントに係るモデル事業（業界団体・企業群支援／地域人材育成支援）」について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -3027,12 +2867,11 @@
     "source_url": "https://www.env.go.jp/press/press_04724.html",
     "published_at": "2026-05-19",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-5025ccad46c90640",
-    "title_en": "MOE Update: 令和８年度「環境配慮契約法」基本方針説明会 の開催",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment",
     "title_ja": "令和８年度「環境配慮契約法」基本方針説明会 の開催について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -3044,8 +2883,7 @@
     "source_url": "https://www.env.go.jp/press/press_04686.html",
     "published_at": "2026-05-18",
     "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-63a7632572e53567",
@@ -3061,8 +2899,7 @@
     "source_url": "https://www.ppc.go.jp/news/publicinfo?ref=ninf",
     "published_at": "2026-03-27",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-705de63ad15975db",
@@ -3078,8 +2915,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/260216?ref=ninf",
     "published_at": "2026-02-16",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-90cc3f3458843602",
@@ -3095,8 +2931,7 @@
     "source_url": "https://www.ppc.go.jp/aboutus/mission-roles?ref=ninf",
     "published_at": "2026-02-02",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-d23f51bbadcfbbaa",
@@ -3112,8 +2947,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/260121?ref=ninf",
     "published_at": "2026-01-21",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-8a586ac889330767",
@@ -3129,8 +2963,7 @@
     "source_url": "https://www.ppc.go.jp/web_teishi_2601?ref=ninf",
     "published_at": "2026-01-09",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-5a3687c5bb7ab4d2",
@@ -3146,8 +2979,7 @@
     "source_url": "https://www.ppc.go.jp/enforcement/cooperation/cooperation/opc_moc?ref=ninf",
     "published_at": "2026-01-07",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-e26eece3099e6b3a",
@@ -3163,8 +2995,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/251030?ref=ninf",
     "published_at": "2025-10-30",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-813950693c1925ab",
@@ -3180,8 +3011,7 @@
     "source_url": "https://www.ppc.go.jp/news/press/2025/250904?ref=ninf",
     "published_at": "2025-09-04",
     "last_checked": "2026-06-11",
-    "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "relevance_score": 4.0
   },
   {
     "id": "raw-5829c47e50e103f9",
@@ -3197,12 +3027,11 @@
     "source_url": "https://www.env.go.jp/press/press_04706.html",
     "published_at": "2026-05-22",
     "last_checked": "2026-06-12",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-5a3224b307741d0f",
-    "title_en": "PPC Update: オプトアウト届出書を新たに公表しました。(届出番号2025-100476～2025-100481)",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "オプトアウト届出書を新たに公表しました。(届出番号2025-100476～2025-100481)",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -3214,12 +3043,11 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/preparation/optout/publication_2021/?ref=ninf#?ref=ninf",
     "published_at": "2026-05-01",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-55e0e4dcbb06e296",
-    "title_en": "PPC Update: 令和６年度第４四半期における総合的な案内所等の受付状況",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "令和６年度第４四半期における総合的な案内所等の受付状況を公表しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -3231,12 +3059,11 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/legal/supervision?ref=ninf#annai",
     "published_at": "2025-06-11",
     "last_checked": "2026-06-11",
-    "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "relevance_score": 3.0
   },
   {
     "id": "raw-9480e287dee1b4b9",
-    "title_en": "PPC Update: 大島委員が、欧州データ保護会議（EDPB）主催「第２回十分性認定国データ保護会議」に出席しました",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "大島委員が、欧州データ保護会議（EDPB）主催「第２回十分性認定国データ保護会議」に出席しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -3248,12 +3075,11 @@
     "source_url": "https://www.ppc.go.jp/enforcement/cooperation/20251202_EDPB?ref=ninf",
     "published_at": "2025-12-24",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-57261ea123f590c3",
-    "title_en": "PPC Update: 欧州データ保護会議（EDPB）議長の来訪について掲載しました",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "欧州データ保護会議（EDPB）議長の来訪について掲載しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -3265,8 +3091,7 @@
     "source_url": "https://www.ppc.go.jp/enforcement/cooperation/250925_Anu_Talus?ref=ninf",
     "published_at": "2025-09-29",
     "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "relevance_score": 2.0
   },
   {
     "id": "raw-a6992542d629dec1",
@@ -3282,12 +3107,11 @@
     "source_url": "https://www.ppc.go.jp/personalinfo/3nengotominaoshi?ref=ninf#next_steps",
     "published_at": "2026-01-16",
     "last_checked": "2026-06-11",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-4d8198ba9b258677",
-    "title_en": "JFTC Update: 有識者と公正取引委員会との懇談会で出された主な意見",
+    "title_en": "JFTC Update: Regulatory announcement related to Antitrust / Fair Trade",
     "title_ja": "有識者と公正取引委員会との懇談会で出された主な意見について",
     "area": "Antitrust / Fair Trade",
     "stage": "Government Announcement",
@@ -3299,12 +3123,11 @@
     "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/jan/260121minikoniken.html",
     "published_at": "2026-01-21",
     "last_checked": "2026-06-11",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   },
   {
     "id": "raw-63266ac26f6c018a",
-    "title_en": "PPC Update: 「「行政機関等匿名加工情報」に関する提案の募集について」を更新しました",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI",
     "title_ja": "「「行政機関等匿名加工情報」に関する提案の募集について」を更新しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
@@ -3316,7 +3139,6 @@
     "source_url": "https://www.ppc.go.jp/application/gyouseikikantoutokumeikakoujouhou_teianboshu?ref=ninf#kouji",
     "published_at": "2025-10-24",
     "last_checked": "2026-06-11",
-    "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "relevance_score": 1.0
   }
 ]

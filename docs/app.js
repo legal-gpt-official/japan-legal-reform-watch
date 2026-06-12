@@ -631,21 +631,21 @@
 
   function buildCsvText(updates) {
     const headers = [
-      "title_en",
-      "title_ja",
-      "area",
-      "stage",
-      "impact_level",
-      "source",
-      "source_url",
-      "published_at",
-      "last_checked",
-      "summary_source",
-      "summary_en",
-      "business_impact_en",
-      "recommended_action_en",
-      "relevance_score",
-      "id",
+      "English title",
+      "Original Japanese title",
+      "Area",
+      "Stage",
+      "Impact level",
+      "Source",
+      "Official source URL",
+      "Published date",
+      "Last checked",
+      "Summary type",
+      "Summary",
+      "Business impact",
+      "Recommended action",
+      "Ranking score",
+      "Internal ID",
     ];
     const rows = [headers.map(csvCell)];
     updates.forEach((update) => {

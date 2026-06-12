@@ -25,6 +25,12 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 import build_public_data as bpd  # noqa: E402
 
+JFTC_UTF8 = "公正取引委員会 (JFTC) 報道発表"
+CAA_UTF8 = "消費者庁 (CAA) 新着情報"
+DIGITAL_UTF8 = "Digital Agency (デジタル庁) 新着・更新"
+MOF_UTF8 = "財務省 (MOF) 新着情報"
+MOE_UTF8 = "環境省 (MOE) 報道発表"
+
 # Hiragana / katakana / CJK ideographs / fullwidth punctuation.
 CJK_RE = re.compile(r"[぀-ヿ㐀-鿿！-｠]")
 
@@ -251,12 +257,83 @@ class TestTitleEnGeneration(unittest.TestCase):
         )
 
     def test_long_title_is_shortened_to_max_chars(self):
-        _, t = self._title("あ" * 150, "Unknown Agency", "ministry_rss")
+        _, t = self._title("Long regulatory notice " * 20, "Unknown Agency", "ministry_rss")
         self.assertLessEqual(len(t), bpd.TITLE_MAX_CHARS)
         self.assertTrue(t.endswith("..."))
 
     def test_shorten_title_leaves_short_titles_alone(self):
         self.assertEqual(bpd.shorten_title("short title"), "short title")
+
+    def test_contains_japanese_detects_scripts(self):
+        self.assertTrue(bpd.contains_japanese("Hiragana あ"))
+        self.assertTrue(bpd.contains_japanese("Katakana カタカナ"))
+        self.assertTrue(bpd.contains_japanese("Kanji 勧告"))
+        self.assertTrue(bpd.contains_japanese("Halfwidth ｶﾀｶﾅ"))
+        self.assertFalse(bpd.contains_japanese("English title only"))
+
+    def test_jftc_recommendation_fallback(self):
+        title = bpd.generate_title_en(
+            "株式会社ヘリテージに対する勧告",
+            JFTC_UTF8,
+            "Government Announcement",
+            "Antitrust / Fair Trade",
+        )
+        self.assertEqual(title, "JFTC Update: Recommendation issued to a company")
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_caa_serious_accident_fallback(self):
+        title = bpd.generate_title_en(
+            "消費者安全法の重大事故等に係る公表について",
+            CAA_UTF8,
+            "Government Announcement",
+            "Consumer / Advertising",
+        )
+        self.assertEqual(title, "CAA Update: Consumer accident information published")
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_digital_agency_generative_ai_fallback(self):
+        title = bpd.generate_title_en(
+            "生成AIの調達・利活用に係るガイドラインの更新について",
+            DIGITAL_UTF8,
+            "Government Announcement",
+            "Data / Privacy / AI",
+        )
+        self.assertEqual(
+            title,
+            "Digital Agency Update: Generative AI procurement and use guidelines updated",
+        )
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_mof_tobacco_retail_price_fallback(self):
+        title = bpd.generate_title_en(
+            "製造たばこの小売定価の認可",
+            MOF_UTF8,
+            "Government Announcement",
+            "Finance / AML",
+        )
+        self.assertEqual(title, "MOF Update: Approval of retail prices for tobacco products")
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_moe_environmental_impact_assessment_fallback(self):
+        title = bpd.clean_english_title(
+            "MOE Update: 環境影響評価法施行規則の改正",
+            "環境影響評価法施行規則の改正について",
+            "Energy / Environment",
+            "Government Announcement",
+            MOE_UTF8,
+        )
+        self.assertEqual(title, "MOE Update: Environmental impact assessment rules updated")
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_generic_public_comment_fallback(self):
+        title = bpd.generate_title_en(
+            "制度改正案に関する意見募集について",
+            "Unknown Agency",
+            "Public Comment Open",
+            "Other",
+        )
+        self.assertEqual(title, "Public Comment: Regulatory proposal open for comment")
+        self.assertFalse(bpd.contains_japanese(title))
 
 
 class TestClosedPublicCommentOrdering(unittest.TestCase):

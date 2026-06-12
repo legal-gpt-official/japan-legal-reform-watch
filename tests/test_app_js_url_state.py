@@ -141,7 +141,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "csv-export-20260612",
+            "title-cleanup-20260612",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -235,6 +235,13 @@ class TestAppJsUrlState(unittest.TestCase):
             "formatSourceDisplayName(update.source_name)",
             "safeUrl(update.source_url)",
             "summarySourceLabel",
+            '"English title"',
+            '"Original Japanese title"',
+            '"Official source URL"',
+            '"Summary type"',
+            '"Ranking score"',
+            '"Internal ID"',
+            '"Ranking score",\n      "Internal ID"',
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)

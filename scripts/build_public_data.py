@@ -864,7 +864,159 @@ def shorten_title(value: str, max_chars: int = TITLE_MAX_CHARS) -> str:
     return cut + "..."
 
 
-def generate_title_en(title_ja: str, source_name: str, stage: str) -> str:
+JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u31f0-\u31ff\uff66-\uff9f\u3400-\u4dbf\u4e00-\u9fff]")
+
+
+def contains_japanese(text: str) -> bool:
+    """Detect Hiragana, Katakana (incl. halfwidth), and CJK ideographs."""
+    return bool(JAPANESE_RE.search(text or ""))
+
+
+def source_has(source_name: str, *markers: str) -> bool:
+    return any(marker in source_name for marker in markers)
+
+
+def public_comment_fallback(stage: str, prefix: str = "Public Comment") -> str:
+    if stage == "Public Comment Open":
+        return f"{prefix}: Regulatory proposal open for comment"
+    if stage == "Public Comment Results Published":
+        return f"{prefix} Results: Regulatory comment results published"
+    if stage == "Public Comment Closed":
+        return f"{prefix} Closed: Regulatory comment period closed"
+    return ""
+
+
+def source_fallback_label(source_name: str) -> str:
+    if source_has(source_name, "JFTC"):
+        return "JFTC"
+    if source_has(source_name, "PPC"):
+        return "PPC"
+    if source_has(source_name, "CAA"):
+        return "CAA"
+    if source_has(source_name, "METI"):
+        return "METI"
+    if source_has(source_name, "FSA", "Financial Services Agency"):
+        return "FSA"
+    if source_has(source_name, "MHLW", "Ministry of Health"):
+        return "MHLW"
+    if source_has(source_name, "Digital Agency"):
+        return "Digital Agency"
+    if source_has(source_name, "MOJ"):
+        return "MOJ"
+    if source_has(source_name, "MOE"):
+        return "MOE"
+    if source_has(source_name, "MOF"):
+        return "MOF"
+    if source_has(source_name, "MIC"):
+        return "MIC"
+    if source_has(source_name, "e-Gov"):
+        return "e-Gov Public Comment"
+    return "Japanese Regulatory"
+
+
+def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
+    if source_has(source_name, "JFTC"):
+        pc = public_comment_fallback(stage, "JFTC Public Comment")
+        if pc:
+            return pc
+        if "排除措置命令" in title_ja:
+            return "JFTC Update: Cease and desist order issued"
+        if "措置命令" in title_ja:
+            return "JFTC Update: Administrative order issued"
+        if "勧告" in title_ja:
+            return "JFTC Update: Recommendation issued to a company"
+
+    if source_has(source_name, "CAA"):
+        if "重大事故" in title_ja or "消費者事故" in title_ja:
+            return "CAA Update: Consumer accident information published"
+        if "差止請求" in title_ja or "協議が調った" in title_ja:
+            return "CAA Update: Injunction request consultation resolved"
+        if "機能性表示食品" in title_ja:
+            return "CAA Update: Functional claims food information updated"
+
+    if source_has(source_name, "FSA", "Financial Services Agency"):
+        if any(keyword in title_ja for keyword in ("主要行", "地域銀行", "決算")):
+            return "FSA Update: Overview of bank financial results"
+        if "意見交換会" in title_ja or "主な論点" in title_ja:
+            return "FSA Update: Key discussion points from industry association meetings"
+        if "ICTリスク" in title_ja:
+            return "FSA Update: ICT risk management practices published"
+
+    if source_has(source_name, "Digital Agency"):
+        if "生成AI" in title_ja:
+            return "Digital Agency Update: Generative AI procurement and use guidelines updated"
+        if "デジタル社会推進標準ガイドライン" in title_ja:
+            return "Digital Agency Update: Digital society promotion standard guidelines updated"
+        if "個人情報保護" in title_ja:
+            return "Digital Agency Update: Personal information protection rules updated"
+
+    if source_has(source_name, "MOE"):
+        if "環境影響評価" in title_ja:
+            return "MOE Update: Environmental impact assessment rules updated"
+        if "地熱発電" in title_ja:
+            return "MOE Update: Environmental minister opinion issued on geothermal power project"
+        if "水環境" in title_ja:
+            return "MOE Update: Water environment improvement project information published"
+        if "化学物質" in title_ja:
+            return "MOE Update: Chemical substances regulation information updated"
+
+    if source_has(source_name, "MOF"):
+        if "製造たばこ" in title_ja or "小売定価" in title_ja:
+            return "MOF Update: Approval of retail prices for tobacco products"
+        if "対外及び対内証券売買契約" in title_ja:
+            return "MOF Update: Weekly report on cross-border securities transactions"
+        if "国際収支" in title_ja:
+            return "MOF Update: Balance of payments preliminary overview published"
+        if "関税" in title_ja:
+            return "MOF Update: Customs-related information updated"
+        if "外為" in title_ja or "外国為替" in title_ja:
+            return "MOF Update: Foreign exchange related information updated"
+
+    if source_has(source_name, "MHLW", "Ministry of Health"):
+        if "労働" in title_ja or "雇用" in title_ja:
+            return "MHLW Update: Labor and employment policy information updated"
+        if any(keyword in title_ja for keyword in ("医薬品", "薬局")):
+            return "MHLW Update: Pharmaceutical regulation information updated"
+        if "年金" in title_ja:
+            return "MHLW Update: Pension system information updated"
+        if "臓器移植" in title_ja:
+            return "MHLW Update: Organ transplantation implementation status reported"
+
+    if source_has(source_name, "MIC"):
+        if any(keyword in title_ja for keyword in ("電波", "通信", "電気通信")):
+            return "MIC Update: Telecommunications and radio policy information updated"
+        if "デジタル空間" in title_ja:
+            return "MIC Update: Digital information distribution policy meeting announced"
+        if "研究会" in title_ja or "開催案内" in title_ja:
+            return "MIC Update: Policy study group meeting announced"
+
+    if source_has(source_name, "PPC"):
+        if "漏えい" in title_ja or "漏洩" in title_ja:
+            return "PPC Update: Personal data leakage incident response published"
+        if "監視・監督" in title_ja:
+            return "PPC Update: Monitoring and supervision status published"
+        if "個人情報保護法" in title_ja:
+            return "PPC Update: Personal Information Protection Act update published"
+
+    return ""
+
+
+def clean_english_title(title: str, title_ja: str, area: str, stage: str, source_name: str) -> str:
+    """Keep good rule-based titles; replace remaining Japanese with safe English fallbacks."""
+    if not contains_japanese(title):
+        return shorten_title(title)
+
+    fallback = keyword_fallback_title(title_ja, source_name, stage)
+    if not fallback:
+        fallback = public_comment_fallback(stage)
+    if not fallback:
+        area_phrase = area if area and area != "Other" else "Japanese regulatory matters"
+        fallback = f"{source_fallback_label(source_name)} Update: Regulatory announcement related to {area_phrase}"
+
+    return shorten_title(fallback)
+
+
+def generate_title_en(title_ja: str, source_name: str, stage: str, area: str = "Other") -> str:
     subject_ja = clean_japanese_title_subject(title_ja)
     subject_en = infer_subject_title_en(subject_ja, title_ja)
     prefix = title_prefix(source_name, stage, title_ja)
@@ -876,7 +1028,7 @@ def generate_title_en(title_ja: str, source_name: str, stage: str) -> str:
     else:
         title = f"{prefix}: {subject_en}"
 
-    return shorten_title(title)
+    return clean_english_title(title, title_ja, area, stage, source_name)
 
 
 # --------------------------------------------------------------------------- #
@@ -925,13 +1077,14 @@ def build_public_item(raw: dict, build_date: str, score: float) -> dict:
     source_type = raw.get("source_type") or ""
     _, display_date = parse_published(raw.get("published_at", ""))
     stage = classify_stage(title_ja, source_type)
-    title_en = generate_title_en(title_ja, source_name, stage)
+    area = classify_area(title_ja, source_name)
+    title_en = generate_title_en(title_ja, source_name, stage, area)
 
     return {
         "id": raw.get("id") or "",                 # reuse the stable raw id (traceable)
         "title_en": title_en,                      # rule-based label — NOT an official translation
         "title_ja": title_ja,
-        "area": classify_area(title_ja, source_name),
+        "area": area,
         "stage": stage,
         "impact_level": classify_impact(title_ja, source_type),
         "summary_en": SUMMARY_EN,

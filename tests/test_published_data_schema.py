@@ -83,6 +83,14 @@ class TestPublishedDataSchema(unittest.TestCase):
                     self.assertIsInstance(value, str)
                     self.assertTrue(value.strip(), f"{it['id']}: empty {key}")
 
+    def test_title_en_contains_no_japanese_characters(self):
+        bad = [
+            (it["id"], it["title_en"])
+            for it in self.items
+            if bpd.contains_japanese(it.get("title_en", ""))
+        ]
+        self.assertFalse(bad, f"title_en contains Japanese characters: {bad[:5]}")
+
     def test_impact_level_vocabulary(self):
         for it in self.items:
             self.assertIn(it["impact_level"], ("Low", "Medium", "High"), it["id"])
