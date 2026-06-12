@@ -122,6 +122,10 @@ WEIGHT_STRONG, WEIGHT_MODERATE, WEIGHT_TOPICAL, WEIGHT_WEAK = 5, 3, 2, 1
 # Additional clean UTF-8 keywords for newer source expansion. These supplement
 # the original keyword sets without changing the earlier scoring design.
 ADDITIONAL_BOOST_STRONG = (
+    "法律案", "改正案", "政令", "省令", "告示", "通達", "ガイドライン", "指針", "Q&A",
+    "パブリックコメント", "意見募集", "意見募集結果", "施行", "公布", "閣議決定",
+    "認定制度", "許認可", "行政処分", "措置命令", "勧告", "厳重注意", "検疫",
+    "輸出入規制", "食品安全", "建築基準", "都市計画", "道路運送車両", "保安基準",
     "法改正", "命令", "勧告", "行政処分", "注意喚起", "ガイドライン", "指針",
     "規制", "省令", "告示", "通達", "パブリックコメント", "意見募集",
     "個人情報保護法", "漏えい", "漏洩", "マイナンバー", "特定個人情報",
@@ -166,6 +170,10 @@ HARD_EXCLUDE = (
     "広報誌", "ＷＥＢマガジン", "WEBマガジン", "Webマガジン", "ウェブマガジン",
 )
 ADDITIONAL_HARD_EXCLUDE = (
+    "採用", "調達", "入札", "公募", "イベント", "セミナー", "フォーラム", "表彰", "受賞",
+    "大臣出張", "大臣会談", "会議開催", "懇談会開催", "研究会開催", "統計調査",
+    "統計のみ", "白書", "月例報告", "ウェブマガジン", "広報誌", "キッズ", "見学案内",
+    "価格見通し", "需給見通し", "参加者募集",
     "会談", "表敬", "出張", "意見交換を行いました", "開催します", "開催しました",
     "採用", "調達", "キッズ", "ポスターコンクール", "シンボルマーク",
 )
@@ -278,6 +286,8 @@ AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 # Source-name fallback when no keyword matched (only the unambiguous ones).
 # MIC is deliberately absent: its scope is broad, so unmatched items stay "Other".
 AREA_SOURCE_FALLBACK = (
+    ("Transport / Infrastructure", ("国土交通省", "MLIT")),
+    ("Food / Agriculture", ("農林水産省", "MAFF")),
     ("Finance / AML", ("金融庁", "FSA")),
     ("Data / Privacy / AI", ("デジタル庁", "Digital Agency")),
     ("Consumer / Advertising", ("消費者庁", "CAA")),
@@ -376,6 +386,43 @@ MIC_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
     )),
     ("Corporate / Governance", (
         "地方制度", "地方自治", "地方公共団体",
+    )),
+]
+
+MLIT_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Real Estate / Land Use", (
+        "不動産", "土地", "地価", "都市計画", "建築", "建築基準", "住宅", "空き家", "空家",
+        "宅地", "マンション", "不動産取引", "開発許可", "区画整理", "地籍",
+    )),
+    ("Transport / Infrastructure", (
+        "交通", "道路", "鉄道", "航空", "空港", "港湾", "船舶", "海事", "物流", "自動車",
+        "トラック", "バス", "タクシー", "インフラ", "運輸", "道路運送車両", "自動運転",
+        "ドローン", "運賃", "リコール",
+    )),
+    ("Public Safety / Disaster Management", (
+        "防災", "災害", "水害", "砂防", "河川", "津波", "地震", "土砂災害", "国土強靱化",
+        "安全", "緊急点検",
+    )),
+    ("Energy / Environment", (
+        "グリーンインフラ", "カーボンニュートラル", "脱炭素", "環境影響", "環境配慮",
+        "ブルーカーボン", "低炭素",
+    )),
+    ("Consumer / Advertising", (
+        "旅行業", "観光", "宿泊", "標準約款",
+    )),
+]
+MAFF_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
+    ("Consumer / Advertising", (
+        "不適正表示", "景品表示", "表示基準", "食品表示",
+    )),
+    ("Food / Agriculture", (
+        "食品", "食料", "農業", "農地", "農産", "米", "野菜", "畜産", "水産", "林業", "林野",
+        "漁業", "飼料", "肥料", "農薬", "種苗", "スマート農業", "食品産業", "食品安全",
+        "農林水産", "動物検疫", "植物検疫", "家畜伝染病", "高病原性鳥インフルエンザ",
+        "輸出", "輸入", "検疫", "認定指標", "認定制度", "認証制度",
+    )),
+    ("Corporate / Governance", (
+        "補助金", "認定制度", "認証制度", "輸出促進", "輸入規制", "輸出規制",
     )),
 ]
 
@@ -478,6 +525,14 @@ def classify_area(title_ja: str, source_name: str) -> str:
                 return area
     if any(hint in source_name for hint in ("総務省", "MIC")):
         for area, keywords in MIC_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if "MLIT" in source_name or "国土交通省" in source_name:
+        for area, keywords in MLIT_AREA_RULES:
+            if any(kw in title_ja for kw in keywords):
+                return area
+    if "MAFF" in source_name or "農林水産省" in source_name:
+        for area, keywords in MAFF_AREA_RULES:
             if any(kw in title_ja for kw in keywords):
                 return area
     for area, keywords in UTF8_AREA_RULES:
@@ -829,6 +884,10 @@ def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
         if any(keyword in title_ja for keyword in ("エネルギー", "電力", "ガス", "GX", "脱炭素", "カーボン")):
             return "METI Energy Update"
         return "METI Update"
+    if "国土交通省" in source_name or "MLIT" in source_name:
+        return "MLIT Public Comment" if stage.startswith("Public Comment") else "MLIT Update"
+    if "農林水産省" in source_name or "MAFF" in source_name:
+        return "MAFF Public Comment" if stage.startswith("Public Comment") else "MAFF Update"
     if "Financial Services Agency" in source_name or "金融庁" in source_name or "FSA" in source_name:
         return "FSA Update"
     if "Ministry of Health" in source_name or "厚生労働省" in source_name or "MHLW" in source_name:
@@ -895,6 +954,10 @@ def source_fallback_label(source_name: str) -> str:
         return "CAA"
     if source_has(source_name, "METI"):
         return "METI"
+    if source_has(source_name, "MLIT"):
+        return "MLIT"
+    if source_has(source_name, "MAFF"):
+        return "MAFF"
     if source_has(source_name, "FSA", "Financial Services Agency"):
         return "FSA"
     if source_has(source_name, "MHLW", "Ministry of Health"):
@@ -971,6 +1034,44 @@ def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
             return "MOF Update: Customs-related information updated"
         if "外為" in title_ja or "外国為替" in title_ja:
             return "MOF Update: Foreign exchange related information updated"
+
+    if source_has(source_name, "MLIT"):
+        pc = public_comment_fallback(stage, "MLIT Public Comment")
+        if pc:
+            return pc
+        if any(keyword in title_ja for keyword in ("建築基準", "建築")):
+            return "MLIT Update: Building standards regulation information updated"
+        if any(keyword in title_ja for keyword in ("不動産", "土地", "住宅", "マンション", "地籍")):
+            return "MLIT Update: Real estate and land use regulation information updated"
+        if any(keyword in title_ja for keyword in ("道路運送車両", "自動車検査", "保安基準")):
+            return "MLIT Update: Road transport vehicle regulation information updated"
+        if any(keyword in title_ja for keyword in ("道路", "鉄道", "航空", "港湾", "自動車", "物流", "運輸")):
+            return "MLIT Update: Transport and infrastructure regulation information updated"
+        if any(keyword in title_ja for keyword in ("防災", "災害", "河川", "砂防", "水害", "土砂災害")):
+            return "MLIT Update: Disaster management and infrastructure safety information updated"
+        if any(keyword in title_ja for keyword in ("旅行業", "観光", "宿泊")):
+            return "MLIT Update: Travel and accommodation regulation information updated"
+        return "MLIT Update: Regulatory announcement related to land, transport, or infrastructure"
+
+    if source_has(source_name, "MAFF"):
+        pc = public_comment_fallback(stage, "MAFF Public Comment")
+        if pc:
+            return pc
+        if any(keyword in title_ja for keyword in ("食品安全", "食品表示", "不適正表示", "表示基準")):
+            return "MAFF Update: Food safety and labeling regulation information updated"
+        if any(keyword in title_ja for keyword in ("農業", "農地", "農産", "米", "野菜")):
+            return "MAFF Update: Agricultural regulation information updated"
+        if any(keyword in title_ja for keyword in ("水産", "漁業")):
+            return "MAFF Update: Fisheries regulation information updated"
+        if any(keyword in title_ja for keyword in ("林業", "林野")):
+            return "MAFF Update: Forestry regulation information updated"
+        if any(keyword in title_ja for keyword in ("動物検疫", "植物検疫", "輸出", "輸入", "輸出入")):
+            return "MAFF Update: Agricultural import and export regulation information updated"
+        if any(keyword in title_ja for keyword in ("鳥インフルエンザ", "家畜伝染病", "病害虫")):
+            return "MAFF Update: Animal health and disease control information published"
+        if "スマート農業" in title_ja:
+            return "MAFF Update: Smart agriculture implementation plan information published"
+        return "MAFF Update: Agricultural, food, forestry, or fisheries policy information published"
 
     if source_has(source_name, "MHLW", "Ministry of Health"):
         if "労働" in title_ja or "雇用" in title_ja:

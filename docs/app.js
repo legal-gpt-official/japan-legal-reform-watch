@@ -42,6 +42,8 @@
     "環境省 (MOE) 報道発表": "Ministry of the Environment (MOE)",
     "財務省 (MOF) 新着情報": "Ministry of Finance (MOF)",
     "総務省 (MIC) 新着情報": "Ministry of Internal Affairs and Communications (MIC)",
+    "国土交通省 (MLIT) 報道発表": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT)",
+    "農林水産省 (MAFF) 報道発表": "Ministry of Agriculture, Forestry and Fisheries (MAFF)",
   };
 
   // Compact URL slugs for shareable filter state. Values are the exact internal
@@ -59,6 +61,8 @@
     "moe": "環境省 (MOE) 報道発表",
     "mof": "財務省 (MOF) 新着情報",
     "mic": "総務省 (MIC) 新着情報",
+    "mlit": "国土交通省 (MLIT) 報道発表",
+    "maff": "農林水産省 (MAFF) 報道発表",
   };
 
   const SOURCE_SLUGS_BY_NAME = Object.keys(SOURCE_SLUGS).reduce((acc, slug) => {

@@ -30,6 +30,8 @@ CAA_UTF8 = "消費者庁 (CAA) 新着情報"
 DIGITAL_UTF8 = "Digital Agency (デジタル庁) 新着・更新"
 MOF_UTF8 = "財務省 (MOF) 新着情報"
 MOE_UTF8 = "環境省 (MOE) 報道発表"
+MLIT_UTF8 = "国土交通省 (MLIT) 報道発表"
+MAFF_UTF8 = "農林水産省 (MAFF) 報道発表"
 
 # Hiragana / katakana / CJK ideographs / fullwidth punctuation.
 CJK_RE = re.compile(r"[぀-ヿ㐀-鿿！-｠]")
@@ -41,6 +43,8 @@ MHLW = "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報"
 CAA = "消費者庁 (CAA) 新着情報"
 PPC = "個人情報保護委員会 (PPC) 新着情報"
 JFTC = "公正取引委員会 (JFTC) 報道発表"
+MLIT = "国土交通省 (MLIT) 報道発表"
+MAFF = "農林水産省 (MAFF) 報道発表"
 
 
 class TestStageClassification(unittest.TestCase):
@@ -154,6 +158,8 @@ class TestAreaClassification(unittest.TestCase):
     MOE = "環境省 (MOE) 報道発表"
     MOF = "財務省 (MOF) 新着情報"
     MIC = "総務省 (MIC) 新着情報"
+    MLIT = "国土交通省 (MLIT) 報道発表"
+    MAFF = "農林水産省 (MAFF) 報道発表"
 
     def test_moj_area_rules(self):
         cases = [
@@ -199,10 +205,38 @@ class TestAreaClassification(unittest.TestCase):
             with self.subTest(title=title):
                 self.assertEqual(bpd.classify_area(title, self.MIC), expected)
 
+    def test_mlit_area_rules(self):
+        cases = [
+            ("Real Estate / Land Use", "建築基準法施行規則の一部改正について"),
+            ("Real Estate / Land Use", "土地の取得・利用等の在り方に関する有識者会議について"),
+            ("Transport / Infrastructure", "道路運送車両の保安基準等の改正について"),
+            ("Transport / Infrastructure", "鉄道・航空・港湾物流に関する制度見直しについて"),
+            ("Public Safety / Disaster Management", "河川整備基本方針と砂防関係事業の見直しについて"),
+            ("Energy / Environment", "ブルーカーボンと脱炭素に関する取組について"),
+            ("Consumer / Advertising", "旅行業標準約款の一部改正について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MLIT), expected)
+
+    def test_maff_area_rules(self):
+        cases = [
+            ("Consumer / Advertising", "食品表示基準の一部改正と不適正表示への対応について"),
+            ("Food / Agriculture", "農業・農地・農産物に関する認定制度について"),
+            ("Food / Agriculture", "水産資源管理及び林野政策に関する制度見直しについて"),
+            ("Food / Agriculture", "動物検疫・植物検疫及び輸出入規制について"),
+            ("Food / Agriculture", "高病原性鳥インフルエンザ及び家畜伝染病への対応について"),
+        ]
+        for expected, title in cases:
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_area(title, self.MAFF), expected)
+
     def test_ministry_source_fallbacks(self):
         self.assertEqual(bpd.classify_area("特になし", self.MOJ), "Corporate / Governance")
         self.assertEqual(bpd.classify_area("特になし", self.MOE), "Energy / Environment")
         self.assertEqual(bpd.classify_area("特になし", self.MOF), "Finance / AML")
+        self.assertEqual(bpd.classify_area("特になし", self.MLIT), "Transport / Infrastructure")
+        self.assertEqual(bpd.classify_area("特になし", self.MAFF), "Food / Agriculture")
         # MIC deliberately has no fallback — broad scope stays "Other".
         self.assertEqual(bpd.classify_area("特になし", self.MIC), "Other")
 
@@ -324,6 +358,54 @@ class TestTitleEnGeneration(unittest.TestCase):
         )
         self.assertEqual(title, "MOE Update: Environmental impact assessment rules updated")
         self.assertFalse(bpd.contains_japanese(title))
+
+    def test_mlit_fallback_titles(self):
+        cases = [
+            (
+                "建築基準法施行規則の一部改正について",
+                "Real Estate / Land Use",
+                "MLIT Update: Building standards regulation information updated",
+            ),
+            (
+                "道路運送車両の保安基準等の改正について",
+                "Transport / Infrastructure",
+                "MLIT Update: Road transport vehicle regulation information updated",
+            ),
+            (
+                "河川及び砂防関係事業の防災対応について",
+                "Public Safety / Disaster Management",
+                "MLIT Update: Disaster management and infrastructure safety information updated",
+            ),
+        ]
+        for title_ja, area, expected in cases:
+            with self.subTest(title_ja=title_ja):
+                title = bpd.generate_title_en(title_ja, MLIT_UTF8, "Government Announcement", area)
+                self.assertEqual(title, expected)
+                self.assertFalse(bpd.contains_japanese(title))
+
+    def test_maff_fallback_titles(self):
+        cases = [
+            (
+                "食品安全規制に関する情報について",
+                "Consumer / Advertising",
+                "MAFF Update: Food safety and labeling regulation information updated",
+            ),
+            (
+                "動物検疫及び輸入規制に関する情報について",
+                "Food / Agriculture",
+                "MAFF Update: Agricultural import and export regulation information updated",
+            ),
+            (
+                "高病原性鳥インフルエンザへの対応について",
+                "Food / Agriculture",
+                "MAFF Update: Animal health and disease control information published",
+            ),
+        ]
+        for title_ja, area, expected in cases:
+            with self.subTest(title_ja=title_ja):
+                title = bpd.generate_title_en(title_ja, MAFF_UTF8, "Government Announcement", area)
+                self.assertEqual(title, expected)
+                self.assertFalse(bpd.contains_japanese(title))
 
     def test_generic_public_comment_fallback(self):
         title = bpd.generate_title_en(

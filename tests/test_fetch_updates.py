@@ -19,7 +19,7 @@ ALLOWED_SOURCE_TYPES = {
     "public_comment_rss", "regulator_rss", "ministry_rss", "agency_rss",
     "regulator_html", "ministry_html",
 }
-ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press"}
+ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press", "mlit_press"}
 
 
 class TestSourcesConfig(unittest.TestCase):
@@ -46,8 +46,28 @@ class TestSourcesConfig(unittest.TestCase):
 
     def test_ministry_expansion_sources_present(self):
         names = " / ".join(s["name"] for s in fu.SOURCES)
-        for token in ("法務省 (MOJ)", "環境省 (MOE)", "財務省 (MOF)", "総務省 (MIC)"):
+        for token in (
+            "法務省 (MOJ)",
+            "環境省 (MOE)",
+            "財務省 (MOF)",
+            "総務省 (MIC)",
+            "国土交通省 (MLIT)",
+            "農林水産省 (MAFF)",
+        ):
             self.assertIn(token, names)
+
+    def test_mlit_maff_source_config(self):
+        by_name = {source["name"]: source for source in fu.SOURCES}
+
+        mlit = by_name["国土交通省 (MLIT) 報道発表"]
+        self.assertEqual(mlit["source_type"], "ministry_html")
+        self.assertEqual(mlit["html_parser"], "mlit_press")
+        self.assertEqual(mlit["url"], "https://www.mlit.go.jp/report/press/")
+        self.assertTrue(mlit.get("follow_meta_refresh"))
+
+        maff = by_name["農林水産省 (MAFF) 報道発表"]
+        self.assertEqual(maff["source_type"], "ministry_rss")
+        self.assertEqual(maff["url"], "https://www.maff.go.jp/j/press/rss.xml")
 
     def test_every_source_has_a_ui_display_name(self):
         """docs/app.js maps every source_name to an English-first display label.
@@ -233,6 +253,30 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertEqual(items[0]["summary"], "水・土壌")  # category tag
         self.assertEqual(items[1]["published_iso"], "2026-06-11")
         self.assertEqual(items[1]["summary"], "報道発表")  # default when no tag
+
+    def test_mlit_press_parser(self):
+        html_text = """
+        <dl>
+        <dt>2026年6月12日</dt>
+        <dd><div class="text"><p><a href="/report/press/jidosha10_hh_000345.html">
+        後退時の安全性を高めるライト、装備可能に！<br>
+        ～道路運送車両の保安基準等の改正について～
+        </a></p></div></dd>
+        <dd><div class="text"><p><a href="/report/press/houdou202606.html">6月</a></p></div></dd>
+        <dt>2026年6月11日</dt>
+        <dd><div class="text"><p><a href="/report/press/tetsudo09_hh_000256.html">
+        東急田園都市線 列車衝突事故を踏まえた緊急点検の結果（最終報告）
+        </a></p></div></dd>
+        </dl>
+        """.encode("utf-8")
+        source = {"html_parser": "mlit_press", "url": "https://www.mlit.go.jp/report/press/houdou202606.html"}
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 2)
+        self.assertEqual(items[0]["title"], "後退時の安全性を高めるライト、装備可能に！ ～道路運送車両の保安基準等の改正について～")
+        self.assertEqual(items[0]["link"], "https://www.mlit.go.jp/report/press/jidosha10_hh_000345.html")
+        self.assertEqual(items[0]["published_iso"], "2026-06-12")
+        self.assertEqual(items[0]["summary"], "報道発表")
+        self.assertEqual(items[1]["published_iso"], "2026-06-11")
 
     def test_jftc_pressrelease_parser(self):
         html_text = """

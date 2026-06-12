@@ -146,6 +146,20 @@ SOURCES = [
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
+    {
+        "name": "国土交通省 (MLIT) 報道発表",
+        "url": "https://www.mlit.go.jp/report/press/",
+        "source_type": "ministry_html",
+        "source_language": "ja",
+        "html_parser": "mlit_press",
+        "follow_meta_refresh": True,
+    },
+    {
+        "name": "農林水産省 (MAFF) 報道発表",
+        "url": "https://www.maff.go.jp/j/press/rss.xml",
+        "source_type": "ministry_rss",
+        "source_language": "ja",
+    },
 ]
 
 USER_AGENT = (
@@ -222,6 +236,39 @@ def http_get(
         return r.read()
 
 
+_META_REFRESH_RE = re.compile(
+    r"<meta\b(?=[^>]*http-equiv=[\"']?refresh[\"']?)[^>]*content=[\"'][^\"']*url=(?P<url>[^\"';>]+)",
+    re.IGNORECASE,
+)
+
+
+def follow_meta_refresh_if_requested(content: bytes, source: dict, timeout: int) -> tuple[bytes, str]:
+    """Follow an official HTML meta-refresh landing page when explicitly allowed."""
+    original_url = source["url"]
+    if not source.get("follow_meta_refresh"):
+        return content, original_url
+
+    text = content.decode("utf-8", errors="replace")
+    match = _META_REFRESH_RE.search(text)
+    if not match:
+        return content, original_url
+
+    next_url = urllib.parse.urljoin(original_url, html.unescape(match.group("url")).strip())
+    if not next_url.startswith("https://"):
+        logger.warning("Skipping non-HTTPS meta refresh target from %s: %s", original_url, next_url)
+        return content, original_url
+
+    logger.info("Following meta refresh for %s -> %s", original_url, next_url)
+    refreshed = http_get(
+        next_url,
+        timeout,
+        prefer_urllib=bool(source.get("prefer_urllib")),
+        accept_html=True,
+        user_agent=str(source.get("user_agent") or USER_AGENT),
+    )
+    return refreshed, next_url
+
+
 def parse_feed(content: bytes) -> list[dict]:
     """Return a list of {title, link, summary, published_iso} dicts."""
     if feedparser is not None:
@@ -245,6 +292,8 @@ def parse_html_source(content: bytes, source: dict) -> list[dict]:
         return _parse_jftc_pressrelease_html(text, source["url"])
     if parser_name == "moe_press":
         return _parse_moe_press_html(text, source["url"])
+    if parser_name == "mlit_press":
+        return _parse_mlit_press_html(text, source["url"])
     raise ValueError(f"Unsupported html_parser: {parser_name}")
 
 
@@ -354,6 +403,51 @@ def _parse_moe_press_html(text: str, base_url: str) -> list[dict]:
                     "title": title,
                     "link": urllib.parse.urljoin(base_url, href),
                     "summary": clean_text(tag.group("tag")) if tag else "報道発表",
+                    "published_iso": published_iso,
+                }
+            )
+    return items
+
+
+_MLIT_BLOCK_RE = re.compile(
+    r"<dt>\s*(?P<year>\d{4})年(?P<month>\d{1,2})月(?P<day>\d{1,2})日\s*</dt>"
+    r"(?P<body>.*?)(?=<dt>|</dl>)",
+    re.IGNORECASE | re.DOTALL,
+)
+_MLIT_LINK_RE = re.compile(
+    r"<a\s+[^>]*href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<title_html>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _parse_mlit_press_html(text: str, base_url: str) -> list[dict]:
+    """Parse MLIT's date-grouped current-month press-release list."""
+    items: list[dict] = []
+    seen_links: set[str] = set()
+    for block in _MLIT_BLOCK_RE.finditer(text):
+        try:
+            published_iso = datetime(
+                int(block.group("year")), int(block.group("month")), int(block.group("day"))
+            ).strftime("%Y-%m-%d")
+        except ValueError:
+            published_iso = ""  # malformed heading date - never guess
+
+        for link in _MLIT_LINK_RE.finditer(block.group("body")):
+            title = clean_text(link.group("title_html"))
+            href = html.unescape(link.group("href")).strip()
+            full_url = urllib.parse.urljoin(base_url, href)
+            if not title or not href or full_url in seen_links:
+                continue
+            if "/report/press/" not in full_url:
+                continue
+            if re.search(r"/report/press/(houdou\d{6}|[a-z_]+_news)\.html$", full_url):
+                continue
+            seen_links.add(full_url)
+            items.append(
+                {
+                    "title": title,
+                    "link": full_url,
+                    "summary": "報道発表",
                     "published_iso": published_iso,
                 }
             )
@@ -629,11 +723,14 @@ def run(timeout: int, dry_run: bool) -> int:
                 accept_html=str(source.get("source_type", "")).endswith("_html"),
                 user_agent=str(source.get("user_agent") or USER_AGENT),
             )
-            entries = parse_source_entries(content, source)[:MAX_ITEMS_PER_SOURCE]
+            content, effective_url = follow_meta_refresh_if_requested(content, source, timeout)
+            parse_source = dict(source)
+            parse_source["url"] = effective_url
+            entries = parse_source_entries(content, parse_source)[:MAX_ITEMS_PER_SOURCE]
             fetched_items += len(entries)
-            logger.info("OK   %s — %d entries from %s", name, len(entries), url)
+            logger.info("OK   %s — %d entries from %s", name, len(entries), effective_url)
             if not entries:
-                logger.warning("No entries parsed from %s (%s).", name, url)
+                logger.warning("No entries parsed from %s (%s).", name, effective_url)
 
             for entry in entries:
                 item = build_item(entry, source, fetched_at)

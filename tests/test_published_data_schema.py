@@ -49,6 +49,7 @@ def allowed_areas() -> set:
         bpd.AREA_RULES, bpd.UTF8_AREA_RULES, bpd.ADDITIONAL_AREA_RULES,
         bpd.METI_AREA_RULES, bpd.CAA_AREA_RULES, bpd.PPC_AREA_RULES, bpd.JFTC_AREA_RULES,
         bpd.MOJ_AREA_RULES, bpd.MOE_AREA_RULES, bpd.MOF_AREA_RULES, bpd.MIC_AREA_RULES,
+        bpd.MLIT_AREA_RULES, bpd.MAFF_AREA_RULES,
     ):
         areas.update(area for area, _ in table)
     areas.update(area for area, _ in bpd.AREA_SOURCE_FALLBACK)
@@ -64,6 +65,7 @@ class TestPublishedDataSchema(unittest.TestCase):
     def test_is_nonempty_array_within_cap(self):
         self.assertIsInstance(self.items, list)
         self.assertGreater(len(self.items), 0)
+        self.assertGreaterEqual(len(self.items), 100)
         self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)  # cap is 1000
 
     def test_ids_are_unique(self):
@@ -117,6 +119,11 @@ class TestPublishedDataSchema(unittest.TestCase):
                 it["source_url"].startswith(("https://", "http://")),
                 f"{it['id']}: unexpected source_url scheme",
             )
+            self.assertFalse(it["source_url"].lower().startswith("javascript:"), it["id"])
+
+    def test_comment_deadline_is_not_added_yet(self):
+        for it in self.items:
+            self.assertNotIn("comment_deadline", it)
 
     def test_relevance_score_is_numeric(self):
         for it in self.items:
@@ -129,8 +136,8 @@ class TestPublishedDataSchema(unittest.TestCase):
 
     def test_claude_items_carry_ai_metadata(self):
         claude_items = [it for it in self.items if it.get("summary_source") == "claude"]
-        # The checked-in file contains Stage 3 summaries; preservation must keep >= 1.
-        self.assertGreaterEqual(len(claude_items), 1)
+        # The checked-in file contains Stage 3 summaries; preservation should keep them.
+        self.assertGreaterEqual(len(claude_items), 14)
         for it in claude_items:
             with self.subTest(id=it["id"]):
                 self.assertTrue(str(it.get("summarized_at", "")).strip())

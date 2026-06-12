@@ -36,7 +36,9 @@ class TestAppJsUrlState(unittest.TestCase):
 
     def test_representative_source_slugs_exist(self):
         slug_body = object_body("SOURCE_SLUGS")
-        for slug in ("egov", "jftc", "ppc", "moe", "fsa", "mhlw", "digital-agency", "meti", "caa"):
+        for slug in (
+            "egov", "jftc", "ppc", "moe", "fsa", "mhlw", "digital-agency", "meti", "caa", "mlit", "maff",
+        ):
             with self.subTest(slug=slug):
                 self.assertRegex(slug_body, rf'"{re.escape(slug)}"\s*:')
 
@@ -141,7 +143,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "title-cleanup-20260612",
+            "mlit-maff-20260612",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
