@@ -920,13 +920,34 @@ def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
 
 
 def shorten_title(value: str, max_chars: int = TITLE_MAX_CHARS) -> str:
+    """Shorten a title to at most max_chars, preserving word boundaries when useful."""
+    if max_chars <= 0:
+        return ""
     if len(value) <= max_chars:
         return value
+    if max_chars <= 3:
+        return "." * max_chars
     cut = value[: max_chars - 3].rstrip()
     space = cut.rfind(" ")
     if space >= 72:
         cut = cut[:space].rstrip()
     return cut + "..."
+
+
+def append_suffix_within_title_cap(base_title: str, suffix: str) -> str:
+    """Append suffix while keeping the full title within TITLE_MAX_CHARS."""
+    if not suffix:
+        return shorten_title(base_title)
+
+    available = TITLE_MAX_CHARS - len(suffix)
+    if available <= 0:
+        raise ValueError("suffix leaves no room for a title body")
+
+    base = shorten_title(base_title, available)
+    # Defensive guard: keep the suffix intact even if the shortening logic changes.
+    if len(base) > available:
+        base = base[:available].rstrip()
+    return f"{base}{suffix}"
 
 
 JAPANESE_RE = re.compile(r"[\u3040-\u30ff\u31f0-\u31ff\uff66-\uff9f\u3400-\u4dbf\u4e00-\u9fff]")
@@ -1190,10 +1211,7 @@ def disambiguate_duplicate_titles(items: list[dict]) -> None:
         date = item.get("published_at") or ""
         if counts.get(title, 0) > 1 and date:
             suffix = f" ({date})"
-            base = title
-            if len(base) + len(suffix) > TITLE_MAX_CHARS:
-                base = shorten_title(base, TITLE_MAX_CHARS - len(suffix))
-            item["title_en"] = base + suffix
+            item["title_en"] = append_suffix_within_title_cap(title, suffix)
 
 
 # --------------------------------------------------------------------------- #
@@ -1399,6 +1417,16 @@ def main(argv: list[str] | None = None) -> int:
         missing = [k for k in REQUIRED_FIELDS if k not in it]
         if missing:
             print(f"ERROR: built item missing fields {missing}: {it.get('id')}", file=sys.stderr)
+            return 2
+        title_en = it.get("title_en", "")
+        if len(title_en) > TITLE_MAX_CHARS:
+            print(
+                f"ERROR: built title_en exceeds {TITLE_MAX_CHARS} characters: {it.get('id')}",
+                file=sys.stderr,
+            )
+            return 2
+        if contains_japanese(title_en):
+            print(f"ERROR: built title_en contains Japanese characters: {it.get('id')}", file=sys.stderr)
             return 2
 
     backup_created = False

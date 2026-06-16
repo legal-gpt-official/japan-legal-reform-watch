@@ -704,8 +704,32 @@ class TestDisambiguateDuplicateTitles(unittest.TestCase):
         for item in items:
             with self.subTest(title=item["title_en"]):
                 self.assertLessEqual(len(item["title_en"]), bpd.TITLE_MAX_CHARS)
-                self.assertTrue(item["title_en"].endswith(")"))
+                self.assertRegex(item["title_en"], r" \(2026-06-1[01]\)$")
                 self.assertFalse(bpd.contains_japanese(item["title_en"]))
+
+    def test_suffix_helper_reserves_space_before_shortening_body(self):
+        suffix = " (2026-06-10)"
+        base = "Public Comment: " + ("Long regulatory amendment " * 8)
+        title = bpd.append_suffix_within_title_cap(base, suffix)
+
+        self.assertLessEqual(len(title), bpd.TITLE_MAX_CHARS)
+        self.assertTrue(title.endswith(suffix))
+        self.assertFalse(bpd.contains_japanese(title))
+
+    def test_trimmed_duplicate_titles_remain_identifiable(self):
+        long_title = "Public Comment: " + ("Draft amendment to technical standards " * 5)
+        items = [self._item(long_title, "2026-06-10"), self._item(long_title, "2026-06-11")]
+
+        bpd.disambiguate_duplicate_titles(items)
+
+        titles = [item["title_en"] for item in items]
+        self.assertEqual(len(set(titles)), 2)
+        self.assertTrue(titles[0].endswith(" (2026-06-10)"))
+        self.assertTrue(titles[1].endswith(" (2026-06-11)"))
+        for title in titles:
+            with self.subTest(title=title):
+                self.assertLessEqual(len(title), bpd.TITLE_MAX_CHARS)
+                self.assertFalse(bpd.contains_japanese(title))
 
 
 if __name__ == "__main__":
