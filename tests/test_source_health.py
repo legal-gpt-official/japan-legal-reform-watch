@@ -249,6 +249,14 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
 
     def test_workflow_evaluate_after_fetch_and_gate_after_commit(self):
         workflow = (REPO_ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
+        self.assertIn("uses: actions/checkout@v5", workflow)
+        self.assertIn("uses: actions/setup-python@v6", workflow)
+        self.assertNotIn("actions/checkout@v4", workflow)
+        self.assertNotIn("actions/setup-python@v5", workflow)
+        self.assertNotIn("FORCE_JAVASCRIPT_ACTIONS_TO_NODE24", workflow)
+        self.assertNotIn("ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION", workflow)
+        self.assertIn("permissions:\n  contents: write", workflow)
+
         fetch_pos = workflow.index("name: Fetch raw updates")
         evaluate_pos = workflow.index("name: Evaluate source health")
         build_pos = workflow.index("name: Build public data")
