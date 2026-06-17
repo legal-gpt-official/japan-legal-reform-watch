@@ -1,0 +1,74 @@
+"""Offline tests for scripts/summarize_updates.py.
+
+No API calls: these tests cover local AI-result application and validation only.
+"""
+
+import sys
+import unittest
+from pathlib import Path
+
+SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+import build_public_data as bpd  # noqa: E402
+import summarize_updates as su  # noqa: E402
+
+
+class TestSummarizeTitleCap(unittest.TestCase):
+    def _item(self):
+        return {
+            "id": "raw-test",
+            "title_en": "Rule-based title",
+            "title_ja": "意見募集",
+            "area": "Other",
+            "stage": "Public Comment Open",
+            "impact_level": "Low",
+            "summary_en": "Template summary.",
+            "business_impact_en": "Template impact.",
+            "recommended_action_en": "Review the official source.",
+            "source_name": "Test Source",
+            "source_url": "https://example.go.jp/a",
+            "published_at": "2026-06-16",
+            "last_checked": "2026-06-16",
+        }
+
+    def _result(self, title):
+        return {
+            "title_en": title,
+            "summary_en": "AI summary.",
+            "business_impact_en": "AI impact.",
+            "recommended_action_en": "Consider reviewing the official source.",
+            "confidence": "medium",
+            "ai_notes": "Limited metadata.",
+        }
+
+    def test_apply_result_shortens_ai_title_to_public_cap(self):
+        item = self._item()
+        su.apply_result(item, self._result("Long AI title " * 20), "2026-06-16T00:00:00Z", "model")
+
+        self.assertLessEqual(len(item["title_en"]), bpd.TITLE_MAX_CHARS)
+        self.assertEqual(item["summary_source"], "claude")
+        self.assertFalse(bpd.contains_japanese(item["title_en"]))
+
+    def test_validate_output_rejects_overlong_or_japanese_title_en(self):
+        overlong = self._item()
+        overlong["title_en"] = "A" * (bpd.TITLE_MAX_CHARS + 1)
+        japanese = self._item()
+        japanese["id"] = "raw-japanese"
+        japanese["title_en"] = "Japanese title 個人情報"
+
+        problems = su.validate_output(
+            [overlong, japanese],
+            {
+                "raw-test": {"id": "raw-test", "source_url": "https://example.go.jp/a"},
+                "raw-japanese": {"id": "raw-japanese", "source_url": "https://example.go.jp/a"},
+            },
+        )
+
+        self.assertTrue(any("raw-test: title_en exceeds" in problem for problem in problems))
+        self.assertTrue(any("raw-japanese: title_en contains Japanese" in problem for problem in problems))
+
+
+if __name__ == "__main__":
+    unittest.main()

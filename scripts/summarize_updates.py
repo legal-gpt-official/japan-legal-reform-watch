@@ -58,6 +58,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import build_public_data as public_data
+
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
 # --------------------------------------------------------------------------- #
@@ -314,7 +316,7 @@ def caution_phrases_in_item(item: dict) -> list[str]:
 # --------------------------------------------------------------------------- #
 
 def apply_result(item: dict, result: dict, summarized_at: str, model: str) -> None:
-    item["title_en"] = result["title_en"].strip()
+    item["title_en"] = public_data.shorten_title(result["title_en"].strip())
     item["summary_en"] = result["summary_en"].strip()
     item["business_impact_en"] = result["business_impact_en"].strip()
     item["recommended_action_en"] = result["recommended_action_en"].strip()
@@ -335,6 +337,10 @@ def validate_output(items: list, original_by_id: dict) -> list[str]:
         for k in AI_TEXT_FIELDS:
             if not str(it.get(k, "")).strip():
                 problems.append(f"{iid}: empty {k}")
+        if len(str(it.get("title_en", ""))) > public_data.TITLE_MAX_CHARS:
+            problems.append(f"{iid}: title_en exceeds {public_data.TITLE_MAX_CHARS} characters")
+        if public_data.contains_japanese(str(it.get("title_en", ""))):
+            problems.append(f"{iid}: title_en contains Japanese characters")
         if it.get("summary_source") == "claude" and it.get("confidence") not in ("high", "medium", "low"):
             problems.append(f"{iid}: invalid confidence {it.get('confidence')!r}")
         orig = original_by_id.get(iid)
@@ -445,7 +451,7 @@ def main(argv: list[str] | None = None) -> int:
             now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             apply_result(it, result, now, model_used)
             # Cache the successful result (+ metadata) for future runs.
-            cache[key] = {**{k: result[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+            cache[key] = {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
             summarized += 1
             logger.info("API   %s — confidence=%s — %s", it.get("id"), result.get("confidence"), it.get("title_ja", "")[:40])
         except Exception as exc:  # requirement 14: keep original, mark rule_based, log, continue
