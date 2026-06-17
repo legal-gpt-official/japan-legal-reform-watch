@@ -29,13 +29,16 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py scripts/source_health.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
 
       - name: Fetch raw updates
         run: python scripts/fetch_updates.py
+
+      - name: Evaluate source health
+        run: python scripts/source_health.py evaluate
 
       - name: Build public data
         run: python scripts/build_public_data.py
@@ -45,24 +48,27 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/summarize_updates.py --limit 30
 
-      - name: Check published data changes
+      - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- docs/data/legal_updates.json; then
-            echo "published_changed=false" >> "$GITHUB_OUTPUT"
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/source_health_state.json docs/data/legal_updates.json; then
+            echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "published_changed=true" >> "$GITHUB_OUTPUT"
+            echo "data_changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit and push updated data
-        if: steps.changes.outputs.published_changed == 'true'
+        if: steps.changes.outputs.data_changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json docs/data/legal_updates.json
+          git add data/raw_items.json data/summary_cache.json data/source_health_state.json docs/data/legal_updates.json
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             exit 0
           fi
           git commit -m "Daily update legal reform data"
           git push
+
+      - name: Enforce source health gate
+        run: python scripts/source_health.py gate

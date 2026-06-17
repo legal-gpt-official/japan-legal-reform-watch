@@ -71,42 +71,49 @@ except ImportError:  # pragma: no cover
 SOURCES = [
     {
         "name": "e-Gov Public Comment (意見募集案件一覧)",
+        "key": "egov",
         "url": "https://public-comment.e-gov.go.jp/rss/pcm_list.xml",
         "source_type": "public_comment_rss",
         "source_language": "ja",
     },
     {
         "name": "Financial Services Agency (金融庁) 新着情報",
+        "key": "fsa",
         "url": "https://www.fsa.go.jp/fsaNewsListAll_rss2.xml",
         "source_type": "regulator_rss",
         "source_language": "ja",
     },
     {
         "name": "経済産業省 (METI) ニュースリリース",
+        "key": "meti",
         "url": "https://www.meti.go.jp/ml_index_release_atom.xml",
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
     {
         "name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+        "key": "mhlw",
         "url": "https://www.mhlw.go.jp/stf/news.rdf",
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
     {
         "name": "Digital Agency (デジタル庁) 新着・更新",
+        "key": "digital-agency",
         "url": "https://www.digital.go.jp/rss/news.xml",
         "source_type": "agency_rss",
         "source_language": "ja",
     },
     {
         "name": "消費者庁 (CAA) 新着情報",
+        "key": "caa",
         "url": "https://www.caa.go.jp/news.rss",
         "source_type": "agency_rss",
         "source_language": "ja",
     },
     {
         "name": "個人情報保護委員会 (PPC) 新着情報",
+        "key": "ppc",
         "url": "https://www.ppc.go.jp/information/",
         "source_type": "regulator_html",
         "source_language": "ja",
@@ -114,6 +121,7 @@ SOURCES = [
     },
     {
         "name": "公正取引委員会 (JFTC) 報道発表",
+        "key": "jftc",
         "url": "https://www.jftc.go.jp/houdou/pressrelease/shuyohodoR8.html",
         "source_type": "regulator_html",
         "source_language": "ja",
@@ -123,12 +131,14 @@ SOURCES = [
     },
     {
         "name": "法務省 (MOJ) 新着情報",
+        "key": "moj",
         "url": "https://www.moj.go.jp/news.xml",
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
     {
         "name": "環境省 (MOE) 報道発表",
+        "key": "moe",
         "url": "https://www.env.go.jp/press/",
         "source_type": "ministry_html",
         "source_language": "ja",
@@ -136,18 +146,21 @@ SOURCES = [
     },
     {
         "name": "財務省 (MOF) 新着情報",
+        "key": "mof",
         "url": "https://www.mof.go.jp/news.rss",
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
     {
         "name": "総務省 (MIC) 新着情報",
+        "key": "mic",
         "url": "https://www.soumu.go.jp/news.rdf",  # Shift_JIS feed; parsers honor the XML declaration
         "source_type": "ministry_rss",
         "source_language": "ja",
     },
     {
         "name": "国土交通省 (MLIT) 報道発表",
+        "key": "mlit",
         "url": "https://www.mlit.go.jp/report/press/",
         "source_type": "ministry_html",
         "source_language": "ja",
@@ -156,6 +169,7 @@ SOURCES = [
     },
     {
         "name": "農林水産省 (MAFF) 報道発表",
+        "key": "maff",
         "url": "https://www.maff.go.jp/j/press/rss.xml",
         "source_type": "ministry_rss",
         "source_language": "ja",
@@ -176,6 +190,7 @@ DATA_DIR = REPO_ROOT / "data"
 RAW_ITEMS_PATH = DATA_DIR / "raw_items.json"
 LOG_DIR = REPO_ROOT / "logs"
 LOG_PATH = LOG_DIR / "fetch.log"
+SOURCE_FETCH_REPORT_PATH = LOG_DIR / "source_fetch_report.json"
 
 logger = logging.getLogger("jlrw.fetch")
 
@@ -695,26 +710,89 @@ def save_json(path: Path, data: list[dict]) -> None:
     tmp.replace(path)
 
 
+def save_json_document(path: Path, data: dict) -> None:
+    """Atomic, human-readable JSON document write."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    tmp.replace(path)
+
+
+def sanitize_error_message(value: object, max_chars: int = 300) -> str:
+    """Keep source-health errors concise and safe for logs/reports."""
+    text = _WS_RE.sub(" ", str(value or "")).strip()
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip() + "..."
+
+
+def valid_published_date(value: str) -> str | None:
+    """Return YYYY-MM-DD for valid date/date-time strings; otherwise None."""
+    if not value or not isinstance(value, str):
+        return None
+    date_text = value[:10]
+    try:
+        datetime.strptime(date_text, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return date_text
+
+
+def latest_published_date(items: list[dict]) -> str | None:
+    dates = [date for date in (valid_published_date(item.get("published_at", "")) for item in items) if date]
+    return max(dates) if dates else None
+
+
+def source_report_row(
+    source: dict,
+    status: str,
+    duration_ms: int,
+    fetched_count: int = 0,
+    new_count: int = 0,
+    latest_published_at: str | None = None,
+    error_type: str | None = None,
+    error_message: str | None = None,
+) -> dict:
+    return {
+        "source_key": source.get("key", ""),
+        "source_name": source.get("name", ""),
+        "source_url": source.get("url", ""),
+        "status": status,
+        "fetched_count": fetched_count,
+        "new_count": new_count,
+        "latest_published_at": latest_published_at,
+        "duration_ms": duration_ms,
+        "error_type": error_type,
+        "error_message": error_message,
+    }
+
+
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
 
 def run(timeout: int, dry_run: bool) -> int:
-    fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    started_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    fetched_at = started_at
     logger.info("=== fetch_updates run start (fetched_at=%s, dry_run=%s) ===", fetched_at, dry_run)
 
     existing = load_existing(RAW_ITEMS_PATH)
     seen_ids = {it["id"] for it in existing if it.get("id")}
     seen_urls = {it["source_url"] for it in existing if it.get("source_url")}
+    initial_seen_ids = set(seen_ids)
 
     checked_sources = 0
     fetched_items = 0
     failed_sources: list[dict] = []
     new_items: list[dict] = []
+    source_reports: list[dict] = []
 
     for source in SOURCES:
         checked_sources += 1
         name, url = source["name"], source["url"]
+        source_started = time.monotonic()
         try:
             content = http_get(
                 url,
@@ -732,10 +810,12 @@ def run(timeout: int, dry_run: bool) -> int:
             if not entries:
                 logger.warning("No entries parsed from %s (%s).", name, effective_url)
 
+            source_items_by_id: dict[str, dict] = {}
             for entry in entries:
                 item = build_item(entry, source, fetched_at)
                 if item is None:
                     continue
+                source_items_by_id.setdefault(item["id"], item)
                 if item["id"] in seen_ids:
                     continue
                 if item["source_url"] and item["source_url"] in seen_urls:
@@ -744,10 +824,33 @@ def run(timeout: int, dry_run: bool) -> int:
                 if item["source_url"]:
                     seen_urls.add(item["source_url"])
                 new_items.append(item)
+            source_new_count = sum(1 for item_id in source_items_by_id if item_id not in initial_seen_ids)
+            duration_ms = int(round((time.monotonic() - source_started) * 1000))
+            source_reports.append(
+                source_report_row(
+                    source,
+                    "success",
+                    duration_ms,
+                    fetched_count=len(source_items_by_id),
+                    new_count=source_new_count,
+                    latest_published_at=latest_published_date(list(source_items_by_id.values())),
+                )
+            )
         except Exception as exc:  # noqa: BLE001 — one bad source must not stop the run
-            reason = f"{type(exc).__name__}: {exc}"
+            duration_ms = int(round((time.monotonic() - source_started) * 1000))
+            message = sanitize_error_message(exc)
+            reason = f"{type(exc).__name__}: {message}"
             failed_sources.append({"name": name, "url": url, "reason": reason})
             logger.error("FAIL %s (%s): %s", name, url, reason)
+            source_reports.append(
+                source_report_row(
+                    source,
+                    "error",
+                    duration_ms,
+                    error_type=type(exc).__name__,
+                    error_message=message,
+                )
+            )
 
     combined = existing + new_items
     if dry_run:
@@ -755,6 +858,17 @@ def run(timeout: int, dry_run: bool) -> int:
     else:
         save_json(RAW_ITEMS_PATH, combined)
         logger.info("Wrote %s (%d new, %d total).", RAW_ITEMS_PATH.name, len(new_items), len(combined))
+
+    finished_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    report = {
+        "schema_version": 1,
+        "started_at": started_at,
+        "finished_at": finished_at,
+        "configured_source_count": len(SOURCES),
+        "sources": source_reports,
+    }
+    save_json_document(SOURCE_FETCH_REPORT_PATH, report)
+    logger.info("Wrote %s (%d source rows).", SOURCE_FETCH_REPORT_PATH.name, len(source_reports))
 
     logger.info(
         "RUN SUMMARY checked_sources=%d fetched_items=%d new_items=%d total_items=%d failed_sources=%d",
@@ -783,6 +897,7 @@ def _print_console_summary(checked, fetched, new, total, failed, dry_run) -> Non
     if dry_run:
         print("(dry-run: data/raw_items.json was not modified)")
     print(f"log: {LOG_PATH}")
+    print(f"source report: {SOURCE_FETCH_REPORT_PATH}")
 
 
 def main(argv: list[str] | None = None) -> int:

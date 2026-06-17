@@ -19,6 +19,7 @@ This repository is the **minimum viable static version**:
 - The **published file [`docs/data/legal_updates.json`](docs/data/legal_updates.json) is generated** from fetched data by `scripts/fetch_updates.py` (raw fetch) → `scripts/build_public_data.py` (provisional, rule-based mapping).
 - **Stage 3 script exists, but AI summaries are generated only after `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`.** Before Stage 3 has been run, `docs/data/legal_updates.json` may contain only fixed-template English and may not yet include `summary_source`. When Stage 3 runs, top-N items receive `summary_source: "claude"`; untouched or failed items are marked `summary_source: "rule_based"`. `area` / `stage` / `impact_level` and ranking remain keyword rules (a technical heuristic, not a legal judgement).
 - **GitHub Actions daily update workflow exists** at `.github/workflows/daily-update.yml` for manual runs and a daily 21:00 UTC schedule (06:00 JST).
+- **Source Health Monitor exists for administrators in GitHub Actions.** It evaluates per-source raw fetch counts, writes a minimal health state file, and can fail the workflow only after serious source-health conditions. It is not shown in the public dashboard UI.
 - The original hand-curated sample is kept at [`data/legal_updates.json`](data/legal_updates.json) as a schema reference only.
 - The dashboard runs entirely in the browser from the `docs/` folder.
 
@@ -78,6 +79,20 @@ The script prints a console summary (`checked_sources`, `fetched_items`, `new_it
 **Untrusted input:** every fetched field — especially `source_url`, `title_ja`, and `raw_summary` — is treated as untrusted external data. It is stored verbatim (with light text normalization) and is **never** rendered, executed, or trusted by the fetch step.
 
 Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`.
+
+## Source Health Monitor
+
+The Source Health Monitor is an administrator-facing GitHub Actions check. It is designed to detect silent per-source fetch failures, especially for official HTML parsers such as MOE and MLIT. It is **not** displayed in `docs/app.js`, public dashboard cards, CSV export, URL state, or the Data status UI.
+
+Health is based on raw source fetch results from `scripts/fetch_updates.py`, not on how many records survive Stage 2 publication filtering. For example, if MOJ returns 10 raw parsed items but all are later excluded as administrative noise, source fetch health is still healthy and published items may be 0.
+
+`scripts/fetch_updates.py` writes [`logs/source_fetch_report.json`](logs/source_fetch_report.json) after each run. This transient run report includes `schema_version`, run timestamps, configured source count, and one row per source with `source_key`, `source_name`, `source_url`, `status`, `fetched_count`, `new_count`, `latest_published_at`, `duration_ms`, `error_type`, and `error_message`.
+
+`scripts/source_health.py evaluate` validates the report, updates [`data/source_health_state.json`](data/source_health_state.json), emits GitHub warning annotations for one-off zero/error results, and appends a Markdown table to `GITHUB_STEP_SUMMARY` when available. The state file stores only minimal streak state: consecutive zero runs, consecutive error runs, last status, last problem timestamp, and last recovered timestamp. It deliberately does not store every checked-at timestamp or per-run counts, so healthy runs do not create daily diffs.
+
+`scripts/source_health.py gate` runs after the automated commit step and fails only for serious conditions: report/schema problems, configured/report source mismatch, all 14 sources returning zero or error in the same run, or the same source reaching 3 consecutive zero-result or error runs. One or two isolated zero/error runs are warnings, not workflow failures.
+
+When adding a source, add a stable `key` in `fetch_updates.py`, keep the existing `source_name`/URL identity behavior intact, add the English display mapping in `source_health.py`, and update the health tests. In GitHub Actions, open the run's **Summary** tab and review the **Source Health Summary** table for per-source fetched counts, new counts, latest published date, and streaks.
 
 ## Build published data (Stage 2 — provisional, rule-based)
 
@@ -160,22 +175,24 @@ The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MO
 The workflow uses `ubuntu-latest`, Python 3.11, installs `requirements.txt`, then runs the **offline regression tests as a gate before any network access**:
 
 ```
-python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py
+python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py scripts/source_health.py
 python -m unittest discover -s tests
 python scripts/fetch_updates.py
+python scripts/source_health.py evaluate
 python scripts/build_public_data.py
 python scripts/summarize_updates.py --limit 10
+python scripts/source_health.py gate
 ```
 
 If compilation or any test fails, the job stops there — no fetch, no rebuild, no API call, and no commit. The test steps do not receive `ANTHROPIC_API_KEY`; the secret is exposed only to the summarize step.
 
 Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries. If the secret is missing, the summarization script exits cleanly after printing usage.
 
-The workflow commits only when `docs/data/legal_updates.json` changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits.
+The workflow commits when any tracked data artifact changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, `data/source_health_state.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits. The final source-health gate runs after this commit step, so healthy-source updates and health-state changes can be preserved before a serious source-health failure marks the workflow red.
 
 ## Tests
 
-Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, the published-file JSON schema, and the Stage 1 parsers / `SOURCES` configuration. They make **no network calls and write no files** — the published data is validated read-only.
+Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, the published-file JSON schema, Source Health Monitor behavior, and the Stage 1 parsers / `SOURCES` configuration. They make **no network calls**; the published data is validated read-only.
 
 ```
 python -m unittest discover -s tests     # standard library, no extra dependencies
