@@ -23,6 +23,7 @@ SCHEMA_VERSION = 1
 STATE_SCHEMA_VERSION = 1
 GATE_STREAK_THRESHOLD = 3
 ERROR_MESSAGE_MAX_CHARS = 300
+PERSIST_STATE_ENV = "SOURCE_HEALTH_PERSIST_STATE"
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
@@ -89,6 +90,19 @@ def sanitize_error_message(value: Any, max_chars: int = ERROR_MESSAGE_MAX_CHARS)
 
 def workflow_escape(value: str) -> str:
     return value.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+
+
+def env_flag(name: str, default: bool) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def should_persist_state(args: argparse.Namespace) -> bool:
+    if getattr(args, "persist_state", None) is not None:
+        return bool(args.persist_state)
+    return env_flag(PERSIST_STATE_ENV, True)
 
 
 def load_json(path: Path) -> tuple[Any | None, list[str]]:
@@ -262,7 +276,12 @@ def update_one_source_state(previous: dict[str, Any], current_status: str, check
     return next_state
 
 
-def evaluate_report(report: Any, previous_state: Any | None, checked_at: str | None = None) -> dict[str, Any]:
+def evaluate_report(
+    report: Any,
+    previous_state: Any | None,
+    checked_at: str | None = None,
+    persist_state: bool = True,
+) -> dict[str, Any]:
     checked_at = checked_at or (report.get("finished_at") if isinstance(report, dict) else None) or utc_now_iso()
     problems = validate_report(report)
     state = normalize_state(previous_state)
@@ -286,8 +305,11 @@ def evaluate_report(report: Any, previous_state: Any | None, checked_at: str | N
         key = source["key"]
         row = rows_by_key[key]
         current_status = source_current_status(row)
-        source_state = update_one_source_state(next_state["sources"][key], current_status, checked_at)
-        next_state["sources"][key] = source_state
+        if persist_state:
+            source_state = update_one_source_state(next_state["sources"][key], current_status, checked_at)
+            next_state["sources"][key] = source_state
+        else:
+            source_state = next_state["sources"][key]
         if current_status == "healthy":
             healthy_count += 1
         elif current_status == "warning_zero":
@@ -408,7 +430,7 @@ def validate_state_for_gate(state: Any) -> list[str]:
     return problems
 
 
-def gate_failures(report: Any, state: Any) -> list[str]:
+def gate_failures(report: Any, state: Any, enforce_streaks: bool = True) -> list[str]:
     failures = validate_report(report)
     failures.extend(validate_state_for_gate(state))
     if failures:
@@ -419,13 +441,14 @@ def gate_failures(report: Any, state: Any) -> list[str]:
     if current_statuses and all(status != "healthy" for status in current_statuses):
         failures.append("All configured sources returned errors or zero parsed items in this run.")
 
-    for source in configured_sources():
-        key = source["key"]
-        source_state = state["sources"][key]
-        if int(source_state.get("consecutive_zero_runs") or 0) >= GATE_STREAK_THRESHOLD:
-            failures.append(f"{source['display_name']} returned zero parsed items for 3 consecutive runs.")
-        if int(source_state.get("consecutive_error_runs") or 0) >= GATE_STREAK_THRESHOLD:
-            failures.append(f"{source['display_name']} failed for 3 consecutive runs.")
+    if enforce_streaks:
+        for source in configured_sources():
+            key = source["key"]
+            source_state = state["sources"][key]
+            if int(source_state.get("consecutive_zero_runs") or 0) >= GATE_STREAK_THRESHOLD:
+                failures.append(f"{source['display_name']} returned zero parsed items for 3 consecutive runs.")
+            if int(source_state.get("consecutive_error_runs") or 0) >= GATE_STREAK_THRESHOLD:
+                failures.append(f"{source['display_name']} failed for 3 consecutive runs.")
     return failures
 
 
@@ -436,6 +459,7 @@ def load_report_and_state(report_path: Path, state_path: Path) -> tuple[Any | No
 
 
 def cmd_evaluate(args: argparse.Namespace) -> int:
+    persist_state = should_persist_state(args)
     report, report_errors = load_json(args.report)
     state, state_errors = load_json(args.state)
     if state_errors:
@@ -451,10 +475,12 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
             "error_count": 0,
         }
     else:
-        evaluation = evaluate_report(report, state)
-        if evaluation["valid"]:
+        evaluation = evaluate_report(report, state, persist_state=persist_state)
+        if evaluation["valid"] and persist_state:
             changed = save_json_if_changed(args.state, evaluation["state"])
             print(f"Source health state {'updated' if changed else 'unchanged'}: {args.state}")
+        elif evaluation["valid"]:
+            print(f"Source health state not persisted for this run: {args.state}")
 
     summary = generate_step_summary(evaluation)
     append_step_summary(summary, args.summary)
@@ -466,22 +492,24 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
         print(
             "Source health evaluated: "
             f"{evaluation['healthy_count']} healthy, {evaluation['warning_count']} warnings, "
-            f"{evaluation['error_count']} errors."
+            f"{evaluation['error_count']} errors. "
+            f"persist_state={'true' if persist_state else 'false'}."
         )
     return 0
 
 
 def cmd_gate(args: argparse.Namespace) -> int:
+    enforce_streaks = should_persist_state(args)
     report, state, load_errors = load_report_and_state(args.report, args.state)
     failures = list(load_errors)
     if not load_errors:
-        failures.extend(gate_failures(report, state))
+        failures.extend(gate_failures(report, state, enforce_streaks=enforce_streaks))
     if failures:
         for failure in failures:
             print(f"::error title=Source health gate::{workflow_escape(failure)}")
             print(f"Source health gate failure: {failure}", file=sys.stderr)
         return 1
-    print("Source health gate passed.")
+    print(f"Source health gate passed. enforce_streaks={'true' if enforce_streaks else 'false'}.")
     return 0
 
 
@@ -493,11 +521,15 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate.add_argument("--report", type=Path, default=DEFAULT_REPORT_PATH)
     evaluate.add_argument("--state", type=Path, default=DEFAULT_STATE_PATH)
     evaluate.add_argument("--summary", type=Path, default=None)
+    evaluate.add_argument("--persist-state", dest="persist_state", action="store_true", default=None)
+    evaluate.add_argument("--no-persist-state", dest="persist_state", action="store_false")
     evaluate.set_defaults(func=cmd_evaluate)
 
     gate = subparsers.add_parser("gate", help="Fail only on source-health gate conditions.")
     gate.add_argument("--report", type=Path, default=DEFAULT_REPORT_PATH)
     gate.add_argument("--state", type=Path, default=DEFAULT_STATE_PATH)
+    gate.add_argument("--persist-state", dest="persist_state", action="store_true", default=None)
+    gate.add_argument("--no-persist-state", dest="persist_state", action="store_false")
     gate.set_defaults(func=cmd_gate)
     return parser
 

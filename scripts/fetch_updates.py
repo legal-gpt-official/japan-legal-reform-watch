@@ -41,6 +41,7 @@ import html
 import json
 import logging
 import re
+import socket
 import sys
 import time
 import urllib.error
@@ -184,6 +185,8 @@ USER_AGENT = (
 DEFAULT_TIMEOUT_SECONDS = 20
 MAX_ITEMS_PER_SOURCE = 100  # safety cap so one large feed cannot dominate a run
 JST = ZoneInfo("Asia/Tokyo")
+HTTP_MAX_ATTEMPTS = 3
+HTTP_RETRY_BACKOFF_SECONDS = (2, 5)
 
 # Paths are resolved relative to the repository root (this file lives in scripts/).
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -224,7 +227,7 @@ def setup_logging() -> None:
 # Fetch + parse (with stdlib fallbacks)
 # --------------------------------------------------------------------------- #
 
-def http_get(
+def _http_get_once(
     url: str,
     timeout: int,
     prefer_urllib: bool = False,
@@ -251,6 +254,62 @@ def http_get(
         if status and status >= 400:
             raise urllib.error.HTTPError(url, status, f"HTTP {status}", r.headers, None)
         return r.read()
+
+
+def _http_status_from_exception(exc: BaseException) -> int | None:
+    if isinstance(exc, urllib.error.HTTPError):
+        return int(exc.code)
+    if requests is not None:
+        response = getattr(exc, "response", None)
+        status_code = getattr(response, "status_code", None)
+        if status_code is not None:
+            return int(status_code)
+    return None
+
+
+def _is_retryable_fetch_error(exc: BaseException) -> bool:
+    status = _http_status_from_exception(exc)
+    if status is not None:
+        return status == 429 or 500 <= status <= 599
+    if isinstance(exc, (TimeoutError, socket.timeout, urllib.error.URLError)):
+        return True
+    if requests is not None and isinstance(exc, (requests.Timeout, requests.ConnectionError)):
+        return True
+    return False
+
+
+def _fetch_error_label(exc: BaseException) -> str:
+    status = _http_status_from_exception(exc)
+    if status is not None:
+        return f"HTTP {status}"
+    return type(exc).__name__
+
+
+def http_get(
+    url: str,
+    timeout: int,
+    prefer_urllib: bool = False,
+    accept_html: bool = False,
+    user_agent: str = USER_AGENT,
+) -> bytes:
+    """Fetch raw bytes with limited retry for transient network failures."""
+    for attempt in range(HTTP_MAX_ATTEMPTS):
+        try:
+            return _http_get_once(url, timeout, prefer_urllib, accept_html, user_agent)
+        except Exception as exc:
+            if attempt >= HTTP_MAX_ATTEMPTS - 1 or not _is_retryable_fetch_error(exc):
+                raise
+            delay = HTTP_RETRY_BACKOFF_SECONDS[min(attempt, len(HTTP_RETRY_BACKOFF_SECONDS) - 1)]
+            logger.warning(
+                "Transient fetch error for %s (%s, attempt %d/%d); retrying in %ss.",
+                url,
+                _fetch_error_label(exc),
+                attempt + 1,
+                HTTP_MAX_ATTEMPTS,
+                delay,
+            )
+            time.sleep(delay)
+    raise RuntimeError("unreachable fetch retry state")
 
 
 _META_REFRESH_RE = re.compile(

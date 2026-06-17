@@ -38,6 +38,8 @@ jobs:
         run: python scripts/fetch_updates.py
 
       - name: Evaluate source health
+        env:
+          SOURCE_HEALTH_PERSIST_STATE: ${{ github.event_name == 'schedule' && '1' || '0' }}
         run: python scripts/source_health.py evaluate
 
       - name: Build public data
@@ -71,4 +73,6 @@ jobs:
           git push
 
       - name: Enforce source health gate
+        env:
+          SOURCE_HEALTH_PERSIST_STATE: ${{ github.event_name == 'schedule' && '1' || '0' }}
         run: python scripts/source_health.py gate

@@ -8,6 +8,7 @@ ordering.
 import json
 import sys
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest import mock
 
@@ -113,6 +114,37 @@ class TestSourceHealthEvaluation(unittest.TestCase):
         self.assertEqual(maff["zero_streak"], 0)
         self.assertEqual(maff["error_streak"], 1)
 
+    def test_workflow_dispatch_error_does_not_increment_persistent_streak(self):
+        state = sh.initial_state()
+        state["sources"]["meti"]["consecutive_error_runs"] = 2
+        report = make_report(meti={"status": "error", "fetched_count": 0, "new_count": 0,
+                                   "latest_published_at": None, "error_type": "TimeoutError",
+                                   "error_message": "timed out"})
+
+        evaluation = sh.evaluate_report(report, state, "2026-06-16T00:00:12Z", persist_state=False)
+        meti = row_by_key(evaluation, "meti")
+
+        self.assertEqual(meti["status"], "error")
+        self.assertEqual(meti["error_streak"], 2)
+        self.assertEqual(evaluation["state"], state)
+
+    def test_workflow_dispatch_healthy_does_not_rewrite_persistent_state(self):
+        state = sh.initial_state()
+        state["sources"]["meti"].update(
+            {
+                "consecutive_error_runs": 3,
+                "last_status": "error",
+                "last_problem_at": "2026-06-16T00:00:00Z",
+            }
+        )
+
+        evaluation = sh.evaluate_report(make_report(), state, "2026-06-16T00:00:12Z", persist_state=False)
+        meti = row_by_key(evaluation, "meti")
+
+        self.assertEqual(meti["status"], "healthy")
+        self.assertEqual(meti["error_streak"], 3)
+        self.assertEqual(evaluation["state"], state)
+
     def test_healthy_recovery_resets_streaks(self):
         state = sh.initial_state()
         state["sources"]["moe"].update(
@@ -166,6 +198,18 @@ class TestSourceHealthGate(unittest.TestCase):
         failures = sh.gate_failures(make_report(maff={"status": "error", "fetched_count": 0, "new_count": 0}), state)
         self.assertTrue(any("MAFF failed for 3 consecutive runs" in failure for failure in failures))
 
+    def test_workflow_dispatch_ignores_existing_streak_threshold_for_gate(self):
+        state = sh.initial_state()
+        state["sources"]["maff"]["consecutive_error_runs"] = 3
+
+        failures = sh.gate_failures(
+            make_report(maff={"status": "error", "fetched_count": 0, "new_count": 0}),
+            state,
+            enforce_streaks=False,
+        )
+
+        self.assertFalse(any("MAFF failed for 3 consecutive runs" in failure for failure in failures))
+
     def test_one_or_two_warnings_do_not_fail_gate(self):
         for streak in (1, 2):
             with self.subTest(streak=streak):
@@ -182,10 +226,24 @@ class TestSourceHealthGate(unittest.TestCase):
         failures = sh.gate_failures(report, sh.initial_state())
         self.assertTrue(any("All configured sources" in failure for failure in failures))
 
+    def test_workflow_dispatch_all_sources_failed_or_zero_still_fails_gate(self):
+        report = make_report(**{
+            key: {"fetched_count": 0, "new_count": 0, "latest_published_at": None}
+            for key in EXPECTED_SOURCE_KEYS
+        })
+        failures = sh.gate_failures(report, sh.initial_state(), enforce_streaks=False)
+        self.assertTrue(any("All configured sources" in failure for failure in failures))
+
     def test_missing_configured_source_fails_gate(self):
         report = make_report()
         report["sources"] = [row for row in report["sources"] if row["source_key"] != "mlit"]
         failures = sh.gate_failures(report, sh.initial_state())
+        self.assertTrue(any("missing configured sources: mlit" in failure for failure in failures))
+
+    def test_workflow_dispatch_report_mismatch_still_fails_gate(self):
+        report = make_report()
+        report["sources"] = [row for row in report["sources"] if row["source_key"] != "mlit"]
+        failures = sh.gate_failures(report, sh.initial_state(), enforce_streaks=False)
         self.assertTrue(any("missing configured sources: mlit" in failure for failure in failures))
 
     def test_unknown_source_fails_gate(self):
@@ -196,6 +254,34 @@ class TestSourceHealthGate(unittest.TestCase):
 
 
 class TestFetchReportingAndWorkflow(unittest.TestCase):
+    def test_timeout_retry_stops_at_max_attempts(self):
+        with mock.patch.object(fu, "_http_get_once", side_effect=TimeoutError("timed out")) as fetch_once, \
+                mock.patch.object(fu.time, "sleep") as sleep:
+            with self.assertRaises(TimeoutError):
+                fu.http_get("https://example.go.jp/feed.xml", timeout=1)
+
+        self.assertEqual(fetch_once.call_count, 3)
+        self.assertEqual([call.args[0] for call in sleep.call_args_list], [2, 5])
+
+    def test_timeout_then_success_retries_once(self):
+        with mock.patch.object(fu, "_http_get_once", side_effect=[TimeoutError("timed out"), b"ok"]) as fetch_once, \
+                mock.patch.object(fu.time, "sleep") as sleep:
+            content = fu.http_get("https://example.go.jp/feed.xml", timeout=1)
+
+        self.assertEqual(content, b"ok")
+        self.assertEqual(fetch_once.call_count, 2)
+        sleep.assert_called_once_with(2)
+
+    def test_http_404_is_not_retried(self):
+        error = urllib.error.HTTPError("https://example.go.jp/missing.xml", 404, "Not Found", None, None)
+        with mock.patch.object(fu, "_http_get_once", side_effect=error) as fetch_once, \
+                mock.patch.object(fu.time, "sleep") as sleep:
+            with self.assertRaises(urllib.error.HTTPError):
+                fu.http_get("https://example.go.jp/missing.xml", timeout=1)
+
+        self.assertEqual(fetch_once.call_count, 1)
+        sleep.assert_not_called()
+
     def test_fetch_run_preserves_raw_merge_and_writes_source_report(self):
         source = {
             "key": "egov",
@@ -256,6 +342,8 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
         self.assertNotIn("FORCE_JAVASCRIPT_ACTIONS_TO_NODE24", workflow)
         self.assertNotIn("ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION", workflow)
         self.assertIn("permissions:\n  contents: write", workflow)
+        self.assertGreaterEqual(workflow.count("SOURCE_HEALTH_PERSIST_STATE"), 2)
+        self.assertIn("github.event_name == 'schedule'", workflow)
 
         fetch_pos = workflow.index("name: Fetch raw updates")
         evaluate_pos = workflow.index("name: Evaluate source health")
