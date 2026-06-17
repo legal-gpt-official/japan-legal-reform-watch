@@ -2,12 +2,13 @@
 
 No network access: these tests cover the SOURCES configuration, id/hash
 stability, text normalization, date parsing, and the feed/HTML parsers using
-inline fixtures only. The fetch pipeline itself (run/main) is never invoked.
+inline fixtures only. Pipeline tests mock network and file writes.
 """
 
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
@@ -138,6 +139,70 @@ class TestIdentityAndNormalization(unittest.TestCase):
         for key in ("id", "title_ja", "source_name", "source_url", "published_at",
                     "fetched_at", "source_language", "raw_summary", "raw_content_hash", "source_type"):
             self.assertIn(key, item)
+
+
+class TestFirstSeenAtRawMerge(unittest.TestCase):
+    def test_run_marks_only_actually_appended_items_as_first_seen(self):
+        source = {
+            "key": "egov",
+            "name": "Test Source",
+            "url": "https://example.go.jp/feed.xml",
+            "source_type": "ministry_rss",
+            "source_language": "ja",
+        }
+        legacy_entry = {
+            "title": "Legacy title",
+            "link": "https://example.go.jp/a",
+            "summary": "",
+            "published_iso": "2026-06-01",
+        }
+        seen_entry = {
+            "title": "Previously detected title",
+            "link": "https://example.go.jp/b",
+            "summary": "",
+            "published_iso": "2026-06-02",
+        }
+        new_entry = {
+            "title": "New detected title",
+            "link": "https://example.go.jp/c",
+            "summary": "",
+            "published_iso": "2026-06-18",
+        }
+        legacy_item = fu.build_item(legacy_entry, source, "2026-06-01T00:00:00Z")
+        seen_item = fu.build_item(seen_entry, source, "2026-06-02T00:00:00Z")
+        seen_item["first_seen_at"] = "2026-06-03"
+        saved_raw = {}
+        saved_report = {}
+
+        def capture_raw(_path, data):
+            saved_raw["data"] = data
+
+        def capture_report(_path, data):
+            saved_report["data"] = data
+
+        with mock.patch.object(fu, "SOURCES", [source]), \
+                mock.patch.object(fu, "load_existing", return_value=[legacy_item, seen_item]), \
+                mock.patch.object(fu, "save_json", side_effect=capture_raw), \
+                mock.patch.object(fu, "save_json_document", side_effect=capture_report), \
+                mock.patch.object(fu, "http_get", return_value=b"fixture"), \
+                mock.patch.object(
+                    fu,
+                    "parse_source_entries",
+                    return_value=[legacy_entry, seen_entry, new_entry, new_entry],
+                ):
+            exit_code = fu.run(timeout=1, dry_run=False, first_seen_date="2026-06-18")
+
+        self.assertEqual(exit_code, 0)
+        merged = saved_raw["data"]
+        self.assertEqual(len(merged), 3)
+        self.assertNotIn("first_seen_at", merged[0])
+        self.assertEqual(merged[1]["first_seen_at"], "2026-06-03")
+        self.assertEqual(merged[2]["first_seen_at"], "2026-06-18")
+
+        report_row = saved_report["data"]["sources"][0]
+        self.assertEqual(report_row["fetched_count"], 3)
+        self.assertEqual(report_row["new_count"], 1)
+        self.assertEqual(report_row["latest_published_at"], "2026-06-18")
 
 
 class TestDateParsing(unittest.TestCase):

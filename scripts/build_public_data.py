@@ -47,8 +47,9 @@ import json
 import re
 import shutil
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # --------------------------------------------------------------------------- #
 # Paths / constants
@@ -61,7 +62,7 @@ OUTPUT_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.json"
 BACKUP_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.backup.json"
 
 MAX_OUTPUT_ITEMS = 1000  # public dataset cap; the UI renders 50 at a time (Load more)
-JST = timezone(timedelta(hours=9))  # display Japanese-source dates on the JST calendar
+JST = ZoneInfo("Asia/Tokyo")  # display Japanese-source dates on the JST calendar
 
 # The 13 fields the existing dashboard UI expects. (relevance_score is an extra,
 # optional field appended after these; the UI ignores unknown fields.)
@@ -1250,11 +1251,36 @@ def date_only(value: str) -> str:
     return ""
 
 
+def valid_first_seen_at(value: str, today: str) -> str:
+    """Return YYYY-MM-DD only for valid, non-future first_seen_at values."""
+    if not isinstance(value, str):
+        return ""
+    date_text = value.strip()
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date_text):
+        return ""
+    try:
+        seen_date = datetime.strptime(date_text, "%Y-%m-%d").date()
+        today_date = datetime.strptime(today, "%Y-%m-%d").date()
+    except ValueError:
+        return ""
+    if seen_date > today_date:
+        return ""
+    return date_text
+
+
+def current_jst_date(now: datetime | None = None) -> str:
+    """Return today's service date for first_seen_at validation."""
+    current = now or datetime.now(JST)
+    if current.tzinfo is None:
+        current = current.replace(tzinfo=JST)
+    return current.astimezone(JST).date().isoformat()
+
+
 # --------------------------------------------------------------------------- #
 # Build
 # --------------------------------------------------------------------------- #
 
-def build_public_item(raw: dict, build_date: str, score: float) -> dict:
+def build_public_item(raw: dict, build_date: str, score: float, today: str | None = None) -> dict:
     title_ja = raw.get("title_ja") or ""
     source_name = raw.get("source_name") or ""
     source_type = raw.get("source_type") or ""
@@ -1263,7 +1289,7 @@ def build_public_item(raw: dict, build_date: str, score: float) -> dict:
     area = classify_area(title_ja, source_name)
     title_en = generate_title_en(title_ja, source_name, stage, area)
 
-    return {
+    item = {
         "id": raw.get("id") or "",                 # reuse the stable raw id (traceable)
         "title_en": title_en,                      # rule-based label — NOT an official translation
         "title_ja": title_ja,
@@ -1279,6 +1305,10 @@ def build_public_item(raw: dict, build_date: str, score: float) -> dict:
         "last_checked": date_only(raw.get("fetched_at", "")) or build_date,
         "relevance_score": score,                   # internal heuristic (optional; UI ignores it)
     }
+    first_seen_at = valid_first_seen_at(raw.get("first_seen_at", ""), today or build_date)
+    if first_seen_at:
+        item["first_seen_at"] = first_seen_at
+    return item
 
 
 def load_raw(path: Path) -> list[dict]:
@@ -1351,6 +1381,7 @@ def main(argv: list[str] | None = None) -> int:
     build_dt = datetime.now(timezone.utc)
     build_ts = build_dt.timestamp()
     build_date = build_dt.strftime("%Y-%m-%d")
+    first_seen_today = current_jst_date()
 
     raw_items = load_raw(RAW_PATH)
     input_items = len(raw_items)
@@ -1384,7 +1415,7 @@ def main(argv: list[str] | None = None) -> int:
             excluded_items += 1
             continue
 
-        item = build_public_item(raw, build_date, score)
+        item = build_public_item(raw, build_date, score, first_seen_today)
         weight = IMPACT_WEIGHT.get(item["impact_level"], 1)
         # Ordering applies recency and stage adjustments without changing the
         # content-based relevance_score written to the public JSON.
@@ -1427,6 +1458,9 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         if contains_japanese(title_en):
             print(f"ERROR: built title_en contains Japanese characters: {it.get('id')}", file=sys.stderr)
+            return 2
+        if "first_seen_at" in it and not valid_first_seen_at(it.get("first_seen_at", ""), first_seen_today):
+            print(f"ERROR: built item has invalid first_seen_at: {it.get('id')}", file=sys.stderr)
             return 2
 
     backup_created = False

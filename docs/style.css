@@ -529,6 +529,12 @@ code {
   color: #6b6254;
 }
 
+.badge-newly-detected {
+  background: #edf3ee;
+  border-color: #cbd9ce;
+  color: #365b3d;
+}
+
 .card.impact-high .badge-impact {
   background: var(--color-impact-high);
 }

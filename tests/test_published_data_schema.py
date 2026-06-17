@@ -121,6 +121,14 @@ class TestPublishedDataSchema(unittest.TestCase):
                     self.assertRegex(it["published_at"], DATE_RE)
                 self.assertRegex(it["last_checked"], DATE_RE)
 
+    def test_first_seen_at_is_optional_but_valid_when_present(self):
+        for it in self.items:
+            if "first_seen_at" in it:
+                with self.subTest(id=it["id"]):
+                    value = it["first_seen_at"]
+                    self.assertIsInstance(value, str)
+                    self.assertRegex(value, DATE_RE)
+
     def test_source_url_is_http(self):
         for it in self.items:
             self.assertTrue(

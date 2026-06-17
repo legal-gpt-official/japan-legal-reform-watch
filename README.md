@@ -20,6 +20,7 @@ This repository is the **minimum viable static version**:
 - **Stage 3 script exists, but AI summaries are generated only after `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`.** Before Stage 3 has been run, `docs/data/legal_updates.json` may contain only fixed-template English and may not yet include `summary_source`. When Stage 3 runs, top-N items receive `summary_source: "claude"`; untouched or failed items are marked `summary_source: "rule_based"`. `area` / `stage` / `impact_level` and ranking remain keyword rules (a technical heuristic, not a legal judgement).
 - **GitHub Actions daily update workflow exists** at `.github/workflows/daily-update.yml` for manual runs and a daily 21:00 UTC schedule (06:00 JST).
 - **Source Health Monitor exists for administrators in GitHub Actions.** It evaluates per-source raw fetch counts, writes a minimal health state file, and can fail the workflow only after serious source-health conditions. It is not shown in the public dashboard UI.
+- **Newly detected exists at item level.** It identifies records first appended to this dashboard's continuing raw history after the feature is deployed; it does not mean a new law, new regulation, enactment date, amendment date, or first government publication date.
 - The original hand-curated sample is kept at [`data/legal_updates.json`](data/legal_updates.json) as a schema reference only.
 - The dashboard runs entirely in the browser from the `docs/` folder.
 
@@ -59,7 +60,7 @@ A disclaimer modal appears on first visit. After reading it, click **"I Understa
 
 `scripts/fetch_updates.py` fetches a curated set of Japanese public-sector feeds and official update pages (the `SOURCES` list inside the script) and stores **raw, de-duplicated** items in [`data/raw_items.json`](data/raw_items.json). Official-source coverage: **e-Gov Public Comment, FSA, METI, MHLW, Digital Agency, CAA, PPC, JFTC, MOJ (法務省), MOE (環境省), MOF (財務省), MIC (総務省), MLIT (国土交通省), and MAFF (農林水産省)**. PPC, JFTC, MOE, and MLIT use lightweight official HTML page parsing because stable press/update RSS endpoints were not found or the official page uses an HTML month list; MAFF uses the official press-release RSS. The others are RSS/RDF/Atom (the MIC feed is Shift_JIS, handled by both parser paths). NTA (国税庁) was investigated and deferred — no RSS, and its legacy news page is dominated by statistics/PDF notices. It performs fetching, normalization, de-duplication, and logging **only** — it does **not** summarize, call any LLM, or modify the published `docs/data/legal_updates.json`.
 
-`data/raw_items.json` is the **accumulated source history**: re-runs only append genuinely new items, and the file is never trimmed to match the published cap.
+`data/raw_items.json` is the **accumulated source history**: re-runs only append genuinely new items, and the file is never trimmed to match the published cap. New items appended after the Newly detected feature is deployed receive `first_seen_at` as the current Asia/Tokyo date (`YYYY-MM-DD`). Existing legacy items are not backfilled, and missing `first_seen_at` means the first detection date is unknown.
 
 **Install dependencies** (optional but recommended — the script falls back to the Python standard library if they are missing):
 
@@ -78,7 +79,15 @@ The script prints a console summary (`checked_sources`, `fetched_items`, `new_it
 
 **Untrusted input:** every fetched field — especially `source_url`, `title_ja`, and `raw_summary` — is treated as untrusted external data. It is stored verbatim (with light text normalization) and is **never** rendered, executed, or trusted by the fetch step.
 
-Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`.
+Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`. Newer records may also have optional `first_seen_at`.
+
+## Newly detected
+
+`first_seen_at` means "First detected by this dashboard" and is assigned only when a raw item is actually appended as new under the existing ID/source URL merge rules. It is not a legal status and must not be described as a new law, new regulation, recently enacted law, recently amended rule, or breaking legal update.
+
+Legacy records without `first_seen_at` are treated as unknown and are not shown as Newly detected. Local tests that do not run `fetch_updates.py` may therefore show `Newly detected (7d): 0`; that is expected.
+
+The public dashboard treats an item as Newly detected when `first_seen_at` is a valid non-future `YYYY-MM-DD` within the last 7 calendar days including today. The Quick filter uses URL parameter `new=7`; other `new` values are ignored. Sort supports `sort=detected` for First detected order. CSV export includes a `First detected` column, blank for legacy or invalid dates.
 
 ## Source Health Monitor
 
@@ -278,15 +287,15 @@ japan-legal-reform-watch/
 - **Card-based feed** of regulatory updates with English and original Japanese titles.
 - **Paged rendering with Load more**: the public dataset can hold up to **1000 updates**, but the dashboard initially renders **50 cards** and adds 50 per **Load more updates** click — it never renders the full dataset at once. The button hides when every matching update is shown.
 - **Dashboard-level trust notice** clarifying that AI summaries and rule-based previews are monitoring aids, not legal advice, and that original Japanese official sources remain authoritative.
-- **Data status summary** computed client-side from the public JSON: total updates, sources represented, AI summary count, open public comment count, and latest checked date. It does not claim complete coverage or successful checking of every source.
+- **Data status summary** computed client-side from the public JSON: total updates, sources represented, AI summary count, open public comment count, Newly detected count for the last 7 days, and latest checked date. It does not claim complete coverage or successful checking of every source.
 - **Summary-source badges** on each card: `AI Summary` means the English summary was generated by AI but is not an official translation or legal advice; `Rule-based Preview` means the item is still using a rule-based placeholder before AI summarization.
 - **Official-source buttons** on each card link to the original Japanese source.
-- **Copy actions** on each card: `Copy summary` copies a plain-text English monitoring summary with the official source URL, and `Copy source link` copies the original Japanese official source URL. These are client-side UI helpers only and do not change data; the original Japanese official source remains authoritative.
-- **CSV export** for the current filtered dataset. Export includes all matching updates, not only currently rendered cards, respects the current filters and sort order, uses English display labels for sources, and includes official Japanese source URLs. CSV is generated client-side from the public JSON as a convenience feature; original Japanese official sources remain authoritative.
-- **Filters** by Area, Stage, Source, and Impact Level, plus Quick filters for Public Comment Open, AI Summary, Medium Impact, and Reset. Filters, quick filters, and filter options apply to the **full public dataset**, not only the currently rendered cards; any filter change (or Reset) returns the visible window to 50.
-- **Sort** by Relevance, Published date, or Last checked. Sorting applies to the full filtered dataset before the 50-card render window; URL state supports `sort=relevance`, `sort=published`, and `sort=checked`. Load more state is not persisted, and Reset returns Sort to Relevance while clearing URL query parameters.
+- **Copy actions** on each card: `Copy summary` copies a plain-text English monitoring summary with the official source URL and includes `First detected by this dashboard: YYYY-MM-DD` only when a valid date exists. `Copy source link` copies the original Japanese official source URL. These are client-side UI helpers only and do not change data; the original Japanese official source remains authoritative.
+- **CSV export** for the current filtered dataset. Export includes all matching updates, not only currently rendered cards, respects the current filters and sort order, uses English display labels for sources, includes official Japanese source URLs, and includes a `First detected` column. CSV is generated client-side from the public JSON as a convenience feature; original Japanese official sources remain authoritative.
+- **Filters** by Area, Stage, Source, and Impact Level, plus Quick filters for Public Comment Open, AI Summary, Newly detected, Medium Impact, and Reset. Filters, quick filters, and filter options apply to the **full public dataset**, not only the currently rendered cards; any filter change (or Reset) returns the visible window to 50.
+- **Sort** by Relevance, Published date, Last checked, or First detected. Sorting applies to the full filtered dataset before the 50-card render window; URL state supports `sort=relevance`, `sort=published`, `sort=checked`, and `sort=detected`. Load more state is not persisted, and Reset returns Sort to Relevance while clearing URL query parameters.
 - **Mobile controls** collapse filters/search behind a compact `Filters & Search` toggle. Active filters are summarized so shared URLs remain understandable; desktop keeps the full filter layout, and the mobile open/closed state is not persisted in the URL.
-- **Shareable filter URLs**: filter state is reflected in query parameters (`q`, `area`, `stage`, `source`, `impact`, `ai`). `source` uses compact slugs such as `jftc`, `moe`, `ppc`, `mlit`, `maff`, and `egov`; Load more state is not persisted, and Reset clears both filters and URL query parameters.
+- **Shareable filter URLs**: filter state is reflected in query parameters (`q`, `area`, `stage`, `source`, `impact`, `ai`, `new`, `sort`). `new=7` is the only valid Newly detected URL value. `source` uses compact slugs such as `jftc`, `moe`, `ppc`, `mlit`, `maff`, and `egov`; Load more state is not persisted, and Reset clears both filters and URL query parameters.
 - **English-first source labels**: the Source filter and each card's source name display English-first labels (e.g. `Japan Fair Trade Commission (JFTC)`, `Ministry of the Environment (MOE)`) via a display-name map in `docs/app.js`. Source filter URLs use compact slugs such as `jftc`, `mlit`, and `maff`. The underlying `source_name` values in the published JSON — and the official Japanese `source_url` links — are unchanged.
 - **Free-text search** across English title, original Japanese title, and summary (also against the full dataset) — Japanese keywords such as 排除措置命令 or 食品表示 match even when the English title does not contain them.
 - **Status line** in the form `Showing X of Y matching updates · Z total updates · AI summaries: N · Last checked: D` — the AI-summary count and latest `last_checked` date cover the full filtered set, not just the rendered cards.
@@ -311,6 +320,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `source_name`            | Issuing authority (e.g. FSA, METI, PPC, JFTC).                           |
 | `source_url`             | URL of the original Japanese source.                                     |
 | `published_at`           | Date published / announced (ISO `YYYY-MM-DD`).                           |
+| `first_seen_at`          | Optional date first appended to this dashboard's raw history (`YYYY-MM-DD`); absent for legacy or unknown items. |
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
 
 ## Roadmap (not yet implemented)

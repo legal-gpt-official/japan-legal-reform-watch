@@ -13,12 +13,15 @@
   // Preferred display order for impact level.
   const IMPACT_ORDER = ["High", "Medium", "Low"];
   const DEFAULT_SORT = "relevance";
-  const SORT_VALUES = ["relevance", "published", "checked"];
+  const SORT_VALUES = ["relevance", "published", "checked", "detected"];
   const SORT_LABELS = {
     relevance: "Relevance",
     published: "Published date",
     checked: "Last checked",
+    detected: "First detected",
   };
+  const NEWLY_DETECTED_DAYS = 7;
+  const DAY_MS = 24 * 60 * 60 * 1000;
 
   // Cards render in pages: 50 on load, +50 per "Load more" click. Filters and
   // search always evaluate the FULL public dataset, not just rendered cards.
@@ -96,6 +99,7 @@
     sort: DEFAULT_SORT,
     search: "",
     aiSummaryOnly: false,
+    newlyDetectedOnly: false,
   };
 
   // -------- DOM helpers --------
@@ -321,6 +325,7 @@
     filters.impact = hasOption(filterImpact, impact) ? impact : "";
     filters.sort = isValidSort(sort) ? sort : DEFAULT_SORT;
     filters.aiSummaryOnly = params.get("ai") === "1";
+    filters.newlyDetectedOnly = params.get("new") === "7";
 
     if (filters.source) {
       ensureSourceOption(filters.source);
@@ -343,6 +348,7 @@
     if (filters.impact) params.set("impact", filters.impact);
     if (filters.sort !== DEFAULT_SORT) params.set("sort", filters.sort);
     if (filters.aiSummaryOnly) params.set("ai", "1");
+    if (filters.newlyDetectedOnly) params.set("new", "7");
 
     const queryString = params.toString();
     const nextUrl =
@@ -391,6 +397,7 @@
     if (filters.impact) parts.push("Impact: " + filters.impact);
     if (filters.sort !== DEFAULT_SORT) parts.push("Sort: " + sortLabel(filters.sort));
     if (filters.aiSummaryOnly) parts.push("AI Summary");
+    if (filters.newlyDetectedOnly) parts.push("Newly detected");
 
     if (parts.length === 0) return "No active filters";
     if (parts.length <= 3) return "Active: " + parts.join(" · ");
@@ -416,6 +423,8 @@
         setQuickButtonState(button, filters.stage === "Public Comment Open");
       } else if (action === "ai-summary") {
         setQuickButtonState(button, filters.aiSummaryOnly);
+      } else if (action === "newly-detected") {
+        setQuickButtonState(button, filters.newlyDetectedOnly);
       } else if (action === "medium-impact") {
         setQuickButtonState(button, filters.impact === "Medium");
       }
@@ -430,6 +439,7 @@
     filters.sort = DEFAULT_SORT;
     filters.search = "";
     filters.aiSummaryOnly = false;
+    filters.newlyDetectedOnly = false;
     setMobileFiltersOpen(false);
     applyFilterChange();
   }
@@ -443,6 +453,8 @@
       filters.stage = filters.stage === "Public Comment Open" ? "" : "Public Comment Open";
     } else if (action === "ai-summary") {
       filters.aiSummaryOnly = !filters.aiSummaryOnly;
+    } else if (action === "newly-detected") {
+      filters.newlyDetectedOnly = !filters.newlyDetectedOnly;
     } else if (action === "medium-impact") {
       filters.impact = filters.impact === "Medium" ? "" : "Medium";
     }
@@ -504,9 +516,50 @@
     return label + ":\n" + plainText(value);
   }
 
+  function parseIsoDateValue(value) {
+    if (typeof value !== "string") return 0;
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value.trim());
+    if (!match) return 0;
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    const time = Date.UTC(year, month - 1, day);
+    const parsed = new Date(time);
+    if (
+      parsed.getUTCFullYear() !== year ||
+      parsed.getUTCMonth() !== month - 1 ||
+      parsed.getUTCDate() !== day
+    ) {
+      return 0;
+    }
+    return time;
+  }
+
+  function currentJstDateValue(now) {
+    const base = now instanceof Date ? now : new Date();
+    const jst = new Date(base.getTime() + 9 * 60 * 60 * 1000);
+    return Date.UTC(jst.getUTCFullYear(), jst.getUTCMonth(), jst.getUTCDate());
+  }
+
+  function firstSeenDateValue(update) {
+    return parseIsoDateValue(update && update.first_seen_at);
+  }
+
+  function firstSeenDisplay(update) {
+    return firstSeenDateValue(update) ? update.first_seen_at.trim() : "";
+  }
+
+  function isNewlyDetected(update, todayValue) {
+    const firstSeenValue = firstSeenDateValue(update);
+    if (!firstSeenValue) return false;
+    const today = todayValue || currentJstDateValue();
+    const ageDays = Math.floor((today - firstSeenValue) / DAY_MS);
+    return ageDays >= 0 && ageDays < NEWLY_DETECTED_DAYS;
+  }
+
   function buildCopySummaryText(update) {
     const sourceUrl = sourceUrlForCopy(update);
-    return [
+    const sections = [
       copySection("Title", update.title_en),
       copySection("Original title", update.title_ja),
       copySection("Area", update.area),
@@ -514,6 +567,12 @@
       copySection("Impact", update.impact_level),
       copySection("Source", formatSourceDisplayName(update.source_name)),
       copySection("Published", update.published_at),
+    ];
+    const firstSeen = firstSeenDisplay(update);
+    if (firstSeen) {
+      sections.push(copySection("First detected by this dashboard", firstSeen));
+    }
+    sections.push(
       copySection("Summary", update.summary_en),
       copySection("Business impact", update.business_impact_en),
       copySection("Recommended action", update.recommended_action_en),
@@ -521,8 +580,9 @@
       copySection(
         "Note",
         "This is an English monitoring aid. The original Japanese official source remains authoritative."
-      ),
-    ].join("\n\n");
+      )
+    );
+    return sections.join("\n\n");
   }
 
   function fallbackCopyText(text) {
@@ -651,6 +711,7 @@
       formatSourceDisplayName(update.source_name),
       csvSourceUrl(update),
       update.published_at,
+      firstSeenDisplay(update),
       update.last_checked,
       summarySourceLabel(update.summary_source),
       update.summary_en,
@@ -671,6 +732,7 @@
       "Source",
       "Official source URL",
       "Published date",
+      "First detected",
       "Last checked",
       "Summary type",
       "Summary",
@@ -755,6 +817,19 @@
     const summaryBadge = `<span class="badge badge-summary ${escapeHtml(
       summaryMeta.className
     )}" title="${escapeHtml(summaryMeta.title)}">${escapeHtml(summaryMeta.label)}</span>`;
+    const firstSeen = firstSeenDisplay(u);
+    const newlyDetected = isNewlyDetected(u);
+    const newlyDetectedBadge =
+      newlyDetected && firstSeen
+        ? `<span class="badge badge-newly-detected" title="${escapeHtml(
+            "First detected by this dashboard on " + firstSeen
+          )}" aria-label="${escapeHtml(
+            "Newly detected. First detected by this dashboard on " + firstSeen + "."
+          )}">Newly detected</span>`
+        : "";
+    const firstSeenDateLine = firstSeen
+      ? `<span>First detected: ${escapeHtml(firstSeen)}</span>`
+      : "";
     return `
       <article class="card ${impactClass(u.impact_level)}" data-id="${escapeHtml(u.id)}">
         <header class="card-header">
@@ -762,6 +837,7 @@
             <span class="badge badge-area">${escapeHtml(u.area)}</span>
             <span class="badge badge-stage">${escapeHtml(u.stage)}</span>
             <span class="badge badge-impact">${escapeHtml(u.impact_level)} Impact</span>
+            ${newlyDetectedBadge}
             ${summaryBadge}
           </div>
           <h2 class="card-title">${escapeHtml(u.title_en)}</h2>
@@ -807,6 +883,7 @@
           </div>
           <div class="dates">
             <span>Published: ${escapeHtml(u.published_at)}</span>
+            ${firstSeenDateLine}
             <span>Last checked: ${escapeHtml(u.last_checked)}</span>
           </div>
         </footer>
@@ -822,6 +899,7 @@
       if (filters.source && u.source_name !== filters.source) return false;
       if (filters.impact && u.impact_level !== filters.impact) return false;
       if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
+      if (filters.newlyDetectedOnly && !isNewlyDetected(u)) return false;
       if (q) {
         // Search covers the English title, the original Japanese title, and the
         // English summary, so both English and Japanese keywords match.
@@ -844,11 +922,7 @@
   }
 
   function dateValue(value) {
-    if (typeof value !== "string") return 0;
-    const trimmed = value.trim();
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return 0;
-    const time = Date.parse(trimmed + "T00:00:00Z");
-    return Number.isNaN(time) ? 0 : time;
+    return parseIsoDateValue(value);
   }
 
   function compareDesc(a, b) {
@@ -872,6 +946,14 @@
       if (filters.sort === "checked") {
         return (
           compareDesc(dateValue(a.last_checked), dateValue(b.last_checked)) ||
+          compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
+          compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
+          originalOrder(a, b)
+        );
+      }
+      if (filters.sort === "detected") {
+        return (
+          compareDesc(firstSeenDateValue(a), firstSeenDateValue(b)) ||
           compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
           compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
           originalOrder(a, b)
@@ -931,6 +1013,7 @@
         "Open public comments",
         String(allUpdates.filter((u) => u.stage === "Public Comment Open").length),
       ],
+      ["Newly detected (7d)", String(allUpdates.filter((u) => isNewlyDetected(u)).length)],
       ["Latest checked", maxLastChecked(allUpdates) || "Unknown"],
     ];
 

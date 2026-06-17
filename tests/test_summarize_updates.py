@@ -51,6 +51,17 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertEqual(item["summary_source"], "claude")
         self.assertFalse(bpd.contains_japanese(item["title_en"]))
 
+    def test_apply_result_preserves_first_seen_at_and_does_not_backfill_legacy_items(self):
+        detected = self._item()
+        detected["first_seen_at"] = "2026-06-17"
+        legacy = self._item()
+
+        su.apply_result(detected, self._result("AI title"), "2026-06-18T00:00:00Z", "model")
+        su.apply_result(legacy, self._result("AI title"), "2026-06-18T00:00:00Z", "model")
+
+        self.assertEqual(detected["first_seen_at"], "2026-06-17")
+        self.assertNotIn("first_seen_at", legacy)
+
     def test_validate_output_rejects_overlong_or_japanese_title_en(self):
         overlong = self._item()
         overlong["title_en"] = "A" * (bpd.TITLE_MAX_CHARS + 1)

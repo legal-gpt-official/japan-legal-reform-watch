@@ -17,6 +17,7 @@ No network, no file writes; the scripts under test are imported directly.
 import re
 import sys
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
@@ -597,6 +598,107 @@ class TestAiSummaryPreservation(unittest.TestCase):
         before = dict(item)
         self.assertFalse(bpd.preserve_ai_summary_fields(item, {}))
         self.assertEqual(item, before)
+
+
+class TestFirstSeenAtPublication(unittest.TestCase):
+    def _raw(self, **overrides):
+        raw = {
+            "id": "raw-first-seen",
+            "title_ja": "蛟倶ｺｺ諠・ｱ菫晁ｭｷ豕輔ぎ繧､繝峨Λ繧､繝ｳ縺ｮ荳驛ｨ謾ｹ豁｣縺ｫ縺､縺・※",
+            "source_name": PPC,
+            "source_type": "regulator_html",
+            "source_url": "https://example.go.jp/first-seen.html",
+            "published_at": "2026-06-16T00:00:00Z",
+            "fetched_at": "2026-06-17T00:00:00Z",
+        }
+        raw.update(overrides)
+        return raw
+
+    def test_valid_first_seen_at_is_copied_to_public_item(self):
+        item = bpd.build_public_item(
+            self._raw(first_seen_at="2026-06-17"),
+            "2026-06-18",
+            12.0,
+            today="2026-06-18",
+        )
+        self.assertEqual(item["first_seen_at"], "2026-06-17")
+
+    def test_current_jst_date_uses_japan_day_at_utc_boundary(self):
+        utc_boundary = datetime(2026, 6, 17, 15, 30, tzinfo=timezone.utc)
+
+        self.assertEqual(bpd.current_jst_date(utc_boundary), "2026-06-18")
+
+    def test_first_seen_at_validation_uses_jst_today_at_utc_boundary(self):
+        today_jst = bpd.current_jst_date(datetime(2026, 6, 17, 15, 30, tzinfo=timezone.utc))
+
+        self.assertEqual(bpd.valid_first_seen_at("2026-06-18", today_jst), "2026-06-18")
+        self.assertEqual(bpd.valid_first_seen_at("2026-06-17", today_jst), "2026-06-17")
+        self.assertEqual(bpd.valid_first_seen_at("2026-06-19", today_jst), "")
+
+    def test_build_public_item_uses_injected_jst_today_for_first_seen_at(self):
+        today_jst = bpd.current_jst_date(datetime(2026, 6, 17, 15, 30, tzinfo=timezone.utc))
+
+        valid_today = bpd.build_public_item(
+            self._raw(first_seen_at="2026-06-18"),
+            "2026-06-17",
+            12.0,
+            today=today_jst,
+        )
+        valid_yesterday = bpd.build_public_item(
+            self._raw(first_seen_at="2026-06-17"),
+            "2026-06-17",
+            12.0,
+            today=today_jst,
+        )
+        future = bpd.build_public_item(
+            self._raw(first_seen_at="2026-06-19"),
+            "2026-06-17",
+            12.0,
+            today=today_jst,
+        )
+
+        self.assertEqual(valid_today["first_seen_at"], "2026-06-18")
+        self.assertEqual(valid_yesterday["first_seen_at"], "2026-06-17")
+        self.assertNotIn("first_seen_at", future)
+
+    def test_missing_invalid_or_future_first_seen_at_is_omitted(self):
+        cases = [
+            {},
+            {"first_seen_at": None},
+            {"first_seen_at": ""},
+            {"first_seen_at": "2026-06-17T00:00:00Z"},
+            {"first_seen_at": "not-a-date"},
+            {"first_seen_at": "2026-06-19"},
+        ]
+        for overrides in cases:
+            with self.subTest(overrides=overrides):
+                item = bpd.build_public_item(self._raw(**overrides), "2026-06-18", 12.0, today="2026-06-18")
+                self.assertNotIn("first_seen_at", item)
+
+    def test_first_seen_at_survives_ai_summary_preservation(self):
+        item = bpd.build_public_item(
+            self._raw(first_seen_at="2026-06-17"),
+            "2026-06-18",
+            12.0,
+            today="2026-06-18",
+        )
+        before = item["first_seen_at"]
+        existing = {
+            "id": "raw-first-seen",
+            "source_url": "https://example.go.jp/first-seen.html",
+            "summary_source": "claude",
+            "summary_en": "AI summary text.",
+            "business_impact_en": "AI business impact.",
+            "recommended_action_en": "AI recommended action.",
+            "confidence": "medium",
+            "ai_notes": "AI notes.",
+            "summarized_at": "2026-06-17T08:00:00Z",
+            "summary_model": "claude-opus-4-8",
+        }
+
+        self.assertTrue(bpd.preserve_ai_summary_fields(item, {"raw-first-seen": existing}))
+        self.assertEqual(item["first_seen_at"], before)
+        self.assertEqual(item["summary_source"], "claude")
 
 
 class TestFallbackTitleVariety(unittest.TestCase):

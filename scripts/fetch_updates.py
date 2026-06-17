@@ -48,6 +48,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # Optional third-party deps — preferred, but not required.
 try:
@@ -182,6 +183,7 @@ USER_AGENT = (
 )
 DEFAULT_TIMEOUT_SECONDS = 20
 MAX_ITEMS_PER_SOURCE = 100  # safety cap so one large feed cannot dominate a run
+JST = ZoneInfo("Asia/Tokyo")
 
 # Paths are resolved relative to the repository root (this file lives in scripts/).
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -745,6 +747,11 @@ def latest_published_date(items: list[dict]) -> str | None:
     return max(dates) if dates else None
 
 
+def current_jst_date() -> str:
+    """Return today's date for first detection, using the Japan service calendar."""
+    return datetime.now(JST).date().isoformat()
+
+
 def source_report_row(
     source: dict,
     status: str,
@@ -773,15 +780,15 @@ def source_report_row(
 # Main
 # --------------------------------------------------------------------------- #
 
-def run(timeout: int, dry_run: bool) -> int:
+def run(timeout: int, dry_run: bool, first_seen_date: str | None = None) -> int:
     started_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     fetched_at = started_at
+    detected_date = first_seen_date or current_jst_date()
     logger.info("=== fetch_updates run start (fetched_at=%s, dry_run=%s) ===", fetched_at, dry_run)
 
     existing = load_existing(RAW_ITEMS_PATH)
     seen_ids = {it["id"] for it in existing if it.get("id")}
     seen_urls = {it["source_url"] for it in existing if it.get("source_url")}
-    initial_seen_ids = set(seen_ids)
 
     checked_sources = 0
     fetched_items = 0
@@ -811,6 +818,7 @@ def run(timeout: int, dry_run: bool) -> int:
                 logger.warning("No entries parsed from %s (%s).", name, effective_url)
 
             source_items_by_id: dict[str, dict] = {}
+            source_new_count = 0
             for entry in entries:
                 item = build_item(entry, source, fetched_at)
                 if item is None:
@@ -823,8 +831,9 @@ def run(timeout: int, dry_run: bool) -> int:
                 seen_ids.add(item["id"])
                 if item["source_url"]:
                     seen_urls.add(item["source_url"])
+                item["first_seen_at"] = detected_date
                 new_items.append(item)
-            source_new_count = sum(1 for item_id in source_items_by_id if item_id not in initial_seen_ids)
+                source_new_count += 1
             duration_ms = int(round((time.monotonic() - source_started) * 1000))
             source_reports.append(
                 source_report_row(

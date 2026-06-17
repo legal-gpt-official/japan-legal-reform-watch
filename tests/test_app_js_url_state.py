@@ -80,6 +80,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'value="relevance">Relevance',
             'value="published">Published date',
             'value="checked">Last checked',
+            'value="detected">First detected',
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -88,11 +89,14 @@ class TestAppJsUrlState(unittest.TestCase):
             'const DEFAULT_SORT = "relevance"',
             '"published"',
             '"checked"',
+            '"detected"',
+            'detected: "First detected"',
             'params.get("sort")',
             'function sortUpdates',
             "relevance_score",
             "published_at",
             "last_checked",
+            "firstSeenDateValue",
             "dateValue",
         ):
             with self.subTest(snippet=snippet):
@@ -143,7 +147,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "search-trap-20260612",
+            "newly-detected-20260618",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -176,6 +180,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "Sources represented",
             "Open public comments",
             "Latest checked",
+            "Newly detected (7d)",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML + APP_JS)
@@ -185,6 +190,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "function distinctCount",
             'u.summary_source === "claude"',
             'u.stage === "Public Comment Open"',
+            "isNewlyDetected(u)",
             "maxLastChecked(allUpdates)",
             "last_checked",
         ):
@@ -246,6 +252,45 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn("/^[=+\\-@\\t\\r]/", APP_JS)
         self.assertIn('return "\'" + text', APP_JS)
 
+    def test_newly_detected_filter_badge_url_and_summary_exist(self):
+        for snippet in (
+            'data-quick-filter="newly-detected"',
+            "Newly detected",
+            'params.get("new") === "7"',
+            'params.set("new", "7")',
+            "filters.newlyDetectedOnly",
+            "isNewlyDetected",
+            "NEWLY_DETECTED_DAYS = 7",
+            "ageDays >= 0 && ageDays < NEWLY_DETECTED_DAYS",
+            "parseIsoDateValue",
+            "Date.UTC",
+            "currentJstDateValue",
+            "firstSeenDateValue",
+            "firstSeenDisplay",
+            "badge-newly-detected",
+            "First detected by this dashboard on",
+            "First detected by this dashboard",
+            "First detected:",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS + INDEX_HTML + STYLE_CSS)
+
+    def test_newly_detected_rejects_unknown_url_values_and_future_dates(self):
+        self.assertIn('params.get("new") === "7"', APP_JS)
+        self.assertNotIn('params.get("new") === "true"', APP_JS)
+        self.assertIn("ageDays >= 0", APP_JS)
+        self.assertIn("ageDays < NEWLY_DETECTED_DAYS", APP_JS)
+        self.assertIn("return 0;", APP_JS)
+
+    def test_filter_and_sort_changes_reset_render_window(self):
+        self.assertIn("const PAGE_SIZE = 50", APP_JS)
+        self.assertRegex(APP_JS, r"function resetVisibleCount\(\) \{\s*visibleCount = PAGE_SIZE;")
+        self.assertRegex(APP_JS, r"function applyFilterChange\(\) \{\s*resetVisibleCount\(\);")
+        self.assertIn('filterSort.addEventListener("change"', APP_JS)
+        self.assertIn('loadMoreBtn.addEventListener("click"', APP_JS)
+        self.assertNotIn('params.set("visible"', APP_JS)
+        self.assertNotIn('params.set("page"', APP_JS)
+
     def test_csv_export_failure_logs_error_object(self):
         self.assertIn('console.warn("[JLRW] CSV export failed.", e)', APP_JS)
 
@@ -264,6 +309,7 @@ class TestAppJsUrlState(unittest.TestCase):
                 "Source",
                 "Official source URL",
                 "Published date",
+                "First detected",
                 "Last checked",
                 "Summary type",
                 "Summary",
@@ -300,9 +346,11 @@ class TestAppJsUrlState(unittest.TestCase):
             "formatSourceDisplayName(update.source_name)",
             "safeUrl(update.source_url)",
             "summarySourceLabel",
+            "firstSeenDisplay(update)",
             '"English title"',
             '"Original Japanese title"',
             '"Official source URL"',
+            '"First detected"',
             '"Summary type"',
             '"Ranking score"',
             '"Internal ID"',
