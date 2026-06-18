@@ -15,9 +15,9 @@
     "last_checked": "2026-06-18",
     "relevance_score": 79.0,
     "first_seen_at": "2026-06-18",
+    "summary_source": "claude",
     "confidence": "high",
     "ai_notes": "Based on the provided Japanese title and metadata indicating an open public comment on draft amendments; specific substantive changes were not detailed and remain unverified against the official source.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-18T00:55:50Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -74,9 +74,9 @@
     "last_checked": "2026-06-18",
     "relevance_score": 52.0,
     "first_seen_at": "2026-06-18",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and metadata; this is a draft out for public comment, not an enacted rule. The preliminary 'Data / Privacy / AI' label appears inconsistent with the telecommunications subject matter and was not relied upon.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-18T00:56:01Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -891,7 +891,15 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and rule-based triage labels; the substance of the proposed changes and the comment period are not provided and remain unverified. The Japanese source is authoritative.",
     "summarized_at": "2026-06-12T07:04:33Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省更新：绿色债券和绿色贷款指南",
+        "summary": "日本环境省（MOE）发布了一份新闻稿，就绿色债券指南和绿色贷款指南的绿色清单（附件1所附表格）公开征求意见。该项目被标记为正在公开征求意见。元数据中未提供标题和来源之外的详细信息。",
+        "business_impact": "参与绿色债券或绿色贷款的组织可能会受到绿色清单所反映的合格标准的潜在变化的影响，并可考虑是否提交意见。",
+        "recommended_action": "可考虑查阅环境省的官方新闻稿和征询材料，以了解范围及任何提交截止日期。"
+      }
+    }
   },
   {
     "id": "raw-0f942fb7d2554a58",
@@ -909,7 +917,15 @@
     "last_checked": "2026-06-18",
     "relevance_score": 27.0,
     "first_seen_at": "2026-06-18",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：食品及食品添加剂标准修订草案（2026-06-18）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或总结。一个日本政府来源发布了一项与下面原始日文标题相关的内容；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "查阅原始日文来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-f63c702ca0e7e925",
@@ -930,7 +946,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and metadata; this is a draft report open for public comment, not an enacted measure. The preliminary 'Data/Privacy/AI' label appears keyword-based and may not fully reflect the document's scope, which concerns youth protection and information distribution. Details unverified against the official source.",
     "summarized_at": "2026-06-17T00:45:27Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-17）",
+        "summary": "日本总务省（MIC）已就青少年保护工作组的第一份报告草案启动公开征求意见期，该工作组隶属于一个应对数字空间信息流通挑战的研究小组。根据元数据，该草案于2026/06/17发布，意见接收截止至2026/07/08 23:59，归于电信类别。这是一份处于公开征求意见阶段的草案，而非最终确定的规则或法律。",
+        "business_impact": "涉及电信、在线平台或数字内容服务的组织可能希望关注该草案，因为未来与数字空间青少年保护相关的措施最终可能由此产生。",
+        "recommended_action": "查阅日本官方来源，并考虑是否在所述截止日期前提交意见，同时根据权威文本核实所有细节。"
+      }
+    }
   },
   {
     "id": "raw-fdf2bdd5e9a2f2a7",
@@ -947,7 +971,15 @@
     "published_at": "2026-06-17",
     "last_checked": "2026-06-17",
     "relevance_score": 27.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案公开征求意见中（2026-06-17）",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方原始日文标题相关的内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该内容与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "查阅原始日文来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-bfe199fec3969c7b",
@@ -968,7 +1000,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and raw summary metadata; this is a draft out for public comment, not an enacted measure. Details are unverified against the authoritative source. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-16T02:18:39Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-16）",
+        "summary": "这是一项关于禁止对派遣劳动者进行不合理待遇的指南修订草案的公开征求意见，发布于e-Gov。该草案于2026/06/16公布，意见受理至2026/07/15 23:59。所列联系部门为雇用安定局雇用开发企划课建设港湾对策室。",
+        "business_impact": "涉及派遣或外派劳动者的组织可能希望关注该草案，因为由此产生的任何修订可能影响相关待遇标准。",
+        "recommended_action": "查阅e-Gov上的日文官方来源，以确认草案修订的范围和细节以及意见征求程序。"
+      }
+    }
   },
   {
     "id": "raw-76c326ab246d4ac5",
@@ -989,7 +1029,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and metadata indicating a public comment draft; specific residue values and affected products are not provided and remain unverified. The 'Other'/'Low' triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-11T01:26:00Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：食品及食品添加剂标准修订草案（2026-06-11）",
+        "summary": "这是一项关于修订部分食品、添加剂等标准与基准的通知草案的公开征求意见，具体涉及包括quinoclamine（醌氯胺）在内的五种农药的残留限量。根据元数据，该草案于2026/06/11发布，意见提交截止时间为2026/07/10 23:59，负责联系部门为消费者厅的残留标准审查室。这是一份处于公开征求意见阶段的草案，而非已确定或已实施的措施。",
+        "business_impact": "如果拟议的农药残留限量发生变更，从事食品生产、进口或分销的企业可能会受到影响，可考虑关注此次征求意见的结果。",
+        "recommended_action": "如与您的业务相关，可考虑查阅日本官方原始资料，并在所述截止日期前提交意见。"
+      }
+    }
   },
   {
     "id": "raw-7ad6c3981ac383ee",
@@ -1010,7 +1058,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and triage metadata only; specific provisions, deadlines, and hearing details are unverified. Stage appears to be a draft open for public comment, per the source title and labels.",
     "summarized_at": "2026-06-12T07:04:40Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "日本公正交易委员会：关于针对特定托运人的不公平交易行为规则修订草案的公开征求意见及公开听证会",
+        "summary": "日本公正交易委员会（JFTC）发布新闻稿，宣布就一项拟议修订征求公众意见并举行公开听证会，该修订涉及特定托运人委托运输或储存货物时的某些不公平交易行为。根据元数据，这是一份开放公开征求意见的修订草案，而非已定稿或已生效的规则。官方日文来源具有权威性，应予查阅以了解确切范围和时间安排。",
+        "business_impact": "作为托运人委托运输或储存货物的企业，如该拟议修订获得通过，可能会受到影响，并可能希望关注此次征询。在该措施仍处于公开征求意见阶段时，任何影响仍不确定。",
+        "recommended_action": "可考虑查阅JFTC的官方新闻稿及修订草案，以了解该提案以及提交意见或参加公开听证会的程序。"
+      }
+    }
   },
   {
     "id": "raw-8cdbfafce0f78a9e",
@@ -1031,7 +1087,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted measure. Specific content of the amendments is unverified. Preliminary labels are weak triage context only; verify against the authoritative Japanese source.",
     "summarized_at": "2026-06-10T09:04:05Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：关于接收方与派出方经营者的指南修订草案",
+        "summary": "这是关于两项指南修订草案的公开征求意见通知——一项涉及接收方雇主应采取的措施，另一项涉及派出方雇主应采取的措施。该事项于2026-06-09发布，意见提交截止时间为2026-07-08 23:59，归类于劳动类别。所列联系方为职业安定局雇用开发企划科建设与港湾措施室。",
+        "business_impact": "作为接收方或派出方雇主参与的组织，如果这些指南修订草案此后被采纳，可能会受到影响。所提议的变更可能影响相关方所需采取的合规措施。",
+        "recommended_action": "可考虑查阅e-Gov官方公开征求意见通知及指南草案，以确认其范围以及对您情况的适用性。"
+      }
+    }
   },
   {
     "id": "raw-152695a4fc786292",
@@ -1052,7 +1116,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; the substance of the draft revision is not detailed and should be verified against the official source. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-06-10T09:04:25Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：《人与宠物的防灾指南》修订草案",
+        "summary": "日本环境省（自然环境局动物爱护管理室）已就《人与宠物的防灾指南》修订草案启动公开征求意见期。根据元数据，该草案于2026-06-08发布，意见受理截至2026-06-27。这是一份正在公开征求意见的草案，而非已确定或已颁布的措施。",
+        "business_impact": "涉及动物福利、宠物相关服务或灾害应对的组织，在该修订指南最终确定后，可能会发现其与自身的防灾准备实践相关。",
+        "recommended_action": "可考虑查阅官方e-Gov公开征求意见公告及日文原文，以确认其范围和提交细节。"
+      }
+    }
   },
   {
     "id": "raw-f5db6442f696199a",
@@ -1073,7 +1145,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and rule-based labels; the raw summary was empty and details are unverified. Labeled as draft/public comment results per the source title; verify against the authoritative Japanese source.",
     "summarized_at": "2026-06-12T07:04:46Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "数字厅更新：生成式AI采购与使用指南已更新（2026-06-12）",
+        "summary": "数字厅宣布，关于《为推动行政演进与创新的生成式AI采购与使用指南》草案修订的公开征求意见结果已经公布。根据元数据，该项目反映的是对草案（拟议）修订的公开征求意见结果的公布，而非已最终确定或已生效的规则。",
+        "business_impact": "为日本政府机构提供生成式AI或就此提供咨询的组织可能会发现，一旦最终确定，修订后的指南预期可能影响采购和使用实践。",
+        "recommended_action": "查阅数字厅官方来源，以确认草案修订的范围和当前状态以及已公布的征求意见结果。"
+      }
+    }
   },
   {
     "id": "raw-6ee11434991ebc3e",
@@ -1090,7 +1170,15 @@
     "published_at": "2026-06-16",
     "last_checked": "2026-06-17",
     "relevance_score": 23.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：宣布数字信息流通政策会议（2026-06-16）",
+        "summary": "这是基于规则的预览，尚未经过人工智能审阅或总结。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或运营相关，应审阅官方来源。",
+        "recommended_action": "审阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-318a3a25ad1652c7",
@@ -1111,7 +1199,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title; no raw summary was provided and specific amendment details are unverified. Triage labels (Finance/AML, Draft Guideline, Medium) are keyword-based and not authoritative.",
     "summarized_at": "2026-06-10T09:03:58Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "金融厅更新：中小及地区性金融机构监管指南修订草案",
+        "summary": "金融厅（FSA）已发布对其《中小及地区性金融机构监管综合指南》及相关文件的部分修订草案。根据元数据，这是一份草案（拟议修订），而非已最终确定或已生效的规则。所提供的元数据中未提供更多细节。",
+        "business_impact": "如果拟议修订最终确定，中小及地区性金融机构可能会受到影响，具体取决于所涉及的具体变更。",
+        "recommended_action": "查阅金融厅官方来源，以确认拟议修订的范围以及任何适用的征求意见期或时间安排。"
+      }
+    }
   },
   {
     "id": "raw-01a741659ad531c8",
@@ -1128,7 +1224,15 @@
     "published_at": "2026-06-16",
     "last_checked": "2026-06-16",
     "relevance_score": 22.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-16）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布了一项与下方原始日文标题相关的内容；应对照日本官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或运营相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-ce86328cd6febc99",
@@ -1149,7 +1253,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and limited metadata; this is a draft out for public comment, not an enacted rule. Specific provisions of the amendment are not provided and remain unverified against the official source.",
     "summarized_at": "2026-06-12T07:04:52Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：《道路交通法》规则修订草案",
+        "summary": "这是一项在e-Gov公开征求意见门户上发布的、关于一项部分修订《道路交通法施行规则》的内阁府令草案的公开征求意见。根据元数据，该草案于2026-06-12发布，意见提交截止日期为2026-07-11 23:59。该事项归类于警察事务，联系方为警察厅交通局驾驶执照课。",
+        "business_impact": "对道路交通施行规则提出的修订，可能会影响涉及运输、驾驶运营或驾驶执照的组织，具体取决于最终内容。",
+        "recommended_action": "建议查阅日本官方来源及e-Gov门户上的草案文本，以了解所提出的变更及意见提交流程。"
+      }
+    }
   },
   {
     "id": "raw-6ac75794f8dfe315",
@@ -1166,7 +1278,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 22.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-12）",
+        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源发布了一项与下述原始日文标题相关的内容；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如果该内容与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-d87f80dc59fb4383",
@@ -1183,7 +1303,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 21.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-12）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的内容；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-e52b56f452414961",
@@ -1200,7 +1328,15 @@
     "published_at": "2026-06-08",
     "last_checked": "2026-06-12",
     "relevance_score": 21.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省更新：关于人与宠物防灾准备指南的修订草案",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源发布了一项与下方日文原标题相关的条目；应对照官方日文来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该条目与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-66ba7ce662e5deab",
@@ -1217,7 +1353,15 @@
     "published_at": "2026-06-16",
     "last_checked": "2026-06-16",
     "relevance_score": 22.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见结果：无线电频谱政策草案",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方日文原标题相关的条目；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如果该条目与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-900e45d65437905d",
@@ -1238,7 +1382,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title; raw_summary was empty and details are unverified. The exact terms and effects of the Cabinet Order and area notice should be confirmed against the official source.",
     "summarized_at": "2026-06-12T07:04:59Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省更新：林业法规信息已更新",
+        "summary": "这是农林水产省（农林水产省）发布的新闻公告，内容涉及一项政令，针对令和8年（2026年）4月22日发生在岩手县上闭伊郡大槌町的森林火灾，指定了局部严重灾害（'kyokuchi gekijin'）。该公告还提及了所涵盖区域的公告（kokuji）。元数据中未提供更多细节。",
+        "business_impact": "在岩手县受影响区域内拥有林业或农业经营活动或资产的组织，可能会受到与该灾害指定相关的支持措施或程序的影响。",
+        "recommended_action": "查阅农林水产省官方来源，以确认范围、所涵盖区域以及任何适用的措施。"
+      }
+    }
   },
   {
     "id": "raw-9f0c590d3f335343",
@@ -1255,7 +1407,15 @@
     "published_at": "2026-06-15",
     "last_checked": "2026-06-16",
     "relevance_score": 18.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：电信与无线电政策信息已更新（2026-06-15）",
+        "summary": "这是基于规则的预览，尚未经过AI审查或摘要。日本政府来源发布了一项与下方日文原标题相关的内容；应对照官方日文来源进行审查。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司若该项内容与其行业或运营相关，应审查官方来源。",
+        "recommended_action": "审查日文原始来源，并判断该项内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-c0aedfee47301303",
@@ -1276,7 +1436,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and limited metadata; a Cabinet decision on a bill indicates a proposal, not enactment. Substantive details are unverified and should be confirmed against the authoritative Japanese source.",
     "summarized_at": "2026-06-12T07:05:05Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "个人信息保护委员会更新：关于修订《个人信息保护法》议案的内阁决定",
+        "summary": "个人信息保护委员会（PPC）发布了一则公告，内容涉及就部分修订《个人信息保护法》及相关法律的议案作出的内阁决定。根据元数据，这涉及一项议案（内阁决定的立法提案），而非已制定或已生效的法律。元数据中未提供标题和主题（“个人信息保护法等”）以外的详细信息。",
+        "business_impact": "如果该议案得以推进并制定，个人数据保护规则的变更可能会影响在日本处理个人信息的组织。仅凭此元数据无法确定具体范围和义务。",
+        "recommended_action": "可考虑查阅PPC官方来源及议案全文，以核实其范围、内容和当前的立法状态。"
+      }
+    }
   },
   {
     "id": "raw-8e3b6171617b0ef6",
@@ -1293,7 +1461,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 21.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：药品监管信息已更新",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司，如该内容与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-57aeb38932dfac5c",
@@ -1310,7 +1486,15 @@
     "published_at": "2026-06-10",
     "last_checked": "2026-06-10",
     "relevance_score": 17.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：兽用药品管理规则修订草案",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的事项；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司若该事项与其所在行业或运营相关，应审阅官方来源。",
+        "recommended_action": "审阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-8008869f4fd2d3d7",
@@ -1331,7 +1515,15 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title; the raw summary only indicates 'natural environment' and provides no specifics on the order's content or affected parties. Labels are keyword-based triage only and unverified.",
     "summarized_at": "2026-06-12T07:05:16Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省更新：生物多样性政策信息已更新",
+        "summary": "环境省（MOE）就基于日本通过规制转基因生物（活体改良生物）使用以确保生物多样性的法律（通常称为《卡塔赫纳法》）的措施命令（措置命令）发布了一份新闻稿。该新闻稿归类于自然环境主题。现有元数据中未提供更多详细信息。",
+        "business_impact": "涉及处理或使用转基因生物的组织可能受到影响，并可能需要审查其对相关监管要求的遵守情况。",
+        "recommended_action": "请查阅环境省官方新闻稿，以确认范围、所涉相关方以及措施命令的具体性质。"
+      }
+    }
   },
   {
     "id": "raw-0e73ce700e87ae16",
@@ -1348,7 +1540,15 @@
     "published_at": "2026-06-15",
     "last_checked": "2026-06-16",
     "relevance_score": 19.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "MIC更新：电信与无线电政策信息已更新（2026-06-15）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的内容；应对照日本官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-2de63923a2d22f38",
@@ -1365,7 +1565,15 @@
     "published_at": "2026-06-15",
     "last_checked": "2026-06-16",
     "relevance_score": 18.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：关于无线电频谱政策草案的公开征求意见结果",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司若该内容与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅日文原始来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-7f83ef9deef27cfd",
@@ -1382,7 +1590,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 18.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：与交通/基础设施相关的监管公告",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或总结。一个日本政府来源发布了与下方原始日文标题相关的条目；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如果该条目与其行业或运营相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并确定该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-60e372834237824e",
@@ -1399,7 +1615,15 @@
     "published_at": "2026-06-11",
     "last_checked": "2026-06-11",
     "relevance_score": 18.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "消费者厅更新：《反不当赠品及误导性表示法律》",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方原始日文标题相关的条目；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该条目与其行业或运营相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并确定该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-908f961894a84a44",
@@ -1416,7 +1640,15 @@
     "published_at": "2026-06-16",
     "last_checked": "2026-06-17",
     "relevance_score": 12.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：监管提案开放征求意见（2026-06-16）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的内容；应对照官方日文来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如果该内容与其行业或业务相关，应审阅官方来源。",
+        "recommended_action": "审阅原始日文来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-5687d1d1e79ca29a",
@@ -1433,7 +1665,15 @@
     "published_at": "2026-06-09",
     "last_checked": "2026-06-12",
     "relevance_score": 15.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：无线电频谱政策（2026-06-09）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "审阅日文原始来源，并确定该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-6f71d628533835c7",
@@ -4572,6 +4812,23 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-924dff225a28246c",
+    "title_en": "MHLW Update: Regulatory announcement related to Healthcare / Pharmaceuticals",
+    "title_ja": "後期高齢者医療事業状況報告",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kouki_houkoku.html",
+    "published_at": "2026-06-15",
+    "last_checked": "2026-06-16",
+    "relevance_score": 1.0,
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-20e33f345f4ac850",
     "title_en": "MAFF Update: Food safety and labeling regulation information updated (2026-05-26)",
     "title_ja": "オークラ製菓株式会社におけるキャンデー類の不適正表示に対する措置について",
@@ -4603,23 +4860,6 @@
     "published_at": "2026-05-26",
     "last_checked": "2026-06-12",
     "relevance_score": 4.0,
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-924dff225a28246c",
-    "title_en": "MHLW Update: Regulatory announcement related to Healthcare / Pharmaceuticals",
-    "title_ja": "後期高齢者医療事業状況報告",
-    "area": "Healthcare / Pharmaceuticals",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
-    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kouki_houkoku.html",
-    "published_at": "2026-06-15",
-    "last_checked": "2026-06-16",
-    "relevance_score": 1.0,
     "summary_source": "rule_based"
   },
   {
@@ -5235,23 +5475,6 @@
     "summary_source": "rule_based"
   },
   {
-    "id": "raw-07fdb60ec5197102",
-    "title_en": "MHLW Update: Labor and employment policy information updated (2026-05-29)",
-    "title_ja": "労働保険の電子申請に関する特設サイト",
-    "area": "Labor / Employment",
-    "stage": "Government Announcement",
-    "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
-    "source_url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/denshi-shinsei/tokusetusaito.html",
-    "published_at": "2026-05-29",
-    "last_checked": "2026-06-10",
-    "relevance_score": 2.0,
-    "summary_source": "rule_based"
-  },
-  {
     "id": "raw-8769288de75ff2be",
     "title_en": "JFTC Update: Regulatory announcement related to Antitrust / Fair Trade (2026-04-27)",
     "title_ja": "令和８年度官製談合防止に向けた発注機関の取組に関する実態調査について",
@@ -5283,6 +5506,23 @@
     "published_at": "2026-04-17",
     "last_checked": "2026-06-11",
     "relevance_score": 5.0,
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-07fdb60ec5197102",
+    "title_en": "MHLW Update: Labor and employment policy information updated (2026-05-29)",
+    "title_ja": "労働保険の電子申請に関する特設サイト",
+    "area": "Labor / Employment",
+    "stage": "Government Announcement",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+    "source_url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/hoken/denshi-shinsei/tokusetusaito.html",
+    "published_at": "2026-05-29",
+    "last_checked": "2026-06-10",
+    "relevance_score": 2.0,
     "summary_source": "rule_based"
   },
   {
