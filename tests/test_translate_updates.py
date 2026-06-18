@@ -5,6 +5,8 @@ and translate_updates.request_translation. Cache / fallback tests use --no-api o
 an unset API key. All file IO is redirected to a temp directory.
 """
 
+import contextlib
+import io
 import json
 import os
 import sys
@@ -128,6 +130,27 @@ class TranslateTestBase(unittest.TestCase):
         tu.request_translation = fake_request
         return calls
 
+    def install_api_returning(self, title):
+        """Patch the API so each candidate returns a good body but a given title."""
+        calls = {"n": 0}
+
+        def fake_request(client, model, item, locale):
+            calls["n"] += 1
+            d = good_translation()
+            d["title"] = title
+            return d, "fake-model"
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake_request
+        return calls
+
+    def run_main(self, argv):
+        """Run tu.main capturing stdout; return (rc, stdout)."""
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            rc = tu.main(argv)
+        return rc, buf.getvalue()
+
 
 class TestHashAndValidation(unittest.TestCase):
     def test_source_hash_is_stable_and_excludes_id(self):
@@ -156,7 +179,7 @@ class TestHashAndValidation(unittest.TestCase):
         )
         self.assertNotEqual(
             tu.compute_source_hash(base, LOCALE, tu.PROMPT_VERSION),
-            tu.compute_source_hash(base, LOCALE, "zh-hans-v2"),
+            tu.compute_source_hash(base, LOCALE, "zh-hans-v1"),
         )
 
     def test_valid_translation_accepts_good(self):
@@ -378,6 +401,201 @@ class TestInvariants(TranslateTestBase):
         self.assertEqual(cache["schema_version"], 1)
         self.assertIn(LOCALE, cache["entries"])
         self.assertIn(item["id"], cache["entries"][LOCALE])
+
+
+def parse_summary(stdout):
+    """Parse the 'label : value' summary block into a dict (spacing-robust)."""
+    d = {}
+    for line in stdout.splitlines():
+        if ":" in line and not line.startswith("("):
+            key, value = line.split(":", 1)
+            d[key.strip()] = value.strip()
+    return d
+
+
+# A clean 90-character title: a period-10 sequence has no 2-8 char immediate
+# self-repeat, no kana, no brackets, and no stage phrase, so it is otherwise valid.
+VALID_90 = "甲乙丙丁戊己庚辛壬癸" * 9
+
+
+class TestPromptVersionV2(TranslateTestBase):
+    def test_prompt_version_is_v2(self):
+        self.assertEqual(tu.PROMPT_VERSION, "zh-hans-v2")
+
+    def test_source_hash_changes_between_v1_and_v2(self):
+        item = sample_item()
+        self.assertNotEqual(
+            tu.compute_source_hash(item, LOCALE, "zh-hans-v1"),
+            tu.compute_source_hash(item, LOCALE, "zh-hans-v2"),
+        )
+
+    def test_v1_cache_entry_is_a_miss(self):
+        item = sample_item()
+        v1_entry = {
+            "source_hash": tu.compute_source_hash(item, LOCALE, "zh-hans-v1"),
+            "prompt_version": "zh-hans-v1",
+            "translated_at": "2026-06-18T00:00:00Z",
+            "model": "claude-opus-4-8",
+            **{k: good_translation()[k] for k in tu.TRANSLATION_FIELDS},
+        }
+        item["translations"] = {LOCALE: {k: v1_entry[k] for k in tu.TRANSLATION_FIELDS}}
+        self.write_input([item])
+        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v1_entry}}})
+        # No API: a v1 entry is a cache miss, so the stale v1 translation is removed.
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30", "--no-api"])
+        self.assertEqual(rc, 0)
+        self.assertNotIn("translations", self.read_output()[0])
+
+    def test_v2_cache_entry_is_a_hit(self):
+        item = sample_item()
+        v2_entry = make_cache_entry(item)  # built with PROMPT_VERSION (v2) + valid title
+        self.write_input([item])
+        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v2_entry}}})
+        calls = self.install_counting_api()
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 0, "v2 cache entry must be a hit (no API call)")
+        self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
+
+class TestTitleQuality(unittest.TestCase):
+    VALID = "公开征求意见：公寓管理与长期优良住宅相关施行规则修订草案"
+
+    def test_normal_title_valid(self):
+        self.assertTrue(tu.valid_title(self.VALID))
+
+    def test_90_chars_valid_91_invalid(self):
+        self.assertEqual(len(VALID_90), 90)
+        self.assertTrue(tu.valid_title(VALID_90))
+        self.assertFalse(tu.valid_title(VALID_90 + "甲"))
+
+    def test_empty_invalid(self):
+        self.assertFalse(tu.valid_title("   "))
+
+    def test_ellipsis_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：施行规则修订草案……"))
+        self.assertFalse(tu.valid_title("公开征求意见：施行规则修订草案..."))
+
+    def test_fragment_duplication_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：公寓管理及长期优良住宅的施行规则、则的省令草案"))
+
+    def test_word_duplication_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：施行规则修订修订草案"))
+        self.assertFalse(tu.valid_title("公开征求意见：施行规则草案草案"))
+
+    def test_stage_phrase_repetition_invalid(self):
+        self.assertFalse(tu.valid_title("关于公寓管理的公开征求意见，公开征求意见：施行规则修订草案"))
+
+    def test_single_results_phrase_valid(self):
+        self.assertTrue(tu.valid_title("公开征求意见结果：电气通信事业法施行规则修订"))
+
+    def test_kana_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：あ施行规则修订草案"))  # hiragana
+        self.assertFalse(tu.valid_title("公开征求意见：ア施行规则修订草案"))  # katakana
+        self.assertFalse(tu.valid_title("公开征求意见：ｱ施行规则修订草案"))  # half-width katakana
+
+    def test_unbalanced_brackets_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：《电气通信事业法施行规则修订草案"))
+        self.assertFalse(tu.valid_title("公开征求意见：（施行规则修订草案"))
+
+    def test_newline_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：施行规则\n修订草案"))
+
+    def test_html_and_markdown_invalid(self):
+        self.assertFalse(tu.valid_title("<b>公开征求意见</b>：施行规则修订草案"))
+        self.assertFalse(tu.valid_title("```公开征求意见：施行规则修订草案```"))
+
+    def test_legitimate_compounds_not_false_flagged(self):
+        for title in (
+            "公开征求意见：信息通信技术相关施行规则修订草案",
+            "公开征求意见：个人信息保护相关施行规则修订草案",
+            "公开征求意见：行政机关相关施行令修订草案",
+        ):
+            with self.subTest(title=title):
+                self.assertTrue(tu.valid_title(title))
+
+
+class TestTitleQualityFallback(TranslateTestBase):
+    BAD_TITLE = "公开征求意见：公寓管理及长期优良住宅的施行规则、则的省令草案"
+
+    def test_bad_title_not_applied_or_cached(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self.install_api_returning(self.BAD_TITLE)
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertNotIn("translations", self.read_output()[0])  # English fallback
+        self.assertNotIn(item["id"], self.read_cache()["entries"][LOCALE])  # not cached
+        summary = parse_summary(out)
+        self.assertEqual(summary["quality_rejected_items"], "1")
+        self.assertEqual(summary["failed_items"], "0")  # not double-counted
+
+    def test_bad_title_keeps_english_canonical(self):
+        item = sample_item()
+        before = json.loads(json.dumps(item))
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self.install_api_returning(self.BAD_TITLE)
+
+        self.run_main(["--locale", LOCALE, "--limit", "30"])
+        out = self.read_output()[0]
+        for key in ("title_en", "summary_en", "business_impact_en", "recommended_action_en"):
+            self.assertEqual(out[key], before[key])
+
+    def test_processing_continues_after_bad_title(self):
+        bad = sample_item(id="raw-bad")
+        good = sample_item(id="raw-good", title_en="A different English title.")
+        self.write_input([bad, good])
+        self.write_cache(tu.default_cache())
+
+        def fake(client, model, item, locale):
+            d = good_translation()
+            if item.get("id") == "raw-bad":
+                d["title"] = self.BAD_TITLE
+            return d, "fake-model"
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        out = {it["id"]: it for it in self.read_output()}
+        self.assertNotIn("translations", out["raw-bad"])
+        self.assertIn(LOCALE, out["raw-good"]["translations"])
+
+    def test_stale_v1_removed_and_counted(self):
+        item = sample_item()
+        item["translations"] = {LOCALE: {k: good_translation()[k] for k in tu.TRANSLATION_FIELDS}}
+        v1_entry = {
+            "source_hash": tu.compute_source_hash(item, LOCALE, "zh-hans-v1"),
+            "prompt_version": "zh-hans-v1",
+            "translated_at": "2026-06-18T00:00:00Z",
+            "model": "claude-opus-4-8",
+            **{k: good_translation()[k] for k in tu.TRANSLATION_FIELDS},
+        }
+        self.write_input([item])
+        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v1_entry}}})
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--no-api"])
+        self.assertEqual(rc, 0)
+        self.assertNotIn("translations", self.read_output()[0])
+        self.assertEqual(parse_summary(out)["stale_translations_removed"], "1")
+
+
+class TestRegressionV2(unittest.TestCase):
+    def test_default_limit_is_30(self):
+        self.assertEqual(tu.DEFAULT_LIMIT, 30)
+
+    def test_field_caps_unchanged_for_body(self):
+        self.assertEqual(tu.FIELD_LIMITS["summary"], 800)
+        self.assertEqual(tu.FIELD_LIMITS["business_impact"], 500)
+        self.assertEqual(tu.FIELD_LIMITS["recommended_action"], 500)
+
+    def test_title_cap_is_90(self):
+        self.assertEqual(tu.TITLE_MAX_CHARS, 90)
+        self.assertEqual(tu.FIELD_LIMITS["title"], 90)
 
 
 class TestWorkflowTranslateStep(unittest.TestCase):
