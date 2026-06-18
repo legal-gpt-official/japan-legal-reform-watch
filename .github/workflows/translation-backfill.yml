@@ -1,0 +1,114 @@
+name: Translation backfill (zh-Hans)
+
+# Manual-only, translate-ONLY backfill. It never fetches, builds, summarizes, or
+# touches source-health — it only runs scripts/translate_updates.py and commits
+# the two translation artifacts. This lets the zh-Hans corpus accumulate without
+# the daily pipeline regenerating the published file underneath it.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize against the daily pipeline so the two never write data concurrently.
+concurrency:
+  group: japan-legal-reform-data-writer
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      # Only the translator is executed by this workflow, so only it is compiled here.
+      - name: Compile translator
+        run: python -m py_compile scripts/translate_updates.py
+
+      - name: Run offline regression tests
+        run: python -m unittest discover -s tests
+
+      - name: Count translations before
+        id: before
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          pub = json.load(open("docs/data/legal_updates.json", encoding="utf-8"))
+          cache = json.load(open("data/translation_cache.json", encoding="utf-8"))
+          n_pub = sum(1 for it in pub if isinstance(it.get("translations"), dict) and "zh-Hans" in it["translations"])
+          n_cache = len(cache.get("entries", {}).get("zh-Hans", {}))
+          print(f"published={n_pub}")
+          print(f"cache={n_cache}")
+          PY
+
+      - name: Translate Simplified Chinese updates
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/translate_updates.py --locale zh-Hans --limit 30
+
+      - name: Count translations after
+        id: after
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          pub = json.load(open("docs/data/legal_updates.json", encoding="utf-8"))
+          cache = json.load(open("data/translation_cache.json", encoding="utf-8"))
+          n_pub = sum(1 for it in pub if isinstance(it.get("translations"), dict) and "zh-Hans" in it["translations"])
+          n_cache = len(cache.get("entries", {}).get("zh-Hans", {}))
+          print(f"published={n_pub}")
+          print(f"cache={n_cache}")
+          PY
+
+      - name: Semantic integrity gate
+        run: |
+          set -euo pipefail
+          before_pub="${{ steps.before.outputs.published }}"
+          before_cache="${{ steps.before.outputs.cache }}"
+          after_pub="${{ steps.after.outputs.published }}"
+          after_cache="${{ steps.after.outputs.cache }}"
+          echo "before: published=$before_pub cache=$before_cache"
+          echo "after:  published=$after_pub cache=$after_cache"
+          if [ "$after_cache" -lt "$before_cache" ]; then
+            echo "Translation cache shrank ($before_cache -> $after_cache); failing."; exit 1
+          fi
+          if [ "$after_pub" -lt "$before_pub" ]; then
+            echo "Published translations shrank ($before_pub -> $after_pub); failing."; exit 1
+          fi
+          if [ "$after_cache" != "$after_pub" ]; then
+            echo "Cache ($after_cache) and published ($after_pub) translation counts disagree; failing."; exit 1
+          fi
+
+      - name: Pre-push sync check
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "origin/main advanced since checkout; aborting to avoid a non-fast-forward push."
+            echo "Re-run the workflow on the updated main (no rebase or force-push is attempted)."
+            exit 1
+          fi
+
+      - name: Commit and push translations only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/translation_cache.json docs/data/legal_updates.json
+          if git diff --cached --quiet; then
+            echo "No translation changes to commit."
+            exit 0
+          fi
+          git commit -m "Backfill zh-Hans translations"
+          git push origin HEAD:main

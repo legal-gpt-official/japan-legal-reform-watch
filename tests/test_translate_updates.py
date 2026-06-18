@@ -714,6 +714,210 @@ class TestRegressionV2(unittest.TestCase):
         self.assertEqual(tu.FIELD_LIMITS["title"], 90)
 
 
+def valid_cache_entry(source_hash="h1", prompt_version=None):
+    entry = good_translation()
+    entry.update(
+        source_hash=source_hash,
+        prompt_version=prompt_version or tu.PROMPT_VERSION,
+        translated_at="2026-06-18T00:00:00Z",
+        model="m",
+    )
+    return entry
+
+
+class TestCandidateReason(unittest.TestCase):
+    def test_missing_cache(self):
+        self.assertEqual(tu.candidate_reason(None, "h", tu.PROMPT_VERSION), "missing_cache")
+
+    def test_hash_mismatch_on_hash(self):
+        entry = valid_cache_entry(source_hash="other")
+        self.assertEqual(tu.candidate_reason(entry, "h", tu.PROMPT_VERSION), "hash_mismatch")
+
+    def test_hash_mismatch_on_prompt_version(self):
+        entry = valid_cache_entry(source_hash="h", prompt_version="zh-hans-v2")
+        self.assertEqual(tu.candidate_reason(entry, "h", tu.PROMPT_VERSION), "hash_mismatch")
+
+    def test_invalid_cache(self):
+        entry = valid_cache_entry(source_hash="h")
+        del entry["summary"]  # field validation fails
+        self.assertEqual(tu.candidate_reason(entry, "h", tu.PROMPT_VERSION), "invalid_cache")
+
+    def test_invalid_title(self):
+        entry = valid_cache_entry(source_hash="h")
+        entry["title"] = "公开征求意见：外来入侵物种法施行令修订草案"  # known mistranslation
+        self.assertEqual(tu.candidate_reason(entry, "h", tu.PROMPT_VERSION), "invalid_title")
+
+    def test_valid_entry_is_not_a_candidate(self):
+        entry = valid_cache_entry(source_hash="h")
+        self.assertIsNone(tu.candidate_reason(entry, "h", tu.PROMPT_VERSION))
+
+
+class TestIntegrityGate(unittest.TestCase):
+    def _healthy(self, **overrides):
+        stats = {
+            "translated_items": 30,
+            "new_cache_entries": 30,
+            "updated_cache_entries": 0,
+            "published_added": 30,
+            "published_updated": 0,
+            "cache_entries_before": 133,
+            "cache_entries_after": 163,
+            "items_with_locale": 163,
+            "published_after": 163,
+            "saved_published_count": 163,
+            "saved_cache_count": 163,
+        }
+        stats.update(overrides)
+        return stats
+
+    def test_healthy_run_passes(self):
+        self.assertEqual(tu.integrity_gate_failures(self._healthy()), [])
+
+    def test_translated_but_nothing_persisted_fails(self):
+        bad = self._healthy(
+            new_cache_entries=0, updated_cache_entries=0, published_added=0, published_updated=0,
+            cache_entries_after=133, published_after=133, items_with_locale=133,
+            saved_published_count=133, saved_cache_count=133,
+        )
+        failures = tu.integrity_gate_failures(bad)
+        self.assertTrue(failures)
+        self.assertTrue(any("no new/updated cache" in f for f in failures))
+        self.assertTrue(any("no published translations" in f for f in failures))
+
+    def test_cache_shrink_fails(self):
+        self.assertTrue(tu.integrity_gate_failures(self._healthy(cache_entries_after=100)))
+
+    def test_saved_count_mismatch_fails(self):
+        self.assertTrue(tu.integrity_gate_failures(self._healthy(saved_cache_count=133)))
+
+
+def _cached_item(i):
+    item = sample_item(id=f"raw-c{i}", title_en=f"Cached English title number {i}.")
+    item["translations"] = {LOCALE: {k: good_translation()[k] for k in tu.TRANSLATION_FIELDS}}
+    return item
+
+
+class TestSaveIntegrityCounters(TranslateTestBase):
+    def test_new_cache_entries_before_133_after_163(self):
+        cached = [_cached_item(i) for i in range(133)]
+        candidates = [
+            sample_item(id=f"raw-n{i}", title_en=f"New English title number {i}.")
+            for i in range(30)
+        ]
+        cache = tu.default_cache()
+        for it in cached:
+            cache["entries"][LOCALE][it["id"]] = make_cache_entry(it)
+        self.write_input(cached + candidates)
+        self.write_cache(cache)
+        self.install_counting_api()
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        s = parse_summary(out)
+        self.assertEqual(s["cache_entries_before"], "133")
+        self.assertEqual(s["cache_entries_after"], "163")
+        self.assertEqual(s["new_cache_entries"], "30")
+        self.assertEqual(s["translated_items"], "30")
+        self.assertEqual(s["published_added"], "30")
+
+    def test_updated_one_when_english_changed(self):
+        item = sample_item(id="raw-x", title_en="NEW English canonical title.")
+        stale = sample_item(id="raw-x", title_en="OLD English canonical title.")
+        cache = tu.default_cache()
+        cache["entries"][LOCALE]["raw-x"] = make_cache_entry(stale)  # hash from OLD English
+        item["translations"] = {LOCALE: {
+            "title": "旧标题", "summary": "旧摘要",
+            "business_impact": "旧影响", "recommended_action": "旧建议",
+        }}
+        self.write_input([item])
+        self.write_cache(cache)
+        self.install_counting_api()
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        s = parse_summary(out)
+        self.assertEqual(s["new_cache_entries"], "0")
+        self.assertEqual(s["updated_cache_entries"], "1")
+        self.assertEqual(s["translated_items"], "1")
+        self.assertEqual(s["published_updated"], "1")
+
+    def test_cache_hit_makes_no_semantic_change(self):
+        item = sample_item()
+        entry = make_cache_entry(item)
+        item["translations"] = {LOCALE: {k: entry[k] for k in tu.TRANSLATION_FIELDS}}
+        self.write_input([item])
+        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: entry}}})
+        self.install_counting_api()
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        s = parse_summary(out)
+        self.assertEqual(s["cache_hits"], "1")
+        self.assertEqual(s["translated_items"], "0")  # cache hit not counted as translated
+        self.assertEqual(s["new_cache_entries"], "0")
+        self.assertEqual(s["updated_cache_entries"], "0")
+        self.assertEqual(s["published_updated"], "0")
+
+    def test_main_returns_1_when_integrity_gate_trips(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self.install_counting_api()
+        original = tu.integrity_gate_failures
+        tu.integrity_gate_failures = lambda stats: ["forced failure for test"]
+        try:
+            rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        finally:
+            tu.integrity_gate_failures = original
+        self.assertEqual(rc, 1)
+        self.assertIn("INTEGRITY GATE FAILED", out)
+
+
+class TestBackfillWorkflow(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        root = Path(__file__).resolve().parents[1] / ".github" / "workflows"
+        cls.backfill = (root / "translation-backfill.yml").read_text(encoding="utf-8")
+        cls.daily = (root / "daily-update.yml").read_text(encoding="utf-8")
+
+    def test_backfill_has_no_fetch_build_summarize_or_health(self):
+        for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, self.backfill)
+
+    def test_backfill_is_manual_only(self):
+        self.assertIn("workflow_dispatch:", self.backfill)
+        self.assertNotIn("schedule:", self.backfill)
+
+    def test_backfill_commit_targets_exactly_two_files(self):
+        self.assertIn(
+            "git add data/translation_cache.json docs/data/legal_updates.json", self.backfill
+        )
+        for forbidden in ("data/raw_items.json", "data/summary_cache.json", "data/source_health_state.json"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, self.backfill)
+
+    def test_backfill_runs_translate_with_limit_30(self):
+        self.assertIn(
+            "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
+        )
+
+    def test_backfill_presync_and_no_force_push(self):
+        self.assertIn("git fetch origin main", self.backfill)
+        self.assertNotIn("--force", self.backfill)
+        self.assertNotIn("push -f", self.backfill)
+
+    def test_action_pins_preserved(self):
+        self.assertIn("uses: actions/checkout@v5", self.backfill)
+        self.assertIn("uses: actions/setup-python@v6", self.backfill)
+
+    def test_both_workflows_share_concurrency_group(self):
+        for name, wf in (("backfill", self.backfill), ("daily", self.daily)):
+            with self.subTest(workflow=name):
+                self.assertIn("group: japan-legal-reform-data-writer", wf)
+                self.assertIn("cancel-in-progress: false", wf)
+
+
 class TestWorkflowTranslateStep(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

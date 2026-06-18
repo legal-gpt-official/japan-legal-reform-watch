@@ -8,6 +8,12 @@ on:
 permissions:
   contents: write
 
+# Serialize against the manual translation-backfill workflow so the two never
+# write data concurrently (avoids non-fast-forward pushes / lost writes).
+concurrency:
+  group: japan-legal-reform-data-writer
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest

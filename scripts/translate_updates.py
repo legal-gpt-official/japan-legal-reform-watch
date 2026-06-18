@@ -616,6 +616,88 @@ def cache_entry(source_hash: str, prompt_version: str, translated_at: str, model
 
 
 # --------------------------------------------------------------------------- #
+# Save-integrity instrumentation (why a translation did / did not persist)
+# --------------------------------------------------------------------------- #
+
+def candidate_reason(cached, source_hash: str, prompt_version: str):
+    """Why an item is a (re)translation candidate, or None if the cache is adopted.
+
+    One of: missing_cache / hash_mismatch / invalid_cache / invalid_title.
+    No translation text or secrets are involved — only structural signals.
+    """
+    if not isinstance(cached, dict):
+        return "missing_cache"
+    if cached.get("source_hash") != source_hash or cached.get("prompt_version") != prompt_version:
+        return "hash_mismatch"
+    if not valid_translation(cached):
+        return "invalid_cache"
+    if not valid_title(cached.get("title")):
+        return "invalid_title"
+    return None
+
+
+def cache_signature(entry):
+    """Semantic signature of a cache entry (ignores translated_at/model churn)."""
+    if not isinstance(entry, dict):
+        return None
+    return (
+        entry.get("source_hash"),
+        entry.get("prompt_version"),
+        entry.get("title"),
+        entry.get("summary"),
+        entry.get("business_impact"),
+        entry.get("recommended_action"),
+    )
+
+
+def published_signature(item: dict, locale: str):
+    """Semantic signature of an item's published translation block, or None."""
+    translations = item.get("translations")
+    if not isinstance(translations, dict):
+        return None
+    block = translations.get(locale)
+    if not isinstance(block, dict):
+        return None
+    return tuple(block.get(field) for field in TRANSLATION_FIELDS)
+
+
+def diff_counts(before: dict, after: dict) -> dict:
+    """Semantic before/after diff of two {id: signature} maps."""
+    before_ids, after_ids = set(before), set(after)
+    return {
+        "before": len(before_ids),
+        "after": len(after_ids),
+        "added": len(after_ids - before_ids),
+        "removed": len(before_ids - after_ids),
+        "updated": sum(1 for k in (before_ids & after_ids) if before[k] != after[k]),
+    }
+
+
+def integrity_gate_failures(stats: dict) -> list[str]:
+    """Conditions under which the run must fail (exit 1). Pure for testability."""
+    failures = []
+    translated = stats.get("translated_items", 0)
+    if translated > 0 and (stats.get("new_cache_entries", 0) + stats.get("updated_cache_entries", 0)) == 0:
+        failures.append("translated_items > 0 but no new/updated cache entries persisted")
+    if translated > 0 and (stats.get("published_added", 0) + stats.get("published_updated", 0)) == 0:
+        failures.append("translated_items > 0 but no published translations added/updated")
+    if stats.get("cache_entries_after", 0) < stats.get("cache_entries_before", 0):
+        failures.append(
+            "cache shrank unexpectedly "
+            f"({stats.get('cache_entries_before')} -> {stats.get('cache_entries_after')})"
+        )
+    if stats.get("items_with_locale") != stats.get("published_after"):
+        failures.append("items_with_locale disagrees with published translation count")
+    saved_pub = stats.get("saved_published_count")
+    if saved_pub is not None and saved_pub != stats.get("published_after"):
+        failures.append("saved published file translation count != in-memory count")
+    saved_cache = stats.get("saved_cache_count")
+    if saved_cache is not None and saved_cache != stats.get("cache_entries_after"):
+        failures.append("saved cache file entry count != in-memory count")
+    return failures
+
+
+# --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
 
@@ -650,6 +732,15 @@ def main(argv: list[str] | None = None) -> int:
     cache = ensure_cache_shape(load_json(CACHE_PATH, default_cache()), locale)
     entries = cache["entries"][locale]
 
+    # Before-snapshots (semantic signatures) so we can prove what actually changed,
+    # independent of JSON formatting. Compared against the post-processing state.
+    cache_before = {k: cache_signature(v) for k, v in entries.items()}
+    published_before = {
+        (it.get("id") or ""): published_signature(it, locale)
+        for it in items
+        if published_signature(it, locale) is not None
+    }
+
     has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
     api_allowed = (not args.no_api) and has_key
     model = resolve_model(args.model)
@@ -666,6 +757,7 @@ def main(argv: list[str] | None = None) -> int:
     client = None
     cache_hits = api_calls = translated = failed = quality_rejected = 0
     skipped_no_budget = stale_translations_removed = 0
+    candidate_reasons: dict[str, int] = {}
 
     for it in items:
         item_id = it.get("id") or ""
@@ -674,21 +766,25 @@ def main(argv: list[str] | None = None) -> int:
 
         cached = entries.get(item_id)
         # A cache entry is adopted only when hash + prompt_version match AND the
-        # cached translation still passes the field + title quality checks (so a
-        # v1 entry, or any low-quality title, is a cache miss).
-        cache_valid = (
-            isinstance(cached, dict)
-            and cached.get("source_hash") == source_hash
-            and cached.get("prompt_version") == PROMPT_VERSION
-            and valid_translation(cached)
-            and valid_title(cached.get("title"))
-        )
+        # cached translation still passes the field + title quality checks (so an
+        # older-version entry, or any low-quality title, is a cache miss).
+        reason = candidate_reason(cached, source_hash, PROMPT_VERSION)
 
-        if cache_valid:
+        if reason is None:
             # Adopt cached translation. translated_at is NOT touched (no churn).
             apply_translation(it, cached, locale)
             cache_hits += 1
             continue
+
+        # Candidate diagnostics — structural signals only (no translation text/secrets).
+        candidate_reasons[reason] = candidate_reasons.get(reason, 0) + 1
+        logger.info(
+            "CANDIDATE %s reason=%s had_published_translation=%s cache_present=%s "
+            "cache_prompt_version=%s hash_match=%s",
+            item_id, reason, had_locale, isinstance(cached, dict),
+            (cached.get("prompt_version") if isinstance(cached, dict) else None),
+            (isinstance(cached, dict) and cached.get("source_hash") == source_hash),
+        )
 
         # Candidate: no cache, stale hash, or invalid cache. The current published
         # translation (if any) is stale relative to the English text — drop it so
@@ -746,22 +842,65 @@ def main(argv: list[str] | None = None) -> int:
             if api_allowed:
                 skipped_no_budget += 1
 
+    # After-snapshots (post-processing, pre-save) and the semantic before/after diff.
+    cache_after = {k: cache_signature(v) for k, v in entries.items()}
+    published_after = {
+        (it.get("id") or ""): published_signature(it, locale)
+        for it in items
+        if published_signature(it, locale) is not None
+    }
+    cache_diff = diff_counts(cache_before, cache_after)
+    published_diff = diff_counts(published_before, published_after)
+    translated_total = published_diff["after"]
+
     backup_created = False  # translate does not back up; Stage 2 owns the public-file backup.
+    saved_published_count = None
+    saved_cache_count = None
     if not args.dry_run:
         save_json(OUTPUT_PATH, items)
         save_json(CACHE_PATH, cache)
+        # Re-read what we just wrote and confirm the files hold the intended state
+        # (catches a save that silently did not persist the in-memory changes).
+        reloaded_items = load_json(OUTPUT_PATH, None)
+        if isinstance(reloaded_items, list):
+            saved_published_count = sum(
+                1 for it in reloaded_items
+                if isinstance(it.get("translations"), dict) and locale in it["translations"]
+            )
+        reloaded_cache = ensure_cache_shape(load_json(CACHE_PATH, default_cache()), locale)
+        saved_cache_count = len(reloaded_cache["entries"][locale])
+
+    stats = {
+        "translated_items": translated,
+        "cache_entries_before": cache_diff["before"],
+        "cache_entries_after": cache_diff["after"],
+        "new_cache_entries": cache_diff["added"],
+        "updated_cache_entries": cache_diff["updated"],
+        "removed_cache_entries": cache_diff["removed"],
+        "published_before": published_diff["before"],
+        "published_after": published_diff["after"],
+        "published_added": published_diff["added"],
+        "published_updated": published_diff["updated"],
+        "published_removed": published_diff["removed"],
+        "items_with_locale": translated_total,
+        "saved_published_count": saved_published_count,
+        "saved_cache_count": saved_cache_count,
+    }
+    gate_failures = [] if args.dry_run else integrity_gate_failures(stats)
 
     logger.info(
         "RUN SUMMARY items=%d locale=%s cache_hits=%d api_calls=%d translated_items=%d failed_items=%d "
-        "quality_rejected_items=%d skipped_no_budget=%d stale_translations_removed=%d",
+        "quality_rejected_items=%d skipped_no_budget=%d stale_translations_removed=%d "
+        "new_cache=%d updated_cache=%d removed_cache=%d published_added=%d published_updated=%d "
+        "published_removed=%d candidate_reasons=%s",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
+        cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
+        published_diff["added"], published_diff["updated"], published_diff["removed"],
+        candidate_reasons,
     )
-
-    translated_total = sum(
-        1 for it in items
-        if isinstance(it.get("translations"), dict) and locale in it["translations"]
-    )
+    for failure in gate_failures:
+        logger.error("INTEGRITY %s", failure)
 
     print("\n==== translate_updates summary ====")
     print(f"locale                    : {locale}")
@@ -774,6 +913,17 @@ def main(argv: list[str] | None = None) -> int:
     print(f"quality_rejected_items    : {quality_rejected}")
     print(f"skipped_no_budget         : {skipped_no_budget}")
     print(f"stale_translations_removed: {stale_translations_removed}")
+    print(f"candidate_reasons         : {candidate_reasons}")
+    print(f"cache_entries_before      : {cache_diff['before']}")
+    print(f"cache_entries_after       : {cache_diff['after']}")
+    print(f"new_cache_entries         : {cache_diff['added']}")
+    print(f"updated_cache_entries     : {cache_diff['updated']}")
+    print(f"removed_cache_entries     : {cache_diff['removed']}")
+    print(f"published_before          : {published_diff['before']}")
+    print(f"published_after           : {published_diff['after']}")
+    print(f"published_added           : {published_diff['added']}")
+    print(f"published_updated         : {published_diff['updated']}")
+    print(f"published_removed         : {published_diff['removed']}")
     print(f"items_with_{locale}       : {translated_total}")
     print(f"limit (new API max)       : {args.limit}")
     print(f"output_path               : {OUTPUT_PATH}")
@@ -783,6 +933,11 @@ def main(argv: list[str] | None = None) -> int:
         print("(no ANTHROPIC_API_KEY: applied valid cache only; no API calls)")
     if args.dry_run:
         print("(dry-run: output file and cache were not written)")
+    if gate_failures:
+        print("\nINTEGRITY GATE FAILED (exit 1):")
+        for failure in gate_failures:
+            print(f"  - {failure}")
+        return 1
     return 0
 
 
