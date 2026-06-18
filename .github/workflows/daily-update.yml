@@ -64,7 +64,18 @@ jobs:
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/translate_updates.py --locale zh-Hans --limit 30
+        # warn mode: a fatal provider error (e.g. insufficient credit) must NOT
+        # stop the legal-data pipeline — translations are simply not added this
+        # run, and a warning annotation is surfaced. A genuine integrity-gate
+        # failure (exit 1) still stops the job via pipefail.
+        run: |
+          set -o pipefail
+          python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode warn 2>&1 | tee translate_run.log
+          if grep -q "PROVIDER_UNAVAILABLE" translate_run.log; then
+            ptype=$(grep -m1 "PROVIDER_UNAVAILABLE" translate_run.log | sed -n 's/.*type=\([a-z_]*\).*/\1/p')
+            echo "::warning::Translation provider unavailable: ${ptype}"
+            echo "Translation provider unavailable: ${ptype}" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Check data changes
         id: changes

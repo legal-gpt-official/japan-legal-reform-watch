@@ -571,8 +571,13 @@ def request_translation(client, model: str, item: dict, locale: str) -> tuple[di
             output_config={"format": {"type": "json_schema", "schema": RESULT_SCHEMA}},
             **kwargs,
         )
-    except (TypeError, anthropic.BadRequestError):
-        # Older SDK or model without output_config: rely on the prompt + robust parse.
+    except (TypeError, anthropic.BadRequestError) as exc:
+        # Retry without output_config ONLY for an output_config/schema
+        # incompatibility (older SDK/model). Do NOT silently retry an
+        # account-level 400 such as insufficient credit — re-raise it so the
+        # caller can fail fast instead of burning a second call.
+        if isinstance(exc, anthropic.BadRequestError) and classify_provider_error(exc) != "unknown_provider_error":
+            raise
         resp = client.messages.create(**kwargs)
 
     text = next((b.text for b in resp.content if getattr(b, "type", None) == "text"), "")
@@ -698,6 +703,79 @@ def integrity_gate_failures(stats: dict) -> list[str]:
 
 
 # --------------------------------------------------------------------------- #
+# Provider (Anthropic) error classification + fail-fast policy
+# --------------------------------------------------------------------------- #
+# These do NOT recover within a run, so once one is seen we stop calling the API
+# for the rest of the run instead of repeating the same failure 30 times.
+FATAL_PROVIDER_ERRORS = ("insufficient_credit", "authentication_error", "permission_error")
+
+# Narrow, specific signals used ONLY to classify a shared 400 as a billing
+# problem. Used for classification, never logged.
+_CREDIT_SIGNALS = (
+    "credit balance is too low",
+    "insufficient credit",
+    "plans & billing",
+    "purchase credits",
+)
+
+
+def _error_status(exc) -> int | None:
+    for attr in ("status_code", "status"):
+        value = getattr(exc, attr, None)
+        if isinstance(value, int):
+            return value
+    response = getattr(exc, "response", None)
+    value = getattr(response, "status_code", None)
+    return value if isinstance(value, int) else None
+
+
+def _looks_like_insufficient_credit(exc) -> bool:
+    """Inspect error text for billing signals — classification only, never logged."""
+    parts = [str(exc), str(getattr(exc, "message", "") or "")]
+    body = getattr(exc, "body", None)
+    if isinstance(body, dict):
+        err = body.get("error")
+        if isinstance(err, dict):
+            parts.append(str(err.get("message", "")))
+    text = " ".join(parts).lower()
+    return any(signal in text for signal in _CREDIT_SIGNALS)
+
+
+def classify_provider_error(exc) -> str:
+    """Classify a provider exception, preferring type + HTTP status over message text.
+
+    Returns one of: insufficient_credit / authentication_error / permission_error /
+    rate_limit / temporary_server_error / network_error / unknown_provider_error.
+    """
+    name = type(exc).__name__
+    status = _error_status(exc)
+    if status == 401 or name == "AuthenticationError":
+        return "authentication_error"
+    if status == 403 or name == "PermissionDeniedError":
+        return "permission_error"
+    if status == 429 or name == "RateLimitError":
+        return "rate_limit"
+    if (isinstance(status, int) and 500 <= status < 600) or name in ("InternalServerError", "APIStatusError"):
+        return "temporary_server_error"
+    if name in ("APIConnectionError", "APITimeoutError") or isinstance(exc, (ConnectionError, TimeoutError, OSError)):
+        return "network_error"
+    if status == 400 or name == "BadRequestError":
+        # 400 is shared by ordinary bad requests and billing problems; the credit
+        # signal is the only safe way to tell them apart.
+        return "insufficient_credit" if _looks_like_insufficient_credit(exc) else "unknown_provider_error"
+    if _looks_like_insufficient_credit(exc):
+        return "insufficient_credit"
+    return "unknown_provider_error"
+
+
+def classify_error(exc) -> str:
+    """Per-item validation/parse problems vs provider errors."""
+    if isinstance(exc, (ValueError, json.JSONDecodeError)):
+        return "item_validation_error"
+    return classify_provider_error(exc)
+
+
+# --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
 
@@ -715,7 +793,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-api", action="store_true", help="Apply valid cache only; never call the API. Exit 0.")
     parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > ANTHROPIC_MODEL > default).")
     parser.add_argument("--dry-run", action="store_true", help="Do not write the output file or cache.")
+    parser.add_argument(
+        "--provider-failure-mode",
+        choices=("warn", "fail"),
+        default=None,
+        help=(
+            "Behavior on a fatal provider error (insufficient credit / auth / permission): "
+            "'warn' exits 0 so the daily pipeline keeps going; 'fail' exits 1 (backfill). "
+            "Default: env TRANSLATE_PROVIDER_FAILURE_MODE, else 'fail'."
+        ),
+    )
     args = parser.parse_args(argv)
+
+    provider_failure_mode = (
+        args.provider_failure_mode
+        or os.environ.get("TRANSLATE_PROVIDER_FAILURE_MODE")
+        or "fail"
+    )
+    if provider_failure_mode not in ("warn", "fail"):
+        provider_failure_mode = "fail"
 
     locale = args.locale
     if locale not in SUPPORTED_LOCALES:
@@ -757,6 +853,9 @@ def main(argv: list[str] | None = None) -> int:
     client = None
     cache_hits = api_calls = translated = failed = quality_rejected = 0
     skipped_no_budget = stale_translations_removed = 0
+    provider_aborted = 0
+    provider_fatal = False
+    provider_error_type = "none"
     candidate_reasons: dict[str, int] = {}
 
     for it in items:
@@ -790,6 +889,18 @@ def main(argv: list[str] | None = None) -> int:
         # translation (if any) is stale relative to the English text — drop it so
         # we never display a translation of outdated English. It is re-added below
         # only when a fresh, valid translation is produced.
+        if provider_fatal:
+            # A provider-wide fatal error was already seen this run: do not call the
+            # API again. Count would-be-budgeted candidates as provider-aborted.
+            if api_allowed and (api_calls + provider_aborted) < args.limit:
+                provider_aborted += 1
+            elif api_allowed:
+                skipped_no_budget += 1
+            if had_locale:
+                stale_translations_removed += 1
+            remove_translation(it, locale)
+            continue
+
         if api_allowed and api_calls < args.limit:
             if client is None:
                 client = make_client()
@@ -811,29 +922,33 @@ def main(argv: list[str] | None = None) -> int:
                     if had_locale:
                         stale_translations_removed += 1
                     remove_translation(it, locale)
-                    logger.warning(
-                        "QUALITY %s rejected title (%s): %r",
-                        item_id, "; ".join(title_errs), (fields.get("title") or "")[:60],
-                    )
+                    # Log only the structural reasons, never the candidate title text.
+                    logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))
                     continue
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
                 apply_translation(it, fields, locale)
                 entries[item_id] = cache_entry(source_hash, PROMPT_VERSION, now, model_used, fields)
                 translated += 1
-                logger.info("API   %s — %s", item_id, (it.get("title_en", "") or "")[:48])
+                logger.info("API   %s — ok", item_id)
             except Exception as exc:  # keep English fallback, log, continue
+                etype = classify_error(exc)
                 failed += 1
                 if had_locale:
                     stale_translations_removed += 1
                 remove_translation(it, locale)  # ensure no stale translation remains
-                req_id = getattr(getattr(exc, "response", None), "headers", {})
-                req_id = req_id.get("request-id") if hasattr(req_id, "get") else None
-                logger.error(
-                    "FAIL  %s (%s): %s%s",
-                    item_id, (it.get("title_en", "") or "")[:40],
-                    f"{type(exc).__name__}: {exc}",
-                    f" [request-id={req_id}]" if req_id else "",
-                )
+                if etype in FATAL_PROVIDER_ERRORS and not provider_fatal:
+                    # Provider-wide fatal (e.g. insufficient credit): record it once
+                    # and stop calling the API for the rest of the run. Never log the
+                    # error body / request id / source or translation text.
+                    provider_fatal = True
+                    provider_error_type = etype
+                    logger.error(
+                        "PROVIDER unavailable type=%s; remaining API candidates were skipped.",
+                        etype,
+                    )
+                else:
+                    # Per-item error (validation / rate limit / transient): continue.
+                    logger.error("FAIL %s type=%s", item_id, etype)
         else:
             # No API this run (disabled, no key, or budget spent): English fallback.
             if had_locale:
@@ -888,16 +1003,21 @@ def main(argv: list[str] | None = None) -> int:
     }
     gate_failures = [] if args.dry_run else integrity_gate_failures(stats)
 
+    provider_status = "unavailable" if provider_fatal else "healthy"
+    api_calls_avoided = provider_aborted
+
     logger.info(
         "RUN SUMMARY items=%d locale=%s cache_hits=%d api_calls=%d translated_items=%d failed_items=%d "
         "quality_rejected_items=%d skipped_no_budget=%d stale_translations_removed=%d "
         "new_cache=%d updated_cache=%d removed_cache=%d published_added=%d published_updated=%d "
-        "published_removed=%d candidate_reasons=%s",
+        "published_removed=%d candidate_reasons=%s provider_status=%s provider_error_type=%s "
+        "provider_aborted_items=%d api_calls_avoided=%d",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
         cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
         published_diff["added"], published_diff["updated"], published_diff["removed"],
-        candidate_reasons,
+        candidate_reasons, provider_status, provider_error_type,
+        provider_aborted, api_calls_avoided,
     )
     for failure in gate_failures:
         logger.error("INTEGRITY %s", failure)
@@ -913,6 +1033,12 @@ def main(argv: list[str] | None = None) -> int:
     print(f"quality_rejected_items    : {quality_rejected}")
     print(f"skipped_no_budget         : {skipped_no_budget}")
     print(f"stale_translations_removed: {stale_translations_removed}")
+    print(f"provider_status           : {provider_status}")
+    print(f"provider_error_type       : {provider_error_type}")
+    print(f"provider_error_detected   : {str(provider_fatal).lower()}")
+    print(f"provider_aborted_items    : {provider_aborted}")
+    print(f"api_calls_avoided         : {api_calls_avoided}")
+    print(f"provider_failure_mode     : {provider_failure_mode}")
     print(f"candidate_reasons         : {candidate_reasons}")
     print(f"cache_entries_before      : {cache_diff['before']}")
     print(f"cache_entries_after       : {cache_diff['after']}")
@@ -933,10 +1059,21 @@ def main(argv: list[str] | None = None) -> int:
         print("(no ANTHROPIC_API_KEY: applied valid cache only; no API calls)")
     if args.dry_run:
         print("(dry-run: output file and cache were not written)")
+    # A provider outage with no successful translations is a "provider unavailable"
+    # condition, NOT an integrity-gate failure (translated_items == 0, so the gate
+    # never flags "translated but nothing persisted"). Whether it fails the run is
+    # decided by the failure mode, not by the integrity gate.
+    provider_blocks = provider_fatal and provider_failure_mode == "fail"
     if gate_failures:
         print("\nINTEGRITY GATE FAILED (exit 1):")
         for failure in gate_failures:
             print(f"  - {failure}")
+    if provider_fatal:
+        outcome = "failing (exit 1)" if provider_blocks else "continuing (warn mode, exit 0)"
+        # Stable, machine-greppable marker (the daily workflow turns this into a
+        # warning annotation without parsing the aligned summary block).
+        print(f"PROVIDER_UNAVAILABLE type={provider_error_type} mode={provider_failure_mode} -> {outcome}")
+    if gate_failures or provider_blocks:
         return 1
     return 0
 

@@ -918,6 +918,195 @@ class TestBackfillWorkflow(unittest.TestCase):
                 self.assertIn("cancel-in-progress: false", wf)
 
 
+def make_provider_error(message="", status_code=None):
+    """A provider-like exception carrying an HTTP status_code (and message)."""
+    exc = Exception(message)
+    if status_code is not None:
+        exc.status_code = status_code
+    return exc
+
+
+CREDIT_MESSAGE = "Your credit balance is too low to access the Anthropic API"
+
+
+class TestProviderErrorClassification(unittest.TestCase):
+    def test_insufficient_credit(self):
+        self.assertEqual(
+            tu.classify_provider_error(make_provider_error(CREDIT_MESSAGE, 400)),
+            "insufficient_credit",
+        )
+
+    def test_authentication_error(self):
+        self.assertEqual(tu.classify_provider_error(make_provider_error("nope", 401)), "authentication_error")
+
+    def test_permission_error(self):
+        self.assertEqual(tu.classify_provider_error(make_provider_error("nope", 403)), "permission_error")
+
+    def test_rate_limit_is_not_fatal(self):
+        rl = tu.classify_provider_error(make_provider_error("slow down", 429))
+        self.assertEqual(rl, "rate_limit")
+        self.assertNotIn(rl, tu.FATAL_PROVIDER_ERRORS)
+
+    def test_temporary_server_error(self):
+        self.assertEqual(tu.classify_provider_error(make_provider_error("oops", 503)), "temporary_server_error")
+
+    def test_network_error(self):
+        self.assertEqual(tu.classify_provider_error(ConnectionError("down")), "network_error")
+
+    def test_unknown_provider_error_for_plain_400(self):
+        self.assertEqual(tu.classify_provider_error(make_provider_error("bad field", 400)), "unknown_provider_error")
+
+    def test_item_validation_error(self):
+        self.assertEqual(tu.classify_error(ValueError("bad json")), "item_validation_error")
+
+    def test_fatal_set_is_exactly_the_three(self):
+        self.assertEqual(
+            set(tu.FATAL_PROVIDER_ERRORS),
+            {"insufficient_credit", "authentication_error", "permission_error"},
+        )
+
+
+class TestProviderFailFast(TranslateTestBase):
+    def _install_credit_failure(self):
+        calls = {"n": 0}
+
+        def fake(client, model, item, locale):
+            calls["n"] += 1
+            raise make_provider_error(CREDIT_MESSAGE, 400)
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+        return calls
+
+    def _thirty_candidates(self):
+        items = [sample_item(id=f"raw-{i}", title_en=f"English title number {i}.") for i in range(30)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+
+    def test_insufficient_credit_aborts_after_first_call_fail_mode(self):
+        self._thirty_candidates()
+        calls = self._install_credit_failure()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "fail"])
+        self.assertEqual(calls["n"], 1, "only one API call before fail-fast")
+        s = parse_summary(out)
+        self.assertEqual(s["api_calls"], "1")
+        self.assertEqual(s["failed_items"], "1")          # not 30
+        self.assertEqual(s["provider_aborted_items"], "29")
+        self.assertEqual(s["api_calls_avoided"], "29")
+        self.assertEqual(s["provider_status"], "unavailable")
+        self.assertEqual(s["provider_error_type"], "insufficient_credit")
+        self.assertEqual(s["provider_error_detected"], "true")
+        self.assertEqual(rc, 1)                            # fail mode
+
+    def test_warn_mode_exits_zero(self):
+        self._thirty_candidates()
+        self._install_credit_failure()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "warn"])
+        self.assertEqual(rc, 0)                            # daily pipeline keeps going
+        s = parse_summary(out)
+        self.assertEqual(s["provider_status"], "unavailable")
+        self.assertEqual(s["provider_error_type"], "insufficient_credit")
+        self.assertEqual(s["provider_aborted_items"], "29")
+
+    def test_provider_error_marker_emitted_once_not_per_item(self):
+        self._thirty_candidates()
+        self._install_credit_failure()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "warn"])
+        self.assertEqual(out.count("PROVIDER_UNAVAILABLE"), 1)
+        self.assertEqual(parse_summary(out)["failed_items"], "1")  # not 30 failures
+
+    def test_authentication_error_is_also_fatal(self):
+        self._thirty_candidates()
+
+        def fake(client, model, item, locale):
+            raise make_provider_error("auth", 401)
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "warn"])
+        s = parse_summary(out)
+        self.assertEqual(s["api_calls"], "1")
+        self.assertEqual(s["provider_error_type"], "authentication_error")
+        self.assertEqual(rc, 0)
+
+    def test_per_item_validation_error_does_not_abort(self):
+        bad = sample_item(id="raw-bad", title_en="Bad English title.")
+        good = sample_item(id="raw-good", title_en="Good English title.")
+        self.write_input([bad, good])
+        self.write_cache(tu.default_cache())
+
+        def fake(client, model, item, locale):
+            if item.get("id") == "raw-bad":
+                return {"title": "x"}, "fake-model"  # missing fields -> item_validation_error
+            return good_translation(), "fake-model"
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "fail"])
+        self.assertEqual(rc, 0)
+        s = parse_summary(out)
+        self.assertEqual(s["provider_status"], "healthy")
+        self.assertEqual(s["failed_items"], "1")
+        out_items = {it["id"]: it for it in self.read_output()}
+        self.assertNotIn("translations", out_items["raw-bad"])
+        self.assertIn(LOCALE, out_items["raw-good"]["translations"])
+
+    def test_rate_limit_is_per_item_not_fatal(self):
+        self._thirty_candidates()
+
+        def fake(client, model, item, locale):
+            raise make_provider_error("rate limited", 429)
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "fail"])
+        s = parse_summary(out)
+        # Not fatal: every candidate within budget is attempted (no fail-fast abort).
+        self.assertEqual(s["api_calls"], "30")
+        self.assertEqual(s["failed_items"], "30")
+        self.assertEqual(s["provider_status"], "healthy")
+        self.assertEqual(s["provider_aborted_items"], "0")
+        self.assertEqual(rc, 0)
+
+
+class TestProviderFailureWorkflowPolicy(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        root = Path(__file__).resolve().parents[1] / ".github" / "workflows"
+        cls.daily = (root / "daily-update.yml").read_text(encoding="utf-8")
+        cls.backfill = (root / "translation-backfill.yml").read_text(encoding="utf-8")
+
+    def test_daily_uses_warn_mode(self):
+        self.assertIn("--provider-failure-mode warn", self.daily)
+        self.assertNotIn("--provider-failure-mode fail", self.daily)
+
+    def test_backfill_uses_fail_mode(self):
+        self.assertIn("--provider-failure-mode fail", self.backfill)
+        self.assertNotIn("--provider-failure-mode warn", self.backfill)
+
+    def test_daily_surfaces_provider_warning(self):
+        self.assertIn("Translation provider unavailable", self.daily)
+
+    def test_daily_still_commits_legal_data(self):
+        self.assertIn("Daily update legal reform data", self.daily)
+        for path in ("data/raw_items.json", "docs/data/legal_updates.json", "data/translation_cache.json"):
+            with self.subTest(path=path):
+                self.assertIn(path, self.daily)
+
+    def test_daily_limit_30_preserved(self):
+        self.assertIn("--limit 30", self.daily)
+
+    def test_backfill_remains_translate_only(self):
+        for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, self.backfill)
+
+    def test_both_share_concurrency_group(self):
+        for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
+            with self.subTest(workflow=name):
+                self.assertIn("group: japan-legal-reform-data-writer", wf)
+
+
 class TestWorkflowTranslateStep(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

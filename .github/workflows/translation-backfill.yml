@@ -56,7 +56,10 @@ jobs:
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/translate_updates.py --locale zh-Hans --limit 30
+        # fail mode: a fatal provider error (e.g. insufficient credit) while
+        # untranslated candidates remain exits 1, failing the backfill before any
+        # commit so a credit/auth problem is loud and no partial state is pushed.
+        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode fail
 
       - name: Count translations after
         id: after
