@@ -202,7 +202,7 @@
       ds_updates: "更新总数",
       ds_sources: "涵盖来源",
       ds_ai_summaries: "AI摘要数",
-      ds_open_pc: "征求意见进行中",
+      ds_open_pc: "公开征求意见中",
       ds_newly_detected: "新近收录（7天）",
       ds_latest_checked: "最后确认",
       ds_unknown: "未知",
@@ -212,7 +212,7 @@
       controls_filters_search: "筛选与搜索",
       controls_hide_filters: "隐藏筛选",
       qf_label: "快捷筛选",
-      qf_pc_open: "征求意见进行中",
+      qf_pc_open: "公开征求意见中",
       qf_ai: "AI摘要",
       qf_newly: "新近收录",
       qf_medium: "中等影响",
@@ -265,14 +265,14 @@
       card_business_impact_heading: "业务影响",
       card_recommended_action_heading: "建议措施",
       card_source_name_label: "来源名称",
-      card_view_source: "查看日文原始来源 →",
-      card_source_note: "以日文原始来源为准。",
+      card_view_source: "查看日文官方来源 →",
+      card_source_note: "以日文官方来源（原文）为准。",
       copy_summary_label: "复制摘要",
       copy_source_link_label: "复制来源链接",
       date_published: "发布日期",
       date_first_detected: "首次收录",
       date_last_checked: "最后确认",
-      impact_badge: "{level}影响",
+      impact_badge: "{level}",
       newly_detected: "新近收录",
       newly_detected_title: "本仪表板于 {date} 首次检测到",
       newly_detected_aria: "新近收录。本仪表板于 {date} 首次检测到。",
@@ -313,7 +313,7 @@
       modal_title: "重要提示 — 使用前请阅读",
       modal_p1:
         "Japan Legal Reform Watch by LegalOS 仅出于一般信息目的，提供日本法律、监管及行政动态的英文摘要。",
-      modal_li1: "本网站并非官方译文。请始终以日文原始来源作为权威文本。",
+      modal_li1: "本网站并非官方译文。请始终以日文官方来源作为权威文本。",
       modal_li2: "本内容不构成法律意见，也不建立律师—委托人关系。",
       modal_li3: "我们不保证所呈现信息的准确性、完整性或时效性。",
       modal_li4: "如涉及业务或合规决策，请咨询具备资质的日本法律顾问。",
@@ -370,7 +370,7 @@
     },
   };
   var IMPACT_LABELS = {
-    "zh-Hans": { "High": "高", "Medium": "中", "Low": "低" },
+    "zh-Hans": { "High": "高影响", "Medium": "中等影响", "Low": "低影响" },
   };
   var SOURCE_LABELS = {
     "zh-Hans": {

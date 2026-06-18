@@ -25,6 +25,9 @@ STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
 CACHE_BUSTER = "i18n-zh-hans-20260618"
+# i18n.js is busted independently so dictionary-only changes ship without
+# re-fetching app.js / style.css.
+I18N_CACHE_BUSTER = "zh-hans-v3-20260618"
 
 
 def object_body(name: str) -> str:
@@ -377,7 +380,7 @@ class TestAppJsUrlState(unittest.TestCase):
 
 class TestSimplifiedChineseI18n(unittest.TestCase):
     def test_i18n_loaded_before_app_with_cache_buster(self):
-        self.assertIn("i18n.js?v=" + CACHE_BUSTER, INDEX_HTML)
+        self.assertIn("i18n.js?v=" + I18N_CACHE_BUSTER, INDEX_HTML)
         self.assertIn("app.js?v=" + CACHE_BUSTER, INDEX_HTML)
         self.assertIn("style.css?v=" + CACHE_BUSTER, INDEX_HTML)
         # i18n.js must be parsed before app.js so window.JLRW_I18N exists.
@@ -575,6 +578,46 @@ class TestChineseCsvExport(unittest.TestCase):
         # TestAppJsUrlState.test_csv_headers_exact_order).
         self.assertIn("const headers = [", APP_JS)
         self.assertIn('"English title"', APP_JS)
+
+
+class TestChineseUiTerminologyV3(unittest.TestCase):
+    def test_unified_official_source_and_impact_terms(self):
+        for snippet in (
+            "中等影响",
+            "高影响",
+            "低影响",
+            "公开征求意见中",
+            "查看日文官方来源",
+            "以日文官方来源（原文）为准",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+
+    def test_superseded_zh_strings_removed(self):
+        for snippet in (
+            "征求意见进行中",
+            "查看日文原始来源",
+            "以日文原始来源为准",
+            "{level}影响",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertNotIn(snippet, I18N_JS)
+
+    def test_english_ui_strings_unchanged(self):
+        for snippet in (
+            '"{level} Impact"',
+            '"Public Comment Open"',
+            "View Original Japanese Source →",
+            "Original Japanese source remains authoritative.",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+
+    def test_language_switch_url_state_and_focus_trap_intact(self):
+        # v3 must not disturb the language selector, URL lang state, or focus trap.
+        self.assertIn('id="language-select"', INDEX_HTML)
+        self.assertIn('params.set("lang"', APP_JS)
+        self.assertIn("function trapModalFocus", APP_JS)
 
 
 if __name__ == "__main__":

@@ -132,12 +132,16 @@ class TranslateTestBase(unittest.TestCase):
 
     def install_api_returning(self, title):
         """Patch the API so each candidate returns a good body but a given title."""
+        return self.install_api_returning_fields(title=title)
+
+    def install_api_returning_fields(self, **overrides):
+        """Patch the API so each candidate returns good_translation() with overrides."""
         calls = {"n": 0}
 
         def fake_request(client, model, item, locale):
             calls["n"] += 1
             d = good_translation()
-            d["title"] = title
+            d.update(overrides)
             return d, "fake-model"
 
         tu.make_client = lambda: object()
@@ -418,44 +422,156 @@ def parse_summary(stdout):
 VALID_90 = "甲乙丙丁戊己庚辛壬癸" * 9
 
 
-class TestPromptVersionV2(TranslateTestBase):
-    def test_prompt_version_is_v2(self):
-        self.assertEqual(tu.PROMPT_VERSION, "zh-hans-v2")
+class TestPromptVersionV3(TranslateTestBase):
+    def test_prompt_version_is_v3(self):
+        self.assertEqual(tu.PROMPT_VERSION, "zh-hans-v3")
 
-    def test_source_hash_changes_between_v1_and_v2(self):
+    def test_source_hash_changes_between_v2_and_v3(self):
         item = sample_item()
         self.assertNotEqual(
-            tu.compute_source_hash(item, LOCALE, "zh-hans-v1"),
             tu.compute_source_hash(item, LOCALE, "zh-hans-v2"),
+            tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION),
         )
 
-    def test_v1_cache_entry_is_a_miss(self):
-        item = sample_item()
-        v1_entry = {
-            "source_hash": tu.compute_source_hash(item, LOCALE, "zh-hans-v1"),
-            "prompt_version": "zh-hans-v1",
-            "translated_at": "2026-06-18T00:00:00Z",
-            "model": "claude-opus-4-8",
-            **{k: good_translation()[k] for k in tu.TRANSLATION_FIELDS},
-        }
-        item["translations"] = {LOCALE: {k: v1_entry[k] for k in tu.TRANSLATION_FIELDS}}
-        self.write_input([item])
-        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v1_entry}}})
-        # No API: a v1 entry is a cache miss, so the stale v1 translation is removed.
-        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30", "--no-api"])
-        self.assertEqual(rc, 0)
-        self.assertNotIn("translations", self.read_output()[0])
+    def test_older_version_cache_entry_is_a_miss(self):
+        # A v1 or v2 entry (and any stale published translation) is removed under v3.
+        for old_version in ("zh-hans-v1", "zh-hans-v2"):
+            with self.subTest(version=old_version):
+                item = sample_item()
+                old_entry = {
+                    "source_hash": tu.compute_source_hash(item, LOCALE, old_version),
+                    "prompt_version": old_version,
+                    "translated_at": "2026-06-18T00:00:00Z",
+                    "model": "claude-opus-4-8",
+                    **{k: good_translation()[k] for k in tu.TRANSLATION_FIELDS},
+                }
+                item["translations"] = {LOCALE: {k: old_entry[k] for k in tu.TRANSLATION_FIELDS}}
+                self.write_input([item])
+                self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: old_entry}}})
+                rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30", "--no-api"])
+                self.assertEqual(rc, 0)
+                self.assertNotIn("translations", self.read_output()[0])
 
-    def test_v2_cache_entry_is_a_hit(self):
+    def test_v3_cache_entry_is_a_hit(self):
         item = sample_item()
-        v2_entry = make_cache_entry(item)  # built with PROMPT_VERSION (v2) + valid title
+        v3_entry = make_cache_entry(item)  # built with PROMPT_VERSION (v3) + valid title
         self.write_input([item])
-        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v2_entry}}})
+        self.write_cache({"schema_version": 1, "entries": {LOCALE: {item["id"]: v3_entry}}})
         calls = self.install_counting_api()
         rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
         self.assertEqual(rc, 0)
-        self.assertEqual(calls["n"], 0, "v2 cache entry must be a hit (no API call)")
+        self.assertEqual(calls["n"], 0, "v3 cache entry must be a hit (no API call)")
         self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
+
+class TestSourceHashV3(unittest.TestCase):
+    def test_japanese_context_changes_hash(self):
+        base = sample_item()
+        for field in ("title_ja", "stage", "source_name"):
+            changed = sample_item(**{field: "DIFFERENT VALUE"})
+            with self.subTest(field=field):
+                self.assertNotEqual(
+                    tu.compute_source_hash(base, LOCALE, tu.PROMPT_VERSION),
+                    tu.compute_source_hash(changed, LOCALE, tu.PROMPT_VERSION),
+                )
+
+    def test_hash_stable_when_english_and_context_unchanged(self):
+        self.assertEqual(
+            tu.compute_source_hash(sample_item(id="raw-1"), LOCALE, tu.PROMPT_VERSION),
+            tu.compute_source_hash(sample_item(id="raw-2"), LOCALE, tu.PROMPT_VERSION),
+        )
+
+
+class TestPromptContext(TranslateTestBase):
+    def test_reference_context_included_but_marked_reference_only(self):
+        item = sample_item()
+        content = tu.build_user_content(item, LOCALE)
+        self.assertIn(item["title_ja"], content)
+        self.assertIn(item["stage"], content)
+        self.assertIn(item["source_name"], content)
+        self.assertIn("REFERENCE_CONTEXT", content)
+        self.assertIn("do NOT return", content)
+        self.assertIn("UNTRUSTED_ENGLISH_JSON", content)
+
+    def test_api_metadata_is_not_accepted(self):
+        item = sample_item()
+        original_ja = item["title_ja"]
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+
+        def fake(client, model, it, locale):
+            d = good_translation()
+            d["title_ja"] = "HACKED"  # the model tries to return reference fields
+            d["stage"] = "HACKED"
+            d["source_name"] = "HACKED"
+            return d, "fake-model"
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        out = self.read_output()[0]
+        self.assertEqual(out["title_ja"], original_ja)  # not overwritten
+        self.assertEqual(set(out["translations"][LOCALE]), set(tu.TRANSLATION_FIELDS))  # only 4 keys
+        entry = self.read_cache()["entries"][LOCALE][item["id"]]
+        self.assertNotIn("stage", entry)
+        self.assertNotIn("source_name", entry)
+
+
+class TestGlossaryV3(unittest.TestCase):
+    def test_japan_specific_terms_present(self):
+        values = set(tu.GLOSSARY_ZH_HANS.values())
+        self.assertIn("特定外来生物造成生态系统等损害防止法", values)
+        self.assertIn("育成就业", values)  # Training and Employment
+        self.assertTrue(any("育成就业" in v for v in values))
+
+    def test_known_mistranslation_not_used(self):
+        self.assertFalse(any("开发与雇佣" in v for v in tu.GLOSSARY_ZH_HANS.values()))
+
+    def test_prior_terms_preserved(self):
+        values = set(tu.GLOSSARY_ZH_HANS.values())
+        self.assertIn("课征金缴纳命令", values)
+        self.assertIn("长期优良住宅", values)
+
+
+class TestTitleQualityV3(unittest.TestCase):
+    def test_known_mistranslated_statute_titles_invalid(self):
+        self.assertFalse(tu.valid_title("公开征求意见：《外国人开发与雇佣适当实施及保护法》修订草案"))
+        self.assertFalse(tu.valid_title("公开征求意见：外来入侵物种法施行令修订草案"))
+
+    def test_preferred_statute_titles_valid(self):
+        self.assertTrue(tu.valid_title("公开征求意见：《特定外来生物造成生态系统等损害防止法》施行令修订草案"))
+        self.assertTrue(
+            tu.valid_title("公开征求意见：《外国人育成就业适当实施及育成就业外国人保护法》林业领域标准告示草案")
+        )
+
+
+class TestDateNormalization(TranslateTestBase):
+    def test_slash_and_dot_dates_normalized(self):
+        self.assertEqual(tu.normalize_dates("截止日期为2026/07/16。"), "截止日期为2026-07-16。")
+        self.assertEqual(tu.normalize_dates("2026.07.16"), "2026-07-16")
+        self.assertEqual(tu.normalize_dates("2026/7/6"), "2026-07-06")
+
+    def test_ambiguous_format_unchanged(self):
+        self.assertEqual(tu.normalize_dates("07/16/2026"), "07/16/2026")
+        self.assertEqual(tu.normalize_dates("no date here"), "no date here")
+
+    def test_applied_to_translation_only_not_metadata(self):
+        item = sample_item()
+        before = json.loads(json.dumps(item))
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self.install_api_returning_fields(summary="公示截止日期为2026/07/16，请留意。")
+
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        out = self.read_output()[0]
+        self.assertEqual(out["translations"][LOCALE]["summary"], "公示截止日期为2026-07-16，请留意。")
+        # Metadata dates and the Japanese original are untouched.
+        self.assertEqual(out["published_at"], before["published_at"])
+        self.assertEqual(out["last_checked"], before["last_checked"])
+        self.assertEqual(out["title_ja"], before["title_ja"])
 
 
 class TestTitleQuality(unittest.TestCase):
