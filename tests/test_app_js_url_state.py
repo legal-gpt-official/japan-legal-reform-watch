@@ -17,8 +17,14 @@ if str(SCRIPTS_DIR) not in sys.path:
 import fetch_updates as fu  # noqa: E402
 
 APP_JS = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
+I18N_JS = (REPO_ROOT / "docs" / "i18n.js").read_text(encoding="utf-8")
 INDEX_HTML = (REPO_ROOT / "docs" / "index.html").read_text(encoding="utf-8")
 STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
+
+# English UI strings now live in docs/i18n.js (English is the canonical default),
+# so dynamic-string assertions search app.js + i18n.js together.
+UI_JS = APP_JS + I18N_JS
+CACHE_BUSTER = "i18n-zh-hans-20260618"
 
 
 def object_body(name: str) -> str:
@@ -112,7 +118,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "function sourceUrlForCopy",
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS)
+                self.assertIn(snippet, UI_JS)
 
     def test_clipboard_copy_support_exists(self):
         for snippet in (
@@ -126,7 +132,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "Copy failed",
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS)
+                self.assertIn(snippet, UI_JS)
 
     def test_copy_action_styles_exist(self):
         for snippet in (
@@ -147,7 +153,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'aria-controls="filter-panel"',
             'id="active-filter-summary"',
             'id="filter-panel"',
-            "newly-detected-20260618",
+            CACHE_BUSTER,
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
@@ -161,7 +167,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "No active filters",
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS)
+                self.assertIn(snippet, UI_JS)
 
         for snippet in (
             ".mobile-controls-bar",
@@ -183,7 +189,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "Newly detected (7d)",
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, INDEX_HTML + APP_JS)
+                self.assertIn(snippet, INDEX_HTML + APP_JS + I18N_JS)
 
         for snippet in (
             "function renderDataStatus",
@@ -207,7 +213,7 @@ class TestAppJsUrlState(unittest.TestCase):
                 self.assertIn(snippet, STYLE_CSS)
 
     def test_data_status_avoids_overclaims(self):
-        combined = INDEX_HTML + APP_JS + STYLE_CSS
+        combined = INDEX_HTML + APP_JS + STYLE_CSS + I18N_JS
         for forbidden in (
             "All sources checked successfully",
             "Complete coverage",
@@ -270,10 +276,10 @@ class TestAppJsUrlState(unittest.TestCase):
             "badge-newly-detected",
             "First detected by this dashboard on",
             "First detected by this dashboard",
-            "First detected:",
+            "First detected",
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS + INDEX_HTML + STYLE_CSS)
+                self.assertIn(snippet, APP_JS + INDEX_HTML + STYLE_CSS + I18N_JS)
 
     def test_newly_detected_rejects_unknown_url_values_and_future_dates(self):
         self.assertIn('params.get("new") === "7"', APP_JS)
@@ -367,6 +373,208 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, STYLE_CSS)
+
+
+class TestSimplifiedChineseI18n(unittest.TestCase):
+    def test_i18n_loaded_before_app_with_cache_buster(self):
+        self.assertIn("i18n.js?v=" + CACHE_BUSTER, INDEX_HTML)
+        self.assertIn("app.js?v=" + CACHE_BUSTER, INDEX_HTML)
+        self.assertIn("style.css?v=" + CACHE_BUSTER, INDEX_HTML)
+        # i18n.js must be parsed before app.js so window.JLRW_I18N exists.
+        self.assertLess(INDEX_HTML.index("i18n.js?v="), INDEX_HTML.index("app.js?v="))
+        # The old cache buster must be fully replaced.
+        self.assertNotIn("newly-detected-20260618", INDEX_HTML)
+
+    def test_i18n_namespace_and_api(self):
+        for snippet in (
+            "window.JLRW_I18N",
+            "applyStatic",
+            "areaLabel",
+            "stageLabel",
+            "impactLabel",
+            "sourceLabel",
+            "summaryTypeLabel",
+            "normalize",
+            "STORAGE_KEY",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+
+    def test_localstorage_key_is_namespaced(self):
+        self.assertIn('"jlrw-language"', I18N_JS)
+
+    def test_supported_locales_are_en_and_zh_hans(self):
+        self.assertIn('"en"', I18N_JS)
+        self.assertIn('"zh-Hans"', I18N_JS)
+
+    def test_language_selector_markup(self):
+        for snippet in (
+            'id="language-select"',
+            'value="en"',
+            'value="zh-Hans"',
+            "简体中文",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+    def test_language_preference_precedence_url_localstorage_english(self):
+        for snippet in (
+            'params.get("lang")',
+            'params.set("lang"',
+            "I18N.normalize",
+            "function readStoredLang",
+            "function persistLang",
+            "I18N.STORAGE_KEY",
+            "function handleLanguageChange",
+            "document.documentElement.lang = filters.lang",
+            'document.title = I18N.t("document_title")',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+        # Default English is the absence of the param (clean URLs).
+        self.assertIn('filters.lang !== I18N.DEFAULT_LANG) params.set("lang"', APP_JS)
+
+    def test_language_change_keeps_load_more_window(self):
+        match = re.search(
+            r"function handleLanguageChange\(nextLang\) \{(?P<body>.*?)\n  \}",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(match, "handleLanguageChange not found")
+        body = match.group("body")
+        self.assertIn("render()", body)
+        # Language change must NOT reset the Load more window or wipe filters.
+        self.assertNotIn("resetVisibleCount", body)
+        self.assertNotIn("resetFilters", body)
+
+    def test_card_translation_resolver_and_fallback(self):
+        for snippet in (
+            "function translatedField",
+            "function englishCanonical",
+            "function hasTranslation",
+            "function localeBlock",
+            'TRANSLATION_LOCALE = "zh-Hans"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+        # Translated values stay inside the escapeHtml() boundary.
+        self.assertRegex(APP_JS, r"escapeHtml\(\s*translatedField")
+        # Source URL still passes safeUrl().
+        self.assertIn("safeUrl(u.source_url)", APP_JS)
+
+    def test_card_translation_badge_and_notes_localized(self):
+        # The CSS class lives in app.js (renderCard) + style.css.
+        self.assertIn("badge-ai-translation", APP_JS)
+        self.assertIn("badge-ai-translation", STYLE_CSS)
+        self.assertIn("translation-note", STYLE_CSS)
+        # The localized strings live in i18n.js.
+        for snippet in (
+            "AI翻译",
+            "本译文由AI生成，仅用于信息监测。应以日文原文为准。",
+            "中文翻译暂不可用，以下显示英文。",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+
+    def test_search_covers_chinese_english_japanese(self):
+        hay = re.search(r"const hay = \((?P<body>.*?)\)\.toLowerCase\(\)", APP_JS, re.S)
+        self.assertIsNotNone(hay)
+        body = hay.group("body")
+        for snippet in ("u.title_en", "u.title_ja", "u.summary_en", "tr.title", "tr.summary"):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, body)
+        # The Chinese translation block is read regardless of active language.
+        self.assertIn("u.translations[TRANSLATION_LOCALE]", APP_JS)
+
+    def test_reliability_and_disclaimer_have_chinese(self):
+        for snippet in (
+            "并非官方译文",  # reliability note / trust body
+            "本仪表板汇总日本政府及监管机构的官方信息",
+            "重要提示 — 使用前请阅读",  # modal title
+            "我已理解并同意",  # modal accept
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+
+    def test_newly_detected_chinese_text(self):
+        self.assertIn("新近收录", I18N_JS)
+
+    def test_static_strings_use_data_i18n_hooks(self):
+        for snippet in (
+            'data-i18n="modal_title"',
+            'data-i18n="trust_body"',
+            'data-i18n="ctl_search"',
+            'data-i18n-placeholder="ctl_search_placeholder"',
+            'data-i18n="qf_reset"',
+            'data-i18n="export_button"',
+            'data-i18n="footer_bottom"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+
+class TestChineseCsvExport(unittest.TestCase):
+    def _zh_headers(self):
+        # The 17-column Chinese layout is defined in i18n.js (CSV_HEADERS_ZH);
+        # app.js references it via I18N.csvHeadersZh().
+        self.assertIn("const ZH_CSV_HEADERS = I18N.csvHeadersZh();", APP_JS)
+        match = re.search(r"var CSV_HEADERS_ZH = \[(?P<body>.*?)\];", I18N_JS, re.S)
+        self.assertIsNotNone(match, "CSV_HEADERS_ZH not found in i18n.js")
+        return re.findall(r'"([^"]+)"', match.group("body"))
+
+    def test_chinese_csv_column_order_is_fixed(self):
+        self.assertEqual(
+            self._zh_headers(),
+            [
+                "中文标题",
+                "英文参考标题",
+                "日文原题",
+                "领域",
+                "阶段",
+                "影响程度",
+                "来源",
+                "日文官方来源URL",
+                "发布日期",
+                "首次收录日期",
+                "最后确认日期",
+                "摘要类型",
+                "摘要",
+                "业务影响",
+                "建议措施",
+                "排序分数",
+                "内部ID",
+            ],
+        )
+
+    def test_internal_id_is_last_chinese_column(self):
+        self.assertEqual(self._zh_headers()[-1], "内部ID")
+
+    def test_chinese_csv_keeps_english_reference_and_japanese_columns(self):
+        headers = self._zh_headers()
+        self.assertIn("英文参考标题", headers)
+        self.assertIn("日文原题", headers)
+
+    def test_chinese_csv_uses_fallback_and_protections(self):
+        for snippet in (
+            "function csvRowZh",
+            "function buildCsvTextZh",
+            'translatedField(update, "title")',
+            "ZH_CSV_HEADERS.map(csvCell)",
+            ".map(csvCell)",  # cells go through formula-injection protection
+            "csvSourceUrl(update)",  # safe URL
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_english_csv_is_dispatched_for_english(self):
+        # English keeps the existing buildCsvText; zh-Hans uses buildCsvTextZh.
+        self.assertIn("buildCsvTextZh(filtered) : buildCsvText(filtered)", APP_JS)
+
+    def test_english_csv_headers_unchanged(self):
+        # The original English header constant must be intact (see also
+        # TestAppJsUrlState.test_csv_headers_exact_order).
+        self.assertIn("const headers = [", APP_JS)
+        self.assertIn('"English title"', APP_JS)
 
 
 if __name__ == "__main__":

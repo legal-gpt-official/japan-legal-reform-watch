@@ -34,6 +34,10 @@ NON_EMPTY_FIELDS = (
 )
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
+# Optional translations.<locale> contract (see scripts/translate_updates.py).
+ALLOWED_LOCALES = {"zh-Hans"}
+TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action")
+
 # Stages classify_stage() can emit (keep in sync with that function).
 ALLOWED_STAGES = {
     "Public Comment Open", "Public Comment Closed", "Public Comment Results Published",
@@ -140,6 +144,24 @@ class TestPublishedDataSchema(unittest.TestCase):
     def test_comment_deadline_is_not_added_yet(self):
         for it in self.items:
             self.assertNotIn("comment_deadline", it)
+
+    def test_translations_block_is_optional_but_valid_when_present(self):
+        """English stays canonical; translations.<locale> (if any) is well-formed."""
+        for it in self.items:
+            if "translations" not in it:
+                continue
+            with self.subTest(id=it["id"]):
+                translations = it["translations"]
+                self.assertIsInstance(translations, dict)
+                self.assertTrue(translations, "empty translations block must not be published")
+                for locale, block in translations.items():
+                    self.assertIn(locale, ALLOWED_LOCALES, f"{it['id']}: unexpected locale {locale}")
+                    self.assertIsInstance(block, dict)
+                    for field in TRANSLATION_FIELDS:
+                        self.assertIsInstance(block.get(field), str, f"{it['id']}: {locale}.{field}")
+                        self.assertTrue(block[field].strip(), f"{it['id']}: empty {locale}.{field}")
+                # Canonical English title must still be present and non-Japanese.
+                self.assertTrue(it["title_en"].strip())
 
     def test_relevance_score_is_numeric(self):
         for it in self.items:

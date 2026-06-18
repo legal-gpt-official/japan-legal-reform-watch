@@ -126,6 +126,46 @@ code {
   border-color: rgba(255, 255, 255, 0.52);
 }
 
+/* -------- Header actions / language switcher -------- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-switcher-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.3px;
+}
+
+.language-select {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius);
+  padding: 5px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.language-select:hover {
+  border-color: rgba(255, 255, 255, 0.52);
+}
+
+.language-select option {
+  color: #1a1a1a;
+}
+
 /* -------- Trust Notice -------- */
 .trust-section {
   background: #eef3f6;
@@ -533,6 +573,26 @@ code {
   background: #edf3ee;
   border-color: #cbd9ce;
   color: #365b3d;
+}
+
+.badge-ai-translation {
+  text-transform: none;
+  letter-spacing: 0.2px;
+  background: #eaf1f0;
+  border-color: #bcd2cf;
+  color: #1f5650;
+}
+
+/* Subtle per-card translation notice (zh-Hans only). */
+.translation-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b6254;
+}
+
+.translation-note-missing {
+  color: #8a5a2b;
 }
 
 .card.impact-high .badge-impact {

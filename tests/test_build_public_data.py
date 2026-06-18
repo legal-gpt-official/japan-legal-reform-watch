@@ -600,6 +600,82 @@ class TestAiSummaryPreservation(unittest.TestCase):
         self.assertEqual(item, before)
 
 
+class TestTranslationPreservation(unittest.TestCase):
+    URL = "https://example.go.jp/page1.html"
+
+    def _new_item(self):
+        raw = {
+            "id": "raw-tr-1",
+            "title_ja": "個人情報保護法ガイドラインの一部改正（案）に関する意見募集について",
+            "source_name": PPC,
+            "source_type": "regulator_html",
+            "source_url": self.URL,
+            "published_at": "2026-06-09T15:00:00Z",
+            "fetched_at": "2026-06-10T00:00:00Z",
+        }
+        return bpd.build_public_item(raw, "2026-06-11", 12.0)
+
+    def _existing(self, translations=None, **overrides):
+        existing = {
+            "id": "raw-tr-1",
+            "source_url": self.URL,
+            "translations": translations if translations is not None else {
+                "zh-Hans": {
+                    "title": "标题",
+                    "summary": "摘要",
+                    "business_impact": "业务影响",
+                    "recommended_action": "建议措施",
+                }
+            },
+        }
+        existing.update(overrides)
+        return existing
+
+    def test_preserved_when_id_and_url_match(self):
+        item = self._new_item()
+        self.assertTrue(bpd.preserve_translations(item, {"raw-tr-1": self._existing()}))
+        self.assertEqual(item["translations"]["zh-Hans"]["title"], "标题")
+
+    def test_block_reduced_to_four_fields(self):
+        noisy = {"zh-Hans": {
+            "title": "标题", "summary": "摘要",
+            "business_impact": "业务影响", "recommended_action": "建议措施",
+            "source_hash": "deadbeef", "model": "x",  # metadata must be dropped
+        }}
+        item = self._new_item()
+        bpd.preserve_translations(item, {"raw-tr-1": self._existing(translations=noisy)})
+        self.assertEqual(set(item["translations"]["zh-Hans"]), set(bpd.TRANSLATION_FIELDS))
+
+    def test_not_preserved_when_source_url_differs(self):
+        item = self._new_item()
+        existing = self._existing(source_url="https://example.go.jp/OTHER.html")
+        self.assertFalse(bpd.preserve_translations(item, {"raw-tr-1": existing}))
+        self.assertNotIn("translations", item)
+
+    def test_not_preserved_when_block_is_malformed(self):
+        for bad in ({"zh-Hans": {"title": "只有标题"}}, {"zh-Hans": "not-a-dict"}, {}):
+            with self.subTest(bad=bad):
+                item = self._new_item()
+                self.assertFalse(
+                    bpd.preserve_translations(item, {"raw-tr-1": self._existing(translations=bad)})
+                )
+                self.assertNotIn("translations", item)
+
+    def test_does_not_touch_english_canonical_or_ai_fields(self):
+        item = self._new_item()
+        english_before = {k: item[k] for k in (
+            "title_en", "summary_en", "business_impact_en", "recommended_action_en"
+        )}
+        existing = self._existing(
+            summary_source="claude", summary_en="AI summary that must NOT be copied.",
+        )
+        bpd.preserve_translations(item, {"raw-tr-1": existing})
+        for key, value in english_before.items():
+            with self.subTest(field=key):
+                self.assertEqual(item[key], value)
+        self.assertNotIn("summary_source", item)
+
+
 class TestFirstSeenAtPublication(unittest.TestCase):
     def _raw(self, **overrides):
         raw = {

@@ -179,6 +179,30 @@ Behaviour:
 
 The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MODEL`). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
 
+## Simplified Chinese translation (Stage 4 — Claude)
+
+`scripts/translate_updates.py` is the optional Stage 4 script. **English stays the canonical data**; this only adds an unofficial Simplified-Chinese (`zh-Hans`) translation under each item's `translations.zh-Hans` (`title`, `summary`, `business_impact`, `recommended_action`). It never touches `id`, `title_ja`, `source_name`, `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`, `relevance_score`, or any summary metadata. Items without a translation omit the block entirely, and the dashboard falls back to English per field.
+
+> **Unofficial machine translation.** The translator runs under strict guardrails: translate the provided English faithfully and nothing else, add no obligations / deadlines / penalties / scope that are not in the English, give no legal advice, do not map Japanese legal concepts onto Chinese-law concepts, and preserve numbers, dates, institution names, and statute names. The Japanese official source remains authoritative.
+
+**Run it after Stage 3** so it translates the final English (AI where available, rule-based otherwise):
+
+```
+python scripts/translate_updates.py --locale zh-Hans --limit 30
+python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api   # apply cached translations only
+```
+
+Behaviour:
+
+- **`--limit N` bounds NEW API calls per run, not items inspected.** The script scans the published file in order; cache hits and valid translations are free and do not consume the limit, so successive daily runs translate the whole corpus incrementally. The first bulk translation of the full corpus is a separate, deliberate operation (raise `--limit` once, off the daily schedule).
+- **Cache.** [`data/translation_cache.json`](data/translation_cache.json) is `{ "schema_version": 1, "entries": { "zh-Hans": { "<id>": { source_hash, prompt_version, translated_at, model, title, summary, business_impact, recommended_action } } } }`. `source_hash` is a SHA-256 over `locale | prompt_version | title_en | summary_en | business_impact_en | recommended_action_en` (the item id is the outer key, not hashed). A cached translation is adopted only when its `source_hash` and `prompt_version` still match; a cache hit makes **no** API call and does not rewrite `translated_at`. Changing the English (e.g. a rule-based → AI upgrade) or bumping `PROMPT_VERSION` is a cache miss and re-translates.
+- **Stale removal.** Each run re-checks every item against the current English and **removes** any translation that no longer matches, so the dashboard never shows a translation of outdated English. Stage 2 may carry translations forward across rebuilds, but Stage 4 is authoritative.
+- **Model.** Precedence is `--model` > `ANTHROPIC_TRANSLATION_MODEL` > `ANTHROPIC_MODEL` > the same default as the summarizer (`claude-opus-4-8`).
+- **No-API / no key.** `--no-api` (or a missing `ANTHROPIC_API_KEY`) applies only valid cached translations, removes stale ones, and exits 0 without calling the API.
+- **Resilience.** A failed or invalid translation leaves that item in English (no translation), is logged to [`logs/translate.log`](logs/translate.log), and never stops the run. Translations must be non-empty, contain no HTML/Markdown, and stay within length caps (title ≤ 100, summary ≤ 800, business_impact / recommended_action ≤ 500) or they are rejected and not cached.
+
+On the dashboard, a header **language selector (English / 简体中文)** switches the display. Precedence is **URL (`lang=zh-Hans`) > `localStorage` (`jlrw-language`) > English**; `lang=en` is omitted from shared URLs, switching language keeps all filters / sort / Load more state, and a translated card shows a subtle `AI翻译` badge plus an unofficial-translation note (English-fallback notice when a translation is unavailable).
+
 ## Scheduled updates (GitHub Actions)
 
 `.github/workflows/daily-update.yml` can be run manually from the GitHub Actions tab (`workflow_dispatch`) and is scheduled daily at `0 21 * * *` UTC (06:00 JST).
@@ -186,24 +210,25 @@ The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MO
 The workflow uses `ubuntu-latest`, Python 3.11, installs `requirements.txt`, then runs the **offline regression tests as a gate before any network access**:
 
 ```
-python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py scripts/source_health.py
+python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py scripts/translate_updates.py scripts/source_health.py
 python -m unittest discover -s tests
 python scripts/fetch_updates.py
 python scripts/source_health.py evaluate
 python scripts/build_public_data.py
-python scripts/summarize_updates.py --limit 10
+python scripts/summarize_updates.py --limit 30
+python scripts/translate_updates.py --locale zh-Hans --limit 30
 python scripts/source_health.py gate
 ```
 
-If compilation or any test fails, the job stops there — no fetch, no rebuild, no API call, and no commit. The test steps do not receive `ANTHROPIC_API_KEY`; the secret is exposed only to the summarize step.
+If compilation or any test fails, the job stops there — no fetch, no rebuild, no API call, and no commit. The test steps do not receive `ANTHROPIC_API_KEY`; the secret is exposed only to the summarize and translate steps. The translate step runs after summarize and before the change check.
 
-Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries. If the secret is missing, the summarization script exits cleanly after printing usage.
+Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries or translations. If the secret is missing, both scripts exit cleanly (the translator still applies any cached translations).
 
-The workflow commits when any tracked data artifact changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, `data/source_health_state.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits. The final source-health gate runs after this commit step, so healthy-source updates and health-state changes can be preserved before a serious source-health failure marks the workflow red.
+The workflow commits when any tracked data artifact changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, `data/translation_cache.json`, `data/source_health_state.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits. The final source-health gate runs after this commit step, so healthy-source updates and health-state changes can be preserved before a serious source-health failure marks the workflow red.
 
 ## Tests
 
-Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, the published-file JSON schema, Source Health Monitor behavior, and the Stage 1 parsers / `SOURCES` configuration. They make **no network calls**; the published data is validated read-only.
+Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, **Stage 4 translation (cache hits, `--limit` bounding only new API calls, stale-translation removal, `--no-api` / no-key fallback, metadata invariance) and Stage 2 translation preservation**, the published-file JSON schema (including the optional `translations` contract), Source Health Monitor behavior, the Stage 1 parsers / `SOURCES` configuration, and **static checks for `docs/app.js` / `docs/i18n.js` (URL `lang` state, language-switch behavior, Chinese search, and both English and Chinese CSV column orders)**. They make **no network calls**; the published data is validated read-only.
 
 ```
 python -m unittest discover -s tests     # standard library, no extra dependencies
@@ -218,7 +243,7 @@ The same suite runs in the daily GitHub Actions workflow as a gate: a failure ab
 
 This project is designed to be published with **GitHub Pages set to serve from the `/docs` folder**. Everything required at runtime lives under `docs/`, so the published site is self-contained:
 
-- `docs/index.html`, `docs/style.css`, `docs/app.js`
+- `docs/index.html`, `docs/style.css`, `docs/i18n.js`, `docs/app.js` (`i18n.js` loads before `app.js`)
 - `docs/data/legal_updates.json` — the data the dashboard fetches (relative path `./data/legal_updates.json`)
 - `docs/legal/disclaimer_en.html`, `docs/legal/disclaimer_ja.html` — the published disclaimer pages
 - `docs/.nojekyll` — disables Jekyll so all files are served verbatim
@@ -230,6 +255,8 @@ No files outside `docs/` are needed to run the published dashboard.
 The **published data file is [`docs/data/legal_updates.json`](docs/data/legal_updates.json)** — this is what the live dashboard loads. It is **generated** by `scripts/build_public_data.py` from `data/raw_items.json`; the previous version is saved to `docs/data/legal_updates.backup.json` on each Stage 2 rebuild.
 
 If `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`, Stage 3 post-processes the same published file. AI-summarized records are marked `summary_source: "claude"`; non-summarized records are marked `summary_source: "rule_based"`. A file that has only gone through Stage 2 may not yet contain `summary_source`.
+
+If `scripts/translate_updates.py` is run afterwards, Stage 4 adds an optional `translations.zh-Hans` block to translated records. English fields stay canonical and untranslated records omit the block; a file that has not gone through Stage 4 simply has no `translations`.
 
 Display order is part of the published data contract: the browser respects the JSON array order, including after filtering and searching.
 
@@ -255,21 +282,27 @@ japan-legal-reform-watch/
 ├── scripts/
 │   ├── fetch_updates.py          # Stage 1 raw ingestion (fetch → normalize → dedupe → log)
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
-│   └── summarize_updates.py      # Stage 3 Claude AI summarization of the top-N items
+│   ├── summarize_updates.py      # Stage 3 Claude AI summarization of the top-N items
+│   └── translate_updates.py      # Stage 4 Claude Simplified-Chinese (zh-Hans) translation
 ├── tests/
-│   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI preservation
+│   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI & translation preservation
 │   ├── test_published_data_schema.py # Schema checks for docs/data/legal_updates.json (read-only)
+│   ├── test_translate_updates.py     # Stage 4 cache / limit / stale-removal / fallback + workflow (offline)
+│   ├── test_app_js_url_state.py      # Static checks for app.js/i18n.js: URL state, language switch, CSV
 │   └── test_fetch_updates.py         # Stage 1 SOURCES config, parsers, id/hash stability (offline)
 ├── data/
 │   ├── legal_updates.json        # Original hand-curated sample (schema reference only)
 │   ├── raw_items.json            # Raw fetched items (output of fetch_updates.py)
-│   └── summary_cache.json        # Claude summary cache (created/updated by Stage 3)
+│   ├── summary_cache.json        # Claude summary cache (created/updated by Stage 3)
+│   └── translation_cache.json    # zh-Hans translation cache (created/updated by Stage 4)
 ├── logs/
 │   ├── fetch.log                 # Stage 1 ingestion run log
-│   └── summarize.log             # Stage 3 summarization run log
+│   ├── summarize.log             # Stage 3 summarization run log
+│   └── translate.log             # Stage 4 translation run log
 ├── docs/                         # ← GitHub Pages publish root (serve from /docs)
 │   ├── index.html                # Dashboard entry point
 │   ├── style.css
+│   ├── i18n.js                   # i18n layer (window.JLRW_I18N): EN canonical + zh-Hans overlay
 │   ├── app.js
 │   ├── .nojekyll                 # Serve files verbatim (no Jekyll)
 │   ├── data/
@@ -299,7 +332,8 @@ japan-legal-reform-watch/
 - **Mobile controls** collapse filters/search behind a compact `Filters & Search` toggle. Active filters are summarized so shared URLs remain understandable; desktop keeps the full filter layout, and the mobile open/closed state is not persisted in the URL.
 - **Shareable filter URLs**: filter state is reflected in query parameters (`q`, `area`, `stage`, `source`, `impact`, `ai`, `new`, `sort`). `new=7` is the only valid Newly detected URL value. `source` uses compact slugs such as `jftc`, `moe`, `ppc`, `mlit`, `maff`, and `egov`; Load more state is not persisted, and Reset clears both filters and URL query parameters.
 - **English-first source labels**: the Source filter and each card's source name display English-first labels (e.g. `Japan Fair Trade Commission (JFTC)`, `Ministry of the Environment (MOE)`) via a display-name map in `docs/app.js`. Source filter URLs use compact slugs such as `jftc`, `mlit`, and `maff`. The underlying `source_name` values in the published JSON — and the official Japanese `source_url` links — are unchanged.
-- **Free-text search** across English title, original Japanese title, and summary (also against the full dataset) — Japanese keywords such as 排除措置命令 or 食品表示 match even when the English title does not contain them.
+- **Language selector (English / 简体中文)** in the header for an optional Simplified-Chinese display. English is canonical; Chinese is an unofficial AI translation that falls back to English per field. Precedence is URL (`lang=zh-Hans`) > `localStorage` > English; switching language preserves filters, sort, and the Load more window, and translated cards carry a subtle `AI翻译` badge and unofficial-translation note.
+- **Free-text search** across English title, original Japanese title, English summary, and the Simplified-Chinese translation fields (regardless of the active UI language) — Japanese keywords such as 排除措置命令 or 食品表示, and Chinese keywords, match even when the English title does not contain them.
 - **Status line** in the form `Showing X of Y matching updates · Z total updates · AI summaries: N · Last checked: D` — the AI-summary count and latest `last_checked` date cover the full filtered set, not just the rendered cards.
 - **Disclaimer modal** on first visit, with acceptance persisted in `localStorage`.
 - **Footer links** to Legal GPT, the Japan Legal Reform Watch landing page, Japan legal updates, and the full Legal Notice / Disclaimer at all times.
@@ -324,11 +358,13 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `published_at`           | Date published / announced (ISO `YYYY-MM-DD`).                           |
 | `first_seen_at`          | Optional date first appended to this dashboard's raw history (`YYYY-MM-DD`); absent for legacy or unknown items. |
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
+| `translations`           | Optional per-locale AI translations, e.g. `translations.zh-Hans = { title, summary, business_impact, recommended_action }` (Simplified Chinese). Unofficial aid added by Stage 4; English stays canonical and untranslated items omit the block. |
 
 ## Roadmap (not yet implemented)
 
-- **A three-stage pipeline exists** (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py`), and `.github/workflows/daily-update.yml` can run it manually or daily once GitHub Secrets are configured.
+- **A four-stage pipeline exists** (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py` → `translate_updates.py`), and `.github/workflows/daily-update.yml` can run it manually or daily once GitHub Secrets are configured.
 - First real Stage 3 API run, review of generated summaries, and expansion beyond top-N once the guardrails are accepted.
+- First bulk Stage 4 `zh-Hans` translation of the full corpus (raise `--limit` once, off the daily schedule) and review before broader use; additional UI locales only with explicit approval.
 - Public hosting on GitHub Pages.
 
 ## License & use

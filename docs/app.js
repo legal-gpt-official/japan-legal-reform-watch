@@ -6,6 +6,10 @@
 (function () {
   "use strict";
 
+  // i18n layer (docs/i18n.js, loaded first). English is canonical; zh-Hans is an
+  // optional overlay. All user-facing strings route through this namespace.
+  const I18N = window.JLRW_I18N;
+
   const STORAGE_KEY = "jlrw_disclaimer_accepted_v1";
   // Data lives inside docs/ so the published site (GitHub Pages: /docs) is self-contained.
   const DATA_URL = "./data/legal_updates.json";
@@ -100,7 +104,33 @@
     search: "",
     aiSummaryOnly: false,
     newlyDetectedOnly: false,
+    lang: I18N.DEFAULT_LANG,
   };
+
+  // The locale whose translations.<locale> block the card/search/CSV/copy layers
+  // read. English remains the canonical fallback for every field.
+  const TRANSLATION_LOCALE = "zh-Hans";
+
+  // -------- Language preference (URL > localStorage > English) --------
+  function readStoredLang() {
+    try {
+      return localStorage.getItem(I18N.STORAGE_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function persistLang(lang) {
+    try {
+      if (lang === I18N.DEFAULT_LANG) {
+        localStorage.removeItem(I18N.STORAGE_KEY);
+      } else {
+        localStorage.setItem(I18N.STORAGE_KEY, lang);
+      }
+    } catch (e) {
+      // localStorage may be unavailable (private mode, file://). URL still carries lang.
+    }
+  }
 
   // -------- DOM helpers --------
   const $ = (sel) => document.querySelector(sel);
@@ -113,6 +143,7 @@
     filterSource,
     filterImpact,
     filterSort,
+    languageSelect,
     mobileFiltersToggle,
     filterPanel,
     activeFilterSummary,
@@ -136,6 +167,7 @@
     filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
     filterSort = $("#filter-sort");
+    languageSelect = $("#language-select");
     mobileFiltersToggle = $("#mobile-filters-toggle");
     filterPanel = $("#filter-panel");
     activeFilterSummary = $("#active-filter-summary");
@@ -232,8 +264,9 @@
       // Preserve the published JSON order. build_public_data.py owns relevance ranking.
       allUpdates = data.slice();
       populateFilterOptions();
+      restoreFiltersFromUrl(); // resolves language (URL > localStorage > English)
+      applyLanguageDom(); // localize chrome, filter options, <title>, <html lang>
       renderDataStatus();
-      restoreFiltersFromUrl();
       render();
     } catch (err) {
       console.error("[JLRW] Failed to load data:", err);
@@ -310,6 +343,17 @@
     return SORT_LABELS[value] || SORT_LABELS[DEFAULT_SORT];
   }
 
+  const SORT_I18N_KEYS = {
+    relevance: "sort_relevance",
+    published: "sort_published",
+    checked: "sort_checked",
+    detected: "sort_detected",
+  };
+
+  function localizedSortLabel(value) {
+    return I18N.t(SORT_I18N_KEYS[value] || SORT_I18N_KEYS[DEFAULT_SORT]);
+  }
+
   function restoreFiltersFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const area = params.get("area") || "";
@@ -326,6 +370,14 @@
     filters.sort = isValidSort(sort) ? sort : DEFAULT_SORT;
     filters.aiSummaryOnly = params.get("ai") === "1";
     filters.newlyDetectedOnly = params.get("new") === "7";
+
+    // Language precedence: URL > localStorage > English. Unknown values fall back.
+    const urlLang = params.get("lang");
+    const lang = urlLang
+      ? I18N.normalize(urlLang)
+      : I18N.normalize(readStoredLang() || I18N.DEFAULT_LANG);
+    filters.lang = lang;
+    I18N.setLang(lang);
 
     if (filters.source) {
       ensureSourceOption(filters.source);
@@ -349,6 +401,8 @@
     if (filters.sort !== DEFAULT_SORT) params.set("sort", filters.sort);
     if (filters.aiSummaryOnly) params.set("ai", "1");
     if (filters.newlyDetectedOnly) params.set("new", "7");
+    // Default English is the absence of the param, keeping shared URLs clean.
+    if (filters.lang && filters.lang !== I18N.DEFAULT_LANG) params.set("lang", filters.lang);
 
     const queryString = params.toString();
     const nextUrl =
@@ -374,11 +428,69 @@
     filterSort.value = filters.sort;
   }
 
+  function syncLanguageSelector() {
+    if (languageSelect) languageSelect.value = filters.lang;
+  }
+
+  // Relabel data-driven <option>s (Area/Stage/Impact/Source) for the active
+  // language WITHOUT changing their values. The "All ..." defaults carry their
+  // own data-i18n keys and are handled by I18N.applyStatic().
+  function relabelOptions(selectEl, labeller) {
+    if (!selectEl) return;
+    Array.from(selectEl.options).forEach((opt) => {
+      if (opt.value === "") return;
+      opt.textContent = labeller(opt.value);
+    });
+  }
+
+  function relabelFilterOptions() {
+    relabelOptions(filterArea, (v) => I18N.areaLabel(v));
+    relabelOptions(filterStage, (v) => I18N.stageLabel(v));
+    relabelOptions(filterImpact, (v) => I18N.impactLabel(v));
+    relabelOptions(filterSource, (v) => I18N.sourceLabel(v, formatSourceDisplayName(v)));
+  }
+
+  function refreshMobileToggleLabel() {
+    if (!mobileFiltersToggle) return;
+    const isOpen = mobileFiltersToggle.getAttribute("aria-expanded") === "true";
+    mobileFiltersToggle.textContent = isOpen
+      ? I18N.t("controls_hide_filters")
+      : I18N.t("controls_filters_search");
+  }
+
+  // Apply the current language to page chrome (static strings, <html lang>,
+  // <title>, selector state). Does NOT re-render cards — callers render separately.
+  function applyLanguageDom() {
+    I18N.setLang(filters.lang);
+    I18N.applyStatic(document);
+    relabelFilterOptions();
+    document.documentElement.lang = filters.lang;
+    document.title = I18N.t("document_title");
+    syncLanguageSelector();
+    refreshMobileToggleLabel();
+  }
+
+  // User changed language: keep every filter / sort / quick-filter state AND the
+  // Load more window; only swap the display language and reflect it in URL +
+  // localStorage. Intentionally does NOT call resetVisibleCount().
+  function handleLanguageChange(nextLang) {
+    const lang = I18N.normalize(nextLang);
+    if (lang === filters.lang) return;
+    filters.lang = lang;
+    persistLang(lang);
+    applyLanguageDom();
+    updateUrlFromFilters();
+    renderDataStatus(); // re-localize the Data status chips (built from the full dataset)
+    render();
+  }
+
   function setMobileFiltersOpen(isOpen) {
     if (!mobileFiltersToggle || !filterPanel) return;
     filterPanel.classList.toggle("is-open", isOpen);
     mobileFiltersToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    mobileFiltersToggle.textContent = isOpen ? "Hide filters" : "Filters & Search";
+    mobileFiltersToggle.textContent = isOpen
+      ? I18N.t("controls_hide_filters")
+      : I18N.t("controls_filters_search");
   }
 
   function shortenSummaryPart(text, maxLength) {
@@ -390,18 +502,24 @@
     const parts = [];
     const query = filters.search.trim();
 
-    if (query) parts.push('Search: "' + shortenSummaryPart(query, 24) + '"');
-    if (filters.area) parts.push("Area: " + filters.area);
-    if (filters.stage) parts.push("Stage: " + filters.stage);
-    if (filters.source) parts.push("Source: " + formatSourceDisplayName(filters.source));
-    if (filters.impact) parts.push("Impact: " + filters.impact);
-    if (filters.sort !== DEFAULT_SORT) parts.push("Sort: " + sortLabel(filters.sort));
-    if (filters.aiSummaryOnly) parts.push("AI Summary");
-    if (filters.newlyDetectedOnly) parts.push("Newly detected");
+    if (query) parts.push(I18N.t("af_search", { q: shortenSummaryPart(query, 24) }));
+    if (filters.area) parts.push(I18N.t("af_area", { v: I18N.areaLabel(filters.area) }));
+    if (filters.stage) parts.push(I18N.t("af_stage", { v: I18N.stageLabel(filters.stage) }));
+    if (filters.source)
+      parts.push(
+        I18N.t("af_source", {
+          v: I18N.sourceLabel(filters.source, formatSourceDisplayName(filters.source)),
+        })
+      );
+    if (filters.impact) parts.push(I18N.t("af_impact", { v: I18N.impactLabel(filters.impact) }));
+    if (filters.sort !== DEFAULT_SORT)
+      parts.push(I18N.t("af_sort", { v: localizedSortLabel(filters.sort) }));
+    if (filters.aiSummaryOnly) parts.push(I18N.t("af_ai"));
+    if (filters.newlyDetectedOnly) parts.push(I18N.t("af_newly"));
 
-    if (parts.length === 0) return "No active filters";
-    if (parts.length <= 3) return "Active: " + parts.join(" · ");
-    return "Active: " + parts.length + " filters";
+    if (parts.length === 0) return I18N.t("af_none");
+    if (parts.length <= 3) return I18N.t("af_active_prefix") + parts.join(" · ");
+    return I18N.t("af_count", { n: parts.length });
   }
 
   function updateActiveFilterSummary() {
@@ -472,16 +590,15 @@
   function summarySourceMeta(source) {
     if (source === "claude") {
       return {
-        label: "AI Summary",
+        label: I18N.t("badge_ai_summary"),
         className: "badge-summary-ai",
-        title:
-          "This item includes an AI-generated English summary. It is not an official translation or legal advice.",
+        title: I18N.t("badge_ai_summary_title"),
       };
     }
     return {
-      label: "Rule-based Preview",
+      label: I18N.t("badge_rule_based"),
       className: "badge-summary-rule",
-      title: "This item has not yet been summarized by AI and uses a rule-based placeholder.",
+      title: I18N.t("badge_rule_based_title"),
     };
   }
 
@@ -505,6 +622,43 @@
   function plainText(value) {
     if (value == null) return "";
     return String(value).replace(/\s+/g, " ").trim();
+  }
+
+  // -------- Localized record fields (English canonical fallback per field) --------
+  const TRANSLATABLE = {
+    title: "title_en",
+    summary: "summary_en",
+    business_impact: "business_impact_en",
+    recommended_action: "recommended_action_en",
+  };
+
+  function englishCanonical(update, field) {
+    return update[TRANSLATABLE[field]];
+  }
+
+  function localeBlock(update) {
+    if (filters.lang === I18N.DEFAULT_LANG) return null;
+    const translations = update && update.translations;
+    if (!translations || typeof translations !== "object") return null;
+    const block = translations[filters.lang];
+    return block && typeof block === "object" ? block : null;
+  }
+
+  // Returns the localized value for a translatable field, falling back to the
+  // English canonical field whenever the translation is missing or empty.
+  function translatedField(update, field) {
+    const block = localeBlock(update);
+    if (block) {
+      const value = block[field];
+      if (typeof value === "string" && value.trim()) return value;
+    }
+    return englishCanonical(update, field);
+  }
+
+  // True when the item carries a usable translation for the active language.
+  function hasTranslation(update) {
+    const block = localeBlock(update);
+    return !!(block && typeof block.title === "string" && block.title.trim());
   }
 
   function sourceUrlForCopy(update) {
@@ -585,6 +739,43 @@
     return sections.join("\n\n");
   }
 
+  // Chinese copy summary: localized labels, translated values with per-field
+  // English fallback, an always-present English reference title and Japanese
+  // original title, and a clear unofficial-AI-translation note. The English
+  // builder above is left exactly as-is for the English UI.
+  function buildCopySummaryTextLocalized(update) {
+    const sourceUrl = sourceUrlForCopy(update);
+    const translationMissing = !localeBlock(update);
+    const sections = [
+      copySection(I18N.t("cs_title"), translatedField(update, "title")),
+      copySection(I18N.t("cs_en_ref_title"), update.title_en),
+      copySection(I18N.t("cs_ja_title"), update.title_ja),
+      copySection(I18N.t("cs_area"), I18N.areaLabel(update.area)),
+      copySection(I18N.t("cs_stage"), I18N.stageLabel(update.stage)),
+      copySection(I18N.t("cs_impact"), I18N.impactLabel(update.impact_level)),
+      copySection(
+        I18N.t("cs_source"),
+        I18N.sourceLabel(update.source_name, formatSourceDisplayName(update.source_name))
+      ),
+      copySection(I18N.t("cs_published"), update.published_at),
+    ];
+    const firstSeen = firstSeenDisplay(update);
+    if (firstSeen) {
+      sections.push(copySection(I18N.t("cs_first_seen"), firstSeen));
+    }
+    sections.push(
+      copySection(I18N.t("cs_summary"), translatedField(update, "summary")),
+      copySection(I18N.t("cs_business"), translatedField(update, "business_impact")),
+      copySection(I18N.t("cs_action"), translatedField(update, "recommended_action")),
+      copySection(I18N.t("cs_official_source"), sourceUrl),
+      plainText(I18N.t("cs_note"))
+    );
+    if (translationMissing) {
+      sections.push(plainText(I18N.t("cs_fallback")));
+    }
+    return sections.join("\n\n");
+  }
+
   function fallbackCopyText(text) {
     const textarea = document.createElement("textarea");
     textarea.value = text;
@@ -657,13 +848,16 @@
     }
 
     let text = "";
-    let successMessage = "Copied";
+    let successMessage = "";
     if (action === "summary") {
-      text = buildCopySummaryText(update);
-      successMessage = "Summary copied";
+      text =
+        filters.lang !== I18N.DEFAULT_LANG
+          ? buildCopySummaryTextLocalized(update)
+          : buildCopySummaryText(update);
+      successMessage = I18N.t("copy_summary_success");
     } else if (action === "source-link") {
       text = sourceUrlForCopy(update);
-      successMessage = "Source link copied";
+      successMessage = I18N.t("copy_source_success");
     } else {
       return;
     }
@@ -672,7 +866,7 @@
     if (!copied) {
       console.warn("[JLRW] Copy action failed.");
     }
-    showCopyFeedback(button, copied ? successMessage : "Copy failed", copied);
+    showCopyFeedback(button, copied ? successMessage : I18N.t("copy_failed"), copied);
   }
 
   function summarySourceLabel(value) {
@@ -748,6 +942,42 @@
     return "\uFEFF" + rows.map((row) => row.join(",")).join("\r\n");
   }
 
+  // Chinese CSV: fixed 17-column layout (defined in i18n.js). Adds an English
+  // reference-title column and keeps the Japanese original title; translated
+  // cells fall back to English per field. Internal ID stays last. The English
+  // CSV above is unchanged.
+  const ZH_CSV_HEADERS = I18N.csvHeadersZh();
+
+  function csvRowZh(update) {
+    return [
+      translatedField(update, "title"),
+      update.title_en,
+      update.title_ja,
+      I18N.areaLabel(update.area),
+      I18N.stageLabel(update.stage),
+      I18N.impactLabel(update.impact_level),
+      I18N.sourceLabel(update.source_name, formatSourceDisplayName(update.source_name)),
+      csvSourceUrl(update),
+      update.published_at,
+      firstSeenDisplay(update),
+      update.last_checked,
+      I18N.summaryTypeLabel(update.summary_source),
+      translatedField(update, "summary"),
+      translatedField(update, "business_impact"),
+      translatedField(update, "recommended_action"),
+      update.relevance_score,
+      update.id,
+    ].map(csvCell);
+  }
+
+  function buildCsvTextZh(updates) {
+    const rows = [ZH_CSV_HEADERS.map(csvCell)];
+    updates.forEach((update) => {
+      rows.push(csvRowZh(update));
+    });
+    return "\uFEFF" + rows.map((row) => row.join(",")).join("\r\n");
+  }
+
   function csvFilename() {
     const datePart = maxLastChecked(allUpdates) || new Date().toISOString().slice(0, 10);
     return "japan-legal-reform-watch-" + datePart + ".csv";
@@ -776,7 +1006,7 @@
     const count = filtered.length;
     exportCsvBtn.disabled = count === 0;
     const label =
-      count === 0 ? "No matching updates to export" : "Export " + count + " matching updates to CSV";
+      count === 0 ? I18N.t("export_none") : I18N.t("export_label", { count: count });
     exportCsvBtn.setAttribute("aria-label", label);
     exportCsvBtn.setAttribute("title", label);
   }
@@ -785,12 +1015,15 @@
     const filtered = currentFilteredUpdates();
     updateExportState(filtered);
     if (filtered.length === 0) {
-      showExportFeedback("No matching updates to export", false);
+      showExportFeedback(I18N.t("export_none"), false);
       return;
     }
 
     try {
-      const csvText = buildCsvText(filtered);
+      // English keeps the existing 16-column CSV exactly; zh-Hans uses the
+      // 17-column Chinese layout with English fallback per cell.
+      const csvText =
+        filters.lang !== I18N.DEFAULT_LANG ? buildCsvTextZh(filtered) : buildCsvText(filtered);
       const blob = new Blob([csvText], { type: "text/csv;charset=utf-8" });
       const objectUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -801,17 +1034,18 @@
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(objectUrl);
-      showExportFeedback("Exported " + filtered.length + " updates", true);
+      showExportFeedback(I18N.t("export_done", { count: filtered.length }), true);
     } catch (e) {
       console.warn("[JLRW] CSV export failed.", e);
-      showExportFeedback("Export failed", false);
+      showExportFeedback(I18N.t("export_failed"), false);
     }
   }
 
   function renderCard(u) {
     // Treat every record field as untrusted. All interpolated values are passed
     // through escapeHtml(); source_url is additionally scheme-checked via safeUrl()
-    // AND attribute-escaped before being placed in the href.
+    // AND attribute-escaped before being placed in the href. Localized fields fall
+    // back to English per field; the original Japanese title is always preserved.
     const sourceUrl = safeUrl(u.source_url);
     const summaryMeta = summarySourceMeta(u.summary_source);
     const summaryBadge = `<span class="badge badge-summary ${escapeHtml(
@@ -822,69 +1056,100 @@
     const newlyDetectedBadge =
       newlyDetected && firstSeen
         ? `<span class="badge badge-newly-detected" title="${escapeHtml(
-            "First detected by this dashboard on " + firstSeen
+            I18N.t("newly_detected_title", { date: firstSeen })
           )}" aria-label="${escapeHtml(
-            "Newly detected. First detected by this dashboard on " + firstSeen + "."
-          )}">Newly detected</span>`
+            I18N.t("newly_detected_aria", { date: firstSeen })
+          )}">${escapeHtml(I18N.t("newly_detected"))}</span>`
         : "";
+
+    // Translation badge + notice apply only for a non-English active language.
+    const translating = filters.lang !== I18N.DEFAULT_LANG;
+    const translated = hasTranslation(u);
+    const translationBadge =
+      translating && translated
+        ? `<span class="badge badge-ai-translation" title="${escapeHtml(
+            I18N.t("translation_note")
+          )}">${escapeHtml(I18N.t("badge_ai_translation"))}</span>`
+        : "";
+    const translationNote = translating
+      ? translated
+        ? `<p class="translation-note">${escapeHtml(I18N.t("translation_note"))}</p>`
+        : `<p class="translation-note translation-note-missing">${escapeHtml(
+            I18N.t("translation_unavailable")
+          )}</p>`
+      : "";
+    // Body language for screen readers: the translated language only when a
+    // translation is actually shown; otherwise the English fallback.
+    const cardLang = translating && translated ? filters.lang : "en";
+
     const firstSeenDateLine = firstSeen
-      ? `<span>First detected: ${escapeHtml(firstSeen)}</span>`
+      ? `<span>${escapeHtml(I18N.t("date_first_detected"))}: ${escapeHtml(firstSeen)}</span>`
       : "";
     return `
       <article class="card ${impactClass(u.impact_level)}" data-id="${escapeHtml(u.id)}">
         <header class="card-header">
           <div class="card-badges">
-            <span class="badge badge-area">${escapeHtml(u.area)}</span>
-            <span class="badge badge-stage">${escapeHtml(u.stage)}</span>
-            <span class="badge badge-impact">${escapeHtml(u.impact_level)} Impact</span>
+            <span class="badge badge-area">${escapeHtml(I18N.areaLabel(u.area))}</span>
+            <span class="badge badge-stage">${escapeHtml(I18N.stageLabel(u.stage))}</span>
+            <span class="badge badge-impact">${escapeHtml(
+              I18N.t("impact_badge", { level: I18N.impactLabel(u.impact_level) })
+            )}</span>
             ${newlyDetectedBadge}
             ${summaryBadge}
+            ${translationBadge}
           </div>
-          <h2 class="card-title">${escapeHtml(u.title_en)}</h2>
+          <h2 class="card-title" lang="${escapeHtml(cardLang)}">${escapeHtml(
+      translatedField(u, "title")
+    )}</h2>
           <p class="card-title-ja" lang="ja">${escapeHtml(u.title_ja)}</p>
+          ${translationNote}
         </header>
-        <div class="card-body">
+        <div class="card-body" lang="${escapeHtml(cardLang)}">
           <section>
-            <h3>Summary</h3>
-            <p>${escapeHtml(u.summary_en)}</p>
+            <h3>${escapeHtml(I18N.t("card_summary_heading"))}</h3>
+            <p>${escapeHtml(translatedField(u, "summary"))}</p>
           </section>
           <section>
-            <h3>Business Impact</h3>
-            <p>${escapeHtml(u.business_impact_en)}</p>
+            <h3>${escapeHtml(I18N.t("card_business_impact_heading"))}</h3>
+            <p>${escapeHtml(translatedField(u, "business_impact"))}</p>
           </section>
           <section>
-            <h3>Recommended Action</h3>
-            <p>${escapeHtml(u.recommended_action_en)}</p>
+            <h3>${escapeHtml(I18N.t("card_recommended_action_heading"))}</h3>
+            <p>${escapeHtml(translatedField(u, "recommended_action"))}</p>
           </section>
         </div>
         <footer class="card-footer">
           <div class="source">
             <div class="source-meta">
-              <span class="source-label">Source name</span>
+              <span class="source-label">${escapeHtml(I18N.t("card_source_name_label"))}</span>
               <span class="source-name" title="${escapeHtml(u.source_name)}">${escapeHtml(
-      formatSourceDisplayName(u.source_name)
+      I18N.sourceLabel(u.source_name, formatSourceDisplayName(u.source_name))
     )}</span>
             </div>
             <div class="source-actions">
               <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
-                View Original Japanese Source &rarr;
+                ${escapeHtml(I18N.t("card_view_source"))}
               </a>
               <div class="copy-actions" aria-label="Copy actions">
                 <button type="button" class="copy-button" data-copy-action="summary" data-copy-id="${escapeHtml(
                   u.id
-                )}" data-copy-label="Copy summary">Copy summary</button>
+                )}" data-copy-label="${escapeHtml(I18N.t("copy_summary_label"))}">${escapeHtml(
+      I18N.t("copy_summary_label")
+    )}</button>
                 <button type="button" class="copy-button" data-copy-action="source-link" data-copy-id="${escapeHtml(
                   u.id
-                )}" data-copy-label="Copy source link">Copy source link</button>
+                )}" data-copy-label="${escapeHtml(I18N.t("copy_source_link_label"))}">${escapeHtml(
+      I18N.t("copy_source_link_label")
+    )}</button>
               </div>
             </div>
             <span class="copy-status" aria-live="polite" role="status"></span>
-            <p class="source-note">Original Japanese source remains authoritative.</p>
+            <p class="source-note">${escapeHtml(I18N.t("card_source_note"))}</p>
           </div>
           <div class="dates">
-            <span>Published: ${escapeHtml(u.published_at)}</span>
+            <span>${escapeHtml(I18N.t("date_published"))}: ${escapeHtml(u.published_at)}</span>
             ${firstSeenDateLine}
-            <span>Last checked: ${escapeHtml(u.last_checked)}</span>
+            <span>${escapeHtml(I18N.t("date_last_checked"))}: ${escapeHtml(u.last_checked)}</span>
           </div>
         </footer>
       </article>
@@ -901,14 +1166,24 @@
       if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
       if (filters.newlyDetectedOnly && !isNewlyDetected(u)) return false;
       if (q) {
-        // Search covers the English title, the original Japanese title, and the
-        // English summary, so both English and Japanese keywords match.
+        // Search covers English title/summary, the original Japanese title, and —
+        // regardless of the active UI language — the Chinese translation fields,
+        // so English, Japanese, and Chinese keywords all match.
+        const tr = (u.translations && u.translations[TRANSLATION_LOCALE]) || {};
         const hay = (
           (u.title_en || "") +
           " " +
           (u.title_ja || "") +
           " " +
-          (u.summary_en || "")
+          (u.summary_en || "") +
+          " " +
+          (tr.title || "") +
+          " " +
+          (tr.summary || "") +
+          " " +
+          (tr.business_impact || "") +
+          " " +
+          (tr.recommended_action || "")
         ).toLowerCase();
         if (!hay.includes(q)) return false;
       }
@@ -1006,15 +1281,15 @@
   function renderDataStatus() {
     if (!dataStatusList) return;
     const stats = [
-      ["Updates", String(allUpdates.length)],
-      ["Sources represented", String(distinctCount(allUpdates, "source_name"))],
-      ["AI summaries", String(allUpdates.filter((u) => u.summary_source === "claude").length)],
+      [I18N.t("ds_updates"), String(allUpdates.length)],
+      [I18N.t("ds_sources"), String(distinctCount(allUpdates, "source_name"))],
+      [I18N.t("ds_ai_summaries"), String(allUpdates.filter((u) => u.summary_source === "claude").length)],
       [
-        "Open public comments",
+        I18N.t("ds_open_pc"),
         String(allUpdates.filter((u) => u.stage === "Public Comment Open").length),
       ],
-      ["Newly detected (7d)", String(allUpdates.filter((u) => isNewlyDetected(u)).length)],
-      ["Latest checked", maxLastChecked(allUpdates) || "Unknown"],
+      [I18N.t("ds_newly_detected"), String(allUpdates.filter((u) => isNewlyDetected(u)).length)],
+      [I18N.t("ds_latest_checked"), maxLastChecked(allUpdates) || I18N.t("ds_unknown")],
     ];
 
     dataStatusList.innerHTML = "";
@@ -1026,7 +1301,7 @@
   function renderDataStatusUnavailable() {
     if (!dataStatusList) return;
     dataStatusList.innerHTML = "";
-    dataStatusList.appendChild(makeStatusChip("Data status", "Unavailable"));
+    dataStatusList.appendChild(makeStatusChip(I18N.t("ds_status"), I18N.t("ds_unavailable")));
   }
 
   function renderResultsMeta(filtered) {
@@ -1036,12 +1311,12 @@
     const aiSummaryCount = filtered.filter((u) => u.summary_source === "claude").length;
     const lastChecked = maxLastChecked(filtered);
     const parts = [
-      "Showing " + shown + " of " + filtered.length + " matching updates",
-      allUpdates.length + " total updates",
-      "AI summaries: " + aiSummaryCount,
+      I18N.t("meta_showing", { shown: shown, total: filtered.length }),
+      I18N.t("meta_total", { count: allUpdates.length }),
+      I18N.t("meta_ai", { count: aiSummaryCount }),
     ];
     if (lastChecked) {
-      parts.push("Last checked: " + lastChecked);
+      parts.push(I18N.t("meta_last_checked", { date: lastChecked }));
     }
     metaEl.textContent = parts.join(" · ");
   }
@@ -1127,16 +1402,37 @@
     if (exportCsvBtn) {
       exportCsvBtn.addEventListener("click", exportCurrentCsv);
     }
+    if (languageSelect) {
+      languageSelect.addEventListener("change", (e) => {
+        handleLanguageChange(e.target.value);
+      });
+    }
     cardsEl.addEventListener("click", handleCopyAction);
     window.addEventListener("popstate", () => {
       restoreFiltersFromUrl();
+      applyLanguageDom();
+      renderDataStatus();
       render();
     });
+  }
+
+  // Resolve language (URL > localStorage > English) without validating filters,
+  // so the disclaimer modal and page chrome can render localized before data loads.
+  function initLanguage() {
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get("lang");
+    const lang = urlLang
+      ? I18N.normalize(urlLang)
+      : I18N.normalize(readStoredLang() || I18N.DEFAULT_LANG);
+    filters.lang = lang;
+    I18N.setLang(lang);
   }
 
   // -------- Init --------
   document.addEventListener("DOMContentLoaded", () => {
     cacheDom();
+    initLanguage();
+    applyLanguageDom();
     initModal();
     wireEvents();
     loadData();

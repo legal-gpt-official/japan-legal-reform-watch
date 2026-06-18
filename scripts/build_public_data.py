@@ -79,6 +79,13 @@ AI_PRESERVE_FIELDS = (
     "summary_source", "confidence", "ai_notes", "summarized_at", "summary_model",
 )
 
+# Stage 4 (scripts/translate_updates.py) owns translations.<locale>. Stage 2 only
+# CARRIES THEM FORWARD across rebuilds so they survive the window between a build
+# and the next translate run. The translate step is authoritative: it re-checks
+# every translation against the current English canonical text (via source_hash)
+# and removes any that have gone stale, so carrying a translation here is safe.
+TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action")
+
 # Modest, NON-interpretive placeholder copy (no AI, no legal conclusion).
 TITLE_EN_PREFIX = "Japanese Regulatory Update: "
 TITLE_MAX_CHARS = 120
@@ -1357,6 +1364,43 @@ def preserve_ai_summary_fields(item: dict, existing_by_id: dict[str, dict]) -> b
     return item.get("summary_source") == "claude"
 
 
+def valid_translation_object(value) -> bool:
+    """A translations.<locale> block must carry the four non-empty string fields."""
+    if not isinstance(value, dict):
+        return False
+    for field in TRANSLATION_FIELDS:
+        text = value.get(field)
+        if not isinstance(text, str) or not text.strip():
+            return False
+    return True
+
+
+def preserve_translations(item: dict, existing_by_id: dict[str, dict]) -> bool:
+    """Carry forward optional translations only when id and source_url still match.
+
+    Never touches English canonical fields or AI-summary metadata; only well-formed
+    locale blocks are kept (each reduced to the four translatable fields). The
+    translate step later removes any block that is stale relative to the English
+    text, so this is a best-effort survival, not a correctness guarantee.
+    """
+    existing = existing_by_id.get(item.get("id") or "")
+    if not existing:
+        return False
+    if (existing.get("source_url") or "") != (item.get("source_url") or ""):
+        return False
+    translations = existing.get("translations")
+    if not isinstance(translations, dict) or not translations:
+        return False
+    cleaned: dict[str, dict] = {}
+    for locale, block in translations.items():
+        if valid_translation_object(block):
+            cleaned[locale] = {field: block[field] for field in TRANSLATION_FIELDS}
+    if not cleaned:
+        return False
+    item["translations"] = cleaned
+    return True
+
+
 def save_json(path: Path, data: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
@@ -1436,9 +1480,12 @@ def main(argv: list[str] | None = None) -> int:
     disambiguate_duplicate_titles(output)
 
     preserved_ai_ids: set[str] = set()
+    preserved_translation_count = 0
     for item in output:
         if preserve_ai_summary_fields(item, existing_public_by_id):
             preserved_ai_ids.add(item["id"])
+        if preserve_translations(item, existing_public_by_id):
+            preserved_translation_count += 1
     preserved_ai_count = len(preserved_ai_ids)
     rule_based_or_unsummarized_count = len(output) - preserved_ai_count
     dropped_old_ai_count = len(existing_ai_ids - preserved_ai_ids)
@@ -1480,6 +1527,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"candidate_items               : {candidate_items}")
     print(f"output_items                  : {len(output)}")
     print(f"preserved_ai_summaries        : {preserved_ai_count}")
+    print(f"preserved_translations        : {preserved_translation_count}")
     print(f"rule_based_or_unsummarized    : {rule_based_or_unsummarized_count}")
     print(f"dropped_old_ai_summaries      : {dropped_old_ai_count}")
     print(f"backup_created                : {backup_created}")

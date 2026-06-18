@@ -5,48 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=newly-detected-20260618" />
+  <link rel="stylesheet" href="./style.css?v=i18n-zh-hans-20260618" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
   <div id="disclaimer-modal" class="modal-overlay" hidden>
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <h2 id="modal-title">Important Notice — Please Read Before Using</h2>
+      <h2 id="modal-title" data-i18n="modal_title">Important Notice — Please Read Before Using</h2>
       <div class="modal-body">
-        <p>
+        <p data-i18n="modal_p1">
           <strong>Japan Legal Reform Watch by LegalOS</strong> provides English-language summaries of
           Japanese legal, regulatory, and administrative developments for general informational
           purposes only.
         </p>
         <ul>
-          <li>
+          <li data-i18n="modal_li1">
             This site is <strong>not an official translation</strong>. Always refer to the original
             Japanese-language source for authoritative text.
           </li>
-          <li>
+          <li data-i18n="modal_li2">
             The content is <strong>not legal advice</strong> and does not create an attorney-client
             relationship.
           </li>
-          <li>
+          <li data-i18n="modal_li3">
             We do <strong>not warrant the accuracy, completeness, or currentness</strong> of any
             information presented.
           </li>
-          <li>
+          <li data-i18n="modal_li4">
             For business or compliance decisions, please consult qualified Japanese legal counsel.
           </li>
         </ul>
-        <p>
+        <p data-i18n="modal_p2">
           By continuing, you acknowledge and accept these terms. To the maximum extent permitted by
           applicable law, LegalOS disclaims all liability arising from use of this site.
         </p>
         <p class="modal-link">
-          <a href="legal/disclaimer_en.html" target="_blank" rel="noopener">
+          <a href="legal/disclaimer_en.html" target="_blank" rel="noopener" data-i18n="modal_link">
             Read the full Legal Notice &amp; Disclaimer &rarr;
           </a>
         </p>
       </div>
       <div class="modal-actions">
-        <button id="accept-disclaimer" class="btn-primary" type="button">
+        <button id="accept-disclaimer" class="btn-primary" type="button" data-i18n="modal_accept">
           I Understand and Agree
         </button>
       </div>
@@ -61,11 +61,20 @@
           Japan Legal Reform Watch
           <span class="brand-by">by LegalOS</span>
         </h1>
-        <p class="tagline">Free Japan Legal &amp; Regulatory Update Monitor</p>
+        <p class="tagline" data-i18n="tagline">Free Japan Legal &amp; Regulatory Update Monitor</p>
       </div>
-      <a class="header-link" href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer">
-        About this tool
-      </a>
+      <div class="header-actions">
+        <div class="language-switcher">
+          <label class="language-switcher-label" for="language-select" data-i18n="lang_selector_label">Language</label>
+          <select id="language-select" class="language-select" data-i18n-aria-label="lang_selector_label" aria-label="Language">
+            <option value="en">English</option>
+            <option value="zh-Hans">简体中文</option>
+          </select>
+        </div>
+        <a class="header-link" href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer" data-i18n="header_about">
+          About this tool
+        </a>
+      </div>
     </div>
   </header>
 
@@ -73,19 +82,19 @@
   <section class="trust-section" aria-label="Reliability notice">
     <div class="container">
       <div class="trust-notice" role="note">
-        <strong>Reliability note</strong>
-        <p>
+        <strong data-i18n="trust_title">Reliability note</strong>
+        <p data-i18n="trust_body">
           This dashboard summarizes official Japanese government and regulator sources.
           AI summaries and rule-based previews are monitoring aids only; original Japanese
           sources remain authoritative and should be reviewed before taking action.
         </p>
       </div>
       <div class="data-status" aria-label="Data status">
-        <div class="data-status-heading">Data status</div>
+        <div class="data-status-heading" data-i18n="ds_heading">Data status</div>
         <div id="data-status-list" class="data-status-list" aria-live="polite">
           <span class="data-status-chip">Loading public dataset...</span>
         </div>
-        <p class="data-status-note">
+        <p class="data-status-note" data-i18n="ds_note">
           Monitoring aid only. Original Japanese official sources remain authoritative.
         </p>
       </div>
@@ -111,66 +120,67 @@
       </div>
       <div id="filter-panel" class="filter-panel">
         <div class="quick-filters" aria-label="Quick filters">
-          <span class="quick-filters-label">Quick filters</span>
+          <span class="quick-filters-label" data-i18n="qf_label">Quick filters</span>
           <div class="quick-filter-actions">
-            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="public-comment-open" aria-pressed="false">
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="public-comment-open" aria-pressed="false" data-i18n="qf_pc_open">
               Public Comment Open
             </button>
-            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="ai-summary" aria-pressed="false">
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="ai-summary" aria-pressed="false" data-i18n="qf_ai">
               AI Summary
             </button>
-            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="newly-detected" aria-pressed="false">
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="newly-detected" aria-pressed="false" data-i18n="qf_newly">
               Newly detected
             </button>
-            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="medium-impact" aria-pressed="false">
+            <button type="button" class="quick-filter-button quick-filter-btn" data-quick-filter="medium-impact" aria-pressed="false" data-i18n="qf_medium">
               Medium Impact
             </button>
-            <button type="button" class="quick-filter-button quick-filter-btn quick-filter-reset" data-quick-filter="reset">
+            <button type="button" class="quick-filter-button quick-filter-btn quick-filter-reset" data-quick-filter="reset" data-i18n="qf_reset">
               Reset
             </button>
           </div>
         </div>
         <div class="controls-grid">
           <label class="control-label">
-            <span class="control-label-text">Search</span>
+            <span class="control-label-text" data-i18n="ctl_search">Search</span>
             <input
               type="search"
               id="search-input"
               placeholder="Search title or summary..."
+              data-i18n-placeholder="ctl_search_placeholder"
               autocomplete="off"
             />
           </label>
           <label class="control-label">
-            <span class="control-label-text">Area</span>
+            <span class="control-label-text" data-i18n="ctl_area">Area</span>
             <select id="filter-area">
-              <option value="">All Areas</option>
+              <option value="" data-i18n="opt_all_areas">All Areas</option>
             </select>
           </label>
           <label class="control-label">
-            <span class="control-label-text">Stage</span>
+            <span class="control-label-text" data-i18n="ctl_stage">Stage</span>
             <select id="filter-stage">
-              <option value="">All Stages</option>
+              <option value="" data-i18n="opt_all_stages">All Stages</option>
             </select>
           </label>
           <label class="control-label">
-            <span class="control-label-text">Source</span>
+            <span class="control-label-text" data-i18n="ctl_source">Source</span>
             <select id="filter-source">
-              <option value="">All Sources</option>
+              <option value="" data-i18n="opt_all_sources">All Sources</option>
             </select>
           </label>
           <label class="control-label">
-            <span class="control-label-text">Impact Level</span>
+            <span class="control-label-text" data-i18n="ctl_impact">Impact Level</span>
             <select id="filter-impact">
-              <option value="">All Impact Levels</option>
+              <option value="" data-i18n="opt_all_impacts">All Impact Levels</option>
             </select>
           </label>
           <label class="control-label">
-            <span class="control-label-text">Sort</span>
+            <span class="control-label-text" data-i18n="ctl_sort">Sort</span>
             <select id="filter-sort">
-              <option value="relevance">Relevance</option>
-              <option value="published">Published date</option>
-              <option value="checked">Last checked</option>
-              <option value="detected">First detected</option>
+              <option data-i18n="sort_relevance" value="relevance">Relevance</option>
+              <option data-i18n="sort_published" value="published">Published date</option>
+              <option data-i18n="sort_checked" value="checked">Last checked</option>
+              <option data-i18n="sort_detected" value="detected">First detected</option>
             </select>
           </label>
         </div>
@@ -185,6 +195,7 @@
             disabled
             aria-label="Export matching updates to CSV"
             title="Export matching updates to CSV"
+            data-i18n="export_button"
           >
             Export CSV
           </button>
@@ -198,17 +209,17 @@
   <main class="container">
     <div id="cards" class="cards-grid"></div>
     <div id="load-more-wrap" class="load-more-wrap" hidden>
-      <button id="load-more" class="load-more-button" type="button">Load more updates</button>
+      <button id="load-more" class="load-more-button" type="button" data-i18n="load_more">Load more updates</button>
     </div>
     <div id="empty-state" class="empty-state" hidden>
-      <p>No matching updates found.</p>
-      <p class="empty-state-hint">Try clearing filters or adjusting your search terms.</p>
+      <p data-i18n="empty_title">No matching updates found.</p>
+      <p class="empty-state-hint" data-i18n="empty_hint">Try clearing filters or adjusting your search terms.</p>
     </div>
     <div id="error-state" class="error-state" hidden>
       <p>
-        <strong>Unable to load updates.</strong>
+        <strong data-i18n="error_title">Unable to load updates.</strong>
       </p>
-      <p>
+      <p data-i18n="error_body">
         This dashboard loads its data via <code>fetch()</code>, which requires the page to be served
         over HTTP. If you opened this file directly (<code>file://</code>), please serve the project
         root with a local web server (see the project <code>README.md</code>).
@@ -221,22 +232,22 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <strong>Japan Legal Reform Watch by LegalOS</strong>
-        <p>Created by Legal GPT. Explore more Japan legal updates and legal-tech tools.</p>
+        <p data-i18n="footer_brand_p">Created by Legal GPT. Explore more Japan legal updates and legal-tech tools.</p>
       </div>
       <div class="footer-navs">
         <nav class="footer-links footer-product-links" aria-label="Legal GPT links">
           <a href="https://legal-gpt.com/" target="_blank" rel="noopener noreferrer">
             Legal GPT
           </a>
-          <a href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer">
+          <a href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer" data-i18n="footer_learn_more">
             Learn more about Japan Legal Reform Watch
           </a>
-          <a href="https://legal-gpt.com/category/japan-legal-updates/" target="_blank" rel="noopener noreferrer">
+          <a href="https://legal-gpt.com/category/japan-legal-updates/" target="_blank" rel="noopener noreferrer" data-i18n="footer_japan_updates">
             Japan Legal Updates
           </a>
         </nav>
         <nav class="footer-links footer-legal-links" aria-label="Legal">
-          <a href="legal/disclaimer_en.html" target="_blank" rel="noopener">
+          <a href="legal/disclaimer_en.html" target="_blank" rel="noopener" data-i18n="footer_legal_en">
             Legal Notice / Disclaimer (EN)
           </a>
           <a href="legal/disclaimer_ja.html" target="_blank" rel="noopener">
@@ -246,13 +257,14 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <small>
+      <small data-i18n="footer_bottom">
         This site provides English summaries for informational purposes only. It is not an official
         translation and not legal advice. See the full Legal Notice for details.
       </small>
     </div>
   </footer>
 
-  <script src="app.js?v=newly-detected-20260618"></script>
+  <script src="i18n.js?v=i18n-zh-hans-20260618"></script>
+  <script src="app.js?v=i18n-zh-hans-20260618"></script>
 </body>
 </html>
