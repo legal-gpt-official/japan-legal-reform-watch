@@ -179,6 +179,24 @@
     }
   },
   {
+    "id": "raw-865165b4ccaecbce",
+    "title_en": "Public Comment: Regulatory proposal open for comment (2026-06-22)",
+    "title_ja": "「輸出貿易管理令第４条第３項の規定に基づく経済産業大臣が告示で定める貨物」等の一部改正案に対する意見募集について",
+    "area": "Other",
+    "stage": "Public Comment Open",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+    "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126102&Mode=0",
+    "published_at": "2026-06-22",
+    "last_checked": "2026-06-22",
+    "relevance_score": 47.0,
+    "first_seen_at": "2026-06-22",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-4a17d4e722757979",
     "title_en": "Public Comment: Draft Cabinet Order Amending the Local Autonomy Act Enforcement Order",
     "title_ja": "地方自治法施行令の一部を改正する政令（案）に対する意見募集",
@@ -286,35 +304,6 @@
     }
   },
   {
-    "id": "raw-37aa7abbc0cafff8",
-    "title_en": "Public Comment on Draft Cabinet Order Amending the Environmental Impact Assessment Act Enforcement Order",
-    "title_ja": "「環境影響評価法施行令の一部を改正する政令案」に関する意見の募集（パブリックコメント）について",
-    "area": "Energy / Environment",
-    "stage": "Public Comment Open",
-    "impact_level": "Medium",
-    "summary_en": "The Ministry of the Environment (MOE) has announced a public comment period (public comment) on a draft Cabinet Order to partially amend the Enforcement Order of the Environmental Impact Assessment Act. The item is a proposed amendment open for public comment, not an enacted measure. Details beyond the announcement title are not provided in the metadata.",
-    "business_impact_en": "Organizations subject to environmental impact assessment requirements may wish to monitor this draft, as a finalized amendment could affect related procedures or obligations.",
-    "recommended_action_en": "Review the official MOE announcement and the draft Cabinet Order text to understand the proposed changes and any public comment deadlines.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_04870.html",
-    "published_at": "2026-06-02",
-    "last_checked": "2026-06-12",
-    "relevance_score": 45.0,
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based mainly on the Japanese title and rule-based labels; the raw summary ('総合政策') and substantive details are limited and unverified. Verify against the authoritative MOE source.",
-    "summarized_at": "2026-06-12T01:20:46Z",
-    "summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "公开征求意见：《环境影响评价法施行令》部分修订政令草案",
-        "summary": "环境省（MOE）就部分修订《环境影响评价法施行令》的政令草案宣布了公开征求意见期（公开征求意见）。该项目为开放公开征求意见的修订草案，而非已实施的措施。元数据中除公告标题外未提供更多详情。",
-        "business_impact": "受环境影响评价要求约束的组织或希望关注该草案，因为最终修订可能影响相关程序或义务。",
-        "recommended_action": "建议考虑查阅环境省官方公告及该政令草案文本，以了解拟议变更及任何公开征求意见的截止日期。"
-      }
-    }
-  },
-  {
     "id": "raw-734ca1f51b494cbe",
     "title_en": "Public Comment on Draft Amendment to JFTC Guidelines on Distribution and Business Practices under the Antimonopoly Act",
     "title_ja": "「流通・取引慣行に関する独占禁止法上の指針」改正案に対する意見募集について",
@@ -340,6 +329,35 @@
         "summary": "日本公正交易委员会（JFTC）发布了一份新闻发布，就其依据独占禁止法制定的关于流通与交易惯行的指针的修订草案公开征求意见。根据元数据，此项目为公开征求意见阶段的草案，而非已最终确定的规则。有关拟议变更的范围与详情，应查阅日文官方来源。",
         "business_impact": "在日本从事流通与交易惯行的企业或希望关注此项提案，因为对这些指针的变更可能影响反垄断方面预期的解释方式。在修订仍处于草案阶段期间，任何影响仍属初步。",
         "recommended_action": "建议考虑查阅JFTC的官方公告及修订草案，以了解拟议的变更及公开征求意见的流程。"
+      }
+    }
+  },
+  {
+    "id": "raw-37aa7abbc0cafff8",
+    "title_en": "Public Comment on Draft Cabinet Order Amending the Environmental Impact Assessment Act Enforcement Order",
+    "title_ja": "「環境影響評価法施行令の一部を改正する政令案」に関する意見の募集（パブリックコメント）について",
+    "area": "Energy / Environment",
+    "stage": "Public Comment Open",
+    "impact_level": "Medium",
+    "summary_en": "The Ministry of the Environment (MOE) has announced a public comment period (public comment) on a draft Cabinet Order to partially amend the Enforcement Order of the Environmental Impact Assessment Act. The item is a proposed amendment open for public comment, not an enacted measure. Details beyond the announcement title are not provided in the metadata.",
+    "business_impact_en": "Organizations subject to environmental impact assessment requirements may wish to monitor this draft, as a finalized amendment could affect related procedures or obligations.",
+    "recommended_action_en": "Review the official MOE announcement and the draft Cabinet Order text to understand the proposed changes and any public comment deadlines.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_04870.html",
+    "published_at": "2026-06-02",
+    "last_checked": "2026-06-12",
+    "relevance_score": 45.0,
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and rule-based labels; the raw summary ('総合政策') and substantive details are limited and unverified. Verify against the authoritative MOE source.",
+    "summarized_at": "2026-06-12T01:20:46Z",
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：《环境影响评价法施行令》部分修订政令草案",
+        "summary": "环境省（MOE）就部分修订《环境影响评价法施行令》的政令草案宣布了公开征求意见期（公开征求意见）。该项目为开放公开征求意见的修订草案，而非已实施的措施。元数据中除公告标题外未提供更多详情。",
+        "business_impact": "受环境影响评价要求约束的组织或希望关注该草案，因为最终修订可能影响相关程序或义务。",
+        "recommended_action": "建议考虑查阅环境省官方公告及该政令草案文本，以了解拟议变更及任何公开征求意见的截止日期。"
       }
     }
   },
@@ -578,6 +596,24 @@
     }
   },
   {
+    "id": "raw-bd05c38ed866cba2",
+    "title_en": "Public Comment: Regulatory proposal open for comment (2026-06-22)",
+    "title_ja": "「消費者安全法施行規則の一部を改正する内閣府令（案）」に関する意見募集について",
+    "area": "Consumer / Advertising",
+    "stage": "Public Comment Open",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+    "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=235050014&Mode=0",
+    "published_at": "2026-06-22",
+    "last_checked": "2026-06-22",
+    "relevance_score": 39.0,
+    "first_seen_at": "2026-06-22",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-3bc08746191ccc52",
     "title_en": "Public Comment on Draft Guidelines for Implementing Nature Positive in Procurement",
     "title_ja": "「調達におけるネイチャーポジティブの実践のためのガイドライン（案）」に関する意見募集（パブリックコメント）について",
@@ -694,8 +730,26 @@
     }
   },
   {
+    "id": "raw-69b73cfb93780972",
+    "title_en": "Public Comment: Regulatory proposal open for comment (2026-06-22)",
+    "title_ja": "「消費者安全法施行規則の一部を改正する内閣府令(案)」に関する意見募集について",
+    "area": "Consumer / Advertising",
+    "stage": "Public Comment Open",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "消費者庁 (CAA) 新着情報",
+    "source_url": "https://www.caa.go.jp/notice/entry/046651/",
+    "published_at": "2026-06-22",
+    "last_checked": "2026-06-22",
+    "relevance_score": 35.0,
+    "first_seen_at": "2026-06-22",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-15b5c5a72bfae0a1",
-    "title_en": "Public comment open on draft ministerial order amending National Pension Act enforcement regulations",
+    "title_en": "Public Comment: Draft Amendment to Ordinance for Enforcement of the National Pension Act",
     "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
     "area": "Labor / Employment",
     "stage": "Public Comment Open",
@@ -712,15 +766,7 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the proposed amendments is not provided. This is a draft out for public comment, not an enacted rule. Preliminary labels (Labor/Employment, Medium) are unverified triage hints.",
     "summarized_at": "2026-06-10T08:42:12Z",
-    "summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "公开征求意见：《国民年金法施行规则》部分修订省令草案",
-        "summary": "这是社会保险类别下，对部分修订《国民年金法》施行规则的省令草案的公开征求意见。根据元数据，该草案于2026-06-09公布，意见受理截至2026-07-08 19:00。负责机关标示为厚生劳动省年金局事业管理课。",
-        "business_impact": "如果拟议的修订获得通过，参与国民年金行政事务的组织或个人可能受到影响，不过所提供的元数据并未详述具体变更内容。",
-        "recommended_action": "建议考虑在所述意见提交截止日期前查阅日文官方来源及完整草案文本，以了解任何潜在影响。"
-      }
-    }
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-6872de8f21374530",
@@ -919,7 +965,7 @@
   },
   {
     "id": "raw-b11dd5b849e50004",
-    "title_en": "Cabinet decision on related cabinet orders following partial amendment of the MOE Establishment Act",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment (2026-06-19)",
     "title_ja": "環境省設置法の一部を改正する法律の施行に伴う関係政令の整備に関する政令の閣議決定について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -937,15 +983,7 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and limited metadata; the raw summary only indicates 'Minister's Secretariat'. The metadata references a Cabinet decision on cabinet orders, but the specific contents and whether the underlying amending law is in force are not confirmed here and must be verified against the Japanese source. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-19T22:06:19Z",
-    "summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "环境省设置法部分修订法律施行相关政令的内阁决定",
-        "summary": "环境省（MOE）公布了一项内阁决定，涉及为配合《环境省设置法》部分修订法律的施行而整备相关政令的政令。根据元数据，这是一份日期为2026-06-19、由大臣官房发布的政府报道发表。该公告与组织/设置相关规定的实施有关，但所提供的元数据中并未详述具体内容。",
-        "business_impact": "对环境省设置相关政令的变更，可能影响与该省互动的主体所涉的行政架构或流程。其实际效果（如有）将视官方来源中的具体规定而定。",
-        "recommended_action": "建议查阅环境省官方报道发表及所提供来源中的相关政令，以确认其范围及任何适用的生效日期。"
-      }
-    }
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-a6d106f8b1f323b6",
@@ -1771,6 +1809,24 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-67ab4e81d531592b",
+    "title_en": "MLIT Update: Disaster management and infrastructure safety information updated",
+    "title_ja": "「国土交通省組織令の一部を改正する政令」が閣議決定 ～防災・減災、国土強靱化の推進に向けた体制強化～",
+    "area": "Transport / Infrastructure",
+    "stage": "Government Announcement",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "国土交通省 (MLIT) 報道発表",
+    "source_url": "https://www.mlit.go.jp/report/press/kanbo04_hh_000154.html",
+    "published_at": "2026-06-22",
+    "last_checked": "2026-06-22",
+    "relevance_score": 20.0,
+    "first_seen_at": "2026-06-22",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-8e3b6171617b0ef6",
     "title_en": "MHLW Update: Pharmaceutical regulation information updated",
     "title_ja": "医薬品規制調和国際会議（ICH）が開催されました ～１ガイドラインが整備されました～",
@@ -2280,31 +2336,6 @@
     "summary_source": "rule_based"
   },
   {
-    "id": "raw-ed40b10d3d033428",
-    "title_en": "Public Comment: Visitor Limits for Shiretoko Five Lakes Use Adjustment Area",
-    "title_ja": "知床国立公園知床五湖利用調整地区に係る利用者の人数の範囲の変更に関する意見の募集（パブリック・コメント）について",
-    "area": "Real Estate / Land Use",
-    "stage": "Public Comment Open",
-    "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "e-Gov Public Comment (意見募集案件一覧)",
-    "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260017&Mode=0",
-    "published_at": "2026-06-09",
-    "last_checked": "2026-06-10",
-    "relevance_score": 9.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "公开征求意见：知床国立公园知床五湖利用调整地区使用者人数范围变更",
-        "summary": "这是基于规则生成的预览，尚未经AI审阅或摘要。日本政府来源已就下述日文原标题相关事项进行发布；应对照日文官方来源进行核对。",
-        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其所属行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
     "id": "raw-5755f6b03eccf780",
     "title_en": "PPC Update: Response to Leakage Incidents Involving Specific Personal Information (2025-09-29)",
     "title_ja": "「特定個人情報の漏えい等事案が発生した場合の対応について」のページにランサムウェア事案に関する統一様式に関する事項を掲載しました。",
@@ -2325,6 +2356,31 @@
         "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下述日文原标题相关的条目；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-ed40b10d3d033428",
+    "title_en": "Public Comment: Visitor Limits for Shiretoko Five Lakes Use Adjustment Area",
+    "title_ja": "知床国立公園知床五湖利用調整地区に係る利用者の人数の範囲の変更に関する意見の募集（パブリック・コメント）について",
+    "area": "Real Estate / Land Use",
+    "stage": "Public Comment Open",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+    "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260017&Mode=0",
+    "published_at": "2026-06-09",
+    "last_checked": "2026-06-10",
+    "relevance_score": 9.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：知床国立公园知床五湖利用调整地区使用者人数范围变更",
+        "summary": "这是基于规则生成的预览，尚未经AI审阅或摘要。日本政府来源已就下述日文原标题相关事项进行发布；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
     "summary_source": "rule_based"
@@ -5601,31 +5657,6 @@
     "summary_source": "rule_based"
   },
   {
-    "id": "raw-3ae13ed6a7771825",
-    "title_en": "MHLW Update: Labor and employment policy information updated (2026-05-29)",
-    "title_ja": "労働基準関係法令違反に係る公表事案",
-    "area": "Labor / Employment",
-    "stage": "Government Announcement",
-    "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
-    "source_url": "https://www.mhlw.go.jp/kinkyu/151106.html",
-    "published_at": "2026-05-29",
-    "last_checked": "2026-06-10",
-    "relevance_score": 5.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "厚生劳动省更新：劳动与就业政策信息已更新（2026-05-29）",
-        "summary": "这是基于规则的预览，尚未经过AI审阅或总结。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
     "id": "raw-d5eefac2df887e9f",
     "title_en": "Digital Agency Update: Regulatory announcement related to Data / Privacy / AI (2026-06-18)",
     "title_ja": "第4回 日EUデジタルパートナーシップ閣僚級会合の結果",
@@ -5647,6 +5678,31 @@
         "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源已发布与下述原始日文标题相关的条目；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该条目与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-3ae13ed6a7771825",
+    "title_en": "MHLW Update: Labor and employment policy information updated (2026-05-29)",
+    "title_ja": "労働基準関係法令違反に係る公表事案",
+    "area": "Labor / Employment",
+    "stage": "Government Announcement",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+    "source_url": "https://www.mhlw.go.jp/kinkyu/151106.html",
+    "published_at": "2026-05-29",
+    "last_checked": "2026-06-10",
+    "relevance_score": 5.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：劳动与就业政策信息已更新（2026-05-29）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或总结。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
     "summary_source": "rule_based"
@@ -5930,31 +5986,6 @@
     "summary_source": "rule_based"
   },
   {
-    "id": "raw-e650feae4671abc0",
-    "title_en": "PPC Update: Personal Information Protection Rules Updated (2026-05-28)",
-    "title_ja": "「特定個人情報の適正な取扱いのための研修資料」動画を更新しました。",
-    "area": "Data / Privacy / AI",
-    "stage": "Government Announcement",
-    "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "個人情報保護委員会 (PPC) 新着情報",
-    "source_url": "https://www.ppc.go.jp/kensyu_material?ref=ninf#gyosei_mynum",
-    "published_at": "2026-05-28",
-    "last_checked": "2026-06-11",
-    "relevance_score": 5.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "个人信息保护委员会更新：《特定个人信息适当处理培训资料》视频已更新（2026-05-28）",
-        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源发布了与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所属行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
     "id": "raw-0b1dc56fb9e78021",
     "title_en": "JFTC Update: Unfair Trade Practices Rules for Specified Shippers",
     "title_ja": "「特定荷主が物品の運送又は保管を委託する場合等の特定の不公正な取引方法」、「製造委託等に係る代金の支払に関する特定の不公正な取引方法」等について",
@@ -5975,6 +6006,31 @@
         "title": "公正交易委员会更新：特定货主的不公正交易方法规则",
         "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-e650feae4671abc0",
+    "title_en": "PPC Update: Personal Information Protection Rules Updated (2026-05-28)",
+    "title_ja": "「特定個人情報の適正な取扱いのための研修資料」動画を更新しました。",
+    "area": "Data / Privacy / AI",
+    "stage": "Government Announcement",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "個人情報保護委員会 (PPC) 新着情報",
+    "source_url": "https://www.ppc.go.jp/kensyu_material?ref=ninf#gyosei_mynum",
+    "published_at": "2026-05-28",
+    "last_checked": "2026-06-11",
+    "relevance_score": 5.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "个人信息保护委员会更新：《特定个人信息适当处理培训资料》视频已更新（2026-05-28）",
+        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源发布了与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
@@ -7244,6 +7300,31 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-a2d84c4bccb695e4",
+    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-12-26)",
+    "title_ja": "令和８年度予算案・機構定員の概要を公表しました。",
+    "area": "Data / Privacy / AI",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "個人情報保護委員会 (PPC) 新着情報",
+    "source_url": "https://www.ppc.go.jp/aboutus/budget/budget_R8?ref=ninf",
+    "published_at": "2025-12-26",
+    "last_checked": "2026-06-11",
+    "relevance_score": 6.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "个人信息保护委员会动态：与数据／隐私／人工智能相关的监管公告（2025-12-26）",
+        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源已发布与下述日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-a31c4bee6ff9b7d6",
     "title_en": "FSA Update: Regulatory announcement related to Consumer / Advertising (2026-06-09)",
     "title_ja": "（株）出前館との契約締結交渉者の従業員から伝達を受けた海外居住者による内部者取引審判事件の第１回審判手続期日開催について公表しました。",
@@ -7313,31 +7394,6 @@
         "title": "国土交通省动态：交通与基础设施监管信息更新（2026-06-02）",
         "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已就下方日文原标题相关事项发布信息；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-a2d84c4bccb695e4",
-    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-12-26)",
-    "title_ja": "令和８年度予算案・機構定員の概要を公表しました。",
-    "area": "Data / Privacy / AI",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "個人情報保護委員会 (PPC) 新着情報",
-    "source_url": "https://www.ppc.go.jp/aboutus/budget/budget_R8?ref=ninf",
-    "published_at": "2025-12-26",
-    "last_checked": "2026-06-11",
-    "relevance_score": 6.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "个人信息保护委员会动态：与数据／隐私／人工智能相关的监管公告（2025-12-26）",
-        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源已发布与下述日文原标题相关的事项；应对照日文官方来源进行核对。",
-        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
@@ -7419,6 +7475,31 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-924dff225a28246c",
+    "title_en": "MHLW Update: Regulatory announcement related to Healthcare / Pharmaceuticals",
+    "title_ja": "後期高齢者医療事業状況報告",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
+    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kouki_houkoku.html",
+    "published_at": "2026-06-15",
+    "last_checked": "2026-06-16",
+    "relevance_score": 1.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：医疗／药品相关监管公告",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-20e33f345f4ac850",
     "title_en": "MAFF Update: Food safety and labeling regulation information updated (2026-05-26)",
     "title_ja": "オークラ製菓株式会社におけるキャンデー類の不適正表示に対する措置について",
@@ -7464,31 +7545,6 @@
         "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下述日文原标题相关的事项；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所属行业或业务相关，应查阅日文官方来源。",
         "recommended_action": "建议查阅日文原始来源，并确定该事项是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-924dff225a28246c",
-    "title_en": "MHLW Update: Regulatory announcement related to Healthcare / Pharmaceuticals",
-    "title_ja": "後期高齢者医療事業状況報告",
-    "area": "Healthcare / Pharmaceuticals",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
-    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kouki_houkoku.html",
-    "published_at": "2026-06-15",
-    "last_checked": "2026-06-16",
-    "relevance_score": 1.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "厚生劳动省更新：医疗／药品相关监管公告",
-        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
     "summary_source": "rule_based"
@@ -8111,56 +8167,6 @@
     "summary_source": "rule_based"
   },
   {
-    "id": "raw-f41281552477ccc1",
-    "title_en": "METI Update: Regulatory announcement related to Data / Privacy / AI (2026-06-02)",
-    "title_ja": "デジタル推進人材育成プログラム「マナビDX（デラックス）Quest」の 2026年度受講生を募集します",
-    "area": "Data / Privacy / AI",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "経済産業省 (METI) ニュースリリース",
-    "source_url": "https://www.meti.go.jp/press/2026/06/20260602002/20260602002.html",
-    "published_at": "2026-06-02",
-    "last_checked": "2026-06-11",
-    "relevance_score": 2.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "经济产业省更新：数据/隐私/人工智能相关监管公告（2026-06-02）",
-        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源已就下方原始日文标题相关事项发布了内容；应对照日文官方来源进行核查。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所在行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
-    "id": "raw-bcf0786251230d97",
-    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment (2026-06-02)",
-    "title_ja": "地域と共生する再エネ優良事例を紹介する特設Webサイト「Good Echo」の公開について",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_04867.html",
-    "published_at": "2026-06-02",
-    "last_checked": "2026-06-12",
-    "relevance_score": 2.0,
-    "translations": {
-      "zh-Hans": {
-        "title": "环境省发布：与能源/环境相关的监管公告（2026-06-02）",
-        "summary": "这是基于规则的预览，尚未经过AI审查或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
-  },
-  {
     "id": "raw-8769288de75ff2be",
     "title_en": "JFTC Update: Regulatory announcement related to Antitrust / Fair Trade (2026-04-27)",
     "title_ja": "令和８年度官製談合防止に向けた発注機関の取組に関する実態調査について",
@@ -8206,6 +8212,56 @@
         "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方原始日文标题相关的内容；应对照日文官方来源进行核对。",
         "business_impact": "业务影响尚未评估。在日本经营的公司如认为该内容与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-f41281552477ccc1",
+    "title_en": "METI Update: Regulatory announcement related to Data / Privacy / AI (2026-06-02)",
+    "title_ja": "デジタル推進人材育成プログラム「マナビDX（デラックス）Quest」の 2026年度受講生を募集します",
+    "area": "Data / Privacy / AI",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "経済産業省 (METI) ニュースリリース",
+    "source_url": "https://www.meti.go.jp/press/2026/06/20260602002/20260602002.html",
+    "published_at": "2026-06-02",
+    "last_checked": "2026-06-11",
+    "relevance_score": 2.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "经济产业省更新：数据/隐私/人工智能相关监管公告（2026-06-02）",
+        "summary": "这是基于规则的预览，尚未经过人工智能审阅或摘要。日本政府来源已就下方原始日文标题相关事项发布了内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-bcf0786251230d97",
+    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment (2026-06-02)",
+    "title_ja": "地域と共生する再エネ優良事例を紹介する特設Webサイト「Good Echo」の公開について",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_04867.html",
+    "published_at": "2026-06-02",
+    "last_checked": "2026-06-12",
+    "relevance_score": 2.0,
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省发布：与能源/环境相关的监管公告（2026-06-02）",
+        "summary": "这是基于规则的预览，尚未经过AI审查或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
     "summary_source": "rule_based"
