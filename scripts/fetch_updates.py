@@ -97,13 +97,19 @@ SOURCES = [
         "source_type": "ministry_html",
         "source_language": "ja",
         "html_parser": "meti_press_index",
-        "timeouts": (30, 45, 60),
-        "backoff": (3, 8, 15),
+        # www.meti.go.jp is slow/unreliable from CI. We still try every run, but a
+        # METI-only failure must NOT keep the daily workflow red, so it is a
+        # warning-only (non-gating) source. Timeouts are kept modest because the
+        # failure no longer blocks the pipeline (worst case ~20+3+35+6+50 ≈ 114s).
+        "timeouts": (20, 35, 50),
+        "backoff": (3, 6),
         "urllib_fallback": True,
         "user_agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
             "JapanLegalReformWatch/0.1 (+https://github.com/legalos/japan-legal-reform-watch)"
         ),
+        "gate_required": False,
+        "health_severity": "warning",
     },
     {
         "name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",

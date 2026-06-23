@@ -65,13 +65,18 @@ def utc_now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def configured_sources() -> list[dict[str, str]]:
+def configured_sources() -> list[dict[str, Any]]:
     return [
         {
             "key": str(source.get("key", "")),
             "name": str(source.get("name", "")),
             "url": str(source.get("url", "")),
             "display_name": DISPLAY_NAMES.get(str(source.get("key", "")), str(source.get("name", ""))),
+            # Most sources are required: a 3-run streak fails the gate. A source
+            # marked gate_required=False (e.g. METI, which ReadTimeouts from CI) is
+            # warning-only — it is still fetched and reported, but its streaks do
+            # not fail the gate.
+            "gate_required": bool(source.get("gate_required", True)),
         }
         for source in fetch_updates.SOURCES
     ]
@@ -320,6 +325,7 @@ def evaluate_report(
             {
                 "source_key": key,
                 "display_name": source["display_name"],
+                "gate_required": source["gate_required"],
                 "status": current_status,
                 "status_label": status_label(current_status),
                 "fetched_count": row["fetched_count"],
@@ -371,9 +377,20 @@ def generate_step_summary(evaluation: dict[str, Any]) -> str:
             f"Healthy: {evaluation['healthy_count']}",
             f"Warnings: {evaluation['warning_count']}",
             f"Errors: {evaluation['error_count']}",
-            "",
         ]
     )
+    warning_only_failed = [
+        row["display_name"]
+        for row in evaluation["rows"]
+        if row["status"] != "healthy" and not row.get("gate_required", True)
+    ]
+    if warning_only_failed:
+        lines.append("")
+        lines.append(
+            "Warning-only source failed (does not fail the gate): "
+            + ", ".join(warning_only_failed)
+        )
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -404,6 +421,8 @@ def annotation_lines(evaluation: dict[str, Any]) -> list[str]:
                 ": ".join(part for part in (row.get("error_type"), row.get("error_message")) if part)
             )
             message = f"{row['display_name']} fetch failed"
+            if not row.get("gate_required", True):
+                message += " (warning-only source; does not fail the source-health gate)"
             if detail:
                 message += f": {detail}"
             lines.append(f"::warning title=Source health warning::{workflow_escape(message)}")
@@ -443,6 +462,8 @@ def gate_failures(report: Any, state: Any, enforce_streaks: bool = True) -> list
 
     if enforce_streaks:
         for source in configured_sources():
+            if not source.get("gate_required", True):
+                continue  # warning-only source: its streaks never fail the gate
             key = source["key"]
             source_state = state["sources"][key]
             if int(source_state.get("consecutive_zero_runs") or 0) >= GATE_STREAK_THRESHOLD:
@@ -450,6 +471,33 @@ def gate_failures(report: Any, state: Any, enforce_streaks: bool = True) -> list
             if int(source_state.get("consecutive_error_runs") or 0) >= GATE_STREAK_THRESHOLD:
                 failures.append(f"{source['display_name']} failed for 3 consecutive runs.")
     return failures
+
+
+def gate_warnings(report: Any, state: Any, enforce_streaks: bool = True) -> list[str]:
+    """Non-blocking warnings: warning-only sources (gate_required=False) that have
+    hit the streak threshold. Surfaced so an operator notices, without failing the
+    gate. Returns [] if the report/state are invalid (gate_failures reports those).
+    """
+    warnings: list[str] = []
+    if not enforce_streaks:
+        return warnings
+    if validate_report(report) or validate_state_for_gate(state):
+        return warnings
+    for source in configured_sources():
+        if source.get("gate_required", True):
+            continue
+        source_state = state["sources"][source["key"]]
+        if int(source_state.get("consecutive_error_runs") or 0) >= GATE_STREAK_THRESHOLD:
+            warnings.append(
+                f"{source['display_name']} failed for 3 consecutive runs "
+                "(warning-only source; gate not failed)."
+            )
+        if int(source_state.get("consecutive_zero_runs") or 0) >= GATE_STREAK_THRESHOLD:
+            warnings.append(
+                f"{source['display_name']} returned zero parsed items for 3 consecutive runs "
+                "(warning-only source; gate not failed)."
+            )
+    return warnings
 
 
 def load_report_and_state(report_path: Path, state_path: Path) -> tuple[Any | None, Any | None, list[str]]:
@@ -502,8 +550,14 @@ def cmd_gate(args: argparse.Namespace) -> int:
     enforce_streaks = should_persist_state(args)
     report, state, load_errors = load_report_and_state(args.report, args.state)
     failures = list(load_errors)
+    warnings: list[str] = []
     if not load_errors:
         failures.extend(gate_failures(report, state, enforce_streaks=enforce_streaks))
+        warnings = gate_warnings(report, state, enforce_streaks=enforce_streaks)
+    # Warning-only source streaks are surfaced but never fail the gate.
+    for warning in warnings:
+        print(f"::warning title=Source health gate::{workflow_escape(warning)}")
+        print(f"Source health gate warning: {warning}", file=sys.stderr)
     if failures:
         for failure in failures:
             print(f"::error title=Source health gate::{workflow_escape(failure)}")

@@ -281,6 +281,86 @@ class TestSourceHealthGate(unittest.TestCase):
         self.assertTrue(any("unknown sources: nta" in failure for failure in failures))
 
 
+class TestWarningOnlySourceGate(unittest.TestCase):
+    METI_ERROR = {
+        "status": "error", "fetched_count": 0, "new_count": 0, "latest_published_at": None,
+        "error_type": "ReadTimeout", "error_message": "The read operation timed out",
+    }
+
+    def test_meti_is_configured_warning_only(self):
+        meti = next(s for s in sh.configured_sources() if s["key"] == "meti")
+        self.assertFalse(meti["gate_required"])
+        # Every other source stays required.
+        for source in sh.configured_sources():
+            if source["key"] != "meti":
+                self.assertTrue(source["gate_required"], source["key"])
+
+    def test_meti_three_consecutive_errors_do_not_fail_gate(self):
+        state = sh.initial_state()
+        state["sources"]["meti"]["consecutive_error_runs"] = 3
+        failures = sh.gate_failures(make_report(meti=self.METI_ERROR), state)
+        self.assertEqual(failures, [])  # warning-only: METI streak does not fail the gate
+
+    def test_meti_streak_surfaces_as_gate_warning(self):
+        state = sh.initial_state()
+        state["sources"]["meti"]["consecutive_error_runs"] = 3
+        warnings = sh.gate_warnings(make_report(meti=self.METI_ERROR), state)
+        self.assertTrue(any("METI" in w and "warning-only" in w for w in warnings))
+
+    def test_meti_failure_marked_in_summary_and_annotations(self):
+        evaluation = sh.evaluate_report(make_report(meti=self.METI_ERROR), sh.initial_state(), "2026-06-23T00:00:12Z")
+        summary = sh.generate_step_summary(evaluation)
+        self.assertIn("Warning-only source failed", summary)
+        self.assertIn("METI", summary)
+        annotations = "\n".join(sh.annotation_lines(evaluation))
+        self.assertIn("::warning", annotations)
+        self.assertIn("warning-only source", annotations)
+
+    def test_required_source_three_consecutive_still_fails_gate(self):
+        state = sh.initial_state()
+        state["sources"]["maff"]["consecutive_error_runs"] = 3
+        failures = sh.gate_failures(make_report(maff={"status": "error", "fetched_count": 0, "new_count": 0}), state)
+        self.assertTrue(any("MAFF failed for 3 consecutive runs" in f for f in failures))
+
+    def test_multiple_required_source_failures_detected(self):
+        state = sh.initial_state()
+        state["sources"]["maff"]["consecutive_error_runs"] = 3
+        state["sources"]["mlit"]["consecutive_error_runs"] = 3
+        report = make_report(
+            maff={"status": "error", "fetched_count": 0, "new_count": 0, "latest_published_at": None},
+            mlit={"status": "error", "fetched_count": 0, "new_count": 0, "latest_published_at": None},
+        )
+        failures = sh.gate_failures(report, state)
+        self.assertTrue(any("MAFF failed" in f for f in failures))
+        self.assertTrue(any("MLIT failed" in f for f in failures))
+
+    def test_all_sources_failed_is_still_fatal(self):
+        report = make_report(**{
+            key: {"fetched_count": 0, "new_count": 0, "latest_published_at": None}
+            for key in EXPECTED_SOURCE_KEYS
+        })
+        failures = sh.gate_failures(report, sh.initial_state())
+        self.assertTrue(any("All configured sources" in f for f in failures))
+
+    def test_meti_success_is_healthy(self):
+        evaluation = sh.evaluate_report(make_report(), sh.initial_state(), "2026-06-23T00:00:12Z")
+        meti = row_by_key(evaluation, "meti")
+        self.assertEqual(meti["status"], "healthy")
+        self.assertGreater(meti["fetched_count"], 0)
+
+    def test_meti_error_info_preserved_in_report_row(self):
+        evaluation = sh.evaluate_report(make_report(meti=self.METI_ERROR), sh.initial_state(), "2026-06-23T00:00:12Z")
+        meti = row_by_key(evaluation, "meti")
+        self.assertEqual(meti["status"], "error")
+        self.assertEqual(meti["error_type"], "ReadTimeout")
+        self.assertIn("read operation timed out", meti["error_message"])
+
+    def test_state_format_unchanged_no_gate_required_leak(self):
+        state = sh.initial_state()
+        self.assertEqual(set(state["sources"]["meti"]), set(sh.default_source_state()))
+        self.assertNotIn("gate_required", state["sources"]["meti"])
+
+
 class TestFetchReportingAndWorkflow(unittest.TestCase):
     def test_timeout_retry_stops_at_max_attempts(self):
         with mock.patch.object(fu, "_http_get_once", side_effect=TimeoutError("timed out")) as fetch_once, \

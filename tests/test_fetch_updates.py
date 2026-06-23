@@ -446,13 +446,14 @@ class TestHttpFetchRobustness(unittest.TestCase):
         meti = next(s for s in fu.SOURCES if s["key"] == "meti")
         self.assertEqual(meti["url"], "https://www.meti.go.jp/press/index.html")
         self.assertEqual(meti["html_parser"], "meti_press_index")
-        # Escalating read timeouts, all longer than the 20s default that timed out.
-        self.assertEqual(meti["timeouts"], (30, 45, 60))
-        self.assertGreaterEqual(min(meti["timeouts"]), 30)
-        self.assertGreaterEqual(max(meti["timeouts"]), 60)
-        self.assertEqual(meti["backoff"], (3, 8, 15))
+        # Escalating read timeouts, kept modest now that METI is warning-only.
+        self.assertEqual(meti["timeouts"], (20, 35, 50))
+        self.assertEqual(meti["backoff"], (3, 6))
         self.assertTrue(meti["urllib_fallback"])
         self.assertIn("Mozilla", meti["user_agent"])  # browser-like (still identifying) UA
+        # METI is a warning-only / non-gating source.
+        self.assertFalse(meti["gate_required"])
+        self.assertEqual(meti.get("health_severity"), "warning")
 
     def test_default_timeout_is_unchanged_for_other_sources(self):
         self.assertEqual(fu.DEFAULT_TIMEOUT_SECONDS, 20)
