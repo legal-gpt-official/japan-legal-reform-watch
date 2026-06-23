@@ -162,6 +162,34 @@ class TestSourceHealthEvaluation(unittest.TestCase):
         self.assertEqual(moe_state["last_status"], "healthy")
         self.assertEqual(moe_state["last_recovered_at"], "2026-06-16T00:00:12Z")
 
+    def test_meti_healthy_recovery_resets_error_streak(self):
+        # After METI moves to the HTML parser, a healthy run (success, fetched > 0)
+        # resets its error streak so 'Enforce source health gate' stops failing.
+        state = sh.initial_state()
+        state["sources"]["meti"].update(
+            {
+                "consecutive_error_runs": 3,
+                "last_status": "error",
+                "last_problem_at": "2026-06-15T00:00:00Z",
+            }
+        )
+        evaluation = sh.evaluate_report(make_report(), state, "2026-06-16T00:00:12Z")
+        meti_row = row_by_key(evaluation, "meti")
+        self.assertEqual(meti_row["status"], "healthy")
+        self.assertEqual(meti_row["error_streak"], 0)
+        meti_state = evaluation["state"]["sources"]["meti"]
+        self.assertEqual(meti_state["consecutive_error_runs"], 0)
+        self.assertEqual(meti_state["last_status"], "healthy")
+        self.assertEqual(meti_state["last_recovered_at"], "2026-06-16T00:00:12Z")
+
+    def test_meti_recovery_clears_three_run_gate_failure(self):
+        # With METI's error streak at 3, the gate fails; a healthy report clears it.
+        state = sh.initial_state()
+        state["sources"]["meti"]["consecutive_error_runs"] = 3
+        evaluation = sh.evaluate_report(make_report(), state, "2026-06-16T00:00:12Z")
+        failures = sh.gate_failures(make_report(), evaluation["state"])
+        self.assertFalse([f for f in failures if "METI" in f or "meti" in f])
+
     def test_continued_healthy_run_does_not_change_state(self):
         state = sh.initial_state()
         evaluation = sh.evaluate_report(make_report(), state, "2026-06-16T00:00:12Z")

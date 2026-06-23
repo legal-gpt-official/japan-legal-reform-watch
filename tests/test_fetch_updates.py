@@ -20,7 +20,7 @@ ALLOWED_SOURCE_TYPES = {
     "public_comment_rss", "regulator_rss", "ministry_rss", "agency_rss",
     "regulator_html", "ministry_html",
 }
-ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press", "mlit_press"}
+ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press", "mlit_press", "meti_press_index"}
 
 
 class TestSourcesConfig(unittest.TestCase):
@@ -69,6 +69,16 @@ class TestSourcesConfig(unittest.TestCase):
         maff = by_name["農林水産省 (MAFF) 報道発表"]
         self.assertEqual(maff["source_type"], "ministry_rss")
         self.assertEqual(maff["url"], "https://www.maff.go.jp/j/press/rss.xml")
+
+    def test_meti_source_config_uses_html_parser(self):
+        by_name = {source["name"]: source for source in fu.SOURCES}
+        meti = by_name["経済産業省 (METI) ニュースリリース"]
+        self.assertEqual(meti["key"], "meti")  # key + name preserved for continuity
+        self.assertEqual(meti["source_type"], "ministry_html")
+        self.assertEqual(meti["html_parser"], "meti_press_index")
+        self.assertEqual(meti["url"], "https://www.meti.go.jp/press/index.html")
+        # The old failing Atom feed must be gone.
+        self.assertNotIn("ml_index_release_atom", meti["url"])
 
     def test_every_source_has_a_ui_display_name(self):
         """docs/app.js maps every source_name to an English-first display label.
@@ -361,6 +371,74 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertEqual(items[0]["link"], "https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260610.html")
         self.assertEqual(items[1]["published_iso"], "")  # no date -> never guessed
         self.assertEqual(items[1]["title"], "日付プレフィックスのない発表")
+
+    def test_meti_press_index_parser(self):
+        html_text = """
+        <main>
+        <h2>最新ニュースリリース</h2>
+        <div class="news">
+          <h3>2026年6月23日</h3>
+          <ul>
+            <li><a href="/press/2026/06/20260623001/20260623001.html">中小企業向け支援策の公募を開始します</a></li>
+            <li><a href="/press/2026/06/20260623002/20260623002.html">エネルギー基本計画改定案に関する意見公募について</a></li>
+          </ul>
+          <h3>2026年6月20日</h3>
+          <ul>
+            <li><a href="/press/2026/06/20260620005/20260620005.html">産業構造審議会の報告書を取りまとめました</a></li>
+          </ul>
+        </div>
+        <nav>
+          <a href="/press/index.html">バックナンバー</a>
+          <a href="/">トップページ</a>
+        </nav>
+        </main>
+        """.encode("utf-8")
+        source = {"html_parser": "meti_press_index", "url": "https://www.meti.go.jp/press/index.html"}
+        items = fu.parse_html_source(html_text, source)
+
+        self.assertEqual(len(items), 3)  # 3 press links; nav / back-number links excluded (not 0)
+        self.assertEqual(items[0]["title"], "中小企業向け支援策の公募を開始します")
+        self.assertEqual(
+            items[0]["link"],
+            "https://www.meti.go.jp/press/2026/06/20260623001/20260623001.html",  # urljoin applied
+        )
+        self.assertEqual(items[0]["published_iso"], "2026-06-23")  # 2026年6月23日 -> ISO
+        self.assertEqual(items[1]["published_iso"], "2026-06-23")
+        self.assertEqual(items[2]["published_iso"], "2026-06-20")  # second date group
+        for item in items:
+            self.assertTrue(item["title"])           # non-empty title
+            self.assertTrue(item["published_iso"])   # non-empty date
+            self.assertTrue(item["link"].startswith("https://www.meti.go.jp/press/"))
+
+    def test_meti_press_index_parser_handles_time_element(self):
+        # Per-item <time datetime> layout (robust to no date heading).
+        html_text = """
+        <ul>
+        <li><time datetime="2026-06-18">2026年6月18日</time>
+        <a href="/press/2026/06/20260618010/20260618010.html">省エネ法に基づく定期報告について</a></li>
+        </ul>
+        """.encode("utf-8")
+        source = {"html_parser": "meti_press_index", "url": "https://www.meti.go.jp/press/index.html"}
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-06-18")
+
+    def test_meti_build_item_from_parser_output(self):
+        # Parser output flows through build_item with the preserved source identity.
+        html_text = (
+            "<h3>2026年6月23日</h3><ul><li>"
+            '<a href="/press/2026/06/20260623001/20260623001.html">支援策の公募について</a>'
+            "</li></ul>"
+        ).encode("utf-8")
+        meti = next(s for s in fu.SOURCES if s["key"] == "meti")
+        entries = fu.parse_html_source(html_text, meti)
+        self.assertTrue(entries)  # parser does not return zero items
+        item = fu.build_item(entries[0], meti, "2026-06-23T00:00:00Z")
+        self.assertEqual(item["source_name"], "経済産業省 (METI) ニュースリリース")
+        self.assertEqual(item["source_type"], "ministry_html")
+        self.assertTrue(item["title_ja"])
+        self.assertEqual(item["published_at"], "2026-06-23")
+        self.assertTrue(item["source_url"].startswith("https://www.meti.go.jp/press/"))
 
 
 if __name__ == "__main__":

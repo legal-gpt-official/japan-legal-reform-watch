@@ -86,11 +86,14 @@ SOURCES = [
         "source_language": "ja",
     },
     {
+        # The Atom feed (ml_index_release_atom.xml) has been failing; the official
+        # press-release index HTML is stable, so METI uses a lightweight HTML parser.
         "name": "経済産業省 (METI) ニュースリリース",
         "key": "meti",
-        "url": "https://www.meti.go.jp/ml_index_release_atom.xml",
-        "source_type": "ministry_rss",
+        "url": "https://www.meti.go.jp/press/index.html",
+        "source_type": "ministry_html",
         "source_language": "ja",
+        "html_parser": "meti_press_index",
     },
     {
         "name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
@@ -370,6 +373,8 @@ def parse_html_source(content: bytes, source: dict) -> list[dict]:
         return _parse_moe_press_html(text, source["url"])
     if parser_name == "mlit_press":
         return _parse_mlit_press_html(text, source["url"])
+    if parser_name == "meti_press_index":
+        return _parse_meti_press_index_html(text, source["url"])
     raise ValueError(f"Unsupported html_parser: {parser_name}")
 
 
@@ -527,6 +532,68 @@ def _parse_mlit_press_html(text: str, base_url: str) -> list[dict]:
                     "published_iso": published_iso,
                 }
             )
+    return items
+
+
+# METI "最新ニュースリリース" index (meti.go.jp/press/index.html): press-release
+# links grouped under Japanese date headings (and/or per-item <time datetime>).
+# Each press link is dated by the NEAREST PRECEDING date marker, so this tolerates
+# both date-grouped and per-item layouts.
+_METI_TIME_RE = re.compile(r'<time[^>]+datetime=["\'](?P<date>\d{4}-\d{2}-\d{2})["\']', re.IGNORECASE)
+_METI_JP_DATE_RE = re.compile(r"(?P<year>\d{4})年(?P<month>\d{1,2})月(?P<day>\d{1,2})日")
+_METI_LINK_RE = re.compile(
+    r'<a\s+[^>]*href=["\'](?P<href>[^"\']+)["\'][^>]*>(?P<title_html>.*?)</a>',
+    re.IGNORECASE | re.DOTALL,
+)
+# A METI press-release detail page lives under /press/<year>/... and ends in .html
+# (this excludes nav, category, and back-number links such as /press/index.html).
+_METI_PRESS_PATH_RE = re.compile(r"/press/\d{4}/")
+
+
+def _parse_meti_press_index_html(text: str, base_url: str) -> list[dict]:
+    date_markers: list[tuple[int, str]] = []
+    for match in _METI_TIME_RE.finditer(text):
+        date_markers.append((match.start(), match.group("date")))
+    for match in _METI_JP_DATE_RE.finditer(text):
+        try:
+            iso = datetime(
+                int(match.group("year")), int(match.group("month")), int(match.group("day"))
+            ).strftime("%Y-%m-%d")
+        except ValueError:
+            continue  # malformed date — never guess
+        date_markers.append((match.start(), iso))
+    date_markers.sort()
+
+    def date_before(position: int) -> str:
+        iso = ""
+        for marker_pos, marker_iso in date_markers:
+            if marker_pos <= position:
+                iso = marker_iso
+            else:
+                break
+        return iso
+
+    items: list[dict] = []
+    seen_links: set[str] = set()
+    for link in _METI_LINK_RE.finditer(text):
+        title = clean_text(link.group("title_html"))
+        href = html.unescape(link.group("href")).strip()
+        if not title or not href:
+            continue
+        full_url = urllib.parse.urljoin(base_url, href)
+        if not _METI_PRESS_PATH_RE.search(full_url) or not full_url.endswith(".html"):
+            continue
+        if full_url in seen_links:
+            continue
+        seen_links.add(full_url)
+        items.append(
+            {
+                "title": title,
+                "link": full_url,
+                "summary": "ニュースリリース",
+                "published_iso": date_before(link.start()),
+            }
+        )
     return items
 
 
