@@ -104,9 +104,9 @@
     "last_checked": "2026-06-23",
     "relevance_score": 52.0,
     "first_seen_at": "2026-06-23",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the draft is out for public comment and not enacted. Substantive details of the cabinet orders are not provided and must be verified against the official source. Preliminary labels are weak triage context only.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:06:28Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -134,9 +134,9 @@
     "last_checked": "2026-06-23",
     "relevance_score": 52.0,
     "first_seen_at": "2026-06-23",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and metadata only; the substance of the proposed amendments is not provided. This is a draft out for public comment, not an enacted rule. Preliminary labels are weak triage context and unverified.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:06:37Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -164,9 +164,9 @@
     "last_checked": "2026-06-23",
     "relevance_score": 52.0,
     "first_seen_at": "2026-06-23",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted rule. Details unverified against the official source. Preliminary labels are keyword-based triage only.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:06:50Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -284,9 +284,9 @@
     "last_checked": "2026-06-22",
     "relevance_score": 47.0,
     "first_seen_at": "2026-06-22",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted change. Specific content of the amendment is not provided and is unverified.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:07:00Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -343,9 +343,9 @@
     "last_checked": "2026-06-20",
     "relevance_score": 46.0,
     "first_seen_at": "2026-06-21",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and provided metadata; this is a draft out for public comment, not an enacted measure. The preliminary 'Energy / Environment' label appears inconsistent with the labour/occupational-safety subject matter and should be treated as weak triage context only.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:07:08Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -725,9 +725,9 @@
     "last_checked": "2026-06-22",
     "relevance_score": 39.0,
     "first_seen_at": "2026-06-22",
+    "summary_source": "claude",
     "confidence": "high",
     "ai_notes": "Based on the provided Japanese title and metadata; this is a draft out for public comment and not enacted. Details should be verified against the official e-Gov source.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:07:19Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -755,9 +755,9 @@
     "last_checked": "2026-06-23",
     "relevance_score": 40.0,
     "first_seen_at": "2026-06-23",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief summary; the substance of the amendments and comment results is unverified. The preliminary 'Data / Privacy / AI' label appears inconsistent with the radio-spectrum subject matter and was not relied upon.",
-    "summary_source": "claude",
     "summarized_at": "2026-06-23T06:07:31Z",
     "summary_model": "claude-opus-4-8",
     "translations": {
@@ -814,7 +814,6 @@
     "last_checked": "2026-06-23",
     "relevance_score": 37.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：《经济产业省特定行业石油等消费统计调查规则部分修订省令（草案）》",
@@ -822,7 +821,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-07760b27d11c3cae",
@@ -927,7 +927,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 35.0,
     "first_seen_at": "2026-06-22",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：《消费者安全法施行规则部分修订内阁府令（草案）》",
@@ -935,7 +934,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所在行业或业务相关，应审阅官方来源。",
         "recommended_action": "建议审阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-15b5c5a72bfae0a1",
@@ -2038,7 +2038,6 @@
     "last_checked": "2026-06-23",
     "relevance_score": 19.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：陆上无线通信委员会报告（草案）",
@@ -2046,7 +2045,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的公司如认为该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并确定该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-cc558501e779b0e8",
@@ -2064,7 +2064,6 @@
     "last_checked": "2026-06-23",
     "relevance_score": 19.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：卫星通信系统委员会报告（草案）",
@@ -2072,7 +2071,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的公司若该条目与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-67ab4e81d531592b",
@@ -2090,7 +2090,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 20.0,
     "first_seen_at": "2026-06-22",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "《国土交通省组织令部分修订政令》经内阁会议决定——强化防灾减灾、国土强韧化推进体制",
@@ -2098,7 +2097,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如该事项与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8e3b6171617b0ef6",
@@ -2371,7 +2371,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 15.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公正交易委员会发布关于电影、动画制作现场交易适当化的指南",
@@ -2379,7 +2378,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6f71d628533835c7",
@@ -2751,7 +2751,6 @@
     "last_checked": "2026-06-20",
     "relevance_score": 7.0,
     "first_seen_at": "2026-06-21",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：人工智能基本计划（草案）",
@@ -2759,7 +2758,8 @@
         "business_impact": "业务影响尚未评估。如该事项与其所在行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-888b756618f33577",
@@ -3062,7 +3062,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 10.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公正交易委员会：对河合乐器制作所股份有限公司作出劝告（2026-06-22）",
@@ -3070,7 +3069,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司，如该内容与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2da33f38f3c2555b",
@@ -3215,7 +3215,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 9.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "消费者厅更新：功能性标示食品制度申报数据库申报信息更新（2026-06-22）",
@@ -3223,7 +3222,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司，若该信息与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该信息是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-b6d5ccfd963c7fd4",
@@ -3443,7 +3443,6 @@
     "last_checked": "2026-06-19",
     "relevance_score": 8.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "九州地区景品表示法运用状况等公布（2026-06-19）",
@@ -3451,7 +3450,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f5706252a79dc548",
@@ -3644,7 +3644,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 7.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国土交通省更新：房地产与土地利用规制信息更新（2026-06-22）",
@@ -3652,7 +3651,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-70da042c9b1dee77",
@@ -3720,7 +3720,6 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：解除原简易燃气视同燃气零售商指定的原供给地点指定（近畿经济产业局所辖部分）",
@@ -3728,7 +3727,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-949db35e23080d9d",
@@ -3996,7 +3996,6 @@
     "last_checked": "2026-06-19",
     "relevance_score": 6.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "金融厅更新：与企业／治理相关的监管公告",
@@ -4004,7 +4003,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-d309c8a84df9da03",
@@ -4022,7 +4022,6 @@
     "last_checked": "2026-06-19",
     "relevance_score": 6.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国土交通省动态：交通与基础设施监管信息更新（2026-06-19）",
@@ -4030,7 +4029,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的公司如认为该事项与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a6170eaa2af2570d",
@@ -4123,7 +4123,6 @@
     "last_checked": "2026-06-23",
     "relevance_score": 5.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "消费者厅更新：与公司／治理相关的监管公告",
@@ -4131,7 +4130,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-13a192a735e2543e",
@@ -4174,7 +4174,6 @@
     "last_checked": "2026-06-22",
     "relevance_score": 5.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公正取引委员会动态：与反垄断／公平交易相关的监管公告（2026-06-22）",
@@ -4182,7 +4181,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f0b80af2f1ab2ad6",
@@ -4325,7 +4325,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 5.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：与日本监管事项相关的监管公告（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已发布与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该事项与其所在行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-a5f7577b0be3990a",
@@ -4897,7 +4905,15 @@
     "last_checked": "2026-06-23",
     "relevance_score": 4.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "消费者厅更新：功能性标示食品信息更新（2026-06-23）",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方原始日文标题相关的条目；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该条目与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-ddd883ef7f8ec66e",
@@ -4915,7 +4931,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 4.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省消息：食品安全与标识监管信息更新（2026-06-19）",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该事项与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-f332338b389f69c5",
@@ -5084,7 +5108,15 @@
     "last_checked": "2026-06-23",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省更新：废弃物管理规则（2026-06-23）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源发布了一项与下方日文原始标题相关的事项；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该事项与其行业或业务相关，应查阅日文官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-23b8d24690d81716",
@@ -5102,7 +5134,15 @@
     "last_checked": "2026-06-23",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省更新：关于日本机场大厦股份有限公司旅客处理设施使用费上限的认可",
+        "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已发布与下方原始日文标题相关的事项；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-a78bc78bd3284cec",
@@ -5120,7 +5160,15 @@
     "last_checked": "2026-06-22",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "金融厅更新：与金融/反洗钱相关的监管公告（2026-06-23）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源发布了一项与下方原始日文标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所在行业或业务相关，应查阅日文官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-a2c247f6c7d4bec3",
@@ -5188,7 +5236,15 @@
     "last_checked": "2026-06-22",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省通报：车辆召回申报已提交（2026-06-22）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-bc70d0542f0e121b",
@@ -5306,7 +5362,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "金融厅更新：主要寿险与财险公司令和8年3月期决算概要",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下述日文原标题相关的条目；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该条目与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-02fcc21b1d39b88f",
@@ -5324,7 +5388,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省更新：发布农业、食品、林业或渔业政策信息（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所属行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-9252af42b053c331",
@@ -5342,7 +5414,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省更新：建筑标准法规信息更新（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-5b7a6f3bd6b03aa7",
@@ -5360,7 +5440,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省更新：已提交车辆召回申报（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下方原始日文标题相关的内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-fdd0fffa162c1e17",
@@ -5378,7 +5466,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 3.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省更新：已提交车辆召回申报（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源就下方原始日文标题相关事项发布了内容；应对照日文官方来源进行审阅。",
+        "business_impact": "业务影响尚未评估。如该事项与其所在行业或业务相关，在日本运营的企业应审阅官方来源。",
+        "recommended_action": "建议审阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-4731cbb188e21bf3",
@@ -5806,7 +5902,15 @@
     "last_checked": "2026-06-23",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：劳动与就业政策信息已更新（2026-06-23）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或总结。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-827eac05b1132bd7",
@@ -5823,7 +5927,15 @@
     "published_at": "2026-06-09",
     "last_checked": "2026-06-11",
     "relevance_score": 4.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "消费者厅更新：功能性标示食品相关功能性成分采购调查信息（2026-06-09）",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方日文原标题相关的条目；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该条目与其所在行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-c79db188eeb5e847",
@@ -5841,7 +5953,15 @@
     "last_checked": "2026-06-22",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：与数据／隐私／人工智能相关的监管公告（2026-06-22）",
+        "summary": "这是基于规则的预览，尚未经过人工智能的审阅或摘要。日本政府来源发布了一项与下方原始日文标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该内容与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-21474b8d9549a3e6",
@@ -5859,7 +5979,15 @@
     "last_checked": "2026-06-22",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省通报：与能源/环境相关的监管公告（2026-06-22）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-376bd7b600d99218",
@@ -6052,7 +6180,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "金融厅更新：与金融／反洗钱相关的监管公告（2026-06-20）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或总结。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行查阅。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司，如该内容与其所属行业或经营相关，应查阅日文官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-1272a375502868f1",
@@ -6070,7 +6206,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "金融厅更新：与金融／反洗钱相关的监管公告（2026-06-20）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已发布一项与下方原始日文标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该内容与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-010b92ad2bf6f0c1",
@@ -6088,7 +6232,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "数字厅更新：与数据/隐私/AI相关的监管公告（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源就下方原始日文标题相关事项发布了一项内容；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-27f06d6683e354f4",
@@ -6106,7 +6258,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省动态：发布农业、食品、林业或渔业政策信息（2026-06-19）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下述日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该内容与其所在行业或业务相关，应查阅日文官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-a7322dc20aa0853e",
@@ -6124,7 +6284,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省动态：与能源／环境相关的监管公告（2026-06-19）",
+        "summary": "这是基于规则生成的预览，尚未经过AI审阅或摘要。日本政府来源已就下列日文原标题相关事项发布了一项内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其行业或业务相关，应查阅日文官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-eb4cb39de610e3fe",
@@ -6167,7 +6335,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 2.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：与消费者/广告相关的监管公告",
+        "summary": "这是基于规则的预览，尚未经AI审阅或总结。日本政府来源已发布与下方日文原标题相关的事项；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司若该事项与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-e48e93031309a649",
@@ -6234,7 +6410,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省更新：关于日本邮政株式会社剩余金处分决议的认可",
+        "summary": "这是基于规则的预览，尚未经由AI审阅或摘要。日本政府来源已发布一项与下方日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-344e022b20f0166b",
@@ -7060,7 +7244,15 @@
     "last_checked": "2026-06-22",
     "relevance_score": 1.0,
     "first_seen_at": "2026-06-23",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省发布面向自动驾驶高度化的先进安全技术研究成果——召开第7期ASV推进计划成果报告会",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下述日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该内容与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-2a6334da152ac54a",
@@ -7127,7 +7319,15 @@
     "published_at": "2026-06-15",
     "last_checked": "2026-06-16",
     "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省动态：不动产与土地利用监管信息已更新（2026-06-15）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或归纳。日本政府来源已发布与下方原始日文标题相关的事项；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所在行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-177c0d8740d01e18",
@@ -7220,7 +7420,15 @@
     "last_checked": "2026-06-19",
     "relevance_score": 1.0,
     "first_seen_at": "2026-06-20",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省动态：氟碳化合物对策联合会议（第4次）的召开",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布了一项与下方日文原标题相关的事项；应对照日文官方来源进行核查。",
+        "business_impact": "业务影响尚未评估。在日本经营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-dbd45359f1154dd3",
@@ -7262,7 +7470,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "厚生劳动省更新：与数据／隐私／AI相关的监管公告（2026-06-12）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布与下方原始日文标题相关的条目；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司若该条目与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文官方来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-05615c422efd4723",
@@ -7304,7 +7520,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 2.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省更新：发布农业、食品、林业或渔业政策信息（2026-06-12）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。一家日本政府来源发布了一项与下方日文原标题相关的事项；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-48c123667da6df79",
@@ -8372,7 +8596,15 @@
     "published_at": "2026-06-12",
     "last_checked": "2026-06-12",
     "relevance_score": 1.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "国土交通省更新：建筑标准监管信息更新（2026-06-12）",
+        "summary": "这是基于规则的预览，尚未经AI审阅或摘要。日本政府来源已发布与下方原始日文标题相关的条目；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本经营的公司如认为该条目与其行业或运营相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-449de05b10f770dc",
@@ -8564,7 +8796,15 @@
     "published_at": "2026-05-29",
     "last_checked": "2026-06-12",
     "relevance_score": 3.0,
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省更新：基于PCB特别措施法的PCB废弃物保管等申报全国汇总结果（令和6年度）",
+        "summary": "这是基于规则的预览，尚未经过AI审阅或摘要。日本政府来源已发布一项与下列日文原标题相关的内容；应对照日文官方来源进行核对。",
+        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其所属行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-a9816a26be1a79d4",
