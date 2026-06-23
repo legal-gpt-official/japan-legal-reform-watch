@@ -88,12 +88,22 @@ SOURCES = [
     {
         # The Atom feed (ml_index_release_atom.xml) has been failing; the official
         # press-release index HTML is stable, so METI uses a lightweight HTML parser.
+        # www.meti.go.jp is slow from CI and frequently ReadTimeouts at 20s, so this
+        # source gets escalating per-attempt timeouts, longer backoff, a urllib
+        # fallback when requests times out, and a browser-like (still identifying) UA.
         "name": "経済産業省 (METI) ニュースリリース",
         "key": "meti",
         "url": "https://www.meti.go.jp/press/index.html",
         "source_type": "ministry_html",
         "source_language": "ja",
         "html_parser": "meti_press_index",
+        "timeouts": (30, 45, 60),
+        "backoff": (3, 8, 15),
+        "urllib_fallback": True,
+        "user_agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "JapanLegalReformWatch/0.1 (+https://github.com/legalos/japan-legal-reform-watch)"
+        ),
     },
     {
         "name": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
@@ -246,6 +256,7 @@ def _http_get_once(
     headers = {
         "User-Agent": user_agent,
         "Accept": accept,
+        "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
     }
     if requests is not None and not prefer_urllib:
         resp = requests.get(url, headers=headers, timeout=timeout)
@@ -281,6 +292,20 @@ def _is_retryable_fetch_error(exc: BaseException) -> bool:
     return False
 
 
+def _is_network_error(exc: BaseException) -> bool:
+    """A read-timeout / connection-level failure (not an HTTP status error) for
+    which switching transport (requests -> urllib) is worth trying."""
+    if _http_status_from_exception(exc) is not None:
+        return False  # an HTTP status error is not a transport problem
+    if isinstance(exc, (TimeoutError, socket.timeout)):
+        return True
+    if isinstance(exc, urllib.error.URLError):  # HTTPError handled above by status
+        return True
+    if requests is not None and isinstance(exc, (requests.Timeout, requests.ConnectionError)):
+        return True
+    return False
+
+
 def _fetch_error_label(exc: BaseException) -> str:
     status = _http_status_from_exception(exc)
     if status is not None:
@@ -294,24 +319,51 @@ def http_get(
     prefer_urllib: bool = False,
     accept_html: bool = False,
     user_agent: str = USER_AGENT,
+    timeouts: tuple[int, ...] | None = None,
+    backoff: tuple[int, ...] | None = None,
+    urllib_fallback: bool = False,
 ) -> bytes:
-    """Fetch raw bytes with limited retry for transient network failures."""
-    for attempt in range(HTTP_MAX_ATTEMPTS):
+    """Fetch raw bytes with limited retry for transient network failures.
+
+    `timeouts` gives a per-attempt (escalating) read timeout — e.g. (30, 45, 60)
+    for a slow source — overriding the single `timeout`. `backoff` overrides the
+    inter-attempt delays. `urllib_fallback` switches transport from requests to
+    urllib after a requests network failure (some hosts time out under requests
+    but respond to urllib). No unbounded retry: at most max(HTTP_MAX_ATTEMPTS,
+    len(timeouts)) attempts.
+    """
+    schedule = list(timeouts) if timeouts else [timeout]
+    delays = list(backoff) if backoff else list(HTTP_RETRY_BACKOFF_SECONDS)
+    attempts = max(HTTP_MAX_ATTEMPTS, len(schedule))
+    force_urllib = prefer_urllib
+    last_exc: BaseException | None = None
+    for attempt in range(attempts):
+        attempt_timeout = schedule[min(attempt, len(schedule) - 1)]
         try:
-            return _http_get_once(url, timeout, prefer_urllib, accept_html, user_agent)
+            return _http_get_once(url, attempt_timeout, force_urllib, accept_html, user_agent)
         except Exception as exc:
-            if attempt >= HTTP_MAX_ATTEMPTS - 1 or not _is_retryable_fetch_error(exc):
+            last_exc = exc
+            # After a requests transport failure, switch to urllib for later attempts.
+            if urllib_fallback and not force_urllib and _is_network_error(exc):
+                force_urllib = True
+                logger.warning(
+                    "requests fetch failed for %s (%s); switching to urllib for retry.",
+                    url, _fetch_error_label(exc),
+                )
+            if attempt >= attempts - 1 or not _is_retryable_fetch_error(exc):
                 raise
-            delay = HTTP_RETRY_BACKOFF_SECONDS[min(attempt, len(HTTP_RETRY_BACKOFF_SECONDS) - 1)]
+            delay = delays[min(attempt, len(delays) - 1)]
             logger.warning(
                 "Transient fetch error for %s (%s, attempt %d/%d); retrying in %ss.",
                 url,
                 _fetch_error_label(exc),
                 attempt + 1,
-                HTTP_MAX_ATTEMPTS,
+                attempts,
                 delay,
             )
             time.sleep(delay)
+    if last_exc is not None:
+        raise last_exc
     raise RuntimeError("unreachable fetch retry state")
 
 
@@ -929,10 +981,13 @@ def run(timeout: int, dry_run: bool, first_seen_date: str | None = None) -> int:
         try:
             content = http_get(
                 url,
-                timeout,
+                int(source.get("timeout", timeout)),
                 prefer_urllib=bool(source.get("prefer_urllib")),
                 accept_html=str(source.get("source_type", "")).endswith("_html"),
                 user_agent=str(source.get("user_agent") or USER_AGENT),
+                timeouts=source.get("timeouts"),
+                backoff=source.get("backoff"),
+                urllib_fallback=bool(source.get("urllib_fallback")),
             )
             content, effective_url = follow_meta_refresh_if_requested(content, source, timeout)
             parse_source = dict(source)

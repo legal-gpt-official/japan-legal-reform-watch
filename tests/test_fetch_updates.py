@@ -441,5 +441,112 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertTrue(item["source_url"].startswith("https://www.meti.go.jp/press/"))
 
 
+class TestHttpFetchRobustness(unittest.TestCase):
+    def test_meti_source_has_robust_fetch_settings(self):
+        meti = next(s for s in fu.SOURCES if s["key"] == "meti")
+        self.assertEqual(meti["url"], "https://www.meti.go.jp/press/index.html")
+        self.assertEqual(meti["html_parser"], "meti_press_index")
+        # Escalating read timeouts, all longer than the 20s default that timed out.
+        self.assertEqual(meti["timeouts"], (30, 45, 60))
+        self.assertGreaterEqual(min(meti["timeouts"]), 30)
+        self.assertGreaterEqual(max(meti["timeouts"]), 60)
+        self.assertEqual(meti["backoff"], (3, 8, 15))
+        self.assertTrue(meti["urllib_fallback"])
+        self.assertIn("Mozilla", meti["user_agent"])  # browser-like (still identifying) UA
+
+    def test_default_timeout_is_unchanged_for_other_sources(self):
+        self.assertEqual(fu.DEFAULT_TIMEOUT_SECONDS, 20)
+        fsa = next(s for s in fu.SOURCES if s["key"] == "fsa")
+        self.assertNotIn("timeouts", fsa)  # other sources keep the single default timeout
+
+    def test_http_get_retries_transient_then_succeeds(self):
+        calls = {"n": 0}
+
+        def fake_once(url, timeout, prefer_urllib, accept_html, user_agent):
+            calls["n"] += 1
+            if calls["n"] < 3:
+                raise TimeoutError("read timed out")
+            return b"OK"
+
+        with mock.patch.object(fu, "_http_get_once", side_effect=fake_once), \
+                mock.patch.object(fu.time, "sleep", return_value=None):
+            content = fu.http_get("https://x", 20, timeouts=(1, 1, 1), backoff=(0, 0, 0))
+        self.assertEqual(content, b"OK")
+        self.assertEqual(calls["n"], 3)
+
+    def test_http_get_uses_escalating_per_attempt_timeouts(self):
+        used: list[int] = []
+
+        def fake_once(url, timeout, prefer_urllib, accept_html, user_agent):
+            used.append(timeout)
+            if len(used) < 3:
+                raise TimeoutError("t")
+            return b"OK"
+
+        with mock.patch.object(fu, "_http_get_once", side_effect=fake_once), \
+                mock.patch.object(fu.time, "sleep", return_value=None):
+            fu.http_get("https://x", 20, timeouts=(30, 45, 60), backoff=(0, 0, 0))
+        self.assertEqual(used, [30, 45, 60])
+
+    def test_http_get_falls_back_to_urllib_after_requests_timeout(self):
+        attempts: list[bool] = []
+
+        def fake_once(url, timeout, prefer_urllib, accept_html, user_agent):
+            attempts.append(prefer_urllib)
+            if not prefer_urllib:
+                raise TimeoutError("requests read timeout")  # requests path times out
+            return b"<html>via urllib</html>"  # urllib path succeeds
+
+        with mock.patch.object(fu, "_http_get_once", side_effect=fake_once), \
+                mock.patch.object(fu.time, "sleep", return_value=None):
+            content = fu.http_get(
+                "https://www.meti.go.jp/press/index.html", 20,
+                timeouts=(1, 1, 1), backoff=(0, 0, 0), urllib_fallback=True,
+            )
+        self.assertEqual(content, b"<html>via urllib</html>")
+        self.assertFalse(attempts[0])  # first attempt: requests
+        self.assertTrue(attempts[1])   # second attempt: switched to urllib
+
+    def test_http_get_does_not_switch_to_urllib_when_disabled(self):
+        attempts: list[bool] = []
+
+        def fake_once(url, timeout, prefer_urllib, accept_html, user_agent):
+            attempts.append(prefer_urllib)
+            raise TimeoutError("t")
+
+        with mock.patch.object(fu, "_http_get_once", side_effect=fake_once), \
+                mock.patch.object(fu.time, "sleep", return_value=None):
+            with self.assertRaises(TimeoutError):
+                fu.http_get("https://x", 20, timeouts=(1, 1, 1), backoff=(0, 0, 0), urllib_fallback=False)
+        self.assertTrue(all(used is False for used in attempts))  # never switched
+
+    def test_run_meti_urllib_fallback_is_reported_success(self):
+        meti = next(s for s in fu.SOURCES if s["key"] == "meti")
+        fixture = (
+            "<h3>2026年6月23日</h3><ul><li>"
+            '<a href="/press/2026/06/20260623001/20260623001.html">支援策の公募について</a>'
+            "</li></ul>"
+        ).encode("utf-8")
+
+        def fake_once(url, timeout, prefer_urllib, accept_html, user_agent):
+            if not prefer_urllib:
+                raise TimeoutError("requests read timeout")  # requests fails
+            return fixture  # urllib succeeds
+
+        saved_report = {}
+        with mock.patch.object(fu, "SOURCES", [meti]), \
+                mock.patch.object(fu, "load_existing", return_value=[]), \
+                mock.patch.object(fu, "save_json", side_effect=lambda _p, _d: None), \
+                mock.patch.object(fu, "save_json_document", side_effect=lambda _p, d: saved_report.setdefault("data", d)), \
+                mock.patch.object(fu, "_http_get_once", side_effect=fake_once), \
+                mock.patch.object(fu.time, "sleep", return_value=None):
+            rc = fu.run(timeout=1, dry_run=False, first_seen_date="2026-06-23")
+
+        self.assertEqual(rc, 0)
+        row = next(r for r in saved_report["data"]["sources"] if r["source_key"] == "meti")
+        self.assertEqual(row["status"], "success")  # urllib fallback -> METI counts as success
+        self.assertGreater(row["fetched_count"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
