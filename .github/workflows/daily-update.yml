@@ -64,6 +64,7 @@ jobs:
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001
         # warn mode: a fatal provider error (e.g. insufficient credit) must NOT
         # stop the legal-data pipeline — translations are simply not added this
         # run, and a warning annotation is surfaced. A genuine integrity-gate

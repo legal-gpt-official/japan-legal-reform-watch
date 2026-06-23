@@ -152,13 +152,13 @@ read -s ANTHROPIC_API_KEY && export ANTHROPIC_API_KEY
 
 If the key is not set, the script prints usage and exits cleanly without calling the API. The key is read only from `ANTHROPIC_API_KEY`; it is never written to code, logs, cache, or documentation.
 
-**Optional model override** — the default model is `claude-opus-4-8`, but you can override it without changing code:
+**Optional model override** — the default summary model remains `claude-opus-4-8` for English summary quality, but you can override it without changing code:
 
 ```
 # PowerShell
-$env:ANTHROPIC_MODEL = "your-model-id"
+$env:ANTHROPIC_SUMMARY_MODEL = "your-summary-model-id"
 # bash / zsh
-export ANTHROPIC_MODEL="your-model-id"
+export ANTHROPIC_SUMMARY_MODEL="your-summary-model-id"
 ```
 
 **Run** (after `build_public_data.py` has produced the published file):
@@ -177,7 +177,7 @@ Behaviour:
 - **Validation.** Before writing, the output is checked: required UI fields present and non-empty, `confidence` is `high` / `medium` / `low`, and `id` / `source_url` unchanged. Obvious definitive/legal-advice phrases such as "you must comply", "is legally required", "has been enacted", "is in force", and "will definitely" are logged as caution warnings for review.
 - Console summary: `input_items`, `target_items`, `cache_hits`, `api_calls`, `summarized_items`, `failed_items`, `caution_warnings`, `output_path`, `backup_created`.
 
-The default model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_MODEL`). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
+The default summary model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_SUMMARY_MODEL`; legacy `ANTHROPIC_MODEL` is still accepted at lower priority). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
 
 ## Simplified Chinese translation (Stage 4 — Claude)
 
@@ -197,7 +197,7 @@ Behaviour:
 - **`--limit N` bounds NEW API calls per run, not items inspected.** The script scans the published file in order; cache hits and valid translations are free and do not consume the limit, so successive daily runs translate the whole corpus incrementally. The first bulk translation of the full corpus is a separate, deliberate operation (raise `--limit` once, off the daily schedule).
 - **Cache.** [`data/translation_cache.json`](data/translation_cache.json) is `{ "schema_version": 1, "entries": { "zh-Hans": { "<id>": { source_hash, prompt_version, translated_at, model, title, summary, business_impact, recommended_action } } } }`. `source_hash` is a SHA-256 over `locale | prompt_version | title_en | summary_en | business_impact_en | recommended_action_en | title_ja | stage | source_name` (the item id is the outer key, not hashed). A cached translation is adopted only when its `source_hash` and `prompt_version` still match; a cache hit makes **no** API call and does not rewrite `translated_at`. Changing the English, the Japanese original name / stage / source, or bumping `PROMPT_VERSION` is a cache miss and re-translates.
 - **Stale removal.** Each run re-checks every item against the current English and **removes** any translation that no longer matches, so the dashboard never shows a translation of outdated English. Stage 2 may carry translations forward across rebuilds, but Stage 4 is authoritative.
-- **Model.** Precedence is `--model` > `ANTHROPIC_TRANSLATION_MODEL` > `ANTHROPIC_MODEL` > the same default as the summarizer (`claude-opus-4-8`).
+- **Model.** Translation defaults to `claude-haiku-4-5-20251001` to keep daily/backfill translation costs bounded. Precedence is `--model` > `ANTHROPIC_TRANSLATION_MODEL` > default. The selected model is printed in the run summary and stored in each new cache entry's `model`; it is not part of `source_hash`.
 - **No-API / no key.** `--no-api` (or a missing `ANTHROPIC_API_KEY`) applies only valid cached translations, removes stale ones, and exits 0 without calling the API.
 - **Resilience.** A failed or invalid translation leaves that item in English (no translation), is logged to [`logs/translate.log`](logs/translate.log), and never stops the run. Translations must be non-empty, contain no HTML/Markdown, and stay within length caps (title ≤ 90, summary ≤ 800, business_impact / recommended_action ≤ 500) or they are rejected and not cached.
 - **Title quality (prompt `zh-hans-v3`).** The current prompt version is `zh-hans-v3`, which asks for short, complete, scannable Chinese titles by stage (`公开征求意见：…`, `（已结束）公开征求意见：…`, `公开征求意见结果：…`, `指南草案：…`, `法案提交：…`). A dedicated title check rejects titles that are over 90 chars, end with or contain an ellipsis, contain Japanese kana, repeat a stage phrase or a word/fragment (e.g. `规则、则`, `修订修订`), have duplicated punctuation, unbalanced `《》`/`（）`/`()`, or line breaks, plus a small exact set of **known mistranslated statute names** (e.g. `外来入侵物种法`, `开发与雇佣适当实施及保护法`) — title-only, conservative to avoid false positives. If the title is rejected, the whole item falls back to English, is not cached, and is counted as `quality_rejected_items` (separate from `failed_items`). Bumping `PROMPT_VERSION` makes every older-version cache entry a cache miss, so the next run re-translates them.

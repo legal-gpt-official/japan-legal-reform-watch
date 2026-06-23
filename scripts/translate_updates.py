@@ -91,10 +91,7 @@ CACHE_SCHEMA_VERSION = 1
 # automatically (do not delete entries by hand — they are replaced by the next run).
 PROMPT_VERSION = "zh-hans-v3"
 
-# Base default matches scripts/summarize_updates.py; do not diverge. The model
-# can be overridden (precedence: --model > ANTHROPIC_TRANSLATION_MODEL >
-# ANTHROPIC_MODEL > this default).
-DEFAULT_MODEL = "claude-opus-4-8"
+DEFAULT_TRANSLATION_MODEL = "claude-haiku-4-5-20251001"
 MAX_TOKENS = 1500
 
 # The four translatable fields and their character limits. Over-limit output is
@@ -265,7 +262,7 @@ Options:
     --no-api       Never call the API; only apply valid cached translations and
                    remove stale ones. Exit 0.
     --model ID     Override the model (precedence: --model >
-                   ANTHROPIC_TRANSLATION_MODEL > ANTHROPIC_MODEL > default).
+                   ANTHROPIC_TRANSLATION_MODEL > default).
     --dry-run      Do everything except write the output file and cache.
 
 The key is read only from ANTHROPIC_API_KEY; it is never read from, or written
@@ -503,8 +500,7 @@ def resolve_model(cli_model: str | None) -> str:
     return (
         cli_model
         or os.environ.get("ANTHROPIC_TRANSLATION_MODEL")
-        or os.environ.get("ANTHROPIC_MODEL")
-        or DEFAULT_MODEL
+        or DEFAULT_TRANSLATION_MODEL
     )
 
 
@@ -791,7 +787,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--locale", default=DEFAULT_LOCALE, help="Target locale (default zh-Hans).")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Max NEW API calls this run (default 30). Cache hits are free.")
     parser.add_argument("--no-api", action="store_true", help="Apply valid cache only; never call the API. Exit 0.")
-    parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > ANTHROPIC_MODEL > default).")
+    parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > default).")
     parser.add_argument("--dry-run", action="store_true", help="Do not write the output file or cache.")
     parser.add_argument(
         "--provider-failure-mode",
@@ -1025,6 +1021,7 @@ def main(argv: list[str] | None = None) -> int:
     print("\n==== translate_updates summary ====")
     print(f"locale                    : {locale}")
     print(f"prompt_version            : {PROMPT_VERSION}")
+    print(f"model                     : {model}")
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")
     print(f"api_calls                 : {api_calls}")

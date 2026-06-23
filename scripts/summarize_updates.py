@@ -74,8 +74,7 @@ RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 LOG_PATH = REPO_ROOT / "logs" / "summarize.log"
 
 DEFAULT_LIMIT = 10
-# Default can be overridden with ANTHROPIC_MODEL or --model.
-DEFAULT_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-8")
+DEFAULT_MODEL = "claude-opus-4-8"
 MAX_TOKENS = 1500
 
 REQUIRED_UI_FIELDS = (
@@ -157,7 +156,8 @@ Options:
     --dry-run     Do everything except write the output file, backup, and cache.
 
 Optional:
-    ANTHROPIC_MODEL can override the default model without changing code.
+    ANTHROPIC_SUMMARY_MODEL can override the default model without changing code.
+    ANTHROPIC_MODEL is still accepted as a lower-priority legacy override.
 
 The key is read only from the ANTHROPIC_API_KEY environment variable; it is
 never read from, or written to, any file in this project.
@@ -292,6 +292,15 @@ def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, st
     return data, getattr(resp, "model", model)
 
 
+def resolve_model(cli_model: str | None) -> str:
+    return (
+        cli_model
+        or os.environ.get("ANTHROPIC_SUMMARY_MODEL")
+        or os.environ.get("ANTHROPIC_MODEL")
+        or DEFAULT_MODEL
+    )
+
+
 def valid_result(d) -> bool:
     if not isinstance(d, dict):
         return False
@@ -384,11 +393,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Top N items by relevance_score (default 10).")
     parser.add_argument(
         "--model",
-        default=DEFAULT_MODEL,
-        help="Claude model id (default claude-opus-4-8; can also use ANTHROPIC_MODEL).",
+        default=None,
+        help="Claude model id (default claude-opus-4-8; can also use ANTHROPIC_SUMMARY_MODEL).",
     )
     parser.add_argument("--dry-run", action="store_true", help="Do not write output, backup, or cache.")
     args = parser.parse_args(argv)
+    model = resolve_model(args.model)
 
     # Requirement 5: missing key -> print usage and exit cleanly (no traceback).
     if not os.environ.get("ANTHROPIC_API_KEY"):
@@ -419,7 +429,7 @@ def main(argv: list[str] | None = None) -> int:
     target_ids = {id(it) for it in targets}  # identity set — items are dict refs in `items`
 
     fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    logger.info("=== summarize run start (limit=%d, model=%s, dry_run=%s) ===", args.limit, args.model, args.dry_run)
+    logger.info("=== summarize run start (limit=%d, model=%s, dry_run=%s) ===", args.limit, model, args.dry_run)
 
     client = None
     cache_hits = api_calls = summarized = failed = 0
@@ -433,7 +443,7 @@ def main(argv: list[str] | None = None) -> int:
         key = cache_key(it, raw_by_id)
         cached = cache.get(key)
         if isinstance(cached, dict) and valid_result(cached):
-            apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", args.model))
+            apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", model))
             cache_hits += 1
             summarized += 1
             logger.info("CACHE %s — %s", it.get("id"), it.get("title_ja", "")[:48])
@@ -445,7 +455,7 @@ def main(argv: list[str] | None = None) -> int:
             client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
         api_calls += 1
         try:
-            result, model_used = request_summary(client, args.model, it, raw_by_id.get(it.get("id"), {}))
+            result, model_used = request_summary(client, model, it, raw_by_id.get(it.get("id"), {}))
             if not valid_result(result):
                 raise ValueError("model returned JSON missing/invalid required fields")
             now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -488,6 +498,7 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     print("\n==== summarize_updates summary ====")
+    print(f"model           : {model}")
     print(f"input_items     : {len(items)}")
     print(f"target_items    : {len(targets)}")
     print(f"cache_hits      : {cache_hits}")

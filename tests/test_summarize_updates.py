@@ -6,6 +6,7 @@ No API calls: these tests cover local AI-result application and validation only.
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
@@ -42,6 +43,22 @@ class TestSummarizeTitleCap(unittest.TestCase):
             "confidence": "medium",
             "ai_notes": "Limited metadata.",
         }
+
+    def test_summary_model_default_and_overrides(self):
+        self.assertEqual(su.DEFAULT_MODEL, "claude-opus-4-8")
+        with mock.patch.dict("os.environ", {}, clear=True):
+            self.assertEqual(su.resolve_model(None), "claude-opus-4-8")
+        with mock.patch.dict("os.environ", {"ANTHROPIC_SUMMARY_MODEL": "summary-env"}, clear=True):
+            self.assertEqual(su.resolve_model(None), "summary-env")
+        with mock.patch.dict(
+            "os.environ",
+            {"ANTHROPIC_SUMMARY_MODEL": "summary-env", "ANTHROPIC_MODEL": "legacy-env"},
+            clear=True,
+        ):
+            self.assertEqual(su.resolve_model("cli-model"), "cli-model")
+            self.assertEqual(su.resolve_model(None), "summary-env")
+        with mock.patch.dict("os.environ", {"ANTHROPIC_MODEL": "legacy-env"}, clear=True):
+            self.assertEqual(su.resolve_model(None), "legacy-env")
 
     def test_apply_result_shortens_ai_title_to_public_cap(self):
         item = self._item()

@@ -13,6 +13,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
@@ -215,6 +216,31 @@ class TestHashAndValidation(unittest.TestCase):
         self.assertTrue(tu.valid_translation(entry))
 
 
+class TestTranslationModelSelection(unittest.TestCase):
+    def test_default_translation_model_is_haiku_45(self):
+        self.assertEqual(tu.DEFAULT_TRANSLATION_MODEL, "claude-haiku-4-5-20251001")
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(tu.resolve_model(None), "claude-haiku-4-5-20251001")
+
+    def test_translation_model_env_override(self):
+        with mock.patch.dict(os.environ, {"ANTHROPIC_TRANSLATION_MODEL": "env-model"}, clear=True):
+            self.assertEqual(tu.resolve_model(None), "env-model")
+
+    def test_cli_model_overrides_translation_env(self):
+        with mock.patch.dict(os.environ, {"ANTHROPIC_TRANSLATION_MODEL": "env-model"}, clear=True):
+            self.assertEqual(tu.resolve_model("cli-model"), "cli-model")
+
+    def test_generic_anthropic_model_does_not_override_translation_default(self):
+        with mock.patch.dict(os.environ, {"ANTHROPIC_MODEL": "legacy-high-model"}, clear=True):
+            self.assertEqual(tu.resolve_model(None), "claude-haiku-4-5-20251001")
+
+    def test_model_change_does_not_change_source_hash(self):
+        item = sample_item()
+        before = tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION)
+        with mock.patch.dict(os.environ, {"ANTHROPIC_TRANSLATION_MODEL": "other-model"}, clear=True):
+            self.assertEqual(tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION), before)
+
+
 class TestApplyRemove(unittest.TestCase):
     def test_apply_translation_sets_only_four_fields(self):
         item = sample_item()
@@ -296,6 +322,33 @@ class TestLimitAndApi(TranslateTestBase):
         self.assertTrue(entry["translated_at"])
         for field in tu.TRANSLATION_FIELDS:
             self.assertIn(field, entry)
+
+    def test_cache_entry_records_selected_model_when_provider_echoes_it(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+
+        def fake(client, model, item, locale):
+            return good_translation(), model
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30", "--model", "cli-model"])
+
+        self.assertEqual(rc, 0)
+        entry = self.read_cache()["entries"][LOCALE][item["id"]]
+        self.assertEqual(entry["model"], "cli-model")
+
+    def test_summary_prints_selected_model(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--no-api", "--model", "summary-model"])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(parse_summary(out)["model"], "summary-model")
 
     def test_invalid_api_result_keeps_english_fallback(self):
         item = sample_item()
@@ -902,6 +955,9 @@ class TestBackfillWorkflow(unittest.TestCase):
             "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
         )
 
+    def test_backfill_sets_translation_model(self):
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001", self.backfill)
+
     def test_backfill_presync_and_no_force_push(self):
         self.assertIn("git fetch origin main", self.backfill)
         self.assertNotIn("--force", self.backfill)
@@ -1095,6 +1151,9 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
 
     def test_daily_limit_30_preserved(self):
         self.assertIn("--limit 30", self.daily)
+
+    def test_daily_sets_translation_model(self):
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001", self.daily)
 
     def test_backfill_remains_translate_only(self):
         for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
