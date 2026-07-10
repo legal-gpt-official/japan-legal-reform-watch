@@ -11,6 +11,7 @@ import json
 import os
 import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -956,7 +957,7 @@ class TestBackfillWorkflow(unittest.TestCase):
         )
 
     def test_backfill_sets_translation_model(self):
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001", self.backfill)
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.backfill)
 
     def test_backfill_presync_and_no_force_push(self):
         self.assertIn("git fetch origin main", self.backfill)
@@ -1153,7 +1154,7 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         self.assertIn("--limit 30", self.daily)
 
     def test_daily_sets_translation_model(self):
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001", self.daily)
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.daily)
 
     def test_backfill_remains_translate_only(self):
         for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
@@ -1209,6 +1210,85 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertLess(evaluate_pos, build_pos)
         self.assertLess(commit_pos, gate_pos)
         self.assertIn("github.event_name == 'schedule'", self.workflow)
+
+
+class TestRequestTranslationCallShape(unittest.TestCase):
+    def test_disables_thinking_and_omits_sampling_params(self):
+        # Stub the SDK so this offline test needs no anthropic install; capture the
+        # kwargs the translator passes to messages.create.
+        fake_anthropic = types.ModuleType("anthropic")
+
+        class _BadRequestError(Exception):
+            pass
+
+        fake_anthropic.BadRequestError = _BadRequestError
+
+        captured = {}
+
+        class _Block:
+            type = "text"
+            text = json.dumps(good_translation(), ensure_ascii=False)
+
+        class _Resp:
+            content = [_Block()]
+            model = "claude-sonnet-5"
+
+        class _Messages:
+            def create(self, **kwargs):
+                captured.update(kwargs)
+                return _Resp()
+
+        class _Client:
+            def __init__(self):
+                self.messages = _Messages()
+
+        saved = sys.modules.get("anthropic")
+        sys.modules["anthropic"] = fake_anthropic
+        try:
+            data, model_used = tu.request_translation(_Client(), "claude-sonnet-5", sample_item(), LOCALE)
+        finally:
+            if saved is None:
+                sys.modules.pop("anthropic", None)
+            else:
+                sys.modules["anthropic"] = saved
+
+        # Thinking is explicitly disabled (Sonnet 5 would otherwise run adaptive
+        # thinking by default and could truncate the JSON at MAX_TOKENS).
+        self.assertEqual(captured.get("thinking"), {"type": "disabled"})
+        # No sampling params — they are rejected (400) on Sonnet 5 / Opus 4.8.
+        for param in ("temperature", "top_p", "top_k"):
+            self.assertNotIn(param, captured)
+        self.assertEqual(captured.get("model"), "claude-sonnet-5")  # resolved model passes through
+        self.assertEqual(model_used, "claude-sonnet-5")
+        self.assertEqual(data["title"], good_translation()["title"])
+
+
+class TestTranslationModelOverride(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        root = Path(__file__).resolve().parents[1] / ".github" / "workflows"
+        cls.daily = (root / "daily-update.yml").read_text(encoding="utf-8")
+        cls.backfill = (root / "translation-backfill.yml").read_text(encoding="utf-8")
+
+    def test_both_workflows_set_translation_model_to_sonnet_5(self):
+        for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
+            with self.subTest(workflow=name):
+                self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", wf)
+
+    def test_override_is_translate_only(self):
+        # The model-override *assignment* appears exactly once per workflow (the
+        # translate step), so summarization is not switched to Sonnet. (The bare
+        # token also appears in an explanatory comment, hence matching the value.)
+        self.assertEqual(self.daily.count("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5"), 1)
+        self.assertEqual(self.backfill.count("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5"), 1)
+
+    def test_switch_is_env_only(self):
+        # The Sonnet-5 switch is env-only: the translation code default is
+        # unchanged (still Haiku 4.5), and the ANTHROPIC_TRANSLATION_MODEL
+        # override selects Sonnet 5. (Summarization stays on Opus 4.8.)
+        self.assertEqual(tu.DEFAULT_TRANSLATION_MODEL, "claude-haiku-4-5-20251001")
+        with mock.patch.dict(os.environ, {"ANTHROPIC_TRANSLATION_MODEL": "claude-sonnet-5"}, clear=True):
+            self.assertEqual(tu.resolve_model(None), "claude-sonnet-5")
 
 
 if __name__ == "__main__":

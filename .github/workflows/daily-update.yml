@@ -64,7 +64,10 @@ jobs:
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_TRANSLATION_MODEL: claude-haiku-4-5-20251001
+          # Translation-only model override: zh-Hans translation uses Sonnet 5;
+          # summarization stays on Opus 4.8. Precedence for translation is
+          # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
+          ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
         # warn mode: a fatal provider error (e.g. insufficient credit) must NOT
         # stop the legal-data pipeline — translations are simply not added this
         # run, and a warning annotation is surfaced. A genuine integrity-gate

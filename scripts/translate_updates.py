@@ -558,6 +558,14 @@ def request_translation(client, model: str, item: dict, locale: str) -> tuple[di
     kwargs = dict(
         model=model,
         max_tokens=MAX_TOKENS,
+        # Translation is a faithful-rendering task, not a reasoning task. Disable
+        # thinking explicitly: on Sonnet 5 an omitted `thinking` runs adaptive
+        # thinking by default (unlike Opus 4.8, which runs without it), and those
+        # thinking tokens count against MAX_TOKENS and can truncate the JSON.
+        # `{"type": "disabled"}` is accepted on both Opus 4.8 and Sonnet 5 and is a
+        # no-op on Opus 4.8's current behavior. No temperature/top_p/top_k — those
+        # are rejected (400) on Sonnet 5 / Opus 4.8.
+        thinking={"type": "disabled"},
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_user_content(item, locale)}],
     )
