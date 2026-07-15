@@ -70,7 +70,7 @@ class TestPublishedDataSchema(unittest.TestCase):
         self.assertIsInstance(self.items, list)
         self.assertGreater(len(self.items), 0)
         self.assertGreaterEqual(len(self.items), 100)
-        self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)  # cap is 1000
+        self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)  # cap is 3000
 
     def test_ids_are_unique(self):
         ids = [it["id"] for it in self.items]

@@ -11,14 +11,19 @@ tweaks, and ranking adjustments do not silently break the published dashboard:
 - Claude (Stage 3) summary preservation across Stage 2 rebuilds.
 
 Runnable with either `python -m unittest discover -s tests` or `python -m pytest`.
-No network, no file writes; the scripts under test are imported directly.
+No network or repository file writes; temporary files exercise the Stage 2 write path.
 """
 
+import io
+import json
 import re
 import sys
+import tempfile
 import unittest
+from contextlib import redirect_stdout
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
@@ -498,9 +503,9 @@ class TestRelevanceScoring(unittest.TestCase):
             bpd.relevance_score(title, "ministry_rss") + bpd.SOURCE_BONUS["public_comment_rss"],
         )
 
-    def test_output_cap_is_1000(self):
+    def test_output_cap_is_3000(self):
         # Public dataset cap; the UI pages 50 at a time via Load more.
-        self.assertEqual(bpd.MAX_OUTPUT_ITEMS, 1000)
+        self.assertEqual(bpd.MAX_OUTPUT_ITEMS, 3000)
 
     def test_rule_based_impact_never_high(self):
         aggressive_titles = [
@@ -512,6 +517,93 @@ class TestRelevanceScoring(unittest.TestCase):
             for source_type in ("public_comment_rss", "regulator_rss", "ministry_rss"):
                 with self.subTest(title=title, source_type=source_type):
                     self.assertIn(bpd.classify_impact(title, source_type), ("Low", "Medium"))
+
+
+class TestPublishedItemLimit(unittest.TestCase):
+    """Exercise the real Stage 2 selection/write path around the public cap."""
+
+    @staticmethod
+    def _raw_items(count):
+        return [
+            {
+                "id": f"raw-{index:04d}",
+                "title_ja": f"candidate {index}",
+                "source_name": "Test Official Source",
+                "source_type": "public_comment_rss",
+                "source_url": f"https://example.go.jp/update/{index}",
+                "published_at": "2026-01-01T00:00:00Z",
+                "fetched_at": "2026-01-02T00:00:00Z",
+            }
+            for index in range(count)
+        ]
+
+    def _run_build(self, count):
+        raw_items = self._raw_items(count)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp = Path(tmp_dir)
+            raw_path = tmp / "raw_items.json"
+            output_path = tmp / "legal_updates.json"
+            backup_path = tmp / "legal_updates.backup.json"
+            raw_path.write_text(json.dumps(raw_items), encoding="utf-8")
+            raw_before = raw_path.read_bytes()
+
+            def synthetic_score(title, _source_type):
+                # Earlier candidates are deliberately more relevant, making the
+                # expected post-ranking cutoff and output order unambiguous.
+                return float(4000 - int(title.rsplit(" ", 1)[1]))
+
+            stdout = io.StringIO()
+            with (
+                mock.patch.object(bpd, "RAW_PATH", raw_path),
+                mock.patch.object(bpd, "OUTPUT_PATH", output_path),
+                mock.patch.object(bpd, "BACKUP_PATH", backup_path),
+                mock.patch.object(bpd, "relevance_score", side_effect=synthetic_score),
+                redirect_stdout(stdout),
+            ):
+                result = bpd.main([])
+
+            self.assertEqual(result, 0)
+            self.assertEqual(raw_path.read_bytes(), raw_before, "Stage 2 must not trim raw history")
+            output = json.loads(output_path.read_text(encoding="utf-8"))
+            return raw_items, output, stdout.getvalue()
+
+    @staticmethod
+    def _summary_count(stdout, label):
+        match = re.search(rf"^{label}\s*:\s*(\d+)$", stdout, re.MULTILINE)
+        if not match:
+            raise AssertionError(f"Missing {label} in build summary:\n{stdout}")
+        return int(match.group(1))
+
+    def test_fewer_than_3000_candidates_outputs_every_item(self):
+        raw_items, output, stdout = self._run_build(2999)
+        self.assertEqual(len(output), len(raw_items))
+        self.assertEqual(self._summary_count(stdout, "candidate_items"), 2999)
+        self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
+
+    def test_exactly_3000_candidates_outputs_3000_items(self):
+        raw_items, output, stdout = self._run_build(3000)
+        self.assertEqual(len(raw_items), 3000)
+        self.assertEqual(len(output), bpd.MAX_OUTPUT_ITEMS)
+        self.assertEqual(self._summary_count(stdout, "candidate_items"), 3000)
+        self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
+
+    def test_more_than_3000_candidates_keeps_top_ranked_items_only(self):
+        raw_items, output, stdout = self._run_build(3001)
+        self.assertEqual(len(raw_items), 3001, "Raw history must remain above the public cap")
+        self.assertEqual(len(output), bpd.MAX_OUTPUT_ITEMS)
+        self.assertEqual([item["id"] for item in output], [f"raw-{i:04d}" for i in range(3000)])
+        self.assertNotIn("raw-3000", {item["id"] for item in output})
+        self.assertEqual(
+            [item["relevance_score"] for item in output],
+            sorted((item["relevance_score"] for item in output), reverse=True),
+        )
+        for item in output:
+            self.assertTrue(set(bpd.REQUIRED_FIELDS).issubset(item))
+            self.assertIn("relevance_score", item)
+            self.assertTrue(item["id"])
+            self.assertTrue(item["source_url"])
+        self.assertEqual(self._summary_count(stdout, "candidate_items"), 3001)
+        self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
 
 
 class TestAiSummaryPreservation(unittest.TestCase):
