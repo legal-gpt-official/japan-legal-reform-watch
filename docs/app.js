@@ -1337,7 +1337,7 @@
       cardsEl.innerHTML = "";
       emptyEl.hidden = false;
     } else {
-      // Render only the visible page window — never all (up to 1000) cards at once.
+      // Render only the visible page window — never all (up to 3000) cards at once.
       cardsEl.innerHTML = filtered.slice(0, visibleCount).map(renderCard).join("");
       emptyEl.hidden = true;
     }

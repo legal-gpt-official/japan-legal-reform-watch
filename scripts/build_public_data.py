@@ -61,7 +61,7 @@ RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 OUTPUT_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.json"
 BACKUP_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.backup.json"
 
-MAX_OUTPUT_ITEMS = 1000  # public dataset cap; the UI renders 50 at a time (Load more)
+MAX_OUTPUT_ITEMS = 3000  # public dataset cap; the UI renders 50 at a time (Load more)
 JST = ZoneInfo("Asia/Tokyo")  # display Japanese-source dates on the JST calendar
 
 # The 13 fields the existing dashboard UI expects. (relevance_score is an extra,
