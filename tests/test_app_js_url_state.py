@@ -215,6 +215,17 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, STYLE_CSS)
 
+    def test_public_comment_closed_flows_through_stage_driven_ui(self):
+        # Stage correction happens in the generated data. Every UI consumer
+        # must continue to use the corrected stage rather than a display-only
+        # deadline calculation.
+        self.assertIn('filters.stage === "Public Comment Open"', APP_JS)
+        self.assertIn('filters.stage = filters.stage === "Public Comment Open" ? "" : "Public Comment Open"', APP_JS)
+        self.assertIn('u.stage === "Public Comment Open"', APP_JS)
+        self.assertIn("update.stage,", APP_JS)
+        self.assertIn("I18N.stageLabel(update.stage)", APP_JS)
+        self.assertIn('"Public Comment Closed": "公开征求意见已截止"', I18N_JS)
+
     def test_data_status_avoids_overclaims(self):
         combined = INDEX_HTML + APP_JS + STYLE_CSS + I18N_JS
         for forbidden in (

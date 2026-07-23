@@ -47,6 +47,7 @@ def sample_item(**overrides):
         "summarized_at": "2026-06-16T02:17:40Z",
         "summary_model": "claude-opus-4-8",
         "first_seen_at": "2026-06-16",
+        "comment_deadline": "2026-07-18T23:59:00+09:00",
     }
     item.update(overrides)
     return item
@@ -438,7 +439,7 @@ class TestInvariants(TranslateTestBase):
         protected = (
             "id", "title_en", "title_ja", "source_name", "source_url",
             "area", "stage", "impact_level", "published_at", "last_checked",
-            "first_seen_at", "relevance_score", "summary_source", "confidence",
+            "first_seen_at", "comment_deadline", "relevance_score", "summary_source", "confidence",
             "ai_notes", "summarized_at", "summary_model",
             "summary_en", "business_impact_en", "recommended_action_en",
         )

@@ -79,7 +79,7 @@ The script prints a console summary (`checked_sources`, `fetched_items`, `new_it
 
 **Untrusted input:** every fetched field — especially `source_url`, `title_ja`, and `raw_summary` — is treated as untrusted external data. It is stored verbatim (with light text normalization) and is **never** rendered, executed, or trusted by the fetch step.
 
-Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`. Newer records may also have optional `first_seen_at`.
+Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`. Newer records may also have optional `first_seen_at` and, for e-Gov public comments whose RSS metadata supplies it, a structured `comment_deadline`.
 
 ## Newly detected
 
@@ -120,7 +120,7 @@ python scripts/build_public_data.py
 Behaviour:
 
 - **Relevance ranking.** Each item gets an internal keyword-based `relevance_score` that rewards law-reform / regulation / public-comment / guideline signals (改正, 施行, 公布, 法律 / 政令 / 省令, 意見募集, 指針 / ガイドライン, 義務, 個人情報, 金融, 労働, …) and penalises minutes, statistics, web magazines, and bare page updates. e-Gov public comments get a source bonus. Output is ordered by `relevance_score`, then impact weight (Medium > Low), then recency (older items get a light penalty so they don't linger at the top). The score is written to each record as an optional `relevance_score` field (the UI ignores unknown fields).
-- **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally appear first; strong legal/regulatory signals can soften that demotion.
+- **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. When an Open e-Gov item has a valid structured `comment_deadline`, Stage 2 changes it to Closed at that deadline instant. Date-only deadlines remain Open through 23:59:59 JST; explicit date-times retain their stated offset. Missing or invalid deadlines never cause a guessed closure, and unrelated fields such as `published_at`, `first_seen_at`, and `last_checked` are not used as deadlines. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally appear first; strong legal/regulatory signals can soften that demotion.
 - **METI / CAA classification.** Additional keyword rules map METI and CAA items into areas such as `Economic Security / FDI`, `Energy / Environment`, `Data / Privacy / AI`, `Antitrust / Fair Trade`, `Consumer / Advertising`, and `Corporate / Governance` where the Japanese title supports that provisional classification.
 - **PPC / JFTC classification.** PPC items are biased toward `Data / Privacy / AI`; JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates are excluded or heavily downranked unless strong legal/regulatory keywords are present.
 - **MLIT / MAFF classification.** MLIT helps cover land, infrastructure, transport, construction, real estate, logistics, and related regulatory updates; MAFF helps cover food, agriculture, forestry, fisheries, quarantine, import/export, and related regulatory updates. Ranking and exclusion rules intentionally filter out events, procurement, hiring, statistics-only items, and general publicity.
@@ -181,7 +181,7 @@ The default summary model is `claude-opus-4-8` (override with `--model` or `ANTH
 
 ## Simplified Chinese translation (Stage 4 — Claude)
 
-`scripts/translate_updates.py` is the optional Stage 4 script. **English stays the canonical data**; this only adds an unofficial Simplified-Chinese (`zh-Hans`) translation under each item's `translations.zh-Hans` (`title`, `summary`, `business_impact`, `recommended_action`). It never touches `id`, `title_ja`, `source_name`, `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`, `relevance_score`, or any summary metadata. Items without a translation omit the block entirely, and the dashboard falls back to English per field.
+`scripts/translate_updates.py` is the optional Stage 4 script. **English stays the canonical data**; this only adds an unofficial Simplified-Chinese (`zh-Hans`) translation under each item's `translations.zh-Hans` (`title`, `summary`, `business_impact`, `recommended_action`). It never touches `id`, `title_ja`, `source_name`, `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`, `comment_deadline`, `relevance_score`, or any summary metadata. Items without a translation omit the block entirely, and the dashboard falls back to English per field.
 
 > **Unofficial machine translation.** The translator runs under strict guardrails: translate the provided English faithfully and nothing else, add no obligations / deadlines / penalties / scope that are not in the English, give no legal advice, do not map Japanese legal concepts onto Chinese-law concepts, and preserve numbers, dates, institution names, and statute names. The Japanese official source remains authoritative.
 
@@ -363,6 +363,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `source_url`             | URL of the original Japanese source.                                     |
 | `published_at`           | Date published / announced (ISO `YYYY-MM-DD`).                           |
 | `first_seen_at`          | Optional date first appended to this dashboard's raw history (`YYYY-MM-DD`); absent for legacy or unknown items. |
+| `comment_deadline`       | Optional structured public-comment deadline (ISO date or offset date-time). Used only to close an otherwise Open item after the deadline; absent when no trusted value exists. |
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
 | `translations`           | Optional per-locale AI translations, e.g. `translations.zh-Hans = { title, summary, business_impact, recommended_action }` (Simplified Chinese). Unofficial aid added by Stage 4; English stays canonical and untranslated items omit the block. |
 

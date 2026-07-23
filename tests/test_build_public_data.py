@@ -116,6 +116,221 @@ class TestStageClassification(unittest.TestCase):
         self.assertEqual(bpd.classify_stage("○○法律案が国会に提出されました", "ministry_rss"), "Bill Submitted")
 
 
+class TestPublicCommentDeadlineResolution(unittest.TestCase):
+    def test_future_date_deadline_stays_open(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-19",
+                now=datetime(2026, 7, 18, 12, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+
+    def test_date_only_deadline_stays_open_through_235959_jst(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18",
+                now=datetime(2026, 7, 18, 23, 59, 59, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+
+    def test_date_only_deadline_closes_at_next_midnight_jst(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18",
+                now=datetime(2026, 7, 19, 0, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+
+    def test_explicit_midnight_deadline_closes_at_that_instant(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T00:00:00+09:00",
+                now=datetime(2026, 7, 17, 23, 59, 59, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T00:00:00+09:00",
+                now=datetime(2026, 7, 18, 0, 0, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+
+    def test_explicit_1700_deadline_closes_at_that_instant(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T17:00:00+09:00",
+                now=datetime(2026, 7, 18, 16, 59, 59, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T17:00:00+09:00",
+                now=datetime(2026, 7, 18, 17, 0, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T17:00:00+09:00",
+                now=datetime(2026, 7, 18, 17, 0, 1, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+
+    def test_missing_deadline_stays_open(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                None,
+                now=datetime(2026, 7, 20, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+
+    def test_invalid_deadline_stays_open(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "not-a-deadline",
+                now=datetime(2026, 7, 20, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+
+    def test_non_open_stage_is_unchanged(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Government Announcement",
+                "2026-01-01",
+                now=datetime(2026, 7, 20, tzinfo=bpd.JST),
+            ),
+            "Government Announcement",
+        )
+
+    def test_utc_deadline_is_compared_as_the_same_instant(self):
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                "2026-07-18T15:00:00Z",
+                now=datetime(2026, 7, 19, 0, 0, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+
+    def test_egov_date_only_and_explicit_midnight_remain_distinct(self):
+        date_only = {
+            "source_type": "public_comment_rss",
+            "raw_summary": (
+                "案の公示日：2026/06/18 "
+                "受付締切日時：2026/07/18 "
+                "カテゴリー：環境保全"
+            ),
+        }
+        explicit_midnight = {
+            "source_type": "public_comment_rss",
+            "raw_summary": (
+                "案の公示日：2026/06/18 "
+                "受付締切日時：2026/07/18 00:00 "
+                "カテゴリー：環境保全"
+            ),
+        }
+
+        self.assertEqual(bpd.structured_comment_deadline(date_only), ("2026-07-18", "valid"))
+        self.assertEqual(
+            bpd.structured_comment_deadline(explicit_midnight),
+            ("2026-07-18T00:00:00+09:00", "valid"),
+        )
+
+    def test_legacy_egov_fixed_field_is_normalized_without_prose_inference(self):
+        raw = {
+            "source_type": "public_comment_rss",
+            "raw_summary": (
+                "案の公示日：2026/06/18 "
+                "受付締切日時：2026/07/18 00:00 "
+                "カテゴリー：環境保全 問合せ先：担当課"
+            ),
+        }
+        self.assertEqual(
+            bpd.structured_comment_deadline(raw),
+            ("2026-07-18T00:00:00+09:00", "valid"),
+        )
+
+    def test_invalid_explicit_field_does_not_fall_back_to_summary(self):
+        raw = {
+            "source_type": "public_comment_rss",
+            "comment_deadline": "invalid",
+            "raw_summary": (
+                "案の公示日：2026/06/18 "
+                "受付締切日時：2026/07/18 00:00 "
+                "カテゴリー：環境保全"
+            ),
+        }
+        self.assertEqual(bpd.structured_comment_deadline(raw), (None, "invalid"))
+
+    def test_public_item_uses_resolved_stage_and_keeps_existing_fields(self):
+        raw = {
+            "id": "raw-expired",
+            "title_ja": "省令案に関する意見募集について",
+            "source_name": EGOV,
+            "source_type": "public_comment_rss",
+            "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?id=expired",
+            "published_at": "2026-06-18T00:00:00Z",
+            "fetched_at": "2026-07-19T00:00:00Z",
+            "comment_deadline": "2026-07-18",
+        }
+
+        item = bpd.build_public_item(
+            raw,
+            "2026-07-19",
+            12.0,
+            "2026-07-19",
+            now=datetime(2026, 7, 19, 0, 0, tzinfo=bpd.JST),
+        )
+
+        self.assertEqual(item["stage"], "Public Comment Closed")
+        self.assertEqual(item["comment_deadline"], "2026-07-18")
+        for field in bpd.REQUIRED_FIELDS:
+            self.assertIn(field, item)
+        self.assertEqual(item["id"], raw["id"])
+        self.assertEqual(item["source_url"], raw["source_url"])
+
+    def test_public_item_keeps_future_deadline_open(self):
+        raw = {
+            "id": "raw-future",
+            "title_ja": "省令案に関する意見募集について",
+            "source_name": EGOV,
+            "source_type": "public_comment_rss",
+            "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?id=future",
+            "published_at": "2026-07-01",
+            "fetched_at": "2026-07-01T00:00:00Z",
+            "comment_deadline": "2026-07-31T23:59:00+09:00",
+        }
+
+        item = bpd.build_public_item(
+            raw,
+            "2026-07-20",
+            12.0,
+            "2026-07-20",
+            now=datetime(2026, 7, 20, tzinfo=bpd.JST),
+        )
+
+        self.assertEqual(item["stage"], "Public Comment Open")
+
+
 class TestAreaClassification(unittest.TestCase):
     CASES = [
         # (expected_area, title_ja, source_name)

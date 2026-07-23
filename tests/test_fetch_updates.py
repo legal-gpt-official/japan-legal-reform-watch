@@ -150,6 +150,44 @@ class TestIdentityAndNormalization(unittest.TestCase):
                     "fetched_at", "source_language", "raw_summary", "raw_content_hash", "source_type"):
             self.assertIn(key, item)
 
+    def test_build_item_stores_structured_egov_comment_deadline(self):
+        entry = {
+            "title": "省令案に関する意見募集について",
+            "link": "https://public-comment.e-gov.go.jp/servlet/Public?id=1",
+            "summary": (
+                "案の公示日：2026/07/01 "
+                "受付締切日時：2026/07/18 23:59 "
+                "カテゴリー：環境保全 問合せ先：担当課"
+            ),
+            "published_iso": "2026-07-01T00:00:00Z",
+        }
+        source = {
+            "name": "e-Gov Public Comment",
+            "source_type": "public_comment_rss",
+            "source_language": "ja",
+        }
+
+        item = fu.build_item(entry, source, "2026-07-01T01:00:00Z")
+
+        self.assertEqual(item["comment_deadline"], "2026-07-18T23:59:00+09:00")
+
+    def test_build_item_does_not_extract_deadline_from_other_source_or_prose(self):
+        entry = {
+            "title": "省令案について",
+            "link": "https://example.go.jp/item",
+            "summary": "回答期限は2026年7月18日です。",
+            "published_iso": "2026-07-01",
+        }
+        other_source = {
+            "name": "Other Official Source",
+            "source_type": "ministry_rss",
+            "source_language": "ja",
+        }
+
+        item = fu.build_item(entry, other_source, "2026-07-01T01:00:00Z")
+
+        self.assertNotIn("comment_deadline", item)
+
 
 class TestFirstSeenAtRawMerge(unittest.TestCase):
     def test_run_marks_only_actually_appended_items_as_first_seen(self):
