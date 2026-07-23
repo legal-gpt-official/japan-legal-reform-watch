@@ -79,6 +79,14 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertEqual(detected["first_seen_at"], "2026-06-17")
         self.assertNotIn("first_seen_at", legacy)
 
+    def test_apply_result_preserves_comment_deadline(self):
+        item = self._item()
+        item["comment_deadline"] = "2026-07-18T23:59:00+09:00"
+
+        su.apply_result(item, self._result("AI title"), "2026-06-18T00:00:00Z", "model")
+
+        self.assertEqual(item["comment_deadline"], "2026-07-18T23:59:00+09:00")
+
     def test_validate_output_rejects_overlong_or_japanese_title_en(self):
         overlong = self._item()
         overlong["title_en"] = "A" * (bpd.TITLE_MAX_CHARS + 1)

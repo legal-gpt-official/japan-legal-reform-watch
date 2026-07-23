@@ -51,6 +51,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+from public_comment_deadlines import (
+    extract_egov_comment_deadline,
+    has_egov_deadline_label,
+    normalize_comment_deadline,
+    resolve_public_comment_stage,
+)
+
 # --------------------------------------------------------------------------- #
 # Paths / constants
 # --------------------------------------------------------------------------- #
@@ -1287,12 +1294,49 @@ def current_jst_date(now: datetime | None = None) -> str:
 # Build
 # --------------------------------------------------------------------------- #
 
-def build_public_item(raw: dict, build_date: str, score: float, today: str | None = None) -> dict:
+def structured_comment_deadline(raw: dict) -> tuple[str | None, str]:
+    """Return (normalized deadline, status) from trusted structured metadata.
+
+    New raw records carry ``comment_deadline`` directly. Legacy e-Gov records
+    may use the exact fixed deadline field retained in ``raw_summary``. An
+    explicit but invalid field is never replaced by a guessed value.
+    """
+    if "comment_deadline" in raw:
+        value = raw.get("comment_deadline")
+        if value in (None, ""):
+            return (None, "missing")
+        normalized = normalize_comment_deadline(value)
+        return (normalized, "valid" if normalized else "invalid")
+
+    raw_summary = raw.get("raw_summary")
+    source_type = raw.get("source_type")
+    normalized = extract_egov_comment_deadline(raw_summary, source_type)
+    if normalized:
+        return (normalized, "valid")
+    if has_egov_deadline_label(raw_summary, source_type):
+        return (None, "invalid")
+    return (None, "missing")
+
+
+def build_public_item(
+    raw: dict,
+    build_date: str,
+    score: float,
+    today: str | None = None,
+    *,
+    now: datetime | None = None,
+) -> dict:
     title_ja = raw.get("title_ja") or ""
     source_name = raw.get("source_name") or ""
     source_type = raw.get("source_type") or ""
     _, display_date = parse_published(raw.get("published_at", ""))
-    stage = classify_stage(title_ja, source_type)
+    classified_stage = classify_stage(title_ja, source_type)
+    comment_deadline, _ = structured_comment_deadline(raw)
+    stage = resolve_public_comment_stage(
+        classified_stage,
+        comment_deadline,
+        now=now or datetime.now(timezone.utc),
+    )
     area = classify_area(title_ja, source_name)
     title_en = generate_title_en(title_ja, source_name, stage, area)
 
@@ -1315,6 +1359,8 @@ def build_public_item(raw: dict, build_date: str, score: float, today: str | Non
     first_seen_at = valid_first_seen_at(raw.get("first_seen_at", ""), today or build_date)
     if first_seen_at:
         item["first_seen_at"] = first_seen_at
+    if comment_deadline:
+        item["comment_deadline"] = comment_deadline
     return item
 
 
@@ -1459,7 +1505,7 @@ def main(argv: list[str] | None = None) -> int:
             excluded_items += 1
             continue
 
-        item = build_public_item(raw, build_date, score, first_seen_today)
+        item = build_public_item(raw, build_date, score, first_seen_today, now=build_dt)
         weight = IMPACT_WEIGHT.get(item["impact_level"], 1)
         # Ordering applies recency and stage adjustments without changing the
         # content-based relevance_score written to the public JSON.
@@ -1476,6 +1522,29 @@ def main(argv: list[str] | None = None) -> int:
     # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
     ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
     output = [item for _, _, _, item in ranked[: args.limit]]
+
+    raw_by_id = {
+        raw.get("id"): raw
+        for raw in raw_items
+        if isinstance(raw.get("id"), str) and raw.get("id")
+    }
+    deadline_closed_count = 0
+    open_missing_deadline_count = 0
+    open_invalid_deadline_count = 0
+    for item in output:
+        raw = raw_by_id.get(item.get("id"), {})
+        originally_open = classify_stage(
+            raw.get("title_ja") or "",
+            raw.get("source_type") or "",
+        ) == "Public Comment Open"
+        _, deadline_status = structured_comment_deadline(raw)
+        if originally_open and item.get("stage") == "Public Comment Closed":
+            deadline_closed_count += 1
+        elif item.get("stage") == "Public Comment Open":
+            if deadline_status == "invalid":
+                open_invalid_deadline_count += 1
+            elif deadline_status == "missing":
+                open_missing_deadline_count += 1
 
     disambiguate_duplicate_titles(output)
 
@@ -1528,6 +1597,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"output_items                  : {len(output)}")
     print(f"preserved_ai_summaries        : {preserved_ai_count}")
     print(f"preserved_translations        : {preserved_translation_count}")
+    print(f"deadline_closed_items         : {deadline_closed_count}")
+    print(f"open_missing_deadline_items   : {open_missing_deadline_count}")
+    print(f"open_invalid_deadline_items   : {open_invalid_deadline_count}")
     print(f"rule_based_or_unsummarized    : {rule_based_or_unsummarized_count}")
     print(f"dropped_old_ai_summaries      : {dropped_old_ai_count}")
     print(f"backup_created                : {backup_created}")

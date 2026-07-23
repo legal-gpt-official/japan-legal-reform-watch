@@ -51,6 +51,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+from public_comment_deadlines import extract_egov_comment_deadline
+
 # Optional third-party deps — preferred, but not required.
 try:
     import requests  # type: ignore
@@ -847,7 +849,7 @@ def build_item(entry: dict, source: dict, fetched_at: str) -> dict | None:
     if not title_ja and not source_url:
         return None  # nothing usable to identify or display
 
-    return {
+    item = {
         "id": make_id(source_url, title_ja, source["name"], published_at),
         "title_ja": title_ja,
         "source_name": source["name"],
@@ -859,6 +861,13 @@ def build_item(entry: dict, source: dict, fetched_at: str) -> dict | None:
         "raw_content_hash": content_hash(title_ja, raw_summary, published_at),
         "source_type": source.get("source_type", "rss"),
     }
+    comment_deadline = extract_egov_comment_deadline(
+        entry.get("summary", ""),
+        source.get("source_type", "rss"),
+    )
+    if comment_deadline:
+        item["comment_deadline"] = comment_deadline
+    return item
 
 
 # --------------------------------------------------------------------------- #

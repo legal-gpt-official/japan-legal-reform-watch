@@ -141,9 +141,14 @@ class TestPublishedDataSchema(unittest.TestCase):
             )
             self.assertFalse(it["source_url"].lower().startswith("javascript:"), it["id"])
 
-    def test_comment_deadline_is_not_added_yet(self):
+    def test_comment_deadline_is_optional_but_valid_when_present(self):
         for it in self.items:
-            self.assertNotIn("comment_deadline", it)
+            if "comment_deadline" not in it:
+                continue
+            with self.subTest(id=it["id"]):
+                value = it["comment_deadline"]
+                self.assertIsInstance(value, str)
+                self.assertIsNotNone(bpd.normalize_comment_deadline(value))
 
     def test_translations_block_is_optional_but_valid_when_present(self):
         """English stays canonical; translations.<locale> (if any) is well-formed."""
