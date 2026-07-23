@@ -150,6 +150,39 @@ class TestPublishedDataSchema(unittest.TestCase):
                 self.assertIsInstance(value, str)
                 self.assertIsNotNone(bpd.normalize_comment_deadline(value))
 
+    def test_comment_deadline_provenance_is_valid_when_present(self):
+        """Legacy checked-in rows may predate provenance; new rows must be coherent."""
+        for it in self.items:
+            provenance_fields = {
+                "comment_deadline_source",
+                "comment_deadline_source_id",
+                "comment_deadline_inherited",
+            }
+            if not provenance_fields.intersection(it):
+                continue
+            with self.subTest(id=it["id"]):
+                self.assertIn("comment_deadline", it)
+                self.assertIn(
+                    it.get("comment_deadline_source"),
+                    ("source_metadata", "related_egov_item"),
+                )
+                self.assertIsInstance(it.get("comment_deadline_inherited"), bool)
+                if it["comment_deadline_inherited"]:
+                    self.assertEqual(
+                        it["comment_deadline_source"],
+                        "related_egov_item",
+                    )
+                    source_id = it.get("comment_deadline_source_id")
+                    self.assertIsInstance(source_id, str)
+                    self.assertTrue(source_id)
+                    self.assertNotEqual(source_id, it["id"])
+                else:
+                    self.assertEqual(
+                        it["comment_deadline_source"],
+                        "source_metadata",
+                    )
+                    self.assertNotIn("comment_deadline_source_id", it)
+
     def test_translations_block_is_optional_but_valid_when_present(self):
         """English stays canonical; translations.<locale> (if any) is well-formed."""
         for it in self.items:

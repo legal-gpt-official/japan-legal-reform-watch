@@ -13,6 +13,9 @@ What this script does
   reform / regulation / public comments / guidelines rank above minutes,
   statistics, and bare page updates.
 - Classifies area / stage / impact_level with simple, conservative RULES.
+- Propagates a trusted e-Gov public-comment deadline to a duplicate official
+  source only after conservative exact-title, date, agency/domain, uniqueness,
+  and conflict checks; raw records are never modified.
 - Emits controlled rule-based English titles and MODEST English PLACEHOLDER copy
   (no official translation, no interpretation).
 - Preserves existing Claude summary fields for matching id/source_url records.
@@ -52,9 +55,13 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from public_comment_deadlines import (
+    DEADLINE_SOURCE_METADATA,
+    DEADLINE_SOURCE_RELATED_EGOV,
     extract_egov_comment_deadline,
     has_egov_deadline_label,
     normalize_comment_deadline,
+    normalize_public_comment_title,
+    propagate_public_comment_deadlines,
     resolve_public_comment_stage,
 )
 
@@ -1361,6 +1368,8 @@ def build_public_item(
         item["first_seen_at"] = first_seen_at
     if comment_deadline:
         item["comment_deadline"] = comment_deadline
+        item["comment_deadline_source"] = DEADLINE_SOURCE_METADATA
+        item["comment_deadline_inherited"] = False
     return item
 
 
@@ -1483,8 +1492,10 @@ def main(argv: list[str] | None = None) -> int:
         if item.get("summary_source") == "claude" and item.get("id")
     }
 
-    # ranked[i] = (ordering_score, impact_weight, sort_ts_for_tiebreak, item)
-    ranked: list[tuple[float, int, float, dict]] = []
+    # Candidate rows keep the pre-existing ranking inputs while deadline
+    # propagation resolves final stages across the full candidate set.
+    # candidate_rows[i] = (score, impact_weight, sort_ts, title_ja, item)
+    candidate_rows: list[tuple[float, int, float, str, dict]] = []
     excluded_items = 0
 
     for raw in raw_items:
@@ -1507,27 +1518,47 @@ def main(argv: list[str] | None = None) -> int:
 
         item = build_public_item(raw, build_date, score, first_seen_today, now=build_dt)
         weight = IMPACT_WEIGHT.get(item["impact_level"], 1)
-        # Ordering applies recency and stage adjustments without changing the
-        # content-based relevance_score written to the public JSON.
-        ordering_score = (
-            score
-            + stage_ordering_adjustment(item["stage"], title_ja)
-            - recency_penalty(sort_ts, build_ts)
-        )
         tiebreak_ts = sort_ts if sort_ts is not None else float("-inf")
-        ranked.append((ordering_score, weight, tiebreak_ts, item))
+        candidate_rows.append((score, weight, tiebreak_ts, title_ja, item))
 
-    candidate_items = len(ranked)
-
-    # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
-    ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
-    output = [item for _, _, _, item in ranked[: args.limit]]
+    candidate_items = len(candidate_rows)
 
     raw_by_id = {
         raw.get("id"): raw
         for raw in raw_items
         if isinstance(raw.get("id"), str) and raw.get("id")
     }
+    deadline_state_by_id = {
+        item_id: structured_comment_deadline(raw)
+        for item_id, raw in raw_by_id.items()
+    }
+    propagated_items, propagation_stats = propagate_public_comment_deadlines(
+        [row[4] for row in candidate_rows],
+        raw_by_id=raw_by_id,
+        deadline_state_by_id=deadline_state_by_id,
+        now=build_dt,
+    )
+
+    # ranked[i] = (ordering_score, impact_weight, sort_ts_for_tiebreak, item)
+    ranked: list[tuple[float, int, float, dict]] = []
+    for row, item in zip(candidate_rows, propagated_items):
+        score, weight, tiebreak_ts, title_ja, _ = row
+        # Ordering applies the existing recency and final-stage adjustments
+        # without changing the content-based relevance_score in public JSON.
+        ordering_score = (
+            score
+            + stage_ordering_adjustment(item["stage"], title_ja)
+            - recency_penalty(
+                None if tiebreak_ts == float("-inf") else tiebreak_ts,
+                build_ts,
+            )
+        )
+        ranked.append((ordering_score, weight, tiebreak_ts, item))
+
+    # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
+    ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
+    output = [item for _, _, _, item in ranked[: args.limit]]
+
     deadline_closed_count = 0
     open_missing_deadline_count = 0
     open_invalid_deadline_count = 0
@@ -1541,10 +1572,40 @@ def main(argv: list[str] | None = None) -> int:
         if originally_open and item.get("stage") == "Public Comment Closed":
             deadline_closed_count += 1
         elif item.get("stage") == "Public Comment Open":
+            if normalize_comment_deadline(item.get("comment_deadline")):
+                continue
             if deadline_status == "invalid":
                 open_invalid_deadline_count += 1
             elif deadline_status == "missing":
                 open_missing_deadline_count += 1
+
+    direct_deadline_count = sum(
+        item.get("comment_deadline_source") == DEADLINE_SOURCE_METADATA
+        and item.get("comment_deadline_inherited") is False
+        for item in output
+    )
+    inherited_deadline_count = sum(
+        item.get("comment_deadline_source") == DEADLINE_SOURCE_RELATED_EGOV
+        and item.get("comment_deadline_inherited") is True
+        for item in output
+    )
+    inherited_and_closed_count = sum(
+        item.get("comment_deadline_source") == DEADLINE_SOURCE_RELATED_EGOV
+        and item.get("comment_deadline_inherited") is True
+        and item.get("stage") == "Public Comment Closed"
+        for item in output
+    )
+    inherited_but_still_open_count = sum(
+        item.get("comment_deadline_source") == DEADLINE_SOURCE_RELATED_EGOV
+        and item.get("comment_deadline_inherited") is True
+        and item.get("stage") == "Public Comment Open"
+        for item in output
+    )
+    unmatched_open_public_comment_count = sum(
+        item.get("stage") == "Public Comment Open"
+        and normalize_comment_deadline(item.get("comment_deadline")) is None
+        for item in output
+    )
 
     disambiguate_duplicate_titles(output)
 
@@ -1600,6 +1661,14 @@ def main(argv: list[str] | None = None) -> int:
     print(f"deadline_closed_items         : {deadline_closed_count}")
     print(f"open_missing_deadline_items   : {open_missing_deadline_count}")
     print(f"open_invalid_deadline_items   : {open_invalid_deadline_count}")
+    print(f"direct_deadline_items         : {direct_deadline_count}")
+    print(f"inherited_deadline_items      : {inherited_deadline_count}")
+    print(f"inherited_and_closed_items    : {inherited_and_closed_count}")
+    print(f"inherited_but_still_open_items: {inherited_but_still_open_count}")
+    print(f"ambiguous_related_matches     : {propagation_stats.ambiguous_related_matches}")
+    print(f"conflicting_deadline_matches  : {propagation_stats.conflicting_deadline_matches}")
+    print(f"unmatched_open_public_comments: {unmatched_open_public_comment_count}")
+    print(f"invalid_related_deadlines     : {propagation_stats.invalid_related_deadlines}")
     print(f"rule_based_or_unsummarized    : {rule_based_or_unsummarized_count}")
     print(f"dropped_old_ai_summaries      : {dropped_old_ai_count}")
     print(f"backup_created                : {backup_created}")

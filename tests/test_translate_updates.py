@@ -48,6 +48,9 @@ def sample_item(**overrides):
         "summary_model": "claude-opus-4-8",
         "first_seen_at": "2026-06-16",
         "comment_deadline": "2026-07-18T23:59:00+09:00",
+        "comment_deadline_source": "related_egov_item",
+        "comment_deadline_source_id": "raw-egov-source",
+        "comment_deadline_inherited": True,
     }
     item.update(overrides)
     return item
@@ -439,7 +442,9 @@ class TestInvariants(TranslateTestBase):
         protected = (
             "id", "title_en", "title_ja", "source_name", "source_url",
             "area", "stage", "impact_level", "published_at", "last_checked",
-            "first_seen_at", "comment_deadline", "relevance_score", "summary_source", "confidence",
+            "first_seen_at", "comment_deadline", "comment_deadline_source",
+            "comment_deadline_source_id", "comment_deadline_inherited",
+            "relevance_score", "summary_source", "confidence",
             "ai_notes", "summarized_at", "summary_model",
             "summary_en", "business_impact_en", "recommended_action_en",
         )

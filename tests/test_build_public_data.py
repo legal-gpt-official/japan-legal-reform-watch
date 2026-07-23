@@ -191,6 +191,25 @@ class TestPublicCommentDeadlineResolution(unittest.TestCase):
             "Public Comment Closed",
         )
 
+    def test_explicit_2359_deadline_closes_at_that_instant(self):
+        deadline = "2026-07-18T23:59:00+09:00"
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                deadline,
+                now=datetime(2026, 7, 18, 23, 58, 59, tzinfo=bpd.JST),
+            ),
+            "Public Comment Open",
+        )
+        self.assertEqual(
+            bpd.resolve_public_comment_stage(
+                "Public Comment Open",
+                deadline,
+                now=datetime(2026, 7, 18, 23, 59, 0, tzinfo=bpd.JST),
+            ),
+            "Public Comment Closed",
+        )
+
     def test_missing_deadline_stays_open(self):
         self.assertEqual(
             bpd.resolve_public_comment_stage(
@@ -303,6 +322,9 @@ class TestPublicCommentDeadlineResolution(unittest.TestCase):
 
         self.assertEqual(item["stage"], "Public Comment Closed")
         self.assertEqual(item["comment_deadline"], "2026-07-18")
+        self.assertEqual(item["comment_deadline_source"], "source_metadata")
+        self.assertIs(item["comment_deadline_inherited"], False)
+        self.assertNotIn("comment_deadline_source_id", item)
         for field in bpd.REQUIRED_FIELDS:
             self.assertIn(field, item)
         self.assertEqual(item["id"], raw["id"])
@@ -329,6 +351,382 @@ class TestPublicCommentDeadlineResolution(unittest.TestCase):
         )
 
         self.assertEqual(item["stage"], "Public Comment Open")
+
+
+class TestPublicCommentDeadlinePropagation(unittest.TestCase):
+    NOW = datetime(2026, 7, 20, 12, 0, tzinfo=bpd.JST)
+    TITLE = "○○法施行規則の一部を改正する省令案に関する意見募集について"
+
+    def _egov(
+        self,
+        *,
+        item_id="raw-egov",
+        title=None,
+        published_at="2026-06-18",
+        deadline="2026-07-18T00:00:00+09:00",
+        contact="環境省自然環境局",
+    ):
+        return {
+            "id": item_id,
+            "title_ja": title or self.TITLE,
+            "source_name": EGOV,
+            "source_type": "public_comment_rss",
+            "source_url": (
+                "https://public-comment.e-gov.go.jp/servlet/Public?"
+                f"CLASSNAME=PCMMSTDETAIL&id={item_id}&Mode=0"
+            ),
+            "published_at": published_at,
+            "fetched_at": "2026-06-18T01:00:00Z",
+            "raw_summary": (
+                "案の公示日：2026/06/18 "
+                f"問合せ先（所管省庁・部局名等）：{contact}"
+            ),
+            "comment_deadline": deadline,
+        }
+
+    def _ministry(
+        self,
+        *,
+        item_id="raw-ministry",
+        title=None,
+        published_at="2026-06-18",
+        source_name=MOE_UTF8,
+        source_url="https://www.env.go.jp/press/press_test.html",
+        comment_deadline=None,
+    ):
+        raw = {
+            "id": item_id,
+            "title_ja": title or self.TITLE,
+            "source_name": source_name,
+            "source_type": "ministry_html",
+            "source_url": source_url,
+            "published_at": published_at,
+            "fetched_at": "2026-06-18T02:00:00Z",
+            "raw_summary": "official ministry category",
+        }
+        if comment_deadline is not None:
+            raw["comment_deadline"] = comment_deadline
+        return raw
+
+    def _run(self, raw_items, *, item_mutator=None, now=None):
+        build_now = now or self.NOW
+        items = [
+            bpd.build_public_item(
+                raw,
+                "2026-07-20",
+                12.0,
+                "2026-07-20",
+                now=build_now,
+            )
+            for raw in raw_items
+        ]
+        if item_mutator:
+            item_mutator(items)
+        raw_by_id = {raw["id"]: raw for raw in raw_items}
+        deadline_state_by_id = {
+            raw["id"]: bpd.structured_comment_deadline(raw)
+            for raw in raw_items
+        }
+        propagated, stats = bpd.propagate_public_comment_deadlines(
+            items,
+            raw_by_id=raw_by_id,
+            deadline_state_by_id=deadline_state_by_id,
+            now=build_now,
+        )
+        return {item["id"]: item for item in propagated}, stats, items
+
+    def test_title_normalization_is_limited_and_preserves_legal_meaning(self):
+        left = "「○○法施行規則（案）」 に関する意見募集（パブリック・コメント）"
+        right = "｢○○法施行規則(案)｣に関する意見募集(パブリックコメント)"
+        self.assertEqual(
+            bpd.normalize_public_comment_title(left),
+            bpd.normalize_public_comment_title(right),
+        )
+        self.assertNotEqual(
+            bpd.normalize_public_comment_title("○○法の一部を改正する案"),
+            bpd.normalize_public_comment_title("○○法を廃止する案"),
+        )
+        self.assertNotEqual(
+            bpd.normalize_public_comment_title("令和8年度○○制度の意見募集"),
+            bpd.normalize_public_comment_title("令和9年度○○制度の意見募集"),
+        )
+
+    def test_unique_expired_pair_inherits_deadline_closes_and_records_provenance(self):
+        items, stats, originals = self._run([self._egov(), self._ministry()])
+        source = items["raw-egov"]
+        target = items["raw-ministry"]
+
+        self.assertEqual(source["stage"], "Public Comment Closed")
+        self.assertEqual(source["comment_deadline_source"], "source_metadata")
+        self.assertIs(source["comment_deadline_inherited"], False)
+        self.assertNotIn("comment_deadline_source_id", source)
+
+        self.assertEqual(target["stage"], "Public Comment Closed")
+        self.assertEqual(target["comment_deadline"], "2026-07-18T00:00:00+09:00")
+        self.assertEqual(target["comment_deadline_source"], "related_egov_item")
+        self.assertEqual(target["comment_deadline_source_id"], "raw-egov")
+        self.assertIs(target["comment_deadline_inherited"], True)
+        self.assertEqual(stats.direct_deadline_items, 1)
+        self.assertEqual(stats.inherited_deadline_items, 1)
+        self.assertEqual(stats.inherited_and_closed_items, 1)
+        self.assertEqual(stats.inherited_but_still_open_items, 0)
+        self.assertNotIn("comment_deadline_source", originals[1])
+
+    def test_unique_future_pair_inherits_deadline_but_stays_open(self):
+        items, stats, _ = self._run([
+            self._egov(deadline="2026-08-18T17:00:00+09:00"),
+            self._ministry(),
+        ])
+        target = items["raw-ministry"]
+        self.assertEqual(target["stage"], "Public Comment Open")
+        self.assertIs(target["comment_deadline_inherited"], True)
+        self.assertEqual(stats.inherited_and_closed_items, 0)
+        self.assertEqual(stats.inherited_but_still_open_items, 1)
+
+    def test_one_day_publication_difference_is_allowed(self):
+        items, stats, _ = self._run([
+            self._egov(published_at="2026-06-18"),
+            self._ministry(published_at="2026-06-17"),
+        ])
+        self.assertIs(items["raw-ministry"]["comment_deadline_inherited"], True)
+        self.assertEqual(stats.inherited_deadline_items, 1)
+
+    def test_title_only_match_with_wrong_agency_does_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(contact="環境省自然環境局"),
+            self._ministry(
+                source_name="総務省 (MIC) 新着情報",
+                source_url="https://www.soumu.go.jp/menu_news/s-news/test.html",
+            ),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_official_name_with_untrusted_domain_does_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(),
+            self._ministry(source_url="https://env.go.jp.example.com/press/test"),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_different_law_name_does_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(title="○○法施行規則の一部を改正する省令案に関する意見募集"),
+            self._ministry(title="△△法施行規則の一部を改正する省令案に関する意見募集"),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_same_title_pattern_with_different_year_does_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(title="令和8年度○○制度改正案に関する意見募集"),
+            self._ministry(title="令和9年度○○制度改正案に関する意見募集"),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_publication_dates_more_than_one_day_apart_do_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(published_at="2026-06-18"),
+            self._ministry(published_at="2026-06-20"),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_multiple_same_deadline_sources_are_ambiguous(self):
+        items, stats, _ = self._run([
+            self._egov(item_id="raw-egov-1"),
+            self._egov(item_id="raw-egov-2"),
+            self._ministry(),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.ambiguous_related_matches, 1)
+        self.assertEqual(stats.conflicting_deadline_matches, 0)
+
+    def test_multiple_source_deadlines_conflict(self):
+        items, stats, _ = self._run([
+            self._egov(item_id="raw-egov-1", deadline="2026-07-18T00:00:00+09:00"),
+            self._egov(item_id="raw-egov-2", deadline="2026-07-19T00:00:00+09:00"),
+            self._ministry(),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.conflicting_deadline_matches, 1)
+        self.assertEqual(stats.ambiguous_related_matches, 0)
+
+    def test_one_source_matching_multiple_targets_is_ambiguous(self):
+        items, stats, _ = self._run([
+            self._egov(),
+            self._ministry(
+                item_id="raw-ministry-1",
+                source_url="https://www.env.go.jp/press/press_1.html",
+            ),
+            self._ministry(
+                item_id="raw-ministry-2",
+                source_url="https://www.env.go.jp/press/press_2.html",
+            ),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry-1"])
+        self.assertNotIn("comment_deadline", items["raw-ministry-2"])
+        self.assertEqual(stats.ambiguous_related_matches, 2)
+
+    def test_target_with_own_deadline_is_not_overwritten(self):
+        own_deadline = "2026-07-30T23:59:00+09:00"
+        items, stats, _ = self._run([
+            self._egov(),
+            self._ministry(comment_deadline=own_deadline),
+        ])
+        target = items["raw-ministry"]
+        self.assertEqual(target["comment_deadline"], own_deadline)
+        self.assertEqual(target["comment_deadline_source"], "source_metadata")
+        self.assertIs(target["comment_deadline_inherited"], False)
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_non_open_target_is_not_changed(self):
+        def close_target(items):
+            items[1]["stage"] = "Public Comment Results Published"
+
+        items, stats, _ = self._run(
+            [self._egov(), self._ministry()],
+            item_mutator=close_target,
+        )
+        target = items["raw-ministry"]
+        self.assertEqual(target["stage"], "Public Comment Results Published")
+        self.assertNotIn("comment_deadline", target)
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_invalid_related_deadline_does_not_propagate(self):
+        items, stats, _ = self._run([
+            self._egov(deadline="not-a-deadline"),
+            self._ministry(),
+        ])
+        self.assertNotIn("comment_deadline", items["raw-ministry"])
+        self.assertEqual(stats.invalid_related_deadlines, 1)
+        self.assertEqual(stats.inherited_deadline_items, 0)
+
+    def test_inherited_deadline_uses_existing_date_only_and_utc_boundaries(self):
+        cases = (
+            (
+                "2026-07-18",
+                datetime(2026, 7, 18, 23, 59, 59, tzinfo=bpd.JST),
+                "Public Comment Open",
+            ),
+            (
+                "2026-07-18",
+                datetime(2026, 7, 19, 0, 0, 0, tzinfo=bpd.JST),
+                "Public Comment Closed",
+            ),
+            (
+                "2026-07-18T15:00:00Z",
+                datetime(2026, 7, 18, 23, 59, 59, tzinfo=bpd.JST),
+                "Public Comment Open",
+            ),
+            (
+                "2026-07-18T15:00:00Z",
+                datetime(2026, 7, 19, 0, 0, 0, tzinfo=bpd.JST),
+                "Public Comment Closed",
+            ),
+        )
+        for deadline, now, expected_stage in cases:
+            with self.subTest(deadline=deadline, now=now):
+                items, _, _ = self._run(
+                    [self._egov(deadline=deadline), self._ministry()],
+                    now=now,
+                )
+                self.assertEqual(items["raw-ministry"]["stage"], expected_stage)
+
+    def test_ai_summary_and_translation_preservation_do_not_remove_provenance(self):
+        items, _, _ = self._run([self._egov(), self._ministry()])
+        target = items["raw-ministry"]
+        provenance = {
+            key: target[key]
+            for key in (
+                "comment_deadline",
+                "comment_deadline_source",
+                "comment_deadline_source_id",
+                "comment_deadline_inherited",
+            )
+        }
+        existing = {
+            "id": target["id"],
+            "source_url": target["source_url"],
+            "summary_source": "claude",
+            "summary_en": "AI summary.",
+            "business_impact_en": "AI impact.",
+            "recommended_action_en": "AI action.",
+            "confidence": "medium",
+            "ai_notes": "",
+            "summarized_at": "2026-07-01T00:00:00Z",
+            "summary_model": "claude-opus-4-8",
+            "translations": {
+                "zh-Hans": {
+                    "title": "标题",
+                    "summary": "摘要",
+                    "business_impact": "影响",
+                    "recommended_action": "行动",
+                },
+            },
+        }
+        self.assertTrue(bpd.preserve_ai_summary_fields(target, {target["id"]: existing}))
+        self.assertTrue(bpd.preserve_translations(target, {target["id"]: existing}))
+        for key, value in provenance.items():
+            self.assertEqual(target[key], value)
+
+    def test_build_summary_reports_propagation_counts(self):
+        raw_items = [self._egov(), self._ministry()]
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp = Path(tmp_dir)
+            raw_path = tmp / "raw_items.json"
+            output_path = tmp / "legal_updates.json"
+            backup_path = tmp / "legal_updates.backup.json"
+            raw_path.write_text(
+                json.dumps(raw_items, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            stdout = io.StringIO()
+            with (
+                mock.patch.object(bpd, "RAW_PATH", raw_path),
+                mock.patch.object(bpd, "OUTPUT_PATH", output_path),
+                mock.patch.object(bpd, "BACKUP_PATH", backup_path),
+                redirect_stdout(stdout),
+            ):
+                result = bpd.main(["--dry-run"])
+
+        self.assertEqual(result, 0)
+        summary = stdout.getvalue()
+        for label, expected in (
+            ("direct_deadline_items", 1),
+            ("inherited_deadline_items", 1),
+            ("inherited_and_closed_items", 1),
+            ("inherited_but_still_open_items", 0),
+            ("ambiguous_related_matches", 0),
+            ("conflicting_deadline_matches", 0),
+            ("unmatched_open_public_comments", 0),
+            ("invalid_related_deadlines", 0),
+        ):
+            with self.subTest(label=label):
+                match = re.search(rf"^{label}\s*:\s*(\d+)$", summary, re.MULTILINE)
+                self.assertIsNotNone(match, summary)
+                self.assertEqual(int(match.group(1)), expected)
+
+    def test_propagation_preserves_item_order_ids_urls_fields_and_scores(self):
+        raws = [
+            self._egov(),
+            self._ministry(),
+            self._ministry(
+                item_id="raw-unrelated",
+                title="別の○○法を改正する案に関する意見募集",
+                source_url="https://www.env.go.jp/press/press_other.html",
+            ),
+        ]
+        items, _, _ = self._run(raws)
+        self.assertEqual(list(items), [raw["id"] for raw in raws])
+        for raw in raws:
+            item = items[raw["id"]]
+            self.assertEqual(item["source_url"], raw["source_url"])
+            self.assertEqual(item["relevance_score"], 12.0)
+            for field in bpd.REQUIRED_FIELDS:
+                self.assertIn(field, item)
 
 
 class TestAreaClassification(unittest.TestCase):
