@@ -26,8 +26,9 @@ What this script does
 What this script does NOT do
 ----------------------------
 - It NEVER modifies English canonical fields, `title_ja`, `source_name`,
-  `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`, `comment_deadline`,
-  `relevance_score`, or any AI-summary / Source-Health metadata.
+  `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`,
+  `comment_deadline` or its provenance fields, `relevance_score`, or any
+  AI-summary / Source-Health metadata.
 - No fetching, no rebuild, no summarization, no new sources, no UI change.
 
 Guardrails (enforced in the system prompt)

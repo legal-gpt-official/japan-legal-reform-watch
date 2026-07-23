@@ -81,6 +81,9 @@ The script prints a console summary (`checked_sources`, `fetched_items`, `new_it
 
 Each raw item has: `id`, `title_ja`, `source_name`, `source_url`, `published_at` (ISO; empty string when the feed gives no date — never guessed), `fetched_at`, `source_language`, `raw_summary`, `raw_content_hash`, and `source_type`. Newer records may also have optional `first_seen_at` and, for e-Gov public comments whose RSS metadata supplies it, a structured `comment_deadline`.
 
+Deadlines inherited from a related e-Gov item are a Stage 2 public-data
+derivation only. They are never written back to `data/raw_items.json`.
+
 ## Newly detected
 
 `first_seen_at` means "First detected by this dashboard" and is assigned only when a raw item is actually appended as new under the existing ID/source URL merge rules. It is not a legal status and must not be described as a new law, new regulation, recently enacted law, recently amended rule, or breaking legal update.
@@ -120,7 +123,7 @@ python scripts/build_public_data.py
 Behaviour:
 
 - **Relevance ranking.** Each item gets an internal keyword-based `relevance_score` that rewards law-reform / regulation / public-comment / guideline signals (改正, 施行, 公布, 法律 / 政令 / 省令, 意見募集, 指針 / ガイドライン, 義務, 個人情報, 金融, 労働, …) and penalises minutes, statistics, web magazines, and bare page updates. e-Gov public comments get a source bonus. Output is ordered by `relevance_score`, then impact weight (Medium > Low), then recency (older items get a light penalty so they don't linger at the top). The score is written to each record as an optional `relevance_score` field (the UI ignores unknown fields).
-- **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. When an Open e-Gov item has a valid structured `comment_deadline`, Stage 2 changes it to Closed at that deadline instant. Date-only deadlines remain Open through 23:59:59 JST; explicit date-times retain their stated offset. Missing or invalid deadlines never cause a guessed closure, and unrelated fields such as `published_at`, `first_seen_at`, and `last_checked` are not used as deadlines. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally appear first; strong legal/regulatory signals can soften that demotion.
+- **Public comment status.** Public-comment items are classified as `Public Comment Open`, `Public Comment Closed`, or `Public Comment Results Published` using title/status keywords. When an Open e-Gov item has a valid structured `comment_deadline`, Stage 2 changes it to Closed at that deadline instant. Stage 2 may also derive that deadline for a duplicate ministry/regulator record, but only when the conservatively normalized Japanese title is exact, publication dates are within one day, the e-Gov contact agency matches the target's configured official source name and domain, both sides are unique, and no deadline conflicts or independent target deadline exist. It never uses fuzzy title similarity. Date-only deadlines remain Open through 23:59:59 JST; explicit date-times retain their stated offset. Missing, invalid, ambiguous, or conflicting deadlines never cause a guessed closure, and raw history is not modified. Closed public comments are retained as useful regulatory history but slightly demoted in ranking so open consultations and draft guidelines generally appear first; strong legal/regulatory signals can soften that demotion.
 - **METI / CAA classification.** Additional keyword rules map METI and CAA items into areas such as `Economic Security / FDI`, `Energy / Environment`, `Data / Privacy / AI`, `Antitrust / Fair Trade`, `Consumer / Advertising`, and `Corporate / Governance` where the Japanese title supports that provisional classification.
 - **PPC / JFTC classification.** PPC items are biased toward `Data / Privacy / AI`; JFTC items are biased toward `Antitrust / Fair Trade`. Committee meetings, recruitment, procurement, events, and public-relations-only updates are excluded or heavily downranked unless strong legal/regulatory keywords are present.
 - **MLIT / MAFF classification.** MLIT helps cover land, infrastructure, transport, construction, real estate, logistics, and related regulatory updates; MAFF helps cover food, agriculture, forestry, fisheries, quarantine, import/export, and related regulatory updates. Ranking and exclusion rules intentionally filter out events, procurement, hiring, statistics-only items, and general publicity.
@@ -130,7 +133,7 @@ Behaviour:
 - Backs up the current `docs/data/legal_updates.json` to `docs/data/legal_updates.backup.json` before overwriting.
 - Preserves existing Stage 3 Claude summary fields when the rebuilt item has the same `id` and unchanged `source_url`; fresh build metadata such as `area`, `stage`, `impact_level`, `relevance_score`, titles, source, and dates still comes from Stage 2.
 - Caps the published dataset at **3000 items**; items with no / invalid date rank last. The raw history remains cumulative and is not trimmed to this public cap. (If the dataset eventually outgrows this, the planned enhancement is year-based archive JSON files for older data.)
-- Prints a console summary: `input_items`, `excluded_items`, `candidate_items`, `output_items`, `backup_created`, `top_relevance_score`, `lowest_output_relevance_score`, `output_path`.
+- Prints a console summary including input/candidate/output counts, direct and inherited deadline counts, inherited Open/Closed counts, ambiguous/conflicting/invalid related matches, unmatched Open public comments, preservation counts, ranking bounds, backup state, and output path.
 - Keeps `source_url` verbatim and treats all input as untrusted (the browser escapes every field on render).
 
 The `relevance_score` is a **technical heuristic to decide what to surface — not a legal judgement** of importance. The output remains a provisional, AI-free preview: `summary_en` explicitly states it "has not yet been reviewed or summarized by AI."
@@ -364,6 +367,9 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `published_at`           | Date published / announced (ISO `YYYY-MM-DD`).                           |
 | `first_seen_at`          | Optional date first appended to this dashboard's raw history (`YYYY-MM-DD`); absent for legacy or unknown items. |
 | `comment_deadline`       | Optional structured public-comment deadline (ISO date or offset date-time). Used only to close an otherwise Open item after the deadline; absent when no trusted value exists. |
+| `comment_deadline_source` | Optional deadline provenance: `source_metadata` for the item's own structured metadata or `related_egov_item` for a conservatively matched e-Gov record. |
+| `comment_deadline_source_id` | Present only for an inherited deadline; stable ID of the related e-Gov source record. |
+| `comment_deadline_inherited` | Optional boolean provenance flag; `true` only when the deadline came from a related e-Gov item. |
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
 | `translations`           | Optional per-locale AI translations, e.g. `translations.zh-Hans = { title, summary, business_impact, recommended_action }` (Simplified Chinese). Unofficial aid added by Stage 4; English stays canonical and untranslated items omit the block. |
 
