@@ -16,7 +16,10 @@
 
   // Preferred display order for impact level.
   const IMPACT_ORDER = ["High", "Medium", "Low"];
-  const DEFAULT_SORT = "relevance";
+  // Monitoring views default to the newest official publication date. The
+  // Relevance option preserves the build-ranked JSON order, which already
+  // includes stage, impact, and recency adjustments.
+  const DEFAULT_SORT = "published";
   const SORT_VALUES = ["relevance", "published", "checked", "detected"];
   const SORT_LABELS = {
     relevance: "Relevance",
@@ -1234,11 +1237,10 @@
           originalOrder(a, b)
         );
       }
-      return (
-        compareDesc(numberValue(a.relevance_score), numberValue(b.relevance_score)) ||
-        compareDesc(dateValue(a.published_at), dateValue(b.published_at)) ||
-        originalOrder(a, b)
-      );
+      // build_public_data.py owns the composite relevance ranking. Re-sorting
+      // here by the public relevance_score alone would discard its Open/Closed,
+      // impact, and recency adjustments.
+      return originalOrder(a, b);
     });
     return sorted;
   }
