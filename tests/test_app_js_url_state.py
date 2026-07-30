@@ -25,6 +25,7 @@ STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
 CACHE_BUSTER = "i18n-zh-hans-20260618"
+APP_CACHE_BUSTER = "default-published-sort-20260730"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
 I18N_CACHE_BUSTER = "zh-hans-v3-20260618"
@@ -87,7 +88,7 @@ class TestAppJsUrlState(unittest.TestCase):
         for snippet in (
             'id="filter-sort"',
             'value="relevance">Relevance',
-            'value="published">Published date',
+            'value="published" selected>Published date',
             'value="checked">Last checked',
             'value="detected">First detected',
         ):
@@ -95,7 +96,7 @@ class TestAppJsUrlState(unittest.TestCase):
                 self.assertIn(snippet, INDEX_HTML)
 
         for snippet in (
-            'const DEFAULT_SORT = "relevance"',
+            'const DEFAULT_SORT = "published"',
             '"published"',
             '"checked"',
             '"detected"',
@@ -110,6 +111,34 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
+
+    def test_default_sort_is_published_and_relevance_preserves_build_order(self):
+        self.assertIn(
+            'value="published" selected>Published date',
+            INDEX_HTML,
+        )
+        match = re.search(
+            r"function sortUpdates\(updates\) \{(?P<body>.*?)\n  \}\n",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(match, "sortUpdates function not found")
+        body = match.group("body")
+        self.assertRegex(
+            body,
+            re.compile(
+                r'filters\.sort === "published".*?published_at.*?relevance_score',
+                re.S,
+            ),
+        )
+        self.assertRegex(
+            body,
+            re.compile(
+                r"build_public_data\.py owns the composite relevance ranking.*?"
+                r"return originalOrder\(a, b\);",
+                re.S,
+            ),
+        )
 
     def test_copy_actions_exist(self):
         for snippet in (
@@ -392,7 +421,7 @@ class TestAppJsUrlState(unittest.TestCase):
 class TestSimplifiedChineseI18n(unittest.TestCase):
     def test_i18n_loaded_before_app_with_cache_buster(self):
         self.assertIn("i18n.js?v=" + I18N_CACHE_BUSTER, INDEX_HTML)
-        self.assertIn("app.js?v=" + CACHE_BUSTER, INDEX_HTML)
+        self.assertIn("app.js?v=" + APP_CACHE_BUSTER, INDEX_HTML)
         self.assertIn("style.css?v=" + CACHE_BUSTER, INDEX_HTML)
         # i18n.js must be parsed before app.js so window.JLRW_I18N exists.
         self.assertLess(INDEX_HTML.index("i18n.js?v="), INDEX_HTML.index("app.js?v="))
