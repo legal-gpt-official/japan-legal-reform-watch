@@ -3,7 +3,13 @@
 No API calls: these tests cover local AI-result application and validation only.
 """
 
+import contextlib
+import io
+import json
+import os
 import sys
+import tempfile
+import types
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -110,6 +116,93 @@ class TestSummarizeTitleCap(unittest.TestCase):
 
         self.assertTrue(any("raw-test: title_en exceeds" in problem for problem in problems))
         self.assertTrue(any("raw-japanese: title_en contains Japanese" in problem for problem in problems))
+
+
+class TestSummaryBatch(unittest.TestCase):
+    def test_batch_uses_same_prompt_and_structured_output_contract(self):
+        item = TestSummarizeTitleCap()._item()
+        result = TestSummarizeTitleCap()._result("AI title")
+
+        class Block:
+            type = "text"
+            text = json.dumps(result)
+
+        message = types.SimpleNamespace(content=[Block()], model="claude-opus-4-8")
+        captured = {}
+
+        def fake_run(client, requests, *, timeout_seconds, logger):
+            captured["requests"] = requests
+            captured["timeout"] = timeout_seconds
+            return types.SimpleNamespace(
+                batch_id="msgbatch_summary",
+                results={"summary-0000": message},
+            )
+
+        with mock.patch.object(su, "run_message_batch", side_effect=fake_run):
+            batch_id, outcomes = su.request_summary_batch(
+                object(),
+                "claude-opus-4-8",
+                [(item, {"raw_summary": "Source metadata."})],
+                timeout_seconds=12,
+            )
+
+        self.assertEqual(batch_id, "msgbatch_summary")
+        self.assertEqual(outcomes[0][0]["title_en"], "AI title")
+        params = captured["requests"][0]["params"]
+        self.assertEqual(params["system"], su.SYSTEM_PROMPT)
+        self.assertEqual(params["output_config"]["format"]["type"], "json_schema")
+        self.assertEqual(captured["timeout"], 12)
+
+    def test_daily_workflow_uses_batch_summarization(self):
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+        command = next(
+            line.strip() for line in workflow.splitlines()
+            if "python scripts/summarize_updates.py" in line
+        )
+        self.assertIn("--batch", command)
+
+    def test_main_applies_batch_result_and_persists_cache(self):
+        item = TestSummarizeTitleCap()._item()
+        item["relevance_score"] = 10
+        result = TestSummarizeTitleCap()._result("AI title")
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item]), encoding="utf-8")
+            raw_path.write_text(json.dumps([]), encoding="utf-8")
+
+            def fake_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual(len(candidates), 1)
+                return "msgbatch_main", [(result, model)]
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_summary_batch": fake_batch,
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main(["--limit", "1", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            cache = json.loads(cache_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual(published[0]["summary_source"], "claude")
+            self.assertEqual(published[0]["title_en"], "AI title")
+            self.assertEqual(len(cache), 1)
 
 
 if __name__ == "__main__":

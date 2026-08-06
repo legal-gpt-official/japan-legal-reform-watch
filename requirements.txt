@@ -10,8 +10,8 @@
 
 requests>=2.31          # Stage 1 HTTP client (timeouts, headers, redirects)
 feedparser>=6.0         # Stage 1 RSS / Atom / RDF feed parsing
-anthropic>=0.69         # Stage 3 Claude SDK (recent version recommended for
-                        # structured outputs; falls back to prompt-based JSON on older SDKs)
+anthropic>=0.102.0      # Stages 3-4 Claude SDK (Message Batches, 1h prompt-cache
+                        # TTL, and structured outputs; sync mode keeps a JSON fallback)
 
 # --- Reserved for later iterations (NOT used yet) ---
 # beautifulsoup4>=4.12   # HTML parsing for non-RSS source pages
