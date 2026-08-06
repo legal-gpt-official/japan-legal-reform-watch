@@ -18,9 +18,17 @@ import fetch_updates as fu  # noqa: E402
 
 ALLOWED_SOURCE_TYPES = {
     "public_comment_rss", "regulator_rss", "ministry_rss", "agency_rss",
-    "regulator_html", "ministry_html",
+    "regulator_html", "ministry_html", "legislature_html", "agency_html", "public_comment_html",
+    "pmda_safety_html", "public_comment_results_html", "court_html", "enforcement_html",
+    "law_api",
 }
-ALLOWED_HTML_PARSERS = {"ppc_information", "jftc_pressrelease", "moe_press", "mlit_press", "meti_press_index"}
+ALLOWED_HTML_PARSERS = {
+    "ppc_information", "jftc_pressrelease", "moe_press", "mlit_press", "meti_press_index",
+    "shugiin_current_bills",
+    "jpx_public_comments", "jpx_rule_revisions", "pmda_safety_updates",
+    "jsda_public_comments", "jsda_public_comment_results", "courts_recent_supreme",
+    "sesc_current_year",
+}
 
 
 class TestSourcesConfig(unittest.TestCase):
@@ -80,6 +88,43 @@ class TestSourcesConfig(unittest.TestCase):
         # The old failing Atom feed must be gone.
         self.assertNotIn("ml_index_release_atom", meti["url"])
 
+    def test_legislative_expansion_sources_present(self):
+        by_key = {source["key"]: source for source in fu.SOURCES}
+        diet = by_key["shugiin-bills"]
+        self.assertEqual(diet["html_parser"], "shugiin_current_bills")
+        self.assertEqual(diet["encoding"], "shift_jis")
+        self.assertFalse(diet["dedupe_by_url"])
+        laws = by_key["egov-laws"]
+        self.assertEqual(laws["entry_fetcher"], "egov_updated_laws")
+        self.assertEqual(laws["lookback_days"], 7)
+        self.assertFalse(laws["dedupe_by_url"])
+
+    def test_jpx_pmda_expansion_sources_present(self):
+        by_key = {source["key"]: source for source in fu.SOURCES}
+        self.assertEqual(by_key["jpx-comments"]["html_parser"], "jpx_public_comments")
+        self.assertEqual(by_key["jpx-comments"]["source_type"], "public_comment_html")
+        self.assertEqual(by_key["jpx-rules"]["html_parser"], "jpx_rule_revisions")
+        self.assertEqual(by_key["pmda"]["html_parser"], "pmda_safety_updates")
+        self.assertEqual(by_key["pmda"]["history_days"], 550)
+        self.assertFalse(by_key["pmda"]["dedupe_by_url"])
+
+    def test_jsda_and_courts_expansion_sources_present(self):
+        by_key = {source["key"]: source for source in fu.SOURCES}
+        self.assertEqual(by_key["jsda-comments"]["html_parser"], "jsda_public_comments")
+        self.assertEqual(by_key["jsda-comments"]["source_type"], "public_comment_html")
+        self.assertEqual(by_key["jsda-results"]["html_parser"], "jsda_public_comment_results")
+        self.assertEqual(by_key["jsda-results"]["source_type"], "public_comment_results_html")
+        self.assertEqual(by_key["courts-supreme"]["html_parser"], "courts_recent_supreme")
+        self.assertEqual(by_key["courts-supreme"]["source_type"], "court_html")
+        self.assertIn("filter%5Brecent%5D=1", by_key["courts-supreme"]["url"])
+
+    def test_sesc_source_uses_stable_index_and_current_year_fetcher(self):
+        sesc = next(source for source in fu.SOURCES if source["key"] == "sesc")
+        self.assertEqual(sesc["url"], "https://www.fsa.go.jp/sesc/news/news.html")
+        self.assertEqual(sesc["entry_fetcher"], "sesc_current_year")
+        self.assertEqual(sesc["html_parser"], "sesc_current_year")
+        self.assertEqual(sesc["source_type"], "enforcement_html")
+
     def test_every_source_has_a_ui_display_name(self):
         """docs/app.js maps every source_name to an English-first display label.
 
@@ -119,6 +164,16 @@ class TestIdentityAndNormalization(unittest.TestCase):
         self.assertEqual(a, b)
         self.assertNotEqual(a, c)
         self.assertNotEqual(a, fu.make_id("https://example.go.jp/x", "タイトルA", "Source", "2026-06-01"))
+
+    def test_make_id_event_identity_tracks_status_without_changing_source_url(self):
+        url = "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/ABC.htm"
+        submitted = fu.make_id(url, "法律案", "Diet", "", "diet:閣法:221:1:審議中")
+        enacted = fu.make_id(url, "法律案", "Diet", "", "diet:閣法:221:1:成立")
+        self.assertNotEqual(submitted, enacted)
+        self.assertEqual(
+            submitted,
+            fu.make_id(url, "変更タイトル", "Diet", "2026-01-01", "diet:閣法:221:1:審議中"),
+        )
 
     def test_content_hash_stability_and_sensitivity(self):
         h1 = fu.content_hash("題名", "要約", "2026-06-01")
@@ -309,6 +364,197 @@ class TestStdlibFeedParser(unittest.TestCase):
 
 
 class TestHtmlParsers(unittest.TestCase):
+    def test_sesc_year_resolver_requires_exact_current_year(self):
+        index = """
+        <ul><li><a href="/sesc/news/c_2026/c_2026.html">令和8年（2026年）の情報</a></li>
+        <li><a href="/sesc/news/c_2025/c_2025.html">令和7年（2025年）の情報</a></li></ul>
+        """
+        self.assertEqual(
+            fu._find_sesc_year_url(index, "https://www.fsa.go.jp/sesc/news/news.html", "2026"),
+            "https://www.fsa.go.jp/sesc/news/c_2026/c_2026.html",
+        )
+        self.assertEqual(fu._find_sesc_year_url(index, "https://www.fsa.go.jp/", "2027"), "")
+
+    def test_sesc_parser_keeps_enforcement_and_public_comment_but_drops_reports(self):
+        html_text = """
+        <ul>
+        <li>令和8年6月26日　<a href="/sesc/news/c_2026/2026/20260626-2.html">
+        内部者取引に対する課徴金納付命令の勧告について</a></li>
+        <li>令和8年7月1日　<a href="/sesc/news/c_2026/2026/20260701-1.html">
+        「証券モニタリングに関する基本指針」の一部改正案に対するパブリックコメントの結果について</a></li>
+        <li>令和8年7月31日　<a href="/sesc/news/c_2026/2026/20260731-2.html">
+        「令和8事務年度 証券モニタリング基本方針」について</a></li>
+        <li>令和8年6月23日　<a href="/sesc/reports/n_2025/n_2025.html">
+        令和7年度証券取引等監視委員会の活動状況の公表について</a></li>
+        <li>令和8年6月23日　<a href="/sesc/jirei/torichou/20260623.html">
+        金融商品取引法における課徴金事例集の公表について</a></li>
+        </ul>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "sesc_current_year",
+            "url": "https://www.fsa.go.jp/sesc/news/c_2026/c_2026.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 3)
+        self.assertEqual(items[0]["published_iso"], "2026-06-26")
+        self.assertEqual(items[0]["stage_hint"], "Enforcement Action")
+        self.assertNotIn("stage_hint", items[1])
+        self.assertIn("20260701-1.html", items[1]["link"])
+        self.assertNotIn("stage_hint", items[2])
+        self.assertIn("20260731-2.html", items[2]["link"])
+
+    def test_jsda_public_comment_parser_carries_structured_period(self):
+        html_text = """
+        <table><tr><th>案　件　名</th><th>募集期間</th></tr>
+        <tr><td><a href="./files/20260715_rule.pdf">「店頭有価証券規則」の一部改正案について</a></td>
+        <td>2026年7月15日 ～ 2026年8月14日</td></tr></table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "jsda_public_comments",
+            "url": "https://www.jsda.or.jp/about/public/bosyu/index.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-07-15")
+        self.assertEqual(items[0]["comment_deadline"], "2026-08-14")
+        self.assertEqual(
+            items[0]["link"],
+            "https://www.jsda.or.jp/about/public/bosyu/files/20260715_rule.pdf",
+        )
+
+    def test_jsda_public_comment_results_parser_sets_controlled_stage(self):
+        html_text = """
+        <table><tr><th>公表日</th><th>案件名</th><th>募集期間</th></tr>
+        <tr><td>2026年 8月1日</td><td>「店頭有価証券規則」の一部改正について
+        【資料】<a href="./files/20260801_result.pdf">パブリックコメントの結果について</a></td>
+        <td>2026年7月1日～2026年7月31日</td></tr></table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "jsda_public_comment_results",
+            "url": "https://www.jsda.or.jp/about/public/kekka/index.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-08-01")
+        self.assertEqual(items[0]["stage_hint"], "Public Comment Results Published")
+        self.assertEqual(
+            items[0]["link"],
+            "https://www.jsda.or.jp/about/public/kekka/files/20260801_result.pdf",
+        )
+
+    def test_courts_recent_supreme_parser_uses_detail_page_and_decision_date(self):
+        html_text = """
+        <table class="search-result-table"><tr>
+        <th><a href="./../96798/detail2/index.html">最高裁判例</a></th>
+        <td><p>令和6(オ)720 損害賠償請求本訴、同反訴事件</p>
+        <p>令和8年7月16日 最高裁判所第一小法廷 判決 破棄差戻</p></td>
+        <td><a href="./../../assets/hanrei/hanrei-pdf-96798.pdf">全文</a></td>
+        </tr></table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "courts_recent_supreme",
+            "url": "https://www.courts.go.jp/hanrei/search2/index.html?courtCaseType=1&filter%5Brecent%5D=1",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-07-16")
+        self.assertEqual(items[0]["stage_hint"], "Court Decision")
+        self.assertEqual(items[0]["link"], "https://www.courts.go.jp/hanrei/96798/detail2/index.html")
+
+    def test_jpx_public_comment_parser_carries_structured_deadline(self):
+        html_text = """
+        <table><tr><th>募集開始日</th><th>募集終了日</th><th>法人</th><th>案件名</th></tr>
+        <tr><td>2026/07/22</td><td>2026/08/21</td><td>東証</td>
+        <td><a href="/rules-participants/public-comment/detail/d6/20260722-01.html">
+        ベンチャーファンドの上場制度の見直しについて</a></td></tr></table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "jpx_public_comments",
+            "url": "https://www.jpx.co.jp/rules-participants/public-comment/index.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-07-22")
+        self.assertEqual(items[0]["comment_deadline"], "2026-08-21")
+        self.assertEqual(
+            items[0]["link"],
+            "https://www.jpx.co.jp/rules-participants/public-comment/detail/d6/20260722-01.html",
+        )
+
+        configured = next(s for s in fu.SOURCES if s["key"] == "jpx-comments")
+        raw = fu.build_item(items[0], configured, "2026-08-01T00:00:00Z")
+        self.assertEqual(raw["comment_deadline"], "2026-08-21")
+
+    def test_jpx_rule_revisions_parser_prefers_official_overview_pdf(self):
+        html_text = """
+        <table><tr><th>公表日</th><th>内容</th><th>概要</th><th>新旧<br>対照表</th></tr>
+        <tr><td>2026/07/21</td><td>有価証券上場規程の一部改正について</td>
+        <td><a href="/rules/revise/overview.pdf"><img alt="PDF"></a></td>
+        <td><a href="/rules/revise/tracked.pdf"><img alt="PDF"></a></td></tr></table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "jpx_rule_revisions",
+            "url": "https://www.jpx.co.jp/rules-participants/rules/revise/index.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-07-21")
+        self.assertEqual(items[0]["link"], "https://www.jpx.co.jp/rules/revise/overview.pdf")
+
+    def test_pmda_parser_keeps_safety_rows_and_excludes_review_events(self):
+        html_text = """
+        <ul>
+          <li><a href="/safety/revision/1.html"><p class="date">2026年7月14日</p>
+          <p class="category category01">安全</p><p class="title">使用上の注意の改訂指示通知を掲載しました</p></a></li>
+          <li><a href="/review/event/1.html"><p class="date">2026年7月10日</p>
+          <p class="category category02">審査</p><p class="title">PMDAシンポジウムを開催します</p></a></li>
+          <li><a href="/safety/old/1.html"><p class="date">2020年1月1日</p>
+          <p class="category category01">安全</p><p class="title">過去の安全対策情報</p></a></li>
+        </ul>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "pmda_safety_updates",
+            "url": "https://www.pmda.go.jp/safety/0001.html",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["published_iso"], "2026-07-14")
+        self.assertEqual(items[0]["link"], "https://www.pmda.go.jp/safety/revision/1.html")
+        self.assertIn("pmda:2026-07-14:", items[0]["identity_key"])
+        self.assertEqual(items[0]["stage_hint"], "Government Announcement")
+
+    def test_shugiin_current_bills_parser_preserves_official_url_and_status_event(self):
+        html_text = """
+        <table>
+        <caption class="txt04b">閣法の一覧</caption>
+        <tr><th>提出回次</th><th>番号</th><th>議案件名</th><th>審議状況</th></tr>
+        <tr valign="top">
+          <td><span>221</span></td><td><span>7</span></td>
+          <td><span>金融機能の強化のための特別措置法等の一部を改正する法律案</span></td>
+          <td><span>成立</span></td>
+          <td><a href="./keika/ABC123.htm" title="経過">経過</a></td>
+          <td><a href="./honbun/g22109007.htm" title="本文">本文</a></td>
+        </tr>
+        </table>
+        """.encode("utf-8")
+        source = {
+            "html_parser": "shugiin_current_bills",
+            "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/menu.htm",
+        }
+        items = fu.parse_html_source(html_text, source)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["stage_hint"], "Enacted")
+        self.assertEqual(items[0]["published_iso"], "")
+        self.assertEqual(items[0]["identity_key"], "diet:閣法:221:7:成立")
+        self.assertEqual(
+            items[0]["link"],
+            "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/ABC123.htm",
+        )
+
+    def test_shugiin_terminal_unenacted_bill_is_not_marked_currently_submitted(self):
+        self.assertEqual(fu._diet_stage_hint("未了"), "Government Announcement")
+        self.assertEqual(fu._diet_stage_hint("衆議院で審議中"), "Bill Submitted")
+
     def test_ppc_information_parser(self):
         html_text = """
         <ul>
@@ -477,6 +723,69 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertTrue(item["title_ja"])
         self.assertEqual(item["published_at"], "2026-06-23")
         self.assertTrue(item["source_url"].startswith("https://www.meti.go.jp/press/"))
+
+
+class TestEgovUpdatedLawsAdapter(unittest.TestCase):
+    def test_parser_uses_structured_promulgation_and_enforcement_dates(self):
+        xml = b"""<?xml version="1.0" encoding="UTF-8"?>
+        <DataRoot><Result><Code>0</Code><Message/></Result><ApplData><Date>20260805</Date>
+        <LawNameListInfo>
+          <LawTypeName>\xe6\xb3\x95\xe5\xbe\x8b</LawTypeName><LawNo>\xe6\x98\xad\xe5\x92\x8c\xe4\xb8\x80\xe5\xb9\xb4\xe6\xb3\x95\xe5\xbe\x8b\xe7\xac\xac\xe4\xb8\x80\xe5\x8f\xb7</LawNo>
+          <LawName>\xe4\xbc\x9a\xe7\xa4\xbe\xe6\xb3\x95</LawName><PromulgationDate>19260426</PromulgationDate>
+          <AmendName>\xe4\xbc\x9a\xe7\xa4\xbe\xe6\xb3\x95\xe3\x81\xae\xe4\xb8\x80\xe9\x83\xa8\xe3\x82\x92\xe6\x94\xb9\xe6\xad\xa3\xe3\x81\x99\xe3\x82\x8b\xe6\xb3\x95\xe5\xbe\x8b</AmendName>
+          <AmendNo>\xe4\xbb\xa4\xe5\x92\x8c\xe5\x85\xab\xe5\xb9\xb4\xe6\xb3\x95\xe5\xbe\x8b\xe7\xac\xac\xe4\xba\x8c\xe5\x8f\xb7</AmendNo><AmendPromulgationDate>20260723</AmendPromulgationDate>
+          <EnforcementDate>20270101</EnforcementDate><LawId>001</LawId>
+          <LawUrl>https://elaws.e-gov.go.jp/document?lawid=001_20270101</LawUrl>
+        </LawNameListInfo></ApplData></DataRoot>"""
+        items = fu._parse_egov_updated_laws_xml(xml, "20260805", "2026-08-06")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["title"], "会社法の一部を改正する法律")
+        self.assertEqual(items[0]["published_iso"], "2026-07-23")
+        self.assertEqual(items[0]["stage_hint"], "Scheduled to Take Effect")
+        self.assertEqual(
+            items[0]["identity_key"],
+            "law:https://elaws.e-gov.go.jp/document?lawid=001_20270101:Scheduled to Take Effect",
+        )
+        self.assertIn("施行日: 2027-01-01", items[0]["summary"])
+
+    def test_update_dates_exclude_today_and_are_newest_first(self):
+        self.assertEqual(
+            fu._egov_update_dates(3, "2026-08-06"),
+            ["20260805", "20260804", "20260803"],
+        )
+
+    def test_adapter_skips_no_update_404_dates(self):
+        source = next(source for source in fu.SOURCES if source["key"] == "egov-laws")
+        empty_xml = b"<DataRoot><Result><Code>0</Code></Result><ApplData><Date>20260805</Date></ApplData></DataRoot>"
+
+        class NotFound(Exception):
+            pass
+
+        not_found = NotFound("404")
+        with mock.patch.object(fu, "_egov_update_dates", return_value=["20260805", "20260804"]), \
+                mock.patch.object(fu, "_http_status_from_exception", side_effect=lambda exc: 404), \
+                mock.patch.object(fu, "http_get", side_effect=[empty_xml, not_found]):
+            entries, effective_url = fu.fetch_source_entries(source, 1)
+        self.assertEqual(entries, [])
+        self.assertEqual(effective_url, source["url"])
+
+
+class TestSescCurrentYearAdapter(unittest.TestCase):
+    def test_adapter_resolves_and_fetches_exact_current_year_page(self):
+        source = next(source for source in fu.SOURCES if source["key"] == "sesc")
+        index_html = b'<a href="/sesc/news/c_2026/c_2026.html">2026</a>'
+        year_html = """
+        <ul><li>令和8年6月12日　<a href="/sesc/news/c_2026/2026/20260612-1.html">
+        虚偽記載に係る課徴金納付命令勧告について</a></li></ul>
+        """.encode("utf-8")
+        with mock.patch.object(fu, "current_jst_date", return_value="2026-08-06"), \
+                mock.patch.object(fu, "http_get", side_effect=[index_html, year_html]) as get:
+            entries, effective_url = fu.fetch_source_entries(source, 1)
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(effective_url, "https://www.fsa.go.jp/sesc/news/c_2026/c_2026.html")
+        self.assertEqual(get.call_count, 2)
+        self.assertEqual(get.call_args_list[0].args[0], source["url"])
+        self.assertEqual(get.call_args_list[1].args[0], effective_url)
 
 
 class TestHttpFetchRobustness(unittest.TestCase):

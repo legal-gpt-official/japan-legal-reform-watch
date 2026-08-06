@@ -41,6 +41,15 @@
   // When adding a source to fetch_updates.py, add its display name here too.
   const SOURCE_DISPLAY_NAMES = {
     "e-Gov Public Comment (意見募集案件一覧)": "e-Gov Public Comment",
+    "House of Representatives (衆議院) 議案情報": "House of Representatives — Diet Bills",
+    "e-Gov Law Search (法令更新一覧)": "e-Gov Law Search — Updated Laws",
+    "Japan Exchange Group (JPX) Public Comments": "Japan Exchange Group (JPX) — Public Comments",
+    "Tokyo Stock Exchange (JPX) Rule Revisions": "Tokyo Stock Exchange (JPX) — Rule Revisions",
+    "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates": "Pharmaceuticals and Medical Devices Agency (PMDA) — Safety Updates",
+    "Japan Securities Dealers Association (JSDA) Public Comments": "Japan Securities Dealers Association (JSDA) — Public Comments",
+    "Japan Securities Dealers Association (JSDA) Public Comment Results": "Japan Securities Dealers Association (JSDA) — Public Comment Results",
+    "Courts in Japan (裁判所) Recent Supreme Court Decisions": "Courts in Japan — Recent Supreme Court Decisions",
+    "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates": "Securities and Exchange Surveillance Commission (SESC) — Enforcement Updates",
     "Financial Services Agency (金融庁) 新着情報": "Financial Services Agency (FSA)",
     "経済産業省 (METI) ニュースリリース": "Ministry of Economy, Trade and Industry (METI)",
     "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報": "Ministry of Health, Labour and Welfare (MHLW)",
@@ -60,6 +69,15 @@
   // source_name strings; do not change those internal names.
   const SOURCE_SLUGS = {
     "egov": "e-Gov Public Comment (意見募集案件一覧)",
+    "shugiin-bills": "House of Representatives (衆議院) 議案情報",
+    "egov-laws": "e-Gov Law Search (法令更新一覧)",
+    "jpx-comments": "Japan Exchange Group (JPX) Public Comments",
+    "jpx-rules": "Tokyo Stock Exchange (JPX) Rule Revisions",
+    "pmda": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
+    "jsda-comments": "Japan Securities Dealers Association (JSDA) Public Comments",
+    "jsda-results": "Japan Securities Dealers Association (JSDA) Public Comment Results",
+    "courts-supreme": "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+    "sesc": "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates",
     "fsa": "Financial Services Agency (金融庁) 新着情報",
     "mhlw": "Ministry of Health, Labour and Welfare (厚生労働省) 新着情報",
     "digital-agency": "Digital Agency (デジタル庁) 新着・更新",

@@ -367,6 +367,8 @@
       "Scheduled to Take Effect": "预定生效",
       "In Force": "已生效",
       "Government Announcement": "政府公告",
+      "Court Decision": "法院裁判",
+      "Enforcement Action": "执法行动",
     },
   };
   var IMPACT_LABELS = {
@@ -388,6 +390,10 @@
       "総務省 (MIC) 新着情報": "总务省（MIC）",
       "国土交通省 (MLIT) 報道発表": "国土交通省（MLIT）",
       "農林水産省 (MAFF) 報道発表": "农林水产省（MAFF）",
+      "Japan Securities Dealers Association (JSDA) Public Comments": "日本证券业协会（JSDA）— 公开征求意见",
+      "Japan Securities Dealers Association (JSDA) Public Comment Results": "日本证券业协会（JSDA）— 征求意见结果",
+      "Courts in Japan (裁判所) Recent Supreme Court Decisions": "日本法院 — 近期最高法院裁判",
+      "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates": "证券交易等监视委员会（SESC）— 执法动态",
     },
   };
 

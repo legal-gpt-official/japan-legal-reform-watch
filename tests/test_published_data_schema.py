@@ -42,7 +42,7 @@ TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action
 ALLOWED_STAGES = {
     "Public Comment Open", "Public Comment Closed", "Public Comment Results Published",
     "Draft Guideline", "Bill Submitted", "Enacted", "Promulgated",
-    "Scheduled to Take Effect", "In Force", "Government Announcement",
+    "Scheduled to Take Effect", "In Force", "Government Announcement", "Court Decision", "Enforcement Action",
 }
 
 

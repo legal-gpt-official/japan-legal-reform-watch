@@ -32,6 +32,15 @@ DEFAULT_STATE_PATH = REPO_ROOT / "data" / "source_health_state.json"
 
 DISPLAY_NAMES = {
     "egov": "e-Gov Public Comment",
+    "shugiin-bills": "House of Representatives — Diet Bills",
+    "egov-laws": "e-Gov Law Search — Updated Laws",
+    "jpx-comments": "JPX — Public Comments",
+    "jpx-rules": "JPX — TSE Rule Revisions",
+    "pmda": "PMDA — Safety Updates",
+    "jsda-comments": "JSDA — Public Comments",
+    "jsda-results": "JSDA — Public Comment Results",
+    "courts-supreme": "Courts in Japan — Recent Supreme Court Decisions",
+    "sesc": "SESC — Enforcement Updates",
     "fsa": "Financial Services Agency",
     "mhlw": "MHLW",
     "digital-agency": "Digital Agency",
