@@ -50,7 +50,7 @@ field (and scheme-checks every URL) on render.
 Usage
 -----
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
-    python scripts/translate_updates.py --locale zh-Hans --limit 30
+    python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api
 
 Python 3.11+. Requires the `anthropic` SDK only when actually calling the API.
@@ -67,6 +67,8 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, run_message_batch
 
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
@@ -264,6 +266,7 @@ Options:
                    remove stale ones. Exit 0.
     --model ID     Override the model (precedence: --model >
                    ANTHROPIC_TRANSLATION_MODEL > default).
+    --batch        Use Message Batches plus a 1h system-prompt cache breakpoint.
     --dry-run      Do everything except write the output file and cache.
 
 The key is read only from ANTHROPIC_API_KEY; it is never read from, or written
@@ -552,42 +555,74 @@ def extract_json(text: str) -> dict:
     return json.loads(t)
 
 
-def request_translation(client, model: str, item: dict, locale: str) -> tuple[dict, str]:
-    """Call Claude and return (result_dict, model_used). Raises on API/parse error."""
-    import anthropic  # local import so the no-api path needs no SDK
+def cached_system_prompt(cache_ttl: str) -> list[dict]:
+    """Return the stable translation prompt with an explicit cache breakpoint."""
+    cache_control = {"type": "ephemeral"}
+    if cache_ttl == "1h":
+        cache_control["ttl"] = "1h"
+    return [{"type": "text", "text": SYSTEM_PROMPT, "cache_control": cache_control}]
 
-    kwargs = dict(
+
+def translation_request_params(model: str, item: dict, locale: str, *, cache_ttl: str) -> dict:
+    """Messages parameters shared by synchronous and discounted Batch calls."""
+    return dict(
         model=model,
         max_tokens=MAX_TOKENS,
-        # Translation is a faithful-rendering task, not a reasoning task. Disable
-        # thinking explicitly: on Sonnet 5 an omitted `thinking` runs adaptive
-        # thinking by default (unlike Opus 4.8, which runs without it), and those
-        # thinking tokens count against MAX_TOKENS and can truncate the JSON.
-        # `{"type": "disabled"}` is accepted on both Opus 4.8 and Sonnet 5 and is a
-        # no-op on Opus 4.8's current behavior. No temperature/top_p/top_k — those
-        # are rejected (400) on Sonnet 5 / Opus 4.8.
+        # Translation is faithful rendering, not reasoning; thinking would add
+        # billed tokens and can truncate the structured JSON response.
         thinking={"type": "disabled"},
-        system=SYSTEM_PROMPT,
+        system=cached_system_prompt(cache_ttl),
         messages=[{"role": "user", "content": build_user_content(item, locale)}],
     )
+
+
+def parse_translation_message(message, model: str) -> tuple[dict, str]:
+    text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
+    return extract_json(text), getattr(message, "model", model)
+
+
+def request_translation(client, model: str, item: dict, locale: str) -> tuple[dict, str]:
+    """Call Claude synchronously with a five-minute prompt-cache breakpoint."""
+    import anthropic  # local import so the no-api path needs no SDK
+
+    kwargs = translation_request_params(model, item, locale, cache_ttl="5m")
     try:
-        # Preferred: structured outputs guarantee schema-valid JSON.
         resp = client.messages.create(
             output_config={"format": {"type": "json_schema", "schema": RESULT_SCHEMA}},
             **kwargs,
         )
     except (TypeError, anthropic.BadRequestError) as exc:
-        # Retry without output_config ONLY for an output_config/schema
-        # incompatibility (older SDK/model). Do NOT silently retry an
-        # account-level 400 such as insufficient credit — re-raise it so the
-        # caller can fail fast instead of burning a second call.
         if isinstance(exc, anthropic.BadRequestError) and classify_provider_error(exc) != "unknown_provider_error":
             raise
         resp = client.messages.create(**kwargs)
+    return parse_translation_message(resp, model)
 
-    text = next((b.text for b in resp.content if getattr(b, "type", None) == "text"), "")
-    data = extract_json(text)
-    return data, getattr(resp, "model", model)
+
+def request_translation_batch(
+    client,
+    model: str,
+    candidates: list[dict],
+    locale: str,
+    *,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+) -> tuple[str, list[object]]:
+    """Submit translations as one Batch using a one-hour prompt-cache TTL."""
+    requests = []
+    for index, item in enumerate(candidates):
+        params = translation_request_params(model, item, locale, cache_ttl="1h")
+        params["output_config"] = {"format": {"type": "json_schema", "schema": RESULT_SCHEMA}}
+        requests.append({"custom_id": f"translate-{index:04d}", "params": params})
+    run = run_message_batch(
+        client,
+        requests,
+        timeout_seconds=timeout_seconds,
+        logger=logger,
+    )
+    decoded: list[object] = []
+    for index in range(len(candidates)):
+        value = run.results[f"translate-{index:04d}"]
+        decoded.append(value if isinstance(value, Exception) else parse_translation_message(value, model))
+    return run.batch_id, decoded
 
 
 # --------------------------------------------------------------------------- #
@@ -758,6 +793,8 @@ def classify_provider_error(exc) -> str:
         return "authentication_error"
     if status == 403 or name == "PermissionDeniedError":
         return "permission_error"
+    if status == 402:
+        return "insufficient_credit"
     if status == 429 or name == "RateLimitError":
         return "rate_limit"
     if (isinstance(status, int) and 500 <= status < 600) or name in ("InternalServerError", "APIStatusError"):
@@ -780,6 +817,119 @@ def classify_error(exc) -> str:
     return classify_provider_error(exc)
 
 
+def process_translation_batch(
+    items: list[dict],
+    entries: dict,
+    locale: str,
+    model: str,
+    limit: int,
+    timeout_seconds: float,
+) -> dict:
+    """Apply cache hits, submit misses together, and run existing quality gates."""
+    stats = {
+        "cache_hits": 0,
+        "api_calls": 0,
+        "translated": 0,
+        "failed": 0,
+        "quality_rejected": 0,
+        "skipped_no_budget": 0,
+        "stale_translations_removed": 0,
+        "provider_aborted": 0,
+        "provider_fatal": False,
+        "provider_error_type": "none",
+        "candidate_reasons": {},
+        "batch_id": "",
+    }
+    candidates: list[tuple[dict, str, bool]] = []
+
+    for it in items:
+        item_id = it.get("id") or ""
+        had_locale = isinstance(it.get("translations"), dict) and locale in it["translations"]
+        source_hash = compute_source_hash(it, locale, PROMPT_VERSION)
+        cached = entries.get(item_id)
+        reason = candidate_reason(cached, source_hash, PROMPT_VERSION)
+        if reason is None:
+            apply_translation(it, cached, locale)
+            stats["cache_hits"] += 1
+            continue
+
+        reasons = stats["candidate_reasons"]
+        reasons[reason] = reasons.get(reason, 0) + 1
+        logger.info(
+            "CANDIDATE %s reason=%s had_published_translation=%s cache_present=%s "
+            "cache_prompt_version=%s hash_match=%s",
+            item_id, reason, had_locale, isinstance(cached, dict),
+            (cached.get("prompt_version") if isinstance(cached, dict) else None),
+            (isinstance(cached, dict) and cached.get("source_hash") == source_hash),
+        )
+        if had_locale:
+            stats["stale_translations_removed"] += 1
+        remove_translation(it, locale)
+        if len(candidates) < max(0, limit):
+            candidates.append((it, source_hash, had_locale))
+        else:
+            stats["skipped_no_budget"] += 1
+
+    if not candidates:
+        return stats
+
+    stats["api_calls"] = len(candidates)
+    try:
+        batch_id, outcomes = request_translation_batch(
+            make_client(),
+            model,
+            [it for it, _source_hash, _had_locale in candidates],
+            locale,
+            timeout_seconds=timeout_seconds,
+        )
+        stats["batch_id"] = batch_id
+    except Exception as exc:
+        etype = classify_error(exc)
+        if etype in FATAL_PROVIDER_ERRORS:
+            # Auth/billing/permission failures reject batch creation before any
+            # message is processed, so the remaining candidates were not billed.
+            stats["api_calls"] = 0
+            stats["failed"] = 1
+            stats["provider_aborted"] = len(candidates)
+            stats["provider_fatal"] = True
+            stats["provider_error_type"] = etype
+            logger.error("PROVIDER unavailable type=%s; batch was not submitted.", etype)
+            return stats
+        outcomes = [exc] * len(candidates)
+        logger.error("BATCH failed before results could be applied: %s", type(exc).__name__)
+
+    for (it, source_hash, _had_locale), outcome in zip(candidates, outcomes):
+        item_id = it.get("id") or ""
+        try:
+            if isinstance(outcome, Exception):
+                raise outcome
+            result, model_used = outcome
+            if not valid_translation(result):
+                raise ValueError("model returned invalid/oversize translation fields")
+            fields = {field: normalize_dates(result[field].strip()) for field in TRANSLATION_FIELDS}
+            title_errs = title_quality_errors(fields["title"])
+            if title_errs:
+                stats["quality_rejected"] += 1
+                logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))
+                continue
+            now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            apply_translation(it, fields, locale)
+            entries[item_id] = cache_entry(source_hash, PROMPT_VERSION, now, model_used, fields)
+            stats["translated"] += 1
+            logger.info("BATCH API %s ok", item_id)
+        except Exception as exc:
+            etype = classify_error(exc)
+            stats["failed"] += 1
+            remove_translation(it, locale)
+            if etype in FATAL_PROVIDER_ERRORS and not stats["provider_fatal"]:
+                stats["provider_fatal"] = True
+                stats["provider_error_type"] = etype
+                logger.error("PROVIDER unavailable type=%s in completed batch.", etype)
+            else:
+                logger.error("BATCH FAIL %s type=%s", item_id, etype)
+    return stats
+
+
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
@@ -797,6 +947,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Max NEW API calls this run (default 30). Cache hits are free.")
     parser.add_argument("--no-api", action="store_true", help="Apply valid cache only; never call the API. Exit 0.")
     parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > default).")
+    parser.add_argument(
+        "--batch",
+        action="store_true",
+        help="Use the asynchronous Anthropic Message Batches API (50%% token discount).",
+    )
+    parser.add_argument(
+        "--batch-timeout-seconds",
+        type=float,
+        default=DEFAULT_TIMEOUT_SECONDS,
+        help="Maximum time to wait for a Message Batch (default 3600 seconds).",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write the output file or cache.")
     parser.add_argument(
         "--provider-failure-mode",
@@ -847,8 +1008,9 @@ def main(argv: list[str] | None = None) -> int:
     model = resolve_model(args.model)
 
     logger.info(
-        "=== translate run start (locale=%s, limit=%d, no_api=%s, has_key=%s, model=%s, dry_run=%s) ===",
-        locale, args.limit, args.no_api, has_key, model, args.dry_run,
+        "=== translate run start (locale=%s, limit=%d, no_api=%s, has_key=%s, model=%s, "
+        "batch=%s, dry_run=%s) ===",
+        locale, args.limit, args.no_api, has_key, model, args.batch, args.dry_run,
     )
     if args.no_api:
         logger.info("--no-api: applying valid cache only; no API calls will be made.")
@@ -862,8 +1024,34 @@ def main(argv: list[str] | None = None) -> int:
     provider_fatal = False
     provider_error_type = "none"
     candidate_reasons: dict[str, int] = {}
+    batch_id = ""
 
-    for it in items:
+    if args.batch and api_allowed:
+        batch_stats = process_translation_batch(
+            items,
+            entries,
+            locale,
+            model,
+            args.limit,
+            args.batch_timeout_seconds,
+        )
+        cache_hits = batch_stats["cache_hits"]
+        api_calls = batch_stats["api_calls"]
+        translated = batch_stats["translated"]
+        failed = batch_stats["failed"]
+        quality_rejected = batch_stats["quality_rejected"]
+        skipped_no_budget = batch_stats["skipped_no_budget"]
+        stale_translations_removed = batch_stats["stale_translations_removed"]
+        provider_aborted = batch_stats["provider_aborted"]
+        provider_fatal = batch_stats["provider_fatal"]
+        provider_error_type = batch_stats["provider_error_type"]
+        candidate_reasons = batch_stats["candidate_reasons"]
+        batch_id = batch_stats["batch_id"]
+        loop_items = []
+    else:
+        loop_items = items
+
+    for it in loop_items:
         item_id = it.get("id") or ""
         had_locale = isinstance(it.get("translations"), dict) and locale in it["translations"]
         source_hash = compute_source_hash(it, locale, PROMPT_VERSION)
@@ -1016,13 +1204,13 @@ def main(argv: list[str] | None = None) -> int:
         "quality_rejected_items=%d skipped_no_budget=%d stale_translations_removed=%d "
         "new_cache=%d updated_cache=%d removed_cache=%d published_added=%d published_updated=%d "
         "published_removed=%d candidate_reasons=%s provider_status=%s provider_error_type=%s "
-        "provider_aborted_items=%d api_calls_avoided=%d",
+        "provider_aborted_items=%d api_calls_avoided=%d batch=%s batch_id=%s",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
         cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
         published_diff["added"], published_diff["updated"], published_diff["removed"],
         candidate_reasons, provider_status, provider_error_type,
-        provider_aborted, api_calls_avoided,
+        provider_aborted, api_calls_avoided, args.batch, batch_id,
     )
     for failure in gate_failures:
         logger.error("INTEGRITY %s", failure)
@@ -1031,6 +1219,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"locale                    : {locale}")
     print(f"prompt_version            : {PROMPT_VERSION}")
     print(f"model                     : {model}")
+    print(f"batch_mode                : {str(args.batch).lower()}")
+    print(f"batch_id                  : {batch_id or 'none'}")
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")
     print(f"api_calls                 : {api_calls}")

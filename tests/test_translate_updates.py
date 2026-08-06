@@ -89,6 +89,7 @@ class TranslateTestBase(unittest.TestCase):
             "LOG_PATH": tu.LOG_PATH,
             "make_client": tu.make_client,
             "request_translation": tu.request_translation,
+            "request_translation_batch": tu.request_translation_batch,
         }
         self.input_path = base / "legal_updates.json"
         self.cache_path = base / "translation_cache.json"
@@ -312,6 +313,61 @@ class TestLimitAndApi(TranslateTestBase):
         self.assertEqual(calls["n"], 2, "must stop after --limit new API calls")
         translated = [it for it in self.read_output() if LOCALE in it.get("translations", {})]
         self.assertEqual(len(translated), 2)
+
+    def test_batch_mode_submits_only_budgeted_misses_and_applies_results(self):
+        cached = sample_item(id="raw-cached", title_en="Already cached title.")
+        candidates = [
+            sample_item(id=f"raw-{i}", title_en=f"Distinct English title {i}.")
+            for i in range(3)
+        ]
+        self.write_input([cached, *candidates])
+        self.write_cache({
+            "schema_version": 1,
+            "entries": {LOCALE: {cached["id"]: make_cache_entry(cached)}},
+        })
+        captured = {}
+
+        def fake_batch(client, model, items, locale, *, timeout_seconds):
+            captured["ids"] = [item["id"] for item in items]
+            captured["timeout"] = timeout_seconds
+            return "msgbatch_test", [(good_translation(), "fake-batch-model") for _ in items]
+
+        tu.make_client = lambda: object()
+        tu.request_translation_batch = fake_batch
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "2", "--batch"])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(captured["ids"], ["raw-0", "raw-1"])
+        translated = [it for it in self.read_output() if LOCALE in it.get("translations", {})]
+        self.assertEqual(len(translated), 3)  # one cache hit + two batch results
+        summary = parse_summary(out)
+        self.assertEqual(summary["batch_mode"], "true")
+        self.assertEqual(summary["batch_id"], "msgbatch_test")
+        self.assertEqual(summary["api_calls"], "2")
+        self.assertEqual(summary["skipped_no_budget"], "1")
+
+    def test_batch_creation_credit_failure_is_counted_once_and_aborts_unbilled_items(self):
+        items = [sample_item(id=f"raw-{i}", title_en=f"Title {i}.") for i in range(3)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+
+        def fake_batch(*args, **kwargs):
+            raise make_provider_error(CREDIT_MESSAGE, 402)
+
+        tu.make_client = lambda: object()
+        tu.request_translation_batch = fake_batch
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "3", "--batch",
+            "--provider-failure-mode", "warn",
+        ])
+
+        summary = parse_summary(out)
+        self.assertEqual(rc, 0)
+        self.assertEqual(summary["api_calls"], "0")
+        self.assertEqual(summary["failed_items"], "1")
+        self.assertEqual(summary["provider_aborted_items"], "3")
+        self.assertEqual(summary["provider_error_type"], "insufficient_credit")
+        self.assertEqual(out.count("PROVIDER_UNAVAILABLE"), 1)
 
     def test_new_translation_is_cached_with_metadata(self):
         item = sample_item()
@@ -1261,12 +1317,34 @@ class TestRequestTranslationCallShape(unittest.TestCase):
         # Thinking is explicitly disabled (Sonnet 5 would otherwise run adaptive
         # thinking by default and could truncate the JSON at MAX_TOKENS).
         self.assertEqual(captured.get("thinking"), {"type": "disabled"})
+        self.assertEqual(
+            captured.get("system"),
+            [{
+                "type": "text",
+                "text": tu.SYSTEM_PROMPT,
+                "cache_control": {"type": "ephemeral"},
+            }],
+        )
         # No sampling params — they are rejected (400) on Sonnet 5 / Opus 4.8.
         for param in ("temperature", "top_p", "top_k"):
             self.assertNotIn(param, captured)
         self.assertEqual(captured.get("model"), "claude-sonnet-5")  # resolved model passes through
         self.assertEqual(model_used, "claude-sonnet-5")
         self.assertEqual(data["title"], good_translation()["title"])
+
+    def test_batch_params_use_one_hour_prompt_cache(self):
+        params = tu.translation_request_params(
+            "claude-sonnet-5",
+            sample_item(),
+            LOCALE,
+            cache_ttl="1h",
+        )
+
+        self.assertEqual(
+            params["system"][0]["cache_control"],
+            {"type": "ephemeral", "ttl": "1h"},
+        )
+        self.assertEqual(params["system"][0]["text"], tu.SYSTEM_PROMPT)
 
 
 class TestTranslationModelOverride(unittest.TestCase):
@@ -1280,6 +1358,15 @@ class TestTranslationModelOverride(unittest.TestCase):
         for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
             with self.subTest(workflow=name):
                 self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", wf)
+
+    def test_both_workflows_use_discounted_batch_mode(self):
+        for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
+            with self.subTest(workflow=name):
+                command = next(
+                    line.strip() for line in wf.splitlines()
+                    if "python scripts/translate_updates.py" in line
+                )
+                self.assertIn("--batch", command)
 
     def test_override_is_translate_only(self):
         # The model-override *assignment* appears exactly once per workflow (the

@@ -35,7 +35,7 @@ jobs:
 
       # Only the translator is executed by this workflow, so only it is compiled here.
       - name: Compile translator
-        run: python -m py_compile scripts/translate_updates.py
+        run: python -m py_compile scripts/translate_updates.py scripts/anthropic_batch.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -63,7 +63,7 @@ jobs:
         # fail mode: a fatal provider error (e.g. insufficient credit) while
         # untranslated candidates remain exits 1, failing the backfill before any
         # commit so a credit/auth problem is loud and no partial state is pushed.
-        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode fail
+        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch --provider-failure-mode fail
 
       - name: Count translations after
         id: after

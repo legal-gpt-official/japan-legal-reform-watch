@@ -42,7 +42,7 @@ The browser dashboard still escapes every field on render.
 Usage
 -----
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
-    python scripts/summarize_updates.py --limit 10
+    python scripts/summarize_updates.py --limit 10 --batch
 
 Python 3.11+. Requires the `anthropic` SDK (see requirements.txt).
 """
@@ -59,6 +59,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import build_public_data as public_data
+from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, run_message_batch
 
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
@@ -153,6 +154,7 @@ Then run:
 Options:
     --limit N     Summarize the top N items by relevance_score (default 10).
     --model ID    Claude model id (default: claude-opus-4-8).
+    --batch       Use Message Batches (same prompt/model, 50% token discount).
     --dry-run     Do everything except write the output file, backup, and cache.
 
 Optional:
@@ -267,16 +269,31 @@ def extract_json(text: str) -> dict:
     return json.loads(t)
 
 
-def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str]:
-    """Call Claude and return (result_dict, model_used). Raises on API/parse error."""
-    import anthropic  # local import so the no-key path needs no SDK
-
-    kwargs = dict(
+def summary_request_params(model: str, item: dict, raw: dict) -> dict:
+    """Standard Messages parameters shared by synchronous and Batch requests."""
+    return dict(
         model=model,
         max_tokens=MAX_TOKENS,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_user_content(item, raw)}],
     )
+
+
+def parse_summary_message(message, model: str) -> tuple[dict, str]:
+    text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
+    return extract_json(text), getattr(message, "model", model)
+
+
+def make_client():
+    import anthropic
+    return anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
+
+
+def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str]:
+    """Call Claude synchronously and return (result_dict, model_used)."""
+    import anthropic  # local import so the no-key path needs no SDK
+
+    kwargs = summary_request_params(model, item, raw)
     try:
         # Preferred: structured outputs guarantee schema-valid JSON.
         resp = client.messages.create(
@@ -287,9 +304,33 @@ def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, st
         # Older SDK or model without output_config: rely on the prompt + robust parse.
         resp = client.messages.create(**kwargs)
 
-    text = next((b.text for b in resp.content if getattr(b, "type", None) == "text"), "")
-    data = extract_json(text)
-    return data, getattr(resp, "model", model)
+    return parse_summary_message(resp, model)
+
+
+def request_summary_batch(
+    client,
+    model: str,
+    candidates: list[tuple[dict, dict]],
+    *,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+) -> tuple[str, list[object]]:
+    """Submit independent summary requests as one discounted Message Batch."""
+    requests = []
+    for index, (item, raw) in enumerate(candidates):
+        params = summary_request_params(model, item, raw)
+        params["output_config"] = {"format": {"type": "json_schema", "schema": RESULT_SCHEMA}}
+        requests.append({"custom_id": f"summary-{index:04d}", "params": params})
+    run = run_message_batch(
+        client,
+        requests,
+        timeout_seconds=timeout_seconds,
+        logger=logger,
+    )
+    decoded: list[object] = []
+    for index in range(len(candidates)):
+        value = run.results[f"summary-{index:04d}"]
+        decoded.append(value if isinstance(value, Exception) else parse_summary_message(value, model))
+    return run.batch_id, decoded
 
 
 def resolve_model(cli_model: str | None) -> str:
@@ -396,6 +437,17 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="Claude model id (default claude-opus-4-8; can also use ANTHROPIC_SUMMARY_MODEL).",
     )
+    parser.add_argument(
+        "--batch",
+        action="store_true",
+        help="Use the asynchronous Anthropic Message Batches API (50%% token discount).",
+    )
+    parser.add_argument(
+        "--batch-timeout-seconds",
+        type=float,
+        default=DEFAULT_TIMEOUT_SECONDS,
+        help="Maximum time to wait for a Message Batch (default 3600 seconds).",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write output, backup, or cache.")
     args = parser.parse_args(argv)
     model = resolve_model(args.model)
@@ -429,10 +481,15 @@ def main(argv: list[str] | None = None) -> int:
     target_ids = {id(it) for it in targets}  # identity set — items are dict refs in `items`
 
     fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    logger.info("=== summarize run start (limit=%d, model=%s, dry_run=%s) ===", args.limit, model, args.dry_run)
+    logger.info(
+        "=== summarize run start (limit=%d, model=%s, batch=%s, dry_run=%s) ===",
+        args.limit, model, args.batch, args.dry_run,
+    )
 
     client = None
     cache_hits = api_calls = summarized = failed = 0
+    batch_id = ""
+    pending: list[tuple[dict, str, dict]] = []
 
     for it in items:
         if id(it) not in target_ids:
@@ -449,10 +506,15 @@ def main(argv: list[str] | None = None) -> int:
             logger.info("CACHE %s — %s", it.get("id"), it.get("title_ja", "")[:48])
             continue
 
-        # Cache miss -> call Claude.
+        # In Batch mode, collect every cache miss and submit them together after
+        # this pass. Cached records are still applied immediately and for free.
+        if args.batch:
+            pending.append((it, key, raw_by_id.get(it.get("id"), {})))
+            continue
+
+        # Cache miss -> call Claude synchronously (compatibility/manual mode).
         if client is None:
-            import anthropic
-            client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
+            client = make_client()
         api_calls += 1
         try:
             result, model_used = request_summary(client, model, it, raw_by_id.get(it.get("id"), {}))
@@ -471,6 +533,37 @@ def main(argv: list[str] | None = None) -> int:
             req_id = req_id.get("request-id") if hasattr(req_id, "get") else None
             logger.error("FAIL  %s (%s): %s%s", it.get("id"), it.get("title_ja", "")[:40],
                          f"{type(exc).__name__}: {exc}", f" [request-id={req_id}]" if req_id else "")
+
+    if args.batch and pending:
+        client = make_client()
+        api_calls += len(pending)
+        try:
+            batch_id, outcomes = request_summary_batch(
+                client,
+                model,
+                [(it, raw) for it, _key, raw in pending],
+                timeout_seconds=args.batch_timeout_seconds,
+            )
+        except Exception as exc:
+            outcomes = [exc] * len(pending)
+            logger.error("BATCH failed before results could be applied: %s", type(exc).__name__)
+
+        for (it, key, _raw), outcome in zip(pending, outcomes):
+            try:
+                if isinstance(outcome, Exception):
+                    raise outcome
+                result, model_used = outcome
+                if not valid_result(result):
+                    raise ValueError("model returned JSON missing/invalid required fields")
+                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                apply_result(it, result, now, model_used)
+                cache[key] = {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+                summarized += 1
+                logger.info("BATCH API %s confidence=%s", it.get("id"), result.get("confidence"))
+            except Exception as exc:
+                failed += 1
+                it["summary_source"] = "rule_based"
+                logger.error("BATCH FAIL %s type=%s", it.get("id"), type(exc).__name__)
 
     # Requirement 15: validate the whole output before writing.
     problems = validate_output(items, original_by_id)
@@ -493,12 +586,16 @@ def main(argv: list[str] | None = None) -> int:
         save_json(CACHE_PATH, cache)
 
     logger.info(
-        "RUN SUMMARY input=%d target=%d cache_hits=%d api_calls=%d summarized=%d failed=%d caution_warnings=%d",
+        "RUN SUMMARY input=%d target=%d cache_hits=%d api_calls=%d summarized=%d failed=%d "
+        "caution_warnings=%d batch=%s batch_id=%s",
         len(items), len(targets), cache_hits, api_calls, summarized, failed, caution_warnings,
+        args.batch, batch_id,
     )
 
     print("\n==== summarize_updates summary ====")
     print(f"model           : {model}")
+    print(f"batch_mode      : {str(args.batch).lower()}")
+    print(f"batch_id        : {batch_id or 'none'}")
     print(f"input_items     : {len(items)}")
     print(f"target_items    : {len(targets)}")
     print(f"cache_hits      : {cache_hits}")
