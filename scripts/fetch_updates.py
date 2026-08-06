@@ -47,11 +47,11 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from public_comment_deadlines import extract_egov_comment_deadline
+from public_comment_deadlines import extract_egov_comment_deadline, normalize_comment_deadline
 
 # Optional third-party deps — preferred, but not required.
 try:
@@ -79,6 +79,107 @@ SOURCES = [
         "url": "https://public-comment.e-gov.go.jp/rss/pcm_list.xml",
         "source_type": "public_comment_rss",
         "source_language": "ja",
+    },
+    {
+        # Stable current-session list. Each bill/status pair gets an event
+        # identity so a later transition (for example, deliberating -> enacted)
+        # is appended without changing the original official source URL.
+        "name": "House of Representatives (衆議院) 議案情報",
+        "key": "shugiin-bills",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/menu.htm",
+        "source_type": "legislature_html",
+        "source_language": "ja",
+        "html_parser": "shugiin_current_bills",
+        "encoding": "shift_jis",
+        "dedupe_by_url": False,
+        "max_items": 250,
+    },
+    {
+        # The endpoint requires a yyyyMMdd suffix. The source-specific fetcher
+        # requests a seven-day lookback (excluding today) so a missed daily run
+        # does not create a permanent gap. HTTP 404 means no updates for a date.
+        "name": "e-Gov Law Search (法令更新一覧)",
+        "key": "egov-laws",
+        "url": "https://laws.e-gov.go.jp/api/1/updatelawlists/",
+        "source_type": "law_api",
+        "source_language": "ja",
+        "entry_fetcher": "egov_updated_laws",
+        "lookback_days": 7,
+        "dedupe_by_url": False,
+        "max_items": 300,
+    },
+    {
+        "name": "Japan Exchange Group (JPX) Public Comments",
+        "key": "jpx-comments",
+        "url": "https://www.jpx.co.jp/rules-participants/public-comment/index.html",
+        "source_type": "public_comment_html",
+        "source_language": "ja",
+        "html_parser": "jpx_public_comments",
+    },
+    {
+        "name": "Tokyo Stock Exchange (JPX) Rule Revisions",
+        "key": "jpx-rules",
+        "url": "https://www.jpx.co.jp/rules-participants/rules/revise/index.html",
+        "source_type": "regulator_html",
+        "source_language": "ja",
+        "html_parser": "jpx_rule_revisions",
+    },
+    {
+        "name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
+        "key": "pmda",
+        "url": "https://www.pmda.go.jp/safety/0001.html",
+        "source_type": "pmda_safety_html",
+        "source_language": "ja",
+        "html_parser": "pmda_safety_updates",
+        # PMDA reuses landing URLs for recurring monthly updates. The event key
+        # keeps date/title changes while the official link remains untouched.
+        "dedupe_by_url": False,
+        "history_days": 550,
+        "max_items": 200,
+    },
+    {
+        "name": "Japan Securities Dealers Association (JSDA) Public Comments",
+        "key": "jsda-comments",
+        "url": "https://www.jsda.or.jp/about/public/bosyu/index.html",
+        "source_type": "public_comment_html",
+        "source_language": "ja",
+        "html_parser": "jsda_public_comments",
+    },
+    {
+        "name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
+        "key": "jsda-results",
+        "url": "https://www.jsda.or.jp/about/public/kekka/index.html",
+        "source_type": "public_comment_results_html",
+        "source_language": "ja",
+        "html_parser": "jsda_public_comment_results",
+    },
+    {
+        # The official recent filter is limited by the Courts site to Supreme
+        # Court judgments and decisions from the past three months. This avoids
+        # treating the much broader all-courts search as comprehensive coverage.
+        "name": "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+        "key": "courts-supreme",
+        "url": (
+            "https://www.courts.go.jp/hanrei/search2/index.html?"
+            "courtCaseType=1&filter%5Brecent%5D=1"
+        ),
+        "source_type": "court_html",
+        "source_language": "ja",
+        "html_parser": "courts_recent_supreme",
+        "max_items": 100,
+    },
+    {
+        # Resolve the current-year page from this stable archive index on every
+        # run instead of hard-coding /c_2026/. The adapter retains only focused
+        # enforcement, market-monitoring policy, and public-comment updates.
+        "name": "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates",
+        "key": "sesc",
+        "url": "https://www.fsa.go.jp/sesc/news/news.html",
+        "source_type": "enforcement_html",
+        "source_language": "ja",
+        "entry_fetcher": "sesc_current_year",
+        "html_parser": "sesc_current_year",
+        "max_items": 100,
     },
     {
         "name": "Financial Services Agency (金融庁) 新着情報",
@@ -422,9 +523,148 @@ def parse_source_entries(content: bytes, source: dict) -> list[dict]:
     return parse_feed(content)
 
 
+def _compact_date(value: str) -> str:
+    value = str(value or "").strip()
+    try:
+        return datetime.strptime(value, "%Y%m%d").strftime("%Y-%m-%d")
+    except ValueError:
+        return ""
+
+
+def _parse_egov_updated_laws_xml(content: bytes, update_date: str, today: str) -> list[dict]:
+    """Map one e-Gov update-list response into the raw entry shape."""
+    import xml.etree.ElementTree as ET
+
+    root = ET.fromstring(content)
+    result_code = (root.findtext("./Result/Code") or "").strip()
+    rows = root.findall("./ApplData/LawNameListInfo")
+    if result_code != "0" and not rows:
+        # The endpoint normally expresses a no-update date as HTTP 404. Treat a
+        # body with no rows the same way; no arbitrary dates or records are made.
+        return []
+
+    entries: list[dict] = []
+    seen: set[tuple[str, str, str]] = set()
+    for row in rows:
+        value = lambda tag: (row.findtext(tag) or "").strip()  # noqa: E731
+        law_name = value("LawName")
+        amend_name = value("AmendName")
+        title = amend_name or law_name
+        law_url = value("LawUrl")
+        if not title or not law_url:
+            continue
+
+        promulgation_date = _compact_date(value("AmendPromulgationDate")) or _compact_date(
+            value("PromulgationDate")
+        )
+        enforcement_date = _compact_date(value("EnforcementDate"))
+        if enforcement_date and enforcement_date > today:
+            stage_hint = "Scheduled to Take Effect"
+        elif enforcement_date and enforcement_date <= today:
+            stage_hint = "In Force"
+        else:
+            stage_hint = "Promulgated"
+
+        identity = (law_url, value("AmendNo"), enforcement_date)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        summary_parts = [
+            f"更新一覧日: {update_date}",
+            f"対象法令: {law_name}",
+            f"法令番号: {value('LawNo')}",
+        ]
+        if amend_name:
+            summary_parts.append(f"改正法令: {amend_name}")
+        if value("AmendNo"):
+            summary_parts.append(f"改正法令番号: {value('AmendNo')}")
+        if promulgation_date:
+            summary_parts.append(f"公布日: {promulgation_date}")
+        if enforcement_date:
+            summary_parts.append(f"施行日: {enforcement_date}")
+        entries.append(
+            {
+                "title": title,
+                "link": law_url,
+                "summary": "; ".join(summary_parts),
+                "published_iso": promulgation_date,
+                "identity_key": f"law:{law_url}:{stage_hint}",
+                "stage_hint": stage_hint,
+            }
+        )
+    return entries
+
+
+def _egov_update_dates(lookback_days: int, today: str | None = None) -> list[str]:
+    """Return newest-first yyyyMMdd dates, excluding the incomplete current day."""
+    base = datetime.strptime(today or current_jst_date(), "%Y-%m-%d").date()
+    return [(base - timedelta(days=offset)).strftime("%Y%m%d") for offset in range(1, lookback_days + 1)]
+
+
+def fetch_source_entries(source: dict, timeout: int) -> tuple[list[dict], str]:
+    """Fetch and parse a configured source, including allow-listed adapters."""
+    fetcher = source.get("entry_fetcher")
+    if fetcher == "egov_updated_laws":
+        entries: list[dict] = []
+        lookback_days = max(1, min(int(source.get("lookback_days", 7)), 31))
+        today = current_jst_date()
+        for compact_date in _egov_update_dates(lookback_days, today):
+            request_url = urllib.parse.urljoin(source["url"], compact_date)
+            try:
+                content = http_get(
+                    request_url,
+                    int(source.get("timeout", timeout)),
+                    user_agent=str(source.get("user_agent") or USER_AGENT),
+                )
+            except Exception as exc:
+                if _http_status_from_exception(exc) == 404:
+                    logger.info("No e-Gov law updates for %s (HTTP 404).", compact_date)
+                    continue
+                raise
+            entries.extend(_parse_egov_updated_laws_xml(content, compact_date, today))
+        return entries, source["url"]
+    if fetcher == "sesc_current_year":
+        index_content = http_get(
+            source["url"],
+            int(source.get("timeout", timeout)),
+            accept_html=True,
+            user_agent=str(source.get("user_agent") or USER_AGENT),
+        )
+        index_text = index_content.decode(str(source.get("encoding") or "utf-8"), errors="replace")
+        year_url = _find_sesc_year_url(index_text, source["url"], current_jst_date()[:4])
+        if not year_url:
+            raise ValueError("SESC current-year archive link was not found")
+        content = http_get(
+            year_url,
+            int(source.get("timeout", timeout)),
+            accept_html=True,
+            user_agent=str(source.get("user_agent") or USER_AGENT),
+        )
+        parse_source = dict(source)
+        parse_source["url"] = year_url
+        return parse_source_entries(content, parse_source), year_url
+    if fetcher:
+        raise ValueError(f"Unsupported entry_fetcher: {fetcher}")
+
+    content = http_get(
+        source["url"],
+        int(source.get("timeout", timeout)),
+        prefer_urllib=bool(source.get("prefer_urllib")),
+        accept_html=str(source.get("source_type", "")).endswith("_html"),
+        user_agent=str(source.get("user_agent") or USER_AGENT),
+        timeouts=source.get("timeouts"),
+        backoff=source.get("backoff"),
+        urllib_fallback=bool(source.get("urllib_fallback")),
+    )
+    content, effective_url = follow_meta_refresh_if_requested(content, source, timeout)
+    parse_source = dict(source)
+    parse_source["url"] = effective_url
+    return parse_source_entries(content, parse_source), effective_url
+
+
 def parse_html_source(content: bytes, source: dict) -> list[dict]:
     parser_name = source.get("html_parser")
-    text = content.decode("utf-8", errors="replace")
+    text = content.decode(str(source.get("encoding") or "utf-8"), errors="replace")
     if parser_name == "ppc_information":
         return _parse_ppc_information_html(text, source["url"])
     if parser_name == "jftc_pressrelease":
@@ -435,7 +675,423 @@ def parse_html_source(content: bytes, source: dict) -> list[dict]:
         return _parse_mlit_press_html(text, source["url"])
     if parser_name == "meti_press_index":
         return _parse_meti_press_index_html(text, source["url"])
+    if parser_name == "shugiin_current_bills":
+        return _parse_shugiin_current_bills_html(text, source["url"])
+    if parser_name == "jpx_public_comments":
+        return _parse_jpx_public_comments_html(text, source["url"])
+    if parser_name == "jpx_rule_revisions":
+        return _parse_jpx_rule_revisions_html(text, source["url"])
+    if parser_name == "pmda_safety_updates":
+        return _parse_pmda_safety_updates_html(
+            text,
+            source["url"],
+            history_days=int(source.get("history_days", 550)),
+            today=current_jst_date(),
+        )
+    if parser_name == "jsda_public_comments":
+        return _parse_jsda_public_comments_html(text, source["url"])
+    if parser_name == "jsda_public_comment_results":
+        return _parse_jsda_public_comment_results_html(text, source["url"])
+    if parser_name == "courts_recent_supreme":
+        return _parse_courts_recent_supreme_html(text, source["url"])
+    if parser_name == "sesc_current_year":
+        return _parse_sesc_current_year_html(text, source["url"])
     raise ValueError(f"Unsupported html_parser: {parser_name}")
+
+
+_HTML_TABLE_RE = re.compile(r"<table\b[^>]*>(?P<body>.*?)</table>", re.IGNORECASE | re.DOTALL)
+_HTML_CAPTION_RE = re.compile(r"<caption\b[^>]*>(?P<body>.*?)</caption>", re.IGNORECASE | re.DOTALL)
+_HTML_ROW_RE = re.compile(r"<tr\b[^>]*>(?P<body>.*?)</tr>", re.IGNORECASE | re.DOTALL)
+_HTML_CELL_RE = re.compile(r"<td\b[^>]*>(?P<body>.*?)</td>", re.IGNORECASE | re.DOTALL)
+_HTML_LINK_RE = re.compile(
+    r"<a\b[^>]*href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<body>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+_DIET_CATEGORIES = ("衆法", "参法", "閣法")
+_DIET_TERMINAL_NOT_ENACTED = ("未了", "否決", "撤回", "審査未了", "廃案")
+
+
+def _diet_stage_hint(status: str) -> str:
+    if "成立" in status:
+        return "Enacted"
+    if any(marker in status for marker in _DIET_TERMINAL_NOT_ENACTED):
+        return "Government Announcement"
+    return "Bill Submitted"
+
+
+def _parse_shugiin_current_bills_html(text: str, base_url: str) -> list[dict]:
+    """Parse the House of Representatives current-session bill tables.
+
+    The list contains member bills from both houses and Cabinet bills. Dates are
+    intentionally left empty because the list page does not state a submission
+    date per row. The official progress page is used as the source URL.
+    """
+    items: list[dict] = []
+    for table in _HTML_TABLE_RE.finditer(text):
+        caption_match = _HTML_CAPTION_RE.search(table.group("body"))
+        caption = clean_text(caption_match.group("body")) if caption_match else ""
+        category = next((value for value in _DIET_CATEGORIES if value in caption), "")
+        if not category:
+            continue
+
+        for row in _HTML_ROW_RE.finditer(table.group("body")):
+            cells = _HTML_CELL_RE.findall(row.group("body"))
+            if len(cells) < 4:
+                continue
+            session = clean_text(cells[0])
+            number = clean_text(cells[1])
+            title = clean_text(cells[2])
+            status = clean_text(cells[3])
+            if not session.isdigit() or not title:
+                continue
+
+            links = list(_HTML_LINK_RE.finditer(row.group("body")))
+            progress_link = next(
+                (
+                    urllib.parse.urljoin(base_url, html.unescape(link.group("href")).strip())
+                    for link in links
+                    if clean_text(link.group("body")) == "経過"
+                ),
+                "",
+            )
+            source_url = progress_link or next(
+                (
+                    urllib.parse.urljoin(base_url, html.unescape(link.group("href")).strip())
+                    for link in links
+                    if link.group("href").strip()
+                ),
+                base_url,
+            )
+            normalized_status = status or "提出"
+            items.append(
+                {
+                    "title": title,
+                    "link": source_url,
+                    "summary": (
+                        f"{category}; 審議状況: {normalized_status}; "
+                        f"提出回次: {session}; 番号: {number or '不明'}"
+                    ),
+                    "published_iso": "",  # the list page has no per-item submission date
+                    "identity_key": f"diet:{category}:{session}:{number}:{normalized_status}",
+                    "stage_hint": _diet_stage_hint(normalized_status),
+                }
+            )
+    return items
+
+
+def _normalize_slash_date(value: str) -> str:
+    try:
+        return datetime.strptime(clean_text(value), "%Y/%m/%d").strftime("%Y-%m-%d")
+    except ValueError:
+        return ""
+
+
+def _normalize_gregorian_japanese_date(value: str) -> str:
+    match = re.fullmatch(r"\s*(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日\s*", clean_text(value))
+    if not match:
+        return ""
+    try:
+        return datetime(int(match.group(1)), int(match.group(2)), int(match.group(3))).strftime("%Y-%m-%d")
+    except ValueError:
+        return ""
+
+
+_GREGORIAN_JAPANESE_DATE_RE = re.compile(r"(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日")
+
+
+def _extract_gregorian_japanese_dates(value: str) -> list[str]:
+    dates: list[str] = []
+    for match in _GREGORIAN_JAPANESE_DATE_RE.finditer(clean_text(value)):
+        try:
+            dates.append(
+                datetime(int(match.group(1)), int(match.group(2)), int(match.group(3))).strftime("%Y-%m-%d")
+            )
+        except ValueError:
+            continue
+    return dates
+
+
+def _parse_jpx_public_comments_html(text: str, base_url: str) -> list[dict]:
+    """Parse JPX's structured current-year public-comment table."""
+    items: list[dict] = []
+    for table in _HTML_TABLE_RE.finditer(text):
+        body = table.group("body")
+        if "募集開始日" not in body or "募集終了日" not in body or "案件名" not in body:
+            continue
+        for row in _HTML_ROW_RE.finditer(body):
+            cells = _HTML_CELL_RE.findall(row.group("body"))
+            if len(cells) < 4:
+                continue
+            start_date = _normalize_slash_date(cells[0])
+            end_date = _normalize_slash_date(cells[1])
+            entity = clean_text(cells[2])
+            link = _HTML_LINK_RE.search(cells[3])
+            title = clean_text(link.group("body")) if link else clean_text(cells[3])
+            href = html.unescape(link.group("href")).strip() if link else ""
+            if not title or not href:
+                continue
+            entry = {
+                "title": title,
+                "link": urllib.parse.urljoin(base_url, href),
+                "summary": f"JPX public comment; 法人: {entity}; 募集期間: {start_date}～{end_date}",
+                "published_iso": start_date,
+            }
+            if end_date:
+                entry["comment_deadline"] = end_date
+            items.append(entry)
+    return items
+
+
+def _parse_jpx_rule_revisions_html(text: str, base_url: str) -> list[dict]:
+    """Parse TSE's current-year rule-revision comparison table."""
+    items: list[dict] = []
+    for table in _HTML_TABLE_RE.finditer(text):
+        body = table.group("body")
+        if "公表日" not in body or "新旧" not in body or "内容" not in body:
+            continue
+        for row in _HTML_ROW_RE.finditer(body):
+            cells = _HTML_CELL_RE.findall(row.group("body"))
+            if len(cells) < 2:
+                continue
+            published_iso = _normalize_slash_date(cells[0])
+            title = clean_text(cells[1])
+            links = list(_HTML_LINK_RE.finditer(row.group("body")))
+            href = html.unescape(links[0].group("href")).strip() if links else ""
+            if not published_iso or not title or not href:
+                continue
+            items.append(
+                {
+                    "title": title,
+                    "link": urllib.parse.urljoin(base_url, href),
+                    "summary": "東京証券取引所 規則改正新旧対照表",
+                    "published_iso": published_iso,
+                }
+            )
+    return items
+
+
+_PMDA_NEWS_ITEM_RE = re.compile(
+    r"<li\b[^>]*>\s*<a\b[^>]*href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<body>.*?)</a>\s*</li>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _pmda_field(body: str, class_name: str) -> str:
+    match = re.search(
+        rf"<p\b[^>]*class=[\"'][^\"']*\b{re.escape(class_name)}\b[^\"']*[\"'][^>]*>(?P<value>.*?)</p>",
+        body,
+        re.IGNORECASE | re.DOTALL,
+    )
+    return clean_text(match.group("value")) if match else ""
+
+
+def _parse_pmda_safety_updates_html(
+    text: str,
+    base_url: str,
+    *,
+    history_days: int = 550,
+    today: str | None = None,
+) -> list[dict]:
+    """Parse PMDA safety-news rows, excluding non-safety review/event rows."""
+    items: list[dict] = []
+    seen_events: set[tuple[str, str, str]] = set()
+    today_date = datetime.strptime(today or current_jst_date(), "%Y-%m-%d").date()
+    cutoff = today_date - timedelta(days=max(1, min(history_days, 3660)))
+    for match in _PMDA_NEWS_ITEM_RE.finditer(text):
+        body = match.group("body")
+        category = _pmda_field(body, "category")
+        if category != "安全":
+            continue
+        published_iso = _normalize_gregorian_japanese_date(_pmda_field(body, "date"))
+        title = _pmda_field(body, "title")
+        href = html.unescape(match.group("href")).strip()
+        link = urllib.parse.urljoin(base_url, href)
+        identity = (published_iso, title, link)
+        if not published_iso or not title or not href or identity in seen_events:
+            continue
+        if datetime.strptime(published_iso, "%Y-%m-%d").date() < cutoff:
+            continue
+        seen_events.add(identity)
+        items.append(
+            {
+                "title": title,
+                "link": link,
+                "summary": "PMDA 安全対策業務 新着情報",
+                "published_iso": published_iso,
+                "identity_key": f"pmda:{published_iso}:{link}:{title}",
+                "stage_hint": "Government Announcement",
+            }
+        )
+    return items
+
+
+def _parse_jsda_public_comments_html(text: str, base_url: str) -> list[dict]:
+    """Parse JSDA's structured public-comment solicitation table."""
+    items: list[dict] = []
+    for table in _HTML_TABLE_RE.finditer(text):
+        body = table.group("body")
+        if "案　件　名" not in body and "案件名" not in body:
+            continue
+        if "募集期間" not in body:
+            continue
+        for row in _HTML_ROW_RE.finditer(body):
+            cells = _HTML_CELL_RE.findall(row.group("body"))
+            if len(cells) < 2:
+                continue
+            dates = _extract_gregorian_japanese_dates(cells[1])
+            links = list(_HTML_LINK_RE.finditer(cells[0]))
+            link = next((candidate for candidate in links if candidate.group("href").strip()), None)
+            title = clean_text(link.group("body")) if link else ""
+            href = html.unescape(link.group("href")).strip() if link else ""
+            if len(dates) < 2 or not title or not href:
+                continue
+            items.append(
+                {
+                    "title": title,
+                    "link": urllib.parse.urljoin(base_url, href),
+                    "summary": f"JSDA public comment; 募集期間: {dates[0]}～{dates[1]}",
+                    "published_iso": dates[0],
+                    "comment_deadline": dates[1],
+                }
+            )
+    return items
+
+
+def _parse_jsda_public_comment_results_html(text: str, base_url: str) -> list[dict]:
+    """Parse JSDA's structured public-comment result table."""
+    items: list[dict] = []
+    for table in _HTML_TABLE_RE.finditer(text):
+        body = table.group("body")
+        if "公表日" not in body or "案件名" not in body or "募集期間" not in body:
+            continue
+        for row in _HTML_ROW_RE.finditer(body):
+            cells = _HTML_CELL_RE.findall(row.group("body"))
+            if len(cells) < 3:
+                continue
+            published_dates = _extract_gregorian_japanese_dates(cells[0])
+            period_dates = _extract_gregorian_japanese_dates(cells[2])
+            links = list(_HTML_LINK_RE.finditer(cells[1]))
+            link = next((candidate for candidate in links if candidate.group("href").strip()), None)
+            title = clean_text(cells[1]).split("【資料】", 1)[0].strip()
+            href = html.unescape(link.group("href")).strip() if link else ""
+            if not published_dates or not title or not href:
+                continue
+            period = f"; 募集期間: {period_dates[0]}～{period_dates[1]}" if len(period_dates) >= 2 else ""
+            items.append(
+                {
+                    "title": title,
+                    "link": urllib.parse.urljoin(base_url, href),
+                    "summary": f"JSDA public comment results{period}",
+                    "published_iso": published_dates[0],
+                    "stage_hint": "Public Comment Results Published",
+                }
+            )
+    return items
+
+
+_HTML_PARAGRAPH_RE = re.compile(r"<p\b[^>]*>(?P<body>.*?)</p>", re.IGNORECASE | re.DOTALL)
+
+
+def _parse_courts_recent_supreme_html(text: str, base_url: str) -> list[dict]:
+    """Parse the Courts site's official recent Supreme Court result table."""
+    items: list[dict] = []
+    seen_links: set[str] = set()
+    for row in _HTML_ROW_RE.finditer(text):
+        row_body = row.group("body")
+        if "最高裁判例" not in row_body:
+            continue
+        detail_link = next(
+            (
+                link
+                for link in _HTML_LINK_RE.finditer(row_body)
+                if "detail2/" in html.unescape(link.group("href"))
+            ),
+            None,
+        )
+        cells = _HTML_CELL_RE.findall(row_body)
+        if detail_link is None or not cells:
+            continue
+        paragraphs = [clean_text(match.group("body")) for match in _HTML_PARAGRAPH_RE.finditer(cells[0])]
+        paragraphs = [value for value in paragraphs if value]
+        if not paragraphs:
+            continue
+        title = paragraphs[0]
+        metadata = paragraphs[1] if len(paragraphs) > 1 else ""
+        published_iso = _normalize_japanese_date(metadata)
+        href = html.unescape(detail_link.group("href")).strip()
+        source_url = urllib.parse.urljoin(base_url, href)
+        if not title or not published_iso or not href or source_url in seen_links:
+            continue
+        seen_links.add(source_url)
+        items.append(
+            {
+                "title": title,
+                "link": source_url,
+                "summary": metadata,
+                "published_iso": published_iso,
+                "stage_hint": "Court Decision",
+            }
+        )
+    return items
+
+
+_SESC_YEAR_LINK_RE = re.compile(
+    r"<a\b[^>]*href=[\"'](?P<href>[^\"']*/c_(?P<year>\d{4})/c_(?P=year)\.html)[\"'][^>]*>",
+    re.IGNORECASE,
+)
+_HTML_LIST_ITEM_RE = re.compile(r"<li\b[^>]*>(?P<body>.*?)</li>", re.IGNORECASE | re.DOTALL)
+_SESC_RELEVANT_MARKERS = (
+    "勧告", "告発", "禁止及び停止命令", "課徴金", "行政処分",
+    "金融商品取引法違反", "パブリックコメント", "証券モニタリングに関する基本指針",
+    "証券モニタリング基本方針",
+)
+_SESC_EXCLUDE_MARKERS = ("事例集", "活動状況", "パンフレット")
+_SESC_ENFORCEMENT_MARKERS = (
+    "勧告", "告発", "禁止及び停止命令", "課徴金", "行政処分",
+    "金融商品取引法違反",
+)
+
+
+def _find_sesc_year_url(text: str, base_url: str, year: str) -> str:
+    """Resolve an exact current-year archive link from SESC's stable index."""
+    for match in _SESC_YEAR_LINK_RE.finditer(text):
+        if match.group("year") == year:
+            return urllib.parse.urljoin(base_url, html.unescape(match.group("href")).strip())
+    return ""
+
+
+def _parse_sesc_current_year_html(text: str, base_url: str) -> list[dict]:
+    """Parse focused SESC enforcement and market-monitoring developments."""
+    items: list[dict] = []
+    seen_links: set[str] = set()
+    for item_match in _HTML_LIST_ITEM_RE.finditer(text):
+        body = item_match.group("body")
+        link = _HTML_LINK_RE.search(body)
+        if link is None:
+            continue
+        title = clean_text(link.group("body"))
+        if (
+            not title
+            or any(marker in title for marker in _SESC_EXCLUDE_MARKERS)
+            or not any(marker in title for marker in _SESC_RELEVANT_MARKERS)
+        ):
+            continue
+        published_iso = _normalize_japanese_date(clean_text(body))
+        href = html.unescape(link.group("href")).strip()
+        source_url = urllib.parse.urljoin(base_url, href)
+        if not published_iso or not href or source_url in seen_links:
+            continue
+        seen_links.add(source_url)
+        entry = {
+            "title": title,
+            "link": source_url,
+            "summary": "SESC enforcement or securities market-monitoring policy update",
+            "published_iso": published_iso,
+        }
+        if any(marker in title for marker in _SESC_ENFORCEMENT_MARKERS):
+            entry["stage_hint"] = "Enforcement Action"
+        items.append(entry)
+    return items
 
 
 _PPC_ITEM_RE = re.compile(
@@ -825,9 +1481,17 @@ def clean_text(value: str) -> str:
     return _WS_RE.sub(" ", value).strip()
 
 
-def make_id(source_url: str, title_ja: str, source_name: str, published_at: str) -> str:
-    """Stable id. Prefer source_url; fall back to title+source+date when no URL."""
-    if source_url:
+def make_id(
+    source_url: str,
+    title_ja: str,
+    source_name: str,
+    published_at: str,
+    identity_key: str = "",
+) -> str:
+    """Stable id. Allow an opt-in event identity, otherwise prefer source_url."""
+    if identity_key:
+        basis = "event:" + "|".join([source_name, identity_key])
+    elif source_url:
         basis = "url:" + source_url
     else:
         basis = "meta:" + "|".join([title_ja, source_name, published_at])
@@ -850,7 +1514,13 @@ def build_item(entry: dict, source: dict, fetched_at: str) -> dict | None:
         return None  # nothing usable to identify or display
 
     item = {
-        "id": make_id(source_url, title_ja, source["name"], published_at),
+        "id": make_id(
+            source_url,
+            title_ja,
+            source["name"],
+            published_at,
+            clean_text(entry.get("identity_key", "")),
+        ),
         "title_ja": title_ja,
         "source_name": source["name"],
         "source_url": source_url,
@@ -861,10 +1531,18 @@ def build_item(entry: dict, source: dict, fetched_at: str) -> dict | None:
         "raw_content_hash": content_hash(title_ja, raw_summary, published_at),
         "source_type": source.get("source_type", "rss"),
     }
-    comment_deadline = extract_egov_comment_deadline(
-        entry.get("summary", ""),
-        source.get("source_type", "rss"),
-    )
+    stage_hint = entry.get("stage_hint")
+    if isinstance(stage_hint, str) and stage_hint in {
+        "Bill Submitted", "Enacted", "Promulgated", "Scheduled to Take Effect", "In Force",
+        "Government Announcement", "Public Comment Results Published", "Court Decision", "Enforcement Action",
+    }:
+        item["stage_hint"] = stage_hint
+    comment_deadline = normalize_comment_deadline(entry.get("comment_deadline"))
+    if not comment_deadline:
+        comment_deadline = extract_egov_comment_deadline(
+            entry.get("summary", ""),
+            source.get("source_type", "rss"),
+        )
     if comment_deadline:
         item["comment_deadline"] = comment_deadline
     return item
@@ -994,20 +1672,9 @@ def run(timeout: int, dry_run: bool, first_seen_date: str | None = None) -> int:
         name, url = source["name"], source["url"]
         source_started = time.monotonic()
         try:
-            content = http_get(
-                url,
-                int(source.get("timeout", timeout)),
-                prefer_urllib=bool(source.get("prefer_urllib")),
-                accept_html=str(source.get("source_type", "")).endswith("_html"),
-                user_agent=str(source.get("user_agent") or USER_AGENT),
-                timeouts=source.get("timeouts"),
-                backoff=source.get("backoff"),
-                urllib_fallback=bool(source.get("urllib_fallback")),
-            )
-            content, effective_url = follow_meta_refresh_if_requested(content, source, timeout)
-            parse_source = dict(source)
-            parse_source["url"] = effective_url
-            entries = parse_source_entries(content, parse_source)[:MAX_ITEMS_PER_SOURCE]
+            entries, effective_url = fetch_source_entries(source, timeout)
+            max_items = max(1, min(int(source.get("max_items", MAX_ITEMS_PER_SOURCE)), 500))
+            entries = entries[:max_items]
             fetched_items += len(entries)
             logger.info("OK   %s — %d entries from %s", name, len(entries), effective_url)
             if not entries:
@@ -1022,10 +1689,11 @@ def run(timeout: int, dry_run: bool, first_seen_date: str | None = None) -> int:
                 source_items_by_id.setdefault(item["id"], item)
                 if item["id"] in seen_ids:
                     continue
-                if item["source_url"] and item["source_url"] in seen_urls:
+                dedupe_by_url = bool(source.get("dedupe_by_url", True))
+                if dedupe_by_url and item["source_url"] and item["source_url"] in seen_urls:
                     continue
                 seen_ids.add(item["id"])
-                if item["source_url"]:
+                if dedupe_by_url and item["source_url"]:
                     seen_urls.add(item["source_url"])
                 item["first_seen_at"] = detected_date
                 new_items.append(item)

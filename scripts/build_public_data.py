@@ -154,7 +154,8 @@ ADDITIONAL_BOOST_STRONG = (
     "国際移転", "越境移転", "データ利活用", "独占禁止法", "下請法", "取適法",
     "フリーランス法", "スマホソフトウェア競争促進法", "優越的地位",
     "カルテル", "入札談合", "企業結合", "確約手続", "排除措置命令",
-    "課徴金", "報告書", "実態調査",
+    "課徴金", "報告書", "実態調査", "回収", "安全性速報", "添付文書改訂",
+    "使用上の注意", "副作用", "不具合",
 )
 ADDITIONAL_BOOST_TOPICAL = (
     "経済安全保障", "安全保障貿易", "外為", "輸出管理", "重要物資",
@@ -200,7 +201,14 @@ ADDITIONAL_HARD_EXCLUDE = (
     "採用", "調達", "キッズ", "ポスターコンクール", "シンボルマーク",
 )
 
-SOURCE_BONUS = {"public_comment_rss": 4}  # req 5: prioritise e-Gov public comments
+SOURCE_BONUS = {
+    "public_comment_rss": 4,
+    "public_comment_html": 4,
+    "public_comment_results_html": 4,
+    "pmda_safety_html": 1,
+    "court_html": 1,
+    "enforcement_html": 1,
+}  # prioritise structured official channels; PMDA/courts are already tightly scoped
 
 # Recency: a LIGHT penalty so stale items don't linger at the top.
 RECENCY_PENALTY_PER_DAY = 0.15
@@ -226,7 +234,7 @@ IMPACT_WEIGHT = {"High": 3, "Medium": 2, "Low": 1}
 
 
 def is_public_comment(source_type: str) -> bool:
-    return source_type == "public_comment_rss"
+    return source_type in {"public_comment_rss", "public_comment_html", "public_comment_results_html"}
 
 
 def is_hard_excluded(title_ja: str) -> bool:
@@ -286,7 +294,7 @@ AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
         "暗号資産", "ステーブルコイン", "決済", "信託", "預金", "投資", "金融商品", "犯罪収益", "FATF",
     )),
     ("Tax / Stamp Duty", (
-        "印紙", "課税", "消費税", "法人税", "源泉", "インボイス", "関税", "租税", "税制",
+        "印紙", "課税", "消費税", "法人税", "所得税", "源泉", "インボイス", "関税", "租税", "税制",
     )),
     ("Labor / Employment", (
         "労働", "雇用", "賃金", "ハラスメント", "労災", "フリーランス", "派遣", "解雇",
@@ -308,6 +316,10 @@ AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 # Source-name fallback when no keyword matched (only the unambiguous ones).
 # MIC is deliberately absent: its scope is broad, so unmatched items stay "Other".
 AREA_SOURCE_FALLBACK = (
+    ("Healthcare / Pharmaceuticals", ("PMDA", "Pharmaceuticals and Medical Devices Agency")),
+    ("Finance / AML", ("Securities and Exchange Surveillance Commission", "SESC")),
+    ("Finance / AML", ("Japan Securities Dealers Association", "JSDA")),
+    ("Finance / AML", ("Japan Exchange Group", "Tokyo Stock Exchange", "JPX")),
     ("Transport / Infrastructure", ("国土交通省", "MLIT")),
     ("Food / Agriculture", ("農林水産省", "MAFF")),
     ("Finance / AML", ("金融庁", "FSA")),
@@ -517,6 +529,10 @@ ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 
 
 def classify_area(title_ja: str, source_name: str) -> str:
+    if "PMDA" in source_name or "Pharmaceuticals and Medical Devices Agency" in source_name:
+        return "Healthcare / Pharmaceuticals"
+    if "Securities and Exchange Surveillance Commission" in source_name or "SESC" in source_name:
+        return "Finance / AML"
     if any(hint in source_name for hint in ("経済産業省", "METI")):
         for area, keywords in METI_AREA_RULES:
             if any(kw in title_ja for kw in keywords):
@@ -587,6 +603,14 @@ _PC_RESULT_MARKERS_GENERIC = ("結果について", "募集の結果", "結果")
 _PC_RESULT_MARKERS_EN = ("results published",)
 _PC_CLOSED_MARKERS = ("受付終了", "終了しました", "意見募集を終了", "募集を終了")
 _PC_CLOSED_MARKERS_EN = ("closed",)
+TRUSTED_STAGE_HINT_SOURCE_TYPES = {
+    "legislature_html", "law_api", "pmda_safety_html", "public_comment_results_html", "court_html",
+    "enforcement_html",
+}
+TRUSTED_STAGE_HINTS = {
+    "Bill Submitted", "Enacted", "Promulgated", "Scheduled to Take Effect", "In Force",
+    "Government Announcement", "Public Comment Results Published", "Court Decision", "Enforcement Action",
+}
 
 
 def contains_any(value: str, markers: tuple[str, ...]) -> bool:
@@ -624,6 +648,14 @@ def classify_stage(title_ja: str, source_type: str) -> str:
     return "Government Announcement"
 
 
+def trusted_stage_hint(raw: dict) -> str:
+    """Accept controlled parser metadata only from allow-listed official adapters."""
+    if raw.get("source_type") not in TRUSTED_STAGE_HINT_SOURCE_TYPES:
+        return ""
+    value = raw.get("stage_hint")
+    return value if isinstance(value, str) and value in TRUSTED_STAGE_HINTS else ""
+
+
 def has_important_closed_signal(title_ja: str) -> bool:
     return any(keyword in title_ja for keyword in IMPORTANT_CLOSED_KEYWORDS)
 
@@ -649,6 +681,7 @@ _IMPACT_MEDIUM_KEYWORDS = (
     "施行", "改正", "義務", "ガイドライン", "指針", "個人情報", "個人データ", "金融",
     "労働", "フリーランス", "下請", "AI", "ＡＩ", "人工知能", "規制", "プライバシー",
     "マネー", "資金洗浄", "経済安全保障", "外為", "外国為替", "公布", "告示", "通達",
+    "回収", "安全性速報", "添付文書", "使用上の注意", "副作用", "不具合",
 )
 
 # Narrow / industry-specific signals: keep a public comment at Low impact unless a
@@ -667,6 +700,9 @@ def classify_impact(title_ja: str, source_type: str) -> str:
     if is_public_comment(source_type):
         if any(k in title_ja for k in _NARROW_SECTOR) and not any(k in title_ja for k in _BROAD_SCOPE):
             return "Low"
+        return "Medium"
+
+    if source_type == "enforcement_html":
         return "Medium"
 
     level = "Medium" if any(k in title_ja for k in _IMPACT_MEDIUM_KEYWORDS) else "Low"
@@ -902,6 +938,20 @@ def infer_subject_title_en(subject_ja: str, title_ja: str) -> str:
 
 
 def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
+    if "Securities and Exchange Surveillance Commission" in source_name or "SESC" in source_name:
+        return "SESC Enforcement Action" if stage == "Enforcement Action" else "SESC Update"
+    if "Japan Securities Dealers Association" in source_name or "JSDA" in source_name:
+        return "JSDA Public Comment Results" if stage == "Public Comment Results Published" else "JSDA Public Comment"
+    if "Courts in Japan" in source_name:
+        return "Supreme Court Decision"
+    if "Japan Exchange Group" in source_name or "Tokyo Stock Exchange" in source_name:
+        return "JPX Public Comment" if stage.startswith("Public Comment") else "JPX Rule Revision"
+    if "PMDA" in source_name or "Pharmaceuticals and Medical Devices Agency" in source_name:
+        return "PMDA Safety Update"
+    if "House of Representatives" in source_name or "衆議院" in source_name:
+        return "Diet Bill Update"
+    if "e-Gov Law Search" in source_name:
+        return "e-Gov Law Update"
     if "公正取引委員会" in source_name or "JFTC" in source_name:
         return "JFTC Public Comment" if stage.startswith("Public Comment") else "JFTC Update"
     if "個人情報保護委員会" in source_name or "PPC" in source_name:
@@ -995,6 +1045,20 @@ def public_comment_fallback(stage: str, prefix: str = "Public Comment") -> str:
 
 
 def source_fallback_label(source_name: str) -> str:
+    if source_has(source_name, "Securities and Exchange Surveillance Commission", "SESC"):
+        return "SESC"
+    if source_has(source_name, "Japan Securities Dealers Association", "JSDA"):
+        return "JSDA"
+    if source_has(source_name, "Courts in Japan"):
+        return "Supreme Court"
+    if source_has(source_name, "Japan Exchange Group", "Tokyo Stock Exchange", "JPX"):
+        return "JPX"
+    if source_has(source_name, "PMDA", "Pharmaceuticals and Medical Devices Agency"):
+        return "PMDA Safety"
+    if source_has(source_name, "House of Representatives", "衆議院"):
+        return "Diet Bill"
+    if source_has(source_name, "e-Gov Law Search"):
+        return "e-Gov Law"
     if source_has(source_name, "JFTC"):
         return "JFTC"
     if source_has(source_name, "PPC"):
@@ -1027,6 +1091,75 @@ def source_fallback_label(source_name: str) -> str:
 
 
 def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
+    if source_has(source_name, "Securities and Exchange Surveillance Commission", "SESC"):
+        pc = public_comment_fallback(stage, "SESC Public Comment")
+        if pc:
+            return pc
+        if "告発" in title_ja:
+            return "SESC Enforcement Action: Criminal referral announced"
+        if "禁止及び停止命令" in title_ja:
+            return "SESC Enforcement Action: Court injunction action announced"
+        if "課徴金" in title_ja:
+            return "SESC Enforcement Action: Administrative monetary penalty recommendation"
+        if "検査結果" in title_ja and "勧告" in title_ja:
+            return "SESC Enforcement Action: Administrative action recommendation"
+        if "証券モニタリング" in title_ja and any(marker in title_ja for marker in ("基本指針", "基本方針")):
+            return "SESC Update: Securities monitoring policy updated"
+        return "SESC Enforcement Action: Securities enforcement update published"
+
+    if source_has(source_name, "Japan Securities Dealers Association", "JSDA"):
+        pc = public_comment_fallback(stage, "JSDA Public Comment")
+        if pc:
+            return pc
+        return "JSDA Update: Self-regulatory rule update published"
+
+    if source_has(source_name, "Courts in Japan"):
+        court_case_labels = (
+            (("所得税", "法人税", "相続税", "消費税", "課税処分"), "Tax case"),
+            (("特許", "商標", "著作権", "不正競争"), "Intellectual property case"),
+            (("労働", "雇用", "解雇", "賃金"), "Employment case"),
+            (("会社", "株主", "取締役"), "Corporate law case"),
+            (("信託", "受託者"), "Trust case"),
+            (("行政処分", "裁決の取消", "処分取消"), "Administrative law case"),
+            (("損害賠償",), "Damages case"),
+            (("被告事件", "非常上告"), "Criminal case"),
+        )
+        for markers, label in court_case_labels:
+            if any(marker in title_ja for marker in markers):
+                return f"Supreme Court Decision: {label}"
+        return "Supreme Court Decision: Official judgment or decision published"
+
+    if source_has(source_name, "Japan Exchange Group", "Tokyo Stock Exchange", "JPX"):
+        pc = public_comment_fallback(stage, "JPX Public Comment")
+        if pc:
+            return pc
+        return "JPX Rule Revision: Exchange rule amendment published"
+
+    if source_has(source_name, "PMDA", "Pharmaceuticals and Medical Devices Agency"):
+        if "クラスI回収" in title_ja or "クラスⅠ回収" in title_ja:
+            return "PMDA Safety Update: Class I recall information published"
+        if "使用上の注意" in title_ja or "添付文書" in title_ja:
+            return "PMDA Safety Update: Labeling or precautions revision published"
+        if "安全性速報" in title_ja:
+            return "PMDA Safety Update: Safety alert published"
+        return "PMDA Safety Update: Pharmaceutical or medical device safety information published"
+
+    if source_has(source_name, "House of Representatives", "衆議院"):
+        if stage == "Enacted":
+            return "Diet Bill Update: Bill enacted"
+        if stage == "Bill Submitted":
+            return "Diet Bill Update: Bill under consideration"
+        return "Diet Bill Update: Bill status updated"
+
+    if source_has(source_name, "e-Gov Law Search"):
+        if stage == "Scheduled to Take Effect":
+            return "e-Gov Law Update: Law or regulation scheduled to take effect"
+        if stage == "In Force":
+            return "e-Gov Law Update: Law or regulation in force"
+        if stage == "Promulgated":
+            return "e-Gov Law Update: Law or regulation promulgated"
+        return "e-Gov Law Update: Law or regulation updated"
+
     if source_has(source_name, "JFTC"):
         pc = public_comment_fallback(stage, "JFTC Public Comment")
         if pc:
@@ -1337,7 +1470,7 @@ def build_public_item(
     source_name = raw.get("source_name") or ""
     source_type = raw.get("source_type") or ""
     _, display_date = parse_published(raw.get("published_at", ""))
-    classified_stage = classify_stage(title_ja, source_type)
+    classified_stage = trusted_stage_hint(raw) or classify_stage(title_ja, source_type)
     comment_deadline, _ = structured_comment_deadline(raw)
     stage = resolve_public_comment_stage(
         classified_stage,

@@ -22,6 +22,15 @@ import source_health as sh  # noqa: E402
 
 EXPECTED_SOURCE_KEYS = {
     "egov",
+    "shugiin-bills",
+    "egov-laws",
+    "jpx-comments",
+    "jpx-rules",
+    "pmda",
+    "jsda-comments",
+    "jsda-results",
+    "courts-supreme",
+    "sesc",
     "fsa",
     "mhlw",
     "digital-agency",
@@ -64,7 +73,7 @@ def make_report(**overrides_by_key):
         "schema_version": 1,
         "started_at": "2026-06-16T00:00:00Z",
         "finished_at": "2026-06-16T00:00:12Z",
-        "configured_source_count": 14,
+        "configured_source_count": 23,
         "sources": rows,
     }
 
@@ -74,10 +83,10 @@ def row_by_key(evaluation, key):
 
 
 class TestSourceHealthConfig(unittest.TestCase):
-    def test_all_14_source_keys_are_unique(self):
+    def test_all_23_source_keys_are_unique(self):
         keys = [source.get("key") for source in fu.SOURCES]
         self.assertEqual(set(keys), EXPECTED_SOURCE_KEYS)
-        self.assertEqual(len(keys), 14)
+        self.assertEqual(len(keys), 23)
         self.assertEqual(len(keys), len(set(keys)))
 
     def test_all_sources_have_required_fields(self):
@@ -201,7 +210,7 @@ class TestSourceHealthEvaluation(unittest.TestCase):
         self.assertNotIn("\n", cleaned)
         self.assertLessEqual(len(cleaned), 300)
 
-    def test_step_summary_contains_14_source_rows(self):
+    def test_step_summary_contains_23_source_rows(self):
         report = make_report(mlit={"fetched_count": 0, "new_count": 0, "latest_published_at": None})
         evaluation = sh.evaluate_report(report, sh.initial_state(), "2026-06-16T00:00:12Z")
         summary = sh.generate_step_summary(evaluation)
@@ -209,7 +218,7 @@ class TestSourceHealthEvaluation(unittest.TestCase):
             line for line in summary.splitlines()
             if line.startswith("| ") and not line.startswith("| Source") and not line.startswith("|---")
         ]
-        self.assertEqual(len(source_lines), 14)
+        self.assertEqual(len(source_lines), 23)
         self.assertIn("| MLIT | Warning: zero results | 0 | 0 | -- | 1 | 0 |", summary)
 
 

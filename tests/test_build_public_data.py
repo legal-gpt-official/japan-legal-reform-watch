@@ -60,6 +60,12 @@ class TestStageClassification(unittest.TestCase):
             "Public Comment Open",
         )
 
+    def test_jpx_public_comment_html_is_public_comment_context(self):
+        self.assertEqual(
+            bpd.classify_stage("上場制度の見直しについて", "public_comment_html"),
+            "Public Comment Open",
+        )
+
     def test_public_comment_open_by_title_keyword_on_non_pc_source(self):
         self.assertEqual(
             bpd.classify_stage("「○○指針」の一部改正（案）に対する意見募集について", "regulator_html"),
@@ -114,6 +120,43 @@ class TestStageClassification(unittest.TestCase):
         self.assertEqual(bpd.classify_stage("○○法を公布しました", "ministry_rss"), "Promulgated")
         self.assertEqual(bpd.classify_stage("○○法が成立しました", "ministry_rss"), "Enacted")
         self.assertEqual(bpd.classify_stage("○○法律案が国会に提出されました", "ministry_rss"), "Bill Submitted")
+
+    def test_controlled_stage_hint_overrides_title_only_for_official_adapters(self):
+        raw = {
+            "id": "raw-diet-1",
+            "title_ja": "会社法の一部を改正する法律案",
+            "source_name": "House of Representatives (衆議院) 議案情報",
+            "source_url": "https://www.shugiin.go.jp/example",
+            "source_type": "legislature_html",
+            "published_at": "",
+            "fetched_at": "2026-08-06T00:00:00Z",
+            "stage_hint": "Enacted",
+        }
+        item = bpd.build_public_item(raw, "2026-08-06", 10.0)
+        self.assertEqual(item["stage"], "Enacted")
+
+        raw["source_type"] = "ministry_rss"
+        self.assertEqual(bpd.trusted_stage_hint(raw), "")
+
+    def test_jsda_results_and_court_stage_hints_are_trusted(self):
+        jsda = {
+            "source_type": "public_comment_results_html",
+            "stage_hint": "Public Comment Results Published",
+        }
+        court = {"source_type": "court_html", "stage_hint": "Court Decision"}
+        self.assertEqual(bpd.trusted_stage_hint(jsda), "Public Comment Results Published")
+        self.assertEqual(bpd.trusted_stage_hint(court), "Court Decision")
+        sesc = {"source_type": "enforcement_html", "stage_hint": "Enforcement Action"}
+        self.assertEqual(bpd.trusted_stage_hint(sesc), "Enforcement Action")
+
+    def test_supreme_court_income_tax_case_is_classified_as_tax(self):
+        self.assertEqual(
+            bpd.classify_area(
+                "所得税更正処分取消等請求事件",
+                "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+            ),
+            "Tax / Stamp Duty",
+        )
 
 
 class TestPublicCommentDeadlineResolution(unittest.TestCase):
@@ -856,6 +899,28 @@ class TestAreaClassification(unittest.TestCase):
         self.assertEqual(bpd.classify_area("特になし", self.MOF), "Finance / AML")
         self.assertEqual(bpd.classify_area("特になし", self.MLIT), "Transport / Infrastructure")
         self.assertEqual(bpd.classify_area("特になし", self.MAFF), "Food / Agriculture")
+        self.assertEqual(
+            bpd.classify_area("安全対策情報を掲載しました", "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates"),
+            "Healthcare / Pharmaceuticals",
+        )
+        self.assertEqual(
+            bpd.classify_area("制度の見直しについて", "Japan Exchange Group (JPX) Public Comments"),
+            "Finance / AML",
+        )
+        self.assertEqual(
+            bpd.classify_area(
+                "制度の見直しについて",
+                "Japan Securities Dealers Association (JSDA) Public Comments",
+            ),
+            "Finance / AML",
+        )
+        self.assertEqual(
+            bpd.classify_area(
+                "検査結果に基づく勧告について",
+                "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates",
+            ),
+            "Finance / AML",
+        )
         # MIC deliberately has no fallback — broad scope stays "Other".
         self.assertEqual(bpd.classify_area("特になし", self.MIC), "Other")
 
@@ -878,6 +943,63 @@ class TestTitleEnGeneration(unittest.TestCase):
         self.assertTrue(t.startswith("JFTC Public Comment: "))
         self.assertIn("Antimonopoly Act Guidelines", t)
         self.assertIsNone(CJK_RE.search(t))
+
+    def test_jpx_and_pmda_fallback_titles(self):
+        jpx = bpd.generate_title_en(
+            "上場制度の見直しについて",
+            "Japan Exchange Group (JPX) Public Comments",
+            "Public Comment Open",
+            "Finance / AML",
+        )
+        pmda = bpd.generate_title_en(
+            "クラスI回収 該当回収品目について",
+            "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
+            "Government Announcement",
+            "Healthcare / Pharmaceuticals",
+        )
+        self.assertEqual(jpx, "JPX Public Comment: Regulatory proposal open for comment")
+        self.assertEqual(pmda, "PMDA Safety Update: Class I recall information published")
+
+    def test_jsda_and_courts_fallback_titles(self):
+        jsda = bpd.generate_title_en(
+            "「店頭有価証券規則」の一部改正について",
+            "Japan Securities Dealers Association (JSDA) Public Comment Results",
+            "Public Comment Results Published",
+            "Finance / AML",
+        )
+        court = bpd.generate_title_en(
+            "令和6(オ)720 損害賠償請求本訴、同反訴事件",
+            "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+            "Court Decision",
+            "Other",
+        )
+        self.assertEqual(jsda, "JSDA Public Comment Results: Regulatory comment results published")
+        self.assertEqual(court, "Supreme Court Decision: Damages case")
+
+        generic_court = bpd.generate_title_en(
+            "令和6(許)30 受託者解任申立て却下決定に対する抗告棄却決定に対する許可抗告事件",
+            "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+            "Court Decision",
+            "Other",
+        )
+        self.assertEqual(generic_court, "Supreme Court Decision: Trust case")
+
+    def test_sesc_enforcement_fallback_titles(self):
+        source = "Securities and Exchange Surveillance Commission (SESC) Enforcement Updates"
+        penalty = bpd.generate_title_en(
+            "内部者取引に対する課徴金納付命令の勧告について",
+            source,
+            "Enforcement Action",
+            "Finance / AML",
+        )
+        referral = bpd.generate_title_en(
+            "相場操縦事件の告発について",
+            source,
+            "Enforcement Action",
+            "Finance / AML",
+        )
+        self.assertEqual(penalty, "SESC Enforcement Action: Administrative monetary penalty recommendation")
+        self.assertEqual(referral, "SESC Enforcement Action: Criminal referral announced")
 
     def test_ppc_update_prefix(self):
         _, t = self._title("特定個人情報の漏えい等事案への対応について", PPC, "regulator_html")
@@ -1114,6 +1236,36 @@ class TestRelevanceScoring(unittest.TestCase):
         self.assertEqual(
             bpd.relevance_score(title, "public_comment_rss"),
             bpd.relevance_score(title, "ministry_rss") + bpd.SOURCE_BONUS["public_comment_rss"],
+        )
+        self.assertEqual(
+            bpd.relevance_score(title, "public_comment_html"),
+            bpd.relevance_score(title, "ministry_rss") + bpd.SOURCE_BONUS["public_comment_html"],
+        )
+        self.assertEqual(
+            bpd.relevance_score(title, "public_comment_results_html"),
+            bpd.relevance_score(title, "ministry_rss") + bpd.SOURCE_BONUS["public_comment_results_html"],
+        )
+
+    def test_recent_supreme_court_channel_meets_relevance_floor(self):
+        title = "Neutral recent Supreme Court case"
+        self.assertEqual(bpd.relevance_score(title, "court_html"), bpd.RELEVANCE_FLOOR)
+
+    def test_sesc_channel_is_medium_impact_and_meets_floor(self):
+        title = "Neutral filtered SESC enforcement item"
+        self.assertEqual(bpd.relevance_score(title, "enforcement_html"), bpd.RELEVANCE_FLOOR)
+        self.assertEqual(bpd.classify_impact(title, "enforcement_html"), "Medium")
+
+    def test_pmda_safety_signals_are_medium_and_above_floor(self):
+        for title in ("クラスI回収について", "使用上の注意の改訂指示通知", "安全性速報を掲載しました"):
+            with self.subTest(title=title):
+                self.assertGreaterEqual(bpd.relevance_score(title, "agency_html"), bpd.RELEVANCE_FLOOR)
+                self.assertEqual(bpd.classify_impact(title, "agency_html"), "Medium")
+
+    def test_pmda_safety_channel_has_minimum_source_bonus(self):
+        title = "PMDA item without general regulatory keywords"
+        self.assertEqual(
+            bpd.relevance_score(title, "pmda_safety_html"),
+            bpd.RELEVANCE_FLOOR,
         )
 
     def test_output_cap_is_3000(self):
