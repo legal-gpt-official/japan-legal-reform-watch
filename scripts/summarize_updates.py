@@ -7,6 +7,8 @@ What this script does
 ---------------------
 - Reads docs/data/legal_updates.json (the rule-based published file).
 - Takes the top-N items by `relevance_score` (default 10; --limit to change).
+- Optionally caps cache-miss API calls inside that pool with --api-limit;
+  cache hits are free and do not consume that budget.
 - For each, asks Claude for: title_en, summary_en, business_impact_en,
   recommended_action_en, confidence, ai_notes — under strict guardrails.
 - Caches results in data/summary_cache.json so the same item is never
@@ -431,7 +433,18 @@ def main(argv: list[str] | None = None) -> int:
             pass
 
     parser = argparse.ArgumentParser(add_help=True, description="AI-summarize the top-ranked published items.")
-    parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Top N items by relevance_score (default 10).")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=DEFAULT_LIMIT,
+        help="Top N items by relevance_score to consider (default 10).",
+    )
+    parser.add_argument(
+        "--api-limit",
+        type=int,
+        default=None,
+        help="Maximum cache-miss API calls inside the top-N pool (default: no separate cap).",
+    )
     parser.add_argument(
         "--model",
         default=None,
@@ -486,8 +499,9 @@ def main(argv: list[str] | None = None) -> int:
         args.limit, model, args.batch, args.dry_run,
     )
 
+    api_limit = max(0, args.api_limit) if args.api_limit is not None else None
     client = None
-    cache_hits = api_calls = summarized = failed = 0
+    cache_hits = api_calls = summarized = failed = skipped_api_budget = 0
     batch_id = ""
     pending: list[tuple[dict, str, dict]] = []
 
@@ -504,6 +518,13 @@ def main(argv: list[str] | None = None) -> int:
             cache_hits += 1
             summarized += 1
             logger.info("CACHE %s — %s", it.get("id"), it.get("title_ja", "")[:48])
+            continue
+
+        budget_used = len(pending) if args.batch else api_calls
+        if api_limit is not None and budget_used >= api_limit:
+            it["summary_source"] = "rule_based"
+            skipped_api_budget += 1
+            logger.info("BUDGET SKIP %s", it.get("id"))
             continue
 
         # In Batch mode, collect every cache miss and submit them together after
@@ -586,10 +607,12 @@ def main(argv: list[str] | None = None) -> int:
         save_json(CACHE_PATH, cache)
 
     logger.info(
-        "RUN SUMMARY input=%d target=%d cache_hits=%d api_calls=%d summarized=%d failed=%d "
-        "caution_warnings=%d batch=%s batch_id=%s",
-        len(items), len(targets), cache_hits, api_calls, summarized, failed, caution_warnings,
-        args.batch, batch_id,
+        "RUN SUMMARY input=%d target=%d api_limit=%s cache_hits=%d api_calls=%d "
+        "summarized=%d failed=%d skipped_api_budget=%d caution_warnings=%d "
+        "batch=%s batch_id=%s",
+        len(items), len(targets), api_limit if api_limit is not None else "none",
+        cache_hits, api_calls, summarized, failed, skipped_api_budget,
+        caution_warnings, args.batch, batch_id,
     )
 
     print("\n==== summarize_updates summary ====")
@@ -598,10 +621,12 @@ def main(argv: list[str] | None = None) -> int:
     print(f"batch_id        : {batch_id or 'none'}")
     print(f"input_items     : {len(items)}")
     print(f"target_items    : {len(targets)}")
+    print(f"api_limit       : {api_limit if api_limit is not None else 'none'}")
     print(f"cache_hits      : {cache_hits}")
     print(f"api_calls       : {api_calls}")
     print(f"summarized_items: {summarized}")
     print(f"failed_items    : {failed}")
+    print(f"skipped_api_budget: {skipped_api_budget}")
     print(f"caution_warnings: {caution_warnings}")
     print(f"output_path     : {OUTPUT_PATH}")
     print(f"backup_created  : {backup_created}")

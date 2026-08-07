@@ -140,7 +140,7 @@ The `relevance_score` is a **technical heuristic to decide what to surface — n
 
 ## AI summarization (Stage 3 — Claude)
 
-`scripts/summarize_updates.py` is the optional Stage 3 script. When run with `ANTHROPIC_API_KEY`, it sends the **top-N items by `relevance_score`** (default 10) to the Claude API and writes English `title_en`, `summary_en`, `business_impact_en`, and `recommended_action_en` back into [`docs/data/legal_updates.json`](docs/data/legal_updates.json). Items it summarizes are marked `summary_source: "claude"` (and gain `summarized_at`, `summary_model`, `confidence`, `ai_notes`); untouched or failed items keep the rule-based template and are marked `summary_source: "rule_based"`. If Stage 3 has not yet been run, `summary_source` may be absent. `source_url` and `id` are never changed.
+`scripts/summarize_updates.py` is the optional Stage 3 script. When run with `ANTHROPIC_API_KEY`, it considers the **top-N items by `relevance_score`** (default 10) and writes English `title_en`, `summary_en`, `business_impact_en`, and `recommended_action_en` back into [`docs/data/legal_updates.json`](docs/data/legal_updates.json). `--api-limit` can separately cap cache-miss API calls within that pool; cache hits remain free. Items it summarizes are marked `summary_source: "claude"` (and gain `summarized_at`, `summary_model`, `confidence`, `ai_notes`); untouched, budget-skipped, or failed items keep the rule-based template and are marked `summary_source: "rule_based"`. If Stage 3 has not yet been run, `summary_source` may be absent. `source_url` and `id` are never changed.
 
 > **Still not legal advice.** The model runs under strict guardrails: no invented facts, no legal advice or definitive compliance recommendations, no claiming a law is enacted / promulgated / in force unless the provided source text clearly supports it, public comments / drafts / proposals / consultations / draft guidelines / government announcements labelled as such, and the official Japanese source treated as authoritative. `area`, `stage`, and `impact_level` are preliminary rule-based labels and must not be treated as legally verified conclusions. The result is an unofficial summary to verify against the primary source.
 
@@ -169,6 +169,7 @@ export ANTHROPIC_SUMMARY_MODEL="your-summary-model-id"
 ```
 python -m pip install -r requirements.txt                # installs the anthropic SDK
 python scripts/summarize_updates.py --limit 10           # summarize the top 10
+python scripts/summarize_updates.py --limit 100 --api-limit 30 --batch  # wider pool, bounded new calls
 python scripts/summarize_updates.py --limit 3 --dry-run   # preview without writing
 ```
 
@@ -220,7 +221,7 @@ python -m unittest discover -s tests
 python scripts/fetch_updates.py
 python scripts/source_health.py evaluate
 python scripts/build_public_data.py
-python scripts/summarize_updates.py --limit 30
+python scripts/summarize_updates.py --limit 100 --api-limit 30 --batch
 python scripts/translate_updates.py --locale zh-Hans --limit 30
 python scripts/source_health.py gate
 ```
@@ -375,12 +376,12 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 
 ## Operating status and roadmap
 
-The four-stage pipeline (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py` → `translate_updates.py`) is live in the daily GitHub Actions workflow. Stage 3 AI summaries and Stage 4 `zh-Hans` translations are present in the published corpus, with English remaining canonical and per-field fallback for untranslated items. The dashboard is publicly hosted on GitHub Pages from `/docs`, and a successful daily data commit explicitly requests a Pages build from the latest `main` revision.
+The four-stage pipeline (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py` → `translate_updates.py`) is live in the daily GitHub Actions workflow. Stage 3 AI summaries and Stage 4 `zh-Hans` translations are present in the published corpus, with English remaining canonical and per-field fallback for untranslated items. Daily summarization uses a selective relevance-ranked pool of 100 items with at most 30 new Opus calls; cache hits are free, so the pool fills incrementally without turning the full archive into AI-generated analysis. The dashboard is publicly hosted on GitHub Pages from `/docs`, and a successful daily data commit explicitly requests a Pages build from the latest `main` revision.
 
 Remaining roadmap items:
 
 - Continue the manual `zh-Hans` translation backfill in controlled batches while retaining the existing integrity checks and English fallback.
-- Keep AI summarization selective unless review establishes a reason to expand beyond the current relevance-ranked top-N policy.
+- Review the relevance-ranked 100-item AI-summary pool periodically for source balance and triage quality before expanding it; do not bulk-summarize the full archive by default.
 - Revisit additional official sources such as NTA or JPO only when a stable, sufficiently focused feed or API becomes available.
 - Add year-based archive JSON files if the published dataset approaches the 3,000-item cap; the cumulative raw history remains untrimmed.
 - Do not add another UI locale without explicit approval and a reviewable translation workflow.
