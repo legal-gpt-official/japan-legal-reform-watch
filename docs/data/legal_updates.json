@@ -5018,7 +5018,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and rule-based triage labels; details unverified. The preliminary 'Energy / Environment' area label appears to be a keyword mismatch, as the item concerns radio spectrum/telecommunications. Confirm against the authoritative Japanese source.",
     "summarized_at": "2026-07-03T22:07:26Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：76GHz频段低功率毫米波雷达高度化告示修订草案",
+        "summary": "日本总务省（MIC）就旨在提升76GHz频段低功率毫米波雷达性能的告示修订草案启动了公开征求意见。该草案仍处于公开征求意见阶段，尚未最终确定或生效。现有元数据未提供标题之外的更多细节。",
+        "business_impact": "若该修订草案获得采纳，涉及毫米波雷达设备或相关无线电频谱应用的机构可能会受到影响。仅凭元数据无法确定具体范围及任何具体要求。",
+        "recommended_action": "建议考虑查阅总务省官方来源及完整的告示修订草案，以了解拟议变更内容及意见征集期限。"
+      }
+    }
   },
   {
     "id": "raw-fd2595051b820726",
@@ -5044,7 +5052,15 @@
     "confidence": "medium",
     "ai_notes": "Based primarily on the Japanese title and rule-based triage labels; specific provisions, deadlines, and scope are not provided and remain unverified against the official source.",
     "summarized_at": "2026-06-19T22:05:58Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：《南极地域环境保护法》施行规则修订省令案",
+        "summary": "日本环境省（MOE）就一项拟部分修订《南极地域环境保护法》施行规则的省令草案发布了公开征求意见。该事项为公开征求意见的提案，尚非最终确定或已生效的措施。相关主题被描述为与自然环境有关。",
+        "business_impact": "从事与南极相关活动或受该施行规则约束的机构或希望关注该拟议修订，因为若获通过，可能会影响未来的合规义务。",
+        "recommended_action": "建议考虑查阅环境省的官方公告及草案文本，以了解拟议修改内容及公开征求意见提交的相关细节。"
+      }
+    }
   },
   {
     "id": "raw-33b9beac21f44189",
@@ -5408,7 +5424,15 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; substantive details of the draft are unverified. Note the rule-based label states 'Public Comment Closed' while the metadata lists a deadline of 2026/08/05, so the current status should be confirmed against the official source. Labels are keyword-based triage only.",
     "summary_source": "claude",
     "summarized_at": "2026-08-07T03:35:41Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：全面修订《车道及侧带铺装结构基准省令》草案",
+        "summary": "日本国土交通省（道路局）发布了一项拟全面修订车道及侧带铺装结构基准省令的省令草案，并就此征求公众意见。根据元数据，该草案于2026-07-06公布，意见提交截止日期为2026-08-05。这是一份正在征求公众意见的草案，尚未被表述为已制定或已生效。",
+        "business_impact": "如果修订后的基准日后被采纳，从事道路建设、铺装设计或相关公共工程的主体可能会受到影响。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，并联系所列联系方（国土交通省道路局）以核实该草案的适用范围及意见征集期限。"
+      }
+    }
   },
   {
     "id": "raw-f1f5fd1924106d10",
@@ -5462,7 +5486,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted rule. Dates and contact details are taken from the metadata and should be verified against the official source. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-19T22:06:05Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：《企业收购行动指针》解释、要点及问答草案",
+        "summary": "日本经济产业省（经济产业政策局产业组织课）就与《企业收购行动指针》相关的草案文件开展了公开征求意见，具体包括解释草案、要点概要草案以及问答草案。根据元数据，该草案于2026-06-18公布，意见征集截止至2026-07-17 17:00，分类为“一般产业”。这些均为公开征求意见的草案材料，尚非最终定稿或具有约束力的规则。",
+        "business_impact": "参与企业并购业务或提供相关咨询的公司可能希望关注该解释、要点及问答内容将如何澄清收购指针下的相关预期。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，并可考虑在规定截止日期前提交意见。"
+      }
+    }
   },
   {
     "id": "raw-ae57d66480c705e2",
@@ -5487,7 +5519,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and limited metadata; the substance of the amendments is not provided and the labels are preliminary rule-based triage, not verified. The official Japanese source is authoritative.",
     "summarized_at": "2026-06-12T07:04:16Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：《地方自治法施行令》部分修订政令草案",
+        "summary": "日本总务省（MIC）就一项拟部分修订《地方自治法》施行令的政令草案开展了公开征求意见。该事项为征求意见中的提案，并非最终确定或已生效的措施。所提供的元数据中未详细说明修订的具体内容。",
+        "business_impact": "与地方政府行政事务有往来的机构或希望关注该草案，因为若该修订获得通过，可能会影响相关行政程序。",
+        "recommended_action": "建议查阅总务省官方来源及草案全文，以了解拟议修订内容及公开征求意见的相关期限。"
+      }
+    }
   },
   {
     "id": "raw-61b07e64e33a0287",
@@ -5511,7 +5551,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief metadata; substantive details of the amendment are not provided and remain unverified. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-06-10T08:41:10Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：《药局制剂指针》部分修订草案（概要）",
+        "summary": "厚生劳动省（医药安全局医药审查课）就《药局制剂指针》部分修订草案（概要）开展了公开征求意见。根据元数据，该草案于2026-06-10公布，意见接受截止日期为2026-07-10。该草案目前仍处于公开征求意见阶段，尚未确定。",
+        "business_impact": "如该修订草案获得采纳，药局及相关医药经营者可能会受到影响，具体影响程度视最终内容而定。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以了解该草案的范围及意见提交截止日期。"
+      }
+    }
   },
   {
     "id": "raw-46766273fa064e2c",
@@ -5884,7 +5932,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief metadata; this is a draft notice out for public comment, not an enacted rule. Forestry-specific details and the substance of the amendments are unverified. Preliminary triage labels (area 'Other', impact 'Medium') are keyword-based and not authoritative.",
     "summarized_at": "2026-06-16T02:17:53Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：修订育成就业制度施行规则中林业特有标准的告示草案",
+        "summary": "这是一项关于修订告示草案的公开征求意见，该草案拟修订《外国人育成就业适当实施及育成就业外国人保护法》施行规则下针对林业领域特有情况所设定的部分标准。草案于2026-06-16公布，意见提交截止时间为2026-07-15 23:59。该事项归类为林业相关事项，由林野厅林业劳动与经营对策室负责处理。",
+        "business_impact": "若拟议标准按修订内容获得采纳，参与林业领域外国人雇用或育成就业的相关组织可能受到影响。",
+        "recommended_action": "建议查阅日文官方来源，并视是否与自身业务相关，考虑是否在规定截止日期前提交意见。"
+      }
+    }
   },
   {
     "id": "raw-c3a218b464f8a335",
@@ -5908,7 +5964,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and raw summary; this is a draft out for public comment and not an enacted rule. Dates and contacts are taken from the metadata and should be verified against the authoritative Japanese source. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-11T01:25:39Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：修订铁路车辆固定容器检查及再检查标准告示（草案）",
+        "summary": "这是一项关于修订铁路车辆上固定容器的检查及再检查标准的告示（草案）的公开征求意见通知。根据元数据，该草案于2026-06-10公布，意见提交截止日期为2026-07-09 23:59，归类为确保公共安全类。列出的联系部门为经济产业省高压气体安全对策室以及国土交通省铁道局技术企划课。",
+        "business_impact": "若拟议的检查及再检查标准获得采纳，涉及铁路车辆或固定于其上的高压气体容器的相关主体可能受到影响。",
+        "recommended_action": "建议考虑查阅e-Gov官方公开征求意见通知及草案文本，以核实其适用范围、要求内容及提交截止日期。"
+      }
+    }
   },
   {
     "id": "raw-55db966ad401aa9d",
@@ -5932,7 +5996,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and limited metadata; this is a draft out for public comment, not an enacted rule. Categorization is preliminary; details should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-06-11T01:25:45Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：重要电源开发地点指定相关规程修订告示（草案）",
+        "summary": "这是一项关于修订重要电源开发地点指定相关规程的告示草案（告示案）的公开征求意见。根据元数据，该草案于2026-06-10公布，意见提交截止日期为2026-07-09。联系部门为经济产业省资源能源厅电力·燃气事业部核能政策课。",
+        "business_impact": "从事电源开发或能源基础设施相关业务的机构可能希望关注该草案，因为指定规程的变更若最终获得采纳，可能会影响相关流程。",
+        "recommended_action": "建议在采取任何行动前，查阅e-Gov上的日文官方告示及公开征求意见页面，以核实其适用范围、内容及提交截止日期。"
+      }
+    }
   },
   {
     "id": "raw-b649261f681f8c4d",
