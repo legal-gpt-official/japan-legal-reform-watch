@@ -299,6 +299,7 @@
       throw new Error("Unexpected archive manifest shape.");
     }
     const seen = new Set();
+    let periodTotal = 0;
     value.periods.forEach((entry) => {
       if (
         !entry ||
@@ -312,10 +313,12 @@
         throw new Error("Invalid archive manifest period.");
       }
       seen.add(entry.value);
+      periodTotal += entry.count;
     });
     if (
       !Number.isInteger(value.total_items) ||
       value.total_items < 0 ||
+      periodTotal !== value.total_items ||
       (value.periods.length > 0 && !seen.has(value.latest_period))
     ) {
       throw new Error("Invalid archive manifest totals.");
