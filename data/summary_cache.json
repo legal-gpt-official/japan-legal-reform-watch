@@ -1328,5 +1328,15 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; substantive details of the draft are unverified. Note the rule-based label states 'Public Comment Closed' while the metadata lists a deadline of 2026/08/05, so the current status should be confirmed against the official source. Labels are keyword-based triage only.",
     "summarized_at": "2026-08-07T03:35:41Z",
     "summary_model": "claude-opus-4-8"
+  },
+  "307a31041b37530853867d32543200e2d828b9d9c61d86e7fac9c9c7ef336038": {
+    "title_en": "NTA Notice partially amending file-format specifications for national-tax electronic filing (Notice No. 18)",
+    "summary_en": "This is a National Tax Agency (NTA) notice that partially amends an earlier NTA notification (Reiwa 8 NTA Notice No. 4) which specifies file formats designated by the Commissioner of the NTA under various tax-related ministerial ordinances, including provisions of the ordinance promoting the use of information and communications technology for national-tax administration, and rules under the Corporation Tax Act, Local Corporation Tax Act, Consumption Tax Act, and the ordinance on special corporate defense tax. The item is listed among NTA new-arrival information and directives and is provided as a PDF. Details beyond the title and metadata are not available here.",
+    "business_impact_en": "Entities that use electronic filing for the referenced national and local corporate and consumption taxes may need to check whether accepted file formats have changed.",
+    "recommended_action_en": "Review the official Japanese NTA notice at the provided source to confirm the exact scope and effect of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and triage metadata; the PDF contents were not verified. The preliminary 'Finance / AML' label appears loosely keyword-based and this item seems more about tax e-filing file formats. Effective date and specifics are unverified.",
+    "summarized_at": "2026-08-07T04:32:36Z",
+    "summary_model": "claude-opus-4-8"
   }
 }
