@@ -373,12 +373,17 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
 | `translations`           | Optional per-locale AI translations, e.g. `translations.zh-Hans = { title, summary, business_impact, recommended_action }` (Simplified Chinese). Unofficial aid added by Stage 4; English stays canonical and untranslated items omit the block. |
 
-## Roadmap (not yet implemented)
+## Operating status and roadmap
 
-- **A four-stage pipeline exists** (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py` → `translate_updates.py`), and `.github/workflows/daily-update.yml` can run it manually or daily once GitHub Secrets are configured.
-- First real Stage 3 API run, review of generated summaries, and expansion beyond top-N once the guardrails are accepted.
-- First bulk Stage 4 `zh-Hans` translation of the full corpus (raise `--limit` once, off the daily schedule) and review before broader use; additional UI locales only with explicit approval.
-- Public hosting on GitHub Pages.
+The four-stage pipeline (`fetch_updates.py` → `build_public_data.py` → `summarize_updates.py` → `translate_updates.py`) is live in the daily GitHub Actions workflow. Stage 3 AI summaries and Stage 4 `zh-Hans` translations are present in the published corpus, with English remaining canonical and per-field fallback for untranslated items. The dashboard is publicly hosted on GitHub Pages from `/docs`, and a successful daily data commit explicitly requests a Pages build from the latest `main` revision.
+
+Remaining roadmap items:
+
+- Continue the manual `zh-Hans` translation backfill in controlled batches while retaining the existing integrity checks and English fallback.
+- Keep AI summarization selective unless review establishes a reason to expand beyond the current relevance-ranked top-N policy.
+- Revisit additional official sources such as NTA or JPO only when a stable, sufficiently focused feed or API becomes available.
+- Add year-based archive JSON files if the published dataset approaches the 3,000-item cap; the cumulative raw history remains untrimmed.
+- Do not add another UI locale without explicit approval and a reviewable translation workflow.
 
 ## License & use
 
