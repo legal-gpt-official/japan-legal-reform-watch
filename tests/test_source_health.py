@@ -459,6 +459,7 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
         self.assertNotIn("FORCE_JAVASCRIPT_ACTIONS_TO_NODE24", workflow)
         self.assertNotIn("ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION", workflow)
         self.assertIn("permissions:\n  contents: write", workflow)
+        self.assertIn("  pages: write", workflow)
         self.assertGreaterEqual(workflow.count("SOURCE_HEALTH_PERSIST_STATE"), 2)
         self.assertIn("github.event_name == 'schedule'", workflow)
 
@@ -466,10 +467,16 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
         evaluate_pos = workflow.index("name: Evaluate source health")
         build_pos = workflow.index("name: Build public data")
         commit_pos = workflow.index("name: Commit and push updated data")
+        pages_pos = workflow.index("name: Request Pages build for committed data")
         gate_pos = workflow.index("name: Enforce source health gate")
         self.assertLess(fetch_pos, evaluate_pos)
         self.assertLess(evaluate_pos, build_pos)
-        self.assertLess(commit_pos, gate_pos)
+        self.assertLess(commit_pos, pages_pos)
+        self.assertLess(pages_pos, gate_pos)
+        self.assertIn("id: data_commit", workflow)
+        self.assertIn("steps.data_commit.outputs.committed == 'true'", workflow)
+        self.assertIn("GH_TOKEN: ${{ github.token }}", workflow)
+        self.assertIn('"repos/${GITHUB_REPOSITORY}/pages/builds"', workflow)
         self.assertIn("data/source_health_state.json", workflow)
 
 
