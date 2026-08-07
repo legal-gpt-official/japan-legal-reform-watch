@@ -459,7 +459,31 @@ def validate_state_for_gate(state: Any) -> list[str]:
     return problems
 
 
+def bootstrap_missing_source_states(state: Any) -> Any:
+    """Add defaults for newly configured sources without hiding invalid state.
+
+    Manual runs deliberately do not persist or update health streaks. They may
+    therefore see the previous main-branch state immediately after a source is
+    added. Fill only missing configured keys in memory; preserve unknown keys,
+    schema errors, and malformed structures so normal gate validation still
+    reports them.
+    """
+    if not isinstance(state, dict) or state.get("schema_version") != STATE_SCHEMA_VERSION:
+        return state
+    sources = state.get("sources")
+    if not isinstance(sources, dict):
+        return state
+    bootstrapped = dict(state)
+    bootstrapped_sources = dict(sources)
+    for key in configured_keys():
+        bootstrapped_sources.setdefault(key, default_source_state())
+    bootstrapped["sources"] = bootstrapped_sources
+    return bootstrapped
+
+
 def gate_failures(report: Any, state: Any, enforce_streaks: bool = True) -> list[str]:
+    if not enforce_streaks:
+        state = bootstrap_missing_source_states(state)
     failures = validate_report(report)
     failures.extend(validate_state_for_gate(state))
     if failures:
