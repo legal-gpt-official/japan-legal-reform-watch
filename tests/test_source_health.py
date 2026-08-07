@@ -248,6 +248,32 @@ class TestSourceHealthGate(unittest.TestCase):
 
         self.assertFalse(any("MAFF failed for 3 consecutive runs" in failure for failure in failures))
 
+    def test_workflow_dispatch_bootstraps_new_source_state_in_memory(self):
+        state = sh.initial_state()
+        state["sources"].pop("nta")
+
+        failures = sh.gate_failures(make_report(), state, enforce_streaks=False)
+
+        self.assertEqual(failures, [])
+        self.assertNotIn("nta", state["sources"])
+
+    def test_scheduled_gate_still_requires_new_source_state(self):
+        state = sh.initial_state()
+        state["sources"].pop("nta")
+
+        failures = sh.gate_failures(make_report(), state, enforce_streaks=True)
+
+        self.assertTrue(any("missing configured sources: nta" in failure for failure in failures))
+
+    def test_manual_bootstrap_does_not_hide_unknown_state_sources(self):
+        state = sh.initial_state()
+        state["sources"].pop("nta")
+        state["sources"]["unknown"] = sh.default_source_state()
+
+        failures = sh.gate_failures(make_report(), state, enforce_streaks=False)
+
+        self.assertTrue(any("unknown sources: unknown" in failure for failure in failures))
+
     def test_one_or_two_warnings_do_not_fail_gate(self):
         for streak in (1, 2):
             with self.subTest(streak=streak):
