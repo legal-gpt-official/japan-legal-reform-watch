@@ -24,6 +24,7 @@ ALLOWED_SOURCE_TYPES = {
 }
 ALLOWED_HTML_PARSERS = {
     "ppc_information", "jftc_pressrelease", "moe_press", "mlit_press", "meti_press_index",
+    "nta_updates",
     "shugiin_current_bills",
     "jpx_public_comments", "jpx_rule_revisions", "pmda_safety_updates",
     "jsda_public_comments", "jsda_public_comment_results", "courts_recent_supreme",
@@ -87,6 +88,15 @@ class TestSourcesConfig(unittest.TestCase):
         self.assertEqual(meti["url"], "https://www.meti.go.jp/press/index.html")
         # The old failing Atom feed must be gone.
         self.assertNotIn("ml_index_release_atom", meti["url"])
+
+    def test_nta_source_config_uses_current_shift_jis_page(self):
+        nta = next(source for source in fu.SOURCES if source["key"] == "nta")
+        self.assertEqual(nta["source_type"], "agency_html")
+        self.assertEqual(nta["html_parser"], "nta_updates")
+        self.assertEqual(nta["encoding"], "shift_jis")
+        self.assertEqual(nta["history_days"], 550)
+        self.assertEqual(nta["max_items"], 200)
+        self.assertEqual(nta["url"], "https://www.nta.go.jp/information/news/news.htm")
 
     def test_legislative_expansion_sources_present(self):
         by_key = {source["key"]: source for source in fu.SOURCES}
@@ -723,6 +733,40 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertTrue(item["title_ja"])
         self.assertEqual(item["published_at"], "2026-06-23")
         self.assertTrue(item["source_url"].startswith("https://www.meti.go.jp/press/"))
+
+    def test_nta_updates_parser_keeps_current_tables_and_recent_dates_only(self):
+        html_text = """
+        <table class="index_news">
+          <tr><th>令和8年8月5日</th><td><a href="/information/other/data.htm">税制改正に関する情報</a></td></tr>
+          <tr><th>令和8年8月4日</th><td><a href="/laws/tsutatsu/kobetsu/shotoku/260804.htm">所得税法基本通達の一部改正について</a></td></tr>
+          <tr><th>令和8年8月4日</th><td><a href="/information/other/data.htm">重複リンク</a></td></tr>
+          <tr><th>令和4年1月1日</th><td><a href="/old.htm">古い情報</a></td></tr>
+          <tr><th>令和99年1月1日</th><td><a href="/future.htm">未来の情報</a></td></tr>
+          <tr><th>日付なし</th><td><a href="/invalid.htm">不正な日付</a></td></tr>
+        </table>
+        <table class="index_news">
+          <tr><th>令和8年8月6日</th><td><a href="laws/tsutatsu/260806.htm">法令解釈通達の改正</a></td></tr>
+        </table>
+        <table class="index_news info-item">
+          <tr><th>令和8年8月7日</th><td><a href="/archive.htm">折り畳みアーカイブ</a></td></tr>
+        </table>
+        """.encode("shift_jis")
+        source = {
+            "html_parser": "nta_updates",
+            "url": "https://www.nta.go.jp/information/news/news.htm",
+            "encoding": "shift_jis",
+            "history_days": 550,
+        }
+
+        with mock.patch.object(fu, "current_jst_date", return_value="2026-08-07"):
+            items = fu.parse_html_source(html_text, source)
+
+        self.assertEqual([item["published_iso"] for item in items], ["2026-08-06", "2026-08-05", "2026-08-04"])
+        self.assertEqual(items[0]["title"], "法令解釈通達の改正")
+        self.assertEqual(items[0]["link"], "https://www.nta.go.jp/information/news/laws/tsutatsu/260806.htm")
+        self.assertEqual(items[0]["summary"], "国税庁新着情報・通達等")
+        self.assertNotIn("折り畳みアーカイブ", [item["title"] for item in items])
+        self.assertNotIn("古い情報", [item["title"] for item in items])
 
 
 class TestEgovUpdatedLawsAdapter(unittest.TestCase):

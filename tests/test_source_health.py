@@ -41,6 +41,7 @@ EXPECTED_SOURCE_KEYS = {
     "moj",
     "moe",
     "mof",
+    "nta",
     "mic",
     "mlit",
     "maff",
@@ -73,7 +74,7 @@ def make_report(**overrides_by_key):
         "schema_version": 1,
         "started_at": "2026-06-16T00:00:00Z",
         "finished_at": "2026-06-16T00:00:12Z",
-        "configured_source_count": 23,
+        "configured_source_count": 24,
         "sources": rows,
     }
 
@@ -83,10 +84,10 @@ def row_by_key(evaluation, key):
 
 
 class TestSourceHealthConfig(unittest.TestCase):
-    def test_all_23_source_keys_are_unique(self):
+    def test_all_24_source_keys_are_unique(self):
         keys = [source.get("key") for source in fu.SOURCES]
         self.assertEqual(set(keys), EXPECTED_SOURCE_KEYS)
-        self.assertEqual(len(keys), 23)
+        self.assertEqual(len(keys), 24)
         self.assertEqual(len(keys), len(set(keys)))
 
     def test_all_sources_have_required_fields(self):
@@ -210,7 +211,7 @@ class TestSourceHealthEvaluation(unittest.TestCase):
         self.assertNotIn("\n", cleaned)
         self.assertLessEqual(len(cleaned), 300)
 
-    def test_step_summary_contains_23_source_rows(self):
+    def test_step_summary_contains_24_source_rows(self):
         report = make_report(mlit={"fetched_count": 0, "new_count": 0, "latest_published_at": None})
         evaluation = sh.evaluate_report(report, sh.initial_state(), "2026-06-16T00:00:12Z")
         summary = sh.generate_step_summary(evaluation)
@@ -218,7 +219,7 @@ class TestSourceHealthEvaluation(unittest.TestCase):
             line for line in summary.splitlines()
             if line.startswith("| ") and not line.startswith("| Source") and not line.startswith("|---")
         ]
-        self.assertEqual(len(source_lines), 23)
+        self.assertEqual(len(source_lines), 24)
         self.assertIn("| MLIT | Warning: zero results | 0 | 0 | -- | 1 | 0 |", summary)
 
 
@@ -285,9 +286,9 @@ class TestSourceHealthGate(unittest.TestCase):
 
     def test_unknown_source_fails_gate(self):
         report = make_report()
-        report["sources"].append(report_row({"key": "nta", "name": "NTA", "url": "https://example.go.jp"}))
+        report["sources"].append(report_row({"key": "jpo", "name": "JPO", "url": "https://example.go.jp"}))
         failures = sh.gate_failures(report, sh.initial_state())
-        self.assertTrue(any("unknown sources: nta" in failure for failure in failures))
+        self.assertTrue(any("unknown sources: jpo" in failure for failure in failures))
 
 
 class TestWarningOnlySourceGate(unittest.TestCase):

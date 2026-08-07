@@ -529,6 +529,8 @@ ADDITIONAL_AREA_RULES: list[tuple[str, tuple[str, ...]]] = [
 
 
 def classify_area(title_ja: str, source_name: str) -> str:
+    if "NTA" in source_name or "National Tax Agency" in source_name:
+        return "Finance / AML"
     if "PMDA" in source_name or "Pharmaceuticals and Medical Devices Agency" in source_name:
         return "Healthcare / Pharmaceuticals"
     if "Securities and Exchange Surveillance Commission" in source_name or "SESC" in source_name:
@@ -938,6 +940,8 @@ def infer_subject_title_en(subject_ja: str, title_ja: str) -> str:
 
 
 def title_prefix(source_name: str, stage: str, title_ja: str) -> str:
+    if "NTA" in source_name or "National Tax Agency" in source_name:
+        return "NTA Public Comment" if stage.startswith("Public Comment") else "NTA Update"
     if "Securities and Exchange Surveillance Commission" in source_name or "SESC" in source_name:
         return "SESC Enforcement Action" if stage == "Enforcement Action" else "SESC Update"
     if "Japan Securities Dealers Association" in source_name or "JSDA" in source_name:
@@ -1045,6 +1049,8 @@ def public_comment_fallback(stage: str, prefix: str = "Public Comment") -> str:
 
 
 def source_fallback_label(source_name: str) -> str:
+    if source_has(source_name, "NTA", "National Tax Agency"):
+        return "NTA"
     if source_has(source_name, "Securities and Exchange Surveillance Commission", "SESC"):
         return "SESC"
     if source_has(source_name, "Japan Securities Dealers Association", "JSDA"):
@@ -1091,6 +1097,18 @@ def source_fallback_label(source_name: str) -> str:
 
 
 def keyword_fallback_title(title_ja: str, source_name: str, stage: str) -> str:
+    if source_has(source_name, "NTA", "National Tax Agency"):
+        pc = public_comment_fallback(stage, "NTA Public Comment")
+        if pc:
+            return pc
+        if any(marker in title_ja for marker in ("法令解釈通達", "基本通達", "事務運営指針")):
+            return "NTA Update: Tax interpretation or administrative guidance revised"
+        if "告示" in title_ja:
+            return "NTA Update: Tax agency notice issued or revised"
+        if "税制改正" in title_ja:
+            return "NTA Update: Tax reform information published"
+        return "NTA Update: Tax administration guidance updated"
+
     if source_has(source_name, "Securities and Exchange Surveillance Commission", "SESC"):
         pc = public_comment_fallback(stage, "SESC Public Comment")
         if pc:

@@ -56,6 +56,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -360,7 +361,21 @@ def caution_phrases_in_item(item: dict) -> list[str]:
     if item.get("summary_source") != "claude":
         return []
     text = " ".join(str(item.get(k, "")) for k in AI_TEXT_FIELDS).lower()
-    return [phrase for phrase in CAUTION_PHRASES if phrase in text]
+    warnings = []
+    for phrase in CAUTION_PHRASES:
+        for match in re.finditer(re.escape(phrase), text):
+            # Do not warn on explicit guardrail language such as "does not
+            # indicate that the amendment has been enacted". Restrict the
+            # negation check to the nearby clause so a separate definitive
+            # statement elsewhere in the sentence still raises a warning.
+            prefix = text[max(0, match.start() - 120) : match.start()]
+            clause_start = max(prefix.rfind("."), prefix.rfind(";"), prefix.rfind("!"), prefix.rfind("?"))
+            nearby_clause = prefix[clause_start + 1 :]
+            if re.search(r"\b(?:not|never|no|rather than)\b", nearby_clause):
+                continue
+            warnings.append(phrase)
+            break
+    return warnings
 
 
 # --------------------------------------------------------------------------- #
