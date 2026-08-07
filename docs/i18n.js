@@ -32,7 +32,9 @@
 
       ds_heading: "Data status",
       ds_note: "Monitoring aid only. Original Japanese official sources remain authoritative.",
+      ds_period: "Period",
       ds_updates: "Updates",
+      ds_archive_total: "Archive total",
       ds_sources: "Sources represented",
       ds_ai_summaries: "AI summaries",
       ds_open_pc: "Open public comments",
@@ -53,6 +55,7 @@
 
       ctl_search: "Search",
       ctl_search_placeholder: "Search title or summary...",
+      ctl_period: "Period",
       ctl_area: "Area",
       ctl_stage: "Stage",
       ctl_source: "Source",
@@ -66,6 +69,10 @@
       sort_published: "Published date",
       sort_checked: "Last checked",
       sort_detected: "First detected",
+      period_latest: "Latest ({year})",
+      period_all: "All years (slower)",
+      period_undated: "Undated",
+      period_loading: "Loading selected period...",
 
       export_button: "Export CSV",
       export_none: "No matching updates to export",
@@ -87,6 +94,7 @@
       af_none: "No active filters",
       af_active_prefix: "Active: ",
       af_search: 'Search: "{q}"',
+      af_period: "Period: {v}",
       af_area: "Area: {v}",
       af_stage: "Stage: {v}",
       af_source: "Source: {v}",
@@ -199,7 +207,9 @@
 
       ds_heading: "数据状态",
       ds_note: "仅为监测辅助。以日文官方来源为准。",
+      ds_period: "期间",
       ds_updates: "更新总数",
+      ds_archive_total: "档案总数",
       ds_sources: "涵盖来源",
       ds_ai_summaries: "AI摘要数",
       ds_open_pc: "公开征求意见中",
@@ -220,6 +230,7 @@
 
       ctl_search: "搜索",
       ctl_search_placeholder: "搜索标题或摘要……",
+      ctl_period: "期间",
       ctl_area: "领域",
       ctl_stage: "阶段",
       ctl_source: "来源",
@@ -233,6 +244,10 @@
       sort_published: "发布日期",
       sort_checked: "最后确认",
       sort_detected: "首次收录",
+      period_latest: "最新（{year}）",
+      period_all: "全部年份（加载较慢）",
+      period_undated: "日期不明",
+      period_loading: "正在加载所选期间……",
 
       export_button: "导出CSV",
       export_none: "没有可导出的匹配更新",
@@ -252,6 +267,7 @@
       af_none: "无活动筛选",
       af_active_prefix: "活动：",
       af_search: "搜索：“{q}”",
+      af_period: "期间：{v}",
       af_area: "领域：{v}",
       af_stage: "阶段：{v}",
       af_source: "来源：{v}",

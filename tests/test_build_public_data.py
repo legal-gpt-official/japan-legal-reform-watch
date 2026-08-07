@@ -1289,9 +1289,8 @@ class TestRelevanceScoring(unittest.TestCase):
             bpd.RELEVANCE_FLOOR,
         )
 
-    def test_output_cap_is_3000(self):
-        # Public dataset cap; the UI pages 50 at a time via Load more.
-        self.assertEqual(bpd.MAX_OUTPUT_ITEMS, 3000)
+    def test_default_output_is_unlimited(self):
+        self.assertEqual(bpd.DEFAULT_OUTPUT_LIMIT, 0)
 
     def test_rule_based_impact_never_high(self):
         aggressive_titles = [
@@ -1306,7 +1305,7 @@ class TestRelevanceScoring(unittest.TestCase):
 
 
 class TestPublishedItemLimit(unittest.TestCase):
-    """Exercise the real Stage 2 selection/write path around the public cap."""
+    """Exercise the uncapped default and optional diagnostic limit."""
 
     @staticmethod
     def _raw_items(count):
@@ -1323,7 +1322,7 @@ class TestPublishedItemLimit(unittest.TestCase):
             for index in range(count)
         ]
 
-    def _run_build(self, count):
+    def _run_build(self, count, argv=None):
         raw_items = self._raw_items(count)
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp = Path(tmp_dir)
@@ -1346,7 +1345,7 @@ class TestPublishedItemLimit(unittest.TestCase):
                 mock.patch.object(bpd, "relevance_score", side_effect=synthetic_score),
                 redirect_stdout(stdout),
             ):
-                result = bpd.main([])
+                result = bpd.main(argv or [])
 
             self.assertEqual(result, 0)
             self.assertEqual(raw_path.read_bytes(), raw_before, "Stage 2 must not trim raw history")
@@ -1360,25 +1359,11 @@ class TestPublishedItemLimit(unittest.TestCase):
             raise AssertionError(f"Missing {label} in build summary:\n{stdout}")
         return int(match.group(1))
 
-    def test_fewer_than_3000_candidates_outputs_every_item(self):
-        raw_items, output, stdout = self._run_build(2999)
-        self.assertEqual(len(output), len(raw_items))
-        self.assertEqual(self._summary_count(stdout, "candidate_items"), 2999)
-        self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
-
-    def test_exactly_3000_candidates_outputs_3000_items(self):
-        raw_items, output, stdout = self._run_build(3000)
-        self.assertEqual(len(raw_items), 3000)
-        self.assertEqual(len(output), bpd.MAX_OUTPUT_ITEMS)
-        self.assertEqual(self._summary_count(stdout, "candidate_items"), 3000)
-        self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
-
-    def test_more_than_3000_candidates_keeps_top_ranked_items_only(self):
+    def test_more_than_3000_candidates_outputs_every_item_by_default(self):
         raw_items, output, stdout = self._run_build(3001)
-        self.assertEqual(len(raw_items), 3001, "Raw history must remain above the public cap")
-        self.assertEqual(len(output), bpd.MAX_OUTPUT_ITEMS)
-        self.assertEqual([item["id"] for item in output], [f"raw-{i:04d}" for i in range(3000)])
-        self.assertNotIn("raw-3000", {item["id"] for item in output})
+        self.assertEqual(len(raw_items), 3001)
+        self.assertEqual(len(output), 3001)
+        self.assertEqual([item["id"] for item in output], [f"raw-{i:04d}" for i in range(3001)])
         self.assertEqual(
             [item["relevance_score"] for item in output],
             sorted((item["relevance_score"] for item in output), reverse=True),
@@ -1390,6 +1375,14 @@ class TestPublishedItemLimit(unittest.TestCase):
             self.assertTrue(item["source_url"])
         self.assertEqual(self._summary_count(stdout, "candidate_items"), 3001)
         self.assertEqual(self._summary_count(stdout, "output_items"), len(output))
+
+    def test_explicit_limit_remains_available_for_diagnostics(self):
+        raw_items, output, stdout = self._run_build(12, ["--limit", "10"])
+        self.assertEqual(len(raw_items), 12, "Stage 2 must never trim raw history")
+        self.assertEqual(len(output), 10)
+        self.assertEqual([item["id"] for item in output], [f"raw-{i:04d}" for i in range(10)])
+        self.assertEqual(self._summary_count(stdout, "candidate_items"), 12)
+        self.assertEqual(self._summary_count(stdout, "output_items"), 10)
 
 
 class TestAiSummaryPreservation(unittest.TestCase):

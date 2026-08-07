@@ -36,7 +36,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -86,10 +86,16 @@ jobs:
             echo "Translation provider unavailable: ${ptype}" >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      # The canonical public JSON remains the complete, uncapped corpus used by
+      # the AI stages. Browser-facing yearly files are regenerated afterwards so
+      # they always contain the final English summaries and translations.
+      - name: Build yearly public archives
+        run: python scripts/build_public_archives.py
+
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -101,7 +107,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

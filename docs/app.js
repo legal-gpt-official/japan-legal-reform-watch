@@ -11,8 +11,13 @@
   const I18N = window.JLRW_I18N;
 
   const STORAGE_KEY = "jlrw_disclaimer_accepted_v1";
-  // Data lives inside docs/ so the published site (GitHub Pages: /docs) is self-contained.
+  // The canonical file is the uncapped all-years dataset used only when the
+  // visitor explicitly selects All years. Normal browsing loads one yearly
+  // shard from the manifest, keeping initial transfer and parsing bounded.
   const DATA_URL = "./data/legal_updates.json";
+  const DATA_MANIFEST_URL = "./data/legal_updates_manifest.json";
+  const ALL_PERIODS = "all";
+  const UNDATED_PERIOD = "undated";
 
   // Preferred display order for impact level.
   const IMPACT_ORDER = ["High", "Medium", "Low"];
@@ -31,7 +36,7 @@
   const DAY_MS = 24 * 60 * 60 * 1000;
 
   // Cards render in pages: 50 on load, +50 per "Load more" click. Filters and
-  // search always evaluate the FULL public dataset, not just rendered cards.
+  // search always evaluate the full selected period, not just rendered cards.
   const PAGE_SIZE = 50;
 
   // English-first display labels for sources (audience: non-Japanese-reading
@@ -117,8 +122,11 @@
 
   // -------- State --------
   let allUpdates = [];
+  let archiveManifest = null;
+  const datasetCache = new Map();
   let visibleCount = PAGE_SIZE;
   const filters = {
+    period: "",
     area: "",
     stage: "",
     source: "",
@@ -166,6 +174,7 @@
     filterSource,
     filterImpact,
     filterSort,
+    filterPeriod,
     languageSelect,
     mobileFiltersToggle,
     filterPanel,
@@ -190,6 +199,7 @@
     filterSource = $("#filter-source");
     filterImpact = $("#filter-impact");
     filterSort = $("#filter-sort");
+    filterPeriod = $("#filter-period");
     languageSelect = $("#language-select");
     mobileFiltersToggle = $("#mobile-filters-toggle");
     filterPanel = $("#filter-panel");
@@ -274,19 +284,145 @@
   }
 
   // -------- Data loading --------
+  async function fetchJson(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }
+
+  function validPeriodValue(value) {
+    return value === ALL_PERIODS || value === UNDATED_PERIOD || /^\d{4}$/.test(value || "");
+  }
+
+  function validateArchiveManifest(value) {
+    if (!value || value.schema_version !== 1 || !Array.isArray(value.periods)) {
+      throw new Error("Unexpected archive manifest shape.");
+    }
+    const seen = new Set();
+    value.periods.forEach((entry) => {
+      if (
+        !entry ||
+        !validPeriodValue(entry.value) ||
+        entry.value === ALL_PERIODS ||
+        entry.file !== "./data/archive/" + entry.value + ".json" ||
+        !Number.isInteger(entry.count) ||
+        entry.count < 0 ||
+        seen.has(entry.value)
+      ) {
+        throw new Error("Invalid archive manifest period.");
+      }
+      seen.add(entry.value);
+    });
+    if (
+      !Number.isInteger(value.total_items) ||
+      value.total_items < 0 ||
+      (value.periods.length > 0 && !seen.has(value.latest_period))
+    ) {
+      throw new Error("Invalid archive manifest totals.");
+    }
+    return value;
+  }
+
+  function periodEntry(value) {
+    if (!archiveManifest) return null;
+    return archiveManifest.periods.find((entry) => entry.value === value) || null;
+  }
+
+  function resolvePeriod(value) {
+    if (value === ALL_PERIODS) return ALL_PERIODS;
+    return periodEntry(value) ? value : archiveManifest.latest_period;
+  }
+
+  function requestedPeriodFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return resolvePeriod(params.get("year") || "");
+  }
+
+  function periodDisplayLabel(value) {
+    if (value === ALL_PERIODS) return I18N.t("period_all");
+    if (value === UNDATED_PERIOD) return I18N.t("period_undated");
+    if (archiveManifest && value === archiveManifest.latest_period) {
+      return I18N.t("period_latest", { year: value });
+    }
+    return value;
+  }
+
+  function populatePeriodOptions() {
+    if (!filterPeriod || !archiveManifest) return;
+    filterPeriod.innerHTML = "";
+    archiveManifest.periods.forEach((entry) => {
+      filterPeriod.appendChild(new Option(periodDisplayLabel(entry.value), entry.value));
+    });
+    filterPeriod.appendChild(new Option(periodDisplayLabel(ALL_PERIODS), ALL_PERIODS));
+    filterPeriod.value = filters.period;
+  }
+
+  async function datasetForPeriod(period) {
+    if (datasetCache.has(period)) return datasetCache.get(period).slice();
+    const entry = period === ALL_PERIODS ? null : periodEntry(period);
+    const url = period === ALL_PERIODS ? DATA_URL : entry && entry.file;
+    if (!url) throw new Error("Archive period is unavailable: " + period);
+    const data = await fetchJson(url);
+    if (!Array.isArray(data)) {
+      throw new Error("Unexpected data shape: expected an array.");
+    }
+    if (entry && data.length !== entry.count) {
+      throw new Error("Archive count does not match manifest: " + period);
+    }
+    if (period === ALL_PERIODS && data.length !== archiveManifest.total_items) {
+      throw new Error("All-years count does not match manifest.");
+    }
+    datasetCache.set(period, data.slice());
+    return data.slice();
+  }
+
+  function setPeriodLoading(isLoading) {
+    if (filterPeriod) filterPeriod.disabled = isLoading;
+    if (!isLoading) return;
+    metaEl.textContent = I18N.t("period_loading");
+    updateExportState([]);
+  }
+
+  async function installPeriodDataset(period) {
+    setPeriodLoading(true);
+    try {
+      const data = await datasetForPeriod(period);
+      // Preserve the published order within each shard. Stage 2 owns relevance ranking.
+      allUpdates = data;
+      filters.period = period;
+      populateFilterOptions();
+    } finally {
+      setPeriodLoading(false);
+    }
+  }
+
+  async function handlePeriodChange(nextPeriod) {
+    const resolved = resolvePeriod(nextPeriod);
+    if (resolved === filters.period) return;
+    const previous = filters.period;
+    try {
+      await installPeriodDataset(resolved);
+      resetVisibleCount();
+      applyLanguageDom();
+      renderDataStatus();
+      render();
+      // Data-dependent filters may have been cleared if the new period does not
+      // contain their selected values, so write the URL only after installation.
+      updateUrlFromFilters();
+    } catch (err) {
+      filters.period = previous;
+      populatePeriodOptions();
+      console.error("[JLRW] Failed to load archive period:", err);
+      showError();
+    }
+  }
+
   async function loadData() {
     try {
-      const res = await fetch(DATA_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error("HTTP " + res.status);
-      }
-      const data = await res.json();
-      if (!Array.isArray(data)) {
-        throw new Error("Unexpected data shape: expected an array.");
-      }
-      // Preserve the published JSON order. build_public_data.py owns relevance ranking.
-      allUpdates = data.slice();
-      populateFilterOptions();
+      archiveManifest = validateArchiveManifest(await fetchJson(DATA_MANIFEST_URL));
+      filters.period = requestedPeriodFromUrl();
+      populatePeriodOptions();
+      await installPeriodDataset(filters.period);
       restoreFiltersFromUrl(); // resolves language (URL > localStorage > English)
       applyLanguageDom(); // localize chrome, filter options, <title>, <html lang>
       renderDataStatus();
@@ -298,6 +434,7 @@
   }
 
   function showError() {
+    if (filterPeriod) filterPeriod.disabled = false;
     cardsEl.innerHTML = "";
     emptyEl.hidden = true;
     errorEl.hidden = false;
@@ -329,6 +466,9 @@
   }
 
   function populateFilterOptions() {
+    [filterArea, filterStage, filterSource, filterImpact].forEach((selectEl) => {
+      while (selectEl.options.length > 1) selectEl.remove(1);
+    });
     const areas = unique(allUpdates, "area");
     const stages = unique(allUpdates, "stage");
     const sources = uniqueByCount(allUpdates, "source_name");
@@ -345,6 +485,10 @@
       impacts.filter((i) => !IMPACT_ORDER.includes(i))
     );
     orderedImpacts.forEach((i) => filterImpact.appendChild(new Option(i, i)));
+    filters.area = hasOption(filterArea, filters.area) ? filters.area : "";
+    filters.stage = hasOption(filterStage, filters.stage) ? filters.stage : "";
+    filters.source = hasOption(filterSource, filters.source) ? filters.source : "";
+    filters.impact = hasOption(filterImpact, filters.impact) ? filters.impact : "";
     syncFilterControls();
   }
 
@@ -385,6 +529,7 @@
     const impact = params.get("impact") || "";
     const sort = params.get("sort") || DEFAULT_SORT;
 
+    filters.period = requestedPeriodFromUrl();
     filters.search = params.get("q") || "";
     filters.area = hasOption(filterArea, area) ? area : "";
     filters.stage = hasOption(filterStage, stage) ? stage : "";
@@ -424,6 +569,10 @@
     if (filters.sort !== DEFAULT_SORT) params.set("sort", filters.sort);
     if (filters.aiSummaryOnly) params.set("ai", "1");
     if (filters.newlyDetectedOnly) params.set("new", "7");
+    // The latest year is the default and stays absent from clean shared URLs.
+    if (archiveManifest && filters.period !== archiveManifest.latest_period) {
+      params.set("year", filters.period);
+    }
     // Default English is the absence of the param, keeping shared URLs clean.
     if (filters.lang && filters.lang !== I18N.DEFAULT_LANG) params.set("lang", filters.lang);
 
@@ -449,6 +598,7 @@
     filterSource.value = filters.source;
     filterImpact.value = filters.impact;
     filterSort.value = filters.sort;
+    if (filterPeriod) filterPeriod.value = filters.period;
   }
 
   function syncLanguageSelector() {
@@ -471,6 +621,11 @@
     relabelOptions(filterStage, (v) => I18N.stageLabel(v));
     relabelOptions(filterImpact, (v) => I18N.impactLabel(v));
     relabelOptions(filterSource, (v) => I18N.sourceLabel(v, formatSourceDisplayName(v)));
+    if (filterPeriod) {
+      Array.from(filterPeriod.options).forEach((option) => {
+        option.textContent = periodDisplayLabel(option.value);
+      });
+    }
   }
 
   function refreshMobileToggleLabel() {
@@ -539,6 +694,9 @@
       parts.push(I18N.t("af_sort", { v: localizedSortLabel(filters.sort) }));
     if (filters.aiSummaryOnly) parts.push(I18N.t("af_ai"));
     if (filters.newlyDetectedOnly) parts.push(I18N.t("af_newly"));
+    if (archiveManifest && filters.period !== archiveManifest.latest_period) {
+      parts.push(I18N.t("af_period", { v: periodDisplayLabel(filters.period) }));
+    }
 
     if (parts.length === 0) return I18N.t("af_none");
     if (parts.length <= 3) return I18N.t("af_active_prefix") + parts.join(" · ");
@@ -572,7 +730,8 @@
     });
   }
 
-  function resetFilters() {
+  async function resetFilters() {
+    const defaultPeriod = archiveManifest.latest_period;
     filters.area = "";
     filters.stage = "";
     filters.source = "";
@@ -582,6 +741,15 @@
     filters.aiSummaryOnly = false;
     filters.newlyDetectedOnly = false;
     setMobileFiltersOpen(false);
+    if (filters.period !== defaultPeriod) {
+      try {
+        await installPeriodDataset(defaultPeriod);
+      } catch (err) {
+        console.error("[JLRW] Failed to reset archive period:", err);
+        showError();
+        return;
+      }
+    }
     applyFilterChange();
   }
 
@@ -1003,7 +1171,8 @@
 
   function csvFilename() {
     const datePart = maxLastChecked(allUpdates) || new Date().toISOString().slice(0, 10);
-    return "japan-legal-reform-watch-" + datePart + ".csv";
+    const periodPart = validPeriodValue(filters.period) ? filters.period : "latest";
+    return "japan-legal-reform-watch-" + periodPart + "-" + datePart + ".csv";
   }
 
   function showExportFeedback(message, isSuccess) {
@@ -1303,7 +1472,9 @@
   function renderDataStatus() {
     if (!dataStatusList) return;
     const stats = [
+      [I18N.t("ds_period"), periodDisplayLabel(filters.period)],
       [I18N.t("ds_updates"), String(allUpdates.length)],
+      [I18N.t("ds_archive_total"), String(archiveManifest.total_items)],
       [I18N.t("ds_sources"), String(distinctCount(allUpdates, "source_name"))],
       [I18N.t("ds_ai_summaries"), String(allUpdates.filter((u) => u.summary_source === "claude").length)],
       [
@@ -1359,7 +1530,7 @@
       cardsEl.innerHTML = "";
       emptyEl.hidden = false;
     } else {
-      // Render only the visible page window — never all (up to 3000) cards at once.
+      // Render only the visible page window — never every matching card at once.
       cardsEl.innerHTML = filtered.slice(0, visibleCount).map(renderCard).join("");
       emptyEl.hidden = true;
     }
@@ -1404,6 +1575,11 @@
       filters.sort = isValidSort(e.target.value) ? e.target.value : DEFAULT_SORT;
       applyFilterChange();
     });
+    if (filterPeriod) {
+      filterPeriod.addEventListener("change", (e) => {
+        handlePeriodChange(e.target.value);
+      });
+    }
     if (mobileFiltersToggle) {
       mobileFiltersToggle.addEventListener("click", () => {
         const isOpen = mobileFiltersToggle.getAttribute("aria-expanded") === "true";
@@ -1430,11 +1606,20 @@
       });
     }
     cardsEl.addEventListener("click", handleCopyAction);
-    window.addEventListener("popstate", () => {
-      restoreFiltersFromUrl();
-      applyLanguageDom();
-      renderDataStatus();
-      render();
+    window.addEventListener("popstate", async () => {
+      try {
+        const requestedPeriod = requestedPeriodFromUrl();
+        if (requestedPeriod !== filters.period) {
+          await installPeriodDataset(requestedPeriod);
+        }
+        restoreFiltersFromUrl();
+        applyLanguageDom();
+        renderDataStatus();
+        render();
+      } catch (err) {
+        console.error("[JLRW] Failed to restore URL state:", err);
+        showError();
+      }
     });
   }
 

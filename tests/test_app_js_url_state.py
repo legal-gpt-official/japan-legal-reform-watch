@@ -24,11 +24,11 @@ STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "i18n-zh-hans-20260618"
-APP_CACHE_BUSTER = "default-published-sort-20260730"
+CACHE_BUSTER = "year-archive-20260807"
+APP_CACHE_BUSTER = "year-archive-20260807"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "zh-hans-v3-20260618"
+I18N_CACHE_BUSTER = "year-archive-20260807"
 
 
 def object_body(name: str) -> str:
@@ -79,7 +79,57 @@ class TestAppJsUrlState(unittest.TestCase):
             'params.set("impact"',
             'params.set("sort"',
             'params.set("ai", "1")',
+            'params.set("year"',
             'window.addEventListener("popstate"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_yearly_archive_selector_and_lazy_loading_exist(self):
+        for snippet in (
+            'id="filter-period"',
+            'data-i18n="ctl_period"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+        for snippet in (
+            'const DATA_MANIFEST_URL = "./data/legal_updates_manifest.json"',
+            'const ALL_PERIODS = "all"',
+            'const UNDATED_PERIOD = "undated"',
+            'entry.file !== "./data/archive/" + entry.value + ".json"',
+            "const datasetCache = new Map()",
+            "async function datasetForPeriod",
+            "async function handlePeriodChange",
+            'params.get("year")',
+            'params.set("year", filters.period)',
+            "filters.period !== archiveManifest.latest_period",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_latest_period_is_default_and_reset_target(self):
+        self.assertIn("return periodEntry(value) ? value : archiveManifest.latest_period", APP_JS)
+        self.assertIn("const defaultPeriod = archiveManifest.latest_period", APP_JS)
+        self.assertIn("await installPeriodDataset(defaultPeriod)", APP_JS)
+
+    def test_all_years_uses_uncapped_canonical_file(self):
+        self.assertIn('const DATA_URL = "./data/legal_updates.json"', APP_JS)
+        self.assertIn("period === ALL_PERIODS ? DATA_URL", APP_JS)
+        self.assertIn("data.length !== archiveManifest.total_items", APP_JS)
+
+    def test_period_change_and_popstate_install_dataset_before_render(self):
+        self.assertIn('filterPeriod.addEventListener("change"', APP_JS)
+        self.assertIn('window.addEventListener("popstate", async () =>', APP_JS)
+        self.assertIn("await installPeriodDataset(requestedPeriod)", APP_JS)
+
+    def test_period_status_and_csv_filename_are_scoped(self):
+        for snippet in (
+            'I18N.t("ds_period")',
+            'I18N.t("ds_archive_total")',
+            'I18N.t("period_all")',
+            'I18N.t("period_undated")',
+            '"japan-legal-reform-watch-" + periodPart + "-" + datePart + ".csv"',
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
@@ -547,6 +597,7 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
             'data-i18n="modal_title"',
             'data-i18n="trust_body"',
             'data-i18n="ctl_search"',
+            'data-i18n="ctl_period"',
             'data-i18n-placeholder="ctl_search_placeholder"',
             'data-i18n="qf_reset"',
             'data-i18n="export_button"',
