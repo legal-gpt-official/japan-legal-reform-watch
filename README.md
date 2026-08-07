@@ -380,7 +380,7 @@ The four-stage pipeline (`fetch_updates.py` → `build_public_data.py` → `summ
 
 Current roadmap status:
 
-- The initial `zh-Hans` backfill is complete for every item that passes the translation quality gate. One current item intentionally uses the documented English fallback because repeated Chinese output retained Japanese kana; daily Stage 4 runs continue incremental maintenance for new or changed items.
+- The initial `zh-Hans` backfill, including the NTA source expansion, is complete. Daily Stage 4 runs continue incremental maintenance for new or changed items; if a future translation fails the quality gate, the documented English fallback remains in place until a later valid translation is produced.
 - The relevance-ranked 100-item AI-summary pool has been reviewed for source balance and triage quality. It remains relevance-only: forced source quotas could promote lower-signal updates. Re-review it periodically before expanding the pool, and do not bulk-summarize the full archive by default.
 - NTA has been added through its stable official current-updates page with a bounded 550-day window. JPO remains deferred until a stable, sufficiently focused official feed or API becomes available.
 - Add year-based archive JSON files only when the published dataset approaches the 3,000-item cap; the current corpus is about half that size, and the cumulative raw history remains untrimmed.
