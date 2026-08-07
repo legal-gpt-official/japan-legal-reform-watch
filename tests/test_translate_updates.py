@@ -1013,6 +1013,18 @@ class TestBackfillWorkflow(unittest.TestCase):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, self.backfill)
 
+    def test_backfill_requests_pages_only_after_a_translation_commit(self):
+        self.assertIn("permissions:\n  contents: write\n  pages: write", self.backfill)
+        commit_pos = self.backfill.index("name: Commit and push translations only")
+        pages_pos = self.backfill.index("name: Request Pages build for committed translations")
+        self.assertLess(commit_pos, pages_pos)
+        self.assertIn("id: translation_commit", self.backfill)
+        self.assertIn(
+            "steps.translation_commit.outputs.committed == 'true'", self.backfill
+        )
+        self.assertIn("GH_TOKEN: ${{ github.token }}", self.backfill)
+        self.assertIn('"repos/${GITHUB_REPOSITORY}/pages/builds"', self.backfill)
+
     def test_backfill_runs_translate_with_limit_30(self):
         self.assertIn(
             "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
