@@ -1025,6 +1025,14 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertIn("GH_TOKEN: ${{ github.token }}", self.backfill)
         self.assertIn('"repos/${GITHUB_REPOSITORY}/pages/builds"', self.backfill)
 
+    def test_backfill_integrity_gate_allows_cache_only_history(self):
+        self.assertIn("cache-only stale/history entries allowed", self.backfill)
+        self.assertIn("translator.compute_source_hash", self.backfill)
+        self.assertIn("translator.valid_translation", self.backfill)
+        self.assertIn("translator.valid_title", self.backfill)
+        self.assertIn("published/cache content mismatch", self.backfill)
+        self.assertNotIn('if [ "$after_cache" != "$after_pub" ]', self.backfill)
+
     def test_backfill_runs_translate_with_limit_30(self):
         self.assertIn(
             "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
