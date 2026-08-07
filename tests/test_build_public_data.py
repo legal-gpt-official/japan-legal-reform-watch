@@ -814,6 +814,12 @@ class TestAreaClassification(unittest.TestCase):
     def test_other_is_reserved_for_genuinely_unclear(self):
         self.assertEqual(bpd.classify_area("ありふれた一般的なお知らせ", "Unknown Agency"), "Other")
 
+    def test_nta_items_default_to_finance_aml(self):
+        self.assertEqual(
+            bpd.classify_area("法令解釈通達の一部改正について", "国税庁 (NTA) 新着・通達"),
+            "Finance / AML",
+        )
+
     # --- Ministry expansion (MOJ / MOE / MOF / MIC) ---
 
     MOJ = "法務省 (MOJ) 新着情報"
@@ -936,6 +942,21 @@ class TestTitleEnGeneration(unittest.TestCase):
         self.assertEqual(stage, "Public Comment Open")
         self.assertEqual(t, "Public Comment: Draft Amendment to Pharmacy Preparation Guidelines")
         self.assertIsNone(CJK_RE.search(t))
+
+    def test_nta_fallback_titles_are_conservative_and_english_only(self):
+        source = "国税庁 (NTA) 新着・通達"
+        cases = (
+            ("所得税法基本通達の一部改正について", "NTA Update: Tax interpretation or administrative guidance revised"),
+            ("国税庁告示の一部改正", "NTA Update: Tax agency notice issued or revised"),
+            ("令和8年度税制改正について", "NTA Update: Tax System Measures"),
+            ("申告手続に関するお知らせ", "NTA Update: Tax administration guidance updated"),
+        )
+        for title_ja, expected in cases:
+            with self.subTest(title_ja=title_ja):
+                stage, title_en = self._title(title_ja, source, "agency_html")
+                self.assertEqual(stage, "Government Announcement")
+                self.assertEqual(title_en, expected)
+                self.assertIsNone(CJK_RE.search(title_en))
 
     def test_jftc_public_comment_prefix(self):
         _, t = self._title(

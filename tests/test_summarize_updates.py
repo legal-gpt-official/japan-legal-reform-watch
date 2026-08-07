@@ -117,6 +117,24 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertTrue(any("raw-test: title_en exceeds" in problem for problem in problems))
         self.assertTrue(any("raw-japanese: title_en contains Japanese" in problem for problem in problems))
 
+    def test_caution_warning_ignores_explicitly_negated_legal_status(self):
+        for sentence in (
+            "The metadata does not indicate that the amendment has been enacted.",
+            "This is not confirmation that the ordinance has been enacted.",
+            "This is a consultation rather than confirmation that it has been enacted.",
+        ):
+            item = self._item()
+            item["summary_source"] = "claude"
+            item["summary_en"] = sentence
+            self.assertNotIn("has been enacted", su.caution_phrases_in_item(item))
+
+    def test_caution_warning_keeps_unqualified_definitive_status(self):
+        item = self._item()
+        item["summary_source"] = "claude"
+        item["summary_en"] = "The amendment has been enacted."
+
+        self.assertIn("has been enacted", su.caution_phrases_in_item(item))
+
 
 class TestSummaryBatch(unittest.TestCase):
     def test_batch_uses_same_prompt_and_structured_output_contract(self):

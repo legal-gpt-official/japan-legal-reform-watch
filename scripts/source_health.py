@@ -51,6 +51,7 @@ DISPLAY_NAMES = {
     "moj": "Ministry of Justice",
     "moe": "Ministry of the Environment",
     "mof": "Ministry of Finance",
+    "nta": "National Tax Agency",
     "mic": "Ministry of Internal Affairs and Communications",
     "mlit": "MLIT",
     "maff": "MAFF",

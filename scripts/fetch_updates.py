@@ -276,6 +276,20 @@ SOURCES = [
         "source_language": "ja",
     },
     {
+        # The official page has two live tables: general updates and circulars /
+        # notices. The parser ignores collapsed archive tables and retains only
+        # a bounded recent window before the normal per-source safety cap.
+        "name": "国税庁 (NTA) 新着・通達",
+        "key": "nta",
+        "url": "https://www.nta.go.jp/information/news/news.htm",
+        "source_type": "agency_html",
+        "source_language": "ja",
+        "html_parser": "nta_updates",
+        "encoding": "shift_jis",
+        "history_days": 550,
+        "max_items": 200,
+    },
+    {
         "name": "総務省 (MIC) 新着情報",
         "key": "mic",
         "url": "https://www.soumu.go.jp/news.rdf",  # Shift_JIS feed; parsers honor the XML declaration
@@ -696,6 +710,13 @@ def parse_html_source(content: bytes, source: dict) -> list[dict]:
         return _parse_courts_recent_supreme_html(text, source["url"])
     if parser_name == "sesc_current_year":
         return _parse_sesc_current_year_html(text, source["url"])
+    if parser_name == "nta_updates":
+        return _parse_nta_updates_html(
+            text,
+            source["url"],
+            history_days=int(source.get("history_days", 550)),
+            today=current_jst_date(),
+        )
     raise ValueError(f"Unsupported html_parser: {parser_name}")
 
 
@@ -1310,6 +1331,87 @@ def _parse_meti_press_index_html(text: str, base_url: str) -> list[dict]:
                 "published_iso": date_before(link.start()),
             }
         )
+    return items
+
+
+# NTA's official news page contains two current ``index_news`` tables (general
+# updates and circulars/notices) plus collapsed archive tables whose class also
+# includes ``info-item``. Only the two live tables are ingested. The page uses
+# Japanese era dates and is served as Shift_JIS.
+_NTA_TABLE_RE = re.compile(
+    r"<table\b(?P<attrs>[^>]*)>(?P<body>.*?)</table>",
+    re.IGNORECASE | re.DOTALL,
+)
+_NTA_CLASS_RE = re.compile(r'class=["\'](?P<value>[^"\']*)["\']', re.IGNORECASE)
+_NTA_DATE_CELL_RE = re.compile(
+    r"<th\b[^>]*>(?P<body>.*?)</th>",
+    re.IGNORECASE | re.DOTALL,
+)
+_NTA_REIWA_DATE_RE = re.compile(
+    r"令和(?P<year>元|\d+)年(?P<month>\d{1,2})月(?P<day>\d{1,2})日"
+)
+
+
+def _parse_nta_updates_html(
+    text: str,
+    base_url: str,
+    *,
+    history_days: int,
+    today: str,
+) -> list[dict]:
+    """Parse recent NTA general updates and tax circulars/notices."""
+    today_date = datetime.strptime(today, "%Y-%m-%d").date()
+    cutoff = today_date - timedelta(days=max(1, history_days))
+    items: list[dict] = []
+    seen_links: set[str] = set()
+
+    for table in _NTA_TABLE_RE.finditer(text):
+        class_match = _NTA_CLASS_RE.search(table.group("attrs"))
+        classes = set(class_match.group("value").split()) if class_match else set()
+        if "index_news" not in classes or "info-item" in classes:
+            continue
+
+        for row in _HTML_ROW_RE.finditer(table.group("body")):
+            date_cell = _NTA_DATE_CELL_RE.search(row.group("body"))
+            link = _HTML_LINK_RE.search(row.group("body"))
+            if not date_cell or not link:
+                continue
+            date_match = _NTA_REIWA_DATE_RE.search(clean_text(date_cell.group("body")))
+            if not date_match:
+                continue
+            era_year = date_match.group("year")
+            year = 2019 if era_year == "元" else 2018 + int(era_year)
+            try:
+                published = datetime(
+                    year,
+                    int(date_match.group("month")),
+                    int(date_match.group("day")),
+                ).date()
+            except ValueError:
+                continue
+            if published > today_date or published < cutoff:
+                continue
+
+            title = clean_text(link.group("body"))
+            href = html.unescape(link.group("href")).strip()
+            full_url = urllib.parse.urljoin(base_url, href)
+            if not title or not href or full_url in seen_links:
+                continue
+            if urllib.parse.urlsplit(full_url).scheme not in {"http", "https"}:
+                continue
+            seen_links.add(full_url)
+            items.append(
+                {
+                    "title": title,
+                    "link": full_url,
+                    "summary": "国税庁新着情報・通達等",
+                    "published_iso": published.isoformat(),
+                }
+            )
+
+    # The two live tables are separate on the page; merge them into one newest-
+    # first stream before the per-source max_items cap is applied by run().
+    items.sort(key=lambda item: item["published_iso"], reverse=True)
     return items
 
 
