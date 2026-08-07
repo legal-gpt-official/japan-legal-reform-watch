@@ -80,9 +80,9 @@
     },
     "meti": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": "2026-07-06T22:13:39Z",
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-08-07T21:39:10Z",
       "last_recovered_at": "2026-07-07T22:11:23Z"
     },
     "mhlw": {
@@ -94,9 +94,9 @@
     },
     "digital-agency": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": null,
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-08-07T21:39:10Z",
       "last_recovered_at": null
     },
     "caa": {
@@ -122,9 +122,9 @@
     },
     "moj": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": null,
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-08-07T21:39:10Z",
       "last_recovered_at": null
     },
     "moe": {
@@ -135,6 +135,13 @@
       "last_recovered_at": null
     },
     "mof": {
+      "consecutive_zero_runs": 0,
+      "consecutive_error_runs": 0,
+      "last_status": "healthy",
+      "last_problem_at": null,
+      "last_recovered_at": null
+    },
+    "nta": {
       "consecutive_zero_runs": 0,
       "consecutive_error_runs": 0,
       "last_status": "healthy",
