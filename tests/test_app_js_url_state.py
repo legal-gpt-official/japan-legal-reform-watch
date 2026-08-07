@@ -25,7 +25,7 @@ STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
 CACHE_BUSTER = "year-archive-20260807"
-APP_CACHE_BUSTER = "year-archive-20260807"
+APP_CACHE_BUSTER = "audit-hardening-20260807"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
 I18N_CACHE_BUSTER = "year-archive-20260807"
@@ -117,6 +117,11 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn('const DATA_URL = "./data/legal_updates.json"', APP_JS)
         self.assertIn("period === ALL_PERIODS ? DATA_URL", APP_JS)
         self.assertIn("data.length !== archiveManifest.total_items", APP_JS)
+
+    def test_manifest_period_counts_must_equal_total(self):
+        self.assertIn("let periodTotal = 0", APP_JS)
+        self.assertIn("periodTotal += entry.count", APP_JS)
+        self.assertIn("periodTotal !== value.total_items", APP_JS)
 
     def test_period_change_and_popstate_install_dataset_before_render(self):
         self.assertIn('filterPeriod.addEventListener("change"', APP_JS)

@@ -344,7 +344,9 @@ def setup_logging() -> None:
     """File handler (INFO, full detail) + console handler (WARNING and above)."""
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     logger.setLevel(logging.INFO)
-    logger.handlers.clear()
+    for handler in list(logger.handlers):
+        logger.removeHandler(handler)
+        handler.close()
 
     file_fmt = logging.Formatter("%(asctime)sZ %(levelname)s %(message)s", "%Y-%m-%dT%H:%M:%S")
     file_fmt.converter = time.gmtime  # log timestamps in UTC

@@ -51,6 +51,21 @@ class TestArchivePayload(unittest.TestCase):
         self.assertEqual(manifest["total_items"], 3001)
         self.assertEqual(len(shards["2026"]), 3001)
 
+    def test_future_year_rollover_and_leap_day_validation(self):
+        items = [
+            item("next", "2027-01-01"),
+            item("future-leap", "2028-02-29"),
+            item("invalid-leap", "2027-02-29"),
+            item("current", "2026-12-31"),
+        ]
+
+        manifest, shards = bpa.build_archive_payload(items)
+
+        self.assertEqual(list(shards), ["2028", "2027", "2026", "undated"])
+        self.assertEqual(manifest["latest_period"], "2028")
+        self.assertEqual([row["id"] for row in shards["2028"]], ["future-leap"])
+        self.assertEqual([row["id"] for row in shards["undated"]], ["invalid-leap"])
+
     def test_duplicate_or_missing_ids_fail(self):
         for items in (
             [item("same", "2026-01-01"), item("same", "2025-01-01")],

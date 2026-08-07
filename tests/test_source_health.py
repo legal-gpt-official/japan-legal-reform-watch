@@ -418,13 +418,16 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
 
     def test_http_404_is_not_retried(self):
         error = urllib.error.HTTPError("https://example.go.jp/missing.xml", 404, "Not Found", None, None)
-        with mock.patch.object(fu, "_http_get_once", side_effect=error) as fetch_once, \
-                mock.patch.object(fu.time, "sleep") as sleep:
-            with self.assertRaises(urllib.error.HTTPError):
-                fu.http_get("https://example.go.jp/missing.xml", timeout=1)
+        try:
+            with mock.patch.object(fu, "_http_get_once", side_effect=error) as fetch_once, \
+                    mock.patch.object(fu.time, "sleep") as sleep:
+                with self.assertRaises(urllib.error.HTTPError):
+                    fu.http_get("https://example.go.jp/missing.xml", timeout=1)
 
-        self.assertEqual(fetch_once.call_count, 1)
-        sleep.assert_not_called()
+            self.assertEqual(fetch_once.call_count, 1)
+            sleep.assert_not_called()
+        finally:
+            error.close()
 
     def test_fetch_run_preserves_raw_merge_and_writes_source_report(self):
         source = {
