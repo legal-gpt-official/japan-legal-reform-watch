@@ -1263,14 +1263,17 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("uses: actions/checkout@v5", self.workflow)
         self.assertIn("uses: actions/setup-python@v6", self.workflow)
         self.assertIn("permissions:\n  contents: write", self.workflow)
+        self.assertIn("  pages: write", self.workflow)
         fetch_pos = self.workflow.index("name: Fetch raw updates")
         evaluate_pos = self.workflow.index("name: Evaluate source health")
         build_pos = self.workflow.index("name: Build public data")
         commit_pos = self.workflow.index("name: Commit and push updated data")
+        pages_pos = self.workflow.index("name: Request Pages build for committed data")
         gate_pos = self.workflow.index("name: Enforce source health gate")
         self.assertLess(fetch_pos, evaluate_pos)
         self.assertLess(evaluate_pos, build_pos)
-        self.assertLess(commit_pos, gate_pos)
+        self.assertLess(commit_pos, pages_pos)
+        self.assertLess(pages_pos, gate_pos)
         self.assertIn("github.event_name == 'schedule'", self.workflow)
 
 

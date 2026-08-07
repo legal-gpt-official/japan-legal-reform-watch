@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 # Serialize against the manual translation-backfill workflow so the two never
 # write data concurrently (avoids non-fast-forward pushes / lost writes).
@@ -93,6 +94,7 @@ jobs:
           fi
 
       - name: Commit and push updated data
+        id: data_commit
         if: steps.changes.outputs.data_changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -100,10 +102,22 @@ jobs:
           git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "Daily update legal reform data"
           git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Request Pages build for committed data
+        if: steps.data_commit.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Enforce source health gate
         env:
