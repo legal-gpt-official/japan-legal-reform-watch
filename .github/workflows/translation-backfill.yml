@@ -80,23 +80,96 @@ jobs:
           PY
 
       - name: Semantic integrity gate
+        env:
+          BEFORE_PUBLISHED: ${{ steps.before.outputs.published }}
+          BEFORE_CACHE: ${{ steps.before.outputs.cache }}
+          AFTER_PUBLISHED: ${{ steps.after.outputs.published }}
+          AFTER_CACHE: ${{ steps.after.outputs.cache }}
         run: |
-          set -euo pipefail
-          before_pub="${{ steps.before.outputs.published }}"
-          before_cache="${{ steps.before.outputs.cache }}"
-          after_pub="${{ steps.after.outputs.published }}"
-          after_cache="${{ steps.after.outputs.cache }}"
-          echo "before: published=$before_pub cache=$before_cache"
-          echo "after:  published=$after_pub cache=$after_cache"
-          if [ "$after_cache" -lt "$before_cache" ]; then
-            echo "Translation cache shrank ($before_cache -> $after_cache); failing."; exit 1
-          fi
-          if [ "$after_pub" -lt "$before_pub" ]; then
-            echo "Published translations shrank ($before_pub -> $after_pub); failing."; exit 1
-          fi
-          if [ "$after_cache" != "$after_pub" ]; then
-            echo "Cache ($after_cache) and published ($after_pub) translation counts disagree; failing."; exit 1
-          fi
+          python - <<'PY'
+          import json
+          import os
+          import sys
+
+          sys.path.insert(0, "scripts")
+          import translate_updates as translator
+
+          before_pub = int(os.environ["BEFORE_PUBLISHED"])
+          before_cache = int(os.environ["BEFORE_CACHE"])
+          after_pub = int(os.environ["AFTER_PUBLISHED"])
+          after_cache = int(os.environ["AFTER_CACHE"])
+          print(f"before: published={before_pub} cache={before_cache}")
+          print(f"after:  published={after_pub} cache={after_cache}")
+
+          if after_cache < before_cache:
+              raise SystemExit(
+                  f"Translation cache shrank ({before_cache} -> {after_cache}); failing."
+              )
+          if after_pub < before_pub:
+              raise SystemExit(
+                  f"Published translations shrank ({before_pub} -> {after_pub}); failing."
+              )
+
+          with open("docs/data/legal_updates.json", encoding="utf-8") as fh:
+              published = json.load(fh)
+          with open("data/translation_cache.json", encoding="utf-8") as fh:
+              cache = json.load(fh).get("entries", {}).get("zh-Hans", {})
+
+          failures = []
+          checked = 0
+          for item in published:
+              translations = item.get("translations")
+              if not isinstance(translations, dict) or "zh-Hans" not in translations:
+                  continue
+              checked += 1
+              item_id = item.get("id")
+              block = translations["zh-Hans"]
+              entry = cache.get(item_id)
+              expected_hash = translator.compute_source_hash(
+                  item, "zh-Hans", translator.PROMPT_VERSION
+              )
+              if not isinstance(entry, dict):
+                  failures.append(f"{item_id}: missing cache entry")
+                  continue
+              if entry.get("source_hash") != expected_hash:
+                  failures.append(f"{item_id}: stale cache hash")
+                  continue
+              if entry.get("prompt_version") != translator.PROMPT_VERSION:
+                  failures.append(f"{item_id}: stale prompt version")
+                  continue
+              if not translator.valid_translation(entry) or not translator.valid_title(
+                  entry.get("title")
+              ):
+                  failures.append(f"{item_id}: invalid cached translation")
+                  continue
+              if not isinstance(block, dict) or any(
+                  block.get(field) != entry.get(field)
+                  for field in translator.TRANSLATION_FIELDS
+              ):
+                  failures.append(f"{item_id}: published/cache content mismatch")
+
+          if checked != after_pub:
+              failures.append(
+                  f"count step reported {after_pub} published translations; verified {checked}"
+              )
+          if len(cache) != after_cache:
+              failures.append(
+                  f"count step reported {after_cache} cache entries; verified {len(cache)}"
+              )
+          if failures:
+              print("Semantic integrity failures:")
+              for failure in failures[:20]:
+                  print(f"- {failure}")
+              if len(failures) > 20:
+                  print(f"- ... and {len(failures) - 20} more")
+              raise SystemExit(1)
+
+          stale_cache_only = len(cache) - checked
+          print(
+              f"Verified {checked} published translations; "
+              f"cache-only stale/history entries allowed={stale_cache_only}."
+          )
+          PY
 
       - name: Pre-push sync check
         run: |
