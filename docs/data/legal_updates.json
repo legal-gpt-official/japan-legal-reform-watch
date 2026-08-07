@@ -2001,7 +2001,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief summary; the substance, scope, and current legal status are unverified. The rule-based 'Data / Privacy / AI' label appears inconsistent with the telecommunications/disaster-phone subject and should not be relied upon.",
     "summarized_at": "2026-06-18T22:58:03Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见结果：修订《电气通信事业法施行规则》灾害用公众电话补贴等规定",
+        "summary": "总务省（MIC）公布了关于修订《电气通信事业法施行规则》等相关规则的省令草案的公开征求意见结果，以及信息通信行政・邮政行政审议会提交的答申（报告）。据称该草案涉及灾害时用公众电话补贴等安排的相关规定。该省令草案目前处于已公布公开征求意见结果及审议会答申的阶段，尚未确认正式制定。",
+        "business_impact": "电信运营商可能需要关注有关灾害用公众电话的拟议规则变更可能如何影响其义务或运营。",
+        "recommended_action": "建议在得出任何结论之前，查阅总务省官方来源，以获取该省令草案全文、公开征求意见结果及审议会答申的详细内容。"
+      }
+    }
   },
   {
     "id": "raw-f1a33f06c09cf998",
@@ -5882,7 +5890,15 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and raw summary; this is a JFTC public comment on draft amendments, not enacted law. The preliminary 'Consumer / Advertising' label appears imprecise—the content concerns subcontractor/freelance transaction fairness; treat labels as weak triage context only.",
     "summarized_at": "2026-06-25T22:23:45Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "（已结束）公开征求意见：《关于防止延迟支付制造委托等中小受托事业者货款等法律运用基准》及《特定受托事业者交易适当化等法律的思路》修订案",
+        "summary": "这是日本公正交易委员会（JFTC）就《关于防止延迟支付制造委托等中小受托事业者货款等法律》运用基准修订案，以及《关于特定受托事业者交易适当化等法律的思路》修订案发布的公开征求意见。根据元数据，该草案于2026-06-24公布，意见征集截止至2026-07-23 23:59。该事项目前正在公开征求意见阶段，所述文本为草案，尚未最终确定。",
+        "business_impact": "雇用分包商或自由职业者的企业可能希望关注这些拟议修订，因为支付及交易公平性标准的变化可能会影响相关合同实践。",
+        "recommended_action": "建议查阅日文官方来源，并可考虑联系文中列出的JFTC相关联系方式，以确认拟议修订的范围、细节及意见征集期限。"
+      }
+    }
   },
   {
     "id": "raw-3614a079dcba218a",
