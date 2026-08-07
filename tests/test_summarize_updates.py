@@ -162,6 +162,8 @@ class TestSummaryBatch(unittest.TestCase):
             if "python scripts/summarize_updates.py" in line
         )
         self.assertIn("--batch", command)
+        self.assertIn("--limit 100", command)
+        self.assertIn("--api-limit 30", command)
 
     def test_main_applies_batch_result_and_persists_cache(self):
         item = TestSummarizeTitleCap()._item()
@@ -203,6 +205,57 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(published[0]["summary_source"], "claude")
             self.assertEqual(published[0]["title_en"], "AI title")
             self.assertEqual(len(cache), 1)
+
+    def test_api_limit_caps_cache_misses_inside_larger_priority_pool(self):
+        items = []
+        for index in range(4):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"raw-{index}"
+            item["source_url"] = f"https://example.go.jp/{index}"
+            item["relevance_score"] = 100 - index
+            items.append(item)
+        result = TestSummarizeTitleCap()._result("AI title")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            raw_path.write_text(json.dumps([]), encoding="utf-8")
+
+            def fake_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual(len(candidates), 2)
+                return "msgbatch_budget", [(result, model), (result, model)]
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_summary_batch": fake_batch,
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main(["--limit", "4", "--api-limit", "2", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            cache = json.loads(cache_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual(
+                [it["summary_source"] for it in published],
+                ["claude", "claude", "rule_based", "rule_based"],
+            )
+            self.assertEqual(len(cache), 2)
+            self.assertIn("skipped_api_budget: 2", stdout.getvalue())
 
 
 if __name__ == "__main__":

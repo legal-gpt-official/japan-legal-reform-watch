@@ -57,7 +57,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         # Message Batches keep the same Opus prompt/output contract at 50% token
         # pricing. Most small batches finish well inside the one-hour wait limit.
-        run: python scripts/summarize_updates.py --limit 30 --batch
+        # Keep AI coverage selective: consider the relevance-ranked top 100,
+        # while bounding new Opus calls to 30 per daily run. Cache hits are free.
+        run: python scripts/summarize_updates.py --limit 100 --api-limit 30 --batch
 
       # Optional Simplified-Chinese translation. Runs AFTER summarize so it
       # translates the final English (AI where available, rule-based otherwise),
