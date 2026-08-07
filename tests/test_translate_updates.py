@@ -1005,9 +1005,11 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertIn("workflow_dispatch:", self.backfill)
         self.assertNotIn("schedule:", self.backfill)
 
-    def test_backfill_commit_targets_exactly_two_files(self):
+    def test_backfill_commit_targets_translation_files_and_browser_archives(self):
         self.assertIn(
-            "git add data/translation_cache.json docs/data/legal_updates.json", self.backfill
+            "git add data/translation_cache.json docs/data/legal_updates.json "
+            "docs/data/legal_updates_manifest.json docs/data/archive",
+            self.backfill,
         )
         for forbidden in ("data/raw_items.json", "data/summary_cache.json", "data/source_health_state.json"):
             with self.subTest(forbidden=forbidden):
@@ -1015,7 +1017,7 @@ class TestBackfillWorkflow(unittest.TestCase):
 
     def test_backfill_requests_pages_only_after_a_translation_commit(self):
         self.assertIn("permissions:\n  contents: write\n  pages: write", self.backfill)
-        commit_pos = self.backfill.index("name: Commit and push translations only")
+        commit_pos = self.backfill.index("name: Commit and push translations and archives")
         pages_pos = self.backfill.index("name: Request Pages build for committed translations")
         self.assertLess(commit_pos, pages_pos)
         self.assertIn("id: translation_commit", self.backfill)
@@ -1037,6 +1039,14 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertIn(
             "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
         )
+
+    def test_backfill_rebuilds_yearly_archives_after_translation(self):
+        translate_pos = self.backfill.index("name: Translate Simplified Chinese updates")
+        archive_pos = self.backfill.index("name: Build yearly public archives")
+        commit_pos = self.backfill.index("name: Commit and push translations and archives")
+        self.assertLess(translate_pos, archive_pos)
+        self.assertLess(archive_pos, commit_pos)
+        self.assertIn("python scripts/build_public_archives.py", self.backfill)
 
     def test_backfill_sets_translation_model(self):
         self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.backfill)
@@ -1266,6 +1276,16 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         check_pos = self.workflow.index("name: Check data changes")
         self.assertLess(summarize_pos, translate_pos)
         self.assertLess(translate_pos, check_pos)
+
+    def test_yearly_archives_run_after_translate_and_before_change_check(self):
+        translate_pos = self.workflow.index("name: Translate Simplified Chinese updates")
+        archive_pos = self.workflow.index("name: Build yearly public archives")
+        check_pos = self.workflow.index("name: Check data changes")
+        self.assertLess(translate_pos, archive_pos)
+        self.assertLess(archive_pos, check_pos)
+        self.assertIn("scripts/build_public_archives.py", self.workflow)
+        self.assertGreaterEqual(self.workflow.count("docs/data/legal_updates_manifest.json"), 2)
+        self.assertGreaterEqual(self.workflow.count("docs/data/archive"), 2)
 
     def test_translate_compiled_in_offline_gate(self):
         self.assertIn("scripts/translate_updates.py", self.workflow.split("name: Fetch raw updates")[0])

@@ -1,9 +1,10 @@
 name: Translation backfill (zh-Hans)
 
-# Manual-only, translate-ONLY backfill. It never fetches, builds, summarizes, or
-# touches source-health — it only runs scripts/translate_updates.py and commits
-# the two translation artifacts. This lets the zh-Hans corpus accumulate without
-# the daily pipeline regenerating the published file underneath it.
+# Manual-only, translate-ONLY backfill. It never fetches, runs Stage 2,
+# summarizes, or touches source-health — it runs scripts/translate_updates.py,
+# regenerates browser archive shards, and commits translation-derived artifacts.
+# This lets the zh-Hans corpus accumulate without the daily pipeline
+# regenerating the published file underneath it.
 
 on:
   workflow_dispatch:
@@ -34,9 +35,9 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
-      # Only the translator is executed by this workflow, so only it is compiled here.
-      - name: Compile translator
-        run: python -m py_compile scripts/translate_updates.py scripts/anthropic_batch.py
+      # Only the translator and deterministic archive builder are executed here.
+      - name: Compile translator and archive builder
+        run: python -m py_compile scripts/translate_updates.py scripts/build_public_archives.py scripts/anthropic_batch.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -171,6 +172,9 @@ jobs:
           )
           PY
 
+      - name: Build yearly public archives
+        run: python scripts/build_public_archives.py
+
       - name: Pre-push sync check
         run: |
           set -euo pipefail
@@ -181,13 +185,13 @@ jobs:
             exit 1
           fi
 
-      - name: Commit and push translations only
+      - name: Commit and push translations and archives
         id: translation_commit
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/translation_cache.json docs/data/legal_updates.json
+          git add data/translation_cache.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
           if git diff --cached --quiet; then
             echo "No translation changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

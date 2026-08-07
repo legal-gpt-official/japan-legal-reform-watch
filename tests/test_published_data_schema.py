@@ -66,11 +66,10 @@ class TestPublishedDataSchema(unittest.TestCase):
         with open(PUBLISHED_PATH, encoding="utf-8") as f:
             cls.items = json.load(f)
 
-    def test_is_nonempty_array_within_cap(self):
+    def test_is_nonempty_uncapped_array(self):
         self.assertIsInstance(self.items, list)
         self.assertGreater(len(self.items), 0)
         self.assertGreaterEqual(len(self.items), 100)
-        self.assertLessEqual(len(self.items), bpd.MAX_OUTPUT_ITEMS)  # cap is 3000
 
     def test_ids_are_unique(self):
         ids = [it["id"] for it in self.items]

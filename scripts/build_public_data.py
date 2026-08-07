@@ -75,7 +75,7 @@ RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 OUTPUT_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.json"
 BACKUP_PATH = REPO_ROOT / "docs" / "data" / "legal_updates.backup.json"
 
-MAX_OUTPUT_ITEMS = 3000  # public dataset cap; the UI renders 50 at a time (Load more)
+DEFAULT_OUTPUT_LIMIT = 0  # 0 = unlimited; yearly public shards keep browser loads bounded
 JST = ZoneInfo("Asia/Tokyo")  # display Japanese-source dates on the JST calendar
 
 # The 13 fields the existing dashboard UI expects. (relevance_score is an extra,
@@ -1618,7 +1618,12 @@ def save_json(path: Path, data: list[dict]) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build provisional, relevance-ranked public data from raw items.")
-    parser.add_argument("--limit", type=int, default=MAX_OUTPUT_ITEMS, help=f"Max output items (default {MAX_OUTPUT_ITEMS}).")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=DEFAULT_OUTPUT_LIMIT,
+        help="Optional diagnostic output limit; 0 (the default) publishes every candidate.",
+    )
     parser.add_argument("--floor", type=float, default=RELEVANCE_FLOOR, help="Minimum relevance_score to be a candidate.")
     parser.add_argument("--dry-run", action="store_true", help="Build and report, but do not back up or write.")
     args = parser.parse_args(argv)
@@ -1708,7 +1713,9 @@ def main(argv: list[str] | None = None) -> int:
 
     # Order: internal ordering score desc, then impact weight (Medium > Low), then recency.
     ranked.sort(key=lambda t: (t[0], t[1], t[2]), reverse=True)
-    output = [item for _, _, _, item in ranked[: args.limit]]
+    output_limit = max(0, args.limit)
+    selected = ranked if output_limit == 0 else ranked[:output_limit]
+    output = [item for _, _, _, item in selected]
 
     deadline_closed_count = 0
     open_missing_deadline_count = 0
