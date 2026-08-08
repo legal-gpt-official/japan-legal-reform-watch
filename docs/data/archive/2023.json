@@ -15,7 +15,6 @@
     "last_checked": "2026-08-07",
     "relevance_score": 30.0,
     "first_seen_at": "2026-08-08",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《地方税法施行规则》修正省令即将生效（2023-03-31）",
@@ -23,7 +22,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司若认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8d4bee6f55fc1ad2",
@@ -67,7 +67,15 @@
     "last_checked": "2026-08-07",
     "relevance_score": 10.0,
     "first_seen_at": "2026-08-08",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《刑事诉讼法等部分修正法律》公布（2023-05-17）",
+        "summary": "这是一项基于规则生成的预览内容，尚未经过人工智能审核或总结。日本政府来源发布了与下述日文原标题相关的内容，应对照日文官方来源进行核实。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
+        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-b49bffa961584f78",
