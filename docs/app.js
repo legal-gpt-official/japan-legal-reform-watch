@@ -9,8 +9,22 @@
   // i18n layer (docs/i18n.js, loaded first). English is canonical; zh-Hans is an
   // optional overlay. All user-facing strings route through this namespace.
   const I18N = window.JLRW_I18N;
+  const ALERTS_CONFIG = window.JLRW_ALERTS_CONFIG || {};
 
   const STORAGE_KEY = "jlrw_disclaimer_accepted_v1";
+  const SAVED_SEARCHES_STORAGE_KEY = "jlrw-saved-searches-v1";
+  const MAX_SAVED_SEARCHES = 5;
+  const SAVED_SEARCH_QUERY_KEYS = [
+    "q",
+    "area",
+    "stage",
+    "source",
+    "impact",
+    "sort",
+    "ai",
+    "new",
+    "year",
+  ];
   // The canonical file is the uncapped all-years dataset used only when the
   // visitor explicitly selects All years. Normal browsing loads one yearly
   // shard from the manifest, keeping initial transfer and parsing bounded.
@@ -125,6 +139,8 @@
   let archiveManifest = null;
   const datasetCache = new Map();
   let visibleCount = PAGE_SIZE;
+  let savedSearches = [];
+  let savedSearchDialogOpener = null;
   const filters = {
     period: "",
     area: "",
@@ -185,6 +201,32 @@
     errorEl,
     metaEl,
     dataStatusList,
+    saveSearchBtn,
+    manageSavedSearchesBtn,
+    savedSearchDialog,
+    closeSavedSearchDialogBtn,
+    savedSearchForm,
+    savedSearchNameInput,
+    saveCurrentSearchBtn,
+    savedSearchCurrentSummary,
+    savedSearchStatus,
+    savedSearchCapacity,
+    savedSearchList,
+    openAlertPilotFormBtn,
+    alertPilotFormWrap,
+    alertPilotForm,
+    alertPilotNameInput,
+    alertPilotEmailInput,
+    alertPilotCompanyInput,
+    alertPilotPlanSelect,
+    alertPilotFrequencySelect,
+    alertPilotConsentInput,
+    alertPilotHoneypotInput,
+    alertPilotSubmitBtn,
+    alertPilotStatus,
+    alertPilotFallback,
+    alertPilotCheckout,
+    alertPilotPrivacyLink,
     exportCsvBtn,
     exportStatusEl,
     loadMoreWrap,
@@ -210,6 +252,32 @@
     errorEl = $("#error-state");
     metaEl = $("#results-meta");
     dataStatusList = $("#data-status-list");
+    saveSearchBtn = $("#save-search");
+    manageSavedSearchesBtn = $("#manage-saved-searches");
+    savedSearchDialog = $("#saved-search-dialog");
+    closeSavedSearchDialogBtn = $("#close-saved-search-dialog");
+    savedSearchForm = $("#saved-search-form");
+    savedSearchNameInput = $("#saved-search-name");
+    saveCurrentSearchBtn = $("#save-current-search");
+    savedSearchCurrentSummary = $("#saved-search-current-summary");
+    savedSearchStatus = $("#saved-search-status");
+    savedSearchCapacity = $("#saved-search-capacity");
+    savedSearchList = $("#saved-search-list");
+    openAlertPilotFormBtn = $("#open-alert-pilot-form");
+    alertPilotFormWrap = $("#alert-pilot-form-wrap");
+    alertPilotForm = $("#alert-pilot-form");
+    alertPilotNameInput = $("#alert-pilot-name");
+    alertPilotEmailInput = $("#alert-pilot-email");
+    alertPilotCompanyInput = $("#alert-pilot-company");
+    alertPilotPlanSelect = $("#alert-pilot-plan");
+    alertPilotFrequencySelect = $("#alert-pilot-frequency");
+    alertPilotConsentInput = $("#alert-pilot-consent");
+    alertPilotHoneypotInput = $("#alert-pilot-website");
+    alertPilotSubmitBtn = $("#submit-alert-pilot");
+    alertPilotStatus = $("#alert-pilot-status");
+    alertPilotFallback = $("#alert-pilot-fallback");
+    alertPilotCheckout = $("#alert-pilot-checkout");
+    alertPilotPrivacyLink = $("#alert-pilot-privacy-link");
     exportCsvBtn = $("#export-csv");
     exportStatusEl = $("#export-status");
     loadMoreWrap = $("#load-more-wrap");
@@ -430,6 +498,7 @@
       applyLanguageDom(); // localize chrome, filter options, <title>, <html lang>
       renderDataStatus();
       render();
+      setSavedSearchControlsAvailable(true);
     } catch (err) {
       console.error("[JLRW] Failed to load data:", err);
       showError();
@@ -444,6 +513,7 @@
     metaEl.textContent = "";
     renderDataStatusUnavailable();
     updateExportState([]);
+    setSavedSearchControlsAvailable(false);
   }
 
   // -------- Filter options --------
@@ -557,9 +627,7 @@
     syncFilterControls();
   }
 
-  function updateUrlFromFilters() {
-    if (!window.history || !window.history.replaceState) return;
-
+  function buildFilterParams(includeLanguage) {
     const params = new URLSearchParams();
     const query = filters.search.trim();
     const sourceSlug = getSourceSlug(filters.source);
@@ -577,8 +645,16 @@
       params.set("year", filters.period);
     }
     // Default English is the absence of the param, keeping shared URLs clean.
-    if (filters.lang && filters.lang !== I18N.DEFAULT_LANG) params.set("lang", filters.lang);
+    if (includeLanguage && filters.lang && filters.lang !== I18N.DEFAULT_LANG) {
+      params.set("lang", filters.lang);
+    }
+    return params;
+  }
 
+  function updateUrlFromFilters() {
+    if (!window.history || !window.history.replaceState) return;
+
+    const params = buildFilterParams(true);
     const queryString = params.toString();
     const nextUrl =
       window.location.pathname +
@@ -649,6 +725,7 @@
     document.title = I18N.t("document_title");
     syncLanguageSelector();
     refreshMobileToggleLabel();
+    refreshSavedSearchDialog();
   }
 
   // User changed language: keep every filter / sort / quick-filter state AND the
@@ -709,6 +786,498 @@
   function updateActiveFilterSummary() {
     if (!activeFilterSummary) return;
     activeFilterSummary.textContent = activeFilterSummaryText();
+  }
+
+  // -------- Saved searches (local-only demand-validation MVP) --------
+  // Search definitions contain no personal data and remain in this browser.
+  // Email delivery and billing are deliberately outside the static dashboard;
+  // the pilot CTA routes to the existing Legal GPT inquiry form.
+  function normalizeSavedSearchQuery(value) {
+    if (typeof value !== "string" || value.length > 2000) return null;
+    const incoming = new URLSearchParams(value);
+    const normalized = new URLSearchParams();
+    SAVED_SEARCH_QUERY_KEYS.forEach((key) => {
+      const entry = incoming.get(key);
+      if (entry && entry.length <= 500) normalized.set(key, entry);
+    });
+    return normalized.toString();
+  }
+
+  function normalizeSavedSearch(value) {
+    if (!value || typeof value !== "object") return null;
+    const id = typeof value.id === "string" ? value.id.trim().toLowerCase() : "";
+    const name = typeof value.name === "string" ? plainText(value.name).slice(0, 80) : "";
+    const query = normalizeSavedSearchQuery(value.query);
+    if (!/^[a-z0-9-]{6,80}$/.test(id) || !name || query === null) return null;
+    return {
+      id: id,
+      name: name,
+      query: query,
+      saved_at: typeof value.saved_at === "string" ? value.saved_at : "",
+    };
+  }
+
+  function readSavedSearches() {
+    try {
+      const raw = localStorage.getItem(SAVED_SEARCHES_STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      const seen = new Set();
+      return parsed
+        .map(normalizeSavedSearch)
+        .filter((entry) => {
+          if (!entry || seen.has(entry.id)) return false;
+          seen.add(entry.id);
+          return true;
+        })
+        .slice(0, MAX_SAVED_SEARCHES);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function writeSavedSearches(nextSearches) {
+    try {
+      localStorage.setItem(SAVED_SEARCHES_STORAGE_KEY, JSON.stringify(nextSearches));
+      savedSearches = nextSearches.slice(0, MAX_SAVED_SEARCHES);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function makeSavedSearchId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID().toLowerCase();
+    }
+    return "search-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+  }
+
+  function currentSavedSearchQuery() {
+    return buildFilterParams(false).toString();
+  }
+
+  function savedSearchDescription(query) {
+    const params = new URLSearchParams(query || "");
+    const parts = [];
+    const search = (params.get("q") || "").trim();
+    const area = params.get("area") || "";
+    const stage = params.get("stage") || "";
+    const sourceName = getSourceNameFromSlug(params.get("source") || "");
+    const impact = params.get("impact") || "";
+    const sort = params.get("sort") || DEFAULT_SORT;
+    const year = params.get("year") || "";
+
+    if (search) parts.push(I18N.t("af_search", { q: shortenSummaryPart(search, 28) }));
+    if (area) parts.push(I18N.t("af_area", { v: I18N.areaLabel(area) }));
+    if (stage) parts.push(I18N.t("af_stage", { v: I18N.stageLabel(stage) }));
+    if (sourceName) {
+      parts.push(
+        I18N.t("af_source", {
+          v: I18N.sourceLabel(sourceName, formatSourceDisplayName(sourceName)),
+        })
+      );
+    }
+    if (impact) parts.push(I18N.t("af_impact", { v: I18N.impactLabel(impact) }));
+    if (sort !== DEFAULT_SORT && isValidSort(sort)) {
+      parts.push(I18N.t("af_sort", { v: localizedSortLabel(sort) }));
+    }
+    if (params.get("ai") === "1") parts.push(I18N.t("af_ai"));
+    if (params.get("new") === "7") parts.push(I18N.t("af_newly"));
+    if (year && validPeriodValue(year)) {
+      parts.push(I18N.t("af_period", { v: periodDisplayLabel(year) }));
+    }
+    return parts.length ? parts.join(" · ") : I18N.t("af_none");
+  }
+
+  function defaultSavedSearchName() {
+    const query = filters.search.trim();
+    if (query) return shortenSummaryPart(query, 80);
+    if (filters.area) return I18N.areaLabel(filters.area);
+    if (filters.source) {
+      return I18N.sourceLabel(filters.source, formatSourceDisplayName(filters.source));
+    }
+    if (filters.stage) return I18N.stageLabel(filters.stage);
+    return I18N.t("saved_search_default_name", { count: savedSearches.length + 1 });
+  }
+
+  function setSavedSearchStatus(key, isError) {
+    if (!savedSearchStatus) return;
+    savedSearchStatus.textContent = key ? I18N.t(key, { max: MAX_SAVED_SEARCHES }) : "";
+    savedSearchStatus.classList.toggle("is-error", !!isError);
+  }
+
+  function renderSavedSearches() {
+    if (manageSavedSearchesBtn) {
+      manageSavedSearchesBtn.textContent = I18N.t("saved_searches_count", {
+        count: savedSearches.length,
+      });
+    }
+    if (saveSearchBtn) saveSearchBtn.textContent = I18N.t("saved_search_open");
+    if (savedSearchCapacity) {
+      savedSearchCapacity.textContent = I18N.t("saved_search_capacity", {
+        count: savedSearches.length,
+        max: MAX_SAVED_SEARCHES,
+      });
+    }
+    if (!savedSearchList) return;
+
+    savedSearchList.replaceChildren();
+    if (savedSearches.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "saved-search-empty";
+      empty.textContent = I18N.t("saved_search_empty");
+      savedSearchList.appendChild(empty);
+      return;
+    }
+
+    savedSearches.forEach((saved) => {
+      const item = document.createElement("article");
+      item.className = "saved-search-item";
+
+      const copy = document.createElement("div");
+      const name = document.createElement("p");
+      name.className = "saved-search-item-name";
+      name.textContent = saved.name;
+      const summary = document.createElement("p");
+      summary.className = "saved-search-item-summary";
+      summary.textContent = savedSearchDescription(saved.query);
+      copy.append(name, summary);
+
+      const actions = document.createElement("div");
+      actions.className = "saved-search-item-actions";
+      const load = document.createElement("button");
+      load.type = "button";
+      load.className = "saved-search-item-button";
+      load.dataset.savedSearchAction = "load";
+      load.dataset.savedSearchId = saved.id;
+      load.textContent = I18N.t("saved_search_load");
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "saved-search-item-button saved-search-item-delete";
+      remove.dataset.savedSearchAction = "delete";
+      remove.dataset.savedSearchId = saved.id;
+      remove.textContent = I18N.t("saved_search_delete");
+      actions.append(load, remove);
+
+      item.append(copy, actions);
+      savedSearchList.appendChild(item);
+    });
+  }
+
+  function refreshSavedSearchDialog() {
+    renderSavedSearches();
+    if (savedSearchCurrentSummary) {
+      savedSearchCurrentSummary.textContent = activeFilterSummaryText();
+    }
+  }
+
+  function openSavedSearches(preferNameInput) {
+    if (!savedSearchDialog || typeof savedSearchDialog.showModal !== "function") return;
+    savedSearchDialogOpener = document.activeElement;
+    setSavedSearchStatus("", false);
+    refreshSavedSearchDialog();
+    if (savedSearchNameInput) {
+      savedSearchNameInput.value = preferNameInput ? defaultSavedSearchName() : "";
+    }
+    if (!savedSearchDialog.open) savedSearchDialog.showModal();
+    window.setTimeout(() => {
+      if (preferNameInput && savedSearchNameInput) savedSearchNameInput.focus();
+      else if (closeSavedSearchDialogBtn) closeSavedSearchDialogBtn.focus();
+    }, 0);
+  }
+
+  function closeSavedSearches() {
+    if (savedSearchDialog && savedSearchDialog.open) savedSearchDialog.close();
+  }
+
+  function saveCurrentSearch() {
+    if (!archiveManifest || !savedSearchNameInput) return;
+    const query = currentSavedSearchQuery();
+    const enteredName = plainText(savedSearchNameInput.value).slice(0, 80);
+    const name = enteredName || defaultSavedSearchName();
+    const existing = savedSearches.find((saved) => saved.query === query);
+
+    let next;
+    let statusKey;
+    if (existing) {
+      next = savedSearches.map((saved) =>
+        saved.id === existing.id
+          ? { id: saved.id, name: name, query: query, saved_at: new Date().toISOString() }
+          : saved
+      );
+      statusKey = "saved_search_updated";
+    } else {
+      if (savedSearches.length >= MAX_SAVED_SEARCHES) {
+        setSavedSearchStatus("saved_search_limit", true);
+        return;
+      }
+      next = [
+        {
+          id: makeSavedSearchId(),
+          name: name,
+          query: query,
+          saved_at: new Date().toISOString(),
+        },
+      ].concat(savedSearches);
+      statusKey = "saved_search_saved";
+    }
+
+    if (!writeSavedSearches(next)) {
+      setSavedSearchStatus("saved_search_storage_error", true);
+      return;
+    }
+    savedSearchNameInput.value = name;
+    renderSavedSearches();
+    setSavedSearchStatus(statusKey, false);
+  }
+
+  function deleteSavedSearch(id) {
+    const next = savedSearches.filter((saved) => saved.id !== id);
+    if (next.length === savedSearches.length) {
+      setSavedSearchStatus("saved_search_unavailable", true);
+      return;
+    }
+    if (!writeSavedSearches(next)) {
+      setSavedSearchStatus("saved_search_storage_error", true);
+      return;
+    }
+    renderSavedSearches();
+    setSavedSearchStatus("saved_search_deleted", false);
+  }
+
+  async function loadSavedSearch(id) {
+    const saved = savedSearches.find((entry) => entry.id === id);
+    if (!saved || !archiveManifest || !window.history || !window.history.replaceState) {
+      setSavedSearchStatus("saved_search_unavailable", true);
+      return;
+    }
+    const params = new URLSearchParams(saved.query);
+    if (filters.lang && filters.lang !== I18N.DEFAULT_LANG) params.set("lang", filters.lang);
+    const queryString = params.toString();
+    const nextUrl =
+      window.location.pathname +
+      (queryString ? "?" + queryString : "") +
+      window.location.hash;
+    window.history.replaceState(null, "", nextUrl);
+
+    try {
+      await restoreStateFromLocation();
+      closeSavedSearches();
+    } catch (err) {
+      console.error("[JLRW] Failed to load saved search:", err);
+      setSavedSearchStatus("saved_search_unavailable", true);
+    }
+  }
+
+  function setSavedSearchControlsAvailable(isAvailable) {
+    if (saveSearchBtn) saveSearchBtn.disabled = !isAvailable;
+    if (saveCurrentSearchBtn) saveCurrentSearchBtn.disabled = !isAvailable;
+  }
+
+  function initSavedSearches() {
+    savedSearches = readSavedSearches();
+    renderSavedSearches();
+  }
+
+  // -------- Paid alert-pilot inquiry --------
+  // This is a lead-capture bridge, not account provisioning. Contact Form 7
+  // receives the request; no fee is charged until a separate checkout occurs.
+  function trustedIntegrationUrl(value, expectedHost, expectedPathPrefix) {
+    if (typeof value !== "string" || !value.trim()) return "";
+    try {
+      const parsed = new URL(value.trim());
+      if (parsed.protocol !== "https:" || parsed.hostname !== expectedHost) return "";
+      if (expectedPathPrefix && !parsed.pathname.startsWith(expectedPathPrefix)) return "";
+      return parsed.href;
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function alertPilotEndpoint() {
+    return trustedIntegrationUrl(
+      ALERTS_CONFIG.inquiryEndpoint,
+      "legal-gpt.com",
+      "/wp-json/contact-form-7/v1/contact-forms/"
+    );
+  }
+
+  function alertPilotCheckoutUrl(plan) {
+    const links = ALERTS_CONFIG.stripePaymentLinks;
+    const value = links && typeof links === "object" ? links[plan === "team" ? "team" : "pro"] : "";
+    return trustedIntegrationUrl(value, "buy.stripe.com", "/");
+  }
+
+  function alertPilotFallbackUrl() {
+    return trustedIntegrationUrl(ALERTS_CONFIG.fallbackContactUrl, "legal-gpt.com", "/contact/");
+  }
+
+  function alertPilotPrivacyUrl() {
+    return trustedIntegrationUrl(ALERTS_CONFIG.privacyPolicyUrl, "legal-gpt.com", "/privacy-policy/");
+  }
+
+  function validAlertPilotUnitTag(value) {
+    return typeof value === "string" && /^wpcf7-f\d+-p\d+-o\d+$/.test(value)
+      ? value
+      : "";
+  }
+
+  function validAlertPilotNumericId(value) {
+    return typeof value === "string" && /^\d+$/.test(value) ? value : "";
+  }
+
+  function setAlertPilotStatus(key, state) {
+    if (!alertPilotStatus) return;
+    alertPilotStatus.textContent = key ? I18N.t(key) : "";
+    alertPilotStatus.classList.toggle("is-success", state === "success");
+    alertPilotStatus.classList.toggle("is-error", state === "error");
+  }
+
+  function setAlertPilotSubmitting(isSubmitting) {
+    if (!alertPilotSubmitBtn) return;
+    alertPilotSubmitBtn.disabled = isSubmitting;
+    alertPilotSubmitBtn.textContent = I18N.t(
+      isSubmitting ? "alert_pilot_submitting" : "alert_pilot_submit"
+    );
+  }
+
+  function openAlertPilotForm() {
+    if (!alertPilotFormWrap || !openAlertPilotFormBtn) return;
+    alertPilotFormWrap.hidden = false;
+    openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
+    setAlertPilotStatus("", "");
+    if (alertPilotFallback) alertPilotFallback.hidden = true;
+    if (alertPilotCheckout) alertPilotCheckout.hidden = true;
+    window.setTimeout(() => {
+      alertPilotFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (alertPilotNameInput) alertPilotNameInput.focus();
+    }, 0);
+  }
+
+  function alertPilotPlanLabel(value) {
+    if (value === "team") return "Team — US$149/month";
+    return "Pro — US$29/month";
+  }
+
+  function alertPilotFrequencyLabel(value) {
+    return value === "weekly" ? "Weekly digest" : "Daily digest";
+  }
+
+  function currentMonitoringUrl() {
+    const params = buildFilterParams(true).toString();
+    return (
+      window.location.origin +
+      window.location.pathname +
+      (params ? "?" + params : "")
+    );
+  }
+
+  function buildAlertPilotMessage(values) {
+    const query = currentSavedSearchQuery();
+    const lines = [
+      "Japan Regulatory Alert Pilot request",
+      "",
+      "Name: " + values.name,
+      "Company / organization: " + values.company,
+      "Work email: " + values.email,
+      "Plan: " + alertPilotPlanLabel(values.plan),
+      "Preferred frequency: " + alertPilotFrequencyLabel(values.frequency),
+      "Monitoring criteria: " + savedSearchDescription(query),
+      "Filter query: " + (query || "Latest updates / no additional filters"),
+      "Dashboard URL: " + currentMonitoringUrl(),
+      "Display language: " + filters.lang,
+      "",
+      "This is a request for a regulatory-monitoring pilot, not a request for legal advice.",
+    ];
+    return lines.join("\n");
+  }
+
+  async function submitAlertPilotRequest() {
+    if (!alertPilotForm || !alertPilotForm.checkValidity()) {
+      setAlertPilotStatus("alert_pilot_validation", "error");
+      if (alertPilotForm) alertPilotForm.reportValidity();
+      return;
+    }
+
+    // Quiet honeypot: show a neutral success state without sending anything.
+    if (alertPilotHoneypotInput && alertPilotHoneypotInput.value) {
+      setAlertPilotStatus("alert_pilot_success_manual", "success");
+      return;
+    }
+
+    const endpoint = alertPilotEndpoint();
+    const unitTag = validAlertPilotUnitTag(ALERTS_CONFIG.inquiryUnitTag);
+    const formId = validAlertPilotNumericId(ALERTS_CONFIG.inquiryFormId);
+    const containerPost = validAlertPilotNumericId(ALERTS_CONFIG.inquiryContainerPost);
+    if (!endpoint || !unitTag || !formId || !containerPost) {
+      setAlertPilotStatus("alert_pilot_failed", "error");
+      if (alertPilotFallback) alertPilotFallback.hidden = false;
+      return;
+    }
+
+    const values = {
+      name: plainText(alertPilotNameInput.value).slice(0, 120),
+      email: alertPilotEmailInput.value.trim().slice(0, 254),
+      company: plainText(alertPilotCompanyInput.value).slice(0, 160),
+      plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
+      frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
+    };
+    const data = new FormData();
+    data.append("_wpcf7", formId);
+    data.append("_wpcf7_locale", "ja");
+    data.append("_wpcf7_unit_tag", unitTag);
+    data.append("_wpcf7_container_post", containerPost);
+    data.append("_wpcf7_posted_data_hash", "");
+    data.append("your-name", values.name);
+    data.append("your-email", values.email);
+    data.append("your-subject", "[JLRW Alert Pilot] " + alertPilotPlanLabel(values.plan));
+    data.append("your-message", buildAlertPilotMessage(values));
+
+    setAlertPilotSubmitting(true);
+    setAlertPilotStatus("", "");
+    if (alertPilotFallback) alertPilotFallback.hidden = true;
+    if (alertPilotCheckout) alertPilotCheckout.hidden = true;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: data,
+        mode: "cors",
+        credentials: "omit",
+        referrerPolicy: "origin",
+        headers: { Accept: "application/json" },
+      });
+      const result = await response.json();
+      if (!response.ok || !result || result.status !== "mail_sent") {
+        const providerStatus = result && typeof result.status === "string" ? result.status : "unknown";
+        console.warn("[JLRW] Alert pilot request was not accepted. status=" + providerStatus);
+        throw new Error("Inquiry was not accepted.");
+      }
+
+      const checkoutUrl = alertPilotCheckoutUrl(values.plan);
+      alertPilotForm.reset();
+      if (checkoutUrl && alertPilotCheckout) {
+        setAlertPilotStatus("alert_pilot_success_checkout", "success");
+        alertPilotCheckout.href = checkoutUrl;
+        alertPilotCheckout.hidden = false;
+      } else {
+        setAlertPilotStatus("alert_pilot_success_manual", "success");
+      }
+    } catch (err) {
+      console.warn("[JLRW] Alert pilot request failed.", err);
+      setAlertPilotStatus("alert_pilot_failed", "error");
+      if (alertPilotFallback) alertPilotFallback.hidden = false;
+    } finally {
+      setAlertPilotSubmitting(false);
+    }
+  }
+
+  function initAlertPilot() {
+    const fallbackUrl = alertPilotFallbackUrl();
+    const privacyUrl = alertPilotPrivacyUrl();
+    if (fallbackUrl && alertPilotFallback) alertPilotFallback.href = fallbackUrl;
+    if (privacyUrl && alertPilotPrivacyLink) alertPilotPrivacyLink.href = privacyUrl;
   }
 
   function setQuickButtonState(button, active) {
@@ -1551,6 +2120,17 @@
     };
   }
 
+  async function restoreStateFromLocation() {
+    const requestedPeriod = requestedPeriodFromUrl();
+    if (requestedPeriod !== filters.period) {
+      await installPeriodDataset(requestedPeriod);
+    }
+    restoreFiltersFromUrl();
+    applyLanguageDom();
+    renderDataStatus();
+    render();
+  }
+
   function wireEvents() {
     const onSearch = debounce((e) => {
       filters.search = e.target.value;
@@ -1603,6 +2183,50 @@
     if (exportCsvBtn) {
       exportCsvBtn.addEventListener("click", exportCurrentCsv);
     }
+    if (saveSearchBtn) {
+      saveSearchBtn.addEventListener("click", () => openSavedSearches(true));
+    }
+    if (manageSavedSearchesBtn) {
+      manageSavedSearchesBtn.addEventListener("click", () => openSavedSearches(false));
+    }
+    if (closeSavedSearchDialogBtn) {
+      closeSavedSearchDialogBtn.addEventListener("click", closeSavedSearches);
+    }
+    if (savedSearchForm) {
+      savedSearchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        saveCurrentSearch();
+      });
+    }
+    if (savedSearchList) {
+      savedSearchList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-saved-search-action]");
+        if (!button || !savedSearchList.contains(button)) return;
+        const id = button.dataset.savedSearchId || "";
+        if (button.dataset.savedSearchAction === "delete") {
+          deleteSavedSearch(id);
+        } else if (button.dataset.savedSearchAction === "load") {
+          loadSavedSearch(id);
+        }
+      });
+    }
+    if (savedSearchDialog) {
+      savedSearchDialog.addEventListener("close", () => {
+        if (savedSearchDialogOpener && typeof savedSearchDialogOpener.focus === "function") {
+          savedSearchDialogOpener.focus();
+        }
+        savedSearchDialogOpener = null;
+      });
+    }
+    if (openAlertPilotFormBtn) {
+      openAlertPilotFormBtn.addEventListener("click", openAlertPilotForm);
+    }
+    if (alertPilotForm) {
+      alertPilotForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        submitAlertPilotRequest();
+      });
+    }
     if (languageSelect) {
       languageSelect.addEventListener("change", (e) => {
         handleLanguageChange(e.target.value);
@@ -1611,14 +2235,7 @@
     cardsEl.addEventListener("click", handleCopyAction);
     window.addEventListener("popstate", async () => {
       try {
-        const requestedPeriod = requestedPeriodFromUrl();
-        if (requestedPeriod !== filters.period) {
-          await installPeriodDataset(requestedPeriod);
-        }
-        restoreFiltersFromUrl();
-        applyLanguageDom();
-        renderDataStatus();
-        render();
+        await restoreStateFromLocation();
       } catch (err) {
         console.error("[JLRW] Failed to restore URL state:", err);
         showError();
@@ -1644,6 +2261,8 @@
     initLanguage();
     applyLanguageDom();
     initModal();
+    initSavedSearches();
+    initAlertPilot();
     wireEvents();
     loadData();
   });

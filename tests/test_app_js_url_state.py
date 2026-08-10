@@ -18,17 +18,18 @@ import fetch_updates as fu  # noqa: E402
 
 APP_JS = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
 I18N_JS = (REPO_ROOT / "docs" / "i18n.js").read_text(encoding="utf-8")
+ALERTS_CONFIG_JS = (REPO_ROOT / "docs" / "alerts-config.js").read_text(encoding="utf-8")
 INDEX_HTML = (REPO_ROOT / "docs" / "index.html").read_text(encoding="utf-8")
 STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
 
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "year-archive-20260807"
-APP_CACHE_BUSTER = "audit-hardening-20260807"
+CACHE_BUSTER = "alert-pilot-20260810"
+APP_CACHE_BUSTER = "stripe-checkout-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "year-archive-20260807"
+I18N_CACHE_BUSTER = "stripe-checkout-20260810"
 
 
 def object_body(name: str) -> str:
@@ -395,6 +396,117 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertNotIn('params.set("visible"', APP_JS)
         self.assertNotIn('params.set("page"', APP_JS)
 
+    def test_saved_search_local_mvp_exists(self):
+        for snippet in (
+            'id="save-search"',
+            'id="manage-saved-searches"',
+            'id="saved-search-dialog"',
+            'id="saved-search-form"',
+            'id="saved-search-list"',
+            'const SAVED_SEARCHES_STORAGE_KEY = "jlrw-saved-searches-v1"',
+            "const MAX_SAVED_SEARCHES = 5",
+            "function readSavedSearches",
+            "function writeSavedSearches",
+            "function saveCurrentSearch",
+            "async function loadSavedSearch",
+            "function deleteSavedSearch",
+            "buildFilterParams(false).toString()",
+            "await restoreStateFromLocation()",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS + INDEX_HTML)
+
+    def test_saved_search_copy_is_local_only_and_localized(self):
+        for snippet in (
+            "Saved searches stay on this device.",
+            "They do not create an account or email subscription.",
+            "搜索条件仅保存在本设备中",
+            'saved_searches_count: "Saved searches ({count})"',
+            'saved_searches_count: "已保存的搜索（{count}）"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS + INDEX_HTML)
+
+    def test_saved_search_rendering_uses_dom_text_not_html(self):
+        self.assertIn("savedSearchList.replaceChildren()", APP_JS)
+        self.assertIn("name.textContent = saved.name", APP_JS)
+        self.assertIn("summary.textContent = savedSearchDescription(saved.query)", APP_JS)
+        self.assertNotIn("savedSearchList.innerHTML", APP_JS)
+
+    def test_alert_pilot_link_is_external_and_non_authoritative(self):
+        self.assertIn('href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"', INDEX_HTML)
+        self.assertIn('rel="noopener noreferrer"', INDEX_HTML)
+        self.assertIn("We are preparing personalized alerts", I18N_JS)
+        self.assertIn("public-comment deadline reminders", I18N_JS)
+
+    def test_alert_pilot_form_has_required_consent_and_fallback(self):
+        for snippet in (
+            'id="alert-pilot-form"',
+            'id="alert-pilot-name"',
+            'id="alert-pilot-email"',
+            'id="alert-pilot-company"',
+            'id="alert-pilot-plan"',
+            'id="alert-pilot-frequency"',
+            'id="alert-pilot-consent" type="checkbox" required',
+            'id="alert-pilot-privacy-link"',
+            'id="alert-pilot-fallback"',
+            'id="alert-pilot-checkout"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML)
+
+    def test_alert_pilot_submission_uses_existing_contact_form_safely(self):
+        for snippet in (
+            "async function submitAlertPilotRequest",
+            'data.append("_wpcf7_unit_tag", unitTag)',
+            'data.append("your-name", values.name)',
+            'data.append("your-email", values.email)',
+            'data.append("your-subject"',
+            'data.append("your-message"',
+            'mode: "cors"',
+            'credentials: "omit"',
+            'referrerPolicy: "origin"',
+            'result.status !== "mail_sent"',
+            "alertPilotForm.checkValidity()",
+            "alertPilotForm.reportValidity()",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_alert_pilot_config_is_public_only_and_checkout_is_optional(self):
+        for snippet in (
+            "window.JLRW_ALERTS_CONFIG",
+            'inquiryFormId: "99"',
+            'inquiryUnitTag: "wpcf7-f99-p100-o1"',
+            'privacyPolicyUrl: "https://legal-gpt.com/privacy-policy/"',
+            "stripePaymentLinks: Object.freeze",
+            'pro: "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00"',
+            'team: "https://buy.stripe.com/fZu9AT5RvdTvbP38YCawo01"',
+            'const checkoutUrl = alertPilotCheckoutUrl(values.plan)',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, ALERTS_CONFIG_JS + APP_JS)
+        for forbidden in ("sk_live_", "sk_test_", "whsec_", "api_key", "apiSecret"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, ALERTS_CONFIG_JS)
+
+        links = dict(
+            re.findall(
+                r'(pro|team): "(https://buy\.stripe\.com/[^"\s]+)"',
+                ALERTS_CONFIG_JS,
+            )
+        )
+        self.assertEqual(set(links), {"pro", "team"})
+        self.assertNotEqual(links["pro"], links["team"])
+
+    def test_alert_pilot_does_not_log_contact_form_response_or_user_fields(self):
+        self.assertNotIn("console.log", ALERTS_CONFIG_JS)
+        self.assertNotIn("JSON.stringify(result)", APP_JS)
+        self.assertNotIn("console.warn(values", APP_JS)
+        self.assertIn("Submitting this form does not create a subscription or charge a fee.", I18N_JS)
+        self.assertIn('setAlertPilotStatus("alert_pilot_success_checkout", "success")', APP_JS)
+        self.assertIn('setAlertPilotStatus("alert_pilot_success_manual", "success")', APP_JS)
+
     def test_csv_export_failure_logs_error_object(self):
         self.assertIn('console.warn("[JLRW] CSV export failed.", e)', APP_JS)
 
@@ -480,6 +592,8 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
         self.assertIn("style.css?v=" + CACHE_BUSTER, INDEX_HTML)
         # i18n.js must be parsed before app.js so window.JLRW_I18N exists.
         self.assertLess(INDEX_HTML.index("i18n.js?v="), INDEX_HTML.index("app.js?v="))
+        self.assertIn("alerts-config.js?v=stripe-live-20260810", INDEX_HTML)
+        self.assertLess(INDEX_HTML.index("alerts-config.js?v="), INDEX_HTML.index("app.js?v="))
         # The old cache buster must be fully replaced.
         self.assertNotIn("newly-detected-20260618", INDEX_HTML)
 
