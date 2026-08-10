@@ -68,6 +68,20 @@ The request dialog presents the current pilot scope before the form: Pro support
 
 The no-index checkout follow-up page is published at `docs/alerts/thank-you.html`. Configure Stripe Payment Link completion redirects to `https://legal-gpt-official.github.io/japan-legal-reform-watch/alerts/thank-you.html?plan=pro` for Pro and the same URL with `plan=team` for Team. The query value is allow-listed only for display; the page does not verify payment and does not claim that alert activation is automatic. It follows the dashboard language preference (`lang=zh-Hans` URL override, then `localStorage`, then English).
 
+### Alert digest draft generator
+
+[`scripts/generate_alert_digest.py`](scripts/generate_alert_digest.py) is a private-operations aid that turns a saved dashboard/filter URL into review-required Markdown and HTML email drafts. It applies the same supported URL filters, source slugs, period selection, multilingual search fields, Newly detected rule, and sort choices as the browser dashboard. The default delivery window uses `first_seen_at`, meaning the item was first detected by this dashboard during the requested period; it does not imply a newly enacted or amended law.
+
+The generator does **not** send email, store customer details, call an external service, or write inside `docs/`. Every draft is marked `DRAFT — HUMAN REVIEW REQUIRED`; untrusted record text is escaped for HTML and only HTTP(S) official-source URLs become links. Keep generated drafts in a private operations directory, review every item and source URL, and remove the draft banner only when preparing the final approved email.
+
+Example weekly run from the repository root:
+
+```
+python scripts/generate_alert_digest.py --dashboard-url "https://legal-gpt-official.github.io/japan-legal-reform-watch/?area=Data%20%2F%20Privacy%20%2F%20AI&sort=detected" --since 2026-08-04 --until 2026-08-10 --frequency weekly --max-items 10 --output-dir "C:\private\JLRW-alert-drafts"
+```
+
+Omit `--since` and `--until` to use the latest seven Asia/Tokyo calendar days. `--date-field published` is available for an explicit publication-date backfill, but routine monitoring should keep the safer `first_seen` default. When more records match than `--max-items`, the drafts state how many were omitted so the operator can review the remaining dashboard results before delivery.
+
 ## Ingestion (raw fetch — Stage 1)
 
 `scripts/fetch_updates.py` fetches 24 curated official Japanese public-sector and self-regulatory sources and stores **raw, de-duplicated** items in [`data/raw_items.json`](data/raw_items.json). Coverage: **e-Gov Public Comment, House of Representatives current-session bills, e-Gov Law Search updated laws, JPX public comments, Tokyo Stock Exchange rule revisions, PMDA safety updates, JSDA public comments, JSDA public-comment results, recent Supreme Court decisions, SESC enforcement updates, FSA, METI, MHLW, Digital Agency, CAA, PPC, JFTC, MOJ, MOE, MOF, NTA, MIC, MLIT, and MAFF**. JPX, TSE, PMDA, JSDA, the Courts site, SESC, PPC, JFTC, MOE, MLIT, METI, NTA, and the House of Representatives use lightweight official HTML parsing; the Diet and NTA pages are Shift_JIS. NTA reads only the two current `index_news` tables on its official updates page, excludes collapsed archive tables, and retains the latest 550 days. SESC resolves its current-year page from the stable press-release archive and retains focused enforcement, market-monitoring policy, and public-comment items. The e-Gov Law adapter checks the previous seven JST dates and treats a per-date HTTP 404 as no updates. PMDA is limited to safety-category rows from the latest 550 days. The Courts adapter uses the official recent Supreme Court filter, which covers listed decisions from the past three months only and is not comprehensive case-law coverage. METI retains its escalating timeouts, backoff, requests→urllib fallback, and warning-only Source Health status. The remaining feed sources use RSS/RDF/Atom. JPO was investigated again, but its official update page remains unstable for automation (AWS WAF responses vary between blocked and empty responses); its patent-data API is not an agency-news or regulatory-update feed. JPO therefore remains deferred until a stable, focused official feed or API is available. Stage 1 performs fetching, normalization, de-duplication, and logging **only**; it does not summarize, call an LLM, or modify the published JSON.
@@ -317,12 +331,14 @@ japan-legal-reform-watch/
 │   ├── fetch_updates.py          # Stage 1 raw ingestion (fetch → normalize → dedupe → log)
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
 │   ├── summarize_updates.py      # Stage 3 Claude AI summarization of the top-N items
-│   └── translate_updates.py      # Stage 4 Claude Simplified-Chinese (zh-Hans) translation
+│   ├── translate_updates.py      # Stage 4 Claude Simplified-Chinese (zh-Hans) translation
+│   └── generate_alert_digest.py  # Review-required Markdown/HTML alert draft generator
 ├── tests/
 │   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI & translation preservation
 │   ├── test_published_data_schema.py # Schema checks for docs/data/legal_updates.json (read-only)
 │   ├── test_translate_updates.py     # Stage 4 cache / limit / stale-removal / fallback + workflow (offline)
 │   ├── test_app_js_url_state.py      # Static checks for app.js/i18n.js: URL state, language switch, CSV
+│   ├── test_generate_alert_digest.py  # Alert URL filtering, windowing, escaping, and draft output
 │   └── test_fetch_updates.py         # Stage 1 SOURCES config, parsers, id/hash stability (offline)
 ├── data/
 │   ├── legal_updates.json        # Original hand-curated sample (schema reference only)
