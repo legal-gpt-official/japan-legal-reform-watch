@@ -157,6 +157,11 @@
   // The locale whose translations.<locale> block the card/search/CSV/copy layers
   // read. English remains the canonical fallback for every field.
   const TRANSLATION_LOCALE = "zh-Hans";
+  let savedSearchStatusKey = "";
+  let savedSearchStatusIsError = false;
+  let alertPilotStatusKey = "";
+  let alertPilotStatusState = "";
+  let alertPilotIsSubmitting = false;
 
   // -------- Language preference (URL > localStorage > English) --------
   function readStoredLang() {
@@ -739,6 +744,9 @@
     refreshMobileToggleLabel();
     refreshSavedSearchDialog();
     syncAlertPilotCheckoutLabel();
+    setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError);
+    setAlertPilotStatus(alertPilotStatusKey, alertPilotStatusState);
+    setAlertPilotSubmitting(alertPilotIsSubmitting);
   }
 
   // User changed language: keep every filter / sort / quick-filter state AND the
@@ -871,10 +879,14 @@
     return buildFilterParams(false).toString();
   }
 
+  function inquirySafeSearchText(value) {
+    return plainText(value).replace(/[<>&]/g, "");
+  }
+
   function savedSearchDescription(query) {
     const params = new URLSearchParams(query || "");
     const parts = [];
-    const search = (params.get("q") || "").trim();
+    const search = inquirySafeSearchText(params.get("q") || "");
     const area = params.get("area") || "";
     const stage = params.get("stage") || "";
     const sourceName = getSourceNameFromSlug(params.get("source") || "");
@@ -916,9 +928,13 @@
   }
 
   function setSavedSearchStatus(key, isError) {
+    savedSearchStatusKey = key || "";
+    savedSearchStatusIsError = !!isError;
     if (!savedSearchStatus) return;
-    savedSearchStatus.textContent = key ? I18N.t(key, { max: MAX_SAVED_SEARCHES }) : "";
-    savedSearchStatus.classList.toggle("is-error", !!isError);
+    savedSearchStatus.textContent = savedSearchStatusKey
+      ? I18N.t(savedSearchStatusKey, { max: MAX_SAVED_SEARCHES })
+      : "";
+    savedSearchStatus.classList.toggle("is-error", savedSearchStatusIsError);
   }
 
   function renderSavedSearches() {
@@ -1102,8 +1118,16 @@
     if (typeof value !== "string" || !value.trim()) return "";
     try {
       const parsed = new URL(value.trim());
-      if (parsed.protocol !== "https:" || parsed.hostname !== expectedHost) return "";
+      if (
+        parsed.protocol !== "https:" ||
+        parsed.host !== expectedHost ||
+        parsed.username ||
+        parsed.password
+      ) {
+        return "";
+      }
       if (expectedPathPrefix && !parsed.pathname.startsWith(expectedPathPrefix)) return "";
+      parsed.hash = "";
       return parsed.href;
     } catch (e) {
       return "";
@@ -1165,10 +1189,12 @@
   }
 
   function setAlertPilotStatus(key, state) {
+    alertPilotStatusKey = key || "";
+    alertPilotStatusState = state || "";
     if (!alertPilotStatus) return;
-    alertPilotStatus.textContent = key ? I18N.t(key) : "";
-    alertPilotStatus.classList.toggle("is-success", state === "success");
-    alertPilotStatus.classList.toggle("is-error", state === "error");
+    alertPilotStatus.textContent = alertPilotStatusKey ? I18N.t(alertPilotStatusKey) : "";
+    alertPilotStatus.classList.toggle("is-success", alertPilotStatusState === "success");
+    alertPilotStatus.classList.toggle("is-error", alertPilotStatusState === "error");
   }
 
   function setAlertPilotReference(requestId) {
@@ -1179,11 +1205,27 @@
   }
 
   function setAlertPilotSubmitting(isSubmitting) {
+    alertPilotIsSubmitting = !!isSubmitting;
     if (!alertPilotSubmitBtn) return;
-    alertPilotSubmitBtn.disabled = isSubmitting;
+    alertPilotSubmitBtn.disabled = alertPilotIsSubmitting;
     alertPilotSubmitBtn.textContent = I18N.t(
-      isSubmitting ? "alert_pilot_submitting" : "alert_pilot_submit"
+      alertPilotIsSubmitting ? "alert_pilot_submitting" : "alert_pilot_submit"
     );
+  }
+
+  function clearAlertPilotHoneypot() {
+    if (alertPilotHoneypotInput) alertPilotHoneypotInput.value = "";
+  }
+
+  function resetAlertPilotOutcome() {
+    setAlertPilotStatus("", "");
+    setAlertPilotReference("");
+    if (alertPilotFallback) alertPilotFallback.hidden = true;
+    if (alertPilotCheckout) {
+      alertPilotCheckout.hidden = true;
+      alertPilotCheckout.removeAttribute("href");
+      delete alertPilotCheckout.dataset.plan;
+    }
   }
 
   function openAlertPilotForm() {
@@ -1192,13 +1234,8 @@
     setAlertPilotPlanLocked(false);
     alertPilotFormWrap.hidden = false;
     openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
-    setAlertPilotStatus("", "");
-    setAlertPilotReference("");
-    if (alertPilotFallback) alertPilotFallback.hidden = true;
-    if (alertPilotCheckout) {
-      alertPilotCheckout.hidden = true;
-      delete alertPilotCheckout.dataset.plan;
-    }
+    clearAlertPilotHoneypot();
+    resetAlertPilotOutcome();
     syncAlertPilotCheckoutLabel();
     window.setTimeout(() => {
       alertPilotFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -1297,21 +1334,25 @@
   }
 
   async function submitAlertPilotRequest() {
+    resetAlertPilotOutcome();
     if (!alertPilotForm || !alertPilotForm.checkValidity()) {
       setAlertPilotStatus("alert_pilot_validation", "error");
       if (alertPilotForm) alertPilotForm.reportValidity();
       return;
     }
 
-    // Quiet honeypot: show a neutral success state without sending anything.
+    // Fail closed without sending. Clear the field so browser autofill or a
+    // password manager cannot silently poison every later attempt in this dialog.
     if (alertPilotHoneypotInput && alertPilotHoneypotInput.value) {
-      setAlertPilotStatus("alert_pilot_success_manual", "success");
+      clearAlertPilotHoneypot();
+      setAlertPilotStatus("alert_pilot_failed", "error");
+      if (alertPilotFallback) alertPilotFallback.hidden = false;
       return;
     }
 
     const values = {
       name: plainText(alertPilotNameInput.value).slice(0, 120),
-      email: alertPilotEmailInput.value.trim().slice(0, 254),
+      email: plainText(alertPilotEmailInput.value).slice(0, 254),
       company: plainText(alertPilotCompanyInput.value).slice(0, 160),
       plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
       frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
@@ -1360,9 +1401,6 @@
     data.append("your-message", buildAlertPilotMessage(values));
 
     setAlertPilotSubmitting(true);
-    setAlertPilotStatus("", "");
-    if (alertPilotFallback) alertPilotFallback.hidden = true;
-    if (alertPilotCheckout) alertPilotCheckout.hidden = true;
     try {
       const response = await fetch(endpoint, {
         method: "POST",
@@ -1385,7 +1423,7 @@
       alertPilotCompanyInput.value = "";
       alertPilotFocusInput.value = "";
       alertPilotConsentInput.checked = false;
-      if (alertPilotHoneypotInput) alertPilotHoneypotInput.value = "";
+      clearAlertPilotHoneypot();
       alertPilotPlanSelect.value = values.plan;
       alertPilotFrequencySelect.value = values.frequency;
       syncAlertPilotPlanChoice();
@@ -2349,12 +2387,8 @@
       savedSearchDialog.addEventListener("close", () => {
         if (alertPilotFormWrap) alertPilotFormWrap.hidden = true;
         if (openAlertPilotFormBtn) openAlertPilotFormBtn.setAttribute("aria-expanded", "false");
-        if (alertPilotFallback) alertPilotFallback.hidden = true;
-        setAlertPilotReference("");
-        if (alertPilotCheckout) {
-          alertPilotCheckout.hidden = true;
-          delete alertPilotCheckout.dataset.plan;
-        }
+        clearAlertPilotHoneypot();
+        resetAlertPilotOutcome();
         setAlertPilotPlanLocked(false);
         syncAlertPilotCheckoutLabel();
         if (savedSearchDialogOpener && typeof savedSearchDialogOpener.focus === "function") {

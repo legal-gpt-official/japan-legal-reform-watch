@@ -78,6 +78,7 @@ requirements.txt                 # Ingestion/summarization dependencies (request
 - The dashboard footer includes modest links to Legal GPT, the Japan Legal Reform Watch landing page, and Japan legal updates, while keeping the EN/JA disclaimer links visible.
 - Do not introduce external runtime dependencies (CDN fonts, analytics, trackers, JS frameworks) without explicit approval. The current dashboard is deliberately dependency-free.
 - Paid-pilot reconciliation uses a locally generated, non-sensitive request reference. Include the same reference in the Contact Form 7 subject/body and the Stripe Payment Link only as `client_reference_id`; never place email, company, monitoring criteria, secrets, or other personal/confidential data in the checkout URL. Keep checkout hidden unless the inquiry returns `mail_sent` and both the trusted Payment Link and request reference are valid.
+- Treat `docs/alerts-config.js` as a cache-sensitive public integration file. When it changes, update the `alerts-config.js?v=...` reference in `docs/index.html` in the same commit and keep that version aligned with the other dashboard assets so visitors do not retain obsolete payment links.
 - **Treat all record/source data as untrusted.** Every value rendered into the DOM must pass through `escapeHtml()`; `source_url` must also pass `safeUrl()` (scheme allow-list) **and** `escapeHtml()` before being placed in an `href`. This boundary prevents markup/script injection once automated ingestion is added.
 
 ## Data schema (`data/legal_updates.json`)

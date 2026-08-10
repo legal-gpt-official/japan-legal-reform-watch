@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "payment-reference-20260810"
-APP_CACHE_BUSTER = "payment-reference-20260810"
+CACHE_BUSTER = "audit-hardening-20260810"
+APP_CACHE_BUSTER = "audit-hardening-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "payment-reference-20260810"
+I18N_CACHE_BUSTER = "audit-hardening-20260810"
 
 
 def object_body(name: str) -> str:
@@ -552,6 +552,52 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn("if (alertPilotFormWrap) alertPilotFormWrap.hidden = true", APP_JS)
         self.assertIn('openAlertPilotFormBtn.setAttribute("aria-expanded", "false")', APP_JS)
 
+    def test_alert_pilot_honeypot_fails_visibly_and_does_not_poison_later_attempts(self):
+        submit = re.search(
+            r"async function submitAlertPilotRequest\(\) \{(?P<body>.*?)\n  \}\n\n  function initAlertPilot",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(submit)
+        body = submit.group("body")
+        honeypot = re.search(
+            r"if \(alertPilotHoneypotInput && alertPilotHoneypotInput\.value\) \{(?P<body>.*?)\n    \}",
+            body,
+            re.S,
+        )
+        self.assertIsNotNone(honeypot)
+        for snippet in (
+            "clearAlertPilotHoneypot()",
+            'setAlertPilotStatus("alert_pilot_failed", "error")',
+            "alertPilotFallback.hidden = false",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, honeypot.group("body"))
+        self.assertNotIn("alert_pilot_success", honeypot.group("body"))
+        self.assertIn("clearAlertPilotHoneypot();\n    resetAlertPilotOutcome();", APP_JS)
+
+    def test_each_alert_pilot_attempt_discards_stale_reference_and_checkout(self):
+        submit = re.search(
+            r"async function submitAlertPilotRequest\(\) \{(?P<body>.*?)\n  \}\n\n  function initAlertPilot",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(submit)
+        body = submit.group("body")
+        self.assertLess(body.index("resetAlertPilotOutcome()"), body.index("checkValidity()"))
+        reset = re.search(
+            r"function resetAlertPilotOutcome\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
+        )
+        self.assertIsNotNone(reset)
+        for snippet in (
+            'setAlertPilotReference("")',
+            "alertPilotCheckout.hidden = true",
+            'alertPilotCheckout.removeAttribute("href")',
+            "delete alertPilotCheckout.dataset.plan",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, reset.group("body"))
+
     def test_alert_pilot_submission_uses_existing_contact_form_safely(self):
         for snippet in (
             "async function submitAlertPilotRequest",
@@ -626,6 +672,57 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIsNotNone(generator)
         self.assertNotIn("Math.random", generator.group("body"))
 
+        checkout = re.search(
+            r"function alertPilotCheckoutUrl\(plan, requestId\) \{(?P<body>.*?)\n  \}",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(checkout)
+        query_keys = re.findall(
+            r'checkoutUrl\.searchParams\.(?:set|append)\("([^"]+)"', checkout.group("body")
+        )
+        self.assertEqual(query_keys, ["client_reference_id"])
+
+    def test_alert_pilot_status_relocalizes_and_reference_is_announced(self):
+        for snippet in (
+            "savedSearchStatusKey = key || \"\"",
+            "alertPilotStatusKey = key || \"\"",
+            "alertPilotStatusState = state || \"\"",
+            "setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError)",
+            "setAlertPilotStatus(alertPilotStatusKey, alertPilotStatusState)",
+            "setAlertPilotSubmitting(alertPilotIsSubmitting)",
+            'aria-live="polite"',
+            'aria-atomic="true"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS + INDEX_HTML)
+
+    def test_alert_pilot_integration_urls_reject_ports_credentials_and_fragments(self):
+        trusted = re.search(
+            r"function trustedIntegrationUrl\(value, expectedHost, expectedPathPrefix\) \{(?P<body>.*?)\n  \}",
+            APP_JS,
+            re.S,
+        )
+        self.assertIsNotNone(trusted)
+        body = trusted.group("body")
+        for snippet in (
+            "parsed.host !== expectedHost",
+            "parsed.username",
+            "parsed.password",
+            'parsed.hash = ""',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, body)
+        self.assertNotIn("parsed.hostname !== expectedHost", body)
+
+    def test_shared_search_text_is_sanitized_before_contact_form_message(self):
+        sanitizer = re.search(
+            r"function inquirySafeSearchText\(value\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
+        )
+        self.assertIsNotNone(sanitizer)
+        self.assertIn('replace(/[<>&]/g, "")', sanitizer.group("body"))
+        self.assertIn('const search = inquirySafeSearchText(params.get("q") || "")', APP_JS)
+
     def test_alert_pilot_does_not_log_contact_form_response_or_user_fields(self):
         self.assertNotIn("console.log", ALERTS_CONFIG_JS)
         self.assertNotIn("JSON.stringify(result)", APP_JS)
@@ -642,10 +739,14 @@ class TestAppJsUrlState(unittest.TestCase):
             'href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"',
             "Activation is not automatic",
             "monitoring aids, not legal advice",
+            "Checkout follow-up",
+            "结账后续",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, THANK_YOU_HTML + I18N_JS)
         self.assertLess(THANK_YOU_HTML.index("../i18n.js?v="), THANK_YOU_HTML.index("thank-you.js?v="))
+        self.assertNotIn("Thank you for subscribing", THANK_YOU_HTML + I18N_JS)
+        self.assertNotIn("感谢您的订阅", THANK_YOU_HTML + I18N_JS)
 
     def test_all_static_i18n_keys_exist_in_both_dictionaries(self):
         html = INDEX_HTML + THANK_YOU_HTML
@@ -764,7 +865,7 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
         self.assertIn("style.css?v=" + CACHE_BUSTER, INDEX_HTML)
         # i18n.js must be parsed before app.js so window.JLRW_I18N exists.
         self.assertLess(INDEX_HTML.index("i18n.js?v="), INDEX_HTML.index("app.js?v="))
-        self.assertIn("alerts-config.js?v=stripe-live-20260810", INDEX_HTML)
+        self.assertIn("alerts-config.js?v=" + CACHE_BUSTER, INDEX_HTML)
         self.assertLess(INDEX_HTML.index("alerts-config.js?v="), INDEX_HTML.index("app.js?v="))
         # The old cache buster must be fully replaced.
         self.assertNotIn("newly-detected-20260618", INDEX_HTML)

@@ -5,7 +5,6 @@
   --completion-navy-soft: #163c5c;
   --completion-gold: #b08a3e;
   --completion-gold-soft: #f6f0e4;
-  --completion-green: #246b4b;
   --completion-text: #1a1a1a;
   --completion-muted: #5b6470;
   --completion-border: #deded8;
@@ -113,10 +112,10 @@ a {
 
 .completion-mark {
   align-items: center;
-  background: #e8f3ed;
-  border: 1px solid #bfddcc;
+  background: #edf2f7;
+  border: 1px solid #cbd7e3;
   border-radius: 50%;
-  color: var(--completion-green);
+  color: var(--completion-navy);
   display: flex;
   font-size: 25px;
   font-weight: 700;
