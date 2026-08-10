@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "alert-pilot-20260810"
-APP_CACHE_BUSTER = "stripe-checkout-20260810"
+CACHE_BUSTER = "alert-plans-20260810"
+APP_CACHE_BUSTER = "alert-plans-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "onboarding-20260810"
+I18N_CACHE_BUSTER = "alert-plans-20260810"
 
 
 def object_body(name: str) -> str:
@@ -439,8 +439,48 @@ class TestAppJsUrlState(unittest.TestCase):
     def test_alert_pilot_link_is_external_and_non_authoritative(self):
         self.assertIn('href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"', INDEX_HTML)
         self.assertIn('rel="noopener noreferrer"', INDEX_HTML)
-        self.assertIn("We are preparing personalized alerts", I18N_JS)
-        self.assertIn("public-comment deadline reminders", I18N_JS)
+        self.assertIn("Receive personalized alerts based on saved searches", I18N_JS)
+        self.assertIn("when structured official data is available", I18N_JS)
+
+    def test_alert_pilot_plan_comparison_is_scoped_and_localized(self):
+        for snippet in (
+            'id="alert-pilot-plans-title"',
+            'data-alert-plan="pro"',
+            'data-alert-plan="team"',
+            "1 monitoring criterion",
+            "Up to 5 monitoring criteria",
+            "1 email recipient",
+            "Up to 5 email recipients",
+            "Recurring monthly subscription, billed in US dollars.",
+            "最多5项监测条件",
+            "最多5名邮件收件人",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML + I18N_JS)
+
+    def test_alert_pilot_plan_cards_sync_with_form_select(self):
+        for snippet in (
+            "function syncAlertPilotPlanChoice()",
+            "function selectAlertPilotPlan(event)",
+            'button.dataset.alertPlan === selectedPlan',
+            'card.dataset.alertPlanCard === selectedPlan',
+            'alertPilotPlanSelect.addEventListener("change", syncAlertPilotPlanChoice)',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+    def test_alert_pilot_faq_sets_activation_and_cancellation_expectations(self):
+        for snippet in (
+            'id="alert-pilot-faq-title"',
+            "Checkout alone does not activate monitoring.",
+            "links to the original Japanese official source",
+            "How do I change or cancel a plan?",
+            "We will confirm the effective timing and any billing effect.",
+            "如何变更或取消方案？",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML + I18N_JS)
+        self.assertNotIn("non-refundable", (INDEX_HTML + I18N_JS).lower())
 
     def test_alert_pilot_form_has_required_consent_and_fallback(self):
         for snippet in (

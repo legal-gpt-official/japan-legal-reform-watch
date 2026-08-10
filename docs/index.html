@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=alert-pilot-20260810" />
+  <link rel="stylesheet" href="./style.css?v=alert-plans-20260810" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -114,7 +114,7 @@
           <p class="alert-pilot-label" data-i18n="alert_pilot_label">Paid pilot</p>
           <h3 id="alert-pilot-title" data-i18n="alert_pilot_title">Receive matching updates by email</h3>
           <p data-i18n="alert_pilot_body">
-            We are preparing personalized alerts based on saved searches, including public-comment deadline reminders.
+            Receive personalized alerts based on saved searches, including public-comment deadline reminders when structured official data is available.
           </p>
         </div>
         <button
@@ -140,6 +140,57 @@
         <p class="alert-pilot-form-intro" data-i18n="alert_pilot_form_intro">
           Submitting this form does not create a subscription or charge a fee. After sending, you can continue to secure checkout; we review the requested monitoring scope before activation.
         </p>
+        <section class="alert-pilot-plans" aria-labelledby="alert-pilot-plans-title">
+          <div class="alert-pilot-section-heading">
+            <h4 id="alert-pilot-plans-title" data-i18n="alert_pilot_plans_title">Choose a monitoring scope</h4>
+            <p data-i18n="alert_pilot_plans_billing">Recurring monthly subscription, billed in US dollars.</p>
+          </div>
+          <div class="alert-pilot-plan-grid">
+            <article class="alert-pilot-plan-card is-selected" data-alert-plan-card="pro">
+              <div class="alert-pilot-plan-heading">
+                <h5 data-i18n="alert_pilot_plan_name_pro">Pro</h5>
+                <p class="alert-pilot-plan-price" data-i18n="alert_pilot_plan_pro_price">US$29/month</p>
+              </div>
+              <p class="alert-pilot-plan-audience" data-i18n="alert_pilot_plan_pro_audience">For an individual monitoring need</p>
+              <ul>
+                <li data-i18n="alert_pilot_plan_pro_criteria">1 monitoring criterion</li>
+                <li data-i18n="alert_pilot_plan_pro_recipients">1 email recipient</li>
+                <li data-i18n="alert_pilot_plan_delivery">Daily or weekly digest</li>
+                <li data-i18n="alert_pilot_plan_deadlines">Public-comment deadline reminders when structured official data is available</li>
+              </ul>
+              <button
+                class="alert-pilot-plan-select"
+                type="button"
+                data-alert-plan="pro"
+                aria-pressed="true"
+                data-i18n="alert_pilot_select_pro"
+              >Select Pro</button>
+            </article>
+            <article class="alert-pilot-plan-card" data-alert-plan-card="team">
+              <div class="alert-pilot-plan-heading">
+                <h5 data-i18n="alert_pilot_plan_name_team">Team</h5>
+                <p class="alert-pilot-plan-price" data-i18n="alert_pilot_plan_team_price">US$149/month</p>
+              </div>
+              <p class="alert-pilot-plan-audience" data-i18n="alert_pilot_plan_team_audience">For a small legal or compliance team</p>
+              <ul>
+                <li data-i18n="alert_pilot_plan_team_criteria">Up to 5 monitoring criteria</li>
+                <li data-i18n="alert_pilot_plan_team_recipients">Up to 5 email recipients</li>
+                <li data-i18n="alert_pilot_plan_delivery">Daily or weekly digest</li>
+                <li data-i18n="alert_pilot_plan_deadlines">Public-comment deadline reminders when structured official data is available</li>
+              </ul>
+              <button
+                class="alert-pilot-plan-select"
+                type="button"
+                data-alert-plan="team"
+                aria-pressed="false"
+                data-i18n="alert_pilot_select_team"
+              >Select Team</button>
+            </article>
+          </div>
+          <p class="alert-pilot-scope-note" data-i18n="alert_pilot_scope_note">
+            Monitoring criteria, sources, and delivery frequency are confirmed before activation; additional Team criteria and recipients are collected during that review. Alert emails are monitoring aids, not legal advice.
+          </p>
+        </section>
         <form id="alert-pilot-form" class="alert-pilot-form" novalidate>
           <label class="alert-pilot-honeypot" aria-hidden="true">
             Website
@@ -211,6 +262,32 @@
           </div>
           <p id="alert-pilot-status" class="alert-pilot-status" role="status" aria-live="polite"></p>
         </form>
+        <section class="alert-pilot-faq" aria-labelledby="alert-pilot-faq-title">
+          <h4 id="alert-pilot-faq-title" data-i18n="alert_pilot_faq_title">Before you subscribe</h4>
+          <details>
+            <summary data-i18n="alert_pilot_faq_criterion_q">What is a monitoring criterion?</summary>
+            <p data-i18n="alert_pilot_faq_criterion_a">A criterion is one saved-search configuration: its keywords, filters, and selected period. We confirm the practical scope before activation.</p>
+          </details>
+          <details>
+            <summary data-i18n="alert_pilot_faq_start_q">When do alerts start?</summary>
+            <p data-i18n="alert_pilot_faq_start_a">Alerts start after payment is matched to your request, the monitoring scope is reviewed, and LegalOS sends an activation email. Checkout alone does not activate monitoring.</p>
+          </details>
+          <details>
+            <summary data-i18n="alert_pilot_faq_contents_q">What does an alert contain?</summary>
+            <p data-i18n="alert_pilot_faq_contents_a">Each alert identifies matching dashboard updates and links to the original Japanese official source. Summaries are for triage and are not legal advice.</p>
+          </details>
+          <details>
+            <summary data-i18n="alert_pilot_faq_cancel_q">How do I change or cancel a plan?</summary>
+            <p data-i18n="alert_pilot_faq_cancel_a">Use the LegalOS contact page to request a plan change or cancellation. We will confirm the effective timing and any billing effect.</p>
+            <a
+              class="alert-pilot-contact-link"
+              href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="alert_pilot_contact"
+            >Contact LegalOS</a>
+          </details>
+        </section>
       </section>
     </div>
   </dialog>
@@ -454,8 +531,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=onboarding-20260810"></script>
+  <script src="i18n.js?v=alert-plans-20260810"></script>
   <script src="alerts-config.js?v=stripe-live-20260810"></script>
-  <script src="app.js?v=stripe-checkout-20260810"></script>
+  <script src="app.js?v=alert-plans-20260810"></script>
 </body>
 </html>
