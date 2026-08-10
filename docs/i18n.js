@@ -183,10 +183,10 @@
         "Use the LegalOS contact page to request a plan change or cancellation. We will confirm the effective timing and any billing effect.",
       alert_pilot_contact: "Contact LegalOS",
 
-      checkout_thanks_page_title: "Subscription request received — Japan Legal Reform Watch",
+      checkout_thanks_page_title: "Checkout follow-up — Japan Legal Reform Watch",
       checkout_thanks_language: "Language",
       checkout_thanks_eyebrow: "Checkout follow-up",
-      checkout_thanks_title: "Thank you for subscribing",
+      checkout_thanks_title: "Checkout follow-up",
       checkout_thanks_intro:
         "If Stripe has confirmed payment, your subscription request is ready for our monitoring-scope review.",
       checkout_thanks_plan_label: "Selected plan",
@@ -473,10 +473,10 @@
       alert_pilot_faq_cancel_a: "请通过 LegalOS 联系页面申请变更或取消方案。我们会确认生效时间以及对账单的影响。",
       alert_pilot_contact: "联系 LegalOS",
 
-      checkout_thanks_page_title: "订阅申请已收到 — Japan Legal Reform Watch",
+      checkout_thanks_page_title: "结账后续 — Japan Legal Reform Watch",
       checkout_thanks_language: "语言",
       checkout_thanks_eyebrow: "结账后续",
-      checkout_thanks_title: "感谢您的订阅",
+      checkout_thanks_title: "结账后续",
       checkout_thanks_intro: "如果 Stripe 已确认付款，您的订阅申请将进入监测范围审核。",
       checkout_thanks_plan_label: "所选方案",
       checkout_thanks_plan_pro: "Pro — 每月29美元",
