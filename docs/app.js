@@ -734,6 +734,7 @@
     syncLanguageSelector();
     refreshMobileToggleLabel();
     refreshSavedSearchDialog();
+    syncAlertPilotCheckoutLabel();
   }
 
   // User changed language: keep every filter / sort / quick-filter state AND the
@@ -979,6 +980,7 @@
     if (savedSearchCurrentSummary) {
       savedSearchCurrentSummary.textContent = activeFilterSummaryText();
     }
+    syncAlertPilotScopeWarning();
   }
 
   function openSavedSearches(preferNameInput) {
@@ -1154,11 +1156,16 @@
   function openAlertPilotForm() {
     if (!alertPilotFormWrap || !openAlertPilotFormBtn) return;
     syncAlertPilotScopeWarning();
+    setAlertPilotPlanLocked(false);
     alertPilotFormWrap.hidden = false;
     openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
     setAlertPilotStatus("", "");
     if (alertPilotFallback) alertPilotFallback.hidden = true;
-    if (alertPilotCheckout) alertPilotCheckout.hidden = true;
+    if (alertPilotCheckout) {
+      alertPilotCheckout.hidden = true;
+      delete alertPilotCheckout.dataset.plan;
+    }
+    syncAlertPilotCheckoutLabel();
     window.setTimeout(() => {
       alertPilotFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
       if (alertPilotNameInput) alertPilotNameInput.focus();
@@ -1186,6 +1193,26 @@
     alertPilotPlanCards.forEach((card) => {
       card.classList.toggle("is-selected", card.dataset.alertPlanCard === selectedPlan);
     });
+  }
+
+  function setAlertPilotPlanLocked(isLocked) {
+    if (alertPilotPlanSelect) alertPilotPlanSelect.disabled = isLocked;
+    alertPilotPlanButtons.forEach((button) => {
+      button.disabled = isLocked;
+    });
+  }
+
+  function syncAlertPilotCheckoutLabel() {
+    if (!alertPilotCheckout) return;
+    const plan = alertPilotCheckout.dataset.plan;
+    if (plan === "pro" || plan === "team") {
+      const labelKey = plan === "team" ? "alert_pilot_plan_team" : "alert_pilot_plan_pro";
+      alertPilotCheckout.textContent = I18N.t("alert_pilot_checkout_plan", {
+        plan: I18N.t(labelKey),
+      });
+      return;
+    }
+    alertPilotCheckout.textContent = I18N.t("alert_pilot_checkout");
   }
 
   function selectAlertPilotPlan(event) {
@@ -1247,6 +1274,26 @@
       return;
     }
 
+    const values = {
+      name: plainText(alertPilotNameInput.value).slice(0, 120),
+      email: alertPilotEmailInput.value.trim().slice(0, 254),
+      company: plainText(alertPilotCompanyInput.value).slice(0, 160),
+      plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
+      frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
+      focus: plainText(alertPilotFocusInput.value).slice(0, 500),
+    };
+    if (!values.name || !values.company || values.focus.length < 10) {
+      if (!values.name || !values.company) {
+        setAlertPilotStatus("alert_pilot_validation", "error");
+        if (!values.name) alertPilotNameInput.focus();
+        else alertPilotCompanyInput.focus();
+      } else {
+        setAlertPilotStatus("alert_pilot_focus_validation", "error");
+        alertPilotFocusInput.focus();
+      }
+      return;
+    }
+
     const endpoint = alertPilotEndpoint();
     const unitTag = validAlertPilotUnitTag(ALERTS_CONFIG.inquiryUnitTag);
     const formId = validAlertPilotNumericId(ALERTS_CONFIG.inquiryFormId);
@@ -1257,14 +1304,6 @@
       return;
     }
 
-    const values = {
-      name: plainText(alertPilotNameInput.value).slice(0, 120),
-      email: alertPilotEmailInput.value.trim().slice(0, 254),
-      company: plainText(alertPilotCompanyInput.value).slice(0, 160),
-      plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
-      frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
-      focus: plainText(alertPilotFocusInput.value).slice(0, 500),
-    };
     const data = new FormData();
     data.append("_wpcf7", formId);
     data.append("_wpcf7_locale", "ja");
@@ -1297,12 +1336,22 @@
       }
 
       const checkoutUrl = alertPilotCheckoutUrl(values.plan);
-      alertPilotForm.reset();
+      alertPilotNameInput.value = "";
+      alertPilotEmailInput.value = "";
+      alertPilotCompanyInput.value = "";
+      alertPilotFocusInput.value = "";
+      alertPilotConsentInput.checked = false;
+      if (alertPilotHoneypotInput) alertPilotHoneypotInput.value = "";
+      alertPilotPlanSelect.value = values.plan;
+      alertPilotFrequencySelect.value = values.frequency;
       syncAlertPilotPlanChoice();
       if (checkoutUrl && alertPilotCheckout) {
         setAlertPilotStatus("alert_pilot_success_checkout", "success");
         alertPilotCheckout.href = checkoutUrl;
+        alertPilotCheckout.dataset.plan = values.plan;
+        syncAlertPilotCheckoutLabel();
         alertPilotCheckout.hidden = false;
+        setAlertPilotPlanLocked(true);
       } else {
         setAlertPilotStatus("alert_pilot_success_manual", "success");
       }
@@ -1962,6 +2011,20 @@
     `;
   }
 
+  function searchHaystack(update) {
+    const tr = (update.translations && update.translations[TRANSLATION_LOCALE]) || {};
+    const values = [update.title_en, update.title_ja, tr.title];
+    if (update.summary_source === "claude") {
+      values.push(
+        update.summary_en,
+        tr.summary,
+        tr.business_impact,
+        tr.recommended_action
+      );
+    }
+    return values.filter((value) => typeof value === "string").join(" ").toLowerCase();
+  }
+
   function applyFilters() {
     const q = filters.search.trim().toLowerCase();
     return allUpdates.filter((u) => {
@@ -1972,26 +2035,11 @@
       if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
       if (filters.newlyDetectedOnly && !isNewlyDetected(u)) return false;
       if (q) {
-        // Search covers English title/summary, the original Japanese title, and —
-        // regardless of the active UI language — the Chinese translation fields,
-        // so English, Japanese, and Chinese keywords all match.
-        const tr = (u.translations && u.translations[TRANSLATION_LOCALE]) || {};
-        const hay = (
-          (u.title_en || "") +
-          " " +
-          (u.title_ja || "") +
-          " " +
-          (u.summary_en || "") +
-          " " +
-          (tr.title || "") +
-          " " +
-          (tr.summary || "") +
-          " " +
-          (tr.business_impact || "") +
-          " " +
-          (tr.recommended_action || "")
-        ).toLowerCase();
-        if (!hay.includes(q)) return false;
+        // Titles remain searchable for every item. AI-authored summaries and
+        // their Chinese translations are searchable too; rule-based template
+        // bodies are excluded so boilerplate such as "by AI" cannot create
+        // broad false-positive monitoring matches.
+        if (!searchHaystack(u).includes(q)) return false;
       }
       return true;
     });
@@ -2254,6 +2302,15 @@
     }
     if (savedSearchDialog) {
       savedSearchDialog.addEventListener("close", () => {
+        if (alertPilotFormWrap) alertPilotFormWrap.hidden = true;
+        if (openAlertPilotFormBtn) openAlertPilotFormBtn.setAttribute("aria-expanded", "false");
+        if (alertPilotFallback) alertPilotFallback.hidden = true;
+        if (alertPilotCheckout) {
+          alertPilotCheckout.hidden = true;
+          delete alertPilotCheckout.dataset.plan;
+        }
+        setAlertPilotPlanLocked(false);
+        syncAlertPilotCheckoutLabel();
         if (savedSearchDialogOpener && typeof savedSearchDialogOpener.focus === "function") {
           savedSearchDialogOpener.focus();
         }

@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+import io
 import re
 import sys
 import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -204,6 +206,53 @@ class TestDigestFiltering(DigestFixture):
         self.assertEqual(len(result.items), 1)
         self.assertEqual(result.window_match_count, 2)
         self.assertEqual(result.omitted_count, 1)
+
+    def test_rule_based_boilerplate_is_not_searchable(self):
+        rule_based = make_item(
+            "rule-based",
+            title_en="Cloud services update",
+            title_ja="クラウドサービス更新",
+            summary_source="rule_based",
+            summary_en="This has not yet been reviewed or summarized by AI.",
+            translations={
+                "zh-Hans": {
+                    "title": "云服务动态",
+                    "summary": "尚未由人工智能总结",
+                    "business_impact": "人工智能影响占位文本",
+                    "recommended_action": "人工智能建议占位文本",
+                }
+            },
+        )
+        haystack = gad._search_haystack(rule_based)
+        self.assertIn("cloud services update", haystack)
+        self.assertIn("云服务动态", haystack)
+        self.assertNotIn("by ai", haystack)
+        self.assertNotIn("人工智能影响", haystack)
+
+        ai_summary = dict(rule_based, summary_source="claude")
+        ai_haystack = gad._search_haystack(ai_summary)
+        self.assertIn("by ai", ai_haystack)
+        self.assertIn("人工智能影响", ai_haystack)
+
+
+class TestDigestCommandDefaults(unittest.TestCase):
+    def test_default_window_depends_on_frequency(self):
+        until = date(2026, 8, 10)
+        self.assertEqual(gad._default_since(until, "daily"), until)
+        self.assertEqual(gad._default_since(until, "weekly"), date(2026, 8, 4))
+
+    def test_stdout_is_reconfigured_for_utf8_when_supported(self):
+        buffer = io.BytesIO()
+        stream = io.TextIOWrapper(buffer, encoding="cp932")
+        try:
+            with mock.patch.object(gad.sys, "stdout", stream):
+                gad._configure_stdout_utf8()
+                self.assertEqual(stream.encoding.lower(), "utf-8")
+                stream.write("—日本語")
+                stream.flush()
+            self.assertEqual(buffer.getvalue().decode("utf-8"), "—日本語")
+        finally:
+            stream.detach()
 
 
 class TestDigestRendering(DigestFixture):

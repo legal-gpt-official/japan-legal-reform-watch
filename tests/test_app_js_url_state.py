@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "monitoring-focus-20260810"
-APP_CACHE_BUSTER = "monitoring-focus-20260810"
+CACHE_BUSTER = "pilot-audit-fixes-20260810"
+APP_CACHE_BUSTER = "pilot-audit-fixes-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "monitoring-focus-20260810"
+I18N_CACHE_BUSTER = "pilot-audit-fixes-20260810"
 
 
 def object_body(name: str) -> str:
@@ -326,19 +326,24 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, combined)
 
-    def test_search_haystack_includes_japanese_title(self):
-        """Search must cover title_en, title_ja, and summary_en (M-2)."""
+    def test_search_haystack_includes_titles_and_only_ai_summary_bodies(self):
+        """Titles are universal; only reviewed AI summary bodies are searchable."""
         for snippet in (
-            '(u.title_en || "")',
-            '(u.title_ja || "")',
-            '(u.summary_en || "")',
+            "update.title_en",
+            "update.title_ja",
+            "tr.title",
+            'update.summary_source === "claude"',
+            "update.summary_en",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
-        # title_ja sits inside the same haystack expression as title_en.
-        hay = re.search(r"const hay = \((?P<body>.*?)\)\.toLowerCase\(\)", APP_JS, re.S)
+        hay = re.search(
+            r"function searchHaystack\(update\) \{(?P<body>.*?)\n  \}\n\n  function applyFilters",
+            APP_JS,
+            re.S,
+        )
         self.assertIsNotNone(hay)
-        self.assertIn("u.title_ja", hay.group("body"))
+        self.assertIn("update.title_ja", hay.group("body"))
 
     def test_modal_focus_trap_exists(self):
         """aria-modal behavior is backed by a real Tab focus trap (M-4)."""
@@ -469,6 +474,21 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
 
+    def test_alert_pilot_keeps_submitted_plan_aligned_with_checkout(self):
+        for snippet in (
+            "function setAlertPilotPlanLocked(isLocked)",
+            "alertPilotPlanSelect.value = values.plan",
+            "alertPilotFrequencySelect.value = values.frequency",
+            "alertPilotCheckout.dataset.plan = values.plan",
+            "setAlertPilotPlanLocked(true)",
+            'I18N.t("alert_pilot_checkout_plan"',
+            "Continue to secure checkout — {plan}",
+            "继续安全结账 — {plan}",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS + I18N_JS)
+        self.assertNotIn("alertPilotForm.reset()", APP_JS)
+
     def test_alert_pilot_faq_sets_activation_and_cancellation_expectations(self):
         for snippet in (
             'id="alert-pilot-faq-title"',
@@ -517,6 +537,20 @@ class TestAppJsUrlState(unittest.TestCase):
         for key in ('"q"', '"area"', '"stage"', '"source"', '"impact"', '"ai"', '"new"'):
             with self.subTest(key=key):
                 self.assertIn(key, APP_JS)
+        self.assertIn("values.focus.length < 10", APP_JS)
+        self.assertIn("!values.name || !values.company", APP_JS)
+        self.assertIn('setAlertPilotStatus("alert_pilot_focus_validation", "error")', APP_JS)
+        self.assertIn("Please describe the monitoring focus in at least 10 characters.", I18N_JS)
+        self.assertIn("请用至少10个字符说明监测重点。", I18N_JS)
+
+    def test_alert_pilot_scope_warning_resyncs_and_form_collapses_on_close(self):
+        refresh = re.search(
+            r"function refreshSavedSearchDialog\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
+        )
+        self.assertIsNotNone(refresh)
+        self.assertIn("syncAlertPilotScopeWarning()", refresh.group("body"))
+        self.assertIn("if (alertPilotFormWrap) alertPilotFormWrap.hidden = true", APP_JS)
+        self.assertIn('openAlertPilotFormBtn.setAttribute("aria-expanded", "false")', APP_JS)
 
     def test_alert_pilot_submission_uses_existing_contact_form_safely(self):
         for snippet in (
@@ -582,6 +616,25 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, THANK_YOU_HTML + I18N_JS)
         self.assertLess(THANK_YOU_HTML.index("../i18n.js?v="), THANK_YOU_HTML.index("thank-you.js?v="))
+
+    def test_all_static_i18n_keys_exist_in_both_dictionaries(self):
+        html = INDEX_HTML + THANK_YOU_HTML
+        keys = set(
+            re.findall(
+                r'data-i18n(?:-(?:placeholder|aria-label|title))?="([a-z0-9_]+)"',
+                html,
+            )
+        )
+        self.assertTrue(keys)
+        for key in sorted(keys):
+            with self.subTest(key=key):
+                definitions = re.findall(rf"^\s+{re.escape(key)}\s*:", I18N_JS, re.M)
+                self.assertEqual(len(definitions), 2)
+
+    def test_checkout_page_uses_current_shared_cache_buster(self):
+        for asset in ("thank-you.css", "../i18n.js", "thank-you.js"):
+            with self.subTest(asset=asset):
+                self.assertIn(asset + "?v=" + CACHE_BUSTER, THANK_YOU_HTML)
 
     def test_checkout_follow_up_plan_and_language_are_allow_listed(self):
         for snippet in (
@@ -778,14 +831,26 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
                 self.assertIn(snippet, I18N_JS)
 
     def test_search_covers_chinese_english_japanese(self):
-        hay = re.search(r"const hay = \((?P<body>.*?)\)\.toLowerCase\(\)", APP_JS, re.S)
+        hay = re.search(
+            r"function searchHaystack\(update\) \{(?P<body>.*?)\n  \}\n\n  function applyFilters",
+            APP_JS,
+            re.S,
+        )
         self.assertIsNotNone(hay)
         body = hay.group("body")
-        for snippet in ("u.title_en", "u.title_ja", "u.summary_en", "tr.title", "tr.summary"):
+        for snippet in (
+            "update.title_en",
+            "update.title_ja",
+            "update.summary_en",
+            "tr.title",
+            "tr.summary",
+        ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, body)
+        self.assertIn('update.summary_source === "claude"', body)
+        self.assertIn("searchHaystack(u).includes(q)", APP_JS)
         # The Chinese translation block is read regardless of active language.
-        self.assertIn("u.translations[TRANSLATION_LOCALE]", APP_JS)
+        self.assertIn("update.translations[TRANSLATION_LOCALE]", APP_JS)
 
     def test_reliability_and_disclaimer_have_chinese(self):
         for snippet in (
