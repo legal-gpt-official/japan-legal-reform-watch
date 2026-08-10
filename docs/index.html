@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=year-archive-20260807" />
+  <link rel="stylesheet" href="./style.css?v=alert-pilot-20260810" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -52,6 +52,168 @@
       </div>
     </div>
   </div>
+
+  <!-- Saved searches / email-alert pilot -->
+  <dialog
+    id="saved-search-dialog"
+    class="saved-search-dialog"
+    aria-labelledby="saved-search-dialog-title"
+  >
+    <div class="saved-search-dialog-header">
+      <div>
+        <p class="saved-search-eyebrow" data-i18n="saved_search_eyebrow">Monitoring preferences</p>
+        <h2 id="saved-search-dialog-title" data-i18n="saved_search_title">Saved searches</h2>
+      </div>
+      <button
+        id="close-saved-search-dialog"
+        class="saved-search-dialog-close"
+        type="button"
+        aria-label="Close saved searches"
+        data-i18n-aria-label="saved_search_close"
+      >
+        &times;
+      </button>
+    </div>
+    <div class="saved-search-dialog-body">
+      <section class="saved-search-current" aria-labelledby="saved-search-current-title">
+        <h3 id="saved-search-current-title" data-i18n="saved_search_current_title">Current search</h3>
+        <p id="saved-search-current-summary" class="saved-search-current-summary"></p>
+        <form id="saved-search-form" class="saved-search-form">
+          <label for="saved-search-name" data-i18n="saved_search_name_label">Search name</label>
+          <div class="saved-search-form-row">
+            <input
+              id="saved-search-name"
+              name="saved-search-name"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              placeholder="e.g. Japan AI and privacy updates"
+              data-i18n-placeholder="saved_search_name_placeholder"
+            />
+            <button id="save-current-search" class="btn-primary saved-search-submit" type="submit" disabled>
+              <span data-i18n="saved_search_save">Save search</span>
+            </button>
+          </div>
+        </form>
+        <p id="saved-search-status" class="saved-search-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="saved-search-library" aria-labelledby="saved-search-library-title">
+        <div class="saved-search-section-heading">
+          <h3 id="saved-search-library-title" data-i18n="saved_search_library_title">Saved in this browser</h3>
+          <span id="saved-search-capacity" class="saved-search-capacity"></span>
+        </div>
+        <p class="saved-search-storage-note" data-i18n="saved_search_storage_note">
+          Saved searches stay on this device. They do not create an account or email subscription.
+        </p>
+        <div id="saved-search-list" class="saved-search-list"></div>
+      </section>
+
+      <aside class="alert-pilot-card" aria-labelledby="alert-pilot-title">
+        <div>
+          <p class="alert-pilot-label" data-i18n="alert_pilot_label">Paid pilot</p>
+          <h3 id="alert-pilot-title" data-i18n="alert_pilot_title">Receive matching updates by email</h3>
+          <p data-i18n="alert_pilot_body">
+            We are preparing personalized alerts based on saved searches, including public-comment deadline reminders.
+          </p>
+        </div>
+        <button
+          id="open-alert-pilot-form"
+          class="alert-pilot-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="alert-pilot-form-wrap"
+          data-i18n="alert_pilot_request"
+        >
+          Request pilot access &rarr;
+        </button>
+      </aside>
+
+      <section id="alert-pilot-form-wrap" class="alert-pilot-form-wrap" hidden aria-labelledby="alert-pilot-form-title">
+        <div class="alert-pilot-form-heading">
+          <div>
+            <p class="alert-pilot-label" data-i18n="alert_pilot_form_eyebrow">Founding pilot</p>
+            <h3 id="alert-pilot-form-title" data-i18n="alert_pilot_form_title">Request personalized alerts</h3>
+          </div>
+          <p class="alert-pilot-form-price" data-i18n="alert_pilot_price_note">Pilot plans start at US$29/month.</p>
+        </div>
+        <p class="alert-pilot-form-intro" data-i18n="alert_pilot_form_intro">
+          Submitting this form does not create a subscription or charge a fee. After sending, you can continue to secure checkout; we review the requested monitoring scope before activation.
+        </p>
+        <form id="alert-pilot-form" class="alert-pilot-form" novalidate>
+          <label class="alert-pilot-honeypot" aria-hidden="true">
+            Website
+            <input id="alert-pilot-website" type="text" autocomplete="off" tabindex="-1" />
+          </label>
+          <div class="alert-pilot-form-grid">
+            <label class="alert-pilot-field" for="alert-pilot-name">
+              <span data-i18n="alert_pilot_name">Name</span>
+              <input id="alert-pilot-name" type="text" autocomplete="name" maxlength="120" required />
+            </label>
+            <label class="alert-pilot-field" for="alert-pilot-email">
+              <span data-i18n="alert_pilot_email">Work email</span>
+              <input id="alert-pilot-email" type="email" autocomplete="email" maxlength="254" required />
+            </label>
+            <label class="alert-pilot-field" for="alert-pilot-company">
+              <span data-i18n="alert_pilot_company">Company / organization</span>
+              <input id="alert-pilot-company" type="text" autocomplete="organization" maxlength="160" required />
+            </label>
+            <label class="alert-pilot-field" for="alert-pilot-plan">
+              <span data-i18n="alert_pilot_plan">Plan of interest</span>
+              <select id="alert-pilot-plan" required>
+                <option value="pro" data-i18n="alert_pilot_plan_pro">Pro — US$29/month</option>
+                <option value="team" data-i18n="alert_pilot_plan_team">Team — US$149/month</option>
+              </select>
+            </label>
+            <label class="alert-pilot-field" for="alert-pilot-frequency">
+              <span data-i18n="alert_pilot_frequency">Preferred frequency</span>
+              <select id="alert-pilot-frequency" required>
+                <option value="daily" data-i18n="alert_pilot_frequency_daily">Daily digest</option>
+                <option value="weekly" data-i18n="alert_pilot_frequency_weekly">Weekly digest</option>
+              </select>
+            </label>
+          </div>
+          <label class="alert-pilot-consent" for="alert-pilot-consent">
+            <input id="alert-pilot-consent" type="checkbox" required />
+            <span>
+              <span data-i18n="alert_pilot_consent">I agree to send my contact details and current search criteria for this pilot request.</span>
+              <a
+                id="alert-pilot-privacy-link"
+                href="https://legal-gpt.com/privacy-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="alert_pilot_privacy"
+              >Privacy policy</a>
+            </span>
+          </label>
+          <div class="alert-pilot-submit-row">
+            <button id="submit-alert-pilot" class="btn-primary alert-pilot-submit" type="submit" data-i18n="alert_pilot_submit">
+              Send pilot request
+            </button>
+            <a
+              id="alert-pilot-fallback"
+              class="alert-pilot-fallback"
+              href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+              data-i18n="alert_pilot_fallback"
+            >Use the contact page instead</a>
+            <a
+              id="alert-pilot-checkout"
+              class="alert-pilot-checkout"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+              data-i18n="alert_pilot_checkout"
+            >Continue to secure checkout</a>
+          </div>
+          <p id="alert-pilot-status" class="alert-pilot-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+  </dialog>
 
   <!-- Header -->
   <header class="site-header">
@@ -191,19 +353,43 @@
       </div>
       <div class="controls-footer">
         <div id="results-meta" class="results-meta" aria-live="polite"></div>
-        <div class="export-actions">
-          <button
-            id="export-csv"
-            class="export-csv-button"
-            type="button"
-            disabled
-            aria-label="Export matching updates to CSV"
-            title="Export matching updates to CSV"
-            data-i18n="export_button"
-          >
-            Export CSV
-          </button>
-          <span id="export-status" class="export-status" aria-live="polite" role="status"></span>
+        <div class="controls-actions">
+          <div class="saved-search-actions">
+            <button
+              id="save-search"
+              class="saved-search-button saved-search-button-primary"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="saved-search-dialog"
+              disabled
+              data-i18n="saved_search_open"
+            >
+              Save this search
+            </button>
+            <button
+              id="manage-saved-searches"
+              class="saved-search-button"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="saved-search-dialog"
+            >
+              Saved searches (0)
+            </button>
+          </div>
+          <div class="export-actions">
+            <button
+              id="export-csv"
+              class="export-csv-button"
+              type="button"
+              disabled
+              aria-label="Export matching updates to CSV"
+              title="Export matching updates to CSV"
+              data-i18n="export_button"
+            >
+              Export CSV
+            </button>
+            <span id="export-status" class="export-status" aria-live="polite" role="status"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -268,7 +454,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=year-archive-20260807"></script>
-  <script src="app.js?v=audit-hardening-20260807"></script>
+  <script src="i18n.js?v=stripe-checkout-20260810"></script>
+  <script src="alerts-config.js?v=stripe-live-20260810"></script>
+  <script src="app.js?v=stripe-checkout-20260810"></script>
 </body>
 </html>
