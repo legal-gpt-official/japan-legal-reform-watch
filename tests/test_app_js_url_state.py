@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "pilot-audit-fixes-20260810"
-APP_CACHE_BUSTER = "pilot-audit-fixes-20260810"
+CACHE_BUSTER = "payment-reference-20260810"
+APP_CACHE_BUSTER = "payment-reference-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "pilot-audit-fixes-20260810"
+I18N_CACHE_BUSTER = "payment-reference-20260810"
 
 
 def object_body(name: str) -> str:
@@ -558,7 +558,7 @@ class TestAppJsUrlState(unittest.TestCase):
             'data.append("_wpcf7_unit_tag", unitTag)',
             'data.append("your-name", values.name)',
             'data.append("your-email", values.email)',
-            'data.append("your-subject"',
+            '"your-subject",',
             'data.append("your-message"',
             'mode: "cors"',
             'credentials: "omit"',
@@ -579,7 +579,7 @@ class TestAppJsUrlState(unittest.TestCase):
             "stripePaymentLinks: Object.freeze",
             'pro: "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00"',
             'team: "https://buy.stripe.com/fZu9AT5RvdTvbP38YCawo01"',
-            'const checkoutUrl = alertPilotCheckoutUrl(values.plan)',
+            'const checkoutUrl = alertPilotCheckoutUrl(values.plan, values.requestId)',
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, ALERTS_CONFIG_JS + APP_JS)
@@ -595,6 +595,36 @@ class TestAppJsUrlState(unittest.TestCase):
         )
         self.assertEqual(set(links), {"pro", "team"})
         self.assertNotEqual(links["pro"], links["team"])
+
+    def test_alert_pilot_uses_non_sensitive_request_reference_for_stripe(self):
+        combined = APP_JS + INDEX_HTML + I18N_JS
+        for snippet in (
+            "function validAlertPilotRequestId(value)",
+            "function createAlertPilotRequestId()",
+            "window.crypto.getRandomValues(bytes)",
+            'return randomPart ? "jlrw_" + timestamp + "_" + randomPart : "";',
+            "requestId: createAlertPilotRequestId()",
+            "if (!validAlertPilotRequestId(values.requestId))",
+            '"Request ID: " + values.requestId',
+            '"[JLRW Alert Pilot " + values.requestId + "] "',
+            'checkoutUrl.searchParams.set("client_reference_id", reference)',
+            "if (!trusted || !reference) return \"\";",
+            "alertPilotCheckoutUrl(values.plan, values.requestId)",
+            "setAlertPilotReference(values.requestId)",
+            'id="alert-pilot-reference"',
+            'id="alert-pilot-reference-value"',
+            "Request reference",
+            "申请编号",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, combined)
+        self.assertNotIn("prefilled_email", APP_JS + ALERTS_CONFIG_JS)
+        self.assertNotIn("locked_prefilled_email", APP_JS + ALERTS_CONFIG_JS)
+        generator = re.search(
+            r"function createAlertPilotRequestId\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
+        )
+        self.assertIsNotNone(generator)
+        self.assertNotIn("Math.random", generator.group("body"))
 
     def test_alert_pilot_does_not_log_contact_form_response_or_user_fields(self):
         self.assertNotIn("console.log", ALERTS_CONFIG_JS)

@@ -228,6 +228,8 @@
     alertPilotHoneypotInput,
     alertPilotSubmitBtn,
     alertPilotStatus,
+    alertPilotReference,
+    alertPilotReferenceValue,
     alertPilotFallback,
     alertPilotCheckout,
     alertPilotPrivacyLink,
@@ -283,6 +285,8 @@
     alertPilotHoneypotInput = $("#alert-pilot-website");
     alertPilotSubmitBtn = $("#submit-alert-pilot");
     alertPilotStatus = $("#alert-pilot-status");
+    alertPilotReference = $("#alert-pilot-reference");
+    alertPilotReferenceValue = $("#alert-pilot-reference-value");
     alertPilotFallback = $("#alert-pilot-fallback");
     alertPilotCheckout = $("#alert-pilot-checkout");
     alertPilotPrivacyLink = $("#alert-pilot-privacy-link");
@@ -1114,10 +1118,32 @@
     );
   }
 
-  function alertPilotCheckoutUrl(plan) {
+  function validAlertPilotRequestId(value) {
+    return typeof value === "string" && /^jlrw_[a-z0-9]+_[a-z0-9]+$/.test(value) && value.length <= 200
+      ? value
+      : "";
+  }
+
+  function createAlertPilotRequestId() {
+    const timestamp = Date.now().toString(36);
+    let randomPart = "";
+    if (window.crypto && typeof window.crypto.getRandomValues === "function") {
+      const bytes = new Uint8Array(8);
+      window.crypto.getRandomValues(bytes);
+      randomPart = Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+    }
+    return randomPart ? "jlrw_" + timestamp + "_" + randomPart : "";
+  }
+
+  function alertPilotCheckoutUrl(plan, requestId) {
     const links = ALERTS_CONFIG.stripePaymentLinks;
     const value = links && typeof links === "object" ? links[plan === "team" ? "team" : "pro"] : "";
-    return trustedIntegrationUrl(value, "buy.stripe.com", "/");
+    const trusted = trustedIntegrationUrl(value, "buy.stripe.com", "/");
+    const reference = validAlertPilotRequestId(requestId);
+    if (!trusted || !reference) return "";
+    const checkoutUrl = new URL(trusted);
+    checkoutUrl.searchParams.set("client_reference_id", reference);
+    return trustedIntegrationUrl(checkoutUrl.href, "buy.stripe.com", "/");
   }
 
   function alertPilotFallbackUrl() {
@@ -1145,6 +1171,13 @@
     alertPilotStatus.classList.toggle("is-error", state === "error");
   }
 
+  function setAlertPilotReference(requestId) {
+    if (!alertPilotReference || !alertPilotReferenceValue) return;
+    const reference = validAlertPilotRequestId(requestId);
+    alertPilotReferenceValue.textContent = reference;
+    alertPilotReference.hidden = !reference;
+  }
+
   function setAlertPilotSubmitting(isSubmitting) {
     if (!alertPilotSubmitBtn) return;
     alertPilotSubmitBtn.disabled = isSubmitting;
@@ -1160,6 +1193,7 @@
     alertPilotFormWrap.hidden = false;
     openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
     setAlertPilotStatus("", "");
+    setAlertPilotReference("");
     if (alertPilotFallback) alertPilotFallback.hidden = true;
     if (alertPilotCheckout) {
       alertPilotCheckout.hidden = true;
@@ -1245,6 +1279,7 @@
     const lines = [
       "Japan Regulatory Alert Pilot request",
       "",
+      "Request ID: " + values.requestId,
       "Name: " + values.name,
       "Company / organization: " + values.company,
       "Work email: " + values.email,
@@ -1281,6 +1316,7 @@
       plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
       frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
       focus: plainText(alertPilotFocusInput.value).slice(0, 500),
+      requestId: createAlertPilotRequestId(),
     };
     if (!values.name || !values.company || values.focus.length < 10) {
       if (!values.name || !values.company) {
@@ -1291,6 +1327,11 @@
         setAlertPilotStatus("alert_pilot_focus_validation", "error");
         alertPilotFocusInput.focus();
       }
+      return;
+    }
+    if (!validAlertPilotRequestId(values.requestId)) {
+      setAlertPilotStatus("alert_pilot_failed", "error");
+      if (alertPilotFallback) alertPilotFallback.hidden = false;
       return;
     }
 
@@ -1312,7 +1353,10 @@
     data.append("_wpcf7_posted_data_hash", "");
     data.append("your-name", values.name);
     data.append("your-email", values.email);
-    data.append("your-subject", "[JLRW Alert Pilot] " + alertPilotPlanLabel(values.plan));
+    data.append(
+      "your-subject",
+      "[JLRW Alert Pilot " + values.requestId + "] " + alertPilotPlanLabel(values.plan)
+    );
     data.append("your-message", buildAlertPilotMessage(values));
 
     setAlertPilotSubmitting(true);
@@ -1335,7 +1379,7 @@
         throw new Error("Inquiry was not accepted.");
       }
 
-      const checkoutUrl = alertPilotCheckoutUrl(values.plan);
+      const checkoutUrl = alertPilotCheckoutUrl(values.plan, values.requestId);
       alertPilotNameInput.value = "";
       alertPilotEmailInput.value = "";
       alertPilotCompanyInput.value = "";
@@ -1345,6 +1389,7 @@
       alertPilotPlanSelect.value = values.plan;
       alertPilotFrequencySelect.value = values.frequency;
       syncAlertPilotPlanChoice();
+      setAlertPilotReference(values.requestId);
       if (checkoutUrl && alertPilotCheckout) {
         setAlertPilotStatus("alert_pilot_success_checkout", "success");
         alertPilotCheckout.href = checkoutUrl;
@@ -2305,6 +2350,7 @@
         if (alertPilotFormWrap) alertPilotFormWrap.hidden = true;
         if (openAlertPilotFormBtn) openAlertPilotFormBtn.setAttribute("aria-expanded", "false");
         if (alertPilotFallback) alertPilotFallback.hidden = true;
+        setAlertPilotReference("");
         if (alertPilotCheckout) {
           alertPilotCheckout.hidden = true;
           delete alertPilotCheckout.dataset.plan;
