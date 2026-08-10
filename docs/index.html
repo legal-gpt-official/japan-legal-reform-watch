@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=alert-plans-20260810" />
+  <link rel="stylesheet" href="./style.css?v=monitoring-focus-20260810" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -140,6 +140,15 @@
         <p class="alert-pilot-form-intro" data-i18n="alert_pilot_form_intro">
           Submitting this form does not create a subscription or charge a fee. After sending, you can continue to secure checkout; we review the requested monitoring scope before activation.
         </p>
+        <p
+          id="alert-pilot-scope-warning"
+          class="alert-pilot-scope-warning"
+          role="note"
+          hidden
+          data-i18n="alert_pilot_scope_warning"
+        >
+          No topic or filter is active in the dashboard. A broad request may match hundreds of updates; describe a specific focus below before submitting.
+        </p>
         <section class="alert-pilot-plans" aria-labelledby="alert-pilot-plans-title">
           <div class="alert-pilot-section-heading">
             <h4 id="alert-pilot-plans-title" data-i18n="alert_pilot_plans_title">Choose a monitoring scope</h4>
@@ -222,6 +231,20 @@
                 <option value="daily" data-i18n="alert_pilot_frequency_daily">Daily digest</option>
                 <option value="weekly" data-i18n="alert_pilot_frequency_weekly">Weekly digest</option>
               </select>
+            </label>
+            <label class="alert-pilot-field alert-pilot-field-wide" for="alert-pilot-focus">
+              <span data-i18n="alert_pilot_focus">Monitoring focus / business context</span>
+              <textarea
+                id="alert-pilot-focus"
+                rows="3"
+                maxlength="500"
+                required
+                placeholder="e.g. AI governance rules affecting cloud services in Japan"
+                data-i18n-placeholder="alert_pilot_focus_placeholder"
+              ></textarea>
+              <small class="alert-pilot-field-help" data-i18n="alert_pilot_focus_help">
+                Describe the topic, regulator, keywords, or business activity that should define this monitoring criterion.
+              </small>
             </label>
           </div>
           <label class="alert-pilot-consent" for="alert-pilot-consent">
@@ -531,8 +554,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=alert-plans-20260810"></script>
+  <script src="i18n.js?v=monitoring-focus-20260810"></script>
   <script src="alerts-config.js?v=stripe-live-20260810"></script>
-  <script src="app.js?v=alert-plans-20260810"></script>
+  <script src="app.js?v=monitoring-focus-20260810"></script>
 </body>
 </html>

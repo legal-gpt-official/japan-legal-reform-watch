@@ -116,6 +116,8 @@
       alert_pilot_price_note: "Pilot plans start at US$29/month.",
       alert_pilot_form_intro:
         "Submitting this form does not create a subscription or charge a fee. After sending, you can continue to secure checkout; we review the requested monitoring scope before activation.",
+      alert_pilot_scope_warning:
+        "No topic or filter is active in the dashboard. A broad request may match hundreds of updates; describe a specific focus below before submitting.",
       alert_pilot_plans_title: "Choose a monitoring scope",
       alert_pilot_plans_billing: "Recurring monthly subscription, billed in US dollars.",
       alert_pilot_plan_name_pro: "Pro",
@@ -144,6 +146,11 @@
       alert_pilot_frequency: "Preferred frequency",
       alert_pilot_frequency_daily: "Daily digest",
       alert_pilot_frequency_weekly: "Weekly digest",
+      alert_pilot_focus: "Monitoring focus / business context",
+      alert_pilot_focus_placeholder:
+        "e.g. AI governance rules affecting cloud services in Japan",
+      alert_pilot_focus_help:
+        "Describe the topic, regulator, keywords, or business activity that should define this monitoring criterion.",
       alert_pilot_consent:
         "I agree to send my contact details and current search criteria for this pilot request.",
       alert_pilot_privacy: "Privacy policy",
@@ -406,6 +413,7 @@
       alert_pilot_form_title: "申请个性化提醒",
       alert_pilot_price_note: "试点方案每月29美元起。",
       alert_pilot_form_intro: "提交此表单不会创建订阅或产生费用。发送后，您可以继续前往 Stripe 安全结账；我们会在启用提醒前审核您请求的监测范围。",
+      alert_pilot_scope_warning: "仪表板当前没有启用主题或筛选条件。过于宽泛的申请可能匹配数百条更新；请在提交前于下方说明具体监测重点。",
       alert_pilot_plans_title: "选择监测范围",
       alert_pilot_plans_billing: "按月自动续订，以美元计费。",
       alert_pilot_plan_name_pro: "Pro",
@@ -432,6 +440,9 @@
       alert_pilot_frequency: "希望的频率",
       alert_pilot_frequency_daily: "每日摘要",
       alert_pilot_frequency_weekly: "每周摘要",
+      alert_pilot_focus: "监测重点 / 业务背景",
+      alert_pilot_focus_placeholder: "例如：影响日本云服务的人工智能治理规则",
+      alert_pilot_focus_help: "请说明用于界定该监测条件的主题、监管机构、关键词或业务活动。",
       alert_pilot_consent: "我同意为本次试点申请发送联系方式和当前搜索条件。",
       alert_pilot_privacy: "隐私政策",
       alert_pilot_submit: "发送试点申请",

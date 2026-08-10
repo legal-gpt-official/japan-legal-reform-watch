@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "alert-plans-20260810"
-APP_CACHE_BUSTER = "alert-plans-20260810"
+CACHE_BUSTER = "monitoring-focus-20260810"
+APP_CACHE_BUSTER = "monitoring-focus-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "alert-plans-20260810"
+I18N_CACHE_BUSTER = "monitoring-focus-20260810"
 
 
 def object_body(name: str) -> str:
@@ -490,6 +490,9 @@ class TestAppJsUrlState(unittest.TestCase):
             'id="alert-pilot-company"',
             'id="alert-pilot-plan"',
             'id="alert-pilot-frequency"',
+            'id="alert-pilot-focus"',
+            'maxlength="500"',
+            'id="alert-pilot-scope-warning"',
             'id="alert-pilot-consent" type="checkbox" required',
             'id="alert-pilot-privacy-link"',
             'id="alert-pilot-fallback"',
@@ -497,6 +500,23 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML)
+
+    def test_alert_pilot_requires_specific_monitoring_focus(self):
+        for snippet in (
+            "Monitoring focus / business context",
+            "A broad request may match hundreds of updates",
+            "监测重点 / 业务背景",
+            "过于宽泛的申请可能匹配数百条更新",
+            "function hasActiveMonitoringFilter()",
+            "function syncAlertPilotScopeWarning()",
+            '"Monitoring focus / business context: " + values.focus',
+            "focus: plainText(alertPilotFocusInput.value).slice(0, 500)",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, INDEX_HTML + I18N_JS + APP_JS)
+        for key in ('"q"', '"area"', '"stage"', '"source"', '"impact"', '"ai"', '"new"'):
+            with self.subTest(key=key):
+                self.assertIn(key, APP_JS)
 
     def test_alert_pilot_submission_uses_existing_contact_form_safely(self):
         for snippet in (
