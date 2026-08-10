@@ -21,6 +21,9 @@ I18N_JS = (REPO_ROOT / "docs" / "i18n.js").read_text(encoding="utf-8")
 ALERTS_CONFIG_JS = (REPO_ROOT / "docs" / "alerts-config.js").read_text(encoding="utf-8")
 INDEX_HTML = (REPO_ROOT / "docs" / "index.html").read_text(encoding="utf-8")
 STYLE_CSS = (REPO_ROOT / "docs" / "style.css").read_text(encoding="utf-8")
+THANK_YOU_HTML = (REPO_ROOT / "docs" / "alerts" / "thank-you.html").read_text(encoding="utf-8")
+THANK_YOU_JS = (REPO_ROOT / "docs" / "alerts" / "thank-you.js").read_text(encoding="utf-8")
+THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(encoding="utf-8")
 
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
@@ -29,7 +32,7 @@ CACHE_BUSTER = "alert-pilot-20260810"
 APP_CACHE_BUSTER = "stripe-checkout-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "stripe-checkout-20260810"
+I18N_CACHE_BUSTER = "onboarding-20260810"
 
 
 def object_body(name: str) -> str:
@@ -506,6 +509,32 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn("Submitting this form does not create a subscription or charge a fee.", I18N_JS)
         self.assertIn('setAlertPilotStatus("alert_pilot_success_checkout", "success")', APP_JS)
         self.assertIn('setAlertPilotStatus("alert_pilot_success_manual", "success")', APP_JS)
+
+    def test_checkout_follow_up_page_is_safe_and_non_authoritative(self):
+        for snippet in (
+            'content="noindex, nofollow"',
+            'id="completion-plan"',
+            'data-dashboard-link',
+            'href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"',
+            "Activation is not automatic",
+            "monitoring aids, not legal advice",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, THANK_YOU_HTML + I18N_JS)
+        self.assertLess(THANK_YOU_HTML.index("../i18n.js?v="), THANK_YOU_HTML.index("thank-you.js?v="))
+
+    def test_checkout_follow_up_plan_and_language_are_allow_listed(self):
+        for snippet in (
+            'plan === "pro" || plan === "team"',
+            "planValue.textContent = I18N.t(",
+            'params.set("lang", normalized)',
+            "I18N.normalize(readStoredLanguage() || I18N.DEFAULT_LANG)",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, THANK_YOU_JS)
+        self.assertNotIn("innerHTML", THANK_YOU_JS)
+        self.assertIn("[hidden]", THANK_YOU_CSS)
+        self.assertIn("@media (max-width: 680px)", THANK_YOU_CSS)
 
     def test_csv_export_failure_logs_error_object(self):
         self.assertIn('console.warn("[JLRW] CSV export failed.", e)', APP_JS)

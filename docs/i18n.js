@@ -139,6 +139,34 @@
       alert_pilot_fallback: "Use the contact page instead",
       alert_pilot_checkout: "Continue to secure checkout",
 
+      checkout_thanks_page_title: "Subscription request received — Japan Legal Reform Watch",
+      checkout_thanks_language: "Language",
+      checkout_thanks_eyebrow: "Checkout follow-up",
+      checkout_thanks_title: "Thank you for subscribing",
+      checkout_thanks_intro:
+        "If Stripe has confirmed payment, your subscription request is ready for our monitoring-scope review.",
+      checkout_thanks_plan_label: "Selected plan",
+      checkout_thanks_plan_pro: "Pro — US$29/month",
+      checkout_thanks_plan_team: "Team — US$149/month",
+      checkout_thanks_next_title: "What happens next",
+      checkout_thanks_step1_title: "We match the payment to your pilot request",
+      checkout_thanks_step1_body:
+        "We use the work email, company, plan, and monitoring criteria submitted before checkout.",
+      checkout_thanks_step2_title: "We review the requested monitoring scope",
+      checkout_thanks_step2_body:
+        "We confirm that the selected sources, topics, and delivery frequency can be supported for the pilot.",
+      checkout_thanks_step3_title: "You receive an activation email",
+      checkout_thanks_step3_body:
+        "Alerts begin only after LegalOS sends an activation message to the work email in your pilot request.",
+      checkout_thanks_note_title: "Activation is not automatic",
+      checkout_thanks_note_body:
+        "Payment confirms the subscription request. It does not mean that monitoring has already started.",
+      checkout_thanks_dashboard: "Return to the dashboard",
+      checkout_thanks_contact: "Contact LegalOS",
+      checkout_thanks_trust:
+        "Alert emails are monitoring aids, not legal advice. Original Japanese official sources remain authoritative.",
+      checkout_thanks_legal_nav: "Legal information",
+
       load_more: "Load more updates",
       empty_title: "No matching updates found.",
       empty_hint: "Try clearing filters or adjusting your search terms.",
@@ -364,6 +392,28 @@
       alert_pilot_failed: "无法发送申请。请改用联系页面。",
       alert_pilot_fallback: "改用联系页面",
       alert_pilot_checkout: "继续安全结账",
+
+      checkout_thanks_page_title: "订阅申请已收到 — Japan Legal Reform Watch",
+      checkout_thanks_language: "语言",
+      checkout_thanks_eyebrow: "结账后续",
+      checkout_thanks_title: "感谢您的订阅",
+      checkout_thanks_intro: "如果 Stripe 已确认付款，您的订阅申请将进入监测范围审核。",
+      checkout_thanks_plan_label: "所选方案",
+      checkout_thanks_plan_pro: "Pro — 每月29美元",
+      checkout_thanks_plan_team: "Team — 每月149美元",
+      checkout_thanks_next_title: "接下来的流程",
+      checkout_thanks_step1_title: "我们会将付款与您的试点申请匹配",
+      checkout_thanks_step1_body: "我们会使用您在结账前提交的工作邮箱、公司、方案和监测条件。",
+      checkout_thanks_step2_title: "我们会审核所申请的监测范围",
+      checkout_thanks_step2_body: "我们会确认试点是否能够支持所选信息源、主题和发送频率。",
+      checkout_thanks_step3_title: "您会收到启用邮件",
+      checkout_thanks_step3_body: "只有在 LegalOS 向试点申请中的工作邮箱发送启用通知后，提醒才会开始。",
+      checkout_thanks_note_title: "提醒不会自动启用",
+      checkout_thanks_note_body: "付款表示订阅申请已确认，但不代表监测已经开始。",
+      checkout_thanks_dashboard: "返回仪表板",
+      checkout_thanks_contact: "联系 LegalOS",
+      checkout_thanks_trust: "提醒邮件仅供监测参考，不构成法律建议。日文官方原始来源仍为权威依据。",
+      checkout_thanks_legal_nav: "法律信息",
 
       load_more: "加载更多更新",
       empty_title: "未找到匹配的更新。",
