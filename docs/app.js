@@ -222,6 +222,8 @@
     alertPilotPlanButtons,
     alertPilotPlanCards,
     alertPilotFrequencySelect,
+    alertPilotFocusInput,
+    alertPilotScopeWarning,
     alertPilotConsentInput,
     alertPilotHoneypotInput,
     alertPilotSubmitBtn,
@@ -275,6 +277,8 @@
     alertPilotPlanButtons = Array.from(document.querySelectorAll("[data-alert-plan]"));
     alertPilotPlanCards = Array.from(document.querySelectorAll("[data-alert-plan-card]"));
     alertPilotFrequencySelect = $("#alert-pilot-frequency");
+    alertPilotFocusInput = $("#alert-pilot-focus");
+    alertPilotScopeWarning = $("#alert-pilot-scope-warning");
     alertPilotConsentInput = $("#alert-pilot-consent");
     alertPilotHoneypotInput = $("#alert-pilot-website");
     alertPilotSubmitBtn = $("#submit-alert-pilot");
@@ -1149,6 +1153,7 @@
 
   function openAlertPilotForm() {
     if (!alertPilotFormWrap || !openAlertPilotFormBtn) return;
+    syncAlertPilotScopeWarning();
     alertPilotFormWrap.hidden = false;
     openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
     setAlertPilotStatus("", "");
@@ -1158,6 +1163,18 @@
       alertPilotFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
       if (alertPilotNameInput) alertPilotNameInput.focus();
     }, 0);
+  }
+
+  function hasActiveMonitoringFilter() {
+    const params = new URLSearchParams(currentSavedSearchQuery());
+    return ["q", "area", "stage", "source", "impact", "ai", "new"].some((key) =>
+      Boolean(params.get(key))
+    );
+  }
+
+  function syncAlertPilotScopeWarning() {
+    if (!alertPilotScopeWarning) return;
+    alertPilotScopeWarning.hidden = hasActiveMonitoringFilter();
   }
 
   function syncAlertPilotPlanChoice() {
@@ -1206,6 +1223,7 @@
       "Work email: " + values.email,
       "Plan: " + alertPilotPlanLabel(values.plan),
       "Preferred frequency: " + alertPilotFrequencyLabel(values.frequency),
+      "Monitoring focus / business context: " + values.focus,
       "Monitoring criteria: " + savedSearchDescription(query),
       "Filter query: " + (query || "Latest updates / no additional filters"),
       "Dashboard URL: " + currentMonitoringUrl(),
@@ -1245,6 +1263,7 @@
       company: plainText(alertPilotCompanyInput.value).slice(0, 160),
       plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
       frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
+      focus: plainText(alertPilotFocusInput.value).slice(0, 500),
     };
     const data = new FormData();
     data.append("_wpcf7", formId);
