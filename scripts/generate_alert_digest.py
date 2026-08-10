@@ -276,16 +276,37 @@ def _search_haystack(item: Mapping[str, Any]) -> str:
     zh = translations.get("zh-Hans", {}) if isinstance(translations, dict) else {}
     if not isinstance(zh, dict):
         zh = {}
-    values = (
+    values = [
         item.get("title_en"),
         item.get("title_ja"),
-        item.get("summary_en"),
         zh.get("title"),
-        zh.get("summary"),
-        zh.get("business_impact"),
-        zh.get("recommended_action"),
-    )
+    ]
+    if item.get("summary_source") == "claude":
+        values.extend(
+            (
+                item.get("summary_en"),
+                zh.get("summary"),
+                zh.get("business_impact"),
+                zh.get("recommended_action"),
+            )
+        )
     return " ".join(value for value in values if isinstance(value, str)).lower()
+
+
+def _default_since(until: date, frequency: str) -> date:
+    return until if frequency == "daily" else until - timedelta(days=6)
+
+
+def _configure_stdout_utf8() -> None:
+    reconfigure = getattr(sys.stdout, "reconfigure", None)
+    if not callable(reconfigure):
+        return
+    try:
+        reconfigure(encoding="utf-8", errors="replace")
+    except (OSError, ValueError):
+        # Captured or already-closed streams may not support reconfiguration.
+        # The caller still gets the ordinary write error handling below.
+        return
 
 
 def apply_dashboard_filters(
@@ -655,7 +676,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     today = datetime.now(JST).date()
     until = args.until or today
-    since = args.since or (until - timedelta(days=6))
+    since = args.since or _default_since(until, args.frequency)
     if until > today:
         print("error: --until must not be in the future (Asia/Tokyo).", file=sys.stderr)
         return 2
@@ -680,6 +701,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"Markdown draft: {markdown_path}")
             print(f"HTML draft: {html_path}")
         else:
+            _configure_stdout_utf8()
             print(render_markdown(result, frequency=args.frequency, digest_title=args.digest_title))
         print(
             f"Review required: {len(result.items)} shown / "
@@ -688,6 +710,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 0
+    except UnicodeEncodeError:
+        print(
+            "error: the console could not display this UTF-8 draft; use --output-dir instead.",
+            file=sys.stderr,
+        )
+        return 2
     except ValueError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2

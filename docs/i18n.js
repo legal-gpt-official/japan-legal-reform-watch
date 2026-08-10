@@ -161,9 +161,12 @@
       alert_pilot_success_manual:
         "Request received. We will contact you to confirm payment details and activation.",
       alert_pilot_validation: "Please complete the required fields.",
+      alert_pilot_focus_validation:
+        "Please describe the monitoring focus in at least 10 characters.",
       alert_pilot_failed: "The request could not be sent. Please use the contact page instead.",
       alert_pilot_fallback: "Use the contact page instead",
       alert_pilot_checkout: "Continue to secure checkout",
+      alert_pilot_checkout_plan: "Continue to secure checkout — {plan}",
       alert_pilot_faq_title: "Before you subscribe",
       alert_pilot_faq_criterion_q: "What is a monitoring criterion?",
       alert_pilot_faq_criterion_a:
@@ -312,6 +315,8 @@
       footer_learn_more: "Learn more about Japan Legal Reform Watch",
       footer_japan_updates: "Japan Legal Updates",
       footer_legal_en: "Legal Notice / Disclaimer (EN)",
+      footer_disclaimer_en: "Legal Notice & Disclaimer (EN)",
+      footer_disclaimer_ja: "Legal Notice & Disclaimer (Japanese)",
       footer_bottom:
         "This site provides English summaries for informational purposes only. It is not an official " +
         "translation and not legal advice. See the full Legal Notice for details.",
@@ -450,9 +455,11 @@
       alert_pilot_success_checkout: "申请已收到。请继续安全结账以开始所选订阅；我们会在审核监测范围后启用提醒。",
       alert_pilot_success_manual: "申请已收到。我们会联系您确认付款详情和启用安排。",
       alert_pilot_validation: "请填写必填项目。",
+      alert_pilot_focus_validation: "请用至少10个字符说明监测重点。",
       alert_pilot_failed: "无法发送申请。请改用联系页面。",
       alert_pilot_fallback: "改用联系页面",
       alert_pilot_checkout: "继续安全结账",
+      alert_pilot_checkout_plan: "继续安全结账 — {plan}",
       alert_pilot_faq_title: "订阅前须知",
       alert_pilot_faq_criterion_q: "什么是监测条件？",
       alert_pilot_faq_criterion_a: "一项监测条件是一个保存的搜索配置，包括关键词、筛选条件和所选期间。我们会在启用前确认实际可支持的范围。",
@@ -572,6 +579,8 @@
       footer_learn_more: "了解更多关于 Japan Legal Reform Watch",
       footer_japan_updates: "日本法律动态",
       footer_legal_en: "法律声明 / 免责声明（英文）",
+      footer_disclaimer_en: "法律声明与免责声明（英文）",
+      footer_disclaimer_ja: "法律声明与免责声明（日文）",
       footer_bottom:
         "本网站仅出于信息目的提供英文摘要，并非官方译文，也不构成法律意见。详情请参见完整法律声明。",
 
