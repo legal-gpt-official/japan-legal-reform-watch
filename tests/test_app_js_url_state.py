@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "audit-hardening-20260810"
-APP_CACHE_BUSTER = "audit-hardening-20260810"
+CACHE_BUSTER = "dedicated-alert-form-20260810"
+APP_CACHE_BUSTER = "dedicated-alert-form-20260810"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "audit-hardening-20260810"
+I18N_CACHE_BUSTER = "dedicated-alert-form-20260810"
 
 
 def object_body(name: str) -> str:
@@ -598,7 +598,7 @@ class TestAppJsUrlState(unittest.TestCase):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, reset.group("body"))
 
-    def test_alert_pilot_submission_uses_existing_contact_form_safely(self):
+    def test_alert_pilot_submission_uses_dedicated_contact_form_safely(self):
         for snippet in (
             "async function submitAlertPilotRequest",
             'data.append("_wpcf7_unit_tag", unitTag)',
@@ -619,8 +619,10 @@ class TestAppJsUrlState(unittest.TestCase):
     def test_alert_pilot_config_is_public_only_and_checkout_is_optional(self):
         for snippet in (
             "window.JLRW_ALERTS_CONFIG",
-            'inquiryFormId: "99"',
-            'inquiryUnitTag: "wpcf7-f99-p100-o1"',
+            'contact-forms/8175/feedback',
+            'inquiryFormId: "8175"',
+            'inquiryUnitTag: "wpcf7-f8175-p100-o1"',
+            'inquiryContainerPost: "100"',
             'privacyPolicyUrl: "https://legal-gpt.com/privacy-policy/"',
             "stripePaymentLinks: Object.freeze",
             'pro: "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00"',

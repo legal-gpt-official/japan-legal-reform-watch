@@ -10,9 +10,9 @@
 
   window.JLRW_ALERTS_CONFIG = Object.freeze({
     inquiryEndpoint:
-      "https://legal-gpt.com/wp-json/contact-form-7/v1/contact-forms/99/feedback",
-    inquiryFormId: "99",
-    inquiryUnitTag: "wpcf7-f99-p100-o1",
+      "https://legal-gpt.com/wp-json/contact-form-7/v1/contact-forms/8175/feedback",
+    inquiryFormId: "8175",
+    inquiryUnitTag: "wpcf7-f8175-p100-o1",
     inquiryContainerPost: "100",
     fallbackContactUrl: "https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot",
     privacyPolicyUrl: "https://legal-gpt.com/privacy-policy/",
