@@ -160,6 +160,7 @@
         "Request received. Continue to secure checkout to start the selected subscription; alerts are activated after the monitoring scope is reviewed.",
       alert_pilot_success_manual:
         "Request received. We will contact you to confirm payment details and activation.",
+      alert_pilot_reference: "Request reference",
       alert_pilot_validation: "Please complete the required fields.",
       alert_pilot_focus_validation:
         "Please describe the monitoring focus in at least 10 characters.",
@@ -194,7 +195,7 @@
       checkout_thanks_next_title: "What happens next",
       checkout_thanks_step1_title: "We match the payment to your pilot request",
       checkout_thanks_step1_body:
-        "We use the work email, company, plan, and monitoring criteria submitted before checkout.",
+        "We use the non-sensitive request reference attached to checkout and the pilot inquiry submitted before payment.",
       checkout_thanks_step2_title: "We review the requested monitoring scope",
       checkout_thanks_step2_body:
         "We confirm that the selected sources, topics, and delivery frequency can be supported for the pilot.",
@@ -454,6 +455,7 @@
       alert_pilot_submitting: "正在发送申请……",
       alert_pilot_success_checkout: "申请已收到。请继续安全结账以开始所选订阅；我们会在审核监测范围后启用提醒。",
       alert_pilot_success_manual: "申请已收到。我们会联系您确认付款详情和启用安排。",
+      alert_pilot_reference: "申请编号",
       alert_pilot_validation: "请填写必填项目。",
       alert_pilot_focus_validation: "请用至少10个字符说明监测重点。",
       alert_pilot_failed: "无法发送申请。请改用联系页面。",
@@ -481,7 +483,7 @@
       checkout_thanks_plan_team: "Team — 每月149美元",
       checkout_thanks_next_title: "接下来的流程",
       checkout_thanks_step1_title: "我们会将付款与您的试点申请匹配",
-      checkout_thanks_step1_body: "我们会使用您在结账前提交的工作邮箱、公司、方案和监测条件。",
+      checkout_thanks_step1_body: "我们会使用结账时附带的非敏感申请编号，以及付款前提交的试点申请进行匹配。",
       checkout_thanks_step2_title: "我们会审核所申请的监测范围",
       checkout_thanks_step2_body: "我们会确认试点是否能够支持所选信息源、主题和发送频率。",
       checkout_thanks_step3_title: "您会收到启用邮件",

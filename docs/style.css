@@ -1714,6 +1714,24 @@ code {
   color: #8a4b2c;
 }
 
+.alert-pilot-reference {
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.alert-pilot-reference strong {
+  color: var(--color-navy);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.alert-pilot-reference[hidden] {
+  display: none;
+}
+
 .alert-pilot-faq {
   margin-top: 18px;
   padding-top: 16px;
