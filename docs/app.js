@@ -219,6 +219,8 @@
     alertPilotEmailInput,
     alertPilotCompanyInput,
     alertPilotPlanSelect,
+    alertPilotPlanButtons,
+    alertPilotPlanCards,
     alertPilotFrequencySelect,
     alertPilotConsentInput,
     alertPilotHoneypotInput,
@@ -270,6 +272,8 @@
     alertPilotEmailInput = $("#alert-pilot-email");
     alertPilotCompanyInput = $("#alert-pilot-company");
     alertPilotPlanSelect = $("#alert-pilot-plan");
+    alertPilotPlanButtons = Array.from(document.querySelectorAll("[data-alert-plan]"));
+    alertPilotPlanCards = Array.from(document.querySelectorAll("[data-alert-plan-card]"));
     alertPilotFrequencySelect = $("#alert-pilot-frequency");
     alertPilotConsentInput = $("#alert-pilot-consent");
     alertPilotHoneypotInput = $("#alert-pilot-website");
@@ -1156,6 +1160,24 @@
     }, 0);
   }
 
+  function syncAlertPilotPlanChoice() {
+    const selectedPlan = alertPilotPlanSelect && alertPilotPlanSelect.value === "team" ? "team" : "pro";
+    alertPilotPlanButtons.forEach((button) => {
+      const isSelected = button.dataset.alertPlan === selectedPlan;
+      button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    });
+    alertPilotPlanCards.forEach((card) => {
+      card.classList.toggle("is-selected", card.dataset.alertPlanCard === selectedPlan);
+    });
+  }
+
+  function selectAlertPilotPlan(event) {
+    if (!alertPilotPlanSelect) return;
+    alertPilotPlanSelect.value = event.currentTarget.dataset.alertPlan === "team" ? "team" : "pro";
+    syncAlertPilotPlanChoice();
+    if (alertPilotNameInput) alertPilotNameInput.focus({ preventScroll: true });
+  }
+
   function alertPilotPlanLabel(value) {
     if (value === "team") return "Team — US$149/month";
     return "Pro — US$29/month";
@@ -1257,6 +1279,7 @@
 
       const checkoutUrl = alertPilotCheckoutUrl(values.plan);
       alertPilotForm.reset();
+      syncAlertPilotPlanChoice();
       if (checkoutUrl && alertPilotCheckout) {
         setAlertPilotStatus("alert_pilot_success_checkout", "success");
         alertPilotCheckout.href = checkoutUrl;
@@ -2220,6 +2243,13 @@
     }
     if (openAlertPilotFormBtn) {
       openAlertPilotFormBtn.addEventListener("click", openAlertPilotForm);
+    }
+    alertPilotPlanButtons.forEach((button) => {
+      button.addEventListener("click", selectAlertPilotPlan);
+    });
+    if (alertPilotPlanSelect) {
+      alertPilotPlanSelect.addEventListener("change", syncAlertPilotPlanChoice);
+      syncAlertPilotPlanChoice();
     }
     if (alertPilotForm) {
       alertPilotForm.addEventListener("submit", (event) => {
