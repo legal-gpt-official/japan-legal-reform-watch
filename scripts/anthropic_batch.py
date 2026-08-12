@@ -82,6 +82,70 @@ def run_message_batch(
     if logger:
         logger.info("BATCH submitted id=%s requests=%d", batch_id, len(requests))
 
+    return _wait_for_message_batch(
+        client,
+        batch,
+        requests,
+        poll_seconds=poll_seconds,
+        timeout_seconds=timeout_seconds,
+        logger=logger,
+    )
+
+
+def _request_count(batch) -> int:
+    counts = getattr(batch, "request_counts", None)
+    return sum(
+        int(getattr(counts, field, 0) or 0)
+        for field in ("processing", "succeeded", "errored", "canceled", "expired")
+    )
+
+
+def resume_latest_message_batch(
+    client,
+    requests: list[dict],
+    *,
+    poll_seconds: float = DEFAULT_POLL_SECONDS,
+    timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    logger=None,
+) -> BatchRun:
+    """Resume the newest provider batch with the expected request count.
+
+    Data-writing workflows are serialized, so the newest matching batch is the
+    one submitted by the immediately preceding timed-out run. No new requests
+    are submitted by this function.
+    """
+    if not requests:
+        return BatchRun(batch_id="", results={})
+    page = client.messages.batches.list(limit=100)
+    batches = list(getattr(page, "data", page) or [])
+    batch = next((row for row in batches if _request_count(row) == len(requests)), None)
+    if batch is None:
+        raise RuntimeError(f"no resumable message batch found for {len(requests)} requests")
+    if logger:
+        logger.info("BATCH resuming id=%s requests=%d", getattr(batch, "id", ""), len(requests))
+    return _wait_for_message_batch(
+        client,
+        batch,
+        requests,
+        poll_seconds=poll_seconds,
+        timeout_seconds=timeout_seconds,
+        logger=logger,
+    )
+
+
+def _wait_for_message_batch(
+    client,
+    batch,
+    requests: list[dict],
+    *,
+    poll_seconds: float,
+    timeout_seconds: float,
+    logger=None,
+) -> BatchRun:
+    """Wait for an already-created Message Batch and decode its results."""
+    batch_id = getattr(batch, "id", "")
+    if not batch_id:
+        raise RuntimeError("provider returned a batch without an id")
     deadline = time.monotonic() + timeout_seconds
     while getattr(batch, "processing_status", None) == "in_progress":
         remaining = deadline - time.monotonic()

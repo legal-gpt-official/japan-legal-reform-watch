@@ -61,6 +61,7 @@ Python 3.11+. Requires the `anthropic` SDK (see requirements.txt).
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import logging
@@ -71,7 +72,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import build_public_data as public_data
-from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, run_message_batch
+from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, resume_latest_message_batch, run_message_batch
 
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
@@ -433,6 +434,7 @@ def request_japanese_summary_batch(
     candidates: list[tuple[dict, dict]],
     *,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    resume_latest: bool = False,
 ) -> tuple[str, list[object]]:
     """Submit Japanese-source summary requests as one discounted Message Batch."""
     requests = []
@@ -440,7 +442,8 @@ def request_japanese_summary_batch(
         params = japanese_summary_request_params(model, item, raw)
         params["output_config"] = {"format": {"type": "json_schema", "schema": JA_RESULT_SCHEMA}}
         requests.append({"custom_id": f"summary-ja-{index:04d}", "params": params})
-    run = run_message_batch(client, requests, timeout_seconds=timeout_seconds, logger=logger)
+    runner = resume_latest_message_batch if resume_latest else run_message_batch
+    run = runner(client, requests, timeout_seconds=timeout_seconds, logger=logger)
     decoded: list[object] = []
     for index in range(len(candidates)):
         value = run.results[f"summary-ja-{index:04d}"]
@@ -646,6 +649,17 @@ def main(argv: list[str] | None = None) -> int:
         help="Maximum time to wait for a Message Batch (default 3600 seconds).",
     )
     parser.add_argument(
+        "--resume-latest-batch",
+        action="store_true",
+        help="Resume the newest matching Japanese Message Batch instead of submitting another.",
+    )
+    parser.add_argument(
+        "--parallel",
+        type=int,
+        default=1,
+        help="Concurrent direct Japanese API calls when not using --batch (default 1, max 10).",
+    )
+    parser.add_argument(
         "--all-items",
         action="store_true",
         help="Target the complete published corpus instead of only the relevance-ranked top N.",
@@ -662,6 +676,12 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.all_items and not args.japanese_only:
         parser.error("--all-items requires --japanese-only")
+    if args.resume_latest_batch and not (args.batch and args.japanese_only):
+        parser.error("--resume-latest-batch requires --batch --japanese-only")
+    if not 1 <= args.parallel <= 10:
+        parser.error("--parallel must be between 1 and 10")
+    if args.batch and args.parallel != 1:
+        parser.error("--parallel cannot be combined with --batch")
     model = resolve_model(args.model)
 
     # Requirement 5: missing key -> print usage and exit cleanly (no traceback).
@@ -729,13 +749,13 @@ def main(argv: list[str] | None = None) -> int:
                 continue
 
             remove_japanese_result(it)
-            budget_used = len(pending_ja) if args.batch else api_calls
+            budget_used = len(pending_ja) if (args.batch or args.parallel > 1) else api_calls
             if api_limit is not None and budget_used >= api_limit:
                 ja_skipped_api_budget += 1
                 logger.info("BUDGET SKIP JA %s", it.get("id"))
                 continue
             raw = raw_by_id.get(it.get("id"), {})
-            if args.batch:
+            if args.batch or args.parallel > 1:
                 pending_ja.append((it, key, raw))
                 continue
             if client is None:
@@ -886,16 +906,53 @@ def main(argv: list[str] | None = None) -> int:
                 it["summary_source"] = "rule_based"
                 logger.error("BATCH FAIL %s type=%s", it.get("id"), type(exc).__name__)
 
+    if args.japanese_only and not args.batch and args.parallel > 1 and pending_ja:
+        api_calls += len(pending_ja)
+        if client is None:
+            client = make_client()
+
+        def request_one(candidate):
+            item, _key, raw = candidate
+            try:
+                return request_japanese_summary(client, model, item, raw)
+            except Exception as exc:
+                return exc
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.parallel) as executor:
+            outcomes = list(executor.map(request_one, pending_ja))
+
+        for (it, key, _raw), outcome in zip(pending_ja, outcomes):
+            try:
+                if isinstance(outcome, Exception):
+                    raise outcome
+                result, model_used = outcome
+                if not valid_japanese_result(result):
+                    raise ValueError("model returned invalid Japanese summary fields")
+                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                apply_japanese_result(it, result, now, model_used)
+                cache.setdefault(key, {}).update(
+                    {**{field: it[field] for field in JA_AI_FIELDS},
+                     "summary_ja_source": "claude",
+                     "ja_summarized_at": now, "ja_summary_model": model_used}
+                )
+                ja_summarized += 1
+            except Exception as exc:
+                ja_failed += 1
+                logger.error("PARALLEL FAIL JA %s type=%s", it.get("id"), type(exc).__name__)
+
     if args.batch and pending_ja:
         if client is None:
             client = make_client()
         api_calls += len(pending_ja)
         try:
+            batch_kwargs = {"timeout_seconds": args.batch_timeout_seconds}
+            if args.resume_latest_batch:
+                batch_kwargs["resume_latest"] = True
             japanese_batch_id, outcomes = request_japanese_summary_batch(
                 client,
                 model,
                 [(it, raw) for it, _key, raw in pending_ja],
-                timeout_seconds=args.batch_timeout_seconds,
+                **batch_kwargs,
             )
         except Exception as exc:
             outcomes = [exc] * len(pending_ja)

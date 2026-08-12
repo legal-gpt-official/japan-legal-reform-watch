@@ -7,23 +7,28 @@ on:
   workflow_dispatch:
     inputs:
       batch_size:
-        description: Japanese summaries per discounted Message Batch
+        description: Japanese summaries per parallel direct-call checkpoint
         required: true
-        default: "250"
+        default: "100"
         type: choice
         options:
           - "100"
           - "250"
           - "500"
       max_rounds:
-        description: Maximum checkpointed batches in this run
+        description: Maximum checkpointed rounds in this run
         required: true
-        default: "8"
+        default: "20"
         type: choice
         options:
-          - "4"
+          - "20"
           - "8"
           - "12"
+      recover_timed_out_batch:
+        description: Recover the previously submitted 250-item batch before new calls
+        required: true
+        default: true
+        type: boolean
 
 permissions:
   contents: write
@@ -63,6 +68,7 @@ jobs:
           ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
           BATCH_SIZE: ${{ inputs.batch_size }}
           MAX_ROUNDS: ${{ inputs.max_rounds }}
+          RECOVER_TIMED_OUT_BATCH: ${{ inputs.recover_timed_out_batch }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -95,12 +101,23 @@ jobs:
               break
             fi
 
-            echo "Round ${round}: requesting up to ${BATCH_SIZE} Japanese summaries."
-            python scripts/summarize_updates.py \
-              --all-items \
-              --japanese-only \
-              --api-limit "$BATCH_SIZE" \
-              --batch
+            if [ "$round" -eq 1 ] && [ "$RECOVER_TIMED_OUT_BATCH" = "true" ]; then
+              echo "Round ${round}: recovering the previously submitted 250-item Message Batch."
+              python scripts/summarize_updates.py \
+                --all-items \
+                --japanese-only \
+                --api-limit 250 \
+                --batch \
+                --resume-latest-batch \
+                --batch-timeout-seconds 18000
+            else
+              echo "Round ${round}: requesting up to ${BATCH_SIZE} Japanese summaries with parallel direct calls."
+              python scripts/summarize_updates.py \
+                --all-items \
+                --japanese-only \
+                --api-limit "$BATCH_SIZE" \
+                --parallel 8
+            fi
             python scripts/build_public_archives.py
 
             after=$(count_ja)
