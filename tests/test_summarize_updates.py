@@ -111,11 +111,14 @@ class TestSummarizeTitleCap(unittest.TestCase):
         original_title = item["title_ja"]
         result = self._ja_result()
 
-        su.apply_japanese_result(item, result)
+        su.apply_japanese_result(item, result, "2026-06-18T00:00:00Z", "model")
 
         self.assertEqual(item["title_ja"], original_title)
         for field in su.JA_AI_FIELDS:
             self.assertEqual(item[field], result[field])
+        self.assertEqual(item["summary_ja_source"], "claude")
+        self.assertEqual(item["ja_summarized_at"], "2026-06-18T00:00:00Z")
+        self.assertEqual(item["ja_summary_model"], "model")
         self.assertTrue(su.valid_japanese_result(item))
 
         oversized = dict(result, summary_ja="あ" * (su.JA_FIELD_LIMITS["summary_ja"] + 1))
@@ -217,6 +220,31 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--batch", command)
         self.assertIn("--limit 100", command)
         self.assertIn("--api-limit 30", command)
+
+    def test_japanese_backfill_workflow_is_direct_resumable_and_serialized(self):
+        workflow = (
+            Path(__file__).resolve().parents[1]
+            / ".github"
+            / "workflows"
+            / "japanese-summary-backfill.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("--all-items", workflow)
+        self.assertIn("--japanese-only", workflow)
+        self.assertIn("--api-limit \"$BATCH_SIZE\"", workflow)
+        self.assertIn("--batch", workflow)
+        self.assertIn("git push origin \"HEAD:${GITHUB_REF_NAME}\"", workflow)
+        self.assertIn("group: japan-legal-reform-data-writer", workflow)
+        self.assertIn("python scripts/build_public_archives.py", workflow)
+        self.assertNotIn("python scripts/fetch_updates.py", workflow)
+        self.assertNotIn("python scripts/build_public_data.py", workflow)
+        self.assertNotIn("python scripts/translate_updates.py", workflow)
+
+    def test_all_items_rejects_accidental_full_english_summarization(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
+            su.main(["--all-items"])
+        self.assertEqual(raised.exception.code, 2)
 
     def test_main_applies_batch_result_and_persists_cache(self):
         item = TestSummarizeTitleCap()._item()
@@ -471,6 +499,77 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(published[0]["summary_ja"], japanese["summary_ja"])
             self.assertNotIn("summary_ja", published[1])
             self.assertIn("api_calls       : 2", stdout.getvalue())
+
+    def test_japanese_only_all_items_backfill_does_not_relabel_english_preview(self):
+        cached_item = TestSummarizeTitleCap()._item()
+        cached_item["id"] = "cached-ja"
+        cached_item["source_url"] = "https://example.go.jp/cached-ja"
+        fresh_item = TestSummarizeTitleCap()._item()
+        fresh_item["id"] = "fresh-ja"
+        fresh_item["source_url"] = "https://example.go.jp/fresh-ja"
+        skipped_item = TestSummarizeTitleCap()._item()
+        skipped_item["id"] = "skipped-ja"
+        skipped_item["source_url"] = "https://example.go.jp/skipped-ja"
+        items = [cached_item, fresh_item, skipped_item]
+        japanese = TestSummarizeTitleCap()._ja_result()
+        cached_key = su.cache_key(cached_item, {})
+        cached_result = {
+            **japanese,
+            "ja_summarized_at": "2026-06-18T00:00:00Z",
+            "ja_summary_model": "cached-model",
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text(json.dumps({cached_key: cached_result}), encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual([item["id"] for item, _raw in candidates], ["fresh-ja"])
+                return "msgbatch_ja_backfill", [(japanese, model)]
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_japanese_summary_batch": fake_japanese_batch,
+                "request_summary_batch": mock.Mock(side_effect=AssertionError("English API must not run")),
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main(
+                    ["--all-items", "--japanese-only", "--api-limit", "1", "--batch"]
+                )
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            cache = json.loads(cache_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual([item["summary_source"] for item in published], ["rule_based"] * 3)
+            self.assertEqual(published[0]["summary_ja_source"], "claude")
+            self.assertEqual(published[0]["ja_summary_model"], "cached-model")
+            self.assertEqual(published[1]["summary_ja_source"], "claude")
+            self.assertNotIn("summary_ja", published[2])
+            self.assertEqual(len(cache), 2)
+            self.assertEqual(cache[cached_key]["summary_ja_source"], "claude")
+            self.assertEqual(cache[cached_key]["ja_summarized_at"], "2026-06-18T00:00:00Z")
+            fresh_key = su.cache_key(fresh_item, {})
+            self.assertEqual(cache[fresh_key]["summary_ja_source"], "claude")
+            self.assertIn("japanese_cache_hits: 1", stdout.getvalue())
+            self.assertIn("japanese_summarized_items: 1", stdout.getvalue())
+            self.assertIn("japanese_remaining: 1", stdout.getvalue())
 
 
 if __name__ == "__main__":

@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
 summarize_updates.py — Japan Legal Reform Watch by LegalOS
-Stage 3: AI English and Japanese summarization of top-ranked items via Claude.
+Stage 3: AI English and Japanese summarization via Claude.
 
 What this script does
 ---------------------
 - Reads docs/data/legal_updates.json (the rule-based published file).
-- Takes the top-N items by `relevance_score` (default 10; --limit to change).
+- Normally takes the top-N items by `relevance_score` (default 10; --limit to
+  change). The explicit --all-items --japanese-only path targets the complete
+  corpus without generating or replacing English AI summaries.
 - Optionally caps cache-miss API calls inside that pool with --api-limit;
   cache hits are free and do not consume that budget.
 - For each, asks Claude for: title_en, summary_en, business_impact_en,
@@ -18,9 +20,10 @@ What this script does
 - Caches both result sets in data/summary_cache.json. Existing English output is
   never regenerated merely to add Japanese; once both are cached, re-runs cost
   nothing for that unchanged item.
-- Writes the AI fields back into docs/data/legal_updates.json, marking each
-  touched item summary_source="claude"; untouched / failed items keep their
-  rule-based template copy and summary_source="rule_based".
+- Writes English AI fields back with summary_source="claude". Japanese fields
+  carry independent summary_ja_source / ja_summarized_at / ja_summary_model
+  provenance, so a Japanese AI summary can coexist with a rule-based English
+  preview without relabelling the English body.
 - Snapshots the original pre-AI baseline once to
   docs/data/legal_updates.before_ai.json.
 
@@ -36,8 +39,8 @@ SYSTEM_PROMPT.
 
 What this does NOT do
 ---------------------
-No GitHub Actions, no new SOURCES, no UI change, no pagination, no full-corpus
-production summarization (top-N only, by design).
+No source fetching, Stage 2 rebuild, translation, UI change, or pagination. The
+full-corpus option is deliberately restricted to Japanese-source summaries.
 
 Security posture
 ----------------
@@ -50,6 +53,7 @@ Usage
 -----
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
     python scripts/summarize_updates.py --limit 10 --batch
+    python scripts/summarize_updates.py --all-items --japanese-only --api-limit 250 --batch
 
 Python 3.11+. Requires the `anthropic` SDK (see requirements.txt).
 """
@@ -94,6 +98,7 @@ REQUIRED_UI_FIELDS = (
 AI_FIELDS = ("title_en", "summary_en", "business_impact_en", "recommended_action_en", "confidence", "ai_notes")
 AI_TEXT_FIELDS = ("title_en", "summary_en", "business_impact_en", "recommended_action_en")
 JA_AI_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
+JA_PROVENANCE_FIELDS = ("summary_ja_source", "ja_summarized_at", "ja_summary_model")
 JA_FIELD_LIMITS = {
     "summary_ja": 800,
     "business_impact_ja": 500,
@@ -182,7 +187,7 @@ JA_RESULT_SCHEMA = {
 }
 
 USAGE = """\
-summarize_updates.py - AI English summarization (Claude) for top-ranked items.
+summarize_updates.py - AI English/Japanese source summarization via Claude.
 
 This step needs an Anthropic API key. Set it in your environment first:
 
@@ -195,6 +200,11 @@ Then run:
 
 Options:
     --limit N     Summarize the top N items by relevance_score (default 10).
+    --all-items   Target every published item instead of only the top N.
+    --japanese-only
+                  Generate/apply only Japanese-source summaries; preserve the
+                  English fields and their independent summary_source.
+    --api-limit N Maximum cache-miss API calls in this run.
     --model ID    Claude model id (default: claude-opus-4-8).
     --batch       Use Message Batches (same prompt/model, 50% token discount).
     --dry-run     Do everything except write the output file, backup, and cache.
@@ -505,15 +515,40 @@ def apply_result(item: dict, result: dict, summarized_at: str, model: str) -> No
     item["summary_model"] = model
 
 
-def apply_japanese_result(item: dict, result: dict) -> None:
-    """Apply Japanese AI summaries without changing the original Japanese title."""
+def apply_japanese_result(
+    item: dict,
+    result: dict,
+    summarized_at: str | None = None,
+    model: str | None = None,
+) -> None:
+    """Apply Japanese AI summaries without changing English or the original title."""
     for field in JA_AI_FIELDS:
         item[field] = result[field].strip()
+    item["summary_ja_source"] = "claude"
+    if summarized_at:
+        item["ja_summarized_at"] = summarized_at
+    if model:
+        item["ja_summary_model"] = model
+
+
+def apply_cached_japanese_result(
+    item: dict,
+    cached: dict,
+    fallback_summarized_at: str,
+    fallback_model: str,
+) -> None:
+    """Apply a cached Japanese result and migrate missing provenance once."""
+    summarized_at = cached.get("ja_summarized_at") or fallback_summarized_at
+    model = cached.get("ja_summary_model") or fallback_model
+    apply_japanese_result(item, cached, summarized_at, model)
+    cached["summary_ja_source"] = "claude"
+    cached["ja_summarized_at"] = summarized_at
+    cached["ja_summary_model"] = model
 
 
 def remove_japanese_result(item: dict) -> None:
     """Remove Japanese fields that are not backed by the current cache key."""
-    for field in JA_AI_FIELDS:
+    for field in (*JA_AI_FIELDS, *JA_PROVENANCE_FIELDS):
         item.pop(field, None)
 
 
@@ -538,8 +573,12 @@ def validate_output(items: list, original_by_id: dict) -> list[str]:
             problems.append(f"{iid}: incomplete Japanese summary fields")
         elif present_ja and not valid_japanese_result(it):
             problems.append(f"{iid}: invalid Japanese summary fields")
-        if present_ja and it.get("summary_source") != "claude":
-            problems.append(f"{iid}: Japanese summary fields require summary_source=claude")
+        if present_ja and it.get("summary_ja_source") != "claude":
+            problems.append(f"{iid}: Japanese summary fields require summary_ja_source=claude")
+        if present_ja and not str(it.get("ja_summarized_at", "")).strip():
+            problems.append(f"{iid}: Japanese summary fields require ja_summarized_at")
+        if present_ja and not str(it.get("ja_summary_model", "")).strip():
+            problems.append(f"{iid}: Japanese summary fields require ja_summary_model")
         orig = original_by_id.get(iid)
         if orig is not None:
             if it.get("source_url") != orig.get("source_url"):
@@ -606,8 +645,23 @@ def main(argv: list[str] | None = None) -> int:
         default=DEFAULT_TIMEOUT_SECONDS,
         help="Maximum time to wait for a Message Batch (default 3600 seconds).",
     )
+    parser.add_argument(
+        "--all-items",
+        action="store_true",
+        help="Target the complete published corpus instead of only the relevance-ranked top N.",
+    )
+    parser.add_argument(
+        "--japanese-only",
+        action="store_true",
+        help=(
+            "Generate/apply Japanese summaries directly from Japanese source metadata without "
+            "creating or replacing English AI summaries. Intended for resumable backfills."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write output, backup, or cache.")
     args = parser.parse_args(argv)
+    if args.all_items and not args.japanese_only:
+        parser.error("--all-items requires --japanese-only")
     model = resolve_model(args.model)
 
     # Requirement 5: missing key -> print usage and exit cleanly (no traceback).
@@ -630,18 +684,19 @@ def main(argv: list[str] | None = None) -> int:
 
     original_by_id = {it.get("id"): {"id": it.get("id"), "source_url": it.get("source_url")} for it in items}
 
-    # Targets: top N by relevance_score (missing score sorts last).
+    # Targets: all published items for an explicit backfill, otherwise top N by
+    # relevance_score (missing score sorts last).
     def score(it):
         s = it.get("relevance_score")
         return s if isinstance(s, (int, float)) else float("-inf")
 
-    targets = sorted(items, key=score, reverse=True)[: max(0, args.limit)]
+    targets = items if args.all_items else sorted(items, key=score, reverse=True)[: max(0, args.limit)]
     target_ids = {id(it) for it in targets}  # identity set — items are dict refs in `items`
 
     fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     logger.info(
-        "=== summarize run start (limit=%d, model=%s, batch=%s, dry_run=%s) ===",
-        args.limit, model, args.batch, args.dry_run,
+        "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, model=%s, batch=%s, dry_run=%s) ===",
+        args.limit, args.all_items, args.japanese_only, model, args.batch, args.dry_run,
     )
 
     api_limit = max(0, args.api_limit) if args.api_limit is not None else None
@@ -661,12 +716,58 @@ def main(argv: list[str] | None = None) -> int:
 
         key = cache_key(it, raw_by_id)
         cached = cache.get(key)
+        if args.japanese_only:
+            # Full-corpus Japanese backfills are independent of English AI
+            # coverage. This keeps English summary_source semantics truthful:
+            # a rule-based English preview remains rule_based even when the
+            # Japanese body is a Claude summary.
+            it["summary_source"] = it.get("summary_source") or "rule_based"
+            if isinstance(cached, dict) and valid_japanese_result(cached):
+                apply_cached_japanese_result(it, cached, fetched_at, model)
+                ja_cache_hits += 1
+                logger.info("CACHE JA %s", it.get("id"))
+                continue
+
+            remove_japanese_result(it)
+            budget_used = len(pending_ja) if args.batch else api_calls
+            if api_limit is not None and budget_used >= api_limit:
+                ja_skipped_api_budget += 1
+                logger.info("BUDGET SKIP JA %s", it.get("id"))
+                continue
+            raw = raw_by_id.get(it.get("id"), {})
+            if args.batch:
+                pending_ja.append((it, key, raw))
+                continue
+            if client is None:
+                client = make_client()
+            api_calls += 1
+            try:
+                result, model_used = request_japanese_summary(client, model, it, raw)
+                if not valid_japanese_result(result):
+                    raise ValueError("model returned invalid Japanese summary fields")
+                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                apply_japanese_result(it, result, now, model_used)
+                cache.setdefault(key, {}).update(
+                    {
+                        **{field: it[field] for field in JA_AI_FIELDS},
+                        "summary_ja_source": "claude",
+                        "ja_summarized_at": now,
+                        "ja_summary_model": model_used,
+                    }
+                )
+                ja_summarized += 1
+                logger.info("API JA %s", it.get("id"))
+            except Exception as exc:
+                ja_failed += 1
+                logger.error("FAIL JA %s type=%s", it.get("id"), type(exc).__name__)
+            continue
+
         if isinstance(cached, dict) and valid_result(cached):
             apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", model))
             cache_hits += 1
             summarized += 1
             if valid_japanese_result(cached):
-                apply_japanese_result(it, cached)
+                apply_cached_japanese_result(it, cached, fetched_at, model)
                 ja_cache_hits += 1
                 logger.info("CACHE JA %s", it.get("id"))
                 continue
@@ -692,9 +793,10 @@ def main(argv: list[str] | None = None) -> int:
                 if not valid_japanese_result(result):
                     raise ValueError("model returned invalid Japanese summary fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                apply_japanese_result(it, result)
+                apply_japanese_result(it, result, now, model_used)
                 cache[key].update(
                     {**{field: it[field] for field in JA_AI_FIELDS},
+                     "summary_ja_source": "claude",
                      "ja_summarized_at": now, "ja_summary_model": model_used}
                 )
                 ja_summarized += 1
@@ -705,10 +807,14 @@ def main(argv: list[str] | None = None) -> int:
                              f"{type(exc).__name__}: {exc}")
             continue
 
-        # The current content key has no valid English cache entry, so any
-        # Japanese fields carried forward by Stage 2 may describe older source
-        # content. Remove them before a new English result is attempted.
-        remove_japanese_result(it)
+        # A Japanese-only backfill cache entry can validly exist before English
+        # AI coverage. Keep it when it is keyed to the current source content;
+        # otherwise remove any Stage 2 carry-forward fields as stale.
+        if isinstance(cached, dict) and valid_japanese_result(cached):
+            apply_cached_japanese_result(it, cached, fetched_at, model)
+            ja_cache_hits += 1
+        else:
+            remove_japanese_result(it)
         budget_used = len(pending) + len(pending_ja) if args.batch else api_calls
         if api_limit is not None and budget_used >= api_limit:
             it["summary_source"] = "rule_based"
@@ -733,7 +839,9 @@ def main(argv: list[str] | None = None) -> int:
             now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             apply_result(it, result, now, model_used)
             # Cache the successful result (+ metadata) for future runs.
-            cache[key] = {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+            cache.setdefault(key, {}).update(
+                {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+            )
             summarized += 1
             logger.info("API   %s — confidence=%s — %s", it.get("id"), result.get("confidence"), it.get("title_ja", "")[:40])
         except Exception as exc:  # requirement 14: keep original, mark rule_based, log, continue
@@ -768,7 +876,9 @@ def main(argv: list[str] | None = None) -> int:
                     raise ValueError("model returned JSON missing/invalid required fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
                 apply_result(it, result, now, model_used)
-                cache[key] = {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+                cache.setdefault(key, {}).update(
+                    {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
+                )
                 summarized += 1
                 logger.info("BATCH API %s confidence=%s", it.get("id"), result.get("confidence"))
             except Exception as exc:
@@ -799,9 +909,10 @@ def main(argv: list[str] | None = None) -> int:
                 if not valid_japanese_result(result):
                     raise ValueError("model returned invalid Japanese summary fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                apply_japanese_result(it, result)
-                cache[key].update(
+                apply_japanese_result(it, result, now, model_used)
+                cache.setdefault(key, {}).update(
                     {**{field: it[field] for field in JA_AI_FIELDS},
+                     "summary_ja_source": "claude",
                      "ja_summarized_at": now, "ja_summary_model": model_used}
                 )
                 ja_summarized += 1
@@ -818,6 +929,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: output validation failed ({len(problems)} problem(s)); not writing. See {LOG_PATH}.", file=sys.stderr)
         return 2
     caution_warnings = log_caution_warnings(items)
+    japanese_remaining = sum(not valid_japanese_result(it) for it in targets)
 
     backup_created = False
     if not args.dry_run:
@@ -834,11 +946,11 @@ def main(argv: list[str] | None = None) -> int:
         "RUN SUMMARY input=%d target=%d api_limit=%s cache_hits=%d api_calls=%d "
         "summarized=%d failed=%d skipped_api_budget=%d ja_cache_hits=%d "
         "ja_summarized=%d ja_failed=%d ja_skipped_api_budget=%d caution_warnings=%d "
-        "batch=%s batch_id=%s japanese_batch_id=%s",
+        "japanese_remaining=%d batch=%s batch_id=%s japanese_batch_id=%s",
         len(items), len(targets), api_limit if api_limit is not None else "none",
         cache_hits, api_calls, summarized, failed, skipped_api_budget,
         ja_cache_hits, ja_summarized, ja_failed, ja_skipped_api_budget,
-        caution_warnings, args.batch, batch_id, japanese_batch_id,
+        caution_warnings, japanese_remaining, args.batch, batch_id, japanese_batch_id,
     )
 
     print("\n==== summarize_updates summary ====")
@@ -858,6 +970,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"japanese_summarized_items: {ja_summarized}")
     print(f"japanese_failed_items: {ja_failed}")
     print(f"japanese_skipped_api_budget: {ja_skipped_api_budget}")
+    print(f"japanese_remaining: {japanese_remaining}")
     print(f"caution_warnings: {caution_warnings}")
     print(f"output_path     : {OUTPUT_PATH}")
     print(f"backup_created  : {backup_created}")

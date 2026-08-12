@@ -1412,6 +1412,9 @@ class TestAiSummaryPreservation(unittest.TestCase):
             "summary_ja": "日本語原文に基づくAI要約です。",
             "business_impact_ja": "事業への影響が生じる可能性があります。",
             "recommended_action_ja": "日本語の公式情報源を確認することが考えられます。",
+            "summary_ja_source": "claude",
+            "ja_summarized_at": "2026-06-10T09:00:00Z",
+            "ja_summary_model": "claude-opus-4-8",
             "confidence": "medium",
             "ai_notes": "AI notes.",
             "summarized_at": "2026-06-10T08:00:00Z",
@@ -1436,6 +1439,19 @@ class TestAiSummaryPreservation(unittest.TestCase):
         self.assertEqual(item["summary_model"], "claude-opus-4-8")
         self.assertEqual(item["confidence"], "medium")
         self.assertEqual(item["summary_ja"], "日本語原文に基づくAI要約です。")
+        self.assertEqual(item["summary_ja_source"], "claude")
+        self.assertEqual(item["ja_summarized_at"], "2026-06-10T09:00:00Z")
+
+    def test_japanese_summary_is_preserved_independently_of_rule_based_english(self):
+        item = self._new_item()
+        existing = self._existing_claude(summary_source="rule_based")
+
+        preserved_english = bpd.preserve_ai_summary_fields(item, {"raw-abc123": existing})
+
+        self.assertFalse(preserved_english)
+        self.assertEqual(item["summary_en"], bpd.SUMMARY_EN)
+        self.assertEqual(item["summary_ja"], "日本語原文に基づくAI要約です。")
+        self.assertEqual(item["summary_ja_source"], "claude")
 
     def test_japanese_summary_is_not_preserved_when_original_title_changes(self):
         item = self._new_item()

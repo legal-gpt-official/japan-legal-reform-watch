@@ -1,0 +1,161 @@
+name: Japanese summary backfill
+
+# Manual-only, Japanese-summary-only backfill. It never fetches sources, runs
+# Stage 2, or translates English. Each round summarizes Japanese source metadata
+# directly, checkpoints cache/public data, and can resume without repeating work.
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: Japanese summaries per discounted Message Batch
+        required: true
+        default: "250"
+        type: choice
+        options:
+          - "100"
+          - "250"
+          - "500"
+      max_rounds:
+        description: Maximum checkpointed batches in this run
+        required: true
+        default: "8"
+        type: choice
+        options:
+          - "4"
+          - "8"
+          - "12"
+
+permissions:
+  contents: write
+
+# Serialize every workflow that can commit pipeline data.
+concurrency:
+  group: japan-legal-reform-data-writer
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Check out requested branch
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Compile backfill scripts
+        run: python -m py_compile scripts/summarize_updates.py scripts/build_public_archives.py scripts/anthropic_batch.py
+
+      - name: Run offline regression tests
+        run: python -m unittest discover -s tests
+
+      - name: Backfill and checkpoint Japanese summaries
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+          BATCH_SIZE: ${{ inputs.batch_size }}
+          MAX_ROUNDS: ${{ inputs.max_rounds }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          count_ja() {
+            python - <<'PY'
+          import json
+          with open("docs/data/legal_updates.json", encoding="utf-8") as fh:
+              items = json.load(fh)
+          fields = ("summary_ja", "business_impact_ja", "recommended_action_ja")
+          print(sum(
+              item.get("summary_ja_source") == "claude"
+              and bool(str(item.get("ja_summarized_at", "")).strip())
+              and bool(str(item.get("ja_summary_model", "")).strip())
+              and all(isinstance(item.get(field), str) and item[field].strip() for field in fields)
+              for item in items
+          ))
+          PY
+          }
+
+          total=$(python -c 'import json; print(len(json.load(open("docs/data/legal_updates.json", encoding="utf-8"))))')
+          before=$(count_ja)
+          echo "Starting Japanese coverage: ${before}/${total}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+          complete=false
+          for round in $(seq 1 "$MAX_ROUNDS"); do
+            if [ "$before" -eq "$total" ]; then
+              complete=true
+              break
+            fi
+
+            echo "Round ${round}: requesting up to ${BATCH_SIZE} Japanese summaries."
+            python scripts/summarize_updates.py \
+              --all-items \
+              --japanese-only \
+              --api-limit "$BATCH_SIZE" \
+              --batch
+            python scripts/build_public_archives.py
+
+            after=$(count_ja)
+            echo "Round ${round}: ${before} -> ${after} of ${total}" | tee -a "$GITHUB_STEP_SUMMARY"
+            if [ "$after" -lt "$before" ]; then
+              echo "Japanese coverage shrank; refusing to checkpoint."
+              exit 1
+            fi
+            if [ "$after" -eq "$before" ]; then
+              echo "No Japanese-summary progress; stopping so the run can be diagnosed safely."
+              exit 1
+            fi
+
+            git add data/summary_cache.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
+            git commit -m "Backfill Japanese summaries (${after}/${total})"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+            before=$after
+          done
+
+          if [ "$before" -eq "$total" ]; then
+            complete=true
+          fi
+          if [ "$complete" != "true" ]; then
+            echo "Backfill stopped at ${before}/${total}; rerun to continue." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "Japanese summary backfill complete: ${before}/${total}." | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Final semantic integrity gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          items = json.loads(Path("docs/data/legal_updates.json").read_text(encoding="utf-8"))
+          cache = json.loads(Path("data/summary_cache.json").read_text(encoding="utf-8"))
+          fields = ("summary_ja", "business_impact_ja", "recommended_action_ja")
+          failures = []
+          for item in items:
+              item_id = item.get("id", "")
+              if item.get("summary_ja_source") != "claude":
+                  failures.append(f"{item_id}: missing summary_ja_source")
+              for field in fields:
+                  if not isinstance(item.get(field), str) or not item[field].strip():
+                      failures.append(f"{item_id}: missing {field}")
+              if not str(item.get("ja_summarized_at", "")).strip():
+                  failures.append(f"{item_id}: missing ja_summarized_at")
+              if not str(item.get("ja_summary_model", "")).strip():
+                  failures.append(f"{item_id}: missing ja_summary_model")
+          if failures:
+              print("Japanese backfill integrity failures:")
+              for failure in failures[:20]:
+                  print(f"- {failure}")
+              raise SystemExit(1)
+          if len(cache) < len(items):
+              raise SystemExit(f"Summary cache unexpectedly smaller than corpus: {len(cache)} < {len(items)}")
+          print(f"Verified complete Japanese summaries for {len(items)} published items.")
+          PY

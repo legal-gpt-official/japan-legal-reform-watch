@@ -1620,6 +1620,16 @@
     );
   }
 
+  function activeSummarySource(update) {
+    if (filters.lang === "ja" && hasJapaneseSummary(update)) {
+      // summary_ja_source is independent from the canonical English source.
+      // The fallback keeps already-published Japanese summaries compatible
+      // while Stage 2 migrates their provenance on the next rebuild.
+      return update.summary_ja_source || "claude";
+    }
+    return update.summary_source;
+  }
+
   function hasLocalizedBody(update) {
     return filters.lang === "ja" ? hasJapaneseSummary(update) : hasTranslation(update);
   }
@@ -1927,7 +1937,7 @@
       update.published_at,
       firstSeenDisplay(update),
       update.last_checked,
-      I18N.summaryTypeLabel(update.summary_source),
+      I18N.summaryTypeLabel(activeSummarySource(update)),
       translatedField(update, "summary"),
       translatedField(update, "business_impact"),
       translatedField(update, "recommended_action"),
@@ -2026,7 +2036,7 @@
     // back to English per field; the original Japanese title is always preserved.
     const sourceUrl = safeUrl(u.source_url);
     const displayTitle = translatedField(u, "title");
-    const summaryMeta = summarySourceMeta(u.summary_source);
+    const summaryMeta = summarySourceMeta(activeSummarySource(u));
     const summaryBadge = `<span class="badge badge-summary ${escapeHtml(
       summaryMeta.className
     )}" title="${escapeHtml(summaryMeta.title)}">${escapeHtml(summaryMeta.label)}</span>`;
@@ -2156,15 +2166,13 @@
     const values = [update.title_en, update.title_ja];
     translatedBlocks.forEach((block) => values.push(block.title));
     if (update.summary_source === "claude") {
-      values.push(
-        update.summary_en,
-        update.summary_ja,
-        update.business_impact_ja,
-        update.recommended_action_ja
-      );
+      values.push(update.summary_en);
       translatedBlocks.forEach((block) => {
         values.push(block.summary, block.business_impact, block.recommended_action);
       });
+    }
+    if (hasJapaneseSummary(update)) {
+      values.push(update.summary_ja, update.business_impact_ja, update.recommended_action_ja);
     }
     return values.filter((value) => typeof value === "string").join(" ").toLowerCase();
   }
@@ -2176,14 +2184,14 @@
       if (filters.stage && u.stage !== filters.stage) return false;
       if (filters.source && u.source_name !== filters.source) return false;
       if (filters.impact && u.impact_level !== filters.impact) return false;
-      if (filters.aiSummaryOnly && u.summary_source !== "claude") return false;
+      if (filters.aiSummaryOnly && activeSummarySource(u) !== "claude") return false;
       if (filters.newlyDetectedOnly && !isNewlyDetected(u)) return false;
       if (q) {
-        // Titles remain searchable for every item. AI-authored summaries and
-        // their Japanese-source summaries and Chinese translations are searchable
-        // too; rule-based template
-        // bodies are excluded so boilerplate such as "by AI" cannot create
-        // broad false-positive monitoring matches.
+        // Titles remain searchable for every item. English AI summaries and
+        // their Chinese translations are searchable together; independently
+        // generated Japanese-source summaries are searchable on their own.
+        // Rule-based bodies stay excluded so boilerplate cannot create broad
+        // false-positive monitoring matches.
         if (!searchHaystack(u).includes(q)) return false;
       }
       return true;
@@ -2283,7 +2291,7 @@
       [I18N.t("ds_updates"), String(allUpdates.length)],
       [I18N.t("ds_archive_total"), String(archiveManifest.total_items)],
       [I18N.t("ds_sources"), String(distinctCount(allUpdates, "source_name"))],
-      [I18N.t("ds_ai_summaries"), String(allUpdates.filter((u) => u.summary_source === "claude").length)],
+      [I18N.t("ds_ai_summaries"), String(allUpdates.filter((u) => activeSummarySource(u) === "claude").length)],
       [
         I18N.t("ds_open_pc"),
         String(allUpdates.filter((u) => u.stage === "Public Comment Open").length),
@@ -2308,7 +2316,7 @@
     // AI summary count and last-checked date cover the FULL filtered set,
     // not only the cards currently rendered on screen.
     const shown = Math.min(visibleCount, filtered.length);
-    const aiSummaryCount = filtered.filter((u) => u.summary_source === "claude").length;
+    const aiSummaryCount = filtered.filter((u) => activeSummarySource(u) === "claude").length;
     const lastChecked = maxLastChecked(filtered);
     const parts = [
       I18N.t("meta_showing", { shown: shown, total: filtered.length }),
