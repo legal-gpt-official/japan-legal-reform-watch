@@ -37,6 +37,8 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # Optional translations.<locale> contract (see scripts/translate_updates.py).
 ALLOWED_LOCALES = {"zh-Hans"}
 TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action")
+JAPANESE_SUMMARY_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
+JAPANESE_SUMMARY_LIMITS = {"summary_ja": 800, "business_impact_ja": 500, "recommended_action_ja": 500}
 
 # Stages classify_stage() can emit (keep in sync with that function).
 ALLOWED_STAGES = {
@@ -199,6 +201,21 @@ class TestPublishedDataSchema(unittest.TestCase):
                         self.assertTrue(block[field].strip(), f"{it['id']}: empty {locale}.{field}")
                 # Canonical English title must still be present and non-Japanese.
                 self.assertTrue(it["title_en"].strip())
+
+    def test_japanese_ai_summary_fields_are_optional_complete_and_not_translations(self):
+        for it in self.items:
+            present = [field for field in JAPANESE_SUMMARY_FIELDS if field in it]
+            with self.subTest(id=it["id"]):
+                self.assertIn(len(present), (0, len(JAPANESE_SUMMARY_FIELDS)))
+                for field in present:
+                    self.assertIsInstance(it[field], str)
+                    self.assertTrue(it[field].strip())
+                    self.assertLessEqual(len(it[field]), JAPANESE_SUMMARY_LIMITS[field])
+                if present:
+                    self.assertEqual(it.get("summary_source"), "claude")
+                translations = it.get("translations", {})
+                if isinstance(translations, dict):
+                    self.assertNotIn("ja", translations)
 
     def test_relevance_score_is_numeric(self):
         for it in self.items:

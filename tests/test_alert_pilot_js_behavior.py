@@ -61,7 +61,11 @@ class TestAlertPilotJavaScriptBehavior(unittest.TestCase):
               window: {
                 crypto: crypto.webcrypto,
                 JLRW_ALERTS_CONFIG: config,
-                JLRW_I18N: { DEFAULT_LANG: "en", csvHeadersZh() { return []; } },
+                JLRW_I18N: {
+                  DEFAULT_LANG: "en",
+                  SUPPORTED: ["en", "ja", "zh-Hans"],
+                  csvHeadersLocalized() { return []; },
+                },
               },
             };
             vm.runInNewContext(source, context, { filename: appPath });

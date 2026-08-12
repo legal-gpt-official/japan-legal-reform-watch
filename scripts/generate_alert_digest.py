@@ -28,6 +28,7 @@ DEFAULT_MAX_ITEMS = 10
 MAX_FILTER_URL_LENGTH = 4_096
 MAX_ITEMS_LIMIT = 50
 VALID_SORTS = {"relevance", "published", "checked", "detected"}
+SEARCH_TRANSLATION_LOCALES = ("zh-Hans",)
 
 # Keep these values aligned with docs/app.js. The URL uses compact slugs, while
 # the underlying public JSON retains the exact source_name values.
@@ -273,23 +274,31 @@ def _is_newly_detected(item: Mapping[str, Any], today: date) -> bool:
 
 def _search_haystack(item: Mapping[str, Any]) -> str:
     translations = item.get("translations")
-    zh = translations.get("zh-Hans", {}) if isinstance(translations, dict) else {}
-    if not isinstance(zh, dict):
-        zh = {}
+    translations = translations if isinstance(translations, dict) else {}
+    blocks = [translations.get(locale, {}) for locale in SEARCH_TRANSLATION_LOCALES]
+    blocks = [block for block in blocks if isinstance(block, dict)]
     values = [
         item.get("title_en"),
         item.get("title_ja"),
-        zh.get("title"),
     ]
+    values.extend(block.get("title") for block in blocks)
     if item.get("summary_source") == "claude":
         values.extend(
             (
                 item.get("summary_en"),
-                zh.get("summary"),
-                zh.get("business_impact"),
-                zh.get("recommended_action"),
+                item.get("summary_ja"),
+                item.get("business_impact_ja"),
+                item.get("recommended_action_ja"),
             )
         )
+        for block in blocks:
+            values.extend(
+                (
+                    block.get("summary"),
+                    block.get("business_impact"),
+                    block.get("recommended_action"),
+                )
+            )
     return " ".join(value for value in values if isinstance(value, str)).lower()
 
 

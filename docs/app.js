@@ -6,8 +6,8 @@
 (function () {
   "use strict";
 
-  // i18n layer (docs/i18n.js, loaded first). English is canonical; zh-Hans is an
-  // optional overlay. All user-facing strings route through this namespace.
+  // i18n layer (docs/i18n.js, loaded first). English is canonical; Japanese and
+  // Simplified Chinese are optional overlays. User-facing strings route here.
   const I18N = window.JLRW_I18N;
   const ALERTS_CONFIG = window.JLRW_ALERTS_CONFIG || {};
 
@@ -154,9 +154,9 @@
     lang: I18N.DEFAULT_LANG,
   };
 
-  // The locale whose translations.<locale> block the card/search/CSV/copy layers
-  // read. English remains the canonical fallback for every field.
-  const TRANSLATION_LOCALE = "zh-Hans";
+  // Search spans every supported translated corpus regardless of the active UI
+  // language. English remains the canonical fallback for display fields.
+  const SEARCH_TRANSLATION_LOCALES = ["zh-Hans"];
   let savedSearchStatusKey = "";
   let savedSearchStatusIsError = false;
   let alertPilotStatusKey = "";
@@ -740,6 +740,9 @@
     relabelFilterOptions();
     document.documentElement.lang = filters.lang;
     document.title = I18N.t("document_title");
+    document.querySelectorAll("[data-localized-disclaimer]").forEach((link) => {
+      link.setAttribute("href", I18N.disclaimerPath());
+    });
     syncLanguageSelector();
     refreshMobileToggleLabel();
     refreshSavedSearchDialog();
@@ -1574,7 +1577,7 @@
   }
 
   function localeBlock(update) {
-    if (filters.lang === I18N.DEFAULT_LANG) return null;
+    if (filters.lang === I18N.DEFAULT_LANG || filters.lang === "ja") return null;
     const translations = update && update.translations;
     if (!translations || typeof translations !== "object") return null;
     const block = translations[filters.lang];
@@ -1584,6 +1587,19 @@
   // Returns the localized value for a translatable field, falling back to the
   // English canonical field whenever the translation is missing or empty.
   function translatedField(update, field) {
+    // Japanese uses the original official title and Stage 3 Japanese summaries
+    // generated directly from Japanese source metadata. It never reads a
+    // translations.ja block because Japanese is not a translation target.
+    if (filters.lang === "ja") {
+      if (field === "title" && plainText(update.title_ja)) return update.title_ja;
+      const japaneseField = {
+        summary: "summary_ja",
+        business_impact: "business_impact_ja",
+        recommended_action: "recommended_action_ja",
+      }[field];
+      if (japaneseField && hasJapaneseSummary(update)) return update[japaneseField];
+      return englishCanonical(update, field);
+    }
     const block = localeBlock(update);
     if (block) {
       const value = block[field];
@@ -1596,6 +1612,16 @@
   function hasTranslation(update) {
     const block = localeBlock(update);
     return !!(block && typeof block.title === "string" && block.title.trim());
+  }
+
+  function hasJapaneseSummary(update) {
+    return ["summary_ja", "business_impact_ja", "recommended_action_ja"].every(
+      (field) => plainText(update && update[field])
+    );
+  }
+
+  function hasLocalizedBody(update) {
+    return filters.lang === "ja" ? hasJapaneseSummary(update) : hasTranslation(update);
   }
 
   function sourceUrlForCopy(update) {
@@ -1676,17 +1702,25 @@
     return sections.join("\n\n");
   }
 
-  // Chinese copy summary: localized labels, translated values with per-field
+  // Localized copy summary: Japanese-source summaries or translated Chinese
+  // values with per-field
   // English fallback, an always-present English reference title and Japanese
   // original title, and a clear unofficial-AI-translation note. The English
   // builder above is left exactly as-is for the English UI.
   function buildCopySummaryTextLocalized(update) {
     const sourceUrl = sourceUrlForCopy(update);
-    const translationMissing = !localeBlock(update);
-    const sections = [
-      copySection(I18N.t("cs_title"), translatedField(update, "title")),
-      copySection(I18N.t("cs_en_ref_title"), update.title_en),
-      copySection(I18N.t("cs_ja_title"), update.title_ja),
+    const localizedBodyMissing = !hasLocalizedBody(update);
+    const titleSections = filters.lang === "ja"
+      ? [
+          copySection(I18N.t("cs_ja_title"), update.title_ja),
+          copySection(I18N.t("cs_en_ref_title"), update.title_en),
+        ]
+      : [
+          copySection(I18N.t("cs_title"), translatedField(update, "title")),
+          copySection(I18N.t("cs_en_ref_title"), update.title_en),
+          copySection(I18N.t("cs_ja_title"), update.title_ja),
+        ];
+    const sections = titleSections.concat([
       copySection(I18N.t("cs_area"), I18N.areaLabel(update.area)),
       copySection(I18N.t("cs_stage"), I18N.stageLabel(update.stage)),
       copySection(I18N.t("cs_impact"), I18N.impactLabel(update.impact_level)),
@@ -1695,7 +1729,7 @@
         I18N.sourceLabel(update.source_name, formatSourceDisplayName(update.source_name))
       ),
       copySection(I18N.t("cs_published"), update.published_at),
-    ];
+    ]);
     const firstSeen = firstSeenDisplay(update);
     if (firstSeen) {
       sections.push(copySection(I18N.t("cs_first_seen"), firstSeen));
@@ -1707,7 +1741,7 @@
       copySection(I18N.t("cs_official_source"), sourceUrl),
       plainText(I18N.t("cs_note"))
     );
-    if (translationMissing) {
+    if (localizedBodyMissing) {
       sections.push(plainText(I18N.t("cs_fallback")));
     }
     return sections.join("\n\n");
@@ -1879,17 +1913,12 @@
     return "\uFEFF" + rows.map((row) => row.join(",")).join("\r\n");
   }
 
-  // Chinese CSV: fixed 17-column layout (defined in i18n.js). Adds an English
+  // Localized CSV: fixed 17-column layout (defined in i18n.js). Adds an English
   // reference-title column and keeps the Japanese original title; translated
   // cells fall back to English per field. Internal ID stays last. The English
   // CSV above is unchanged.
-  const ZH_CSV_HEADERS = I18N.csvHeadersZh();
-
-  function csvRowZh(update) {
-    return [
-      translatedField(update, "title"),
-      update.title_en,
-      update.title_ja,
+  function csvRowLocalized(update) {
+    const common = [
       I18N.areaLabel(update.area),
       I18N.stageLabel(update.stage),
       I18N.impactLabel(update.impact_level),
@@ -1904,13 +1933,22 @@
       translatedField(update, "recommended_action"),
       update.relevance_score,
       update.id,
-    ].map(csvCell);
+    ];
+    const titles = filters.lang === "ja"
+      ? [update.title_ja, update.title_en]
+      : [
+      translatedField(update, "title"),
+      update.title_en,
+      update.title_ja,
+        ];
+    return titles.concat(common).map(csvCell);
   }
 
-  function buildCsvTextZh(updates) {
-    const rows = [ZH_CSV_HEADERS.map(csvCell)];
+  function buildCsvTextLocalized(updates) {
+    const headers = I18N.csvHeadersLocalized(filters.lang);
+    const rows = [headers.map(csvCell)];
     updates.forEach((update) => {
-      rows.push(csvRowZh(update));
+      rows.push(csvRowLocalized(update));
     });
     return "\uFEFF" + rows.map((row) => row.join(",")).join("\r\n");
   }
@@ -1958,10 +1996,12 @@
     }
 
     try {
-      // English keeps the existing 16-column CSV exactly; zh-Hans uses the
-      // 17-column Chinese layout with English fallback per cell.
+      // English keeps the existing 16-column CSV exactly; localized exports use
+      // a 17-column layout with an English reference title and per-cell fallback.
       const csvText =
-        filters.lang !== I18N.DEFAULT_LANG ? buildCsvTextZh(filtered) : buildCsvText(filtered);
+        filters.lang !== I18N.DEFAULT_LANG
+          ? buildCsvTextLocalized(filtered)
+          : buildCsvText(filtered);
       const blob = new Blob([csvText], { type: "text/csv;charset=utf-8" });
       const objectUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -1985,6 +2025,7 @@
     // AND attribute-escaped before being placed in the href. Localized fields fall
     // back to English per field; the original Japanese title is always preserved.
     const sourceUrl = safeUrl(u.source_url);
+    const displayTitle = translatedField(u, "title");
     const summaryMeta = summarySourceMeta(u.summary_source);
     const summaryBadge = `<span class="badge badge-summary ${escapeHtml(
       summaryMeta.className
@@ -2000,25 +2041,38 @@
           )}">${escapeHtml(I18N.t("newly_detected"))}</span>`
         : "";
 
-    // Translation badge + notice apply only for a non-English active language.
-    const translating = filters.lang !== I18N.DEFAULT_LANG;
-    const translated = hasTranslation(u);
+    // Chinese shows translation provenance. Japanese instead shows Stage 3 text
+    // summarized directly from Japanese source metadata.
+    const localizing = filters.lang !== I18N.DEFAULT_LANG;
+    const chineseTranslation = filters.lang === "zh-Hans" && hasTranslation(u);
+    const localizedBody = hasLocalizedBody(u);
     const translationBadge =
-      translating && translated
+      chineseTranslation
         ? `<span class="badge badge-ai-translation" title="${escapeHtml(
             I18N.t("translation_note")
           )}">${escapeHtml(I18N.t("badge_ai_translation"))}</span>`
         : "";
-    const translationNote = translating
-      ? translated
+    let translationNote = "";
+    if (filters.lang === "zh-Hans") {
+      translationNote = chineseTranslation
         ? `<p class="translation-note">${escapeHtml(I18N.t("translation_note"))}</p>`
         : `<p class="translation-note translation-note-missing">${escapeHtml(
             I18N.t("translation_unavailable")
-          )}</p>`
-      : "";
-    // Body language for screen readers: the translated language only when a
-    // translation is actually shown; otherwise the English fallback.
-    const cardLang = translating && translated ? filters.lang : "en";
+          )}</p>`;
+    } else if (filters.lang === "ja") {
+      translationNote = localizedBody
+        ? `<p class="translation-note">${escapeHtml(I18N.t("japanese_summary_note"))}</p>`
+        : `<p class="translation-note translation-note-missing">${escapeHtml(
+            I18N.t("japanese_summary_unavailable")
+          )}</p>`;
+    }
+    // Body language follows the localized body only when it is actually shown.
+    const cardLang = localizing && localizedBody ? filters.lang : "en";
+    const titleLang = filters.lang === "ja" ? "ja" : cardLang;
+    const originalTitle =
+      filters.lang === "ja" && plainText(displayTitle) === plainText(u.title_ja)
+        ? ""
+        : `<p class="card-title-ja" lang="ja">${escapeHtml(u.title_ja)}</p>`;
 
     const firstSeenDateLine = firstSeen
       ? `<span>${escapeHtml(I18N.t("date_first_detected"))}: ${escapeHtml(firstSeen)}</span>`
@@ -2036,10 +2090,10 @@
             ${summaryBadge}
             ${translationBadge}
           </div>
-          <h2 class="card-title" lang="${escapeHtml(cardLang)}">${escapeHtml(
-      translatedField(u, "title")
+          <h2 class="card-title" lang="${escapeHtml(titleLang)}">${escapeHtml(
+      displayTitle
     )}</h2>
-          <p class="card-title-ja" lang="ja">${escapeHtml(u.title_ja)}</p>
+          ${originalTitle}
           ${translationNote}
         </header>
         <div class="card-body" lang="${escapeHtml(cardLang)}">
@@ -2068,7 +2122,7 @@
               <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
                 ${escapeHtml(I18N.t("card_view_source"))}
               </a>
-              <div class="copy-actions" aria-label="Copy actions">
+              <div class="copy-actions" aria-label="${escapeHtml(I18N.t("copy_actions_aria"))}">
                 <button type="button" class="copy-button" data-copy-action="summary" data-copy-id="${escapeHtml(
                   u.id
                 )}" data-copy-label="${escapeHtml(I18N.t("copy_summary_label"))}">${escapeHtml(
@@ -2095,15 +2149,22 @@
   }
 
   function searchHaystack(update) {
-    const tr = (update.translations && update.translations[TRANSLATION_LOCALE]) || {};
-    const values = [update.title_en, update.title_ja, tr.title];
+    const translations = update.translations && typeof update.translations === "object"
+      ? update.translations
+      : {};
+    const translatedBlocks = SEARCH_TRANSLATION_LOCALES.map((locale) => translations[locale] || {});
+    const values = [update.title_en, update.title_ja];
+    translatedBlocks.forEach((block) => values.push(block.title));
     if (update.summary_source === "claude") {
       values.push(
         update.summary_en,
-        tr.summary,
-        tr.business_impact,
-        tr.recommended_action
+        update.summary_ja,
+        update.business_impact_ja,
+        update.recommended_action_ja
       );
+      translatedBlocks.forEach((block) => {
+        values.push(block.summary, block.business_impact, block.recommended_action);
+      });
     }
     return values.filter((value) => typeof value === "string").join(" ").toLowerCase();
   }
@@ -2119,7 +2180,8 @@
       if (filters.newlyDetectedOnly && !isNewlyDetected(u)) return false;
       if (q) {
         // Titles remain searchable for every item. AI-authored summaries and
-        // their Chinese translations are searchable too; rule-based template
+        // their Japanese-source summaries and Chinese translations are searchable
+        // too; rule-based template
         // bodies are excluded so boilerplate such as "by AI" cannot create
         // broad false-positive monitoring matches.
         if (!searchHaystack(u).includes(q)) return false;

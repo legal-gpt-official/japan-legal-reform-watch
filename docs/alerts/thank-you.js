@@ -49,7 +49,8 @@
   }
 
   function updateDashboardLinks(lang) {
-    var href = "../index.html" + (lang === "zh-Hans" ? "?lang=zh-Hans" : "");
+    var href =
+      "../index.html" + (lang === I18N.DEFAULT_LANG ? "" : "?lang=" + encodeURIComponent(lang));
     document.querySelectorAll("[data-dashboard-link]").forEach(function (link) {
       link.setAttribute("href", href);
     });
