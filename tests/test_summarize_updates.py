@@ -234,6 +234,8 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--japanese-only", workflow)
         self.assertIn("--api-limit \"$BATCH_SIZE\"", workflow)
         self.assertIn("--batch", workflow)
+        self.assertIn("--resume-latest-batch", workflow)
+        self.assertIn("--parallel 8", workflow)
         self.assertIn("git push origin \"HEAD:${GITHUB_REF_NAME}\"", workflow)
         self.assertIn("group: japan-legal-reform-data-writer", workflow)
         self.assertIn("python scripts/build_public_archives.py", workflow)
@@ -570,6 +572,48 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertIn("japanese_cache_hits: 1", stdout.getvalue())
             self.assertIn("japanese_summarized_items: 1", stdout.getvalue())
             self.assertIn("japanese_remaining: 1", stdout.getvalue())
+
+    def test_japanese_only_parallel_calls_respect_api_limit(self):
+        items = []
+        for index in range(3):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"parallel-{index}"
+            item["source_url"] = f"https://example.go.jp/parallel-{index}"
+            items.append(item)
+        japanese = TestSummarizeTitleCap()._ja_result()
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_japanese_summary": lambda client, model, item, raw: (japanese, model),
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main(
+                    ["--all-items", "--japanese-only", "--api-limit", "2", "--parallel", "2"]
+                )
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual(sum("summary_ja" in item for item in published), 2)
+            self.assertNotIn("summary_ja", published[2])
 
 
 if __name__ == "__main__":
