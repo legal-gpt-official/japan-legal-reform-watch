@@ -93,6 +93,9 @@ AI_PRESERVE_FIELDS = (
     "summary_source", "confidence", "ai_notes", "summarized_at", "summary_model",
 )
 JAPANESE_SUMMARY_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
+JAPANESE_SUMMARY_PROVENANCE_FIELDS = (
+    "summary_ja_source", "ja_summarized_at", "ja_summary_model",
+)
 
 # Stage 4 (scripts/translate_updates.py) owns translations.<locale>. Stage 2 only
 # CARRIES THEM FORWARD across rebuilds so they survive the window between a build
@@ -1559,27 +1562,42 @@ def existing_items_by_id(items: list[dict]) -> dict[str, dict]:
 
 
 def preserve_ai_summary_fields(item: dict, existing_by_id: dict[str, dict]) -> bool:
-    """Carry forward Claude summary fields only when id and source_url still match."""
+    """Carry forward independently valid English and Japanese Claude summaries."""
     existing = existing_by_id.get(item.get("id") or "")
-    if not existing or existing.get("summary_source") != "claude":
+    if not existing:
         return False
     if (existing.get("source_url") or "") != (item.get("source_url") or ""):
         return False
-    for field in AI_PRESERVE_FIELDS:
-        if field in existing:
-            item[field] = existing[field]
+    english_preserved = existing.get("summary_source") == "claude"
+    if english_preserved:
+        for field in AI_PRESERVE_FIELDS:
+            if field in existing:
+                item[field] = existing[field]
     # Japanese summaries are based directly on Japanese source metadata. At a
     # minimum, require the original title to be unchanged and all three fields
-    # to be present before carrying them across a Stage 2 rebuild.
+    # to be present before carrying them across a Stage 2 rebuild. Older records
+    # predate summary_ja_source, so summary_source=claude is accepted once and
+    # migrated to the independent Japanese provenance fields.
     same_japanese_title = (existing.get("title_ja") or "") == (item.get("title_ja") or "")
     valid_japanese_summary = all(
         isinstance(existing.get(field), str) and existing[field].strip()
         for field in JAPANESE_SUMMARY_FIELDS
     )
-    if same_japanese_title and valid_japanese_summary:
+    japanese_is_claude = (
+        existing.get("summary_ja_source") == "claude"
+        or existing.get("summary_source") == "claude"
+    )
+    if same_japanese_title and valid_japanese_summary and japanese_is_claude:
         for field in JAPANESE_SUMMARY_FIELDS:
             item[field] = existing[field]
-    return item.get("summary_source") == "claude"
+        item["summary_ja_source"] = "claude"
+        item["ja_summarized_at"] = (
+            existing.get("ja_summarized_at") or existing.get("summarized_at") or ""
+        )
+        item["ja_summary_model"] = (
+            existing.get("ja_summary_model") or existing.get("summary_model") or ""
+        )
+    return english_preserved
 
 
 def valid_translation_object(value) -> bool:

@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "japanese-ui-20260812"
-APP_CACHE_BUSTER = "japanese-ui-20260812"
+CACHE_BUSTER = "japanese-backfill-20260812"
+APP_CACHE_BUSTER = "japanese-backfill-20260812"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "japanese-ui-20260812"
+I18N_CACHE_BUSTER = "japanese-backfill-20260812"
 
 
 def object_body(name: str) -> str:
@@ -285,7 +285,7 @@ class TestAppJsUrlState(unittest.TestCase):
         for snippet in (
             "function renderDataStatus",
             "function distinctCount",
-            'u.summary_source === "claude"',
+            'activeSummarySource(u) === "claude"',
             'u.stage === "Public Comment Open"',
             "isNewlyDetected(u)",
             "maxLastChecked(allUpdates)",
@@ -1146,7 +1146,12 @@ class TestJapaneseI18n(unittest.TestCase):
             self.assertIn(field, APP_JS)
         self.assertIn("function hasJapaneseSummary", APP_JS)
         self.assertIn("japaneseField && hasJapaneseSummary(update)", APP_JS)
+        self.assertIn("function activeSummarySource", APP_JS)
+        self.assertIn('return update.summary_ja_source || "claude";', APP_JS)
+        self.assertIn('activeSummarySource(u) !== "claude"', APP_JS)
+        self.assertIn("if (hasJapaneseSummary(update))", APP_JS)
         self.assertIn("日本語の原文メタデータを基にAIが直接作成", I18N_JS)
+        self.assertIn("日本語AI要約はまだ生成されていない", I18N_JS)
         self.assertNotIn('translations["ja"]', APP_JS)
 
     def test_japanese_csv_column_order_is_fixed(self):

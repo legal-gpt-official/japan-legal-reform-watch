@@ -544,7 +544,7 @@
       translation_note: "この翻訳はモニタリング目的でAIが生成したものです。日本語の公式情報源が優先します。",
       translation_unavailable: "中国語訳を利用できないため、英語を表示しています。",
       japanese_summary_note: "この日本語要約は、日本語の原文メタデータを基にAIが直接作成したものです。日本語の公式情報源が優先します。",
-      japanese_summary_unavailable: "日本語のAI要約を利用できないため、英語要約を表示しています。",
+      japanese_summary_unavailable: "この項目の日本語AI要約はまだ生成されていないため、英語要約を表示しています。",
 
       copy_summary_success: "要約をコピーしました",
       copy_source_success: "情報源リンクをコピーしました",
@@ -569,7 +569,7 @@
       cs_action: "推奨対応",
       cs_official_source: "日本語の公式情報源",
       cs_note: "この日本語要約は、日本語の原文メタデータを基にAIが作成したモニタリング情報であり、法的助言ではありません。日本語の公式情報源が優先します。",
-      cs_fallback: "日本語のAI要約がない一部の項目は英語要約で表示しています。",
+      cs_fallback: "日本語AI要約がまだ生成されていない項目は、英語要約で表示しています。",
 
       modal_title: "重要事項 — ご利用前にお読みください",
       modal_p1: "Japan Legal Reform Watch by LegalOSは、日本の法令・規制・行政動向に関する要約を一般的な情報提供のみを目的として掲載しています。",

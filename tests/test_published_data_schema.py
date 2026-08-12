@@ -39,6 +39,7 @@ ALLOWED_LOCALES = {"zh-Hans"}
 TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action")
 JAPANESE_SUMMARY_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
 JAPANESE_SUMMARY_LIMITS = {"summary_ja": 800, "business_impact_ja": 500, "recommended_action_ja": 500}
+JAPANESE_PROVENANCE_FIELDS = ("summary_ja_source", "ja_summarized_at", "ja_summary_model")
 
 # Stages classify_stage() can emit (keep in sync with that function).
 ALLOWED_STAGES = {
@@ -212,7 +213,10 @@ class TestPublishedDataSchema(unittest.TestCase):
                     self.assertTrue(it[field].strip())
                     self.assertLessEqual(len(it[field]), JAPANESE_SUMMARY_LIMITS[field])
                 if present:
-                    self.assertEqual(it.get("summary_source"), "claude")
+                    self.assertEqual(it.get("summary_ja_source"), "claude")
+                    for field in JAPANESE_PROVENANCE_FIELDS[1:]:
+                        self.assertIsInstance(it.get(field), str)
+                        self.assertTrue(it[field].strip())
                 translations = it.get("translations", {})
                 if isinstance(translations, dict):
                     self.assertNotIn("ja", translations)
