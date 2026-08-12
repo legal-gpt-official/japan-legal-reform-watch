@@ -2228,7 +2228,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "個人情報保護委員会(PPC)は、令和7年度上半期報告の概要等を公表したことを新着情報として掲載しました。原文では活動報告等に位置付けられており、2025年11月12日付で公表されています。詳細な内容は原文に記載の範囲にとどまります。",
+    "business_impact_ja": "個人情報保護に関する委員会の活動状況を把握するうえで参考となる可能性があり、自社の対応方針の検討に資することも考えられます。",
+    "recommended_action_ja": "詳細については、個人情報保護委員会の公式情報源で報告の概要等をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T08:49:42Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-f3525f1bec2aadf0",
@@ -2254,7 +2260,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDAの安全対策業務の新着情報として、2025年3月5日付で厚生労働省から発出された再生医療等製品に係る使用上の注意の改訂指示通知が掲載されました。詳細な対象製品や改訂内容は、掲載元の情報を確認する必要があります。",
+    "business_impact_ja": "再生医療等製品を取り扱う事業者において、添付文書等の記載改訂や関連手続への対応が必要となる可能性があります。",
+    "recommended_action_ja": "PMDAおよび厚生労働省の公式情報源で通知の対象製品および改訂内容の詳細をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T08:49:42Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-69fd7b66cf4cb683",
@@ -2280,7 +2292,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "厚生労働省より2025年3月5日付で発出された医薬品の使用上の注意の改訂指示通知が、PMDA（医薬品医療機器総合機構）の安全対策業務の新着情報として掲載されました。原文からは通知の掲載という事実が示されていますが、対象医薬品や改訂内容の詳細は本メタデータには含まれていません。",
+    "business_impact_ja": "使用上の注意の改訂は、該当する医薬品を取り扱う事業者において添付文書や社内資料の見直し等に影響する可能性があります。改訂の具体的な対象や範囲によって影響の程度は異なると考えられます。",
+    "recommended_action_ja": "詳細な改訂対象や内容については、PMDAの安全対策業務の該当ページおよび厚生労働省の公式情報をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T08:49:42Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-d19785ba384eaab6",
