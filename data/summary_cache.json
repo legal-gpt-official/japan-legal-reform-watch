@@ -107,7 +107,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title; raw_summary was empty and details are unverified. The title marks the item as closed ('受付終了'), though the preliminary label says 'Public Comment Open' — this discrepancy should be checked against the source. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-11T01:25:32Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "デジタル庁は、マイナンバー法（行政手続における特定の個人を識別するための番号の利用等に関する法律）別表の主務省令で定める事務を定める命令、および同法第19条第8号に基づく利用特定個人情報の提供に関する命令の一部を改正する命令案等について、意見募集を行っていたことが公表されています。タイトルには「受付終了」との表記があり、意見募集の受付は終了した段階と示されています。公表日は2026年6月10日とされています。",
+    "business_impact_ja": "マイナンバーに関連する事務や利用特定個人情報の提供の取扱いに関わる事業においては、命令改正の内容によっては対応の検討が必要となる可能性があります。改正の具体的な影響範囲は原文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正命令案の具体的な内容や今後の手続の状況については、デジタル庁の公式情報源で最新情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "d4700ff8524a0d33c0df1104e0115b266bf408dd79cb5f46dcd2296666351201": {
     "title_en": "Public Comment: Draft Partial Amendment to Standards for Inspection and Re-inspection of Containers Fixed to Railway Vehicles",
@@ -173,7 +179,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and rule-based triage labels; specific content, deadlines, and scope are unverified. This is a draft out for public comment, not enacted law; verify against the official JFTC source.",
     "summarized_at": "2026-06-11T04:43:53Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "公正取引委員会は、「知的財産権・ノウハウ・データの適切な取引のための優越的地位の濫用等に関する指針」（案）及び「契約書ひな形」（案）に対する意見募集を行うとの報道発表を、2026年3月30日付で公表しました。本件は指針及び契約書ひな形の案に関する意見募集の段階とされています。提供された情報は報道発表の概要にとどまり、詳細な内容は原文に委ねられています。",
+    "business_impact_ja": "知的財産権・ノウハウ・データの取引や、優越的地位の濫用に関わる契約実務を行う事業者において、指針案や契約書ひな形案の内容が今後の取引慣行や契約設計に影響する可能性があります。意見募集の段階であるため、確定的な内容ではないと考えられます。",
+    "recommended_action_ja": "公正取引委員会の公式発表資料や意見募集の詳細を確認し、案の具体的内容や提出期限等を把握することをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "672529ed763c74eff31981d52361027bf09d5565b505e04a8279739d0e8603d2": {
     "title_en": "Public Comment on Draft Cabinet Order Amending the Environmental Impact Assessment Act Enforcement Order",
@@ -199,7 +211,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and summary; the metadata does not confirm finalization or effective date. Preliminary 'Energy / Environment' label appears keyword-driven and may not reflect the radio/telecom nature of the item; treat as weak context.",
     "summarized_at": "2026-06-12T01:20:53Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省より、特定小電力無線局の無線設備に関する告示案等（一の筐体に収めることを要しない装置、送信時間制限装置及びキャリアセンスの技術的条件等を定める件の一部改正）に係る意見募集の結果が公表されました。本情報は意見募集の結果公表段階を示すものです。原文からは改正案の具体的内容や最終的な確定状況の詳細は確認できません。",
+    "business_impact_ja": "特定小電力無線局に関連する無線設備を製造・利用する事業者において、技術的条件の見直しが今後の設備仕様や運用に影響する可能性があります。改正の内容次第で対応検討が必要となることも考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、総務省の公式情報源にて意見募集結果および告示の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "dab6ab109ab49576a5fb8c56f93bf724b3df263a91a3f59e11eacf728e77cf62": {
     "title_en": "MIC Publishes Results of Public Comments on Draft Amendment to 2003 MIC Notice No. 213",
@@ -209,7 +227,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and limited metadata; the substance of the draft amendment and the comment results is unverified. This appears to report public comment results on a draft (proposed) amendment, not an enacted change.",
     "summarized_at": "2026-06-12T01:20:59Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省の新着情報として、平成15年総務省告示第213号の一部を改正する告示案に対する意見募集の結果が公表されました。原文の記載はタイトルと同一の内容にとどまり、改正の具体的な内容や寄せられた意見の詳細は本メタデータからは確認できません。",
+    "business_impact_ja": "当該告示が関係する分野の事業者にとって、改正の内容次第では実務上の対応が必要となる可能性があります。意見募集の結果公表は改正手続の進展を示す段階と考えられます。",
+    "recommended_action_ja": "改正案の具体的な内容や今後の手続については、総務省の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "69feae8051f01068bc4f50fec7aadd919d19f7de5af1573c4f10f607f573e64f": {
     "title_en": "Cabinet Decision on Partial Amendment to Enforcement Order of the Chemical Substances Control Act",
@@ -219,7 +243,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and a very brief raw summary; substantive details are unverified. A Cabinet decision on a Cabinet Order is indicated, but this differs from promulgation or entry into force, which is not confirmed here. Triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-12T01:21:05Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "環境省の報道発表として、化学物質の審査及び製造等の規制に関する法律（化審法）施行令の一部を改正する政令が閣議決定されたことが公表されています。公表日は2026年5月19日とされ、原文では関連情報として「保健対策」との記載があります。提供された情報の範囲では、改正内容の詳細や公布・施行の時期は明示されていません。",
+    "business_impact_ja": "化学物質の製造・輸入・取扱いに関わる事業者において、施行令改正の内容次第で対応が必要となる可能性があります。改正の具体的内容や適用範囲によっては、社内手続の見直しが求められることも考えられます。",
+    "recommended_action_ja": "環境省の報道発表など日本語の公式情報源で、改正政令の具体的内容および公布・施行の時期をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "61dacc86a38bfaa1d16a073450bd7e83d218ca468a1c4e43d408098dcdaa8a34": {
     "title_en": "Public Comment on Draft Cabinet Order Partially Amending the Local Autonomy Act Enforcement Order",
@@ -249,7 +279,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and limited metadata; this is a draft out for public comment, not an enacted measure, and specific details are unverified.",
     "summarized_at": "2026-06-12T07:04:27Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "環境省の報道発表によると、鳥獣の保護及び管理を図るための事業を実施するための基本的な指針の改正案に関する意見募集（パブリック・コメント）が案内されています。原文の記載は自然環境分野に関するもので、現時点では意見募集の段階にあることが示されています。",
+    "business_impact_ja": "鳥獣の保護・管理に関連する事業を行う事業者にとって、指針改正の内容によっては対応の検討が必要となる可能性があります。意見募集段階であるため、今後の内容確定に留意が必要と考えられます。",
+    "recommended_action_ja": "環境省の公式発表および意見募集の詳細内容をご確認のうえ、必要に応じて社内での検討をご検討いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "355c20e007a667641abb936886dc57a3cd4e83c004b6a0199ed9eda63dde3586": {
     "title_en": "Public Comment on Green List (Annex 1 Table) of Green Bond and Green Loan Guidelines",
@@ -339,7 +375,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief metadata; this is a draft ordinance out for public comment, not an enacted rule. Substantive details of the amendments are not provided and should be verified against the official source.",
     "summarized_at": "2026-06-16T02:17:40Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "国土交通省住宅局は、マンションの管理の適正化の推進に関する法律施行規則及び長期優良住宅の普及の促進に関する法律施行規則の一部を改正する省令案について意見募集を行っています。案の公示日は2026年6月16日、受付締切は2026年7月16日00:00とされ、カテゴリーは建築・住宅、所管は住宅局参事官（マンション・賃貸住宅担当）付とされています。現時点では意見募集の段階にある省令案であり、改正内容の確定を示すものではありません。",
+    "business_impact_ja": "マンション管理や長期優良住宅に関わる事業者において、省令改正の内容によっては手続や実務対応の見直しが必要となる可能性があります。",
+    "recommended_action_ja": "改正省令案の具体的内容や締切、その後の動向については、e-Govおよび所管省庁の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "96eb6408a725ef7df8b02e2aec4ed7bbf9dbabd494074ce46b6441692107d48d": {
     "title_en": "Public Comment: Draft Cabinet Order Amending the Local Autonomy Act Enforcement Order",
@@ -349,7 +391,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not enacted law. Specific substantive changes are not described in the metadata and remain unverified. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-16T02:17:47Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省自治行政局行政課は、地方自治法施行令の一部を改正する政令（案）について意見募集を実施しています。案の公示日は2026年6月13日、意見の受付締切は2026年7月13日23:59とされ、カテゴリーは地方自治に分類されています。現時点では意見募集の段階であり、政令の内容は案として示されています。",
+    "business_impact_ja": "地方自治に関する制度運用に関わる事業者や地方公共団体において、改正案の内容次第で対応の検討が必要となる可能性があります。ただし現段階では案であるため、影響の程度は確定していないと考えられます。",
+    "recommended_action_ja": "具体的な改正案の内容や締切等については、e-Govの意見募集ページおよび総務省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "e0b635823ea89598a7ed67b19db3aade81df38c4c0c509eb937fa66c5afa8b66": {
     "title_en": "Public Comment: Draft Notice Amending Forestry-Specific Standards under the Foreign Worker Development & Employment Regulations",
@@ -389,7 +437,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title; raw summary was empty and detailed provisions are unverified. The title indicates promulgation ('公布') and publication of public comment results, but exact scope and effective dates are not given. Preliminary labels (Finance/AML, Medium) are keyword-based triage only.",
     "summarized_at": "2026-06-16T02:18:13Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "金融庁は、「銀行法施行規則等の一部を改正する内閣府令」等の公布、およびパブリックコメントの結果等について公表したとされています。本情報はタイトルに基づくものであり、改正の具体的な内容や施行時期に関する詳細は原文に記載がない範囲では確認できません。",
+    "business_impact_ja": "銀行法施行規則等の改正に関わる内容であることから、金融機関の実務や社内規程に影響が及ぶ可能性があります。改正の範囲によっては対応の検討が必要になることも考えられます。",
+    "recommended_action_ja": "金融庁の公表資料および公布された内閣府令の原文をご確認いただき、具体的な改正内容と適用時期をお確かめいただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "397fdee89bfb439e578441277d7c5d593b74be04ec68703bb1f00a330506f450": {
     "title_en": "Results of Public Comments on Draft Ministerial Ordinance Amending Rules on Prevention of Propagation Obstruction under the Radio Act",
@@ -399,7 +453,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and limited metadata; the amendment text and final status are unverified. The preliminary 'Data/Privacy/AI' label appears inconsistent with the Radio Act subject matter and was not relied upon.",
     "summarized_at": "2026-06-16T02:18:20Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省は、電波法に基づく伝搬障害の防止に関する規則の一部を改正する省令案等について実施した意見募集の結果を公表しました。公表情報は意見募集結果の公表段階であることを示していますが、提供されたメタデータには募集で寄せられた意見の内容や改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "電波利用や無線設備の設置・運用に関連する事業者にとって、伝搬障害の防止に関する規則改正が今後の対応に影響する可能性があります。改正の具体的な内容や施行時期次第で、確認事項が生じることも考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行時期については、総務省の公式ページ等の日本語の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "92adb836531a13d66e397aa24d6609e21e357647a024fa1750f3669ddaeb9b7e": {
     "title_en": "Public Comment: Draft Guidelines for Practicing Nature Positive in Procurement",
@@ -449,7 +509,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; specific provisions, deadlines, and effective dates are unverified. The preliminary 'Data / Privacy / AI' label appears inconsistent with the telecommunications subject matter and was not relied upon. The Japanese source is authoritative.",
     "summarized_at": "2026-06-17T22:46:57Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省は、電気通信事業法施行規則等の一部を改正する省令案等について意見募集を行っています。この改正案は、モバイル網固定電話のユニバーサルサービス化に関する規定の整備を内容とするものです。現時点では意見募集の段階であり、改正内容が確定したものではありません。",
+    "business_impact_ja": "電気通信事業やモバイル網を活用した固定電話サービスに関わる事業者にとって、ユニバーサルサービスに係る規定の見直しが事業運営や制度対応に影響する可能性があります。",
+    "recommended_action_ja": "総務省の公式情報源で意見募集の対象範囲、期限、改正案の詳細をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "8983b9c7b5040f430429c188392676b27b17bf4b8871e4e8fa880bd42359fbde": {
     "title_en": "Public Comment: Draft Amendments to Invasive Alien Species Act Enforcement Order and Related Rules",
@@ -475,7 +541,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and metadata; this is a draft out for public comment, not an enacted rule. The preliminary 'Data / Privacy / AI' label appears inconsistent with the telecommunications subject matter and was not relied upon.",
     "summarized_at": "2026-06-18T00:56:01Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省総合通信基盤局は、電気通信事業法施行規則等の一部を改正する省令案等について意見募集を実施しています。本案は、モバイル網固定電話のユニバーサルサービス化に関する規定の整備を内容とするものです。案の公示日は2026年6月18日、意見の受付締切日時は2026年7月17日23時59分とされています。",
+    "business_impact_ja": "電気通信分野の事業者にとって、ユニバーサルサービスに関する規定整備が事業運営や関連手続に影響する可能性があります。改正の具体的内容によっては対応の検討が必要になることも考えられます。",
+    "recommended_action_ja": "e-Govの意見募集案件および総務省の公表情報を確認し、締切日時や案の詳細をご自身で照合されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "39d990ec70d8a5452ec3e57b1384bda529f7cc138d3fba1f74db8d01a047c27a": {
     "title_en": "Public Comment on Draft Amendments to Invasive Alien Species Act Cabinet Order and Related Rules",
@@ -517,7 +589,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the provided Japanese title and metadata only; the specific content of the proposed amendments is not described in the metadata and is unverified. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-19T22:05:51Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "環境省自然環境局自然環境計画課は、「南極地域の環境の保護に関する法律施行規則の一部を改正する省令案」について、パブリック・コメント（意見募集）を実施しています。案の公示日は2026年6月19日、受付締切は2026年7月19日00:00とされ、カテゴリーは環境保全に分類されています。現時点では意見募集の段階にある案であり、改正内容の確定や施行を示すものではありません。",
+    "business_impact_ja": "南極地域における活動や関連する環境保全対応を行う事業者にとって、施行規則の改正内容によっては手続や遵守事項に影響が及ぶ可能性があります。もっとも、現段階は意見募集中の案であり、最終的な内容は変わり得ると考えられます。",
+    "recommended_action_ja": "改正案の詳細や締切、確定内容については、e-Govおよび環境省の公式情報を直接ご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "f9b1494f4ed702f3127e82e87b6184203de897fb18bcde2fa62c9ccd7d4a483f": {
     "title_en": "Public Comment: Draft Ministerial Order Amending Enforcement Regulations under the Antarctic Environmental...",
@@ -547,7 +625,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title; the raw summary is empty and amendment details are unverified. The title references promulgation, but verify against the official source. Rule-based labels (e.g., 'Consumer / Advertising') appear inconsistent with the title and were not relied upon.",
     "summarized_at": "2026-06-19T22:06:12Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "金融庁は、金融商品取引法の審判手続等における参考人及び鑑定人の旅費及び手当に関する政令、並びに公認会計士法の審判手続における参考人及び鑑定人の旅費及び手当に関する政令について、それぞれ一部改正する政令を公布し、あわせてパブリックコメントの結果を公表したとされています。本件はタイトル情報によれば、意見募集の結果公表と政令の公布に関するものです。詳細な改正内容は原文で確認する必要があります。",
+    "business_impact_ja": "審判手続に関与する参考人や鑑定人の旅費・手当の取扱いに関連する実務に影響する可能性があります。金融商品取引法や公認会計士法に基づく審判手続への関与が想定される関係者に留意が求められることも考えられます。",
+    "recommended_action_ja": "金融庁の公表資料および公布された政令の原文を確認し、改正内容および施行時期等の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "8cd92b6c8b935413236369d6e60f6320c96c5975bbc23d028a79f3e212f0bfb7": {
     "title_en": "Cabinet decision on related cabinet orders following partial amendment of the MOE Establishment Act",
@@ -557,7 +641,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and limited metadata; the raw summary only indicates 'Minister's Secretariat'. The metadata references a Cabinet decision on cabinet orders, but the specific contents and whether the underlying amending law is in force are not confirmed here and must be verified against the Japanese source. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-06-19T22:06:19Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "環境省の報道発表によると、環境省設置法の一部を改正する法律の施行に伴う関係政令の整備に関する政令が閣議決定されたとされています。所管は大臣官房と示されていますが、提供された情報では政令の具体的内容や施行時期等の詳細は明らかにされていません。",
+    "business_impact_ja": "環境省の組織や所掌事務に関連する制度整備を含む可能性があり、関係する事業分野で確認が必要となる場合が考えられます。",
+    "recommended_action_ja": "詳細については、環境省の公式報道発表など日本語の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "059b2e2abea5e6ad9925349bbf2b4748c1e9aa2515160d4422a8df116a005f2b": {
     "title_en": "Public Comment: Draft Cabinet Orders Implementing Amended Industrial Competitiveness Enhancement Act",
@@ -567,7 +657,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the draft is out for public comment and not enacted. Substantive details of the cabinet orders are not provided and must be verified against the official source. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-23T06:06:28Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "経済産業省は、産業競争力強化法等の一部改正法の施行に伴う関係政令の整備に関する政令（案）等について、意見募集を実施しています。案の公示日は2026年6月22日、受付締切は2026年7月21日23:59とされ、カテゴリーは経済財政政策、所管は経済産業省経済産業政策局産業創造課および通商政策局通商金融課とされています。",
+    "business_impact_ja": "産業競争力強化に関する政令整備の内容次第では、対象となる事業活動や関連手続に影響が及ぶ可能性があります。現段階では意見募集中の案であり、最終的な内容は確定していないと考えられます。",
+    "recommended_action_ja": "e-Govの公式ページ等で案の全文や締切、今後の手続を直接ご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "429ce1d8e834331877027b198790b99fcbd116c21e0bbedaa09e953e2c17846b": {
     "title_en": "Public Comment: Draft Ministerial Ordinance Partially Amending Enforcement Rules of the Industrial Competitiveness...",
@@ -577,7 +673,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and metadata only; the substance of the proposed amendments is not provided. This is a draft out for public comment, not an enacted rule. Preliminary labels are weak triage context and unverified.",
     "summarized_at": "2026-06-23T06:06:37Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "経済産業省（経済産業政策局産業創造課）は、「産業競争力強化法施行規則の一部を改正する省令（案）」等に対する意見募集をe-Govで実施しています。案の公示日は2026年6月22日、意見の受付締切は2026年7月21日23時59分とされており、カテゴリーは経済財政政策と示されています。現時点では省令案に対する意見募集の段階であり、改正内容の確定を示すものではありません。",
+    "business_impact_ja": "産業競争力強化法に関連する事業を営む企業においては、施行規則の改正内容によって手続や適用要件に影響が及ぶ可能性があります。改正案の具体的な内容次第で対応が必要となることも考えられます。",
+    "recommended_action_ja": "詳細や最新の状況については、e-Govの意見募集案件ページおよび所管省庁の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "2270678fe44da0e37b59a8b3c4b1bb7801d3e0a89fde1df82a3397bb0f9812fa": {
     "title_en": "Public comment on draft ministerial ordinance partially amending the Trade Insurance Act Enforcement Regulations",
@@ -587,7 +689,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted rule. Details unverified against the official source. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-06-23T06:06:50Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "経済産業省は、「貿易保険法施行規則の一部を改正する省令（案）」等に関する意見募集を実施しています。原文によると、案の公示日は2026年6月22日、意見の受付締切は2026年7月21日23時59分とされ、外国為替・貿易分野に区分されています。問合せ先は経済産業省通商政策局通商金融課と記載されています。",
+    "business_impact_ja": "貿易保険に関連する業務や外国為替・貿易分野の取引を行う事業者にとって、当該省令案の内容によっては実務対応の見直しが必要となる可能性があります。",
+    "recommended_action_ja": "e-Gov等の日本語の公式情報源で案の全文および受付状況を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "79f63550294716906c46afbc1f17a98aa831ddc046b73db37ca9bbeb0e650ca1": {
     "title_en": "Public Comment: Draft Partial Amendment to METI-Designated Goods under Export Trade Control Order Art. 4(3)",
@@ -597,7 +705,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted change. Specific content of the amendment is not provided and is unverified.",
     "summarized_at": "2026-06-23T06:07:00Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "経済産業省（貿易経済安全保障局貿易管理部貿易管理課）は、「輸出貿易管理令第４条第３項の規定に基づく経済産業大臣が告示で定める貨物」等の一部改正案について意見募集を行っています。案の公示日は2026年6月22日、意見の受付締切日時は2026年7月22日23:59とされ、カテゴリーは外国為替・貿易に区分されています。",
+    "business_impact_ja": "輸出管理に関連する告示の改正案であることから、対象貨物を取り扱う事業者において輸出手続や該非判定への影響が生じる可能性が考えられます。",
+    "recommended_action_ja": "改正案の具体的内容や適用範囲については、e-Gov意見募集ページ等の日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "d1705eba6060e8d94554d62bc3037aea89ca6e1c86d478357b416a7a70a4453c": {
     "title_en": "Public Comment: Draft MHLW Notices and Sampling Assistant Training Rules Tied to Amended Industrial Safety/Working...",
@@ -627,7 +741,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief summary; the substance of the amendments and comment results is unverified. The preliminary 'Data / Privacy / AI' label appears inconsistent with the radio-spectrum subject matter and was not relied upon.",
     "summarized_at": "2026-06-23T06:07:31Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省は、特定小電力無線局の用途、電波の型式及び周波数並びに空中線電力を定める件の一部を改正する告示案等について実施した意見募集の結果を公表しました。本件は当該告示改正案に関する意見募集手続を経た段階の情報とされています。",
+    "business_impact_ja": "特定小電力無線局に関連する機器の開発・製造・利用等を行う事業者において、告示改正の内容次第で技術基準や運用に影響が及ぶ可能性があります。",
+    "recommended_action_ja": "詳細については、総務省の公式情報源で意見募集結果および告示案の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "791250935d2eed77606796f35a8bd8044c420f477231f919e3db8215a623bdd9": {
     "title_en": "Public Comment: Draft Amendments to Operational Standards on Subcontractor Payment Delays and Freelance Transaction...",
@@ -679,7 +799,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief summary; the substance of the amendment and comment results are not detailed in the metadata. Preliminary labels are keyword-based triage only and unverified. The official Japanese source is authoritative.",
     "summarized_at": "2026-06-26T22:17:02Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省は、「聴覚障害者等による電話の利用の円滑化に関する基本的な方針」の一部改正案に関する意見募集の結果を公表するとともに、当該告示の一部改正を行った旨を掲載しています。本情報は同方針の改正手続に関するものです。",
+    "business_impact_ja": "電話リレーサービス等、聴覚障害者等による電話利用の円滑化に関わる事業者において、方針改正の内容確認が必要となる可能性があります。",
+    "recommended_action_ja": "総務省の公表資料および改正後の告示本文を確認し、改正内容の詳細を把握されることが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "2454c23d23c543706551258deb73af70fa1c4c3f94d83c9f15db03eed193bdfe": {
     "title_en": "MOE Announcement on Ministerial Ordinances and Notices Implementing Amendments to the Ministry of the Environment...",
@@ -737,7 +863,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the specific content of the proposed amendment is not provided and is unverified. This is a draft out for public comment, not an enacted measure.",
     "summarized_at": "2026-07-01T22:20:07Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "内閣府科学技術・イノベーション推進事務局により、「科学技術・イノベーション創出の活性化に関する法律施行令の一部を改正する政令案」に対する意見募集が公示されています。案の公示日は2026年6月30日、意見の受付締切は2026年7月29日23:59とされ、カテゴリーは独立行政法人等と記載されています。現時点の情報は政令案に対する意見募集の段階を示すものです。",
+    "business_impact_ja": "独立行政法人等に関連する政令の改正案であることから、関係する事業や制度運用に影響が及ぶ可能性があります。ただし内容の詳細は原文で確認する必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的内容や締切等については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "8632198127ca6efbca5eba4fdca9cc1a30b68bd17e94f2604dacaf31e474e7e3": {
     "title_en": "Public Comment: Draft Amendment to Rules on Electronic Payment of National Revenue for MLIT Laws",
@@ -747,7 +879,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment and not an enacted rule. Details unverified against the official source.",
     "summarized_at": "2026-07-02T22:09:00Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "国土交通省は、同省が所管する法令に係る情報通信技術を利用する方法による国の歳入等の納付に関する法律施行規則の一部を改正する省令案について、意見募集を実施しています。案の公示日は2026年7月1日、受付締切日時は2026年8月1日00:00とされ、カテゴリーはIT社会化推進、問合せ先は国土交通省大臣官房会計課と記載されています。",
+    "business_impact_ja": "情報通信技術を利用した国の歳入等の納付手続に関わる事業者において、納付方法や関連手続の運用が影響を受ける可能性があります。改正内容の詳細によっては対応の検討が必要になることも考えられます。",
+    "recommended_action_ja": "e-Govの意見募集案件ページ等の日本語公式情報源で、省令案の具体的な内容や締切、手続の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "191c4c703dcbe03d849ac8f8d256bc702a1e69354a31328a9ba88c1c81275445": {
     "title_en": "Public Comment: Draft Cabinet Order on Amendments Related to Foreign Exchange and Foreign Trade Act",
@@ -757,7 +895,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and raw summary metadata; this is a draft out for public comment, not an enacted measure. Preliminary labels (Economic Security/FDI, Medium impact) are unverified triage hints. Details must be confirmed against the authoritative Japanese source.",
     "summarized_at": "2026-07-03T22:07:19Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "財務省（国際局調査課投資企画審査室）は、外国為替及び外国貿易法の一部を改正する法律の施行に伴う関係政令の整備等に関する政令（案）等について、e-Govを通じた意見募集を実施しています。案の公示日は2026年7月3日、意見の受付締切は2026年8月2日午前2時とされ、カテゴリーは外国為替・貿易とされています。現時点では意見募集の段階であり、政令の内容は案として示されているものです。",
+    "business_impact_ja": "外国為替・貿易に関する政令の整備を対象としているため、対外取引や対内直接投資等に関わる事業者の実務に影響が及ぶ可能性があります。募集される意見や最終的な政令の内容次第で、対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "詳細や最新の状況については、e-Govの当該意見募集ページおよび財務省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "7c47a9943a5537688c92942586b684a8bf1c1e8135834897dadd58e7f896972d": {
     "title_en": "Public Comment: Draft Notification Amendment for 76 GHz Low-Power Millimeter-Wave Radar Enhancement",
@@ -777,7 +921,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title; the raw_summary was empty and specific amendment details are unverified. Preliminary labels are keyword-based triage metadata and not authoritative. The scope and effective status of the amendment are not confirmed by the provided metadata.",
     "summarized_at": "2026-07-03T22:07:32Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "金融庁は、「金融商品取引業者等向けの総合的な監督指針」の一部改正（案）に対するパブリックコメントの結果等を公表しました。公表日は2026年7月4日で、金融庁の新着情報を情報源としています。原文メタデータには改正内容の具体的な記載がないため、詳細は明らかではありません。",
+    "business_impact_ja": "金融商品取引業者等に適用される監督指針の改正であることから、該当する事業者の業務運営や監督対応に影響が及ぶ可能性があります。改正内容次第で対応の要否を検討する必要が生じることも考えられます。",
+    "recommended_action_ja": "具体的な改正内容やパブリックコメントの結果については、金融庁の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "cfd69b2f2df962d68c33b48c4866614be41321a9547ce0976588de7e32e1cfed": {
     "title_en": "Public Comment: Draft Amendment to Enforcement Regulation of the Waste Management and Public Cleansing Act",
@@ -803,7 +953,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule. The rule-based 'Energy / Environment' label appears inconsistent with the telecommunications category and should not be relied upon. Details unverified against the official source.",
     "summarized_at": "2026-07-04T21:59:32Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省総合通信基盤局電波部移動通信課は、76GHz帯小電力ミリ波レーダーの高度化を目的とした告示改正案について意見募集を実施しています。案の公示日は2026年7月4日、受付締切は2026年8月3日23:59とされ、カテゴリーは電気通信に分類されています。本件は意見募集の段階であり、告示改正の内容は確定したものではありません。",
+    "business_impact_ja": "ミリ波レーダーの製造・利用に関わる事業者においては、技術基準や利用条件の見直しにより影響が生じる可能性があります。関連機器の設計・運用方針の検討に関係する可能性も考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集ページや総務省の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "f5454011632283d2b4af172d6cc08396e2d302ce6134929d4a3b4052665d32ca": {
     "title_en": "Public Comment: Draft Cabinet Order Amending Immigration Control Act Enforcement Orders",
@@ -813,7 +969,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and metadata; this is a draft out for public comment and not enacted law. Specific content of the amendments is not provided and remains unverified. Preliminary labels ('Other', 'Medium') are keyword-based triage only.",
     "summarized_at": "2026-07-04T21:59:39Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "出入国在留管理庁は、「出入国管理及び難民認定法施行令及び日本国との平和条約に基づき日本の国籍を離脱した者等の出入国管理に関する特例法施行令の一部を改正する政令案」等に関する意見募集を実施しています。e-Govの掲載によれば、案の公示日は2026年7月3日、意見の受付締切は2026年8月3日午前0時とされています。現時点では政令案に対する意見募集の段階であり、確定した内容を示すものではありません。",
+    "business_impact_ja": "外国人の出入国管理に関する政令の改正案であることから、関連する手続や在留・出入国に関わる実務に影響が及ぶ可能性があります。改正内容の詳細によっては、対応の見直しが必要となる場面も考えられます。",
+    "recommended_action_ja": "改正案の具体的な内容や締切等については、e-Govおよび出入国在留管理庁の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "4092d3cbccfb7e7db90b2258ac4ec0a257386fee6d10de7bcab5391d2871bcdd": {
     "title_en": "Public Comment: Draft Ministerial Ordinance Partially Amending the Enforcement Regulations of the Septic Tank Act...",
@@ -839,7 +1001,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the proposed amendments is not provided and remains unverified. This is a draft out for public comment, not an enacted rule. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-07-08T22:06:41Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "国土交通省海事局船員政策課は、「船員法施行規則等の一部を改正する省令案」に関する意見募集を実施しています。案の公示日は2026年7月7日、受付締切は2026年8月5日17:00とされ、カテゴリーは海運に分類されています。現時点では省令案に対する意見募集の段階であり、改正内容が確定・施行されたものではありません。",
+    "business_impact_ja": "海運分野、特に船員に関する業務を行う事業者において、省令改正が実施された場合には関連する運用や手続への影響が生じる可能性があります。改正内容の詳細によって影響の範囲は異なると考えられます。",
+    "recommended_action_ja": "e-Govの意見募集案件ページや国土交通省海事局の公表情報など、日本語の公式情報源で省令案の具体的内容と締切、その後の動向をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "7a03701e2c16f1114f4c671d39f1107e9acc383c5853fb9d7f1015f546d24071": {
     "title_en": "Public comment on draft amendment to Radio Act Enforcement Regulations",
@@ -881,7 +1049,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and rule-based labels; substantive details of the draft are not provided and are unverified. Labeled as a draft out for public comment per the metadata.",
     "summarized_at": "2026-07-10T08:20:32Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省の新着情報として、「お年玉付郵便葉書等に関する法律施行令の一部を改正する政令案等」に対する意見募集が公表されています。提供されたメタデータには、政令案の具体的な改正内容や募集期間等の詳細は示されていません。なお、暫定分類では意見募集の段階に関する表示がありますが、これは機械的な分類であり確定的なものではありません。",
+    "business_impact_ja": "お年玉付郵便葉書等に関わる事業や関連サービスを取り扱う場合、施行令の改正内容によっては業務対応の検討が必要となる可能性があります。現時点では具体的な影響範囲は原文からは明確でないと考えられます。",
+    "recommended_action_ja": "意見募集の対象や期間、改正内容の詳細については、総務省の公式情報源で最新の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "5cf1afb34743f4e67173fb0753ff83f69546af1a133769c1c980c91e34e52c7a": {
     "title_en": "Public Comment: Draft Cabinet Order Amending Enforcement Order on New Year's Lottery Postcards",
@@ -891,7 +1065,13 @@
     "confidence": "high",
     "ai_notes": "Based on the Japanese title and metadata; this is a draft out for public comment, not an enacted measure. Details of the amendment's content are not provided and are unverified. Preliminary labels are triage-only.",
     "summarized_at": "2026-07-11T21:50:27Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省情報流通行政局郵政行政部郵便課は、「お年玉付郵便葉書等に関する法律施行令の一部を改正する政令案等」について意見募集を実施しています。案の公示日は2026年7月11日、受付締切は2026年8月10日23:59とされ、カテゴリーは郵務に分類されています。",
+    "business_impact_ja": "郵便葉書等の取扱いに関連する事業者にとって、改正内容によっては業務運用への影響が生じる可能性があります。",
+    "recommended_action_ja": "e-Govの意見募集ページや総務省の公式情報を確認し、政令案の具体的内容と締切をご確認いただくことをおすすめします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "ce78d32f0ea5dbf6694139f3f8a35c68b7f99859b7669e2f9c6c6bd7c0d3e9ed": {
     "title_en": "Public Comment: Draft Amendment to Radio Act Enforcement Regulations on Public Broadband Mobile System Frequency...",
@@ -901,7 +1081,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule. Details of the proposed changes are unverified. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-07-11T21:50:33Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省総合通信基盤局は、電波法施行規則の一部を改正する省令案等について意見募集を実施しています。これは公共ブロードバンド移動通信システムの周波数拡張に係る制度整備を目的とするもので、案の公示日は2026年7月11日、受付締切は2026年8月10日23時59分とされています。",
+    "business_impact_ja": "公共ブロードバンド移動通信システムに関連する無線設備や周波数利用を行う事業者にとって、制度整備の内容によっては対応が必要となる可能性があります。",
+    "recommended_action_ja": "e-Govの意見募集案件ページおよび総務省の公式情報で、省令案の詳細や締切等をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "1696aa00d187550b2390cb082312e217bbe27fcf20b80c0e8fb6c1368c3a60da": {
     "title_en": "Public Comment: Draft Amendments to Radio Act Enforcement Rules for 700MHz Non-Geostationary Satellite Mobile Systems",
@@ -911,7 +1097,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and metadata; this is an open public comment (draft ordinance), not an enacted law. Details unverified against the official source.",
     "summarized_at": "2026-07-11T21:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "総務省総合通信基盤局は、電波法施行規則等の一部を改正する省令案等について意見募集を実施しています。これは衛星コンステレーションによる携帯電話向け700MHz帯非静止衛星通信システムの導入に向けた制度整備を目的とするものです。案の公示日は2026年7月11日、意見の受付締切は2026年8月10日23:59とされています。",
+    "business_impact_ja": "衛星通信や携帯電話関連の事業者において、周波数利用や設備に関する制度対応の検討が必要となる可能性があります。制度整備の内容によっては関連分野の事業運営に影響が及ぶことも考えられます。",
+    "recommended_action_ja": "詳細な要件や現在の受付状況については、e-Govおよび総務省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "b3dc8a9a392fa79bc3e0359ecaf92c0a86a3eb57eecbafbf53290bda3dba89c8": {
     "title_en": "Public comment on draft amendment to notification on PPC-specified cases and methods for reporting leaks of...",
@@ -1001,7 +1193,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the Japanese title and provided metadata; this is a draft ordinance out for public comment, not an enacted rule. The rule-based 'Data/Privacy/AI' label appears loosely related and the raw summary lists a social welfare category, so scope is unverified.",
     "summarized_at": "2026-07-25T21:56:42Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "こども家庭庁成育局保育政策課より、地方公共団体情報システムの標準化に関する法律に基づく標準化基準を定める内閣府令の一部を改正する内閣府令（案）について意見募集が行われています。案の公示日は2026年7月24日、受付締切日時は2026年8月6日23時59分とされ、カテゴリーは社会福祉です。本件は意見募集の段階にある案であり、確定した内容ではありません。",
+    "business_impact_ja": "地方公共団体の情報システムの標準化に関わる事務や、社会福祉・保育分野のシステム対応を行う事業者において、システム機能の要件に影響が及ぶ可能性があります。改正内容によっては関連する業務対応の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "詳細な改正内容や締切等については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "d5d0f989846d2bc4a2b2d465aa8877c2dc6db8beedc7f0727bb1c455768779b3": {
     "title_en": "MIC Publishes Results of Public Comment on Draft Amendment to Mobile Voice ID Verification / Fraud Prevention Rules",
@@ -1649,7 +1847,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title; the raw summary was empty and specific provisions, effective dates, and scope are unverified. Preliminary labels (Finance/AML) are keyword-based triage only.",
     "summarized_at": "2026-08-07T03:35:41Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "金融庁は、「銀行法施行規則等の一部を改正する内閣府令」等の公布、およびパブリックコメントの結果等を公表したとされています。原文のraw_summaryは空欄であり、改正の具体的な内容や範囲についてはタイトル以外の詳細情報は示されていません。",
+    "business_impact_ja": "銀行法施行規則等の改正であることから、銀行業務やこれに関連する事業者の実務対応に影響が及ぶ可能性があります。改正内容によっては、社内規程や手続の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "改正内容やパブリックコメントの結果、施行時期等については、金融庁の公式ページ等の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "72a23fee6f36d033a04a7dfda1c29a82ff4c1b11d7203a926fad145e1a18d99e": {
     "title_en": "Public comment on draft Cabinet Order amending the Sewerage Act Enforcement Order",
@@ -1659,7 +1863,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substantive content of the draft amendment is not provided and is unverified. This is a draft Cabinet Order out for public comment, not an enacted law. Rule-based labels (e.g., 'Public Comment Closed', 'Low') are preliminary and not authoritative; the stated deadline appears to be in the future relative to the announcement date.",
     "summarized_at": "2026-08-07T03:35:41Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "国土交通省水管理・国土保全局上下水道企画課より、下水道法施行令の一部を改正する政令案に関する意見募集が公示されています。案の公示日は2026年7月16日、意見の受付締切は2026年7月29日23時59分とされ、カテゴリーは国民生活の安全・安心の確保と示されています。現時点では政令案に対する意見募集の段階であり、改正内容が確定したものではありません。",
+    "business_impact_ja": "下水道関連の設備や事業運営に関わる事業者にとっては、改正内容によって対応が必要となる可能性があります。詳細は政令案の具体的な規定内容に依存すると考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページ等、国土交通省の公式情報源で政令案の詳細と募集状況をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "8a93ec0c21af86139f3dab0d8db1232442002f4cd001da936dd3780475efffdf": {
     "title_en": "Public Comment: Draft Ministerial Order Fully Revising Standards for Roadway and Side Strip Pavement Structure",
@@ -1679,7 +1889,13 @@
     "confidence": "medium",
     "ai_notes": "Based mainly on the Japanese title and triage metadata; the PDF contents were not verified. The preliminary 'Finance / AML' label appears loosely keyword-based and this item seems more about tax e-filing file formats. Effective date and specifics are unverified.",
     "summarized_at": "2026-08-07T04:32:36Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "国税庁は、国税関係法令に係る情報通信技術を活用した行政の推進等に関する省令第五条第四項、法人税法施行規則、地方法人税法施行規則、消費税法施行規則及び防衛特別法人税に関する省令の各規定に基づき国税庁長官が定めるファイル形式を定めた令和八年国税庁告示第四号について、その一部を改正する件（国税庁告示第十八号）を公表したとされています。公表日は2026年5月29日とされ、詳細はPDF形式の告示に記載されています。原文の要約は「国税庁新着情報・通達等」とのみ示されています。",
+    "business_impact_ja": "電子申告等で国税庁長官が定めるファイル形式に対応している事業者において、告示改正の内容によっては提出データの形式面で確認や対応が必要となる可能性があります。",
+    "recommended_action_ja": "詳細および正確な改正内容については、国税庁の公式サイトに掲載された告示原文（PDF）をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   "94fb6ad82e560f63086a659e2396b3278f501214c56f144d24343560ea1a214e": {
     "title_en": "Public comment: draft Cabinet Order amending the enforcement order of the Building Energy Efficiency Act",
@@ -1712,5 +1928,517 @@
     "ja_summarized_at": "2026-08-12T05:03:26Z",
     "ja_summary_model": "claude-opus-4-8",
     "summary_ja_source": "claude"
+  },
+  "75f5641f3ada979b6fceb77f2a40a068161c561aae88026299cd8da875eb7576": {
+    "summary_ja": "厚生労働省医政局地域医療計画課より、医療法施行規則第三十条の三十三の六第一項の規定に基づき厚生労働大臣が定める方法等の一部を改正する告示案について、意見募集が行われています。案の公示日は2026年8月8日、受付締切は2026年9月7日12時とされています。",
+    "business_impact_ja": "医療関連の告示改正案であることから、対象となる方法等に関わる医療機関等の実務に影響が及ぶ可能性があります。現時点では意見募集の段階であり、内容は確定していないと考えられます。",
+    "recommended_action_ja": "e-Govの公式ページ等で告示案の詳細および意見募集手続の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0cb8463cc90fccf93ca1fd343a206cac8720307e106bb79a53b29acb6be0d399": {
+    "summary_ja": "出入国在留管理庁は、永住許可に関するガイドラインの改定案について意見募集を実施しています。案の公示日は2026年8月4日、意見の受付締切は2026年9月4日00:00とされ、外事分野の案件として公示されています。所管は出入国在留管理庁在留管理課在留企画室です。",
+    "business_impact_ja": "永住許可の運用基準に関わる内容であるため、外国人材の在留・雇用に関与する事業において、将来的に手続や判断基準へ影響が及ぶ可能性があります。現時点では改定案の段階であり、内容の確定には至っていないと考えられます。",
+    "recommended_action_ja": "e-Govの意見募集案件詳細など日本語の公式情報源で改定案の具体的内容と受付締切をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "f789cfd8ee50c5ebe4c9d3e7617a246a622e0450fc91fde423b2c532d0f87273": {
+    "summary_ja": "資源エネルギー庁は、「経済産業省特定業種石油等消費統計調査票の様式を定める件の一部を改正する告示（案）」について意見募集を実施しています。案の公示日は2026年8月10日、受付締切は2026年9月9日13:00とされ、カテゴリーは統計と示されています。現時点では告示案に対する意見募集の段階であり、改正内容が確定したものではありません。",
+    "business_impact_ja": "特定業種における石油等消費統計調査に関わる事業者においては、調査票様式の変更に伴う報告手続や様式対応の見直しが必要となる可能性があります。関連部門での確認作業が生じることも考えられます。",
+    "recommended_action_ja": "詳細および正確な内容については、e-Govの意見募集ページや資源エネルギー庁の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "9238ade73f099ede6db061b0260b2c70097b01b6df2209d76614fc15d1d0dcf7": {
+    "summary_ja": "厚生労働省保険局医療課が所管する、健康保険法等の一部を改正する法律の一部施行に伴う関係政令の整備等に関する政令案について、e-Govで意見募集が行われています。案の公示日は2026年8月7日、受付締切は2026年9月6日23時59分とされ、カテゴリーは社会保険です。現時点では政令案に対する意見募集の段階であり、確定した内容を示すものではありません。",
+    "business_impact_ja": "健康保険関連の政令が整備される場合、社会保険の実務や事業者の対応に影響が及ぶ可能性があります。改正内容の詳細によっては制度対応の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページ等の日本語の公式情報源で、政令案の内容や締切、今後の手続を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "f39e75f0a06491c7dfca2372752103eb574ca4442fd99f31100c656acc50ba7e": {
+    "summary_ja": "金融庁は、「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について公表しました。本件は意見募集の段階にある改正案であり、原文からは具体的な改正内容の詳細は確認できません。",
+    "business_impact_ja": "投資信託や投資法人に関連する業務を行う事業者においては、施行規則の改正が実務や手続に影響する可能性があります。意見募集の段階であるため、今後の内容確定により対応が求められることも考えられます。",
+    "recommended_action_ja": "金融庁の公式サイト等で意見募集の対象となる改正案の詳細および募集期間をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "759df22b11efa8943037d752cba5ff9e2f7fd718925d7ca42074a94c8bc7ab8c": {
+    "summary_ja": "総務省総合通信基盤局電波部電波環境課より、電波利用環境委員会報告（案）に対する意見募集が行われています。対象は「基地局等から発射される電波の強度等の測定方法及び算出方法」のうち電波の評価方法の高度化に係る技術的条件、及び「電波防護指針の在り方」のうち局所吸収指針の主な対象の見直しに関する内容です。案の公示日は2026年7月22日、意見の受付締切は2026年8月26日23:59とされています。",
+    "business_impact_ja": "基地局等の電波強度の測定・算出方法や電波防護指針に関わる事業者において、将来的に評価方法や指針の対象範囲の見直しが影響する可能性があります。",
+    "recommended_action_ja": "詳細は総務省およびe-Govの公式情報を確認し、意見募集の対象範囲や締切をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "78867ff3c4ddd67dadf47b3218c86f89bcdce229ec3bd40e8620cde080364ad9": {
+    "summary_ja": "経済産業省は、高圧ガス保安法に基づく高圧ガス製造保安責任者試験等に関する規則及び液化石油ガスの保安の確保及び取引の適正化に関する法律施行規則の一部を改正する省令（案）等について、e-Govを通じて意見募集を行っています。案の公示日は2026年7月22日、意見の受付締切は2026年8月21日23時59分とされています。カテゴリーは国民生活の安全・安心の確保で、所管は経済産業省大臣官房産業保安・安全グループ高圧ガス保安室・ガス安全室です。",
+    "business_impact_ja": "高圧ガスや液化石油ガスの保安に関わる事業者においては、試験制度や施行規則の改正に伴い、対応が必要となる可能性があります。改正の詳細によっては実務上の手続や体制に影響が及ぶことも考えられます。",
+    "recommended_action_ja": "改正内容や意見募集の詳細については、e-Govの該当ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "77cdfce882e11d142d342491a9292d859c2180e22806b94a83cf992b933cec1b": {
+    "summary_ja": "経済産業省貿易経済安全保障局貿易管理部貿易管理課より、「ワシントン条約に基づく輸入許可書の申請手続等について」等の一部改正案等に対する意見募集が公示されています。ヨーロッパウナギの取扱い変更に伴う改正等が対象とされています。案の公示日は2026年8月10日、意見の受付締切は2026年9月10日23:59とされています。",
+    "business_impact_ja": "ワシントン条約に基づく輸入許可手続やヨーロッパウナギの取扱いに関わる事業者においては、輸入手続や貿易管理の実務に影響が生じる可能性があります。改正の具体的内容によっては対応の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "e-Gov等の日本語の公式情報源で改正案の詳細および意見募集の締切等をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "9d3c943be55fcbbbf84aa5f1959ca94ba00065a9327f07c921a9e34e58f0ac2a": {
+    "summary_ja": "環境省環境再生・資源循環局が、小型家電リサイクル制度の施行状況の評価・検討に関する報告書（案）について意見募集を実施しています。案の公示日は2026年7月21日、意見の受付締切は2026年8月20日午前0時とされ、カテゴリーは環境保全に分類されています。所管は資源循環課 資源循環制度推進室です。",
+    "business_impact_ja": "小型家電のリサイクルや資源循環に関わる事業者にとって、今後の制度運用の方向性に関連する内容となる可能性があります。報告書（案）の評価・検討結果が事業対応に影響する場合も考えられます。",
+    "recommended_action_ja": "詳細および正確な内容については、e-Govの意見募集案件ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "46a140630567b234745d18e753916562a0772b5f24badb1cce8f956aed3c8217": {
+    "summary_ja": "経済産業省は、経済産業省生産動態統計調査規則の一部を改正する省令案等について意見募集を実施しています。案の公示日は2026年7月24日、意見の受付締切は2026年8月24日23:59とされ、カテゴリーは統計、所管は調査統計グループ鉱工業動態統計室です。現時点では意見募集の段階にあり、改正内容が確定したものではありません。",
+    "business_impact_ja": "生産動態統計調査の対象となる事業者においては、報告事項や調査手続に関する取扱いが変更される可能性があります。統計報告に関連する業務への影響が生じることも考えられます。",
+    "recommended_action_ja": "詳細および意見提出の要否については、e-Gov電子政府の意見募集ページや経済産業省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0fca27641a35971f8452f27068f672d53b0f6e8853e73fc6b437c867c0eecb76": {
+    "summary_ja": "財務省国際局開発政策課は、「認定特定海外事業促進業務指針（案）」に対する意見募集を実施しています。原文によれば、案の公示日は2026年8月6日、受付締切は2026年9月5日00:00とされ、カテゴリーは金融・保険と示されています。現時点では指針の案に対する意見募集の段階です。",
+    "business_impact_ja": "海外事業促進に関連する金融・保険分野の事業者にとって、今後の指針の内容によっては業務上の対応が必要となる可能性があります。ただし現段階では案であり、確定的な影響は明らかではないと考えられます。",
+    "recommended_action_ja": "詳細および正確な締切や提出方法については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "12652b8859d534874f57e3da09e572d62afdf3989874d3f69ad2f8a5625830b1": {
+    "summary_ja": "総務省の新着情報として、「恩給給与細則等の一部を改正する省令（案）」に関する意見募集が掲載されています。公表日は2026年7月16日とされ、現時点では省令改正の案に対する意見募集の段階にあると示されています。提供されたメタデータには、意見募集の期間や具体的な改正内容の詳細は含まれていません。",
+    "business_impact_ja": "恩給の給与に関する事務手続や細則に関わる関係者において、改正内容次第で対応の見直しが必要となる可能性があります。現時点では案の段階であるため、影響の範囲や程度は確定していないと考えられます。",
+    "recommended_action_ja": "詳細な改正内容や意見募集の期間・提出方法については、総務省の公式ページ等の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "fe13eba4c6c0cd22a677e0ea6d51f5d2c0cc4e02275b065d0766653281c2f78b": {
+    "summary_ja": "出入国在留管理庁在留管理課在留企画室により、永住者の在留資格の取消しに関するガイドライン案について意見募集が実施されています。案の公示日は2026年8月4日、意見の受付締切は2026年9月4日午前0時とされています。現時点ではガイドライン案の段階であり、意見募集が行われている状況です。",
+    "business_impact_ja": "永住者の雇用や在留資格管理に関わる事業者にとって、今後のガイドラインの内容次第で実務対応に影響が及ぶ可能性があります。意見募集の段階であるため、確定した取扱いではない点に留意が必要と考えられます。",
+    "recommended_action_ja": "e-Govの意見募集案件および出入国在留管理庁の公式情報を確認し、ガイドライン案の内容や締切等の詳細をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "4ae6fb1445226c96c04c1d22e6ce49a69b02e4cdf37f6d807354dd3146dbe4cc": {
+    "summary_ja": "国土交通省不動産・建設経済局建設業課により、「建設業者の不正行為等に対する監督処分の基準について」の一部改正案に関する意見募集が実施されています。案の公示日は2026年7月31日、意見の受付締切は2026年8月30日23時59分とされ、カテゴリーは建築・住宅に分類されています。現時点では意見募集の段階であり、改正内容が確定したものではありません。",
+    "business_impact_ja": "監督処分の基準に関する改正案であるため、建設業を営む事業者において、処分基準の運用や社内のコンプライアンス体制の見直しに関わる可能性があります。改正の内容や範囲によっては影響の程度が異なることが考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページや国土交通省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "556275e249198dd893b423aff4523d3cd44e41cbc723099a9d564819385ac49e": {
+    "summary_ja": "農林水産省は、農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律に基づく設備整備計画の認定等に関する省令の一部を改正する省令案について、意見・情報の募集を実施しています。案の公示日は2026年7月24日、受付締切は2026年8月22日23:59とされ、カテゴリーは農業、所管は農林水産省大臣官房環境バイオマス政策課再生可能エネルギー室です。本件は意見募集の段階にある省令案であり、確定した内容ではありません。",
+    "business_impact_ja": "設備整備計画の認定等に関する手続や要件が見直される場合、農林漁業と調和した再生可能エネルギー発電に関わる事業者の対応に影響が及ぶ可能性があります。改正の具体的内容によっては、認定申請や計画策定の実務に留意が必要となることも考えられます。",
+    "recommended_action_ja": "意見募集の対象や締切、改正案の詳細については、e-Govや農林水産省が公表する日本語の公式情報を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "95dfb518fba3a3d00b5f453a07b5edaa404b50f4ef7cbcd907cc7912b72eed42": {
+    "summary_ja": "金融庁の新着情報によると、令和８年の金融商品取引法等の改正に係る政令が公布されたことが公表されました。タイトルによれば、当該政令は公布から20日後に施行される旨が示されています。詳細な内容についてはメタデータからは確認できません。",
+    "business_impact_ja": "金融商品取引に関連する事業を営む場合、政令の内容に応じて対応の見直しが必要となる可能性があります。施行時期を踏まえた準備が求められることも考えられます。",
+    "recommended_action_ja": "金融庁の公表資料など、日本語の公式情報源で政令の具体的な内容と施行日をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "6e80c5e40c5cea42b23b2713cacea861a375ae6cbc4671312ea4eeef27560d90": {
+    "summary_ja": "総務省は、基幹放送用周波数使用計画の一部を変更する告示案等について意見募集を実施しています。案の公示日は2026年7月14日、意見の受付締切は2026年8月17日23時59分とされ、カテゴリーは電気通信に分類されています。問合せ先として総務省情報流通行政局放送技術課および放送業務課が示されています。",
+    "business_impact_ja": "放送用周波数の使用計画や電波法関係審査基準に関わる事業者にとって、今後の運用や対応に影響が生じる可能性があります。意見募集段階であるため、内容は確定していないと考えられます。",
+    "recommended_action_ja": "詳細や締切、対象範囲については、e-Govおよび総務省の公式情報源で最新の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "bca590ccac20f955e26877d8c620bb78b163fb9639711fff5eac4dfbe66010fa": {
+    "summary_ja": "厚生労働省は、医療法等の一部を改正する法律の一部の施行に伴う関係政令の整備及び経過措置に関する政令案について、e-Govを通じて意見募集を実施しています。案の公示日は2026年7月13日、意見の受付締切は2026年8月12日21時とされています。所管は厚生労働省医政局医療情報担当参事官室です。",
+    "business_impact_ja": "医療分野に関わる事業者において、関係政令の整備や経過措置の内容によっては、対応の見直しが必要となる可能性があります。",
+    "recommended_action_ja": "e-Govの意見募集案件ページなど日本語の公式情報源で、政令案の詳細および受付締切日時をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "3498cf37af1a247b8a9dfd20581f68fe45603003963baae90d7de8e6160e5c18": {
+    "summary_ja": "金融庁は、「保険会社向けの総合的な監督指針」等の一部改正（案）に対するパブリックコメントの結果等を公表したとされています。タイトルからは、募集された意見への対応結果が示された段階と考えられますが、原文に詳細な記載がないため具体的な改正内容は確認できません。",
+    "business_impact_ja": "保険会社の監督指針に関する改正であることから、保険業を営む事業者の内部管理やコンプライアンス体制の見直しに影響が及ぶ可能性があります。",
+    "recommended_action_ja": "金融庁の公式サイトで公表された改正内容およびパブリックコメント結果の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "54f7b46c4a434312d5f8335ab460887ed54f99d354a8cb0fd138d85793cac044": {
+    "summary_ja": "総務省は、電波の発射を防止するために必要な措置を行うことが困難な場合に代えることができる措置を定める件（平成23年総務省告示第65号）の一部を改正する告示案について、意見募集の結果を公表しました。本情報は当該意見募集手続の結果段階に関するものです。",
+    "business_impact_ja": "電波の発射防止に関する代替措置に関わる事業者において、告示改正の内容次第で対応の見直しが必要となる可能性があります。",
+    "recommended_action_ja": "総務省の公式発表および告示本文を確認し、改正内容や適用範囲の詳細を把握することが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "c9498af1162065f557977b4063ba62db050c0145ff4914533a19d96ec5ab6987": {
+    "summary_ja": "文部科学省高等教育局医学教育課は、令和９年度の医学部定員増に係る省令等の一部改正について、パブリックコメント（意見公募手続）を実施しています。案の公示日は2026年7月24日、意見の受付締切は2026年8月23日23時59分とされ、カテゴリーは教育に分類されています。現時点では意見募集の段階であり、改正内容が確定したものではありません。",
+    "business_impact_ja": "医学教育や大学における定員に関連する分野では、今後の省令改正の動向が業務や計画に影響する可能性があります。意見募集の結果によって内容が変わる場合も考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "1e39d25d45be29d23021a51e32056714f22f0a3fea11f9ea9ab03b39eaa1de39": {
+    "summary_ja": "総務省は、「特定電気通信による情報の流通によって発生する権利侵害等への対処に関する法律」第26条に関するガイドライン（改定案）について、実施した意見募集の結果と、それを踏まえて改定したガイドラインを公表したとされています。原文からは、意見募集の段階を経てガイドラインの改定が行われたことが示されています。",
+    "business_impact_ja": "特定電気通信による情報流通に関わる事業者において、権利侵害等への対処に関する運用の見直しが必要となる可能性があります。改定内容によっては社内の対応手続きへの影響が考えられます。",
+    "recommended_action_ja": "総務省の公表資料および改定後のガイドライン本文を確認し、自社の対応状況との整合を検討されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "8a85d4d0b45bf6947a118b2fda0bada053dfd578e3a70acaf8c8732016bff7d1": {
+    "summary_ja": "出入国在留管理庁は、「出入国管理及び難民認定法施行規則の一部を改正する省令案」について意見公募手続を実施しています。原文によれば、案の公示日は2026年8月4日、意見の受付締切は2026年9月3日00:00とされており、問合せ先は出入国在留管理庁参事官室です。現時点では省令案に関する意見募集の段階であり、改正内容の確定を示すものではありません。",
+    "business_impact_ja": "外国人材の受入れや在留手続に関わる事業者において、施行規則の改正内容によっては手続面での対応が必要となる可能性があります。改正案の具体的内容次第で影響の範囲や程度が変わることも考えられます。",
+    "recommended_action_ja": "詳細および改正案の具体的内容については、e-Gov掲載の公式情報や出入国在留管理庁の公表資料をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "5ce9620c063fc120c55f108ae7594a5b7871353eddff378509251bdd0a8b569f": {
+    "summary_ja": "財務省国際局開発政策課は、「株式会社国際協力銀行法施行規則案」に対する意見募集を実施しています。案の公示日は2026年8月6日、受付締切日時は2026年9月5日00:00とされ、金融・保険のカテゴリーに分類されています。現時点では施行規則の案に対する意見募集の段階です。",
+    "business_impact_ja": "株式会社国際協力銀行に関連する業務や取引を行う事業者にとって、施行規則案の内容によっては影響が生じる可能性があります。今後の意見募集を経た内容確定により、対応の検討が必要となる場合も考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページなど日本語の公式情報源で、案の全文および受付締切等の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "2fc617b7ef42ebe0ff28596fea70f9a879802917cb983f452f8b33f74b6ae163": {
+    "summary_ja": "財務省は、「株式会社国際協力銀行法施行令第五条の二第四号に規定する主務大臣が定める基準を定める件（案）」に関する意見募集を実施しています。案の公示日は2026年8月6日、意見の受付締切は2026年9月5日00:00とされ、カテゴリーは金融・保険、所管は財務省国際局開発政策課とされています。現時点では案の段階であり、意見募集が行われている状況です。",
+    "business_impact_ja": "国際協力銀行に関連する主務大臣が定める基準に関わるため、当該分野の金融業務を行う事業者に影響が及ぶ可能性があります。基準の内容によっては関連する運用や対応の見直しが必要となる場合も考えられます。",
+    "recommended_action_ja": "詳細や最新の状況については、e-Gov及び財務省の公式情報源にて案の内容と意見募集の手続を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "3570cfeede5a3e1609c4581268bd30bfe510f0f62bb3af4d73bf8c659b349691": {
+    "summary_ja": "厚生労働省医政局医薬産業振興企画課より、国立研究開発法人医薬基盤・健康・栄養研究所法施行令等の一部を改正する政令案に関する意見募集が公示されました。案の公示日は2026年8月6日、意見の受付締切は2026年9月4日12時とされています。現時点では意見募集の段階であり、政令の改正は確定していません。",
+    "business_impact_ja": "当該研究所に関連する制度や運営に関わる事業者にとって、施行令の改正が今後の対応に影響する可能性があります。改正内容の詳細によっては留意が必要になることも考えられます。",
+    "recommended_action_ja": "e-Gov等の日本語の公式情報源で政令案の具体的内容および意見募集の要領をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "5ff1340549e7c2444f018c2299fef6c08adf3e6e6c66b6401b25f761c706153a": {
+    "summary_ja": "公正取引委員会の報道発表として、価格転嫁および取引適正化ルールに関する説明会の開催が案内されています。タイトルによれば、取適法、新告示、ガイドライン、官公需取引までを対象とする内容とされています。原文の要約情報は「報道発表」との記載にとどまり、開催日時や申込方法などの詳細は本メタデータからは確認できません。",
+    "business_impact_ja": "価格転嫁や取引適正化に関わる事業者にとって、最新のルールや運用の理解を深める機会となる可能性があります。取引関係の見直しやコンプライアンス対応の参考情報となることも考えられます。",
+    "recommended_action_ja": "開催概要や具体的内容については、公正取引委員会の公式情報源で最新の発表をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "2886ae22d85f1d62766ece938c6ef88f223f01d33d2108e8464e919f47236e44": {
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、地方公共団体情報システムの標準化に関する法律に基づき、標準化対象事務のうち命令第九条各号に規定する事務の処理に係るシステムに必要とされる機能等の標準化基準を定める命令（令和八年内閣府・厚生労働省令第十三号）が掲載されています。原文によれば、公布日および施行日はいずれも2026年7月27日と記載されています。更新一覧の日付は2026年8月10日とされています。",
+    "business_impact_ja": "地方公共団体の情報システムに関わる事業者や関連システムを扱う組織にとっては、対象事務に係るシステムの機能等の標準化基準への対応が求められる可能性があります。基準の具体的内容によっては、システム設計や仕様調整の検討が必要となることも考えられます。",
+    "recommended_action_ja": "暫定的な分類にとどまるため、e-Gov法令検索など日本語の公式情報源で命令の正確な内容および施行状況をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "8cdcfa695aa38c19886dad9117a94db6366bb57c6868e88181967e7d9e6cbc8e": {
+    "summary_ja": "金融庁は、「保険会社向けの総合的な監督指針」の一部改正（案）に対するパブリックコメントの結果等を公表したとされています。公表日は2026年7月2日で、金融庁の新着情報として掲載されています。原文には改正内容の詳細な記載がないため、具体的な変更点は原資料の確認が必要です。",
+    "business_impact_ja": "保険会社の監督指針に関する改正であるため、保険業を営む事業者の監督対応や実務運用に影響が及ぶ可能性があります。パブリックコメント結果を踏まえた指針の最終的な内容によっては、社内態勢の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "金融庁の公式ウェブサイトで、パブリックコメント結果および改正後の監督指針の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "d4941b23023d767649228976492caa4b99c4cbc18a98925895773935e7599043": {
+    "summary_ja": "国税庁は、国税関係法令に係る情報通信技術を活用した行政の推進等に関する省令第五条第四項、法人税法施行規則、地方法人税法施行規則、消費税法施行規則および防衛特別法人税に関する省令の各規定に基づき、国税庁長官が定めるファイル形式を定める件（国税庁告示第四号）を公表しています。原文は国税庁の新着情報・通達等として掲載されたPDF資料です。",
+    "business_impact_ja": "電子的な申告・提出手続におけるファイル形式に関わる事業者の実務対応に影響する可能性があります。対象となる法人税・地方法人税・消費税等の電子提出を行う場合、形式要件の確認が必要となることが考えられます。",
+    "recommended_action_ja": "詳細および正確な要件については、国税庁の公式サイトに掲載された告示原文（PDF）をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "4356843286147bfe6c8bd892b9d4f708df30bf86725016a81e61faad8dbc6f4e": {
+    "summary_ja": "国土交通省の報道発表によると、「下水道法等の一部を改正する法律の一部の施行期日を定める政令」等が閣議決定されたとされています。発表の見出しでは、都道府県による公共下水道の災害復旧工事の代行を通じて復旧の迅速化を図る旨が示されています。提供されたメタデータでは詳細な施行期日や具体的内容までは確認できません。",
+    "business_impact_ja": "下水道の管理や災害復旧に関わる自治体・関連事業者の運用や手続に影響が及ぶ可能性があります。改正内容の施行時期によっては、対応準備の検討が必要になることも考えられます。",
+    "recommended_action_ja": "国土交通省の公式発表原文や関係する政令等の内容を確認し、施行期日や適用範囲の詳細を把握されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "9270bfff266c0ad38d4c14f21a644f2135946026b209b7886d876edabc1578db": {
+    "summary_ja": "金融庁は、「金融商品取引業等に関する内閣府令の一部を改正する内閣府令」の公布と、これに関するパブリックコメントの結果等を公表しました。原文からは当該内閣府令が公布された段階にあり、意見募集の結果も併せて示されたことが読み取れます。なお、施行日等の詳細は本メタデータからは確認できません。",
+    "business_impact_ja": "金融商品取引業等に関する規制の改正であるため、関連する事業者の実務対応や社内規程の見直しに影響が及ぶ可能性があります。改正内容の具体的範囲によっては、対応の要否を検討する必要が生じることも考えられます。",
+    "recommended_action_ja": "金融庁の公式ページに掲載された内閣府令本文およびパブリックコメント結果を確認し、自社への該当性や必要な対応を精査されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "74d1caaaa6d3bb5f90e2891833b520b973b56d0de93ae690a261d1e88cdb3047": {
+    "summary_ja": "金融庁は、「犯罪による収益の移転防止に関する法律施行令第十七条の二及び第十七条の三の規定に基づき国又は地域を指定する件の一部を改正する件（案）」に対するパブリックコメントの結果等を公表しました。表題からは、指定される国又は地域に関する改正案について寄せられた意見への対応が示されている段階と考えられます。原文にある事実以外の詳細は本メタデータからは確認できません。",
+    "business_impact_ja": "マネー・ロンダリング対策に関わる金融機関等において、指定国・地域に係る取扱いの確認や対応の見直しが必要となる可能性があります。改正内容の確定状況によっては、実務上の手続に影響が及ぶことも考えられます。",
+    "recommended_action_ja": "金融庁の公表資料などの日本語の公式情報源で、パブリックコメント結果や改正案の内容および今後の手続を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "8b1e9b8b5bca8c5fc8cfbb4a3cd6f04b876e62b10516939487fb1e86b175c9e3": {
+    "summary_ja": "総務省は、第一号基礎的電気通信役務の提供に係る第一種交付金及び第一種負担金算定等規則第五条第一項第五号イに規定する総務大臣が告示する額を定める件案について、意見募集の結果を公表しました。本件は電気通信役務に関する交付金・負担金の算定に関わる告示額に係るものとされています。公表日は2026年8月10日と記載されています。",
+    "business_impact_ja": "基礎的電気通信役務の提供や関連する交付金・負担金の算定に関与する事業者において、告示額の変更が費用負担等に影響する可能性があります。今後の告示内容に応じて対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "詳細および確定内容については、総務省の公式情報源にて意見募集結果および関連告示の原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "b8813a4f75adef8f35f7a4eb8287a07a4869ff9c10039079abdf22d5dbf95556": {
+    "summary_ja": "経済産業省のニュースリリースによると、ラベルレスPETボトルの対象拡大に関する省令が公布・施行されたとされています。あわせて、小森経済産業大臣政務官が当該取組等について発信するためのイベントに参加したことが報じられています。ただし本メタデータには省令の具体的内容や対象範囲の詳細は示されていません。",
+    "business_impact_ja": "PETボトル関連の製造・流通・小売に携わる事業者において、対象拡大に伴う容器表示や運用の見直しが必要となる可能性があります。詳細な適用範囲によって影響の程度は異なると考えられます。",
+    "recommended_action_ja": "経済産業省の公式ニュースリリースおよび公布された省令の原文を確認し、自社の該当有無や対応の要否をご検討いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "763f350f181df896f01ad5ea87e0bd30c7e89b181c1ce41f52429ef7bf8a44e8": {
+    "summary_ja": "国土交通省航空局は、「無人航空機の飛行に関する許可・承認の審査要領（カテゴリーII飛行）」の一部改正（案）について意見募集を実施しています。案の公示日は2026年8月10日、意見の受付締切は2026年9月9日23時59分とされています。所管は国土交通省航空局安全部無人航空機安全課で、分類は航空分野です。",
+    "business_impact_ja": "無人航空機のカテゴリーII飛行に関する許可・承認の審査基準が見直される可能性があり、関連する飛行を行う事業者の申請実務に影響が及ぶことも考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "c6827ac93624e795df759c412432c4f2e6f033b60d4da5d0aa701fe72cd02cb5": {
+    "summary_ja": "農林水産省は、経済安全保障推進法に基づく供給確保計画の認定等に関する省令の一部改正案、および肥料に係る安定供給確保を図るための取組方針の一部改正案について、意見・情報の募集を実施しています。案の公示日は2026年7月27日、受付締切は2026年8月25日23時59分とされています。所管は農林水産省農産局農産政策部技術普及課です。",
+    "business_impact_ja": "肥料の安定供給確保に関わる事業者や関連業界において、供給確保計画の認定要件や取組方針の見直しが検討される可能性があります。改正内容によっては対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "e-Gov及び農林水産省が公表する公式情報を確認し、必要に応じて意見募集の対象文書や締切をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "5b75b814d7083601b2545a14b199a84f4b67343f263552302b0cf5d4ca4ba41a": {
+    "summary_ja": "厚生労働省保険局保険課は、高齢者の医療の確保に関する法律に基づく保険者の前期高齢者交付金等の額の算定等に関する省令第四十条の三の規定に基づき厚生労働大臣が定める基準の一部改正案について、意見募集を実施しています。案の公示日は2026年7月13日、受付締切は2026年8月13日00:00とされ、カテゴリーは社会保険と示されています。現時点では改正案の段階であり、内容が確定したものではありません。",
+    "business_impact_ja": "前期高齢者交付金等の算定基準に関わる事業者や保険者において、算定基準の変更が業務や負担に影響する可能性があります。今後の改正内容次第で対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページや厚生労働省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "d900f026aecad56e9ee8873538c0506351cb1364d0eeed284b15df697a1a6ed3": {
+    "summary_ja": "金融庁は、「金融商品取引業等に関する内閣府令の一部を改正する内閣府令（案）」及び特別金融商品取引業者等の自己資本の充実の状況に関する判断基準の改正案について、パブリックコメントを実施しています。案の公示日は2026年7月31日、意見の受付締切は2026年8月31日17:00とされています。所管は金融庁監督局大手証券等モニタリング室です。",
+    "business_impact_ja": "特別金融商品取引業者及びその子法人等の自己資本規制に関わる内容とされており、該当する事業者の規制対応に影響が及ぶ可能性があります。改正案の段階であるため、最終的な内容は変わり得ると考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページなど日本語の公式情報源で改正案の詳細や受付期間をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "10c61a214db52af4f0e2638dd6a04ec972eae295cd5a39814df8cfbcd55baa4d": {
+    "summary_ja": "総務省の新着情報として、「固定資産評価基準の一部を改正する告示案に係る意見募集の結果」が公表されています。これは固定資産評価基準の一部改正に関する告示案について実施された意見募集の結果に関するものと示されています。原文メタデータからは意見募集の結果公表の段階であることがうかがえますが、詳細な内容は原文に記載されていない範囲では確認できません。",
+    "business_impact_ja": "固定資産の評価に関わる基準の改正が進む場合、固定資産税等の評価実務に影響が及ぶ可能性があります。関連する評価・申告事務を扱う事業者に留意が必要となることが考えられます。",
+    "recommended_action_ja": "詳細および今後の手続については、総務省の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "9463d635957ef17f3ff0c0db510ec1427dd83835f60bc68da7adcf00223d431b": {
+    "summary_ja": "厚生労働省健康・生活衛生局健康課より、栄養士法施行令等の一部を改正する政令案に関する意見募集が行われています。案の公示日は2026年7月23日、意見の受付締切は2026年8月23日00:00とされ、カテゴリーは厚生に区分されています。現時点では政令案に対する意見募集の段階です。",
+    "business_impact_ja": "栄養士に関する制度運用に関わる事業者において、施行令改正の内容次第で対応の検討が必要となる可能性があります。改正の詳細や適用範囲によって影響の程度は変わると考えられます。",
+    "recommended_action_ja": "e-Gov意見募集ページ等の日本語の公式情報源で政令案の内容および締切期限をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "40cfe723cc5929d71f1323d4cea870a0335f6983571e532259ef8b63166be142": {
+    "summary_ja": "経済産業省のニュースリリースによると、産業競争力強化法等の一部を改正する法律の施行期日を定める政令、及び同法の施行に伴う関係政令の整備に関する政令が閣議決定されました。公表日は2026年7月28日です。原文はニュースリリースとして示されており、施行期日や関係政令の整備に関する内容が対象とされています。",
+    "business_impact_ja": "産業競争力強化法等の改正法の施行時期や関係政令の整備に関わる事項が、企業の事業活動に影響する可能性があります。ただし、具体的な施行期日や整備内容の詳細は原文の確認を要すると考えられます。",
+    "recommended_action_ja": "経済産業省の公式ニュースリリース及び関連する政令の原文をご確認のうえ、自社への関連性を精査されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0647c81118faa11e0bfef6a7ec2c4d0c60344b8c16eb388d05ee5c06dd34d59f": {
+    "summary_ja": "総務省は、基幹放送用周波数使用計画の一部を変更する告示案等について意見募集を行っている旨が公表されています。原文で示されているのは意見募集の実施であり、変更内容の詳細や確定・施行の状況は本メタデータからは明らかではありません。",
+    "business_impact_ja": "放送用周波数の使用計画に関わる事業者にとっては、今後の運用や計画に影響が及ぶ可能性があります。また、関連する分野の事業者にとっても留意すべき動きとなることが考えられます。",
+    "recommended_action_ja": "意見募集の範囲や対象、提出期限等の詳細については、総務省の公式情報源で最新の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "357f1d3db3062f3ec8b699e65bb5b389cd93b295ed1718783d704c87dab21bf4": {
+    "summary_ja": "金融庁は、「貸金業法施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントを実施する旨を公表しました。公表日は2026年7月11日とされています。本情報はタイトルに基づくものであり、改正案の具体的内容は原文メタデータからは確認できません。",
+    "business_impact_ja": "貸金業法施行規則の改正案は、貸金業に関連する事業者の実務や対応に影響が及ぶ可能性があります。意見募集の段階であるため、今後の内容次第で対応の検討が必要となることが考えられます。",
+    "recommended_action_ja": "金融庁の公式ウェブサイト等で、意見募集の対象となる改正案の内容および募集期間の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "74fd9ff5306849daa81d05068d89c2609a5ebd33b34ba636926fa0f8bd918c01": {
+    "summary_ja": "金融庁は、金融商品取引法第二条に規定する定義に関する内閣府令等の一部を改正する内閣府令（案）について、パブリックコメントを実施しています。原文によれば、案の公示日は2026年7月24日、意見の受付締切は2026年8月24日17:00とされ、カテゴリーは金融・保険とされています。所管は金融庁企画市場局市場課および企業開示課と記載されています。",
+    "business_impact_ja": "金融商品取引法上の定義に関する府令改正案であることから、関連する金融商品取引業務や企業開示に携わる事業者に影響が及ぶ可能性があります。改正の具体的内容によっては対応の要否を検討する必要が生じることも考えられます。",
+    "recommended_action_ja": "詳細および正確な内容については、e-Govの意見募集ページや金融庁が公表する日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "da5d5eddfaba1ff778eeb2549d9af93f62036eeecc0e10834e400b1b34da73d9": {
+    "summary_ja": "証券取引等監視委員会（SESC）が、「証券モニタリングに関する基本指針」の一部改正（案）に対するパブリックコメントの結果等について公表したとされる情報です。原文メタデータによれば、2026年7月1日付で意見募集の結果に関する内容が示されています。改正案の具体的な内容や最終的な取扱いの詳細は、提供された情報からは確認できません。",
+    "business_impact_ja": "証券モニタリングに関する基本指針が改正される場合、証券市場に関わる事業者のモニタリング対応や体制整備に影響が及ぶ可能性があります。パブリックコメントの結果を踏まえた最終的な内容次第で、実務上の対応が求められることも考えられます。",
+    "recommended_action_ja": "改正の具体的内容や適用時期については、SESCおよび金融庁の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "a718c993c31205e994836ecae880524fdc83095b1cacf283fe4dae157da81d14": {
+    "summary_ja": "国税庁は、国税徴収法施行規則第一条の五第三項に規定する国税庁長官が指定する許認可等を定める件（令和二年国税庁告示第十九号）の一部を改正する告示（国税庁告示第16号）を公表しています。公表日は2026年3月31日とされ、国税庁の新着情報・通達等として掲載されています。提供された情報では、改正の具体的な内容までは示されていません。",
+    "business_impact_ja": "国税徴収に関連する許認可等の指定範囲に関わる改正である可能性があり、該当する事業者において確認の必要が生じることも考えられます。",
+    "recommended_action_ja": "国税庁の公式ウェブサイトに掲載された告示の原文を確認し、改正内容と適用範囲をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "47c92597f57f867e8835e23782317ccd5b082c5bafb566496f385d92c5e1403b": {
+    "summary_ja": "金融庁は「主要行等向けの総合的な監督指針」等の一部改正案を公表し、意見募集を行っています。案の公示日は2026年8月7日、意見の受付締切は2026年9月7日17:00とされています。所管は金融庁 銀行・証券監督局総務課経済安全保障室です。",
+    "business_impact_ja": "監督指針の改正案であることから、主要行等の金融機関を中心に、監督対応や実務運用の見直しが必要となる可能性があります。",
+    "recommended_action_ja": "e-Govの公表資料など金融庁の公式情報を確認し、改正案の具体的な内容や意見募集の手続を把握することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "043b206d4f995d625c04d2fc6bfe4328a9494924836f47a2b5fc4de07391ce5a": {
+    "summary_ja": "環境省設置法の一部を改正する法律の施行に伴い、環境省関係省令を整備する省令（令和八年環境省令第十九号）が公布されたことが更新一覧に掲載されています。対象法令は、特定有害廃棄物等の輸出入等の規制に関する法律に基づき特定有害廃棄物等の範囲等を定める省令（平成三十年環境省令第十二号）とされています。原文の記載では、公布日は2026年6月30日、施行日は2026年7月1日と示されています。",
+    "business_impact_ja": "特定有害廃棄物等の輸出入に関わる事業においては、省令整備に伴う規定の変更が実務に影響する可能性があります。また、環境省設置法改正に関連する所管や手続の整理が関係する事業に影響を及ぼすことも考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正省令および対象省令の最新の条文と施行状況をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "3511a0242d7a47afcc629f67b436af5b25e98266387e21ed9994d91df1f138b6": {
+    "summary_ja": "総務省の新着情報として、危険物の規制に関する規則の一部を改正する省令（案）等に対する意見公募の結果、および改正省令等の公布が公表されています。原文では、意見公募手続を経たうえで改正省令等が公布された段階であることが示されています。",
+    "business_impact_ja": "危険物の取扱いや貯蔵等に関わる事業者においては、規則改正の内容により対応が必要となる可能性があります。具体的な影響範囲は改正内容の確認を要すると考えられます。",
+    "recommended_action_ja": "総務省の公式情報源で意見公募結果および改正省令等の詳細・施行時期をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "9a6d964de24010e9df4e026f007d808ed12be9edaba19e840c9ed9247fa3ac9f": {
+    "summary_ja": "厚生労働省関係省令の整備等に関する省令（令和八年厚生労働省令第五十三号）により、地域における医療及び介護の総合的な確保の促進に関する法律施行規則（平成元年厚生省令第三十四号）が改正されたことが、e-Gov法令検索の更新一覧に掲載されています。本改正は感染症の予防及び感染症の患者に対する医療に関する法律等の一部を改正する法律の一部施行に伴うもので、公布日は2026年3月31日、施行日は2026年6月1日と記載されています。",
+    "business_impact_ja": "医療・介護分野の関連規則の見直しに関わるため、当該分野で事業を行う事業者においては対応の要否を検討する必要が生じる可能性があります。",
+    "recommended_action_ja": "改正の具体的内容や施行状況については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "2ae59bbee4563bf74d1a5676e6c93bef052291ee9027376e5440545aa5be4672": {
+    "summary_ja": "厚生労働省は、全世代対応型の持続可能な社会保障制度の構築に向けた健康保険法等の一部改正法の施行に伴い、厚生労働省関係省令を整備する省令（令和八年厚生労働省令第五十四号）を定めています。原文によれば、対象法令は地域における医療及び介護の総合的な確保の促進に関する法律施行規則（平成元年厚生省令第三十四号）で、公布日は2026年3月31日、施行日は2026年4月1日とされています。",
+    "business_impact_ja": "医療・介護の総合的な確保に関する省令規定が改正されることから、関連する事業運営や実務対応に影響が及ぶ可能性があります。社会保障制度に関わる分野では、規定の見直しへの留意が必要になることも考えられます。",
+    "recommended_action_ja": "改正内容や施行状況の詳細については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "5938a5b73cec4a12b3fbea2b6b68bab9e6fe39795714864872b3692b58254f1c": {
+    "summary_ja": "厚生労働省関係省令の整備等に関する省令（令和八年厚生労働省令第二十八号）が2026年3月19日に公布され、施行日は2027年4月1日とされています。これは医療法等の一部を改正する法律の一部施行に伴うもので、対象法令として地域における医療及び介護の総合的な確保の促進に関する法律施行規則（平成元年厚生省令第三十四号）が挙げられています。原文メタデータからは、具体的な改正内容の詳細までは確認できません。",
+    "business_impact_ja": "医療・介護分野において、地域における医療及び介護の総合的な確保に関連する省令上の取扱いに影響が及ぶ可能性があります。施行日が2027年4月1日とされているため、対象となる事業者は対応準備を検討する余地が考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で、改正省令の具体的な内容および施行日を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "88d15a4c72164f15c626ce8341f26acb4ffef17cba47080f59f7a9ed046ce79c": {
+    "summary_ja": "金融庁は、「公認会計士及び監査法人におけるマネー・ローンダリング、テロ資金供与及び拡散金融対策に関するガイドライン（案）」に対するパブリックコメントの結果等を公表したと示されています。タイトルからは、当該ガイドライン案に関する意見募集手続を経た結果の公表段階にあることがうかがえます。原文には詳細な本文情報が含まれていないため、具体的な内容については確認が必要です。",
+    "business_impact_ja": "公認会計士及び監査法人におけるマネー・ローンダリング等対策に関する実務対応の検討が必要となる可能性があります。監査業務に関わる体制整備や社内手続の見直しが求められることも考えられます。",
+    "recommended_action_ja": "金融庁が公表した公式のパブリックコメント結果およびガイドライン本文の内容をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "7d127559bf9deead053c42c3b235b4360b155462ed639d4059dfc1db884045df": {
+    "summary_ja": "総務省総合通信基盤局は、電波法関係審査基準の一部を改正する訓令案について意見募集を実施しています。本件はグローバルスターシステムの新方式に向けた制度整備を目的とするもので、案の公示日は2026年8月7日、意見の受付締切は2026年9月10日23:59とされています。",
+    "business_impact_ja": "衛星移動通信や電気通信関連の事業を営む場合、審査基準の改正内容によっては、関連する業務や制度対応に影響が及ぶ可能性があります。",
+    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "fa30a208cc179e60e7dcb70d93158de5db11779f6ea0d5b273c5f62a9e58b2a8": {
+    "summary_ja": "総務省は、電波法関係手数料令の一部を改正する政令案等について実施した意見募集の結果を公表しました。公表された情報は当該意見募集の結果に関するものとされています。",
+    "business_impact_ja": "電波法関係の手数料に関わる事業者において、改正の内容によっては手数料負担や関連手続に影響が生じる可能性があります。",
+    "recommended_action_ja": "総務省の公式ページで意見募集の結果および政令案の詳細を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "cc1700537f82762858bec68f48b19439d55d23e640d5adf62d2e35642de30bb6": {
+    "summary_ja": "金融庁は、令和8年の金融機能強化法等の改正に係る政令・内閣府令案等について実施したパブリックコメントの結果等を公表したとされています。本件は当該案に対する意見募集の結果公表段階に関する情報です。詳細な内容は原文に記載されている範囲に限られます。",
+    "business_impact_ja": "金融機能強化法等の関連規制の見直しに関わる事業者においては、今後の政令・内閣府令の内容や対応の検討が必要となる可能性があります。意見募集結果を踏まえた規定内容の確認が求められることも考えられます。",
+    "recommended_action_ja": "金融庁の公表資料など日本語の公式情報源で、パブリックコメント結果や関連する政令・内閣府令案等の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "f11b380d35765961d24be4e5c76760b01029aba3112d935736012078ba94ed9f": {
+    "summary_ja": "金融庁は、「主要行等向けの総合的な監督指針」等の一部改正（案）を公示し、意見募集を開始しました。銀行代理業関係等が対象とされ、案の公示日は2026年7月30日、意見の受付締切は2026年8月31日18時00分と示されています。所管は金融庁監督局銀行第一課とされています。",
+    "business_impact_ja": "銀行代理業等に関わる監督上の運用や実務対応に影響が及ぶ可能性があります。改正の内容によっては、関連する社内体制や手続の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "改正案の具体的内容や意見募集手続の詳細については、e-Govおよび金融庁の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "8c7f516c565fae4ec9702c9818b9e5d2d08b4ae2f1f54c4ecdc43764047a74c7": {
+    "summary_ja": "金融庁は、仕組預金に関連する「主要行等向けの総合的な監督指針」等の一部改正（案）を公表し、意見募集を行っています。案の公示日は2026年7月30日、意見の受付締切は2026年8月31日18:00とされています。所管は金融庁監督局銀行第一課です。",
+    "business_impact_ja": "仕組預金を取り扱う主要行等の監督上の指針が改正される可能性があり、関連する業務運営や説明態勢に影響が及ぶことも考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページや金融庁の公式発表など、日本語の一次情報で改正案の内容と締切をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "27e004fa0395cc01276bfb80f595f4b828e3dfc02173def28bad58d49153b026": {
+    "summary_ja": "総務省消防庁は、救助隊の編成、装備及び配置の基準を定める省令の一部を改正する省令（案）等について、意見募集を実施しています。案の公示日は2026年8月5日、意見の受付締切は2026年9月8日23時59分とされており、カテゴリーは消防に分類されています。現時点では案の段階であり、確定した内容ではありません。",
+    "business_impact_ja": "救助隊の編成・装備・配置基準に関わる消防関連の実務や体制に影響が及ぶ可能性があります。具体的な影響の範囲や程度は、改正案の内容次第と考えられます。",
+    "recommended_action_ja": "e-Govの意見募集ページなど日本語の公式情報源で改正案の詳細および受付締切を確認することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0d8aacf16fb06cbbdc56023eb6a8f102b5a72e13c80fcb855f6800a82388a3bd": {
+    "summary_ja": "金融庁は、「金融商品取引業等に関する内閣府令の一部を改正する内閣府令（案）」及び特別金融商品取引業者等の自己資本充実の状況に関する基準の一部改正（案）について、パブリックコメントを実施する旨を公表しました。現時点では意見募集の段階であり、改正内容は案として示されているものです。なお、原文には具体的な改正内容の詳細は記載されていません。",
+    "business_impact_ja": "金融商品取引業者や特別金融商品取引業者及びその子法人等において、自己資本規制等に関連する対応の検討が必要となる可能性があります。案の内容次第で影響の範囲が変わり得ると考えられます。",
+    "recommended_action_ja": "金融庁の公表資料および意見募集要領などの日本語の公式情報源で、対象範囲・改正内容・提出期限をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "beefee7d78fcfbb23e2bdcd1aa1835cc12b3ed63047b3b5ede6b9a2f6e675091": {
+    "summary_ja": "総務省の新着情報として、「令和8年熊本地震による災害についての特定非常災害及びこれに対し適用すべき措置の指定に関する政令」の公布・施行が掲載されています。原文によれば、当該地震による災害を特定非常災害として指定し、適用すべき措置を定める政令が公布・施行された旨が示されています。",
+    "business_impact_ja": "特定非常災害の指定に伴い、行政上の各種手続の期限延長や権利利益の保全等に関する措置が関係する事業者・関係者に影響する可能性があります。適用対象や具体的な措置内容によって、対応事項が生じることも考えられます。",
+    "recommended_action_ja": "政令の適用範囲や具体的措置の詳細については、総務省の公表資料等の日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "fe5955ced302caaa298074dea245c1cda4e9faf68eed36936dd1c62ab96352c8": {
+    "summary_ja": "国税庁は、行政手続における個人番号（マイナンバー）の利用等に関する法律施行規則に基づき、国税関係手続に係る個人番号利用事務実施者が適当と認める書類等を定める件を一部改正する告示（国税庁告示第19号）を公表しています。原文は国税庁の新着情報・通達等として掲載されており、本人確認等に用いる書類の範囲に関する定めの改正に関わるものとされています。詳細な改正内容や適用時期は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "国税関係手続における個人番号確認に用いる書類の取扱いに関する事務や社内の本人確認手続に影響が及ぶ可能性があります。関連する実務運用の見直しが必要となることも考えられます。",
+    "recommended_action_ja": "改正の具体的内容や適用時期については、国税庁の告示原文および公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "d29162a8885e6fc869c6d0224ccf5e85d2e7978cf74652dc377d007a45ea3f2a": {
+    "summary_ja": "特別児童扶養手当等の支給に関する法律施行規則（昭和三十九年厚生省令第三十八号）を改正する省令（令和八年厚生労働省令第九十八号）が公表されました。あわせて障害児福祉手当及び特別障害者手当の支給に関する省令の一部を改正するものとされ、公布日は2026年6月4日、施行日は2026年8月1日と記載されています。改正の具体的な内容はメタデータからは確認できません。",
+    "business_impact_ja": "特別児童扶養手当や障害児福祉手当、特別障害者手当に関連する事務や実務運用に影響が及ぶ可能性があります。手当の支給に関わる関係業務では、改正内容の確認が必要となることも考えられます。",
+    "recommended_action_ja": "改正省令の具体的な内容や施行時期については、e-Gov法令検索など日本語の公式情報源で最新の原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-12T07:39:30Z",
+    "ja_summary_model": "claude-opus-4-8"
   }
 }
