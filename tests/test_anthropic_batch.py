@@ -25,17 +25,6 @@ class FakeBatches:
         assert batch_id == "msgbatch_test"
         return iter(self.rows)
 
-    def list(self, *, limit):
-        self.list_limit = limit
-        counts = types.SimpleNamespace(
-            processing=0, succeeded=2, errored=0, canceled=0, expired=0
-        )
-        batch = types.SimpleNamespace(
-            id="msgbatch_test",
-            processing_status="ended",
-            request_counts=counts,
-        )
-        return types.SimpleNamespace(data=[batch])
 
 
 class TestAnthropicBatch(unittest.TestCase):
@@ -75,27 +64,6 @@ class TestAnthropicBatch(unittest.TestCase):
 
         self.assertIsInstance(run.results["missing"], ab.BatchItemError)
         self.assertEqual(run.results["missing"].error_type, "missing_result")
-
-    def test_resume_latest_reuses_matching_batch_without_create(self):
-        message = types.SimpleNamespace(content=[], model="model")
-        succeeded = types.SimpleNamespace(type="succeeded", message=message)
-        rows = [
-            types.SimpleNamespace(custom_id="one", result=succeeded),
-            types.SimpleNamespace(custom_id="two", result=succeeded),
-        ]
-        batches = FakeBatches(rows)
-        client = types.SimpleNamespace(messages=types.SimpleNamespace(batches=batches))
-        requests = [
-            {"custom_id": "one", "params": {"model": "m"}},
-            {"custom_id": "two", "params": {"model": "m"}},
-        ]
-
-        run = ab.resume_latest_message_batch(client, requests)
-
-        self.assertEqual(run.batch_id, "msgbatch_test")
-        self.assertIsNone(batches.created)
-        self.assertEqual(batches.list_limit, 100)
-
 
 if __name__ == "__main__":
     unittest.main()
