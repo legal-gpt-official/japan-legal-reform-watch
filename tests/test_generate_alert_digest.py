@@ -59,6 +59,10 @@ class DigestFixture(unittest.TestCase):
         self.items_2026 = [
             make_item(
                 "privacy-ai",
+                title_ja="AIプライバシー規制",
+                summary_ja="意見募集中です。",
+                business_impact_ja="データ処理への影響が考えられます。",
+                recommended_action_ja="日本語の公式情報源を確認してください。",
                 translations={
                     "zh-Hans": {
                         "title": "人工智能隐私规则",
@@ -156,6 +160,14 @@ class TestDigestFiltering(DigestFixture):
         self.assertTrue(result.filters.newly_detected_only)
         self.assertEqual([item["id"] for item in result.items], ["privacy-ai"])
 
+        japanese_result = gad.build_digest(
+            repo_root=self.repo_root,
+            dashboard_url="https://example.test/?q=プライバシー&year=all&lang=ja",
+            since=date(2026, 8, 4),
+            until=date(2026, 8, 10),
+        )
+        self.assertEqual([item["id"] for item in japanese_result.items], ["privacy-ai"])
+
     def test_unknown_url_values_fall_back_like_dashboard(self):
         result = gad.build_digest(
             repo_root=self.repo_root,
@@ -225,13 +237,21 @@ class TestDigestFiltering(DigestFixture):
         )
         haystack = gad._search_haystack(rule_based)
         self.assertIn("cloud services update", haystack)
+        self.assertIn("クラウドサービス更新", haystack)
         self.assertIn("云服务动态", haystack)
         self.assertNotIn("by ai", haystack)
         self.assertNotIn("人工智能影响", haystack)
 
-        ai_summary = dict(rule_based, summary_source="claude")
+        ai_summary = dict(
+            rule_based,
+            summary_source="claude",
+            summary_ja="日本語のAI要約です",
+            business_impact_ja="AI影響の要約",
+            recommended_action_ja="日本語の公式情報源を確認",
+        )
         ai_haystack = gad._search_haystack(ai_summary)
         self.assertIn("by ai", ai_haystack)
+        self.assertIn("ai影響", ai_haystack)
         self.assertIn("人工智能影响", ai_haystack)
 
 

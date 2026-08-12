@@ -8,7 +8,7 @@ A free, browser-based dashboard that summarizes Japanese legal, regulatory, publ
 
 ## What this is (and isn't)
 
-- A free, English-language overview of Japanese legal and regulatory developments.
+- A free, English-canonical overview of Japanese legal and regulatory developments with optional Japanese and Simplified-Chinese display.
 - A reference starting point — **not an official translation, and not legal advice.**
 - See [Legal Notice (EN)](legal/DISCLAIMER_EN.md) and [免責事項 (JA)](legal/DISCLAIMER_JA.md).
 
@@ -70,7 +70,7 @@ The dedicated Contact Form 7 form currently sends only the administrator notific
 
 The request dialog presents the current pilot scope before the form: Pro supports one monitoring criterion and one recipient; Team supports up to five monitoring criteria and five recipients. Both offer a daily or weekly digest and deadline reminders only when structured official deadline data is available. Plan cards synchronize with the form's plan selector. A required monitoring-focus field collects at least ten normalized characters describing the business topic, regulator, keywords, or activity needed to define the request; when the dashboard has no active monitoring filter, the form warns that a broad request may match hundreds of updates. After a successful request, the submitted plan and frequency remain visible and the plan controls are locked while the matching Stripe checkout link is shown. The FAQ explains the manual activation sequence and routes plan-change or cancellation requests to the LegalOS contact page without making an unconfigured refund promise.
 
-The no-index checkout follow-up page is published at `docs/alerts/thank-you.html`. Configure Stripe Payment Link completion redirects to `https://legal-gpt-official.github.io/japan-legal-reform-watch/alerts/thank-you.html?plan=pro` for Pro and the same URL with `plan=team` for Team. The query value is allow-listed only for display; the page does not verify payment and does not claim that alert activation is automatic. It follows the dashboard language preference (`lang=zh-Hans` URL override, then `localStorage`, then English).
+The no-index checkout follow-up page is published at `docs/alerts/thank-you.html`. Configure Stripe Payment Link completion redirects to `https://legal-gpt-official.github.io/japan-legal-reform-watch/alerts/thank-you.html?plan=pro` for Pro and the same URL with `plan=team` for Team. The query value is allow-listed only for display; the page does not verify payment and does not claim that alert activation is automatic. It follows the dashboard language preference (`lang=ja` or `lang=zh-Hans` URL override, then `localStorage`, then English).
 
 ### Alert digest draft generator
 
@@ -218,16 +218,18 @@ python scripts/summarize_updates.py --limit 3 --dry-run   # preview without writ
 Behaviour:
 
 - **Baseline snapshot.** The pre-AI file is snapshotted to `docs/data/legal_updates.before_ai.json` **once**, on the first non-dry-run Stage 3 execution. This is an initial pre-AI baseline, not a per-run backup. Stage 2 still creates `docs/data/legal_updates.backup.json` before each rule-based rebuild.
-- **Cache.** Successful summaries are cached in [`data/summary_cache.json`](data/summary_cache.json), keyed by item `id` + content hash. Re-running never re-summarizes an unchanged item — a cache hit makes **no** API call — so repeat runs are cheap and idempotent. Delete the cache (or an entry) to force a refresh.
+- **Cache.** Successful summaries are cached in [`data/summary_cache.json`](data/summary_cache.json), keyed by item `id` + content hash. An unchanged English result is never regenerated. When an existing English cache entry lacks Japanese fields, Stage 3 may use one call from the same `--api-limit` budget to add `summary_ja`, `business_impact_ja`, and `recommended_action_ja` directly from `title_ja` / Japanese `raw_summary`; it preserves the cached English text and never replaces `title_ja`. Once both language results are cached, the item makes no API call.
 - **Resilience.** A failed API call leaves that item's rule-based copy intact (`summary_source: "rule_based"`) and is logged to [`logs/summarize.log`](logs/summarize.log); one failure never stops the run.
 - **Validation.** Before writing, the output is checked: required UI fields present and non-empty, `confidence` is `high` / `medium` / `low`, and `id` / `source_url` unchanged. Obvious definitive/legal-advice phrases such as "you must comply", "is legally required", "has been enacted", "is in force", and "will definitely" are logged as caution warnings for review.
 - Console summary: `input_items`, `target_items`, `cache_hits`, `api_calls`, `summarized_items`, `failed_items`, `caution_warnings`, `output_path`, `backup_created`.
 
 The default summary model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_SUMMARY_MODEL`; legacy `ANTHROPIC_MODEL` is still accepted at lower priority). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
 
-## Simplified Chinese translation (Stage 4 — Claude)
+## Japanese source summaries (Stage 3) and Simplified-Chinese translation (Stage 4)
 
-`scripts/translate_updates.py` is the optional Stage 4 script. **English stays the canonical data**; this only adds an unofficial Simplified-Chinese (`zh-Hans`) translation under each item's `translations.zh-Hans` (`title`, `summary`, `business_impact`, `recommended_action`). It never touches `id`, `title_ja`, `source_name`, `source_url`, `area`, `stage`, `impact_level`, dates, `first_seen_at`, `comment_deadline`, `relevance_score`, or any summary metadata. Items without a translation omit the block entirely, and the dashboard falls back to English per field.
+Japanese mode does not translate the English dashboard record. It displays the official `title_ja` and, when available, the three Stage 3 `*_ja` fields summarized directly from Japanese source metadata. If those fields are absent, the body falls back to English.
+
+`scripts/translate_updates.py` remains the optional **Simplified-Chinese-only** Stage 4 script. English stays canonical; it adds `translations.zh-Hans` (`title`, `summary`, `business_impact`, `recommended_action`) and never writes `translations.ja` or modifies the Stage 3 Japanese fields.
 
 > **Unofficial machine translation.** The translator runs under strict guardrails: translate the provided English faithfully and nothing else, add no obligations / deadlines / penalties / scope that are not in the English, give no legal advice, do not map Japanese legal concepts onto Chinese-law concepts, and preserve numbers, dates, institution names, and statute names. The Japanese official source remains authoritative.
 
@@ -241,15 +243,15 @@ python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api   # app
 Behaviour:
 
 - **`--limit N` bounds NEW API calls per run, not items inspected.** The script scans the published file in order; cache hits and valid translations are free and do not consume the limit, so successive daily runs translate the whole corpus incrementally. The first bulk translation of the full corpus is a separate, deliberate operation (raise `--limit` once, off the daily schedule).
-- **Cache.** [`data/translation_cache.json`](data/translation_cache.json) is `{ "schema_version": 1, "entries": { "zh-Hans": { "<id>": { source_hash, prompt_version, translated_at, model, title, summary, business_impact, recommended_action } } } }`. `source_hash` is a SHA-256 over `locale | prompt_version | title_en | summary_en | business_impact_en | recommended_action_en | title_ja | stage | source_name` (the item id is the outer key, not hashed). A cached translation is adopted only when its `source_hash` and `prompt_version` still match; a cache hit makes **no** API call and does not rewrite `translated_at`. Changing the English, the Japanese original name / stage / source, or bumping `PROMPT_VERSION` is a cache miss and re-translates.
+- **Cache.** [`data/translation_cache.json`](data/translation_cache.json) stores `entries.zh-Hans`. Each item entry contains `{ source_hash, prompt_version, translated_at, model, title, summary, business_impact, recommended_action }`. `source_hash` includes the locale, prompt version, canonical English fields, and Japanese reference context. A matching cache hit makes no API call and does not rewrite `translated_at`.
 - **Stale removal.** Each run re-checks every item against the current English and **removes** any translation that no longer matches, so the dashboard never shows a translation of outdated English. Stage 2 may carry translations forward across rebuilds, but Stage 4 is authoritative.
-- **Model.** Translation resolves the model as `--model` > `ANTHROPIC_TRANSLATION_MODEL` > `DEFAULT_TRANSLATION_MODEL` (code default `claude-haiku-4-5-20251001`; `ANTHROPIC_MODEL` is not consulted for translation). Both workflows set `ANTHROPIC_TRANSLATION_MODEL=claude-sonnet-5` on the translate step, so zh-Hans translation runs on Sonnet 5 while summarization stays on Opus 4.8; the translation code default is unchanged and the switch does not invalidate the existing cache (the model is stored per cache entry but not part of `source_hash`, so only new/changed items are re-translated — no `PROMPT_VERSION` bump). The translate call disables thinking (`thinking={"type": "disabled"}`) and sends no sampling parameters (`temperature`/`top_p`/`top_k`).
+- **Model.** Translation resolves the model as `--model` > `ANTHROPIC_TRANSLATION_MODEL` > `DEFAULT_TRANSLATION_MODEL` (code default `claude-haiku-4-5-20251001`; `ANTHROPIC_MODEL` is not consulted for translation). The daily and backfill zh-Hans steps use Sonnet 5 while summarization stays on Opus 4.8. The model is stored per cache entry but is not part of `source_hash`; switching models does not invalidate valid cached translations. Translation disables thinking and sends no sampling parameters.
 - **No-API / no key.** `--no-api` (or a missing `ANTHROPIC_API_KEY`) applies only valid cached translations, removes stale ones, and exits 0 without calling the API.
 - **Resilience.** A failed or invalid translation leaves that item in English (no translation), is logged to [`logs/translate.log`](logs/translate.log), and never stops the run. Translations must be non-empty, contain no HTML/Markdown, and stay within length caps (title ≤ 90, summary ≤ 800, business_impact / recommended_action ≤ 500) or they are rejected and not cached.
 - **Title quality (prompt `zh-hans-v3`).** The current prompt version is `zh-hans-v3`, which asks for short, complete, scannable Chinese titles by stage (`公开征求意见：…`, `（已结束）公开征求意见：…`, `公开征求意见结果：…`, `指南草案：…`, `法案提交：…`). A dedicated title check rejects titles that are over 90 chars, end with or contain an ellipsis, contain Japanese kana, repeat a stage phrase or a word/fragment (e.g. `规则、则`, `修订修订`), have duplicated punctuation, unbalanced `《》`/`（）`/`()`, or line breaks, plus a small exact set of **known mistranslated statute names** (e.g. `外来入侵物种法`, `开发与雇佣适当实施及保护法`) — title-only, conservative to avoid false positives. If the title is rejected, the whole item falls back to English, is not cached, and is counted as `quality_rejected_items` (separate from `failed_items`). Bumping `PROMPT_VERSION` makes every older-version cache entry a cache miss, so the next run re-translates them.
 - **Japanese reference context + dates (v3).** To keep Japan-specific statute/system names accurate, v3 sends the Japanese `title_ja` / `stage` / `source_name` to the model **as reference only** (the four English fields are still the only translation targets; the reference is never translated or returned, and only the four Chinese fields are written back). When the English and `title_ja` differ, the formal Japanese name in `title_ja` wins, then the English meaning, then Chinese brevity — without adding any legal effect not already present. After translation, numeric dates in the four Chinese fields are normalized (`YYYY/MM/DD` and `YYYY.MM.DD` → `YYYY-MM-DD`); ambiguous formats and all metadata/source fields are left untouched.
 
-On the dashboard, a header **language selector (English / 简体中文)** switches the display. Precedence is **URL (`lang=zh-Hans`) > `localStorage` (`jlrw-language`) > English**; `lang=en` is omitted from shared URLs, switching language keeps all filters / sort / Load more state, and a translated card shows a subtle `AI翻译` badge plus an unofficial-translation note (English-fallback notice when a translation is unavailable).
+On the dashboard, a header **language selector (English / 日本語 / 简体中文)** switches the display. Precedence is **URL (`lang=ja` or `lang=zh-Hans`) > `localStorage` (`jlrw-language`) > English**. Japanese cards identify source-based AI summaries and fall back to English when unavailable; Chinese cards show the AI-translation notice.
 
 ## Scheduled updates (GitHub Actions)
 
@@ -274,13 +276,13 @@ Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summari
 
 The workflow commits when any tracked data artifact changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, `data/translation_cache.json`, `data/source_health_state.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits. After a data commit is pushed, the workflow explicitly requests a GitHub Pages build from the latest default-branch revision so bot-authored daily updates are published without requiring another commit. The final source-health gate runs after the commit and Pages-request steps, so healthy-source updates and health-state changes can be preserved before a serious source-health failure marks the workflow red.
 
-A second, manual-only workflow [`translation-backfill.yml`](.github/workflows/translation-backfill.yml) accumulates the zh-Hans corpus **translate-only** — it never fetches, runs Stage 2, summarizes, or touches source-health. It counts translations before/after, runs `translate_updates.py --locale zh-Hans --limit 30`, and enforces a semantic integrity gate: neither artifact may shrink, and every published translation must match a valid current-hash cache entry. Cache-only stale/history entries are allowed because changed English source text invalidates publication without requiring destructive cache cleanup. It then regenerates deterministic yearly browser shards, checks `origin/main` has not advanced (aborting cleanly rather than rebasing/force-pushing), and commits `data/translation_cache.json`, the canonical public JSON, its manifest, and archive shards. A successful translation commit explicitly requests a Pages build from the latest `main` revision. Both workflows share `concurrency.group: japan-legal-reform-data-writer` so they never write data at the same time. The translator itself also fails (exit 1) if it reports translations that did not actually persist to the saved cache / published file, so a "30 translated but nothing changed" run can no longer pass silently.
+A second, manual-only workflow [`translation-backfill.yml`](.github/workflows/translation-backfill.yml) accumulates the zh-Hans corpus **translate-only** — it never fetches, runs Stage 2, summarizes, or touches source-health. It counts translations before/after, runs `translate_updates.py --locale zh-Hans --limit 30`, and enforces a semantic integrity gate: neither artifact may shrink, and every published translation must match a valid current-hash cache entry. Cache-only stale/history entries are allowed because changed English source text invalidates publication without requiring destructive cache cleanup. It then regenerates deterministic yearly browser shards, checks `origin/main` has not advanced, and commits only translation-derived artifacts. Both workflows share `concurrency.group: japan-legal-reform-data-writer`.
 
 The translator classifies provider (Anthropic) errors and **fails fast** on a run-fatal one — `insufficient_credit`, `authentication_error`, or `permission_error` — stopping further API calls on the first occurrence (the rest become `provider_aborted_items` / `api_calls_avoided`, not 30 repeated failures). Error bodies, request ids, API keys, and source/translation text are never logged. `--provider-failure-mode` chooses the policy: the **daily** workflow uses `warn` (a credit outage does not stop fetch/build/summarize/commit; it raises a `::warning::Translation provider unavailable: <type>` annotation and adds no translations), while the **backfill** workflow uses `fail` (a credit/auth outage exits 1 before any commit). Rate-limit / transient / network errors stay per-item (no fail-fast), and a translation of changed Japanese source is still dropped to English even during an outage. (Running out of credit is resolved on the Anthropic platform — Plans & Billing — not in this code.)
 
 ## Tests
 
-Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification (stage / area / impact), rule-based English title generation, the Public Comment Closed ordering demotion, Stage 3 AI-summary preservation, **Stage 4 translation (cache hits, `--limit` bounding only new API calls, stale-translation removal, `--no-api` / no-key fallback, metadata invariance) and Stage 2 translation preservation**, the published-file JSON schema (including the optional `translations` contract), Source Health Monitor behavior, the Stage 1 parsers / `SOURCES` configuration, and **static checks for `docs/app.js` / `docs/i18n.js` (URL `lang` state, language-switch behavior, Chinese search, and both English and Chinese CSV column orders)**. They make **no network calls**; the published data is validated read-only.
+Offline regression tests live under [`tests/`](tests/). They cover Stage 2 classification, rule-based English title generation, Stage 3 English-cache preservation and Japanese-source enrichment, Stage 4 zh-Hans translation/cache behavior, the published-file schema, Source Health Monitor behavior, Stage 1 adapters, URL language state, multilingual search, and the pinned English/Japanese/Chinese CSV layouts (16/16/17 columns). They make no network calls; the published data is validated read-only.
 
 ```
 python -m unittest discover -s tests     # standard library, no extra dependencies
@@ -308,7 +310,7 @@ The **published data file is [`docs/data/legal_updates.json`](docs/data/legal_up
 
 If `scripts/summarize_updates.py` is run with `ANTHROPIC_API_KEY`, Stage 3 post-processes the same published file. AI-summarized records are marked `summary_source: "claude"`; non-summarized records are marked `summary_source: "rule_based"`. A file that has only gone through Stage 2 may not yet contain `summary_source`.
 
-If `scripts/translate_updates.py` is run afterwards, Stage 4 adds an optional `translations.zh-Hans` block to translated records. English fields stay canonical and untranslated records omit the block; a file that has not gone through Stage 4 simply has no `translations`.
+If `scripts/translate_updates.py` is run afterwards, Stage 4 adds an optional `translations.zh-Hans` block to translated records. Japanese Stage 3 summaries remain top-level `*_ja` fields; Stage 4 never creates `translations.ja`.
 
 Display order is part of the published data contract: the browser respects the JSON array order, including after filtering and searching.
 
@@ -335,7 +337,7 @@ japan-legal-reform-watch/
 │   ├── fetch_updates.py          # Stage 1 raw ingestion (fetch → normalize → dedupe → log)
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
 │   ├── summarize_updates.py      # Stage 3 Claude AI summarization of the top-N items
-│   ├── translate_updates.py      # Stage 4 Claude Simplified-Chinese (zh-Hans) translation
+│   ├── translate_updates.py      # Stage 4 Claude Simplified-Chinese translation
 │   └── generate_alert_digest.py  # Review-required Markdown/HTML alert draft generator
 ├── tests/
 │   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI & translation preservation
@@ -356,7 +358,7 @@ japan-legal-reform-watch/
 ├── docs/                         # ← GitHub Pages publish root (serve from /docs)
 │   ├── index.html                # Dashboard entry point
 │   ├── style.css
-│   ├── i18n.js                   # i18n layer (window.JLRW_I18N): EN canonical + zh-Hans overlay
+│   ├── i18n.js                   # i18n layer: EN canonical + ja / zh-Hans overlays
 │   ├── app.js
 │   ├── .nojekyll                 # Serve files verbatim (no Jekyll)
 │   ├── data/
@@ -387,8 +389,8 @@ japan-legal-reform-watch/
 - **Shareable filter URLs**: filter state is reflected in query parameters (`q`, `area`, `stage`, `source`, `impact`, `ai`, `new`, `sort`). `new=7` is the only valid Newly detected URL value. `source` uses compact slugs such as `jftc`, `moe`, `ppc`, `mlit`, `maff`, and `egov`; Load more state is not persisted, and Reset clears both filters and URL query parameters.
 - **Saved searches and alert-pilot request**: up to five current filter/search definitions can be named, stored in `localStorage`, restored, and deleted. Values are rendered with DOM `textContent`; the saved-search feature stores no personal data and does not imply that an email alert or account has been created. A separate consent-gated form can submit the visitor's contact details and current monitoring criteria to the existing Legal GPT inquiry endpoint, with a contact-page fallback and optional post-acceptance Stripe Payment Link.
 - **English-first source labels**: the Source filter and each card's source name display English-first labels (e.g. `Japan Fair Trade Commission (JFTC)`, `Ministry of the Environment (MOE)`) via a display-name map in `docs/app.js`. Source filter URLs use compact slugs such as `jftc`, `mlit`, and `maff`. The underlying `source_name` values in the published JSON — and the official Japanese `source_url` links — are unchanged.
-- **Language selector (English / 简体中文)** in the header for an optional Simplified-Chinese display. English is canonical; Chinese is an unofficial AI translation that falls back to English per field. Precedence is URL (`lang=zh-Hans`) > `localStorage` > English; switching language preserves filters, sort, and the Load more window, and translated cards carry a subtle `AI翻译` badge and unofficial-translation note.
-- **Free-text search** always covers the English title, original Japanese title, and Simplified-Chinese title. For records with a Claude summary, it also covers the English summary and Simplified-Chinese summary / business-impact / recommended-action fields regardless of the active UI language. Rule-based placeholder bodies are deliberately excluded so boilerplate such as “not yet summarized by AI” cannot create false-positive monitoring matches. Japanese keywords such as 排除措置命令 or 食品表示, and Chinese title keywords, still match even when the English title does not contain them.
+- **Language selector (English / 日本語 / 简体中文)** in the header. Japanese mode uses the official original title and optional Stage 3 Japanese-source summaries; Chinese uses unofficial Stage 4 translations. Missing localized body fields fall back to English. Precedence is URL (`lang=ja` or `lang=zh-Hans`) > `localStorage` > English; switching language preserves filters, sort, and the Load more window.
+- **Free-text search** always covers the English title, original Japanese title, and Simplified-Chinese title. For Claude-summarized records, it also covers English summaries, Japanese `*_ja` summaries, and Simplified-Chinese summary / business-impact / recommended-action fields regardless of active UI language. Rule-based placeholder bodies are excluded.
 - **Status line** in the form `Showing X of Y matching updates · Z total updates · AI summaries: N · Last checked: D` — the AI-summary count and latest `last_checked` date cover the full filtered set, not just the rendered cards.
 - **Disclaimer modal** on first visit, with acceptance persisted in `localStorage`.
 - **Footer links** to Legal GPT, the Japan Legal Reform Watch landing page, Japan legal updates, and the full Legal Notice / Disclaimer at all times.
@@ -408,6 +410,9 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `summary_en`             | Short factual summary in English.                                        |
 | `business_impact_en`     | Short note on practical impact on businesses.                            |
 | `recommended_action_en`  | Short note on suggested next steps.                                      |
+| `summary_ja`             | Optional Stage 3 AI summary generated directly from Japanese source metadata; all three `*_ja` fields appear together. |
+| `business_impact_ja`     | Optional tentative business-impact summary generated directly from Japanese source metadata. |
+| `recommended_action_ja`  | Optional cautious review suggestion generated directly from Japanese source metadata. |
 | `source_name`            | Issuing authority (e.g. FSA, METI, PPC, JFTC).                           |
 | `source_url`             | URL of the original Japanese source.                                     |
 | `published_at`           | Date published / announced (ISO `YYYY-MM-DD`).                           |
@@ -417,7 +422,7 @@ Each entry in `docs/data/legal_updates.json` (and its source copy `data/legal_up
 | `comment_deadline_source_id` | Present only for an inherited deadline; stable ID of the related e-Gov source record. |
 | `comment_deadline_inherited` | Optional boolean provenance flag; `true` only when the deadline came from a related e-Gov item. |
 | `last_checked`           | Date this entry was last verified (ISO `YYYY-MM-DD`).                    |
-| `translations`           | Optional per-locale AI translations, e.g. `translations.zh-Hans = { title, summary, business_impact, recommended_action }` (Simplified Chinese). Unofficial aid added by Stage 4; English stays canonical and untranslated items omit the block. |
+| `translations`           | Optional `translations.zh-Hans` AI translation with `{ title, summary, business_impact, recommended_action }`. Stage 4 never writes `translations.ja`. |
 
 ## Operating status and roadmap
 

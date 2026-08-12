@@ -1404,10 +1404,14 @@ class TestAiSummaryPreservation(unittest.TestCase):
         existing = {
             "id": "raw-abc123",
             "source_url": self.URL,
+            "title_ja": "個人情報保護法ガイドラインの一部改正（案）に関する意見募集について",
             "summary_source": "claude",
             "summary_en": "AI summary text.",
             "business_impact_en": "AI business impact.",
             "recommended_action_en": "AI recommended action.",
+            "summary_ja": "日本語原文に基づくAI要約です。",
+            "business_impact_ja": "事業への影響が生じる可能性があります。",
+            "recommended_action_ja": "日本語の公式情報源を確認することが考えられます。",
             "confidence": "medium",
             "ai_notes": "AI notes.",
             "summarized_at": "2026-06-10T08:00:00Z",
@@ -1431,6 +1435,17 @@ class TestAiSummaryPreservation(unittest.TestCase):
         self.assertEqual(item["summarized_at"], "2026-06-10T08:00:00Z")
         self.assertEqual(item["summary_model"], "claude-opus-4-8")
         self.assertEqual(item["confidence"], "medium")
+        self.assertEqual(item["summary_ja"], "日本語原文に基づくAI要約です。")
+
+    def test_japanese_summary_is_not_preserved_when_original_title_changes(self):
+        item = self._new_item()
+        existing = self._existing_claude(title_ja="変更前の日本語原題")
+
+        self.assertTrue(bpd.preserve_ai_summary_fields(item, {"raw-abc123": existing}))
+
+        self.assertEqual(item["summary_en"], "AI summary text.")
+        for field in bpd.JAPANESE_SUMMARY_FIELDS:
+            self.assertNotIn(field, item)
 
     def test_not_preserved_when_source_url_differs(self):
         item = self._new_item()

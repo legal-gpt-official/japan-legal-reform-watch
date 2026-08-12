@@ -92,6 +92,7 @@ AI_PRESERVE_FIELDS = (
     "summary_en", "business_impact_en", "recommended_action_en",
     "summary_source", "confidence", "ai_notes", "summarized_at", "summary_model",
 )
+JAPANESE_SUMMARY_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
 
 # Stage 4 (scripts/translate_updates.py) owns translations.<locale>. Stage 2 only
 # CARRIES THEM FORWARD across rebuilds so they survive the window between a build
@@ -1566,6 +1567,17 @@ def preserve_ai_summary_fields(item: dict, existing_by_id: dict[str, dict]) -> b
         return False
     for field in AI_PRESERVE_FIELDS:
         if field in existing:
+            item[field] = existing[field]
+    # Japanese summaries are based directly on Japanese source metadata. At a
+    # minimum, require the original title to be unchanged and all three fields
+    # to be present before carrying them across a Stage 2 rebuild.
+    same_japanese_title = (existing.get("title_ja") or "") == (item.get("title_ja") or "")
+    valid_japanese_summary = all(
+        isinstance(existing.get(field), str) and existing[field].strip()
+        for field in JAPANESE_SUMMARY_FIELDS
+    )
+    if same_japanese_title and valid_japanese_summary:
+        for field in JAPANESE_SUMMARY_FIELDS:
             item[field] = existing[field]
     return item.get("summary_source") == "claude"
 

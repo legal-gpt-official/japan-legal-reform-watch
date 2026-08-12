@@ -50,6 +50,13 @@ class TestSummarizeTitleCap(unittest.TestCase):
             "ai_notes": "Limited metadata.",
         }
 
+    def _ja_result(self):
+        return {
+            "summary_ja": "日本語の原文情報を基にした要約です。",
+            "business_impact_ja": "事業への影響が生じる可能性があります。",
+            "recommended_action_ja": "日本語の公式情報源を確認することが考えられます。",
+        }
+
     def test_summary_model_default_and_overrides(self):
         self.assertEqual(su.DEFAULT_MODEL, "claude-opus-4-8")
         with mock.patch.dict("os.environ", {}, clear=True):
@@ -98,6 +105,34 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertEqual(item["comment_deadline_source"], "related_egov_item")
         self.assertEqual(item["comment_deadline_source_id"], "raw-egov-source")
         self.assertIs(item["comment_deadline_inherited"], True)
+
+    def test_japanese_summary_is_applied_without_changing_original_title(self):
+        item = self._item()
+        original_title = item["title_ja"]
+        result = self._ja_result()
+
+        su.apply_japanese_result(item, result)
+
+        self.assertEqual(item["title_ja"], original_title)
+        for field in su.JA_AI_FIELDS:
+            self.assertEqual(item[field], result[field])
+        self.assertTrue(su.valid_japanese_result(item))
+
+        oversized = dict(result, summary_ja="あ" * (su.JA_FIELD_LIMITS["summary_ja"] + 1))
+        self.assertFalse(su.valid_japanese_result(oversized))
+
+    def test_japanese_prompt_uses_japanese_source_metadata_not_english_summary(self):
+        item = self._item()
+        item["summary_en"] = "ENGLISH SENTINEL MUST NOT BE TRANSLATED"
+        params = su.japanese_summary_request_params(
+            "model", item, {"raw_summary": "日本語の公表概要です。"}
+        )
+
+        content = params["messages"][0]["content"]
+        self.assertIn("日本語の公表概要です。", content)
+        self.assertIn(item["title_ja"], content)
+        self.assertNotIn("ENGLISH SENTINEL", content)
+        self.assertEqual(params["system"], su.SYSTEM_PROMPT_JA)
 
     def test_validate_output_rejects_overlong_or_japanese_title_en(self):
         overlong = self._item()
@@ -224,6 +259,101 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(published[0]["title_en"], "AI title")
             self.assertEqual(len(cache), 1)
 
+    def test_existing_english_cache_is_enriched_with_japanese_summary_only(self):
+        item = TestSummarizeTitleCap()._item()
+        item["relevance_score"] = 10
+        english = TestSummarizeTitleCap()._result("Stable cached English title")
+        japanese = TestSummarizeTitleCap()._ja_result()
+        key = su.cache_key(item, {})
+        cached = {
+            **english,
+            "summarized_at": "2026-06-18T00:00:00Z",
+            "summary_model": "cached-model",
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item]), encoding="utf-8")
+            cache_path.write_text(json.dumps({key: cached}), encoding="utf-8")
+            raw_path.write_text(json.dumps([]), encoding="utf-8")
+
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual(len(candidates), 1)
+                self.assertEqual(candidates[0][0]["title_en"], "Stable cached English title")
+                return "msgbatch_ja", [(japanese, model)]
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_japanese_summary_batch": fake_japanese_batch,
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main(["--limit", "1", "--api-limit", "1", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))[0]
+            updated_cache = json.loads(cache_path.read_text(encoding="utf-8"))[key]
+            self.assertEqual(rc, 0)
+            self.assertEqual(published["title_en"], "Stable cached English title")
+            self.assertEqual(published["summary_en"], english["summary_en"])
+            for field in su.JA_AI_FIELDS:
+                self.assertEqual(published[field], japanese[field])
+                self.assertEqual(updated_cache[field], japanese[field])
+
+    def test_unverified_published_japanese_fields_are_removed_when_cache_lacks_them(self):
+        item = TestSummarizeTitleCap()._item()
+        item["relevance_score"] = 10
+        item.update(TestSummarizeTitleCap()._ja_result())
+        english = TestSummarizeTitleCap()._result("Cached English title")
+        key = su.cache_key(item, {})
+        cached = {
+            **english,
+            "summarized_at": "2026-06-18T00:00:00Z",
+            "summary_model": "cached-model",
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item]), encoding="utf-8")
+            cache_path.write_text(json.dumps({key: cached}), encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main(["--limit", "1", "--api-limit", "0", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))[0]
+            self.assertEqual(rc, 0)
+            self.assertEqual(published["summary_source"], "claude")
+            for field in su.JA_AI_FIELDS:
+                self.assertNotIn(field, published)
+
     def test_api_limit_caps_cache_misses_inside_larger_priority_pool(self):
         items = []
         for index in range(4):
@@ -274,6 +404,73 @@ class TestSummaryBatch(unittest.TestCase):
             )
             self.assertEqual(len(cache), 2)
             self.assertIn("skipped_api_budget: 2", stdout.getvalue())
+
+    def test_api_limit_is_shared_by_english_and_japanese_batch_candidates(self):
+        cached_item = TestSummarizeTitleCap()._item()
+        cached_item["id"] = "cached"
+        cached_item["source_url"] = "https://example.go.jp/cached"
+        cached_item["relevance_score"] = 100
+        english_item = TestSummarizeTitleCap()._item()
+        english_item["id"] = "english"
+        english_item["source_url"] = "https://example.go.jp/english"
+        english_item["relevance_score"] = 99
+        skipped_item = TestSummarizeTitleCap()._item()
+        skipped_item["id"] = "skipped"
+        skipped_item["source_url"] = "https://example.go.jp/skipped"
+        skipped_item["relevance_score"] = 98
+        items = [cached_item, english_item, skipped_item]
+        english = TestSummarizeTitleCap()._result("Fresh English title")
+        japanese = TestSummarizeTitleCap()._ja_result()
+        cached_key = su.cache_key(cached_item, {})
+        cached_result = {
+            **TestSummarizeTitleCap()._result("Cached English title"),
+            "summarized_at": "2026-06-18T00:00:00Z",
+            "summary_model": "cached-model",
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text(json.dumps({cached_key: cached_result}), encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+
+            def fake_english_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual([item["id"] for item, _raw in candidates], ["english"])
+                return "msgbatch_en_mixed", [(english, model)]
+
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+                self.assertEqual([item["id"] for item, _raw in candidates], ["cached"])
+                return "msgbatch_ja_mixed", [(japanese, model)]
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_summary_batch": fake_english_batch,
+                "request_japanese_summary_batch": fake_japanese_batch,
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main(["--limit", "3", "--api-limit", "2", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual([item["summary_source"] for item in published], ["claude", "claude", "rule_based"])
+            self.assertEqual(published[0]["summary_ja"], japanese["summary_ja"])
+            self.assertNotIn("summary_ja", published[1])
+            self.assertIn("api_calls       : 2", stdout.getvalue())
 
 
 if __name__ == "__main__":

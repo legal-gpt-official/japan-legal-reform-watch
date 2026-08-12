@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "dedicated-alert-form-20260810"
-APP_CACHE_BUSTER = "dedicated-alert-form-20260810"
+CACHE_BUSTER = "japanese-ui-20260812"
+APP_CACHE_BUSTER = "japanese-ui-20260812"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "dedicated-alert-form-20260810"
+I18N_CACHE_BUSTER = "japanese-ui-20260812"
 
 
 def object_body(name: str) -> str:
@@ -331,7 +331,7 @@ class TestAppJsUrlState(unittest.TestCase):
         for snippet in (
             "update.title_en",
             "update.title_ja",
-            "tr.title",
+            "block.title",
             'update.summary_source === "claude"',
             "update.summary_en",
         ):
@@ -750,7 +750,7 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertNotIn("Thank you for subscribing", THANK_YOU_HTML + I18N_JS)
         self.assertNotIn("感谢您的订阅", THANK_YOU_HTML + I18N_JS)
 
-    def test_all_static_i18n_keys_exist_in_both_dictionaries(self):
+    def test_all_static_i18n_keys_exist_in_all_dictionaries(self):
         html = INDEX_HTML + THANK_YOU_HTML
         keys = set(
             re.findall(
@@ -762,7 +762,21 @@ class TestAppJsUrlState(unittest.TestCase):
         for key in sorted(keys):
             with self.subTest(key=key):
                 definitions = re.findall(rf"^\s+{re.escape(key)}\s*:", I18N_JS, re.M)
-                self.assertEqual(len(definitions), 2)
+                self.assertEqual(len(definitions), 3)
+
+    def test_all_dynamic_i18n_keys_match_across_languages(self):
+        en = I18N_JS[I18N_JS.index("    en: {"):I18N_JS.index("    ja: {")]
+        ja = I18N_JS[I18N_JS.index("    ja: {"):I18N_JS.index('    "zh-Hans": {')]
+        zh = I18N_JS[
+            I18N_JS.index('    "zh-Hans": {'):
+            I18N_JS.index("  // -------- Controlled-vocabulary")
+        ]
+
+        def dictionary_keys(block):
+            return set(re.findall(r"^\s{6}([a-z0-9_]+):", block, re.M))
+
+        self.assertEqual(dictionary_keys(en), dictionary_keys(ja))
+        self.assertEqual(dictionary_keys(en), dictionary_keys(zh))
 
     def test_checkout_page_uses_current_shared_cache_buster(self):
         for asset in ("thank-you.css", "../i18n.js", "thank-you.js"):
@@ -890,14 +904,17 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
     def test_localstorage_key_is_namespaced(self):
         self.assertIn('"jlrw-language"', I18N_JS)
 
-    def test_supported_locales_are_en_and_zh_hans(self):
+    def test_supported_locales_are_en_ja_and_zh_hans(self):
         self.assertIn('"en"', I18N_JS)
+        self.assertIn('"ja"', I18N_JS)
         self.assertIn('"zh-Hans"', I18N_JS)
 
     def test_language_selector_markup(self):
         for snippet in (
             'id="language-select"',
             'value="en"',
+            'value="ja"',
+            "日本語",
             'value="zh-Hans"',
             "简体中文",
         ):
@@ -940,7 +957,7 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
             "function englishCanonical",
             "function hasTranslation",
             "function localeBlock",
-            'TRANSLATION_LOCALE = "zh-Hans"',
+            "SEARCH_TRANSLATION_LOCALES",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
@@ -975,15 +992,15 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
             "update.title_en",
             "update.title_ja",
             "update.summary_en",
-            "tr.title",
-            "tr.summary",
+            "block.title",
+            "block.summary",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, body)
         self.assertIn('update.summary_source === "claude"', body)
         self.assertIn("searchHaystack(u).includes(q)", APP_JS)
         # The Chinese translation block is read regardless of active language.
-        self.assertIn("update.translations[TRANSLATION_LOCALE]", APP_JS)
+        self.assertIn("translations[locale]", APP_JS)
 
     def test_reliability_and_disclaimer_have_chinese(self):
         for snippet in (
@@ -1016,8 +1033,8 @@ class TestSimplifiedChineseI18n(unittest.TestCase):
 class TestChineseCsvExport(unittest.TestCase):
     def _zh_headers(self):
         # The 17-column Chinese layout is defined in i18n.js (CSV_HEADERS_ZH);
-        # app.js references it via I18N.csvHeadersZh().
-        self.assertIn("const ZH_CSV_HEADERS = I18N.csvHeadersZh();", APP_JS)
+        # app.js selects localized headers through the i18n layer.
+        self.assertIn("I18N.csvHeadersLocalized(filters.lang)", APP_JS)
         match = re.search(r"var CSV_HEADERS_ZH = \[(?P<body>.*?)\];", I18N_JS, re.S)
         self.assertIsNotNone(match, "CSV_HEADERS_ZH not found in i18n.js")
         return re.findall(r'"([^"]+)"', match.group("body"))
@@ -1056,10 +1073,10 @@ class TestChineseCsvExport(unittest.TestCase):
 
     def test_chinese_csv_uses_fallback_and_protections(self):
         for snippet in (
-            "function csvRowZh",
-            "function buildCsvTextZh",
+            "function csvRowLocalized",
+            "function buildCsvTextLocalized",
             'translatedField(update, "title")',
-            "ZH_CSV_HEADERS.map(csvCell)",
+            "headers.map(csvCell)",
             ".map(csvCell)",  # cells go through formula-injection protection
             "csvSourceUrl(update)",  # safe URL
         ):
@@ -1067,8 +1084,9 @@ class TestChineseCsvExport(unittest.TestCase):
                 self.assertIn(snippet, APP_JS)
 
     def test_english_csv_is_dispatched_for_english(self):
-        # English keeps the existing buildCsvText; zh-Hans uses buildCsvTextZh.
-        self.assertIn("buildCsvTextZh(filtered) : buildCsvText(filtered)", APP_JS)
+        # English keeps the existing buildCsvText; non-English uses localized CSV.
+        self.assertIn("buildCsvTextLocalized(filtered)", APP_JS)
+        self.assertIn(": buildCsvText(filtered)", APP_JS)
 
     def test_english_csv_headers_unchanged(self):
         # The original English header constant must be intact (see also
@@ -1099,6 +1117,70 @@ class TestChineseUiTerminologyV3(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertNotIn(snippet, I18N_JS)
+
+
+class TestJapaneseI18n(unittest.TestCase):
+    def test_japanese_ui_has_core_trust_and_navigation_copy(self):
+        for snippet in (
+            "日本法改正ウォッチ by LegalOS",
+            "情報の信頼性について",
+            "日本語の公式情報源が優先します",
+            "重要事項 — ご利用前にお読みください",
+            "内容を確認し、同意します",
+            "絞り込み・検索",
+            "CSVを出力",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, I18N_JS)
+        self.assertIn("data-localized-disclaimer", INDEX_HTML)
+        self.assertIn("I18N.disclaimerPath()", APP_JS)
+
+    def test_japanese_title_uses_original_before_ai_translation_exists(self):
+        self.assertIn('if (filters.lang === "ja")', APP_JS)
+        self.assertIn('field === "title"', APP_JS)
+        self.assertIn("return update.title_ja", APP_JS)
+        self.assertIn('const titleLang = filters.lang === "ja" ? "ja" : cardLang;', APP_JS)
+
+    def test_japanese_body_uses_stage3_source_summaries_not_translation_block(self):
+        for field in ("summary_ja", "business_impact_ja", "recommended_action_ja"):
+            self.assertIn(field, APP_JS)
+        self.assertIn("function hasJapaneseSummary", APP_JS)
+        self.assertIn("japaneseField && hasJapaneseSummary(update)", APP_JS)
+        self.assertIn("日本語の原文メタデータを基にAIが直接作成", I18N_JS)
+        self.assertNotIn('translations["ja"]', APP_JS)
+
+    def test_japanese_csv_column_order_is_fixed(self):
+        match = re.search(r"var CSV_HEADERS_JA = \[(?P<body>.*?)\];", I18N_JS, re.S)
+        self.assertIsNotNone(match, "CSV_HEADERS_JA not found in i18n.js")
+        headers = re.findall(r'"([^"]+)"', match.group("body"))
+        self.assertEqual(
+            headers,
+            [
+                "日本語原題",
+                "英語参考タイトル",
+                "分野",
+                "段階",
+                "影響度",
+                "情報源",
+                "日本語公式情報源URL",
+                "公表日",
+                "初回検出日",
+                "最終確認日",
+                "要約種別",
+                "要約",
+                "事業への影響",
+                "推奨対応",
+                "ランキングスコア",
+                "内部ID",
+            ],
+        )
+        self.assertEqual(len(headers), 16)
+        self.assertIn('filters.lang === "ja"', APP_JS)
+        self.assertIn("[update.title_ja, update.title_en]", APP_JS)
+
+    def test_checkout_follow_up_keeps_any_supported_non_default_language(self):
+        self.assertIn('encodeURIComponent(lang)', THANK_YOU_JS)
+        self.assertNotIn('lang === "zh-Hans" ? "?lang=zh-Hans"', THANK_YOU_JS)
 
     def test_english_ui_strings_unchanged(self):
         for snippet in (
