@@ -72,7 +72,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import build_public_data as public_data
-from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, resume_latest_message_batch, run_message_batch
+from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, run_message_batch
 
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
@@ -434,7 +434,6 @@ def request_japanese_summary_batch(
     candidates: list[tuple[dict, dict]],
     *,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
-    resume_latest: bool = False,
 ) -> tuple[str, list[object]]:
     """Submit Japanese-source summary requests as one discounted Message Batch."""
     requests = []
@@ -442,8 +441,7 @@ def request_japanese_summary_batch(
         params = japanese_summary_request_params(model, item, raw)
         params["output_config"] = {"format": {"type": "json_schema", "schema": JA_RESULT_SCHEMA}}
         requests.append({"custom_id": f"summary-ja-{index:04d}", "params": params})
-    runner = resume_latest_message_batch if resume_latest else run_message_batch
-    run = runner(client, requests, timeout_seconds=timeout_seconds, logger=logger)
+    run = run_message_batch(client, requests, timeout_seconds=timeout_seconds, logger=logger)
     decoded: list[object] = []
     for index in range(len(candidates)):
         value = run.results[f"summary-ja-{index:04d}"]
@@ -649,11 +647,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Maximum time to wait for a Message Batch (default 3600 seconds).",
     )
     parser.add_argument(
-        "--resume-latest-batch",
-        action="store_true",
-        help="Resume the newest matching Japanese Message Batch instead of submitting another.",
-    )
-    parser.add_argument(
         "--parallel",
         type=int,
         default=1,
@@ -676,8 +669,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.all_items and not args.japanese_only:
         parser.error("--all-items requires --japanese-only")
-    if args.resume_latest_batch and not (args.batch and args.japanese_only):
-        parser.error("--resume-latest-batch requires --batch --japanese-only")
     if not 1 <= args.parallel <= 10:
         parser.error("--parallel must be between 1 and 10")
     if args.batch and args.parallel != 1:
@@ -945,14 +936,11 @@ def main(argv: list[str] | None = None) -> int:
             client = make_client()
         api_calls += len(pending_ja)
         try:
-            batch_kwargs = {"timeout_seconds": args.batch_timeout_seconds}
-            if args.resume_latest_batch:
-                batch_kwargs["resume_latest"] = True
             japanese_batch_id, outcomes = request_japanese_summary_batch(
                 client,
                 model,
                 [(it, raw) for it, _key, raw in pending_ja],
-                **batch_kwargs,
+                timeout_seconds=args.batch_timeout_seconds,
             )
         except Exception as exc:
             outcomes = [exc] * len(pending_ja)

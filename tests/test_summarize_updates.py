@@ -233,8 +233,6 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--all-items", workflow)
         self.assertIn("--japanese-only", workflow)
         self.assertIn("--api-limit \"$BATCH_SIZE\"", workflow)
-        self.assertIn("--batch", workflow)
-        self.assertIn("--resume-latest-batch", workflow)
         self.assertIn("--parallel 8", workflow)
         self.assertIn("git push origin \"HEAD:${GITHUB_REF_NAME}\"", workflow)
         self.assertIn("group: japan-legal-reform-data-writer", workflow)
