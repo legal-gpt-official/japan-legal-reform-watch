@@ -97,6 +97,27 @@ PROMPT_VERSION = "zh-hans-v3"
 DEFAULT_TRANSLATION_MODEL = "claude-haiku-4-5-20251001"
 MAX_TOKENS = 1500
 
+# Conservative Claude API list prices in USD per million tokens. Sonnet 5 is
+# intentionally estimated at its standard post-introductory price so the cap
+# remains safe after the temporary launch discount ends. Provider billing is
+# authoritative; unknown models report token usage but cannot use a dollar cap.
+MODEL_PRICING_USD_PER_MTOK = {
+    "claude-sonnet-5": {
+        "input": 3.0,
+        "output": 15.0,
+        "cache_write_5m": 3.75,
+        "cache_write_1h": 6.0,
+        "cache_read": 0.30,
+    },
+    "claude-haiku-4-5": {
+        "input": 1.0,
+        "output": 5.0,
+        "cache_write_5m": 1.25,
+        "cache_write_1h": 2.0,
+        "cache_read": 0.10,
+    },
+}
+
 # The four translatable fields and their character limits. Over-limit output is
 # treated as INVALID (rejected) — never silently truncated.
 TRANSLATION_FIELDS = ("title", "summary", "business_impact", "recommended_action")
@@ -254,7 +275,7 @@ Set an Anthropic API key to call the model:
 
 Then run:
 
-    python scripts/translate_updates.py --locale zh-Hans --limit 30
+    python scripts/translate_updates.py --locale zh-Hans --limit 30 --max-cost-usd 0.50
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api
 
 Options:
@@ -266,6 +287,9 @@ Options:
                    remove stale ones. Exit 0.
     --model ID     Override the model (precedence: --model >
                    ANTHROPIC_TRANSLATION_MODEL > default).
+    --max-cost-usd USD
+                   Stop scheduling direct calls after measured estimated cost
+                   reaches the positive cap. Requires configured model pricing.
     --batch        Use Message Batches plus a 1h system-prompt cache breakpoint.
     --dry-run      Do everything except write the output file and cache.
 
@@ -580,12 +604,71 @@ def translation_request_params(model: str, item: dict, locale: str, *, cache_ttl
     )
 
 
-def parse_translation_message(message, model: str) -> tuple[dict, str]:
+def message_usage(message) -> dict[str, int]:
+    """Return billable token counters exposed by a successful API response."""
+    usage = getattr(message, "usage", None)
+    return {
+        "input_tokens": int(getattr(usage, "input_tokens", 0) or 0),
+        "output_tokens": int(getattr(usage, "output_tokens", 0) or 0),
+        "cache_creation_input_tokens": int(
+            getattr(usage, "cache_creation_input_tokens", 0) or 0
+        ),
+        "cache_read_input_tokens": int(getattr(usage, "cache_read_input_tokens", 0) or 0),
+    }
+
+
+def add_usage(total: dict[str, int], usage: dict[str, int]) -> None:
+    for key in total:
+        total[key] += max(0, int(usage.get(key, 0) or 0))
+
+
+def model_pricing(model: str) -> dict[str, float] | None:
+    return next(
+        (rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)),
+        None,
+    )
+
+
+def estimate_usage_cost_usd(
+    usage: dict[str, int],
+    model: str,
+    *,
+    cache_ttl: str = "5m",
+    batch: bool = False,
+) -> float | None:
+    """Estimate one response using separate base/cache-write/cache-read rates."""
+    price = model_pricing(model)
+    if price is None:
+        return None
+    cache_write_key = "cache_write_1h" if cache_ttl == "1h" else "cache_write_5m"
+    multiplier = 0.5 if batch else 1.0
+    total = (
+        usage.get("input_tokens", 0) * price["input"]
+        + usage.get("output_tokens", 0) * price["output"]
+        + usage.get("cache_creation_input_tokens", 0) * price[cache_write_key]
+        + usage.get("cache_read_input_tokens", 0) * price["cache_read"]
+    )
+    return multiplier * total / 1_000_000
+
+
+def parse_translation_message(message, model: str) -> tuple[dict, str, dict[str, int]]:
     text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
-    return extract_json(text), getattr(message, "model", model)
+    return extract_json(text), getattr(message, "model", model), message_usage(message)
 
 
-def request_translation(client, model: str, item: dict, locale: str) -> tuple[dict, str]:
+def unpack_api_outcome(outcome) -> tuple[dict, str, dict[str, int]]:
+    """Accept current 3-tuples and legacy 2-tuples used by offline test doubles."""
+    if isinstance(outcome, tuple) and len(outcome) == 3:
+        return outcome
+    if isinstance(outcome, tuple) and len(outcome) == 2:
+        result, model = outcome
+        return result, model, message_usage(None)
+    raise TypeError("unexpected API outcome")
+
+
+def request_translation(
+    client, model: str, item: dict, locale: str
+) -> tuple[dict, str, dict[str, int]]:
     """Call Claude synchronously with a five-minute prompt-cache breakpoint."""
     import anthropic  # local import so the no-api path needs no SDK
 
@@ -843,6 +926,9 @@ def process_translation_batch(
         "provider_error_type": "none",
         "candidate_reasons": {},
         "batch_id": "",
+        "usage_totals": message_usage(None),
+        "estimated_cost_usd": 0.0,
+        "cost_estimate_complete": True,
     }
     candidates: list[tuple[dict, str, bool]] = []
 
@@ -913,6 +999,7 @@ def process_translation_batch(
             etype,
             type(exc).__name__,
         )
+        stats["cost_estimate_complete"] = False
         return stats
 
     for (it, source_hash, _had_locale), outcome in zip(candidates, outcomes):
@@ -920,7 +1007,18 @@ def process_translation_batch(
         try:
             if isinstance(outcome, Exception):
                 raise outcome
-            result, model_used = outcome
+            result, model_used, usage = unpack_api_outcome(outcome)
+            add_usage(stats["usage_totals"], usage)
+            estimate = estimate_usage_cost_usd(
+                usage,
+                model_used,
+                cache_ttl="1h",
+                batch=True,
+            )
+            if estimate is None:
+                stats["cost_estimate_complete"] = False
+            else:
+                stats["estimated_cost_usd"] += estimate
             if not valid_translation(result):
                 raise ValueError("model returned invalid/oversize translation fields")
             fields = {field: normalize_dates(result[field].strip()) for field in TRANSLATION_FIELDS}
@@ -983,6 +1081,15 @@ def main(argv: list[str] | None = None) -> int:
         default=DEFAULT_TIMEOUT_SECONDS,
         help="Maximum time to wait for a Message Batch (default 3600 seconds).",
     )
+    parser.add_argument(
+        "--max-cost-usd",
+        type=float,
+        default=None,
+        help=(
+            "Stop scheduling further direct calls after measured estimated cost reaches this cap. "
+            "The final response may overshoot the cap by one bounded call."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write the output file or cache.")
     parser.add_argument(
         "--provider-failure-mode",
@@ -997,6 +1104,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.batch and args.omit_title_ja_reference:
         parser.error("--omit-title-ja-reference is supported only for direct calls")
+    if args.max_cost_usd is not None and args.max_cost_usd <= 0:
+        parser.error("--max-cost-usd must be positive")
+    if args.batch and args.max_cost_usd is not None:
+        parser.error("--max-cost-usd is supported only for direct calls")
 
     provider_failure_mode = (
         args.provider_failure_mode
@@ -1033,11 +1144,14 @@ def main(argv: list[str] | None = None) -> int:
     has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
     api_allowed = (not args.no_api) and has_key
     model = resolve_model(args.model)
+    if args.max_cost_usd is not None and model_pricing(model) is None:
+        parser.error("--max-cost-usd requires a model with configured pricing")
 
     logger.info(
         "=== translate run start (locale=%s, limit=%d, no_api=%s, has_key=%s, model=%s, "
-        "batch=%s, dry_run=%s) ===",
-        locale, args.limit, args.no_api, has_key, model, args.batch, args.dry_run,
+        "batch=%s, max_cost_usd=%s, dry_run=%s) ===",
+        locale, args.limit, args.no_api, has_key, model, args.batch,
+        args.max_cost_usd, args.dry_run,
     )
     if args.no_api:
         logger.info("--no-api: applying valid cache only; no API calls will be made.")
@@ -1047,11 +1161,38 @@ def main(argv: list[str] | None = None) -> int:
     client = None
     cache_hits = api_calls = translated = failed = quality_rejected = 0
     skipped_no_budget = stale_translations_removed = 0
+    cost_budget_skipped = 0
     provider_aborted = 0
     provider_fatal = False
     provider_error_type = "none"
     candidate_reasons: dict[str, int] = {}
     batch_id = ""
+    usage_totals = message_usage(None)
+    estimated_cost_usd = 0.0
+    cost_estimate_complete = True
+
+    def record_outcome_usage(
+        usage: dict[str, int],
+        model_used: str,
+        *,
+        cache_ttl: str = "5m",
+        batch: bool = False,
+    ) -> None:
+        nonlocal estimated_cost_usd, cost_estimate_complete
+        add_usage(usage_totals, usage)
+        estimate = estimate_usage_cost_usd(
+            usage,
+            model_used,
+            cache_ttl=cache_ttl,
+            batch=batch,
+        )
+        if estimate is None:
+            cost_estimate_complete = False
+        else:
+            estimated_cost_usd += estimate
+
+    def cost_cap_reached() -> bool:
+        return args.max_cost_usd is not None and estimated_cost_usd >= args.max_cost_usd
 
     if args.batch and api_allowed:
         batch_stats = process_translation_batch(
@@ -1074,6 +1215,9 @@ def main(argv: list[str] | None = None) -> int:
         provider_error_type = batch_stats["provider_error_type"]
         candidate_reasons = batch_stats["candidate_reasons"]
         batch_id = batch_stats["batch_id"]
+        usage_totals = batch_stats["usage_totals"]
+        estimated_cost_usd = batch_stats["estimated_cost_usd"]
+        cost_estimate_complete = batch_stats["cost_estimate_complete"]
         loop_items = []
     else:
         loop_items = items
@@ -1121,6 +1265,13 @@ def main(argv: list[str] | None = None) -> int:
             remove_translation(it, locale)
             continue
 
+        if api_allowed and cost_cap_reached():
+            if had_locale:
+                stale_translations_removed += 1
+            remove_translation(it, locale)
+            cost_budget_skipped += 1
+            continue
+
         if api_allowed and api_calls < args.limit:
             if client is None:
                 client = make_client()
@@ -1130,7 +1281,10 @@ def main(argv: list[str] | None = None) -> int:
                 if args.omit_title_ja_reference:
                     request_item = dict(it)
                     request_item["title_ja"] = ""
-                result, model_used = request_translation(client, model, request_item, locale)
+                result, model_used, usage = unpack_api_outcome(
+                    request_translation(client, model, request_item, locale)
+                )
+                record_outcome_usage(usage, model_used)
                 if not valid_translation(result):
                     raise ValueError("model returned invalid/oversize translation fields")
                 # Normalize numeric dates (YYYY/MM/DD -> YYYY-MM-DD) in the four
@@ -1235,13 +1389,20 @@ def main(argv: list[str] | None = None) -> int:
         "quality_rejected_items=%d skipped_no_budget=%d stale_translations_removed=%d "
         "new_cache=%d updated_cache=%d removed_cache=%d published_added=%d published_updated=%d "
         "published_removed=%d candidate_reasons=%s provider_status=%s provider_error_type=%s "
-        "provider_aborted_items=%d api_calls_avoided=%d batch=%s batch_id=%s",
+        "provider_aborted_items=%d api_calls_avoided=%d cost_budget_skipped=%d "
+        "input_tokens=%d output_tokens=%d cache_creation_input_tokens=%d "
+        "cache_read_input_tokens=%d estimated_cost_usd=%.6f cost_estimate_complete=%s "
+        "max_cost_usd=%s batch=%s batch_id=%s",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
         cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
         published_diff["added"], published_diff["updated"], published_diff["removed"],
         candidate_reasons, provider_status, provider_error_type,
-        provider_aborted, api_calls_avoided, args.batch, batch_id,
+        provider_aborted, api_calls_avoided, cost_budget_skipped,
+        usage_totals["input_tokens"], usage_totals["output_tokens"],
+        usage_totals["cache_creation_input_tokens"], usage_totals["cache_read_input_tokens"],
+        estimated_cost_usd, cost_estimate_complete, args.max_cost_usd,
+        args.batch, batch_id,
     )
     for failure in gate_failures:
         logger.error("INTEGRITY %s", failure)
@@ -1260,6 +1421,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"failed_items              : {failed}")
     print(f"quality_rejected_items    : {quality_rejected}")
     print(f"skipped_no_budget         : {skipped_no_budget}")
+    print(f"cost_budget_skipped       : {cost_budget_skipped}")
     print(f"stale_translations_removed: {stale_translations_removed}")
     print(f"provider_status           : {provider_status}")
     print(f"provider_error_type       : {provider_error_type}")
@@ -1280,6 +1442,19 @@ def main(argv: list[str] | None = None) -> int:
     print(f"published_removed         : {published_diff['removed']}")
     print(f"items_with_{locale}       : {translated_total}")
     print(f"limit (new API max)       : {args.limit}")
+    print(f"input_tokens              : {usage_totals['input_tokens']}")
+    print(f"output_tokens             : {usage_totals['output_tokens']}")
+    print(f"cache_creation_input_tokens: {usage_totals['cache_creation_input_tokens']}")
+    print(f"cache_read_input_tokens   : {usage_totals['cache_read_input_tokens']}")
+    if cost_estimate_complete:
+        print(f"estimated_cost_usd        : {estimated_cost_usd:.6f}")
+    else:
+        print("estimated_cost_usd        : unknown")
+    print(
+        f"max_cost_usd              : {args.max_cost_usd:.6f}"
+        if args.max_cost_usd is not None
+        else "max_cost_usd              : none"
+    )
     print(f"output_path               : {OUTPUT_PATH}")
     if args.no_api:
         print("(--no-api: applied valid cache only; no API calls)")

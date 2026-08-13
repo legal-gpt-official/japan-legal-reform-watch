@@ -104,8 +104,9 @@ jobs:
       # Optional Simplified-Chinese translation. Runs AFTER summarize so it
       # translates the final English (AI where available, rule-based otherwise),
       # and re-checks every translation against the current English via source_hash.
-      # --limit bounds NEW API calls per run; cache hits are free, so the corpus
-      # translates incrementally over successive daily runs.
+      # --limit bounds NEW API calls per run; cache hits are free. Measured
+      # response usage is reported, and the conservative USD estimate stops
+      # scheduling after the USD 0.50 safety cap (one call may overshoot).
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -120,7 +121,15 @@ jobs:
         # failure (exit 1) still stops the job via pipefail.
         run: |
           set -o pipefail
-          python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode warn 2>&1 | tee translate_run.log
+          python scripts/translate_updates.py \
+            --locale zh-Hans \
+            --limit 30 \
+            --max-cost-usd 0.50 \
+            --provider-failure-mode warn 2>&1 | tee translate_run.log
+          {
+            echo "### Simplified-Chinese translation maintenance"
+            grep -E '^(api_calls|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
           if grep -q "PROVIDER_UNAVAILABLE" translate_run.log; then
             ptype=$(grep -m1 "PROVIDER_UNAVAILABLE" translate_run.log | sed -n 's/.*type=\([a-z_]*\).*/\1/p')
             echo "::warning::Translation provider unavailable: ${ptype}"

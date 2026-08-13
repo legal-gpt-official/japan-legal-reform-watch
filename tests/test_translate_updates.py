@@ -409,6 +409,98 @@ class TestLimitAndApi(TranslateTestBase):
         self.assertEqual(rc, 1)
         self.assertEqual(parse_summary(out)["provider_status"], "unavailable")
 
+
+class TestUsageAndCostSafety(TranslateTestBase):
+    def test_message_usage_reads_all_provider_counters(self):
+        message = types.SimpleNamespace(
+            usage=types.SimpleNamespace(
+                input_tokens=101,
+                output_tokens=202,
+                cache_creation_input_tokens=303,
+                cache_read_input_tokens=404,
+            )
+        )
+        self.assertEqual(
+            tu.message_usage(message),
+            {
+                "input_tokens": 101,
+                "output_tokens": 202,
+                "cache_creation_input_tokens": 303,
+                "cache_read_input_tokens": 404,
+            },
+        )
+
+    def test_cost_estimate_prices_base_cache_and_output_separately(self):
+        usage = {
+            "input_tokens": 1000,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 500,
+            "cache_read_input_tokens": 3000,
+        }
+        self.assertAlmostEqual(
+            tu.estimate_usage_cost_usd(usage, "claude-sonnet-5", cache_ttl="5m"),
+            0.008775,
+        )
+        self.assertAlmostEqual(
+            tu.estimate_usage_cost_usd(
+                usage,
+                "claude-sonnet-5",
+                cache_ttl="1h",
+                batch=True,
+            ),
+            0.00495,
+        )
+        self.assertIsNone(tu.estimate_usage_cost_usd(usage, "unknown-model"))
+
+    def test_measured_cost_cap_stops_after_first_bounded_overshoot(self):
+        items = [
+            sample_item(id=f"raw-{i}", title_en=f"Distinct English title {i}.")
+            for i in range(3)
+        ]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        calls = {"n": 0}
+        usage = {
+            "input_tokens": 1000,
+            "output_tokens": 1000,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+        }
+
+        def fake_request(client, model, item, locale):
+            calls["n"] += 1
+            return good_translation(), "claude-sonnet-5", usage
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake_request
+        rc, out = self.run_main([
+            "--locale", LOCALE,
+            "--limit", "30",
+            "--model", "claude-sonnet-5",
+            "--max-cost-usd", "0.01",
+        ])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 1)
+        summary = parse_summary(out)
+        self.assertEqual(summary["api_calls"], "1")
+        self.assertEqual(summary["translated_items"], "1")
+        self.assertEqual(summary["cost_budget_skipped"], "2")
+        self.assertEqual(summary["input_tokens"], "1000")
+        self.assertEqual(summary["output_tokens"], "1000")
+        self.assertEqual(summary["estimated_cost_usd"], "0.018000")
+        self.assertEqual(summary["max_cost_usd"], "0.010000")
+
+    def test_unknown_model_cannot_claim_a_dollar_cap(self):
+        self.write_input([sample_item()])
+        self.write_cache(tu.default_cache())
+        with self.assertRaises(SystemExit):
+            tu.main(["--model", "unknown-model", "--max-cost-usd", "1.00"])
+
+    def test_batch_and_dollar_cap_are_mutually_exclusive(self):
+        with self.assertRaises(SystemExit):
+            tu.main(["--batch", "--max-cost-usd", "1.00"])
+
     def test_new_translation_is_cached_with_metadata(self):
         item = sample_item()
         self.write_input([item])
@@ -1107,6 +1199,14 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertIn("python scripts/translate_updates.py", translate_step)
         self.assertIn("--locale zh-Hans", translate_step)
         self.assertIn("--limit 30", translate_step)
+        self.assertIn('--max-cost-usd "${{ inputs.max_cost_usd }}"', translate_step)
+        self.assertIn("estimated_cost_usd", translate_step)
+        self.assertIn("input_tokens", translate_step)
+        self.assertIn("output_tokens", translate_step)
+
+    def test_backfill_has_measured_cost_input(self):
+        self.assertIn("max_cost_usd:", self.backfill)
+        self.assertIn('default: "0.50"', self.backfill)
 
     def test_backfill_rebuilds_yearly_archives_after_translation(self):
         translate_pos = self.backfill.index("name: Translate Simplified Chinese updates")
@@ -1353,7 +1453,11 @@ class TestWorkflowTranslateStep(unittest.TestCase):
 
     def test_translate_step_present_with_locale_and_limit(self):
         self.assertIn("name: Translate Simplified Chinese updates", self.workflow)
-        self.assertIn("python scripts/translate_updates.py --locale zh-Hans --limit 30", self.workflow)
+        self.assertIn("python scripts/translate_updates.py", self.workflow)
+        self.assertIn("--locale zh-Hans", self.workflow)
+        self.assertIn("--limit 30", self.workflow)
+        self.assertIn("--max-cost-usd 0.50", self.workflow)
+        self.assertIn("estimated_cost_usd", self.workflow)
 
     def test_translate_runs_after_summarize_and_before_check_changes(self):
         summarize_pos = self.workflow.index("name: Summarize top updates")
@@ -1446,7 +1550,9 @@ class TestRequestTranslationCallShape(unittest.TestCase):
         saved = sys.modules.get("anthropic")
         sys.modules["anthropic"] = fake_anthropic
         try:
-            data, model_used = tu.request_translation(_Client(), "claude-sonnet-5", sample_item(), LOCALE)
+            data, model_used, usage = tu.request_translation(
+                _Client(), "claude-sonnet-5", sample_item(), LOCALE
+            )
         finally:
             if saved is None:
                 sys.modules.pop("anthropic", None)
@@ -1469,6 +1575,7 @@ class TestRequestTranslationCallShape(unittest.TestCase):
             self.assertNotIn(param, captured)
         self.assertEqual(captured.get("model"), "claude-sonnet-5")  # resolved model passes through
         self.assertEqual(model_used, "claude-sonnet-5")
+        self.assertEqual(usage, tu.message_usage(None))
         self.assertEqual(data["title"], good_translation()["title"])
 
     def test_batch_params_use_one_hour_prompt_cache(self):

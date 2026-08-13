@@ -14,6 +14,15 @@ on:
         required: false
         default: false
         type: boolean
+      max_cost_usd:
+        description: "Measured estimated-cost safety cap for this checkpoint"
+        required: true
+        default: "0.50"
+        type: choice
+        options:
+          - "0.50"
+          - "2.00"
+          - "5.00"
 
 permissions:
   contents: write
@@ -73,6 +82,7 @@ jobs:
         # untranslated candidates remain exits 1, failing the backfill before any
         # commit so a credit/auth problem is loud and no partial state is pushed.
         run: |
+          set -o pipefail
           extra_args=()
           if [ "${{ inputs.omit_title_ja_reference }}" = "true" ]; then
             extra_args+=(--omit-title-ja-reference)
@@ -80,8 +90,13 @@ jobs:
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --limit 30 \
+            --max-cost-usd "${{ inputs.max_cost_usd }}" \
             --provider-failure-mode fail \
-            "${extra_args[@]}"
+            "${extra_args[@]}" 2>&1 | tee translate_run.log
+          {
+            echo "### Simplified-Chinese translation checkpoint"
+            grep -E '^(api_calls|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Count translations after
         id: after
