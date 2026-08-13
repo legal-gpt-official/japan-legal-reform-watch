@@ -1038,10 +1038,11 @@ def process_translation_batch(
             etype = classify_error(exc)
             stats["failed"] += 1
             remove_translation(it, locale)
-            if etype in FATAL_PROVIDER_ERRORS and not stats["provider_fatal"]:
-                stats["provider_fatal"] = True
-                stats["provider_error_type"] = etype
-                logger.error("PROVIDER unavailable type=%s in completed batch.", etype)
+            if etype in FATAL_PROVIDER_ERRORS:
+                if not stats["provider_fatal"]:
+                    stats["provider_fatal"] = True
+                    stats["provider_error_type"] = etype
+                    logger.error("PROVIDER unavailable type=%s in completed batch.", etype)
             else:
                 logger.error("BATCH FAIL %s type=%s", item_id, etype)
     return stats
@@ -1496,13 +1497,14 @@ def main(argv: list[str] | None = None) -> int:
                     if had_locale:
                         stale_translations_removed += 1
                     remove_translation(it, locale)
-                    if etype in FATAL_PROVIDER_ERRORS and not provider_fatal:
-                        provider_fatal = True
-                        provider_error_type = etype
-                        logger.error(
-                            "PROVIDER unavailable type=%s; unscheduled API candidates were skipped.",
-                            etype,
-                        )
+                    if etype in FATAL_PROVIDER_ERRORS:
+                        if not provider_fatal:
+                            provider_fatal = True
+                            provider_error_type = etype
+                            logger.error(
+                                "PROVIDER unavailable type=%s; unscheduled API candidates were skipped.",
+                                etype,
+                            )
                     else:
                         logger.error("PARALLEL FAIL %s type=%s", item_id, etype)
 

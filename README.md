@@ -197,7 +197,7 @@ $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
 read -s ANTHROPIC_API_KEY && export ANTHROPIC_API_KEY
 ```
 
-If the key is not set, the script prints usage and exits cleanly without calling the API. The key is read only from `ANTHROPIC_API_KEY`; it is never written to code, logs, cache, or documentation.
+If the key is not set, the script applies only valid current cache entries, removes any carried English AI result whose source cache key is stale, and exits cleanly without calling the API. The key is read only from `ANTHROPIC_API_KEY`; it is never written to code, logs, cache, or documentation.
 
 **Optional model override** — the default summary model remains `claude-opus-4-8` for English summary quality, but you can override it without changing code:
 
@@ -224,7 +224,7 @@ Behaviour:
 - **Cache.** Successful summaries are cached in [`data/summary_cache.json`](data/summary_cache.json), keyed by item `id` + content hash. An unchanged English or Japanese result is never regenerated. Japanese fields are generated directly from `title_ja` / Japanese `raw_summary`, preserve the English text, and never replace `title_ja`. Their independent `summary_ja_source`, `ja_summarized_at`, and `ja_summary_model` provenance allows a Japanese AI summary to coexist truthfully with a rule-based English preview.
 - **Resilience.** A failed API call leaves that item's rule-based copy intact (`summary_source: "rule_based"`) and is logged to [`logs/summarize.log`](logs/summarize.log); one failure never stops the run.
 - **Validation.** Before writing, the output is checked: required UI fields present and non-empty, `confidence` is `high` / `medium` / `low`, and `id` / `source_url` unchanged. Obvious definitive/legal-advice phrases such as "you must comply", "is legally required", "has been enacted", "is in force", and "will definitely" are logged as caution warnings for review.
-- Console summary: `input_items`, `target_items`, `cache_hits`, `api_calls`, `summarized_items`, `failed_items`, `caution_warnings`, `output_path`, `backup_created`.
+- Console summary: `input_items`, `target_items`, `cache_hits`, `api_calls`, `summarized_items`, `failed_items`, `caution_warnings`, `output_path`, `backup_created`. `summarized_items` counts successful new API results only; reused results are reported separately as `cache_hits`.
 
 The default summary model is `claude-opus-4-8` (override with `--model` or `ANTHROPIC_SUMMARY_MODEL`; legacy `ANTHROPIC_MODEL` is still accepted at lower priority). All input is treated as untrusted: item metadata is sent to the model clearly delimited as data, with an explicit instruction never to follow instructions embedded in it.
 
@@ -275,7 +275,7 @@ python scripts/source_health.py gate
 
 If compilation or any test fails, the job stops there — no fetch, no rebuild, no API call, and no commit. The test steps do not receive `ANTHROPIC_API_KEY`; the secret is exposed only to the summarize and translate steps. The translate step runs after summarize; yearly archive generation then runs before the change check.
 
-Configure the repository secret `ANTHROPIC_API_KEY` before relying on AI summaries or translations. If the secret is missing, both scripts exit cleanly (the translator still applies any cached translations).
+Configure the repository secret `ANTHROPIC_API_KEY` before relying on new AI summaries or translations. If the secret is missing, both scripts run cache-only maintenance and exit cleanly without making API calls.
 
 The workflow commits when any tracked data artifact changes. The staged commit scope is limited to `data/raw_items.json`, `data/summary_cache.json`, `data/translation_cache.json`, `data/source_health_state.json`, and `docs/data/legal_updates.json`; generated backups and logs stay out of commits. After a data commit is pushed, the workflow explicitly requests a GitHub Pages build from the latest default-branch revision so bot-authored daily updates are published without requiring another commit. The final source-health gate runs after the commit and Pages-request steps, so healthy-source updates and health-state changes can be preserved before a serious source-health failure marks the workflow red.
 

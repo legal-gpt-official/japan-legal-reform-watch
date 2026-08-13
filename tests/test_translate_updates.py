@@ -1457,6 +1457,45 @@ class TestProviderFailFast(TranslateTestBase):
         self.assertEqual(out.count("PROVIDER_UNAVAILABLE"), 1)
         self.assertEqual(parse_summary(out)["failed_items"], "1")  # not 30 failures
 
+    def test_parallel_fatal_wave_logs_one_provider_failure_without_item_noise(self):
+        items = [sample_item(id=f"raw-{i}", title_en=f"English title number {i}.") for i in range(4)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        calls = self._install_credit_failure()
+
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "4", "--parallel", "4",
+            "--provider-failure-mode", "warn",
+        ])
+
+        log_text = tu.LOG_PATH.read_text(encoding="utf-8")
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 4)  # the concurrent wave was already in flight
+        self.assertEqual(parse_summary(out)["failed_items"], "4")
+        self.assertEqual(log_text.count("PROVIDER unavailable"), 1)
+        self.assertNotIn("PARALLEL FAIL", log_text)
+
+    def test_batch_fatal_results_log_one_provider_failure_without_item_noise(self):
+        items = [sample_item(id=f"raw-{i}", title_en=f"English title number {i}.") for i in range(4)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        tu.make_client = lambda: object()
+        tu.request_translation_batch = lambda *args, **kwargs: (
+            "batch-id",
+            [make_provider_error(CREDIT_MESSAGE, 400) for _item in items],
+        )
+
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "4", "--batch",
+            "--provider-failure-mode", "warn",
+        ])
+
+        log_text = tu.LOG_PATH.read_text(encoding="utf-8")
+        self.assertEqual(rc, 0)
+        self.assertEqual(parse_summary(out)["failed_items"], "4")
+        self.assertEqual(log_text.count("PROVIDER unavailable"), 1)
+        self.assertNotIn("BATCH FAIL", log_text)
+
     def test_authentication_error_is_also_fatal(self):
         self._thirty_candidates()
 

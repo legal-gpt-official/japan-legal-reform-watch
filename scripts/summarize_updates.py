@@ -115,6 +115,9 @@ AI_FIELDS = ("title_en", "summary_en", "business_impact_en", "recommended_action
 AI_TEXT_FIELDS = ("title_en", "summary_en", "business_impact_en", "recommended_action_en")
 JA_AI_FIELDS = ("summary_ja", "business_impact_ja", "recommended_action_ja")
 JA_PROVENANCE_FIELDS = ("summary_ja_source", "ja_summarized_at", "ja_summary_model")
+EN_PROVENANCE_FIELDS = (
+    "confidence", "ai_notes", "summarized_at", "summary_model",
+)
 JA_FIELD_LIMITS = {
     "summary_ja": 800,
     "business_impact_ja": 500,
@@ -205,7 +208,7 @@ JA_RESULT_SCHEMA = {
 USAGE = """\
 summarize_updates.py - AI English/Japanese source summarization via Claude.
 
-This step needs an Anthropic API key. Set it in your environment first:
+New API calls need an Anthropic API key. Set it in your environment first:
 
     PowerShell:  $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
     bash/zsh:    read -s ANTHROPIC_API_KEY && export ANTHROPIC_API_KEY
@@ -237,7 +240,8 @@ Optional:
     ANTHROPIC_MODEL is still accepted as a lower-priority legacy override.
 
 The key is read only from the ANTHROPIC_API_KEY environment variable; it is
-never read from, or written to, any file in this project.
+never read from, or written to, any file in this project. Without a key, the
+script safely applies only current cache entries and makes no API calls.
 """
 
 
@@ -655,6 +659,30 @@ def remove_japanese_result(item: dict) -> None:
         item.pop(field, None)
 
 
+def restore_rule_based_english_preview(item: dict) -> None:
+    """Remove a stale English AI result after its source cache key changes.
+
+    Stage 2 deliberately carries an existing Claude result forward until Stage 3
+    can validate it against the current raw-content cache key. On a cache miss,
+    leaving only ``summary_source`` relabelled would expose the old AI text as a
+    rule-based preview when the API budget is exhausted or the provider fails.
+    Rebuild the conservative title and fixed placeholders before scheduling any
+    replacement call so every failure/skip path remains truthful.
+    """
+    item["title_en"] = public_data.generate_title_en(
+        item.get("title_ja", ""),
+        item.get("source_name", ""),
+        item.get("stage", ""),
+        item.get("area", ""),
+    )
+    item["summary_en"] = public_data.SUMMARY_EN
+    item["business_impact_en"] = public_data.BUSINESS_IMPACT_EN
+    item["recommended_action_en"] = public_data.RECOMMENDED_ACTION_EN
+    item["summary_source"] = "rule_based"
+    for field in EN_PROVENANCE_FIELDS:
+        item.pop(field, None)
+
+
 def validate_output(items: list, original_by_id: dict) -> list[str]:
     problems = []
     for it in items:
@@ -805,12 +833,13 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--max-cost-usd is supported only for direct calls")
     model = resolve_model(args.model)
 
-    # Requirement 5: missing key -> print usage and exit cleanly (no traceback).
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print(USAGE)
-        return 0
+    api_key_available = bool(os.environ.get("ANTHROPIC_API_KEY"))
 
     setup_logging()
+    if not api_key_available:
+        logger.warning(
+            "ANTHROPIC_API_KEY is not set; applying current cache entries only and making no API calls."
+        )
 
     items = load_json(INPUT_PATH, None)
     if not isinstance(items, list):
@@ -846,8 +875,8 @@ def main(argv: list[str] | None = None) -> int:
     client = None
     cache_hits = api_calls = summarized = failed = skipped_api_budget = 0
     ja_cache_hits = ja_summarized = ja_failed = ja_skipped_api_budget = 0
-    provider_fatal = False
-    provider_error_type = "none"
+    provider_fatal = not api_key_available
+    provider_error_type = "none" if api_key_available else "missing_api_key"
     provider_aborted = 0
     cost_budget_skipped = 0
     usage_totals = message_usage(None)
@@ -893,7 +922,7 @@ def main(argv: list[str] | None = None) -> int:
             remove_japanese_result(it)
             budget_used = (
                 len(pending_ja)
-                if (args.batch or args.parallel > 1)
+                if (args.batch or args.parallel > 1) and not provider_fatal
                 else api_calls + provider_aborted + cost_budget_skipped
             )
             if api_limit is not None and budget_used >= api_limit:
@@ -946,7 +975,6 @@ def main(argv: list[str] | None = None) -> int:
         if isinstance(cached, dict) and valid_result(cached):
             apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", model))
             cache_hits += 1
-            summarized += 1
             if args.english_only:
                 # English backfills must not create, replace, or remove the
                 # independently generated Japanese summary fields.
@@ -963,7 +991,7 @@ def main(argv: list[str] | None = None) -> int:
             remove_japanese_result(it)
             budget_used = (
                 len(pending) + len(pending_ja)
-                if args.batch
+                if args.batch and not provider_fatal
                 else api_calls + provider_aborted + cost_budget_skipped
             )
             if api_limit is not None and budget_used >= api_limit:
@@ -1019,9 +1047,10 @@ def main(argv: list[str] | None = None) -> int:
                 ja_cache_hits += 1
             else:
                 remove_japanese_result(it)
+        restore_rule_based_english_preview(it)
         budget_used = (
             len(pending) + len(pending_ja)
-            if (args.batch or (args.english_only and args.parallel > 1))
+            if (args.batch or (args.english_only and args.parallel > 1)) and not provider_fatal
             else api_calls + provider_aborted + cost_budget_skipped
         )
         if api_limit is not None and budget_used >= api_limit:
@@ -1078,6 +1107,7 @@ def main(argv: list[str] | None = None) -> int:
         if client is None:
             client = make_client()
         api_calls += len(pending)
+        outcomes = []
         try:
             batch_id, outcomes = request_summary_batch(
                 client,
@@ -1086,8 +1116,24 @@ def main(argv: list[str] | None = None) -> int:
                 timeout_seconds=args.batch_timeout_seconds,
             )
         except Exception as exc:
-            outcomes = [exc] * len(pending)
-            logger.error("BATCH failed before results could be applied: %s", type(exc).__name__)
+            error_type = classify_provider_error(exc)
+            provider_fatal = True
+            provider_error_type = error_type
+            if error_type in FATAL_PROVIDER_ERRORS:
+                # Authentication/billing/permission failures reject batch
+                # creation before any request is submitted.
+                api_calls -= len(pending)
+                failed += 1
+                provider_aborted += len(pending)
+            else:
+                # A batch-wide timeout/network failure may follow submission,
+                # so keep the scheduled-call count but report one outage.
+                failed += len(pending)
+                cost_estimate_complete = False
+            logger.error(
+                "PROVIDER unavailable type=%s; English batch results were not applied.",
+                error_type,
+            )
 
         for (it, key, _raw), outcome in zip(pending, outcomes):
             try:
@@ -1107,7 +1153,14 @@ def main(argv: list[str] | None = None) -> int:
             except Exception as exc:
                 failed += 1
                 it["summary_source"] = "rule_based"
-                logger.error("BATCH FAIL %s type=%s", it.get("id"), type(exc).__name__)
+                error_type = classify_provider_error(exc)
+                if error_type in FATAL_PROVIDER_ERRORS:
+                    if not provider_fatal:
+                        provider_fatal = True
+                        provider_error_type = error_type
+                        logger.error("PROVIDER unavailable type=%s in completed English batch.", error_type)
+                else:
+                    logger.error("BATCH FAIL %s type=%s", it.get("id"), error_type)
 
     if args.english_only and not args.batch and args.parallel > 1 and pending:
         if client is None:
@@ -1229,10 +1282,13 @@ def main(argv: list[str] | None = None) -> int:
             elif cost_cap_reached():
                 cost_budget_skipped += unscheduled
 
-    if args.batch and pending_ja:
+    if args.batch and pending_ja and provider_fatal:
+        provider_aborted += len(pending_ja)
+    elif args.batch and pending_ja:
         if client is None:
             client = make_client()
         api_calls += len(pending_ja)
+        outcomes = []
         try:
             japanese_batch_id, outcomes = request_japanese_summary_batch(
                 client,
@@ -1241,8 +1297,20 @@ def main(argv: list[str] | None = None) -> int:
                 timeout_seconds=args.batch_timeout_seconds,
             )
         except Exception as exc:
-            outcomes = [exc] * len(pending_ja)
-            logger.error("JAPANESE BATCH failed before results could be applied: %s", type(exc).__name__)
+            error_type = classify_provider_error(exc)
+            provider_fatal = True
+            provider_error_type = error_type
+            if error_type in FATAL_PROVIDER_ERRORS:
+                api_calls -= len(pending_ja)
+                ja_failed += 1
+                provider_aborted += len(pending_ja)
+            else:
+                ja_failed += len(pending_ja)
+                cost_estimate_complete = False
+            logger.error(
+                "PROVIDER unavailable type=%s; Japanese batch results were not applied.",
+                error_type,
+            )
 
         for (it, key, _raw), outcome in zip(pending_ja, outcomes):
             try:
@@ -1263,7 +1331,14 @@ def main(argv: list[str] | None = None) -> int:
                 logger.info("BATCH API JA %s", it.get("id"))
             except Exception as exc:
                 ja_failed += 1
-                logger.error("BATCH FAIL JA %s type=%s", it.get("id"), type(exc).__name__)
+                error_type = classify_provider_error(exc)
+                if error_type in FATAL_PROVIDER_ERRORS:
+                    if not provider_fatal:
+                        provider_fatal = True
+                        provider_error_type = error_type
+                        logger.error("PROVIDER unavailable type=%s in completed Japanese batch.", error_type)
+                else:
+                    logger.error("BATCH FAIL JA %s type=%s", it.get("id"), error_type)
 
     # Requirement 15: validate the whole output before writing.
     problems = validate_output(items, original_by_id)

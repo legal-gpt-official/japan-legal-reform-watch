@@ -106,6 +106,20 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertEqual(item["comment_deadline_source_id"], "raw-egov-source")
         self.assertIs(item["comment_deadline_inherited"], True)
 
+    def test_restore_rule_based_preview_removes_stale_ai_text_and_provenance(self):
+        item = self._item()
+        su.apply_result(item, self._result("Stale AI title"), "2026-06-18T00:00:00Z", "model")
+
+        su.restore_rule_based_english_preview(item)
+
+        self.assertEqual(item["summary_source"], "rule_based")
+        self.assertEqual(item["summary_en"], bpd.SUMMARY_EN)
+        self.assertEqual(item["business_impact_en"], bpd.BUSINESS_IMPACT_EN)
+        self.assertEqual(item["recommended_action_en"], bpd.RECOMMENDED_ACTION_EN)
+        self.assertNotEqual(item["title_en"], "Stale AI title")
+        for field in su.EN_PROVENANCE_FIELDS:
+            self.assertNotIn(field, item)
+
     def test_japanese_summary_is_applied_without_changing_original_title(self):
         item = self._item()
         original_title = item["title_ja"]
@@ -418,6 +432,134 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertIn("english_only    : true", stdout.getvalue())
             self.assertIn("english_remaining: 1", stdout.getvalue())
 
+    def test_english_cache_miss_over_budget_drops_carried_stale_ai_body(self):
+        item = TestSummarizeTitleCap()._item()
+        item.update(TestSummarizeTitleCap()._result("Stale cached AI title"))
+        item.update({
+            "summary_source": "claude",
+            "summarized_at": "2026-08-12T00:00:00Z",
+            "summary_model": "claude-opus-4-8",
+        })
+        raw = [{
+            "id": item["id"],
+            "title_ja": item["title_ja"],
+            "source_url": item["source_url"],
+            "raw_summary": "Changed official source content.",
+            "raw_content_hash": "new-content-hash",
+        }]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item]), encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+            raw_path.write_text(json.dumps(raw), encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": mock.Mock(side_effect=AssertionError("API must not run")),
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main([
+                    "--all-items", "--english-only", "--api-limit", "0", "--parallel", "4"
+                ])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))[0]
+            self.assertEqual(rc, 0)
+            self.assertEqual(published["summary_source"], "rule_based")
+            self.assertEqual(published["summary_en"], bpd.SUMMARY_EN)
+            self.assertEqual(published["business_impact_en"], bpd.BUSINESS_IMPACT_EN)
+            self.assertEqual(published["recommended_action_en"], bpd.RECOMMENDED_ACTION_EN)
+            self.assertNotEqual(published["title_en"], "Stale cached AI title")
+            for field in su.EN_PROVENANCE_FIELDS:
+                self.assertNotIn(field, published)
+
+    def test_missing_api_key_applies_current_cache_and_cleans_stale_ai_without_calls(self):
+        current = TestSummarizeTitleCap()._item()
+        current["id"] = "current-cache"
+        current["source_url"] = "https://example.go.jp/current-cache"
+        current_cache = TestSummarizeTitleCap()._result("Current cached AI title")
+        current_cache.update({
+            "summarized_at": "2026-08-12T00:00:00Z",
+            "summary_model": "claude-opus-4-8",
+        })
+
+        stale = TestSummarizeTitleCap()._item()
+        stale["id"] = "stale-cache"
+        stale["source_url"] = "https://example.go.jp/stale-cache"
+        stale.update(TestSummarizeTitleCap()._result("Stale carried AI title"))
+        stale.update({
+            "summary_source": "claude",
+            "summarized_at": "2026-08-11T00:00:00Z",
+            "summary_model": "claude-opus-4-8",
+        })
+        uncached = TestSummarizeTitleCap()._item()
+        uncached["id"] = "uncached"
+        uncached["source_url"] = "https://example.go.jp/uncached"
+        raw = [{
+            "id": stale["id"],
+            "title_ja": stale["title_ja"],
+            "source_url": stale["source_url"],
+            "raw_summary": "Changed official source content.",
+            "raw_content_hash": "changed-source-content",
+        }]
+        cache = {su.cache_key(current, {}): current_cache}
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([current, stale, uncached]), encoding="utf-8")
+            cache_path.write_text(json.dumps(cache), encoding="utf-8")
+            raw_path.write_text(json.dumps(raw), encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": mock.Mock(side_effect=AssertionError("API must not run")),
+                "request_summary": mock.Mock(side_effect=AssertionError("API must not run")),
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {}, clear=True
+            ), contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(io.StringIO()):
+                rc = su.main([
+                    "--all-items", "--english-only", "--api-limit", "1", "--parallel", "4"
+                ])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual(published[0]["title_en"], "Current cached AI title")
+            self.assertEqual(published[0]["summary_source"], "claude")
+            self.assertEqual(published[1]["summary_source"], "rule_based")
+            self.assertEqual(published[1]["summary_en"], bpd.SUMMARY_EN)
+            self.assertNotEqual(published[1]["title_en"], "Stale carried AI title")
+            self.assertEqual(published[2]["summary_source"], "rule_based")
+            self.assertIn("provider_status : unavailable", stdout.getvalue())
+            self.assertIn("provider_error_type: missing_api_key", stdout.getvalue())
+            self.assertIn("api_calls       : 0", stdout.getvalue())
+            self.assertIn("summarized_items: 0", stdout.getvalue())
+            self.assertIn("provider_aborted_items: 1", stdout.getvalue())
+            self.assertIn("skipped_api_budget: 1", stdout.getvalue())
+
     def test_main_applies_batch_result_and_persists_cache(self):
         item = TestSummarizeTitleCap()._item()
         item["relevance_score"] = 10
@@ -458,6 +600,56 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(published[0]["summary_source"], "claude")
             self.assertEqual(published[0]["title_en"], "AI title")
             self.assertEqual(len(cache), 1)
+
+    def test_batch_creation_credit_failure_is_reported_once_without_phantom_calls(self):
+        items = []
+        for index in range(2):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"batch-credit-{index}"
+            item["source_url"] = f"https://example.go.jp/batch-credit-{index}"
+            item["relevance_score"] = 10 - index
+            items.append(item)
+        credit_error = RuntimeError("provider detail must not be logged")
+        credit_error.status_code = 402
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            log_path = base / "summarize.log"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": log_path,
+                "make_client": lambda: object(),
+                "request_summary_batch": mock.Mock(side_effect=credit_error),
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(io.StringIO()):
+                rc = su.main(["--limit", "2", "--batch"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            output = stdout.getvalue()
+            log_text = log_path.read_text(encoding="utf-8")
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertIn("api_calls       : 0", output)
+            self.assertIn("failed_items    : 1", output)
+            self.assertIn("provider_aborted_items: 2", output)
+            self.assertIn("provider_error_type: insufficient_credit", output)
+            self.assertEqual(log_text.count("PROVIDER unavailable"), 1)
+            self.assertNotIn("provider detail", log_text)
+            self.assertTrue(all(item["summary_source"] == "rule_based" for item in published))
 
     def test_existing_english_cache_is_enriched_with_japanese_summary_only(self):
         item = TestSummarizeTitleCap()._item()
