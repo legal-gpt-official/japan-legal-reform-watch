@@ -8,6 +8,12 @@ name: Translation backfill (zh-Hans)
 
 on:
   workflow_dispatch:
+    inputs:
+      omit_title_ja_reference:
+        description: "Recovery only: omit Japanese title reference for repeatedly rejected output"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -66,7 +72,16 @@ jobs:
         # long-running Message Batch. fail mode: a provider-wide error while
         # untranslated candidates remain exits 1, failing the backfill before any
         # commit so a credit/auth problem is loud and no partial state is pushed.
-        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode fail
+        run: |
+          extra_args=()
+          if [ "${{ inputs.omit_title_ja_reference }}" = "true" ]; then
+            extra_args+=(--omit-title-ja-reference)
+          fi
+          python scripts/translate_updates.py \
+            --locale zh-Hans \
+            --limit 30 \
+            --provider-failure-mode fail \
+            "${extra_args[@]}"
 
       - name: Count translations after
         id: after

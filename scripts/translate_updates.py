@@ -965,6 +965,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-api", action="store_true", help="Apply valid cache only; never call the API. Exit 0.")
     parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > default).")
     parser.add_argument(
+        "--omit-title-ja-reference",
+        action="store_true",
+        help=(
+            "Recovery mode for a repeatedly rejected item: translate only the canonical English "
+            "fields and omit title_ja from reference context. Intended for bounded manual backfills."
+        ),
+    )
+    parser.add_argument(
         "--batch",
         action="store_true",
         help="Use the asynchronous Anthropic Message Batches API (50%% token discount).",
@@ -987,6 +995,8 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     args = parser.parse_args(argv)
+    if args.batch and args.omit_title_ja_reference:
+        parser.error("--omit-title-ja-reference is supported only for direct calls")
 
     provider_failure_mode = (
         args.provider_failure_mode
@@ -1116,7 +1126,11 @@ def main(argv: list[str] | None = None) -> int:
                 client = make_client()
             api_calls += 1
             try:
-                result, model_used = request_translation(client, model, it, locale)
+                request_item = it
+                if args.omit_title_ja_reference:
+                    request_item = dict(it)
+                    request_item["title_ja"] = ""
+                result, model_used = request_translation(client, model, request_item, locale)
                 if not valid_translation(result):
                     raise ValueError("model returned invalid/oversize translation fields")
                 # Normalize numeric dates (YYYY/MM/DD -> YYYY-MM-DD) in the four
@@ -1238,6 +1252,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"model                     : {model}")
     print(f"batch_mode                : {str(args.batch).lower()}")
     print(f"batch_id                  : {batch_id or 'none'}")
+    print(f"omit_title_ja_reference   : {str(args.omit_title_ja_reference).lower()}")
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")
     print(f"api_calls                 : {api_calls}")

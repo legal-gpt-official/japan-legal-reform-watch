@@ -651,6 +651,28 @@ class TestPromptContext(TranslateTestBase):
         self.assertIn("never copy Japanese kana", content)
         self.assertIn("UNTRUSTED_ENGLISH_JSON", content)
 
+    def test_manual_recovery_omits_only_title_ja_from_api_context(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        captured = {}
+
+        def fake(client, model, request_item, locale):
+            captured.update(request_item)
+            return good_translation(), "fake-model"
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "1", "--omit-title-ja-reference",
+        ])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(captured["title_ja"], "")
+        self.assertEqual(captured["title_en"], item["title_en"])
+        self.assertEqual(self.read_output()[0]["title_ja"], item["title_ja"])
+        self.assertEqual(parse_summary(out)["omit_title_ja_reference"], "true")
+
     def test_api_metadata_is_not_accepted(self):
         item = sample_item()
         original_ja = item["title_ja"]
@@ -1078,9 +1100,13 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertNotIn('if [ "$after_cache" != "$after_pub" ]', self.backfill)
 
     def test_backfill_runs_translate_with_limit_30(self):
-        self.assertIn(
-            "python scripts/translate_updates.py --locale zh-Hans --limit 30", self.backfill
-        )
+        translate_step = self.backfill[
+            self.backfill.index("name: Translate Simplified Chinese updates"):
+            self.backfill.index("name: Count translations after")
+        ]
+        self.assertIn("python scripts/translate_updates.py", translate_step)
+        self.assertIn("--locale zh-Hans", translate_step)
+        self.assertIn("--limit 30", translate_step)
 
     def test_backfill_rebuilds_yearly_archives_after_translation(self):
         translate_pos = self.backfill.index("name: Translate Simplified Chinese updates")
@@ -1306,6 +1332,11 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
             with self.subTest(forbidden=forbidden):
                 self.assertNotIn(forbidden, self.backfill)
+
+    def test_backfill_has_explicit_title_reference_recovery_input(self):
+        self.assertIn("omit_title_ja_reference:", self.backfill)
+        self.assertIn("--omit-title-ja-reference", self.backfill)
+        self.assertIn('default: false', self.backfill)
 
     def test_both_share_concurrency_group(self):
         for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
