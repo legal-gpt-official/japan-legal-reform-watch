@@ -55,11 +55,24 @@ jobs:
       - name: Summarize top updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        # Message Batches keep the same Opus prompt/output contract at 50% token
-        # pricing. Most small batches finish well inside the one-hour wait limit.
-        # Keep AI coverage selective: consider the relevance-ranked top 100,
-        # while bounding new Opus calls to 30 per daily run. Cache hits are free.
-        run: python scripts/summarize_updates.py --limit 100 --api-limit 30 --batch
+        # Direct calls expose measured token usage after each response, allowing
+        # the USD 0.50 cap to stop unsent work. Keep AI coverage selective:
+        # consider the relevance-ranked top 100 and make at most 30 new calls.
+        run: |
+          set -o pipefail
+          python scripts/summarize_updates.py \
+            --limit 100 \
+            --api-limit 30 \
+            --max-cost-usd 0.50 2>&1 | tee english_summary_run.log
+          {
+            echo "### English summary maintenance"
+            grep -E '^(api_calls|summarized_items|failed_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd)' english_summary_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
+          if grep -Eq '^provider_status *: unavailable' english_summary_run.log; then
+            ptype=$(sed -n 's/^provider_error_type *: //p' english_summary_run.log | head -n 1)
+            echo "::warning::English summary provider unavailable: ${ptype}"
+            echo "English summary provider unavailable: ${ptype}" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       # Maintain Japanese coverage for newly published or source-changed items.
       # Existing complete Japanese summaries are cache hits and cost nothing.
@@ -100,13 +113,14 @@ jobs:
           # summarization stays on Opus 4.8. Precedence for translation is
           # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
           ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
-        # warn mode: a fatal provider error (e.g. insufficient credit) must NOT
+        # Direct calls avoid a one-hour Message Batch timeout withholding every
+        # result. warn mode: a provider-wide error (e.g. insufficient credit) must NOT
         # stop the legal-data pipeline — translations are simply not added this
         # run, and a warning annotation is surfaced. A genuine integrity-gate
         # failure (exit 1) still stops the job via pipefail.
         run: |
           set -o pipefail
-          python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch --provider-failure-mode warn 2>&1 | tee translate_run.log
+          python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode warn 2>&1 | tee translate_run.log
           if grep -q "PROVIDER_UNAVAILABLE" translate_run.log; then
             ptype=$(grep -m1 "PROVIDER_UNAVAILABLE" translate_run.log | sed -n 's/.*type=\([a-z_]*\).*/\1/p')
             echo "::warning::Translation provider unavailable: ${ptype}"

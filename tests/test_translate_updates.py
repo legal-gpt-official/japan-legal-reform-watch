@@ -369,6 +369,46 @@ class TestLimitAndApi(TranslateTestBase):
         self.assertEqual(summary["provider_error_type"], "insufficient_credit")
         self.assertEqual(out.count("PROVIDER_UNAVAILABLE"), 1)
 
+    def test_batch_timeout_is_one_provider_wide_failure(self):
+        items = [sample_item(id=f"raw-{i}", title_en=f"Title {i}.") for i in range(3)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+
+        def fake_batch(*args, **kwargs):
+            raise TimeoutError("batch timed out")
+
+        tu.make_client = lambda: object()
+        tu.request_translation_batch = fake_batch
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "3", "--batch",
+            "--provider-failure-mode", "warn",
+        ])
+
+        summary = parse_summary(out)
+        self.assertEqual(rc, 0)
+        self.assertEqual(summary["api_calls"], "3")
+        self.assertEqual(summary["failed_items"], "3")
+        self.assertEqual(summary["provider_status"], "unavailable")
+        self.assertEqual(summary["provider_error_type"], "network_error")
+        self.assertEqual(summary["provider_error_detected"], "true")
+        self.assertEqual(out.count("PROVIDER_UNAVAILABLE"), 1)
+
+    def test_batch_timeout_fails_backfill_mode(self):
+        self.write_input([sample_item()])
+        self.write_cache(tu.default_cache())
+        tu.make_client = lambda: object()
+        tu.request_translation_batch = lambda *args, **kwargs: (_ for _ in ()).throw(
+            TimeoutError("batch timed out")
+        )
+
+        rc, out = self.run_main([
+            "--locale", LOCALE, "--limit", "1", "--batch",
+            "--provider-failure-mode", "fail",
+        ])
+
+        self.assertEqual(rc, 1)
+        self.assertEqual(parse_summary(out)["provider_status"], "unavailable")
+
     def test_new_translation_is_cached_with_metadata(self):
         item = sample_item()
         self.write_input([item])
@@ -1245,6 +1285,18 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
     def test_daily_limit_30_preserved(self):
         self.assertIn("--limit 30", self.daily)
 
+    def test_daily_and_backfill_use_direct_translation(self):
+        daily_command = next(
+            line for line in self.daily.splitlines()
+            if "python scripts/translate_updates.py" in line
+        )
+        backfill_command = next(
+            line for line in self.backfill.splitlines()
+            if "python scripts/translate_updates.py" in line
+        )
+        self.assertNotIn("--batch", daily_command)
+        self.assertNotIn("--batch", backfill_command)
+
     def test_daily_sets_translation_model(self):
         self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.daily)
 
@@ -1413,14 +1465,14 @@ class TestTranslationModelOverride(unittest.TestCase):
             with self.subTest(workflow=name):
                 self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", wf)
 
-    def test_both_workflows_use_discounted_batch_mode(self):
+    def test_both_workflows_use_direct_mode_to_avoid_checkpoint_timeout(self):
         for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
             with self.subTest(workflow=name):
                 command = next(
                     line.strip() for line in wf.splitlines()
                     if "python scripts/translate_updates.py" in line
                 )
-                self.assertIn("--batch", command)
+                self.assertNotIn("--batch", command)
 
     def test_override_is_translate_only(self):
         # The model-override *assignment* appears exactly once per workflow (the

@@ -897,8 +897,21 @@ def process_translation_batch(
             stats["provider_error_type"] = etype
             logger.error("PROVIDER unavailable type=%s; batch was not submitted.", etype)
             return stats
-        outcomes = [exc] * len(candidates)
-        logger.error("BATCH failed before results could be applied: %s", type(exc).__name__)
+        # A timeout/network failure of the batch as a whole is not thirty
+        # independent item failures. Surface it as one provider-wide outage so
+        # warn-mode Actions runs are annotated and fail-mode backfills stop.
+        # The helper explicitly requests cancellation on timeout, but the
+        # submitted-call count remains visible because provider-side work may
+        # already have occurred before cancellation completed.
+        stats["failed"] = len(candidates)
+        stats["provider_fatal"] = True
+        stats["provider_error_type"] = etype
+        logger.error(
+            "PROVIDER unavailable type=%s; batch failed before results could be applied (%s).",
+            etype,
+            type(exc).__name__,
+        )
+        return stats
 
     for (it, source_hash, _had_locale), outcome in zip(candidates, outcomes):
         item_id = it.get("id") or ""
@@ -966,7 +979,7 @@ def main(argv: list[str] | None = None) -> int:
         choices=("warn", "fail"),
         default=None,
         help=(
-            "Behavior on a fatal provider error (insufficient credit / auth / permission): "
+            "Behavior on a provider-wide failure (including credit/auth/permission or batch timeout): "
             "'warn' exits 0 so the daily pipeline keeps going; 'fail' exits 1 (backfill). "
             "Default: env TRANSLATE_PROVIDER_FAILURE_MODE, else 'fail'."
         ),

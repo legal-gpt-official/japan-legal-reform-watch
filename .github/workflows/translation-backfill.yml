@@ -62,10 +62,11 @@ jobs:
           # summarization stays on Opus 4.8. Precedence for translation is
           # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
           ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
-        # fail mode: a fatal provider error (e.g. insufficient credit) while
+        # Direct calls persist a completed checkpoint without depending on one
+        # long-running Message Batch. fail mode: a provider-wide error while
         # untranslated candidates remain exits 1, failing the backfill before any
         # commit so a credit/auth problem is loud and no partial state is pushed.
-        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch --provider-failure-mode fail
+        run: python scripts/translate_updates.py --locale zh-Hans --limit 30 --provider-failure-mode fail
 
       - name: Count translations after
         id: after

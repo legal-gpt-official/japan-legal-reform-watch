@@ -240,17 +240,20 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertEqual(params["output_config"]["format"]["type"], "json_schema")
         self.assertEqual(captured["timeout"], 12)
 
-    def test_daily_workflow_uses_batch_summarization(self):
+    def test_daily_workflow_uses_direct_cost_capped_english_summarization(self):
         workflow = (
             Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
         ).read_text(encoding="utf-8")
-        command = next(
-            line.strip() for line in workflow.splitlines()
-            if "python scripts/summarize_updates.py" in line
-        )
-        self.assertIn("--batch", command)
-        self.assertIn("--limit 100", command)
-        self.assertIn("--api-limit 30", command)
+        step = workflow[
+            workflow.index("name: Summarize top updates"):
+            workflow.index("name: Maintain Japanese summaries")
+        ]
+        self.assertNotIn("--batch", step)
+        self.assertIn("--limit 100", step)
+        self.assertIn("--api-limit 30", step)
+        self.assertIn("--max-cost-usd 0.50", step)
+        self.assertIn("English summary provider unavailable", workflow)
+        self.assertIn("### English summary maintenance", workflow)
 
     def test_daily_workflow_maintains_japanese_with_cost_and_call_caps(self):
         workflow = (
