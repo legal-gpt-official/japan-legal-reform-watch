@@ -3407,7 +3407,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDA（医薬品医療機器総合機構）の安全対策業務に関する新着情報として、患者向医薬品ガイド（必須版）およびワクチン接種を受ける人へのガイド（必須版）の作成等に関する通知および事務連絡が掲載された旨が示されています。公表日は2025年12月19日とされています。提供されたメタデータからは、通知等の具体的な内容や対象範囲の詳細までは確認できません。",
+    "business_impact_ja": "医薬品やワクチンに関する情報提供資料の作成・運用に関わる事業者において、対応の要否を確認する必要が生じる可能性があります。",
+    "recommended_action_ja": "PMDAの公式ウェブサイト等で通知および事務連絡の原文を確認し、内容と対象範囲を精査されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:35Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-dd33e7a9c3d680e9",
@@ -3433,7 +3439,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDAの安全対策業務の新着情報として、「関係団体からのお知らせ」に「TAVI弁展開後における弁尖可動不良事象に関するステートメント」が掲載されたことが公表されています。原文からは掲載の事実が確認できますが、ステートメントの具体的内容や詳細は本メタデータには含まれていません。",
+    "business_impact_ja": "TAVI（経カテーテル的大動脈弁留置術）関連の医療機器を取り扱う事業者において、弁尖可動不良事象に関する情報を確認する必要が生じる可能性があります。",
+    "recommended_action_ja": "PMDAの公式ページに掲載された当該ステートメントの原文を確認し、詳細な内容を把握することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:35Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-5956e94f12685443",
@@ -3459,7 +3471,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "独立行政法人医薬品医療機器総合機構（PMDA）の安全対策業務に関する新着情報として、「再生医療等製品に関する評価中のリスク等の情報について」が掲載されました。原文からは掲載日が2025年12月5日であることが確認できますが、掲載内容の詳細は本メタデータからは把握できません。",
+    "business_impact_ja": "再生医療等製品を取り扱う事業者において、評価中のリスク情報の把握に関連する対応の検討が必要となる可能性があります。ただし、影響の範囲や程度は原文の内容によると考えられます。",
+    "recommended_action_ja": "詳細および正確な内容については、PMDAの公式ページ（掲載元URL）で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:35Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-a4bec48fc15fd52a",
@@ -3485,7 +3503,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDA（医薬品医療機器総合機構）の安全対策業務に関する新着情報として、医療情報データベース（MID-NET）のオンサイトセンターを移設した旨が公表されています。原文のメタデータは移設の事実を示すにとどまり、移設先や運用への具体的影響に関する詳細は本情報からは確認できません。",
+    "business_impact_ja": "MID-NETを利用する事業者においては、オンサイトセンターの運用や利用手続きに関連して確認が必要となる可能性があります。現時点の情報のみでは、直接的な事業影響の有無を判断することは難しいと考えられます。",
+    "recommended_action_ja": "詳細については、PMDAの公式サイト等の日本語の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:41Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-63266ac26f6c018a",
@@ -3510,7 +3534,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "個人情報保護委員会（PPC）の新着情報として、2025年10月24日付で「『行政機関等匿名加工情報』に関する提案の募集について」が更新されたことが公表されています。原文の概要は「申請・手続き・報告」に関するものとされていますが、更新内容の詳細はメタデータからは確認できません。",
+    "business_impact_ja": "行政機関等匿名加工情報の提案募集に関連する手続きに関わる事業者にとっては、申請や報告の運用に影響が及ぶ可能性があります。もっとも、具体的な影響の有無や範囲は原文の内容次第と考えられます。",
+    "recommended_action_ja": "詳細な内容や対応の要否については、個人情報保護委員会の公式ページ（記載の情報源URL）で最新情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:41Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-d21553df66ba7fb1",
@@ -3536,7 +3566,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDAの安全対策業務新着情報として、日本ライソゾーム病患者家族会協議会が全国ポンぺ病患者と家族の会との連携により、患者会向けに医薬品情報を提供する旨のニュースリリースが公表されました。公表日は2025年8月29日とされています。提供されたメタデータには、対象医薬品名や情報提供の詳細な内容は含まれていません。",
+    "business_impact_ja": "患者会を通じた医薬品情報提供に関する取り組みであり、関連分野の事業者にとっては情報提供や連携の動向を把握する参考となる可能性があります。もっとも、本メタデータのみでは具体的な事業への影響は限定的と考えられます。",
+    "recommended_action_ja": "詳細や正確な内容については、PMDAの公式サイトに掲載された原文のニュースリリースをご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:41Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-532bbeedf83c796a",
@@ -3562,7 +3598,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDAの安全対策業務の新着情報として、「関係学会等からの医薬品の適正使用に関するお知らせ」に「アンデキサネット アルファの周術期投与に関する提言」が掲載された旨が公表されています。掲載日は2025年7月22日とされています。原文からは、提言の具体的内容や詳細は確認できません。",
+    "business_impact_ja": "当該医薬品を取り扱う医療機関や関連事業者において、適正使用に関する情報として参照される可能性があります。周術期投与に関する対応の見直しにつながることも考えられます。",
+    "recommended_action_ja": "詳細については、PMDAの公式ページ等の日本語の一次情報をご確認いただくことをお勧めいたします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:41Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-fe7eef0904a32fcc",
@@ -3588,7 +3630,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "医薬品医療機器総合機構（PMDA）の安全対策業務に関する新着情報として、「ワクチン接種を受ける人へのガイド検索」が2025年6月9日付で公表されています。原文の情報は限られており、詳細な内容は原資料の確認が必要です。",
+    "business_impact_ja": "ワクチン関連の安全情報提供に関わる事業者にとって、情報提供やガイドの取り扱いに影響が生じる可能性があります。",
+    "recommended_action_ja": "PMDAの公式ページで公表内容の詳細をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:46Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-102fb1f4f116f533",
@@ -3614,7 +3662,13 @@
         "recommended_action": "建议查阅日文原始来源，并判断该信息是否可能影响贵方在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "独立行政法人医薬品医療機器総合機構（PMDA）が、医薬関係者向けの動画「1分でおさえよう！PMDAからの情報収集」を公表した旨の安全対策業務に関する新着情報です。PMDAからの情報収集方法を紹介する内容とされています。原文からは動画公表の事実以上の詳細は確認できません。",
+    "business_impact_ja": "医薬関係者にとって、PMDAからの安全性情報等の収集方法を確認する参考情報となる可能性があります。直接的な規制上の義務変更を伴うものではないと考えられます。",
+    "recommended_action_ja": "詳細については、PMDAの公式サイト等の日本語の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:46Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-8e81cd6270ac2238",
@@ -3640,7 +3694,13 @@
         "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响贵公司在日本的法律、法规或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "PMDAの安全対策業務新着情報として、サリドマイド製剤、レナリドミド製剤及びポマリドミド製剤の使用に当たっての安全管理手順の改訂に関する周知依頼が掲載されました。公表日は2025年2月18日とされています。メタデータからは改訂の具体的内容までは確認できません。",
+    "business_impact_ja": "これらの製剤を取り扱う医療関係者や事業者において、安全管理手順の見直しや運用への対応が必要となる可能性があります。",
+    "recommended_action_ja": "PMDAの公式ページ等で改訂の具体的内容を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:46Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-2273ffc7c06138c8",
@@ -3666,6 +3726,12 @@
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "独立行政法人医薬品医療機器総合機構（PMDA）の安全対策業務に関する新着情報として、患者会との連携に関する取り組みが公表されています。原文の情報は限られており、具体的な内容の詳細は本メタデータからは確認できません。公表日は2025年2月10日とされています。",
+    "business_impact_ja": "医薬品・医療機器の安全対策に関わる事業者にとって、患者会との連携動向を把握する観点で関連する可能性があります。ただし現時点で具体的な影響を判断する材料は限られていると考えられます。",
+    "recommended_action_ja": "詳細および正確な内容については、PMDAの公式サイト等の日本語の一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-13T01:50:46Z",
+    "ja_summary_model": "claude-opus-4-8"
   }
 ]
