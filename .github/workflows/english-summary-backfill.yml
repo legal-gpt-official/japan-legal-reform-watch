@@ -179,7 +179,7 @@ jobs:
           # them in the same checkpoint so stale translations are never published.
           python scripts/translate_updates.py \
             --locale zh-Hans \
-            --limit "$BATCH_SIZE" \
+            --limit "$total" \
             --max-cost-usd "$TRANSLATION_MAX_COST_USD" \
             --provider-failure-mode fail 2>&1 | tee translate_run.log
 

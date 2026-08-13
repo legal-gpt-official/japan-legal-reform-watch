@@ -273,6 +273,7 @@ class TestSummaryBatch(unittest.TestCase):
             '--parallel "$PARALLELISM"',
             '--max-cost-usd "$SUMMARY_MAX_COST_USD"',
             "python scripts/translate_updates.py",
+            '--limit "$total"',
             '--max-cost-usd "$TRANSLATION_MAX_COST_USD"',
             "japanese_signature",
             'git push origin "HEAD:main"',
