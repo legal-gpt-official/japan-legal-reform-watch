@@ -52,7 +52,7 @@ jobs:
       - name: Build public data
         run: python scripts/build_public_data.py
 
-      - name: Summarize top updates
+      - name: Maintain English summaries
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         # Direct calls expose measured token usage after each response, allowing
@@ -61,8 +61,10 @@ jobs:
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
-            --limit 100 \
+            --all-items \
+            --english-only \
             --api-limit 30 \
+            --parallel 4 \
             --max-cost-usd 0.50 2>&1 | tee english_summary_run.log
           {
             echo "### English summary maintenance"

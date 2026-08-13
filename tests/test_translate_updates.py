@@ -1460,7 +1460,7 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("estimated_cost_usd", self.workflow)
 
     def test_translate_runs_after_summarize_and_before_check_changes(self):
-        summarize_pos = self.workflow.index("name: Summarize top updates")
+        summarize_pos = self.workflow.index("name: Maintain English summaries")
         translate_pos = self.workflow.index("name: Translate Simplified Chinese updates")
         check_pos = self.workflow.index("name: Check data changes")
         self.assertLess(summarize_pos, translate_pos)
@@ -1486,7 +1486,7 @@ class TestWorkflowTranslateStep(unittest.TestCase):
     def test_api_key_only_exposed_to_ai_summary_and_translation_steps(self):
         key_line = "ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}"
         ai_steps = (
-            "name: Summarize top updates",
+            "name: Maintain English summaries",
             "name: Maintain Japanese summaries",
             "name: Translate Simplified Chinese updates",
         )

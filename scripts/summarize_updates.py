@@ -7,8 +7,8 @@ What this script does
 ---------------------
 - Reads docs/data/legal_updates.json (the rule-based published file).
 - Normally takes the top-N items by `relevance_score` (default 10; --limit to
-  change). The explicit --all-items --japanese-only path targets the complete
-  corpus without generating or replacing English AI summaries.
+  change). Explicit --all-items language-only paths target the complete corpus:
+  --japanese-only preserves English, while --english-only preserves Japanese.
 - Optionally caps cache-miss API calls inside that pool with --api-limit;
   cache hits are free and do not consume that budget.
 - For each, asks Claude for: title_en, summary_en, business_impact_en,
@@ -39,8 +39,7 @@ SYSTEM_PROMPT.
 
 What this does NOT do
 ---------------------
-No source fetching, Stage 2 rebuild, translation, UI change, or pagination. The
-full-corpus option is deliberately restricted to Japanese-source summaries.
+No source fetching, Stage 2 rebuild, translation, UI change, or pagination.
 
 Security posture
 ----------------
@@ -54,6 +53,7 @@ Usage
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
     python scripts/summarize_updates.py --limit 10 --batch
     python scripts/summarize_updates.py --all-items --japanese-only --api-limit 250 --batch
+    python scripts/summarize_updates.py --all-items --english-only --api-limit 100 --parallel 4 --max-cost-usd 2.00
 
 Python 3.11+. Requires the `anthropic` SDK (see requirements.txt).
 """
@@ -220,7 +220,14 @@ Options:
     --japanese-only
                   Generate/apply only Japanese-source summaries; preserve the
                   English fields and their independent summary_source.
+    --english-only
+                  Generate/apply only English summaries; preserve Japanese
+                  summary fields. Use with --all-items for resumable backfills.
     --api-limit N Maximum cache-miss API calls in this run.
+    --parallel N  Concurrent direct calls in a language-only backfill (max 10).
+    --max-cost-usd USD
+                  Stop scheduling direct calls after measured estimated cost
+                  reaches the positive cap.
     --model ID    Claude model id (default: claude-opus-4-8).
     --batch       Use Message Batches (same prompt/model, 50% token discount).
     --dry-run     Do everything except write the output file, backup, and cache.
@@ -745,7 +752,10 @@ def main(argv: list[str] | None = None) -> int:
         "--parallel",
         type=int,
         default=1,
-        help="Concurrent direct Japanese API calls when not using --batch (default 1, max 10).",
+        help=(
+            "Concurrent direct calls for --japanese-only or --english-only when not using "
+            "--batch (default 1, max 10)."
+        ),
     )
     parser.add_argument(
         "--max-cost-usd",
@@ -769,12 +779,24 @@ def main(argv: list[str] | None = None) -> int:
             "creating or replacing English AI summaries. Intended for resumable backfills."
         ),
     )
+    parser.add_argument(
+        "--english-only",
+        action="store_true",
+        help=(
+            "Generate/apply only canonical English AI summaries while preserving Japanese fields. "
+            "Intended for resumable full-corpus backfills."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write output, backup, or cache.")
     args = parser.parse_args(argv)
-    if args.all_items and not args.japanese_only:
-        parser.error("--all-items requires --japanese-only")
+    if args.japanese_only and args.english_only:
+        parser.error("--japanese-only and --english-only are mutually exclusive")
+    if args.all_items and not (args.japanese_only or args.english_only):
+        parser.error("--all-items requires --japanese-only or --english-only")
     if not 1 <= args.parallel <= 10:
         parser.error("--parallel must be between 1 and 10")
+    if args.parallel != 1 and not (args.japanese_only or args.english_only):
+        parser.error("--parallel greater than 1 requires --japanese-only or --english-only")
     if args.batch and args.parallel != 1:
         parser.error("--parallel cannot be combined with --batch")
     if args.max_cost_usd is not None and args.max_cost_usd <= 0:
@@ -814,8 +836,10 @@ def main(argv: list[str] | None = None) -> int:
 
     fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     logger.info(
-        "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, model=%s, batch=%s, dry_run=%s) ===",
-        args.limit, args.all_items, args.japanese_only, model, args.batch, args.dry_run,
+        "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, english_only=%s, "
+        "model=%s, batch=%s, dry_run=%s) ===",
+        args.limit, args.all_items, args.japanese_only, args.english_only,
+        model, args.batch, args.dry_run,
     )
 
     api_limit = max(0, args.api_limit) if args.api_limit is not None else None
@@ -923,6 +947,10 @@ def main(argv: list[str] | None = None) -> int:
             apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", model))
             cache_hits += 1
             summarized += 1
+            if args.english_only:
+                # English backfills must not create, replace, or remove the
+                # independently generated Japanese summary fields.
+                continue
             if valid_japanese_result(cached):
                 apply_cached_japanese_result(it, cached, fetched_at, model)
                 ja_cache_hits += 1
@@ -985,14 +1013,15 @@ def main(argv: list[str] | None = None) -> int:
         # A Japanese-only backfill cache entry can validly exist before English
         # AI coverage. Keep it when it is keyed to the current source content;
         # otherwise remove any Stage 2 carry-forward fields as stale.
-        if isinstance(cached, dict) and valid_japanese_result(cached):
-            apply_cached_japanese_result(it, cached, fetched_at, model)
-            ja_cache_hits += 1
-        else:
-            remove_japanese_result(it)
+        if not args.english_only:
+            if isinstance(cached, dict) and valid_japanese_result(cached):
+                apply_cached_japanese_result(it, cached, fetched_at, model)
+                ja_cache_hits += 1
+            else:
+                remove_japanese_result(it)
         budget_used = (
             len(pending) + len(pending_ja)
-            if args.batch
+            if (args.batch or (args.english_only and args.parallel > 1))
             else api_calls + provider_aborted + cost_budget_skipped
         )
         if api_limit is not None and budget_used >= api_limit:
@@ -1011,7 +1040,7 @@ def main(argv: list[str] | None = None) -> int:
 
         # In Batch mode, collect every cache miss and submit them together after
         # this pass. Cached records are still applied immediately and for free.
-        if args.batch:
+        if args.batch or (args.english_only and args.parallel > 1):
             pending.append((it, key, raw_by_id.get(it.get("id"), {})))
             continue
 
@@ -1079,6 +1108,68 @@ def main(argv: list[str] | None = None) -> int:
                 failed += 1
                 it["summary_source"] = "rule_based"
                 logger.error("BATCH FAIL %s type=%s", it.get("id"), type(exc).__name__)
+
+    if args.english_only and not args.batch and args.parallel > 1 and pending:
+        if client is None:
+            client = make_client()
+
+        def request_one_english(candidate):
+            item, _key, raw = candidate
+            try:
+                return request_summary(client, model, item, raw)
+            except Exception as exc:
+                return exc
+
+        processed = 0
+        for start in range(0, len(pending), args.parallel):
+            if provider_fatal or cost_cap_reached():
+                break
+            wave = pending[start : start + args.parallel]
+            api_calls += len(wave)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=args.parallel) as executor:
+                outcomes = list(executor.map(request_one_english, wave))
+
+            for (it, key, _raw), outcome in zip(wave, outcomes):
+                processed += 1
+                try:
+                    if isinstance(outcome, Exception):
+                        raise outcome
+                    result, model_used, usage = unpack_api_outcome(outcome)
+                    record_outcome_usage(usage, model_used)
+                    if not valid_result(result):
+                        raise ValueError("model returned JSON missing/invalid required fields")
+                    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                    apply_result(it, result, now, model_used)
+                    cache.setdefault(key, {}).update(
+                        {
+                            **{field: it[field] for field in AI_FIELDS},
+                            "summarized_at": now,
+                            "summary_model": model_used,
+                        }
+                    )
+                    summarized += 1
+                    logger.info("PARALLEL API %s confidence=%s", it.get("id"), result.get("confidence"))
+                except Exception as exc:
+                    failed += 1
+                    it["summary_source"] = "rule_based"
+                    error_type = classify_provider_error(exc)
+                    if error_type in FATAL_PROVIDER_ERRORS:
+                        if not provider_fatal:
+                            provider_fatal = True
+                            provider_error_type = error_type
+                            logger.error(
+                                "PROVIDER unavailable type=%s; unscheduled English API candidates were skipped.",
+                                error_type,
+                            )
+                    else:
+                        logger.error("PARALLEL FAIL %s type=%s", it.get("id"), error_type)
+
+        unscheduled = len(pending) - processed
+        if unscheduled:
+            if provider_fatal:
+                provider_aborted += unscheduled
+            elif cost_cap_reached():
+                cost_budget_skipped += unscheduled
 
     if args.japanese_only and not args.batch and args.parallel > 1 and pending_ja:
         if client is None:
@@ -1182,6 +1273,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: output validation failed ({len(problems)} problem(s)); not writing. See {LOG_PATH}.", file=sys.stderr)
         return 2
     caution_warnings = log_caution_warnings(items)
+    english_remaining = sum(
+        not (it.get("summary_source") == "claude" and valid_result(it))
+        for it in targets
+    )
     japanese_remaining = sum(not valid_japanese_result(it) for it in targets)
 
     backup_created = False
@@ -1199,13 +1294,14 @@ def main(argv: list[str] | None = None) -> int:
         "RUN SUMMARY input=%d target=%d api_limit=%s cache_hits=%d api_calls=%d "
         "summarized=%d failed=%d skipped_api_budget=%d ja_cache_hits=%d "
         "ja_summarized=%d ja_failed=%d ja_skipped_api_budget=%d caution_warnings=%d "
-        "japanese_remaining=%d provider_status=%s provider_error_type=%s provider_aborted=%d "
+        "english_remaining=%d japanese_remaining=%d provider_status=%s provider_error_type=%s provider_aborted=%d "
         "cost_budget_skipped=%d input_tokens=%d output_tokens=%d estimated_cost_usd=%.6f "
         "batch=%s batch_id=%s japanese_batch_id=%s",
         len(items), len(targets), api_limit if api_limit is not None else "none",
         cache_hits, api_calls, summarized, failed, skipped_api_budget,
         ja_cache_hits, ja_summarized, ja_failed, ja_skipped_api_budget,
-        caution_warnings, japanese_remaining, "unavailable" if provider_fatal else "healthy",
+        caution_warnings, english_remaining, japanese_remaining,
+        "unavailable" if provider_fatal else "healthy",
         provider_error_type, provider_aborted, cost_budget_skipped,
         usage_totals["input_tokens"], usage_totals["output_tokens"], estimated_cost_usd,
         args.batch, batch_id, japanese_batch_id,
@@ -1213,6 +1309,7 @@ def main(argv: list[str] | None = None) -> int:
 
     print("\n==== summarize_updates summary ====")
     print(f"model           : {model}")
+    print(f"english_only    : {str(args.english_only).lower()}")
     print(f"batch_mode      : {str(args.batch).lower()}")
     print(f"batch_id        : {batch_id or 'none'}")
     print(f"japanese_batch_id: {japanese_batch_id or 'none'}")
@@ -1224,6 +1321,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"summarized_items: {summarized}")
     print(f"failed_items    : {failed}")
     print(f"skipped_api_budget: {skipped_api_budget}")
+    print(f"english_remaining: {english_remaining}")
     print(f"japanese_cache_hits: {ja_cache_hits}")
     print(f"japanese_summarized_items: {ja_summarized}")
     print(f"japanese_failed_items: {ja_failed}")

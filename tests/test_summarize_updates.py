@@ -240,20 +240,51 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertEqual(params["output_config"]["format"]["type"], "json_schema")
         self.assertEqual(captured["timeout"], 12)
 
-    def test_daily_workflow_uses_direct_cost_capped_english_summarization(self):
+    def test_daily_workflow_uses_full_corpus_cost_capped_english_maintenance(self):
         workflow = (
             Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
         ).read_text(encoding="utf-8")
         step = workflow[
-            workflow.index("name: Summarize top updates"):
+            workflow.index("name: Maintain English summaries"):
             workflow.index("name: Maintain Japanese summaries")
         ]
         self.assertNotIn("--batch", step)
-        self.assertIn("--limit 100", step)
+        self.assertIn("--all-items", step)
+        self.assertIn("--english-only", step)
         self.assertIn("--api-limit 30", step)
+        self.assertIn("--parallel 4", step)
         self.assertIn("--max-cost-usd 0.50", step)
         self.assertIn("English summary provider unavailable", workflow)
         self.assertIn("### English summary maintenance", workflow)
+
+    def test_english_backfill_workflow_is_resumable_and_refreshes_chinese(self):
+        workflow = (
+            Path(__file__).resolve().parents[1]
+            / ".github"
+            / "workflows"
+            / "english-summary-backfill.yml"
+        ).read_text(encoding="utf-8")
+
+        for snippet in (
+            "workflow_dispatch:",
+            "--all-items",
+            "--english-only",
+            '--api-limit "$BATCH_SIZE"',
+            '--parallel "$PARALLELISM"',
+            '--max-cost-usd "$SUMMARY_MAX_COST_USD"',
+            "python scripts/translate_updates.py",
+            '--max-cost-usd "$TRANSLATION_MAX_COST_USD"',
+            "japanese_signature",
+            'git push origin "HEAD:main"',
+            "group: japan-legal-reform-data-writer",
+            "Final semantic integrity gate",
+            "Mark partial checkpoint incomplete",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, workflow)
+        self.assertNotIn("python scripts/fetch_updates.py", workflow)
+        self.assertNotIn("python scripts/build_public_data.py", workflow)
+        self.assertNotIn("python scripts/source_health.py", workflow)
 
     def test_daily_workflow_maintains_japanese_with_cost_and_call_caps(self):
         workflow = (
@@ -301,6 +332,83 @@ class TestSummaryBatch(unittest.TestCase):
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
             su.main(["--all-items"])
         self.assertEqual(raised.exception.code, 2)
+
+    def test_language_only_modes_are_mutually_exclusive(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
+            su.main(["--all-items", "--english-only", "--japanese-only"])
+        self.assertEqual(raised.exception.code, 2)
+
+    def test_english_only_parallel_backfill_preserves_japanese_fields(self):
+        items = []
+        japanese = TestSummarizeTitleCap()._ja_result()
+        for index in range(3):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"english-{index}"
+            item["source_url"] = f"https://example.go.jp/english-{index}"
+            item.update(japanese)
+            item.update({
+                "summary_ja_source": "claude",
+                "ja_summarized_at": "2026-08-13T00:00:00Z",
+                "ja_summary_model": "claude-opus-4-8",
+            })
+            items.append(item)
+        japanese_before = [
+            {field: item[field] for field in (*su.JA_AI_FIELDS, *su.JA_PROVENANCE_FIELDS)}
+            for item in items
+        ]
+        english = TestSummarizeTitleCap()._result("Fresh English AI title")
+        usage = {
+            "input_tokens": 100,
+            "output_tokens": 50,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_summary": lambda client, model, item, raw: (english, model, usage),
+                "request_japanese_summary": mock.Mock(
+                    side_effect=AssertionError("Japanese API must not run")
+                ),
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main([
+                    "--all-items", "--english-only", "--api-limit", "2", "--parallel", "2"
+                ])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(rc, 0)
+            self.assertEqual(
+                [item["summary_source"] for item in published],
+                ["claude", "claude", "rule_based"],
+            )
+            for index, item in enumerate(published):
+                self.assertEqual(
+                    {field: item[field] for field in (*su.JA_AI_FIELDS, *su.JA_PROVENANCE_FIELDS)},
+                    japanese_before[index],
+                )
+            self.assertIn("english_only    : true", stdout.getvalue())
+            self.assertIn("english_remaining: 1", stdout.getvalue())
 
     def test_main_applies_batch_result_and_persists_cache(self):
         item = TestSummarizeTitleCap()._item()
