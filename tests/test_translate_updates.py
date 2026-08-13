@@ -647,6 +647,8 @@ class TestPromptContext(TranslateTestBase):
         self.assertIn(item["source_name"], content)
         self.assertIn("REFERENCE_CONTEXT", content)
         self.assertIn("do NOT return", content)
+        self.assertIn("render it fully in Simplified Chinese", content)
+        self.assertIn("never copy Japanese kana", content)
         self.assertIn("UNTRUSTED_ENGLISH_JSON", content)
 
     def test_api_metadata_is_not_accepted(self):
