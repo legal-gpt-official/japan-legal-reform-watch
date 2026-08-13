@@ -137,6 +137,37 @@ class TestSummarizeTitleCap(unittest.TestCase):
         self.assertNotIn("ENGLISH SENTINEL", content)
         self.assertEqual(params["system"], su.SYSTEM_PROMPT_JA)
 
+    def test_japanese_bad_request_is_not_retried_without_structured_output(self):
+        item = self._item()
+        calls = {"count": 0}
+
+        class BadRequestError(Exception):
+            status_code = 400
+
+        def create(**_kwargs):
+            calls["count"] += 1
+            raise BadRequestError("credit balance is too low")
+
+        client = types.SimpleNamespace(messages=types.SimpleNamespace(create=create))
+        with self.assertRaises(BadRequestError):
+            su.request_japanese_summary(client, "claude-opus-4-8", item, {})
+
+        self.assertEqual(calls["count"], 1)
+
+    def test_response_usage_is_returned_and_costed(self):
+        result = self._ja_result()
+        block = types.SimpleNamespace(type="text", text=json.dumps(result))
+        usage = types.SimpleNamespace(input_tokens=1000, output_tokens=200)
+        message = types.SimpleNamespace(content=[block], model="claude-opus-4-8", usage=usage)
+
+        parsed, model, counters = su.parse_summary_message(message, "fallback")
+
+        self.assertEqual(parsed, result)
+        self.assertEqual(model, "claude-opus-4-8")
+        self.assertEqual(counters["input_tokens"], 1000)
+        self.assertEqual(counters["output_tokens"], 200)
+        self.assertAlmostEqual(su.estimate_usage_cost_usd(counters, model), 0.01)
+
     def test_validate_output_rejects_overlong_or_japanese_title_en(self):
         overlong = self._item()
         overlong["title_en"] = "A" * (bpd.TITLE_MAX_CHARS + 1)
@@ -233,7 +264,10 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--all-items", workflow)
         self.assertIn("--japanese-only", workflow)
         self.assertIn("--api-limit \"$BATCH_SIZE\"", workflow)
-        self.assertIn("--parallel 8", workflow)
+        self.assertIn("--parallel \"$PARALLELISM\"", workflow)
+        self.assertIn("--max-cost-usd \"$MAX_COST_USD\"", workflow)
+        self.assertIn('default: "10"', workflow)
+        self.assertIn('default: "0.50"', workflow)
         self.assertIn("git push origin \"HEAD:${GITHUB_REF_NAME}\"", workflow)
         self.assertIn("group: japan-legal-reform-data-writer", workflow)
         self.assertIn("python scripts/build_public_archives.py", workflow)
@@ -612,6 +646,109 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(rc, 0)
             self.assertEqual(sum("summary_ja" in item for item in published), 2)
             self.assertNotIn("summary_ja", published[2])
+
+    def test_parallel_backfill_stops_scheduling_after_credit_failure_wave(self):
+        items = []
+        for index in range(10):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"credit-{index}"
+            item["source_url"] = f"https://example.go.jp/credit-{index}"
+            items.append(item)
+
+        class BadRequestError(Exception):
+            status_code = 400
+
+        calls = {"count": 0}
+
+        def fail_credit(_client, _model, _item, _raw):
+            calls["count"] += 1
+            raise BadRequestError("credit balance is too low")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_japanese_summary": fail_credit,
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main(
+                    ["--all-items", "--japanese-only", "--api-limit", "10", "--parallel", "2"]
+                )
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            self.assertEqual(rc, 0)
+            self.assertEqual(calls["count"], 2)
+            self.assertIn("provider_status : unavailable", stdout.getvalue())
+            self.assertIn("provider_error_type: insufficient_credit", stdout.getvalue())
+            self.assertIn("provider_aborted_items: 8", stdout.getvalue())
+
+    def test_measured_cost_cap_stops_new_direct_calls(self):
+        items = []
+        for index in range(10):
+            item = TestSummarizeTitleCap()._item()
+            item["id"] = f"cost-{index}"
+            item["source_url"] = f"https://example.go.jp/cost-{index}"
+            items.append(item)
+        japanese = TestSummarizeTitleCap()._ja_result()
+        usage = {"input_tokens": 1000, "output_tokens": 200,
+                 "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0}
+        calls = {"count": 0}
+
+        def success(_client, model, _item, _raw):
+            calls["count"] += 1
+            return japanese, model, usage
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps(items), encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_japanese_summary": success,
+            }
+            stdout = io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout):
+                rc = su.main([
+                    "--all-items", "--japanese-only", "--api-limit", "10",
+                    "--parallel", "1", "--max-cost-usd", "0.015",
+                ])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            self.assertEqual(rc, 0)
+            self.assertEqual(calls["count"], 2)
+            self.assertIn("cost_budget_skipped: 8", stdout.getvalue())
+            self.assertIn("estimated_cost_usd: 0.020000", stdout.getvalue())
 
 
 if __name__ == "__main__":

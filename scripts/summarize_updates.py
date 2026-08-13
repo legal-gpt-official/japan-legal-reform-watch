@@ -91,6 +91,21 @@ DEFAULT_LIMIT = 10
 DEFAULT_MODEL = "claude-opus-4-8"
 MAX_TOKENS = 1500
 
+# Current Claude API list prices in USD per million tokens. These are used only
+# for transparent run-cost reporting and the optional safety cap; provider
+# billing remains authoritative. Unknown models report token usage without a
+# dollar estimate instead of guessing.
+MODEL_PRICING_USD_PER_MTOK = {
+    "claude-opus-4-8": {"input": 5.0, "output": 25.0},
+}
+FATAL_PROVIDER_ERRORS = ("insufficient_credit", "authentication_error", "permission_error")
+_CREDIT_SIGNALS = (
+    "credit balance is too low",
+    "insufficient credit",
+    "plans & billing",
+    "purchase credits",
+)
+
 REQUIRED_UI_FIELDS = (
     "id", "title_en", "title_ja", "area", "stage", "impact_level",
     "summary_en", "business_impact_en", "recommended_action_en",
@@ -359,9 +374,91 @@ def japanese_summary_request_params(model: str, item: dict, raw: dict) -> dict:
     )
 
 
-def parse_summary_message(message, model: str) -> tuple[dict, str]:
+def message_usage(message) -> dict[str, int]:
+    """Return billable token counters exposed by a successful API response."""
+    usage = getattr(message, "usage", None)
+    return {
+        "input_tokens": int(getattr(usage, "input_tokens", 0) or 0),
+        "output_tokens": int(getattr(usage, "output_tokens", 0) or 0),
+        "cache_creation_input_tokens": int(getattr(usage, "cache_creation_input_tokens", 0) or 0),
+        "cache_read_input_tokens": int(getattr(usage, "cache_read_input_tokens", 0) or 0),
+    }
+
+
+def parse_summary_message(message, model: str) -> tuple[dict, str, dict[str, int]]:
     text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
-    return extract_json(text), getattr(message, "model", model)
+    return extract_json(text), getattr(message, "model", model), message_usage(message)
+
+
+def unpack_api_outcome(outcome) -> tuple[dict, str, dict[str, int]]:
+    """Accept current 3-tuples and legacy 2-tuples used by offline test doubles."""
+    if isinstance(outcome, tuple) and len(outcome) == 3:
+        return outcome
+    if isinstance(outcome, tuple) and len(outcome) == 2:
+        result, model = outcome
+        return result, model, message_usage(None)
+    raise TypeError("unexpected API outcome")
+
+
+def _error_status(exc) -> int | None:
+    for attr in ("status_code", "status"):
+        value = getattr(exc, attr, None)
+        if isinstance(value, int):
+            return value
+    value = getattr(getattr(exc, "response", None), "status_code", None)
+    return value if isinstance(value, int) else None
+
+
+def _looks_like_insufficient_credit(exc) -> bool:
+    """Inspect provider text only for classification; callers never log it."""
+    parts = [str(exc), str(getattr(exc, "message", "") or "")]
+    body = getattr(exc, "body", None)
+    if isinstance(body, dict):
+        error = body.get("error")
+        if isinstance(error, dict):
+            parts.append(str(error.get("message", "")))
+    text = " ".join(parts).lower()
+    return any(signal in text for signal in _CREDIT_SIGNALS)
+
+
+def classify_provider_error(exc) -> str:
+    name = type(exc).__name__
+    status = _error_status(exc)
+    if status == 401 or name == "AuthenticationError":
+        return "authentication_error"
+    if status == 403 or name == "PermissionDeniedError":
+        return "permission_error"
+    if status == 402:
+        return "insufficient_credit"
+    if status == 429 or name == "RateLimitError":
+        return "rate_limit"
+    if status == 400 or name == "BadRequestError":
+        return "insufficient_credit" if _looks_like_insufficient_credit(exc) else "invalid_request"
+    if (isinstance(status, int) and 500 <= status < 600) or name in ("InternalServerError", "APIStatusError"):
+        return "temporary_server_error"
+    if name in ("APIConnectionError", "APITimeoutError") or isinstance(exc, (ConnectionError, TimeoutError, OSError)):
+        return "network_error"
+    return "unknown_provider_error"
+
+
+def add_usage(total: dict[str, int], usage: dict[str, int]) -> None:
+    for key in total:
+        total[key] += max(0, int(usage.get(key, 0) or 0))
+
+
+def estimate_usage_cost_usd(usage: dict[str, int], model: str, *, batch: bool = False) -> float | None:
+    price = next((rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)), None)
+    if price is None:
+        return None
+    multiplier = 0.5 if batch else 1.0
+    input_tokens = (
+        usage.get("input_tokens", 0)
+        + usage.get("cache_creation_input_tokens", 0)
+        + usage.get("cache_read_input_tokens", 0)
+    )
+    return multiplier * (
+        input_tokens * price["input"] + usage.get("output_tokens", 0) * price["output"]
+    ) / 1_000_000
 
 
 def make_client():
@@ -369,10 +466,8 @@ def make_client():
     return anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
 
 
-def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str]:
+def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str, dict[str, int]]:
     """Call Claude synchronously and return (result_dict, model_used)."""
-    import anthropic  # local import so the no-key path needs no SDK
-
     kwargs = summary_request_params(model, item, raw)
     try:
         # Preferred: structured outputs guarantee schema-valid JSON.
@@ -380,24 +475,24 @@ def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, st
             output_config={"format": {"type": "json_schema", "schema": RESULT_SCHEMA}},
             **kwargs,
         )
-    except (TypeError, anthropic.BadRequestError):
-        # Older SDK or model without output_config: rely on the prompt + robust parse.
+    except TypeError:
+        # Older SDK without output_config: rely on the prompt + robust parse.
+        # Provider BadRequest errors must propagate; retrying them can duplicate
+        # requests and can hide billing/authentication failures.
         resp = client.messages.create(**kwargs)
 
     return parse_summary_message(resp, model)
 
 
-def request_japanese_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str]:
+def request_japanese_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str, dict[str, int]]:
     """Generate Japanese summary fields directly from Japanese source metadata."""
-    import anthropic
-
     kwargs = japanese_summary_request_params(model, item, raw)
     try:
         resp = client.messages.create(
             output_config={"format": {"type": "json_schema", "schema": JA_RESULT_SCHEMA}},
             **kwargs,
         )
-    except (TypeError, anthropic.BadRequestError):
+    except TypeError:
         resp = client.messages.create(**kwargs)
     return parse_summary_message(resp, model)
 
@@ -653,6 +748,15 @@ def main(argv: list[str] | None = None) -> int:
         help="Concurrent direct Japanese API calls when not using --batch (default 1, max 10).",
     )
     parser.add_argument(
+        "--max-cost-usd",
+        type=float,
+        default=None,
+        help=(
+            "Stop scheduling further direct calls after measured estimated cost reaches this cap. "
+            "A parallel wave may overshoot by at most parallel-1 responses."
+        ),
+    )
+    parser.add_argument(
         "--all-items",
         action="store_true",
         help="Target the complete published corpus instead of only the relevance-ranked top N.",
@@ -673,6 +777,10 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--parallel must be between 1 and 10")
     if args.batch and args.parallel != 1:
         parser.error("--parallel cannot be combined with --batch")
+    if args.max_cost_usd is not None and args.max_cost_usd <= 0:
+        parser.error("--max-cost-usd must be positive")
+    if args.batch and args.max_cost_usd is not None:
+        parser.error("--max-cost-usd is supported only for direct calls")
     model = resolve_model(args.model)
 
     # Requirement 5: missing key -> print usage and exit cleanly (no traceback).
@@ -714,10 +822,29 @@ def main(argv: list[str] | None = None) -> int:
     client = None
     cache_hits = api_calls = summarized = failed = skipped_api_budget = 0
     ja_cache_hits = ja_summarized = ja_failed = ja_skipped_api_budget = 0
+    provider_fatal = False
+    provider_error_type = "none"
+    provider_aborted = 0
+    cost_budget_skipped = 0
+    usage_totals = message_usage(None)
+    estimated_cost_usd = 0.0
+    cost_estimate_complete = True
     batch_id = ""
     japanese_batch_id = ""
     pending: list[tuple[dict, str, dict]] = []
     pending_ja: list[tuple[dict, str, dict]] = []
+
+    def record_outcome_usage(usage: dict[str, int], model_used: str, *, batch: bool = False) -> None:
+        nonlocal estimated_cost_usd, cost_estimate_complete
+        add_usage(usage_totals, usage)
+        estimate = estimate_usage_cost_usd(usage, model_used, batch=batch)
+        if estimate is None:
+            cost_estimate_complete = False
+        else:
+            estimated_cost_usd += estimate
+
+    def cost_cap_reached() -> bool:
+        return args.max_cost_usd is not None and estimated_cost_usd >= args.max_cost_usd
 
     for it in items:
         if id(it) not in target_ids:
@@ -740,10 +867,20 @@ def main(argv: list[str] | None = None) -> int:
                 continue
 
             remove_japanese_result(it)
-            budget_used = len(pending_ja) if (args.batch or args.parallel > 1) else api_calls
+            budget_used = (
+                len(pending_ja)
+                if (args.batch or args.parallel > 1)
+                else api_calls + provider_aborted + cost_budget_skipped
+            )
             if api_limit is not None and budget_used >= api_limit:
                 ja_skipped_api_budget += 1
                 logger.info("BUDGET SKIP JA %s", it.get("id"))
+                continue
+            if provider_fatal:
+                provider_aborted += 1
+                continue
+            if cost_cap_reached():
+                cost_budget_skipped += 1
                 continue
             raw = raw_by_id.get(it.get("id"), {})
             if args.batch or args.parallel > 1:
@@ -753,7 +890,10 @@ def main(argv: list[str] | None = None) -> int:
                 client = make_client()
             api_calls += 1
             try:
-                result, model_used = request_japanese_summary(client, model, it, raw)
+                result, model_used, usage = unpack_api_outcome(
+                    request_japanese_summary(client, model, it, raw)
+                )
+                record_outcome_usage(usage, model_used)
                 if not valid_japanese_result(result):
                     raise ValueError("model returned invalid Japanese summary fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -770,7 +910,13 @@ def main(argv: list[str] | None = None) -> int:
                 logger.info("API JA %s", it.get("id"))
             except Exception as exc:
                 ja_failed += 1
-                logger.error("FAIL JA %s type=%s", it.get("id"), type(exc).__name__)
+                error_type = classify_provider_error(exc)
+                if error_type in FATAL_PROVIDER_ERRORS:
+                    provider_fatal = True
+                    provider_error_type = error_type
+                    logger.error("PROVIDER unavailable type=%s; remaining API candidates will be skipped.", error_type)
+                else:
+                    logger.error("FAIL JA %s type=%s", it.get("id"), error_type)
             continue
 
         if isinstance(cached, dict) and valid_result(cached):
@@ -787,10 +933,20 @@ def main(argv: list[str] | None = None) -> int:
             # Japanese text is generated directly from Japanese source metadata
             # and consumes the same bounded API-call budget.
             remove_japanese_result(it)
-            budget_used = len(pending) + len(pending_ja) if args.batch else api_calls
+            budget_used = (
+                len(pending) + len(pending_ja)
+                if args.batch
+                else api_calls + provider_aborted + cost_budget_skipped
+            )
             if api_limit is not None and budget_used >= api_limit:
                 ja_skipped_api_budget += 1
                 logger.info("BUDGET SKIP JA %s", it.get("id"))
+                continue
+            if provider_fatal:
+                provider_aborted += 1
+                continue
+            if cost_cap_reached():
+                cost_budget_skipped += 1
                 continue
             raw = raw_by_id.get(it.get("id"), {})
             if args.batch:
@@ -800,7 +956,10 @@ def main(argv: list[str] | None = None) -> int:
                 client = make_client()
             api_calls += 1
             try:
-                result, model_used = request_japanese_summary(client, model, it, raw)
+                result, model_used, usage = unpack_api_outcome(
+                    request_japanese_summary(client, model, it, raw)
+                )
+                record_outcome_usage(usage, model_used)
                 if not valid_japanese_result(result):
                     raise ValueError("model returned invalid Japanese summary fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -814,8 +973,13 @@ def main(argv: list[str] | None = None) -> int:
                 logger.info("API JA %s", it.get("id"))
             except Exception as exc:
                 ja_failed += 1
-                logger.error("FAIL JA %s (%s): %s", it.get("id"), it.get("title_ja", "")[:40],
-                             f"{type(exc).__name__}: {exc}")
+                error_type = classify_provider_error(exc)
+                if error_type in FATAL_PROVIDER_ERRORS:
+                    provider_fatal = True
+                    provider_error_type = error_type
+                    logger.error("PROVIDER unavailable type=%s; remaining API candidates will be skipped.", error_type)
+                else:
+                    logger.error("FAIL JA %s type=%s", it.get("id"), error_type)
             continue
 
         # A Japanese-only backfill cache entry can validly exist before English
@@ -826,11 +990,23 @@ def main(argv: list[str] | None = None) -> int:
             ja_cache_hits += 1
         else:
             remove_japanese_result(it)
-        budget_used = len(pending) + len(pending_ja) if args.batch else api_calls
+        budget_used = (
+            len(pending) + len(pending_ja)
+            if args.batch
+            else api_calls + provider_aborted + cost_budget_skipped
+        )
         if api_limit is not None and budget_used >= api_limit:
             it["summary_source"] = "rule_based"
             skipped_api_budget += 1
             logger.info("BUDGET SKIP %s", it.get("id"))
+            continue
+        if provider_fatal:
+            provider_aborted += 1
+            it["summary_source"] = "rule_based"
+            continue
+        if cost_cap_reached():
+            cost_budget_skipped += 1
+            it["summary_source"] = "rule_based"
             continue
 
         # In Batch mode, collect every cache miss and submit them together after
@@ -844,7 +1020,10 @@ def main(argv: list[str] | None = None) -> int:
             client = make_client()
         api_calls += 1
         try:
-            result, model_used = request_summary(client, model, it, raw_by_id.get(it.get("id"), {}))
+            result, model_used, usage = unpack_api_outcome(
+                request_summary(client, model, it, raw_by_id.get(it.get("id"), {}))
+            )
+            record_outcome_usage(usage, model_used)
             if not valid_result(result):
                 raise ValueError("model returned JSON missing/invalid required fields")
             now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -858,10 +1037,13 @@ def main(argv: list[str] | None = None) -> int:
         except Exception as exc:  # requirement 14: keep original, mark rule_based, log, continue
             failed += 1
             it["summary_source"] = "rule_based"
-            req_id = getattr(getattr(exc, "response", None), "headers", {})
-            req_id = req_id.get("request-id") if hasattr(req_id, "get") else None
-            logger.error("FAIL  %s (%s): %s%s", it.get("id"), it.get("title_ja", "")[:40],
-                         f"{type(exc).__name__}: {exc}", f" [request-id={req_id}]" if req_id else "")
+            error_type = classify_provider_error(exc)
+            if error_type in FATAL_PROVIDER_ERRORS:
+                provider_fatal = True
+                provider_error_type = error_type
+                logger.error("PROVIDER unavailable type=%s; remaining API candidates will be skipped.", error_type)
+            else:
+                logger.error("FAIL %s type=%s", it.get("id"), error_type)
 
     if args.batch and pending:
         if client is None:
@@ -882,7 +1064,8 @@ def main(argv: list[str] | None = None) -> int:
             try:
                 if isinstance(outcome, Exception):
                     raise outcome
-                result, model_used = outcome
+                result, model_used, usage = unpack_api_outcome(outcome)
+                record_outcome_usage(usage, model_used, batch=True)
                 if not valid_result(result):
                     raise ValueError("model returned JSON missing/invalid required fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -898,7 +1081,6 @@ def main(argv: list[str] | None = None) -> int:
                 logger.error("BATCH FAIL %s type=%s", it.get("id"), type(exc).__name__)
 
     if args.japanese_only and not args.batch and args.parallel > 1 and pending_ja:
-        api_calls += len(pending_ja)
         if client is None:
             client = make_client()
 
@@ -909,27 +1091,52 @@ def main(argv: list[str] | None = None) -> int:
             except Exception as exc:
                 return exc
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=args.parallel) as executor:
-            outcomes = list(executor.map(request_one, pending_ja))
+        processed = 0
+        for start in range(0, len(pending_ja), args.parallel):
+            if provider_fatal or cost_cap_reached():
+                break
+            wave = pending_ja[start : start + args.parallel]
+            api_calls += len(wave)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=args.parallel) as executor:
+                outcomes = list(executor.map(request_one, wave))
 
-        for (it, key, _raw), outcome in zip(pending_ja, outcomes):
-            try:
-                if isinstance(outcome, Exception):
-                    raise outcome
-                result, model_used = outcome
-                if not valid_japanese_result(result):
-                    raise ValueError("model returned invalid Japanese summary fields")
-                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                apply_japanese_result(it, result, now, model_used)
-                cache.setdefault(key, {}).update(
-                    {**{field: it[field] for field in JA_AI_FIELDS},
-                     "summary_ja_source": "claude",
-                     "ja_summarized_at": now, "ja_summary_model": model_used}
-                )
-                ja_summarized += 1
-            except Exception as exc:
-                ja_failed += 1
-                logger.error("PARALLEL FAIL JA %s type=%s", it.get("id"), type(exc).__name__)
+            for (it, key, _raw), outcome in zip(wave, outcomes):
+                processed += 1
+                try:
+                    if isinstance(outcome, Exception):
+                        raise outcome
+                    result, model_used, usage = unpack_api_outcome(outcome)
+                    record_outcome_usage(usage, model_used)
+                    if not valid_japanese_result(result):
+                        raise ValueError("model returned invalid Japanese summary fields")
+                    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                    apply_japanese_result(it, result, now, model_used)
+                    cache.setdefault(key, {}).update(
+                        {**{field: it[field] for field in JA_AI_FIELDS},
+                         "summary_ja_source": "claude",
+                         "ja_summarized_at": now, "ja_summary_model": model_used}
+                    )
+                    ja_summarized += 1
+                except Exception as exc:
+                    ja_failed += 1
+                    error_type = classify_provider_error(exc)
+                    if error_type in FATAL_PROVIDER_ERRORS:
+                        if not provider_fatal:
+                            provider_fatal = True
+                            provider_error_type = error_type
+                            logger.error(
+                                "PROVIDER unavailable type=%s; unscheduled API candidates were skipped.",
+                                error_type,
+                            )
+                    else:
+                        logger.error("PARALLEL FAIL JA %s type=%s", it.get("id"), error_type)
+
+        unscheduled = len(pending_ja) - processed
+        if unscheduled:
+            if provider_fatal:
+                provider_aborted += unscheduled
+            elif cost_cap_reached():
+                cost_budget_skipped += unscheduled
 
     if args.batch and pending_ja:
         if client is None:
@@ -950,7 +1157,8 @@ def main(argv: list[str] | None = None) -> int:
             try:
                 if isinstance(outcome, Exception):
                     raise outcome
-                result, model_used = outcome
+                result, model_used, usage = unpack_api_outcome(outcome)
+                record_outcome_usage(usage, model_used, batch=True)
                 if not valid_japanese_result(result):
                     raise ValueError("model returned invalid Japanese summary fields")
                 now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -991,11 +1199,16 @@ def main(argv: list[str] | None = None) -> int:
         "RUN SUMMARY input=%d target=%d api_limit=%s cache_hits=%d api_calls=%d "
         "summarized=%d failed=%d skipped_api_budget=%d ja_cache_hits=%d "
         "ja_summarized=%d ja_failed=%d ja_skipped_api_budget=%d caution_warnings=%d "
-        "japanese_remaining=%d batch=%s batch_id=%s japanese_batch_id=%s",
+        "japanese_remaining=%d provider_status=%s provider_error_type=%s provider_aborted=%d "
+        "cost_budget_skipped=%d input_tokens=%d output_tokens=%d estimated_cost_usd=%.6f "
+        "batch=%s batch_id=%s japanese_batch_id=%s",
         len(items), len(targets), api_limit if api_limit is not None else "none",
         cache_hits, api_calls, summarized, failed, skipped_api_budget,
         ja_cache_hits, ja_summarized, ja_failed, ja_skipped_api_budget,
-        caution_warnings, japanese_remaining, args.batch, batch_id, japanese_batch_id,
+        caution_warnings, japanese_remaining, "unavailable" if provider_fatal else "healthy",
+        provider_error_type, provider_aborted, cost_budget_skipped,
+        usage_totals["input_tokens"], usage_totals["output_tokens"], estimated_cost_usd,
+        args.batch, batch_id, japanese_batch_id,
     )
 
     print("\n==== summarize_updates summary ====")
@@ -1016,6 +1229,16 @@ def main(argv: list[str] | None = None) -> int:
     print(f"japanese_failed_items: {ja_failed}")
     print(f"japanese_skipped_api_budget: {ja_skipped_api_budget}")
     print(f"japanese_remaining: {japanese_remaining}")
+    print(f"provider_status : {'unavailable' if provider_fatal else 'healthy'}")
+    print(f"provider_error_type: {provider_error_type}")
+    print(f"provider_aborted_items: {provider_aborted}")
+    print(f"cost_budget_skipped: {cost_budget_skipped}")
+    print(f"input_tokens    : {usage_totals['input_tokens']}")
+    print(f"output_tokens   : {usage_totals['output_tokens']}")
+    print(f"cache_creation_input_tokens: {usage_totals['cache_creation_input_tokens']}")
+    print(f"cache_read_input_tokens: {usage_totals['cache_read_input_tokens']}")
+    print(f"estimated_cost_usd: {estimated_cost_usd:.6f}" if cost_estimate_complete else "estimated_cost_usd: unknown")
+    print(f"max_cost_usd    : {args.max_cost_usd if args.max_cost_usd is not None else 'none'}")
     print(f"caution_warnings: {caution_warnings}")
     print(f"output_path     : {OUTPUT_PATH}")
     print(f"backup_created  : {backup_created}")

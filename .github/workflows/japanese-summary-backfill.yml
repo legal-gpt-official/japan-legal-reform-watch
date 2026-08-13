@@ -9,21 +9,32 @@ on:
       batch_size:
         description: Japanese summaries per parallel direct-call checkpoint
         required: true
-        default: "100"
+        default: "10"
         type: choice
         options:
+          - "10"
           - "100"
           - "250"
           - "500"
-      max_rounds:
-        description: Maximum checkpointed rounds in this run
+      parallelism:
+        description: Concurrent direct calls (use 1 for a cost canary)
         required: true
-        default: "20"
+        default: "1"
         type: choice
         options:
-          - "20"
+          - "1"
+          - "4"
           - "8"
-          - "12"
+      max_cost_usd:
+        description: Measured estimated-cost safety cap for this run
+        required: true
+        default: "0.50"
+        type: choice
+        options:
+          - "0.50"
+          - "2.00"
+          - "5.00"
+          - "10.00"
 
 permissions:
   contents: write
@@ -62,7 +73,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
           BATCH_SIZE: ${{ inputs.batch_size }}
-          MAX_ROUNDS: ${{ inputs.max_rounds }}
+          PARALLELISM: ${{ inputs.parallelism }}
+          MAX_COST_USD: ${{ inputs.max_cost_usd }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -88,46 +100,40 @@ jobs:
           before=$(count_ja)
           echo "Starting Japanese coverage: ${before}/${total}" | tee -a "$GITHUB_STEP_SUMMARY"
 
-          complete=false
-          for round in $(seq 1 "$MAX_ROUNDS"); do
-            if [ "$before" -eq "$total" ]; then
-              complete=true
-              break
-            fi
-
-            echo "Round ${round}: requesting up to ${BATCH_SIZE} Japanese summaries with parallel direct calls."
-            python scripts/summarize_updates.py \
-              --all-items \
-              --japanese-only \
-              --api-limit "$BATCH_SIZE" \
-              --parallel 8
-            python scripts/build_public_archives.py
-
-            after=$(count_ja)
-            echo "Round ${round}: ${before} -> ${after} of ${total}" | tee -a "$GITHUB_STEP_SUMMARY"
-            if [ "$after" -lt "$before" ]; then
-              echo "Japanese coverage shrank; refusing to checkpoint."
-              exit 1
-            fi
-            if [ "$after" -eq "$before" ]; then
-              echo "No Japanese-summary progress; stopping so the run can be diagnosed safely."
-              exit 1
-            fi
-
-            git add data/summary_cache.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
-            git commit -m "Backfill Japanese summaries (${after}/${total})"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-            before=$after
-          done
-
           if [ "$before" -eq "$total" ]; then
-            complete=true
+            echo "Japanese summary backfill already complete: ${before}/${total}." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
-          if [ "$complete" != "true" ]; then
-            echo "Backfill stopped at ${before}/${total}; rerun to continue." | tee -a "$GITHUB_STEP_SUMMARY"
+
+          echo "Requesting up to ${BATCH_SIZE} Japanese summaries (parallel=${PARALLELISM}, cost cap USD ${MAX_COST_USD})."
+          python scripts/summarize_updates.py \
+            --all-items \
+            --japanese-only \
+            --api-limit "$BATCH_SIZE" \
+            --parallel "$PARALLELISM" \
+            --max-cost-usd "$MAX_COST_USD" 2>&1 | tee summarize_run.log
+          python scripts/build_public_archives.py
+
+          after=$(count_ja)
+          echo "Japanese coverage: ${before} -> ${after} of ${total}" | tee -a "$GITHUB_STEP_SUMMARY"
+          grep -E '^(api_calls|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd|provider_status|provider_error_type|cost_budget_skipped)' summarize_run.log >> "$GITHUB_STEP_SUMMARY" || true
+          if [ "$after" -lt "$before" ]; then
+            echo "Japanese coverage shrank; refusing to checkpoint."
             exit 1
           fi
-          echo "Japanese summary backfill complete: ${before}/${total}." | tee -a "$GITHUB_STEP_SUMMARY"
+          if [ "$after" -eq "$before" ]; then
+            echo "No Japanese-summary progress; stopping so the run can be diagnosed safely."
+            exit 1
+          fi
+
+          git add data/summary_cache.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
+          git commit -m "Backfill Japanese summaries (${after}/${total})"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          if [ "$after" -ne "$total" ]; then
+            echo "Checkpoint complete: ${after}/${total}. Rerun only after reviewing measured cost." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "Japanese summary backfill complete: ${after}/${total}." | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Final semantic integrity gate
         run: |

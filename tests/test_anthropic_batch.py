@@ -16,6 +16,7 @@ class FakeBatches:
     def __init__(self, rows):
         self.rows = rows
         self.created = None
+        self.cancelled = []
 
     def create(self, *, requests):
         self.created = requests
@@ -24,6 +25,12 @@ class FakeBatches:
     def results(self, batch_id):
         assert batch_id == "msgbatch_test"
         return iter(self.rows)
+
+    def cancel(self, batch_id):
+        self.cancelled.append(batch_id)
+
+    def retrieve(self, batch_id):
+        return types.SimpleNamespace(id=batch_id, processing_status="in_progress")
 
 
 
@@ -64,6 +71,22 @@ class TestAnthropicBatch(unittest.TestCase):
 
         self.assertIsInstance(run.results["missing"], ab.BatchItemError)
         self.assertEqual(run.results["missing"].error_type, "missing_result")
+
+    def test_timeout_requests_provider_cancellation(self):
+        batches = FakeBatches([])
+        batch = types.SimpleNamespace(id="msgbatch_test", processing_status="in_progress")
+        client = types.SimpleNamespace(messages=types.SimpleNamespace(batches=batches))
+
+        with self.assertRaisesRegex(TimeoutError, "msgbatch_test"):
+            ab._wait_for_message_batch(
+                client,
+                batch,
+                [{"custom_id": "pending", "params": {"model": "m"}}],
+                poll_seconds=0,
+                timeout_seconds=0.000001,
+            )
+
+        self.assertEqual(batches.cancelled, ["msgbatch_test"])
 
 if __name__ == "__main__":
     unittest.main()

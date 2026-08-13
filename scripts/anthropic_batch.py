@@ -109,6 +109,20 @@ def _wait_for_message_batch(
     while getattr(batch, "processing_status", None) == "in_progress":
         remaining = deadline - time.monotonic()
         if remaining <= 0:
+            # A local polling timeout does not stop provider-side processing.
+            # Cancel explicitly so an abandoned batch cannot continue consuming
+            # credit after the workflow has failed. The batch id is safe to log
+            # and is required for provider-side reconciliation.
+            cancel_error = None
+            try:
+                client.messages.batches.cancel(batch_id)
+            except Exception as exc:  # retain the primary timeout failure
+                cancel_error = type(exc).__name__
+            if logger:
+                if cancel_error:
+                    logger.error("BATCH timeout id=%s cancel_failed=%s", batch_id, cancel_error)
+                else:
+                    logger.error("BATCH timeout id=%s cancel_requested=true", batch_id)
             raise TimeoutError(f"message batch {batch_id} did not finish within {timeout_seconds:g}s")
         time.sleep(min(poll_seconds, remaining))
         batch = client.messages.batches.retrieve(batch_id)
