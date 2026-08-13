@@ -491,6 +491,44 @@ class TestUsageAndCostSafety(TranslateTestBase):
         self.assertEqual(summary["estimated_cost_usd"], "0.018000")
         self.assertEqual(summary["max_cost_usd"], "0.010000")
 
+    def test_parallel_cost_cap_stops_after_one_bounded_wave(self):
+        items = [
+            sample_item(id=f"raw-{i}", title_en=f"Distinct English title {i}.")
+            for i in range(5)
+        ]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        calls = {"n": 0}
+        usage = {
+            "input_tokens": 1000,
+            "output_tokens": 1000,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+        }
+
+        def fake_request(client, model, item, locale):
+            calls["n"] += 1
+            return good_translation(), "claude-sonnet-5", usage
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake_request
+        rc, out = self.run_main([
+            "--locale", LOCALE,
+            "--limit", "30",
+            "--parallel", "3",
+            "--model", "claude-sonnet-5",
+            "--max-cost-usd", "0.01",
+        ])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 3)
+        summary = parse_summary(out)
+        self.assertEqual(summary["parallel"], "3")
+        self.assertEqual(summary["api_calls"], "3")
+        self.assertEqual(summary["translated_items"], "3")
+        self.assertEqual(summary["cost_budget_skipped"], "2")
+        self.assertEqual(summary["estimated_cost_usd"], "0.054000")
+
     def test_unknown_model_cannot_claim_a_dollar_cap(self):
         self.write_input([sample_item()])
         self.write_cache(tu.default_cache())
@@ -500,6 +538,10 @@ class TestUsageAndCostSafety(TranslateTestBase):
     def test_batch_and_dollar_cap_are_mutually_exclusive(self):
         with self.assertRaises(SystemExit):
             tu.main(["--batch", "--max-cost-usd", "1.00"])
+
+    def test_batch_and_parallel_are_mutually_exclusive(self):
+        with self.assertRaises(SystemExit):
+            tu.main(["--batch", "--parallel", "2"])
 
     def test_kana_title_retry_omits_reference_only_for_recovery_call(self):
         item = sample_item()
@@ -539,6 +581,50 @@ class TestUsageAndCostSafety(TranslateTestBase):
         self.assertEqual(summary["translated_items"], "1")
         self.assertEqual(summary["quality_rejected_items"], "0")
         self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
+    def test_parallel_kana_retry_preserves_wave_usage_and_recovers_one_item(self):
+        items = [
+            sample_item(id="raw-good", title_en="Good title."),
+            sample_item(id="raw-kana", title_en="Kana-prone title."),
+        ]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        calls = []
+        usage = {
+            "input_tokens": 100,
+            "output_tokens": 50,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+        }
+
+        def fake_request(client, model, request_item, locale):
+            calls.append((request_item["id"], request_item.get("title_ja")))
+            fields = good_translation()
+            if request_item["id"] == "raw-kana" and request_item.get("title_ja"):
+                fields["title"] = "公开征求意见：テスト规则"
+            return fields, "claude-sonnet-5", usage
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake_request
+        rc, out = self.run_main([
+            "--locale", LOCALE,
+            "--limit", "10",
+            "--parallel", "2",
+            "--model", "claude-sonnet-5",
+            "--max-cost-usd", "0.50",
+            "--retry-kana-title-without-ja-reference",
+        ])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(len(calls), 3)
+        self.assertIn(("raw-kana", ""), calls)
+        summary = parse_summary(out)
+        self.assertEqual(summary["api_calls"], "3")
+        self.assertEqual(summary["title_reference_retries"], "1")
+        self.assertEqual(summary["title_reference_retry_successes"], "1")
+        self.assertEqual(summary["translated_items"], "2")
+        self.assertEqual(summary["input_tokens"], "300")
+        self.assertEqual(summary["output_tokens"], "150")
 
     def test_new_translation_is_cached_with_metadata(self):
         item = sample_item()

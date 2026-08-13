@@ -51,7 +51,7 @@ Usage
 -----
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch
-    python scripts/translate_updates.py --locale zh-Hans --limit 30 --max-cost-usd 0.50 --retry-kana-title-without-ja-reference
+    python scripts/translate_updates.py --locale zh-Hans --limit 30 --parallel 4 --max-cost-usd 0.50
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api
 
 Python 3.11+. Requires the `anthropic` SDK only when actually calling the API.
@@ -60,6 +60,7 @@ Python 3.11+. Requires the `anthropic` SDK only when actually calling the API.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import logging
@@ -1091,12 +1092,22 @@ def main(argv: list[str] | None = None) -> int:
         help="Maximum time to wait for a Message Batch (default 3600 seconds).",
     )
     parser.add_argument(
+        "--parallel",
+        type=int,
+        default=1,
+        help=(
+            "Concurrent direct translation calls (default 1, max 10). A wave may "
+            "overshoot --max-cost-usd by at most parallel-1 responses."
+        ),
+    )
+    parser.add_argument(
         "--max-cost-usd",
         type=float,
         default=None,
         help=(
             "Stop scheduling further direct calls after measured estimated cost reaches this cap. "
-            "The final response may overshoot the cap by one bounded call."
+            "Sequential mode may overshoot by one response; a parallel wave may overshoot by "
+            "at most parallel-1 additional responses."
         ),
     )
     parser.add_argument("--dry-run", action="store_true", help="Do not write the output file or cache.")
@@ -1115,6 +1126,10 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--omit-title-ja-reference is supported only for direct calls")
     if args.batch and args.retry_kana_title_without_ja_reference:
         parser.error("--retry-kana-title-without-ja-reference is supported only for direct calls")
+    if not 1 <= args.parallel <= 10:
+        parser.error("--parallel must be between 1 and 10")
+    if args.batch and args.parallel != 1:
+        parser.error("--parallel cannot be combined with --batch")
     if args.max_cost_usd is not None and args.max_cost_usd <= 0:
         parser.error("--max-cost-usd must be positive")
     if args.batch and args.max_cost_usd is not None:
@@ -1160,8 +1175,8 @@ def main(argv: list[str] | None = None) -> int:
 
     logger.info(
         "=== translate run start (locale=%s, limit=%d, no_api=%s, has_key=%s, model=%s, "
-        "batch=%s, max_cost_usd=%s, dry_run=%s) ===",
-        locale, args.limit, args.no_api, has_key, model, args.batch,
+        "batch=%s, parallel=%d, max_cost_usd=%s, dry_run=%s) ===",
+        locale, args.limit, args.no_api, has_key, model, args.batch, args.parallel,
         args.max_cost_usd, args.dry_run,
     )
     if args.no_api:
@@ -1235,6 +1250,8 @@ def main(argv: list[str] | None = None) -> int:
     else:
         loop_items = items
 
+    pending_direct: list[tuple[dict, str, bool, str]] = []
+
     for it in loop_items:
         item_id = it.get("id") or ""
         had_locale = isinstance(it.get("translations"), dict) and locale in it["translations"]
@@ -1283,6 +1300,10 @@ def main(argv: list[str] | None = None) -> int:
                 stale_translations_removed += 1
             remove_translation(it, locale)
             cost_budget_skipped += 1
+            continue
+
+        if api_allowed and args.parallel > 1:
+            pending_direct.append((it, item_id, had_locale, source_hash))
             continue
 
         if api_allowed and api_calls < args.limit:
@@ -1374,6 +1395,133 @@ def main(argv: list[str] | None = None) -> int:
             if api_allowed:
                 skipped_no_budget += 1
 
+    if pending_direct:
+        if client is None:
+            client = make_client()
+
+        def request_one(candidate):
+            item, _item_id, _had_locale, _source_hash = candidate
+            request_item = item
+            if args.omit_title_ja_reference:
+                request_item = dict(item)
+                request_item["title_ja"] = ""
+            try:
+                return request_translation(client, model, request_item, locale)
+            except Exception as exc:
+                return exc
+
+        processed = 0
+        while processed < len(pending_direct):
+            if provider_fatal or cost_cap_reached() or api_calls >= args.limit:
+                break
+            wave_size = min(args.parallel, args.limit - api_calls)
+            wave = pending_direct[processed : processed + wave_size]
+            api_calls += len(wave)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=args.parallel) as executor:
+                outcomes = list(executor.map(request_one, wave))
+
+            # Account for the whole concurrent wave before considering any
+            # optional recovery call, keeping cost decisions conservative.
+            prepared = []
+            for outcome in outcomes:
+                if isinstance(outcome, Exception):
+                    prepared.append(outcome)
+                    continue
+                try:
+                    result, model_used, usage = unpack_api_outcome(outcome)
+                    record_outcome_usage(usage, model_used)
+                    prepared.append((result, model_used))
+                except Exception as exc:
+                    prepared.append(exc)
+
+            for (it, item_id, had_locale, source_hash), outcome in zip(wave, prepared):
+                processed += 1
+                try:
+                    if isinstance(outcome, Exception):
+                        raise outcome
+                    result, model_used = outcome
+                    if not valid_translation(result):
+                        raise ValueError("model returned invalid/oversize translation fields")
+                    fields = {
+                        field: normalize_dates(result[field].strip())
+                        for field in TRANSLATION_FIELDS
+                    }
+                    title_errs = title_quality_errors(fields["title"])
+                    if (
+                        title_errs
+                        and args.retry_kana_title_without_ja_reference
+                        and "title contains Japanese kana" in title_errs
+                        and api_calls < args.limit
+                        and not cost_cap_reached()
+                    ):
+                        retry_item = dict(it)
+                        retry_item["title_ja"] = ""
+                        api_calls += 1
+                        title_reference_retries += 1
+                        retry_result, retry_model, retry_usage = unpack_api_outcome(
+                            request_translation(client, model, retry_item, locale)
+                        )
+                        record_outcome_usage(retry_usage, retry_model)
+                        if not valid_translation(retry_result):
+                            raise ValueError("model returned invalid/oversize recovery translation fields")
+                        fields = {
+                            field: normalize_dates(retry_result[field].strip())
+                            for field in TRANSLATION_FIELDS
+                        }
+                        title_errs = title_quality_errors(fields["title"])
+                        if not title_errs:
+                            model_used = retry_model
+                            title_reference_retry_successes += 1
+                    if title_errs:
+                        quality_rejected += 1
+                        if had_locale:
+                            stale_translations_removed += 1
+                        remove_translation(it, locale)
+                        logger.warning(
+                            "QUALITY %s rejected title (%s)",
+                            item_id,
+                            "; ".join(title_errs),
+                        )
+                        continue
+                    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                    apply_translation(it, fields, locale)
+                    entries[item_id] = cache_entry(
+                        source_hash, PROMPT_VERSION, now, model_used, fields
+                    )
+                    translated += 1
+                    logger.info("PARALLEL API %s - ok", item_id)
+                except Exception as exc:
+                    etype = classify_error(exc)
+                    failed += 1
+                    if had_locale:
+                        stale_translations_removed += 1
+                    remove_translation(it, locale)
+                    if etype in FATAL_PROVIDER_ERRORS and not provider_fatal:
+                        provider_fatal = True
+                        provider_error_type = etype
+                        logger.error(
+                            "PROVIDER unavailable type=%s; unscheduled API candidates were skipped.",
+                            etype,
+                        )
+                    else:
+                        logger.error("PARALLEL FAIL %s type=%s", item_id, etype)
+
+        unscheduled = pending_direct[processed:]
+        for it, _item_id, had_locale, _source_hash in unscheduled:
+            if had_locale:
+                stale_translations_removed += 1
+            remove_translation(it, locale)
+        if unscheduled:
+            if provider_fatal:
+                available = max(0, args.limit - api_calls)
+                aborted = min(len(unscheduled), available)
+                provider_aborted += aborted
+                skipped_no_budget += len(unscheduled) - aborted
+            elif cost_cap_reached():
+                cost_budget_skipped += len(unscheduled)
+            else:
+                skipped_no_budget += len(unscheduled)
+
     # After-snapshots (post-processing, pre-save) and the semantic before/after diff.
     cache_after = {k: cache_signature(v) for k, v in entries.items()}
     published_after = {
@@ -1432,7 +1580,7 @@ def main(argv: list[str] | None = None) -> int:
         "input_tokens=%d output_tokens=%d cache_creation_input_tokens=%d "
         "cache_read_input_tokens=%d estimated_cost_usd=%.6f cost_estimate_complete=%s "
         "max_cost_usd=%s title_reference_retries=%d title_reference_retry_successes=%d "
-        "batch=%s batch_id=%s",
+        "batch=%s parallel=%d batch_id=%s",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
         cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
@@ -1443,7 +1591,7 @@ def main(argv: list[str] | None = None) -> int:
         usage_totals["cache_creation_input_tokens"], usage_totals["cache_read_input_tokens"],
         estimated_cost_usd, cost_estimate_complete, args.max_cost_usd,
         title_reference_retries, title_reference_retry_successes,
-        args.batch, batch_id,
+        args.batch, args.parallel, batch_id,
     )
     for failure in gate_failures:
         logger.error("INTEGRITY %s", failure)
@@ -1454,6 +1602,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"model                     : {model}")
     print(f"batch_mode                : {str(args.batch).lower()}")
     print(f"batch_id                  : {batch_id or 'none'}")
+    print(f"parallel                  : {args.parallel}")
     print(f"omit_title_ja_reference   : {str(args.omit_title_ja_reference).lower()}")
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")

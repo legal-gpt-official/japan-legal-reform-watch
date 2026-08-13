@@ -274,6 +274,7 @@ class TestSummaryBatch(unittest.TestCase):
             '--max-cost-usd "$SUMMARY_MAX_COST_USD"',
             "python scripts/translate_updates.py",
             '--limit "$total"',
+            '--parallel "$PARALLELISM"',
             '--max-cost-usd "$TRANSLATION_MAX_COST_USD"',
             "--retry-kana-title-without-ja-reference",
             "japanese_signature",
