@@ -282,6 +282,8 @@ class TestSummaryBatch(unittest.TestCase):
             "group: japan-legal-reform-data-writer",
             "Final semantic integrity gate",
             "Mark partial checkpoint incomplete",
+            'translation_max_cost_usd:',
+            '- "10.00"',
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, workflow)
