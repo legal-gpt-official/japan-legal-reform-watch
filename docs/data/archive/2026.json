@@ -1945,14 +1945,14 @@
   },
   {
     "id": "raw-d3e813467302560f",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-08-08)",
+    "title_en": "Draft Notice Amending Methods Set by the Health Minister under the Medical Care Act Enforcement Regulation (out for...",
     "title_ja": "医療法施行規則第三十条の三十三の六第一項の規定に基づき厚生労働大臣が定める方法等の一部を改正する告示案について",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a draft notice open for public comment that would partially amend the methods and related items designated by the Minister of Health, Labour and Welfare under Article 30-33-6, paragraph 1 of the Enforcement Regulation of the Medical Care Act. According to the metadata, the draft was published on 2026-08-08 with a comment submission deadline of 2026-09-07 at 12:00. The item is categorized under health/welfare and lists the Ministry of Health, Labour and Welfare's Health Policy Bureau, Regional Medical Care Planning Division as the contact.",
+    "business_impact_en": "If adopted, changes to these designated methods could affect organizations subject to the relevant Medical Care Act provisions, but the draft is not final and its content may change.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the authoritative Japanese source to confirm the draft's scope and comment deadline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260144&Mode=0",
     "published_at": "2026-08-08",
@@ -1970,13 +1970,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：《医疗法施行规则》第三十条之三十三之六第一项规定的厚生劳动大臣制定方法等部分修正告示（草案）（2026-08-08）",
-        "summary": "这是基于规则生成的预览内容，尚未经过人工智能审核或摘要处理。日本政府来源发布了与下方原始日文标题相关的项目，应对照官方日文来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：《医疗法施行规则》第三十条之三十三之六第一款厚生劳动大臣规定方法等修正告示案",
+        "summary": "这是一份正在公开征求意见的告示草案，拟部分修订厚生劳动大臣根据《医疗法施行规则》第三十条之三十三之六第一款所规定的方法及相关事项。根据元数据，该草案于2026-08-08公布，意见提交截止时间为2026-09-07 12:00。该项目归类于医疗福利领域，联系部门为厚生劳动省健康政策局地域医疗计划科。",
+        "business_impact": "若该草案获得采纳，对相关规定方法的变更可能会影响适用《医疗法》相关条款的机构，但该草案尚未定稿，内容可能发生变化。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方页面及权威日文来源，以确认该草案的适用范围及意见提交截止时间。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and limited public-comment metadata; the specific substance of the amendment is not provided and is unverified. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-13T05:54:50Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-4ea1d124b0fdddea",
@@ -2130,14 +2134,14 @@
   },
   {
     "id": "raw-f94ec28eab323a20",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-08-04)",
+    "title_en": "Public Comment on Draft Revision of Guidelines for Permanent Residence Permission",
     "title_ja": "永住許可に関するガイドライン改定案に係る意見募集について",
     "area": "Other",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment invitation regarding a proposed revision to the guidelines on permanent residence permission, issued via Japan's e-Gov public comment system. According to the metadata, the draft was published on 2026-08-04 with a comment deadline of 2026-09-04. The inquiry contact is listed as the Immigration Services Agency, Residence Management Division, Residence Planning Office.",
+    "business_impact_en": "Changes to permanent residence permission guidelines could affect immigration status planning for foreign nationals and their employers, though the specific effects depend on the draft's content.",
+    "recommended_action_en": "Review the official e-Gov public comment notice and the draft guidelines to confirm the proposed changes and submission timeline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=315000140&Mode=0",
     "published_at": "2026-08-04",
@@ -2155,24 +2159,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：永住许可相关指南修订草案",
-        "summary": "这是一份基于规则生成的预览，尚未经过人工智能审核或摘要处理。日本政府来源发布了一项与下述日文原标题相关的内容，应对照官方日文来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：永住许可指南修订草案",
+        "summary": "这是通过日本e-Gov公开征求意见系统发布的关于永住许可指南修订草案的意见征集。根据元数据，该草案于2026-08-04公布，意见提交截止日期为2026-09-04。咨询联系方式为出入境在留管理厅在留管理课在留企划室。",
+        "business_impact": "永住许可指南的变更可能会影响外国人及其雇主的在留资格规划，但具体影响取决于草案内容。",
+        "recommended_action": "建议查阅e-Gov官方公开征求意见公告及指南草案，以确认拟议变更内容及提交时间安排。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted change. Substantive details of the revision are not provided and must be verified against the official source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-13T05:54:55Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-8106e51db28cd72c",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-08-10)",
+    "title_en": "Public comment: draft amendment to survey form for METI petroleum consumption statistics (specified industries)",
     "title_ja": "「経済産業省特定業種石油等消費統計調査票の様式を定める件の一部を改正する告示（案）」に対する意見募集について",
     "area": "Other",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment consultation on a draft notice (告示案) that would partially amend the notice establishing the form of the METI survey questionnaire on petroleum and similar energy consumption in specified industries. According to the metadata, the draft was published on 2026-08-10 with a comment deadline of 2026-09-09 13:00, and the matter falls under the 'statistics' category. The listed contact is the Strategic Planning Office, General Affairs Division, Commissioner's Secretariat, Agency for Natural Resources and Energy.",
+    "business_impact_en": "Organizations in specified industries that complete this statistical survey may need to review potential changes to the questionnaire format if the amendment proceeds.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the underlying Japanese source to confirm the scope and timing of the proposed amendment.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=620340000&Mode=0",
     "published_at": "2026-08-10",
@@ -2190,13 +2198,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：修订经济产业省特定行业石油等消费统计调查表格式的告示（草案）",
-        "summary": "这是一份基于规则生成的预览，尚未经过人工智能审阅或总结。日本政府来源发布了一项与下述原日文标题相关的内容，应对照官方日文来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：经济产业省特定行业石油等消费统计调查表格式修订告示（草案）",
+        "summary": "本次公开征求意见涉及一项告示草案，该草案拟部分修订规定经济产业省关于特定行业石油及类似能源消费统计调查问卷格式的告示。根据元数据，该草案于2026-08-10公布，意见征集截止时间为2026-09-09 13:00，事项归类为“统计”类别。列明的联系方式为资源能源厅长官官房总务科战略规划室。",
+        "business_impact": "完成该统计调查的特定行业相关机构，如该修订获得推进，可能需要审阅调查问卷格式的潜在变化。",
+        "recommended_action": "建议考虑查阅官方e-Gov公开征求意见页面及相关日文原始来源，以确认拟议修订的范围和时间安排。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft notice out for public comment and has not been enacted. Details unverified against the official source.",
+    "summarized_at": "2026-08-13T05:55:02Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-dd4cfc2787ab6fd8",
@@ -2236,14 +2248,14 @@
   },
   {
     "id": "raw-829e6e5e3e709150",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-08-07)",
+    "title_en": "Public Comment: Draft Cabinet Order on Related Provisions for Partial Enforcement of Health Insurance Act Amendments",
     "title_ja": "健康保険法等の一部を改正する法律の一部の施行に伴う関係政令の整備等に関する政令案に関するご意見の募集について",
     "area": "Finance / AML",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment invitation regarding a draft Cabinet Order (政令案) concerning the arrangement of related cabinet orders accompanying partial enforcement of a law that partially amends the Health Insurance Act and related laws. According to the metadata, the draft was announced on 2026/08/07 with a comment deadline of 2026/09/06 23:59, under the category of social insurance. The contact listed is the Medical Economics Division, Health Insurance Bureau, Ministry of Health, Labour and Welfare.",
+    "business_impact_en": "Organizations involved in health insurance or social insurance administration may wish to monitor this draft, as changes to related cabinet orders could eventually affect relevant procedures or obligations.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the authoritative Japanese source for the full text and submission details before the stated deadline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260131&Mode=0",
     "published_at": "2026-08-07",
@@ -2261,13 +2273,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：为配合《健康保险法等部分修正法律》部分施行而整备相关政令的政令草案",
-        "summary": "这是一份基于规则生成的预览内容，尚未经过AI审核或摘要处理。日本政府来源发布了一项与下述日文原标题相关的内容，应对照日文官方来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：《健康保险法》等部分修正法部分施行相关政令整备草案",
+        "summary": "这是关于一项政令草案（政令案）的公开征求意见邀请，该草案涉及为配合《健康保险法》等相关法律部分修正法的部分施行，而对相关政令进行整备。根据元数据，该草案于2026-08-07公布，意见征集截止日期为2026-09-06 23:59，分类为社会保险。联系方为厚生劳动省保险局医疗经济课。",
+        "business_impact": "从事健康保险或社会保险相关事务的机构可能希望关注此草案，因为相关政令的变更未来可能会影响相关程序或义务。",
+        "recommended_action": "建议考虑在截止日期前查阅e-Gov公开征求意见官方页面及权威日文来源，以了解全文内容及提交详情。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted law. The preliminary 'Finance / AML' label appears inconsistent with the social insurance / health insurance subject matter and should not be relied upon. Details unverified against the official source.",
+    "summarized_at": "2026-08-13T05:55:09Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-524ab232dae9e73d",
@@ -2307,14 +2323,14 @@
   },
   {
     "id": "raw-5554831de7a6fcdc",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-07-29)",
+    "title_en": "FSA Public Comment on Draft Cabinet Office Order Amending Investment Trust and Investment Corporation Act...",
     "title_ja": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について公表しました。",
     "area": "Finance / AML",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Financial Services Agency has announced a public comment process on a draft Cabinet Office Order that would partially amend the enforcement rules under the Act on Investment Trusts and Investment Corporations. This is a draft out for public comment and has not been finalized or brought into force based on the provided metadata. The official Japanese source is authoritative and should be consulted for the specific content and comment period.",
+    "business_impact_en": "If adopted, the amendments could affect entities involved with investment trusts and investment corporations, potentially requiring updates to compliance practices.",
+    "recommended_action_en": "Consider reviewing the official FSA announcement and the draft order to understand the proposed changes and any public comment deadline.",
     "source_name": "Financial Services Agency (金融庁) 新着情報",
     "source_url": "https://www.fsa.go.jp/news/r8/shouken/20260728/20260728.html",
     "published_at": "2026-07-29",
@@ -2329,13 +2345,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：《投资信托及投资法人相关法律施行规则》部分修订内阁府令（草案）（2026-07-29）",
-        "summary": "这是一项基于规则生成的预览，尚未经过人工智能审阅或总结。日本政府来源发布了与下述原日文标题相关的项目，应参照官方日文来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：《投资信托及投资法人相关法律施行规则》部分修订内阁府令（草案）",
+        "summary": "日本金融厅公布了针对拟部分修订《投资信托及投资法人相关法律》施行规则的内阁府令（草案）的公开征求意见程序。根据现有信息，该文件仍为征求意见阶段的草案，尚未最终确定或生效。具体内容及征求意见期限应以日文官方来源为准。",
+        "business_impact": "若该修正案获得采纳，可能会影响与投资信托及投资法人相关的机构，或需要更新其合规做法。",
+        "recommended_action": "建议考虑查阅金融厅的官方公告及该命令草案，以了解拟议修改内容及公开征求意见的相关期限。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title; no summary text was provided and specific details, scope, and comment deadline are unverified. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-13T05:55:15Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-ef8e373fd6a24953",
@@ -2634,14 +2654,14 @@
   },
   {
     "id": "raw-bdb465db142f97d4",
-    "title_en": "Public Comment: Draft Radio Spectrum Policy",
+    "title_en": "Public Comment on Draft Report: Measurement Methods for Radio Wave Strength from Base Stations & Radio Protection...",
     "title_ja": "電波利用環境委員会報告（案）に対する意見募集 －「基地局等から発射される電波の強度等の測定方法及び算出方法」のうち「基地局等から発射される電波の評価方法の高度化に係る技術的条件」 －「電波防護指針の在り方」のうち「局所吸収指針の主な対象の見直し」－",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment invitation on a draft report by Japan's Radio Use Environment Committee, covering technical conditions for advancing evaluation methods of radio waves emitted from base stations and a review of the main targets of the local absorption guideline (within radio protection guidelines). The item was posted on 2026-07-22 with a comment deadline of 2026-08-26 23:59. It falls under the telecommunications category and is administered by the Radio Environment Division, Radio Department, Telecommunications Bureau.",
+    "business_impact_en": "Organizations involved in base station operation, wireless equipment, or radio wave exposure compliance may find that proposed measurement and evaluation methods could affect future technical requirements.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the underlying Japanese draft report to verify scope and timing.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210756&Mode=0",
     "published_at": "2026-07-22",
@@ -2659,24 +2679,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：电波利用环境委员会报告（案）",
-        "summary": "这是一项基于规则生成的预览内容，尚未经过人工智能审阅或摘要处理。日本政府来源发布了一项与下列日文原标题相关的内容，应对照日文官方来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：电波利用环境委员会报告（案）——基站电波强度测定方法及电波防护指针局部吸收指针主要对象修订",
+        "summary": "这是针对日本电波利用环境委员会一份报告（案）的公开征求意见，内容涉及“基站等发射电波的强度等测定方法及算出方法”中关于“基站等发射电波评价方法高度化的技术条件”，以及“电波防护指针的应有方式”中关于“局部吸收指针主要对象的修订”。该项目于2026-07-22公布，意见提交截止日期为2026-08-26 23:59。该项目属于电信类别，由总务省电信局电波部电波环境课负责管理。",
+        "business_impact": "从事基站运营、无线设备或电波辐射合规相关工作的机构可能会发现，拟议的测定和评价方法可能影响未来的技术要求。",
+        "recommended_action": "建议考虑查阅官方e-Gov公开征求意见页面及相关日文报告（案）原文，以核实具体范围及时间安排。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and raw summary; this is a draft report out for public comment, not an enacted rule. The rule-based label 'Energy / Environment' appears mismatched, as the item concerns telecommunications and radio wave regulation. Details unverified against the authoritative source.",
+    "summarized_at": "2026-08-13T05:55:21Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-22524fb54e7ce1d5",
-    "title_en": "Public Comment: Draft Amendment to Gas Policy",
+    "title_en": "Draft amendment to rules on High Pressure Gas Production Safety Manager exams and LPG safety/transaction...",
     "title_ja": "高圧ガス保安法に基づく高圧ガス製造保安責任者試験等に関する規則及び液化石油ガスの保安の確保及び取引の適正化に関する法律施行規則の一部を改正する省令（案）等に対する意見公募",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment (opinion solicitation) on a draft ministerial ordinance that would partially amend rules concerning the High Pressure Gas Production Safety Manager examination (under the High Pressure Gas Safety Act) and the enforcement regulations of the Act on Securing Safety and Optimizing Transactions of Liquefied Petroleum Gas. According to the metadata, the draft was published on 2026-07-22 with a comment deadline of 2026-08-21 23:59, and the contact is Japan's Ministry of Economy, Trade and Industry (industrial and product safety group). It is categorized under securing the safety and security of citizens' lives.",
+    "business_impact_en": "Businesses involved in high pressure gas production or the LPG sector may be affected by changes to examination rules and enforcement regulations if the draft is adopted.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the underlying Japanese draft to understand the proposed changes and submission deadline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126111&Mode=0",
     "published_at": "2026-07-22",
@@ -2694,24 +2718,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：《高压气体安全法》相关省令及《液化石油气安全确保及交易适当化法》施行规则修订草案",
-        "summary": "这是一项基于规则生成的预览内容，尚未经过人工智能审阅或总结。日本政府来源发布了与下述日文原标题相关的项目，应对照官方日文来源进行核实。",
-        "business_impact": "目前尚未对业务影响进行评估。若该项目与其行业或业务相关，在日本运营的公司应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响其在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：《高压气体制造保安责任者考试相关规则》及《液化石油气保安确保及交易适正化法施行规则》修订省令草案",
+        "summary": "这是一项关于修订省令草案的公开征求意见，该草案拟部分修订《高压气体保安法》下高压气体制造保安责任者考试相关规则，以及《液化石油气保安确保及交易适正化法》施行规则。根据元数据，草案于2026-07-22公布，意见提交截止日期为2026-08-21 23:59，联系方为日本经济产业省（产业保安及产品安全相关部门）。该事项被归类为确保国民生活安全与安心相关事项。",
+        "business_impact": "若该草案获得通过，从事高压气体制造或液化石油气相关业务的企业可能会受到考试规则及施行规则变更的影响。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方页面及相关日文草案原文，以了解拟议修订内容及意见提交截止日期。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not enacted law, and specific provisions were not available for review.",
+    "summarized_at": "2026-08-13T05:55:28Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-9df1d3d109e33323",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-08-10)",
+    "title_en": "Public Comment: Proposed Amendments to CITES Import Permit Application Procedures (Re: European Eel Treatment)",
     "title_ja": "「ワシントン条約に基づく輸入許可書の申請手続等について」等の一部改正案等（ヨーロッパウナギの取扱い変更に伴う改正等）に対する意見募集について",
     "area": "Other",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment consultation on proposed partial amendments to procedures such as \"Application Procedures for Import Permits under the Washington Convention (CITES),\" reportedly connected to changes in the treatment of the European eel. According to the metadata, the proposal was posted on 2026-08-10 with a comment submission deadline of 2026-09-10 23:59, and the responsible contact is the Trade Control Division of the Ministry of Economy, Trade and Industry. The item is categorized under foreign exchange and trade.",
+    "business_impact_en": "Businesses involved in importing CITES-listed species or related trade, particularly concerning the European eel, may need to consider how changes to import permit application procedures could affect their processes.",
+    "recommended_action_en": "Consider reviewing the official Japanese source and the full proposal text to verify the scope, requirements, and comment deadline before taking any action.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595320006&Mode=0",
     "published_at": "2026-08-10",
@@ -2729,24 +2757,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：《关于〈基于华盛顿公约的进口许可证申请程序等〉等的部分修订案等》（因欧洲鳗鱼处理方式变更而作的修订等）",
-        "summary": "这是一份基于规则生成的预览内容，尚未经过人工智能审核或摘要处理。日本政府来源发布了一项与下述原日文标题相关的事项；应对照日文官方来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：《基于华盛顿公约的进口许可证申请程序等》修订草案（因欧洲鳗鲡处理方式变更）",
+        "summary": "这是一项关于《基于华盛顿公约（CITES）的进口许可证申请程序》等部分修订草案的公开征求意见，据称与欧洲鳗鲡处理方式的变更有关。根据元数据，该提案于2026-08-10发布，意见提交截止日期为2026-09-10 23:59，负责联系部门为经济产业省贸易管理课。该项目归类于外汇与贸易类别。",
+        "business_impact": "从事CITES名录物种进口或相关贸易的企业，特别是涉及欧洲鳗鲡的企业，可能需要考虑进口许可证申请程序的变更可能如何影响其业务流程。",
+        "recommended_action": "建议在采取任何行动之前，考虑查阅日文官方来源及完整提案文本，以核实适用范围、要求及意见提交截止日期。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; the specific content of the amendments and their effect were not provided and remain unverified. This is a draft out for public comment, not an enacted rule. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-13T05:55:35Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-3f8c0a8231ef7694",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-07-21)",
+    "title_en": "Draft Report on Small Home Appliance Recycling System — Out for Public Comment",
     "title_ja": "小型家電リサイクル制度の施行状況の評価・検討に関する報告書（案）（パブリックコメント）について",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Ministry of the Environment has released a draft report evaluating and reviewing the implementation status of the Small Home Appliance Recycling system, which is open for public comment. According to the metadata, the draft was published on 2026-07-21 with a comment deadline of 2026-08-20. This is a consultation stage item and not an enacted or finalized measure.",
+    "business_impact_en": "Businesses involved in the collection, recycling, or handling of small home appliances may wish to note that the system's implementation is under review, which could inform future regulatory direction.",
+    "recommended_action_en": "Consider reviewing the official Japanese source and the draft report to understand the scope of the review and any comment submission process.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260042&Mode=0",
     "published_at": "2026-07-21",
@@ -2764,13 +2796,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：小型家电回收制度施行状况评估与研讨报告（草案）",
-        "summary": "这是基于规则生成的预览内容，尚未经过人工智能审阅或总结。日本政府来源发布了与下方原日文标题相关的条目，应对照日文官方来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：小型家电回收制度实施状况评估检讨报告书（草案）",
+        "summary": "日本环境省发布了关于评估和检讨小型家电回收制度实施状况的报告书（草案），目前正在公开征求意见。根据元数据信息，该草案于2026-07-21公布，意见征集截止日期为2026-08-20。这是一个征询意见阶段的项目，尚非已生效或最终确定的措施。",
+        "business_impact": "从事小型家电收集、回收或处理业务的企业可能需要留意该制度的实施状况正在接受评估检讨，这可能会为未来的监管方向提供参考。",
+        "recommended_action": "建议考虑查阅日文官方来源及该报告书草案，以了解此次检讨的范围以及可能的意见提交流程。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "high",
+    "ai_notes": "Based on the Japanese title and metadata indicating a public comment on a draft report; substantive contents of the report are not provided and remain unverified. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-13T05:55:41Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-0fa435c933117541",
@@ -2846,7 +2882,7 @@
   },
   {
     "id": "raw-6872de8f21374530",
-    "title_en": "JFTC Public Comment: Draft Guidelines on Abuse of Superior Bargaining Position in IP, Know-How and Data Transactions",
+    "title_en": "JFTC Public Comment on Draft Guideline and Model Contract for IP, Know-How, and Data Transactions",
     "title_ja": "「知的財産権・ノウハウ・データの適切な取引のための優越的地位の濫用等に関する指針」（案）及び「契約書ひな形」（案）に対する意見募集について",
     "area": "Antitrust / Fair Trade",
     "stage": "Public Comment Open",
@@ -2872,23 +2908,23 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：知识产权、专有技术及数据交易中滥用优势地位等相关指南草案",
-        "summary": "日本公正交易委员会（JFTC）发布新闻稿，就一份关于知识产权、专有技术及数据适当交易中滥用优势地位等事项的指南草案，以及一份合同示范文本草案，公开征求意见。根据元数据，这是一项公开征求意见程序（草案，正在公开征求意见），发布于2026-03-30。相关文件均为草案，未表明已定稿或已生效。",
-        "business_impact": "从事涉及知识产权、专有技术或数据交易的企业，可能希望考虑最终确定的指南或合同示范文本可能如何影响其合同实务。相关提案可能影响今后对公平交易行为的预期，但其具体内容及效力仍取决于意见征询的结果。",
-        "recommended_action": "建议考虑查阅JFTC官方来源，以了解该指南草案、合同示范文本及公开征求意见程序和相关时限。"
+        "title": "公开征求意见：关于知识产权、专有技术及数据交易中滥用优势地位等指针（草案）及合同范本（草案）",
+        "summary": "日本公正交易委员会（JFTC）发布新闻稿，就一份关于知识产权、专有技术及数据适当交易中滥用优势地位等事项的指针草案，以及一份合同范本草案，公开征求意见。根据元数据，这是一项于2026-03-30公布的公开征求意见程序（草案，处于公开征求意见阶段）。相关内容均为草案，未表明已定稿或已生效。",
+        "business_impact": "从事涉及知识产权、专有技术或数据交易的企业，或可考虑最终确定后的指针或合同范本可能对其合同实务产生何种影响。相关提案可能影响今后对公平交易行为的预期，但其具体内容及效力仍取决于意见征集的结果。",
+        "recommended_action": "建议考虑查阅JFTC官方来源，以了解该指针草案、合同范本以及公开征求意见程序和相关期限。"
       }
     }
   },
   {
     "id": "raw-a692decc4d617d81",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-07-24)",
+    "title_en": "Public Comment: Draft Amendment to METI Ordinance on Industrial Production Dynamics Statistics Survey",
     "title_ja": "経済産業省生産動態統計調査規則の一部を改正する省令案等に対する意見募集について",
     "area": "Other",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Ministry of Economy, Trade and Industry has opened a public comment period on a draft ministerial ordinance amending, in part, the rules governing its industrial production dynamics statistics survey (生産動態統計調査). According to the metadata, the draft was published on 2026/07/24 with a comment submission deadline of 2026/08/24 23:59, and it is categorized under statistics. The responsible contact is listed as the Mining and Manufacturing Dynamics Statistics Office of the Research and Statistics Group.",
+    "business_impact_en": "Entities subject to this statistical survey may see adjustments to reporting requirements or survey procedures if the draft amendment is adopted.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to verify the draft's contents and the public comment deadline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126110&Mode=0",
     "published_at": "2026-07-24",
@@ -2906,13 +2942,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：修订《经济产业省生产动态统计调查规则》等的省令草案（2026-07-24）",
-        "summary": "这是一份基于规则生成的预览内容，尚未经过人工智能审核或总结。日本政府来源发布了一项与下方原日文标题相关的内容，应对照日文官方来源进行核实。",
-        "business_impact": "目前尚未评估其业务影响。如该事项与其行业或业务相关，在日本运营的企业应查阅官方来源以获取详情。",
-        "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
+        "title": "公开征求意见：经济产业省生产动态统计调查规则修订省令案",
+        "summary": "经济产业省就一项拟部分修订其生产动态统计调查（生产动态统计调査）相关规则的省令草案开展公开征求意见。根据元数据，该草案于2026-07-24公布，意见提交截止日期为2026-08-24 23:59，归类于统计类别。负责联系部门为调查统计集团矿工业动态统计室。",
+        "business_impact": "若该修订草案获得采纳，受此统计调查约束的主体可能会面临报告要求或调查程序方面的调整。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以核实该草案的内容及公开征求意见的截止日期。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule. Specific substantive changes are not described in the metadata and remain unverified. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-13T05:55:47Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-46e454610317cc94",
@@ -3392,7 +3432,7 @@
   },
   {
     "id": "raw-26cd81ce22efb7ef",
-    "title_en": "Public Comment Results: Regulatory comment results published (2026-07-10)",
+    "title_en": "FSA publishes Cabinet Office Order amending Banking Act Enforcement Rules and public comment results",
     "title_ja": "「銀行法施行規則等の一部を改正する内閣府令」等の公布及びパブリックコメントの結果等について公表しました。",
     "area": "Finance / AML",
     "stage": "Public Comment Results Published",
@@ -3419,10 +3459,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《银行法施行规则等部分修订内阁府令》公布及意见结果公布",
-        "summary": "日本金融厅宣布公布了《部分修订银行法施行规则等的内阁府令》，以及相关公开征求意见程序的结果。根据标题内容，该命令及公开征求意见结果均已公开。本元数据未提供进一步细节。",
-        "business_impact": "银行及相关金融机构可能需要审阅修订后的施行规则，以了解适用要求是否有任何变化。",
-        "recommended_action": "建议参考金融厅官方来源，以确认修订规则的范围、内容及时间，以及已公布的公开征求意见结果。"
+        "title": "公开征求意见结果：《银行法施行规则等部分修正内阁府令》公布",
+        "summary": "日本金融厅宣布公布了《部分修订银行法施行规则等的内阁府令》，并公布了相关公开征求意见的结果。根据标题内容，该命令及公开征求意见结果均已公开。本元数据未提供进一步细节。",
+        "business_impact": "银行及相关金融机构可能需要审阅修订后的施行规则，以了解适用要求可能发生的变化。",
+        "recommended_action": "建议查阅金融厅官方来源，以确认修订规则及已公布的公开征求意见结果的范围、内容和时间安排。"
       }
     }
   },
@@ -3463,7 +3503,7 @@
   },
   {
     "id": "raw-36332d1f33af37af",
-    "title_en": "MIC Update: Public comment results on Draft Amendment to Radio Spectrum Policy (2026-06-23)",
+    "title_en": "Results of Public Comments on Draft Notice Amending Rules for Specified Low-Power Radio Stations",
     "title_ja": "特定小電力無線局の用途、電波の型式及び周波数並びに空中線電力を定める件の一部を改正する告示案等に係る意見募集の結果",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Results Published",
@@ -3490,16 +3530,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：特定小功率无线电台用途、电波型式、频率及天线功率相关告示修订草案",
-        "summary": "总务省（MIC）公布了关于一项告示修订草案的公开征求意见结果，该草案拟部分修订规定特定小功率无线电台的用途、电波型式、频率及天线功率的相关规则。根据元数据，该条目反映的是征询意见的结果，而非最终确定或已生效的措施。修订的具体内容及收到的意见在元数据中未提供，应以官方来源确认为准。",
-        "business_impact": "若相关修订最终获得采纳，从事特定小功率无线电设备开发、制造或运营的机构可能会受到影响，具体取决于所提议的用途、频率或天线功率变更内容。",
-        "recommended_action": "建议考虑查阅总务省的官方公告及已公布的征求意见结果，以了解拟议修订的范围和当前状态。"
+        "title": "公开征求意见结果：特定小功率无线电台相关告示修订案",
+        "summary": "总务省（MIC）公布了关于一项告示修订草案的公开征求意见结果，该草案拟部分修订规定特定小功率无线电台用途、电波型式及频率以及天线功率的相关规则。根据元数据，本项内容反映的是一次意见征询的结果，而非最终确定或已生效的措施。修订的具体内容以及所收到的意见未在元数据中提供，应以官方来源确认。",
+        "business_impact": "若拟议的关于允许用途、频率或天线功率的修订最终获得采纳，可能会对开发、制造或运营特定小功率无线电设备的机构产生影响。",
+        "recommended_action": "建议考虑查阅总务省的官方公告及已公布的意见征询结果，以了解拟议修订的范围和现状。"
       }
     }
   },
   {
     "id": "raw-3741ac365810f285",
-    "title_en": "Public Comment Results: Regulatory comment results published (2026-06-13)",
+    "title_en": "FSA Publishes Cabinet Office Ordinance Amending Banking Act Enforcement Regulations and Public Comment Results",
     "title_ja": "「銀行法施行規則等の一部を改正する内閣府令」等の公布及びパブリックコメントの結果等について公表しました。",
     "area": "Finance / AML",
     "stage": "Public Comment Results Published",
@@ -3525,16 +3565,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：银行法施行规则等修订案（2026-06-13）",
-        "summary": "金融厅发布了修订《银行法施行规则》等相关规则的内阁府令，并公布了相关公开征求意见的结果。根据公告内容，该府令已公布，公开征求意见的结果也已发布。具体条款和生效日期未在元数据中提供，应根据官方来源确认。",
-        "business_impact": "银行及相关金融机构可能需要审阅修订后的施行规则，以了解这些变更如何影响其合规义务。",
-        "recommended_action": "建议查阅金融厅官方公告以及已发布的府令和公开征求意见结果，以确认具体变更内容和任何适用的时间表。"
+        "title": "公开征求意见结果：修订《银行法施行规则》等的内阁府令",
+        "summary": "日本金融厅宣布公布（公布）修订《银行法施行规则》等相关规则的内阁府令，并公布了相关公开征求意见程序的结果。根据标题内容，该府令已公布，且公开征求意见结果已发布。元数据中未提供具体条款和生效日期，应以官方来源为准进行确认。",
+        "business_impact": "银行及相关金融机构可能需要审阅经修订的施行规则，以了解这些变化可能如何影响其合规义务。",
+        "recommended_action": "建议查阅金融厅官方公告以及所提供来源中公布的府令和公开征求意见结果，以确认具体变化内容及可能适用的时间安排。"
       }
     }
   },
   {
     "id": "raw-d0886887c16f41a5",
-    "title_en": "MIC Update: Public comment results on Draft Amendment to Electricity Policy",
+    "title_en": "MIC: Results of Public Comments on Draft Amendment to Technical Conditions for Specified Low-Power Radio Stations",
     "title_ja": "特定小電力無線局の無線設備の一の筐体に収めることを要しない装置、送信時間制限装置及びキャリアセンスの技術的条件等を定める件の一部を改正する告示案等に係る意見募集の結果",
     "area": "Energy / Environment",
     "stage": "Public Comment Results Published",
@@ -3560,10 +3600,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：特定小电力无线局无线设备技术条件修订",
-        "summary": "日本总务省（MIC）已公布公开征求意见的结果，涉及部分修订关于特定小电力无线局技术条件的告示案。该告示草案涉及无需放入单一筐体的装置、发送时间限制装置和载波监听等技术条件。该项反映咨询结果的结果；元数据不确认修订是否已定案或已生效。",
-        "business_impact": "设计、制造或运营特定小电力无线设备的组织可能需要考虑所提议的技术条件是否会影响产品合规性。",
-        "recommended_action": "建议查阅MIC官方来源，以确认草案修订的范围、状态和任何生效日期，以及已公布的意见征求结果。"
+        "title": "公开征求意见结果：特定小功率无线电台无线设备技术条件修正告示草案",
+        "summary": "日本总务省（MIC）公布了一项公开征求意见程序的结果，该程序涉及一项将部分修改特定小功率无线电台技术条件的告示（公示）草案。该草案涉及无需装入同一机壳内的装置、发送时间限制装置以及载波监听要求等事项。本条目反映了此次征询意见的结果；元数据未确认该修正是否已最终确定或已生效。",
+        "business_impact": "设计、制造或运营特定小功率无线设备的机构可能需要考虑所提议的技术条件是否会影响产品合规性。",
+        "recommended_action": "建议查阅总务省官方来源，以核实该修正草案及已公布的意见征集结果的范围、状态及任何生效日期。"
       }
     }
   },
@@ -4454,7 +4494,7 @@
   },
   {
     "id": "raw-f66762acd1fe27ac",
-    "title_en": "MIC Update: Public comment results on Draft Amendment to Radio Act Rules (2026-06-15)",
+    "title_en": "Results of Public Comments on Draft Ministerial Ordinance Amending Rules on Prevention of Propagation Obstruction...",
     "title_ja": "電波法による伝搬障害の防止に関する規則の一部を改正する省令案等に係る意見募集の結果",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Results Published",
@@ -4480,16 +4520,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《电波法》关于防止传播障碍的规则部分修订省令草案等",
-        "summary": "总务省（MIC）公布了关于一项省令草案及相关措施的公开征求意见结果，该草案依据《电波法》修订有关防止无线电波传播障碍的规则。本条目反映了征求意见的结果；根据所提供的元数据，并不确认经修订的省令已经生效。元数据中未包含拟议修订的详情及所收到的意见回应。",
-        "business_impact": "涉及无线电通信或可能影响电波传播的建筑物的实体，在拟议规则变更最终确定后可能受到影响。其实际影响可能取决于最终文本及时间安排，而此处并未明确说明。",
-        "recommended_action": "建议查阅总务省（MIC）日文官方来源，以确认修订的范围、公开征求意见结果以及任何生效日期。"
+        "title": "公开征求意见结果：修订《电波法》传播障碍防止规则的省令草案",
+        "summary": "总务省（MIC）公布了关于修订《电波法》中有关防止电波传播障碍规则的省令草案及相关措施的公开征求意见结果。本条目反映的是本次意见征询的结果；根据所提供的元数据，并不能确认修订后的省令已经生效。有关修订内容的细节及所收到的意见，元数据中未包含。",
+        "business_impact": "从事无线电通信业务或拥有可能影响电波传播的建筑物或设施的相关主体，在相关规则最终确定后可能会受到本次拟议修订的影响。其实际影响可能取决于最终文本内容及生效时间，而这些信息在此处未予说明。",
+        "recommended_action": "建议查阅总务省官方来源，以确认修订范围、公开征求意见结果及任何生效日期。"
       }
     }
   },
   {
     "id": "raw-fffdee93bac064fe",
-    "title_en": "Public Comment Results: Regulatory comment results published (2026-06-10)",
+    "title_en": "MIC Publishes Results of Public Comments on Draft Amendment to 2003 MIC Notice No. 213",
     "title_ja": "平成15年総務省告示第213号の一部を改正する 告示案に対する意見募集の結果",
     "area": "Other",
     "stage": "Public Comment Results Published",
@@ -4515,10 +4555,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：平成15年总务省告示第213号部分修订告示案（2026-06-10）",
-        "summary": "总务省（MIC）已公布关于平成15年（2003年）总务省告示第213号部分修订告示案的公开征求意见结果。根据元数据，本条目报告就该修订提案征求意见的结果。所提供的元数据未详述具体内容及任何后续步骤。",
-        "business_impact": "受2003年总务省该项告示影响的实体可能希望关注此事，因为该修订提案及意见征求结果可能会影响未来的监管要求。",
-        "recommended_action": "建议查阅总务省（MIC）日文官方来源，以确认修订提案的范围及已公布的意见征求结果。"
+        "title": "公开征求意见结果：修改平成15年总务省告示第213号部分内容的告示案",
+        "summary": "总务省（MIC）公布了关于修改平成15年（2003年）总务省告示第213号部分内容的告示案的公开征求意见结果。根据元数据，本项目报告了就该修订草案征求意见的结果。所提供的元数据中未详细说明具体内容及后续步骤。",
+        "business_impact": "受该2003年总务省告示影响的相关主体可能希望关注此事，因为该修订草案及征求意见结果可能会影响未来的监管要求。",
+        "recommended_action": "建议查阅总务省官方来源，以确认该修订草案的范围及已公布的征求意见结果。"
       }
     }
   },
@@ -4995,7 +5035,7 @@
   },
   {
     "id": "raw-b11dd5b849e50004",
-    "title_en": "MOE Update: Regulatory announcement related to Energy / Environment (2026-06-19)",
+    "title_en": "Cabinet decision on related cabinet orders following partial amendment of the MOE Establishment Act",
     "title_ja": "環境省設置法の一部を改正する法律の施行に伴う関係政令の整備に関する政令の閣議決定について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -5022,10 +5062,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "环境省发布：随《环境省设置法》部分修订法施行而对相关政令进行整备的政令获内阁会议决定",
-        "summary": "环境省（MOE）公布了一项内阁会议决定，内容涉及随部分修订《环境省设置法》的法律施行而对相关政令进行整备的政令。根据元数据，这是一份日期为2026-06-19、由大臣官房发布的政府新闻发布。该公告与组织/设置相关规定的实施有关，但所提供的元数据中未详细说明具体内容。",
-        "business_impact": "对环境省设置相关政令的变更，可能影响与该省进行往来的实体所涉及的行政架构或流程。其实际影响（如有）将视官方来源中的具体规定而定。",
-        "recommended_action": "建议查阅环境省官方新闻发布及所提供来源中的相关政令，以确认其适用范围及任何适用的生效日期。"
+        "title": "内阁决定：《环境省设置法》部分修正相关政令整备",
+        "summary": "日本环境省（MOE）宣布了一项内阁决定，涉及为配合部分修正《环境省设置法》的法律的施行而对相关政令进行整备的政令。根据元数据，这是一份日期为2026-06-19、由大臣官房发布的政府新闻稿。该公告涉及组织/设置相关规定的施行，但所提供的元数据中未详细说明具体内容。",
+        "business_impact": "环境省设置相关政令的变更可能会影响与该省有互动的机构相关的行政结构或流程。实际影响（如有）将取决于官方来源中的具体规定。",
+        "recommended_action": "建议查阅环境省官方新闻稿及所提供来源中的相关政令原文，以确认其适用范围及可能的生效日期。"
       }
     }
   },
@@ -5797,7 +5837,7 @@
   },
   {
     "id": "raw-70619b685fa69637",
-    "title_en": "MOE Update: Draft Amendment to Basic Wildlife Protection and Management Guidelines",
+    "title_en": "Public Comment on Proposed Amendment to Basic Guidelines for Wildlife Protection and Management Programs",
     "title_ja": "鳥獣の保護及び管理を図るための事業を実施するための基本的な指針改正案に関する意見の募集（パブリック・コメント）について",
     "area": "Energy / Environment",
     "stage": "Public Comment Open",
@@ -5823,9 +5863,9 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：鸟兽保护及管理事业基本指针修订草案",
-        "summary": "日本环境省（MOE）就实施鸟兽（鸟类和哺乳类）保护及管理事业的基本指针修订草案宣布了公开征求意见期。该事项标注为公开征求意见（修订草案），与自然环境相关。日文官方来源具有权威性；本英文版本为非官方摘要。",
-        "business_impact": "参与鸟兽保护、土地管理或相关环境活动的组织或希望关注此项修订草案，因为指针的变更最终可能影响相关事业或义务。",
+        "title": "公开征求意见：鸟兽保护及管理事业实施基本指针修订草案",
+        "summary": "日本环境省（MOE）就实施鸟兽（鸟类及哺乳类）保护与管理事业的基本指针修订草案发布了公开征求意见。该事项被列为公开征求意见（修订草案），涉及自然环境相关内容。日文官方来源为权威依据；本英文版本为非官方摘要。",
+        "business_impact": "参与野生动物保护、土地管理或相关环境活动的机构可能希望关注此项拟议修订，因为指针的变化最终可能会影响相关项目或义务。",
         "recommended_action": "建议考虑查阅环境省的官方公告及修订草案文本，以了解其范围以及提交意见的可能机会。"
       }
     }
@@ -6428,7 +6468,7 @@
   },
   {
     "id": "raw-7ad6c3981ac383ee",
-    "title_en": "JFTC Public Comment: Draft Amendment to Unfair Trade Practices Rules for Specified Shippers",
+    "title_en": "JFTC: Public Comment and Public Hearing on Draft Amendment to Unfair Trade Practices Rules for Specified Shippers",
     "title_ja": "「特定荷主が物品の運送又は保管を委託する場合の特定の不公正な取引方法」改正案等に対する意見募集及び公聴会の開催について",
     "area": "Antitrust / Fair Trade",
     "stage": "Public Comment Open",
@@ -6454,10 +6494,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见：关于特定货主委托运送或保管物品时特定不公正交易方法的修订草案",
-        "summary": "日本公正交易委员会（JFTC）发布报道发表，宣布就特定货主委托运送或保管物品时涉及的特定不公正交易方法的修订提案征求公众意见并举办公听会。根据元数据，这是处于公开征求意见阶段的修订草案，而非已最终确定或已实施的规则。日文官方来源具有权威性，应就确切范围和时间予以查阅。",
-        "business_impact": "作为委托运送或保管物品的货主的企业，若该修订提案获得采纳，可能会受到影响，并或希望关注此次征求意见。在该措施仍处于公开征求意见阶段期间，任何影响仍不确定。",
-        "recommended_action": "可考虑查阅JFTC官方报道发表及修订草案，以了解该提案以及提交意见或参加公听会的相关程序。"
+        "title": "公开征求意见：特定荷主委托货物运送或保管相关不公正交易方法认定标准修订案",
+        "summary": "日本公正交易委员会（JFTC）发布新闻稿，就特定荷主委托货物运送或保管时涉及的某些不公正交易方法相关修订案，公开征求意见并举行公听会。根据相关信息，这是一项公开征求意见中的修订草案，尚非最终确定或已生效的规则。日文官方来源具有权威性，具体范围及时间安排应以其为准。",
+        "business_impact": "作为荷主委托货物运送或保管的企业，若该修订案获得采纳，可能会受到影响，可考虑关注此次意见征集情况。由于该措施仍处于公开征求意见阶段，具体影响尚不确定。",
+        "recommended_action": "建议考虑查阅JFTC官方新闻稿及修订草案原文，以了解该提案内容以及提交意见或出席公听会的相关程序。"
       }
     }
   },
@@ -9967,7 +10007,7 @@
   },
   {
     "id": "raw-0744b08afdcd8e87",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-07-21)",
+    "title_en": "Public Comment on Draft Nature Finance Practical Guidelines",
     "title_ja": "「ネイチャーファイナンス実践ガイドライン（案）」に関する意見募集（パブリック・コメント）について",
     "area": "Other",
     "stage": "Public Comment Closed",
@@ -9998,9 +10038,9 @@
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《自然金融实践指南（草案）》",
-        "summary": "日本环境省就题为《自然金融实践指南》的草案文件开展了公开征求意见。根据元数据，该草案于2026-07-21公布，意见征集截止日期为2026-08-10，属于环境保护类别。这是一份征求公众意见的草案，并非最终确定或已生效的措施。",
-        "business_impact": "从事金融或生物多样性相关活动的机构可能会发现，最终确定的指南日后或可能影响相关做法或预期。",
-        "recommended_action": "建议考虑查阅日文官方来源，并在相关情况下查阅草案文本，以核实详情，以及是否仍有机会在规定截止日期前提交意见。"
+        "summary": "日本环境省就题为《自然金融实践指南》的草案文件开展了公开征求意见。根据元数据，该草案于2026-07-21公布，意见征集截止日期为2026-08-10，属于环境保护类别。这是一份正在公开征求意见的草案，尚非最终确定或已生效的措施。",
+        "business_impact": "从事金融或生物多样性相关活动的机构可能会发现，最终确定的指南日后或将影响相关实践或预期。",
+        "recommended_action": "建议考虑查阅日文官方来源，并在相关情况下查阅草案文本，以核实细节，并了解在规定截止日期前提交意见的机会。"
       }
     }
   },
@@ -10073,7 +10113,7 @@
   },
   {
     "id": "raw-f5db6442f696199a",
-    "title_en": "Digital Agency Update: Generative AI procurement and use guidelines updated (2026-06-12)",
+    "title_en": "Public Comment Results Published on Draft Revision of Guidelines for Procurement and Use of Generative AI in Government",
     "title_ja": "「行政の進化と革新のための生成AIの調達・利活用に係るガイドライン」の改定案に対する意見募集の結果が公表されました",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Results Published",
@@ -10099,16 +10139,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《为行政进化与革新的生成式AI采购与利用指南》修订草案",
-        "summary": "数字厅宣布，关于《为行政进化与革新的生成式AI采购与利用指南》修订草案的公开征求意见结果已经公布。根据元数据，本条目反映的是针对修订草案（拟议）的公开征求意见结果的公布，而非最终确定或已生效的规则。",
-        "business_impact": "为日本政府机构提供生成式AI或就此提供咨询的组织可能会发现，修订后的指南期望在最终确定后或会影响采购与利用实践。",
-        "recommended_action": "建议查阅数字厅日文官方来源，以确认修订草案的范围及当前状态以及已公布的征求意见结果。"
+        "title": "公开征求意见结果：《行政进化与创新用生成式AI采购与利用指南》修订草案",
+        "summary": "数字厅宣布，已公布关于《面向行政进化与创新的生成式AI采购与利用指南》修订草案的公开征求意见结果。根据元数据，本条目反映的是针对修订草案（拟议案）的公开征求意见结果的发布，而非最终确定或已生效的规则。",
+        "business_impact": "为日本政府部门提供生成式AI相关产品或提供咨询的机构可能会发现，修订后的指南要求一旦最终确定，可能会影响采购与使用相关做法。",
+        "recommended_action": "建议查阅数字厅官方来源，以确认该修订草案的范围及当前状态，以及已公布的意见征求结果。"
       }
     }
   },
   {
     "id": "raw-318a3a25ad1652c7",
-    "title_en": "FSA Update: Draft Amendment to Supervisory Guidelines for Small and Regional Financial Institutions",
+    "title_en": "FSA Publishes Draft Partial Amendments to Comprehensive Supervisory Guidelines for SME and Regional Financial...",
     "title_ja": "「中小・地域金融機関向けの総合的な監督指針」等の一部改正（案）について公表しました。",
     "area": "Finance / AML",
     "stage": "Draft Guideline",
@@ -10134,10 +10174,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "指南草案：中小及地域金融机构综合监督指南等部分修订",
-        "summary": "日本金融厅（金融庁）公布了对《中小及地域金融机构综合监督指南》及相关文件的部分修订草案。根据元数据，这是一份草案（拟议修订），而非已最终确定或已生效的规则。所提供的元数据未给出更多详情。",
-        "business_impact": "如果拟议修订得以最终确定，中小及地域金融机构可能会受到影响，具体视所涉的具体变更而定。",
-        "recommended_action": "建议查阅金融厅日文官方来源，以确认拟议修订的范围以及任何适用的征求意见期或时间安排。"
+        "title": "指南草案：中小及地区金融机构综合监督指南部分修订",
+        "summary": "日本金融厅（FSA）发布了对《中小及地区金融机构综合监督指南》及相关文件的部分修订草案。根据元数据，这是一份草案（拟议修订），尚非最终确定或已生效的规则。所提供的元数据中未包含更多细节。",
+        "business_impact": "如果拟议修订最终确定，中小及地区金融机构可能会受到影响，具体影响视所涉及的具体变更内容而定。",
+        "recommended_action": "建议查阅金融厅官方来源，以确认拟议修订的范围以及任何适用的意见征集期或时间安排。"
       }
     }
   },
@@ -10376,7 +10416,7 @@
   },
   {
     "id": "raw-bd05c38ed866cba2",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-06-22)",
+    "title_en": "Public Comment: Draft Cabinet Office Order Partially Amending the Consumer Safety Act Enforcement Regulations",
     "title_ja": "「消費者安全法施行規則の一部を改正する内閣府令（案）」に関する意見募集について",
     "area": "Consumer / Advertising",
     "stage": "Public Comment Closed",
@@ -10406,10 +10446,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《消费者安全法施行规则》部分修订政令（草案）",
-        "summary": "这是关于一项内阁府令草案的公开征求意见，该草案拟部分修订《消费者安全法》施行规则。根据元数据，草案于2026-06-22公布，意见征集期至2026-07-21 23:59截止。该事项被归类为确保国民生活安全与安心相关事项，联系方式为消费者厅消费者安全课。",
-        "business_impact": "受消费者安全法规约束的企业若该修订草案最终确定，可能受到影响，且在征求意见期间可能有机会提交意见。",
-        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认草案的适用范围、截止日期及提交方式。"
+        "title": "（已结束）公开征求意见：《消费者安全法施行规则》部分修正内阁府令（草案）",
+        "summary": "这是一项关于部分修订《消费者安全法施行规则》的内阁府令草案的公开征求意见。根据元数据，草案于2026-06-22公布，意见征集期至2026-07-21 23:59截止。该项目归类于确保国民生活安全与安心事项，联系方处为消费者厅消费者安全课。",
+        "business_impact": "若拟议修正案最终确定，受消费者安全监管的企业可能受到影响，且其在意见征集期间可能有机会提交意见。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认草案的范围、截止日期及提交流程。"
       }
     }
   },
@@ -10447,7 +10487,7 @@
   },
   {
     "id": "raw-c0aedfee47301303",
-    "title_en": "PPC Update: Cabinet Decision on Bill to Amend the Act on the Protection of Personal Information",
+    "title_en": "PPC: Cabinet decision on bill to partially amend the Personal Information Protection Act and related laws",
     "title_ja": "「個人情報の保護に関する法律等の一部を改正する法律案の閣議決定について」を掲載しました。",
     "area": "Data / Privacy / AI",
     "stage": "Bill Submitted",
@@ -10473,10 +10513,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案提交：《个人信息保护法》等部分修订法案的内阁决定",
-        "summary": "个人信息保护委员会（PPC）发布了关于部分修订《个人信息保护法》及相关法律的法案的内阁决定的公告。根据元数据，这涉及的是一项法案（经内阁决定的立法提案），而非已制定或已生效的法律。元数据中除标题和主题（“个人信息保护法等”）外未提供进一步细节。",
-        "business_impact": "如该法案推进并获通过，个人数据保护规则的变更可能影响在日本处理个人信息的组织。仅凭此元数据无法确定具体范围和义务。",
-        "recommended_action": "建议考虑查阅PPC日文官方来源及完整法案文本，以核实其范围、内容及当前的立法状态。"
+        "title": "法案提交：内阁决定关于修订《个人信息保护法》等部分内容的法律案",
+        "summary": "个人信息保护委员会（PPC）发布公告，内容涉及内阁就修订《个人信息保护法》及相关法律部分内容的法律案作出的决定。根据元数据，这是一项经内阁决定的法律案，尚非已颁布或生效的法律。除标题及主题（“个人信息保护法等”）外，元数据未提供更多细节。",
+        "business_impact": "若该法案得以推进并最终通过，个人信息保护相关规则的变化可能会影响在日本处理个人信息的组织。具体的适用范围和义务无法仅凭此元数据确定。",
+        "recommended_action": "建议考虑查阅个人信息保护委员会的官方来源及法案全文，以核实其适用范围、内容及当前立法状态。"
       }
     }
   },
@@ -11445,7 +11485,7 @@
   },
   {
     "id": "raw-07760b27d11c3cae",
-    "title_en": "Closed Public Comment: Draft Amendment to Energy Policy",
+    "title_en": "Public Comment: Draft Cabinet Order Amending the Enforcement Order of the Act on Rationalization of Energy Use and...",
     "title_ja": "エネルギーの使用の合理化及び非化石エネルギーへの転換等に関する法律施行令の一部を改正する政令案に対する意見公募要領",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -11474,16 +11514,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《能源使用合理化及向非化石能源转换法》施行令修订草案",
-        "summary": "这是一项关于修订《能源使用合理化及向非化石能源转换法》施行令的政令草案的公开征求意见通知。根据元数据，该草案于2026-06-15公布，意见提交截止日期为2026-07-15 23:59。列明的联系部门为资源能源厅节能与可再生能源部节能课（Top Runner计划相关科室）。",
-        "business_impact": "受节能相关规则或Top Runner计划约束的企业，若拟议修订最终确定，可能会受到影响，企业可考虑是否在征求意见期间提交意见。",
+        "title": "（已结束）公开征求意见：《能源使用合理化及向非化石能源转换等法律施行令》修正政令草案",
+        "summary": "这是关于修订日本《能源使用合理化及向非化石能源转换等法律》施行令的政令草案的公开征求意见通知。根据元数据，该草案于2026-06-15公布，意见提交截止日期为2026-07-15 23:59。列明的联系部门为资源能源厅节能与可再生能源部节能课（Top Runner制度相关部门）。",
+        "business_impact": "受节能规则或Top Runner制度约束的企业，若拟议修正案最终获得通过，可能会受到影响，可考虑是否在征求意见期间提交意见。",
         "recommended_action": "建议查阅e-Gov官方公开征求意见通知及政令草案文本，以确认相关范围、细节及提交截止日期。"
       }
     }
   },
   {
     "id": "raw-15b5c5a72bfae0a1",
-    "title_en": "Closed Public Comment: Draft Amendment to Ordinance for Enforcement of the National Pension Act",
+    "title_en": "Public comment open on draft ministerial order amending National Pension Act enforcement regulations",
     "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
     "area": "Labor / Employment",
     "stage": "Public Comment Closed",
@@ -11512,16 +11552,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《国民年金法施行规则》部分修订省令草案",
-        "summary": "这是一项关于修订《国民年金法施行规则》部分条款的省令草案的公开征求意见活动，属于社会保险类别。根据元数据，草案于2026-06-09公布，意见征集截止时间为2026-07-08 19:00。负责机构为厚生劳动省年金局事业管理科。",
-        "business_impact": "如果拟议修订获得采纳，参与国民年金管理的组织或个人可能会受到影响，但所提供的元数据中未详细说明具体变更内容。",
-        "recommended_action": "建议考虑在规定的意见征集截止日期之前查阅日文官方来源及完整草案文本，以了解可能产生的影响。"
+        "title": "（已结束）公开征求意见：《国民年金法施行规则》修订省令草案",
+        "summary": "这是一项关于拟部分修订《国民年金法施行规则》的省令草案的公开征求意见，属于社会保险类别。根据元数据，该草案于2026-06-09公布，征求意见截止时间为2026-07-08 19:00。负责机构为厚生劳动省年金局事业管理科。",
+        "business_impact": "若该修订草案获得通过，涉及国民年金行政事务的组织或个人可能受到影响，但所提供的元数据中未详细说明具体变更内容。",
+        "recommended_action": "建议在所述意见征集截止日期前查阅日文官方来源及完整草案文本，以了解可能产生的影响。"
       }
     }
   },
   {
     "id": "raw-900e45d65437905d",
-    "title_en": "MAFF Update: Forestry regulation information updated",
+    "title_en": "Cabinet Order Designating Local Severe Disaster for Forest Fire in Otsuchi, Iwate, with Notice of Covered Area",
     "title_ja": "令和8年4月22日に発生した岩手県上閉伊郡大槌町の林野火災に係る局地激甚災害指定の政令及び対象区域の告示について",
     "area": "Food / Agriculture",
     "stage": "Government Announcement",
@@ -11547,10 +11587,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "农林水产省发布：关于2026-04-22岩手县上闭伊郡大槌町林野火灾局地激甚灾害指定政令及对象区域告示",
-        "summary": "这是农林水产省（农林水产省，MAFF）的一则报道发表，内容涉及就令和8年（2026年）4月22日在岩手县上闭伊郡大槌町发生的林野火灾而指定局地激甚灾害（局地激甚）的政令。其中还提及了对象区域的告示。元数据中未提供更多细节。",
-        "business_impact": "在岩手县受灾区域内拥有林业或农业经营活动或资产的机构，可能受到与该灾害指定相关的支援措施或程序的影响。",
-        "recommended_action": "建议查阅农林水产省的日文官方来源，以确认范围、对象区域及任何适用的措施。"
+        "title": "政令指定岩手县大槌町林野火灾为局地甚大灾害并公告对象区域",
+        "summary": "这是农林水产省（MAFF）发布的新闻公告，涉及一项政令，就2026年（令和8年）4月22日发生在岩手县上闭伊郡大槌町的林野火灾指定为局地甚大灾害（“局地激甚灾害”）。公告还提及有关对象区域的告示（公告）。元数据中未提供进一步细节。",
+        "business_impact": "在岩手县受影响地区拥有林业或农业业务或资产的机构，可能会受到与该灾害指定相关的支持措施或程序的影响。",
+        "recommended_action": "建议查阅农林水产省的官方来源，以确认范围、对象区域及任何适用措施。"
       }
     }
   },
@@ -12191,7 +12231,7 @@
   },
   {
     "id": "raw-3bc08746191ccc52",
-    "title_en": "Public Comment: Regulatory proposal open for comment (2026-06-15)",
+    "title_en": "Public Comment on Draft Guidelines for Implementing Nature Positive in Procurement",
     "title_ja": "「調達におけるネイチャーポジティブの実践のためのガイドライン（案）」に関する意見募集（パブリックコメント）について",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -12221,10 +12261,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《采购中实践自然正向的指南（草案）》",
-        "summary": "日本环境省（MOE）宣布就一份关于在采购中实施“自然正向”做法的指南草案启动公开征求意见。该项目为公开征求意见的草案，尚未定稿。所涉参考主题领域为自然环境。",
-        "business_impact": "若该指南最终获得采纳，涉及采购业务的组织未来可能需要考虑与自然相关的做法，不过其内容仍为草案，可能发生变化。",
-        "recommended_action": "建议考虑查阅环境省官方公告及提供来源处的指南草案，以了解其适用范围及意见征集流程。"
+        "title": "（已结束）公开征求意见：《采购中实践自然正效益的指南（草案）》",
+        "summary": "日本环境省（MOE）就一份关于在采购中实践“自然正效益（nature positive）”的指南草案发布了公开征求意见。该事项为公开征求意见的草案，尚未定稿。所涉参考主题领域为自然环境。",
+        "business_impact": "若该指南最终获得采纳，涉及采购的机构日后可能需要考虑与自然相关的做法，但目前内容仍为草案，可能会有变动。",
+        "recommended_action": "建议考虑查阅环境省的官方公告及所提供来源中的指南草案，以了解其范围和征求意见流程。"
       }
     }
   },
@@ -13042,7 +13082,7 @@
   },
   {
     "id": "raw-8008869f4fd2d3d7",
-    "title_en": "MOE Update: Biodiversity policy information updated",
+    "title_en": "MOE Announcement on Measure Order Under the Cartagena Act on Genetically Modified Organisms",
     "title_ja": "「遺伝子組換え生物等の使用等の規制による生物の多様性の確保に関する法律」に基づく措置命令について",
     "area": "Energy / Environment",
     "stage": "Government Announcement",
@@ -13068,10 +13108,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "环境省发布：基于《关于通过规制转基因生物等的使用确保生物多样性的法律》的措施命令",
-        "summary": "环境省（MOE）就基于日本《关于通过规制转基因生物等的使用确保生物多样性的法律》（通称卡塔赫纳法）作出的措施命令（sochi meirei）发布了新闻稿。该新闻稿归类于自然环境主题。现有元数据中未提供进一步详情。",
-        "business_impact": "涉及处理或使用转基因生物的机构可能受到影响，或需审查其对相关监管要求的合规情况。",
-        "recommended_action": "建议查阅环境省官方新闻稿，以确认该措施命令的范围、涉及的当事方及其具体性质。"
+        "title": "环境省公告：基于《转基因生物多样性确保法》（卡塔赫纳法）的措施命令",
+        "summary": "日本环境省（MOE）就基于日本《通过规制转基因生物等的使用来确保生物多样性的法律》（通称卡塔赫纳法）作出的措施命令发布了新闻稿。该发布内容归类于自然环境主题下。现有元数据未提供进一步细节。",
+        "business_impact": "涉及处理或使用转基因生物的机构可能会受到影响，并可能需要审查其对相关监管要求的合规情况。",
+        "recommended_action": "建议查阅环境省官方新闻稿，以确认该措施命令的适用范围、涉及对象及具体内容。"
       }
     }
   },
@@ -13173,7 +13213,7 @@
   },
   {
     "id": "raw-75ddf22718a2794a",
-    "title_en": "Closed Public Comment: Draft Amendment to Basic Wildlife Protection and Management Guidelines",
+    "title_en": "Public Comment: Draft Amendment to Basic Guidelines for Wildlife Protection and Management Programs",
     "title_ja": "鳥獣の保護及び管理を図るための事業を実施するための基本的な指針の改正案に関する意見の募集（パブリック・コメント）について",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -13202,10 +13242,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：鸟兽保护及管理事业实施基本指针修订草案",
-        "summary": "日本环境省就实施鸟兽保护及管理相关事业的基本指针修订草案开展了公开征求意见。根据元数据，该草案于2026-06-09公布，意见接受截止日期为2026-07-09。此事项由环境省自然环境局野生生物课鸟兽保护管理室负责处理。",
-        "business_impact": "从事鸟兽管理、保护或相关土地与环境活动的机构可能希望关注该草案，因为指针的变更可能影响未来的项目要求。",
-        "recommended_action": "建议考虑查阅e-Gov公开征求意见的官方通知及相关日文原始来源，以确认范围、内容及提交截止日期。"
+        "title": "（已结束）公开征求意见：鸟兽保护及管理事业基本指针修订草案",
+        "summary": "日本环境省就实施鸟兽（鸟类及兽类）保护与管理事业的基本指针修订草案开展了公开征求意见。根据元数据，该草案于2026-06-09公布，意见征集截止至2026-07-09。此事项由环境省自然环境局野生生物课鸟兽保护管理室负责。",
+        "business_impact": "从事野生生物管理、保护或相关土地与环境活动的机构可能希望关注该草案，因为指针的变化可能会影响未来的项目要求。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见的官方通知及相关日文原始来源，以确认范围、内容和提交截止日期。"
       }
     }
   },
@@ -14104,7 +14144,7 @@
   },
   {
     "id": "raw-a8023e7b2eb8ecf8",
-    "title_en": "Closed Public Comment: Draft Nuclear Energy Policy Direction and Action Guidelines",
+    "title_en": "Public Comment: Draft Direction and Action Guidelines for Future Nuclear Energy Policy",
     "title_ja": "今後の原子力政策の方向性と行動指針（案）に対する意見募集について",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -14133,16 +14173,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：今后核能政策方向与行动指南（草案）",
-        "summary": "日本经济产业省资源能源厅就一份阐述今后核能政策方向及行动指南的草案文件开展了公开征求意见。根据元数据，该草案于2026-06-10公布，意见接受截止时间为2026-07-09 20:29，归类于“产业—综合”类别。该文件为公开征求意见的草案，并非已制定或最终确定的政策。",
-        "business_impact": "涉及能源领域或核能相关活动的机构可能会发现，未来的政策方向可能影响其规划或合规义务。相关方或有机会在意见征集期间提交意见。",
-        "recommended_action": "建议查阅e-Gov公开征求意见官方页面及相应日文原始来源，以确认该草案的范围、内容及提交截止时间。"
+        "title": "（已结束）公开征求意见：《今后核能政策方向与行动指南（草案）》",
+        "summary": "日本经济产业省资源能源厅就有关今后核能政策方向与行动指南的草案文件开展了公开征求意见。根据元数据，该草案于2026-06-10公布，意见征集截止至2026-07-09 20:29，归类于“产业·综合”类别。该文件为公开征求意见的草案，尚非已颁布或最终确定的政策。",
+        "business_impact": "从事能源领域或核能相关业务的机构可能会发现，今后的政策方向可能影响其规划或合规义务。相关方或有机会在意见征集期间提交意见。",
+        "recommended_action": "建议查阅e-Gov公开征求意见官方页面及相应的日文原始来源，以确认该草案的范围、内容及提交截止时间。"
       }
     }
   },
   {
     "id": "raw-ec6fc69e513f0aa7",
-    "title_en": "Closed Public Comment: Draft Revision to Basic Guidelines on Measures for Vacant Houses",
+    "title_en": "Public Comment on Proposed Amendment to Basic Guidelines for Vacant House Measures",
     "title_ja": "空家等に関する施策を総合的かつ計画的に実施するための基本的な指針の変更案に関する意見募集について",
     "area": "Real Estate / Land Use",
     "stage": "Public Comment Closed",
@@ -14171,10 +14211,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：空置房屋相关措施基本指针修订草案",
-        "summary": "这是一项关于修订“为综合、有计划地实施空置房屋（空屋）相关措施的基本指针”的公开征求意见。根据元数据，草案于2026-06-09公布，意见接受截止时间为2026-07-09 19:00。列出的联系部门为国土交通省（住宅局住宅综合整备课），属于建筑与住宅类别。",
-        "business_impact": "如果该指针修订方案日后被采纳，从事住宅、不动产或物业管理相关业务的机构可能会受到影响。",
-        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方来源，以核实拟议修订的范围及意见提交截止时间。"
+        "title": "（已结束）公开征求意见：关于空置房屋对策基本方针修订草案",
+        "summary": "这是一项关于为综合且有计划地实施与空置房屋（akiya）相关对策而制定的基本方针修订草案的公开征求意见。根据元数据，草案于2026-06-09公布，意见征集截止至2026-07-09 19:00。列明的联系部门为国土交通省（住宅局 住宅综合整备科），属于建筑与住宅类别。",
+        "business_impact": "若该基本方针修订草案日后获得通过，可能会对参与住宅、房地产或物业管理相关业务的机构产生影响。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方来源，以核实该修订草案的适用范围及提交截止日期。"
       }
     }
   },
@@ -16621,7 +16661,7 @@
   },
   {
     "id": "raw-0929386148bbfa16",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-06-15)",
+    "title_en": "Public Comment: Draft Guidelines for Practicing Nature Positive in Procurement",
     "title_ja": "「調達におけるネイチャーポジティブの実践のためのガイドライン（案）」に関する意見募集（パブリック・コメント）について",
     "area": "Other",
     "stage": "Public Comment Closed",
@@ -16650,16 +16690,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《采购中实践自然正向的指南（草案）》",
-        "summary": "日本环境省（自然保护局）就题为《采购中实践自然正向的指南（草案）》的文件启动了公开征求意见。根据元数据，该草案于2026-06-15公布，意见提交截止日期为2026-07-02 00:00，属于环境保护类别。该文件为公开征求意见的草案，并非最终确定或具有强制力的措施。",
-        "business_impact": "参与采购的机构可能希望注意，未来的指南或会影响与自然相关的考量因素如何被纳入采购实践中。",
-        "recommended_action": "可考虑在意见征集期结束前查阅e-Gov公开征求意见官方通知及指南草案，以核实其适用范围、要求及提交截止日期。"
+        "title": "（已结束）公开征求意见：《采购中实践自然正效益指南（案）》",
+        "summary": "日本环境省（自然环境局）就题为《采购中实践自然正效益指南》的草案文件开展了公开征求意见。根据元数据，该草案于2026-06-15公布，意见提交截止日期为2026-07-02 00:00，归类于环境保护类别。这是一份正在征求公众意见的草案，尚非最终确定或具有强制力的措施。",
+        "business_impact": "参与采购业务的组织可能需要注意，未来的指南可能会影响与自然相关的考量如何被纳入采购实践中。",
+        "recommended_action": "建议考虑在意见征集期结束前，查阅e-Gov公开征求意见的官方公告及草案指南，以核实其适用范围、要求内容及提交截止日期。"
       }
     }
   },
   {
     "id": "raw-4df887fe89e1ba30",
-    "title_en": "Closed Public Comment: Green Bond and Green Loan Guidelines",
+    "title_en": "Public Comment: Green List Annex to Green Bond and Green Loan Guidelines",
     "title_ja": "グリーンボンドガイドライン及びグリーンローンガイドライン付属書１別表（グリーンリスト）に関する意見募集について",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -16688,16 +16728,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：绿色债券指南与绿色贷款指南附属绿色清单",
-        "summary": "这是关于日本《绿色债券指南》及《绿色贷款指南》附属书1别表（绿色清单）的公开征求意见，通过e-Gov发布。根据元数据，该提案于2026-06-12发布，意见提交截止时间为2026-07-18 00:00，归类于环境保护类别。列出的联系方式为环境省环境金融推进室。",
-        "business_impact": "从事绿色债券、绿色贷款或可持续金融相关业务的机构可能受到绿色清单标准潜在变化的影响，或希望关注或参与此次意见征集。",
-        "recommended_action": "建议考虑查阅日文官方来源及意见征集详情，以了解拟议变更内容及意见提交流程。"
+        "title": "（已结束）公开征求意见：绿色债券及绿色贷款指南附属书1别表（绿色清单）",
+        "summary": "这是一项关于日本《绿色债券指南》及《绿色贷款指南》附属书1别表（绿色清单）的公开征求意见，通过e-Gov发布。根据元数据，该提案于2026-06-12公布，意见提交截止日期为2026-07-18 00:00，属于环境保护类别。列明的联系方是环境省环境金融推进办公室。",
+        "business_impact": "参与绿色债券、绿色贷款或可持续金融的机构可能会受到绿色清单标准潜在变化的影响，可能希望关注或参与此次意见征集。",
+        "recommended_action": "可考虑查阅日文官方来源及意见征集详情，以了解拟议变更内容及意见提交流程。"
       }
     }
   },
   {
     "id": "raw-45c72f8eb8c5fb6a",
-    "title_en": "Closed Public Comment: Draft Amendment to Supervisory Guidelines for Small and Regional Financial Institutions",
+    "title_en": "Draft Partial Amendment to Comprehensive Supervisory Guidelines for SME and Regional Financial Institutions (Public...",
     "title_ja": "「中小・地域金融機関向けの総合的な監督指針」等の一部改正（案）の公表について",
     "area": "Finance / AML",
     "stage": "Public Comment Closed",
@@ -16726,10 +16766,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《中小·地区金融机构综合监督指南》等部分修订草案",
-        "summary": "日本金融厅（FSA）就其《中小·地区金融机构综合监督指南》及相关文件的部分修订草案公开征求意见。该草案于2026-06-08公布，意见征集期于2026-07-08 15:00截止。该事项归类于金融与保险领域，完整详情仅见于日文官方来源。",
-        "business_impact": "中小及地区金融机构若该修订最终确定，可能需要审视监督指南拟议变更对其合规与监督实务可能产生的影响。该提案目前仍处于公开征求意见阶段，其内容和效力尚未确定。",
-        "recommended_action": "建议考虑查阅e-Gov上的日文官方公告及金融厅相关文件，以了解该草案的范围及意见提交截止日期。"
+        "title": "（已结束）公开征求意见：《中小·地域金融机构综合监督指南》等部分修订草案",
+        "summary": "日本金融厅（FSA）就其《中小·地域金融机构综合监督指南》及相关文件的部分修订草案公开征求意见。草案于2026-06-08发布，意见征集期至2026-07-08 15:00截止。该事项归类于金融与保险领域，完整详情仅可在日文官方来源中获取。",
+        "business_impact": "中小及地域金融机构可能需要审视监督指南拟议修改内容，评估其若最终确定后对合规及监管实务可能产生的影响。该提案目前仍处于公开征求意见阶段，具体内容及效力尚未确定。",
+        "recommended_action": "可考虑查阅e-Gov上的日文官方公告及金融厅相关文件，以了解该草案的范围及意见提交截止日期。"
       }
     }
   },
@@ -17159,7 +17199,7 @@
   },
   {
     "id": "raw-b631710b7f65bb3e",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-06-15)",
+    "title_en": "Public Comment: Draft Amendment to Designated Drugs and Periods under PMD Act Enforcement Regulation Art. 216-2(1)",
     "title_ja": "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律施行規則第二百十六条の二第一項の規定に基づき厚生労働大臣が指定する医薬品及び期間の一部を改正する件（案）に関する御意見の募集について",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Public Comment Closed",
@@ -17188,10 +17228,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：修订厚生劳动大臣指定医药品及期间",
-        "summary": "这是e-Gov发布的一项公开征求意见事项，内容涉及根据《医药品、医疗器械等的品质、有效性及安全性确保等相关法律施行规则》第216条之2第1项规定，对厚生劳动大臣指定的医药品及期间清单的修订草案。该草案于2026-06-15公布，意见提交截止日期为2026-07-16。该事项由医药安全局合规与麻醉药品管理科负责处理。",
-        "business_impact": "处理相关医药品的主体可能需要关注指定药品及适用期间的潜在变化，这可能影响相关合规义务。",
-        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以确认拟议指定事项的范围及意见提交截止日期。"
+        "title": "（已结束）公开征求意见：《医药品医疗器械等法施行规则》第216条之2第1项厚生劳动大臣指定医药品及期间修订草案",
+        "summary": "这是e-Gov上的一项公开征求意见事项，涉及根据《药品、医疗器械等的品质、有效性及安全性确保等相关法律施行规则》第216条之2第1项由厚生劳动大臣指定的医药品及期间清单的修订草案。该草案于2026-06-15公布，意见提交截止日期为2026-07-16。该事项由医药安全局合规与麻药对策科负责。",
+        "business_impact": "处理相关医药品的企业可能需要关注指定医药品及适用期间的潜在变化，这可能会影响相关合规义务。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以确认拟议指定的范围及意见提交截止日期。"
       }
     }
   },
@@ -19126,7 +19166,7 @@
   },
   {
     "id": "raw-bfe199fec3969c7b",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-06-16)",
+    "title_en": "Public Comment: Draft Amendment to Guideline on Prohibition of Unreasonable Treatment of Dispatched/Sent Workers",
     "title_ja": "送出労働者に対する不合理な待遇の禁止等に関する指針の一部を改正する件（案）に関する御意見の募集について",
     "area": "Labor / Employment",
     "stage": "Public Comment Closed",
@@ -19155,10 +19195,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：修订《关于禁止对派出劳动者不合理待遇等的指南》（草案）",
-        "summary": "这是在e-Gov上发布的一项公开征求意见，内容涉及关于禁止对派出（派遣）劳动者不合理待遇等指南的部分修订草案。该草案于2026-06-16公布，意见接受截止时间为2026-07-15 23:59。列明的联系方式为职业安定局雇用开发计划课建设港湾对策室。",
-        "business_impact": "涉及派出或派遣劳动者的机构可能希望关注该草案，因为最终形成的修订内容可能会影响相关待遇标准。",
-        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认该修订草案的范围、具体内容及意见征集程序。"
+        "title": "（已结束）公开征求意见：关于修订派遣劳动者不合理待遇禁止指针（草案）",
+        "summary": "这是在e-Gov上发布的一项公开征求意见，内容涉及关于禁止对派遣（送出）劳动者实施不合理待遇之指南的部分修订草案。该草案于2026-06-16公布，意见征集截止至2026-07-15 23:59。列明的联系方式为职业安定局雇用开发计划课建设港湾对策室。",
+        "business_impact": "涉及派遣或输送劳动者的机构或希望关注该草案，因为最终的修订结果可能会影响相关待遇标准。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认该修订草案的范围、细节及意见征集程序。"
       }
     }
   },
@@ -19196,7 +19236,7 @@
   },
   {
     "id": "raw-23187034b60ed713",
-    "title_en": "Digital Agency Update: Generative AI procurement and use guidelines updated (2026-06-12)",
+    "title_en": "Public Comment (Closed) on Draft Revision of Guidelines for Procurement and Use of Generative AI in Government",
     "title_ja": "（受付終了）「行政の進化と革新のための生成AIの調達・利活用に係るガイドライン」の改定案に関する意見募集を行います",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Closed",
@@ -19222,10 +19262,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：行政进化与革新生成式AI采购及利用指南修订草案",
-        "summary": "数字厅就《行政进化与革新生成式AI采购及利用指南》修订草案的公开征求意见程序发布了公告。标题显示意见提交期已结束（受付終了）。这是一份处于（现已结束的）公开征求意见阶段的修订草案，并非已定稿或已实施的规则。",
-        "business_impact": "如修订后的指南获得采纳，为日本政府机构提供或使用生成式AI的组织可能会受到采购及使用预期变化的影响。",
-        "recommended_action": "建议考虑查阅数字厅日文官方来源，以确认该修订草案的范围、状态及内容。"
+        "title": "（已结束）公开征求意见：《行政进化与创新用生成式AI采购与利用指南》修订草案",
+        "summary": "数字厅就其关于面向行政进化与创新的生成式AI采购与利用相关指南的修订草案启动了公开征求意见程序。标题显示意见提交期已结束（“受付终了”）。这是一份已进入（现已结束的）公开征求意见阶段的修订草案，尚非最终确定或已生效的规则。",
+        "business_impact": "若修订后的指南获得采纳，参与向日本政府机构供应或使用生成式AI的机构可能会因采购及使用相关要求的变化而受到影响。",
+        "recommended_action": "建议考虑查阅数字厅的官方来源，以确认该修订草案的范围、状态及具体内容。"
       }
     }
   },
@@ -19524,7 +19564,7 @@
   },
   {
     "id": "raw-76c326ab246d4ac5",
-    "title_en": "Closed Public Comment: Draft Amendment to Food and Food Additive Standards (2026-06-11)",
+    "title_en": "Public Comment: Draft Amendment to Residue Standards for 5 Pesticides (incl. Quinoclamine)",
     "title_ja": "「食品、添加物等の規格基準の一部を改正する告示（案）」（農薬（キノクラミン等５品目）の残留基準の改正）に関する御意見の募集について",
     "area": "Food / Agriculture",
     "stage": "Public Comment Closed",
@@ -19553,10 +19593,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：修订《食品、添加物等规格标准》告示（农药喹氯苯酸等5种残留标准）",
-        "summary": "这是针对修订《食品、添加物等规格标准》部分内容的告示草案的公开征求意见，具体涉及喹氯苯酸等5种农药的残留标准修改。根据元数据，该草案于2026-06-11公布，意见提交截止日期为2026-07-10 23:59，负责联系部门为消费者事务厅残留标准审查办公室。该草案目前处于公开征求意见阶段，尚未成为最终确定或已生效的措施。",
-        "business_impact": "从事食品生产、进口或分销的企业若相关农药残留限量发生变更，可能会受到影响，可考虑关注该征求意见的结果。",
-        "recommended_action": "如与自身业务相关，建议考虑查阅日文官方来源，并在所述截止日期前提交意见。"
+        "title": "（已结束）公开征求意见：修订《食品、添加物等规格基准》部分内容（喹诺草胺等5种农药残留标准）",
+        "summary": "这是关于修订《食品、添加物等规格基准》部分内容告示草案的公开征求意见，具体涉及包括喹诺草胺在内的5种农药的残留限量标准。根据元数据，该草案于2026-06-11发布，意见提交截止日期为2026-07-10 23:59，负责联系部门为消费者事务厅残留标准审查室。这是一项正在公开征求意见的草案，尚未最终确定或正式实施。",
+        "business_impact": "从事食品生产、进口或流通的企业若拟议的农药残留限量标准发生变化，可能会受到影响，可考虑关注此次意见征集的结果。",
+        "recommended_action": "建议考虑查阅日文官方来源，如与自身业务相关，可考虑在规定截止日期前提交意见。"
       }
     }
   },
@@ -20182,7 +20222,7 @@
   },
   {
     "id": "raw-8d0a76792b1148ef",
-    "title_en": "MOE Update: Green Bond and Green Loan Guidelines (2026-06-12)",
+    "title_en": "Public Comment on Green List (Annex 1 Table) of Green Bond and Green Loan Guidelines",
     "title_ja": "グリーンボンドガイドライン及びグリーンローンガイドライン 付属書1別表（グリーンリスト）に関する意見募集について",
     "area": "Energy / Environment",
     "stage": "Public Comment Closed",
@@ -20212,10 +20252,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《绿色债券指南》及《绿色贷款指南》附属书1别表（绿色清单）",
-        "summary": "日本环境省（MOE）发布新闻稿，就《绿色债券指南》及《绿色贷款指南》附属书1别表（绿色清单）公开征求意见。该项目标注为公开征求意见阶段。元数据中除标题和来源外未提供更多细节。",
-        "business_impact": "参与绿色债券或绿色贷款的机构可能受到绿色清单所反映的适用标准潜在变化的影响，可考虑是否提交意见。",
-        "recommended_action": "建议考虑查阅环境省官方新闻稿及相关征求意见材料，以了解涉及范围及任何提交截止时间。"
+        "title": "（已结束）公开征求意见：绿色债券指南及绿色贷款指南附属书1附表（绿色清单）",
+        "summary": "日本环境省（MOE）发布新闻稿，就《绿色债券指南》及《绿色贷款指南》附属书1附表（绿色清单）公开征求意见。该项目标注为公开征求意见阶段。元数据中除标题和来源外未提供更多细节。",
+        "business_impact": "涉及绿色债券或绿色贷款的机构可能会受到绿色清单所反映的适用标准潜在变化的影响，并可考虑是否提交意见。",
+        "recommended_action": "建议考虑查阅环境省的官方新闻稿及相关征求意见材料，以了解范围及任何提交截止日期。"
       }
     }
   },
@@ -20617,7 +20657,7 @@
   },
   {
     "id": "raw-f63c702ca0e7e925",
-    "title_en": "Public Comment Closed: Regulatory comment period closed (2026-06-17)",
+    "title_en": "Public Comment: Draft First Report by Youth Protection Working Group on Information Distribution in Digital Spaces",
     "title_ja": "「デジタル空間における情報流通の諸課題への対処に関する検討会青少年保護ワーキンググループ第一次報告書（案）」についての意見募集",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Closed",
@@ -20646,10 +20686,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：数字空间信息流通课题应对研讨会青少年保护工作组第一次报告书（草案）",
-        "summary": "日本总务省（MIC）就“数字空间信息流通诸课题应对研讨会青少年保护工作组第一次报告书（草案）”公开征求意见。根据元数据，该草案于2026-06-17公布，意见接受截止时间为2026-07-08 23:59，归类于电信领域。该文件为公开征求意见用草案，并非最终定案或法律。",
-        "business_impact": "从事电信、在线平台或数字内容服务的机构或许希望关注此草案，因为未来与数字空间中青少年保护相关的措施可能会由此产生。",
-        "recommended_action": "建议查阅日文官方来源，并结合权威文本核实所有细节，考虑是否在所述截止日期前提交意见。"
+        "title": "（已结束）公开征求意见：数字空间信息流通青少年保护工作组第一次报告书草案",
+        "summary": "日本总务省（MIC）就“数字空间信息流通诸课题应对检讨会青少年保护工作组第一次报告书（草案）”开展了公开征求意见。根据元数据，该草案于2026-06-17发布，意见征集截止至2026-07-08 23:59，属于电信类别。这是一份公开征求意见的草案，并非最终确定的规则或法律。",
+        "business_impact": "从事电信、在线平台或数字内容服务的机构可能希望关注此草案，因为未来有关数字空间青少年保护的措施可能会由此产生。",
+        "recommended_action": "建议查阅日文官方来源，并考虑是否在规定截止日期前提交意见，同时对照权威文本核实所有细节。"
       }
     }
   },
@@ -20717,7 +20757,7 @@
   },
   {
     "id": "raw-8cdbfafce0f78a9e",
-    "title_en": "Closed Public Comment: Draft Amendment to Guidelines for Receiving and Sending-Out Business Operators",
+    "title_en": "Public Comment: Draft Amendments to Guidelines on Measures for Accepting and Sending Employers",
     "title_ja": "受入事業主が講ずべき措置に関する指針の一部を改正する件（案）及び送出事業主が講ずべき措置に関する指針の一部を改正する件（案）に関する御意見の募集について",
     "area": "Labor / Employment",
     "stage": "Public Comment Closed",
@@ -20746,10 +20786,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：接收事业主与送出事业主应采取措施指针修订草案",
-        "summary": "这是一项关于两项指针修订草案的公开征求意见通知，分别涉及接收事业主应采取的措施和送出事业主应采取的措施。该项目于2026-06-09发布，意见提交截止时间为2026-07-08 23:59，归类于劳动类。列明的联系部门为职业安定局雇用开发计划课建设港湾对策室。",
-        "business_impact": "作为接收事业主或送出事业主参与相关业务的机构，若这些指针修订草案日后被采纳，可能受到影响。所提议的变更可能影响相关方所需采取的合规措施。",
-        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方通知及指针修订草案，以确认其适用范围以及是否与自身情况相关。"
+        "title": "（已结束）公开征求意见：接收及送出事业主应采取措施指南修订草案",
+        "summary": "这是一项关于两项指南修订草案的公开征求意见通知，分别涉及接收事业主应采取的措施和送出事业主应采取的措施。该项目于2026-06-09发布，意见提交截止日期为2026-07-08 23:59，归类为劳动类。列明的联系部门为职业安定局雇用开发计划课建设港湾对策室。",
+        "business_impact": "若这些指南修订草案日后获得采纳，作为接收或送出事业主参与的相关组织可能受到影响。拟议的修改可能会影响所涉相关方需要遵守的合规措施。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方通知及指南草案内容，以确认其适用范围及是否适用于自身情况。"
       }
     }
   },
@@ -22533,7 +22573,7 @@
   },
   {
     "id": "raw-152695a4fc786292",
-    "title_en": "Closed Public Comment: Draft Revision to Disaster Preparedness Guidelines for People and Pets",
+    "title_en": "Public Comment on Draft Revision of 'Disaster Preparedness Guidelines for People and Pets'",
     "title_ja": "「人とペットの災害対策ガイドライン」の改訂案に係る意見の募集（パブリック・コメント）について",
     "area": "Public Safety / Disaster Management",
     "stage": "Public Comment Closed",
@@ -22563,9 +22603,9 @@
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《人与宠物灾害对策指南》修订草案",
-        "summary": "日本环境省（自然环境局动物爱护管理室）就《人与宠物灾害对策指南》修订草案开展了公开征求意见。根据元数据，该草案于2026-06-08公布，意见接受截止至2026-06-27。这是一份处于公开征求意见阶段的草案，尚非最终确定或已实施的措施。",
-        "business_impact": "涉及动物福利、宠物相关服务或灾害应对的机构在该指南最终确定后，可能会发现修订内容与其防灾工作有关。",
-        "recommended_action": "可考虑查阅e-Gov公开征求意见公告及日文原文，以确认适用范围及提交意见的相关细节。"
+        "summary": "日本环境省（自然环境局动物爱护管理室）就《人与宠物灾害对策指南》修订草案开展了公开征求意见。根据元数据信息，草案于2026-06-08公布，意见接受截止至2026-06-27。这是一份公开征求意见的草案，尚非最终确定或已生效的措施。",
+        "business_impact": "从事动物福利、宠物相关服务或灾害应对工作的机构，在该指南最终确定后，可能会发现修订后的内容与其防灾工作相关。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方通知及日文原文，以确认相关范围及提交意见的具体事项。"
       }
     }
   },
@@ -23934,7 +23974,7 @@
   },
   {
     "id": "raw-ce86328cd6febc99",
-    "title_en": "Closed Public Comment: Draft Amendment to Road Traffic Act Rules",
+    "title_en": "Public comment on draft Cabinet Office Order amending the Road Traffic Act Enforcement Regulations",
     "title_ja": "「道路交通法施行規則の一部を改正する内閣府令案」に対する意見の募集について",
     "area": "Transport / Infrastructure",
     "stage": "Public Comment Closed",
@@ -23963,10 +24003,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《道路交通法施行规则》修订内阁府令案",
-        "summary": "这是在e-Gov公开征求意见平台上发布的一项关于部分修订《道路交通法施行规则》的内阁府令草案的意见征集。根据元数据，该草案于2026-06-12公布，意见提交截止日期为2026-07-11 23:59。该项目归类于警察事务，联系方式为警察厅交通局驾驶证科。",
-        "business_impact": "关于道路交通执法规则的修订提案，视最终内容而定，可能会影响涉及运输、驾驶业务或驾驶证发放相关的组织。",
-        "recommended_action": "建议考虑查阅e-Gov平台上的日文官方来源及草案文本，以了解拟议的修改内容及意见提交流程。"
+        "title": "（已结束）公开征求意见：《道路交通法施行规则》部分修订内阁府令草案",
+        "summary": "这是在e-Gov公开征求意见门户网站上发布的一项公开征求意见，内容涉及拟部分修订《道路交通法施行规则》的内阁府令草案。根据元数据，该草案于2026-06-12公布，意见提交截止日期为2026-07-11 23:59。该项目归类为警察事务，联系部门为警察厅交通局驾驶执照课。",
+        "business_impact": "拟议的道路交通执法规则修订可能会影响从事运输、驾驶业务或驾驶执照相关工作的组织，具体影响视最终内容而定。",
+        "recommended_action": "建议考虑查阅日文官方来源及e-Gov门户网站上的草案文本，以了解拟议变更内容及意见提交流程。"
       }
     }
   },
@@ -36373,14 +36413,14 @@
   },
   {
     "id": "raw-57aeb38932dfac5c",
-    "title_en": "Closed Public Comment: Draft Amendment to Veterinary Pharmaceuticals Control Rules",
+    "title_en": "Public Comment: Draft Partial Amendment to Regulations on Control of Veterinary Drugs",
     "title_ja": "動物用医薬品等取締規則の一部改正案についての意見・情報の募集について",
     "area": "Food / Agriculture",
     "stage": "Public Comment Closed",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment solicitation regarding a draft partial amendment to Japan's regulations on the control of veterinary drugs (動物用医薬品等取締規則). According to the metadata, the draft was published on 2026/06/10 with a comment submission deadline of 2026/07/10 23:59. The responsible authority is indicated as the Ministry of Agriculture, Forestry and Fisheries, Food Safety and Consumer Affairs Bureau, Livestock and Aquatic Products Safety Management Division.",
+    "business_impact_en": "Organizations involved in the manufacture, distribution, or handling of veterinary drugs may be affected if the proposed amendment is adopted, though specific changes are not detailed in the provided metadata.",
+    "recommended_action_en": "Consider reviewing the official Japanese source and the full draft text to understand the proposed changes and the comment submission process before the stated deadline.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004360&Mode=0",
     "published_at": "2026-06-10",
@@ -36397,13 +36437,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《动物用医药品等取缔规则》修订草案",
-        "summary": "这是一份基于规则生成的预览，尚未经过人工智能审核或总结。日本政府来源发布了与下列原日文标题相关的项目，应对照日文官方来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "（已结束）公开征求意见：《动物用医药品等取缔规则》部分修订草案",
+        "summary": "这是关于日本《动物用医药品等取缔规则》部分修订草案的公开征求意见。根据元数据，该草案于2026-06-10公布，意见提交截止日期为2026-07-10 23:59。负责机关标明为农林水产省消费·安全局畜水产安全管理科。",
+        "business_impact": "若该修订草案获得采纳，从事兽药制造、流通或处理的组织可能会受到影响，但所提供的元数据中未详细说明具体变更内容。",
+        "recommended_action": "建议考虑在截止日期前查阅日文官方来源及完整草案文本，以了解拟议变更内容及意见提交流程。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the specific content of the draft amendment is not provided. This is a draft out for public comment, not an enacted rule. Preliminary triage labels are unverified.",
+    "summarized_at": "2026-06-10T09:04:31Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-a2c247f6c7d4bec3",
@@ -50497,14 +50541,14 @@
   },
   {
     "id": "raw-ed40b10d3d033428",
-    "title_en": "Closed Public Comment: Visitor Limits for Shiretoko Five Lakes Use Adjustment Area",
+    "title_en": "Public Comment: Proposed Change to Visitor Number Limits for Shiretoko Goko Lakes Use-Adjustment Area, Shiretoko...",
     "title_ja": "知床国立公園知床五湖利用調整地区に係る利用者の人数の範囲の変更に関する意見の募集（パブリック・コメント）について",
     "area": "Real Estate / Land Use",
     "stage": "Public Comment Closed",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a public comment (paburikku komento) inviting opinions on a proposed change to the range of visitor numbers for the use-adjustment area of the Shiretoko Goko (Five Lakes) within Shiretoko National Park. According to the metadata, the proposal was posted on 2026/06/09 with a comment deadline of 2026/07/09 00:00, under the environmental conservation category. The contact listed is the National Park Division of the Kushiro Nature Conservation Office.",
+    "business_impact_en": "Operators, tour providers, or visitors connected to the Shiretoko Goko area may be affected if visitor number limits are changed, though the outcome is not yet determined.",
+    "recommended_action_en": "Consider reviewing the official e-Gov public comment notice and contacting the listed Kushiro Nature Conservation Office to verify details and the submission process.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260017&Mode=0",
     "published_at": "2026-06-09",
@@ -50521,13 +50565,17 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：知床国立公园知床五湖利用调整地区利用者人数范围变更",
-        "summary": "这是一份基于规则生成的预览，尚未经过人工智能审核或摘要处理。日本政府来源发布了与下述原日文标题相关的项目，应对照官方日文来源进行核实。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "（已结束）公开征求意见：知床国立公园知床五湖利用调整地区利用人数范围变更",
+        "summary": "这是一项公开征求意见，就知床国立公园内知床五湖（五湖）利用调整地区的利用人数范围变更方案征求意见。根据元数据，该提案于2026-06-09发布，意见提交截止日期为2026-07-09 00:00，归类为环境保护类别。联系方式为钏路自然保护官事务所国立公园课。",
+        "business_impact": "如果利用人数限制发生变更，与知床五湖地区相关的经营者、旅游服务提供者或游客可能会受到影响，但结果尚未确定。",
+        "recommended_action": "建议考虑查阅e-Gov公开征求意见官方通知，并联系上述钏路自然保护官事务所以核实详情及提交流程。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and metadata; this is a draft proposal out for public comment, not an enacted measure. Labels are keyword-based triage only and unverified.",
+    "summarized_at": "2026-06-10T09:04:38Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-50ef8e4896d31973",
