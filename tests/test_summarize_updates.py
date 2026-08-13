@@ -284,6 +284,9 @@ class TestSummaryBatch(unittest.TestCase):
             "Mark partial checkpoint incomplete",
             'translation_max_cost_usd:',
             '- "10.00"',
+            'translation_status=${PIPESTATUS[0]}',
+            'git restore --source=HEAD --',
+            "Checkpoint English summary cache after translation failure",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, workflow)

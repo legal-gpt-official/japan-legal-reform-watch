@@ -178,6 +178,7 @@ jobs:
 
           # English changes invalidate their derived Chinese cache hashes. Refresh
           # them in the same checkpoint so stale translations are never published.
+          set +e
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --limit "$total" \
@@ -185,6 +186,29 @@ jobs:
             --max-cost-usd "$TRANSLATION_MAX_COST_USD" \
             --retry-kana-title-without-ja-reference \
             --provider-failure-mode fail 2>&1 | tee translate_run.log
+          translation_status=${PIPESTATUS[0]}
+          set -e
+
+          if [ "$translation_status" -ne 0 ]; then
+            # Keep the public corpus and Chinese cache exactly as dispatched, but
+            # preserve successful English responses so a funded rerun gets them as
+            # free cache hits instead of paying for the same work again.
+            git restore --source=HEAD -- \
+              docs/data/legal_updates.json \
+              data/translation_cache.json
+            if ! git diff --quiet -- data/summary_cache.json; then
+              git fetch origin main
+              if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+                echo "origin/main advanced; refusing to save the recovery cache."
+                exit "$translation_status"
+              fi
+              git add data/summary_cache.json
+              git commit -m "Checkpoint English summary cache after translation failure"
+              git push origin "HEAD:main"
+              echo "Saved successful English responses to cache only; published data is unchanged." | tee -a "$GITHUB_STEP_SUMMARY"
+            fi
+            exit "$translation_status"
+          fi
 
           python scripts/build_public_archives.py
 
