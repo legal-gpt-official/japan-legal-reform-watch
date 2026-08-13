@@ -181,6 +181,7 @@ jobs:
             --locale zh-Hans \
             --limit "$total" \
             --max-cost-usd "$TRANSLATION_MAX_COST_USD" \
+            --retry-kana-title-without-ja-reference \
             --provider-failure-mode fail 2>&1 | tee translate_run.log
 
           python scripts/build_public_archives.py
@@ -194,7 +195,7 @@ jobs:
             echo "### English summary usage"
             grep -E '^(api_calls|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd)' summarize_run.log || true
             echo "### zh-Hans refresh usage"
-            grep -E '^(api_calls|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(api_calls|title_reference_retries|title_reference_retry_successes|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
 
           if [ "$after" -lt "$before" ]; then

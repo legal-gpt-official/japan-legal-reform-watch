@@ -275,6 +275,7 @@ class TestSummaryBatch(unittest.TestCase):
             "python scripts/translate_updates.py",
             '--limit "$total"',
             '--max-cost-usd "$TRANSLATION_MAX_COST_USD"',
+            "--retry-kana-title-without-ja-reference",
             "japanese_signature",
             'git push origin "HEAD:main"',
             "group: japan-legal-reform-data-writer",

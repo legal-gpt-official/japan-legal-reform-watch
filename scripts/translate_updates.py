@@ -51,6 +51,7 @@ Usage
 -----
     $env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --batch
+    python scripts/translate_updates.py --locale zh-Hans --limit 30 --max-cost-usd 0.50 --retry-kana-title-without-ja-reference
     python scripts/translate_updates.py --locale zh-Hans --limit 30 --no-api
 
 Python 3.11+. Requires the `anthropic` SDK only when actually calling the API.
@@ -1071,6 +1072,14 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--retry-kana-title-without-ja-reference",
+        action="store_true",
+        help=(
+            "If a direct result is rejected for Japanese kana in the Chinese title, retry that "
+            "item once without title_ja reference context, within the same call/cost budgets."
+        ),
+    )
+    parser.add_argument(
         "--batch",
         action="store_true",
         help="Use the asynchronous Anthropic Message Batches API (50%% token discount).",
@@ -1104,6 +1113,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.batch and args.omit_title_ja_reference:
         parser.error("--omit-title-ja-reference is supported only for direct calls")
+    if args.batch and args.retry_kana_title_without_ja_reference:
+        parser.error("--retry-kana-title-without-ja-reference is supported only for direct calls")
     if args.max_cost_usd is not None and args.max_cost_usd <= 0:
         parser.error("--max-cost-usd must be positive")
     if args.batch and args.max_cost_usd is not None:
@@ -1167,6 +1178,8 @@ def main(argv: list[str] | None = None) -> int:
     provider_error_type = "none"
     candidate_reasons: dict[str, int] = {}
     batch_id = ""
+    title_reference_retries = 0
+    title_reference_retry_successes = 0
     usage_totals = message_usage(None)
     estimated_cost_usd = 0.0
     cost_estimate_complete = True
@@ -1293,8 +1306,34 @@ def main(argv: list[str] | None = None) -> int:
                 fields = {field: normalize_dates(result[field].strip()) for field in TRANSLATION_FIELDS}
                 # Title-specific quality gate: if the Chinese title is malformed we
                 # reject the WHOLE item's translation (even if the body is fine),
-                # do not cache it, and fall back to English. No auto-retry.
+                # do not cache it, and fall back to English. A caller may opt into
+                # one narrowly scoped retry that removes only the title_ja context.
                 title_errs = title_quality_errors(fields["title"])
+                if (
+                    title_errs
+                    and args.retry_kana_title_without_ja_reference
+                    and "title contains Japanese kana" in title_errs
+                    and api_calls < args.limit
+                    and not cost_cap_reached()
+                ):
+                    retry_item = dict(it)
+                    retry_item["title_ja"] = ""
+                    api_calls += 1
+                    title_reference_retries += 1
+                    retry_result, retry_model, retry_usage = unpack_api_outcome(
+                        request_translation(client, model, retry_item, locale)
+                    )
+                    record_outcome_usage(retry_usage, retry_model)
+                    if not valid_translation(retry_result):
+                        raise ValueError("model returned invalid/oversize recovery translation fields")
+                    fields = {
+                        field: normalize_dates(retry_result[field].strip())
+                        for field in TRANSLATION_FIELDS
+                    }
+                    title_errs = title_quality_errors(fields["title"])
+                    if not title_errs:
+                        model_used = retry_model
+                        title_reference_retry_successes += 1
                 if title_errs:
                     quality_rejected += 1
                     if had_locale:
@@ -1392,7 +1431,8 @@ def main(argv: list[str] | None = None) -> int:
         "provider_aborted_items=%d api_calls_avoided=%d cost_budget_skipped=%d "
         "input_tokens=%d output_tokens=%d cache_creation_input_tokens=%d "
         "cache_read_input_tokens=%d estimated_cost_usd=%.6f cost_estimate_complete=%s "
-        "max_cost_usd=%s batch=%s batch_id=%s",
+        "max_cost_usd=%s title_reference_retries=%d title_reference_retry_successes=%d "
+        "batch=%s batch_id=%s",
         len(items), locale, cache_hits, api_calls, translated, failed,
         quality_rejected, skipped_no_budget, stale_translations_removed,
         cache_diff["added"], cache_diff["updated"], cache_diff["removed"],
@@ -1402,6 +1442,7 @@ def main(argv: list[str] | None = None) -> int:
         usage_totals["input_tokens"], usage_totals["output_tokens"],
         usage_totals["cache_creation_input_tokens"], usage_totals["cache_read_input_tokens"],
         estimated_cost_usd, cost_estimate_complete, args.max_cost_usd,
+        title_reference_retries, title_reference_retry_successes,
         args.batch, batch_id,
     )
     for failure in gate_failures:
@@ -1417,6 +1458,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")
     print(f"api_calls                 : {api_calls}")
+    print(f"title_reference_retries   : {title_reference_retries}")
+    print(f"title_reference_retry_successes: {title_reference_retry_successes}")
     print(f"translated_items          : {translated}")
     print(f"failed_items              : {failed}")
     print(f"quality_rejected_items    : {quality_rejected}")

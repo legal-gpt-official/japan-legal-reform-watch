@@ -501,6 +501,45 @@ class TestUsageAndCostSafety(TranslateTestBase):
         with self.assertRaises(SystemExit):
             tu.main(["--batch", "--max-cost-usd", "1.00"])
 
+    def test_kana_title_retry_omits_reference_only_for_recovery_call(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        calls = []
+        usage = {
+            "input_tokens": 100,
+            "output_tokens": 50,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+        }
+
+        def fake_request(client, model, request_item, locale):
+            calls.append(request_item.get("title_ja"))
+            fields = good_translation()
+            if request_item.get("title_ja"):
+                fields["title"] = "公开征求意见：テスト规则"
+            return fields, "claude-sonnet-5", usage
+
+        tu.make_client = lambda: object()
+        tu.request_translation = fake_request
+        rc, out = self.run_main([
+            "--locale", LOCALE,
+            "--limit", "10",
+            "--model", "claude-sonnet-5",
+            "--max-cost-usd", "0.50",
+            "--retry-kana-title-without-ja-reference",
+        ])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls, [item["title_ja"], ""])
+        summary = parse_summary(out)
+        self.assertEqual(summary["api_calls"], "2")
+        self.assertEqual(summary["title_reference_retries"], "1")
+        self.assertEqual(summary["title_reference_retry_successes"], "1")
+        self.assertEqual(summary["translated_items"], "1")
+        self.assertEqual(summary["quality_rejected_items"], "0")
+        self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
     def test_new_translation_is_cached_with_metadata(self):
         item = sample_item()
         self.write_input([item])
