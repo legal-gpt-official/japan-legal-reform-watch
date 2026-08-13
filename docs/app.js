@@ -1614,6 +1614,16 @@
     return !!(block && typeof block.title === "string" && block.title.trim());
   }
 
+  function hasCompleteTranslation(update) {
+    const block = localeBlock(update);
+    return !!(
+      block &&
+      Object.keys(TRANSLATABLE).every(
+        (field) => typeof block[field] === "string" && block[field].trim()
+      )
+    );
+  }
+
   function hasJapaneseSummary(update) {
     return ["summary_ja", "business_impact_ja", "recommended_action_ja"].every(
       (field) => plainText(update && update[field])
@@ -1628,6 +1638,32 @@
       return update.summary_ja_source || "claude";
     }
     return update.summary_source;
+  }
+
+  function localizedCoverageMetric(updates) {
+    if (filters.lang === "ja") {
+      return {
+        dataStatusKey: "ds_japanese_ai_summaries",
+        metaKey: "meta_japanese_ai",
+        count: updates.filter(
+          (update) =>
+            hasJapaneseSummary(update) &&
+            (update.summary_ja_source || "claude") === "claude"
+        ).length,
+      };
+    }
+    if (filters.lang === "zh-Hans") {
+      return {
+        dataStatusKey: "ds_chinese_translations",
+        metaKey: "meta_chinese_translations",
+        count: updates.filter((update) => hasCompleteTranslation(update)).length,
+      };
+    }
+    return {
+      dataStatusKey: "ds_english_ai_summaries",
+      metaKey: "meta_english_ai",
+      count: updates.filter((update) => update.summary_source === "claude").length,
+    };
   }
 
   function hasLocalizedBody(update) {
@@ -2286,12 +2322,13 @@
 
   function renderDataStatus() {
     if (!dataStatusList) return;
+    const coverage = localizedCoverageMetric(allUpdates);
     const stats = [
       [I18N.t("ds_period"), periodDisplayLabel(filters.period)],
       [I18N.t("ds_updates"), String(allUpdates.length)],
       [I18N.t("ds_archive_total"), String(archiveManifest.total_items)],
       [I18N.t("ds_sources"), String(distinctCount(allUpdates, "source_name"))],
-      [I18N.t("ds_ai_summaries"), String(allUpdates.filter((u) => activeSummarySource(u) === "claude").length)],
+      [I18N.t(coverage.dataStatusKey), String(coverage.count)],
       [
         I18N.t("ds_open_pc"),
         String(allUpdates.filter((u) => u.stage === "Public Comment Open").length),
@@ -2313,15 +2350,15 @@
   }
 
   function renderResultsMeta(filtered) {
-    // AI summary count and last-checked date cover the FULL filtered set,
-    // not only the cards currently rendered on screen.
+    // Localized content coverage and last-checked date cover the FULL filtered
+    // set, not only the cards currently rendered on screen.
     const shown = Math.min(visibleCount, filtered.length);
-    const aiSummaryCount = filtered.filter((u) => activeSummarySource(u) === "claude").length;
+    const coverage = localizedCoverageMetric(filtered);
     const lastChecked = maxLastChecked(filtered);
     const parts = [
       I18N.t("meta_showing", { shown: shown, total: filtered.length }),
       I18N.t("meta_total", { count: allUpdates.length }),
-      I18N.t("meta_ai", { count: aiSummaryCount }),
+      I18N.t(coverage.metaKey, { count: coverage.count }),
     ];
     if (lastChecked) {
       parts.push(I18N.t("meta_last_checked", { date: lastChecked }));

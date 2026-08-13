@@ -36,7 +36,9 @@
       ds_updates: "Updates",
       ds_archive_total: "Archive total",
       ds_sources: "Sources represented",
-      ds_ai_summaries: "AI summaries",
+      ds_english_ai_summaries: "English AI summaries",
+      ds_japanese_ai_summaries: "Japanese AI summaries",
+      ds_chinese_translations: "Chinese translations",
       ds_open_pc: "Open public comments",
       ds_newly_detected: "Newly detected (7d)",
       ds_latest_checked: "Latest checked",
@@ -274,7 +276,9 @@
       // Results meta
       meta_showing: "Showing {shown} of {total} matching updates",
       meta_total: "{count} total updates",
-      meta_ai: "AI summaries: {count}",
+      meta_english_ai: "English AI summaries: {count}",
+      meta_japanese_ai: "Japanese AI summaries: {count}",
+      meta_chinese_translations: "Chinese translations: {count}",
       meta_last_checked: "Last checked: {date}",
 
       // Copy summary section labels (used by the localized copy builder)
@@ -348,7 +352,9 @@
       ds_updates: "更新件数",
       ds_archive_total: "アーカイブ総数",
       ds_sources: "情報源数",
-      ds_ai_summaries: "AI要約数",
+      ds_english_ai_summaries: "英語AI要約数",
+      ds_japanese_ai_summaries: "日本語AI要約数",
+      ds_chinese_translations: "中国語翻訳数",
       ds_open_pc: "意見募集中",
       ds_newly_detected: "新規検出（7日間）",
       ds_latest_checked: "最終確認日",
@@ -552,7 +558,9 @@
 
       meta_showing: "該当 {total} 件中 {shown} 件を表示",
       meta_total: "全 {count} 件",
-      meta_ai: "AI要約：{count} 件",
+      meta_english_ai: "英語AI要約：{count} 件",
+      meta_japanese_ai: "日本語AI要約：{count} 件",
+      meta_chinese_translations: "中国語翻訳：{count} 件",
       meta_last_checked: "最終確認日：{date}",
 
       cs_title: "日本語タイトル",
@@ -609,7 +617,9 @@
       ds_updates: "更新总数",
       ds_archive_total: "档案总数",
       ds_sources: "涵盖来源",
-      ds_ai_summaries: "AI摘要数",
+      ds_english_ai_summaries: "英文AI摘要数",
+      ds_japanese_ai_summaries: "日文AI摘要数",
+      ds_chinese_translations: "中文翻译数",
       ds_open_pc: "公开征求意见中",
       ds_newly_detected: "新近收录（7天）",
       ds_latest_checked: "最后确认",
@@ -815,7 +825,9 @@
 
       meta_showing: "显示 {total} 条匹配更新中的 {shown} 条",
       meta_total: "共 {count} 条更新",
-      meta_ai: "AI摘要：{count}",
+      meta_english_ai: "英文AI摘要：{count}",
+      meta_japanese_ai: "日文AI摘要：{count}",
+      meta_chinese_translations: "中文翻译：{count}",
       meta_last_checked: "最后确认：{date}",
 
       cs_title: "中文标题",

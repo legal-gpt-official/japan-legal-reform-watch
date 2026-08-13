@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "japanese-backfill-20260812"
-APP_CACHE_BUSTER = "japanese-backfill-20260812"
+CACHE_BUSTER = "localized-coverage-20260813"
+APP_CACHE_BUSTER = "localized-coverage-20260813"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "japanese-backfill-20260812"
+I18N_CACHE_BUSTER = "localized-coverage-20260813"
 
 
 def object_body(name: str) -> str:
@@ -285,7 +285,7 @@ class TestAppJsUrlState(unittest.TestCase):
         for snippet in (
             "function renderDataStatus",
             "function distinctCount",
-            'activeSummarySource(u) === "claude"',
+            "localizedCoverageMetric(allUpdates)",
             'u.stage === "Public Comment Open"',
             "isNewlyDetected(u)",
             "maxLastChecked(allUpdates)",
@@ -302,6 +302,28 @@ class TestAppJsUrlState(unittest.TestCase):
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, STYLE_CSS)
+
+    def test_content_coverage_metric_is_explicit_for_each_language(self):
+        for snippet in (
+            "function hasCompleteTranslation",
+            "function localizedCoverageMetric",
+            'dataStatusKey: "ds_english_ai_summaries"',
+            'metaKey: "meta_english_ai"',
+            'dataStatusKey: "ds_japanese_ai_summaries"',
+            'metaKey: "meta_japanese_ai"',
+            'dataStatusKey: "ds_chinese_translations"',
+            'metaKey: "meta_chinese_translations"',
+            "hasJapaneseSummary(update)",
+            "hasCompleteTranslation(update)",
+            'update.summary_source === "claude"',
+            "I18N.t(coverage.dataStatusKey)",
+            "I18N.t(coverage.metaKey, { count: coverage.count })",
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS)
+
+        self.assertNotIn('I18N.t("ds_ai_summaries")', APP_JS)
+        self.assertNotIn('I18N.t("meta_ai"', APP_JS)
 
     def test_public_comment_closed_flows_through_stage_driven_ui(self):
         # Stage correction happens in the generated data. Every UI consumer
