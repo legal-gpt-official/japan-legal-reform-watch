@@ -252,6 +252,25 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--limit 100", command)
         self.assertIn("--api-limit 30", command)
 
+    def test_daily_workflow_maintains_japanese_with_cost_and_call_caps(self):
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("name: Maintain Japanese summaries", workflow)
+        self.assertIn("--all-items", workflow)
+        self.assertIn("--japanese-only", workflow)
+        self.assertIn("--api-limit 30", workflow)
+        self.assertIn("--parallel 4", workflow)
+        self.assertIn("--max-cost-usd 0.50", workflow)
+        self.assertIn("Japanese summary provider unavailable", workflow)
+        self.assertIn("s/^provider_error_type *: //p", workflow)
+        self.assertIn("estimated_cost_usd", workflow)
+        self.assertLess(
+            workflow.index("name: Maintain Japanese summaries"),
+            workflow.index("name: Translate Simplified Chinese updates"),
+        )
+
     def test_japanese_backfill_workflow_is_direct_resumable_and_serialized(self):
         workflow = (
             Path(__file__).resolve().parents[1]

@@ -1294,10 +1294,21 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         # Appears in both the change check and the git add list.
         self.assertGreaterEqual(self.workflow.count("data/translation_cache.json"), 2)
 
-    def test_api_key_only_exposed_to_summarize_and_translate(self):
-        self.assertEqual(
-            self.workflow.count("ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}"), 2
+    def test_api_key_only_exposed_to_ai_summary_and_translation_steps(self):
+        key_line = "ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}"
+        ai_steps = (
+            "name: Summarize top updates",
+            "name: Maintain Japanese summaries",
+            "name: Translate Simplified Chinese updates",
         )
+
+        self.assertEqual(self.workflow.count(key_line), len(ai_steps))
+        for step_name in ai_steps:
+            step_start = self.workflow.index(step_name)
+            step_end = self.workflow.find("\n      - name:", step_start + len(step_name))
+            if step_end == -1:
+                step_end = len(self.workflow)
+            self.assertEqual(self.workflow[step_start:step_end].count(key_line), 1)
 
     def test_source_health_and_action_pins_preserved(self):
         self.assertIn("uses: actions/checkout@v5", self.workflow)

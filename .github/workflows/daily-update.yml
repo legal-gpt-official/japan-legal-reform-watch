@@ -61,6 +61,33 @@ jobs:
         # while bounding new Opus calls to 30 per daily run. Cache hits are free.
         run: python scripts/summarize_updates.py --limit 100 --api-limit 30 --batch
 
+      # Maintain Japanese coverage for newly published or source-changed items.
+      # Existing complete Japanese summaries are cache hits and cost nothing.
+      # Direct calls are scheduled in waves of four so a provider-wide billing
+      # failure stops unsent work; measured token cost also stops at USD 0.50
+      # (with at most three in-flight responses of bounded overshoot).
+      - name: Maintain Japanese summaries
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+        run: |
+          set -o pipefail
+          python scripts/summarize_updates.py \
+            --all-items \
+            --japanese-only \
+            --api-limit 30 \
+            --parallel 4 \
+            --max-cost-usd 0.50 2>&1 | tee japanese_summary_run.log
+          {
+            echo "### Japanese summary maintenance"
+            grep -E '^(api_calls|japanese_summarized_items|japanese_failed_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd)' japanese_summary_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
+          if grep -Eq '^provider_status *: unavailable' japanese_summary_run.log; then
+            ptype=$(sed -n 's/^provider_error_type *: //p' japanese_summary_run.log | head -n 1)
+            echo "::warning::Japanese summary provider unavailable: ${ptype}"
+            echo "Japanese summary provider unavailable: ${ptype}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       # Optional Simplified-Chinese translation. Runs AFTER summarize so it
       # translates the final English (AI where available, rule-based otherwise),
       # and re-checks every translation against the current English via source_hash.
