@@ -1,14 +1,14 @@
 [
   {
     "id": "raw-fb9a1e7e60a6b196",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect",
+    "title_en": "Ministerial Ordinance Amending Industrial Safety and Health Rules and Worker Dispatch Business Regulations",
     "title_ja": "労働安全衛生規則及び労働者派遣事業の適正な運営の確保及び派遣労働者の保護等に関する法律施行規則の一部を改正する省令",
     "area": "Labor / Employment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item refers to a ministerial ordinance (Reiwa 7 MHLW Ordinance No. 120) that partially amends the Industrial Safety and Health Regulations (Showa 47 Ministry of Labour Ordinance No. 32) and the enforcement regulations concerning the proper operation of worker dispatch businesses and the protection of dispatched workers. According to the metadata, the promulgation date is listed as 2025-12-09 with an enforcement date of 2027-01-01. The specific substantive changes are not detailed in the provided metadata.",
+    "business_impact_en": "Organizations involved in industrial safety and health obligations or worker dispatch operations could be affected by the amended requirements once they take effect.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the amended provisions and their scope before the stated enforcement date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=347M50002000032_20270101_507M60000100120",
     "published_at": "2025-12-09",
@@ -21,7 +21,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:04Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the specific content of the amendments is not described. Promulgation and enforcement dates are as stated in the metadata and should be verified against the official source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-15T21:21:38Z",
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "生效预定：修订《劳动安全卫生规则》及《劳动者派遣事业适当运营确保及派遣劳动者保护等相关法律施行规则》的省令",
+        "summary": "本条目涉及一项省令（令和7年厚生劳动省令第120号），其内容为部分修订《劳动安全卫生规则》（昭和47年劳动省令第32号）以及关于确保劳动者派遣事业适当运营及保护派遣劳动者等相关法律的施行规则。根据元数据，公布日期为2025-12-09，生效日期为2027-01-01。所提供的元数据未详细说明具体的实质性修改内容。",
+        "business_impact": "涉及劳动安全卫生义务或劳动者派遣业务的机构在修订内容生效后可能受到影响。",
+        "recommended_action": "建议在所述生效日期之前，考虑查阅e-Gov上的日文官方来源，以确认修订条款及其适用范围。"
+      }
+    }
   },
   {
     "id": "raw-6ef6b3cfba5088bb",
@@ -447,7 +459,13 @@
     "last_checked": "2026-08-13",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-14",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "労働安全衛生規則（昭和四十七年労働省令第三十二号）の一部を改正する省令（令和七年厚生労働省令第十二号）に関する法令更新情報です。原文によれば、当該改正省令は2025年2月19日に公布され、施行日は2027年4月1日とされています。",
+    "business_impact_ja": "労働安全衛生規則の改正であるため、労働安全衛生に関する社内規程や実務対応の見直しが必要となる可能性があります。施行までに準備を要する事項が生じることも考えられます。",
+    "recommended_action_ja": "改正内容の詳細や施行日については、e-Gov法令検索など日本語の公式情報源で最新の情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-15T21:22:33Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-738716f8c4bd9744",
@@ -1067,7 +1085,13 @@
     "last_checked": "2026-08-13",
     "relevance_score": 15.0,
     "first_seen_at": "2026-08-14",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則（令和七年法務省・厚生労働省令第四号）が、従来の技能実習制度に関する施行規則を改正する形で示されています。メタデータによれば公布日は2025年9月30日、施行日は2027年4月1日とされています。",
+    "business_impact_ja": "技能実習から育成就労への制度移行に伴い、外国人材の受入れや関連手続を行う事業者において、体制や運用の見直しが必要となる可能性があります。施行までの準備対応が求められることも考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容と施行日を確認することが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-15T21:22:33Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-6da65bc49919c200",
