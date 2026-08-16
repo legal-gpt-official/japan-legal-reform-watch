@@ -3125,7 +3125,15 @@
     "recommended_action_ja": "金融庁の公表資料および意見募集要領などの日本語の公式情報源で、対象範囲・改正内容・提出期限をご確認いただくことが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:39:30Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "FSA opens public comment on draft amendments to Cabinet Office Order on financial instruments business and capital...",
+    "summary_en": "The Financial Services Agency (FSA) announced a public comment procedure on a draft amendment to the Cabinet Office Order concerning financial instruments business, and on a draft amendment to the standards used to assess whether the capital adequacy of Special Financial Instruments Business Operators and their subsidiaries is appropriate in light of their assets. Both items are described as drafts open for public comment, not finalized rules. The official Japanese source on the FSA website is authoritative.",
+    "business_impact_en": "Special Financial Instruments Business Operators and their subsidiaries could be affected if these draft amendments to the relevant Cabinet Office Order and capital adequacy standards are adopted.",
+    "recommended_action_en": "Consider reviewing the official FSA announcement and the draft texts to understand the proposed changes and any comment submission period.",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title only; raw_summary was empty. The item clearly indicates a public comment on draft amendments. The rule-based 'Consumer / Advertising' label appears inconsistent with the capital-adequacy subject matter and should not be relied upon.",
+    "summarized_at": "2026-08-16T21:20:17Z",
+    "summary_model": "claude-opus-4-8"
   },
   "beefee7d78fcfbb23e2bdcd1aa1835cc12b3ed63047b3b5ede6b9a2f6e675091": {
     "summary_ja": "総務省の新着情報として、「令和8年熊本地震による災害についての特定非常災害及びこれに対し適用すべき措置の指定に関する政令」の公布・施行が掲載されています。原文によれば、当該地震による災害を特定非常災害として指定し、適用すべき措置を定める政令が公布・施行された旨が示されています。",
@@ -3133,7 +3141,15 @@
     "recommended_action_ja": "政令の適用範囲や具体的措置の詳細については、総務省の公表資料等の日本語の公式情報源をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:39:30Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Cabinet Order Designating the 2026 Kumamoto Earthquake Disaster as a Specified Emergency Disaster and Applicable...",
+    "summary_en": "According to the Ministry of Internal Affairs and Communications (MIC) new-information listing, this item concerns a Cabinet Order designating the disaster caused by the 2026 (Reiwa 8) Kumamoto Earthquake as a specified emergency disaster and specifying the measures to be applied to it. The title indicates the Cabinet Order was promulgated and put into effect. Details of the specific measures are not provided in the metadata and should be verified against the official source.",
+    "business_impact_en": "Organizations and individuals affected by the disaster may be subject to special measures such as extensions of statutory deadlines or other relief provisions, though the exact scope is not stated here.",
+    "recommended_action_en": "Review the official MIC announcement and the text of the Cabinet Order to confirm the designated measures and their applicability.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and raw summary; the specific measures and their scope are unverified. The title states promulgation and enforcement, but this should be confirmed against the authoritative Japanese source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-16T21:20:17Z",
+    "summary_model": "claude-opus-4-8"
   },
   "fe5955ced302caaa298074dea245c1cda4e9faf68eed36936dd1c62ab96352c8": {
     "summary_ja": "国税庁は、行政手続における個人番号（マイナンバー）の利用等に関する法律施行規則に基づき、国税関係手続に係る個人番号利用事務実施者が適当と認める書類等を定める件を一部改正する告示（国税庁告示第19号）を公表しています。原文は国税庁の新着情報・通達等として掲載されており、本人確認等に用いる書類の範囲に関する定めの改正に関わるものとされています。詳細な改正内容や適用時期は、提供されたメタデータからは確認できません。",
@@ -3237,7 +3253,15 @@
     "recommended_action_ja": "改正の具体的内容や適用範囲については、国税庁が公表する告示原文等の公式情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "NTA Notification Amending Rules on IT-Based Tax Administration (Notification No. 7)",
+    "summary_en": "This is a National Tax Agency (NTA) notification amending part of an existing notification (2021 NTA Notification No. 17) concerning cases specified by the Commissioner of the NTA under Article 5, Paragraph 7 of the ministerial ordinance on promoting IT-based administration for national tax-related laws. It appears in the NTA's new information and directives listing, with a listed publication date of 2026-03-31. The item is an official agency notification document provided as a PDF.",
+    "business_impact_en": "Organizations handling national tax procedures through electronic/IT-based methods may need to review how this amendment affects the cases defined by the Commissioner.",
+    "recommended_action_en": "Review the official Japanese NTA source document to confirm the scope and effect of this amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and NTA listing metadata; the specific substantive changes and effective date are not detailed in the provided text and are unverified. Triage labels (Finance/AML, Government Announcement, Medium) are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:09Z",
+    "summary_model": "claude-opus-4-8"
   },
   "72e13cc3458a62d833fe8fdfbb44ce16f19f2c211a96c836c3b3bb93dd972968": {
     "summary_ja": "国税庁は、国税関係法令に係る情報通信技術を活用した行政の推進等に関する省令第五条の二第一項に規定する国税庁長官が定める申請等を定める件（令和3年国税庁告示第18号）の一部を改正する告示（国税庁告示第八号）を公表しています。公表日は2026年3月31日とされ、PDF形式の資料として国税庁の新着情報・通達等に掲載されています。原文からは具体的な改正内容の詳細は明示されていません。",
@@ -3245,7 +3269,15 @@
     "recommended_action_ja": "改正内容や適用範囲については、国税庁が公表する告示原文および関連する日本語の公式情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "NTA Notification Amending Rules on Designated Applications for IT-Based Tax Administration Procedures",
+    "summary_en": "This is a National Tax Agency (NTA) notification (告示第八号) that partially amends an earlier notification (2021 NTA Notification No. 18) concerning applications designated by the NTA Commissioner under Article 5-2, paragraph 1 of the ministerial ordinance on promoting IT-based administration for national tax laws. The item is listed among NTA new information and directives. Full details are contained in the linked official PDF and are not included in the provided metadata.",
+    "business_impact_en": "Organizations that submit national tax applications electronically may be affected if the amendment changes which procedures are designated for IT-based handling.",
+    "recommended_action_en": "Review the official NTA notification PDF to confirm the specific changes and their applicability to your circumstances.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and source metadata; the substantive content of the amendment is in the PDF and was not provided. Preliminary 'Finance / AML' and impact labels are keyword-based triage only and unverified.",
+    "summarized_at": "2026-08-16T21:20:09Z",
+    "summary_model": "claude-opus-4-8"
   },
   "aab51fbe87634248c45eb79491d6321413e1b86a8d57398021b6057957109841": {
     "summary_ja": "国税庁は、国税関係法令に係る情報通信技術を活用した行政の推進等に関する省令第五条第三項第三号に規定する、国税庁長官が定める添付書面等及び国税庁長官が定めるものを定める件（平成31年国税庁告示第7号）の一部を改正する件（国税庁告示第九号）を公表しています。原文のメタデータからは、当該告示の一部改正に関する新着情報・通達等であることが確認できます。公表日は2026年3月31日と示されています。",
@@ -3253,7 +3285,15 @@
     "recommended_action_ja": "国税庁の公式サイトに掲載された告示原文（PDF）を確認し、改正の具体的内容や適用範囲を精査されることをご検討ください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "NTA notification amending rules on attachments designated by the NTA Commissioner (Notification No. 9)",
+    "summary_en": "This is a National Tax Agency (NTA) notification that partially amends an earlier notification (Heisei 31 NTA Notification No. 7) concerning attached documents and items designated by the NTA Commissioner under Article 5, Paragraph 3, Item 3 of the ministerial ordinance on promoting ICT-based administration for national tax laws. The item appears as an NTA notification (kokuji) published on the agency's new information/circulars page. The metadata does not provide the substantive content of the amendment.",
+    "business_impact_en": "Entities filing national tax documents electronically may need to review whether designated attachment requirements have changed, though the specific effect cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official NTA notification PDF and related ordinance to confirm the exact scope and effective timing of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the substantive content of the amendment and its effective date are not provided and are unverified. 'Government Announcement' and other labels are preliminary keyword-based triage, not authoritative.",
+    "summarized_at": "2026-08-16T21:20:09Z",
+    "summary_model": "claude-opus-4-8"
   },
   "bf5b084ca0284ed249b1008a75c9739a8c8d80254805c2ff99da1845266542fe": {
     "summary_ja": "国税庁は、情報通信技術を活用した行政の推進等に関する省令第五条第五項に規定する国税庁長官が定める添付書面等を定める件（平成31年国税庁告示第10号）の一部を改正する告示（国税庁告示第十号）を公表しています。原文はPDF形式で提供され、公表日は2026年3月31日とされています。ただし添付書面等の具体的な改正内容の詳細は、提供されたメタデータからは確認できません。",
@@ -3261,7 +3301,15 @@
     "recommended_action_ja": "国税庁の公式サイトに掲載された当該告示のPDF原文を確認し、改正内容の詳細をご確認いただくことが望まれます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "NTA Notification Amending Rules on Attachments Designated by the Commissioner Under Digital Tax Administration...",
+    "summary_en": "This is a National Tax Agency (NTA) notification (Kokuji No. 10) that partially amends an earlier notification (Heisei 31 NTA Notification No. 10) designating attachment documents specified by the NTA Commissioner under Article 5, Paragraph 5 of the ministerial ordinance concerning the promotion of administration using information and communications technology for national tax-related laws. The item appears in the NTA's new information and circulars listing and is provided as a PDF. The specific content and effective date are not detailed in the provided metadata.",
+    "business_impact_en": "Changes to the designated attachment documents for electronic national tax procedures could affect how certain tax filings or submissions are prepared, though the practical effect cannot be determined from this metadata alone.",
+    "recommended_action_en": "Review the official Japanese NTA notification at the source URL to determine the exact scope, affected documents, and any effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the amendment's specific content, scope, and effective date are unverified. Triage labels (Finance/AML, Government Announcement, Medium) are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:09Z",
+    "summary_model": "claude-opus-4-8"
   },
   "18430f091021b3c62e0620b253196f1cdf19ecdae903f1d63c865b5b6d15e986": {
     "summary_ja": "「がん登録等の推進に関する法律施行規則等の一部を改正する省令」（令和八年厚生労働省令第十五号）に関する法令更新情報です。原文によれば、対象法令は地域における医療及び介護の総合的な確保の促進に関する法律施行規則（平成元年厚生省令第三十四号）で、公布日は2026年2月19日、施行日は2027年1月1日とされています。",
@@ -3269,7 +3317,15 @@
     "recommended_action_ja": "具体的な改正内容や施行日等については、e-Gov法令検索など日本語の公式情報源で原文を確認されることをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Amending Enforcement Rules on Cancer Registration Promotion and Related Rules",
+    "summary_en": "This item is a ministerial ordinance (Reiwa 8 MHLW Ordinance No. 15) that partially amends the Enforcement Rules of the Act on Promotion of Cancer Registration and related rules, according to the provided metadata. The metadata lists a promulgation date of 2026-02-19 and a stated effective date of 2027-01-01. The affected law is noted as the enforcement rules related to the comprehensive securing of medical and long-term care in local areas.",
+    "business_impact_en": "Organizations involved in healthcare, cancer registration, or medical and long-term care administration may be affected and could need to review any resulting procedural changes.",
+    "recommended_action_en": "Consult the official e-Gov source to verify the scope, effective date, and specific amendments before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and metadata; the metadata lists both cancer registration rules and medical/long-term care securing rules, which is ambiguous. The 2027-01-01 effective date is stated in the metadata but should be verified against the official source.",
+    "summarized_at": "2026-08-16T21:20:17Z",
+    "summary_model": "claude-opus-4-8"
   },
   "53ab6c4c0065ee2d8e56a00b18b38330124385db7c79a5b8281c78b95944dba7": {
     "summary_ja": "厚生労働省医薬局監視指導・麻薬対策課より、医薬品医療機器等法施行規則第二百十六条の二第一項に基づき厚生労働大臣が指定する医薬品及び期間の一部を改正する件（案）について、意見募集が行われています。案の公示日は2026年7月14日、受付締切は2026年8月14日00:00とされています。現時点では改正案の段階であり、内容が確定したものではありません。",
@@ -3285,7 +3341,15 @@
     "recommended_action_ja": "改正案の具体的な内容や意見募集の期限等については、金融庁の公式ページ等の日本語の一次情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Public Comment Opened on Draft Cabinet Office Order Amending Definitions Under Article 2 of the FIEA",
+    "summary_en": "The Financial Services Agency has announced the start of a public comment period on a draft Cabinet Office Order that would partially amend the order concerning definitions under Article 2 of the Financial Instruments and Exchange Act. This is a proposal open for public comment and not a finalized or enacted measure. Details of the specific amendments are not included in the provided metadata.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act may be affected if the proposed changes to defined terms alter how certain instruments or activities are classified, though the specific scope is unclear from the metadata.",
+    "recommended_action_en": "Consider reviewing the official Japanese source and the draft order to assess whether the proposed definition changes are relevant to your activities.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title; the raw summary was empty and the specific content of the amendments is unverified. Preliminary labels (area 'Consumer / Advertising', stage 'Public Comment Open') are keyword-based triage only and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:24Z",
+    "summary_model": "claude-opus-4-8"
   },
   "3d60fbf3f4dc1d7ab4ba8f50e6758b5c5ed84b0de7dfafdd4f9c74bde2acb54e": {
     "summary_ja": "e-Gov法令検索の更新一覧に、地方公務員等共済組合法施行規則（昭和三十七年自治省令第二十号）の一部を改正する省令（令和八年総務省令第九十七号）が掲載されました。原文によると、公布日は2026年7月31日、施行日は2026年8月1日とされています。改正の具体的内容はメタデータからは示されていません。",
@@ -3293,7 +3357,15 @@
     "recommended_action_ja": "改正省令の具体的な内容や施行日については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of the Local Public Service Mutual Aid Association Act",
+    "summary_en": "This item concerns a ministerial ordinance (MIC Ordinance No. 97 of 2026) that partially amends the Enforcement Regulations of the Local Public Service Mutual Aid Association Act (originally Ordinance No. 20 of 1962). According to the provided metadata, the amending ordinance has a promulgation date of 2026-07-31 and a stated enforcement date of 2026-08-01. The specific substantive changes are not described in the metadata.",
+    "business_impact_en": "Organizations connected to local public service mutual aid associations or related benefits administration may need to consider whether these regulatory amendments affect their processes.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the amendment's content, promulgation, and enforcement dates.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the substance of the amendments is not described. Promulgation (2026-07-31) and enforcement (2026-08-01) dates are as stated in the raw summary and should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-08-16T21:20:24Z",
+    "summary_model": "claude-opus-4-8"
   },
   "1c84860713a7cfd070c3650a62b2ede9c393e7ca3a1c029b7fcdf3a7ad37031b": {
     "summary_ja": "厚生労働省労働基準局安全衛生部化学物質対策課は、化学物質による健康障害防止のための濃度の基準の適用等に関する技術上の指針の一部改正案について意見募集を行っています。案の公示日は2026年8月7日、意見の受付締切は2026年9月6日23時50分とされ、カテゴリーは労働に分類されています。現時点では意見募集の段階であり、改正内容が確定したものではありません。",
@@ -3301,7 +3373,15 @@
     "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページや厚生労働省の公式情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Public comment: draft partial amendment to technical guidelines on concentration standards to prevent...",
+    "summary_en": "This is a public comment consultation on a draft partial amendment to the technical guidelines concerning the application of concentration standards intended to prevent health impairment caused by chemical substances. According to the metadata, the draft was published on 2026-08-07 with a comment submission deadline of 2026-09-06 23:50, under the labor category. The responsible body is stated to be the Chemical Hazards Control Division, Safety and Health Department, Labour Standards Bureau, Ministry of Health, Labour and Welfare.",
+    "business_impact_en": "Organizations that manage occupational exposure to chemical substances may wish to note that changes to these technical guidelines could affect workplace concentration standard practices.",
+    "recommended_action_en": "Review the official e-Gov public comment notice and the underlying Japanese source to confirm the scope, content, and deadline of the draft amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule. Preliminary 'Energy / Environment' label appears to conflict with the labor/occupational-health nature of the item; details unverified against the authoritative source.",
+    "summarized_at": "2026-08-16T21:20:24Z",
+    "summary_model": "claude-opus-4-8"
   },
   "2f5030ce2488cc41c15d736a1cc6b8ff86570ab3ae98a0a62302aebebbce50e6": {
     "summary_ja": "環境省の報道発表によれば、環境影響評価法施行令の一部を改正する政令が閣議決定された旨が公表されています。原文のraw_summaryには「総合政策」との記載があるのみで、改正内容の詳細はメタデータからは確認できません。",
@@ -3309,7 +3389,15 @@
     "recommended_action_ja": "環境省の公式報道発表および政令の原文を確認し、改正の具体的内容と施行時期をご確認いただくことが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Cabinet Decision on Partial Amendment to Enforcement Order of the Environmental Impact Assessment Act",
+    "summary_en": "The Ministry of the Environment (MOE) issued a press release regarding the Cabinet decision on a Cabinet Order partially amending the Enforcement Order of the Environmental Impact Assessment Act. The provided metadata categorizes the item under general policy ('総合政策') but does not include the substantive details of the amendment. This is an unofficial English summary; the Japanese source is authoritative.",
+    "business_impact_en": "Organizations subject to environmental impact assessment requirements could be affected if the amendment changes applicable procedures or thresholds, though the specific effects are not described in the available metadata.",
+    "recommended_action_en": "Consider reviewing the official MOE press release and the text of the amended Cabinet Order to understand the specific changes and their applicability.",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and limited metadata; the substance of the amendment and its effective date are not provided. A Cabinet decision on the order is indicated, but promulgation or entry into force is not confirmed by the metadata.",
+    "summarized_at": "2026-08-16T21:20:31Z",
+    "summary_model": "claude-opus-4-8"
   },
   "8f97ad7d013196ff60ebb928d9008aaa68a80b3db923fdcdf07228bb5e3cd998": {
     "summary_ja": "国税庁の新着・通達情報として、「令和８年中に相続等により取得した原子力発電所周辺の避難指示区域内に存する土地等の評価について」の法令解釈通達（案）に対する意見募集の結果に関する情報が公表されています。詳細はe-Govの意見募集ページへのリンクを通じて提供されているとされています。メタデータからは、意見募集の結果公表段階にあることがうかがえます。",
@@ -3317,7 +3405,15 @@
     "recommended_action_ja": "国税庁およびe-Govの公式情報を参照し、通達案および意見募集結果の具体的な内容と最新の状況をご確認いただくことをご検討ください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "NTA: Results of Public Comment on Draft Interpretive Notice for Valuing Land in Evacuation Zones Near Nuclear...",
+    "summary_en": "Japan's National Tax Agency has published the results of a public comment consultation on a draft law-interpretation notice concerning the valuation of land and similar assets located within evacuation-designated zones around nuclear power plants, acquired by inheritance or similar means during 2026 (Reiwa 8). This item reflects the outcome of the public comment process for the draft notice, per the provided metadata. The official Japanese source, linked via e-Gov, remains authoritative.",
+    "business_impact_en": "This could affect how affected land in nuclear-plant evacuation zones acquired through inheritance is valued for tax purposes, potentially relevant to parties handling such estates.",
+    "recommended_action_en": "Consider reviewing the official Japanese notice and consultation results via the linked e-Gov and NTA sources to confirm the scope and any finalized details.",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title, which indicates published results of public comment on a draft interpretive notice; substantive details of the notice and outcomes are not provided. Preliminary 'Finance/AML' label appears loosely related and should not be relied upon.",
+    "summarized_at": "2026-08-16T21:20:17Z",
+    "summary_model": "claude-opus-4-8"
   },
   "6b17e85c5b30893f21cda277afe760ad7700b5be65edaf3c5796b4ab690e0ea5": {
     "summary_ja": "総務省は、電波法による旅費等の額を定める政令の一部を改正する政令案に係る意見募集の結果を公表しました。本情報はタイトルおよび概要に基づくものであり、改正内容の詳細や具体的な結果については原文で確認する必要があります。",
@@ -3325,7 +3421,15 @@
     "recommended_action_ja": "総務省の公式情報源で意見募集の結果および政令案の具体的内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Results of Public Comment on Draft Cabinet Order Amending Travel Expense Amounts Under the Radio Act",
+    "summary_en": "The Ministry of Internal Affairs and Communications (MIC) has published the results of a public comment procedure concerning a draft Cabinet Order that would partially amend the order setting travel expense and related amounts under the Radio Act. This item reflects the outcome of a public consultation on the proposed amendment; the metadata does not indicate whether the order has been finalized or come into force.",
+    "business_impact_en": "Organizations affected by radio-related administrative procedures under the Radio Act may wish to note potential changes to travel expense and related amounts, though the specific effects are not detailed in the provided metadata.",
+    "recommended_action_en": "Review the official MIC source to confirm the content, scope, and status of the draft Cabinet Order and the published comment results.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; details of the amendment and its status are unverified. Note the preliminary 'Data / Privacy / AI' label appears inconsistent with the title, which concerns travel expenses under the Radio Act, so triage labels should be treated with caution.",
+    "summarized_at": "2026-08-16T21:20:24Z",
+    "summary_model": "claude-opus-4-8"
   },
   "4ea67e9dc1d513da64efecfb80dfe85e57b766ba76b28c68d167b23c999b2a1f": {
     "summary_ja": "金融庁は、財務諸表等規則および連結財務諸表規則に規定する金融庁長官が定める企業会計の基準を指定する件の一部を改正する件について、その公布およびパブリックコメントの結果を公表しました。本件は財務諸表・連結財務諸表の作成における指定企業会計基準に関わる改正とされています。",
@@ -3333,7 +3437,15 @@
     "recommended_action_ja": "改正の具体的な内容や適用時期、パブリックコメント結果の詳細については、金融庁が公表する日本語の公式情報源をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "FSA: Publication and Public Comment Results on Amendments to Designated Accounting Standards (Financial &...",
+    "summary_en": "The Financial Services Agency (FSA) announced the publication of amendments to the notices designating the accounting standards set by the FSA Commissioner under the rules on terminology, forms, and preparation methods for financial statements and for consolidated financial statements. The announcement also states that the results of the related public comment process have been published. This is an official regulatory announcement covering both the promulgation of these amendments and the public comment outcome, per the item title.",
+    "business_impact_en": "Entities that prepare financial statements or consolidated financial statements under these rules may need to consider how the amended designated accounting standards could affect their reporting.",
+    "recommended_action_en": "Review the official FSA source to confirm the specific amendments, effective timing, and public comment results before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title; raw_summary was empty and details are unverified. The title indicates both publication and public comment results, but scope and effective dates are not provided. Rule-based labels (Finance/AML, Medium) are weak triage context only and were not treated as authoritative.",
+    "summarized_at": "2026-08-16T21:20:37Z",
+    "summary_model": "claude-opus-4-8"
   },
   "d69a6e8b8749b72c9facc399274a3dfd8e2288577556524dedca6b9627375fcd": {
     "summary_ja": "こども家庭庁は、児童福祉法施行規則及び同庁が所管する法律に基づく立入検査等の際に職員が携帯する身分証明書の様式の特例に関する内閣府令の一部改正案について、意見募集を実施しています。案の公示日は2026年7月21日、受付締切は2026年8月20日23時59分とされ、カテゴリーは社会福祉に分類されています。所管はこども家庭庁支援局虐待防止対策課です。",
@@ -3341,7 +3453,15 @@
     "recommended_action_ja": "詳細および正確な内容については、e-Gov意見募集ページ等の日本語の公式情報源をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Public comment: draft Cabinet Office order amending rules on staff ID certificate formats for on-site inspections",
+    "summary_en": "This item is a public comment consultation on a draft Cabinet Office order that would partially amend provisions concerning the format of certificates identifying officials who carry them during on-site inspections under the Child Welfare Act Enforcement Regulations and laws administered by the Children and Families Agency. According to the metadata, the draft was published on 2026-07-21 and the comment period closes on 2026-08-20 23:59. The listed contact is the Abuse Prevention Measures Division, Support Bureau, Children and Families Agency.",
+    "business_impact_en": "Entities subject to on-site inspections under the relevant child welfare laws may wish to note potential changes to the format of officials' identification certificates.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the scope of the draft and the public comment period before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule. Details unverified against the official source.",
+    "summarized_at": "2026-08-16T21:20:45Z",
+    "summary_model": "claude-opus-4-8"
   },
   "1f5181d11c1f73dd2c9632f9bcea357f0b7a729f6f80b3bd02ff440351149141": {
     "summary_ja": "金融庁は、「投資法人の計算に関する規則の一部を改正する内閣府令」の公布と、これに関するパブリックコメントの結果を公表したとされています。原文では公布が行われた旨が示されていますが、施行時期など詳細は本メタデータからは確認できません。",
@@ -3349,7 +3469,15 @@
     "recommended_action_ja": "金融庁の公式ウェブサイトで、内閣府令の本文およびパブリックコメント結果の詳細をご確認いただくことが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "FSA: Promulgation of Cabinet Office Order amending rules on investment corporation accounting, and public comment...",
+    "summary_en": "The Financial Services Agency has published, according to the item title, the promulgation of a Cabinet Office Order that partially amends the Regulation on Accounting of Investment Corporations, together with the results of the related public comment process. This is an unofficial English summary of a Japanese-language announcement; the official FSA source is authoritative. No further details about the amendment's content or effective timing are provided in the metadata.",
+    "business_impact_en": "Entities involved with investment corporations may need to consider how amended accounting rules could affect their reporting practices, though the specific effects are not stated here.",
+    "recommended_action_en": "Review the official FSA source and the published public comment results to confirm the scope, content, and timing of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title; no raw summary was provided. The title references promulgation ('公布') and publication of public comment results, but specific provisions, effective dates, and scope are unverified. Preliminary labels (Finance/AML, Medium) are keyword-based triage only and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:45Z",
+    "summary_model": "claude-opus-4-8"
   },
   "8b2cc318c7070530395a178ba5accfb6ed22813395248cf67b1f242d6beacf13": {
     "summary_ja": "厚生労働省健康・生活衛生局感染症対策部予防接種課により、「予防接種実施規則の一部を改正する省令案」に関する意見募集が行われています。案の公示日は2026年7月18日、意見の受付締切は2026年8月16日8:00とされており、現時点では意見募集段階にあります。",
@@ -3365,7 +3493,15 @@
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正政令の本文および施行内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Cabinet Order Amending Provisions Related to Employment Insurance Act Reforms (Transitional Measures)",
+    "summary_en": "This item concerns a Cabinet Order amending an existing order (Heisei 21 Cabinet Order No. 296) that arranged related provisions and transitional measures accompanying partial enforcement of a law amending the Employment Insurance Act and related laws. According to the metadata, the amending Cabinet Order (Reiwa 8 Cabinet Order No. 232) has a promulgation date of 2026-07-24 and a stated enforcement date of 2026-08-01. This is an unofficial English summary based on limited metadata from e-Gov Law Search.",
+    "business_impact_en": "Organizations affected by employment insurance rules may need to consider whether these amended provisions or transitional measures could impact their obligations or processes.",
+    "recommended_action_en": "Review the official Japanese Cabinet Order text on the e-Gov source to confirm the scope, effective date, and any applicable transitional measures.",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and metadata; the metadata cites promulgation (2026-07-24) and enforcement (2026-08-01) dates and a 'law_api' source, but specific substantive changes are not described and should be verified against the official source. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:45Z",
+    "summary_model": "claude-opus-4-8"
   },
   "4b54b269695b5fc111b4c743d27f39643b6887041cdd81e42cbd70b1bfa97dfb": {
     "summary_ja": "自衛隊法施行規則（昭和二十九年総理府令第四十号）の一部を改正する省令（令和八年防衛省令第十八号）に関する法令更新情報です。原文によれば、公布日は2026年7月24日、施行日は2026年10月1日とされています。改正の具体的な内容はメタデータからは示されていません。",
@@ -3373,7 +3509,15 @@
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正省令の具体的な条文および施行日をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Amending Part of the Enforcement Regulations of the Self-Defense Forces Act",
+    "summary_en": "This item concerns a ministerial ordinance amending part of the Enforcement Regulations of the Self-Defense Forces Act (originally Prime Minister's Office Ordinance No. 40 of 1954). According to the metadata, the amending ordinance is Ministry of Defense Ordinance No. 18 of 2026, with a promulgation date of 2026-07-24 and a stated enforcement date of 2026-10-01. The specific content of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Organizations or individuals subject to Self-Defense Forces-related regulations could be affected once the amendment takes effect, though the metadata does not specify the substance of the changes.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the scope, content, and effective date of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata fields; the substantive content of the amendment is not provided. Promulgation (2026-07-24) and enforcement (2026-10-01) dates are as stated in the metadata and should be verified against the authoritative source. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:45Z",
+    "summary_model": "claude-opus-4-8"
   },
   "da6476aa861992c8812ff44e41d923b988591b246217573b6ab9b88073377085": {
     "summary_ja": "国土交通省航空局は、「重大インシデントに関する機長報告の処理要領」の改正に関する意見募集を実施しています。案の公示日は2026年7月31日、受付締切は2026年9月1日00:00とされ、カテゴリーは航空、所管は航空局安全部航空安全推進室です。現時点では意見募集の段階であり、改正内容の確定を示すものではありません。",
@@ -10733,7 +10877,15 @@
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正省令の本文および施行内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:06:01Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Health Insurance Act and Related Regulations",
+    "summary_en": "This item concerns a Ministry of Health, Labour and Welfare ministerial ordinance (Reiwa 8 MHLW Ordinance No. 117) that partially amends the Enforcement Regulations of the Health Insurance Act and related regulations, including the Enforcement Regulations of the Act on Assurance of Medical Care for Elderly People (Heisei 19 MHLW Ordinance No. 129). According to the metadata, the promulgation date is 2026-07-29 and the stated enforcement date is 2026-08-01. This is an unofficial English summary of Japanese-language metadata and must be verified against the official source.",
+    "business_impact_en": "Organizations involved in health insurance administration or medical care for elderly people may need to review whether these amended enforcement regulations affect their procedures.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, content, and applicable dates of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and metadata; the metadata lists promulgation (2026-07-29) and enforcement (2026-08-01) dates but details are unverified. The preliminary 'Finance / AML' label appears inconsistent with the health-insurance subject matter and was disregarded as unreliable triage metadata.",
+    "summarized_at": "2026-08-16T21:20:31Z",
+    "summary_model": "claude-opus-4-8"
   },
   "61e7c476e62ee225e41bc22ccab8c498b114f59c0868f7386c52cb22c236fc07": {
     "summary_ja": "e-Gov法令検索の法令更新一覧に、「健康保険法施行規則等の一部を改正する省令」（令和八年厚生労働省令第百十七号）が掲載されています。原文によれば、公布日は2026年7月29日、施行日は2026年8月1日とされ、更新対象法令として「中国残留邦人等の円滑な帰国の促進並びに永住帰国した中国残留邦人等及び特定配偶者の自立の支援に関する法律施行規則」（平成六年厚生省令第六十三号）が示されています。",
@@ -10741,7 +10893,15 @@
     "recommended_action_ja": "改正内容や施行の詳細については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:06:07Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Health Insurance Act and Related Regulations",
+    "summary_en": "This is a Ministerial Ordinance (Ordinance No. 117 of 2026, Ministry of Health, Labour and Welfare) that partially amends the Enforcement Regulations of the Health Insurance Act and related regulations. According to the metadata, the affected regulation includes the enforcement regulation relating to support for returnees remaining in China and their spouses (Ordinance No. 63 of 1994). The metadata lists a promulgation date of 2026-07-29 and an effective date of 2026-08-01.",
+    "business_impact_en": "Organizations involved in health insurance administration or related social support programs may need to review whether these amended enforcement regulations affect their procedures.",
+    "recommended_action_en": "Consult the official Japanese source at e-Gov Law Search to verify the amended provisions and their applicable dates.",
+    "confidence": "medium",
+    "ai_notes": "Based on limited API metadata; the metadata indicates promulgation on 2026-07-29 and an effective date of 2026-08-01, but this should be verified against the authoritative Japanese source. The preliminary 'Finance / AML' label appears inconsistent with the health-insurance subject matter and was not relied upon.",
+    "summarized_at": "2026-08-16T21:20:31Z",
+    "summary_model": "claude-opus-4-8"
   },
   "8c9954e671f8d9ea0c75580e761041b6a7e76306b29665f6f06df3d4a664940f": {
     "summary_ja": "「健康保険法施行規則等の一部を改正する省令」（令和八年厚生労働省令第百十七号）に関する法令更新情報です。原文によれば、対象法令は国民健康保険法施行規則（昭和三十三年厚生省令第五十三号）で、公布日は2026年7月29日、施行日は2026年8月1日とされています。更新一覧日は2026年8月12日と記載されています。",
@@ -10749,7 +10909,15 @@
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正の具体的な内容および施行日を確認されることをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:06:12Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Health Insurance Act and Others",
+    "summary_en": "This item concerns a ministerial ordinance (Reiwa 8 MHLW Ordinance No. 117) that partially amends the Enforcement Regulations of the Health Insurance Act and related regulations, including the Enforcement Regulations of the National Health Insurance Act (Showa 33 MHW Ordinance No. 53). According to the metadata, the promulgation date is listed as 2026-07-29 and the enforcement date as 2026-08-01. This entry appears in an e-Gov law update list; the official Japanese source is authoritative.",
+    "business_impact_en": "Organizations involved in health insurance administration or related compliance may be affected by changes to these enforcement regulations and could need to review updated procedural requirements.",
+    "recommended_action_en": "Review the official e-Gov source to confirm the precise scope, amended provisions, and applicable dates before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata only; specific amended content is not detailed in the provided data. The 'Finance / AML' triage label appears inconsistent with a health insurance regulation and should not be relied upon.",
+    "summarized_at": "2026-08-16T21:20:37Z",
+    "summary_model": "claude-opus-4-8"
   },
   "ed6e0f7eddbf413da7ab49c54118debba9bc90c3e29b5d7dea9f49d45f81d529": {
     "summary_ja": "e-Gov法令検索の更新一覧によると、船員保険法施行規則（昭和十五年厚生省令第五号）を対象として、「健康保険法施行規則等の一部を改正する省令」（令和八年厚生労働省令第百十七号）による改正が示されています。原文では、公布日が2026年7月29日、施行日が2026年8月1日と記載されています。",
@@ -10757,7 +10925,15 @@
     "recommended_action_ja": "改正の具体的内容や適用範囲については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:06:17Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Health Insurance Act and Related Regulations",
+    "summary_en": "This item is a ministerial ordinance (Reiwa 8 MHLW Ordinance No. 117) that partially amends the Enforcement Regulations of the Health Insurance Act and related regulations, with the metadata indicating the affected regulation includes the Enforcement Regulations of the Mariners' Insurance Act. According to the provided metadata, the promulgation date is listed as 2026-07-29 and the enforcement date as 2026-08-01. This is an unofficial English summary; the Japanese source at e-Gov is authoritative and should be verified.",
+    "business_impact_en": "Organizations handling health insurance or mariners' insurance administration may need to review whether the amended enforcement regulations affect their procedures or reporting.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the scope, affected provisions, and applicable dates of this amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based on the provided Japanese title and metadata; promulgation and enforcement dates are taken from the raw summary and not independently verified. The preliminary 'Finance / AML' and 'In Force' labels appear inconsistent with a health/mariners' insurance ordinance and should be treated only as weak triage context.",
+    "summarized_at": "2026-08-16T21:20:37Z",
+    "summary_model": "claude-opus-4-8"
   },
   "58c749451df4dbd91fb33a9aaeb7aaf77b14f5ee4b7d9338063fd1e27cabe191": {
     "summary_ja": "e-Gov法令検索の法令更新一覧により、「種苗法施行規則及び品種登録規則の一部を改正する省令」（令和八年農林水産省令第五十二号）が公表されました。原文情報では、対象法令は種苗法施行規則（平成十年農林水産省令第八十三号）であり、公布日および施行日はいずれも2026年7月24日と記載されています。改正の具体的な内容は本メタデータからは確認できません。",
@@ -10765,7 +10941,15 @@
     "recommended_action_ja": "改正の具体的な内容や施行状況については、記載のe-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:06:23Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Amending the Seeds and Seedlings Act Enforcement Regulations and Variety Registration Regulations",
+    "summary_en": "This item concerns a ministerial ordinance (Reiwa 8 MAFF Ordinance No. 52) partially amending the Enforcement Regulations of the Seeds and Seedlings Act (Heisei 10 MAFF Ordinance No. 83) and the Variety Registration Regulations. According to the provided metadata, the promulgation date and the enforcement date are both listed as 2026-07-24. The details of the amendments are not specified in the metadata and should be confirmed against the official source.",
+    "business_impact_en": "Parties involved in plant variety registration or the handling of seeds and seedlings could be affected by procedural or regulatory changes introduced by this amending ordinance.",
+    "recommended_action_en": "Consider reviewing the official e-Gov source to confirm the scope, content, and effective date of the amendments as they apply to your circumstances.",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata fields; the metadata lists both promulgation and enforcement dates as 2026-07-24, but the specific substance of the amendments is not provided. Preliminary labels are keyword-based and unverified; the official Japanese source is authoritative.",
+    "summarized_at": "2026-08-16T21:20:52Z",
+    "summary_model": "claude-opus-4-8"
   },
   "9968a34765c730e7af96e239e9e0ba948ae294929f7f5715458bed65c8369d13": {
     "summary_ja": "e-Gov法令検索の法令更新一覧により、中小企業退職金共済法施行令（昭和三十九年政令第百八十八号）の一部を改正する政令（令和八年政令第二百三十九号）が示されています。原文によれば、公布日は2026年7月29日、施行日は2026年10月1日とされています。",
@@ -16357,7 +16541,15 @@
     "recommended_action_ja": "改正の詳細や施行状況については、e-Gov法令検索など日本語の公式情報源で改正省令の本文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:09Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Mariners' Insurance Act",
+    "summary_en": "This item is a ministerial ordinance (Reiwa 8 MHLW Ordinance No. 118) partially amending the Enforcement Regulations of the Mariners' Insurance Act (originally Showa 15 Ministry of Health Ordinance No. 5). According to the provided metadata, the promulgation date is listed as 2026-07-30 and the enforcement date as 2026-08-01. The specific content of the amendments is not described in the metadata provided.",
+    "business_impact_en": "Organizations involved with mariners' insurance administration or seafarer employment may be affected and could need to review any procedural changes introduced by the amended regulations.",
+    "recommended_action_en": "Review the official Japanese source at e-Gov to confirm the amendment's exact content and the applicable enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata; the substance of the amendments is not provided. Enforcement date (2026-08-01) is taken from the metadata and should be verified against the official source. The preliminary 'Finance / AML' label appears inconsistent with the subject matter and is unverified triage metadata.",
+    "summarized_at": "2026-08-16T21:20:31Z",
+    "summary_model": "claude-opus-4-8"
   },
   "71c6e7c61e3f6b1e79908c21765d280794d2471df4f2aa458cb588033f608992": {
     "summary_ja": "e-Gov法令更新一覧によると、「特定無線設備の技術基準適合証明等に関する規則」（昭和五十六年郵政省令第三十七号）が、「電波法施行規則等の一部を改正する省令」（令和八年総務省令第九十一号）により改正されました。メタデータ上、公布日および施行日はいずれも2026年7月24日と記載されています。改正の具体的内容は本メタデータには含まれていません。",
@@ -16365,7 +16557,15 @@
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正省令の具体的な条文および施行状況をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:09Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of the Radio Act and Related Rules",
+    "summary_en": "This item concerns a ministerial ordinance (Reiwa 8 MIC Ordinance No. 91) amending the Enforcement Regulations of the Radio Act and related rules, affecting the Rules concerning Technical Regulations Conformity Certification of Specified Radio Equipment (Showa 56 Ordinance No. 37). The metadata lists a promulgation date and an enforcement date both of 2026-07-24. The listing appears in the e-Gov Law Search law-update index.",
+    "business_impact_en": "Organizations dealing with specified radio equipment or its technical conformity certification may need to review whether the amended requirements affect their products or procedures.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the scope and effective date of the amendment.",
+    "confidence": "medium",
+    "ai_notes": "Based on provided metadata; the metadata states promulgation and enforcement dates of 2026-07-24, but this should be verified against the authoritative Japanese source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-08-16T21:20:52Z",
+    "summary_model": "claude-opus-4-8"
   },
   "f9ddc1c207cb28bcaacdfd774cd804286b5c031995a6474420252b9f4254c146": {
     "summary_ja": "e-Gov法令検索の法令更新一覧により、「電波法施行規則等の一部を改正する省令」（令和八年総務省令第九十一号）が公表されました。改正対象は電波法施行規則（昭和二十五年電波監理委員会規則第十四号）で、原文によれば公布日および施行日はいずれも2026年7月24日とされています。更新一覧への掲載日は2026年8月13日と記載されています。",
@@ -16373,7 +16573,15 @@
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正省令の本文および施行内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:09Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Radio Act Enforcement Regulations",
+    "summary_en": "This item concerns a ministerial ordinance (MIC Ordinance No. 91 of 2026) that partially amends the Enforcement Regulations of the Radio Act (originally Radio Regulatory Commission Rule No. 14 of 1950). According to the metadata, the amending ordinance carries a promulgation date and an enforcement date of 2026-07-24. The entry appears in an e-Gov law update list, and the specific substance of the amendments is not detailed in the provided metadata.",
+    "business_impact_en": "Organizations subject to radio and wireless communications regulations in Japan may be affected, and the changes could require review of existing practices or documentation.",
+    "recommended_action_en": "Consider reviewing the official e-Gov source and the full text of the amending ordinance to confirm the scope and effective date of the changes.",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata; the substantive content of the amendments is not provided. Promulgation and enforcement dates (both 2026-07-24) are taken from the metadata and should be verified against the official source. Triage labels ('In Force', 'Other', 'Medium') are keyword-based and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:52Z",
+    "summary_model": "claude-opus-4-8"
   },
   "b56525eacc24ab02055e147dde451a3131b51e8602639a82a2059044e5a247ac": {
     "summary_ja": "出入国管理及び難民認定法並びに外国人技能実習の適正実施及び技能実習生保護に関する法律の一部改正法の施行に伴い、関係政令の整備及び経過措置を定める政令（令和七年政令第三百四十一号）が公布されたと示されています。メタデータによれば、公布日は2025年10月1日、施行日は2027年4月1日とされ、対象法令として国家公務員共済組合法施行令（昭和三十三年政令第二百七号）が挙げられています。",
@@ -16901,7 +17109,15 @@
     "recommended_action_ja": "改正の具体的内容や施行状況については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-14T21:26:49Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Health Insurance Act",
+    "summary_en": "This item is a ministerial ordinance (Reiwa 8 MHLW Ordinance No. 117) that partially amends the Enforcement Regulations of the Health Insurance Act and related regulations. According to the metadata, the amending ordinance has a promulgation date of 2026-07-29 and an enforcement (effective) date of 2026-08-01. The specific content of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Organizations subject to Japanese health insurance administration procedures may be affected and could need to review whether their processes align with the amended enforcement regulations.",
+    "recommended_action_en": "Consult the official e-Gov source and the full text of the amending ordinance to confirm the scope and substance of the changes.",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata stating a 2026-07-29 promulgation and 2026-08-01 enforcement date; the actual amendment content is not provided. The preliminary 'Finance / AML' label appears inconsistent with a health insurance ordinance and should be treated as unverified triage metadata only.",
+    "summarized_at": "2026-08-16T21:20:37Z",
+    "summary_model": "claude-opus-4-8"
   },
   "4009f2ea202f5f78acb7cd80dfd81f1b4d9aec374d90c4a7cbaa5e3c8ddb8348": {
     "summary_ja": "農林水産省令として、種苗法施行規則及び品種登録規則の一部を改正する省令（令和八年農林水産省令第五十二号）に関する法令更新情報です。原文によれば、改正対象は品種登録規則（平成十年農林水産省令第八十六号）であり、公布日および施行日はいずれも2026年7月24日と記載されています。",
@@ -16909,7 +17125,15 @@
     "recommended_action_ja": "改正内容の詳細や影響範囲については、e-Gov等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-14T21:26:56Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "title_en": "Ordinance Amending the Seeds and Seedlings Act Enforcement Regulations and the Plant Variety Registration Regulations",
+    "summary_en": "This item refers to an ordinance (省令) amending the Enforcement Regulations of the Seeds and Seedlings Act and the Plant Variety Registration Regulations (originally MAFF Ordinance No. 86 of 1998). According to the provided metadata, the amending ordinance is MAFF Ordinance No. 52 of 2026, with a promulgation date and stated enforcement date of 2026-07-24. The changes relate to plant variety registration under the Seeds and Seedlings Act framework.",
+    "business_impact_en": "Organizations involved in plant variety registration or the handling of seeds and seedlings may be affected by procedural or regulatory changes introduced by this amendment.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the substance, scope, and effective date of the amendment before taking any action.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the metadata lists both a promulgation date and an enforcement date of 2026-07-24, but the specific content of the amendment is not detailed and remains unverified. Preliminary labels (area 'Other', stage 'In Force', impact 'Medium') are keyword-based triage only and not authoritative.",
+    "summarized_at": "2026-08-16T21:20:52Z",
+    "summary_model": "claude-opus-4-8"
   },
   "7b4463d550cc78911f1f85bb139a65bc32b7120c9a5da5fd5ef429dd5d4e29e0": {
     "summary_ja": "電波法施行規則等の一部を改正する省令（令和八年総務省令第九十一号）に関する更新情報です。対象法令は無線設備規則（昭和二十五年電波監理委員会規則第十八号）で、原文によれば公布日および施行日はいずれも2026年7月24日と示されています。更新一覧への掲載日は2026年8月14日とされています。",
@@ -17221,6 +17445,62 @@
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正内容および施行日を含む法令原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-15T21:22:57Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "89736b8855516df96616a682cf1169d64202cc545611aa1a4f0a89b08aa90a4b": {
+    "summary_ja": "e-Gov法令検索の法令更新一覧によれば、「下水道法等の一部を改正する法律」（令和八年法律第六十五号）が公表されています。メタデータ上、改正対象は下水道法（昭和三十三年法律第七十九号）で、公布日は2026年7月23日、施行日は2026年8月17日と記載されています。改正内容の詳細は原文メタデータには含まれていません。",
+    "business_impact_ja": "下水道に関する事業や設備の運用・管理に関わる事業者において、改正内容に応じた対応の検討が必要となる可能性があります。具体的な影響範囲は改正条文の確認を要すると考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正法の条文および施行日を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:01Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "7bd0301d9d7b53c029d83104ff2d0e1d139eccc0fa3d342a203873353e7c5cbf": {
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「国家社会機能継続性確保施策及び副首都の整備に係る施策の推進に関する法律」（令和八年法律第七十八号）に関する情報が掲載されています。この改正法令の公布日は2026年7月31日とされ、改正の対象法令は「大都市地域における特別区の設置に関する法律」（平成二十四年法律第八十号）と記載されています。更新一覧日は2026年8月14日と示されています。",
+    "business_impact_ja": "国家社会機能の継続性確保や副首都の整備、特別区の設置に関連する事業や地域展開を行う場合、関連制度への対応の必要性が生じる可能性があります。改正内容の詳細によっては、業務への影響を検討する必要が考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:01Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "6f8e06ea71de4b8512369d5353b0201f33ee3a3ed3bf117f8f3f2ef9594085ac": {
+    "summary_ja": "e-Gov法令検索の更新一覧において、「国家社会機能継続性確保施策及び副首都の整備に係る施策の推進に関する法律」（令和八年法律第七十八号）が掲載されています。原文メタデータによれば、公布日は2026年7月31日、更新一覧日は2026年8月14日と示されています。国家社会機能の継続性確保および副首都の整備に係る施策の推進に関する内容とされていますが、詳細は原文の確認が必要です。",
+    "business_impact_ja": "国家社会機能の継続性確保や副首都整備に関わる事業分野において、関連する施策や体制への影響が生じる可能性があります。具体的な適用範囲や施行時期については原文により確認する必要があると考えられます。",
+    "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、法律の条文、施行日および関連する政省令の有無をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:01Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0e65262080e48b088875545eb894f7383d6bb8b661c197bb612899c55d0273a4": {
+    "summary_ja": "金融庁は、令和8年8月13日からの大雨に伴う災害等に対する金融上の措置について公表したことを新着情報で示しています。公表の詳細な内容は提供されたメタデータからは確認できません。",
+    "business_impact_ja": "被災地域に関係する金融機関や事業者においては、金融上の措置への対応が必要となる可能性があります。",
+    "recommended_action_ja": "金融庁の公式ウェブサイト等で公表内容の詳細をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:01Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "e882d657b78b7db0a63968c7e56159e25b37196e1c106ea03f21d5f894f325ff": {
+    "summary_ja": "消費者庁の新着情報として、消費者安全法に基づく重大事故等に係る公表(8月14日付)が掲載されています。提供されたメタデータには公表の趣旨のみが示され、対象となる具体的な事故内容や製品等の詳細は含まれていません。",
+    "business_impact_ja": "公表対象となる事故や製品の内容によっては、関連する事業者において安全対応や情報確認の必要が生じる可能性があります。",
+    "recommended_action_ja": "詳細については、消費者庁の公式情報源(掲載ページ)で公表内容をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:06Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "0c8c9227c16e913c0a6bad0a7f0e8d12b643ffbb4ecfeec0abf1d046b9d772f5": {
+    "summary_ja": "農林水産省の報道発表によると、加工食品におけるカーボンフットプリント（CFP）算定のロールモデル創出に向けたモデル事業の参加企業が決定したとされています。原文の詳細な要約本文は提供されていないため、事業の具体的内容や対象範囲は本メタデータからは確認できません。",
+    "business_impact_ja": "加工食品分野において、CFP算定に関する取組が今後の環境配慮や情報開示の参考事例となる可能性があります。関連する食品事業者にとっては、算定手法や動向を把握する意義が考えられます。",
+    "recommended_action_ja": "農林水産省の公式発表など日本語の一次情報を確認し、モデル事業の対象や内容の詳細を把握されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:06Z",
+    "ja_summary_model": "claude-opus-4-8"
+  },
+  "6b7bf58b83a304829bedfa22004cf904273a6a7d4bc16a70dfc7ba55b8daa3c9": {
+    "summary_ja": "経済産業省のニュースリリースによると、令和8年8月13日からの大雨に伴う災害に関して、被災した中小企業・小規模事業者への支援措置を実施するとされています。詳細な支援内容については、原文および関連する公式情報を確認する必要があります。",
+    "business_impact_ja": "被災した中小企業・小規模事業者にとっては、資金繰りや事業継続に関する支援策の対象となる可能性があります。事業拠点や取引先が被災地域に関わる場合、影響を確認する余地が考えられます。",
+    "recommended_action_ja": "支援措置の具体的な内容や対象要件については、経済産業省の公式ニュースリリース等の日本語一次情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-16T21:21:06Z",
     "ja_summary_model": "claude-opus-4-8"
   }
 }
