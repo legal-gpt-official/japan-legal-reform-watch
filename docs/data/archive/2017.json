@@ -1,20 +1,38 @@
 [
   {
     "id": "raw-2043334c0c35e68c",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2017-01-25)",
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of the Act on Price Adjustment of Sugar and Starch",
     "title_ja": "砂糖及びでん粉の価格調整に関する法律施行規則等の一部を改正する省令",
     "area": "Other",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a ministerial ordinance (MAFF Ordinance No. 6 of 2017) that partially amends the enforcement regulations of the Act on Price Adjustment of Sugar and Starch and related rules. According to the metadata, the affected legislation includes a MAFF ordinance concerning the operations, finance, accounting, and personnel management of the Agriculture and Livestock Industries Corporation (an incorporated administrative agency). The metadata lists a promulgation date of 2017-01-25.",
+    "business_impact_en": "Organizations involved in sugar or starch pricing, or those interacting with the Agriculture and Livestock Industries Corporation, may be affected by amended enforcement regulations and administrative procedures.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, effective date, and specific provisions of the amendment.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=415M60000200104_21171231_429M60000200006",
     "published_at": "2017-01-25",
     "last_checked": "2026-08-19",
     "relevance_score": 35.0,
     "first_seen_at": "2026-08-20",
-    "summary_source": "rule_based"
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata from a law-update listing; the preliminary 'Promulgated' stage and 2017 promulgation date are from the source but should be verified against the authoritative Japanese text. Rule-based labels (area/stage/impact) are unverified triage hints.",
+    "summary_source": "claude",
+    "summarized_at": "2026-08-20T21:28:00Z",
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "「砂糖及びでん粉の価格調整に関する法律施行規則等の一部を改正する省令」（平成二十九年農林水産省令第六号）に関する情報です。対象法令は独立行政法人農畜産業振興機構の業務運営、財務及び会計並びに人事管理に関する省令（平成十五年農林水産省令第百四号）であり、公布日は2017年1月25日と記載されています。e-Gov法令検索の更新一覧に基づく情報で、更新一覧日は2026年8月19日とされています。",
+    "business_impact_ja": "砂糖・でん粉の価格調整や農畜産業振興機構の業務運営等に関連する事業者において、省令改正の内容次第では対応の要否を検討する必要が生じる可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容や施行状況については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-20T21:33:29Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "省令修订：《砂糖及淀粉价格调整法》施行规则等部分修订",
+        "summary": "本项为一项省令（2017年农林水产省令第6号），部分修订《砂糖及淀粉价格调整法》施行规则及相关规则。根据元数据，受影响的法规包括涉及农畜产业振兴机构（一家独立行政法人）业务、财务、会计及人事管理的农林水产省令。元数据列明的公布日期为2017-01-25。",
+        "business_impact": "涉及砂糖或淀粉价格事务的机构，或与农畜产业振兴机构有往来的机构，可能受到修订后的施行规则及行政程序的影响。",
+        "recommended_action": "建议参考e-Gov法令检索上的日文官方来源，以确认本次修订的适用范围、生效日期及具体条款。"
+      }
+    }
   }
 ]

@@ -37,21 +37,39 @@
   },
   {
     "id": "raw-7a9136e9371af85d",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-07-31)",
+    "title_en": "Ministerial Ordinance Amending Rules on the Japan Student Services Organization and the Enforcement Regulation of...",
     "title_ja": "独立行政法人日本学生支援機構に関する省令及び大学等における修学の支援に関する法律施行規則の一部を改正する省令",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Ministry of Education, Culture, Sports, Science and Technology (MEXT) ministerial ordinance (Reiwa 7 MEXT Ordinance No. 19) that partially amends the ordinance concerning the Japan Student Services Organization (JASSO) and the enforcement regulation of the Act on Support for Study at Universities. According to the metadata, it was promulgated on 2025-07-31 with a stated effective date of 2026-10-01. The preliminary triage labels classify it as 'Other' with a medium impact level; these labels are not legally verified.",
+    "business_impact_en": "Entities involved in student financial support, university enrollment support programs, or JASSO-related administration may be affected by the amended rules, potentially requiring procedural adjustments before the stated effective date.",
+    "recommended_action_en": "Review the official MEXT ordinance and the e-Gov Law Search source to confirm the specific amended provisions and their applicability.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=416M60000080023_20261001_507M60000080019",
     "published_at": "2025-07-31",
     "last_checked": "2026-08-19",
     "relevance_score": 35.0,
     "first_seen_at": "2026-08-20",
-    "summary_source": "rule_based"
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata; promulgation date (2025-07-31) and effective date (2026-10-01) are as stated in the item and unverified against the official text. Specific substantive changes are not detailed in the metadata.",
+    "summary_source": "claude",
+    "summarized_at": "2026-08-20T21:28:00Z",
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "独立行政法人日本学生支援機構に関する省令及び大学等における修学の支援に関する法律施行規則の一部を改正する省令（令和七年文部科学省令第十九号）に関する情報です。メタデータによれば、対象法令は独立行政法人日本学生支援機構に関する省令（平成十六年文部科学省令第二十三号）で、公布日は2025年7月31日、施行日は2026年10月1日とされています。改正の具体的内容はメタデータには記載されていません。",
+    "business_impact_ja": "学生への修学支援や日本学生支援機構に関わる事務・手続に携わる事業者や教育機関において、対応の見直しが必要となる可能性があります。施行日が2026年10月1日とされているため、準備期間を踏まえた確認が求められることも考えられます。",
+    "recommended_action_ja": "改正の詳細や適用範囲については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-20T21:33:29Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "省令修订：独立行政法人日本学生支援机构相关省令及大学等修学支援法施行规则",
+        "summary": "这是日本文部科学省（MEXT）发布的一项省令（令和7年文部科学省令第19号），对独立行政法人日本学生支援机构（JASSO）相关省令及《大学等修学支援法》施行规则进行部分修订。根据元数据，该省令于2025-07-31公布，规定生效日期为2026-10-01。初步分类标签将其归类为“其他”，影响级别为中等；这些标签未经法律核实。",
+        "business_impact": "涉及学生经济资助、大学入学支援项目或JASSO相关行政事务的主体可能受到此次修订规则的影响，在规定生效日期之前可能需要进行程序上的调整。",
+        "recommended_action": "建议查阅文部科学省官方省令及e-Gov法令检索来源，以确认具体修订条款及其适用范围。"
+      }
+    }
   },
   {
     "id": "raw-6ef6b3cfba5088bb",
@@ -75,7 +93,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "法令更新：《关于〈出入国管理及难民认定法〉及〈外国人技能实习适当实施及技能实习生保护法〉部分修正法律施行相关政令整备及过渡措施的政令〉》预定生效（2025-10-01）",
@@ -83,7 +100,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8aaa05802444511c",
@@ -107,7 +125,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:07:20Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-10-01）",
@@ -115,7 +132,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-0f0537b16bd2acc6",
@@ -139,7 +157,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:07:20Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本法令更新：预定生效的法律或法规（2025-10-01）",
@@ -147,7 +164,8 @@
         "business_impact": "业务影响尚未评估。若该条目与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-24a80a70ffe959b3",
@@ -171,7 +189,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:09Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-10-01）",
@@ -179,7 +196,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ea4ec710e9aa9598",
@@ -203,7 +221,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T21:46:17Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-10-01）",
@@ -211,7 +228,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-7cda11fa1e128857",
@@ -229,7 +247,6 @@
     "last_checked": "2026-08-19",
     "relevance_score": 30.0,
     "first_seen_at": "2026-08-20",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-10-01）",
@@ -237,7 +254,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4e3e90298587fd95",
@@ -297,7 +315,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-07-22）——《地方税法施行规则等部分修正省令》",
@@ -305,7 +322,8 @@
         "business_impact": "目前尚未评估其业务影响。在日本运营的企业如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方来源，并判断该条目是否可能影响您在日本的法律、法规或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-0bb7ba3d1203bcfb",
@@ -329,7 +347,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法律更新：《地方税法施行规则》部分修正省令预定生效（2025-03-31）",
@@ -337,7 +354,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-cd76ae50efd7deb7",
@@ -361,7 +379,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:40:48Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《消费税法施行规则》部分修订省令预定生效（2025-03-31）",
@@ -369,7 +386,8 @@
         "business_impact": "业务影响尚未评估。若该事项与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-314281d6f94e4755",
@@ -393,7 +411,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《消费税法施行规则》部分修正省令预定生效（2025-03-31）",
@@ -401,7 +418,8 @@
         "business_impact": "目前尚未评估其业务影响。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e680e08c49da5be8",
@@ -497,7 +515,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅公告：修订《关于制定与东日本大震灾受灾者等相关国税关系法律临时特例法有关的法人课税相关申请、申报等格式》的通知（法令解释通达）的部分内容（2025-06-30）",
@@ -505,7 +522,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-0f3421fef1bfb85a",
@@ -529,7 +547,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：日本证券业协会《关于修订网络交易中防止未经授权访问等指南》",
@@ -537,7 +554,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-12af5ad358006707",
@@ -561,7 +579,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：修订关于东日本大震灾受灾者等国税相关法律临时特例的法律关系通知（所得税篇）（2025-07-04）",
@@ -569,7 +586,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其所在行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ad9b672a7db24545",
@@ -593,7 +611,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅通知：修订《关于制定法人课税相关申请、申报等格式》的部分内容（法令解释通达）",
@@ -601,7 +618,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-63994810bf03ee4c",
@@ -625,7 +643,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：修订《关于制定资产课税相关申请、申报等格式的规定》的部分内容（法令解释通达）",
@@ -633,7 +650,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4dd8fff50935ee58",
@@ -657,7 +675,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：修订《关于制定法人课税相关申请、申报等格式》（2025-06-30）",
@@ -665,7 +682,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项内容与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项内容是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-777467b9b90fb37d",
@@ -689,7 +707,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：日本证券业协会公布监管意见征询结果（2025-04-10）",
@@ -697,7 +714,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5d3031cd99a310e6",
@@ -721,7 +739,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：指定京都、鸟取及福冈作为酒类地理标志（案）",
@@ -729,7 +746,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8eb6a96669cec98b",
@@ -777,7 +795,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：《租税特别措置法关系通达（法人税编）》部分修订（2025-12-24）",
@@ -785,7 +802,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e34dbb6844079e56",
@@ -809,7 +827,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅通知：修订《酒税法》及酒类行政相关法令等解释通达（2025-12-22）",
@@ -817,7 +834,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-9a8da288b530cca2",
@@ -841,7 +859,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：税务解释通达修订（2025-12-19）",
@@ -849,7 +866,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-646317dc09d436ae",
@@ -873,7 +891,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅通知：修订令和7年同类行业比准价额计算相关行业类别及股价等（法令解释通达）",
@@ -881,7 +898,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该项内容与其所在行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项内容是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c97ac0857058a467",
@@ -905,7 +923,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅通知：税法解释通达等部分修订的意旨说明（2025-11-28）",
@@ -913,7 +930,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-7643dca0ca328734",
@@ -937,7 +955,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅公告：《法人税基本通达》等部分修订（法令解释通达）（2025-11-27）",
@@ -945,7 +962,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-43fd761374236d7c",
@@ -969,7 +987,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：关于修订《令和7年分基准年利率》的部分内容（法令解释通达）",
@@ -977,7 +994,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其所在行业或运营相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2e964e43ca8501e7",
@@ -1001,7 +1019,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅：修订《关于令和7年同类行业比准价额计算上的行业类别及分行业类别股价等》的部分内容（法令解释通知）",
@@ -1009,7 +1026,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项内容与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项内容是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-b06cab84c39c8ed3",
@@ -1033,7 +1051,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅动态：修订《法人税基本通达》等（2025-09-26）",
@@ -1041,7 +1058,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-73e4d642bd5f112c",
@@ -1065,7 +1083,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：修订类似行业比准价额计算相关行业目及行业别股价等的法令解释通达（2025-08-04）",
@@ -1073,7 +1090,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e15b9402fb973f5b",
@@ -1097,7 +1115,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：《关于令和7年度基准年利率》部分修订（法令解释通达）",
@@ -1105,7 +1122,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目可能与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a2ae2c2f67134654",
@@ -1132,7 +1150,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《网络交易中防止不正当访问等指南》修订案",
@@ -1140,7 +1157,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-fac9a60c2cf90646",
@@ -1164,7 +1182,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：修订《租税特别措施法》第40条第1项后段所定转让所得等非课税处理的法令解释通达",
@@ -1172,7 +1189,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ce02109a62448f84",
@@ -1196,7 +1214,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：《所得税基本通达》部分修订（法令解释通达）",
@@ -1204,7 +1221,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司，如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2c2b65029a658d39",
@@ -1228,7 +1246,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅通知：《租税特别措施法所得税处理》部分修订（2025-07-04）",
@@ -1236,7 +1253,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-cf515d6cde573b14",
@@ -1260,7 +1278,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅公告：关于修订《令和7年同类行业比准价额计算所用行业别及各行业别股价等》的通知（法令解释通知）",
@@ -1268,7 +1285,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c6e858127a2cefc9",
@@ -1292,7 +1310,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：关于修订《关于因人为异常灾害或事故而免除滞纳税》的部分内容（法令解释通达）",
@@ -1300,7 +1317,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或运营相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f824f61e587a14f8",
@@ -1324,7 +1342,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：《相续税法基本通达》等部分修订（2025-06-30）",
@@ -1332,7 +1349,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-72694c509f44a2c3",
@@ -1356,7 +1374,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：修订《租税特别措置法第40条第1项后段规定的转让所得等非课税处理》相关法令解释通达（2025-06-30）",
@@ -1364,7 +1381,8 @@
         "business_impact": "目前尚未对业务影响进行评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并自行判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-dd89bd1fdf5e6022",
@@ -1388,7 +1406,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：《租税特别措置法（股份等转让所得等相关）处理办法》等部分修订（法令解释通知）",
@@ -1396,7 +1413,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-54f105741c7350a8",
@@ -1420,7 +1438,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：法人税基本通达等部分修订（法令解释通达）(2025-06-30)",
@@ -1428,7 +1445,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4d4fb2f6b0ce0514",
@@ -1452,7 +1470,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅动态：消费税法基本通达等部分修订（法令解释通达）（2025-06-30）",
@@ -1460,7 +1477,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-d8a038dd61d76c16",
@@ -1484,7 +1502,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本证券业协会公开征求意见结果：关于制定《公司债承销适当判断指南》",
@@ -1492,7 +1509,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5755f6b03eccf780",
@@ -1515,7 +1533,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会更新：特定个人信息泄露等事案发生时的应对（2025-09-29）",
@@ -1523,7 +1540,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-fda48c0cb1fd8c3e",
@@ -1547,7 +1565,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：关于废止汽油税及地方汽油税税率特例后库存品扣除处理的法令解释通知（2025-12-05）",
@@ -1555,7 +1572,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并自行判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-14899bcda84efdd1",
@@ -1603,7 +1621,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：关于2025年度因继承等取得的核电站周边避难指示区域内土地等评估的税法解释通知",
@@ -1611,7 +1628,8 @@
         "business_impact": "业务影响尚未评估。若该事项与其业务领域或运营相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-fb9ee178c4937105",
@@ -1635,7 +1653,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本法律公布：《关于让与担保合同及所有权保留合同的法律的施行相关法律整备等的法律》（2025-06-06）",
@@ -1643,7 +1660,8 @@
         "business_impact": "目前尚未评估该项目的业务影响。在日本开展业务的公司若认为该项目可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e19cfc1e2bfe1191",
@@ -1667,7 +1685,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《为配合〈防止对重要电子计算机实施不正行为造成损害相关法律〉施行的相关法律整备等法律》定于生效（2025-05-23）",
@@ -1675,7 +1692,8 @@
         "business_impact": "目前尚未评估其业务影响。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-3dc7bf0131d53073",
@@ -1699,7 +1717,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《因应重要电子计算机不正当行为损害防止法施行的相关法律整备法》定于生效（2025-05-23）",
@@ -1707,7 +1724,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c22b93d5ce5e9a56",
@@ -1731,7 +1749,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《上市股票等在交易所金融商品市场外买卖等相关规则》等部分修订",
@@ -1739,7 +1756,8 @@
         "business_impact": "目前尚未评估其业务影响。若该项目与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ba649c63d61c7939",
@@ -1762,7 +1780,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会更新：涉及特定个人信息泄露事案的应对（2025-12-04）",
@@ -1770,7 +1787,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的公司如认为该内容与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a83e893dad835aed",
@@ -1794,7 +1812,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《协会员的投资劝诱、客户管理等相关规则》部分修订",
@@ -1802,7 +1819,8 @@
         "business_impact": "业务影响尚未评估。若该事项与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-71ba58dafe65206a",
@@ -1826,7 +1844,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：日本证券业协会关于处分通知等数字化的《协会员的外务员等处分相关程序规则》等部分修订",
@@ -1834,7 +1851,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并自行判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-cd1c35f32cacd3e6",
@@ -1889,7 +1907,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《协会员的投资劝诱、客户管理等相关规则》部分修订（2025-06-16）",
@@ -1897,7 +1914,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并考虑该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c42742582bcbadca",
@@ -1921,7 +1939,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《店头有价证券等针对特定投资者的投资劝诱等相关规则》等部分修订（2025-04-11）",
@@ -1929,7 +1946,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-49c100673f327227",
@@ -1953,7 +1971,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
@@ -1961,7 +1978,8 @@
         "business_impact": "目前尚未评估其业务影响。在日本开展业务的公司如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ddc0b5124aceaafd",
@@ -1985,7 +2003,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -1993,7 +2010,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e8c414f705b6cc20",
@@ -2017,7 +2035,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
@@ -2025,7 +2042,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-94fbcbe1aa21c27c",
@@ -2049,7 +2067,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本政府法令更新：《医疗法等部分修正法律》已公布（2025-12-12）",
@@ -2057,7 +2074,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4ef7585bdb080569",
@@ -2081,7 +2099,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法律更新：法律或法规将于2025-12-10生效",
@@ -2089,7 +2106,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-eafca05abdd09944",
@@ -2113,7 +2131,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法律更新：法律或法规预定生效（2025-12-10）",
@@ -2121,7 +2138,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-05502a4b05a13a7d",
@@ -2145,7 +2163,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定于2025-12-10生效（更生保护司法等修订法律）",
@@ -2153,7 +2170,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其所属行业或业务运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方来源原文，并判断该条目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-1804290236f16fd4",
@@ -2177,7 +2195,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法律或法规将于2025-12-10生效",
@@ -2185,7 +2202,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2cf07bf0ce097904",
@@ -2209,7 +2227,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法律更新：法律或法规预定生效（2025-12-10）",
@@ -2217,7 +2234,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-338d5b75bf30d44d",
@@ -2240,7 +2258,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会更新：关于地方公共团体等就特定个人信息处理状况进行定期报告的公布（2025-10-29）",
@@ -2248,7 +2265,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f4e3d873bdcb0a6c",
@@ -2272,7 +2290,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：日本证券业协会《股权型众筹业务相关规则》等部分修订",
@@ -2280,7 +2297,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6b1ec094fccd6f15",
@@ -2304,7 +2322,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《关于修订国民年金法等以加强年金制度功能以应对社会经济变化的法律》公布（2025-06-20）",
@@ -2312,7 +2329,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f14b547bbe79a2fb",
@@ -2336,7 +2354,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本电子政府法令更新：《货物汽车运输事业法部分修订法律》公布（2025-06-11）",
@@ -2344,7 +2361,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的企业如认为该项目与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-eb0d3ad6fa46711f",
@@ -2368,7 +2386,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《为应对信息通信技术发展等而修订刑事诉讼法等的法律》公布（2025-05-23）",
@@ -2376,7 +2393,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该条目可能与其所在行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并判断该条目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c3ec04d50affda76",
@@ -2400,7 +2418,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "法令公布：《为应对信息通信技术发展等而修订刑事诉讼法等的法律》",
@@ -2408,7 +2425,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-bc36cf541c65c500",
@@ -2432,7 +2450,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本法令更新：《药品、医疗器械等品质、有效性及安全性确保等相关法律》等部分修订法律公布（2025-05-21）",
@@ -2440,7 +2457,8 @@
         "business_impact": "业务影响尚未评估。如该事项可能与其行业或业务相关，在日本运营的企业应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并确认该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-1ff9e900c2d002ba",
@@ -2464,7 +2482,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "法令公布：《药品、医疗器械等的品质、有效性及安全性确保等相关法律》等部分修正法律（2025-05-21）",
@@ -2472,7 +2489,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、法规或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8caad6b465815785",
@@ -2496,7 +2514,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《关于〈公社债场外交易参考值等发布及交易价格相关规则〉的细则》等部分修订",
@@ -2504,7 +2521,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e768292e3ef15378",
@@ -2528,7 +2546,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：更新税务行政指南（2025-10-31）",
@@ -2536,7 +2553,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-98fd7718d3dab9e0",
@@ -2559,7 +2577,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会（PPC）通报：依据《个人信息保护法》对株式会社中央商务服务的行政应对（2025-09-10）",
@@ -2567,7 +2584,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f487eeb7469ba780",
@@ -2590,7 +2608,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会动态：公布令和7年度上半期报告概要等（2025-11-12）",
@@ -2598,7 +2615,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该内容与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f3525f1bec2aadf0",
@@ -2622,7 +2640,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：使用上注意事项修订指示通知（再生医疗等制品）(2025-03-05)",
@@ -2630,7 +2647,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-69fd7b66cf4cb683",
@@ -2654,7 +2672,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：使用注意事项修订指示通知发布（2025-03-05）",
@@ -2662,7 +2679,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-d19785ba384eaab6",
@@ -2685,7 +2703,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:55:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会（PPC）动态：个人信息保护政策恳谈会（2025-10-08）",
@@ -2693,7 +2710,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司，若该信息与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方来源，并判断该信息是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4812a4eea8c17387",
@@ -2720,7 +2738,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:55:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《协会员的投资劝诱、顾客管理等相关规则》部分修订案",
@@ -2728,7 +2745,8 @@
         "business_impact": "业务影响尚未评估。若该事项与其业务领域或运营相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-05182c3778f2ee35",
@@ -2755,7 +2773,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:55:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：关于修订《协会会员外务员等处分相关程序规则》等（涉及处分通知等数字化）",
@@ -2763,7 +2780,8 @@
         "business_impact": "业务影响尚未评估。若该事项与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并确定该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-83795528bab81491",
@@ -2790,7 +2808,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:55:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《协会员的投资劝诱、客户管理等相关规则》部分修订案",
@@ -2798,7 +2815,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并自行判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c8aa4df45f84ae0a",
@@ -2822,7 +2840,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:29Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅更新：税务行政指南更新（2025-12-26）",
@@ -2830,7 +2847,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2272d144dd1372e3",
@@ -2854,7 +2872,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:29Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅更新：非居民金融账户信息自动交换报告制度相关税务行政指导更新（2025-09-22）",
@@ -2862,7 +2879,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a2d84c4bccb695e4",
@@ -2885,7 +2903,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:53Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会动态：与数据／隐私／人工智能相关的监管公告（2025-12-26）",
@@ -2893,7 +2910,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-287d40309ac69b4b",
@@ -2917,7 +2935,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅更新：非居民加密资产等交易信息自动交换报告制度（FAQ）指南更新（2025-09-22）",
@@ -2925,7 +2942,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目可能与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-eb532ff6716d3fa6",
@@ -2949,7 +2967,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:10Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：预扣所得税修订概要（日本-亚美尼亚新租税条约）",
@@ -2957,7 +2974,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-bf62a138436cd0b1",
@@ -2981,7 +2999,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:10Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：预扣所得税相关税务管理指导更新（日本-土库曼斯坦新租税条约）（2025-11-27）",
@@ -2989,7 +3006,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2e251fa57a32636a",
@@ -3016,7 +3034,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《协会员内部管理责任者等相关规则》等部分修订案",
@@ -3024,7 +3041,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-afb579e901ac9828",
@@ -3048,7 +3066,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通知：预扣所得税修订概要（日乌新租税条约）",
@@ -3056,7 +3073,8 @@
         "business_impact": "业务影响尚未评估。若该项目与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并确定该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a8f8183ae4438e0e",
@@ -3083,7 +3101,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《股权众筹业务相关规则》等部分修订草案",
@@ -3091,7 +3108,8 @@
         "business_impact": "业务影响尚未评估。若该项目与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e26eece3099e6b3a",
@@ -3114,7 +3132,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:13:22Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会办公楼搬迁公告",
@@ -3122,7 +3139,8 @@
         "business_impact": "业务影响尚未评估。在日本开展经营的企业如认为该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-813950693c1925ab",
@@ -3145,7 +3163,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:13:22Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会（PPC）动态：个人信息保护政策恳谈会（2025-09-04）",
@@ -3153,7 +3170,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其所在行业或经营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-560f6edd92dfc5c6",
@@ -3180,7 +3198,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:13:28Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《上市股票等在交易所金融商品市场外买卖等相关规则》等部分修订（草案）",
@@ -3188,7 +3205,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方原始来源，并自行判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2208b2e4eb3b6899",
@@ -3212,7 +3230,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:14:00Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅动态：税务行政指导更新（2025-10-01）",
@@ -3220,7 +3237,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的企业如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-9acfcc45934544de",
@@ -3244,7 +3262,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:15:16Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅公告：税务行政指导更新（2025-07-17）",
@@ -3252,7 +3269,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-233c1576770677ec",
@@ -3276,7 +3294,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:15:16Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性信息更新：发布医药品·医疗器械等安全性信息No.417（2025-02-26）",
@@ -3284,7 +3301,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8c0b0daec56afb8a",
@@ -3308,7 +3326,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：税务行政指导更新（2025-12-26）",
@@ -3316,7 +3333,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-89ed4ba6c499327b",
@@ -3340,7 +3358,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：税务行政指导更新（2025-12-26）",
@@ -3348,7 +3365,8 @@
         "business_impact": "目前尚未评估其业务影响。若该事项与其行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并确定该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-cac2c577f53c5efb",
@@ -3372,7 +3390,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：税务行政指导更新（2025-12-26）",
@@ -3380,7 +3397,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-40cda6d78d22fd4d",
@@ -3404,7 +3422,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅动态：税务行政指导更新（2025-12-02）",
@@ -3412,7 +3429,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文官方来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5ac16b0840ffb27c",
@@ -3436,7 +3454,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅动态：税务行政指南更新（2025-10-30）",
@@ -3444,7 +3461,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-7d2825ad10d636e1",
@@ -3468,7 +3486,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：可在多功能复印机打印的申报书、申请书、申报表等",
@@ -3476,7 +3493,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6a3b95d34f474a45",
@@ -3500,7 +3518,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅动态：税务征管指引更新（2025-08-27）",
@@ -3508,7 +3525,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的企业如认为该事项与其所在行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-87d1f28ef674fd6f",
@@ -3532,7 +3550,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：转让定价税制适用相关措施（2025-06-30）",
@@ -3540,7 +3557,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-55e0e4dcbb06e296",
@@ -3563,7 +3581,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会更新：与数据／隐私／AI相关的监管公告（2025-06-11）",
@@ -3571,7 +3588,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-9480e287dee1b4b9",
@@ -3594,7 +3612,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:22:37Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会动态：与数据／隐私／AI相关的监管公告（2025-12-24）",
@@ -3602,7 +3619,8 @@
         "business_impact": "业务影响尚未评估。在日本经营的企业如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6a1c9add156dda79",
@@ -3626,7 +3644,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:22:37Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "国税厅更新：税务管理指南更新（2025-12-04）",
@@ -3634,7 +3651,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-57261ea123f590c3",
@@ -3657,7 +3675,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:22:37Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会（PPC）更新：与数据／隐私／AI相关的监管公告（2025-09-29）",
@@ -3665,7 +3682,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司若该条目与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-395c1e3f8ba226e1",
@@ -3689,7 +3707,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:22:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布关于有人乾燥硬膜移植既往史者出现“脑淀粉样血管病”病例的应对信息（2025-08-05）",
@@ -3697,7 +3714,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该项目是否可能影响贵司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e53ee87830eff001",
@@ -3721,7 +3739,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:35Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布患者用医药品指南（必备版）及疫苗接种者指南（必备版）制作等相关通知和事务联络",
@@ -3729,7 +3746,8 @@
         "business_impact": "目前尚未评估其业务影响。在日本运营的企业如认为该条目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-dd33e7a9c3d680e9",
@@ -3753,7 +3771,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:35Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布药品或医疗器械安全性信息（2025-12-18）",
@@ -3761,7 +3778,8 @@
         "business_impact": "目前尚未评估其业务影响。若该内容与其所在行业或业务相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该内容是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5956e94f12685443",
@@ -3785,7 +3803,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:35Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布关于再生医疗等产品评估中风险等信息（2025-12-05）",
@@ -3793,7 +3810,8 @@
         "business_impact": "该事项的业务影响尚未评估。若该事项与其业务领域或运营相关，在日本运营的公司应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-a4bec48fc15fd52a",
@@ -3817,7 +3835,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:41Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全信息更新：药品或医疗器械安全信息发布（2025-12-03）",
@@ -3825,7 +3842,8 @@
         "business_impact": "该业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-63266ac26f6c018a",
@@ -3848,7 +3866,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:41Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会更新：数据/隐私/AI相关监管公告（2025-10-24）",
@@ -3856,7 +3873,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的公司若该事项与其所属行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-d21553df66ba7fb1",
@@ -3880,7 +3898,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:41Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性信息更新：药品或医疗器械安全信息发布（2025-08-29）",
@@ -3888,7 +3905,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其所在行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-532bbeedf83c796a",
@@ -3912,7 +3930,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:41Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布关于安地思特α围手术期给药建议的药品适当使用相关信息（2025-07-22）",
@@ -3920,7 +3937,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该条目与其所属行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该条目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-fe7eef0904a32fcc",
@@ -3944,7 +3962,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:46Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布药品或医疗器械安全性信息（2025-06-09）",
@@ -3952,7 +3969,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该项目与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该项目是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-102fb1f4f116f533",
@@ -3976,7 +3994,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:46Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布医药品或医疗器械安全性信息（2025-05-12）",
@@ -3984,7 +4001,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该信息可能与其行业或运营相关，应查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该信息是否可能影响贵方在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8e81cd6270ac2238",
@@ -4008,7 +4026,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:46Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：关于沙利度胺制剂、来那度胺制剂及泊马度胺制剂使用安全管理程序的修订（周知请求）",
@@ -4016,7 +4033,8 @@
         "business_impact": "业务影响尚未评估。在日本运营的企业如认为该内容与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该内容是否可能影响贵公司在日本的法律、法规或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-2273ffc7c06138c8",
@@ -4040,7 +4058,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:50:46Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "PMDA安全性更新：发布药品或医疗器械安全信息（2025-02-10）",
@@ -4048,6 +4065,7 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，建议查阅官方来源。",
         "recommended_action": "建议查阅日文原始来源，并判断该事项是否可能影响贵公司在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   }
 ]
