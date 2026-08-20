@@ -114,6 +114,28 @@ def parse_custom_id(custom_id: str, kind: str) -> dict | None:
     }
 
 
+class BatchStillRunningError(TimeoutError):
+    """The local wait expired while the batch is still running provider-side.
+
+    This is NOT a network failure and NOT a lost batch. The batch was created
+    successfully, keeps processing for up to 24 hours, and its results stay
+    retrievable for 29 days, so a later run collects them. Reporting it as a
+    generic timeout lost the batch id (the caller's assignment never happened)
+    and misclassified it as `network_error`, which made a healthy in-flight batch
+    look like an outage and counted its requests as failures.
+
+    Subclasses TimeoutError so existing `except TimeoutError` handlers still see
+    it; callers that care check this type first.
+    """
+
+    def __init__(self, batch_id: str, timeout_seconds: float) -> None:
+        self.batch_id = batch_id
+        self.timeout_seconds = timeout_seconds
+        super().__init__(
+            f"message batch {batch_id} did not finish within {timeout_seconds:g}s"
+        )
+
+
 class BatchDiscoveryUnavailable(Exception):
     """The provider batch list could not be read.
 
@@ -431,7 +453,7 @@ def _wait_for_message_batch(
                     "BATCH timeout id=%s left running; results stay retrievable and "
                     "will be collected on a later run.", batch_id,
                 )
-            raise TimeoutError(f"message batch {batch_id} did not finish within {timeout_seconds:g}s")
+            raise BatchStillRunningError(batch_id, timeout_seconds)
         time.sleep(min(poll_seconds, remaining))
         batch = client.messages.batches.retrieve(batch_id)
 

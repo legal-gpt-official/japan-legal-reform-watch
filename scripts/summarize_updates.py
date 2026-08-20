@@ -77,6 +77,7 @@ from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
     BatchItemError,
+    BatchStillRunningError,
     DEFAULT_DISCOVERY_MAX_AGE_DAYS,
     batch_age_days,
     pending_batches,
@@ -479,6 +480,11 @@ def _looks_like_insufficient_credit(exc) -> bool:
 
 
 def classify_provider_error(exc) -> str:
+    # A batch that outlived our local wait is still running and still billed;
+    # it is not an outage. Checked first because it subclasses TimeoutError and
+    # would otherwise be reported as network_error.
+    if isinstance(exc, BatchStillRunningError):
+        return "batch_still_running"
     name = type(exc).__name__
     status = _error_status(exc)
     if status == 401 or name == "AuthenticationError":
@@ -1117,6 +1123,7 @@ def main(argv: list[str] | None = None) -> int:
     preflight_trimmed = 0
     batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
     recovered_items = 0
+    batch_deferred = 0
     batch_blocked_reason = "none"
     run_started_at = time.monotonic()
     usage_totals = message_usage(None)
@@ -1420,6 +1427,21 @@ def main(argv: list[str] | None = None) -> int:
                 timeout_seconds=args.batch_timeout_seconds,
                 custom_ids=batch_custom_ids(BATCH_KIND_EN, pending),
             )
+        except BatchStillRunningError as exc:
+            # The batch exists and is still processing. Keep its id so the run
+            # summary can name it, count the requests as deferred rather than
+            # failed, and leave it running: provider discovery collects it on a
+            # later run. Nothing here cancels it.
+            batch_id = exc.batch_id
+            provider_fatal = True
+            provider_error_type = "batch_still_running"
+            batch_deferred += len(pending)
+            cost_estimate_complete = False
+            logger.warning(
+                "BATCH still running id=%s after %gs; %d English request(s) deferred "
+                "to a later run.",
+                exc.batch_id, exc.timeout_seconds, len(pending),
+            )
         except Exception as exc:
             error_type = classify_provider_error(exc)
             provider_fatal = True
@@ -1431,8 +1453,8 @@ def main(argv: list[str] | None = None) -> int:
                 failed += 1
                 provider_aborted += len(pending)
             else:
-                # A batch-wide timeout/network failure may follow submission,
-                # so keep the scheduled-call count but report one outage.
+                # A batch-wide network failure may follow submission, so keep the
+                # scheduled-call count but report one outage.
                 failed += len(pending)
                 cost_estimate_complete = False
             logger.error(
@@ -1616,6 +1638,18 @@ def main(argv: list[str] | None = None) -> int:
                 timeout_seconds=args.batch_timeout_seconds,
                 custom_ids=batch_custom_ids(BATCH_KIND_JA, pending_ja),
             )
+        except BatchStillRunningError as exc:
+            # See the English branch: still running, not failed, not cancelled.
+            japanese_batch_id = exc.batch_id
+            provider_fatal = True
+            provider_error_type = "batch_still_running"
+            batch_deferred += len(pending_ja)
+            cost_estimate_complete = False
+            logger.warning(
+                "BATCH still running id=%s after %gs; %d Japanese request(s) deferred "
+                "to a later run.",
+                exc.batch_id, exc.timeout_seconds, len(pending_ja),
+            )
         except Exception as exc:
             error_type = classify_provider_error(exc)
             provider_fatal = True
@@ -1753,6 +1787,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"batch_expired     : {batch_outcomes['expired']}")
     print(f"batch_canceled    : {batch_outcomes['canceled']}")
     print(f"batch_missing     : {batch_outcomes['missing']}")
+    print(f"batch_deferred    : {batch_deferred}")
     print(f"duration_seconds  : {time.monotonic() - run_started_at:.1f}")
     print(f"input_tokens    : {usage_totals['input_tokens']}")
     print(f"output_tokens   : {usage_totals['output_tokens']}")

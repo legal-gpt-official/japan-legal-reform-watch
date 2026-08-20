@@ -75,6 +75,7 @@ from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
     BatchItemError,
+    BatchStillRunningError,
     DEFAULT_DISCOVERY_MAX_AGE_DAYS,
     batch_age_days,
     pending_batches,
@@ -1403,6 +1404,10 @@ def _looks_like_insufficient_credit(exc) -> bool:
 
 
 def classify_provider_error(exc) -> str:
+    # A batch outliving our local wait is still running and still billed, not
+    # an outage. Checked before the TimeoutError branch it would otherwise hit.
+    if isinstance(exc, BatchStillRunningError):
+        return "batch_still_running"
     """Classify a provider exception, preferring type + HTTP status over message text.
 
     Returns one of: insufficient_credit / authentication_error / permission_error /
@@ -1609,6 +1614,7 @@ def process_translation_batch(
         "preflight_cost_usd": 0.0,
         "preflight_trimmed": 0,
         "blocked_by_running_batch": 0,
+        "batch_deferred": 0,
         "batch_outcomes": {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS},
         "duration_seconds": 0.0,
         "provider_aborted": 0,
@@ -1826,6 +1832,18 @@ def process_translation_batch(
         # The helper explicitly requests cancellation on timeout, but the
         # submitted-call count remains visible because provider-side work may
         # already have occurred before cancellation completed.
+        if isinstance(exc, BatchStillRunningError):
+            # Still processing: keep the id, defer rather than fail, do not cancel.
+            stats["batch_id"] = exc.batch_id
+            stats["batch_deferred"] = len(candidates)
+            stats["provider_fatal"] = True
+            stats["provider_error_type"] = "batch_still_running"
+            stats["cost_estimate_complete"] = False
+            logger.warning(
+                "BATCH still running id=%s after %gs; %d request(s) deferred to a later run.",
+                exc.batch_id, exc.timeout_seconds, len(candidates),
+            )
+            return stats
         stats["failed"] = len(candidates)
         stats["provider_fatal"] = True
         stats["provider_error_type"] = etype
@@ -2089,6 +2107,7 @@ def main(argv: list[str] | None = None) -> int:
     preflight_cost_usd = 0.0
     preflight_trimmed = 0
     blocked_by_running_batch = 0
+    batch_deferred = 0
     reviewed_refreshed = 0
     batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
     batch_duration_seconds = 0.0
@@ -2157,6 +2176,7 @@ def main(argv: list[str] | None = None) -> int:
         preflight_cost_usd = batch_stats["preflight_cost_usd"]
         preflight_trimmed = batch_stats["preflight_trimmed"]
         blocked_by_running_batch = batch_stats["blocked_by_running_batch"]
+        batch_deferred = batch_stats["batch_deferred"]
         batch_outcomes = batch_stats["batch_outcomes"]
         batch_duration_seconds = batch_stats["duration_seconds"]
         field_cache_hits = batch_stats["field_cache_hits"]
@@ -2588,6 +2608,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"batch_expired             : {batch_outcomes['expired']}")
     print(f"batch_canceled            : {batch_outcomes['canceled']}")
     print(f"batch_missing             : {batch_outcomes['missing']}")
+    print(f"batch_deferred            : {batch_deferred}")
     print(f"batch_duration_seconds    : {batch_duration_seconds:.1f}")
     print(f"pending_batch             : {(pending_batch_record(cache, locale) or {}).get('batch_id', 'none')}")
     print(f"api_calls                 : {api_calls}")
