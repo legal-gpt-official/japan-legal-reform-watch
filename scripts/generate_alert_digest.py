@@ -272,6 +272,14 @@ def _is_newly_detected(item: Mapping[str, Any], today: date) -> bool:
     return 0 <= age < 7
 
 
+def _has_japanese_summary(item: Mapping[str, Any]) -> bool:
+    """Mirror docs/app.js hasJapaneseSummary(): all three fields present and non-empty."""
+    return all(
+        isinstance(item.get(field), str) and item[field].strip()
+        for field in ("summary_ja", "business_impact_ja", "recommended_action_ja")
+    )
+
+
 def _search_haystack(item: Mapping[str, Any]) -> str:
     translations = item.get("translations")
     translations = translations if isinstance(translations, dict) else {}
@@ -282,15 +290,14 @@ def _search_haystack(item: Mapping[str, Any]) -> str:
         item.get("title_ja"),
     ]
     values.extend(block.get("title") for block in blocks)
+    # Mirror docs/app.js searchHaystack() exactly. The English AI summary and its
+    # Chinese translation share the English provenance flag, but Japanese-source
+    # summaries are generated independently (summary_ja_source), so they must be
+    # gated on their own completeness — not on summary_source. Gating them on the
+    # English flag hides Japanese text for every item whose English is still a
+    # rule-based preview, which is most of the corpus.
     if item.get("summary_source") == "claude":
-        values.extend(
-            (
-                item.get("summary_en"),
-                item.get("summary_ja"),
-                item.get("business_impact_ja"),
-                item.get("recommended_action_ja"),
-            )
-        )
+        values.append(item.get("summary_en"))
         for block in blocks:
             values.extend(
                 (
@@ -299,6 +306,14 @@ def _search_haystack(item: Mapping[str, Any]) -> str:
                     block.get("recommended_action"),
                 )
             )
+    if _has_japanese_summary(item):
+        values.extend(
+            (
+                item.get("summary_ja"),
+                item.get("business_impact_ja"),
+                item.get("recommended_action_ja"),
+            )
+        )
     return " ".join(value for value in values if isinstance(value, str)).lower()
 
 

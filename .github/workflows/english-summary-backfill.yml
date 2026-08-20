@@ -189,25 +189,38 @@ jobs:
           translation_status=${PIPESTATUS[0]}
           set -e
 
-          if [ "$translation_status" -ne 0 ]; then
-            # Keep the public corpus and Chinese cache exactly as dispatched, but
-            # preserve successful English responses so a funded rerun gets them as
-            # free cache hits instead of paying for the same work again.
+          # Every abort path from here on runs AFTER paid Opus English calls, so
+          # discarding the workspace would throw those responses away with the
+          # runner and a rerun would pay for exactly the same work again. Keep the
+          # public corpus and Chinese cache exactly as dispatched, but preserve the
+          # summary cache so a rerun gets those responses as free cache hits.
+          save_english_cache_and_exit() {
+            reason="$1"
+            status="$2"
+            echo "$reason" | tee -a "$GITHUB_STEP_SUMMARY"
             git restore --source=HEAD -- \
               docs/data/legal_updates.json \
+              docs/data/legal_updates_manifest.json \
+              docs/data/archive \
               data/translation_cache.json
             if ! git diff --quiet -- data/summary_cache.json; then
               git fetch origin main
               if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
-                echo "origin/main advanced; refusing to save the recovery cache."
-                exit "$translation_status"
+                echo "origin/main advanced; refusing to save the recovery cache." | tee -a "$GITHUB_STEP_SUMMARY"
+                exit "$status"
               fi
               git add data/summary_cache.json
-              git commit -m "Checkpoint English summary cache after translation failure"
+              git commit -m "Checkpoint English summary cache after aborted checkpoint"
               git push origin "HEAD:main"
               echo "Saved successful English responses to cache only; published data is unchanged." | tee -a "$GITHUB_STEP_SUMMARY"
             fi
-            exit "$translation_status"
+            exit "$status"
+          }
+
+          if [ "$translation_status" -ne 0 ]; then
+            save_english_cache_and_exit \
+              "Translation step failed; preserving paid English responses in the cache only." \
+              "$translation_status"
           fi
 
           python scripts/build_public_archives.py
@@ -225,26 +238,21 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
           if [ "$after" -lt "$before" ]; then
-            echo "English coverage shrank; refusing to checkpoint."
-            exit 1
+            save_english_cache_and_exit "English coverage shrank; refusing to checkpoint." 1
           fi
           if [ "$after" -eq "$before" ]; then
-            echo "No English-summary progress; stopping for diagnosis."
-            exit 1
+            save_english_cache_and_exit "No English-summary progress; stopping for diagnosis." 1
           fi
           if [ "$after_ja" != "$before_ja" ]; then
-            echo "Japanese summary fields changed during English-only backfill; refusing to checkpoint."
-            exit 1
+            save_english_cache_and_exit "Japanese summary fields changed during English-only backfill; refusing to checkpoint." 1
           fi
           if [ "$after_zh" -lt "$before_zh" ]; then
-            echo "zh-Hans coverage shrank during refresh; refusing to publish stale/fallback churn."
-            exit 1
+            save_english_cache_and_exit "zh-Hans coverage shrank during refresh; refusing to publish stale/fallback churn." 1
           fi
 
           git fetch origin main
           if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
-            echo "origin/main advanced during the checkpoint; refusing a non-fast-forward push."
-            exit 1
+            save_english_cache_and_exit "origin/main advanced during the checkpoint; refusing a non-fast-forward push." 1
           fi
 
           git add \

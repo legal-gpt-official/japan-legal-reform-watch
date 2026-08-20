@@ -68,11 +68,26 @@ import logging
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 import build_public_data as public_data
-from anthropic_batch import DEFAULT_TIMEOUT_SECONDS, run_message_batch
+from anthropic_batch import (
+    DEFAULT_TIMEOUT_SECONDS,
+    BatchDiscoveryUnavailable,
+    BatchItemError,
+    DEFAULT_DISCOVERY_MAX_AGE_DAYS,
+    batch_age_days,
+    pending_batches,
+    format_custom_id,
+    list_recent_batches,
+    parse_custom_id,
+    preflight_batch_cost_usd,
+    read_batch_results,
+    run_message_batch,
+    trim_requests_to_budget,
+)
 
 # --------------------------------------------------------------------------- #
 # Paths / constants (module-level so they can be overridden in tests)
@@ -95,8 +110,18 @@ MAX_TOKENS = 1500
 # for transparent run-cost reporting and the optional safety cap; provider
 # billing remains authoritative. Unknown models report token usage without a
 # dollar estimate instead of guessing.
+# Source: platform.claude.com/docs/en/about-claude/pricing, checked 2026-08-20.
+# Sonnet 5's $2/$10 launch pricing is now the STANDARD price: the increase to
+# $3/$15 scheduled for 2026-09-01 was withdrawn. `cache_read` is the documented
+# 0.1x-of-input rate; charging cache tokens at the full input rate (as this table
+# previously implied) overstates any run that uses prompt caching.
 MODEL_PRICING_USD_PER_MTOK = {
-    "claude-opus-4-8": {"input": 5.0, "output": 25.0},
+    "claude-opus-4-8": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
+    "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
+    "claude-opus-4-7": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
+    "claude-sonnet-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
+    "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_write_5m": 3.75, "cache_write_1h": 6.0, "cache_read": 0.30},
+    "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_write_5m": 1.25, "cache_write_1h": 2.0, "cache_read": 0.10},
 }
 FATAL_PROVIDER_ERRORS = ("insufficient_credit", "authentication_error", "permission_error")
 _CREDIT_SIGNALS = (
@@ -154,7 +179,9 @@ SYSTEM_PROMPT = (
     "only summarize it.\n"
     "- Return ONLY valid JSON, with no surrounding prose or markdown.\n\n"
     "Length and field guidance:\n"
-    "- title_en: a short English label, at most ~120 characters.\n"
+    "- title_en: a short English label, at most ~120 characters. Write it in English only — "
+    "it must contain no Japanese characters (no kanji, hiragana, or katakana); romanize or "
+    "translate any Japanese statute, agency, or place name.\n"
     "- summary_en: 2-3 sentences, factual.\n"
     "- business_impact_en: 1-2 sentences, framed as possibility ('may', 'could'), not certainty.\n"
     "- recommended_action_en: exactly 1 sentence, framed as reviewing the official source, not a directive.\n"
@@ -282,13 +309,32 @@ def load_json(path: Path, default):
         return default
 
 
+def atomic_replace(tmp, path, *, attempts: int = 6, delay: float = 0.05) -> None:
+    """Move `tmp` over `path`, retrying briefly on a transient Windows lock.
+
+    os.replace is atomic, but on Windows an on-access virus scanner can hold the
+    freshly written temp file for a few milliseconds and the move fails with
+    PermissionError (WinError 5). Retrying a handful of times turns that into a
+    non-event; a genuine permission problem still surfaces after the last attempt.
+    Linux (where CI runs) never takes this path.
+    """
+    for attempt in range(attempts):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay * (attempt + 1))
+
+
 def save_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    tmp.replace(path)
+    atomic_replace(tmp, path)
 
 
 def cache_key(item: dict, raw_by_id: dict) -> str:
@@ -457,18 +503,24 @@ def add_usage(total: dict[str, int], usage: dict[str, int]) -> None:
         total[key] += max(0, int(usage.get(key, 0) or 0))
 
 
+def model_pricing(model: str) -> dict[str, float] | None:
+    """Return list prices for a model id, or None when the model is unpriced."""
+    return next(
+        (rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)),
+        None,
+    )
+
+
 def estimate_usage_cost_usd(usage: dict[str, int], model: str, *, batch: bool = False) -> float | None:
-    price = next((rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)), None)
+    price = model_pricing(model)
     if price is None:
         return None
     multiplier = 0.5 if batch else 1.0
-    input_tokens = (
-        usage.get("input_tokens", 0)
-        + usage.get("cache_creation_input_tokens", 0)
-        + usage.get("cache_read_input_tokens", 0)
-    )
     return multiplier * (
-        input_tokens * price["input"] + usage.get("output_tokens", 0) * price["output"]
+        usage.get("input_tokens", 0) * price["input"]
+        + usage.get("cache_creation_input_tokens", 0) * price["cache_write_5m"]
+        + usage.get("cache_read_input_tokens", 0) * price["cache_read"]
+        + usage.get("output_tokens", 0) * price["output"]
     ) / 1_000_000
 
 
@@ -508,19 +560,153 @@ def request_japanese_summary(client, model: str, item: dict, raw: dict) -> tuple
     return parse_summary_message(resp, model)
 
 
+# Batch identity. `cache_key()` already encodes "which source content produced
+# this item", so putting its prefix in the custom_id lets a later run decide
+# whether a recovered result is still valid without any local state. See
+# anthropic_batch.format_custom_id for why local state is not enough on CI.
+BATCH_KIND_EN = "se"
+BATCH_KIND_JA = "sj"
+
+# Batch outcomes worth separating in the run summary: `expired` means the batch
+# hit the provider's 24-hour limit, `canceled` that it was stopped, and
+# `missing` that a request returned no result. Each is a different operational
+# problem, so one combined failure count would hide what actually happened.
+BATCH_OUTCOME_BUCKETS = ("succeeded", "errored", "expired", "canceled", "missing")
+
+
+def batch_outcome_bucket(exc) -> str:
+    """Bucket one failed batch outcome for reporting."""
+    error_type = getattr(exc, "error_type", "") or ""
+    if error_type == "missing_result":
+        return "missing"
+    if error_type in ("expired", "canceled"):
+        return error_type
+    return "errored"
+
+
+def batch_custom_ids(kind: str, pending: list) -> list[str]:
+    """custom_ids for a batch, in submission order."""
+    return [format_custom_id(kind, it.get("id") or "", key) for it, key, _raw in pending]
+
+
+def recover_unclaimed_batches(
+    items: list[dict], raw_by_id: dict, cache: dict, kind: str, *, discover_limit: int = 20,
+    max_age_days: float = DEFAULT_DISCOVERY_MAX_AGE_DAYS,
+) -> dict[str, int]:
+    """Apply results from batches this project submitted but never collected.
+
+    A Message Batch keeps running and billing after the caller dies, and on
+    GitHub Actions the runner's filesystem (and therefore any locally recorded
+    batch id) dies with it — the daily workflow commits only at the very end.
+    The provider still holds the batch for 29 days, so the next run lists recent
+    batches, reads the self-describing custom_ids off the results, and writes
+    what was already paid for straight into the cache.
+
+    Only results whose item still has the same cache_key are kept, so nothing
+    generated from superseded source content is applied. Writing to the cache
+    (rather than to the items) means the normal pass then picks them up as
+    ordinary free cache hits.
+    """
+    stats = {"recovered": 0, "skipped": 0, "failed": 0}
+    try:
+        client = make_client()
+    except Exception as exc:
+        logger.info("BATCH recovery unavailable (%s)", type(exc).__name__)
+        return stats
+    by_id = {it.get("id") or "": it for it in items}
+    for batch in list_recent_batches(client, limit=discover_limit, logger=logger):
+        if getattr(batch, "processing_status", None) != "ended":
+            continue
+        # Older batches were absorbed on an earlier run; re-reading their full
+        # result set every time costs time for nothing.
+        age = batch_age_days(batch)
+        if age is not None and age > max_age_days:
+            continue
+        batch_id = getattr(batch, "id", "")
+        for custom_id, value in sorted(read_batch_results(client, batch_id, logger=logger).items()):
+            spec = parse_custom_id(custom_id, kind)
+            if not spec:
+                continue
+            item = by_id.get(spec["item_id"])
+            if item is None:
+                stats["skipped"] += 1
+                continue
+            key = cache_key(item, raw_by_id)
+            if not key.startswith(spec["source_hash_prefix"]):
+                stats["skipped"] += 1
+                continue
+            existing = cache.get(key)
+            already = valid_japanese_result(existing) if kind == BATCH_KIND_JA else valid_result(existing)
+            if already:
+                continue  # collected on an earlier run
+            try:
+                if isinstance(value, Exception):
+                    raise value
+                result, model_used, _usage = parse_summary_message(value, "")
+                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                if kind == BATCH_KIND_JA:
+                    if not valid_japanese_result(result):
+                        raise ValueError("recovered Japanese summary is invalid")
+                    cache.setdefault(key, {}).update(
+                        {**{f: result[f] for f in JA_AI_FIELDS},
+                         "summary_ja_source": "claude",
+                         "ja_summarized_at": now, "ja_summary_model": model_used}
+                    )
+                else:
+                    if not valid_result(result):
+                        raise ValueError("recovered English summary is invalid")
+                    cache.setdefault(key, {}).update(
+                        {**{f: result[f] for f in AI_FIELDS},
+                         "summarized_at": now, "summary_model": model_used}
+                    )
+                stats["recovered"] += 1
+            except Exception as exc:
+                stats["failed"] += 1
+                logger.error("RECOVER %s type=%s", spec["item_id"], classify_provider_error(exc))
+    if stats["recovered"]:
+        logger.info(
+            "BATCH recovered %d %s results from the provider (no local state needed)",
+            stats["recovered"], kind,
+        )
+    return stats
+
+
+def trim_batch_to_budget(client, model, requests, max_cost_usd, pending):
+    """Drop trailing requests that would exceed a pre-flight spend bound.
+
+    Batch usage is only known after completion, so the measured cap cannot
+    apply. Counting tokens up front (with a margin, because count_tokens is an
+    estimate) and charging the full max_tokens ceiling for output bounds the
+    spend before anything is submitted.
+    """
+    if max_cost_usd is None:
+        return requests, pending, 0.0, 0
+    price = model_pricing(model)
+    if price is None:
+        return [], [], 0.0, len(requests)
+    bounds = preflight_batch_cost_usd(
+        client, requests, price, max_output_tokens=MAX_TOKENS, batch=True, logger=logger
+    )
+    fits = trim_requests_to_budget(requests, bounds, max_cost_usd)
+    return requests[:fits], pending[:fits], sum(bounds[:fits]), len(requests) - fits
+
+
 def request_summary_batch(
     client,
     model: str,
     candidates: list[tuple[dict, dict]],
     *,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    custom_ids: list[str] | None = None,
 ) -> tuple[str, list[object]]:
     """Submit independent summary requests as one discounted Message Batch."""
     requests = []
+    ids = list(custom_ids or [])
     for index, (item, raw) in enumerate(candidates):
         params = summary_request_params(model, item, raw)
         params["output_config"] = {"format": {"type": "json_schema", "schema": RESULT_SCHEMA}}
-        requests.append({"custom_id": f"summary-{index:04d}", "params": params})
+        custom_id = ids[index] if index < len(ids) else f"summary-{index:04d}"
+        requests.append({"custom_id": custom_id, "params": params})
     run = run_message_batch(
         client,
         requests,
@@ -528,8 +714,10 @@ def request_summary_batch(
         logger=logger,
     )
     decoded: list[object] = []
-    for index in range(len(candidates)):
-        value = run.results[f"summary-{index:04d}"]
+    for request in requests:
+        value = run.results.get(
+            request["custom_id"], BatchItemError("missing_result", "batch result was missing")
+        )
         decoded.append(value if isinstance(value, Exception) else parse_summary_message(value, model))
     return run.batch_id, decoded
 
@@ -540,17 +728,22 @@ def request_japanese_summary_batch(
     candidates: list[tuple[dict, dict]],
     *,
     timeout_seconds: float = DEFAULT_TIMEOUT_SECONDS,
+    custom_ids: list[str] | None = None,
 ) -> tuple[str, list[object]]:
     """Submit Japanese-source summary requests as one discounted Message Batch."""
     requests = []
+    ids = list(custom_ids or [])
     for index, (item, raw) in enumerate(candidates):
         params = japanese_summary_request_params(model, item, raw)
         params["output_config"] = {"format": {"type": "json_schema", "schema": JA_RESULT_SCHEMA}}
-        requests.append({"custom_id": f"summary-ja-{index:04d}", "params": params})
+        custom_id = ids[index] if index < len(ids) else f"summary-ja-{index:04d}"
+        requests.append({"custom_id": custom_id, "params": params})
     run = run_message_batch(client, requests, timeout_seconds=timeout_seconds, logger=logger)
     decoded: list[object] = []
-    for index in range(len(candidates)):
-        value = run.results[f"summary-ja-{index:04d}"]
+    for request in requests:
+        value = run.results.get(
+            request["custom_id"], BatchItemError("missing_result", "batch result was missing")
+        )
         decoded.append(value if isinstance(value, Exception) else parse_summary_message(value, model))
     return run.batch_id, decoded
 
@@ -572,6 +765,12 @@ def valid_result(d) -> bool:
     for k in AI_TEXT_FIELDS:
         if not isinstance(d.get(k), str) or not d[k].strip():
             return False
+    # validate_output() rejects a Japanese title_en for the WHOLE corpus, which
+    # aborts the run and discards every other paid response. Reject it per item
+    # instead, so one bad response costs one call rather than the entire run.
+    # Length needs no check here: apply_result() runs shorten_title().
+    if public_data.contains_japanese(d["title_en"]):
+        return False
     return d.get("confidence") in ("high", "medium", "low")
 
 
@@ -659,6 +858,13 @@ def remove_japanese_result(item: dict) -> None:
         item.pop(field, None)
 
 
+def carries_english_ai_result(item: dict) -> bool:
+    """True when the item still holds a Claude English result to be restored."""
+    return item.get("summary_source") == "claude" or any(
+        field in item for field in EN_PROVENANCE_FIELDS
+    )
+
+
 def restore_rule_based_english_preview(item: dict) -> None:
     """Remove a stale English AI result after its source cache key changes.
 
@@ -668,7 +874,20 @@ def restore_rule_based_english_preview(item: dict) -> None:
     rule-based preview when the API budget is exhausted or the provider fails.
     Rebuild the conservative title and fixed placeholders before scheduling any
     replacement call so every failure/skip path remains truthful.
+
+    An item that carries no Claude English result has nothing to restore. Stage 2
+    already wrote the rule-based preview for it, including the corpus-wide
+    duplicate-title disambiguation suffix that the per-item title generator
+    cannot reproduce. Rewriting `title_en` here would silently drop that suffix
+    on every rule-based item, which both republishes indistinguishable duplicate
+    card titles and invalidates the derived Stage 4 translation cache entries,
+    forcing Claude to re-translate work that was already paid for. Leave Stage 2
+    output untouched and only assert the rule-based label.
     """
+    if not carries_english_ai_result(item):
+        item["summary_source"] = "rule_based"
+        return
+
     item["title_en"] = public_data.generate_title_en(
         item.get("title_ja", ""),
         item.get("source_name", ""),
@@ -815,6 +1034,15 @@ def main(argv: list[str] | None = None) -> int:
             "Intended for resumable full-corpus backfills."
         ),
     )
+    parser.add_argument(
+        "--no-batch-interlock",
+        action="store_true",
+        help=(
+            "Submit a batch even when another is still running in this API key's "
+            "workspace. The interlock prevents paying twice for work that cannot "
+            "yet be identified; only disable it on a shared workspace."
+        ),
+    )
     parser.add_argument("--dry-run", action="store_true", help="Do not write output, backup, or cache.")
     args = parser.parse_args(argv)
     if args.japanese_only and args.english_only:
@@ -829,9 +1057,15 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--parallel cannot be combined with --batch")
     if args.max_cost_usd is not None and args.max_cost_usd <= 0:
         parser.error("--max-cost-usd must be positive")
-    if args.batch and args.max_cost_usd is not None:
-        parser.error("--max-cost-usd is supported only for direct calls")
+    # --batch and --max-cost-usd now coexist: batch mode bounds spend with a
+    # pre-flight token count instead of a post-hoc measurement of each response.
     model = resolve_model(args.model)
+    # Fail closed, exactly as translate_updates.py does. Without pricing,
+    # estimate_usage_cost_usd() returns None, estimated_cost_usd stays 0.0, and
+    # cost_cap_reached() would never fire — silently turning the only measured
+    # spend brake into a no-op for the whole run.
+    if args.max_cost_usd is not None and model_pricing(model) is None:
+        parser.error("--max-cost-usd requires a model with configured pricing")
 
     api_key_available = bool(os.environ.get("ANTHROPIC_API_KEY"))
 
@@ -863,6 +1097,52 @@ def main(argv: list[str] | None = None) -> int:
     targets = items if args.all_items else sorted(items, key=score, reverse=True)[: max(0, args.limit)]
     target_ids = {id(it) for it in targets}  # identity set — items are dict refs in `items`
 
+    batch_blocked = False
+    if args.batch and api_key_available:
+        # Reclaim before deciding what still needs work, so anything already
+        # paid for becomes an ordinary free cache hit below.
+        for kind in ((BATCH_KIND_JA,) if args.japanese_only else
+                     (BATCH_KIND_EN,) if args.english_only else
+                     (BATCH_KIND_EN, BATCH_KIND_JA)):
+            try:
+                recovered_batches = recover_unclaimed_batches(items, raw_by_id, cache, kind)
+            except BatchDiscoveryUnavailable as exc:
+                # Fail closed: no list means no recovery and no interlock.
+                batch_blocked = True
+                batch_blocked_reason = "discovery_unavailable"
+                provider_error_type = "batch_discovery_unavailable"
+                logger.error("BATCH discovery unavailable (%s); refusing to submit.", exc)
+                break
+            except Exception as exc:
+                logger.info("BATCH recovery skipped (%s)", type(exc).__name__)
+                continue
+            recovered_items += recovered_batches["recovered"]
+            if recovered_batches["recovered"] and not args.dry_run:
+                save_json(CACHE_PATH, cache)  # durable before anything else runs
+
+        if not batch_blocked and not args.no_batch_interlock:
+            # An unfinished batch cannot be identified from the list alone, so a
+            # rerun could resubmit work that is already running and billed.
+            try:
+                running = pending_batches(make_client(), logger=logger)
+            except BatchDiscoveryUnavailable as exc:
+                batch_blocked = True
+                batch_blocked_reason = "discovery_unavailable"
+                provider_error_type = "batch_discovery_unavailable"
+                logger.error("BATCH interlock unavailable (%s); refusing to submit.", exc)
+            else:
+                if running:
+                    batch_blocked = True
+                    batch_blocked_reason = "batch_still_running"
+                    provider_error_type = "batch_still_running"
+                    logger.warning(
+                        "BATCH interlock: %d batch(es) still running (%s); not submitting.",
+                        len(running), ", ".join(running[:3]),
+                    )
+        if batch_blocked:
+            # Apply cache hits only this run; nothing new is scheduled.
+            provider_fatal = True
+
     fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     logger.info(
         "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, english_only=%s, "
@@ -879,6 +1159,12 @@ def main(argv: list[str] | None = None) -> int:
     provider_error_type = "none" if api_key_available else "missing_api_key"
     provider_aborted = 0
     cost_budget_skipped = 0
+    preflight_cost_usd = 0.0
+    preflight_trimmed = 0
+    batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
+    recovered_items = 0
+    batch_blocked_reason = "none"
+    run_started_at = time.monotonic()
     usage_totals = message_usage(None)
     estimated_cost_usd = 0.0
     cost_estimate_complete = True
@@ -1106,6 +1392,18 @@ def main(argv: list[str] | None = None) -> int:
     if args.batch and pending:
         if client is None:
             client = make_client()
+        # Bound the spend before submitting; batch usage is only known afterwards.
+        _requests = [{"params": summary_request_params(model, it, raw)} for it, _key, raw in pending]
+        _requests, pending, _bound, _dropped = trim_batch_to_budget(
+            client, model, _requests, args.max_cost_usd, pending
+        )
+        preflight_cost_usd += _bound
+        if _dropped:
+            preflight_trimmed += _dropped
+            cost_budget_skipped += _dropped
+            logger.info("PREFLIGHT bound $%.4f; %d English request(s) deferred", _bound, _dropped)
+        if not pending:
+            logger.info("PREFLIGHT no English request fits the remaining budget")
         api_calls += len(pending)
         outcomes = []
         try:
@@ -1114,6 +1412,7 @@ def main(argv: list[str] | None = None) -> int:
                 model,
                 [(it, raw) for it, _key, raw in pending],
                 timeout_seconds=args.batch_timeout_seconds,
+                custom_ids=batch_custom_ids(BATCH_KIND_EN, pending),
             )
         except Exception as exc:
             error_type = classify_provider_error(exc)
@@ -1149,9 +1448,11 @@ def main(argv: list[str] | None = None) -> int:
                     {**{k: it[k] for k in AI_FIELDS}, "summarized_at": now, "summary_model": model_used}
                 )
                 summarized += 1
+                batch_outcomes["succeeded"] += 1
                 logger.info("BATCH API %s confidence=%s", it.get("id"), result.get("confidence"))
             except Exception as exc:
                 failed += 1
+                batch_outcomes[batch_outcome_bucket(exc)] += 1
                 it["summary_source"] = "rule_based"
                 error_type = classify_provider_error(exc)
                 if error_type in FATAL_PROVIDER_ERRORS:
@@ -1287,6 +1588,18 @@ def main(argv: list[str] | None = None) -> int:
     elif args.batch and pending_ja:
         if client is None:
             client = make_client()
+        _requests = [{"params": japanese_summary_request_params(model, it, raw)}
+                     for it, _key, raw in pending_ja]
+        _requests, pending_ja, _bound, _dropped = trim_batch_to_budget(
+            client, model, _requests,
+            None if args.max_cost_usd is None else max(0.0, args.max_cost_usd - preflight_cost_usd),
+            pending_ja,
+        )
+        preflight_cost_usd += _bound
+        if _dropped:
+            preflight_trimmed += _dropped
+            cost_budget_skipped += _dropped
+            logger.info("PREFLIGHT bound $%.4f; %d Japanese request(s) deferred", _bound, _dropped)
         api_calls += len(pending_ja)
         outcomes = []
         try:
@@ -1295,6 +1608,7 @@ def main(argv: list[str] | None = None) -> int:
                 model,
                 [(it, raw) for it, _key, raw in pending_ja],
                 timeout_seconds=args.batch_timeout_seconds,
+                custom_ids=batch_custom_ids(BATCH_KIND_JA, pending_ja),
             )
         except Exception as exc:
             error_type = classify_provider_error(exc)
@@ -1328,9 +1642,11 @@ def main(argv: list[str] | None = None) -> int:
                      "ja_summarized_at": now, "ja_summary_model": model_used}
                 )
                 ja_summarized += 1
+                batch_outcomes["succeeded"] += 1
                 logger.info("BATCH API JA %s", it.get("id"))
             except Exception as exc:
                 ja_failed += 1
+                batch_outcomes[batch_outcome_bucket(exc)] += 1
                 error_type = classify_provider_error(exc)
                 if error_type in FATAL_PROVIDER_ERRORS:
                     if not provider_fatal:
@@ -1345,6 +1661,17 @@ def main(argv: list[str] | None = None) -> int:
     if problems:
         for p in problems[:20]:
             logger.error("VALIDATION %s", p)
+        # The published file is deliberately NOT written. The cache, however, is
+        # a private accelerator keyed by raw-content hash and never reaches the
+        # browser, so persisting it cannot publish invalid data. Dropping it here
+        # would discard every response already paid for in this run and make the
+        # next run pay for exactly the same work again.
+        if not args.dry_run and (summarized or ja_summarized):
+            save_json(CACHE_PATH, cache)
+            logger.info(
+                "VALIDATION failed; kept %d English and %d Japanese paid results in the cache.",
+                summarized, ja_summarized,
+            )
         print(f"ERROR: output validation failed ({len(problems)} problem(s)); not writing. See {LOG_PATH}.", file=sys.stderr)
         return 2
     caution_warnings = log_caution_warnings(items)
@@ -1362,8 +1689,12 @@ def main(argv: list[str] | None = None) -> int:
             if before is not None:
                 save_json(BEFORE_AI_PATH, before)
                 backup_created = True
-        save_json(OUTPUT_PATH, items)
+        # Persist the API-result cache BEFORE the published file. The published
+        # file is derivable from the cache; the cache is not derivable from
+        # anything. If the process dies between the two writes, this ordering
+        # loses a republish (free to redo) instead of losing paid responses.
         save_json(CACHE_PATH, cache)
+        save_json(OUTPUT_PATH, items)
 
     logger.info(
         "RUN SUMMARY input=%d target=%d api_limit=%s cache_hits=%d api_calls=%d "
@@ -1406,6 +1737,17 @@ def main(argv: list[str] | None = None) -> int:
     print(f"provider_error_type: {provider_error_type}")
     print(f"provider_aborted_items: {provider_aborted}")
     print(f"cost_budget_skipped: {cost_budget_skipped}")
+    print(f"preflight_cost_usd: {preflight_cost_usd:.6f}")
+    print(f"preflight_trimmed : {preflight_trimmed}")
+    print(f"batch_id          : {batch_id or 'none'}")
+    print(f"recovered_items   : {recovered_items}")
+    print(f"batch_blocked     : {batch_blocked_reason}")
+    print(f"batch_succeeded   : {batch_outcomes['succeeded']}")
+    print(f"batch_errored     : {batch_outcomes['errored']}")
+    print(f"batch_expired     : {batch_outcomes['expired']}")
+    print(f"batch_canceled    : {batch_outcomes['canceled']}")
+    print(f"batch_missing     : {batch_outcomes['missing']}")
+    print(f"duration_seconds  : {time.monotonic() - run_started_at:.1f}")
     print(f"input_tokens    : {usage_totals['input_tokens']}")
     print(f"output_tokens   : {usage_totals['output_tokens']}")
     print(f"cache_creation_input_tokens: {usage_totals['cache_creation_input_tokens']}")

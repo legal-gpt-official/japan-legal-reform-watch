@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -132,6 +133,25 @@ def load_json(path: Path) -> tuple[Any | None, list[str]]:
         return None, [f"Could not read {path}: {exc}"]
 
 
+def atomic_replace(tmp, path, *, attempts: int = 6, delay: float = 0.05) -> None:
+    """Move `tmp` over `path`, retrying briefly on a transient Windows lock.
+
+    os.replace is atomic, but on Windows an on-access virus scanner can hold the
+    freshly written temp file for a few milliseconds and the move fails with
+    PermissionError (WinError 5). Retrying a handful of times turns that into a
+    non-event; a genuine permission problem still surfaces after the last attempt.
+    Linux (where CI runs) never takes this path.
+    """
+    for attempt in range(attempts):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay * (attempt + 1))
+
+
 def save_json_if_changed(path: Path, data: dict[str, Any]) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     new_text = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
@@ -143,7 +163,7 @@ def save_json_if_changed(path: Path, data: dict[str, Any]) -> bool:
         return False
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(new_text, encoding="utf-8")
-    tmp.replace(path)
+    atomic_replace(tmp, path)
     return True
 
 
@@ -545,6 +565,14 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
     report, report_errors = load_json(args.report)
     state, state_errors = load_json(args.state)
     if state_errors:
+        if Path(args.state).exists():
+            # The file is present but malformed or unreadable. Collapsing it to a
+            # pristine all-zero state and persisting that would erase every streak
+            # and repair the file in place, so the post-commit gate would then load
+            # it cleanly and pass — letting a dead source stay dead indefinitely.
+            # CLAUDE.md requires malformed state to stay fatal: report it and do
+            # not persist. Only an absent file (first run) may start from zero.
+            report_errors = report_errors + state_errors
         state = None
     if report_errors:
         evaluation = {

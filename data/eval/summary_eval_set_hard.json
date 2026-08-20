@@ -1,0 +1,831 @@
+{
+  "created_at": "2026-08-20T01:32:07Z",
+  "profile": "hard",
+  "prompt_fingerprint": "You assist a compliance-triage dashboard that turns Japanese gov",
+  "items": [
+    {
+      "id": "raw-0f0537b16bd2acc6",
+      "source": {
+        "id": "raw-0f0537b16bd2acc6",
+        "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=431CO0000000072_20270401_507CO0000000341",
+        "published_at": "2025-10-01",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260812; 対象法令: 特定複合観光施設区域整備法施行令; 法令番号: 平成三十一年政令第七十二号; 改正法令: 出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令; 改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01",
+        "preliminary_rule_based_labels": {
+          "area": "Labor / Employment",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Labor / Employment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-24a80a70ffe959b3",
+      "source": {
+        "id": "raw-24a80a70ffe959b3",
+        "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=333CO0000000207_20270401_507CO0000000341",
+        "published_at": "2025-10-01",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260813; 対象法令: 国家公務員共済組合法施行令; 法令番号: 昭和三十三年政令第二百七号; 改正法令: 出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令; 改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01",
+        "preliminary_rule_based_labels": {
+          "area": "Labor / Employment",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Labor / Employment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-512f09792ad6b88c",
+      "source": {
+        "id": "raw-512f09792ad6b88c",
+        "title_ja": "「犯罪による収益の移転防止に関する法律施行令第十七条の二及び第十七条の三の規定に基づき国又は地域を指定する件の一部を改正する件（案）」に対するパブリックコメントの結果等について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r8/sonota/20260707-2/20260707-2.html",
+        "published_at": "2026-07-08",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Public Comment Results Published",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Results Published",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-5554831de7a6fcdc",
+      "source": {
+        "id": "raw-5554831de7a6fcdc",
+        "title_ja": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r8/shouken/20260728/20260728.html",
+        "published_at": "2026-07-29",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-6ef6b3cfba5088bb",
+      "source": {
+        "id": "raw-6ef6b3cfba5088bb",
+        "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=420CO0000000389_20270401_507CO0000000341",
+        "published_at": "2025-10-01",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260806; 対象法令: 職員の退職管理に関する政令; 法令番号: 平成二十年政令第三百八十九号; 改正法令: 出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令; 改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01",
+        "preliminary_rule_based_labels": {
+          "area": "Labor / Employment",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Labor / Employment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-72d724a811b68442",
+      "source": {
+        "id": "raw-72d724a811b68442",
+        "title_ja": "「犯罪による収益の移転防止に関する法律施行規則の一部を改正する命令」の公布等及びパブリックコメントの結果等について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r7/sonota/20260626/20260626.html",
+        "published_at": "2026-06-27",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Public Comment Results Published",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Results Published",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-7e62a10d7fe7eb3a",
+      "source": {
+        "id": "raw-7e62a10d7fe7eb3a",
+        "title_ja": "特定外来生物による生態系等に係る被害の防止に関する法律施行令の一部を改正する政令案、特定外来生物による生態系等に係る被害の防止に関する法律施行規則の一部を改正する省令案及び環境大臣が所掌する特定外来生物に係る特定飼養等施設の基準の細目等を定める件の改正案に対する意見募集（パブリック・コメント）について",
+        "source_name": "環境省 (MOE) 報道発表",
+        "source_url": "https://www.env.go.jp/press/press_04752.html",
+        "published_at": "2026-06-18",
+        "source_type": "ministry_html",
+        "raw_summary": "自然環境",
+        "preliminary_rule_based_labels": {
+          "area": "Energy / Environment",
+          "stage": "Public Comment Closed",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-88c56c345de4bc03",
+      "source": {
+        "id": "raw-88c56c345de4bc03",
+        "title_ja": "「外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則の規定に基づき林業分野に特有の事情に鑑みて告示で定める基準等の一部を改正する告示案」についての意見・情報の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004371&Mode=0",
+        "published_at": "2026-06-16",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/06/16 受付締切日時：2026/07/15 23:59 カテゴリー：林業 問合せ先（所管省庁・部局名等）：林野庁林政部経営課林業労働・経営対策室林業人材育成班 電話：03-3502-8111（内線6085）",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "Public Comment Closed",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-8aaa05802444511c",
+      "source": {
+        "id": "raw-8aaa05802444511c",
+        "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=328CO0000000215_20270401_507CO0000000341",
+        "published_at": "2025-10-01",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260812; 対象法令: 国家公務員退職手当法施行令; 法令番号: 昭和二十八年政令第二百十五号; 改正法令: 出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令; 改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01",
+        "preliminary_rule_based_labels": {
+          "area": "Labor / Employment",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Labor / Employment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-8e999a4c8e6b8fe3",
+      "source": {
+        "id": "raw-8e999a4c8e6b8fe3",
+        "title_ja": "「下水道法等の一部を改正する法律の一部の施行期日を定める政令」等を閣議決定 ～都道府県による公共下水道の災害復旧工事の代行により、復旧を迅速化～",
+        "source_name": "国土交通省 (MLIT) 報道発表",
+        "source_url": "https://www.mlit.go.jp/report/press/mizukokudo13_hh_000748.html",
+        "published_at": "2026-08-04",
+        "source_type": "ministry_html",
+        "raw_summary": "報道発表",
+        "preliminary_rule_based_labels": {
+          "area": "Public Safety / Disaster Management",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Public Safety / Disaster Management",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate"
+      ]
+    },
+    {
+      "id": "raw-94a5abcf9d179f39",
+      "source": {
+        "id": "raw-94a5abcf9d179f39",
+        "title_ja": "「経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律の施行期日を定める政令」及び「経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律の施行に伴う関係政令の整備に関する政令」が閣議決定されました",
+        "source_name": "経済産業省 (METI) ニュースリリース",
+        "source_url": "https://www.meti.go.jp/press/2026/07/20260728001.html",
+        "published_at": "2026-07-28",
+        "source_type": "ministry_html",
+        "raw_summary": "ニュースリリース",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Other",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate"
+      ]
+    },
+    {
+      "id": "raw-9c1fa86f0c56132b",
+      "source": {
+        "id": "raw-9c1fa86f0c56132b",
+        "title_ja": "「出入国管理及び難民認定法施行令及び日本国との平和条約に基づき日本の国籍を離脱した者等の出入国管理に関する特例法施行令の一部を改正する政令案」等に係る意見募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=315000136&Mode=0",
+        "published_at": "2026-07-03",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/03 受付締切日時：2026/08/03 00:00 カテゴリー：外事 問合せ先（所管省庁・部局名等）：出入国在留管理庁参事官室 電話：045-370-9755（6921）",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "Public Comment Closed",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-b9050d45f70413a6",
+      "source": {
+        "id": "raw-b9050d45f70413a6",
+        "title_ja": "不正競争防止法第十六条第一項及び第三項並びに第十七条に規定する外国の国旗又は国の紋章その他の記章及び外国の政府若しくは地方公共団体の監督用若しくは証明用の印章又は記号並びに国際機関及び国際機関を表示する標章を定める省令の一部を改正する省令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=406M50000400036_20260824_508M60000400062",
+        "published_at": "2026-07-24",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260810; 対象法令: 不正競争防止法第十六条第一項及び第三項並びに第十七条に規定する外国の国旗又は国の紋章その他の記章及び外国の政府若しくは地方公共団体の監督用若しくは証明用の印章又は記号並びに国際機関及び国際機関を表示する標章を定める省令; 法令番号: 平成六年通商産業省令第三十六号; 改正法令: 不正競争防止法第十六条第一項及び第三項並びに第十七条に規定する外国の国旗又は国の紋章その他の記章及び外国の政府若しくは地方公共団体の監督用若しくは証明用の印章又は記号並びに国際機関及び国際機関を表示する標章を定める省令の一部を改正する省令; 改正法令番号: 令和八年経済産業省令第六十二号; 公布日: 2026-07-24; 施行日: 2026-08-24",
+        "preliminary_rule_based_labels": {
+          "area": "Consumer / Advertising",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Consumer / Advertising",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-ea4ec710e9aa9598",
+      "source": {
+        "id": "raw-ea4ec710e9aa9598",
+        "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=337CO0000000352_20270401_507CO0000000341",
+        "published_at": "2025-10-01",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260813; 対象法令: 地方公務員等共済組合法施行令; 法令番号: 昭和三十七年政令第三百五十二号; 改正法令: 出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令; 改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01",
+        "preliminary_rule_based_labels": {
+          "area": "Labor / Employment",
+          "stage": "Scheduled to Take Effect",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Scheduled to Take Effect",
+      "area": "Labor / Employment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate",
+        "foreign_or_treaty"
+      ]
+    },
+    {
+      "id": "raw-014226feeb3b0252",
+      "source": {
+        "id": "raw-014226feeb3b0252",
+        "title_ja": "地方税法施行規則第三条の三の二第三項、第五条の二第三項、第十条第五項、第十条の二の 八第三項及び第二十四条の三十九第一項に規定する情報通信の技術の利用における安全性及 び信頼性を確保するために必要な基準の一部を改正する告示（案）等に対する意見募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210758&Mode=0",
+        "published_at": "2026-08-05",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/08/05 受付締切日時：2026/09/08 23:59 カテゴリー：地方財政、地方税 問合せ先（所管省庁・部局名等）：総務省自治税務局企画課電子化推進室 総務省自治税務局市町村税課",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-02e20eb5225a2907",
+      "source": {
+        "id": "raw-02e20eb5225a2907",
+        "title_ja": "農地法施行規則及び農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律施行規則の一部を改正する省令案についての意見・情報の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004381&Mode=0",
+        "published_at": "2026-07-24",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/24 受付締切日時：2026/08/22 23:59 カテゴリー：農業 問合せ先（所管省庁・部局名等）：農林水産省大臣官房環境バイオマス政策課再生可能エネルギー室（営農型太陽光発電関係）/農村振興局農村計画課（その他） 電話：03-3502-8111（内線4341/5532 ）",
+        "preliminary_rule_based_labels": {
+          "area": "Energy / Environment",
+          "stage": "Public Comment Open",
+          "impact_level": "Low",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Energy / Environment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-06ae0325c4081ffc",
+      "source": {
+        "id": "raw-06ae0325c4081ffc",
+        "title_ja": "「貸金業法施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r8/kashikin/20260710/20260710.html",
+        "published_at": "2026-07-11",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-0cfcbb2090480757",
+      "source": {
+        "id": "raw-0cfcbb2090480757",
+        "title_ja": "自衛隊法施行規則の一部を改正する省令案並びに事務官等の採用試験等に関する訓令の一部を改正する訓令案及び防衛省の任期付隊員の採用手続等に関する訓令の一部を改正する訓令案に関する意見の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=170000248&Mode=0",
+        "published_at": "2026-07-01",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/01 受付締切日時：2026/07/30 23:59 カテゴリー：防衛 問合せ先（所管省庁・部局名等）：防衛省大臣官房秘書課 （TEL03-3268-3111 内線25002）",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "Public Comment Closed",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-0f942fb7d2554a58",
+      "source": {
+        "id": "raw-0f942fb7d2554a58",
+        "title_ja": "「食品、添加物等の規格基準の一部を改正する告示（案）」（農薬等（カスガマイシン等６品目）の残留基準の改正）に関する御意見の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=235110032&Mode=0",
+        "published_at": "2026-06-18",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/06/18 受付締切日時：2026/07/17 23:59 カテゴリー：国民生活の安全・安心の確保 問合せ先（所管省庁・部局名等）：消費者庁食品衛生基準審査課残留農薬等基準審査室 電話：03-3507-9352",
+        "preliminary_rule_based_labels": {
+          "area": "Food / Agriculture",
+          "stage": "Public Comment Closed",
+          "impact_level": "Low",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-15eb56a61753dba0",
+      "source": {
+        "id": "raw-15eb56a61753dba0",
+        "title_ja": "経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律の施行に伴う関係政令の整備に関する政令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=419CO0000000124_20260731_508CO0000000244",
+        "published_at": "2026-07-31",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260817; 対象法令: 特別会計に関する法律施行令; 法令番号: 平成十九年政令第百二十四号; 改正法令: 経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律の施行に伴う関係政令の整備に関する政令; 改正法令番号: 令和八年政令第二百四十四号; 公布日: 2026-07-31; 施行日: 2026-07-31",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "In Force",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "In Force",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate"
+      ]
+    },
+    {
+      "id": "raw-171c6b76652b80f4",
+      "source": {
+        "id": "raw-171c6b76652b80f4",
+        "title_ja": "農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律に基づく設備整備計画の認定等に関する省令の一部を改正する省令案についての意見・情報の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004382&Mode=0",
+        "published_at": "2026-07-24",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/24 受付締切日時：2026/08/22 23:59 カテゴリー：農業 問合せ先（所管省庁・部局名等）：農林水産省大臣官房環境バイオマス政策課再生可能エネルギー室 電話：03-3502-8111（内線4341）",
+        "preliminary_rule_based_labels": {
+          "area": "Energy / Environment",
+          "stage": "Public Comment Open",
+          "impact_level": "Low",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Energy / Environment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-1c3780e0acfcd7af",
+      "source": {
+        "id": "raw-1c3780e0acfcd7af",
+        "title_ja": "「企業内容等の開示に関する内閣府令第十九条の九第五項に規定するサステナビリティ開示基準を指定する件の一部を改正する件」（案）に対するパブリックコメントの実施について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r7/shouken/20260624/20260624.html",
+        "published_at": "2026-06-25",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Corporate / Governance",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Corporate / Governance",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-21b2ac9afcc73195",
+      "source": {
+        "id": "raw-21b2ac9afcc73195",
+        "title_ja": "地方税法施行規則第三条の三の二第三項、第五条の二第三項、第十条第五項、第十条の二の八第三項及び第二十四条の三十九第一項に規定する情報通信の技術の利用における安全性及び信頼性を確保するために必要な基準の一部を改正する告示（案）等に対する意見募集",
+        "source_name": "総務省 (MIC) 新着情報",
+        "source_url": "https://www.soumu.go.jp/menu_news/s-news/01zeimu02_02000466.html",
+        "published_at": "2026-08-04",
+        "source_type": "ministry_rss",
+        "raw_summary": "地方税法施行規則第三条の三の二第三項、第五条の二第三項、第十条第五項、第十条の二の八第三項及び第二十四条の三十九第一項に規定する情報通信の技術の利用における安全性及び信頼性を確保するために必要な基準の一部を改正する告示（案）等に対する意見募集",
+        "preliminary_rule_based_labels": {
+          "area": "Data / Privacy / AI",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Data / Privacy / AI",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-22524fb54e7ce1d5",
+      "source": {
+        "id": "raw-22524fb54e7ce1d5",
+        "title_ja": "高圧ガス保安法に基づく高圧ガス製造保安責任者試験等に関する規則及び液化石油ガスの保安の確保及び取引の適正化に関する法律施行規則の一部を改正する省令（案）等に対する意見公募",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126111&Mode=0",
+        "published_at": "2026-07-22",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/22 受付締切日時：2026/08/21 23:59 カテゴリー：国民生活の安全・安心の確保 問合せ先（所管省庁・部局名等）：経済産業省大臣官房産業保安・安全グループ 高圧ガス保安室・ガス安全室",
+        "preliminary_rule_based_labels": {
+          "area": "Energy / Environment",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Energy / Environment",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-2510321d28ecce00",
+      "source": {
+        "id": "raw-2510321d28ecce00",
+        "title_ja": "地方自治法施行規則及び地方自治法第二百五十五条の五第一項の規定による自治紛争処理委員の審理等の手続に関する省令の一部を改正する省令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=322M40000008029_20260521_508M60000008063",
+        "published_at": "2026-04-20",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260818; 対象法令: 地方自治法施行規則; 法令番号: 昭和二十二年内務省令第二十九号; 改正法令: 地方自治法施行規則及び地方自治法第二百五十五条の五第一項の規定による自治紛争処理委員の審理等の手続に関する省令の一部を改正する省令; 改正法令番号: 令和八年総務省令第六十三号; 公布日: 2026-04-20; 施行日: 2026-05-21",
+        "preliminary_rule_based_labels": {
+          "area": "Other",
+          "stage": "In Force",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "In Force",
+      "area": "Other",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate"
+      ]
+    },
+    {
+      "id": "raw-26cd81ce22efb7ef",
+      "source": {
+        "id": "raw-26cd81ce22efb7ef",
+        "title_ja": "「銀行法施行規則等の一部を改正する内閣府令」等の公布及びパブリックコメントの結果等について公表しました。",
+        "source_name": "Financial Services Agency (金融庁) 新着情報",
+        "source_url": "https://www.fsa.go.jp/news/r8/ginkou/20260709/20260709.html",
+        "published_at": "2026-07-10",
+        "source_type": "regulator_rss",
+        "raw_summary": "",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Public Comment Results Published",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Results Published",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-27558c465c90b174",
+      "source": {
+        "id": "raw-27558c465c90b174",
+        "title_ja": "国税関係法令に係る情報通信技術を活用した行政の推進等に関する省令第五条第四項、法人税法施行規則第三十六条の四第六項及び第三十八条の四十八第五項、地方法人税法施行規則第七条第六項及び第七条の四第四項、消費税法施行規則第二十三条の四第五項並びに防衛特別法人税に関する省令第五条第六項の規定に基づき国税庁長官が定めるファイル形式を定める件（令和八年国税庁告示第四号）の一部を改正する件（国税庁告示第十八号）（PDF/82KB）",
+        "source_name": "国税庁 (NTA) 新着・通達",
+        "source_url": "https://www.nta.go.jp/law/kokuji/pdf/0026005-059.pdf",
+        "published_at": "2026-05-29",
+        "source_type": "agency_html",
+        "raw_summary": "国税庁新着情報・通達等",
+        "preliminary_rule_based_labels": {
+          "area": "Finance / AML",
+          "stage": "Government Announcement",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Government Announcement",
+      "area": "Finance / AML",
+      "hard_signals": [
+        "thin_source",
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction"
+      ]
+    },
+    {
+      "id": "raw-282b9c39a6dbe61e",
+      "source": {
+        "id": "raw-282b9c39a6dbe61e",
+        "title_ja": "「農林水産省関係経済施策を一体的に講ずることによる安全保障の確保の推進に関する法律に基づく供給確保計画の認定等に関する省令の一部を改正する省令（案）」及び「肥料に係る安定供給確保を図るための取組方針の一部改正（案）」についての意見・情報の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004378&Mode=0",
+        "published_at": "2026-07-27",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/27 受付締切日時：2026/08/25 23:59 カテゴリー：経済財政政策 問合せ先（所管省庁・部局名等）：農林水産省農産局農産政策部技術普及課 電話：03-3502-8111（内線4766）",
+        "preliminary_rule_based_labels": {
+          "area": "Food / Agriculture",
+          "stage": "Public Comment Open",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Open",
+      "area": "Food / Agriculture",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-2aeea64d48ce332a",
+      "source": {
+        "id": "raw-2aeea64d48ce332a",
+        "title_ja": "高齢者の医療の確保に関する法律による保険者の前期高齢者交付金等の額の算定等に関する省令第四十条の三の規定に基づき厚生労働大臣が定める基準の一部を改正する件（案）に関する御意見の募集について",
+        "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+        "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260108&Mode=0",
+        "published_at": "2026-07-13",
+        "source_type": "public_comment_rss",
+        "raw_summary": "案の公示日：2026/07/13 受付締切日時：2026/08/13 00:00 カテゴリー：社会保険 問合せ先（所管省庁・部局名等）：厚生労働省保険局保険課",
+        "preliminary_rule_based_labels": {
+          "area": "Healthcare / Pharmaceuticals",
+          "stage": "Public Comment Closed",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "Public Comment Closed",
+      "area": "Healthcare / Pharmaceuticals",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "public_comment"
+      ]
+    },
+    {
+      "id": "raw-32e2a12ebc863fd9",
+      "source": {
+        "id": "raw-32e2a12ebc863fd9",
+        "title_ja": "ポリエチレンテレフタレート製の容器であって、飲料又は特定調味料が充塡されたものの表示の標準となるべき事項を定める省令の一部を改正する省令",
+        "source_name": "e-Gov Law Search (法令更新一覧)",
+        "source_url": "https://elaws.e-gov.go.jp/document?lawid=405M50000640001_20260730_508M60000640002",
+        "published_at": "2026-07-30",
+        "source_type": "law_api",
+        "raw_summary": "更新一覧日: 20260813; 対象法令: ポリエチレンテレフタレート製の容器であって、飲料又は特定調味料が充塡されたものの表示の標準となるべき事項を定める省令; 法令番号: 平成五年大蔵省・農林水産省・通商産業省令第一号; 改正法令: ポリエチレンテレフタレート製の容器であって、飲料又は特定調味料が充塡されたものの表示の標準となるべき事項を定める省令の一部を改正する省令; 改正法令番号: 令和八年財務省・農林水産省・経済産業省令第二号; 公布日: 2026-07-30; 施行日: 2026-07-30",
+        "preliminary_rule_based_labels": {
+          "area": "Transport / Infrastructure",
+          "stage": "In Force",
+          "impact_level": "Medium",
+          "label_caution": "These labels are keyword-based triage metadata, not legally verified conclusions. Use them only as weak context."
+        }
+      },
+      "stage": "In Force",
+      "area": "Transport / Infrastructure",
+      "hard_signals": [
+        "amendment_vs_enactment",
+        "has_deadline_or_effective_date",
+        "long_statute_name",
+        "instrument_distinction",
+        "legal_status_easy_to_overstate"
+      ]
+    }
+  ]
+}

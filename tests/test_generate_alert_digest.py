@@ -420,5 +420,56 @@ class TestDigestConfigurationParity(unittest.TestCase):
         self.assertIn("This is an operator tool, not an email sender.", source)
 
 
+class TestJapaneseSearchParityWithDashboard(unittest.TestCase):
+    """Japanese-source summaries are gated independently of English provenance.
+
+    docs/app.js searchHaystack() adds summary_ja / business_impact_ja /
+    recommended_action_ja whenever hasJapaneseSummary() holds, regardless of
+    summary_source. Gating them on the English flag instead hides Japanese text
+    for every item whose English is still a rule-based preview.
+    """
+
+    def _item(self, *, summary_source, with_japanese=True):
+        item = {
+            "id": "raw-ja",
+            "title_en": "MOE Update: Regulatory announcement",
+            "title_ja": "環境省の告示",
+            "summary_en": "English body.",
+            "summary_source": summary_source,
+        }
+        if with_japanese:
+            item.update({
+                "summary_ja": "特定外来生物の指定に関する告示案です。",
+                "business_impact_ja": "輸入業務に影響が生じる可能性があります。",
+                "recommended_action_ja": "日本語の公式情報源の確認が考えられます。",
+                "summary_ja_source": "claude",
+            })
+        return item
+
+    def test_japanese_body_is_searchable_without_an_english_ai_summary(self):
+        haystack = gad._search_haystack(self._item(summary_source="rule_based"))
+        self.assertIn("特定外来生物", haystack)
+        self.assertIn("輸入業務", haystack)
+        # The rule-based English body still stays out of the haystack.
+        self.assertNotIn("english body.", haystack)
+
+    def test_japanese_body_is_searchable_with_an_english_ai_summary(self):
+        haystack = gad._search_haystack(self._item(summary_source="claude"))
+        self.assertIn("特定外来生物", haystack)
+        self.assertIn("english body.", haystack)
+
+    def test_incomplete_japanese_fields_are_not_searchable(self):
+        item = self._item(summary_source="claude")
+        item["business_impact_ja"] = "   "
+        self.assertFalse(gad._has_japanese_summary(item))
+        self.assertNotIn("特定外来生物", gad._search_haystack(item))
+
+    def test_has_japanese_summary_matches_dashboard_predicate(self):
+        app_js = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
+        # Pin that the dashboard still gates on the same three fields.
+        self.assertIn('["summary_ja", "business_impact_ja", "recommended_action_ja"]', app_js)
+        self.assertIn("if (hasJapaneseSummary(update)) {", app_js)
+
+
 if __name__ == "__main__":
     unittest.main()

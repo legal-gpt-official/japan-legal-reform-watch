@@ -1665,9 +1665,13 @@ def load_existing(path: Path) -> list[dict]:
             data = json.load(f)
         if isinstance(data, list):
             return [x for x in data if isinstance(x, dict)]
-        logger.warning("Existing %s is not a JSON array; treating as empty.", path.name)
-        return []
-    except (json.JSONDecodeError, OSError) as exc:
+        # Valid JSON that is not an array (e.g. {} or null) previously started
+        # fresh in memory. The very next save_json() then overwrote the file with
+        # only this run's items, permanently trimming the accumulated raw history
+        # that every id, cache key, and published record depends on. Back it up
+        # like the corrupt case so nothing is lost.
+        raise ValueError(f"expected a JSON array, found {type(data).__name__}")
+    except (OSError, ValueError) as exc:  # ValueError covers json.JSONDecodeError
         backup = path.with_name(path.name + ".corrupt-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
         try:
             path.replace(backup)
@@ -1677,6 +1681,25 @@ def load_existing(path: Path) -> list[dict]:
         return []
 
 
+def atomic_replace(tmp, path, *, attempts: int = 6, delay: float = 0.05) -> None:
+    """Move `tmp` over `path`, retrying briefly on a transient Windows lock.
+
+    os.replace is atomic, but on Windows an on-access virus scanner can hold the
+    freshly written temp file for a few milliseconds and the move fails with
+    PermissionError (WinError 5). Retrying a handful of times turns that into a
+    non-event; a genuine permission problem still surfaces after the last attempt.
+    Linux (where CI runs) never takes this path.
+    """
+    for attempt in range(attempts):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay * (attempt + 1))
+
+
 def save_json(path: Path, data: list[dict]) -> None:
     """Atomic, human-readable write (ensure_ascii=False, indent=2)."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1684,7 +1707,7 @@ def save_json(path: Path, data: list[dict]) -> None:
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    tmp.replace(path)
+    atomic_replace(tmp, path)
 
 
 def save_json_document(path: Path, data: dict) -> None:
@@ -1694,7 +1717,7 @@ def save_json_document(path: Path, data: dict) -> None:
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    tmp.replace(path)
+    atomic_replace(tmp, path)
 
 
 def sanitize_error_message(value: object, max_chars: int = 300) -> str:

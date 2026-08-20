@@ -50,6 +50,7 @@ import json
 import re
 import shutil
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -1637,13 +1638,32 @@ def preserve_translations(item: dict, existing_by_id: dict[str, dict]) -> bool:
     return True
 
 
+def atomic_replace(tmp, path, *, attempts: int = 6, delay: float = 0.05) -> None:
+    """Move `tmp` over `path`, retrying briefly on a transient Windows lock.
+
+    os.replace is atomic, but on Windows an on-access virus scanner can hold the
+    freshly written temp file for a few milliseconds and the move fails with
+    PermissionError (WinError 5). Retrying a handful of times turns that into a
+    non-event; a genuine permission problem still surfaces after the last attempt.
+    Linux (where CI runs) never takes this path.
+    """
+    for attempt in range(attempts):
+        try:
+            tmp.replace(path)
+            return
+        except PermissionError:
+            if attempt == attempts - 1:
+                raise
+            time.sleep(delay * (attempt + 1))
+
+
 def save_json(path: Path, data: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    tmp.replace(path)
+    atomic_replace(tmp, path)
 
 
 def main(argv: list[str] | None = None) -> int:

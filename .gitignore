@@ -50,3 +50,7 @@ data/working/
 # --- GitHub Pages generated backups / local baselines ---
 docs/data/*.backup.json
 docs/data/*.before_ai.json
+
+# --- Model evaluation runs (frozen set is committed; results are not) ---
+data/eval/results_*.json
+data/eval/side_by_side_*.md

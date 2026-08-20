@@ -231,7 +231,7 @@ class TestSummaryBatch(unittest.TestCase):
         message = types.SimpleNamespace(content=[Block()], model="claude-opus-4-8")
         captured = {}
 
-        def fake_run(client, requests, *, timeout_seconds, logger):
+        def fake_run(client, requests, *, timeout_seconds, logger, on_submit=None):
             captured["requests"] = requests
             captured["timeout"] = timeout_seconds
             return types.SimpleNamespace(
@@ -262,14 +262,62 @@ class TestSummaryBatch(unittest.TestCase):
             workflow.index("name: Maintain English summaries"):
             workflow.index("name: Maintain Japanese summaries")
         ]
-        self.assertNotIn("--batch", step)
+        # Phase 3A: batched. --parallel is rejected together with --batch, so it
+        # must be gone from the invocation itself (comments may still mention it).
+        invocation = step[step.index("python scripts/summarize_updates.py"):step.index("2>&1")]
+        self.assertIn("--batch", invocation)
+        self.assertNotIn("--parallel", invocation)
         self.assertIn("--all-items", step)
         self.assertIn("--english-only", step)
         self.assertIn("--api-limit 30", step)
-        self.assertIn("--parallel 4", step)
+        # The USD cap must survive the switch: it is the only spend brake besides
+        # the call count, and it used to be rejected outright alongside --batch.
         self.assertIn("--max-cost-usd 0.50", step)
         self.assertIn("English summary provider unavailable", workflow)
-        self.assertIn("### English summary maintenance", workflow)
+        self.assertIn("### English summary maintenance (batch)", workflow)
+
+    def test_daily_workflow_reports_every_batch_stage_metric(self):
+        """Phase 3A is an observation run: the Step Summary has to carry enough to
+        judge discovery, the interlock, batch health, and estimate-vs-actual cost."""
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+        for stage, marker, end in (
+            ("english", "name: Maintain English summaries", "name: Maintain Japanese summaries"),
+            ("japanese", "name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
+            ("translate", "name: Translate Simplified Chinese updates", "name: Build yearly public archives"),
+        ):
+            step = workflow[workflow.index(marker):workflow.index(end)]
+            for metric in ("batch_id", "batch_succeeded", "batch_errored", "batch_expired",
+                           "batch_missing", "input_tokens", "output_tokens",
+                           "cache_read_input_tokens", "estimated_cost_usd",
+                           "preflight_cost_usd"):
+                self.assertIn(metric, step, f"{stage} stage is missing {metric}")
+
+    def test_daily_workflow_has_an_explicit_job_timeout(self):
+        """Three stages can each wait an hour for their batch; do not rely on the
+        platform default as the only ceiling."""
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+        self.assertIn("timeout-minutes:", workflow)
+
+    def test_only_the_daily_workflow_is_batched_in_phase_3a(self):
+        """Backfills stay on direct calls so a Batch problem is easy to isolate."""
+        root = Path(__file__).resolve().parents[1] / ".github" / "workflows"
+        for name in ("english-summary-backfill.yml", "japanese-summary-backfill.yml",
+                     "translation-backfill.yml"):
+            text = (root / name).read_text(encoding="utf-8")
+            self.assertNotIn("--batch", text, f"{name} must not be batched yet")
+
+    def test_direct_call_path_remains_available_as_a_fallback(self):
+        """Dropping --batch must restore the previous behaviour with no other edit."""
+        source = (
+            Path(__file__).resolve().parents[1] / "scripts" / "summarize_updates.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn("if args.batch and pending:", source)
+        self.assertIn("request_summary(client, model, it,", source)
+        self.assertNotIn("--max-cost-usd is supported only for direct calls", source)
 
     def test_english_backfill_workflow_is_resumable_and_refreshes_chinese(self):
         workflow = (
@@ -300,7 +348,8 @@ class TestSummaryBatch(unittest.TestCase):
             '- "10.00"',
             'translation_status=${PIPESTATUS[0]}',
             'git restore --source=HEAD --',
-            "Checkpoint English summary cache after translation failure",
+            "save_english_cache_and_exit",
+            "Checkpoint English summary cache after aborted checkpoint",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, workflow)
@@ -317,7 +366,7 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("--all-items", workflow)
         self.assertIn("--japanese-only", workflow)
         self.assertIn("--api-limit 30", workflow)
-        self.assertIn("--parallel 4", workflow)
+        self.assertIn("--batch", workflow)
         self.assertIn("--max-cost-usd 0.50", workflow)
         self.assertIn("Japanese summary provider unavailable", workflow)
         self.assertIn("s/^provider_error_type *: //p", workflow)
@@ -572,7 +621,7 @@ class TestSummaryBatch(unittest.TestCase):
             input_path.write_text(json.dumps([item]), encoding="utf-8")
             raw_path.write_text(json.dumps([]), encoding="utf-8")
 
-            def fake_batch(client, model, candidates, *, timeout_seconds):
+            def fake_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual(len(candidates), 1)
                 return "msgbatch_main", [(result, model)]
 
@@ -672,7 +721,7 @@ class TestSummaryBatch(unittest.TestCase):
             cache_path.write_text(json.dumps({key: cached}), encoding="utf-8")
             raw_path.write_text(json.dumps([]), encoding="utf-8")
 
-            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual(len(candidates), 1)
                 self.assertEqual(candidates[0][0]["title_en"], "Stable cached English title")
                 return "msgbatch_ja", [(japanese, model)]
@@ -764,7 +813,7 @@ class TestSummaryBatch(unittest.TestCase):
             input_path.write_text(json.dumps(items), encoding="utf-8")
             raw_path.write_text(json.dumps([]), encoding="utf-8")
 
-            def fake_batch(client, model, candidates, *, timeout_seconds):
+            def fake_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual(len(candidates), 2)
                 return "msgbatch_budget", [(result, model), (result, model)]
 
@@ -829,11 +878,11 @@ class TestSummaryBatch(unittest.TestCase):
             cache_path.write_text(json.dumps({cached_key: cached_result}), encoding="utf-8")
             raw_path.write_text("[]", encoding="utf-8")
 
-            def fake_english_batch(client, model, candidates, *, timeout_seconds):
+            def fake_english_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual([item["id"] for item, _raw in candidates], ["english"])
                 return "msgbatch_en_mixed", [(english, model)]
 
-            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual([item["id"] for item, _raw in candidates], ["cached"])
                 return "msgbatch_ja_mixed", [(japanese, model)]
 
@@ -892,7 +941,7 @@ class TestSummaryBatch(unittest.TestCase):
             cache_path.write_text(json.dumps({cached_key: cached_result}), encoding="utf-8")
             raw_path.write_text("[]", encoding="utf-8")
 
-            def fake_japanese_batch(client, model, candidates, *, timeout_seconds):
+            def fake_japanese_batch(client, model, candidates, *, timeout_seconds, custom_ids=None):
                 self.assertEqual([item["id"] for item, _raw in candidates], ["fresh-ja"])
                 return "msgbatch_ja_backfill", [(japanese, model)]
 
@@ -1079,6 +1128,350 @@ class TestSummaryBatch(unittest.TestCase):
             self.assertEqual(calls["count"], 2)
             self.assertIn("cost_budget_skipped: 8", stdout.getvalue())
             self.assertIn("estimated_cost_usd: 0.020000", stdout.getvalue())
+
+
+class TestBackfillPreservesPaidSummaryCache(unittest.TestCase):
+    """Every abort after the paid Opus calls must keep data/summary_cache.json.
+
+    The checkpoint step runs summarize (paid) and only commits at the very end.
+    A bare `exit 1` in between destroys the runner workspace, so the paid
+    responses are lost and a rerun pays for exactly the same work again.
+    """
+
+    def _checkpoint_step(self) -> str:
+        workflow = (
+            Path(__file__).resolve().parents[1]
+            / ".github"
+            / "workflows"
+            / "english-summary-backfill.yml"
+        ).read_text(encoding="utf-8")
+        return workflow[
+            workflow.index("python scripts/summarize_updates.py"):
+            workflow.index("- name: Request Pages build for checkpoint")
+        ]
+
+    def test_no_bare_exit_between_paid_calls_and_commit(self):
+        step = self._checkpoint_step()
+        post_payment = step[: step.index("git commit -m \"Backfill English summaries")]
+        bare_exits = [
+            line.strip()
+            for line in post_payment.splitlines()
+            # The recovery helper itself is allowed to exit; it saves the cache first.
+            if line.strip() in ("exit 1", "exit \"$translation_status\"")
+            and "refusing to save the recovery cache" not in post_payment[
+                max(0, post_payment.index(line)) - 200: post_payment.index(line)
+            ]
+        ]
+        self.assertEqual(
+            bare_exits, [],
+            f"post-payment abort path discards the paid summary cache: {bare_exits}",
+        )
+
+    def test_recovery_helper_restores_public_data_but_keeps_summary_cache(self):
+        step = self._checkpoint_step()
+        self.assertIn("save_english_cache_and_exit() {", step)
+        # Public artifacts are reverted...
+        for path in (
+            "docs/data/legal_updates.json",
+            "docs/data/legal_updates_manifest.json",
+            "docs/data/archive",
+            "data/translation_cache.json",
+        ):
+            self.assertIn(path, step)
+        # ...while the paid English cache is committed on its own.
+        self.assertIn("git add data/summary_cache.json", step)
+        self.assertIn("Checkpoint English summary cache after aborted checkpoint", step)
+
+    def test_every_integrity_guard_routes_through_the_recovery_helper(self):
+        step = self._checkpoint_step()
+        for guard in (
+            "English coverage shrank",
+            "No English-summary progress",
+            "Japanese summary fields changed",
+            "zh-Hans coverage shrank",
+            "origin/main advanced during the checkpoint",
+        ):
+            line = next(l for l in step.splitlines() if guard in l)
+            self.assertIn("save_english_cache_and_exit", line, guard)
+
+
+class TestSummarizeBatchRecovery(unittest.TestCase):
+    """Summarize must survive losing the runner mid-batch, like translate does.
+
+    The daily workflow commits only at the very end, so a batch id written to the
+    runner's filesystem is gone on the next run. Recovery therefore reads the
+    batch back from the provider using self-describing custom_ids.
+    """
+
+    def _item(self, idx="raw-1"):
+        it = TestSummarizeTitleCap()._item()
+        it["id"] = idx
+        return it
+
+    def _client(self, rows, status="ended"):
+        class Batches:
+            def list(self, limit=20):
+                return [type("B", (), {"id": "msgbatch_lost", "processing_status": status})()]
+
+            def results(self, batch_id):
+                return list(rows)
+
+        return type("C", (), {"messages": type("M", (), {"batches": Batches()})()})()
+
+    def _row(self, custom_id, payload):
+        block = type("Blk", (), {"type": "text", "text": json.dumps(payload)})()
+        message = type("M", (), {"content": [block], "model": "fake-batch", "usage": None})()
+        result = type("R", (), {"type": "succeeded", "message": message})()
+        return type("Row", (), {"custom_id": custom_id, "result": result})()
+
+    def test_english_batch_is_recovered_into_the_cache_without_local_state(self):
+        item = self._item()
+        raw_by_id = {"raw-1": {"raw_content_hash": "abc123"}}
+        key = su.cache_key(item, raw_by_id)
+        custom_id = su.format_custom_id(su.BATCH_KIND_EN, "raw-1", key)
+        payload = TestSummarizeTitleCap()._result("Recovered AI title")
+        cache = {}
+        with mock.patch.object(su, "make_client", lambda: self._client([self._row(custom_id, payload)])):
+            stats = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_EN)
+        self.assertEqual(stats["recovered"], 1)
+        self.assertEqual(cache[key]["title_en"], "Recovered AI title")
+        self.assertTrue(su.valid_result(cache[key]))
+
+    def test_recovery_is_skipped_when_the_source_content_changed(self):
+        item = self._item()
+        stale_key = su.cache_key(item, {"raw-1": {"raw_content_hash": "OLD"}})
+        custom_id = su.format_custom_id(su.BATCH_KIND_EN, "raw-1", stale_key)
+        raw_by_id = {"raw-1": {"raw_content_hash": "NEW"}}
+        cache = {}
+        payload = TestSummarizeTitleCap()._result("Stale AI title")
+        with mock.patch.object(su, "make_client", lambda: self._client([self._row(custom_id, payload)])):
+            stats = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_EN)
+        self.assertEqual(stats["recovered"], 0)
+        self.assertEqual(stats["skipped"], 1)
+        self.assertEqual(cache, {})
+
+    def test_japanese_and_english_kinds_do_not_cross_apply(self):
+        item = self._item()
+        raw_by_id = {"raw-1": {"raw_content_hash": "abc123"}}
+        key = su.cache_key(item, raw_by_id)
+        en_id = su.format_custom_id(su.BATCH_KIND_EN, "raw-1", key)
+        payload = TestSummarizeTitleCap()._result("English title")
+        cache = {}
+        with mock.patch.object(su, "make_client", lambda: self._client([self._row(en_id, payload)])):
+            stats = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_JA)
+        self.assertEqual(stats["recovered"], 0)
+        self.assertEqual(cache, {})
+
+    def test_recovery_is_idempotent(self):
+        item = self._item()
+        raw_by_id = {"raw-1": {"raw_content_hash": "abc123"}}
+        key = su.cache_key(item, raw_by_id)
+        custom_id = su.format_custom_id(su.BATCH_KIND_EN, "raw-1", key)
+        payload = TestSummarizeTitleCap()._result("Recovered AI title")
+        cache = {}
+        client = self._client([self._row(custom_id, payload)])
+        with mock.patch.object(su, "make_client", lambda: client):
+            first = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_EN)
+            second = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_EN)
+        self.assertEqual((first["recovered"], second["recovered"]), (1, 0))
+
+    def test_unfinished_batches_are_left_alone(self):
+        item = self._item()
+        raw_by_id = {"raw-1": {"raw_content_hash": "abc123"}}
+        key = su.cache_key(item, raw_by_id)
+        custom_id = su.format_custom_id(su.BATCH_KIND_EN, "raw-1", key)
+        payload = TestSummarizeTitleCap()._result("Not ready")
+        cache = {}
+        client = self._client([self._row(custom_id, payload)], status="in_progress")
+        with mock.patch.object(su, "make_client", lambda: client):
+            stats = su.recover_unclaimed_batches([item], raw_by_id, cache, su.BATCH_KIND_EN)
+        self.assertEqual(stats["recovered"], 0)
+        self.assertEqual(cache, {})
+
+    def test_batch_may_now_be_combined_with_a_dollar_cap(self):
+        """The two used to be mutually exclusive, which silently removed the cap."""
+        client = types.SimpleNamespace(
+            messages=types.SimpleNamespace(
+                count_tokens=lambda **kw: types.SimpleNamespace(input_tokens=1000)
+            )
+        )
+        requests = [{"params": {"model": "claude-opus-4-8", "max_tokens": 1500,
+                                "system": "s", "messages": []}} for _ in range(3)]
+        pending = [(self._item(f"raw-{i}"), f"key{i}", {}) for i in range(3)]
+        # 0.5 * (1000*1.10*$5 + 1500*$25)/1e6 = $0.021 per request.
+        kept, kept_pending, bound, dropped = su.trim_batch_to_budget(
+            client, "claude-opus-4-8", requests, 0.045, pending
+        )
+        self.assertEqual(len(kept), 2)
+        self.assertEqual(len(kept_pending), 2)
+        self.assertEqual(dropped, 1)
+        self.assertLess(bound, 0.045)
+
+    def test_preflight_refuses_to_submit_an_unpriced_model(self):
+        client = types.SimpleNamespace(messages=types.SimpleNamespace())
+        requests = [{"params": {"model": "x", "max_tokens": 10, "system": "s", "messages": []}}]
+        kept, kept_pending, bound, dropped = su.trim_batch_to_budget(
+            client, "unpriced-model", requests, 1.0, [("i", "k", {})]
+        )
+        self.assertEqual(kept, [])
+        self.assertEqual(dropped, 1)
+
+
+class TestStageTwoTitlePreservation(unittest.TestCase):
+    """Stage 3 must not silently rewrite Stage 2's rule-based English.
+
+    Stage 2 appends a `(published_at)` suffix to colliding rule-based titles
+    (build_public_data.disambiguate_duplicate_titles). That pass is corpus-wide
+    and cannot be reproduced per item, so regenerating title_en in Stage 3 drops
+    the suffix — republishing indistinguishable duplicate cards and changing the
+    Stage 4 translation source_hash, which forces paid re-translation of work
+    already paid for. Pin the preservation.
+    """
+
+    def _rule_based_item(self):
+        item = TestSummarizeTitleCap()._item()
+        item["title_en"] = "Public Comment: Draft National Park Rules (2026-07-21)"
+        item["summary_en"] = bpd.SUMMARY_EN
+        item["business_impact_en"] = bpd.BUSINESS_IMPACT_EN
+        item["recommended_action_en"] = bpd.RECOMMENDED_ACTION_EN
+        item["summary_source"] = "rule_based"
+        return item
+
+    def test_restore_keeps_stage_two_disambiguated_title_for_non_ai_item(self):
+        item = self._rule_based_item()
+
+        su.restore_rule_based_english_preview(item)
+
+        self.assertEqual(
+            item["title_en"], "Public Comment: Draft National Park Rules (2026-07-21)"
+        )
+        self.assertEqual(item["summary_source"], "rule_based")
+
+    def test_restore_keeps_stage_two_title_when_summary_source_is_absent(self):
+        item = self._rule_based_item()
+        item.pop("summary_source")
+
+        su.restore_rule_based_english_preview(item)
+
+        self.assertEqual(
+            item["title_en"], "Public Comment: Draft National Park Rules (2026-07-21)"
+        )
+        self.assertEqual(item["summary_source"], "rule_based")
+
+    def test_restore_still_strips_stale_ai_text_and_provenance(self):
+        item = self._rule_based_item()
+        su.apply_result(item, TestSummarizeTitleCap()._result("Stale AI title"), "2026-06-18T00:00:00Z", "m")
+
+        su.restore_rule_based_english_preview(item)
+
+        self.assertEqual(item["summary_source"], "rule_based")
+        self.assertNotEqual(item["title_en"], "Stale AI title")
+        self.assertEqual(item["summary_en"], bpd.SUMMARY_EN)
+        for field in su.EN_PROVENANCE_FIELDS:
+            self.assertNotIn(field, item)
+
+    def test_restore_strips_ai_text_left_by_provenance_without_summary_source(self):
+        item = self._rule_based_item()
+        item["title_en"] = "Stale AI title"
+        item["summary_en"] = "Stale AI summary."
+        item["summarized_at"] = "2026-06-18T00:00:00Z"
+
+        su.restore_rule_based_english_preview(item)
+
+        self.assertNotEqual(item["title_en"], "Stale AI title")
+        self.assertEqual(item["summary_en"], bpd.SUMMARY_EN)
+        self.assertNotIn("summarized_at", item)
+
+
+class TestResultValidationGuards(unittest.TestCase):
+    def test_valid_result_rejects_japanese_title_per_item(self):
+        """A Japanese title_en must fail per item, not abort the whole run.
+
+        validate_output() rejects a Japanese title_en for the entire corpus and
+        returns 2, discarding every other paid response in the run.
+        """
+        good = TestSummarizeTitleCap()._result("English only title")
+        self.assertTrue(su.valid_result(good))
+
+        for bad_title in ("特定外来生物 designation", "Amendment to 意見募集 rules", "ガイドライン draft"):
+            bad = TestSummarizeTitleCap()._result(bad_title)
+            self.assertFalse(su.valid_result(bad), bad_title)
+
+    def test_valid_result_still_accepts_existing_over_length_cache_entries(self):
+        """apply_result() shortens titles, so length must not be a cache-miss trigger."""
+        long_title = "Long AI title " * 20
+        self.assertGreater(len(long_title), bpd.TITLE_MAX_CHARS)
+        self.assertTrue(su.valid_result(TestSummarizeTitleCap()._result(long_title)))
+
+
+class TestCostCapFailsClosed(unittest.TestCase):
+    def test_priced_models_cover_the_models_the_workflows_can_select(self):
+        for model in ("claude-opus-4-8", "claude-sonnet-5", "claude-haiku-4-5-20251001"):
+            self.assertIsNotNone(su.model_pricing(model), model)
+        self.assertIsNone(su.model_pricing("some-unreleased-model"))
+
+    def test_max_cost_usd_requires_a_priced_model(self):
+        """Without pricing the cap silently never fires; fail closed instead."""
+        stderr = io.StringIO()
+        with mock.patch.dict(
+            os.environ, {"ANTHROPIC_SUMMARY_MODEL": "some-unreleased-model"}, clear=False
+        ), contextlib.redirect_stderr(stderr):
+            with self.assertRaises(SystemExit) as raised:
+                su.main(["--max-cost-usd", "0.50"])
+        self.assertEqual(raised.exception.code, 2)
+        self.assertIn("requires a model with configured pricing", stderr.getvalue())
+
+
+class TestValidationFailureKeepsPaidCache(unittest.TestCase):
+    def test_cache_is_persisted_when_output_validation_fails(self):
+        """A failed corpus-wide check must not throw away responses already paid for."""
+        item = TestSummarizeTitleCap()._item()
+        item["relevance_score"] = 10.0
+        # A pre-existing, untouched corpus item that fails validate_output().
+        broken = TestSummarizeTitleCap()._item()
+        broken["id"] = "raw-broken"
+        broken["relevance_score"] = 1.0
+        broken["title_en"] = "意見募集の概要"
+
+        result = TestSummarizeTitleCap()._result("Fresh AI title")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item, broken]), encoding="utf-8")
+            raw_path.write_text("[]", encoding="utf-8")
+            cache_path.write_text("{}", encoding="utf-8")
+
+            patches = {
+                "INPUT_PATH": input_path,
+                "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json",
+                "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path,
+                "LOG_PATH": base / "summarize.log",
+                "make_client": lambda: object(),
+                "request_summary": lambda *a, **k: (result, "claude-opus-4-8", su.message_usage(None)),
+            }
+            stdout, stderr = io.StringIO(), io.StringIO()
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                rc = su.main(["--limit", "1"])
+
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+
+            self.assertEqual(rc, 2)
+            # The published file is still NOT written...
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            self.assertEqual(published[0]["title_en"], "Rule-based title")
+            # ...but the paid response survives in the private cache.
+            saved = json.loads(cache_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(saved), 1)
+            self.assertEqual(next(iter(saved.values()))["title_en"], "Fresh AI title")
 
 
 if __name__ == "__main__":

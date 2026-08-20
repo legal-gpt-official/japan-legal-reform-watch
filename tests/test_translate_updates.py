@@ -78,6 +78,24 @@ def make_cache_entry(item, locale=LOCALE, fields=None, **overrides):
     return entry
 
 
+def _idle_workspace_client():
+    """A client whose workspace has no batch running.
+
+    The batch interlock refuses to submit while anything is still in flight, and
+    fails closed when the batch list cannot be read at all, so every batch test
+    needs a client that can answer `list()`. This models the normal case: an idle
+    workspace.
+    """
+    import types as _types
+
+    class _Batches:
+        def list(self, limit=20):
+            return []
+
+    return _types.SimpleNamespace(messages=_types.SimpleNamespace(batches=_Batches()))
+
+
+
 class TranslateTestBase(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
@@ -129,11 +147,11 @@ class TranslateTestBase(unittest.TestCase):
         """Patch the API so each candidate returns a valid translation; count calls."""
         calls = {"n": 0}
 
-        def fake_request(client, model, item, locale):
+        def fake_request(client, model, item, locale, *_requested):
             calls["n"] += 1
             return (fields or good_translation()), "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         return calls
 
@@ -145,13 +163,13 @@ class TranslateTestBase(unittest.TestCase):
         """Patch the API so each candidate returns good_translation() with overrides."""
         calls = {"n": 0}
 
-        def fake_request(client, model, item, locale):
+        def fake_request(client, model, item, locale, *_requested):
             calls["n"] += 1
             d = good_translation()
             d.update(overrides)
             return d, "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         return calls
 
@@ -327,12 +345,12 @@ class TestLimitAndApi(TranslateTestBase):
         })
         captured = {}
 
-        def fake_batch(client, model, items, locale, *, timeout_seconds):
+        def fake_batch(client, model, items, locale, *, timeout_seconds, field_sets=None, on_submit=None, custom_ids=None):
             captured["ids"] = [item["id"] for item in items]
             captured["timeout"] = timeout_seconds
             return "msgbatch_test", [(good_translation(), "fake-batch-model") for _ in items]
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation_batch = fake_batch
         rc, out = self.run_main(["--locale", LOCALE, "--limit", "2", "--batch"])
 
@@ -354,7 +372,7 @@ class TestLimitAndApi(TranslateTestBase):
         def fake_batch(*args, **kwargs):
             raise make_provider_error(CREDIT_MESSAGE, 402)
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation_batch = fake_batch
         rc, out = self.run_main([
             "--locale", LOCALE, "--limit", "3", "--batch",
@@ -377,7 +395,7 @@ class TestLimitAndApi(TranslateTestBase):
         def fake_batch(*args, **kwargs):
             raise TimeoutError("batch timed out")
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation_batch = fake_batch
         rc, out = self.run_main([
             "--locale", LOCALE, "--limit", "3", "--batch",
@@ -396,7 +414,7 @@ class TestLimitAndApi(TranslateTestBase):
     def test_batch_timeout_fails_backfill_mode(self):
         self.write_input([sample_item()])
         self.write_cache(tu.default_cache())
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation_batch = lambda *args, **kwargs: (_ for _ in ()).throw(
             TimeoutError("batch timed out")
         )
@@ -439,7 +457,7 @@ class TestUsageAndCostSafety(TranslateTestBase):
         }
         self.assertAlmostEqual(
             tu.estimate_usage_cost_usd(usage, "claude-sonnet-5", cache_ttl="5m"),
-            0.008775,
+            0.005850,
         )
         self.assertAlmostEqual(
             tu.estimate_usage_cost_usd(
@@ -448,7 +466,7 @@ class TestUsageAndCostSafety(TranslateTestBase):
                 cache_ttl="1h",
                 batch=True,
             ),
-            0.00495,
+            0.003300,
         )
         self.assertIsNone(tu.estimate_usage_cost_usd(usage, "unknown-model"))
 
@@ -467,11 +485,11 @@ class TestUsageAndCostSafety(TranslateTestBase):
             "cache_read_input_tokens": 0,
         }
 
-        def fake_request(client, model, item, locale):
+        def fake_request(client, model, item, locale, *_requested):
             calls["n"] += 1
             return good_translation(), "claude-sonnet-5", usage
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         rc, out = self.run_main([
             "--locale", LOCALE,
@@ -488,7 +506,7 @@ class TestUsageAndCostSafety(TranslateTestBase):
         self.assertEqual(summary["cost_budget_skipped"], "2")
         self.assertEqual(summary["input_tokens"], "1000")
         self.assertEqual(summary["output_tokens"], "1000")
-        self.assertEqual(summary["estimated_cost_usd"], "0.018000")
+        self.assertEqual(summary["estimated_cost_usd"], "0.012000")
         self.assertEqual(summary["max_cost_usd"], "0.010000")
 
     def test_parallel_cost_cap_stops_after_one_bounded_wave(self):
@@ -506,11 +524,11 @@ class TestUsageAndCostSafety(TranslateTestBase):
             "cache_read_input_tokens": 0,
         }
 
-        def fake_request(client, model, item, locale):
+        def fake_request(client, model, item, locale, *_requested):
             calls["n"] += 1
             return good_translation(), "claude-sonnet-5", usage
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         rc, out = self.run_main([
             "--locale", LOCALE,
@@ -527,7 +545,7 @@ class TestUsageAndCostSafety(TranslateTestBase):
         self.assertEqual(summary["api_calls"], "3")
         self.assertEqual(summary["translated_items"], "3")
         self.assertEqual(summary["cost_budget_skipped"], "2")
-        self.assertEqual(summary["estimated_cost_usd"], "0.054000")
+        self.assertEqual(summary["estimated_cost_usd"], "0.036000")
 
     def test_unknown_model_cannot_claim_a_dollar_cap(self):
         self.write_input([sample_item()])
@@ -535,9 +553,66 @@ class TestUsageAndCostSafety(TranslateTestBase):
         with self.assertRaises(SystemExit):
             tu.main(["--model", "unknown-model", "--max-cost-usd", "1.00"])
 
-    def test_batch_and_dollar_cap_are_mutually_exclusive(self):
-        with self.assertRaises(SystemExit):
-            tu.main(["--batch", "--max-cost-usd", "1.00"])
+    def test_batch_now_accepts_a_dollar_cap_via_preflight_bound(self):
+        """Batch mode bounds spend before submitting instead of after measuring.
+
+        A batch reports usage only when it finishes, so the post-hoc cap could
+        never apply and the two flags used to be mutually exclusive. Refusing the
+        combination meant enabling --batch silently removed the only spend brake.
+        """
+        items = [sample_item(id=f"raw-{i}", title_en=f"Distinct English title {i}.")
+                 for i in range(3)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        submitted = {}
+
+        class Batches:
+            def list(self, limit=20):
+                return []  # nothing running: the interlock lets us submit
+
+        class Counter:
+            batches = Batches()
+
+            def count_tokens(self, **kwargs):
+                # ~1,000 input tokens per request.
+                return types.SimpleNamespace(input_tokens=1000)
+
+        tu.make_client = lambda: types.SimpleNamespace(messages=Counter())
+
+        def fake_batch(client, model, cands, locale, *, timeout_seconds,
+                       field_sets=None, on_submit=None, custom_ids=None):
+            submitted["n"] = len(cands)
+            sets = field_sets or [tu.TRANSLATION_FIELDS] * len(cands)
+            return "msgbatch_capped", [(good_translation(), "fake-batch") for _ in sets]
+
+        tu.request_translation_batch = fake_batch
+        # Per request the bound is 0.5 * (1000*1.10*$2 + 1500*$10)/1e6 = $0.0086.
+        # A $0.019 budget therefore admits exactly two of the three.
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "10", "--batch",
+                                 "--model", "claude-sonnet-5", "--max-cost-usd", "0.019"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(submitted["n"], 2, "the third request must not be submitted")
+        summary = parse_summary(out)
+        self.assertEqual(summary["preflight_trimmed"], "1")
+        self.assertLess(float(summary["preflight_cost_usd"]), 0.019)
+
+    def test_batch_preflight_refuses_an_unpriced_model(self):
+        """Fail closed: a cap that cannot be priced must stop the run, not be ignored."""
+        self.write_input([sample_item(id="raw-0")])
+        self.write_cache(tu.default_cache())
+        sent = {"n": 0}
+
+        def fake_batch(client, model, cands, locale, *, timeout_seconds,
+                       field_sets=None, on_submit=None, custom_ids=None):
+            sent["n"] += 1
+            return "msgbatch_x", []
+
+        tu.request_translation_batch = fake_batch
+        with mock.patch.dict("os.environ", {"ANTHROPIC_TRANSLATION_MODEL": "unpriced-model"}):
+            with self.assertRaises(SystemExit):
+                self.run_main(["--locale", LOCALE, "--limit", "5", "--batch",
+                               "--max-cost-usd", "1.00"])
+        self.assertEqual(sent["n"], 0, "must not submit a batch it cannot price")
 
     def test_batch_and_parallel_are_mutually_exclusive(self):
         with self.assertRaises(SystemExit):
@@ -555,14 +630,14 @@ class TestUsageAndCostSafety(TranslateTestBase):
             "cache_read_input_tokens": 0,
         }
 
-        def fake_request(client, model, request_item, locale):
+        def fake_request(client, model, request_item, locale, *_requested):
             calls.append(request_item.get("title_ja"))
             fields = good_translation()
             if request_item.get("title_ja"):
                 fields["title"] = "公开征求意见：テスト规则"
             return fields, "claude-sonnet-5", usage
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         rc, out = self.run_main([
             "--locale", LOCALE,
@@ -597,14 +672,14 @@ class TestUsageAndCostSafety(TranslateTestBase):
             "cache_read_input_tokens": 0,
         }
 
-        def fake_request(client, model, request_item, locale):
+        def fake_request(client, model, request_item, locale, *_requested):
             calls.append((request_item["id"], request_item.get("title_ja")))
             fields = good_translation()
             if request_item["id"] == "raw-kana" and request_item.get("title_ja"):
                 fields["title"] = "公开征求意见：テスト规则"
             return fields, "claude-sonnet-5", usage
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake_request
         rc, out = self.run_main([
             "--locale", LOCALE,
@@ -646,10 +721,10 @@ class TestUsageAndCostSafety(TranslateTestBase):
         self.write_input([item])
         self.write_cache(tu.default_cache())
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             return good_translation(), model
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
 
         rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30", "--model", "cli-model"])
@@ -672,7 +747,7 @@ class TestUsageAndCostSafety(TranslateTestBase):
         item = sample_item()
         self.write_input([item])
         self.write_cache(tu.default_cache())
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = lambda *a, **k: ({"title": "x"}, "fake-model")  # missing fields
 
         rc = tu.main(["--locale", LOCALE, "--limit", "30"])
@@ -775,7 +850,7 @@ class TestInvariants(TranslateTestBase):
 
         tu.main(["--locale", LOCALE, "--limit", "30"])
         cache = self.read_cache()
-        self.assertEqual(cache["schema_version"], 1)
+        self.assertEqual(cache["schema_version"], 2)
         self.assertIn(LOCALE, cache["entries"])
         self.assertIn(item["id"], cache["entries"][LOCALE])
 
@@ -874,11 +949,11 @@ class TestPromptContext(TranslateTestBase):
         self.write_cache(tu.default_cache())
         captured = {}
 
-        def fake(client, model, request_item, locale):
+        def fake(client, model, request_item, locale, *_requested):
             captured.update(request_item)
             return good_translation(), "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
         rc, out = self.run_main([
             "--locale", LOCALE, "--limit", "1", "--omit-title-ja-reference",
@@ -896,14 +971,14 @@ class TestPromptContext(TranslateTestBase):
         self.write_input([item])
         self.write_cache(tu.default_cache())
 
-        def fake(client, model, it, locale):
+        def fake(client, model, it, locale, *_requested):
             d = good_translation()
             d["title_ja"] = "HACKED"  # the model tries to return reference fields
             d["stage"] = "HACKED"
             d["source_name"] = "HACKED"
             return d, "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
 
         rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
@@ -1063,13 +1138,13 @@ class TestTitleQualityFallback(TranslateTestBase):
         self.write_input([bad, good])
         self.write_cache(tu.default_cache())
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             d = good_translation()
             if item.get("id") == "raw-bad":
                 d["title"] = self.BAD_TITLE
             return d, "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
 
         rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
@@ -1412,11 +1487,11 @@ class TestProviderFailFast(TranslateTestBase):
     def _install_credit_failure(self):
         calls = {"n": 0}
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             calls["n"] += 1
             raise make_provider_error(CREDIT_MESSAGE, 400)
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
         return calls
 
@@ -1479,7 +1554,7 @@ class TestProviderFailFast(TranslateTestBase):
         items = [sample_item(id=f"raw-{i}", title_en=f"English title number {i}.") for i in range(4)]
         self.write_input(items)
         self.write_cache(tu.default_cache())
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation_batch = lambda *args, **kwargs: (
             "batch-id",
             [make_provider_error(CREDIT_MESSAGE, 400) for _item in items],
@@ -1499,10 +1574,10 @@ class TestProviderFailFast(TranslateTestBase):
     def test_authentication_error_is_also_fatal(self):
         self._thirty_candidates()
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             raise make_provider_error("auth", 401)
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
         rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "warn"])
         s = parse_summary(out)
@@ -1516,12 +1591,12 @@ class TestProviderFailFast(TranslateTestBase):
         self.write_input([bad, good])
         self.write_cache(tu.default_cache())
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             if item.get("id") == "raw-bad":
                 return {"title": "x"}, "fake-model"  # missing fields -> item_validation_error
             return good_translation(), "fake-model"
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
         rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "fail"])
         self.assertEqual(rc, 0)
@@ -1535,10 +1610,10 @@ class TestProviderFailFast(TranslateTestBase):
     def test_rate_limit_is_per_item_not_fatal(self):
         self._thirty_candidates()
 
-        def fake(client, model, item, locale):
+        def fake(client, model, item, locale, *_requested):
             raise make_provider_error("rate limited", 429)
 
-        tu.make_client = lambda: object()
+        tu.make_client = _idle_workspace_client
         tu.request_translation = fake
         rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", "--provider-failure-mode", "fail"])
         s = parse_summary(out)
