@@ -22,6 +22,22 @@ import build_public_data as bpd  # noqa: E402
 import summarize_updates as su  # noqa: E402
 
 
+def idle_workspace_client():
+    """A client whose workspace has no batch running.
+
+    The batch submission interlock asks the provider what is still in flight and
+    fails closed when it cannot ask, so a bare object() now (correctly) blocks
+    submission. These tests are about summarisation, not about the interlock, so
+    they model the normal case: an idle workspace.
+    """
+    class _Batches:
+        def list(self, limit=20):
+            return []
+
+    return types.SimpleNamespace(messages=types.SimpleNamespace(batches=_Batches()))
+
+
+
 class TestSummarizeTitleCap(unittest.TestCase):
     def _item(self):
         return {
@@ -450,7 +466,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary": lambda client, model, item, raw: (english, model, usage),
                 "request_japanese_summary": mock.Mock(
                     side_effect=AssertionError("Japanese API must not run")
@@ -632,7 +648,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary_batch": fake_batch,
             }
             with mock.patch.multiple(su, **patches), mock.patch.dict(
@@ -676,7 +692,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": log_path,
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary_batch": mock.Mock(side_effect=credit_error),
             }
             stdout = io.StringIO()
@@ -733,7 +749,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_japanese_summary_batch": fake_japanese_batch,
             }
             with mock.patch.multiple(su, **patches), mock.patch.dict(
@@ -824,7 +840,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary_batch": fake_batch,
             }
             stdout = io.StringIO()
@@ -893,7 +909,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary_batch": fake_english_batch,
                 "request_japanese_summary_batch": fake_japanese_batch,
             }
@@ -952,7 +968,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_japanese_summary_batch": fake_japanese_batch,
                 "request_summary_batch": mock.Mock(side_effect=AssertionError("English API must not run")),
             }
@@ -1008,7 +1024,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_japanese_summary": lambda client, model, item, raw: (japanese, model),
             }
             with mock.patch.multiple(su, **patches), mock.patch.dict(
@@ -1058,7 +1074,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_japanese_summary": fail_credit,
             }
             stdout = io.StringIO()
@@ -1109,7 +1125,7 @@ class TestSummaryBatch(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_japanese_summary": success,
             }
             stdout = io.StringIO()
@@ -1451,7 +1467,7 @@ class TestValidationFailureKeepsPaidCache(unittest.TestCase):
                 "CACHE_PATH": cache_path,
                 "RAW_PATH": raw_path,
                 "LOG_PATH": base / "summarize.log",
-                "make_client": lambda: object(),
+                "make_client": idle_workspace_client,
                 "request_summary": lambda *a, **k: (result, "claude-opus-4-8", su.message_usage(None)),
             }
             stdout, stderr = io.StringIO(), io.StringIO()

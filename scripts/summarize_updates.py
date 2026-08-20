@@ -1097,10 +1097,46 @@ def main(argv: list[str] | None = None) -> int:
     targets = items if args.all_items else sorted(items, key=score, reverse=True)[: max(0, args.limit)]
     target_ids = {id(it) for it in targets}  # identity set — items are dict refs in `items`
 
+    fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    logger.info(
+        "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, english_only=%s, "
+        "model=%s, batch=%s, dry_run=%s) ===",
+        args.limit, args.all_items, args.japanese_only, args.english_only,
+        model, args.batch, args.dry_run,
+    )
+
+    api_limit = max(0, args.api_limit) if args.api_limit is not None else None
+    client = None
+    cache_hits = api_calls = summarized = failed = skipped_api_budget = 0
+    ja_cache_hits = ja_summarized = ja_failed = ja_skipped_api_budget = 0
+    provider_fatal = not api_key_available
+    provider_error_type = "none" if api_key_available else "missing_api_key"
+    provider_aborted = 0
+    cost_budget_skipped = 0
+    preflight_cost_usd = 0.0
+    preflight_trimmed = 0
+    batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
+    recovered_items = 0
+    batch_blocked_reason = "none"
+    run_started_at = time.monotonic()
+    usage_totals = message_usage(None)
+    estimated_cost_usd = 0.0
+    cost_estimate_complete = True
+    batch_id = ""
+    japanese_batch_id = ""
+    pending: list[tuple[dict, str, dict]] = []
+    pending_ja: list[tuple[dict, str, dict]] = []
+
+    # Batch recovery + submission interlock.
+    #
+    # This MUST run after the counters above are initialised. It previously sat
+    # before them, which crashed on `recovered_items += ...` (UnboundLocalError)
+    # and — worse — let the initialisation below silently reset `provider_fatal`,
+    # `provider_error_type` and `batch_blocked_reason` afterwards, so a blocked
+    # interlock still went on to submit. It must also stay before the item loop,
+    # so anything reclaimed here is picked up there as an ordinary free cache hit.
     batch_blocked = False
     if args.batch and api_key_available:
-        # Reclaim before deciding what still needs work, so anything already
-        # paid for becomes an ordinary free cache hit below.
         for kind in ((BATCH_KIND_JA,) if args.japanese_only else
                      (BATCH_KIND_EN,) if args.english_only else
                      (BATCH_KIND_EN, BATCH_KIND_JA)):
@@ -1142,36 +1178,6 @@ def main(argv: list[str] | None = None) -> int:
         if batch_blocked:
             # Apply cache hits only this run; nothing new is scheduled.
             provider_fatal = True
-
-    fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    logger.info(
-        "=== summarize run start (limit=%d, all_items=%s, japanese_only=%s, english_only=%s, "
-        "model=%s, batch=%s, dry_run=%s) ===",
-        args.limit, args.all_items, args.japanese_only, args.english_only,
-        model, args.batch, args.dry_run,
-    )
-
-    api_limit = max(0, args.api_limit) if args.api_limit is not None else None
-    client = None
-    cache_hits = api_calls = summarized = failed = skipped_api_budget = 0
-    ja_cache_hits = ja_summarized = ja_failed = ja_skipped_api_budget = 0
-    provider_fatal = not api_key_available
-    provider_error_type = "none" if api_key_available else "missing_api_key"
-    provider_aborted = 0
-    cost_budget_skipped = 0
-    preflight_cost_usd = 0.0
-    preflight_trimmed = 0
-    batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
-    recovered_items = 0
-    batch_blocked_reason = "none"
-    run_started_at = time.monotonic()
-    usage_totals = message_usage(None)
-    estimated_cost_usd = 0.0
-    cost_estimate_complete = True
-    batch_id = ""
-    japanese_batch_id = ""
-    pending: list[tuple[dict, str, dict]] = []
-    pending_ja: list[tuple[dict, str, dict]] = []
 
     def record_outcome_usage(usage: dict[str, int], model_used: str, *, batch: bool = False) -> None:
         nonlocal estimated_cost_usd, cost_estimate_complete
