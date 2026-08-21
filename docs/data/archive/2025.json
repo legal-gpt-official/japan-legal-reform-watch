@@ -51,9 +51,9 @@
     "last_checked": "2026-08-19",
     "relevance_score": 35.0,
     "first_seen_at": "2026-08-20",
+    "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on Japanese title and metadata; promulgation date (2025-07-31) and effective date (2026-10-01) are as stated in the item and unverified against the official text. Specific substantive changes are not detailed in the metadata.",
-    "summary_source": "claude",
     "summarized_at": "2026-08-20T21:28:00Z",
     "summary_model": "claude-opus-4-8",
     "summary_ja": "独立行政法人日本学生支援機構に関する省令及び大学等における修学の支援に関する法律施行規則の一部を改正する省令（令和七年文部科学省令第十九号）に関する情報です。メタデータによれば、対象法令は独立行政法人日本学生支援機構に関する省令（平成十六年文部科学省令第二十三号）で、公布日は2025年7月31日、施行日は2026年10月1日とされています。改正の具体的内容はメタデータには記載されていません。",
@@ -247,6 +247,12 @@
     "last_checked": "2026-08-19",
     "relevance_score": 30.0,
     "first_seen_at": "2026-08-20",
+    "summary_ja": "出入国管理及び難民認定法並びに外国人技能実習の適正実施及び技能実習生保護に関する法律の一部改正法の施行に伴い、関係政令の整備及び経過措置を定める政令（令和七年政令第三百四十一号）に関する情報です。対象法令として厚生労働省組織令（平成十二年政令第二百五十二号）が挙げられており、公布日は2025年10月1日、施行日は2027年4月1日と記載されています。本情報はe-Gov法令検索の法令更新一覧に基づく非公式なモニタリング情報です。",
+    "business_impact_ja": "技能実習や在留資格に関連する制度改正に伴う政令整備であることから、外国人材の雇用・受入れを行う事業者の実務や社内対応に影響が及ぶ可能性があります。経過措置の内容によっては、移行期の取扱いを確認する必要が生じることも考えられます。",
+    "recommended_action_ja": "施行内容や経過措置の詳細については、e-Gov法令検索など日本語の公式情報源で最新の原文を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-21T09:08:00Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令预定生效（2025-10-01）",
@@ -255,13 +261,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "出入国管理及び難民認定法並びに外国人技能実習の適正実施及び技能実習生保護に関する法律の一部改正法の施行に伴い、関係政令の整備及び経過措置を定める政令（令和七年政令第三百四十一号）に関する情報です。対象法令として厚生労働省組織令（平成十二年政令第二百五十二号）が挙げられており、公布日は2025年10月1日、施行日は2027年4月1日と記載されています。本情報はe-Gov法令検索の法令更新一覧に基づく非公式なモニタリング情報です。",
-    "business_impact_ja": "技能実習や在留資格に関連する制度改正に伴う政令整備であることから、外国人材の雇用・受入れを行う事業者の実務や社内対応に影響が及ぶ可能性があります。経過措置の内容によっては、移行期の取扱いを確認する必要が生じることも考えられます。",
-    "recommended_action_ja": "施行内容や経過措置の詳細については、e-Gov法令検索など日本語の公式情報源で最新の原文を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-21T09:08:00Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4e3e90298587fd95",
@@ -279,7 +279,6 @@
     "last_checked": "2026-08-18",
     "relevance_score": 30.0,
     "first_seen_at": "2026-08-19",
-    "summary_source": "rule_based",
     "summary_ja": "地方自治法施行規則（昭和二十二年内務省令第二十九号）を一部改正する省令（令和七年総務省令第八十七号）に関する法令更新情報です。原文によれば、公布日は2025年8月26日、施行日は2026年9月24日とされています。改正の具体的内容は提供されたメタデータには示されていません。",
     "business_impact_ja": "地方自治体の事務手続に関わる規則改正であることから、関連業務を行う組織において対応の検討が必要となる可能性があります。",
     "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索等の日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
@@ -293,7 +292,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-426f4c90a215d681",
@@ -311,7 +311,6 @@
     "last_checked": "2026-08-18",
     "relevance_score": 30.0,
     "first_seen_at": "2026-08-19",
-    "summary_source": "rule_based",
     "summary_ja": "総務省令として「地方自治法施行規則等の一部を改正する省令」（令和七年総務省令第八十七号）が公布されました。対象法令には地方公営企業法施行規則（昭和二十七年総理府令第七十三号）が含まれています。原文によれば、公布日は2025年8月26日、施行日は2026年9月24日とされています。",
     "business_impact_ja": "地方公営企業法施行規則等に関わる事務や運用について、施行日以降に対応が必要となる可能性があります。関連する事業を営む場合、改正内容の確認が求められることが考えられます。",
     "recommended_action_ja": "改正の具体的な内容や施行日については、e-Gov法令検索等の日本語の公式情報源をご確認いただくことをお勧めします。",
@@ -325,7 +324,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-af19c7d8f29ea8d9",
@@ -477,7 +477,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-17T21:27:52Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《租税特别措施法施行规则等部分修正省令》定于（2025-03-31）生效",
@@ -485,7 +484,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f083ea72a09ec26a",
@@ -509,7 +509,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-17T21:27:52Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《租税特别措施法施行规则等部分修正省令》定于（2025-03-31）生效",
@@ -517,7 +516,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6a09d990190cd47a",
@@ -541,7 +541,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-17T21:27:52Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《租税特别措施法施行规则等部分修正省令》定于（2025-03-31）生效",
@@ -549,7 +548,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-bca3a915fc3b6741",
@@ -829,7 +829,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-15T21:22:33Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "预定生效：《劳动安全卫生规则》部分修正省令（2025-02-19）",
@@ -837,7 +836,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-738716f8c4bd9744",
@@ -1663,7 +1663,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-15T21:22:33Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《外国人育成就业适当实施及育成就业外国人保护法施行规则》",
@@ -1671,7 +1670,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6da65bc49919c200",
@@ -3148,6 +3148,24 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-2151bc7c10a9bb32",
+    "title_en": "e-Gov Law Update: Law or regulation in force (2025-05-27)",
+    "title_ja": "実用発電用原子炉の設置、運転等に関する規則及び研究開発段階発電用原子炉の設置、運転等に関する規則の一部を改正する規則",
+    "area": "Other",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=353M50000400077_20250527_507M60080000004",
+    "published_at": "2025-05-27",
+    "last_checked": "2026-08-21",
+    "relevance_score": 5.0,
+    "first_seen_at": "2026-08-22",
     "summary_source": "rule_based"
   },
   {

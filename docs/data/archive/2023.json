@@ -53,7 +53,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-17T21:27:57Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《法人税法施行规则》部分修正省令预定生效（2023-03-31）",
@@ -61,7 +60,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-dda805d1ae088cb1",
@@ -85,7 +85,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-17T21:27:57Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "日本法令更新：《租税特别措施法施行规则等部分修正省令》预定生效（2023-03-31）",
@@ -93,7 +92,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8d4bee6f55fc1ad2",
@@ -157,6 +157,24 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-2ed63754b20d189b",
+    "title_en": "e-Gov Law Update: Law or regulation in force (2023-09-28)",
+    "title_ja": "実用発電用原子炉の設置、運転等に関する規則及び研究開発段階発電用原子炉の設置、運転等に関する規則の一部を改正する規則",
+    "area": "Other",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=353M50000400077_20250606_505M60080000004",
+    "published_at": "2023-09-28",
+    "last_checked": "2026-08-21",
+    "relevance_score": 5.0,
+    "first_seen_at": "2026-08-22",
     "summary_source": "rule_based"
   },
   {
