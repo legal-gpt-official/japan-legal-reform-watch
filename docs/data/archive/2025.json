@@ -721,14 +721,14 @@
   },
   {
     "id": "raw-bca3a915fc3b6741",
-    "title_en": "NTA Update: Tax interpretation or administrative guidance revised (2025-06-30)",
+    "title_en": "Partial Amendment to NTA Notice on Forms for Corporate Tax Procedures under Special Provisions for Great East Japan...",
     "title_ja": "「東日本大震災の被災者等に係る国税関係法律の臨時特例に関する法律に係る法人課税関係の申請、届出等の様式の制定について」の一部改正について（法令解釈通達）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) published an interpretive circular concerning a partial amendment to a prior notice that established the forms for applications, notifications, and similar procedures related to corporate taxation under the law on temporary special provisions of national tax laws for victims of the Great East Japan Earthquake. This is described as a partial amendment issued as a law interpretation circular (tsutatsu). Full details of the changes are not provided in the metadata.",
+    "business_impact_en": "Corporations relying on the special corporate tax provisions related to the Great East Japan Earthquake may need to check whether the applicable procedural forms or filing requirements have changed.",
+    "recommended_action_en": "Consider reviewing the official NTA circular at the provided source to confirm the exact nature and scope of the form amendments.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/law/tsutatsu/kobetsu/hojin/kaisei/20250630-1/index.htm",
     "published_at": "2025-06-30",
@@ -741,15 +741,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and source metadata; the specific content of the amended forms is not detailed in the item. Preliminary labels (Finance/AML) are keyword-based and unverified; this appears to relate to corporate tax procedural forms rather than AML.",
+    "summarized_at": "2026-08-27T00:32:52Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本国税厅公告：修订《关于制定与东日本大震灾受灾者等相关国税关系法律临时特例法有关的法人课税相关申请、申报等格式》的通知（法令解释通达）的部分内容（2025-06-30）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "日本国税厅通达修订：东日本大地震受灾者国税法临时特例相关法人课税申请表格",
+        "summary": "日本国税厅（NTA）发布了一项法令解释通达，涉及对此前一项通知的部分修订，该通知规定了与《东日本大震灾受灾者等有关国税关系法律临时特例法》下法人课税相关的申请、申报等手续所用表格。此次被描述为以法令解释通达（通达）形式发布的部分修订。元数据中未提供变更的完整细节。",
+        "business_impact": "依赖与东日本大地震相关的法人课税特别规定的企业，可能需要确认相关手续表格或申报要求是否发生变化。",
+        "recommended_action": "建议考虑查阅信息来源处提供的国税厅官方通达，以确认表格修订的具体内容和范围。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-0f3421fef1bfb85a",
