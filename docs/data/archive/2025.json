@@ -735,17 +735,17 @@
     "last_checked": "2026-08-07",
     "relevance_score": 28.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and source metadata; the specific content of the amended forms is not detailed in the item. Preliminary labels (Finance/AML) are keyword-based and unverified; this appears to relate to corporate tax procedural forms rather than AML.",
+    "summarized_at": "2026-08-27T00:32:52Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "国税庁は2025年6月30日付で、「東日本大震災の被災者等に係る国税関係法律の臨時特例に関する法律に係る法人課税関係の申請、届出等の様式の制定について」の一部改正に関する法令解釈通達を新着情報として公表しています。原文からは法人課税関係の申請・届出等に用いる様式に関する改正であることが示されています。",
     "business_impact_ja": "東日本大震災の臨時特例に基づく法人課税関係の申請・届出を行う事業者において、使用する様式や手続に影響が生じる可能性があります。",
     "recommended_action_ja": "詳細や適用範囲については、国税庁の該当通達ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based mainly on the Japanese title and source metadata; the specific content of the amended forms is not detailed in the item. Preliminary labels (Finance/AML) are keyword-based and unverified; this appears to relate to corporate tax procedural forms rather than AML.",
-    "summarized_at": "2026-08-27T00:32:52Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "日本国税厅通达修订：东日本大地震受灾者国税法临时特例相关法人课税申请表格",
@@ -835,7 +835,21 @@
     "last_checked": "2026-08-24",
     "relevance_score": 25.0,
     "first_seen_at": "2026-08-25",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "犯罪による収益の移転防止に関する法律施行規則の一部を改正する命令（令和七年内閣府・総務省・法務省・財務省・厚生労働省・農林水産省・経済産業省・国土交通省令第三号）に関する情報です。原文によれば、公布日は2025年6月24日、施行日は2027年4月1日とされています。改正対象は同法施行規則（平成二十年内閣府等令第一号）です。",
+    "business_impact_ja": "マネーロンダリング対策に関わる本人確認や取引時確認等の実務に影響が及ぶ可能性があります。特定事業者に該当する事業では、施行に向けた社内対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-08-28T05:12:30Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《犯罪收益转移防止法施行规则》部分修正命令拟生效（2025-06-24）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-eb694f1229f5d1e0",
@@ -853,7 +867,15 @@
     "last_checked": "2026-08-24",
     "relevance_score": 25.0,
     "first_seen_at": "2026-08-25",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "预定生效：《地方税法施行令及国有资产等所在市町村交付金法施行令部分修正政令》（2025-03-31）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-bfce48da6f98ee89",
