@@ -285,10 +285,10 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertNotIn("--parallel", invocation)
         self.assertIn("--all-items", step)
         self.assertIn("--english-only", step)
-        self.assertIn("--api-limit 30", step)
+        self.assertIn("--api-limit 50", step)
         # The USD cap must survive the switch: it is the only spend brake besides
         # the call count, and it used to be rejected outright alongside --batch.
-        self.assertIn("--max-cost-usd 0.50", step)
+        self.assertIn("--max-cost-usd 0.80", step)
         self.assertIn("English summary provider unavailable", workflow)
         self.assertIn("### English summary maintenance (batch)", workflow)
 
@@ -381,9 +381,9 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("name: Maintain Japanese summaries", workflow)
         self.assertIn("--all-items", workflow)
         self.assertIn("--japanese-only", workflow)
-        self.assertIn("--api-limit 30", workflow)
+        self.assertIn("--api-limit 50", workflow)
         self.assertIn("--batch", workflow)
-        self.assertIn("--max-cost-usd 0.50", workflow)
+        self.assertIn("--max-cost-usd 0.80", workflow)
         self.assertIn("Japanese summary provider unavailable", workflow)
         self.assertIn("s/^provider_error_type *: //p", workflow)
         self.assertIn("estimated_cost_usd", workflow)
@@ -1314,23 +1314,143 @@ class TestSummarizeBatchRecovery(unittest.TestCase):
         requests = [{"params": {"model": "claude-opus-4-8", "max_tokens": 1500,
                                 "system": "s", "messages": []}} for _ in range(3)]
         pending = [(self._item(f"raw-{i}"), f"key{i}", {}) for i in range(3)]
-        # 0.5 * (1000*1.10*$5 + 1500*$25)/1e6 = $0.021 per request.
-        kept, kept_pending, bound, dropped = su.trim_batch_to_budget(
-            client, "claude-opus-4-8", requests, 0.045, pending
+        # Budgeted at EXPECTED_OUTPUT_TOKENS, not the 1500 ceiling:
+        # 0.5 * (1000*1.10*$5 + 700*$25)/1e6 = $0.0115 per request.
+        kept, kept_pending, bound, dropped, ceiling = su.trim_batch_to_budget(
+            client, "claude-opus-4-8", requests, 0.025, pending
         )
         self.assertEqual(len(kept), 2)
         self.assertEqual(len(kept_pending), 2)
         self.assertEqual(dropped, 1)
-        self.assertLess(bound, 0.045)
+        self.assertLess(bound, 0.025)
+        # The ceiling prices the same requests at MAX_TOKENS and must be higher,
+        # so the run can report the true worst case next to what it scheduled.
+        self.assertGreater(ceiling, bound)
 
     def test_preflight_refuses_to_submit_an_unpriced_model(self):
         client = types.SimpleNamespace(messages=types.SimpleNamespace())
         requests = [{"params": {"model": "x", "max_tokens": 10, "system": "s", "messages": []}}]
-        kept, kept_pending, bound, dropped = su.trim_batch_to_budget(
+        kept, kept_pending, bound, dropped, ceiling = su.trim_batch_to_budget(
             client, "unpriced-model", requests, 1.0, [("i", "k", {})]
         )
         self.assertEqual(kept, [])
         self.assertEqual(dropped, 1)
+        self.assertEqual((bound, ceiling), (0.0, 0.0))
+
+
+class TestDailyBudgetCoversItsCallLimit(unittest.TestCase):
+    """The USD cap must be able to pay for the call limit it is paired with.
+
+    These two numbers are set in the workflow independently, and nothing linked
+    them. With --api-limit 30 and --max-cost-usd 0.50 the pre-flight bound priced
+    only 22 requests inside the cap, so every run silently trimmed 8 and reported
+    `preflight_trimmed: 8` while actual spend sat at 43% of the cap. Coverage of
+    the newest items fell behind and the cause was invisible unless someone read
+    the Step Summary closely.
+
+    Input sizes below are measured from production run 33569264923.
+    """
+
+    # stage -> (measured input tokens per call, input $/MTok, output $/MTok)
+    MEASURED = {
+        "english": (34439 / 22, 5.0, 25.0),
+        "japanese": (30237 / 22, 5.0, 25.0),
+    }
+
+    def _daily(self) -> str:
+        return (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+
+    def _flags(self, step: str) -> dict:
+        tokens = step.split()
+        flags = {}
+        for i, token in enumerate(tokens):
+            if token.startswith("--") and i + 1 < len(tokens):
+                nxt = tokens[i + 1]
+                if not nxt.startswith("--") and not nxt.startswith("2>"):
+                    flags[token] = nxt
+        return flags
+
+    def _budget_per_call(self, input_tokens, in_rate, out_rate) -> float:
+        # Mirrors anthropic_batch.bounds_from_counts for a batch request.
+        return 0.5 * (
+            input_tokens * su_margin() * in_rate + su.EXPECTED_OUTPUT_TOKENS * out_rate
+        ) / 1_000_000
+
+    def test_each_summary_stage_can_afford_its_full_call_limit(self):
+        workflow = self._daily()
+        bounds = {
+            "english": ("name: Maintain English summaries", "name: Maintain Japanese summaries"),
+            "japanese": ("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
+        }
+        for stage, (start, end) in bounds.items():
+            with self.subTest(stage=stage):
+                step = workflow[workflow.index(start):workflow.index(end)]
+                flags = self._flags(step)
+                limit = int(flags["--api-limit"])
+                cap = float(flags["--max-cost-usd"])
+                tokens, in_rate, out_rate = self.MEASURED[stage]
+                needed = limit * self._budget_per_call(tokens, in_rate, out_rate)
+                self.assertLessEqual(
+                    needed, cap,
+                    f"{stage}: --api-limit {limit} budgets to ${needed:.4f}, "
+                    f"over the --max-cost-usd {cap} cap, so requests will be trimmed",
+                )
+
+    def test_the_limits_keep_up_with_measured_item_arrival(self):
+        """~38 new items/day were measured; a 30-call budget could not keep up."""
+        workflow = self._daily()
+        step = workflow[
+            workflow.index("name: Maintain Japanese summaries"):
+            workflow.index("name: Translate Simplified Chinese updates")
+        ]
+        self.assertGreaterEqual(int(self._flags(step)["--api-limit"]), 40)
+
+    def test_translation_limit_exceeds_the_summary_limit(self):
+        """zh-Hans demand is new arrivals PLUS re-translation of every English
+        upgrade the summary step just made, so it cannot be the smaller budget."""
+        workflow = self._daily()
+        english = self._flags(workflow[
+            workflow.index("name: Maintain English summaries"):
+            workflow.index("name: Maintain Japanese summaries")])
+        translate = self._flags(workflow[
+            workflow.index("name: Translate Simplified Chinese updates"):
+            workflow.index("name: Build yearly public archives")])
+        self.assertGreaterEqual(int(translate["--limit"]), int(english["--api-limit"]))
+
+
+def su_margin() -> float:
+    import anthropic_batch
+    return anthropic_batch.DEFAULT_TOKEN_ESTIMATE_MARGIN
+
+
+class TestOutputBudgetIsCalibrated(unittest.TestCase):
+    """The budgeting figure must be well under the hard ceiling, and above reality."""
+
+    def test_expected_output_is_far_below_the_hard_ceiling(self):
+        self.assertLess(su.EXPECTED_OUTPUT_TOKENS, su.MAX_TOKENS)
+        self.assertLessEqual(su.EXPECTED_OUTPUT_TOKENS, su.MAX_TOKENS / 2)
+
+    def test_expected_output_has_headroom_over_observed_output(self):
+        """Measured: 466 tokens/call English, 296 Japanese, max 427 in the corpus."""
+        self.assertGreater(su.EXPECTED_OUTPUT_TOKENS, 466 * 1.4)
+
+    def test_ceiling_is_still_priced_and_reported(self):
+        import types
+        client = types.SimpleNamespace(
+            messages=types.SimpleNamespace(
+                count_tokens=lambda **kw: types.SimpleNamespace(input_tokens=1000)
+            )
+        )
+        requests = [{"params": {"model": "claude-opus-4-8", "max_tokens": su.MAX_TOKENS,
+                                "system": "s", "messages": []}}]
+        _kept, _pending, bound, _dropped, ceiling = su.trim_batch_to_budget(
+            client, "claude-opus-4-8", requests, 10.0, [("i", "k", {})]
+        )
+        self.assertGreater(ceiling, bound, "the worst case must be reported, not hidden")
+        expected_ratio = su.MAX_TOKENS / su.EXPECTED_OUTPUT_TOKENS
+        self.assertGreater(expected_ratio, 2.0)
 
 
 class TestStageTwoTitlePreservation(unittest.TestCase):

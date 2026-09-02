@@ -586,15 +586,18 @@ class TestUsageAndCostSafety(TranslateTestBase):
             return "msgbatch_capped", [(good_translation(), "fake-batch") for _ in sets]
 
         tu.request_translation_batch = fake_batch
-        # Per request the bound is 0.5 * (1000*1.10*$2 + 1500*$10)/1e6 = $0.0086.
-        # A $0.019 budget therefore admits exactly two of the three.
+        # Budgeted at EXPECTED_OUTPUT_TOKENS rather than the 1500 ceiling:
+        # 0.5 * (1000*1.10*$2 + 700*$10)/1e6 = $0.0046 per request, so a $0.010
+        # budget admits exactly two of the three.
         rc, out = self.run_main(["--locale", LOCALE, "--limit", "10", "--batch",
-                                 "--model", "claude-sonnet-5", "--max-cost-usd", "0.019"])
+                                 "--model", "claude-sonnet-5", "--max-cost-usd", "0.010"])
         self.assertEqual(rc, 0)
         self.assertEqual(submitted["n"], 2, "the third request must not be submitted")
         summary = parse_summary(out)
         self.assertEqual(summary["preflight_trimmed"], "1")
-        self.assertLess(float(summary["preflight_cost_usd"]), 0.019)
+        self.assertLess(float(summary["preflight_cost_usd"]), 0.010)
+        self.assertGreater(float(summary["preflight_ceiling_usd"]),
+                           float(summary["preflight_cost_usd"]))
 
     def test_batch_preflight_refuses_an_unpriced_model(self):
         """Fail closed: a cap that cannot be priced must stop the run, not be ignored."""
@@ -1649,8 +1652,10 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertIn(path, self.daily)
 
-    def test_daily_limit_30_preserved(self):
-        self.assertIn("--limit 30", self.daily)
+    def test_daily_translation_limit_matches_measured_demand(self):
+        """30 could not keep up: demand is ~38 new items/day plus re-translation
+        of every item the summary step just upgraded to an AI English summary."""
+        self.assertIn("--limit 60", self.daily)
 
     def test_daily_and_backfill_use_direct_translation(self):
         daily_command = next(
@@ -1694,7 +1699,7 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("name: Translate Simplified Chinese updates", self.workflow)
         self.assertIn("python scripts/translate_updates.py", self.workflow)
         self.assertIn("--locale zh-Hans", self.workflow)
-        self.assertIn("--limit 30", self.workflow)
+        self.assertIn("--limit 60", self.workflow)
         self.assertIn("--max-cost-usd 0.50", self.workflow)
         self.assertIn("estimated_cost_usd", self.workflow)
 

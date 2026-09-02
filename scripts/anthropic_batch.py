@@ -280,6 +280,35 @@ def estimate_request_input_tokens(client, params: dict, *, logger=None) -> int:
     return _fallback_input_tokens(params)
 
 
+def count_request_input_tokens(client, requests: list[dict], *, logger=None) -> list[int]:
+    """Input-token estimate per request, in submission order.
+
+    Separated from costing so one set of (free but not instant) count_tokens
+    calls can price the same batch twice: at the calibrated output size and at
+    the hard `max_tokens` ceiling.
+    """
+    return [
+        estimate_request_input_tokens(client, request.get("params") or {}, logger=logger)
+        for request in requests
+    ]
+
+
+def bounds_from_counts(
+    counts: list[int],
+    price: dict,
+    *,
+    output_tokens: int,
+    batch: bool = True,
+    margin: float = DEFAULT_TOKEN_ESTIMATE_MARGIN,
+) -> list[float]:
+    """Per-request cost for the given input counts and a fixed output size."""
+    multiplier = 0.5 if batch else 1.0
+    return [
+        multiplier * (count * margin * price["input"] + output_tokens * price["output"]) / 1_000_000
+        for count in counts
+    ]
+
+
 def preflight_batch_cost_usd(
     client,
     requests: list[dict],
@@ -289,25 +318,38 @@ def preflight_batch_cost_usd(
     batch: bool = True,
     margin: float = DEFAULT_TOKEN_ESTIMATE_MARGIN,
     logger=None,
+    expected_output_tokens: int | None = None,
 ) -> list[float]:
-    """Per-request conservative cost bound, in submission order.
+    """Per-request cost bound, in submission order.
 
-    Input is counted (with a margin, because count_tokens is an estimate); output
-    is charged at the full `max_tokens` ceiling because that is the only figure
-    knowable before generation.
+    Input is counted (with a margin, because count_tokens is an estimate). Output
+    is charged at `expected_output_tokens` when given, otherwise at the full
+    `max_tokens` ceiling.
+
+    Charging every request the full ceiling made the bound a genuine upper limit,
+    but a wildly loose one: measured output is a few hundred tokens against a
+    1500-token ceiling, so ~80% of the bound was output headroom that is never
+    used. That throttled runs to well under their call budget while actual spend
+    sat at under half the cap. Callers now pass a calibrated figure for scheduling
+    and price the ceiling separately for reporting, so the trade-off is visible
+    rather than hidden.
     """
+    counts = count_request_input_tokens(client, requests, logger=logger)
+    ceilings = [
+        int((request.get("params") or {}).get("max_tokens") or max_output_tokens)
+        for request in requests
+    ]
     multiplier = 0.5 if batch else 1.0
-    bounds = []
-    for request in requests:
-        params = request.get("params") or {}
-        tokens = estimate_request_input_tokens(client, params, logger=logger)
-        ceiling = int(params.get("max_tokens") or max_output_tokens)
-        bounds.append(
-            multiplier
-            * (tokens * margin * price["input"] + ceiling * price["output"])
-            / 1_000_000
+    return [
+        multiplier
+        * (
+            count * margin * price["input"]
+            + (expected_output_tokens if expected_output_tokens is not None else ceiling)
+            * price["output"]
         )
-    return bounds
+        / 1_000_000
+        for count, ceiling in zip(counts, ceilings)
+    ]
 
 
 def trim_requests_to_budget(requests: list[dict], bounds: list[float], budget: float) -> int:

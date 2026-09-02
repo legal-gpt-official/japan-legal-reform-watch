@@ -81,7 +81,8 @@ from anthropic_batch import (
     pending_batches,
     collect_message_batch,
     format_custom_id,
-    preflight_batch_cost_usd,
+    bounds_from_counts,
+    count_request_input_tokens,
     trim_requests_to_budget,
     list_recent_batches,
     parse_custom_id,
@@ -115,6 +116,14 @@ PROMPT_VERSION = "zh-hans-v3"
 
 DEFAULT_TRANSLATION_MODEL = "claude-haiku-4-5-20251001"
 MAX_TOKENS = 1500
+
+# Output size used to BUDGET a batch; MAX_TOKENS stays the hard ceiling.
+# Measured over the published corpus: zh-Hans translations land at p50 199 /
+# p99 336 / max 411 estimated tokens, and 248 per call as actually billed.
+# Budgeting at the 1500-token ceiling reserved headroom that is never used.
+# 700 is well above anything observed and still under half the ceiling; the
+# absolute worst case (limit x MAX_TOKENS) is reported separately.
+EXPECTED_OUTPUT_TOKENS = 700
 
 # Claude API list prices in USD per million tokens.
 # Source: platform.claude.com/docs/en/about-claude/pricing, checked 2026-08-20.
@@ -1612,6 +1621,7 @@ def process_translation_batch(
         "reclaim_skipped": 0,
         "reclaim_failed": 0,
         "preflight_cost_usd": 0.0,
+        "preflight_ceiling_usd": 0.0,
         "preflight_trimmed": 0,
         "blocked_by_running_batch": 0,
         "batch_deferred": 0,
@@ -1768,12 +1778,14 @@ def process_translation_batch(
                 model, row[0], locale, cache_ttl="1h", fields=row[4])}
             for row in candidates
         ]
-        bounds = preflight_batch_cost_usd(
-            make_client(), preview, price,
-            max_output_tokens=MAX_TOKENS, batch=True, logger=logger,
+        counts = count_request_input_tokens(make_client(), preview, logger=logger)
+        bounds = bounds_from_counts(
+            counts, price, output_tokens=EXPECTED_OUTPUT_TOKENS, batch=True
         )
+        ceilings = bounds_from_counts(counts, price, output_tokens=MAX_TOKENS, batch=True)
         fits = trim_requests_to_budget(preview, bounds, max_cost_usd)
         stats["preflight_cost_usd"] = sum(bounds[:fits])
+        stats["preflight_ceiling_usd"] = sum(ceilings[:fits])
         if fits < len(candidates):
             stats["preflight_trimmed"] = len(candidates) - fits
             logger.info(
@@ -2105,6 +2117,7 @@ def main(argv: list[str] | None = None) -> int:
     field_cache_hits = field_cache_added = partial_field_requests = 0
     reclaimed = reclaim_skipped = reclaim_failed = 0
     preflight_cost_usd = 0.0
+    preflight_ceiling_usd = 0.0
     preflight_trimmed = 0
     blocked_by_running_batch = 0
     batch_deferred = 0
@@ -2174,6 +2187,7 @@ def main(argv: list[str] | None = None) -> int:
         candidate_reasons = batch_stats["candidate_reasons"]
         cost_budget_skipped = batch_stats.get("cost_budget_skipped", 0)
         preflight_cost_usd = batch_stats["preflight_cost_usd"]
+        preflight_ceiling_usd = batch_stats["preflight_ceiling_usd"]
         preflight_trimmed = batch_stats["preflight_trimmed"]
         blocked_by_running_batch = batch_stats["blocked_by_running_batch"]
         batch_deferred = batch_stats["batch_deferred"]
@@ -2601,6 +2615,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"reclaim_skipped_items     : {reclaim_skipped}")
     print(f"reclaim_failed_items      : {reclaim_failed}")
     print(f"preflight_cost_usd        : {preflight_cost_usd:.6f}")
+    print(f"preflight_ceiling_usd     : {preflight_ceiling_usd:.6f}")
     print(f"preflight_trimmed         : {preflight_trimmed}")
     print(f"blocked_by_running_batch  : {blocked_by_running_batch}")
     print(f"batch_succeeded           : {batch_outcomes['succeeded']}")

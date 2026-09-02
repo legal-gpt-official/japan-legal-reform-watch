@@ -84,7 +84,8 @@ from anthropic_batch import (
     format_custom_id,
     list_recent_batches,
     parse_custom_id,
-    preflight_batch_cost_usd,
+    bounds_from_counts,
+    count_request_input_tokens,
     read_batch_results,
     run_message_batch,
     trim_requests_to_budget,
@@ -106,6 +107,22 @@ LOG_PATH = REPO_ROOT / "logs" / "summarize.log"
 DEFAULT_LIMIT = 10
 DEFAULT_MODEL = "claude-opus-4-8"
 MAX_TOKENS = 1500
+
+# Output size used to BUDGET a batch, as distinct from MAX_TOKENS, which stays
+# the hard per-response ceiling the model cannot exceed.
+#
+# Measured over the published corpus (2,514 items) and against real run usage:
+# English summaries land at p50 331 / p99 409 / max 427 estimated tokens, and
+# 466 tokens per call as actually billed; Japanese at p50 287 / p99 379 /
+# max 427, and 296 as billed. Budgeting every request at the 1500-token
+# ceiling therefore reserved ~80% of the bound for headroom that is never used,
+# which trimmed a 30-request run to 22 while real spend was under half the cap.
+#
+# 700 is ~1.6x the largest output ever observed and still less than half the
+# ceiling. It is an estimate for scheduling, not a guarantee: the absolute
+# worst case remains api_limit x MAX_TOKENS, which the run summary reports as
+# preflight_ceiling_usd so the gap is visible rather than implied.
+EXPECTED_OUTPUT_TOKENS = 700
 
 # Current Claude API list prices in USD per million tokens. These are used only
 # for transparent run-cost reporting and the optional safety cap; provider
@@ -681,20 +698,28 @@ def trim_batch_to_budget(client, model, requests, max_cost_usd, pending):
     """Drop trailing requests that would exceed a pre-flight spend bound.
 
     Batch usage is only known after completion, so the measured cap cannot
-    apply. Counting tokens up front (with a margin, because count_tokens is an
-    estimate) and charging the full max_tokens ceiling for output bounds the
-    spend before anything is submitted.
+    apply. Input is counted up front (with a margin, because count_tokens is an
+    estimate); output is budgeted at EXPECTED_OUTPUT_TOKENS rather than the
+    MAX_TOKENS ceiling, which is several times larger than any output this
+    pipeline has ever produced.
+
+    Returns (requests, pending, budgeted_usd, dropped, ceiling_usd) where
+    ceiling_usd prices the same requests at MAX_TOKENS, so a run can report the
+    absolute worst case alongside the figure it scheduled against.
     """
     if max_cost_usd is None:
-        return requests, pending, 0.0, 0
+        return requests, pending, 0.0, 0, 0.0
     price = model_pricing(model)
     if price is None:
-        return [], [], 0.0, len(requests)
-    bounds = preflight_batch_cost_usd(
-        client, requests, price, max_output_tokens=MAX_TOKENS, batch=True, logger=logger
+        return [], [], 0.0, len(requests), 0.0
+    counts = count_request_input_tokens(client, requests, logger=logger)
+    bounds = bounds_from_counts(
+        counts, price, output_tokens=EXPECTED_OUTPUT_TOKENS, batch=True
     )
+    ceilings = bounds_from_counts(counts, price, output_tokens=MAX_TOKENS, batch=True)
     fits = trim_requests_to_budget(requests, bounds, max_cost_usd)
-    return requests[:fits], pending[:fits], sum(bounds[:fits]), len(requests) - fits
+    return (requests[:fits], pending[:fits], sum(bounds[:fits]),
+            len(requests) - fits, sum(ceilings[:fits]))
 
 
 def request_summary_batch(
@@ -1120,6 +1145,7 @@ def main(argv: list[str] | None = None) -> int:
     provider_aborted = 0
     cost_budget_skipped = 0
     preflight_cost_usd = 0.0
+    preflight_ceiling_usd = 0.0
     preflight_trimmed = 0
     batch_outcomes = {bucket: 0 for bucket in BATCH_OUTCOME_BUCKETS}
     recovered_items = 0
@@ -1407,10 +1433,11 @@ def main(argv: list[str] | None = None) -> int:
             client = make_client()
         # Bound the spend before submitting; batch usage is only known afterwards.
         _requests = [{"params": summary_request_params(model, it, raw)} for it, _key, raw in pending]
-        _requests, pending, _bound, _dropped = trim_batch_to_budget(
+        _requests, pending, _bound, _dropped, _ceiling = trim_batch_to_budget(
             client, model, _requests, args.max_cost_usd, pending
         )
         preflight_cost_usd += _bound
+        preflight_ceiling_usd += _ceiling
         if _dropped:
             preflight_trimmed += _dropped
             cost_budget_skipped += _dropped
@@ -1618,12 +1645,13 @@ def main(argv: list[str] | None = None) -> int:
             client = make_client()
         _requests = [{"params": japanese_summary_request_params(model, it, raw)}
                      for it, _key, raw in pending_ja]
-        _requests, pending_ja, _bound, _dropped = trim_batch_to_budget(
+        _requests, pending_ja, _bound, _dropped, _ceiling = trim_batch_to_budget(
             client, model, _requests,
             None if args.max_cost_usd is None else max(0.0, args.max_cost_usd - preflight_cost_usd),
             pending_ja,
         )
         preflight_cost_usd += _bound
+        preflight_ceiling_usd += _ceiling
         if _dropped:
             preflight_trimmed += _dropped
             cost_budget_skipped += _dropped
@@ -1778,6 +1806,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"provider_aborted_items: {provider_aborted}")
     print(f"cost_budget_skipped: {cost_budget_skipped}")
     print(f"preflight_cost_usd: {preflight_cost_usd:.6f}")
+    print(f"preflight_ceiling_usd: {preflight_ceiling_usd:.6f}")
     print(f"preflight_trimmed : {preflight_trimmed}")
     print(f"batch_id          : {batch_id or 'none'}")
     print(f"recovered_items   : {recovered_items}")

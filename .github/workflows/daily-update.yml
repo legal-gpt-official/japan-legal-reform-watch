@@ -63,22 +63,28 @@ jobs:
           # on DEFAULT_MODEL let a repository-level ANTHROPIC_MODEL silently
           # change the billed model for this step only.
           ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
-        # Phase 3A: Message Batches (50% discount, same model and same prompt, so
-        # no quality change). --parallel does not apply to a batch. The USD cap is
-        # still enforced, now as a pre-flight token bound instead of a post-hoc
-        # measurement, because a batch reports usage only once it finishes.
-        # Dropping --batch restores the direct-call path unchanged.
+        # Message Batches (50% discount, same model and same prompt, so no quality
+        # change). --parallel does not apply to a batch. The USD cap is enforced as
+        # a pre-flight token bound rather than a post-hoc measurement, because a
+        # batch reports usage only once it finishes. Dropping --batch restores the
+        # direct-call path unchanged.
+        #
+        # Sized against measured demand: new items arrive at ~38/day (601 over 16
+        # days, with single days above 70), so a 30-call budget could not keep up
+        # and Japanese/Chinese coverage fell behind on the newest items. 50 calls
+        # clears that inflow with room to work off the backlog. The cap is $0.80
+        # because 50 requests budget to ~$0.65; measured spend is ~$0.49.
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
             --all-items \
             --english-only \
             --batch \
-            --api-limit 30 \
-            --max-cost-usd 0.50 2>&1 | tee english_summary_run.log
+            --api-limit 50 \
+            --max-cost-usd 0.80 2>&1 | tee english_summary_run.log
           {
             echo "### English summary maintenance (batch)"
-            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' english_summary_run.log || true
+            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' english_summary_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^provider_status *: unavailable' english_summary_run.log; then
             ptype=$(sed -n 's/^provider_error_type *: //p' english_summary_run.log | head -n 1)
@@ -101,11 +107,11 @@ jobs:
             --all-items \
             --japanese-only \
             --batch \
-            --api-limit 30 \
-            --max-cost-usd 0.50 2>&1 | tee japanese_summary_run.log
+            --api-limit 50 \
+            --max-cost-usd 0.80 2>&1 | tee japanese_summary_run.log
           {
             echo "### Japanese summary maintenance (batch)"
-            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|japanese_summarized_items|japanese_failed_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
+            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|japanese_summarized_items|japanese_failed_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^provider_status *: unavailable' japanese_summary_run.log; then
             ptype=$(sed -n 's/^provider_error_type *: //p' japanese_summary_run.log | head -n 1)
@@ -118,6 +124,11 @@ jobs:
       # and re-checks every translation against the current English via source_hash.
       # --limit bounds NEW API calls per run; cache hits are free, and so are
       # fields already memoized from identical English elsewhere.
+      #
+      # 60, not 30: demand here is new arrivals (~38/day) PLUS re-translation of
+      # every item whose English was just upgraded by the step above (up to 50),
+      # so 30 left the newest items untranslated. 60 requests budget to ~$0.26,
+      # well inside the unchanged $0.50 cap; measured spend is ~$0.12.
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -136,12 +147,12 @@ jobs:
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --batch \
-            --limit 30 \
+            --limit 60 \
             --max-cost-usd 0.50 \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
             echo "### Simplified-Chinese translation maintenance (batch)"
-            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|quality_rejected_items|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|quality_rejected_items|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^(blocked_by_running_batch|preflight_trimmed) *: *[1-9]' translate_run.log; then
             echo "::warning::Translation batch deferred work this run (interlock or cost bound); it resumes next run."
