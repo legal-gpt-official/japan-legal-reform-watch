@@ -125,10 +125,21 @@ jobs:
       # --limit bounds NEW API calls per run; cache hits are free, and so are
       # fields already memoized from identical English elsewhere.
       #
-      # 60, not 30: demand here is new arrivals (~38/day) PLUS re-translation of
-      # every item whose English was just upgraded by the step above (up to 50),
-      # so 30 left the newest items untranslated. 60 requests budget to ~$0.26,
-      # well inside the unchanged $0.50 cap; measured spend is ~$0.12.
+      # 120, and the largest budget of the three stages, because this stage's
+      # demand is roughly double a summary stage's: new arrivals (~37/day) PLUS
+      # re-translation of every item whose English the step above just upgraded
+      # (up to 50/day, measured at 30). Run 33693101446 confirmed it: 279
+      # candidates against a 60 budget left skipped_no_budget: 219, and the
+      # untranslated count rose 212 -> 221 in a single day. 60 was not merely
+      # slow, it was losing ground, and would have kept losing it for the ~37
+      # days the English backlog takes to clear.
+      #
+      # The cap is $1.10 for 120 calls even though measured spend is ~$0.34,
+      # because the pre-flight bound prices count_tokens output at the full
+      # input rate while ~70% of this stage's prompt is served from the cache
+      # at 0.1x -- $0.426 estimated vs $0.172 actual last run, a 2.5x overshoot.
+      # Pricing cache reads correctly would let the cap come back down; until
+      # then the cap has to clear the inflated estimate or it silently trims.
       - name: Translate Simplified Chinese updates
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -147,8 +158,8 @@ jobs:
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --batch \
-            --limit 60 \
-            --max-cost-usd 0.50 \
+            --limit 120 \
+            --max-cost-usd 1.10 \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
             echo "### Simplified-Chinese translation maintenance (batch)"

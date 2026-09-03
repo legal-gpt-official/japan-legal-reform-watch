@@ -1653,9 +1653,11 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
                 self.assertIn(path, self.daily)
 
     def test_daily_translation_limit_matches_measured_demand(self):
-        """30 could not keep up: demand is ~38 new items/day plus re-translation
-        of every item the summary step just upgraded to an AI English summary."""
-        self.assertIn("--limit 60", self.daily)
+        """60 was still losing ground: run 33693101446 saw 279 candidates against
+        a 60 budget (skipped_no_budget: 219) and the untranslated count rose
+        212 -> 221 in one day. Demand is ~37 new arrivals plus re-translation of
+        every item the summary step just upgraded to an AI English summary."""
+        self.assertIn("--limit 120", self.daily)
 
     def test_daily_and_backfill_use_direct_translation(self):
         daily_command = next(
@@ -1688,6 +1690,78 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
                 self.assertIn("group: japan-legal-reform-data-writer", wf)
 
 
+
+class TestTranslationBudgetCoversItsCallLimit(unittest.TestCase):
+    """--limit and --max-cost-usd are set independently; the cap must be able to
+    pay for the limit it is paired with, or every run silently trims.
+
+    The summary stages have the same invariant pinned in test_summarize_updates.
+    This one uses the translate stage's own measured rate, which is much higher
+    per call than the actual spend: the pre-flight bound prices the whole
+    count_tokens result at the full input rate, but ~70% of this prompt is served
+    from the cache at 0.1x. Run 33693101446: $0.425521 estimated / 60 calls
+    against $0.172029 actually billed.
+    """
+
+    PREFLIGHT_USD_PER_CALL = 0.425521 / 60
+    MEASURED_USD_PER_CALL = 0.172029 / 60
+
+    @classmethod
+    def setUpClass(cls):
+        cls.workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+
+    def _translate_flags(self) -> dict:
+        step = self.workflow[
+            self.workflow.index("name: Translate Simplified Chinese updates"):
+            self.workflow.index("name: Build yearly public archives")
+        ]
+        tokens = step.split()
+        flags = {}
+        for i, token in enumerate(tokens):
+            if token.startswith("--") and i + 1 < len(tokens):
+                nxt = tokens[i + 1]
+                if not nxt.startswith("--") and not nxt.startswith("2>"):
+                    flags[token] = nxt
+        return flags
+
+    def test_cap_can_pay_for_the_full_call_limit(self):
+        flags = self._translate_flags()
+        limit = int(flags["--limit"])
+        cap = float(flags["--max-cost-usd"])
+        needed = limit * self.PREFLIGHT_USD_PER_CALL
+        self.assertLessEqual(
+            needed, cap,
+            f"--limit {limit} budgets to ${needed:.4f} against a --max-cost-usd "
+            f"{cap} cap, so requests will be trimmed before they are submitted",
+        )
+
+    def test_limit_absorbs_measured_daily_demand(self):
+        """Demand = new arrivals (~37/day) + re-translation of the English the
+        summary stage upgrades (measured 30/day, up to its own --api-limit)."""
+        flags = self._translate_flags()
+        english = self.workflow[
+            self.workflow.index("name: Maintain English summaries"):
+            self.workflow.index("name: Maintain Japanese summaries")
+        ]
+        english_limit = int(english.split("--api-limit")[1].split()[0])
+        self.assertGreater(
+            int(flags["--limit"]), 37 + english_limit,
+            "the limit must exceed new arrivals plus the English upgrades that "
+            "invalidate an existing translation, or the backlog grows daily",
+        )
+
+    def test_the_cap_is_not_padded_far_beyond_the_estimate(self):
+        """A cap that clears the inflated estimate is necessary; one many times
+        larger would stop being a brake at all."""
+        flags = self._translate_flags()
+        limit = int(flags["--limit"])
+        cap = float(flags["--max-cost-usd"])
+        self.assertLess(cap, 2 * limit * self.PREFLIGHT_USD_PER_CALL)
+        self.assertGreater(cap, limit * self.MEASURED_USD_PER_CALL)
+
+
 class TestWorkflowTranslateStep(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -1699,8 +1773,8 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("name: Translate Simplified Chinese updates", self.workflow)
         self.assertIn("python scripts/translate_updates.py", self.workflow)
         self.assertIn("--locale zh-Hans", self.workflow)
-        self.assertIn("--limit 60", self.workflow)
-        self.assertIn("--max-cost-usd 0.50", self.workflow)
+        self.assertIn("--limit 120", self.workflow)
+        self.assertIn("--max-cost-usd 1.10", self.workflow)
         self.assertIn("estimated_cost_usd", self.workflow)
 
     def test_translate_runs_after_summarize_and_before_check_changes(self):
