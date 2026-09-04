@@ -1,14 +1,14 @@
 [
   {
     "id": "raw-74d0ed64420ed427",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2020-06-26)",
+    "title_en": "Cabinet Order Partially Amending the Order for Enforcement of the Corporation Tax Act and Related Orders",
     "title_ja": "法人税法施行令等の一部を改正する政令",
     "area": "Tax / Stamp Duty",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns a Cabinet Order partially amending the Order for Enforcement of the Corporation Tax Act and related orders (Reiwa 2 Cabinet Order No. 207). According to the metadata, it was promulgated on 2020-06-26 with an enforcement date of 2022-04-01. The record appears in an e-Gov law update list and lists the affected order as the Order for Enforcement of the Trade Insurance Act (Showa 28 Cabinet Order No. 141).",
+    "business_impact_en": "Entities subject to corporation tax rules or the referenced enforcement orders may need to review whether these amendments affect their obligations.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the scope, affected provisions, and applicable dates before relying on this summary.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=328CO0000000141_20220401_502CO0000000207",
     "published_at": "2020-06-26",
@@ -21,14 +21,18 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and update-list metadata; the relationship between the amending corporation tax order and the listed Trade Insurance Act enforcement order is unclear and unverified. Enforcement date (2022-04-01) is per the metadata; verify against the official source.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法律更新：《修订法人税法施行令等的部分内容的政令》生效（2020-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "政令：部分修订《法人税法施行令》等相关政令",
+        "summary": "本项涉及部分修订《法人税法施行令》及相关政令的政令（令和2年政令第207号）。根据元数据，该政令于2020-06-26公布，施行日期为2022-04-01。该记录出现在e-Gov法令更新一览中，所列受影响的政令为《贸易保险法施行令》（昭和28年政令第141号）。",
+        "business_impact": "适用法人税相关规则或所涉施行令的主体，可能需要审视这些修订是否影响其相关义务。",
+        "recommended_action": "建议在依据本摘要之前，先查阅e-Gov上的日文官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   }
 ]

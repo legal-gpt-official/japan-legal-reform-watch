@@ -37,14 +37,14 @@
   },
   {
     "id": "raw-cb100d7f94f19655",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2022-06-17)",
+    "title_en": "Cabinet Order Partially Amending the Enforcement Order of the Trade Insurance Act",
     "title_ja": "貿易保険法施行令の一部を改正する政令",
     "area": "Finance / AML",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a Cabinet Order partially amending the Enforcement Order of the Trade Insurance Act (Cabinet Order No. 141 of 1953), designated as Cabinet Order No. 221 of 2022. According to the metadata, the amending order was promulgated on 2022-06-17 with a stated enforcement date of 2022-07-01. The specific substantive changes are not described in the provided metadata.",
+    "business_impact_en": "Organizations involved in trade insurance or related export/finance activities may be affected and could need to review how the amended enforcement order applies to their operations.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the exact scope, provisions, and effective date of the amendment.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=328CO0000000141_20220701_504CO0000000221",
     "published_at": "2022-06-17",
@@ -57,14 +57,18 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata fields; the actual content of the amendment is not provided. Promulgation and enforcement dates are taken from the metadata and should be verified against the authoritative Japanese source. Preliminary triage labels ('Finance / AML', 'In Force', 'Medium') are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《贸易保险法施行令》部分修正政令生效（2022-06-17）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "政令：部分修订《贸易保险法施行令》",
+        "summary": "本条目为部分修订《贸易保险法施行令》（1953年政令第141号）的政令，编号为2022年政令第221号。根据元数据，该修订政令于2022-06-17公布，规定的生效日期为2022-07-01。所提供的元数据中未描述具体的实质性修改内容。",
+        "business_impact": "从事贸易保险或相关出口/融资活动的组织可能受到影响，可能需要审视该修订后的施行令对其业务的适用情况。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以确认此次修订的确切范围、条款内容及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   }
 ]

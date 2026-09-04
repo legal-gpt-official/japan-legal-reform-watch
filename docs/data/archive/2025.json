@@ -865,14 +865,14 @@
   },
   {
     "id": "raw-0f3421fef1bfb85a",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-10-15)",
+    "title_en": "JSDA Publishes Public Comment Results on Amendments to Guidelines for Preventing Unauthorized Access in Internet Trading",
     "title_ja": "「インターネット取引における不正アクセス等防止に向けたガイドライン」の改正について",
     "area": "Consumer / Advertising",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment procedure concerning amendments to its 'Guidelines for Preventing Unauthorized Access and Similar Incidents in Internet Trading'. According to the metadata, the public comment period ran from July 15, 2025 to August 18, 2025, and the results were published on October 15, 2025. This is an industry self-regulatory guideline matter rather than an enacted statute.",
+    "business_impact_en": "Securities firms and related market participants offering internet-based trading may need to consider how the amended guidelines could affect their unauthorized-access prevention measures.",
+    "recommended_action_en": "Consider reviewing the official JSDA public comment results and the amended guidelines to understand the scope and any applicable timing.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/files/20251015_PCkekka_internetgl.pdf",
     "published_at": "2025-10-15",
@@ -885,26 +885,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided title and metadata; the specific content of the amendments and comment responses is unverified. Preliminary 'Consumer / Advertising' label appears loosely fitting and should be treated as weak context only.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：日本证券业协会《关于修订网络交易中防止未经授权访问等指南》",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《网络交易中防止非法访问等指南》修订",
+        "summary": "日本证券业协会（JSDA）公布了关于修订《网络交易中防止非法访问等事件指南》的公开征求意见结果。根据元数据，公开征求意见期为2025-07-15至2025-08-18，结果于2025-10-15公布。这属于行业自律性指南事项，而非已颁布的法律。",
+        "business_impact": "提供网络交易服务的证券公司及相关市场参与者可能需要考虑修订后的指南可能如何影响其防止非法访问的相关措施。",
+        "recommended_action": "可考虑查阅JSDA官方公布的公开征求意见结果及修订后的指南，以了解其适用范围及相关时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-12af5ad358006707",
-    "title_en": "NTA Update: Tax interpretation or administrative guidance revised (2025-07-04)",
+    "title_en": "Partial Amendment to NTA Interpretive Circular on Tax Special Measures for Great East Japan Earthquake Victims...",
     "title_ja": "「東日本大震災の被災者等に係る国税関係法律の臨時特例に関する法律関係通達（所得税編）の制定について」の一部改正について（法令解釈通達）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legal interpretation circular (tsutatsu) from Japan's National Tax Agency (NTA) concerning a partial amendment to an existing circular on the temporary special measures under national tax laws related to victims of the Great East Japan Earthquake, specifically the income tax portion. According to the metadata, it was published on the NTA website on 2025-07-04. The provided details do not specify the substantive content of the amendment.",
+    "business_impact_en": "Taxpayers or advisers dealing with income tax special measures for earthquake-affected persons may be affected and could need to review how the amended interpretation applies.",
+    "recommended_action_en": "Consider reviewing the official NTA circular at the provided source URL to confirm the exact content and scope of the amendment.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/law/tsutatsu/kobetsu/shotoku/shinkoku/kaisei/250619/01.htm",
     "published_at": "2025-07-04",
@@ -917,26 +921,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:42:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the substantive changes are not described and are unverified. This is an NTA interpretive circular, not new legislation. The preliminary 'Finance / AML' label appears to be keyword-based triage and may not reflect the actual subject.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国税厅公告：修订关于东日本大震灾受灾者等国税相关法律临时特例的法律关系通知（所得税篇）（2025-07-04）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "关于修订《关于制定东日本大震灾受灾者等国税相关法律临时特例法律关系通达（所得税篇）》的部分修订（法令解释通达）",
+        "summary": "这是日本国税厅（NTA）发布的一份法令解释通达，涉及对现行通达的部分修订，该通达关于东日本大震灾受灾者等相关国税法律临时特例措施中的所得税部分。根据元数据，该通达于2025-07-04在国税厅网站上公布。所提供的信息未说明此次修订的具体内容。",
+        "business_impact": "处理地震受灾者所得税特别措施事务的纳税人或顾问可能受到影响，或需要审视修订后的解释如何适用。",
+        "recommended_action": "建议考虑查阅提供的来源网址上的国税厅官方通达，以确认此次修订的具体内容和适用范围。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-218c40419f012e0e",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-24)",
+    "title_en": "Order Partially Amending the Enforcement Regulations of the Act on Prevention of Transfer of Criminal Proceeds",
     "title_ja": "犯罪による収益の移転防止に関する法律施行規則の一部を改正する命令",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an order that partially amends the Enforcement Regulations of the Act on Prevention of Transfer of Criminal Proceeds (an anti-money-laundering related regulation). According to the metadata, the amending order carries a Reiwa 7 (2025) ministerial order number, with a promulgation date of 2025-06-24 and a stated effective date of 2027-04-01. As an unofficial summary, these details should be verified against the official Japanese source.",
+    "business_impact_en": "Businesses subject to anti-money-laundering obligations, such as customer verification and record-keeping requirements, may need to review whether the amended rules affect their compliance procedures.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the substance of the amendments and the applicable timing.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=420M60000F5A001_20270401_507M60000F5A003",
     "published_at": "2025-06-24",
@@ -949,26 +957,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-28T05:12:30Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the specific content of the amendments is not described and is unverified. Promulgation and effective dates are as stated in the metadata and should be confirmed against the official source. Preliminary triage labels are not authoritative.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《犯罪收益转移防止法施行规则》部分修正命令拟生效（2025-06-24）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《犯罪收益转移防止法施行规则》部分修订命令即将生效",
+        "summary": "本条目涉及一项部分修订《犯罪收益转移防止法施行规则》（一项反洗钱相关法规）的命令。根据元数据，该修订命令带有令和7年（2025年）省令编号，公布日期为2025-06-24，规定生效日期为2027-04-01。作为非官方摘要，相关细节应以日文官方来源核实为准。",
+        "business_impact": "承担反洗钱相关义务（如客户身份确认和记录保存要求）的企业，可能需要评估修订后的规则是否会影响其合规程序。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以确认修订内容及其适用时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-eb694f1229f5d1e0",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Cabinet Order Amending Enforcement Orders of the Local Tax Act and the Act on Grants to Municipalities Where...",
     "title_ja": "地方税法施行令及び国有資産等所在市町村交付金法施行令の一部を改正する政令",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns a Cabinet Order (Order No. 119 of 2025) that partially amends the Enforcement Order of the Local Tax Act (Cabinet Order No. 245 of 1950) and the Enforcement Order of the Act on Grants to Municipalities Where National Assets Are Located. The metadata indicates a promulgation date of 2025-03-31 and a scheduled enforcement date of 2026-11-01. The listing appears in e-Gov Law Search as a law-update entry.",
+    "business_impact_en": "Organizations subject to Japanese local tax rules or related municipal grant provisions may be affected by these amendments once they take effect.",
+    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov Law Search to confirm the specific amended provisions, scope, and effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325CO0000000245_20261101_507CO0000000119",
     "published_at": "2025-03-31",
@@ -981,26 +993,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T03:10:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided title and metadata; the substantive content of the amendments is not described in the source. The 2026-11-01 date is listed as a scheduled enforcement date and should be verified against the official text.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "预定生效：《地方税法施行令及国有资产等所在市町村交付金法施行令部分修正政令》（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "政令修订：《地方税法施行令》及《国有资产等所在市町村交付金法施行令》部分修订",
+        "summary": "本条目涉及一项政令（2025年第119号），对《地方税法施行令》（1950年第245号政令）及《国有资产等所在市町村交付金法施行令》进行部分修订。元数据显示公布日期为2025-03-31，预定生效日期为2026-11-01。该条目以法令更新条目形式出现在e-Gov法令检索中。",
+        "business_impact": "受日本地方税规则或相关市町村交付金规定约束的组织，在这些修订生效后可能受到影响。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认具体修订条款、适用范围及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-bfce48da6f98ee89",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Cabinet Order Amending Enforcement Orders for the Local Tax Act and the Act on Grants to Municipalities Hosting...",
     "title_ja": "地方税法施行令及び国有資産等所在市町村交付金法施行令の一部を改正する政令",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns a Cabinet Order (Reiwa 7 Cabinet Order No. 119) that partially amends the Enforcement Order of the Local Tax Act (Showa 25 Cabinet Order No. 245) and the Enforcement Order of the Act on Grants to Municipalities Where National Assets Are Located. According to the metadata, it carries a promulgation date of 2025-03-31 and a stated effective date of 2027-01-01. The listing appears in the e-Gov Law Search law update index; the specific substantive changes are not described in the provided metadata.",
+    "business_impact_en": "Organizations subject to local tax rules or involved with grants relating to nationally owned assets may be affected once the amended provisions take effect. The nature and scope of any impact cannot be determined from this metadata alone.",
+    "recommended_action_en": "Consider reviewing the official e-Gov source and the full text of the Cabinet Order to determine any relevant details and effective timing.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325CO0000000245_20270101_507CO0000000119",
     "published_at": "2025-03-31",
@@ -1013,15 +1029,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T03:10:06Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and structured metadata; the promulgation date (2025-03-31) and effective date (2027-01-01) are as stated in the source, but the substantive content of the amendments is not provided and remains unverified. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "预定生效：《地方税法施行令及国有资产等所在市町村交付金法施行令部分修正政令》（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "政令修订：《地方税法施行令》及《国有资产等所在市町村交付金法施行令》部分修订",
+        "summary": "本项涉及一项政令（令和7年政令第119号），对《地方税法施行令》（昭和25年政令第245号）及《国有资产等所在市町村交付金法施行令》进行部分修订。根据元数据，其公布日期为2025-03-31，规定的生效日期为2027-01-01。该条目出现在e-Gov法令检索的法令更新索引中；所提供的元数据未描述具体的实质性修改内容。",
+        "business_impact": "适用地方税规则或涉及与国有资产相关交付金的组织，可能在修订条款生效后受到影响。仅凭该元数据无法确定具体影响的性质和范围。",
+        "recommended_action": "建议考虑查阅e-Gov官方来源及该政令全文，以确认相关细节及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ad9b672a7db24545",
@@ -1205,7 +1225,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《外汇省令》修订省令（2025-06-24）",
@@ -1213,7 +1232,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8eb6a96669cec98b",
@@ -1525,7 +1545,15 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法律更新：《修订预防接种实施规则的部分省令》生效（2025-09-30）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-b06cab84c39c8ed3",
@@ -2000,7 +2028,15 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：法令生效（2025-04-01）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-d8a038dd61d76c16",
