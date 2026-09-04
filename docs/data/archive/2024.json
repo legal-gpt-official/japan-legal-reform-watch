@@ -267,17 +267,17 @@
     "last_checked": "2026-09-01",
     "relevance_score": 25.0,
     "first_seen_at": "2026-09-02",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and metadata; the actual amended provisions are not provided. The metadata lists a future enforcement date of 2026-09-01, so 'in force' should be treated cautiously and verified against the official source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "道路交通法施行令（昭和三十五年政令第二百七十号）を改正する政令（令和六年政令第二百四十八号）に関する法令更新情報です。メタデータによれば、公布日は2024年7月26日、施行日は2026年9月1日とされています。改正の具体的内容は本メタデータからは明らかではありません。",
     "business_impact_ja": "道路交通に関わる事業や関連業務において、施行に伴う対応が必要となる可能性があります。改正内容によっては社内規程や運用の見直しが求められることも考えられます。",
     "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-02T23:36:43Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on Japanese title and metadata; the actual amended provisions are not provided. The metadata lists a future enforcement date of 2026-09-01, so 'in force' should be treated cautiously and verified against the official source. Preliminary labels are keyword-based triage only.",
-    "summarized_at": "2026-09-03T23:52:03Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "政令：修订《道路交通法施行令》部分内容",
@@ -303,17 +303,17 @@
     "last_checked": "2026-08-24",
     "relevance_score": 25.0,
     "first_seen_at": "2026-08-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata; the substantive changes are not provided and details are unverified. Promulgation and enforcement dates are taken from the metadata and should be confirmed against the official source. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-09-03T23:52:03Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "地方税法施行令（昭和二十五年政令第二百四十五号）を改正する政令（令和六年政令第百三十八号）に関する法令更新情報です。原文によれば、公布日は2024年3月30日、施行日は2027年1月1日とされています。改正の具体的な内容は提供されたメタデータには含まれていません。",
     "business_impact_ja": "地方税に関する取扱いに変更が生じる可能性があり、関連する事業や実務への影響が考えられます。ただし詳細が不明なため、影響の有無や程度は現時点では判断できません。",
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容および施行日を確認されることをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T03:10:06Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and metadata; the substantive changes are not provided and details are unverified. Promulgation and enforcement dates are taken from the metadata and should be confirmed against the official source. Preliminary labels are keyword-based triage only.",
-    "summarized_at": "2026-09-03T23:52:03Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "政令修订：《地方税法施行令》部分修订",
@@ -325,14 +325,14 @@
   },
   {
     "id": "raw-5c0a85a5dc190a9f",
-    "title_en": "e-Gov Law Update: Draft Amendment to Gas Policy",
+    "title_en": "Ministerial Ordinance Amending Technical Standards for Liquefied Petroleum Gas Appliances",
     "title_ja": "液化石油ガス器具等の技術上の基準等に関する省令の一部を改正する省令",
     "area": "Energy / Environment",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a ministerial ordinance (METI Ordinance No. 83 of 2024) that partially amends the ordinance on technical standards for liquefied petroleum gas (LPG) appliances (originally MITI Ordinance No. 23 of 1968). The metadata indicates a promulgation date of 2024-12-06 and a stated enforcement date of 2025-02-06. The full substantive changes are not detailed in the provided metadata.",
+    "business_impact_en": "Businesses that manufacture, import, or handle LPG appliances may need to review whether the amended technical standards affect their products or compliance obligations.",
+    "recommended_action_en": "Consult the official Japanese source on e-Gov Law Search to confirm the exact amended provisions and effective date before drawing any conclusions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=343M50000400023_20250206_506M60000400083",
     "published_at": "2024-12-06",
@@ -345,15 +345,11 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
-    "translations": {
-      "zh-Hans": {
-        "title": "e-Gov法令更新：《液化石油气器具等技术上标准等相关省令》部分修订省令生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    }
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and structured metadata; the metadata states a promulgation date (2024-12-06) and enforcement date (2025-02-06), but the specific content of the amendments is not provided and should be verified against the official source.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-ec632981896f9e54",
@@ -377,7 +373,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《修订部分预防接种实施规则的省令》生效（2024-09-27）",
@@ -385,7 +380,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-0f4bf8e0e1267021",
@@ -409,7 +405,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《修订部分预防接种实施规则的省令》生效（2024-09-27）",
@@ -417,7 +412,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-ea0bafbbfb48051c",
@@ -441,7 +437,6 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-02T23:36:43Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：法令生效（2024-03-30）",
@@ -449,7 +444,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-58d7dc24c92748a3",
@@ -499,7 +495,6 @@
     "last_checked": "2026-09-01",
     "relevance_score": 15.0,
     "first_seen_at": "2026-09-02",
-    "summary_source": "rule_based",
     "summary_ja": "道路交通法施行規則（昭和三十五年総理府令第六十号）を改正する内閣府令（令和六年内閣府令第六十七号）に関する法令更新情報です。原文によれば、公布日は2024年7月26日、施行日は2026年9月1日とされています。改正内容の詳細はメタデータに記載されていません。",
     "business_impact_ja": "道路交通に関連する規則の改正であるため、当該分野に関わる事業運営に影響が生じる可能性があります。具体的な影響範囲は改正内容の確認が必要と考えられます。",
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で改正の具体的内容および施行日をご確認いただくことをお勧めします。",
@@ -513,7 +508,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-14061b00ed055824",

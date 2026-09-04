@@ -56713,5 +56713,1003 @@
       }
     }
   },
-  "pending_batch": {}
+  "pending_batch": {
+    "zh-Hans": {
+      "batch_id": "msgbatch_01EvdYuAnmLzNoG9tXyzcEWL",
+      "model": "claude-sonnet-5",
+      "prompt_version": "zh-hans-v3",
+      "submitted_at": "2026-09-04T22:54:51Z",
+      "requests": {
+        "translate-0000": {
+          "item_id": "raw-4770d81e0718c77e",
+          "source_hash": "ae772b6ed4db7dbb36ac2d5e7ad3bcf26bda8d8f4a8c4553aaf659e8f9ab6d64",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0001": {
+          "item_id": "raw-2182cdc94b6ce419",
+          "source_hash": "90f2819f0069ac2b35565e0b15c54918653ea9ebad4e246e1b1b29fd79c34fd4",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0002": {
+          "item_id": "raw-cdf08d69b70638f7",
+          "source_hash": "418157882c26e31a4a2005ad0729a812a6fb37b3306353f27e2ef5d80d146ead",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0003": {
+          "item_id": "raw-521393c38abb9076",
+          "source_hash": "c1c1f389af5d17f4074253fb6dac3f253fd2b1acbd2e9af6dadf75b6585ce59c",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0004": {
+          "item_id": "raw-13b836dc355715cf",
+          "source_hash": "f7c64f9f5b28a53d4d2abae066c44586971cc90e27610369b9bd35b5eaf3cd69",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0005": {
+          "item_id": "raw-0128a88176f3d98d",
+          "source_hash": "b3cf87f76ec09dee475d8942aabcf940b8b61574cf87307a0f046b956c81293e",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0006": {
+          "item_id": "raw-398f4e58c1745961",
+          "source_hash": "f77e532451081e7e338c42214332a77532a3f1eaaf17773bcc739b9cc91eb51d",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0007": {
+          "item_id": "raw-6cb256174c66cf0e",
+          "source_hash": "f59519e9ec3300825748633611ede107b538dcd8ccf5acd50b6f27f7284e605f",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0008": {
+          "item_id": "raw-7ebd01c2bb520593",
+          "source_hash": "795194381cc95003c5cad3461a959336dd5e15e7e472196ec819b49583557fe7",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0009": {
+          "item_id": "raw-abe83a319d6f4cc6",
+          "source_hash": "7ad5fa67c88821f266f93e920543737e2d27fcf32a87110fc6a02126d4ef4ab4",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0010": {
+          "item_id": "raw-7cb02e1108af556c",
+          "source_hash": "76dbf90ebd7a0cc592369eb92a0e123c355f252eb3397a10e3b305d9002e313b",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0011": {
+          "item_id": "raw-62a519491675367f",
+          "source_hash": "657a9131148fedbb6dddfca2097bb2903b02df6eab45fbfb8c4e11449edd613b",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0012": {
+          "item_id": "raw-43374757835b5438",
+          "source_hash": "99bf20ae57a815d3e018d8f2fe344521ba3df4ec7f30e2e61028d9e4de8583d7",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0013": {
+          "item_id": "raw-28382211c0c2eb78",
+          "source_hash": "cd389560259f2afa6bc4f158d178f4abfb37efebb22061a2174f704625c3cf9a",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0014": {
+          "item_id": "raw-b89b90af15734114",
+          "source_hash": "b14384bc67eea4a35f4a551d48893d2ed1410c5da11c2c6c9091a127d49cc5cd",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0015": {
+          "item_id": "raw-c01e65232a373e59",
+          "source_hash": "dbb90dff0a6fea589893b2a0c2b8cfd43510983a5949e398898cbececd9607a4",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0016": {
+          "item_id": "raw-60fe78a782116d64",
+          "source_hash": "d3068328031237c3af12352aa557778a3bbc3c98f90f90612f3c72855754d53a",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0017": {
+          "item_id": "raw-f5ea1e24f0918584",
+          "source_hash": "bce0beb8fc515384a969319dbd4cc9698b70045f1ac854a69042b0864426b6c3",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0018": {
+          "item_id": "raw-d02f40bc85cde70a",
+          "source_hash": "aaf76aa2a40edee0ffc259bbe0edb8a1413dc87b660bca75370784b5d766e0f3",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0019": {
+          "item_id": "raw-ad9b672a7db24545",
+          "source_hash": "92afcd18825bcf379f19c51b3e2de1da720ac1e2079acb37b29bc008d979318f",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0020": {
+          "item_id": "raw-63994810bf03ee4c",
+          "source_hash": "7dfa5d77e832725d13e60e144fe547231f1f2b748578f9b98a1c2cbcc0cb22a5",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0021": {
+          "item_id": "raw-4dd8fff50935ee58",
+          "source_hash": "72bcdda8c2e2457af3d182bd7c882bf6737c407cc6a2e43d18971d53cf6a8756",
+          "fields": [
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0022": {
+          "item_id": "raw-777467b9b90fb37d",
+          "source_hash": "cc782c7d8ad21519b387b9c65c3a52f25a45af9ee916163692af70c0c03e41a8",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0023": {
+          "item_id": "raw-769cfa67a98fb6d5",
+          "source_hash": "5daa29c663dd06347f1d6a471a1625a2621239ea0a4ec8ecaeaa5d3d2b593760",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0024": {
+          "item_id": "raw-5d3031cd99a310e6",
+          "source_hash": "247a6f7c8838c1d2fc919ad37b00c90013c499923dacf661dbbacaf2deb7ecb6",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0025": {
+          "item_id": "raw-2244fbdf962c5f5e",
+          "source_hash": "e7edc8450c499e8e56044a33ec2fcf6c8a5a7ed5ce183056d988f650566e2956",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0026": {
+          "item_id": "raw-f1da17f2adb71551",
+          "source_hash": "9d1d5510efb3f918d9f8a01a04b30d23f236ae60f676e8be6adfdc3ef5f6524c",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0027": {
+          "item_id": "raw-919bf116206c107f",
+          "source_hash": "1920fb35faa42966ad778fb17c2204b83c4336e52ef08dfd59c99f25dcccbe00",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0028": {
+          "item_id": "raw-61c649b3d4aa2834",
+          "source_hash": "c57f6d0030a5029303b14ebae55b50aeedca22fdb523b2b59fb918704bd0b23d",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0029": {
+          "item_id": "raw-e10d7e135e6fc85a",
+          "source_hash": "c396f6a958ef4bdab09ba95022c0ea2171b6cfb7c1b984c744ca706e5375a33e",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0030": {
+          "item_id": "raw-7ca8d52c4a3d1d51",
+          "source_hash": "3fc8a58efd8831e999d5cabaad7b874cc97a6dbc5cfe8da25752b4dc29107e31",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0031": {
+          "item_id": "raw-a363c95a904f3a8b",
+          "source_hash": "f68e0bcbeb43b7b741cd357683531cf395dd6eac73d625d2591834daca96039b",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact"
+          ]
+        },
+        "translate-0032": {
+          "item_id": "raw-46e454610317cc94",
+          "source_hash": "184bd34192b7318eb24ad97fd2d34d6ab1a6dab62f4e8e007a9416f05342e01b",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0033": {
+          "item_id": "raw-115894a4d572eb16",
+          "source_hash": "16502d16a24761c8536d3899582bec1185d283d472c100f5012c8d8b759d190d",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0034": {
+          "item_id": "raw-782b642c33a85c32",
+          "source_hash": "a5e45274649376ae92500608f865db1549a8b6a1a3624ac41e461b6c2e3da54f",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact"
+          ]
+        },
+        "translate-0035": {
+          "item_id": "raw-525e452360082a14",
+          "source_hash": "9ba65b56ad8d7db77426b28d81f97db1ccfeb9ecb9f7aa90463a593cd1262efa",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0036": {
+          "item_id": "raw-156cd057d3170f18",
+          "source_hash": "5cea8d523f7f686dd9f16ebc701f2c7a7bb95cb6c4e8e6463b83a051dadacd3d",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0037": {
+          "item_id": "raw-ac3d209bf049da24",
+          "source_hash": "135be279d07cb0b1b99104eec47f93c2916664833013a45e35fac4aba9c3d160",
+          "fields": [
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0038": {
+          "item_id": "raw-3fba83862af62a79",
+          "source_hash": "1307dd48e04ec904abcbaa4a173945612ae068c061ea5c937d2b62306019a402",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0039": {
+          "item_id": "raw-2aeea64d48ce332a",
+          "source_hash": "2cd6c6cb2f1ac116215024feec097542ec317f90caed4033b9399704fb59e956",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0040": {
+          "item_id": "raw-8b0bdb7ad4dc07e4",
+          "source_hash": "cb09a103d62bdbf4246d999d77cae99f86fa4782244058fb64970cbd5d45efc5",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0041": {
+          "item_id": "raw-a31997c49db681e0",
+          "source_hash": "018abc971e7320ac928755e7bdf6114a9201b17ce459b5e48508f656526ea9e4",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0042": {
+          "item_id": "raw-085d242b6dae591a",
+          "source_hash": "da284d7b98b4d4b444a215929e0693e3cbea092fb4b0b61c974bb4304d215821",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0043": {
+          "item_id": "raw-fa0581a09799f523",
+          "source_hash": "46cb0f229500fb2848da98cc106c74856d5477db14ef0dabb8bc1988829c08b7",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0044": {
+          "item_id": "raw-a453666466ac3466",
+          "source_hash": "3edb1324b78b598189185d7ece06bd90b0d7640b5c93454b7731388c019b8433",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0045": {
+          "item_id": "raw-c7f57330af6b4538",
+          "source_hash": "76b81582c6d33fd8413701aef9a49d47b28ddb97ecc5bff09433b245af54d061",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0046": {
+          "item_id": "raw-a2ce6c0fb4fccf2f",
+          "source_hash": "80db6e2aa66b7b0199cb92c5a40ccf88735a3ad6ddbfa076b8fdcfb452952b82",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0047": {
+          "item_id": "raw-e054389441701101",
+          "source_hash": "6919e144c6421be71f272c8ab94e19c378626c882aeebbc87558fd5f338afd82",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0048": {
+          "item_id": "raw-3b44ebe9487b1b1e",
+          "source_hash": "78f98da16820407a7112f11cf4926bb27f691cc9fce7a48ebb4301c9c98f9d32",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0049": {
+          "item_id": "raw-ea823863959dc3b5",
+          "source_hash": "39351527083d7158d559601dea91e79874b52335cbe4a76886a43dea3b04cb11",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0050": {
+          "item_id": "raw-a5393f4a97e014b8",
+          "source_hash": "ef10f06a6746cb6c445de86ca6b909cef8863010a9d6e3918d4caad29c55d519",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0051": {
+          "item_id": "raw-8eb6a96669cec98b",
+          "source_hash": "0b647a9deff8671e6856cea0d983610fb09297e10c1a2b9a106e6dcf26323b97",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0052": {
+          "item_id": "raw-5c0a85a5dc190a9f",
+          "source_hash": "b9ab664485ba128d4460ae03861f73a8e3101919ee2cb3800fe0d4edfbfffb85",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0053": {
+          "item_id": "raw-398b0c28827e6411",
+          "source_hash": "bc917a141f323077cac2f7892ee6a873292ab4686bc9e97400e634e62f0e4edb",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0054": {
+          "item_id": "raw-fd0a34db3a63497e",
+          "source_hash": "09b6bbfa77579a6209ff348e86ff02235975e37bf3290be4a533ce3538b82a44",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0055": {
+          "item_id": "raw-b38ab161afe43326",
+          "source_hash": "3757b6d85c376bc611af3c16592559938a6f1ceeb68b3cf857aa65820f8268c4",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0056": {
+          "item_id": "raw-f64814a4fb6bc71f",
+          "source_hash": "9907c6d5ecf6772af74c21c8ca754a78bc0bf208484bb9b3c64a1e0b6919ca1a",
+          "fields": [
+            "title",
+            "summary",
+            "business_impact",
+            "recommended_action"
+          ]
+        },
+        "translate-0057": {
+          "item_id": "raw-9d134d51c621aca4",
+          "source_hash": "bd13e7bd9ba0fc1c38c6e15c2148719bcfea4430e78ca1e1ab52ad349be263ba",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0058": {
+          "item_id": "raw-17b5d0401e94b1cc",
+          "source_hash": "5ad85439b1da5018c3d0c92781bf3959af5badab5de97a95afa0b467f6c18387",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0059": {
+          "item_id": "raw-1908ed9da85feca4",
+          "source_hash": "117fb8f1f416e202b11cf5e9b5e97833f1ca5dd3382a6305ace091c91a8e1f8a",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0060": {
+          "item_id": "raw-8552bb8c66633fb0",
+          "source_hash": "85e856280ac5652e507df9b1b0393d71c0a39a7ff90d1ffbf57157061b896a48",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0061": {
+          "item_id": "raw-2a2c51ca27b0b3df",
+          "source_hash": "9238f102729e8ed4fc39ca6cb1dba93309b4309af0110fc25ed67815266702d5",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0062": {
+          "item_id": "raw-ef453849fdbae429",
+          "source_hash": "c086da666d650e422b51f3f159e9fb063088e6a705cf2c0fb6798986dfbcb3c3",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0063": {
+          "item_id": "raw-73f2f83474144eac",
+          "source_hash": "c086da666d650e422b51f3f159e9fb063088e6a705cf2c0fb6798986dfbcb3c3",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0064": {
+          "item_id": "raw-9000876ff087667a",
+          "source_hash": "b3d2fad96fd8e94ae598e30209903f84241a5b1307e2e60f84c5e36f9fa14ecc",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0065": {
+          "item_id": "raw-7ebf7af336afdaff",
+          "source_hash": "1fbdb80ab3271a0068b712b1edba28e56785fa2bfb6fa9170f31d5a34ee19684",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0066": {
+          "item_id": "raw-7f14106d62321bab",
+          "source_hash": "a1a10a2e36ae8d0a0d5dff41c400256ba3756103b21104a856f86b1e8709a9d3",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0067": {
+          "item_id": "raw-b292cc16fbfb2951",
+          "source_hash": "a0036455f8cecce5f05698f429feb41d935e9e9f4dcba0ea31224021b9c66809",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0068": {
+          "item_id": "raw-fb1af013ff21131e",
+          "source_hash": "f1d307100d3795e6c164afbd7ae075bd2dc23489a28adc84180b85ce8941ac36",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0069": {
+          "item_id": "raw-29eee03c5b69ae9b",
+          "source_hash": "bbfb9ba113e668d8130ea375f676b7c978ccad8b8e0a7d24240aa573d2e95946",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0070": {
+          "item_id": "raw-40b86e39df46077f",
+          "source_hash": "f9e4317ae96fbe1261e5e95980edd7e27451aeaa40695392247cadc3a5d7cac9",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0071": {
+          "item_id": "raw-f7b0b97899ece3a9",
+          "source_hash": "ab1ed4f14e910e29dfe21166bfb0f48a47eee89b5c718b58a604702f077b59ae",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0072": {
+          "item_id": "raw-3e2458b8ca53e776",
+          "source_hash": "faedbbeaad2a21c1735bea8be5d97ade8df80a34264dcc858cf8e92374b82f5c",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0073": {
+          "item_id": "raw-7a7728d1d7439d4c",
+          "source_hash": "00d95d89f04e99302e1a893458a236bf66dee938184eaa85acd56db227282229",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0074": {
+          "item_id": "raw-305011fa2533d7d9",
+          "source_hash": "604d6f6c25c8a3cbf25e6a030a0fd7a8aa819555d3142ad3a032814d42f7db44",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0075": {
+          "item_id": "raw-7992f7254b61df48",
+          "source_hash": "3625c29a2ca1f746a0a50710456d33ec1a6b632d6926e2f6e8fe3e219e76706f",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0076": {
+          "item_id": "raw-d5d1c2cb8127034f",
+          "source_hash": "ad1dd38badbd81660dba569d3f254bb28c3d97d08506f5b9181d675df3e134c7",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0077": {
+          "item_id": "raw-df9a47e110006398",
+          "source_hash": "5290cd823f4327cf1d10d54df744caab8c74e4c11349768cefbfe3f3299391a6",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0078": {
+          "item_id": "raw-f4dcdf4209b7958e",
+          "source_hash": "01572e03f8cd6c81994a06b8d43d15bb50249c134a3dfeed1c5f62e65e37dfca",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0079": {
+          "item_id": "raw-7dbdc9b0d60bc7ce",
+          "source_hash": "e09f799c1b55e3686eea06e5f209e6dd2f36cd1248cfe8c03e1aef9b3b30189a",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0080": {
+          "item_id": "raw-4e4f2b0e7602dda7",
+          "source_hash": "4d0f7ec09a232a3f42c21075b524bab214237144b2548bf78ebe3ca1c19fb35f",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0081": {
+          "item_id": "raw-5f02f85cb0e80c84",
+          "source_hash": "18583e35a0884cc9e17a0175326a4cfec98ac6951e150994bebec2e58a97c67f",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0082": {
+          "item_id": "raw-293b437f9471e46d",
+          "source_hash": "0550b4ce06a3383e49ee5822c4191f40d28babf7b7c24c5173896a599488e003",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0083": {
+          "item_id": "raw-c632e7a40468c596",
+          "source_hash": "5c41ed28a5780449e20e56c35f0527a4b9a14c847431c9b5457d297701074b71",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0084": {
+          "item_id": "raw-ef270b5fb9489e35",
+          "source_hash": "a05e2cdc0340655c581aa18305d79326d6088f6d1d7c0a2e4eafc343abdf5cf7",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0085": {
+          "item_id": "raw-6043025fcf9ee28b",
+          "source_hash": "cf60bfb750a8535188b9505cb10a50ff42dee5ce9fadccc0ca80db8cb67ee30e",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0086": {
+          "item_id": "raw-d29a8e3ac62ebee4",
+          "source_hash": "45e9e207778f9b9fac24c2164599789f99a5c43845a534c97eb3d1cef36107a5",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0087": {
+          "item_id": "raw-47ca48828fe17e35",
+          "source_hash": "0a4a49fa3d29bd741cd339976bbca7e7c3301eb3330409a2c16e1a2ff3c309e2",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0088": {
+          "item_id": "raw-cc500b0621ea2601",
+          "source_hash": "0cd90686ead71a56b990442e8e2d9f6c696da037d80fcedd0fa06ba8e7aea80e",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0089": {
+          "item_id": "raw-024649495e60834a",
+          "source_hash": "654aa4ac11abf89bec5e569c8c3801eccb73d08dc7a746b95c87db1781b15048",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0090": {
+          "item_id": "raw-e69248be7f4b9621",
+          "source_hash": "4727bce964f2248ba5870e7a518349de9648e915a5443c891f2eb663cf3bb38a",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0091": {
+          "item_id": "raw-d88e2f59765348db",
+          "source_hash": "161b367988016a3fea5934245f84c80a0c6116072fdc744be26ff12227e543c3",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0092": {
+          "item_id": "raw-ca15260484ccb571",
+          "source_hash": "f34a4d6ee60303aaf03fe37a5904e8a272d3a2ca2d273e2713d13aea6648363a",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0093": {
+          "item_id": "raw-3e200da60a1fbf58",
+          "source_hash": "ce2b7914a2ce95a01ba7528a373877b9bedb059d592859191ea058cc584a1fd3",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0094": {
+          "item_id": "raw-4857c706dcac5540",
+          "source_hash": "00b9d4aeba730e182db62413195cb095d7d7c1c0a3359b39c429e2ff9adcd644",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0095": {
+          "item_id": "raw-c4de2ac4f09b4fc5",
+          "source_hash": "70098709177e8077f64f2454ba7b3623bd572ec7da6739405181f2d8005169da",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0096": {
+          "item_id": "raw-566f4a113c190d33",
+          "source_hash": "720bae3028de1cbf12a5718aa39d306d62d317078f9fce5ff58c2c91a047085b",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0097": {
+          "item_id": "raw-abe40dd4240ec95f",
+          "source_hash": "d0d26527edb66d549529f667d360ab51a4900593db6b04e7e87a39513ffc997b",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0098": {
+          "item_id": "raw-2336af325223c608",
+          "source_hash": "57f3f406d03260c722a0f487ec8f6278e2b5c0a9b9812331a8dd690adc31413e",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0099": {
+          "item_id": "raw-a9a0bd3fa09919f0",
+          "source_hash": "474e301921f83c4e99112e613d60c9935b5725418b2bf8bd3fcb77da0af2657f",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0100": {
+          "item_id": "raw-d9175c46bb5eefce",
+          "source_hash": "fe04032f2ed1ba34ec24d448ee65f427a5a42c1238a173b91aeed8e075945842",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0101": {
+          "item_id": "raw-f4e06bad0b6855a5",
+          "source_hash": "8ff187a5b9140fdf0b172888d7b92ba6ad5024ebcaa566b6e422e6af8fd4f9d7",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0102": {
+          "item_id": "raw-cb0319ac23cec032",
+          "source_hash": "e661290fd3fce494bec6218d0b2849f95ede1cd1c3057217f31f7bbf4ea1249f",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0103": {
+          "item_id": "raw-a342af1d641dbe08",
+          "source_hash": "8b623a8c03f482e07086e36c57a9fda10c144b49db390905d742498beedcc7bf",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0104": {
+          "item_id": "raw-1780c35976c383e1",
+          "source_hash": "a9d0bbf3d5a1f119c77de1c043bc6b35f0528dbdc03b3ac3733128043288d1a6",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0105": {
+          "item_id": "raw-1b7f11a198658081",
+          "source_hash": "47650f4cde737d92efff4e920aa5338a3acc3dacb695f85c0e63f446dc7c3578",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0106": {
+          "item_id": "raw-4310ff54ac2eb2fe",
+          "source_hash": "a4072e4e952be983d1de60e352515d6c7a1a0e8a5e269fa407fbf56a1d4b10bf",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0107": {
+          "item_id": "raw-9c3504eca5a4f3c4",
+          "source_hash": "171ff2eb85d1320923bd37ff296069f18c926e77573bf2a3b33bad9b42cd857b",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0108": {
+          "item_id": "raw-9bd6ed4e2012db61",
+          "source_hash": "92489f68a8af16159cb716eeac7ec31d155759187b408c19c1a31d014500f4f9",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0109": {
+          "item_id": "raw-657dbbf026d46e42",
+          "source_hash": "c6f923f1b28c4d2d65a78aab01ee91cfa2b87047b2bb9bb524c1e5d1f535140d",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0110": {
+          "item_id": "raw-b36d3d8db44a2fbd",
+          "source_hash": "6276b724f8bd2b28394dfc0f76e0e50501d97e1e0161ee8d1e6c194613fe0694",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0111": {
+          "item_id": "raw-0ae057ed98c9e531",
+          "source_hash": "29634f8fbb5779941a497e0e2479169a45ddfc9d7903bf97f05780c9f9818770",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0112": {
+          "item_id": "raw-9808f6216862bfd5",
+          "source_hash": "b7ac33275daa6173272ce9ccf5c8b56c4c246042e0b6ee0cd39dc2c533637718",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0113": {
+          "item_id": "raw-1a4242227b5ef8f2",
+          "source_hash": "2f7823c670950eb4fa664ecda86f8be052495fba95c754afa5f5e4be950e06be",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0114": {
+          "item_id": "raw-ddbce95bdb091833",
+          "source_hash": "1c23d474f571be114505fdee9ef1effcc42fbeb5e7956d1f2a664d497d8a54a8",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0115": {
+          "item_id": "raw-54649a7e44976f84",
+          "source_hash": "72a4bde18f1b08f8960b803debe97d8f81c916411a00946055dceea2d310e6c0",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0116": {
+          "item_id": "raw-fdf22df040ccf2aa",
+          "source_hash": "b6a5198348bf6238252e41e93aa47fff4b2f4ae5ad4227773c2a7d08d31ed71c",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0117": {
+          "item_id": "raw-b2614e0802e6f1ef",
+          "source_hash": "964e0f9201cdec64be54bb0d45aecb380693faa6413f04daf828d665544270da",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0118": {
+          "item_id": "raw-26b9b72956969cb4",
+          "source_hash": "dc17b1af837d2b27859fc81c779b7f35dd12887eeccc579b93ea02c7b8d53eca",
+          "fields": [
+            "title"
+          ]
+        },
+        "translate-0119": {
+          "item_id": "raw-3e8f361e2fcb28b2",
+          "source_hash": "718461e1857cd0702b9d25583159281161653ed18ffcd98f2728b83fe1c51679",
+          "fields": [
+            "title"
+          ]
+        }
+      }
+    }
+  }
 }
