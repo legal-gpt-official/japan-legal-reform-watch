@@ -339,17 +339,25 @@
     "last_checked": "2026-08-25",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-26",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and structured metadata; the metadata states a promulgation date (2024-12-06) and enforcement date (2025-02-06), but the specific content of the amendments is not provided and should be verified against the official source.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "「液化石油ガス器具等の技術上の基準等に関する省令」（昭和四十三年通商産業省令第二十三号）の一部を改正する省令（令和六年経済産業省令第八十三号）に関する情報です。原文によれば、公布日は2024年12月6日、施行日は2025年2月6日と示されています。液化石油ガス器具等の技術上の基準等に関わる内容とされています。",
     "business_impact_ja": "液化石油ガス器具等の製造・輸入・販売等に関わる事業者において、技術上の基準に関する対応の見直しが必要となる可能性があります。もっとも、具体的な改正内容は本メタデータからは判断できないため、影響の有無は精査が必要と考えられます。",
     "recommended_action_ja": "改正の具体的内容や適用範囲については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on Japanese title and structured metadata; the metadata states a promulgation date (2024-12-06) and enforcement date (2025-02-06), but the specific content of the amendments is not provided and should be verified against the official source.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "省令修订：液化石油气器具等技术标准相关省令",
+        "summary": "这是一项省令（2024年经济产业省令第83号），部分修订了关于液化石油气（LPG）器具技术标准的省令（原为1968年通商产业省令第23号）。元数据显示公布日期为2024-12-06，规定的生效日期为2025-02-06。所提供的元数据未详细说明全部实质性修改内容。",
+        "business_impact": "制造、进口或经手液化石油气器具的企业可能需要审查修订后的技术标准是否影响其产品或合规义务。",
+        "recommended_action": "建议在得出任何结论之前，参考e-Gov法令检索上的日文官方来源，以确认具体修订条款及生效日期。"
+      }
+    }
   },
   {
     "id": "raw-ec632981896f9e54",

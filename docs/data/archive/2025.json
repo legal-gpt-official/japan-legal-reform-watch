@@ -1059,17 +1059,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 23.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata; the specific substance of the amendment is unverified. The rule-based 'Finance / AML' label is weak triage context and may not accurately reflect this corporate-tax administrative notice.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "国税庁の新着・通達等として、「法人課税関係の申請、届出等の様式の制定について」の一部改正に関する法令解釈通達が掲載されています。公表日は2025年12月22日とされていますが、提供されたメタデータには改正の具体的内容や適用時期に関する詳細は含まれていません。",
     "business_impact_ja": "法人課税に関する申請・届出等の様式が改正される場合、関連する事務手続きの様式や運用の見直しが必要となる可能性があります。",
     "recommended_action_ja": "改正の具体的内容や適用時期については、国税庁の公式情報源で通達本文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and minimal metadata; the specific substance of the amendment is unverified. The rule-based 'Finance / AML' label is weak triage context and may not accurately reflect this corporate-tax administrative notice.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "关于《法人课税相关申请、申报等格式制定》的部分修改（法令解释通知）",
+        "summary": "日本国税厅（NTA）发布了一项法令解释通知，内容涉及对确定法人课税相关申请、申报等表格格式的通知进行部分修改。该项目出现在国税厅的最新信息及行政通知列表中，日期为2025-12-22。元数据中未提供具体变更内容的详情。",
+        "business_impact": "提交法人课税申请或申报的主体可能需要审查所涉表格或程序是否发生变化。变更的范围及生效时间可能会影响现有的申报做法。",
+        "recommended_action": "建议参阅所提供来源处的国税厅官方通知，以确认具体的表格变更内容及可能适用的日期。"
+      }
+    }
   },
   {
     "id": "raw-63994810bf03ee4c",
@@ -1087,17 +1095,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 23.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the specific content and effective date of the amendment are unverified. The preliminary 'Finance / AML' label is keyword-based and may not accurately reflect this asset-taxation form item.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "国税庁は2025年7月4日付で、「資産課税関係の申請、届出等の様式の制定について」の一部改正に関する法令解釈通達を新着情報として公表しました。原文で示されているのは資産課税関係の申請・届出等の様式に係る通達の改正であり、具体的な改正内容の詳細はメタデータからは確認できません。",
     "business_impact_ja": "資産課税に関する申請・届出の様式が変更される場合、該当する手続きを行う際の書式対応の見直しが必要となる可能性があります。実務上の影響範囲は改正内容によって異なると考えられます。",
     "recommended_action_ja": "国税庁の公式サイトに掲載された通達本文を確認し、対象となる様式や改正内容の詳細をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and limited metadata; the specific content and effective date of the amendment are unverified. The preliminary 'Finance / AML' label is keyword-based and may not accurately reflect this asset-taxation form item.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "日本国税厅通知：部分修订资产课税相关申请、申报等格式的通知（法令解释通达）",
+        "summary": "日本国税厅（NTA）发布了关于资产课税相关申请、申报等规定格式的通知的部分修订，该通知以法令解释通达的形式发布。该项目发布于国税厅的新信息与通达页面，日期为2025-07-04。现有的元数据未提供具体变更内容。",
+        "business_impact": "处理资产课税相关申报的纳税人或顾问可能需要确认适用的格式或程序是否发生变化。此次修订可能影响某些申请或申报的准备和提交方式。",
+        "recommended_action": "建议考虑查阅提供的来源网址中的国税厅官方通达，以确认格式变更的具体范围和生效时间。"
+      }
+    }
   },
   {
     "id": "raw-4dd8fff50935ee58",
@@ -1115,17 +1131,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 23.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title; the exact content and effective scope of the amendment are not provided. Preliminary 'Finance / AML' label appears mismatched (this concerns corporate tax forms) and is unverified triage metadata only.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "国税庁は2025年6月30日付で、「法人課税関係の申請、届出等の様式の制定について」の一部改正に関する法令解釈通達を新着情報・通達等として公表しました。原文のメタデータからは、法人課税に関する申請・届出等の様式の改正が対象であることが示されています。改正の具体的な内容や対象範囲の詳細は、提供された情報のみからは確認できません。",
     "business_impact_ja": "法人課税関係の申請・届出等の様式に変更が生じる場合、関連する社内手続や提出書類の様式確認に影響が及ぶ可能性があります。実務への影響の程度は改正内容の詳細により異なると考えられます。",
     "recommended_action_ja": "国税庁の当該通達ページなど日本語の公式情報源で改正内容および適用時期をご確認いただくことをご検討ください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based mainly on the Japanese title; the exact content and effective scope of the amendment are not provided. Preliminary 'Finance / AML' label appears mismatched (this concerns corporate tax forms) and is unverified triage metadata only.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "关于《法人课税相关申请、申报等格式的制定》的部分修订（法令解释通知）",
+        "summary": "日本国税厅（NTA）发布了一项文件，题为对《关于制定法人课税相关申请、申报等格式》通知的部分修订，属于法令解释通知（法令解释通达）。根据元数据，该文件于2025-06-30发布，收录于国税厅新着信息与通达栏目中。所提供的元数据中并未详细说明格式的具体变更内容。",
+        "business_impact": "办理法人课税相关申请或申报的企业可能需要审视修订后的格式是否会影响其申报。",
+        "recommended_action": "建议参考所提供来源查阅国税厅官方通达，以确认格式修订的范围和具体内容。"
+      }
+    }
   },
   {
     "id": "raw-777467b9b90fb37d",
@@ -1143,17 +1167,25 @@
     "last_checked": "2026-08-06",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-06",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; specific rule contents and effective dates were not provided and are unverified. The 'Finance / AML' label is keyword-based triage and not authoritative.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "日本証券業協会（JSDA）が、非上場有価証券の特例仲介等業務に関する金融商品取引法改正に係る自主規制規則等の一部改正について、意見募集の結果を2025年4月10日に公表したものです。原文によれば、意見募集期間は2025年2月18日から3月19日までとされています。",
     "business_impact_ja": "非上場有価証券の特例仲介等業務に関与する事業者においては、自主規制規則の改正内容に応じて対応の検討が必要となる可能性があります。",
     "recommended_action_ja": "改正の具体的な内容や適用時期については、JSDAが公表する正式な意見募集結果および関連資料をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and limited metadata; specific rule contents and effective dates were not provided and are unverified. The 'Finance / AML' label is keyword-based triage and not authoritative.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见结果：非上市有价证券特例中介等业务相关《金融商品交易法》修订自律规则修改",
+        "summary": "日本证券业协会（JSDA）公布了关于其自律规则部分修订的公开征求意见结果。该修订涉及《金融商品交易法》（FIEA）中有关非上市有价证券特例中介及相关业务规定的变更。根据元数据，意见征集期为2025-02-18至2025-03-19。",
+        "business_impact": "从事非上市有价证券中介业务的公司可能需要考虑这些自律规则修订是否会影响其业务运营或合规义务。",
+        "recommended_action": "建议考虑查阅JSDA官方公开征求意见结果文件，以确认规则修订的范围、内容及时间安排。"
+      }
+    }
   },
   {
     "id": "raw-5d3031cd99a310e6",
@@ -1171,17 +1203,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the specific outcome of the comment process and any final designation are unverified. Preliminary 'Finance / AML' label appears loosely related and should not be treated as authoritative.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "国税庁の新着・通達において、「酒類の地理的表示として京都、鳥取及び福岡を指定する件（案）」に対する意見募集の結果が公表され、e-Govへのリンクが案内されています。原文メタデータからは、意見募集の結果が公表された段階であることが読み取れます。",
     "business_impact_ja": "酒類の地理的表示に関わる事業者にとって、指定案の内容や意見募集結果が今後の事業運営に影響する可能性があります。",
     "recommended_action_ja": "詳細や最新の状況については、国税庁およびe-Govの日本語の公式情報源をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and limited metadata; the specific outcome of the comment process and any final designation are unverified. Preliminary 'Finance / AML' label appears loosely related and should not be treated as authoritative.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见结果：拟指定京都、鸟取及福冈为酒类地理标志",
+        "summary": "日本国税厅公布了关于拟将京都、鸟取及福冈指定为酒类地理标志的提案的公开征求意见结果。该项目链接至e-Gov公开征求意见平台。此事涉及一项提案（案），以及意见征集结果的公布，并非已确定的最终指定。",
+        "business_impact": "与这些地区相关的酒类生产者和销售者可能会受到此类地理标志的界定和适用方式的影响。",
+        "recommended_action": "建议查阅国税厅及e-Gov的官方资料，以确认该拟议指定的范围、状态以及由此可能产生的相关要求。"
+      }
+    }
   },
   {
     "id": "raw-a5393f4a97e014b8",
@@ -1199,17 +1239,25 @@
     "last_checked": "2026-08-24",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the specific substantive changes are not described in the source data. Enforcement date (2027-04-01) is stated in the metadata but should be verified against the official source. Area/stage/impact labels are keyword-based triage only.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "外国為替に関する省令（昭和五十五年大蔵省令第四十四号）を改正する省令（令和七年財務省令第五十六号）に関する更新情報です。原文によれば、公布日は2025年6月24日、施行日は2027年4月1日とされています。",
     "business_impact_ja": "外国為替関連の実務に関与する事業者において、改正内容によっては手続や対応の見直しが必要となる可能性があります。施行日が2027年4月1日とされている点を踏まえ、準備期間を考慮した検討が考えられます。",
     "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Gov法令検索等の日本語の公式情報源で原文を確認されることをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-29T23:06:32Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the provided Japanese title and metadata; the specific substantive changes are not described in the source data. Enforcement date (2027-04-01) is stated in the metadata but should be verified against the official source. Area/stage/impact labels are keyword-based triage only.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "省令修订：部分修正《外国为替相关省令》",
+        "summary": "本条目涉及一项部分修订《外国为替相关省令》（1980年大藏省令第44号）的省令。根据元数据，该修订省令为2025年大藏省令第56号，公布日期为2025-06-24，规定的生效日期为2027-04-01。初步分类标签将其与经济安全/外国直接投资相关联，但这些标签尚未核实。",
+        "business_impact": "从事外汇交易或相关申报的主体可能需要审查修订条款可能如何影响其义务。任何影响均取决于具体修改内容及所述未来生效日期。",
+        "recommended_action": "建议考虑查阅日文官方来源及该修订省令全文，以确认其范围、内容及生效时间。"
+      }
+    }
   },
   {
     "id": "raw-8eb6a96669cec98b",
@@ -1227,17 +1275,25 @@
     "last_checked": "2026-08-13",
     "relevance_score": 22.0,
     "first_seen_at": "2026-08-14",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese metadata (title and law numbers); the actual substance of the amendment is not provided. Dates and labels are unverified triage metadata; verify against the authoritative Japanese source.",
+    "summarized_at": "2026-09-04T22:50:40Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "労働安全衛生規則（昭和四十七年労働省令第三十二号）の一部を改正する省令（令和七年厚生労働省令第十二号）に関する法令更新情報です。原文によれば、当該改正省令は2025年2月19日に公布され、施行日は2027年4月1日とされています。",
     "business_impact_ja": "労働安全衛生規則の改正であるため、労働安全衛生に関する社内規程や実務対応の見直しが必要となる可能性があります。施行までに準備を要する事項が生じることも考えられます。",
     "recommended_action_ja": "改正内容の詳細や施行日については、e-Gov法令検索など日本語の公式情報源で最新の情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-15T21:22:33Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on Japanese metadata (title and law numbers); the actual substance of the amendment is not provided. Dates and labels are unverified triage metadata; verify against the authoritative Japanese source.",
-    "summarized_at": "2026-09-04T22:50:40Z",
-    "summary_model": "claude-opus-4-8"
+    "translations": {
+      "zh-Hans": {
+        "title": "《劳动安全卫生规则》部分修订省令",
+        "summary": "本条目涉及一项省令（2025年厚生劳动省令第12号），该省令部分修订了《劳动安全卫生规则》（原为1972年劳动省令第32号）。根据元数据，该修订省令的公布日期为2025-02-19，生效日期为2027-04-01。所提供的元数据中未描述具体的实质性修改内容。",
+        "business_impact": "适用日本劳动安全卫生规则的组织可能需要考虑该修订在规定生效日期前是否会影响其相关义务。",
+        "recommended_action": "建议考虑查阅e-Gov Law Search上的日文官方来源，以确认修订的实质内容、适用范围及时间安排。"
+      }
+    }
   },
   {
     "id": "raw-738716f8c4bd9744",

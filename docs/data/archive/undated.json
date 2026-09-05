@@ -73,14 +73,14 @@
   },
   {
     "id": "raw-c2190f18236d309c",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Arrange Related Laws for Enforcement of the Disaster Management Agency Establishment Act",
     "title_ja": "防災庁設置法の施行に伴う関係法律の整備等に関する法律案",
     "area": "Public Safety / Disaster Management",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill concerning the arrangement of related laws in connection with the enforcement of an act to establish a Disaster Management Agency (Bosaicho), listed in the House of Representatives bill records (session 221, number 14). The provided status field indicates the bill was passed ('seiritsu'), according to the legislature's records. Details such as specific provisions and dates are not included in the metadata.",
+    "business_impact_en": "Organizations involved in disaster management, public safety, or affected regulated sectors may need to consider how consequential amendments to related laws could affect their obligations.",
+    "recommended_action_en": "Review the official House of Representatives source and the underlying statutory text to verify the bill's current status and content.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1626.htm",
     "published_at": "",
@@ -93,15 +93,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:43:23Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; no publication date provided. The status field suggests passage, but this should be confirmed against the official source. Preliminary labels are keyword-based and unverified.",
+    "summarized_at": "2026-09-05T22:43:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《防灾厅设置法施行相关法律整备法案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：为施行《防灾厅设置法》而整备相关法律",
+        "summary": "这是一项由内阁提交的法案，内容涉及为配合《防灾厅设置法》的施行而对相关法律进行整备，收录于众议院议案记录（第221届会期，第14号）。所提供的状态字段显示，根据该立法机构的记录，该法案已获通过（“成立”）。具体条款及日期等细节未包含在元数据中。",
+        "business_impact": "参与防灾管理、公共安全或相关受监管领域的机构或组织可能需要考虑相关法律的连带修订可能如何影响其义务。",
+        "recommended_action": "建议查阅众议院官方来源及相关法律文本，以核实该法案当前的状态及内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-aab3bc4c1e342b3c",
