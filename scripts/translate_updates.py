@@ -824,10 +824,18 @@ def merge_response_fields(known: dict, result: dict, requested: tuple[str, ...])
 
 
 def normalized_fields(merged: dict) -> dict:
-    """Validate the assembled four fields and normalize their numeric dates."""
+    """Validate the assembled four fields, then normalize dates and separators.
+
+    Both normalizations are deterministic and length-preserving in meaning, and
+    both run BEFORE the title quality gate, so a title is judged on the text
+    that will actually be published.
+    """
     if not valid_translation(merged):
         raise ValueError("model returned invalid/oversize translation fields")
-    return {field: normalize_dates(merged[field].strip()) for field in TRANSLATION_FIELDS}
+    return {
+        field: normalize_name_separators(normalize_dates(merged[field].strip()))
+        for field in TRANSLATION_FIELDS
+    }
 
 
 def commit_translation(
@@ -910,6 +918,32 @@ def normalize_dates(text: str) -> str:
     return _NUMERIC_DATE_RE.sub(_repl, text)
 
 
+# The katakana middle dot U+30FB is a name SEPARATOR, not kana. It carries no
+# Japanese reading, and Chinese writes the same separator as U+00B7 -- every
+# accepted translation in the corpus already uses that form. But U+30FB sits
+# inside the katakana Unicode block, so the kana gate matched it and rejected an
+# otherwise correct rendering of any institution name built with it
+# (農業・食品産業技術総合研究機構, 水産研究・教育機構, 鉄道建設・運輸施設整備支援機構). Nine of
+# the ten titles rejected on 2026-09-07 had it in their Japanese original,
+# against a 12.3% corpus base rate, and each one was re-translated and
+# re-rejected on every subsequent run because a rejection is never cached.
+# Normalizing it deterministically -- like the numeric dates above, before
+# validation -- fixes the rendering instead of paying for it again every day.
+# U+FF65 is the half-width form of the same separator.
+#
+# Only this one codepoint is normalized. Everything else the kana gate matches
+# (hiragana, katakana letters, the prolonged sound mark ー, the iteration marks
+# ゝ ゞ ヽ ヾ) is genuinely Japanese and still rejects the title.
+_NAME_SEPARATOR_TRANSLATION = str.maketrans({"\u30fb": "\u00b7", "\uff65": "\u00b7"})
+
+
+def normalize_name_separators(text: str) -> str:
+    """Render the Japanese name separator ・ as the Chinese interpunct ·."""
+    if not isinstance(text, str):
+        return text
+    return text.translate(_NAME_SEPARATOR_TRANSLATION)
+
+
 def valid_translation(data) -> bool:
     """Validate the four translatable fields. Extra keys (metadata) are ignored."""
     if not isinstance(data, dict):
@@ -937,7 +971,9 @@ def valid_translation(data) -> bool:
 
 # Kana only — hiragana + katakana + half-width katakana. NOT CJK ideographs,
 # which overlap with Chinese hanzi. The Japanese original lives in a separate
-# field, so the Chinese title must carry no kana.
+# field, so the Chinese title must carry no kana. The name separator ・ / ･
+# also lives in these ranges but is punctuation rather than kana, so it is
+# normalized to · by normalize_name_separators() before this gate ever sees it.
 _KANA_RE = re.compile(r"[぀-ヿ･-ﾟ]")
 # Immediate self-repetition of a 2+ char run (修订修订, 草案草案, 关于关于,
 # 公开征求意见公开征求意见). Legit compounds (信息通信, 个人信息, 行政机关) are not

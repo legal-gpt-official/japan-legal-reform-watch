@@ -1106,6 +1106,77 @@ class TestTitleQuality(unittest.TestCase):
                 self.assertTrue(tu.valid_title(title))
 
 
+
+class TestNameSeparatorNormalization(unittest.TestCase):
+    """The name separator must be normalized, not treated as kana.
+
+    U+30FB sits in the katakana block but is punctuation: it separates the
+    parts of an institution name (農業・食品産業技術総合研究機構) and carries no
+    Japanese reading. Chinese writes the same separator as U+00B7, which is what
+    every accepted translation in the corpus already uses. Before this
+    normalization the gate rejected the correct rendering, the item fell back to
+    English, the rejection was never cached, and the same translation was bought
+    and thrown away again on every later run -- 9 of the 10 titles rejected on
+    2026-09-07 had this separator in their Japanese original, against a 12.3%
+    corpus base rate.
+    """
+
+    INSTITUTION = "《国立研究开发法人农业{sep}食品产业技术综合研究机构基础研究业务省令》部分修订"
+
+    def _through_pipeline(self, title: str) -> str:
+        merged = {f: (title if f == "title" else "正文") for f in tu.TRANSLATION_FIELDS}
+        return tu.normalized_fields(merged)["title"]
+
+    def test_fullwidth_separator_is_normalized_and_accepted(self):
+        out = self._through_pipeline(self.INSTITUTION.format(sep="・"))
+        self.assertEqual(out, self.INSTITUTION.format(sep="·"))
+        self.assertTrue(tu.valid_title(out), tu.title_quality_errors(out))
+
+    def test_halfwidth_separator_is_normalized_and_accepted(self):
+        out = self._through_pipeline(self.INSTITUTION.format(sep="･"))
+        self.assertEqual(out, self.INSTITUTION.format(sep="·"))
+        self.assertTrue(tu.valid_title(out))
+
+    def test_separator_is_normalized_in_every_translated_field(self):
+        merged = {f: "水产研究・教育机构" for f in tu.TRANSLATION_FIELDS}
+        out = tu.normalized_fields(merged)
+        for field in tu.TRANSLATION_FIELDS:
+            self.assertNotIn("・", out[field])
+            self.assertIn("·", out[field])
+
+    def test_real_kana_is_still_rejected(self):
+        """The relaxation is one punctuation codepoint, not the kana gate."""
+        for label, title in (
+            ("katakana word", "国土交通省通报：车辆召回（エルフ 等）"),
+            ("hiragana", "公开征求意见：あ施行规则修订"),
+            ("prolonged sound mark", "环境教育推进リーダー培训"),
+            ("katakana iteration mark", "省令ヽ修订草案"),
+            ("hiragana iteration mark", "省令ゝ修订草案"),
+        ):
+            with self.subTest(label):
+                out = self._through_pipeline(title)
+                self.assertIn("title contains Japanese kana", tu.title_quality_errors(out))
+
+    def test_normalization_runs_before_the_title_gate(self):
+        """Order matters: a title judged before normalization is judged on text
+        that will never be published."""
+        raw = self.INSTITUTION.format(sep="・")
+        self.assertIn("title contains Japanese kana", tu.title_quality_errors(raw))
+        self.assertTrue(tu.valid_title(self._through_pipeline(raw)))
+
+    def test_date_normalization_still_applies_alongside(self):
+        out = self._through_pipeline("公开征求意见：《农业・食品》草案（2026/10/10）")
+        self.assertIn("·", out)
+        self.assertIn("2026-10-10", out)
+        self.assertNotIn("2026/10/10", out)
+
+    def test_separator_does_not_change_length_budget(self):
+        """Both forms are one character, so normalization cannot push a title
+        over TITLE_MAX_CHARS after it has already been validated."""
+        a = self.INSTITUTION.format(sep="・")
+        self.assertEqual(len(a), len(self._through_pipeline(a)))
+
+
 class TestTitleQualityFallback(TranslateTestBase):
     BAD_TITLE = "公开征求意见：公寓管理及长期优良住宅的施行规则、则的省令草案"
 
