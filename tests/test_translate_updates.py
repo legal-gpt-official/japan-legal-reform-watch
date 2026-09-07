@@ -853,8 +853,10 @@ class TestInvariants(TranslateTestBase):
 
         tu.main(["--locale", LOCALE, "--limit", "30"])
         cache = self.read_cache()
-        self.assertEqual(cache["schema_version"], 2)
-        self.assertIn(LOCALE, cache["entries"])
+        self.assertEqual(cache["schema_version"], tu.CACHE_SCHEMA_VERSION)
+        self.assertEqual(tu.CACHE_SCHEMA_VERSION, 3)
+        for section in ("entries", "fields", "rejected"):
+            self.assertIn(LOCALE, cache[section], section)
         self.assertIn(item["id"], cache["entries"][LOCALE])
 
 
@@ -1105,6 +1107,263 @@ class TestTitleQuality(unittest.TestCase):
             with self.subTest(title=title):
                 self.assertTrue(tu.valid_title(title))
 
+
+
+
+class TestTitleRejectionMemo(TranslateTestBase):
+    """A rejected title must not be bought again tomorrow, and again after that.
+
+    A rejection is deliberately never cached as a translation, so before this the
+    item was a cache miss on the next run, was translated again, was rejected
+    again, and the loop only ended when the English itself changed. One item ran
+    that cycle for five consecutive days.
+    """
+
+    KANA_TITLE = "公开征求意见：エルフ施行规则修订草案"
+
+    def _run_once(self, item, extra=()):
+        calls = self.install_api_returning(self.KANA_TITLE)
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30", *extra])
+        return rc, parse_summary(out), calls
+
+    def test_a_rejection_is_recorded_against_the_exact_english(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        rc, summary, calls = self._run_once(item)
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(summary["quality_rejected_items"], "1")
+        self.assertEqual(calls["n"], 1)
+        record = self.read_cache()["rejected"][LOCALE][item["id"]]
+        self.assertEqual(record["attempts"], 1)
+        self.assertEqual(record["source_hash"], tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION))
+        self.assertEqual(record["prompt_version"], tu.PROMPT_VERSION)
+        self.assertEqual(record["reasons"], ["title contains Japanese kana"])
+
+    def test_the_record_holds_no_translation_text(self):
+        """Same rule as the logs: structural signals only, never the text."""
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._run_once(item)
+
+        blob = json.dumps(self.read_cache()["rejected"], ensure_ascii=False)
+        self.assertNotIn("エルフ", blob)
+        self.assertNotIn("公开征求意见", blob)
+
+    def test_the_attempt_budget_is_small_and_pinned(self):
+        """The loop below scales with this constant, so pin it separately: a
+        budget quietly raised to 30 would keep every test green while restoring
+        the daily re-buy this exists to stop."""
+        self.assertEqual(tu.MAX_TITLE_ATTEMPTS, 2)
+        self.assertLessEqual(tu.MAX_TITLE_RETRIES_PER_RUN, 10)
+
+    def test_attempts_accumulate_and_then_the_item_is_parked(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+
+        for run in range(1, tu.MAX_TITLE_ATTEMPTS + 1):
+            _rc, summary, calls = self._run_once(item)
+            self.assertEqual(calls["n"], 1, f"run {run} should still spend a call")
+            self.assertEqual(summary["quality_parked_items"], "0")
+            self.assertEqual(
+                self.read_cache()["rejected"][LOCALE][item["id"]]["attempts"], run
+            )
+
+        _rc, summary, calls = self._run_once(item)
+        self.assertEqual(calls["n"], 0, "the parked item must cost nothing")
+        self.assertEqual(summary["quality_parked_items"], "1")
+        self.assertEqual(summary["quality_rejected_items"], "0")
+
+    def test_a_parked_item_keeps_no_stale_translation(self):
+        """Parking stops the spend, not the accuracy rule: a translation of
+        superseded English still comes off the card."""
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        for _ in range(tu.MAX_TITLE_ATTEMPTS):
+            self._run_once(item)
+
+        published = self.read_output()[0]
+        published.setdefault("translations", {})[LOCALE] = good_translation()
+        self.write_input([published])
+        _rc, summary, _calls = self._run_once(item)
+
+        self.assertEqual(summary["quality_parked_items"], "1")
+        self.assertNotIn(LOCALE, self.read_output()[0].get("translations", {}))
+
+    def test_changing_the_english_releases_the_park(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        for _ in range(tu.MAX_TITLE_ATTEMPTS):
+            self._run_once(item)
+        _rc, summary, calls = self._run_once(item)
+        self.assertEqual(calls["n"], 0)
+
+        upgraded = sample_item(summary_en="A different English summary entirely.")
+        self.write_input([upgraded])
+        calls = self.install_counting_api()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 1, "new English deserves a fresh attempt")
+        self.assertEqual(parse_summary(out)["quality_parked_items"], "0")
+        self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
+    def test_a_later_success_prunes_the_record(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._run_once(item)
+        self.assertIn(item["id"], self.read_cache()["rejected"][LOCALE])
+
+        self.install_counting_api()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(self.read_cache()["rejected"][LOCALE], {})
+        self.assertEqual(parse_summary(out)["rejections_pruned"], "1")
+
+    def test_a_schema_2_cache_upgrades_without_losing_entries(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache({
+            "schema_version": 2,
+            "entries": {LOCALE: {item["id"]: make_cache_entry(item)}},
+            "fields": {LOCALE: {}},
+        })
+        self.install_counting_api()
+        rc, _out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+
+        cache = self.read_cache()
+        self.assertEqual(rc, 0)
+        self.assertEqual(cache["schema_version"], tu.CACHE_SCHEMA_VERSION)
+        self.assertEqual(cache["rejected"][LOCALE], {})
+        self.assertIn(item["id"], cache["entries"][LOCALE])
+
+
+class TestBatchTitleRetry(TranslateTestBase):
+    """Batch mode gets the recovery retry the direct path already had.
+
+    --retry-...-without-ja-reference used to be rejected outright when combined
+    with --batch, and Phase 3A moved the daily run to batch, so the daily run had
+    no recovery for a bad title at all.
+    """
+
+    KANA_TITLE = "公开征求意见：エルフ施行规则修订草案"
+    FLAG = "--retry-rejected-title-without-ja-reference"
+
+    def _install(self, batch_title, retry_result):
+        """Batch returns batch_title; the direct follow-up returns retry_result."""
+        seen = {"batch": 0, "retry": [], "retry_calls": 0}
+
+        def fake_batch(client, model, items, locale, *, timeout_seconds,
+                       field_sets=None, on_submit=None, custom_ids=None):
+            seen["batch"] += 1
+            d = good_translation()
+            d["title"] = batch_title
+            return "msgbatch_retry", [(dict(d), "fake-batch-model") for _ in items]
+
+        def fake_request(client, model, item, locale, *_requested):
+            seen["retry_calls"] += 1
+            seen["retry"].append(item.get("title_ja"))
+            if isinstance(retry_result, Exception):
+                raise retry_result
+            return retry_result, "fake-retry-model"
+
+        tu.make_client = _idle_workspace_client
+        tu.request_translation_batch = fake_batch
+        tu.request_translation = fake_request
+        return seen
+
+    def test_flag_is_accepted_with_batch(self):
+        """It used to be a parser error, which is what disabled recovery."""
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._install(self.KANA_TITLE, good_translation())
+        rc, _out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch", self.FLAG])
+        self.assertEqual(rc, 0)
+
+    def test_rejected_title_is_retried_without_the_japanese_reference(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        seen = self._install(self.KANA_TITLE, good_translation())
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch", self.FLAG])
+        summary = parse_summary(out)
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(seen["retry_calls"], 1)
+        self.assertEqual(seen["retry"], [""], "the retry must drop title_ja")
+        self.assertEqual(summary["title_reference_retries"], "1")
+        self.assertEqual(summary["title_reference_retry_successes"], "1")
+        self.assertEqual(summary["quality_rejected_items"], "0")
+        self.assertEqual(summary["translated_items"], "1")
+        self.assertEqual(self.read_cache()["rejected"][LOCALE], {})
+
+    def test_a_retry_that_also_fails_records_the_rejection(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        still_bad = good_translation()
+        still_bad["title"] = self.KANA_TITLE
+        seen = self._install(self.KANA_TITLE, still_bad)
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch", self.FLAG])
+        summary = parse_summary(out)
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(seen["retry_calls"], 1, "exactly one recovery attempt")
+        self.assertEqual(summary["title_reference_retry_successes"], "0")
+        self.assertEqual(summary["quality_rejected_items"], "1")
+        self.assertEqual(self.read_cache()["rejected"][LOCALE][item["id"]]["attempts"], 1)
+
+    def test_a_failing_retry_call_is_not_counted_as_a_failed_item(self):
+        """The batch result it was rescuing was already rejected on quality;
+        a broken recovery call does not turn that into a provider failure."""
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._install(self.KANA_TITLE, RuntimeError("boom"))
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch", self.FLAG])
+        summary = parse_summary(out)
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(summary["failed_items"], "0")
+        self.assertEqual(summary["quality_rejected_items"], "1")
+
+    def test_without_the_flag_batch_mode_does_not_retry(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        seen = self._install(self.KANA_TITLE, good_translation())
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch"])
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(seen["retry_calls"], 0)
+        self.assertEqual(parse_summary(out)["quality_rejected_items"], "1")
+
+    def test_batch_succeeded_counts_the_submit_path(self):
+        """It reported 0 beside translated_items: 58, because only the reclaim
+        path ever incremented it."""
+        items = [sample_item(id=f"raw-{i}", title_en=f"Distinct title {i}.") for i in range(3)]
+        self.write_input(items)
+        self.write_cache(tu.default_cache())
+        self._install(good_translation()["title"], good_translation())
+
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "5", "--batch"])
+        summary = parse_summary(out)
+
+        self.assertEqual(rc, 0)
+        self.assertEqual(summary["translated_items"], "3")
+        self.assertEqual(summary["batch_succeeded"], "3")
 
 
 class TestNameSeparatorNormalization(unittest.TestCase):

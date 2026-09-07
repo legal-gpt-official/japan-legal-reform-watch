@@ -184,7 +184,7 @@ jobs:
             --limit "$total" \
             --parallel "$PARALLELISM" \
             --max-cost-usd "$TRANSLATION_MAX_COST_USD" \
-            --retry-kana-title-without-ja-reference \
+            --retry-rejected-title-without-ja-reference \
             --provider-failure-mode fail 2>&1 | tee translate_run.log
           translation_status=${PIPESTATUS[0]}
           set -e

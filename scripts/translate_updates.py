@@ -104,7 +104,17 @@ LOG_PATH = REPO_ROOT / "logs" / "translate.log"
 DEFAULT_LOCALE = "zh-Hans"
 SUPPORTED_LOCALES = ("zh-Hans",)
 DEFAULT_LIMIT = 30
-CACHE_SCHEMA_VERSION = 2
+CACHE_SCHEMA_VERSION = 3
+# How many runs may spend a call on the same item before its title rejections
+# are taken as settled. A rejection is deliberately never cached as a
+# translation, so without this the item is a cache miss again the next day, is
+# translated again, is rejected again, and the loop only ends when the English
+# itself changes -- one item repeated that cycle for five consecutive days.
+# Each run gets one request plus (when enabled) one retry, so 2 is four samples.
+MAX_TITLE_ATTEMPTS = 2
+# Rejected titles recovered by a direct follow-up call per batch run. Small
+# because it exists to rescue the occasional bad sample, not to grind.
+MAX_TITLE_RETRIES_PER_RUN = 10
 
 # Prompt + glossary are versioned together. Bumping PROMPT_VERSION (or the
 # glossary) changes the source_hash and therefore re-translates everything. v3
@@ -428,6 +438,7 @@ def default_cache() -> dict:
         "schema_version": CACHE_SCHEMA_VERSION,
         "entries": {loc: {} for loc in SUPPORTED_LOCALES},
         "fields": {loc: {} for loc in SUPPORTED_LOCALES},
+        "rejected": {loc: {} for loc in SUPPORTED_LOCALES},
     }
 
 
@@ -437,7 +448,7 @@ def ensure_cache_shape(cache, locale: str) -> dict:
         cache = default_cache()
     if not isinstance(cache.get("schema_version"), int):
         cache["schema_version"] = CACHE_SCHEMA_VERSION
-    for section in ("entries", "fields"):
+    for section in ("entries", "fields", "rejected"):
         bucket = cache.get(section)
         if not isinstance(bucket, dict):
             bucket = {}
@@ -446,6 +457,8 @@ def ensure_cache_shape(cache, locale: str) -> dict:
             bucket[locale] = {}
     # A schema_version 1 cache has no `fields` section; the empty dict added
     # above is seeded from `entries` on first use, so the upgrade costs no calls.
+    # A schema_version 2 cache has no `rejected` section; starting it empty just
+    # gives every item a fresh attempt budget, which is the safe direction.
     cache["schema_version"] = max(cache["schema_version"], CACHE_SCHEMA_VERSION)
     return cache
 
@@ -1348,6 +1361,74 @@ def candidate_reason(cached, source_hash: str, prompt_version: str):
     return None
 
 
+def rejection_record(rejected: dict, item_id: str, source_hash: str, prompt_version: str):
+    """The live rejection record for this exact English, or None.
+
+    Keyed on source_hash + prompt_version, so the moment the English text
+    changes -- a rule-based preview upgraded to an AI summary, say -- the old
+    record stops applying and the item gets a fresh attempt budget. Nothing here
+    holds translation text; only structural reasons and a count.
+    """
+    record = rejected.get(item_id)
+    if not isinstance(record, dict):
+        return None
+    if record.get("source_hash") != source_hash:
+        return None
+    if record.get("prompt_version") != prompt_version:
+        return None
+    return record
+
+
+def note_title_rejection(
+    rejected: dict, item_id: str, source_hash: str, prompt_version: str,
+    reasons, now: str, model: str,
+) -> dict:
+    """Record that this exact English produced an unusable title again."""
+    record = rejection_record(rejected, item_id, source_hash, prompt_version) or {
+        "source_hash": source_hash,
+        "prompt_version": prompt_version,
+        "attempts": 0,
+    }
+    record["attempts"] = int(record.get("attempts") or 0) + 1
+    record["reasons"] = sorted(set(reasons))
+    record["last_rejected_at"] = now
+    record["model"] = model
+    rejected[item_id] = record
+    return record
+
+
+def title_attempts_exhausted(
+    rejected: dict, item_id: str, source_hash: str, prompt_version: str
+) -> bool:
+    """True when this exact English has already had its attempts and failed."""
+    record = rejection_record(rejected, item_id, source_hash, prompt_version)
+    return bool(record) and int(record.get("attempts") or 0) >= MAX_TITLE_ATTEMPTS
+
+
+def prune_title_rejections(rejected: dict, entries: dict, live_hashes: dict) -> int:
+    """Drop records that no longer describe anything, and report how many.
+
+    A record is dead once the item has a matching cache entry (it succeeded
+    later), once the item's English has moved on, or once the item has left the
+    corpus. Pruning keeps the section from growing without bound; it is not a
+    correctness requirement, because rejection_record() already ignores a record
+    whose hash no longer matches.
+    """
+    removed = 0
+    for item_id in list(rejected):
+        record = rejected[item_id]
+        current = live_hashes.get(item_id)
+        if not isinstance(record, dict) or current is None or record.get("source_hash") != current:
+            del rejected[item_id]
+            removed += 1
+            continue
+        cached = entries.get(item_id)
+        if isinstance(cached, dict) and cached.get("source_hash") == current:
+            del rejected[item_id]
+            removed += 1
+    return removed
+
+
 def cache_signature(entry):
     """Semantic signature of a cache entry (ignores translated_at/model churn)."""
     if not isinstance(entry, dict):
@@ -1508,6 +1589,10 @@ def apply_batch_outcome(
     title_errs = title_quality_errors(fields["title"])
     if title_errs:
         stats["quality_rejected"] += 1
+        note_title_rejection(
+            stats.get("rejected") or {}, item_id, source_hash, PROMPT_VERSION,
+            title_errs, datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
+        )
         logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))
         return
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1640,6 +1725,7 @@ def process_translation_batch(
     discover: bool = True,
     max_cost_usd: float | None = None,
     interlock: bool = True,
+    retry_rejected_titles: bool = False,
 ) -> dict:
     """Apply cache hits, submit misses together, and run existing quality gates."""
     stats = {
@@ -1648,6 +1734,9 @@ def process_translation_batch(
         "translated": 0,
         "failed": 0,
         "quality_rejected": 0,
+        "quality_parked": 0,
+        "title_retries": 0,
+        "title_retry_successes": 0,
         "skipped_no_budget": 0,
         "stale_translations_removed": 0,
         "field_cache_hits": 0,
@@ -1672,6 +1761,12 @@ def process_translation_batch(
         "estimated_cost_usd": 0.0,
         "cost_estimate_complete": True,
     }
+    # Shared with every apply path (main batch, reclaim, discovery) so a title
+    # rejected anywhere counts against the same attempt budget. Without a cache
+    # to persist it into, the memo is per-run and simply has no lasting effect.
+    stats["rejected"] = (
+        ensure_cache_shape(cache, locale)["rejected"][locale] if isinstance(cache, dict) else {}
+    )
     # Reclaim first: results already paid for must be applied before this run
     # decides what still needs translating, and no second batch may be sent
     # while one is outstanding.
@@ -1763,7 +1858,16 @@ def process_translation_batch(
                 known_fields, missing_fields = {}, TRANSLATION_FIELDS
         if had_locale:
             stats["stale_translations_removed"] += 1
+        # The stale translation goes regardless of what happens next: a
+        # translation of superseded English must not stay on the card.
         remove_translation(it, locale)
+        if title_attempts_exhausted(stats["rejected"], item_id, source_hash, PROMPT_VERSION):
+            stats["quality_parked"] += 1
+            logger.info(
+                "PARKED %s — title rejected on %d runs for this exact English; not "
+                "re-requesting until the English changes", item_id, MAX_TITLE_ATTEMPTS,
+            )
+            continue
         if len(candidates) < max(0, limit):
             candidates.append((it, source_hash, had_locale, known_fields, missing_fields, field_keys))
         else:
@@ -1910,6 +2014,12 @@ def process_translation_batch(
         if persist_cache is not None:
             persist_cache()
 
+    # Titles the gate rejected, held for one direct follow-up call once the
+    # batch results are all in. A batch cannot retry within itself, and a second
+    # batch would mean another wait of up to an hour for a handful of items, so
+    # the recovery call is direct. It is priced at the full rate rather than the
+    # batch rate, which is why MAX_TITLE_RETRIES_PER_RUN keeps it small.
+    retry_queue: list = []
     for (it, source_hash, _had_locale, known_fields, missing_fields, field_keys), outcome in zip(
         candidates, outcomes
     ):
@@ -1936,7 +2046,19 @@ def process_translation_batch(
                 stats["partial_field_requests"] += 1
             title_errs = title_quality_errors(fields["title"])
             if title_errs:
+                # Queue for one direct follow-up call without the Japanese
+                # reference; the gate still judges whatever comes back.
+                if retry_rejected_titles and len(retry_queue) < MAX_TITLE_RETRIES_PER_RUN:
+                    retry_queue.append(
+                        (it, item_id, source_hash, known_fields, missing_fields,
+                         field_keys, title_errs)
+                    )
+                    continue
                 stats["quality_rejected"] += 1
+                note_title_rejection(
+                    stats["rejected"], item_id, source_hash, PROMPT_VERSION, title_errs,
+                    datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
+                )
                 logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))
                 continue
             now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1945,6 +2067,11 @@ def process_translation_batch(
                 now, entries, field_entries, field_keys,
             )
             stats["translated"] += 1
+            # Previously only the reclaim path counted a success here, so a
+            # submitted batch reported batch_succeeded: 0 beside translated_items:
+            # 58. The failure buckets were always counted on both paths, so this
+            # corrects the summary line without changing what is detected.
+            stats["batch_outcomes"]["succeeded"] += 1
             logger.info("BATCH API %s ok requested_fields=%d", item_id, len(missing_fields))
         except Exception as exc:
             etype = classify_error(exc)
@@ -1958,6 +2085,56 @@ def process_translation_batch(
                     logger.error("PROVIDER unavailable type=%s in completed batch.", etype)
             else:
                 logger.error("BATCH FAIL %s type=%s", item_id, etype)
+
+    # One recovery attempt per rejected title, with the Japanese reference
+    # removed. That reference is what carries kana and Japanese phrasing into the
+    # Chinese title in the first place -- both the kana leaks and the doubled
+    # words the gate catches (特性試験の試験方法 rendering as 试验试验) come from
+    # following it too closely. Dropping it and resampling costs one call and
+    # weakens no check: whatever comes back faces the same gate.
+    for (it, item_id, source_hash, known_fields, missing_fields, field_keys,
+         title_errs) in retry_queue:
+        model_used = model
+        try:
+            retry_item = dict(it)
+            retry_item["title_ja"] = ""
+            stats["api_calls"] += 1
+            stats["title_retries"] += 1
+            result, model_used, usage = unpack_api_outcome(
+                call_request_translation(make_client(), model, retry_item, locale, missing_fields)
+            )
+            add_usage(stats["usage_totals"], usage)
+            estimate = estimate_usage_cost_usd(usage, model_used, cache_ttl="1h", batch=False)
+            if estimate is None:
+                stats["cost_estimate_complete"] = False
+            else:
+                stats["estimated_cost_usd"] += estimate
+            fields = normalized_fields(
+                merge_response_fields(known_fields, result, missing_fields)
+            )
+            title_errs = title_quality_errors(fields["title"])
+            if not title_errs:
+                now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                stats["field_cache_added"] += commit_translation(
+                    it, item_id, fields, source_hash, locale, model_used,
+                    now, entries, field_entries, field_keys,
+                )
+                stats["translated"] += 1
+                stats["title_retry_successes"] += 1
+                stats["batch_outcomes"]["succeeded"] += 1
+                logger.info("RETRY  %s recovered without the Japanese reference", item_id)
+                continue
+        except Exception as exc:
+            # A failed recovery call is not a failed item: the batch result it
+            # was trying to rescue was already rejected on quality, and that is
+            # what gets recorded below.
+            logger.warning("RETRY  %s could not be retried type=%s", item_id, classify_error(exc))
+        stats["quality_rejected"] += 1
+        note_title_rejection(
+            stats["rejected"], item_id, source_hash, PROMPT_VERSION, title_errs,
+            datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
+        )
+        logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))
     return stats
 
 
@@ -1987,11 +2164,16 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--retry-rejected-title-without-ja-reference",
+        # Original spelling kept working: it names one behaviour that now covers
+        # every title rejection, not only the kana one.
         "--retry-kana-title-without-ja-reference",
+        dest="retry_rejected_title_without_ja_reference",
         action="store_true",
         help=(
-            "If a direct result is rejected for Japanese kana in the Chinese title, retry that "
-            "item once without title_ja reference context, within the same call/cost budgets."
+            "If a Chinese title is rejected by the quality gate, retry that item once without "
+            "title_ja reference context, within the same call/cost budgets. Works in both direct "
+            "and batch mode; in batch mode the retry is a direct follow-up call."
         ),
     )
     parser.add_argument(
@@ -2057,8 +2239,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.batch and args.omit_title_ja_reference:
         parser.error("--omit-title-ja-reference is supported only for direct calls")
-    if args.batch and args.retry_kana_title_without_ja_reference:
-        parser.error("--retry-kana-title-without-ja-reference is supported only for direct calls")
     if not 1 <= args.parallel <= 10:
         parser.error("--parallel must be between 1 and 10")
     if args.batch and args.parallel != 1:
@@ -2091,6 +2271,7 @@ def main(argv: list[str] | None = None) -> int:
     cache = ensure_cache_shape(load_json(CACHE_PATH, default_cache()), locale)
     entries = cache["entries"][locale]
     field_entries = cache["fields"][locale]
+    rejected = cache["rejected"][locale]
     if args.show_shared_fields:
         seeded = seed_field_cache(field_entries, entries, items, locale)
         pinned = apply_reviewed_fields(field_entries, load_reviewed_fields(locale))
@@ -2150,6 +2331,7 @@ def main(argv: list[str] | None = None) -> int:
 
     client = None
     cache_hits = api_calls = translated = failed = quality_rejected = 0
+    quality_parked = 0
     field_cache_hits = field_cache_added = partial_field_requests = 0
     reclaimed = reclaim_skipped = reclaim_failed = 0
     preflight_cost_usd = 0.0
@@ -2209,12 +2391,16 @@ def main(argv: list[str] | None = None) -> int:
             persist_cache=(None if args.dry_run else lambda: save_json(CACHE_PATH, cache)),
             max_cost_usd=args.max_cost_usd,
             interlock=not args.no_batch_interlock,
+            retry_rejected_titles=args.retry_rejected_title_without_ja_reference,
         )
         cache_hits = batch_stats["cache_hits"]
         api_calls = batch_stats["api_calls"]
         translated = batch_stats["translated"]
         failed = batch_stats["failed"]
         quality_rejected = batch_stats["quality_rejected"]
+        quality_parked = batch_stats["quality_parked"]
+        title_reference_retries = batch_stats["title_retries"]
+        title_reference_retry_successes = batch_stats["title_retry_successes"]
         skipped_no_budget = batch_stats["skipped_no_budget"]
         stale_translations_removed = batch_stats["stale_translations_removed"]
         provider_aborted = batch_stats["provider_aborted"]
@@ -2325,6 +2511,23 @@ def main(argv: list[str] | None = None) -> int:
             cost_budget_skipped += 1
             continue
 
+        if api_allowed and title_attempts_exhausted(
+            rejected, item_id, source_hash, PROMPT_VERSION
+        ):
+            # This exact English has already had its attempts and produced an
+            # unusable title each time. Buying it again tomorrow would produce
+            # the same rejection; the card keeps its English fallback until the
+            # English itself changes, which clears the record automatically.
+            if had_locale:
+                stale_translations_removed += 1
+            remove_translation(it, locale)
+            quality_parked += 1
+            logger.info(
+                "PARKED %s — title rejected on %d runs for this exact English; not "
+                "re-requesting until the English changes", item_id, MAX_TITLE_ATTEMPTS,
+            )
+            continue
+
         if api_allowed and args.parallel > 1:
             pending_direct.append(
                 (it, item_id, had_locale, source_hash, known_fields, missing_fields, field_keys)
@@ -2359,8 +2562,7 @@ def main(argv: list[str] | None = None) -> int:
                 title_errs = title_quality_errors(fields["title"])
                 if (
                     title_errs
-                    and args.retry_kana_title_without_ja_reference
-                    and "title contains Japanese kana" in title_errs
+                    and args.retry_rejected_title_without_ja_reference
                     and "title" in missing_fields
                     and api_calls < args.limit
                     and not cost_cap_reached()
@@ -2382,6 +2584,10 @@ def main(argv: list[str] | None = None) -> int:
                         title_reference_retry_successes += 1
                 if title_errs:
                     quality_rejected += 1
+                    note_title_rejection(
+                        rejected, item_id, source_hash, PROMPT_VERSION, title_errs,
+                        datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
+                    )
                     if had_locale:
                         stale_translations_removed += 1
                     remove_translation(it, locale)
@@ -2476,8 +2682,7 @@ def main(argv: list[str] | None = None) -> int:
                     title_errs = title_quality_errors(fields["title"])
                     if (
                         title_errs
-                        and args.retry_kana_title_without_ja_reference
-                        and "title contains Japanese kana" in title_errs
+                        and args.retry_rejected_title_without_ja_reference
                         and "title" in missing_fields
                         and api_calls < args.limit
                         and not cost_cap_reached()
@@ -2499,6 +2704,10 @@ def main(argv: list[str] | None = None) -> int:
                             title_reference_retry_successes += 1
                     if title_errs:
                         quality_rejected += 1
+                        note_title_rejection(
+                            rejected, item_id, source_hash, PROMPT_VERSION, title_errs,
+                            datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
+                        )
                         if had_locale:
                             stale_translations_removed += 1
                         remove_translation(it, locale)
@@ -2558,6 +2767,15 @@ def main(argv: list[str] | None = None) -> int:
     cache_diff = diff_counts(cache_before, cache_after)
     published_diff = diff_counts(published_before, published_after)
     translated_total = published_diff["after"]
+
+    # Drop rejection records that no longer describe anything: the item
+    # succeeded later, its English moved on, or it left the corpus. Only
+    # housekeeping -- rejection_record() already ignores a record whose hash no
+    # longer matches, so a stale one is inert, just not free to keep forever.
+    rejections_pruned = prune_title_rejections(
+        rejected, entries,
+        {(it.get("id") or ""): compute_source_hash(it, locale, PROMPT_VERSION) for it in items},
+    )
 
     backup_created = False  # translate does not back up; Stage 2 owns the public-file backup.
     saved_published_count = None
@@ -2668,6 +2886,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"translated_items          : {translated}")
     print(f"failed_items              : {failed}")
     print(f"quality_rejected_items    : {quality_rejected}")
+    print(f"quality_parked_items      : {quality_parked}")
+    print(f"rejection_records         : {len(rejected)}")
+    print(f"rejections_pruned         : {rejections_pruned}")
     print(f"skipped_no_budget         : {skipped_no_budget}")
     print(f"cost_budget_skipped       : {cost_budget_skipped}")
     print(f"stale_translations_removed: {stale_translations_removed}")

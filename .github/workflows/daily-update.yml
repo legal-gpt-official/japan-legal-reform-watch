@@ -134,6 +134,12 @@ jobs:
       # slow, it was losing ground, and would have kept losing it for the ~37
       # days the English backlog takes to clear.
       #
+      # A title the quality gate rejects gets one direct follow-up call with the
+      # Japanese reference removed -- that reference is what carries kana and
+      # Japanese phrasing into the Chinese title. The flag used to be refused
+      # outright alongside --batch, so from Phase 3A until now the daily run had
+      # no recovery at all and a bad sample simply became an English fallback.
+      #
       # The cap is $1.10 for 120 calls even though measured spend is ~$0.34,
       # because the pre-flight bound prices count_tokens output at the full
       # input rate while ~70% of this stage's prompt is served from the cache
@@ -160,10 +166,11 @@ jobs:
             --batch \
             --limit 120 \
             --max-cost-usd 1.10 \
+            --retry-rejected-title-without-ja-reference \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
             echo "### Simplified-Chinese translation maintenance (batch)"
-            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|quality_rejected_items|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^(blocked_by_running_batch|preflight_trimmed) *: *[1-9]' translate_run.log; then
             echo "::warning::Translation batch deferred work this run (interlock or cost bound); it resumes next run."
