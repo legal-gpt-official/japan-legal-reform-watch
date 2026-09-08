@@ -1589,8 +1589,11 @@ def apply_batch_outcome(
     title_errs = title_quality_errors(fields["title"])
     if title_errs:
         stats["quality_rejected"] += 1
+        # setdefault, not `or {}`: an empty dict is falsy, so `or {}` threw away
+        # the real record store on exactly the runs where it was still empty --
+        # which is every run until something is recorded, so nothing ever was.
         note_title_rejection(
-            stats.get("rejected") or {}, item_id, source_hash, PROMPT_VERSION,
+            stats.setdefault("rejected", {}), item_id, source_hash, PROMPT_VERSION,
             title_errs, datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), model_used,
         )
         logger.warning("QUALITY %s rejected title (%s)", item_id, "; ".join(title_errs))

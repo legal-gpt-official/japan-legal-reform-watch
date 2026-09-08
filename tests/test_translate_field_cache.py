@@ -473,6 +473,87 @@ class TestBatchIdempotency(FieldCacheBase):
         self.assertEqual(batches.cancelled, [], "must not cancel a batch it is collecting")
 
 
+
+class TestReclaimRecordsRejections(FieldCacheBase):
+    """A title rejected while reclaiming must be recorded like any other one.
+
+    The record store is empty on every run until something is first recorded,
+    and an empty dict is falsy -- so `stats.get("rejected") or {}` substituted a
+    throwaway dict on exactly those runs and the reclaim path therefore recorded
+    nothing, ever. Run 34169570196 showed the mismatch plainly:
+    quality_rejected_items: 2 beside rejection_records: 0.
+    """
+
+    def _client_with_ended_batch(self, rows):
+        batches = FakeBatches(rows)
+        batches.listed = [type("B", (), {"id": "msgbatch_lost", "processing_status": "ended"})()]
+        batches.list = lambda limit=20: batches.listed
+        return type("C", (), {"messages": type("M", (), {"batches": batches})()})()
+
+    def _row_with_title(self, custom_id, title):
+        payload = {f: ZH[f] for f in tu.TRANSLATION_FIELDS}
+        payload["title"] = title
+        block = type("Blk", (), {"type": "text", "text": json.dumps(payload)})()
+        message = type("M", (), {"content": [block], "model": "fake-batch", "usage": None})()
+        result = type("R", (), {"type": "succeeded", "message": message})()
+        return type("Row", (), {"custom_id": custom_id, "result": result})()
+
+    def _reclaim_a_bad_title(self, stats):
+        it = item(0, title_en="Only title")
+        source_hash = tu.compute_source_hash(it, LOCALE, tu.PROMPT_VERSION)
+        custom_id = tu.batch_custom_id(it, source_hash, tu.TRANSLATION_FIELDS)
+        tu.make_client = lambda: self._client_with_ended_batch(
+            [self._row_with_title(custom_id, "公开征求意见：エルフ施行规则修订草案")]
+        )
+        tu.discover_and_reclaim_batches([it], {}, {}, LOCALE, stats)
+        return it
+
+    def test_the_rejection_lands_in_the_store_even_when_it_starts_empty(self):
+        stats = recovery_stats()
+        stats["rejected"] = {}
+        self._reclaim_a_bad_title(stats)
+
+        self.assertEqual(stats["quality_rejected"], 1)
+        self.assertEqual(
+            list(stats["rejected"]), ["raw-0"],
+            "an empty store must still be the store that gets written to",
+        )
+        self.assertEqual(stats["rejected"]["raw-0"]["attempts"], 1)
+
+    def test_the_store_is_created_when_the_caller_supplied_none(self):
+        stats = recovery_stats()
+        self.assertNotIn("rejected", stats)
+        self._reclaim_a_bad_title(stats)
+        self.assertEqual(stats["rejected"]["raw-0"]["attempts"], 1)
+
+    def test_an_existing_record_is_incremented_not_replaced(self):
+        stats = recovery_stats()
+        stats["rejected"] = {}
+        self._reclaim_a_bad_title(stats)
+        first = dict(stats["rejected"]["raw-0"])
+
+        stats["quality_rejected"] = 0
+        stats["reclaimed"] = 0
+        self._reclaim_a_bad_title(stats)
+
+        record = stats["rejected"]["raw-0"]
+        self.assertEqual(record["attempts"], 2)
+        self.assertEqual(record["source_hash"], first["source_hash"])
+
+    def test_a_good_reclaimed_title_records_nothing(self):
+        it = item(0, title_en="Only title")
+        source_hash = tu.compute_source_hash(it, LOCALE, tu.PROMPT_VERSION)
+        custom_id = tu.batch_custom_id(it, source_hash, tu.TRANSLATION_FIELDS)
+        tu.make_client = lambda: self._client_with_ended_batch([batch_row(custom_id)])
+        stats = recovery_stats()
+        stats["rejected"] = {}
+
+        tu.discover_and_reclaim_batches([it], {}, {}, LOCALE, stats)
+
+        self.assertEqual(stats["reclaimed"], 1)
+        self.assertEqual(stats["rejected"], {})
+
+
 class TestRunnerLossRecovery(FieldCacheBase):
     """The batch must be recoverable with NO local state at all.
 
