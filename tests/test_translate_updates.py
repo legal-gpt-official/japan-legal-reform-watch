@@ -1987,7 +1987,7 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         a 60 budget (skipped_no_budget: 219) and the untranslated count rose
         212 -> 221 in one day. Demand is ~37 new arrivals plus re-translation of
         every item the summary step just upgraded to an AI English summary."""
-        self.assertIn("--limit 120", self.daily)
+        self.assertIn("--limit 140", self.daily)
 
     def test_daily_and_backfill_use_direct_translation(self):
         daily_command = next(
@@ -2103,7 +2103,7 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("name: Translate Simplified Chinese updates", self.workflow)
         self.assertIn("python scripts/translate_updates.py", self.workflow)
         self.assertIn("--locale zh-Hans", self.workflow)
-        self.assertIn("--limit 120", self.workflow)
+        self.assertIn("--limit 140", self.workflow)
         self.assertIn("--max-cost-usd 1.10", self.workflow)
         self.assertIn("estimated_cost_usd", self.workflow)
 

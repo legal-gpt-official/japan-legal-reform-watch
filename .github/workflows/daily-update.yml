@@ -69,19 +69,27 @@ jobs:
         # batch reports usage only once it finishes. Dropping --batch restores the
         # direct-call path unchanged.
         #
-        # Sized against measured demand: new items arrive at ~38/day (601 over 16
-        # days, with single days above 70), so a 30-call budget could not keep up
-        # and Japanese/Chinese coverage fell behind on the newest items. 50 calls
-        # clears that inflow with room to work off the backlog. The cap is $0.80
-        # because 50 requests budget to ~$0.65; measured spend is ~$0.49.
+        # Sized against measured demand and against the backlog. New items arrive
+        # at ~38/day, with single days above 70, so 50 calls only cleared about a
+        # dozen backlog items on an average day and none at all on a heavy one:
+        # run 34289616347 summarized 50 and english_remaining still rose 1689 ->
+        # 1709 against 70 arrivals. At 80 the same backlog drains in ~41 days
+        # instead of ~142.
+        #
+        # The cap moves with the limit because the PRE-FLIGHT bound is what
+        # decides trimming, not the measured spend. Measured is ~$0.009/call, so
+        # 80 calls bill about $0.72 and would look comfortable under $0.80 -- but
+        # the bound prices them at ~$0.012/call, i.e. $0.96, and the run would be
+        # silently trimmed. That is exactly the failure this budget work started
+        # from, so the cap is $1.10 and a test pins the invariant.
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
             --all-items \
             --english-only \
             --batch \
-            --api-limit 50 \
-            --max-cost-usd 0.80 2>&1 | tee english_summary_run.log
+            --api-limit 80 \
+            --max-cost-usd 1.10 2>&1 | tee english_summary_run.log
           {
             echo "### English summary maintenance (batch)"
             grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' english_summary_run.log || true
@@ -125,14 +133,21 @@ jobs:
       # --limit bounds NEW API calls per run; cache hits are free, and so are
       # fields already memoized from identical English elsewhere.
       #
-      # 120, and the largest budget of the three stages, because this stage's
+      # 140, and the largest budget of the three stages, because this stage's
       # demand is roughly double a summary stage's: new arrivals (~37/day) PLUS
       # re-translation of every item whose English the step above just upgraded
       # (up to 50/day, measured at 30). Run 33693101446 confirmed it: 279
       # candidates against a 60 budget left skipped_no_budget: 219, and the
       # untranslated count rose 212 -> 221 in a single day. 60 was not merely
-      # slow, it was losing ground, and would have kept losing it for the ~37
-      # days the English backlog takes to clear.
+      # slow, it was losing ground, and would have kept losing it for as long as
+      # the English backlog took to clear.
+      #
+      # 120 reached 100% coverage on 2026-09-09. It moved to 140 only because the
+      # English limit above went to 80: every English upgrade invalidates that
+      # item's Chinese translation, so this stage's demand is arrivals plus that
+      # limit, less the overlap between them. Observed at English 50: 70 arrivals
+      # + 50 upgrades = 95 candidates. At English 80 a comparable day is ~110.
+      # The cap stays $1.10: 140 requests bound to $0.98, still inside it.
       #
       # A title the quality gate rejects gets one direct follow-up call with the
       # Japanese reference removed -- that reference is what carries kana and
@@ -164,7 +179,7 @@ jobs:
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --batch \
-            --limit 120 \
+            --limit 140 \
             --max-cost-usd 1.10 \
             --retry-rejected-title-without-ja-reference \
             --provider-failure-mode warn 2>&1 | tee translate_run.log

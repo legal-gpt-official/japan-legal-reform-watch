@@ -285,10 +285,11 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertNotIn("--parallel", invocation)
         self.assertIn("--all-items", step)
         self.assertIn("--english-only", step)
-        self.assertIn("--api-limit 50", step)
+        self.assertIn("--api-limit 80", step)
         # The USD cap must survive the switch: it is the only spend brake besides
         # the call count, and it used to be rejected outright alongside --batch.
-        self.assertIn("--max-cost-usd 0.80", step)
+        # It also has to move WITH the limit -- see TestDailyBudgetCoversItsCallLimit.
+        self.assertIn("--max-cost-usd 1.10", step)
         self.assertIn("English summary provider unavailable", workflow)
         self.assertIn("### English summary maintenance (batch)", workflow)
 
