@@ -2200,14 +2200,14 @@
   },
   {
     "id": "raw-d8a038dd61d76c16",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-06-17)",
+    "title_en": "JSDA Publishes Guideline on Appropriate Underwriting Decisions for Corporate Bonds",
     "title_ja": "「社債券の適切な引受判断に係るガイドライン」の策定について",
     "area": "Finance / AML",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment process concerning the establishment of a 'Guideline on Appropriate Underwriting Decisions for Corporate Bonds'. According to the metadata, the public comment period ran from March 18 to April 16, 2025, and the results were published on June 17, 2025. This is an unofficial summary of a self-regulatory body's document, and details should be confirmed against the original Japanese source.",
+    "business_impact_en": "Securities firms involved in underwriting corporate bonds may need to review how this guideline could affect their underwriting decision processes. The change could influence internal review practices, though specifics are not detailed in the provided metadata.",
+    "recommended_action_en": "Consider reviewing the official JSDA public comment results document to understand the guideline's scope and any obligations for underwriting participants.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/files/20250617_hikiukegl_PCkekka.pdf",
     "published_at": "2025-06-17",
@@ -2220,26 +2220,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the guideline's actual content, scope, and effective date are unverified. The preliminary 'AML' label is keyword-based and may not accurately reflect the document, which appears to concern bond underwriting standards.",
+    "summarized_at": "2026-09-09T23:02:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本证券业协会公开征求意见结果：关于制定《公司债承销适当判断指南》",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《公司债券适当承销判断指南》",
+        "summary": "日本证券业协会（JSDA）公布了关于制定《公司债券适当承销判断指南》的公开征求意见结果。根据元数据，公开征求意见期为2025-03-18至2025-04-16，结果于2025-06-17公布。这是对某自律监管机构文件的非官方摘要，具体内容应以日文原始来源为准进行确认。",
+        "business_impact": "参与公司债券承销业务的证券公司可能需要审视该指南对其承销决策流程可能产生的影响。此项变化可能会影响内部审查做法，但所提供的元数据中未详细说明具体内容。",
+        "recommended_action": "建议考虑查阅JSDA公开征求意见结果的官方文件，以了解该指南的适用范围以及对承销参与者可能存在的相关要求。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-5755f6b03eccf780",
-    "title_en": "PPC Update: Response to Leakage Incidents Involving Specific Personal Information (2025-09-29)",
+    "title_en": "PPC Adds Standardized Form for Ransomware Incidents to Its Specified Personal Information Leak Response Page",
     "title_ja": "「特定個人情報の漏えい等事案が発生した場合の対応について」のページにランサムウェア事案に関する統一様式に関する事項を掲載しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Personal Information Protection Commission (PPC) announced that it has posted information about a unified/standardized form for ransomware incidents on its page concerning responses when a leak or similar event involving specified personal information (My Number) occurs. This is a government announcement from the PPC's new-information notices. The provided metadata references My Number (specified personal information) but does not include the detailed content of the form.",
+    "business_impact_en": "Organizations handling specified personal information (My Number) may need to review how they report or document ransomware-related incidents in line with the referenced standardized form.",
+    "recommended_action_en": "Consider reviewing the official PPC page and the referenced form to understand its scope and any applicable reporting expectations.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/legal/rouei?ref=ninf",
     "published_at": "2025-09-29",
@@ -2251,45 +2255,53 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title, source name, and a one-word raw summary ('My Number'); the form's contents and requirements are unverified. Labels are keyword-based triage only.",
+    "summarized_at": "2026-09-09T23:02:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会更新：特定个人信息泄露等事案发生时的应对（2025-09-29）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会在特定个人信息泄露应对页面新增勒索软件事案统一格式",
+        "summary": "个人信息保护委员会（PPC）宣布，已在其关于发生特定个人信息（My Number）泄露等事件时的应对页面上，刊载了有关勒索软件事案统一格式的信息。这是来自PPC新信息通知的政府公告。所提供的元数据提及My Number（特定个人信息），但未包含该格式的详细内容。",
+        "business_impact": "处理特定个人信息（My Number）的组织可能需要参照该统一格式，审查其在勒索软件相关事件方面的报告或记录方式。",
+        "recommended_action": "建议考虑查阅PPC官方页面及所referenced的格式，以了解其适用范围及可能的报告要求。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-7b7cc3630c7068d6",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2025-05-23)",
+    "title_en": "Act Partially Amending the Subcontract Payment Delay Prevention Act and the Subcontracting SME Promotion Act",
     "title_ja": "下請代金支払遅延等防止法及び下請中小企業振興法の一部を改正する法律",
     "area": "Antitrust / Fair Trade",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is an amending act that partially revises Japan's Act against Delay in Payment of Subcontract Proceeds and the Act on the Promotion of Subcontracting Small and Medium-sized Enterprises (Reiwa 7 Act No. 41). According to the metadata, it was promulgated on 2025-05-23 with a stated enforcement date of 2026-01-01. The record also references the Act on Strengthening the Management of Small and Medium-sized Enterprises (Heisei 11 Act No. 18) as a related target law.",
+    "business_impact_en": "Businesses that engage subcontractors or operate as subcontractors may need to review changes to subcontract payment and fair-trade obligations before the stated enforcement date. The scope and specific requirements could vary, so effects may differ by company.",
+    "recommended_action_en": "Review the official Japanese text and enforcement details at the provided e-Gov source to confirm the actual scope, obligations, and timing.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=411AC0000000018_20260101_507AC0000000041",
     "published_at": "2025-05-23",
     "last_checked": "2026-09-08",
     "relevance_score": 16.0,
     "first_seen_at": "2026-09-09",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧によると、「下請代金支払遅延等防止法及び下請中小企業振興法の一部を改正する法律」（令和七年法律第四十一号）に関する情報が掲載されています。メタデータ上、公布日は2025年5月23日、施行日は2026年1月1日と記載されています。対象法令として中小企業等経営強化法（平成十一年法律第十八号）が示されています。",
     "business_impact_ja": "下請取引に関する規律の見直しは、取引先との契約・支払条件や関連する社内対応に影響を及ぼす可能性があります。改正内容によっては継続的な確認が必要になることも考えられます。",
     "recommended_action_ja": "改正の具体的な内容や施行時期については、e-Gov法令検索など日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the amending act appears promulgated with a 2026-01-01 enforcement date per the record, but this and the 'In Force' label are unverified against the authoritative Japanese source. Names of statutes are unofficial English renderings.",
+    "summarized_at": "2026-09-09T23:02:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《关于修改防止拖延支付转包代金等法律及转包中小企业振兴法的法律》生效（2025-05-23）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《防止拖延支付转包款项法及转包中小企业振兴法》部分修正法",
+        "summary": "本条目为对日本《防止拖延支付转包款项法》及《转包中小企业振兴法》进行部分修订的修正法（令和7年法律第41号）。根据元数据，该法于2025-05-23公布，规定的生效日期为2026-01-01。记录中还提及《强化中小企业经营法》（平成11年法律第18号）作为相关目标法。",
+        "business_impact": "涉及委托转包业务或作为转包方经营的企业，可能需要在规定生效日期前审查转包款项支付及公平交易义务方面的变化。适用范围及具体要求可能有所不同，因此影响可能因企业而异。",
+        "recommended_action": "建议参考所提供的e-Gov来源查阅官方日文文本及生效细节，以确认实际适用范围、义务及时间安排。"
       }
     }
   },
@@ -2659,7 +2671,6 @@
     "last_checked": "2026-09-08",
     "relevance_score": 12.0,
     "first_seen_at": "2026-09-09",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令更新一覧によると、「食品等の流通の合理化及び取引の適正化に関する法律及び卸売市場法の一部を改正する法律」（令和七年法律第六十九号）が2025年6月18日に公布され、施行日は2025年10月1日とされています。更新一覧では、対象法令として中小企業等経営強化法（平成十一年法律第十八号）が示されています。",
     "business_impact_ja": "食品等の流通や取引、卸売市場に関わる事業者においては、改正内容に応じて取引実務や社内対応の見直しが必要となる可能性があります。関連する中小企業等経営強化法の適用を受ける事業者にも影響が及ぶことが考えられます。",
     "recommended_action_ja": "改正の具体的な内容や施行状況については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
@@ -2673,7 +2684,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-b5dbf51710f90045",
@@ -3138,7 +3150,6 @@
     "last_checked": "2026-09-08",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-09",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令更新一覧に、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）が掲載されています。公布日は2025年6月20日とされています。なお、更新一覧上の対象法令は所得税法（昭和四十年法律第三十三号）と記載されており、当該改正法令との関係を含めて原文での確認が必要です。",
     "business_impact_ja": "年金制度の機能強化に関する改正であるため、社会保険・従業員の待遇や関連する税務事務に影響が及ぶ可能性があります。改正の適用範囲や対象法令の関係によっては、対応の要否を検討する必要があると考えられます。",
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で、改正法令の内容、対象法令の範囲、施行時期などをご確認いただくことをお勧めします。",
@@ -3152,7 +3163,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f14b547bbe79a2fb",
@@ -3394,7 +3406,6 @@
     "last_checked": "2026-09-08",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-09",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
@@ -3402,7 +3413,14 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based",
+    "summary_ja": "所得税法（昭和四十年法律第三十三号）の一部を改正する法律（令和七年法律第十三号）に関する法令更新情報です。原文によれば、当該改正法は2025年3月31日に公布され、施行日は2027年1月1日とされています。更新一覧日は2026年9月8日と記載されています。",
+    "business_impact_ja": "所得税法の改正であるため、事業や個人の課税関係に影響が及ぶ可能性があります。施行時期を見据えた対応の検討が必要になることも考えられます。",
+    "recommended_action_ja": "改正内容や施行日の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-09T23:04:39Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-a64724c12a41587d",
@@ -3420,7 +3438,6 @@
     "last_checked": "2026-09-08",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-09",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
@@ -3428,7 +3445,14 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based",
+    "summary_ja": "所得税法（昭和四十年法律第三十三号）を改正する「所得税法等の一部を改正する法律」（令和七年法律第十三号）に関する法令更新情報です。公布日は2025年3月31日、施行日は2026年10月1日とされています。原文には改正内容の詳細は記載されていません。",
+    "business_impact_ja": "所得税に関する法令の改正であることから、関連する事業や税務対応に影響が生じる可能性があります。具体的な影響は改正内容の確認によって明らかになると考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で、改正法の具体的な内容および施行日を確認されることをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-09T23:04:39Z",
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-e768292e3ef15378",
