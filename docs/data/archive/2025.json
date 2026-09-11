@@ -2307,14 +2307,14 @@
   },
   {
     "id": "raw-fda48c0cb1fd8c3e",
-    "title_en": "NTA Update: Tax interpretation or administrative guidance revised (2025-12-05)",
+    "title_en": "NTA Interpretive Circular on Held-Stock Deduction Following Abolition of Special Gasoline Tax Rates",
     "title_ja": "揮発油税及び地方揮発油税の税率の特例の廃止に伴う手持品控除の取扱いについて（法令解釈通達）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) has published an item described as a law-interpretation circular (tsutatsu) concerning the treatment of a held-stock deduction in connection with the abolition of the special tax rates for the gasoline tax and local gasoline tax. It is listed among the NTA's new information and circulars. Details beyond the title are not provided in the metadata.",
+    "business_impact_en": "Businesses holding gasoline inventory could be affected by how a held-stock deduction is treated if special gasoline tax rates are abolished, though specifics are not confirmed here.",
+    "recommended_action_en": "Consider reviewing the official NTA source to confirm the scope, timing, and applicability of the described circular.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/law/tsutatsu/kobetsu/kansetsu/251205/index.htm",
     "published_at": "2025-12-05",
@@ -2327,26 +2327,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata; the substance, effective status, and details of the circular are unverified. The preliminary 'Finance / AML' label appears to be a keyword-based mislabel, as the item concerns gasoline taxation rather than AML.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国税厅公告：关于废止汽油税及地方汽油税税率特例后库存品扣除处理的法令解释通知（2025-12-05）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "日本国税厅：关于废止汽油税及地方汽油税特例税率后库存品扣除处理的法令解释通知",
+        "summary": "日本国税厅（NTA）发布了一项被描述为法令解释通知（通达）的内容，涉及在废止汽油税及地方汽油税特例税率之际，库存品扣除的处理方式。该内容列于国税厅的最新信息及通达之中。元数据中未提供标题以外的详细内容。",
+        "business_impact": "若汽油税特例税率被废止，持有汽油库存的企业可能会因库存品扣除的处理方式而受到影响，但具体情况在此未得到确认。",
+        "recommended_action": "建议考虑查阅国税厅的官方来源，以确认该通达所述内容的适用范围、时间安排及适用性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-14899bcda84efdd1",
-    "title_en": "e-Gov Law Update: Employment for Skill Development Program Rules",
+    "title_en": "Enforcement Regulation on Proper Implementation of Foreign Worker Training-Employment and Protection of Such Workers",
     "title_ja": "外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an enforcement regulation (Ministry of Justice / Ministry of Health, Labour and Welfare Ordinance No. 4 of Reiwa 7) relating to the proper implementation of the training-employment (ikusei shuro) system for foreign nationals and the protection of such workers. According to the metadata, it amends the enforcement regulation of the existing Technical Intern Training Act and lists a promulgation date of 2025-09-30 and a stated effective date of 2027-04-01. The item is drawn from an e-Gov law update list and reflects a scheduled regulatory change.",
+    "business_impact_en": "Organizations that employ or sponsor foreign workers under Japan's training and employment frameworks may need to review how this regulation could affect their compliance obligations. The transition from the technical intern training system to the training-employment system could involve procedural and documentation changes.",
+    "recommended_action_en": "Consider reviewing the official e-Gov source and the cited ordinance to confirm the scope, obligations, and effective date before taking any action.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=428M60000110003_20270401_507M60000110004",
     "published_at": "2025-09-30",
@@ -2359,26 +2363,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-15T21:22:33Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata only; the 2027-04-01 effective date and promulgation are as stated in the source metadata and should be verified against the official text. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《外国人育成就业适当实施及育成就业外国人保护法施行规则》",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "施行规则：外国人育成就业适当实施及育成就业外国人保护法",
+        "summary": "本项目涉及一项施行规则（令和7年法务省·厚生劳动省令第4号），关于外国人育成就业制度的适当实施及此类劳动者的保护。根据元数据，该规则修订了现行《技能实习法》的施行规则，公布日期为2025-09-30，规定生效日期为2027-04-01。该项目来自e-Gov法令更新一览，反映了一项预定的法规变更。",
+        "business_impact": "在日本育成就业相关框架下雇用或担保外国劳动者的机构，可能需要审视本规则可能如何影响其合规义务。从技能实习制度过渡到育成就业制度，可能涉及程序及文件方面的变化。",
+        "recommended_action": "建议考虑查阅e-Gov官方来源及所引用的省令，以在采取任何行动前确认其适用范围、义务及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-6da65bc49919c200",
-    "title_en": "NTA Update: Tax interpretation or administrative guidance revised (2025-07-01)",
+    "title_en": "NTA Interpretive Circular on Valuing Land in Nuclear Plant Evacuation Zones Acquired by Inheritance in 2025",
     "title_ja": "令和7年中に相続等により取得した原子力発電所周辺の避難指示区域内に存する土地等の評価について（法令解釈通達）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a legal interpretation circular (tsutatsu) from Japan's National Tax Agency (NTA) concerning the valuation of land and similar assets located within evacuation-designated zones around a nuclear power plant, where such assets are acquired by inheritance or similar means during 2025 (Reiwa 7). It appears to provide interpretive guidance for tax valuation purposes. Details beyond the title and source are not provided in the metadata.",
+    "business_impact_en": "Parties involved in inheritance or transfer of property within the referenced evacuation zones may need to consider how this valuation guidance could affect tax assessments.",
+    "recommended_action_en": "Review the official NTA circular at the provided source to confirm the exact scope, valuation methods, and applicable conditions.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/law/tsutatsu/kobetsu/hyoka/0025005-110/01.htm",
     "published_at": "2025-07-01",
@@ -2391,26 +2399,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and source name; the full text was not provided, so specific valuation rules are unverified. The preliminary 'Finance / AML' label appears imprecise, as the item concerns tax valuation of inherited property.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国税厅公告：关于2025年度因继承等取得的核电站周边避难指示区域内土地等评估的税法解释通知",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "国税厅通达：关于2025年内因继承等取得的核电站周边疏散指示区域内土地等的评估",
+        "summary": "该内容为日本国税厅（NTA）发布的一份法令解释通达，涉及位于核电站周边疏散指示区域内的土地等资产，在2025年（令和7年）内通过继承等方式取得时的评估问题。该通达似为税务评估提供解释性指引。元数据中除标题和来源外未提供更多细节。",
+        "business_impact": "涉及在上述疏散指示区域内进行财产继承或转让的相关方，可能需要考虑该评估指引对税务评定可能产生的影响。",
+        "recommended_action": "建议查阅来源处提供的国税厅官方通达，以确认具体适用范围、评估方法及适用条件。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-fb9ee178c4937105",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-06-06)",
+    "title_en": "Act on Arrangement of Related Laws Accompanying Enforcement of the Act on Security Assignment and Retention of...",
     "title_ja": "譲渡担保契約及び所有権留保契約に関する法律の施行に伴う関係法律の整備等に関する法律",
     "area": "Other",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item, from e-Gov Law Search, concerns an act to arrange related laws in connection with the enforcement of the Act on Security Assignment Contracts and Retention of Title Contracts (indicated as Reiwa 7 Act No. 57), with a promulgation date given as 2025-06-06. The metadata identifies the Registration and License Tax Act (Showa 42 Act No. 35) as a target law affected by this amendment. The details reflect a law-update listing and should be verified against the official Japanese source.",
+    "business_impact_en": "Businesses involved in secured transactions, asset transfers, or activities subject to registration and license tax may be affected and could need to review how these amendments interact with existing arrangements.",
+    "recommended_action_en": "Consider reviewing the official e-Gov Law Search source to confirm the scope, affected provisions, and applicable timing.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=342AC0000000035_20271205_507AC0000000057",
     "published_at": "2025-06-06",
@@ -2423,26 +2435,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and update-listing metadata; the metadata labels this as promulgated and references a 2025-06-06 publication date, but exact effective timing and detailed content are unverified against the official text. Dates in the raw summary appear inconsistent and should be checked.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本法律公布：《关于让与担保合同及所有权保留合同的法律的施行相关法律整备等的法律》（2025-06-06）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《关于〈让与担保合同及所有权保留合同相关法律〉施行所伴随的相关法律整备等法律》公布",
+        "summary": "该条目来自e-Gov法令检索，涉及为配合《让与担保合同及所有权保留合同相关法律》（令和7年法律第57号）施行而对相关法律进行整备的法律，公布日期为2025-06-06。元数据显示《登记许可税法》（昭和42年法律第35号）为受此次修订影响的目标法律。相关内容反映的是法令更新列表信息，应与日文官方来源核对确认。",
+        "business_impact": "从事担保交易、资产转让或涉及登记许可税相关活动的企业可能受到影响，或需要审视这些修订与现有安排之间的关系。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索官方来源，以确认适用范围、受影响条款及适用时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e19cfc1e2bfe1191",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-05-23)",
+    "title_en": "Act to Arrange Related Laws Following Enforcement of the Act on Prevention of Damage from Unauthorized Acts Against...",
     "title_ja": "重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an act arranging related laws in connection with the enforcement of the Act on Prevention of Damage from Unauthorized Acts Against Critical Computers. According to the metadata, the amending law (Reiwa 7 Act No. 43) was promulgated on 2025-05-23, with an effective date of 2026-10-01, and one of the affected laws is the National Public Service Act (Showa 22 Act No. 120). The preliminary triage labels mark it as scheduled to take effect.",
+    "business_impact_en": "Entities affected by the National Public Service Act or by rules governing critical computer systems may need to consider consequential changes once the amendments take effect. The scope and specific obligations could vary depending on the underlying provisions.",
+    "recommended_action_en": "Review the official e-Gov Law Search source to confirm the affected provisions, scope, and effective date before drawing any conclusions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000120_20261001_507AC0000000043",
     "published_at": "2025-05-23",
@@ -2455,26 +2471,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the promulgation and 2026-10-01 effective date are stated in the raw summary but should be verified against the authoritative Japanese source. Area label 'Other' is weak triage context only.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《为配合〈防止对重要电子计算机实施不正行为造成损害相关法律〉施行的相关法律整备等法律》定于生效（2025-05-23）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法律调整：因《重要电子计算机不正当行为损害防止法》施行而修订相关法律",
+        "summary": "本条目涉及一项因《重要电子计算机不正当行为损害防止法》施行而对相关法律进行调整的法律。根据元数据，该修正法（令和7年法律第43号）于2025-05-23公布，生效日期为2026-10-01，受影响的法律之一是《国家公务员法》（昭和22年法律第120号）。初步分类将其标记为预定生效。",
+        "business_impact": "受《国家公务员法》或重要电子计算机系统相关规则影响的主体，可能需要在修正案生效后考虑相应的连带变化。具体范围及义务可能视相关条文而有所不同。",
+        "recommended_action": "建议在得出结论前，查阅e-Gov法令检索的官方来源，以确认受影响的条文、适用范围及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-3dc7bf0131d53073",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-05-23)",
+    "title_en": "Act Amending Related Laws Following Enforcement of Act on Prevention of Damage from Unauthorized Acts Against...",
     "title_ja": "重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "According to the metadata, this item concerns an amending act (Reiwa 7 Act No. 43) that adjusts related laws in connection with enforcement of the Act on Prevention of Damage from Unauthorized Acts Against Critical Computers. The listed target law is the Act on Strengthening Industrial Competitiveness (Heisei 25 Act No. 98). The metadata indicates a promulgation date of 2025-05-23 and a scheduled enforcement date of 2026-10-01.",
+    "business_impact_en": "Organizations subject to the affected laws, including matters tied to industrial competitiveness and critical computer systems, may need to review how the amendments could affect their obligations. The changes could take effect on the noted future date if that schedule holds.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, affected provisions, and applicable enforcement timing.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=425AC0000000098_20261001_507AC0000000043",
     "published_at": "2025-05-23",
@@ -2487,15 +2507,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the raw summary lists a promulgation date and a future enforcement date, but full provisions and current status are unverified. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《因应重要电子计算机不正当行为损害防止法施行的相关法律整备法》定于生效（2025-05-23）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《重要电子计算机不正行为造成损害防止法》施行相关法律整备法",
+        "summary": "根据元数据，本条目涉及一项修订法（令和7年法律第43号），该法为配合《重要电子计算机不正行为造成损害防止法》的施行而对相关法律进行调整。列明的对象法律为《强化产业竞争力法》（平成25年法律第98号）。元数据显示公布日期为2025-05-23，预定生效日期为2026-10-01。",
+        "business_impact": "涉及产业竞争力及重要电子计算机系统相关事项的适用法律的组织，可能需要审视此次修订对其义务可能产生的影响。若该时间安排维持不变，相关变更可能于所述未来日期生效。",
+        "recommended_action": "建议参考e-Gov法令检索中的日文官方来源，以确认适用范围、受影响条款及相应的生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-c22b93d5ce5e9a56",
@@ -2895,6 +2919,292 @@
     "last_checked": "2026-09-10",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-11",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-d2eb0b3629ea4dd1",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000144_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-af0b6ed8390fdf52",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=421AC1000000081_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-3adcd858d0d9d794",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-4689d34f92f8a8af",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=406AC0000000117_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-61633fc1fd7acd69",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=418AC0000000004_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-24b1db13240ea4a7",
+    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Promulgated",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20281211_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-8d73766fd5003f20",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000164_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-5306a32000394cf3",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=314AC0000000073_20270401_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-4fc7670b607e669d",
+    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Promulgated",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000164_20281211_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-6cb9a0036a1e5780",
+    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Promulgated",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=314AC0000000073_20281211_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
+  },
+  {
+    "id": "raw-c7a292f453d66bb3",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_ja": "医療法等の一部を改正する法律",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20261001_507AC0000000087",
+    "published_at": "2025-12-12",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
     "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
@@ -3193,6 +3503,96 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-a704e138390464e7",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-20)",
+    "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
+    "area": "Labor / Employment",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20270901_507AC0000000074",
+    "published_at": "2025-06-20",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-e1a95168c37bba44",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-20)",
+    "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
+    "area": "Labor / Employment",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=314AC0000000073_20280401_507AC0000000074",
+    "published_at": "2025-06-20",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-6d615656bb95b6e6",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-20)",
+    "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
+    "area": "Labor / Employment",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20280401_507AC0000000074",
+    "published_at": "2025-06-20",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-251f7a99085cd525",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-20)",
+    "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
+    "area": "Labor / Employment",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20280901_507AC0000000074",
+    "published_at": "2025-06-20",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-6cac3c0a106396fa",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-06-20)",
+    "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
+    "area": "Labor / Employment",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20290901_507AC0000000074",
+    "published_at": "2025-06-20",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-f14b547bbe79a2fb",
     "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-06-11)",
     "title_ja": "貨物自動車運送事業法の一部を改正する法律",
@@ -3385,6 +3785,24 @@
     "summary_source": "rule_based"
   },
   {
+    "id": "raw-9ee7dc9a9f47e2ce",
+    "title_en": "e-Gov Law Update: Law or regulation in force (2025-05-14)",
+    "title_ja": "船員法等の一部を改正する法律",
+    "area": "Other",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20260513_507AC0000000032",
+    "published_at": "2025-05-14",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
     "id": "raw-8caad6b465815785",
     "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-05-01)",
     "title_ja": "「『公社債の店頭売買の参考値等の発表及び売買値段に関する規則』に関する細則」等の一部改正について",
@@ -3478,6 +3896,60 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-1a2463c0de8b8ca0",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_ja": "地方税法及び地方税法等の一部を改正する法律の一部を改正する法律",
+    "area": "Other",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20270101_507AC0000000007",
+    "published_at": "2025-03-31",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-19ee5eb284b9cb12",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_ja": "地方税法及び地方税法等の一部を改正する法律の一部を改正する法律",
+    "area": "Other",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20270401_507AC0000000007",
+    "published_at": "2025-03-31",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
+    "summary_source": "rule_based"
+  },
+  {
+    "id": "raw-5b85baabc0ca60eb",
+    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_ja": "地方税法及び地方税法等の一部を改正する法律の一部を改正する法律",
+    "area": "Other",
+    "stage": "Scheduled to Take Effect",
+    "impact_level": "Medium",
+    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
+    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
+    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20261001_507AC0000000007",
+    "published_at": "2025-03-31",
+    "last_checked": "2026-09-11",
+    "relevance_score": 10.0,
+    "first_seen_at": "2026-09-12",
     "summary_source": "rule_based"
   },
   {

@@ -1045,14 +1045,14 @@
   },
   {
     "id": "raw-f734cc4ed3f21f31",
-    "title_en": "Diet Bill Update: Bill under consideration",
+    "title_en": "Bill to Partially Amend the Act on the Establishment of Special Wards in Large Metropolitan Areas",
     "title_ja": "大都市地域における特別区の設置に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Bill Submitted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a House of Representatives bill (shuho) proposing partial amendments to the Act on the Establishment of Special Wards in Large Metropolitan Areas. According to the metadata, it was submitted in the 221st Diet session (number 25) and its deliberation status is listed as concluded in this chamber ('hongin ryogi'). No enactment or entry into force is indicated by the provided information.",
+    "business_impact_en": "If eventually enacted, changes to the framework for establishing special wards in large metropolitan areas could affect local government structures and related administrative arrangements.",
+    "recommended_action_en": "Review the official House of Representatives source and monitor the bill's status to confirm its current stage and any final outcome.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2AA6.htm",
     "published_at": "",
@@ -1065,26 +1065,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; publication date is missing and 'concluded in this chamber' status is unverified. This is a proposed bill, not confirmed law.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：《大都市地区特别区设置法》部分修正法案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "summary": "这是众议院提交的法案（众法），提议对《大都市地区特别区设置法》进行部分修正。根据元数据，该法案于第221届国会会期提交（第25号），其审议状态标注为在本院已结束审议（本院了议）。所提供的信息未显示该法案已成立或已生效。",
+        "business_impact": "若该法案最终成立，有关大都市地区特别区设置框架的变更可能会影响地方政府结构及相关行政安排。",
+        "recommended_action": "建议查阅众议院官方来源并持续关注该法案的状态，以确认其当前阶段及最终结果。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-8699ec498f4fc026",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Public Offices Election Act and the Act on Handling Rights Infringements via...",
     "title_ja": "公職選挙法及び特定電気通信による情報の流通によって発生する権利侵害等への対処に関する法律の一部を改正する法律案",
     "area": "Data / Privacy / AI",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a House of Representatives bill (衆法, 221st Diet session, No. 26) to partially amend the Public Offices Election Act and the Act on responding to rights infringements and similar issues arising from the distribution of information via specified telecommunications. The raw metadata indicates a deliberation status of 'passed/established' (成立). No publication date is provided in the metadata, and details of the amendments are not included.",
+    "business_impact_en": "Organizations involved in elections or online information distribution and provider responsibility may be affected, and could need to review how the amendments alter existing obligations.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the current status, effective timing, and substantive content of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2AAA.htm",
     "published_at": "",
@@ -1097,26 +1101,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata. The raw summary uses the term '成立' (passed), but exact promulgation or enforcement details are not provided and should be verified against the official source. Preliminary labels are keyword-based and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《公职选举法》及《特定电气通信信息流通侵权对处法》修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《公职选举法》及《特定电气通信信息流通侵权对应法》",
+        "summary": "这是众议院法案（众法，第221届国会，第26号），旨在部分修订《公职选举法》及关于应对因特定电气通信信息流通而产生的权利侵害等问题的法律。原始元数据显示审议状态为“成立”（已通过）。元数据中未提供公布日期，也未包含修订的具体内容。",
+        "business_impact": "涉及选举或网络信息流通及提供者责任的相关组织可能受到影响，可能需要审视此次修订将如何改变现有义务。",
+        "recommended_action": "建议查阅众议院官方来源，以确认修订的最新状态、生效时间及具体内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-704adf872cb357c1",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Support for Children Requiring Medical Care and Their Families",
     "title_ja": "医療的ケア児及びその家族に対する支援に関する法律の一部を改正する法律案",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a House of Representatives (Shugiin) member-sponsored bill (giin rippo) to partially amend the Act on Support for Children Requiring Medical Care and Their Families. The metadata records the deliberation status as 'passed/enacted' (seiritsu), submitted in the 221st Diet session, bill number 29. No publication date is provided in the metadata.",
+    "business_impact_en": "Organizations involved in healthcare, disability support, or services for children requiring medical care and their families may be affected by amended support requirements or scope.",
+    "recommended_action_en": "Review the official Shugiin source and the enacted amendment text to confirm the specific changes and their applicability.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2BCA.htm",
     "published_at": "",
@@ -1129,26 +1137,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; the raw summary states '成立' (enacted), but the exact provisions, scope, and effective date are unverified and should be confirmed against the official source.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《医疗照护儿童及其家庭支援法》修正法案已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗照护儿童及其家庭支援法》部分修正法案",
+        "summary": "这是一项由众议院议员提出的议员立法（议员立法），旨在部分修正《医疗照护儿童及其家庭支援法》。元数据记录的审议状态为“通过/成立”（成立），于第221届国会提交，议案编号第29号。元数据中未提供公布日期。",
+        "business_impact": "涉及医疗、残障支援或为需要医疗照护的儿童及其家庭提供服务的机构，可能会受到修正后的支援要求或适用范围的影响。",
+        "recommended_action": "建议查阅众议院官方来源及已成立的修正法文本，以确认具体变更内容及其适用范围。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-7fe9089383994d45",
-    "title_en": "Diet Bill Update: Bill under consideration",
+    "title_en": "Bill to Partially Amend the Basic Act on the Promotion of Manufacturing Technology",
     "title_ja": "ものづくり基盤技術振興基本法の一部を改正する法律案",
     "area": "Other",
     "stage": "Bill Submitted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill (submitted to the House of Representatives) to partially amend Japan's Basic Act on the Promotion of Core Manufacturing Technology (Monozukuri Kiban Gijutsu Shinko Kihonho). According to the metadata, it was submitted during the 221st Diet session (item number 33) and is noted as under continued review during recess ('closed-session review'). It has not been indicated as enacted or in force.",
+    "business_impact_en": "If eventually adopted, changes to the framework supporting manufacturing technology could affect policies or programs relevant to manufacturing-related businesses, though the content and outcome remain uncertain.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives bill record to confirm the bill's current status and substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2BF6.htm",
     "published_at": "",
@@ -1161,26 +1173,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T07:44:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief legislative metadata; the bill's specific content, sponsor, and outcome are unverified, and the 'continued review during recess' status is drawn from the raw summary.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案提交：《制造基盘技术振兴基本法》部分修订法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《制造基础技术振兴基本法》部分修正法案",
+        "summary": "这是一项立法法案（已提交众议院），旨在部分修订日本的《制造基础技术振兴基本法》。根据元数据，该法案于第221届国会会期提交（议案编号33），并被标注为在休会期间处于继续审议状态（“闭会中审查”）。目前尚未显示其已被制定或生效。",
+        "business_impact": "若该法案最终获得通过，支持制造技术的框架变化可能会影响与制造相关企业有关的政策或计划，但具体内容和结果仍不确定。",
+        "recommended_action": "建议考虑查阅众议院官方法案记录，以确认该法案的当前状态及具体条款内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-1406e28e09dd74b6",
-    "title_en": "Diet Bill Update: Bill under consideration",
+    "title_en": "Bill to Partially Amend the Public Offices Election Act",
     "title_ja": "公職選挙法の一部を改正する法律案",
     "area": "Other",
     "stage": "Bill Submitted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill (House of Representatives member bill) proposing to partially amend Japan's Public Offices Election Act. According to the metadata, it was submitted during the 221st Diet session (bill number 35) and is listed as under review during the recess ('closed-session review'). The bill has not been indicated as enacted or in force.",
+    "business_impact_en": "If eventually adopted, changes to election-related rules could affect organizations and individuals involved in electoral processes or campaign activities, though the content and outcome remain uncertain.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's current status, contents, and any subsequent legislative developments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2C6E.htm",
     "published_at": "",
@@ -1193,26 +1209,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; no publication date and no substantive text of the amendment were provided, so specific provisions are unverified. Stage and impact labels are rule-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：《公职选举法》部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "summary": "这是一项立法法案（众议院议员提案），旨在部分修正日本的《公职选举法》。根据元数据，该法案于第221届国会会期提交（议案编号35），目前列为在休会期间审议中（“闭会中审查”）。该法案尚未被标注为已成立或已生效。",
+        "business_impact": "若该法案最终获得通过，与选举相关规则的变更可能会影响参与选举程序或竞选活动的组织和个人，但具体内容和结果仍不确定。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的当前状态、内容及后续立法进展。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-3c330482ef7da03b",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Kenchikushi Act (Architects and Building Engineers Act)",
     "title_ja": "建築士法の一部を改正する法律案",
     "area": "Real Estate / Land Use",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a member-sponsored bill (Diet bill) to partially amend Japan's Kenchikushi Act (Architects and Building Engineers Act), tracked in the House of Representatives bill records. The metadata lists the deliberation status as 'passed/enacted' (成立), submitted during the 221st Diet session as bill number 38. No promulgation or enforcement date is provided in the metadata.",
+    "business_impact_en": "If the amendments take effect, they could affect requirements or obligations for licensed architects and related building professionals in Japan. The specific scope and substance of the changes are not detailed in the provided metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the final statutory text to confirm the amendment's status, content, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2CF6.htm",
     "published_at": "",
@@ -1225,26 +1245,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese bill title and brief status metadata; the raw summary indicates '成立' (passed), but the specific amendments, promulgation, and enforcement details are not provided and should be verified against the official source. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《建筑士法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《建筑士法》",
+        "summary": "这是一项议员提交的法案（国会法案），旨在部分修订日本的《建筑士法》，记录于众议院议案信息中。元数据显示审议状态为“成立”（已通过），于第221届国会会期提交，议案编号为38号。元数据中未提供公布或生效日期。",
+        "business_impact": "如果该修订生效，可能会影响日本持证建筑士及相关建筑专业人员的要求或义务。所提供的元数据中未详细说明具体的变更范围和内容。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认该修订的状态、内容及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4b8820a4847e0a69",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Act on the Payment of Special Child Rearing Allowances",
     "title_ja": "特別児童扶養手当等の支給に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill (a member-sponsored/House bill) proposing partial amendments to the Act on the Payment of Special Child Rearing Allowances and related allowances, per information from the House of Representatives bill database. According to the metadata, it was submitted in the 221st Diet session (bill number 2), and its deliberation status is listed as not completed ('mibunryō'). The bill has not been indicated as enacted or in force.",
+    "business_impact_en": "If eventually enacted, changes to the special child rearing allowance framework could affect eligibility, payment amounts, or administrative processes for related benefits, though the specific content is not provided here.",
+    "recommended_action_en": "Review the official House of Representatives bill page and the authoritative Japanese source to confirm the bill's content and current status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE23A2.htm",
     "published_at": "",
@@ -1257,26 +1281,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese bill title and brief metadata; the specific amendment content is not provided. Deliberation status appears incomplete, and no enactment is indicated.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《特别儿童抚养津贴等支给相关法律》部分修正法律案状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：修订《特别儿童抚养津贴等支付法》部分条款",
+        "summary": "这是一项立法法案（议员提案/众议院法案），根据众议院法案数据库信息，提议对《特别儿童抚养津贴等支付法》及相关津贴的部分条款进行修订。据元数据显示，该法案已于第221届国会提交（法案编号2），其审议状态列为未完成（“未了”）。该法案尚未被标示为已成立或已生效。",
+        "business_impact": "若该法案最终获得通过，特别儿童抚养津贴制度的变更可能会影响相关福利的领取资格、支付金额或行政流程，但此处未提供具体内容。",
+        "recommended_action": "建议查阅众议院法案官方页面及权威日文来源，以确认该法案的具体内容和当前状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-8a743446d8f792c8",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Income Tax Act",
     "title_ja": "所得税法の一部を改正する法律案",
     "area": "Tax / Stamp Duty",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill proposing partial amendments to Japan's Income Tax Act, listed in the House of Representatives (Shugiin) bill records. According to the metadata, it was submitted as a member/House of Councillors bill (sanpou) during the 221st Diet session (number 3), and its deliberation status is marked as incomplete ('miryo'). The bill has not been indicated as enacted or in force.",
+    "business_impact_en": "If eventually enacted, amendments to the Income Tax Act could affect income tax obligations, but as a pending bill with incomplete deliberation, any impact remains uncertain.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's current status, content, and any subsequent developments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE23BA.htm",
     "published_at": "",
@@ -1289,26 +1317,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the deliberation status appears incomplete and no enactment is indicated. Publication date not provided. Preliminary labels are keyword-based and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《所得税法一部修正法律案》状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《所得税法》部分修正法律案",
+        "summary": "这是一项提议部分修正日本《所得税法》的法案，列于众议院议案记录中。根据元数据，该法案是在第221届国会（第3号）作为参议院议员提案（参法）提交的，其审议状态标记为未完成（未了）。该法案尚未被标示为已成立或已生效。",
+        "business_impact": "如果该法案最终成立，对《所得税法》的修正可能会影响所得税相关义务，但由于该法案仍在审议中且审议未完成，其影响仍不确定。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的当前状态、内容及后续进展。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f84ec050d061c3ca",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Local Tax Act",
     "title_ja": "地方税法の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a bill (proposed legislation) to partially amend Japan's Local Tax Act, submitted to the House of Representatives. According to the metadata, it is a member-submitted bill from the 221st Diet session (number 4) with a deliberation status listed as incomplete/not concluded. It has not been indicated as enacted or in force.",
+    "business_impact_en": "If eventually enacted, amendments to the Local Tax Act could affect local tax obligations for businesses and individuals, though the specific changes are not described in the provided metadata.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's content and current deliberation status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE23D2.htm",
     "published_at": "",
@@ -1321,26 +1353,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the substantive content of the amendment is not provided. Status indicated as not concluded ('未了'); no enactment implied.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《地方税法部分修正法律案》状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《地方税法》部分修订法案",
+        "summary": "这是一项提交至众议院、旨在部分修订日本《地方税法》的法案（立法提案）。根据元数据，这是第221届国会（第4号）的议员提交法案，审议状态列为未完成/未有结论。尚未显示已获通过或已生效。",
+        "business_impact": "若该法案最终获得通过，对《地方税法》的修订可能影响企业和个人的地方税义务，但所提供的元数据中未描述具体变更内容。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的具体内容及当前审议状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-2c0bed72fc9288b1",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Act on Protection of Specially Designated Secrets and the Act on Protection and Use of...",
     "title_ja": "特定秘密の保護に関する法律及び重要経済安保情報の保護及び活用に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a proposed bill (member-submitted, 参法) to partially amend the Act on the Protection of Specially Designated Secrets and the Act on the Protection and Use of Critical Economic Security Information, listed in the House of Representatives bill records. According to the metadata, the deliberation status is unfinished (審議状況: 未了), submitted during Diet session number 221 as bill number 6. No enactment or entry into force is indicated by the provided information.",
+    "business_impact_en": "If advanced and enacted, the proposed amendments could affect obligations related to the handling of specially designated secrets and critical economic security information, which may be relevant to organizations handling such information.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's current status, scope, and text before drawing any conclusions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE254A.htm",
     "published_at": "",
@@ -1353,26 +1389,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; deliberation is marked unfinished and no publication date is provided. Details unverified against the full official source.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《特定秘密保护法》及《重要经济安保信息保护及活用法》部分修订法案状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《特定秘密保护法》及《重要经济安保信息保护及活用法》部分内容",
+        "summary": "这是一项拟议法案（议员提交，参法），旨在部分修订《特定秘密保护法》及《重要经济安保信息保护及活用法》，该法案已列入众议院议案记录。根据元数据，审议状况为“未了”，于第221届国会作为第6号议案提交。所提供的信息未表明该法案已成立或生效。",
+        "business_impact": "若该修正案获得推进并成立，可能影响与特定秘密及重要经济安保信息处理相关的义务，这可能与处理此类信息的组织相关。",
+        "recommended_action": "建议查阅众议院官方来源，在得出任何结论之前确认该法案的当前状态、适用范围及文本内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-85538f50679e5adb",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Penal Code (withdrawn)",
     "title_ja": "刑法の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill proposing partial amendments to Japan's Penal Code, listed in the House of Representatives bill records. According to the metadata, it was a member-sponsored bill (submission session 221, number 7) whose deliberation status is marked as withdrawn. No further details on the content of the proposed amendments are provided in the metadata.",
+    "business_impact_en": "Because the bill is indicated as withdrawn, it may have no immediate effect, though the topic could resurface in future legislative proposals relevant to criminal law compliance.",
+    "recommended_action_en": "Consult the official House of Representatives source to verify the bill's content and current status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2562.htm",
     "published_at": "",
@@ -1385,26 +1425,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the amendments is not described and the 'withdrawn' status is taken from the raw summary and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《刑法部分修正法律案》状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《刑法》部分修正法案（已撤回）",
+        "summary": "这是一项提议对日本《刑法》进行部分修正的法律议案，列于众议院议案记录中。根据元数据，该法案为议员提交的法案（第221届会期，第7号），其审议状态标记为已撤回。元数据中未提供有关拟议修正内容的进一步细节。",
+        "business_impact": "由于该法案已被标记为撤回，可能不会产生直接影响，但该议题或可能在未来与刑事法合规相关的立法提案中再次出现。",
+        "recommended_action": "建议查阅众议院官方来源，以核实该法案的内容和当前状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ed05bc392872b0aa",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Child Rearing Allowance Act (House of Representatives)",
     "title_ja": "児童扶養手当法の一部を改正する等の法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a bill (a member-sponsored bill / 参法) to partially amend Japan's Child Rearing Allowance Act (Jido Fuyo Teate Ho), listed in House of Representatives legislative records. According to the metadata, it was submitted during the 221st Diet session (number 10) and its deliberation status is noted as 'incomplete/not concluded' (未了). No enactment or entry into force is indicated by the provided information.",
+    "business_impact_en": "If eventually adopted, changes to the child rearing allowance framework could affect eligibility, benefit amounts, or related administrative obligations, but the bill's status suggests it may not have advanced.",
+    "recommended_action_en": "Review the official House of Representatives source and the underlying bill text to confirm the current legislative status and any substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2A42.htm",
     "published_at": "",
@@ -1417,26 +1461,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata only; the deliberation status appears to be 'not concluded' and no publication date was provided. Statute name and bill details are unverified against full text.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《修改儿童抚养津贴法等法律》法案状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《儿童抚养津贴法》（众议院）",
+        "summary": "这是一项旨在部分修订日本《儿童抚养津贴法》（児童扶養手当法）的法案（议员提交法案／参法），列于众议院立法记录中。根据元数据，该法案在第221届国会（第10号）提交，其审议状态被标注为“未了”（未完成/未结论）。所提供信息未显示该法案已成立或已生效。",
+        "business_impact": "若该法案最终获得通过，对儿童抚养津贴制度的修改可能影响资格条件、津贴金额或相关行政义务，但该法案目前的状态表明其可能尚未取得进展。",
+        "recommended_action": "建议查阅众议院官方来源及法案原文，以确认当前的立法状态及任何实质性条款。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f18a0f8e14e40bac",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Political Funds Control Act",
     "title_ja": "政治資金規正法の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a bill (submitted to the House of Councillors) proposing partial amendments to Japan's Political Funds Control Act. According to the metadata, it was submitted during the 221st Diet session (number 12), and its deliberation status is listed as incomplete (not concluded). This is a proposed legislative measure and not an enacted law.",
+    "business_impact_en": "If eventually enacted, changes to political funds regulation could affect organizations and individuals subject to political finance reporting and compliance obligations.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's current status, contents, and any deliberation outcomes.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2B02.htm",
     "published_at": "",
@@ -1449,26 +1497,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; the bill's specific provisions and current status are unverified, and no publication date was provided. Deliberation is indicated as not concluded, so the bill is not enacted.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《政治资金规正法》部分修正法案状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《政治资金规正法》部分修正法律案",
+        "summary": "这是一项向参议院提交的法案，拟对日本《政治资金规正法》进行部分修正。根据元数据，该法案于第221届国会（第12号）提交，其审议状态被列为尚未完成（未结束）。这是一项拟议的立法措施，尚非已颁布的法律。",
+        "business_impact": "若该法案最终获得通过，政治资金监管方面的变化可能会影响需承担政治资金申报及合规义务的组织和个人。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的最新状态、内容及任何审议结果。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-3bc0523fc91d0e33",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Public Offices Election Act and the Local Autonomy Act",
     "title_ja": "公職選挙法及び地方自治法の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill (proposed law) to partially amend Japan's Public Offices Election Act and the Local Autonomy Act, listed in the House of Representatives bill records. According to the metadata, it was submitted as a member-sponsored bill (submission session 221, number 13), and its deliberation status is marked as incomplete/unfinished. No enactment, promulgation, or entry into force is indicated by the provided information.",
+    "business_impact_en": "If eventually enacted, amendments to election and local autonomy rules could affect organizations and individuals involved in elections or local government processes, but at this stage it remains a pending proposal.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's exact contents and current deliberation status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2B56.htm",
     "published_at": "",
@@ -1481,26 +1533,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the bill appears to be pending (deliberation incomplete) and not enacted. Specific provisions are unverified. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《公职选举法及地方自治法部分修正法律案》状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：修订《公职选举法》及《地方自治法》部分内容的法律案",
+        "summary": "这是一项旨在部分修订日本《公职选举法》及《地方自治法》的法律草案，列于众议院议案信息中。根据元数据，该法案作为议员提案提交（提交届次221，第13号），其审议状态标记为未完成。所提供的信息中未显示该法案已成立、公布或生效。",
+        "business_impact": "若该法案最终获得通过，有关选举及地方自治规则的修订可能会影响参与选举或地方政府相关事务的组织和个人，但目前该法案仍处于待审议阶段。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的具体内容及当前审议状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-20385c7fcfe2d0db",
-    "title_en": "Diet Bill Update: Bill status updated",
+    "title_en": "Bill to Partially Amend the Act on the Payment of Special Child Rearing Allowance and Related Allowances",
     "title_ja": "特別児童扶養手当等の支給に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a proposed bill (a member-submitted bill, 'sanpo') to partially amend Japan's Act on the Payment of Special Child Rearing Allowance and related allowances, listed in the House of Representatives bill records. According to the metadata, it was submitted during the 221st Diet session (number 14) and its deliberation status is marked as incomplete/unfinished. This is a draft bill and does not indicate that any amendment has been enacted or is in force.",
+    "business_impact_en": "If eventually enacted, changes to special child rearing allowance rules could affect entitlements or administrative handling for relevant recipients and organizations, but this remains a proposal only.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source to confirm the bill's content and current deliberation status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2B72.htm",
     "published_at": "",
@@ -1513,26 +1569,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and limited bill-tracking metadata; no publication date provided and deliberation status listed as unfinished. Details unverified against the full text.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《特别儿童抚养津贴等支给相关法律》部分修正法律案状态更新",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《特别儿童抚养津贴等支付法》部分修正法案",
+        "summary": "这是一项拟修订日本《特别儿童抚养津贴等支付法》相关津贴的提案法案（议员提交的法案，即“众法”），列于众议院议案记录中。根据元数据，该法案于第221届国会（第14号）提交，其审议状态标记为未完成。这仅为法案草案，并不表示任何修正已被制定或生效。",
+        "business_impact": "如该法案最终获得通过，特别儿童抚养津贴相关规则的变更可能会影响相关领取者及相关机构的权益或行政处理方式，但目前仍仅为提案阶段。",
+        "recommended_action": "建议考虑查阅众议院官方来源，以确认该法案的具体内容及当前审议状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-44bbff41c8bf906f",
-    "title_en": "Diet Bill Update: Bill under consideration",
+    "title_en": "Bill to Partially Amend the Act on Establishment of Special Wards in Large City Areas",
     "title_ja": "大都市地域における特別区の設置に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Bill Submitted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a legislative bill (proposed by members of the House of Councillors) to partially amend the Act on the Establishment of Special Wards in Large City Areas, listed in the House of Representatives bill information system. According to the metadata, it was submitted during the 221st Diet session (number 18), and the noted deliberation status indicates the House of Councillors has completed its consideration. The item does not indicate that the bill has been enacted or entered into force.",
+    "business_impact_en": "If eventually enacted, changes to the framework for establishing special wards in large city areas could affect local government structures and related administrative arrangements.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the current legislative status and the specific content of the proposed amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2CAA.htm",
     "published_at": "",
@@ -1545,26 +1605,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the bill's exact provisions and current status are unverified. 'Bill Submitted' and other labels are preliminary triage metadata only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案提交：《关于在大都市地区设置特别区的法律》部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《大都市地区特别区设置法》部分修正法案",
+        "summary": "这是一项立法法案（由参议院议员提出），旨在部分修正《大都市地区特别区设置法》，登载于众议院议案信息系统中。根据元数据，该法案于第221届国会会期（第18号）提交，所标注的审议状态显示参议院已完成审议。该条目未表明该法案已获通过或已生效。",
+        "business_impact": "若该法案最终获得通过，有关大都市地区特别区设置框架的变更可能影响地方政府结构及相关行政安排。",
+        "recommended_action": "建议查阅众议院官方来源，以确认当前的立法状态及所提修正案的具体内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f749f868b6c15e84",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Special Provisions for Issuance of Government Bonds to Secure Fiscal Resources",
     "title_ja": "財政運営に必要な財源の確保を図るための公債の発行の特例に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on special provisions for issuing government bonds to secure revenue necessary for fiscal management, submitted during Diet session 221 as bill number 1. The House of Representatives record indicates the deliberation status as 'passed/established' (seiritsu). This is an unofficial English summary of a legislative item and must be verified against the official Japanese source.",
+    "business_impact_en": "Changes to special government bond issuance rules could affect fiscal policy and public finance frameworks, though any direct business impact would depend on the specific provisions.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the amendment's scope, timing, and current legal status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14CE.htm",
     "published_at": "",
@@ -1577,26 +1641,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the raw summary lists status as 'seiritsu' (established), but publication date is missing and details are unverified. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《关于确保财政运营所需财源的公债发行特例法》修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《为确保财政运营所需财源的公债发行特例法》部分内容",
+        "summary": "这是一项内阁提交的法案（阁法），旨在部分修订日本《为确保财政运营所需财源的公债发行特例法》，作为第221届国会第1号议案提交。众议院记录显示其审议状态为“通过/成立”。此为立法事项的非官方英文摘要，须以日文官方来源为准进行核实。",
+        "business_impact": "政府公债特别发行规则的变更可能影响财政政策与公共财政框架，但具体的直接业务影响将视相关条款内容而定。",
+        "recommended_action": "建议参阅众议院官方来源及已成立的法律文本，以确认此次修订的适用范围、时间安排及当前法律状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-c356633c65893193",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Special Measures Act on Securing Financial Resources for Reconstruction from the Great...",
     "title_ja": "東日本大震災からの復興のための施策を実施するために必要な財源の確保に関する特別措置法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Special Measures Act concerning securing the financial resources necessary to implement reconstruction measures following the Great East Japan Earthquake. According to the House of Representatives legislative information, the deliberation status is listed as 'seiritsu' (passed/established), submitted during the 221st Diet session as bill number 2. Further details are not provided in the metadata.",
+    "business_impact_en": "Changes to how financial resources for earthquake reconstruction are secured could affect related funding or tax measures, so organizations connected to reconstruction financing may wish to assess potential relevance.",
+    "recommended_action_en": "Review the official House of Representatives source and the authoritative Japanese text to confirm the bill's content, status, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14D2.htm",
     "published_at": "",
@@ -1609,26 +1677,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief legislative metadata; the raw summary states 'seiritsu' (passed), but no promulgation or enforcement date is provided and this should be verified against the official source. Preliminary labels ('Enacted', 'Medium') are unverified triage metadata.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《关于确保实施东日本大震灾复兴对策所需财源的特别措施法》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订关于确保东日本大地震灾后重建所需财源的特别措施法",
+        "summary": "这是一项由内阁提交的法案（阁法），旨在部分修订关于确保实施东日本大地震灾后重建措施所需财源的特别措施法。根据众议院法案信息，其审议状态列为“成立”（已通过），于第221届国会作为第2号法案提交。元数据中未提供进一步细节。",
+        "business_impact": "确保地震灾后重建财源方式的变化可能会影响相关的资金或税收措施，因此与重建融资相关的机构或希望评估其潜在关联性。",
+        "recommended_action": "建议查阅众议院官方来源及权威日文文本，以确认该法案的内容、状态及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-9e1e91839821c25c",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Income Tax Act and Related Laws (Cabinet Bill)",
     "title_ja": "所得税法等の一部を改正する法律案",
     "area": "Tax / Stamp Duty",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Income Tax Act and related laws, listed in the House of Representatives bill records (submission session 221, bill number 3). The source record indicates the bill's deliberation status as passed ('成立'). No specific effective date or detailed provisions are provided in the metadata.",
+    "business_impact_en": "Amendments to income tax and related laws could affect tax calculations, filing, and related compliance obligations for businesses and individuals, depending on the final content.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the bill's status, scope, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14D6.htm",
     "published_at": "",
@@ -1641,26 +1713,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief legislative metadata; the raw record states '成立' (passed), but detailed provisions, promulgation, and effective dates are not provided and should be verified against the official source. Preliminary labels are keyword-based and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《所得税法等部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：《所得税法》等部分修正法律案",
+        "summary": "这是内阁提交的关于部分修正日本《所得税法》及相关法律的法案，记录于众议院议案信息（第221届会期，第3号议案）。来源记录显示该法案的审议状态为“成立”（已通过）。元数据中未提供具体生效日期或详细条款。",
+        "business_impact": "所得税法及相关法律的修正可能影响企业和个人的税额计算、申报及相关合规义务，具体影响视最终内容而定。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认该法案的状态、适用范围及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b8c42239c7fd41ca",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Local Tax Act and Related Laws",
     "title_ja": "地方税法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Local Tax Act and related laws, listed in the House of Representatives (Shugiin) bill-tracking system. The bill records refer to submission session 221, number 4. According to the source metadata the deliberation status is marked as passed/established ('seiritsu'), though this should be confirmed against the official Japanese record.",
+    "business_impact_en": "Amendments to local tax laws could affect local tax obligations or calculations for businesses and individuals, depending on the final content. The specific changes are not detailed in the provided metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the authoritative Japanese text to confirm the bill's current status and substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14DA.htm",
     "published_at": "",
@@ -1673,26 +1749,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on limited Japanese title and brief metadata; the status label 'seiritsu' suggests the bill passed, but this and all substantive details are unverified and no publication date was provided. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《地方税法等部分修正法案》已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《地方税法》等相关法律",
+        "summary": "这是内阁提交（阁法）的部分修订《地方税法》等相关法律的法案，收录于众议院议案追踪系统。该议案记录显示为第221届会期提交，编号第4号。根据来源元数据，审议状态标记为“成立”（已通过），但这一点应以日文官方记录为准进行确认。",
+        "business_impact": "地方税相关法律的修订可能影响企业和个人的地方税义务或计算方式，具体视最终内容而定。所提供的元数据中未详细列明具体修改内容。",
+        "recommended_action": "建议查阅众议院官方来源及权威日文文本，以确认该法案目前的状态及实质条款内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-7f88b52a61c464a0",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Local Allocation Tax Act and Related Acts",
     "title_ja": "地方交付税法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a cabinet-submitted bill (kakuho) to partially amend the Local Allocation Tax Act and related laws, listed in the House of Representatives bill records for the 221st Diet session (item number 5). The source's deliberation status is noted as 'seiritsu' (passed/established). Details, effective dates, and the specific content of the amendments are not provided in the metadata.",
+    "business_impact_en": "Amendments to local allocation tax rules may affect entities that interact with local government finance or related fiscal arrangements, but the precise effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consult the official House of Representatives source and the authoritative Japanese text to confirm the bill's current status and substantive content.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14DE.htm",
     "published_at": "",
@@ -1705,26 +1785,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; the raw summary indicates the bill passed ('成立'), but effective date and detailed provisions are unverified. Preliminary 'Enacted' label is triage metadata, not a legal conclusion.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：法案已通过《地方交付税法等部分修正法律案》",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《地方交付税法》等相关法律",
+        "summary": "这是一项内阁提交的法案（阁法），旨在部分修订《地方交付税法》及相关法律，列于第221届国会众议院议案记录（第5号议案）。来源标注的审议状态为“成立”（已通过/已确立）。元数据中未提供修订的具体细节、生效日期及具体内容。",
+        "business_impact": "地方交付税相关规则的修订可能影响与地方政府财政或相关财政安排有往来的主体，但根据此元数据无法确定具体影响。",
+        "recommended_action": "建议查阅众议院官方来源及权威日文文本，以确认该法案的当前状态及实质内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f790c8e5d000cdb4",
-    "title_en": "Diet Bill Update: Draft Amendment to Customs and Tariff Rules",
+    "title_en": "Bill to Partially Amend the Customs Tariff Act and Related Laws",
     "title_ja": "関税定率法等の一部を改正する法律案",
     "area": "Tax / Stamp Duty",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Customs Tariff Act and related laws, listed in the House of Representatives (Shugiin) bill records for the 221st Diet session (number 6). The record's deliberation status field indicates 'seiritsu' (passed/established), though this should be confirmed against the official source. No effective date or detailed provisions are provided in the metadata.",
+    "business_impact_en": "Amendments to customs tariff laws may affect import-related duties, tariff rates, or customs procedures for businesses engaged in cross-border trade.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized text to confirm the bill's status, content, and any applicable timing.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE14E2.htm",
     "published_at": "",
@@ -1737,26 +1821,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on a Japanese title and brief record fields; the status field suggests the bill passed but this and all details should be verified against the authoritative Japanese source. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《关税定率法》等部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：修订《关税定率法》等部分内容",
+        "summary": "这是一项由内阁提交的法案，旨在部分修订日本《关税定率法》及相关法律，列于第221届国会众议院议案记录（第6号）。该记录中的审议状态栏标注为“成立”（已通过/已确立），但仍应以官方来源为准进行确认。元数据中未提供生效日期或具体条款内容。",
+        "business_impact": "关税定率法相关法律的修订可能影响从事跨境贸易企业的进口相关关税、税率或海关程序。",
+        "recommended_action": "建议查阅众议院官方来源及最终文本，以确认该法案的状态、内容及可能适用的时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-82ebe5325babe1fd",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on the Provision of High School Enrollment Support Funds",
     "title_ja": "高等学校等就学支援金の支給に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on the Provision of High School Enrollment Support Funds, listed in the House of Representatives bill records (submission session 221, number 8). The raw source text indicates a status of 'passed' (seiritsu). Details of the amendment's content, effective date, and scope are not provided in the metadata.",
+    "business_impact_en": "Changes to high school enrollment support funding could affect educational institutions, families, and related administrative processes, though the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consult the official House of Representatives source and the finalized statutory text to verify the amendment's status, content, and any applicable dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE151A.htm",
     "published_at": "",
@@ -1769,26 +1857,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a brief raw summary; the raw text suggests the bill 'passed' but its content, promulgation, and effective date are unverified. Rule-based labels ('Enacted', 'Other', 'Medium') are weak triage context only. No publication date was provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《高等学校等就学支援金支给法》修正法案通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法律修订：《高等学校等就学支援金支给相关法律》部分修订法案",
+        "summary": "这是内阁提交的法案（阁法），旨在部分修订日本《高等学校等就学支援金支给相关法律》，列于众议院议案记录中（提交届次221，第8号）。原始来源文本显示状态为“成立”。修订内容、生效日期及适用范围的具体细节未在元数据中提供。",
+        "business_impact": "高等学校等就学支援金相关制度的变更可能影响教育机构、家庭及相关行政流程，但具体影响无法从该元数据中确定。",
+        "recommended_action": "建议查阅众议院官方来源及最终确定的法律文本，以核实该修订的状态、内容及任何适用日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-7b706decb682efa5",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Law on Names and Locations of Overseas Diplomatic Missions and Salaries of Foreign...",
     "title_ja": "在外公館の名称及び位置並びに在外公館に勤務する外務公務員の給与に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the law governing the names and locations of Japan's overseas diplomatic missions and the salaries of foreign service officials working at them, listed in the House of Representatives bill-tracking system (session 221, bill number 10). The raw metadata indicates the deliberation status as 'seiritsu' (passed/enacted). This English text is an unofficial summary and must be verified against the authoritative Japanese source.",
+    "business_impact_en": "Changes to diplomatic mission structures or foreign service salary rules could affect entities that interact with Japanese overseas missions, though direct business impact appears limited.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's exact provisions and current legislative status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1582.htm",
     "published_at": "",
@@ -1801,26 +1893,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief raw metadata; the term 'seiritsu' suggests passage but the exact status and provisions are unverified. Preliminary labels are keyword-based and not authoritative. No publication date was provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案动态：《关于驻外公馆的名称及位置以及驻外公馆工作的外务公务员薪金的法律》部分修正法律案已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《在外公馆名称及位置以及在外公馆任职外务公务员薪酬相关法律》",
+        "summary": "这是内阁提交的法案（阁法），旨在部分修订有关日本在外公馆的名称及位置以及在该公馆任职的外务公务员薪酬的法律，列于众议院议案追踪系统（第221届会期，议案编号10）。原始元数据显示审议状态为“成立”（已通过/已成立）。本英文文本为非官方摘要，须以权威日文来源为准进行核实。",
+        "business_impact": "在外公馆结构或外务公务员薪酬规则的变化可能影响与日本在外公馆有往来的实体，但直接业务影响似乎有限。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的具体条款及当前立法状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b775e7503c8e9682",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Japan Racing Association Act",
     "title_ja": "日本中央競馬会法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Japan Racing Association Act (Nihon Chuo Keiba Kai Ho), listed in the House of Representatives (Shugiin) legislative records under the 221st Diet session, bill number 12. The record indicates the deliberation status as 'seiritsu' (passed/established). Details of the amendment's content are not provided in the metadata.",
+    "business_impact_en": "Amendments to the Japan Racing Association Act may affect entities involved in or regulated by horse racing operations, though the specific scope is not clear from the metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized text of the amended Act to confirm the substance, status, and timing before drawing any conclusions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE15AA.htm",
     "published_at": "",
@@ -1833,26 +1929,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief record; the raw summary indicates 'seiritsu' (passed), but the amendment's content, promulgation, and effective date are not provided and must be verified against the official source. No publication date was given.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《日本中央竞马会法》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《日本中央竞马会法》部分修正法案",
+        "summary": "这是内阁提交的旨在部分修正《日本中央竞马会法》的法案，记录于第221届国会众议院议案信息，议案编号12。记录显示审议状态为“成立”（已通过）。元数据中未提供修正内容的具体细节。",
+        "business_impact": "《日本中央竞马会法》的修正可能会影响参与赛马业务或受其监管的相关主体，但具体范围在元数据中并不明确。",
+        "recommended_action": "建议在得出任何结论之前，参考众议院官方来源及修正后法律的最终文本，以确认其具体内容、状态及时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-25ade374ca57e9ec",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Industrial Competitiveness Enhancement Act and Related Acts",
     "title_ja": "経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Industrial Competitiveness Enhancement Act and related laws, aimed at promoting the sustainable development of corporate business activities in light of changing economic and social conditions. According to the House of Representatives legislative information, it was submitted during the 221st Diet session (number 15). The raw source status field indicates the bill was passed ('成立'), though the exact date and full contents are not provided in this metadata.",
+    "business_impact_en": "Amendments to the Industrial Competitiveness Enhancement Act and related laws could affect requirements or support measures relevant to companies operating in Japan. The scope of any impact would depend on the specific provisions, which are not detailed here.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the current status and specific provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE163A.htm",
     "published_at": "",
@@ -1865,26 +1965,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief legislative status metadata. The raw summary indicates '成立' (passed), but no promulgation or effective date is provided; details are unverified against the official source. Rule-based labels ('Enacted', 'Other', 'Medium') are weak triage context only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案通过：《为促进企业在经济社会形势变化下持续开展事业活动而修订产业竞争力强化法等的法律》",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：为促进企业事业活动可持续发展修订《产业竞争力强化法》等",
+        "summary": "这是一项内阁提交的法案，旨在部分修订日本《产业竞争力强化法》及相关法律，以适应经济社会形势变化，促进企业事业活动的可持续发展。根据众议院议案信息，该法案于第221届国会（第15号）提交。原始来源的状态字段显示该法案已通过（“成立”），但本元数据未提供具体日期及完整内容。",
+        "business_impact": "对《产业竞争力强化法》及相关法律的修订可能影响在日本经营企业相关的要求或支持措施。具体影响范围将视条文内容而定，本资料中未详细说明。",
+        "recommended_action": "建议查阅众议院官方来源及最终确定的法律文本，以确认当前状态及具体条文内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-6930f5b4c68e7840",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Improving the Efficiency of Goods Distribution",
     "title_ja": "物資の流通の効率化に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on Improving the Efficiency of Goods Distribution, listed in the House of Representatives bill-tracking records (submission session 221, number 16). The record's deliberation status is noted as 'seiritsu' (passed/enacted). This is an unofficial English summary of the listed metadata and must be verified against the authoritative Japanese source.",
+    "business_impact_en": "Amendments to rules on goods distribution efficiency could affect logistics, supply chain, and related operational or reporting obligations for businesses involved in the movement of goods.",
+    "recommended_action_en": "Review the official House of Representatives source and the amended statute text to confirm the current status, scope, and any effective dates before acting.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE164E.htm",
     "published_at": "",
@@ -1897,26 +2001,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief bill-tracking metadata; the record indicates 'seiritsu' (passed), but promulgation and effective-date details are not provided and should be verified against the official source. No publication date was given.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《物资流通效率化法》修正案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案已成立：《物资流通效率化法》部分修订",
+        "summary": "这是内阁提交的法案（阁法），旨在部分修订日本《物资流通效率化法》，列于众议院议案追踪记录（提交届次221，第16号）。该记录中的审议状态标注为“成立”（已通过/已成立）。这是对所列元数据的非官方英文摘要的翻译，必须以权威的日文来源进行核实。",
+        "business_impact": "物资流通效率化相关规则的修订可能会影响从事货物运输的企业在物流、供应链以及相关运营或报告义务方面的情况。",
+        "recommended_action": "建议在采取行动前，查阅众议院官方来源及修订后的法律文本，以确认当前状态、适用范围及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4ade44d751b965f4",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act for Establishment of the Ministry of Defense and Related Acts",
     "title_ja": "防衛省設置法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Act for Establishment of the Ministry of Defense and related laws, listed in the House of Representatives bill records for the 221st Diet session (bill number 18). The raw source indicates the deliberation status as 'passed/established' (seiritsu). Details of the amendments are not provided in the available metadata and should be confirmed against the official source.",
+    "business_impact_en": "Organizations connected to defense administration or related regulatory frameworks may be affected, though the specific scope cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the full text of the bill to confirm its content and current status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1E66.htm",
     "published_at": "",
@@ -1929,26 +2037,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief status note ('seiritsu'); the substance of the amendments and the exact legal status are unverified. The 'Enacted' label is preliminary rule-based triage, not a confirmed conclusion. No publication date was provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《防卫省设置法等部分修正法律案》已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《防卫省设置法等部分修正法案》已成立",
+        "summary": "这是内阁提交的法案（阁法），旨在部分修订《防卫省设置法》及相关法律，列于第221届国会众议院议案记录（议案编号18）。原始来源显示审议状态为“通过/成立”。现有元数据未提供修正内容的详细信息，应以官方来源为准进行确认。",
+        "business_impact": "与防卫行政或相关监管框架有关的组织可能会受到影响，但具体范围无法从该元数据中确定。",
+        "recommended_action": "建议查阅众议院官方来源及法案全文，以确认其内容及当前状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-0d56f18fe147a753",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Court Personnel Fixed-Number Act",
     "title_ja": "裁判所職員定員法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Court Personnel Fixed-Number Act (Saibansho Shokuin Teiin Ho), listed in the House of Representatives (Shugiin) bill records under the 221st Diet session, number 19. The record indicates the deliberation status as 'passed/established' (seiritsu). The item concerns the statutory fixed number of court personnel.",
+    "business_impact_en": "Changes to the fixed number of court staff could affect court staffing levels and related administrative operations, though the practical effects would depend on the specific provisions.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the bill's current status and the substance of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1F02.htm",
     "published_at": "",
@@ -1961,26 +2073,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief record metadata; the raw summary indicates 'seiritsu' (passed), but details and effective status should be verified against the official source. No publication date was provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《法院职员定员法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《法院职员定员法》",
+        "summary": "这是内阁提交的法案，旨在部分修订《法院职员定员法》，列于众议院议案记录中，第221届国会，第19号。记录显示该法案的审议状态为“成立”。该事项涉及法院职员的法定编制人数。",
+        "business_impact": "法院职员编制人数的变更可能影响法院的人员配置水平及相关行政运作，但具体实际影响将视具体条款而定。",
+        "recommended_action": "建议查阅众议院官方来源，以确认该法案的当前状态及修订内容的具体细节。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-5d11b5dbb7012ede",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Immigration Control and Refugee Recognition Act and Related Landing Special-Provisions Act",
     "title_ja": "出入国管理及び難民認定法及び出入国管理及び難民認定法第二条第五号ロの旅券を所持する外国人の上陸申請の特例に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Immigration Control and Refugee Recognition Act and the related act on special provisions for landing applications by foreign nationals holding passports referenced in Article 2, item 5(ro) of that Act. According to the House of Representatives legislative information, the bill was submitted in the 221st Diet session (number 20), and the noted deliberation status is 'passed' (成立). Full details such as the specific amendments and any effective date are not provided in this metadata.",
+    "business_impact_en": "Amendments to immigration control and landing-application procedures could affect entry requirements or processes relevant to organizations that sponsor or employ foreign nationals in Japan.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the finalized statutory text to confirm the amendments' scope and status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1F16.htm",
     "published_at": "",
@@ -1993,26 +2109,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief House of Representatives status note ('成立') indicating the bill passed; specific amendment content, promulgation, and effective date are not confirmed in the metadata. Stage/impact labels are preliminary and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案通过：《出入国管理及难民认定法》及《关于持有出入国管理及难民认定法第二条第五号乙所定护照的外国人上陆申请特例的法律》部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《出入国管理及难民认定法》及相关入境特别规定法",
+        "summary": "这是内阁提交的法案（阁法），旨在部分修订《出入国管理及难民认定法》以及与该法第2条第5号（B）所指持有护照的外国人入境申请特例相关的法律。根据众议院立法信息，该法案于第221届国会提交（第20号），标注的审议状态为“成立”（已通过）。本元数据未提供具体修订内容及生效日期等详细信息。",
+        "business_impact": "出入国管理及入境申请程序的修订可能影响与在日本担保或雇用外国人相关组织的入境要求或流程。",
+        "recommended_action": "建议考虑查阅众议院官方来源及最终法律文本，以确认相关修订的范围及状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-9e594ab3f7badb33",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Passport Act",
     "title_ja": "旅券法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Passport Act, listed in the House of Representatives (Shugiin) bill records for the 221st Diet session (number 21). The record's deliberation status is noted as 'seiritsu' (passed/established). Details of the amendment's content are not provided in the metadata.",
+    "business_impact_en": "Changes to passport-related rules could affect procedures or requirements for issuing and handling passports, which may be relevant to individuals and organizations involved in international travel or identity documentation.",
+    "recommended_action_en": "Consult the official House of Representatives source and the finalized statutory text to verify the amendment's status, effective timing, and substantive content.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1F2A.htm",
     "published_at": "",
@@ -2025,26 +2145,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief bill-record metadata; the raw record indicates a 'passed' status, but the effective date and specific provisions are not provided and should be verified against the official source. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《旅券法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《旅券法》部分修正法案",
+        "summary": "这是内阁提交的关于部分修正日本《旅券法》的法案，列于众议院第221届国会（第21号）议案记录中。记录中的审议状态标注为“成立”（已通过/已确立）。元数据中未提供修正内容的详细信息。",
+        "business_impact": "护照相关规则的变更可能影响护照签发和处理的程序或要求，这可能与从事国际旅行或身份证明相关的个人和组织有关。",
+        "recommended_action": "建议参考众议院官方来源及最终确定的法律文本，以核实该修正案的状态、生效时间及具体内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a0779103ef072195",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Special Measures for Urban Renaissance and Related Acts",
     "title_ja": "都市再生特別措置法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Act on Special Measures for Urban Renaissance and certain related laws, listed in the House of Representatives (Shugiin) bill records for the 221st Diet session (bill number 22). The metadata indicates the deliberation status is 'passed/established' (seiritsu). Details of the amendments are not provided in the metadata and should be confirmed against the official source.",
+    "business_impact_en": "Amendments to urban renaissance and related laws could affect urban planning, development, and real estate activities, though the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the full text of the bill to confirm its content, scope, and current status.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1F3E.htm",
     "published_at": "",
@@ -2057,26 +2181,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; the status note 'seiritsu' suggests passage but the specific provisions and effective dates are unverified. Preliminary labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《城市再生特别措施法》等部分修正法律案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：《都市再生特别措施法》等部分修正法律案",
+        "summary": "这是一项由内阁提交（阁法）的法案，旨在部分修订《都市再生特别措施法》及相关部分法律，记载于第221届国会众议院议案记录（议案编号22）。元数据显示审议状态为“已通过/成立”。修订的具体内容元数据中未提供，应以官方来源确认。",
+        "business_impact": "对都市再生及相关法律的修订可能影响城市规划、开发及房地产相关活动，但具体影响无法根据此元数据确定。",
+        "recommended_action": "建议考虑查阅众议院官方来源及法案全文，以确认其内容、适用范围及当前状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-2c75b47cbd6b9277",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Revitalization and Rehabilitation of Local Public Transport",
     "title_ja": "地域公共交通の活性化及び再生に関する法律の一部を改正する法律案",
     "area": "Transport / Infrastructure",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on the Revitalization and Rehabilitation of Local Public Transportation, listed as submission round 221, number 23, in the House of Representatives bill records. The provided deliberation status indicates the bill was passed ('成立'). Details of the amendments and effective dates are not included in the available metadata.",
+    "business_impact_en": "Organizations involved in local or regional public transport in Japan may be affected by changes to the framework governing transport revitalization and rehabilitation, though specifics are not described here.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the finalized statutory text to confirm the scope, content, and timing of any changes.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1F52.htm",
     "published_at": "",
@@ -2089,26 +2217,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the raw summary indicates '成立' (passed), but the exact amendments, promulgation, and effective dates are not provided and should be verified against the official source. The 'Enacted' label is preliminary triage metadata.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《地域公共交通活性化及再生法》修正法案已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：《地域公共交通活性化及再生法》部分修正",
+        "summary": "这是一项由内阁提交（阁法）、旨在部分修正日本《地域公共交通活性化及再生法》的法案，在众议院议案记录中列为第221届提交批次、第23号。所提供的审议状态显示该法案已“成立”（通过）。现有元数据中未包含修正内容的具体细节及生效日期。",
+        "business_impact": "在日本从事地方或区域公共交通业务的机构可能会受到该交通活性化及再生相关制度变化的影响，但具体内容此处未作说明。",
+        "recommended_action": "建议考虑查阅众议院官方来源及最终确定的法律文本，以确认相关变更的范围、内容及时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a6a7f602bf8ea417",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Health Insurance Act and Related Laws",
     "title_ja": "健康保険法等の一部を改正する法律案",
     "area": "Finance / AML",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Health Insurance Act and related laws, listed in the House of Representatives bill records (submission session 221, number 25). The record indicates a deliberation status marked as passed/established ('成立'). Details of the amendments are not provided in the metadata.",
+    "business_impact_en": "Amendments to health insurance and related laws could affect obligations, contributions, or benefits for organizations and individuals covered by these systems.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the scope, effective dates, and any applicable requirements.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1FDE.htm",
     "published_at": "",
@@ -2121,26 +2253,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese bill title and brief record noting status as '成立' (passed); specific provisions, dates, and scope are unverified. Preliminary labels ('Finance / AML', 'Enacted', 'Medium') are keyword-based triage only and may not reflect the bill's actual subject, which concerns health insurance.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《健康保险法等部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案已成立：修订《健康保险法》等部分条款",
+        "summary": "这是一项由内阁提交的法案，旨在部分修订日本《健康保险法》及相关法律，记载于众议院议案信息（第221届会期，第25号）。记录显示其审议状态标注为“成立”（已通过/已成立）。元数据中未提供修订的具体内容。",
+        "business_impact": "对健康保险及相关法律的修订可能会影响受这些制度覆盖的组织和个人的义务、缴费或待遇。",
+        "recommended_action": "建议查阅众议院官方来源及已成立的法律文本，以确认适用范围、生效日期及任何适用要求。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-3e0f56f279fe6160",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Industrial Technology Enhancement Act",
     "title_ja": "産業技術力強化法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Industrial Technology Enhancement Act (Sangyo Gijutsuryoku Kyoka Ho), listed in the House of Representatives bill records (submission session 221, number 26). The metadata describes the deliberation status as 'seiritsu' (passed/enacted), but the details should be confirmed against the official source. The specific content of the amendments is not provided in the metadata.",
+    "business_impact_en": "Amendments to the Industrial Technology Enhancement Act could affect organizations involved in industrial technology, research, or related activities, depending on the specific provisions.",
+    "recommended_action_en": "Review the official House of Representatives source and the full text of the bill to confirm its status and substantive content.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE1FF2.htm",
     "published_at": "",
@@ -2153,26 +2289,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the 'passed/enacted' status comes from the raw summary and preliminary label and is not independently verified. No publication date and no detail on the amendment's content were provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《产业技术力强化法》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《产业技术力强化法》部分修订法案",
+        "summary": "这是内阁提交的一项旨在部分修订《产业技术力强化法》的法案，收录于众议院议案记录（提交届次221，第26号）。元数据将审议状态描述为“成立”（已通过/已成立），但具体情况应以官方来源确认。元数据中未提供修订内容的具体细节。",
+        "business_impact": "《产业技术力强化法》的修订可能影响从事产业技术、研究或相关活动的机构，具体影响视相关条款内容而定。",
+        "recommended_action": "建议参阅众议院官方来源及法案全文，以确认其状态及实质内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-61bc6c7812c8b632",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Norinchukin Bank Act",
     "title_ja": "農林中央金庫法の一部を改正する法律案",
     "area": "Food / Agriculture",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Norinchukin Bank Act, tracked in the House of Representatives bill information system (session 221, bill number 28). The raw source metadata indicates the deliberation status as 'passed/established' (成立), though this English summary is unofficial and should be checked against the authoritative Japanese source. Norinchukin Bank is a financial institution associated with Japan's agricultural, forestry, and fishery cooperative sector.",
+    "business_impact_en": "Depending on its content, this amendment may affect the operations, governance, or regulatory framework of the Norinchukin Bank and related cooperative financial entities.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the enacted text to confirm the bill's status and substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE209E.htm",
     "published_at": "",
@@ -2185,26 +2325,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the raw summary suggests the bill was passed, but no promulgation or effective date is provided and specific provisions are unverified. Preliminary labels are keyword-based triage, not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《农林中央金库法》部分修正法律案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《农林中央金库法》",
+        "summary": "这是一项由内阁提交的部分修订《农林中央金库法》的法案，收录于众议院议案信息系统（第221届国会，议案编号第28号）。原始来源元数据显示审议状态为“成立”（已通过），但本英文摘要为非官方内容，应以权威的日文来源为准进行核实。农林中央金库是一家与日本农林渔业合作社系统相关的金融机构。",
+        "business_impact": "根据其具体内容，此次修订可能影响农林中央金库及相关合作社金融机构的业务运营、治理结构或监管框架。",
+        "recommended_action": "建议考虑查阅众议院官方来源及已成立的法律文本，以确认该法案的状态及实质性条款。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a1efd2eaf87c47f4",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Amend the Economic Security Promotion Act and the JBIC Act",
     "title_ja": "経済施策を一体的に講ずることによる安全保障の確保の推進に関する法律及び株式会社国際協力銀行法の一部を改正する法律案",
     "area": "Finance / AML",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Act on the Promotion of Ensuring National Security through Integrated Implementation of Economic Measures and the Japan Bank for International Cooperation Act, listed in the House of Representatives bill records (Diet session 221, No. 30). The raw source status field indicates '成立' (passed/established), suggesting the bill completed the legislative process. The exact scope of the amendments is not detailed in the provided metadata.",
+    "business_impact_en": "Organizations engaged in economic security matters or in financing through the Japan Bank for International Cooperation may be affected, depending on the substance of the amendments.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the amendments' scope, effective dates, and applicability.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE20F6.htm",
     "published_at": "",
@@ -2217,26 +2361,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief status field ('成立') indicating passage; the substantive content, effective date, and precise legal status are not provided and should be verified against the official source. Preliminary labels (Finance/AML, Enacted, Medium) are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案动态：《经济安全保障推进法》及《株式会社国际协力银行法》修正案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《推动一体化实施经济措施以确保国家安全保障相关法律》及《株式会社国际协力银行法》",
+        "summary": "这是一项内阁提交的法案（阁法），旨在部分修订《推动一体化实施经济措施以确保国家安全保障相关法律》及《株式会社国际协力银行法》，列于众议院议案记录（第221届国会，第30号）。原始来源的状态字段显示为“成立”（已通过/已确立），表明该法案已完成立法程序。所提供的元数据中未详细说明修订的具体范围。",
+        "business_impact": "从事经济安全事务或通过株式会社国际协力银行进行融资的机构可能受到影响，具体取决于修订的内容。",
+        "recommended_action": "建议查阅众议院官方来源及已颁布的法律文本，以确认修订的范围、生效日期及适用性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-97d405acb25c6042",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Prohibition of Flight of Small Unmanned Aircraft over Areas Surrounding...",
     "title_ja": "重要施設の周辺地域の上空における小型無人機等の飛行の禁止に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a Cabinet-submitted bill to partially amend Japan's Act on the Prohibition of Flight of Small Unmanned Aircraft (such as drones) over areas surrounding important facilities, listed in the House of Representatives bill records (221st Diet session, bill number 31). The raw metadata indicates the deliberation status as 'passed/established' (成立). No publication date is provided in the metadata, and the specific content of the amendments is not detailed here.",
+    "business_impact_en": "Organizations that operate drones or small unmanned aircraft near designated important facilities in Japan may be affected by changes to flight restrictions.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the scope, effective date, and requirements of the amendment.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2162.htm",
     "published_at": "",
@@ -2249,26 +2397,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; the raw summary indicates '成立' (established/passed), but exact enactment status, promulgation, and effective date should be verified against the official source. Preliminary labels (area/stage/impact) are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《关于禁止在重要设施周边地区上空飞行小型无人机等的法律》修正案通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《重要设施周边地区上空小型无人机等飞行禁止法》",
+        "summary": "本项目为内阁提交的法案，旨在部分修订日本关于在重要设施周边地区上空禁止小型无人机（如无人机）飞行的法律，收录于众议院议案记录（第221届国会，议案编号31）。原始元数据显示审议状态为“成立”（已通过）。元数据中未提供公布日期，此处也未详细说明修正案的具体内容。",
+        "business_impact": "在日本指定重要设施附近运营无人机或小型无人机的组织可能会受到飞行限制变化的影响。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认此次修正案的适用范围、生效日期及相关要求。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-dfd3300672e4e493",
-    "title_en": "Diet Bill Update: Draft Amendment to Broadcasting Policy",
+    "title_en": "Bill to Partially Amend the Act on the Corporation for Overseas Communications, Broadcasting and Postal Services Support",
     "title_ja": "株式会社海外通信・放送・郵便事業支援機構法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Act concerning the Corporation for Overseas Communications, Broadcasting and Postal Services Support, listed in the House of Representatives (Shugiin) bill records for the 221st Diet session (number 32). The raw record indicates the deliberation status as 'passed/established' (seiritsu). Details of the amendment's content are not provided in the metadata.",
+    "business_impact_en": "Depending on its substance, this amendment could affect entities involved in supporting overseas communications, broadcasting, or postal services businesses.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the amendment's scope, timing, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2176.htm",
     "published_at": "",
@@ -2281,26 +2433,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief bill-tracking metadata; the raw record states 'seiritsu' (passed), but the exact content, promulgation, and enforcement dates are unverified. Rule-based 'Enacted' label is weak triage context only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《海外通信·广播·邮政事业支援机构法》部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《株式会社海外通信·广播·邮政事业支援机构法》部分内容",
+        "summary": "这是内阁提交的法案，旨在部分修订《株式会社海外通信·广播·邮政事业支援机构法》，收录于第221届国会众议院（衆議院）议案记录（第32号）。原始记录显示审议状态为“通过/成立”（成立）。元数据中未提供修订内容的详细信息。",
+        "business_impact": "根据其具体内容，此项修订可能会影响参与支持海外通信、广播或邮政服务业务的相关主体。",
+        "recommended_action": "建议查阅众议院官方来源及已通过的法律文本，以确认此次修订的范围、时间安排及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-8506d29edcce440d",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Identity Verification by Mobile Voice Communication Carriers and Prevention of...",
     "title_ja": "携帯音声通信事業者による契約者等の本人確認等及び携帯音声通信役務の不正な利用の防止に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (Kakuho) to partially amend Japan's law on identity verification of subscribers by mobile voice communication carriers and on preventing fraudulent use of mobile voice services, listed in the House of Representatives bill records (submission session 221, number 33). The listed deliberation status is 'passed/established' (seiritsu). Details of the amendments are not provided in this metadata and should be confirmed against the official source.",
+    "business_impact_en": "Mobile voice communication carriers and related businesses may need to review identity-verification and fraud-prevention practices if the amendments alter existing requirements.",
+    "recommended_action_en": "Review the official House of Representatives source and the authoritative statute text to confirm the scope, content, and status of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE218A.htm",
     "published_at": "",
@@ -2313,26 +2469,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief bill-record metadata; the raw summary indicates 'seiritsu' (passed), but the specific amendments and effective date are not provided and must be verified against the official source. Rule-based labels are weak triage context only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《移动语音通信事业者对签约人等的身份确认及防止移动语音通信服务不当利用相关法律》修正案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《移动语音通信事业者的用户等身份确认及移动语音通信服务不正当使用防止法》（部分修正）",
+        "summary": "这是一项由内阁提交（阁法）的法案，旨在部分修订日本关于移动语音通信事业者对用户等进行身份确认以及防止移动语音通信服务被不正当使用的法律，该法案列于众议院议案记录中（提交届次221，第33号）。所列审议状态为“通过／成立”（成立）。此元数据中未提供修订的具体内容，应以官方来源为准进行确认。",
+        "business_impact": "如果此次修订改变了现行要求，移动语音通信事业者及相关企业可能需要重新审视其身份确认及防止不正当使用的相关做法。",
+        "recommended_action": "建议查阅众议院官方来源及权威法律文本，以确认此次修订的范围、内容及状态。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e1f8146cb37995a4",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Postal Act and the Act on Delivery of Correspondence by Private Business Operators",
     "title_ja": "郵便法及び民間事業者による信書の送達に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Postal Act and the Act on Delivery of Correspondence by Private Business Operators, listed in the House of Representatives bill records (session 221, number 34). The raw source status indicates the bill was passed/established ('成立'). Specific provisions and effective dates are not provided in this metadata.",
+    "business_impact_en": "Amendments to postal and private correspondence-delivery rules could affect businesses involved in mail or correspondence delivery services and their compliance obligations.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted statutory text to confirm the scope, provisions, and effective timing before drawing any conclusions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE219E.htm",
     "published_at": "",
@@ -2345,26 +2505,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief status note ('成立', suggesting passage); exact provisions, effective date, and full scope are unverified. Publication date was not provided. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《邮政法及关于民间事业者信函递送的法律》修订法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《邮政法》及《民间事业者信函递送法》",
+        "summary": "这是一项内阁提交的法案（阁法），旨在部分修订日本的《邮政法》及《民间事业者信函递送法》，列于众议院议案记录（第221届会期，第34号）。原始来源状态显示该法案已通过/成立（“成立”）。本元数据未提供具体条款及生效日期。",
+        "business_impact": "邮政及民间信函递送规则的修订可能影响从事邮件或信函递送服务的企业及其合规义务。",
+        "recommended_action": "建议在得出任何结论之前，查阅众议院官方来源及已成立的法律文本，以确认其适用范围、具体条款及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e67b6ad6c6b82ddf",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Domestic Animal Infectious Diseases Control",
     "title_ja": "家畜伝染病予防法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Act on Domestic Animal Infectious Diseases Control (Kachiku Densenbyo Yobo Ho), listed in House of Representatives (Shugiin) bill records for the 221st Diet session (bill number 35). The record's deliberation status is noted as 'seiritsu' (passed/established). The specific substance of the amendments is not provided in the metadata.",
+    "business_impact_en": "Changes to livestock infectious disease control rules may affect businesses in animal husbandry, veterinary, food, and related supply chains, though the concrete effects cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official Japanese source on the House of Representatives website to confirm the bill's status, contents, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE21B2.htm",
     "published_at": "",
@@ -2377,26 +2541,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status note ('seiritsu'). The label 'Enacted' is unverified triage metadata; actual promulgation and enforcement details are not confirmed and should be checked against the official source. No publication date provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《家畜传染病预防法》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《家畜传染病预防法》",
+        "summary": "这是内阁提交的一项旨在部分修订日本《家畜传染病预防法》的法案，收录于众议院第221届国会议案记录中（议案编号35）。记录中的审议状态标注为“成立”（已通过/已确立）。元数据中未提供修订的具体内容。",
+        "business_impact": "家畜传染病防控规则的变化可能影响畜牧业、兽医、食品及相关供应链中的企业，但具体影响无法根据该元数据确定。",
+        "recommended_action": "建议查阅众议院网站上的日文官方来源，以确认该法案的状态、内容以及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-cb43c85851cf9dd8",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Electricity Business Act",
     "title_ja": "電気事業法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a Cabinet-submitted bill to partially amend Japan's Electricity Business Act (Denki Jigyo Ho), listed in the House of Representatives (Shugiin) legislative records under Diet session 221, bill number 36. The raw source note indicates a deliberation status described as 'seiritsu' (passed/established), but this English summary is unofficial and the status should be confirmed against the authoritative Japanese source. No publication date or detailed substantive content was provided in the metadata.",
+    "business_impact_en": "Amendments to the Electricity Business Act could affect entities involved in electricity generation, transmission, distribution, or retail supply, though the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source to verify the bill's status, effective date, and substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE21C6.htm",
     "published_at": "",
@@ -2409,26 +2577,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief raw note; the 'passed' status and 'Enacted' label are unverified triage indicators and were not confirmed from full source text. No publication date provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《电气事业法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《电气事业法》部分修订法案",
+        "summary": "本条目为内阁提交的旨在部分修订日本《电气事业法》的法案，收录于众议院议案信息中，属于第221届国会第36号议案。原始来源标注的审议状态为“成立”（已通过/已确定），但本英文摘要为非官方翻译，相关状态应以权威日文来源确认。元数据中未提供公布日期或详细实质内容。",
+        "business_impact": "《电气事业法》的修订可能影响从事发电、输电、配电或零售供电的相关主体，但具体影响无法根据此元数据确定。",
+        "recommended_action": "建议考虑查阅众议院官方来源，以核实该法案的状态、生效日期及具体条文内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-08d6f3c28ccf43f5",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Sewerage Act and Related Laws",
     "title_ja": "下水道法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Sewerage Act and related laws, recorded in the House of Representatives (Shugiin) legislative information system. The metadata lists the submission session as the 221st and bill number 38, with a deliberation status noted as 'seiritsu' (indicating the bill has passed). The full text and specific amendments are not provided in this metadata and should be confirmed against the official source.",
+    "business_impact_en": "Organizations involved in sewerage systems, water infrastructure, or related public works may be affected if the amendments change relevant obligations or standards. The scope of any impact cannot be determined from the available metadata alone.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the specific amendments and their applicability to your situation.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2362.htm",
     "published_at": "",
@@ -2441,26 +2613,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the status label 'seiritsu' suggests passage, but the exact provisions, effective dates, and scope are unverified. No publication date was provided.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《下水道法等部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案提交：《下水道法》等部分修正法律案",
+        "summary": "这是内阁提交的法案，旨在部分修正《下水道法》及相关法律，记录于众议院立法信息系统中。元数据显示提交届次为第221届，法案编号为38号，审议状态标注为“成立”（表明该法案已通过）。该元数据未提供全文及具体修正内容，应以官方来源为准进行确认。",
+        "business_impact": "涉及下水道系统、水利基础设施或相关公共工程的组织，若修正内容改变了相关义务或标准，则可能受到影响。仅凭现有元数据无法确定具体影响范围。",
+        "recommended_action": "建议查阅众议院官方来源及已通过的法律文本，以确认具体修正内容及其对自身情况的适用性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-93bcba756d89a2ec",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Launching of Artificial Satellites and Management of Artificial Satellites",
     "title_ja": "人工衛星等の打上げ及び人工衛星の管理に関する法律等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a cabinet-submitted bill to partially amend Japan's Act on the Launching of Artificial Satellites and Management of Artificial Satellites and related provisions, listed in the House of Representatives bill records (session 221, number 40). The raw source note indicates a deliberation status of 'passed/established' (成立). As this is metadata from a legislative tracking page, the exact scope and effective status should be confirmed against the official source.",
+    "business_impact_en": "Entities involved in satellite launches or satellite management may be affected by amendments to the governing legal framework, though the specific changes are not detailed in this metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the amended statute to confirm the bill's scope, current status, and any applicable requirements.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE238A.htm",
     "published_at": "",
@@ -2473,26 +2649,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief legislative metadata; the raw note suggests the bill was passed ('成立'), but exact provisions, effective date, and promulgation status are unverified. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《人工卫星等发射及人工卫星管理相关法律》等部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《人工卫星等发射及人工卫星管理相关法律》",
+        "summary": "这是一项内阁提交的法案，旨在部分修订日本《关于人工卫星等的发射及人工卫星的管理的法律》及相关规定，列于众议院议案记录（第221届会期，第40号）。原始来源信息显示审议状态为“成立”（已通过）。由于这是立法跟踪页面的元数据，具体范围及生效状态应以官方来源确认为准。",
+        "business_impact": "涉及卫星发射或卫星管理的相关主体可能受到该管理法律框架修订的影响，但本元数据未详细说明具体修改内容。",
+        "recommended_action": "建议查阅众议院官方来源及修订后的法律文本，以确认该法案的适用范围、当前状态及可能适用的相关要求。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4634cce506c0e710",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Enhancing Science, Technology and Innovation Creation",
     "title_ja": "科学技術・イノベーション創出の活性化に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on Enhancing Science, Technology and Innovation Creation, listed in the House of Representatives bill records for the 221st Diet session (bill number 41). The raw source text indicates a deliberation status described as 'passed/established' (seiritsu). No promulgation or effective date details are provided in the metadata.",
+    "business_impact_en": "Amendments to this Act may affect organizations engaged in science, technology, and innovation activities, though the specific changes are not described in the provided metadata.",
+    "recommended_action_en": "Review the official House of Representatives source and the final statutory text to confirm the scope, status, and any effective dates of the amendment.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2432.htm",
     "published_at": "",
@@ -2505,26 +2685,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief raw summary; the raw text notes '成立' (passed), but no promulgation or enforcement details are provided, so status should be verified against the official source. Preliminary 'Enacted' label is rule-based triage metadata, not verified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《科学技术·创新创造活性化相关法律》部分修正法案已成立",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案已成立：《科学技术·创新创造活性化法》部分修订",
+        "summary": "这是内阁提交的（阁法）旨在部分修订日本《科学技术·创新创造活性化法》的法案，列于第221届国会众议院议案记录（议案编号41）。原始来源文本显示审议状态为“已通过/成立”（成立）。元数据中未提供公布或生效日期的详细信息。",
+        "business_impact": "该法的修订可能会影响从事科学、技术和创新活动的组织，但提供的元数据中未描述具体的修改内容。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认此次修订的范围、状态及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b9082a1fe2bbe231",
-    "title_en": "Diet Bill Update: Draft Amendment to Road Traffic Act Rules",
+    "title_en": "Bill to Amend the Act on Punishment for Acts Causing Death or Injury by Driving a Vehicle and the Road Traffic Act",
     "title_ja": "自動車の運転により人を死傷させる行為等の処罰に関する法律及び道路交通法の一部を改正する法律案",
     "area": "Transport / Infrastructure",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (session 221, number 42) to partially amend the Act on Punishment for Acts Causing Death or Injury Through Vehicle Driving and the Road Traffic Act, listed in the House of Representatives bill records. The raw metadata notes a deliberation status indicating the bill was passed ('成立'), though full details are not provided here. The publication date was not supplied in the metadata.",
+    "business_impact_en": "Amendments to driving-related penal provisions and the Road Traffic Act could affect obligations and liabilities for drivers, fleet operators, and transport-related businesses.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the scope, status, and effective timing of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE24AA.htm",
     "published_at": "",
@@ -2537,26 +2721,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata. The raw summary indicates the bill was passed ('成立'), but promulgation and entry-into-force dates are not confirmed here; verify against the official source. Stage/area labels are preliminary triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法案动态：《关于处罚因驾驶汽车致人死伤等行为的法律》及《道路交通法》修订案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《机动车驾驶致人死伤行为处罚法》及《道路交通法》",
+        "summary": "这是一项内阁提交的法案（第221届国会，第42号），旨在部分修订《机动车驾驶致人死伤行为处罚法》及《道路交通法》，该法案列于众议院议案记录中。原始元数据显示审议状态标注为已通过（'成立'），但此处未提供完整细节。元数据中未提供公布日期。",
+        "business_impact": "与驾驶相关的处罚规定及《道路交通法》的修订可能影响驾驶人、车队运营者及运输相关企业的义务与责任。",
+        "recommended_action": "建议查阅众议院官方来源及最终确定的法律文本，以确认此次修订的范围、状态及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-375f0589758bf2ca",
-    "title_en": "Diet Bill Update: Draft Amendment to Civil Code Rules",
+    "title_en": "Bill to Partially Amend the Civil Code and Related Acts",
     "title_ja": "民法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a Cabinet-submitted bill to partially amend Japan's Civil Code (Minpo) and related laws, listed in the House of Representatives (Shugiin) legislative information. The provided status field indicates the bill's deliberation status as passed ('seiritsu'), submitted during the 221st Diet session, number 43. The specific contents of the amendments are not described in the provided metadata.",
+    "business_impact_en": "Amendments to the Civil Code and related laws could affect a broad range of private legal relationships, so organizations may wish to assess whether any changes are relevant to their operations.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the full text of the bill to confirm its scope, status, and effective date.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2576.htm",
     "published_at": "",
@@ -2569,26 +2757,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief status field; the metadata's status label suggests passage but does not confirm promulgation or entry into force, and the specific amendment contents are unverified. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《民法等部分修正法律案》修订草案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：《民法》等部分修正法律案",
+        "summary": "本项目为内阁提交的关于部分修改日本《民法》及相关法律的法案，列于众议院法案信息中。所提供的状态字段显示该法案审议状态为已通过（“成立”），系第221届国会提交的第43号法案。所提供的元数据中未描述修正的具体内容。",
+        "business_impact": "《民法》及相关法律的修正可能影响广泛的民事法律关系，因此各机构可能希望评估其中是否有与自身业务相关的变化。",
+        "recommended_action": "建议考虑查阅众议院官方来源及法案全文，以确认其适用范围、状态及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ce984b94fc712a6c",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Social Welfare Act and Related Laws",
     "title_ja": "社会福祉法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns a Cabinet-submitted bill to partially amend the Social Welfare Act (Shakai Fukushi Ho) and related laws, listed in the House of Representatives legislative records. The record indicates it was submitted during the 221st Diet session (bill number 45) and notes a deliberation status of 'passed/established' (seiritsu). The full content of the amendments is not provided in this metadata.",
+    "business_impact_en": "Depending on its scope, amendments to social welfare legislation could affect organizations operating in welfare-related sectors, but the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the enacted text to confirm the scope, content, and effective dates of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE259E.htm",
     "published_at": "",
@@ -2601,26 +2793,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief status note; the raw summary indicates 'seiritsu' (passed), but effective dates and substantive details are not provided and should be verified against the official source. Preliminary labels are unverified triage metadata.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《社会福祉法等部分修正法案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《社会福祉法》等相关法律",
+        "summary": "本项目涉及内阁提交的关于部分修订《社会福祉法》等相关法律的法案，记录于众议院议案信息中。记录显示该法案于第221届国会提交（议案编号45），审议状态标注为“成立”。本元数据未提供修订的完整内容。",
+        "business_impact": "视其修订范围而定，社会福祉相关法律的修订可能影响在福祉相关领域运营的机构，但具体影响无法根据本元数据确定。",
+        "recommended_action": "建议考虑查阅众议院官方来源及已通过的正式文本，以确认修订的范围、内容及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-464d49954e3c0f4f",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Plant Variety Protection and Seed Act (Cabinet-submitted)",
     "title_ja": "種苗法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Plant Variety Protection and Seed Act (Byobyoho / Seeds and Seedlings Act), listed in the House of Representatives bill-tracking information (Session 221, No. 47). The raw metadata indicates the deliberation status is 'seiritsu' (passed/enacted); this status should be verified against the official source. No enactment or effective date is provided in the metadata.",
+    "business_impact_en": "Amendments to the seed and plant variety framework could affect organizations involved in agriculture, plant breeding, seed distribution, or related intellectual property, though specific changes are not described here.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the legislative status, scope, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE25C6.htm",
     "published_at": "",
@@ -2633,26 +2829,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata only. The raw summary states status as 'seiritsu' (passed), but substantive provisions and timing are not provided and must be verified against the authoritative source. Preliminary labels are keyword-based triage, not verified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《种苗法一部修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《种苗法》（内阁提交）",
+        "summary": "这是内阁提交的部分修订日本《种苗法》的法案，列于众议院议案信息（第221届会期，第47号）。原始元数据显示审议状态为“成立”（已通过/已成立），该状态应以官方来源核实为准。元数据中未提供公布或生效日期。",
+        "business_impact": "种苗与植物品种保护框架的修订可能影响涉及农业、植物育种、种苗流通或相关知识产权的组织，但具体修改内容此处未作说明。",
+        "recommended_action": "建议查阅众议院官方来源及已成立的正式文本，以核实立法状态、适用范围及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-efdfeee85c706331",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Stabilization of Supply-Demand and Prices of Staple Food",
     "title_ja": "主要食糧の需給及び価格の安定に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend Japan's Act on Stabilization of Supply-Demand and Prices of Staple Food, listed in the House of Representatives bill records. The raw source status field indicates the bill was passed/established (seiritsu), submitted during the 221st Diet session as bill number 48. As an unofficial summary, this must be verified against the authoritative Japanese source.",
+    "business_impact_en": "If the amendment takes effect, it could affect rules relating to the supply, demand, and price stability of staple food, potentially impacting businesses in food and agriculture sectors.",
+    "recommended_action_en": "Review the official House of Representatives source and the final statutory text to confirm the bill's status, content, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE25DA.htm",
     "published_at": "",
@@ -2665,26 +2865,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief raw status field ('成立' suggesting passage); no published date provided and details unverified. The preliminary 'Enacted' label is keyword-based triage and not a legally verified conclusion.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《主要食粮需给及价格稳定法》修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：修订《主要食粮供需及价格稳定法》部分内容",
+        "summary": "这是一项内阁提交的法案，旨在部分修订日本《主要食粮供需及价格稳定法》，该法案收录于众议院议案记录中。原始来源的状态字段显示该法案已通过成立（成立），系在第221届国会会期提交，议案编号为第48号。作为非官方摘要，需以权威的日文官方来源为准进行核实。",
+        "business_impact": "若该修订生效，可能影响与主要食粮供需及价格稳定相关的规则，或对食品与农业相关行业的企业产生影响。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认该法案的状态、内容及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-164ad327d7c844ee",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Prevention of Transfer of Criminal Proceeds",
     "title_ja": "犯罪による収益の移転防止に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Act on Prevention of Transfer of Criminal Proceeds, listed in the House of Representatives bill records (submission session 221, number 51). The provided status field indicates the bill passed ('成立'), but this metadata should be verified against the official source. The Act concerns anti-money-laundering and prevention of the transfer of criminal proceeds.",
+    "business_impact_en": "If enacted, changes to anti-money-laundering obligations could affect businesses subject to customer due diligence and transaction reporting requirements. The specific scope and effective timing cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the bill's status, content, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2616.htm",
     "published_at": "",
@@ -2697,26 +2901,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and brief metadata; the raw status field suggests passage but this is unverified. Enactment, scope, and effective dates should be confirmed against the authoritative Japanese source. Triage labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《关于防止犯罪收益转移的法律》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《关于犯罪收益转移防止的法律》",
+        "summary": "这是内阁提交的一项法案，旨在部分修订日本《关于犯罪收益转移防止的法律》，收录于众议院议案记录（提交会期221，第51号）。所提供的状态字段显示该法案已通过（“成立”），但该元数据应与官方来源核实。该法律涉及反洗钱及防止犯罪收益转移。",
+        "business_impact": "若该法案生效，反洗钱义务方面的变化可能影响需履行客户尽职调查和交易报告要求的企业。具体适用范围及生效时间无法从所提供的元数据中确定。",
+        "recommended_action": "建议查阅众议院官方来源及最终法律文本，以确认该法案的状态、内容及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ed982f156b38716b",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Act on Promotion of Administration Using Information and Communications Technology and...",
     "title_ja": "情報通信技術を活用した行政の推進等に関する法律及び情報処理の促進に関する法律の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill (kakuho) to partially amend the Act on the Promotion of Administration Using Information and Communications Technology and the Act on the Promotion of Information Processing, listed in the House of Representatives bill records (submission session 221, number 53). The raw source status field indicates the deliberation status as 'passed/established' (成立). As triage metadata rather than a verified legal conclusion, the entry should be confirmed against the official House of Representatives source.",
+    "business_impact_en": "If enacted as described, the amendments could affect how digital and information-processing aspects of public administration are governed, which may be relevant to organizations interacting with government digital systems.",
+    "recommended_action_en": "Review the official House of Representatives source to confirm the current legislative status and the specific contents of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE26DE.htm",
     "published_at": "",
@@ -2729,26 +2937,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status field; the raw summary states '成立' (established/passed) but no publication or enforcement date is provided, so the exact status should be verified against the official source. Preliminary labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《推进活用信息通信技术之行政法》及《促进信息处理法》部分修正法案已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：修订《行政程序中利用信息通信技术推进法》及《信息处理促进法》",
+        "summary": "这是一项内阁提交的法案（阁法），旨在部分修订《行政程序中利用信息通信技术推进法》及《信息处理促进法》，收录于众议院议案记录（提交会期221，第53号）。原始来源的状态字段显示审议状态为“成立”（已通过）。作为分类元数据而非经核实的法律结论，该条目应以众议院官方来源为准进行确认。",
+        "business_impact": "如按所述内容制定，此次修订可能影响行政管理中数字化及信息处理相关事项的治理方式，这可能与和政府数字系统有往来的机构相关。",
+        "recommended_action": "建议查阅众议院官方来源，以确认当前的立法状态及修订的具体内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-61a8b4ada6067f98",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the School Education Act and Related Laws",
     "title_ja": "学校教育法等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a Cabinet-submitted bill to partially amend the School Education Act (Gakko Kyoiku Ho) and related laws, listed in the House of Representatives (Shugiin) bill records under the 221st Diet session, number 55. The record's deliberation status is indicated as passed ('seiritsu'). No further details on the substance of the amendments are provided in the metadata.",
+    "business_impact_en": "Amendments to the School Education Act and related laws could affect entities involved in school education and related administration, though the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the full text of the bill to confirm its contents, status, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2706.htm",
     "published_at": "",
@@ -2761,26 +2973,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief bill record. The record indicates 'seiritsu' (passed), but promulgation and entry into force are not confirmed in the metadata; substance of amendments is unverified. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《学校教育法等部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：《学校教育法》等部分修正法律案",
+        "summary": "该事项为内阁提交的旨在部分修正《学校教育法》及相关法律的法案，列于众议院第221届国会议案记录第55号。记录中所示的审议状态为“成立”（已通过）。元数据中未提供修正内容的进一步细节。",
+        "business_impact": "对《学校教育法》及相关法律的修正可能影响涉及学校教育及相关行政事务的主体，但具体影响无法从该元数据中确定。",
+        "recommended_action": "建议考虑查阅众议院官方来源及法案全文，以确认其内容、状态及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-97b4af0d0e54c6f8",
-    "title_en": "Diet Bill Update: Draft Amendment to Waste Management Rules",
+    "title_en": "Bill to Partially Amend the Waste Management and Public Cleansing Act and Related Laws",
     "title_ja": "廃棄物の処理及び清掃に関する法律等の一部を改正する法律案",
     "area": "Energy / Environment",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a cabinet-submitted bill (kakuho) to partially amend Japan's Waste Management and Public Cleansing Act (Haikibutsu no Shori oyobi Seiso ni Kansuru Horitsu) and related laws, listed in the House of Representatives (Shugiin) bill records for the 221st Diet session, bill number 59. The provided source status field indicates the deliberation status as 'passed/established' (seiritsu). No date or detailed content of the amendments is provided in the metadata.",
+    "business_impact_en": "Amendments to waste management and cleansing laws could affect obligations for businesses involved in waste handling, disposal, or recycling. The specific scope and effective timing cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official House of Representatives source and the finalized statutory text to confirm the content, status, and any applicable effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE27B2.htm",
     "published_at": "",
@@ -2793,26 +3009,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese bill title and a brief status field indicating 'seiritsu' (passed); the specific amendment content, effective date, and promulgation status are not verified. Preliminary labels are keyword-based triage only.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《废弃物处理及清扫法》等部分修正法律案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《废弃物处理及清扫法》等相关法律",
+        "summary": "本项为内阁提交的法案，旨在部分修订日本《废弃物处理及清扫法》及相关法律，收录于第221届国会众议院议案记录，议案编号第59号。所提供的来源状态字段显示审议状态为“成立”（已通过）。元数据中未提供修订的具体日期或详细内容。",
+        "business_impact": "对废弃物处理及清扫相关法律的修订可能影响从事废弃物处理、处置或回收业务的企业所承担的义务。具体范围及生效时间无法根据所提供的元数据确定。",
+        "recommended_action": "建议查阅众议院官方来源及最终确定的法律文本，以确认相关内容、状态及可能适用的生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4073b9504d803f2f",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Code of Criminal Procedure",
     "title_ja": "刑事訴訟法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Code of Criminal Procedure (Keiji Sosho Ho), listed in the House of Representatives bill records (submission session 221, number 61). The raw source note indicates a deliberation status of 'enacted' (seiritsu), but this should be confirmed against the official Japanese source. No further details on the content of the amendments are provided in the metadata.",
+    "business_impact_en": "Amendments to criminal procedure rules could affect entities involved in criminal investigations, evidence handling, or related legal processes, but the specific effects cannot be determined from this metadata.",
+    "recommended_action_en": "Consider reviewing the official House of Representatives source and the full text of the bill to verify its current status and substantive provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2822.htm",
     "published_at": "",
@@ -2825,26 +3045,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a brief raw note; the metadata suggests 'enacted' status but no promulgation or effective date is confirmed here. No publication date provided; content of amendments is unspecified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案更新：《刑事诉讼法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案：部分修订《刑事诉讼法》",
+        "summary": "这是由内阁提交的部分修订日本《刑事诉讼法》的法案，登载于众议院议案记录中（提交届次221，编号61）。原始来源信息显示审议状态为“已成立”，但该状态应以日文官方来源为准进行确认。元数据中未提供有关修订内容的进一步细节。",
+        "business_impact": "刑事诉讼程序规则的修订可能影响参与刑事调查、证据处理或相关法律程序的主体，但具体影响无法从该元数据中确定。",
+        "recommended_action": "建议考虑查阅众议院官方来源及法案全文，以核实其当前状态及实质内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-851928d1d38f4182",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Copyright Act",
     "title_ja": "著作権法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a cabinet-submitted bill to partially amend Japan's Copyright Act, listed in the House of Representatives (Shugiin) bill-tracking information for the 221st Diet session (bill number 62). The raw source status indicates the bill's deliberation status as 'seiritsu' (passed/enacted). Specific provisions and the scope of the amendments are not described in the provided metadata.",
+    "business_impact_en": "Amendments to the Copyright Act could affect organizations that create, license, or use copyrighted works in Japan, depending on the substance of the changes.",
+    "recommended_action_en": "Review the official House of Representatives source and the enacted text to confirm the content, scope, and effective timing of the amendments.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2836.htm",
     "published_at": "",
@@ -2857,26 +3081,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief status metadata; the raw summary indicates '成立' (passed), but the exact provisions, promulgation, and enforcement dates are not verified. 'Enacted' stage label is rule-based and should be confirmed against the official source.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《著作权法部分修正法律》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《著作权法》部分修正法案（已成立）",
+        "summary": "本项为内阁提交的关于部分修订日本《著作权法》的法案，列于众议院第221届国会法案追踪信息中（法案编号62）。原始来源状态显示该法案的审议状态为“成立”（已通过/已成立）。所提供的元数据中未描述具体条款及修订范围。",
+        "business_impact": "对《著作权法》的修订可能会影响在日本创作、许可或使用受著作权保护作品的组织，具体影响视修改内容而定。",
+        "recommended_action": "建议查阅众议院官方来源及已成立的法律文本，以确认修订的内容、范围及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b00181c340d278d7",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Immunization Act (Cabinet-submitted, 221st Diet session, No. 63)",
     "title_ja": "予防接種法の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend Japan's Immunization Act (Yobo Sesshu Ho), listed in the House of Representatives bill-tracking system for the 221st Diet session (bill No. 63). The provided raw summary indicates the deliberation status as 'passed/established' (seiritsu). Details of the amendment's content are not included in the provided metadata.",
+    "business_impact_en": "Depending on its substance, an amendment to the Immunization Act could affect organizations involved in vaccination programs, healthcare administration, or related record-keeping and reporting.",
+    "recommended_action_en": "Consult the official House of Representatives source and the authoritative statutory text to confirm the bill's current status and specific provisions.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE28F2.htm",
     "published_at": "",
@@ -2889,26 +3117,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief raw summary. The raw summary states '成立' (passed), but effective date, promulgation, and detailed content are not provided and should be verified against the official source. Preliminary labels are keyword-based and not authoritative.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《予防接种法部分修正法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《预防接种法》部分修正法案（内阁提交，第221届国会第63号）",
+        "summary": "这是日本内阁提交的关于部分修正《预防接种法》的法案，列于众议院第221届国会法案跟踪系统（第63号法案）。所提供的原始摘要显示审议状态为“已通过成立”。所提供的元数据中未包含修正内容的具体细节。",
+        "business_impact": "根据其具体内容，《预防接种法》的修正可能会影响参与疫苗接种项目、医疗行政或相关记录保存与报告工作的机构。",
+        "recommended_action": "建议查阅众议院官方来源及权威法律文本，以确认该法案当前的状态及具体条款。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-22e6196488947fd6",
-    "title_en": "Diet Bill Update: Bill enacted",
+    "title_en": "Bill to Partially Amend the Imperial House Law and Related Acts",
     "title_ja": "皇室典範等の一部を改正する法律案",
     "area": "Other",
     "stage": "Enacted",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This is a Cabinet-submitted bill to partially amend the Imperial House Law (Koshitsu Tenpan) and related laws, listed in the House of Representatives (Shugiin) legislative records for the 221st Diet session, item number 64. The record's deliberation status field indicates 'seiritsu' (passed/established). This English text is an unofficial summary and must be verified against the official Japanese source.",
+    "business_impact_en": "As a measure concerning the Imperial House Law and related acts, direct impact on general business is likely limited, though it could be relevant to organizations tracking Japanese public-institution or ceremonial matters.",
+    "recommended_action_en": "Review the official House of Representatives source page to confirm the bill's scope, current status, and any effective dates.",
     "source_name": "House of Representatives (衆議院) 議案情報",
     "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2B16.htm",
     "published_at": "",
@@ -2921,15 +3153,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:44:34Z",
     "ja_summary_model": "claude-opus-4-8",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and a brief record field indicating 'seiritsu' (passed); no promulgation or effective date is provided, so enactment/in-force status is not fully confirmed. Preliminary triage labels are keyword-based and unverified.",
+    "summary_source": "claude",
+    "summarized_at": "2026-09-11T23:01:31Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国会法案动态：《修改皇室典范等的部分法律案》已通过",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法案通过：部分修订《皇室典范》等法律案",
+        "summary": "这是内阁提交的一项旨在部分修订《皇室典范》及相关法律的法案，列于第221届国会众议院议案信息第64号。记录中的审议状态栏显示为“成立”（已通过/已确立）。本英文文本为非官方摘要，须以日文官方来源为准进行核实。",
+        "business_impact": "作为一项涉及《皇室典范》及相关法律的措施，对一般企业的直接影响可能有限，但对于关注日本公共机构或礼仪事务的组织而言可能具有相关性。",
+        "recommended_action": "建议查阅众议院官方来源页面，以确认该法案的范围、当前状态及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-761dc16694bf720c",
