@@ -159,17 +159,17 @@
     "last_checked": "2026-09-08",
     "relevance_score": 15.0,
     "first_seen_at": "2026-09-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and raw metadata; enforcement status and details are unverified against the authoritative source. The rule-based 'In Force' label is triage metadata only, not a legal conclusion.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "e-Gov法令更新一覧によると、こども家庭庁設置法の施行に伴う関係法律の整備に関する法律（令和四年法律第七十六号）が公表されています。この改正の対象法令として中小企業等経営強化法（平成十一年法律第十八号）が挙げられており、公布日および施行日はいずれも2022年6月22日と記載されています。",
     "business_impact_ja": "関係法律の整備に伴い、中小企業等経営強化法をはじめとする関連法令の規定に改正が及んでいる可能性があります。所管業務との関連によっては、条文の確認が必要となることが考えられます。",
     "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Govなど日本語の公式情報源で該当条文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the provided Japanese title and raw metadata; enforcement status and details are unverified against the authoritative source. The rule-based 'In Force' label is triage metadata only, not a legal conclusion.",
-    "summarized_at": "2026-09-11T23:05:28Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "《为实施儿童家庭厅设置法而整备相关法律的法律》",
@@ -195,17 +195,17 @@
     "last_checked": "2026-09-08",
     "relevance_score": 15.0,
     "first_seen_at": "2026-09-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and raw metadata; the specific amended provisions are not detailed. The enforcement date (2023-04-01) is stated in the metadata but should be verified against the authoritative Japanese source. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-11T23:05:28Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "こども家庭庁設置法の施行に伴う関係法律の整備に関する法律（令和四年法律第七十六号）に関する法令更新情報です。メタデータによれば、公布日は2022年6月22日、施行日は2023年4月1日とされています。今回の更新対象法令は中小企業等経営強化法（平成十一年法律第十八号）であり、上記整備法による改正が示されています。",
     "business_impact_ja": "中小企業等経営強化法に関連する事業を行う場合、当該改正内容の確認が必要となる可能性があります。こども家庭庁の設置に伴う関係法律の整備の一環として、実務上の影響が及ぶことも考えられます。",
     "recommended_action_ja": "改正内容や施行状況の詳細については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the provided Japanese title and raw metadata; the specific amended provisions are not detailed. The enforcement date (2023-04-01) is stated in the metadata but should be verified against the authoritative Japanese source. Preliminary triage labels are keyword-based and not authoritative.",
-    "summarized_at": "2026-09-11T23:05:28Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "儿童家庭厅设置法施行相关法律整备法",
@@ -231,12 +231,20 @@
     "last_checked": "2026-09-11",
     "relevance_score": 12.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧に、「高圧ガス保安法等の一部を改正する法律」（令和四年法律第七十四号）に関する情報が掲載されています。原文によれば、当該改正法令は2022年6月22日に公布され、施行日は2026年12月21日とされています。更新一覧の対象法令としては登録免許税法（昭和四十二年法律第三十五号）が示されています。",
     "business_impact_ja": "高圧ガス関連の保安規制や、これに伴う登録免許税法の関連規定に関わる事業においては、将来の施行に向けた対応の検討が必要となる可能性があります。",
     "recommended_action_ja": "施行内容や適用範囲の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文および関連告示をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-11T23:14:46Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "日本电子政府法律更新：《高压气体保安法》等部分修正法（2022-06-22）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   }
 ]
