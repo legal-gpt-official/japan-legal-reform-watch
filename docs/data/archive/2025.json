@@ -2537,17 +2537,17 @@
     "last_checked": "2026-08-06",
     "relevance_score": 13.0,
     "first_seen_at": "2026-08-06",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and limited metadata; the specific content of the amendments and the applied 'Consumer / Advertising' label are unverified and the label appears inconsistent with the securities-trading subject matter.",
+    "summarized_at": "2026-09-12T22:54:17Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "日本証券業協会（JSDA）が「上場株券等の取引所金融商品市場外での売買等に関する規則」等の一部改正に関する意見募集の結果を公表しました。原文によれば、意見の募集期間は2025年4月24日から2025年5月23日までとされ、その結果が2025年6月23日付で示されています。本件は意見募集結果の公表段階に位置づけられる情報です。",
     "business_impact_ja": "上場株券等の取引所金融商品市場外での売買等に関する規則の改正内容によっては、関連業務を行う事業者の実務や対応に影響が及ぶ可能性があります。改正の具体的な範囲や適用時期は、公表資料の確認が必要と考えられます。",
     "recommended_action_ja": "改正内容や適用開始時期などの詳細については、JSDAが公表する日本語の一次情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and limited metadata; the specific content of the amendments and the applied 'Consumer / Advertising' label are unverified and the label appears inconsistent with the securities-trading subject matter.",
-    "summarized_at": "2026-09-12T22:54:17Z",
-    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见结果：《上市股票等场外交易规则》部分修订",
@@ -2559,14 +2559,14 @@
   },
   {
     "id": "raw-ba649c63d61c7939",
-    "title_en": "PPC Update: Response to Leakage Incidents Involving Specific Personal Information (2025-12-04)",
+    "title_en": "PPC Updates Guidance Pages on Data Breach Response and Common Forms for Ransomware Incidents",
     "title_ja": "「漏えい等の対応とお役立ち資料」「特定個人情報の漏えい等事案が発生した場合の対応について」ページのランサムウェア事案に関する共通様式についての記載事項を更新しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Personal Information Protection Commission (PPC) announced an update to its web pages on responding to data leaks and on handling incidents involving specific personal information ('tokutei kojin joho'). According to the item, the update concerns entries about the common form(s) related to ransomware incidents. This is a government announcement referencing guidance and supporting materials under the Act on the Protection of Personal Information and related rules.",
+    "business_impact_en": "Organizations that handle personal information in Japan may need to review whether their breach-response procedures and reporting formats align with the updated guidance, particularly for ransomware incidents.",
+    "recommended_action_en": "Consider reviewing the official PPC source page to confirm the specific changes to the common forms and breach-response guidance.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/personalinfo/legal/leakAction?ref=ninf#cloud",
     "published_at": "2025-12-04",
@@ -2578,26 +2578,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and limited metadata; the exact nature and scope of the updates are unverified. Labels are keyword-based triage only. Verify against the authoritative PPC source.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会更新：涉及特定个人信息泄露事案的应对（2025-12-04）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会更新数据泄露应对及勒索软件事案通用格式指导页面",
+        "summary": "个人信息保护委员会（PPC）宣布更新其关于数据泄露应对及特定个人信息相关事案处理的网页内容。据该项目所述，此次更新涉及与勒索软件事案相关的通用格式的记载事项。这是一项政府公告，参照了《个人信息保护法》及相关规则下的指南与配套资料。",
+        "business_impact": "在日本处理个人信息的组织可能需要审查其泄露应对流程及报告格式是否与更新后的指南保持一致，特别是在勒索软件事案方面。",
+        "recommended_action": "建议考虑查阅个人信息保护委员会官方来源页面，以确认通用格式及泄露应对指南的具体变更内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a83e893dad835aed",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-11-05)",
+    "title_en": "JSDA Publishes Public Comment Results on Partial Amendment to Rules on Investment Solicitation and Customer Management",
     "title_ja": "「協会員の投資勧誘、顧客管理等に関する規則」の一部改正について",
     "area": "Consumer / Advertising",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment procedure concerning a partial amendment to its 'Rules Concerning Investment Solicitation, Customer Management, etc. by Association Members'. According to the metadata, the public comment period ran from September 16, 2025 to October 15, 2025, with results published on November 5, 2025. This is a self-regulatory organization matter reflecting the outcome of a public comment process.",
+    "business_impact_en": "Securities firms that are JSDA members may need to consider how any amended rules on investment solicitation and customer management could affect their internal procedures. The practical effect could depend on the final content and timing of the amendment as described in the official source.",
+    "recommended_action_en": "Review the official JSDA public comment results document to verify the scope, content, and effective timing of the rule amendment.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/files/251105_PCkekka_tousikanyuu.pdf",
     "published_at": "2025-11-05",
@@ -2610,26 +2614,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based mainly on the Japanese title and brief metadata; the specific substance of the amendment and its effective date are not verified. Preliminary rule-based labels are weak triage context only.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《协会员的投资劝诱、客户管理等相关规则》部分修订",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《协会员投资劝诱、客户管理等相关规则》部分修订",
+        "summary": "日本证券业协会（JSDA）公布了关于其《协会员投资劝诱、客户管理等相关规则》部分修订的公开征求意见结果。根据元数据，公开征求意见期间为2025-09-16至2025-10-15，结果于2025-11-05公布。这是一项反映公开征求意见程序结果的自律组织事项。",
+        "business_impact": "作为JSDA会员的证券公司可能需要考虑经修订的投资劝诱及客户管理相关规则可能如何影响其内部程序。实际影响可能取决于官方来源中所述修订的最终内容及时间安排。",
+        "recommended_action": "建议查阅JSDA官方公开征求意见结果文件，以核实规则修订的范围、内容及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-71ba58dafe65206a",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-11-05)",
+    "title_en": "JSDA Publishes Public Comment Results on Partial Amendments to Rules on Sales Representative Disciplinary...",
     "title_ja": "処分通知等のデジタル化に係る「協会員の外務員等の処分に係る手続に関する規則」等の一部改正について",
     "area": "Data / Privacy / AI",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment procedure concerning partial amendments to its rules on disciplinary procedures for association members' sales representatives and related rules, tied to the digitization of disposition notices. According to the metadata, the public comment period ran from September 16, 2025 to October 15, 2025, and the results were published on November 5, 2025. This is a self-regulatory organization item reflecting public comment results rather than a national law.",
+    "business_impact_en": "Securities firms and their sales representatives may need to review changes to how disposition notices and related disciplinary procedures are handled in digital form. The amendments could affect internal procedures once the finalized rules take effect.",
+    "recommended_action_en": "Consider reviewing the official JSDA public comment results document to confirm the scope, content, and timing of the rule amendments.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/20251105_PCkekka_syobuntou.pdf",
     "published_at": "2025-11-05",
@@ -2642,26 +2650,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and limited metadata; the exact substance and effective date of the amendments are not verified. The 'Data / Privacy / AI' label is keyword-based triage and may not accurately reflect the item, which appears focused on securities disciplinary procedures and digitization of notices.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：日本证券业协会关于处分通知等数字化的《协会员的外务员等处分相关程序规则》等部分修订",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《协会会员外务员等处分相关程序规则》等部分修订",
+        "summary": "日本证券业协会（JSDA）公布了关于其《协会会员外务员等处分相关程序规则》等相关规则部分修订的公开征求意见结果，该修订与处分通知等的数字化有关。根据元数据，公开征求意见期间为2025-09-16至2025-10-15，结果于2025-11-05公布。这是一项反映公开征求意见结果的自律监管组织事项，而非国家法律。",
+        "business_impact": "证券公司及其外务员可能需要审视处分通知及相关处分程序以数字化形式处理方式的变化。一旦最终确定的规则生效，此次修订可能会影响内部程序。",
+        "recommended_action": "建议考虑查阅JSDA官方公开征求意见结果文件，以确认规则修订的范围、内容及时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-cd1c35f32cacd3e6",
-    "title_en": "PPC Update: Personal Information Leakage Response Guidance",
+    "title_en": "PPC Publishes Guidance on Handling Personal Data in Light of School Data Breach Incidents",
     "title_ja": "「学校における個人情報の漏えい等事案を踏まえた個人情報の取扱いに関する留意点について」を掲載しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's Personal Information Protection Commission (PPC) announced the publication of a document titled 'Points to Note on the Handling of Personal Information in Light of Personal Data Leakage Incidents at Schools.' According to the metadata, the item references the Act on the Protection of Personal Information and related rules and was posted on 25 June 2025. This appears to be a government announcement of published guidance rather than a new or enacted law.",
+    "business_impact_en": "Organizations handling personal data in educational settings may find this guidance relevant to their data-protection practices. It could inform how schools and related entities review procedures for preventing and responding to data leakage.",
+    "recommended_action_en": "Consider reviewing the official PPC publication and its Japanese source to understand the specific points and their applicability to your situation.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/news/press/2025/250625_houdo?ref=ninf",
     "published_at": "2025-06-25",
@@ -2673,26 +2685,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata; the content of the published guidance is unverified. Preliminary triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会更新：学校个人信息泄露事案相关个人信息处理注意事项",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会发布：关于学校个人信息泄露事案的个人信息处理注意事项",
+        "summary": "日本个人信息保护委员会（PPC）宣布发布一份名为《关于学校个人信息泄露等事案的个人信息处理注意事项》的文件。根据元数据，该文件参照了《个人信息保护法》及相关规则，并于2025-06-25发布。这似乎是政府对已发布指南的公告，而非新法律或已颁布的法律。",
+        "business_impact": "在教育相关场景中处理个人信息的组织可能会发现该指南与其数据保护实践相关。这可能有助于学校及相关主体审查防止和应对数据泄露的程序。",
+        "recommended_action": "建议考虑查阅个人信息保护委员会官方发布文件及其日文来源，以了解具体要点及其对自身情况的适用性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-40f73267f36df99b",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2025-06-18)",
+    "title_en": "Act Partially Amending the Act on Streamlining Food Distribution and Ensuring Fair Transactions and the Wholesale...",
     "title_ja": "食品等の流通の合理化及び取引の適正化に関する法律及び卸売市場法の一部を改正する法律",
     "area": "Food / Agriculture",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item refers to an amending act (Reiwa 7 Act No. 69) affecting laws related to food distribution rationalization, fair transactions, and the wholesale market, as listed in the e-Gov Law Search. The metadata records a promulgation date of 2025-06-18 and an enforcement date of 2025-10-01. The record also references the Act on Strengthening the Management of Small and Medium Enterprises (Heisei 11 Act No. 18) as the target law in the update listing.",
+    "business_impact_en": "Businesses involved in food distribution, wholesale markets, or related transactions may be affected and could need to review how the amendments apply to their operations.",
+    "recommended_action_en": "Consult the official Japanese source on e-Gov Law Search to confirm the scope, effective date, and specific provisions of the amendments.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=411AC0000000018_20251001_507AC0000000069",
     "published_at": "2025-06-18",
@@ -2705,26 +2721,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the enforcement date (2025-10-01) is drawn from the metadata and should be verified against the official source. The relationship between the listed target law and the amending act is unclear from the metadata.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本法令生效：《关于食品等流通合理化及交易适当化的法律及批发市场法部分修正的法律》（2025-06-18）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "关于修订《食品等流通合理化及交易适当化法》及《批发市场法》的法律",
+        "summary": "本条目指一项修订法律（令和7年法律第69号），涉及食品流通合理化、交易适当化以及批发市场相关法律，收录于e-Gov法令检索。元数据记录的公布日期为2025-06-18，生效日期为2025-10-01。该记录还提及《中小企业经营强化法》（平成11年法律第18号）作为更新列表中的对象法律。",
+        "business_impact": "从事食品流通、批发市场或相关交易的企业可能受到影响，或需要审视此次修订对其业务运作的适用情况。",
+        "recommended_action": "建议参阅e-Gov法令检索中的日文官方来源，以确认此次修订的适用范围、生效日期及具体条款。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b5dbf51710f90045",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-06-16)",
+    "title_en": "JSDA Public Comment Results on Partial Amendment to Rules on Members' Investment Solicitation and Customer Management",
     "title_ja": "「協会員の投資勧誘、顧客管理等に関する規則」の一部改正について",
     "area": "Consumer / Advertising",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment procedure concerning a partial amendment to its rules on member firms' investment solicitation and customer management. According to the metadata, the public comment period ran from April 15, 2025 to May 14, 2025, and the results were published on June 16, 2025. This item reflects public comment results rather than confirmation that any amended rule is in force.",
+    "business_impact_en": "Securities firms that are JSDA members may need to consider how any resulting rule changes could affect their investment solicitation and customer management practices.",
+    "recommended_action_en": "Review the official JSDA public comment results document to confirm the scope, timing, and details of the rule amendment.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/files/250616_PCkekka_tousikanyuu.pdf",
     "published_at": "2025-06-16",
@@ -2737,26 +2757,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on limited metadata and the Japanese title; the specific content and effective status of the amendment are unverified. Preliminary labels (area/stage/impact) are keyword-based triage only and not authoritative.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《协会员的投资劝诱、客户管理等相关规则》部分修订（2025-06-16）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《协会会员投资劝诱、顾客管理等有关规则》部分修订",
+        "summary": "日本证券业协会（JSDA）公布了关于其会员公司投资劝诱及顾客管理相关规则部分修订的公开征求意见结果。根据元数据，公开征求意见期为2025-04-15至2025-05-14，结果于2025-06-16公布。该项目反映的是公开征求意见结果，而非确认任何修订规则已生效。",
+        "business_impact": "作为JSDA会员的证券公司可能需要考虑由此产生的规则变更可能如何影响其投资劝诱及顾客管理相关做法。",
+        "recommended_action": "建议查阅JSDA官方公开征求意见结果文件，以确认该规则修订的范围、时间安排及具体内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-c42742582bcbadca",
-    "title_en": "JSDA Public Comment Results: Regulatory comment results published (2025-04-11)",
+    "title_en": "JSDA Publishes Public Comment Results on Partial Amendment of Rules on Solicitation of Professional Investors for...",
     "title_ja": "「店頭有価証券等の特定投資家に対する投資勧誘等に関する規則」等の一部改正について",
     "area": "Consumer / Advertising",
     "stage": "Public Comment Results Published",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) has published the results of a public comment procedure concerning partial amendments to its rules on the solicitation of, and related activities toward, professional investors regarding over-the-counter securities. According to the metadata, the public comment period ran from February 18, 2025 to March 19, 2025, and the results were published on April 11, 2025. This item reflects the outcome of a public comment process rather than a statutory law.",
+    "business_impact_en": "Firms engaging in solicitation of professional investors for over-the-counter securities may be affected by the amended self-regulatory rules and could need to review their related procedures.",
+    "recommended_action_en": "Consider reviewing the official JSDA public comment results document to confirm the scope, content, and effective timing of the rule amendments.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comment Results",
     "source_url": "https://www.jsda.or.jp/about/public/kekka/files/20250411_j-ships_PCkekka.pdf",
     "published_at": "2025-04-11",
@@ -2769,15 +2793,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:46:02Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and limited metadata; the specific content and effective date of the amendments are unverified. This is a JSDA self-regulatory public comment result, not government legislation.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "公开征求意见结果：《店头有价证券等针对特定投资者的投资劝诱等相关规则》等部分修订（2025-04-11）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "公开征求意见结果：《店头有价证券等针对专业投资者的投资劝诱等相关规则》部分修订",
+        "summary": "日本证券业协会（JSDA）公布了关于其《店头有价证券等针对专业投资者的投资劝诱等相关规则》部分修订的公开征求意见结果。根据元数据，公开征求意见期为2025-02-18至2025-03-19，结果于2025-04-11公布。该事项反映的是公开征求意见程序的结果，而非法定法律。",
+        "business_impact": "从事店头有价证券对专业投资者进行投资劝诱等活动的公司可能受到修订后的自律规则影响，或需要审查其相关流程。",
+        "recommended_action": "建议考虑查阅JSDA官方公开征求意见结果文件，以确认规则修订的范围、内容及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-49c100673f327227",
@@ -2923,6 +2951,12 @@
     "last_checked": "2026-09-10",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-11",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、改正法令として「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、公布日は2025年12月12日、施行日は2027年4月1日とされています。なお対象法令として「防衛省の職員の給与等に関する法律（昭和二十七年法律第二百六十六号）」が併記されていますが、その関係性の詳細は原文情報からは明確ではありません。",
+    "business_impact_ja": "医療・製薬分野に関連する改正である可能性があり、施行予定日を見据えた対応の検討が必要となることも考えられます。ただし具体的な改正内容が本メタデータからは判然としないため、影響範囲は現時点で確定できません。",
+    "recommended_action_ja": "改正の具体的内容や適用範囲については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -2931,13 +2965,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、改正法令として「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、公布日は2025年12月12日、施行日は2027年4月1日とされています。なお対象法令として「防衛省の職員の給与等に関する法律（昭和二十七年法律第二百六十六号）」が併記されていますが、その関係性の詳細は原文情報からは明確ではありません。",
-    "business_impact_ja": "医療・製薬分野に関連する改正である可能性があり、施行予定日を見据えた対応の検討が必要となることも考えられます。ただし具体的な改正内容が本メタデータからは判然としないため、影響範囲は現時点で確定できません。",
-    "recommended_action_ja": "改正の具体的内容や適用範囲については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-d2eb0b3629ea4dd1",
@@ -2955,6 +2983,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の更新一覧によれば、生活保護法（昭和二十五年法律第百四十四号）に関して、改正法令である「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布されたと示されています。原文では公布日が2025年12月12日、施行日が2027年4月1日とされています。",
+    "business_impact_ja": "医療・生活保護に関連する分野の事業者にとって、制度運用の見直しが必要となる可能性があります。施行日までに影響範囲を確認する余地があると考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容および施行日等の詳細をご確認いただくことをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -2963,13 +2997,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の更新一覧によれば、生活保護法（昭和二十五年法律第百四十四号）に関して、改正法令である「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布されたと示されています。原文では公布日が2025年12月12日、施行日が2027年4月1日とされています。",
-    "business_impact_ja": "医療・生活保護に関連する分野の事業者にとって、制度運用の見直しが必要となる可能性があります。施行日までに影響範囲を確認する余地があると考えられます。",
-    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容および施行日等の詳細をご確認いただくことをご検討ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-af0b6ed8390fdf52",
@@ -2987,6 +3015,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。原文によれば、公布日は2025年12月12日、施行日は2027年4月1日とされています。更新対象法令として「水俣病被害者の救済及び水俣病問題の解決に関する特別措置法」（平成二十一年法律第八十一号）が示されています。",
+    "business_impact_ja": "医療関連の法令改正に伴い、対象となる事業分野で制度対応の検討が必要となる可能性があります。施行日が2027年4月1日とされていることから、施行までに準備期間が確保できると考えられます。",
+    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -2995,13 +3029,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。原文によれば、公布日は2025年12月12日、施行日は2027年4月1日とされています。更新対象法令として「水俣病被害者の救済及び水俣病問題の解決に関する特別措置法」（平成二十一年法律第八十一号）が示されています。",
-    "business_impact_ja": "医療関連の法令改正に伴い、対象となる事業分野で制度対応の検討が必要となる可能性があります。施行日が2027年4月1日とされていることから、施行までに準備期間が確保できると考えられます。",
-    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-3adcd858d0d9d794",
@@ -3019,6 +3047,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令更新一覧によると、地方公務員等共済組合法（昭和三十七年法律第百五十二号）について、「医療法等の一部を改正する法律」（令和七年法律第八十七号）による改正が示されています。原文では公布日が2025年12月12日、施行日が2027年4月1日と記載されています。",
+    "business_impact_ja": "医療関連法制の改正に伴い、対象となる法令の適用を受ける事業や制度運用に影響が生じる可能性があります。施行日が2027年4月1日とされているため、対応準備の期間を要することが考えられます。",
+    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3027,13 +3061,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令更新一覧によると、地方公務員等共済組合法（昭和三十七年法律第百五十二号）について、「医療法等の一部を改正する法律」（令和七年法律第八十七号）による改正が示されています。原文では公布日が2025年12月12日、施行日が2027年4月1日と記載されています。",
-    "business_impact_ja": "医療関連法制の改正に伴い、対象となる法令の適用を受ける事業や制度運用に影響が生じる可能性があります。施行日が2027年4月1日とされているため、対応準備の期間を要することが考えられます。",
-    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4689d34f92f8a8af",
@@ -3051,6 +3079,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、この改正法令は2025年12月12日に公布され、施行日は2027年4月1日とされています。対象法令として「原子爆弾被爆者に対する援護に関する法律」（平成六年法律第百十七号）が挙げられています。",
+    "business_impact_ja": "医療関連の法令改正であるため、医療分野に関係する事業活動に影響が及ぶ可能性があります。施行日が2027年4月1日とされていることから、施行に向けた対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3059,13 +3093,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、この改正法令は2025年12月12日に公布され、施行日は2027年4月1日とされています。対象法令として「原子爆弾被爆者に対する援護に関する法律」（平成六年法律第百十七号）が挙げられています。",
-    "business_impact_ja": "医療関連の法令改正であるため、医療分野に関係する事業活動に影響が及ぶ可能性があります。施行日が2027年4月1日とされていることから、施行に向けた対応の検討が必要となることも考えられます。",
-    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-61633fc1fd7acd69",
@@ -3083,6 +3111,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布日2025年12月12日として掲載されています。この改正に関連する対象法令として「石綿による健康被害の救済に関する法律」（平成十八年法律第四号）が示され、施行日は2027年4月1日と記載されています。",
+    "business_impact_ja": "医療関連法令や石綿による健康被害の救済に関わる制度の見直しにより、関連事業者の対応が必要となる可能性があります。施行日までに具体的な改正内容を確認しておくことが考えられます。",
+    "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正の具体的な内容および施行日をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3091,13 +3125,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の更新一覧によると、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布日2025年12月12日として掲載されています。この改正に関連する対象法令として「石綿による健康被害の救済に関する法律」（平成十八年法律第四号）が示され、施行日は2027年4月1日と記載されています。",
-    "business_impact_ja": "医療関連法令や石綿による健康被害の救済に関わる制度の見直しにより、関連事業者の対応が必要となる可能性があります。施行日までに具体的な改正内容を確認しておくことが考えられます。",
-    "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正の具体的な内容および施行日をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-24b1db13240ea4a7",
@@ -3115,6 +3143,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令更新一覧に、地方公務員等共済組合法（昭和三十七年法律第百五十二号）に関する更新情報が掲載されました。当該法令は「医療法等の一部を改正する法律」（令和七年法律第八十七号）により改正されるものとされ、公布日は2025年12月12日と示されています。原文は法令更新一覧の記載に基づく情報です。",
+    "business_impact_ja": "医療法等の改正に伴い関連法令の規定が見直される場合、医療分野や共済制度に関連する事業運営に影響が及ぶ可能性があります。改正の具体的な内容や施行時期によって対応の要否が変わることも考えられます。",
+    "recommended_action_ja": "改正の詳細や施行日については、e-Gov等の日本語の公式情報源で最新の条文および関連告示をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
@@ -3123,13 +3157,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令更新一覧に、地方公務員等共済組合法（昭和三十七年法律第百五十二号）に関する更新情報が掲載されました。当該法令は「医療法等の一部を改正する法律」（令和七年法律第八十七号）により改正されるものとされ、公布日は2025年12月12日と示されています。原文は法令更新一覧の記載に基づく情報です。",
-    "business_impact_ja": "医療法等の改正に伴い関連法令の規定が見直される場合、医療分野や共済制度に関連する事業運営に影響が及ぶ可能性があります。改正の具体的な内容や施行時期によって対応の要否が変わることも考えられます。",
-    "recommended_action_ja": "改正の詳細や施行日については、e-Gov等の日本語の公式情報源で最新の条文および関連告示をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8d73766fd5003f20",
@@ -3147,6 +3175,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）に関する情報が掲載されています。対象法令は児童福祉法（昭和二十二年法律第百六十四号）で、公布日は2025年12月12日、施行日は2027年4月1日と記載されています。",
+    "business_impact_ja": "医療および児童福祉に関連する事業においては、改正内容に応じて業務や対応の見直しが必要となる可能性があります。施行日が2027年4月1日とされているため、それまでに準備が求められることも考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Gov法令検索など日本語の公式情報源で最新の条文および関連告示をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3155,13 +3189,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）に関する情報が掲載されています。対象法令は児童福祉法（昭和二十二年法律第百六十四号）で、公布日は2025年12月12日、施行日は2027年4月1日と記載されています。",
-    "business_impact_ja": "医療および児童福祉に関連する事業においては、改正内容に応じて業務や対応の見直しが必要となる可能性があります。施行日が2027年4月1日とされているため、それまでに準備が求められることも考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Gov法令検索など日本語の公式情報源で最新の条文および関連告示をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5306a32000394cf3",
@@ -3179,6 +3207,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令更新一覧によると、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が2025年12月12日に公布されたとされています。当該改正の対象法令として船員保険法（昭和十四年法律第七十三号）が挙げられ、施行日は2027年4月1日と記載されています。",
+    "business_impact_ja": "医療関連法制および船員保険法に関わる事業においては、改正内容に応じて実務対応の見直しが必要となる可能性があります。施行までに準備を要する事項が生じることも考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日については、e-Gov法令検索など日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3187,13 +3221,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令更新一覧によると、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が2025年12月12日に公布されたとされています。当該改正の対象法令として船員保険法（昭和十四年法律第七十三号）が挙げられ、施行日は2027年4月1日と記載されています。",
-    "business_impact_ja": "医療関連法制および船員保険法に関わる事業においては、改正内容に応じて実務対応の見直しが必要となる可能性があります。施行までに準備を要する事項が生じることも考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日については、e-Gov法令検索など日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4fc7670b607e669d",
@@ -3211,6 +3239,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）に関する情報が掲載されています。原文によれば、公布日は2025年12月12日とされ、対象法令として児童福祉法（昭和二十二年法律第百六十四号）が挙げられています。更新一覧日は2026年9月11日と記載されています。",
+    "business_impact_ja": "医療法等の改正に伴い関連法令が改正される場合、医療・製薬分野を中心に事業運営や関連手続に影響が及ぶ可能性があります。対象や施行の範囲によっては、児童福祉に関連する業務にも留意が必要になると考えられます。",
+    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文および関係告示をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
@@ -3219,13 +3253,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）に関する情報が掲載されています。原文によれば、公布日は2025年12月12日とされ、対象法令として児童福祉法（昭和二十二年法律第百六十四号）が挙げられています。更新一覧日は2026年9月11日と記載されています。",
-    "business_impact_ja": "医療法等の改正に伴い関連法令が改正される場合、医療・製薬分野を中心に事業運営や関連手続に影響が及ぶ可能性があります。対象や施行の範囲によっては、児童福祉に関連する業務にも留意が必要になると考えられます。",
-    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文および関係告示をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6cb9a0036a1e5780",
@@ -3243,6 +3271,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の法令更新一覧において、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布日2025年12月12日として掲載されています。この改正に関連して、船員保険法（昭和十四年法律第七十三号）が更新対象法令として示されています。掲載情報は更新一覧に基づくものであり、施行時期など詳細は原文で確認が必要です。",
+    "business_impact_ja": "医療関連法制の改正に伴い、船員保険法を含む関係法令の運用に影響が及ぶ可能性があります。医療・保険分野に関わる事業では、対応の要否を検討する余地が考えられます。",
+    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の状態をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
@@ -3251,13 +3285,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の法令更新一覧において、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が公布日2025年12月12日として掲載されています。この改正に関連して、船員保険法（昭和十四年法律第七十三号）が更新対象法令として示されています。掲載情報は更新一覧に基づくものであり、施行時期など詳細は原文で確認が必要です。",
-    "business_impact_ja": "医療関連法制の改正に伴い、船員保険法を含む関係法令の運用に影響が及ぶ可能性があります。医療・保険分野に関わる事業では、対応の要否を検討する余地が考えられます。",
-    "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の状態をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-c7a292f453d66bb3",
@@ -3275,6 +3303,12 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、公布日は2025年12月12日、施行日は2026年10月1日とされています。なお、更新一覧上の対象法令として地方税法（昭和二十五年法律第二百二十六号）が併記されている点があり、記載内容の確認が必要と考えられます。",
+    "business_impact_ja": "医療法等の改正に伴い、関連分野の事業者において対応が必要となる可能性があります。施行日が将来の日付とされているため、施行に向けた準備が求められる場合が考えられます。",
+    "recommended_action_ja": "改正内容や対象法令、施行日の詳細については、e-Gov法令検索など日本語の公式情報源で最新情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-12T22:57:03Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
@@ -3283,13 +3317,7 @@
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
     },
-    "summary_source": "rule_based",
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」（令和七年法律第八十七号）が掲載されています。メタデータによれば、公布日は2025年12月12日、施行日は2026年10月1日とされています。なお、更新一覧上の対象法令として地方税法（昭和二十五年法律第二百二十六号）が併記されている点があり、記載内容の確認が必要と考えられます。",
-    "business_impact_ja": "医療法等の改正に伴い、関連分野の事業者において対応が必要となる可能性があります。施行日が将来の日付とされているため、施行に向けた準備が求められる場合が考えられます。",
-    "recommended_action_ja": "改正内容や対象法令、施行日の詳細については、e-Gov法令検索など日本語の公式情報源で最新情報をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-4ef7585bdb080569",
@@ -3594,7 +3622,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）に関する法令更新情報です。原文によれば、対象法令として地方公務員等共済組合法（昭和三十七年法律第百五十二号）が挙げられ、公布日は2025年6月20日、施行日は2027年9月1日と記載されています。",
     "business_impact_ja": "年金制度に関連する規定の見直しに伴い、共済組合や関連する労務・人事制度の運用に影響が及ぶ可能性があります。施行日が将来に設定されているため、対応の準備期間を考慮する必要が考えられます。",
     "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源をご確認いただくことをお勧めします。",
@@ -3608,7 +3635,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e1a95168c37bba44",
@@ -3626,7 +3654,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）が2025年6月20日に公布されました。原文によれば、本改正の対象法令の一つとして船員保険法（昭和十四年法律第七十三号）が挙げられており、施行日は2028年4月1日とされています。",
     "business_impact_ja": "年金制度および船員保険法に関連する制度改正であり、対象となる保険・年金の取扱いや実務に影響が及ぶ可能性があります。施行までに対応準備を要する場面も考えられます。",
     "recommended_action_ja": "改正の具体的な内容や施行日については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
@@ -3640,7 +3667,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6d615656bb95b6e6",
@@ -3658,7 +3686,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧により、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）が2025年6月20日に公布されたことが示されています。この改正の対象法令の一つとして地方公務員等共済組合法（昭和三十七年法律第百五十二号）が挙げられており、施行日は2028年4月1日とされています。",
     "business_impact_ja": "年金制度および共済組合に関連する制度運用や事務手続きに影響が及ぶ可能性があります。施行日が将来であるため、影響の具体化には一定の準備期間があると考えられます。",
     "recommended_action_ja": "改正内容や施行スケジュールの詳細については、e-Gov法令検索など日本語の公式情報源で最新の情報をご確認いただくことをお勧めします。",
@@ -3672,7 +3699,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-251f7a99085cd525",
@@ -3690,7 +3718,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧によると、地方公務員等共済組合法（昭和三十七年法律第百五十二号）が、社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律（令和七年法律第七十四号）により改正されました。原文の記載では、公布日は2025年6月20日、施行日は2028年9月1日とされています。",
     "business_impact_ja": "年金制度に関連する法令の改正であることから、共済組合や関連する労務・年金関連業務に影響が及ぶ可能性があります。施行日が将来に設定されているため、対応準備に一定の期間が確保されることも考えられます。",
     "recommended_action_ja": "改正内容や施行日の詳細については、e-Gov法令検索など日本語の公式情報源で最新の記載をご確認ください。",
@@ -3704,7 +3731,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-6cac3c0a106396fa",
@@ -3722,7 +3750,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）が2025年6月20日に公布されました。メタデータによれば、この改正の対象法令の一つとして地方公務員等共済組合法（昭和三十七年法律第百五十二号）が挙げられており、施行日は2029年9月1日とされています。",
     "business_impact_ja": "年金制度に関する改正であることから、公的年金や共済組合に関連する制度運用・実務に影響が及ぶ可能性があります。施行が将来の日付とされているため、対応時期を見据えた確認が必要になることも考えられます。",
     "recommended_action_ja": "改正内容や対象法令、施行日の詳細については、e-Gov法令検索など日本語の公式情報源で最新情報をご確認いただくことをお勧めします。",
@@ -3736,7 +3763,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-f14b547bbe79a2fb",
@@ -3946,7 +3974,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "「船員法等の一部を改正する法律」（令和七年法律第三十二号）に関する法令更新情報です。メタデータによれば、公布日は2025年5月14日、施行日は2026年5月13日と記載されています。なお対象法令欄には地方税法（昭和二十五年法律第二百二十六号）との記載があり、記載事項に不整合がみられる点に留意が必要です。",
     "business_impact_ja": "船員法等の改正内容によっては、船員の労務管理や関連する事業運営に影響が及ぶ可能性があります。改正の具体的な範囲や対象については、原文確認を要すると考えられます。",
     "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で、改正内容、対象法令、公布日・施行日を確認されることをお勧めします。",
@@ -3960,7 +3987,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-8caad6b465815785",
@@ -4074,7 +4102,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧によると、地方税法（昭和二十五年法律第二百二十六号）を改正する「地方税法及び地方税法等の一部を改正する法律の一部を改正する法律」（令和七年法律第七号）が示されています。メタデータ上、公布日は2025年3月31日、施行日は2027年1月1日と記載されています。改正の具体的内容は原文メタデータには含まれていません。",
     "business_impact_ja": "地方税に関する制度改正であるため、地方税の取扱いに関連する事業運営や納税実務に影響が及ぶ可能性があります。ただし、記載情報のみでは影響の範囲や程度を確定することはできず、検討の余地が考えられます。",
     "recommended_action_ja": "施行日や改正内容の詳細については、e-Gov法令検索等の日本語公式情報源で最新の原文を確認されることをお勧めします。",
@@ -4088,7 +4115,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-19ee5eb284b9cb12",
@@ -4106,7 +4134,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "e-Gov法令検索の更新一覧によると、地方税法（昭和二十五年法律第二百二十六号）を対象とする改正法令「地方税法及び地方税法等の一部を改正する法律の一部を改正する法律」（令和七年法律第七号）が掲載されています。原文によれば、公布日は2025年3月31日、施行日は2027年4月1日とされています。",
     "business_impact_ja": "地方税に関する制度改正が予定されているため、関連する納税事務や税務対応に影響が及ぶ可能性があります。施行時期を見据えた確認が必要になると考えられます。",
     "recommended_action_ja": "改正内容および施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新情報をご確認いただくことをお勧めします。",
@@ -4120,7 +4147,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-5b85baabc0ca60eb",
@@ -4138,7 +4166,6 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based",
     "summary_ja": "地方税法（昭和二十五年法律第二百二十六号）を対象とする改正法令として、「地方税法及び地方税法等の一部を改正する法律の一部を改正する法律」（令和七年法律第七号）が示されています。原文によると、公布日は2025年3月31日、施行日は2026年10月1日とされています。",
     "business_impact_ja": "地方税に関する取扱いに変更が生じる可能性があり、関連する事業や税務対応の見直しが必要となる場合が考えられます。",
     "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
@@ -4152,7 +4179,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e768292e3ef15378",

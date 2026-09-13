@@ -37,14 +37,14 @@
   },
   {
     "id": "raw-48719fa5aedea565",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2020-06-19)",
+    "title_en": "Amendment to Act on Facilitation of Business Succession for SMEs and Related Laws (affecting SME Management...",
     "title_ja": "中小企業の事業承継の促進のための中小企業における経営の承継の円滑化に関する法律等の一部を改正する法律",
     "area": "Antitrust / Fair Trade",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item records an amending law (Reiwa 2 Law No. 58) that revises the Act on Facilitation of Business Succession in SMEs and related laws, with the SME Management Enhancement Act (Heisei 11 Law No. 18) listed as an affected law. According to the metadata, the amending law carries a promulgation date of 2020-06-19 and an enforcement date of 2020-10-01. This is drawn from an e-Gov Law Search law-update listing and should be verified against the official Japanese source.",
+    "business_impact_en": "Businesses relying on Japanese SME support and business-succession frameworks may need to check whether the amended provisions affect their eligibility or procedures. Any impact depends on the specific revised provisions, which are not detailed in the metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search to confirm the scope, affected provisions, and applicable dates of the amendment.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=411AC0000000018_20201001_502AC0000000058",
     "published_at": "2020-06-19",
@@ -57,15 +57,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata fields (promulgation 2020-06-19, enforcement 2020-10-01) from a law-update listing; provision details unverified. The preliminary 'Antitrust / Fair Trade' label appears inconsistent with the SME business-succession subject matter and should not be relied upon.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《为促进中小企业事业继承的中小企业经营继承顺利化相关法律》等修订法律生效（2020-06-19）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《中小企业经营承继円滑化法》等修正法律（影响中小企业经营强化法）",
+        "summary": "本条目记录了一项修正法律（令和2年法律第58号），该法修订了《中小企业经营承继円滑化法》及相关法律，其中《中小企业经营强化法》（平成11年法律第18号）被列为受影响的法律。根据元数据，该修正法律的公布日期为2020-06-19，生效日期为2020-10-01。此信息来源于e-Gov法令检索的法令更新列表，应与日文官方来源进行核实。",
+        "business_impact": "依赖日本中小企业支援及事业承继相关框架的企业可能需要检查修订后的条款是否影响其资格或程序。具体影响视修订的条款内容而定，而元数据中并未详细列出这些内容。",
+        "recommended_action": "建议在e-Gov法令检索上查阅官方日文文本，以确认此次修正的范围、受影响的条款及适用日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b977f50017ac445a",

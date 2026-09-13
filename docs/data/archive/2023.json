@@ -181,14 +181,14 @@
   },
   {
     "id": "raw-dae6f07ddaff29bd",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2023-06-16)",
+    "title_en": "Act Partially Amending the Small and Medium Enterprise Credit Insurance Act and the Shoko Chukin Bank Act",
     "title_ja": "中小企業信用保険法及び株式会社商工組合中央金庫法の一部を改正する法律",
     "area": "Antitrust / Fair Trade",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item, from the e-Gov Law Search law-update list, concerns an amending act (Reiwa 5 Act No. 61) that partially revises the Small and Medium Enterprise Credit Insurance Act and the Shoko Chukin Bank Act. According to the provided metadata, the amending act carries a promulgation date of 2023-06-16 and an enforcement date of 2024-03-15, and it is associated with the target law listed as the Act on Strengthening the Management of Small and Medium Enterprises (Heisei 11 Act No. 18). Details should be confirmed against the official Japanese source.",
+    "business_impact_en": "Changes to credit insurance and government-affiliated financing frameworks for small and medium enterprises could affect financing arrangements and related obligations for affected businesses. The precise scope and effect may vary and should be assessed on the official text.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the amendment's scope, effective date, and applicability.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=411AC0000000018_20240315_505AC0000000061",
     "published_at": "2023-06-16",
@@ -201,15 +201,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-08T23:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and metadata dates; the metadata lists both an enforcement date (2024-03-15) and inconsistent references (target law vs. amended acts), so the exact in-force status and scope are unverified. Preliminary 'Antitrust / Fair Trade' label appears questionable given SME financing subject matter and is not authoritative.",
+    "summarized_at": "2026-09-13T22:58:20Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《中小企业信用保险法及株式会社商工组合中央金库法部分修正法律》生效（2023-06-16）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《中小企业信用保险法》及《株式会社商工组合中央金库法》部分修正法律",
+        "summary": "该条目来自e-Gov法令检索的法令更新列表，涉及一项修正法律（令和5年法律第61号），对《中小企业信用保险法》及《株式会社商工组合中央金库法》进行部分修订。根据所提供的元数据，该修正法律的公布日期为2023-06-16，生效日期为2024-03-15，并与作为对象法律列明的《中小企业经营强化法》（平成11年法律第18号）相关联。具体内容应以日文官方来源确认为准。",
+        "business_impact": "针对中小企业的信用保险及政府关联融资框架的变化，可能影响相关企业的融资安排及相应义务。具体范围和影响可能有所不同，应以官方文本为准进行评估。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方来源，以确认该修正的适用范围、生效日期及适用性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-8d4bee6f55fc1ad2",
@@ -323,7 +327,21 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "summary_ja": "地方税法（昭和二十五年法律第二百二十六号）の一部を改正する法律（令和五年法律第一号）に関する法令更新情報です。原文によれば、公布日は2023年3月31日、施行日は2026年5月21日とされています。",
+    "business_impact_ja": "地方税に関する制度改正であることから、事業活動における税務上の取扱いに影響が生じる可能性があります。",
+    "recommended_action_ja": "改正内容および施行時期の詳細については、e-Gov法令検索等の日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-13T23:00:30Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "日本法令更新：《地方税法等部分修正法律》生效（2023-03-31）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-2ed63754b20d189b",
