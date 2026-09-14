@@ -106,5 +106,41 @@
         "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认修订的范围和详细内容。"
       }
     }
+  },
+  {
+    "id": "raw-ae9dd7ce2324ccae",
+    "title_en": "Cabinet Order Partially Amending the Enforcement Order of the Act on Stabilization of Livestock Product Prices",
+    "title_ja": "畜産物の価格安定に関する法律施行令等の一部を改正する政令",
+    "area": "Food / Agriculture",
+    "stage": "Promulgated",
+    "impact_level": "Medium",
+    "summary_en": "This item refers to a Cabinet Order that partially amends the Enforcement Order of the Act on Stabilization of Livestock Product Prices and related orders (Cabinet Order No. 7 of 2017). The metadata lists a promulgation date of 2017-01-25. The record appears in an e-Gov law update listing and also references the Enforcement Order of the Local Autonomy Act (Cabinet Order No. 16 of 1947).",
+    "business_impact_en": "Businesses involved in livestock product pricing or related agricultural activities may be affected and could need to review how the amended enforcement order relates to their operations.",
+    "recommended_action_en": "Consult the official Japanese source on e-Gov to verify the scope, effective date, and specific provisions of this amendment.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=322CO0000000016_21171231_429CO0000000007",
+    "published_at": "2017-01-25",
+    "last_checked": "2026-09-14",
+    "relevance_score": 30.0,
+    "first_seen_at": "2026-09-15",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and metadata; the raw summary mixes references to two different orders, so the exact relationship is unclear. Promulgation date and law numbers are taken from the metadata and are unverified against the full text.",
+    "summarized_at": "2026-09-14T23:45:37Z",
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「畜産物の価格安定に関する法律施行令等の一部を改正する政令」（平成二十九年政令第七号）が掲載されています。公布日は2017年1月25日とされ、更新一覧上の対象法令として地方自治法施行令（昭和二十二年政令第十六号）が示されています。本情報はメタデータに基づく端緒情報であり、詳細な改正内容は原文で確認が必要です。",
+    "business_impact_ja": "畜産物の価格安定に関連する政令の改正であることから、食品・農業分野に関わる事業者に影響が及ぶ可能性があります。ただし具体的な影響範囲はメタデータのみからは判断できず、改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "記載のe-Gov法令検索など日本語の公式情報源で改正政令の本文および施行状況をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-14T23:47:52Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "政令修订：《畜产物价格稳定法施行令》等部分修订",
+        "summary": "该条目涉及一项政令，对《畜产物价格稳定法施行令》及相关政令进行部分修订（2017年第7号政令）。元数据列出的公布日期为2017-01-25。该记录出现在e-Gov法令更新列表中，同时提及《地方自治法施行令》（1947年第16号政令）。",
+        "business_impact": "从事畜产物价格相关或相关农业活动的企业可能会受到影响，可能需要审查该修订施行令与其业务运营之间的关系。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，以核实本次修订的适用范围、生效日期及具体条款。"
+      }
+    }
   }
 ]
