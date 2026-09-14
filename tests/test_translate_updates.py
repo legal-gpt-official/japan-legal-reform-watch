@@ -2104,7 +2104,7 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("python scripts/translate_updates.py", self.workflow)
         self.assertIn("--locale zh-Hans", self.workflow)
         self.assertIn("--limit 140", self.workflow)
-        self.assertIn("--max-cost-usd 1.10", self.workflow)
+        self.assertIn("--max-cost-usd 1.30", self.workflow)
         self.assertIn("estimated_cost_usd", self.workflow)
 
     def test_translate_runs_after_summarize_and_before_check_changes(self):

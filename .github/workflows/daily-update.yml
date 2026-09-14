@@ -147,7 +147,15 @@ jobs:
       # item's Chinese translation, so this stage's demand is arrivals plus that
       # limit, less the overlap between them. Observed at English 50: 70 arrivals
       # + 50 upgrades = 95 candidates. At English 80 a comparable day is ~110.
-      # The cap stays $1.10: 140 requests bound to $0.98, still inside it.
+      # The cap is $1.30 for 140 requests that bound to about $0.98. That is
+      # headroom, not a throughput change: cost_budget_skipped has been 0 on
+      # every run, so the USD cap has never deferred any work here. What defers
+      # work is --limit, which is what skipped_no_budget reports (102 on
+      # 2026-09-11 and 41 on 09-12, both clearing the backlog left by a run that
+      # was blocked by a still-running batch). Per-request cost is flat at
+      # $0.0070 +/- 2% across every run measured, so the bound sits near $0.98
+      # whatever the backlog looks like; the extra margin only covers the direct
+      # retry calls, which are priced at the full rate and are not in the bound.
       #
       # A title the quality gate rejects gets one direct follow-up call with the
       # Japanese reference removed -- that reference is what carries kana and
@@ -180,7 +188,7 @@ jobs:
             --locale zh-Hans \
             --batch \
             --limit 140 \
-            --max-cost-usd 1.10 \
+            --max-cost-usd 1.30 \
             --retry-rejected-title-without-ja-reference \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
