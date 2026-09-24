@@ -133,7 +133,13 @@ EXPECTED_OUTPUT_TOKENS = 700
 # $3/$15 scheduled for 2026-09-01 was withdrawn. `cache_read` is the documented
 # 0.1x-of-input rate; charging cache tokens at the full input rate (as this table
 # previously implied) overstates any run that uses prompt caching.
+# List prices, $/MTok. Cache writes follow the standard multipliers (5m = 1.25x
+# input, 1h = 2x input), but cache_read does NOT: it is 0.1x input on most
+# models and is quoted separately per model, so copy the published figure rather
+# than deriving it. Opus 5.5 is the case in point -- 0.1x its $4 input would be
+# $0.40, and the published rate is $0.20.
 MODEL_PRICING_USD_PER_MTOK = {
+    "claude-opus-5-5": {"input": 4.0, "output": 20.0, "cache_write_5m": 5.0, "cache_write_1h": 8.0, "cache_read": 0.20},
     "claude-opus-4-8": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-4-7": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
@@ -527,11 +533,22 @@ def add_usage(total: dict[str, int], usage: dict[str, int]) -> None:
 
 
 def model_pricing(model: str) -> dict[str, float] | None:
-    """Return list prices for a model id, or None when the model is unpriced."""
-    return next(
-        (rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)),
-        None,
+    """Return list prices for a model id, or None when the model is unpriced.
+
+    Longest matching prefix wins. Taking the first match in table order instead
+    looks equivalent until a model id turns out to be a prefix of its own
+    successor: `claude-opus-5-5` starts with `claude-opus-5`, so it silently
+    priced at $5/$25 rather than its own $4/$20. That is not the fail-closed
+    behaviour this table is supposed to have -- an unpriced model must return
+    None and stop the run, not quietly borrow a neighbour's rates and be 25%
+    wrong in the cost report and the pre-flight bound.
+    """
+    prefix = max(
+        (p for p in MODEL_PRICING_USD_PER_MTOK if model.startswith(p)),
+        key=len,
+        default=None,
     )
+    return MODEL_PRICING_USD_PER_MTOK[prefix] if prefix is not None else None
 
 
 def estimate_usage_cost_usd(usage: dict[str, int], model: str, *, batch: bool = False) -> float | None:

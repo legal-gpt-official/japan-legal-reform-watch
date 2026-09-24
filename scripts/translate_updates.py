@@ -1167,10 +1167,22 @@ def add_usage(total: dict[str, int], usage: dict[str, int]) -> None:
 
 
 def model_pricing(model: str) -> dict[str, float] | None:
-    return next(
-        (rates for prefix, rates in MODEL_PRICING_USD_PER_MTOK.items() if model.startswith(prefix)),
-        None,
+    """Return list prices for a model id, or None when the model is unpriced.
+
+    Longest matching prefix wins. Taking the first match in table order instead
+    looks equivalent until a model id turns out to be a prefix of its own
+    successor: `claude-opus-5-5` starts with `claude-opus-5`, so it silently
+    priced at $5/$25 rather than its own $4/$20. That is not the fail-closed
+    behaviour this table is supposed to have -- an unpriced model must return
+    None and stop the run, not quietly borrow a neighbour's rates and be 25%
+    wrong in the cost report and the pre-flight bound.
+    """
+    prefix = max(
+        (p for p in MODEL_PRICING_USD_PER_MTOK if model.startswith(p)),
+        key=len,
+        default=None,
     )
+    return MODEL_PRICING_USD_PER_MTOK[prefix] if prefix is not None else None
 
 
 def estimate_usage_cost_usd(

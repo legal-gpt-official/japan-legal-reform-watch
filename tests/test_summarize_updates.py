@@ -1454,6 +1454,77 @@ class TestOutputBudgetIsCalibrated(unittest.TestCase):
         self.assertGreater(expected_ratio, 2.0)
 
 
+
+class TestModelPricingLookup(unittest.TestCase):
+    """A model id can be a prefix of its own successor.
+
+    `claude-opus-5-5` starts with `claude-opus-5`, so first-match-in-table-order
+    priced it at $5/$25 instead of its own $4/$20 -- silently, and 25% wrong in
+    both the cost report and the pre-flight bound that decides trimming. The
+    table is supposed to fail closed on a model it does not know, not borrow a
+    neighbour's rates.
+    """
+
+    def test_a_successor_id_does_not_inherit_its_prefixs_rates(self):
+        five = su.model_pricing("claude-opus-5")
+        five_five = su.model_pricing("claude-opus-5-5")
+        self.assertIsNotNone(five_five)
+        self.assertNotEqual(five_five, five)
+        self.assertEqual((five_five["input"], five_five["output"]), (4.0, 20.0))
+        self.assertEqual((five["input"], five["output"]), (5.0, 25.0))
+
+    def test_longest_matching_prefix_wins_regardless_of_table_order(self):
+        """Ordering the dict carefully would also work, and would break the next
+        time someone appends a row. The lookup has to be order-independent."""
+        original = dict(su.MODEL_PRICING_USD_PER_MTOK)
+        try:
+            su.MODEL_PRICING_USD_PER_MTOK.clear()
+            # deliberately worst-case order: the short prefix first
+            su.MODEL_PRICING_USD_PER_MTOK.update({
+                "claude-opus-5": original["claude-opus-5"],
+                "claude-opus-5-5": original["claude-opus-5-5"],
+            })
+            self.assertEqual(su.model_pricing("claude-opus-5-5")["input"], 4.0)
+            su.MODEL_PRICING_USD_PER_MTOK.clear()
+            su.MODEL_PRICING_USD_PER_MTOK.update({
+                "claude-opus-5-5": original["claude-opus-5-5"],
+                "claude-opus-5": original["claude-opus-5"],
+            })
+            self.assertEqual(su.model_pricing("claude-opus-5-5")["input"], 4.0)
+        finally:
+            su.MODEL_PRICING_USD_PER_MTOK.clear()
+            su.MODEL_PRICING_USD_PER_MTOK.update(original)
+
+    def test_an_unknown_model_still_fails_closed(self):
+        for unknown in ("some-unreleased-model", "claude-fable-5-1", "gpt-4"):
+            with self.subTest(unknown):
+                self.assertIsNone(su.model_pricing(unknown))
+
+    def test_opus_5_5_cache_read_is_the_published_rate_not_a_derived_one(self):
+        """cache_read is 0.1x input on most rows, so it is tempting to derive it.
+        Opus 5.5 is quoted at $0.20 against a $4 input -- 0.1x would be $0.40."""
+        rates = su.model_pricing("claude-opus-5-5")
+        self.assertEqual(rates["cache_read"], 0.20)
+        self.assertNotEqual(rates["cache_read"], round(0.1 * rates["input"], 2))
+
+    def test_cache_write_multipliers_hold_on_every_row(self):
+        """These ones ARE derived: 5m = 1.25x input, 1h = 2x input."""
+        for model, rates in su.MODEL_PRICING_USD_PER_MTOK.items():
+            with self.subTest(model):
+                self.assertAlmostEqual(rates["cache_write_5m"], 1.25 * rates["input"], places=4)
+                self.assertAlmostEqual(rates["cache_write_1h"], 2.0 * rates["input"], places=4)
+
+    def test_the_production_summary_model_is_unchanged(self):
+        """Adding a row must not move production onto it. The switch is an
+        env-only change (ANTHROPIC_SUMMARY_MODEL) and has not been made."""
+        workflow = (
+            Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
+        ).read_text(encoding="utf-8")
+        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8", workflow)
+        self.assertNotIn("claude-opus-5-5", workflow)
+        self.assertEqual(su.DEFAULT_MODEL, "claude-opus-4-8")
+
+
 class TestStageTwoTitlePreservation(unittest.TestCase):
     """Stage 3 must not silently rewrite Stage 2's rule-based English.
 

@@ -1366,6 +1366,32 @@ class TestBatchTitleRetry(TranslateTestBase):
         self.assertEqual(summary["batch_succeeded"], "3")
 
 
+
+class TestTranslateModelPricingLookup(unittest.TestCase):
+    """Same lookup, same trap: this table has claude-sonnet-5 in it, so a future
+    claude-sonnet-5-x would have inherited its rates."""
+
+    def test_longest_matching_prefix_wins(self):
+        original = dict(tu.MODEL_PRICING_USD_PER_MTOK)
+        try:
+            tu.MODEL_PRICING_USD_PER_MTOK["claude-sonnet-5-9"] = dict(
+                original["claude-sonnet-5"], input=1.0, output=5.0
+            )
+            self.assertEqual(tu.model_pricing("claude-sonnet-5-9")["input"], 1.0)
+            self.assertEqual(tu.model_pricing("claude-sonnet-5")["input"], 2.0)
+        finally:
+            tu.MODEL_PRICING_USD_PER_MTOK.clear()
+            tu.MODEL_PRICING_USD_PER_MTOK.update(original)
+
+    def test_an_unpriced_model_fails_closed(self):
+        self.assertIsNone(tu.model_pricing("claude-opus-5-5"))
+        self.assertIsNone(tu.model_pricing("some-unreleased-model"))
+
+    def test_the_production_translation_model_is_unchanged(self):
+        self.assertEqual(tu.DEFAULT_TRANSLATION_MODEL, "claude-haiku-4-5-20251001")
+        self.assertIsNotNone(tu.model_pricing("claude-sonnet-5"))
+
+
 class TestNameSeparatorNormalization(unittest.TestCase):
     """The name separator must be normalized, not treated as kana.
 
