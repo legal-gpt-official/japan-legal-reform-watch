@@ -1,27 +1,24 @@
 /* =============================================================
-   Japan Legal Reform Watch — alert-pilot integration settings
+   Japan Legal Reform Watch — email-alert integration settings
 
    Public configuration only. Never place API keys, webhook secrets, or other
    credentials in this file: GitHub Pages serves it to every visitor.
+
+   Values come from `python scripts/setup_alert_billing.py --apply`:
+   checkoutLinks are Stripe Payment Links (buy.stripe.com) and
+   manageSubscriptionUrl is the Stripe customer-portal login page
+   (billing.stripe.com/p/login/...). Until they are set, the dashboard shows
+   that subscriptions are not open yet and offers only the free feeds.
    ============================================================= */
 
 (function () {
   "use strict";
 
   window.JLRW_ALERTS_CONFIG = Object.freeze({
-    inquiryEndpoint:
-      "https://legal-gpt.com/wp-json/contact-form-7/v1/contact-forms/8175/feedback",
-    inquiryFormId: "8175",
-    inquiryUnitTag: "wpcf7-f8175-p100-o1",
-    inquiryContainerPost: "100",
-    fallbackContactUrl: "https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot",
-    privacyPolicyUrl: "https://legal-gpt.com/privacy-policy/",
-
-    // Public recurring-price checkout URLs. These are Payment Links, not secret
-    // API credentials. Checkout remains gated behind an accepted pilot inquiry.
-    stripePaymentLinks: Object.freeze({
-      pro: "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00",
-      team: "https://buy.stripe.com/fZu9AT5RvdTvbP38YCawo01",
+    checkoutLinks: Object.freeze({
+      monthly: "",
+      yearly: "",
     }),
+    manageSubscriptionUrl: "",
   });
 })();

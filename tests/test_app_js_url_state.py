@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "localized-coverage-20260813"
-APP_CACHE_BUSTER = "localized-coverage-20260813"
+CACHE_BUSTER = "self-serve-alerts-20260925"
+APP_CACHE_BUSTER = "self-serve-alerts-20260925"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "localized-coverage-20260813"
+I18N_CACHE_BUSTER = "self-serve-alerts-20260925"
 
 
 def object_body(name: str) -> str:
@@ -463,265 +463,73 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn("summary.textContent = savedSearchDescription(saved.query)", APP_JS)
         self.assertNotIn("savedSearchList.innerHTML", APP_JS)
 
-    def test_alert_pilot_link_is_external_and_non_authoritative(self):
-        self.assertIn('href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"', INDEX_HTML)
-        self.assertIn('rel="noopener noreferrer"', INDEX_HTML)
-        self.assertIn("Receive personalized alerts based on saved searches", I18N_JS)
-        self.assertIn("when structured official data is available", I18N_JS)
-
-    def test_alert_pilot_plan_comparison_is_scoped_and_localized(self):
+    def test_alert_plan_is_self_serve_without_an_inquiry_form(self):
         for snippet in (
-            'id="alert-pilot-plans-title"',
-            'data-alert-plan="pro"',
-            'data-alert-plan="team"',
-            "1 monitoring criterion",
-            "Up to 5 monitoring criteria",
-            "1 email recipient",
-            "Up to 5 email recipients",
-            "Recurring monthly subscription, billed in US dollars.",
-            "最多5项监测条件",
-            "最多5名邮件收件人",
+            'id="alert-plan-actions" class="alert-plan-actions" hidden',
+            'id="alert-subscribe-monthly"',
+            'id="alert-subscribe-yearly"',
+            'id="alert-plan-unavailable"',
+            'id="alert-manage-subscription"',
+            'rel="noopener noreferrer"',
         ):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, INDEX_HTML + I18N_JS)
+                self.assertIn(snippet, INDEX_HTML)
+        # The retired pilot collected contact details through Contact Form 7 and
+        # relied on manual activation. Nothing personal is collected any more.
+        combined = INDEX_HTML + APP_JS + ALERTS_CONFIG_JS + I18N_JS
+        for retired in ("alert-pilot", "alertPilot", "alert_pilot", "wpcf7", "contact-forms", "client_reference_id"):
+            with self.subTest(retired=retired):
+                self.assertNotIn(retired, combined)
+        dialog = INDEX_HTML[INDEX_HTML.index('<dialog'):INDEX_HTML.index("</dialog>")]
+        self.assertNotIn('type="email"', dialog)
+        self.assertNotIn("<textarea", dialog)
 
-    def test_alert_pilot_plan_cards_sync_with_form_select(self):
+    def test_alert_plan_copy_is_localized_scoped_and_non_authoritative(self):
         for snippet in (
-            "function syncAlertPilotPlanChoice()",
-            "function selectAlertPilotPlan(event)",
-            'button.dataset.alertPlan === selectedPlan',
-            'card.dataset.alertPlanCard === selectedPlan',
-            'alertPilotPlanSelect.addEventListener("change", syncAlertPilotPlanChoice)',
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS)
-
-    def test_alert_pilot_keeps_submitted_plan_aligned_with_checkout(self):
-        for snippet in (
-            "function setAlertPilotPlanLocked(isLocked)",
-            "alertPilotPlanSelect.value = values.plan",
-            "alertPilotFrequencySelect.value = values.frequency",
-            "alertPilotCheckout.dataset.plan = values.plan",
-            "setAlertPilotPlanLocked(true)",
-            'I18N.t("alert_pilot_checkout_plan"',
-            "Continue to secure checkout — {plan}",
-            "继续安全结账 — {plan}",
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS + I18N_JS)
-        self.assertNotIn("alertPilotForm.reset()", APP_JS)
-
-    def test_alert_pilot_faq_sets_activation_and_cancellation_expectations(self):
-        for snippet in (
-            'id="alert-pilot-faq-title"',
-            "Checkout alone does not activate monitoring.",
-            "links to the original Japanese official source",
-            "How do I change or cancel a plan?",
-            "We will confirm the effective timing and any billing effect.",
-            "如何变更或取消方案？",
+            "US$19/month",
+            "or US$190/year",
+            "月額19米ドル",
+            "每月19美元",
+            "when structured official data is available",
+            "Alert emails are monitoring aids, not legal advice",
+            "does not mean a new law or regulation",
+            "cancel the current subscription in the subscription portal",
+            "A cancellation takes effect at the end of the current billing period.",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, INDEX_HTML + I18N_JS)
         self.assertNotIn("non-refundable", (INDEX_HTML + I18N_JS).lower())
+        self.assertNotIn("comprehensive coverage", (INDEX_HTML + I18N_JS).lower())
 
-    def test_alert_pilot_form_has_required_consent_and_fallback(self):
-        for snippet in (
-            'id="alert-pilot-form"',
-            'id="alert-pilot-name"',
-            'id="alert-pilot-email"',
-            'id="alert-pilot-company"',
-            'id="alert-pilot-plan"',
-            'id="alert-pilot-frequency"',
-            'id="alert-pilot-focus"',
-            'maxlength="500"',
-            'id="alert-pilot-scope-warning"',
-            'id="alert-pilot-consent" type="checkbox" required',
-            'id="alert-pilot-privacy-link"',
-            'id="alert-pilot-fallback"',
-            'id="alert-pilot-checkout"',
-        ):
+    def test_alert_config_is_public_only_and_stripe_hosted(self):
+        for snippet in ("window.JLRW_ALERTS_CONFIG", "checkoutLinks: Object.freeze", "manageSubscriptionUrl:"):
             with self.subTest(snippet=snippet):
-                self.assertIn(snippet, INDEX_HTML)
+                self.assertIn(snippet, ALERTS_CONFIG_JS)
+        for forbidden in ("sk_live_", "sk_test_", "rk_live_", "rk_test_", "whsec_", "api_key", "apiSecret"):
+            with self.subTest(forbidden=forbidden):
+                self.assertNotIn(forbidden, ALERTS_CONFIG_JS)
+        self.assertIsNone(re.search(r"\bre_[A-Za-z0-9]{8,}", ALERTS_CONFIG_JS), "Resend key in public config")
+        for plan, url in re.findall(r'(monthly|yearly): "([^"]*)"', ALERTS_CONFIG_JS):
+            with self.subTest(plan=plan):
+                self.assertTrue(url == "" or url.startswith("https://buy.stripe.com/"), url)
+        manage = re.search(r'manageSubscriptionUrl: "([^"]*)"', ALERTS_CONFIG_JS)
+        self.assertIsNotNone(manage)
+        self.assertTrue(
+            manage.group(1) == "" or manage.group(1).startswith("https://billing.stripe.com/p/login/"),
+            manage.group(1),
+        )
 
-    def test_alert_pilot_requires_specific_monitoring_focus(self):
+    def test_alert_links_only_trust_stripe_hosts(self):
         for snippet in (
-            "Monitoring focus / business context",
-            "A broad request may match hundreds of updates",
-            "监测重点 / 业务背景",
-            "过于宽泛的申请可能匹配数百条更新",
-            "function hasActiveMonitoringFilter()",
-            "function syncAlertPilotScopeWarning()",
-            '"Monitoring focus / business context: " + values.focus',
-            "focus: plainText(alertPilotFocusInput.value).slice(0, 500)",
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, INDEX_HTML + I18N_JS + APP_JS)
-        for key in ('"q"', '"area"', '"stage"', '"source"', '"impact"', '"ai"', '"new"'):
-            with self.subTest(key=key):
-                self.assertIn(key, APP_JS)
-        self.assertIn("values.focus.length < 10", APP_JS)
-        self.assertIn("!values.name || !values.company", APP_JS)
-        self.assertIn('setAlertPilotStatus("alert_pilot_focus_validation", "error")', APP_JS)
-        self.assertIn("Please describe the monitoring focus in at least 10 characters.", I18N_JS)
-        self.assertIn("请用至少10个字符说明监测重点。", I18N_JS)
-
-    def test_alert_pilot_scope_warning_resyncs_and_form_collapses_on_close(self):
-        refresh = re.search(
-            r"function refreshSavedSearchDialog\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
-        )
-        self.assertIsNotNone(refresh)
-        self.assertIn("syncAlertPilotScopeWarning()", refresh.group("body"))
-        self.assertIn("if (alertPilotFormWrap) alertPilotFormWrap.hidden = true", APP_JS)
-        self.assertIn('openAlertPilotFormBtn.setAttribute("aria-expanded", "false")', APP_JS)
-
-    def test_alert_pilot_honeypot_fails_visibly_and_does_not_poison_later_attempts(self):
-        submit = re.search(
-            r"async function submitAlertPilotRequest\(\) \{(?P<body>.*?)\n  \}\n\n  function initAlertPilot",
-            APP_JS,
-            re.S,
-        )
-        self.assertIsNotNone(submit)
-        body = submit.group("body")
-        honeypot = re.search(
-            r"if \(alertPilotHoneypotInput && alertPilotHoneypotInput\.value\) \{(?P<body>.*?)\n    \}",
-            body,
-            re.S,
-        )
-        self.assertIsNotNone(honeypot)
-        for snippet in (
-            "clearAlertPilotHoneypot()",
-            'setAlertPilotStatus("alert_pilot_failed", "error")',
-            "alertPilotFallback.hidden = false",
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, honeypot.group("body"))
-        self.assertNotIn("alert_pilot_success", honeypot.group("body"))
-        self.assertIn("clearAlertPilotHoneypot();\n    resetAlertPilotOutcome();", APP_JS)
-
-    def test_each_alert_pilot_attempt_discards_stale_reference_and_checkout(self):
-        submit = re.search(
-            r"async function submitAlertPilotRequest\(\) \{(?P<body>.*?)\n  \}\n\n  function initAlertPilot",
-            APP_JS,
-            re.S,
-        )
-        self.assertIsNotNone(submit)
-        body = submit.group("body")
-        self.assertLess(body.index("resetAlertPilotOutcome()"), body.index("checkValidity()"))
-        reset = re.search(
-            r"function resetAlertPilotOutcome\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
-        )
-        self.assertIsNotNone(reset)
-        for snippet in (
-            'setAlertPilotReference("")',
-            "alertPilotCheckout.hidden = true",
-            'alertPilotCheckout.removeAttribute("href")',
-            "delete alertPilotCheckout.dataset.plan",
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, reset.group("body"))
-
-    def test_alert_pilot_submission_uses_dedicated_contact_form_safely(self):
-        for snippet in (
-            "async function submitAlertPilotRequest",
-            'data.append("_wpcf7_unit_tag", unitTag)',
-            'data.append("your-name", values.name)',
-            'data.append("your-email", values.email)',
-            '"your-subject",',
-            'data.append("your-message"',
-            'mode: "cors"',
-            'credentials: "omit"',
-            'referrerPolicy: "origin"',
-            'result.status !== "mail_sent"',
-            "alertPilotForm.checkValidity()",
-            "alertPilotForm.reportValidity()",
+            'trustedIntegrationUrl(plan === "yearly" ? links.yearly : links.monthly, "buy.stripe.com", "/")',
+            'trustedIntegrationUrl(ALERTS_CONFIG.manageSubscriptionUrl, "billing.stripe.com", "/p/login/")',
+            "if (alertPlanActions) alertPlanActions.hidden = !available;",
+            "if (alertPlanUnavailable) alertPlanUnavailable.hidden = available;",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, APP_JS)
 
-    def test_alert_pilot_config_is_public_only_and_checkout_is_optional(self):
-        for snippet in (
-            "window.JLRW_ALERTS_CONFIG",
-            'contact-forms/8175/feedback',
-            'inquiryFormId: "8175"',
-            'inquiryUnitTag: "wpcf7-f8175-p100-o1"',
-            'inquiryContainerPost: "100"',
-            'privacyPolicyUrl: "https://legal-gpt.com/privacy-policy/"',
-            "stripePaymentLinks: Object.freeze",
-            'pro: "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00"',
-            'team: "https://buy.stripe.com/fZu9AT5RvdTvbP38YCawo01"',
-            'const checkoutUrl = alertPilotCheckoutUrl(values.plan, values.requestId)',
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, ALERTS_CONFIG_JS + APP_JS)
-        for forbidden in ("sk_live_", "sk_test_", "whsec_", "api_key", "apiSecret"):
-            with self.subTest(forbidden=forbidden):
-                self.assertNotIn(forbidden, ALERTS_CONFIG_JS)
-
-        links = dict(
-            re.findall(
-                r'(pro|team): "(https://buy\.stripe\.com/[^"\s]+)"',
-                ALERTS_CONFIG_JS,
-            )
-        )
-        self.assertEqual(set(links), {"pro", "team"})
-        self.assertNotEqual(links["pro"], links["team"])
-
-    def test_alert_pilot_uses_non_sensitive_request_reference_for_stripe(self):
-        combined = APP_JS + INDEX_HTML + I18N_JS
-        for snippet in (
-            "function validAlertPilotRequestId(value)",
-            "function createAlertPilotRequestId()",
-            "window.crypto.getRandomValues(bytes)",
-            'return randomPart ? "jlrw_" + timestamp + "_" + randomPart : "";',
-            "requestId: createAlertPilotRequestId()",
-            "if (!validAlertPilotRequestId(values.requestId))",
-            '"Request ID: " + values.requestId',
-            '"[JLRW Alert Pilot " + values.requestId + "] "',
-            'checkoutUrl.searchParams.set("client_reference_id", reference)',
-            "if (!trusted || !reference) return \"\";",
-            "alertPilotCheckoutUrl(values.plan, values.requestId)",
-            "setAlertPilotReference(values.requestId)",
-            'id="alert-pilot-reference"',
-            'id="alert-pilot-reference-value"',
-            "Request reference",
-            "申请编号",
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, combined)
-        self.assertNotIn("prefilled_email", APP_JS + ALERTS_CONFIG_JS)
-        self.assertNotIn("locked_prefilled_email", APP_JS + ALERTS_CONFIG_JS)
-        generator = re.search(
-            r"function createAlertPilotRequestId\(\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
-        )
-        self.assertIsNotNone(generator)
-        self.assertNotIn("Math.random", generator.group("body"))
-
-        checkout = re.search(
-            r"function alertPilotCheckoutUrl\(plan, requestId\) \{(?P<body>.*?)\n  \}",
-            APP_JS,
-            re.S,
-        )
-        self.assertIsNotNone(checkout)
-        query_keys = re.findall(
-            r'checkoutUrl\.searchParams\.(?:set|append)\("([^"]+)"', checkout.group("body")
-        )
-        self.assertEqual(query_keys, ["client_reference_id"])
-
-    def test_alert_pilot_status_relocalizes_and_reference_is_announced(self):
-        for snippet in (
-            "savedSearchStatusKey = key || \"\"",
-            "alertPilotStatusKey = key || \"\"",
-            "alertPilotStatusState = state || \"\"",
-            "setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError)",
-            "setAlertPilotStatus(alertPilotStatusKey, alertPilotStatusState)",
-            "setAlertPilotSubmitting(alertPilotIsSubmitting)",
-            'aria-live="polite"',
-            'aria-atomic="true"',
-        ):
-            with self.subTest(snippet=snippet):
-                self.assertIn(snippet, APP_JS + INDEX_HTML)
-
-    def test_alert_pilot_integration_urls_reject_ports_credentials_and_fragments(self):
+    def test_alert_integration_urls_reject_ports_credentials_and_fragments(self):
         trusted = re.search(
             r"function trustedIntegrationUrl\(value, expectedHost, expectedPathPrefix\) \{(?P<body>.*?)\n  \}",
             APP_JS,
@@ -739,7 +547,33 @@ class TestAppJsUrlState(unittest.TestCase):
                 self.assertIn(snippet, body)
         self.assertNotIn("parsed.hostname !== expectedHost", body)
 
-    def test_shared_search_text_is_sanitized_before_contact_form_message(self):
+    def test_feed_selector_matches_alert_channels_and_allow_lists_paths(self):
+        import alert_common
+
+        options = re.findall(
+            r'<option value="([a-z]+)"(?: data-area="([^"]+)")?',
+            INDEX_HTML[INDEX_HTML.index('id="alert-feed-channel"'):],
+        )
+        options = options[: len(alert_common.CHANNELS)]
+        self.assertEqual([value for value, _ in options], [c.value for c in alert_common.CHANNELS])
+        for (value, area), channel in zip(options, alert_common.CHANNELS):
+            with self.subTest(channel=value):
+                self.assertEqual(area or None, channel.area)
+        self.assertIn("known && /^[a-z]+$/.test(value)", APP_JS)
+        self.assertIn('"./feeds/" + channel + ".xml"', APP_JS)
+        self.assertIn('"./feeds/" + channel + ".ics"', APP_JS)
+        self.assertIn("I18N.areaLabel(option.dataset.area)", APP_JS)
+
+    def test_saved_search_status_relocalizes(self):
+        for snippet in (
+            "savedSearchStatusKey = key || \"\"",
+            "setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError)",
+            'aria-live="polite"',
+        ):
+            with self.subTest(snippet=snippet):
+                self.assertIn(snippet, APP_JS + INDEX_HTML)
+
+    def test_saved_search_description_strips_markup_characters(self):
         sanitizer = re.search(
             r"function inquirySafeSearchText\(value\) \{(?P<body>.*?)\n  \}", APP_JS, re.S
         )
@@ -747,30 +581,28 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertIn('replace(/[<>&]/g, "")', sanitizer.group("body"))
         self.assertIn('const search = inquirySafeSearchText(params.get("q") || "")', APP_JS)
 
-    def test_alert_pilot_does_not_log_contact_form_response_or_user_fields(self):
+    def test_alert_config_never_logs(self):
         self.assertNotIn("console.log", ALERTS_CONFIG_JS)
-        self.assertNotIn("JSON.stringify(result)", APP_JS)
-        self.assertNotIn("console.warn(values", APP_JS)
-        self.assertIn("Submitting this form does not create a subscription or charge a fee.", I18N_JS)
-        self.assertIn('setAlertPilotStatus("alert_pilot_success_checkout", "success")', APP_JS)
-        self.assertIn('setAlertPilotStatus("alert_pilot_success_manual", "success")', APP_JS)
+        self.assertNotIn("console.log", THANK_YOU_JS)
 
     def test_checkout_follow_up_page_is_safe_and_non_authoritative(self):
         for snippet in (
             'content="noindex, nofollow"',
             'id="completion-plan"',
-            'data-dashboard-link',
-            'href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"',
-            "Activation is not automatic",
+            'id="completion-manage"',
+            "data-dashboard-link",
+            "This page does not confirm payment",
             "monitoring aids, not legal advice",
-            "Checkout follow-up",
-            "结账后续",
+            "本页面不代表付款确认",
+            "このページは支払いを確認するものではありません",
         ):
             with self.subTest(snippet=snippet):
                 self.assertIn(snippet, THANK_YOU_HTML + I18N_JS)
-        self.assertLess(THANK_YOU_HTML.index("../i18n.js?v="), THANK_YOU_HTML.index("thank-you.js?v="))
+        self.assertLess(THANK_YOU_HTML.index("../i18n.js?v="), THANK_YOU_HTML.index("../alerts-config.js?v="))
+        self.assertLess(THANK_YOU_HTML.index("../alerts-config.js?v="), THANK_YOU_HTML.index("thank-you.js?v="))
         self.assertNotIn("Thank you for subscribing", THANK_YOU_HTML + I18N_JS)
         self.assertNotIn("感谢您的订阅", THANK_YOU_HTML + I18N_JS)
+        self.assertNotIn("inquiry=jlrw-alert-pilot", THANK_YOU_HTML)
 
     def test_all_static_i18n_keys_exist_in_all_dictionaries(self):
         html = INDEX_HTML + THANK_YOU_HTML
@@ -801,14 +633,16 @@ class TestAppJsUrlState(unittest.TestCase):
         self.assertEqual(dictionary_keys(en), dictionary_keys(zh))
 
     def test_checkout_page_uses_current_shared_cache_buster(self):
-        for asset in ("thank-you.css", "../i18n.js", "thank-you.js"):
+        for asset in ("thank-you.css", "../i18n.js", "../alerts-config.js", "thank-you.js"):
             with self.subTest(asset=asset):
                 self.assertIn(asset + "?v=" + CACHE_BUSTER, THANK_YOU_HTML)
 
     def test_checkout_follow_up_plan_and_language_are_allow_listed(self):
         for snippet in (
-            'plan === "pro" || plan === "team"',
+            'plan === "monthly" || plan === "yearly"',
             "planValue.textContent = I18N.t(",
+            'parsed.host !== "billing.stripe.com"',
+            'parsed.pathname.indexOf("/p/login/") !== 0',
             'params.set("lang", normalized)',
             "I18N.normalize(readStoredLanguage() || I18N.DEFAULT_LANG)",
         ):

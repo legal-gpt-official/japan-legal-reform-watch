@@ -56,35 +56,41 @@ Serve the project root with the static server of your choice and visit `/docs/in
 
 A disclaimer modal appears on first visit. After reading it, click **"I Understand and Agree"** to dismiss the modal. Your acceptance is remembered in `localStorage` (key: `jlrw_disclaimer_accepted_v1`); clearing site data for this origin will reset it.
 
-Searches can also be saved locally from the dashboard. Up to five filter/search definitions are stored in the same browser under `jlrw-saved-searches-v1`; they contain no email address or account data and do not create an email subscription. The dialog includes a separate paid-pilot request form. Contact details and the current search criteria are transmitted only after the visitor completes the required consent checkbox and submits the form.
+Searches can also be saved locally from the dashboard. Up to five filter/search definitions are stored in the same browser under `jlrw-saved-searches-v1`; they contain no email address or account data and do not create an email subscription. The same dialog presents the paid daily email digest and the free per-area feeds; the dashboard itself never collects contact or payment details.
 
-### Alert-pilot integration
+### Email alerts (self-serve) and free feeds
 
-Public integration settings live in [`docs/alerts-config.js`](docs/alerts-config.js). The form submits multipart data to the dedicated `JLRW Alert Pilot` Contact Form 7 REST endpoint (form ID `8175`), which permits requests from the published GitHub Pages origin. Submission uses `credentials: "omit"` and `referrerPolicy: "origin"`; failure reveals a direct contact-page fallback. The form response and submitted personal fields are never logged by the dashboard. Sending the inquiry does not itself create a subscription or charge a fee; the visitor must separately choose the Stripe checkout action.
+Nothing in the alert flow needs an operator: nobody activates, reviews, reconciles, or cancels a subscription by hand.
 
-`alerts-config.js` is publicly served and must never contain an API key, Stripe secret, webhook secret, or other credential. The Pro and Team entries in `stripePaymentLinks` contain their production recurring-price Payment Links. The selected plan's trusted `https://buy.stripe.com/` checkout action appears only after the pilot inquiry is accepted and a valid request reference has been generated; if a link or reference is missing or invalid, the success message instead states that payment details will be confirmed separately. Whenever `alerts-config.js` changes, update its `?v=` cache buster in `docs/index.html` in the same commit; the regression test requires it to match the other dashboard asset versions.
+| Tier | What the reader gets | How it works |
+|---|---|---|
+| Free | The dashboard, plus an RSS feed of newly detected updates and an `.ics` calendar of open public-comment deadlines for each area | [`scripts/build_public_feeds.py`](scripts/build_public_feeds.py) writes `docs/feeds/<channel>.xml` and `docs/feeds/<channel>.ics` in the daily workflow. Static files, no sign-up, no personal data. |
+| Paid (US$19/month or US$190/year) | A daily email digest for one area (or all areas): items newly detected by the dashboard, and public-comment deadline reminders 7 days, 3 days, and on the closing day when structured official deadline data exists | Stripe Payment Link → Stripe subscription → [`scripts/send_alert_digests.py`](scripts/send_alert_digests.py) in the scheduled workflow → Resend. |
 
-Each accepted inquiry receives a locally generated, non-sensitive request reference. The same reference is included in the Contact Form 7 subject and body, displayed to the visitor, and appended to the Stripe Payment Link as `client_reference_id` for manual reconciliation. Email addresses, company names, monitoring criteria, and other personal or confidential fields are never placed in the checkout URL.
+**Channels.** [`scripts/alert_common.py`](scripts/alert_common.py) holds the one list of monitoring channels (`all` plus every classifier area except `Other`). The value a customer picks in the Checkout dropdown is stored by Stripe, so a live channel value must never be renamed or removed; a test pins the list to the classifier's areas.
 
-The dedicated Contact Form 7 form currently sends only the administrator notification (Mail). Mail (2) customer autoresponders remain disabled because a user-supplied recipient address can be abused unless bot protection is enforced end to end. The dashboard itself confirms request receipt and displays the request reference; payment and alert activation are confirmed separately.
+**Checkout.** [`docs/alerts-config.js`](docs/alerts-config.js) carries the public monthly/yearly Payment Links (`buy.stripe.com`) and the customer-portal login page (`billing.stripe.com/p/login/...`). `app.js` accepts only those hosts; until the links are set, the dialog says subscriptions are not open yet and offers only the free feeds. The file is served publicly and must never contain a key. Whenever it changes, bump the shared `?v=` cache buster (a test enforces alignment). Stripe redirects to the no-index [`docs/alerts/thank-you.html`](docs/alerts/thank-you.html) with `plan=monthly|yearly`; the page does not verify payment and says so.
 
-The request dialog presents the current pilot scope before the form: Pro supports one monitoring criterion and one recipient; Team supports up to five monitoring criteria and five recipients. Both offer a daily or weekly digest and deadline reminders only when structured official deadline data is available. Plan cards synchronize with the form's plan selector. A required monitoring-focus field collects at least ten normalized characters describing the business topic, regulator, keywords, or activity needed to define the request; when the dashboard has no active monitoring filter, the form warns that a broad request may match hundreds of updates. After a successful request, the submitted plan and frequency remain visible and the plan controls are locked while the matching Stripe checkout link is shown. The FAQ explains the manual activation sequence and routes plan-change or cancellation requests to the LegalOS contact page without making an unconfigured refund promise.
+**Self-service.** The Stripe customer portal lets customers cancel (at period end), switch monthly/yearly, change the delivery email, update cards, and download invoices. Every digest links to it. Changing the area means cancelling and subscribing again with the new area.
 
-The no-index checkout follow-up page is published at `docs/alerts/thank-you.html`. Configure Stripe Payment Link completion redirects to `https://legal-gpt-official.github.io/japan-legal-reform-watch/alerts/thank-you.html?plan=pro` for Pro and the same URL with `plan=team` for Team. The query value is allow-listed only for display; the page does not verify payment and does not claim that alert activation is automatic. It follows the dashboard language preference (`lang=ja` or `lang=zh-Hans` URL override, then `localStorage`, then English).
+**Sending.** `send_alert_digests.py` reads subscriptions for `ALERT_STRIPE_PRODUCT_ID` in status `active`, `trialing`, or `past_due` (read-only restricted key), takes each customer's current email and the Checkout `area` choice, and sends one request per recipient through Resend with an `Idempotency-Key` per subscription per JST day. Content is only what the dashboard already publishes; the digest carries the Newly detected caveat, the disclaimer, and the portal link, and every record field is escaped. It runs on **scheduled runs only**, after the archives and before the data commit. Subscriber email addresses exist only in memory: they are never written to the repository, the state file, or the (public) Actions log.
 
-### Alert digest draft generator
+`data/alert_digest_state.json` records only the published item ids already considered, so an item is announced once although the lookback window spans three days. It is written only after Stripe was read and at least one send did not fail, so a Stripe or Resend outage leaves items queued for the next run. Every external failure exits 0 with a `::warning::` and the step is `continue-on-error`, so mail delivery never blocks the data commit.
 
-[`scripts/generate_alert_digest.py`](scripts/generate_alert_digest.py) is a private-operations aid that turns a saved dashboard/filter URL into review-required Markdown and HTML email drafts. It applies the same supported URL filters, source slugs, period selection, multilingual search fields, Newly detected rule, and sort choices as the browser dashboard. The default delivery window uses `first_seen_at`, meaning the item was first detected by this dashboard during the requested period; it does not imply a newly enacted or amended law.
-
-The generator does **not** send email, store customer details, call an external service, or write inside `docs/`. Every draft is marked `DRAFT — HUMAN REVIEW REQUIRED`; untrusted record text is escaped for HTML and only HTTP(S) official-source URLs become links. Keep generated drafts in a private operations directory, review every item and source URL, and remove the draft banner only when preparing the final approved email.
-
-Example weekly run from the repository root:
+Preview the digest for every channel without any network access (the output directory must be outside `docs/`):
 
 ```
-python scripts/generate_alert_digest.py --dashboard-url "https://legal-gpt-official.github.io/japan-legal-reform-watch/?area=Data%20%2F%20Privacy%20%2F%20AI&sort=detected" --since 2026-08-04 --until 2026-08-10 --frequency weekly --max-items 10 --output-dir "C:\private\JLRW-alert-drafts"
+python scripts/send_alert_digests.py --preview-dir <scratch-dir> --as-of 2026-09-19
 ```
 
-Omit `--since` and `--until` to use the current Asia/Tokyo calendar day for a daily digest or the latest seven Asia/Tokyo calendar days for a weekly digest. Explicit `--since` / `--until` values continue to override those defaults. `--date-field published` is available for an explicit publication-date backfill, but routine monitoring should keep the safer `first_seen` default. When more records match than `--max-items`, the drafts state how many were omitted so the operator can review the remaining dashboard results before delivery.
+**One-time setup** (no Stripe dashboard clicks):
+
+1. Create a Stripe restricted key with write access to Products, Prices, Payment Links, and Customer portal, then run `python scripts/setup_alert_billing.py --key-file <file>` to see the plan and `... --apply --deactivate-legacy` to create the product, prices, Payment Links (with the area dropdown and thank-you redirect), and portal, and to deactivate the retired Pro/Team pilot links. It is idempotent (objects are found again by `metadata[jlrw_role]`). Delete the key afterwards.
+2. Put the printed Payment Links and portal URL in `docs/alerts-config.js`.
+3. Create a Resend account and verify a sending domain.
+4. Repository **secrets**: `STRIPE_ALERTS_API_KEY` (restricted key with *read* access to Subscriptions, Customers, and Checkout Sessions) and `RESEND_API_KEY`. Repository **variables**: `ALERT_STRIPE_PRODUCT_ID`, `ALERT_FROM_EMAIL`, `ALERT_MANAGE_URL`, and optionally `ALERT_REPLY_TO`.
+
+Until those settings exist the send step reports `status: not_configured` and does nothing.
 
 ## Ingestion (raw fetch — Stage 1)
 
@@ -345,19 +351,25 @@ japan-legal-reform-watch/
 │   ├── build_public_data.py      # Stage 2 provisional rule-based build of the published data
 │   ├── summarize_updates.py      # Stage 3 Claude English/Japanese-source summarization
 │   ├── translate_updates.py      # Stage 4 Claude Simplified-Chinese translation
-│   └── generate_alert_digest.py  # Review-required Markdown/HTML alert draft generator
+│   ├── alert_common.py           # Shared alert channels, safe-URL and deadline helpers
+│   ├── build_public_feeds.py     # Free per-area RSS feeds + deadline calendars (docs/feeds)
+│   ├── send_alert_digests.py     # Paid daily digest: Stripe subscribers -> Resend
+│   └── setup_alert_billing.py    # One-time Stripe product/prices/links/portal setup
 ├── tests/
 │   ├── test_build_public_data.py     # Stage 2 classification / titles / ranking / AI & translation preservation
 │   ├── test_published_data_schema.py # Schema checks for docs/data/legal_updates.json (read-only)
 │   ├── test_translate_updates.py     # Stage 4 cache / limit / stale-removal / fallback + workflow (offline)
 │   ├── test_app_js_url_state.py      # Static checks for app.js/i18n.js: URL state, language switch, CSV
-│   ├── test_generate_alert_digest.py  # Alert URL filtering, windowing, escaping, and draft output
+│   ├── test_send_alert_digests.py     # Digest selection, rendering, Stripe/Resend flow, privacy
+│   ├── test_build_public_feeds.py     # RSS/ICS validity, escaping, folding, determinism
+│   ├── test_setup_alert_billing.py    # Stripe setup params and idempotency
 │   └── test_fetch_updates.py         # Stage 1 SOURCES config, parsers, id/hash stability (offline)
 ├── data/
 │   ├── legal_updates.json        # Original hand-curated sample (schema reference only)
 │   ├── raw_items.json            # Raw fetched items (output of fetch_updates.py)
 │   ├── summary_cache.json        # Claude summary cache (created/updated by Stage 3)
-│   └── translation_cache.json    # zh-Hans translation cache (created/updated by Stage 4)
+│   ├── translation_cache.json    # zh-Hans translation cache (created/updated by Stage 4)
+│   └── alert_digest_state.json   # Item ids already announced by the email digest (no personal data)
 ├── logs/
 │   ├── fetch.log                 # Stage 1 ingestion run log
 │   ├── summarize.log             # Stage 3 summarization run log
@@ -394,7 +406,7 @@ japan-legal-reform-watch/
 - **Sort** by Relevance, Published date, Last checked, or First detected. Published date is the default so the newest official updates appear first; Relevance preserves the composite ranking generated by `build_public_data.py`, including stage, impact, and recency adjustments. Sorting applies to the full filtered dataset before the 50-card render window; URL state supports `sort=relevance`, `sort=published`, `sort=checked`, and `sort=detected`. Load more state is not persisted, and Reset returns Sort to Published date while clearing URL query parameters.
 - **Mobile controls** collapse filters/search behind a compact `Filters & Search` toggle. Active filters are summarized so shared URLs remain understandable; desktop keeps the full filter layout, and the mobile open/closed state is not persisted in the URL.
 - **Shareable filter URLs**: filter state is reflected in query parameters (`q`, `area`, `stage`, `source`, `impact`, `ai`, `new`, `sort`). `new=7` is the only valid Newly detected URL value. `source` uses compact slugs such as `jftc`, `moe`, `ppc`, `mlit`, `maff`, and `egov`; Load more state is not persisted, and Reset clears both filters and URL query parameters.
-- **Saved searches and alert-pilot request**: up to five current filter/search definitions can be named, stored in `localStorage`, restored, and deleted. Values are rendered with DOM `textContent`; the saved-search feature stores no personal data and does not imply that an email alert or account has been created. A separate consent-gated form can submit the visitor's contact details and current monitoring criteria to the existing Legal GPT inquiry endpoint, with a contact-page fallback and optional post-acceptance Stripe Payment Link.
+- **Saved searches, email alerts, and feeds**: up to five current filter/search definitions can be named, stored in `localStorage`, restored, and deleted. Values are rendered with DOM `textContent`; the saved-search feature stores no personal data and does not imply that an email alert or account has been created. The same dialog links to the Stripe-hosted checkout for the paid daily digest, the Stripe customer portal, and the free per-area RSS feed and deadline calendar.
 - **English-first source labels**: the Source filter and each card's source name display English-first labels (e.g. `Japan Fair Trade Commission (JFTC)`, `Ministry of the Environment (MOE)`) via a display-name map in `docs/app.js`. Source filter URLs use compact slugs such as `jftc`, `mlit`, and `maff`. The underlying `source_name` values in the published JSON — and the official Japanese `source_url` links — are unchanged.
 - **Language selector (English / 日本語 / 简体中文)** in the header. Japanese mode uses the official original title and optional Stage 3 Japanese-source summaries; Chinese uses unofficial Stage 4 translations. Missing localized body fields fall back to English. Precedence is URL (`lang=ja` or `lang=zh-Hans`) > `localStorage` > English; switching language preserves filters, sort, and the Load more window.
 - **Free-text search** always covers the English title, original Japanese title, and Simplified-Chinese title. English AI summaries and their Simplified-Chinese summary / business-impact / recommended-action fields are searchable when `summary_source` is `claude`; complete Japanese `*_ja` summaries are searchable independently of the English provenance. Rule-based placeholder bodies are excluded.

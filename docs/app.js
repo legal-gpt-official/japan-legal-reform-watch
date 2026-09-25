@@ -159,9 +159,6 @@
   const SEARCH_TRANSLATION_LOCALES = ["zh-Hans"];
   let savedSearchStatusKey = "";
   let savedSearchStatusIsError = false;
-  let alertPilotStatusKey = "";
-  let alertPilotStatusState = "";
-  let alertPilotIsSubmitting = false;
 
   // -------- Language preference (URL > localStorage > English) --------
   function readStoredLang() {
@@ -217,27 +214,14 @@
     savedSearchStatus,
     savedSearchCapacity,
     savedSearchList,
-    openAlertPilotFormBtn,
-    alertPilotFormWrap,
-    alertPilotForm,
-    alertPilotNameInput,
-    alertPilotEmailInput,
-    alertPilotCompanyInput,
-    alertPilotPlanSelect,
-    alertPilotPlanButtons,
-    alertPilotPlanCards,
-    alertPilotFrequencySelect,
-    alertPilotFocusInput,
-    alertPilotScopeWarning,
-    alertPilotConsentInput,
-    alertPilotHoneypotInput,
-    alertPilotSubmitBtn,
-    alertPilotStatus,
-    alertPilotReference,
-    alertPilotReferenceValue,
-    alertPilotFallback,
-    alertPilotCheckout,
-    alertPilotPrivacyLink,
+    alertPlanActions,
+    alertSubscribeMonthly,
+    alertSubscribeYearly,
+    alertPlanUnavailable,
+    alertManageSubscription,
+    alertFeedChannel,
+    alertFeedRss,
+    alertFeedIcs,
     exportCsvBtn,
     exportStatusEl,
     loadMoreWrap,
@@ -274,27 +258,14 @@
     savedSearchStatus = $("#saved-search-status");
     savedSearchCapacity = $("#saved-search-capacity");
     savedSearchList = $("#saved-search-list");
-    openAlertPilotFormBtn = $("#open-alert-pilot-form");
-    alertPilotFormWrap = $("#alert-pilot-form-wrap");
-    alertPilotForm = $("#alert-pilot-form");
-    alertPilotNameInput = $("#alert-pilot-name");
-    alertPilotEmailInput = $("#alert-pilot-email");
-    alertPilotCompanyInput = $("#alert-pilot-company");
-    alertPilotPlanSelect = $("#alert-pilot-plan");
-    alertPilotPlanButtons = Array.from(document.querySelectorAll("[data-alert-plan]"));
-    alertPilotPlanCards = Array.from(document.querySelectorAll("[data-alert-plan-card]"));
-    alertPilotFrequencySelect = $("#alert-pilot-frequency");
-    alertPilotFocusInput = $("#alert-pilot-focus");
-    alertPilotScopeWarning = $("#alert-pilot-scope-warning");
-    alertPilotConsentInput = $("#alert-pilot-consent");
-    alertPilotHoneypotInput = $("#alert-pilot-website");
-    alertPilotSubmitBtn = $("#submit-alert-pilot");
-    alertPilotStatus = $("#alert-pilot-status");
-    alertPilotReference = $("#alert-pilot-reference");
-    alertPilotReferenceValue = $("#alert-pilot-reference-value");
-    alertPilotFallback = $("#alert-pilot-fallback");
-    alertPilotCheckout = $("#alert-pilot-checkout");
-    alertPilotPrivacyLink = $("#alert-pilot-privacy-link");
+    alertPlanActions = $("#alert-plan-actions");
+    alertSubscribeMonthly = $("#alert-subscribe-monthly");
+    alertSubscribeYearly = $("#alert-subscribe-yearly");
+    alertPlanUnavailable = $("#alert-plan-unavailable");
+    alertManageSubscription = $("#alert-manage-subscription");
+    alertFeedChannel = $("#alert-feed-channel");
+    alertFeedRss = $("#alert-feed-rss");
+    alertFeedIcs = $("#alert-feed-ics");
     exportCsvBtn = $("#export-csv");
     exportStatusEl = $("#export-status");
     loadMoreWrap = $("#load-more-wrap");
@@ -746,10 +717,8 @@
     syncLanguageSelector();
     refreshMobileToggleLabel();
     refreshSavedSearchDialog();
-    syncAlertPilotCheckoutLabel();
+    relabelAlertFeedOptions();
     setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError);
-    setAlertPilotStatus(alertPilotStatusKey, alertPilotStatusState);
-    setAlertPilotSubmitting(alertPilotIsSubmitting);
   }
 
   // User changed language: keep every filter / sort / quick-filter state AND the
@@ -814,8 +783,8 @@
 
   // -------- Saved searches (local-only demand-validation MVP) --------
   // Search definitions contain no personal data and remain in this browser.
-  // Email delivery and billing are deliberately outside the static dashboard;
-  // the pilot CTA routes to the existing Legal GPT inquiry form.
+  // Email delivery and billing are deliberately outside the static dashboard:
+  // subscribing opens Stripe Checkout and the digest is sent by GitHub Actions.
   function normalizeSavedSearchQuery(value) {
     if (typeof value !== "string" || value.length > 2000) return null;
     const incoming = new URLSearchParams(value);
@@ -1003,7 +972,7 @@
     if (savedSearchCurrentSummary) {
       savedSearchCurrentSummary.textContent = activeFilterSummaryText();
     }
-    syncAlertPilotScopeWarning();
+    syncAlertFeedChannelToFilters();
   }
 
   function openSavedSearches(preferNameInput) {
@@ -1114,9 +1083,11 @@
     renderSavedSearches();
   }
 
-  // -------- Paid alert-pilot inquiry --------
-  // This is a lead-capture bridge, not account provisioning. Contact Form 7
-  // receives the request; no fee is charged until a separate checkout occurs.
+  // -------- Email alerts (self-serve) and free feeds --------
+  // The dashboard never handles payment or personal data. Subscribing opens a
+  // Stripe Payment Link and managing a subscription opens Stripe's customer
+  // portal; both URLs come from the public alerts-config.js and are accepted
+  // only on Stripe's own hosts. The digest itself is sent by GitHub Actions.
   function trustedIntegrationUrl(value, expectedHost, expectedPathPrefix) {
     if (typeof value !== "string" || !value.trim()) return "";
     try {
@@ -1137,324 +1108,69 @@
     }
   }
 
-  function alertPilotEndpoint() {
-    return trustedIntegrationUrl(
-      ALERTS_CONFIG.inquiryEndpoint,
-      "legal-gpt.com",
-      "/wp-json/contact-form-7/v1/contact-forms/"
-    );
+  function alertCheckoutUrl(plan) {
+    const links = ALERTS_CONFIG.checkoutLinks;
+    if (!links) return "";
+    return trustedIntegrationUrl(plan === "yearly" ? links.yearly : links.monthly, "buy.stripe.com", "/");
   }
 
-  function validAlertPilotRequestId(value) {
-    return typeof value === "string" && /^jlrw_[a-z0-9]+_[a-z0-9]+$/.test(value) && value.length <= 200
-      ? value
-      : "";
+  function alertManageUrl() {
+    return trustedIntegrationUrl(ALERTS_CONFIG.manageSubscriptionUrl, "billing.stripe.com", "/p/login/");
   }
 
-  function createAlertPilotRequestId() {
-    const timestamp = Date.now().toString(36);
-    let randomPart = "";
-    if (window.crypto && typeof window.crypto.getRandomValues === "function") {
-      const bytes = new Uint8Array(8);
-      window.crypto.getRandomValues(bytes);
-      randomPart = Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+  function setAlertLink(link, url) {
+    if (!link) return;
+    if (url) {
+      link.href = url;
+    } else {
+      link.removeAttribute("href");
     }
-    return randomPart ? "jlrw_" + timestamp + "_" + randomPart : "";
+    link.hidden = !url;
   }
 
-  function alertPilotCheckoutUrl(plan, requestId) {
-    const links = ALERTS_CONFIG.stripePaymentLinks;
-    const value = links && typeof links === "object" ? links[plan === "team" ? "team" : "pro"] : "";
-    const trusted = trustedIntegrationUrl(value, "buy.stripe.com", "/");
-    const reference = validAlertPilotRequestId(requestId);
-    if (!trusted || !reference) return "";
-    const checkoutUrl = new URL(trusted);
-    checkoutUrl.searchParams.set("client_reference_id", reference);
-    return trustedIntegrationUrl(checkoutUrl.href, "buy.stripe.com", "/");
+  // Feed file names are the channel values; only values present in the
+  // markup's option list can ever become a path.
+  function alertFeedChannelValue() {
+    if (!alertFeedChannel) return "all";
+    const value = alertFeedChannel.value;
+    const known = Array.from(alertFeedChannel.options).some((option) => option.value === value);
+    return known && /^[a-z]+$/.test(value) ? value : "all";
   }
 
-  function alertPilotFallbackUrl() {
-    return trustedIntegrationUrl(ALERTS_CONFIG.fallbackContactUrl, "legal-gpt.com", "/contact/");
+  function syncAlertFeedLinks() {
+    const channel = alertFeedChannelValue();
+    if (alertFeedRss) alertFeedRss.href = "./feeds/" + channel + ".xml";
+    if (alertFeedIcs) alertFeedIcs.href = "./feeds/" + channel + ".ics";
   }
 
-  function alertPilotPrivacyUrl() {
-    return trustedIntegrationUrl(ALERTS_CONFIG.privacyPolicyUrl, "legal-gpt.com", "/privacy-policy/");
-  }
-
-  function validAlertPilotUnitTag(value) {
-    return typeof value === "string" && /^wpcf7-f\d+-p\d+-o\d+$/.test(value)
-      ? value
-      : "";
-  }
-
-  function validAlertPilotNumericId(value) {
-    return typeof value === "string" && /^\d+$/.test(value) ? value : "";
-  }
-
-  function setAlertPilotStatus(key, state) {
-    alertPilotStatusKey = key || "";
-    alertPilotStatusState = state || "";
-    if (!alertPilotStatus) return;
-    alertPilotStatus.textContent = alertPilotStatusKey ? I18N.t(alertPilotStatusKey) : "";
-    alertPilotStatus.classList.toggle("is-success", alertPilotStatusState === "success");
-    alertPilotStatus.classList.toggle("is-error", alertPilotStatusState === "error");
-  }
-
-  function setAlertPilotReference(requestId) {
-    if (!alertPilotReference || !alertPilotReferenceValue) return;
-    const reference = validAlertPilotRequestId(requestId);
-    alertPilotReferenceValue.textContent = reference;
-    alertPilotReference.hidden = !reference;
-  }
-
-  function setAlertPilotSubmitting(isSubmitting) {
-    alertPilotIsSubmitting = !!isSubmitting;
-    if (!alertPilotSubmitBtn) return;
-    alertPilotSubmitBtn.disabled = alertPilotIsSubmitting;
-    alertPilotSubmitBtn.textContent = I18N.t(
-      alertPilotIsSubmitting ? "alert_pilot_submitting" : "alert_pilot_submit"
+  // Opening the dialog preselects the feed for the area currently filtered.
+  function syncAlertFeedChannelToFilters() {
+    if (!alertFeedChannel) return;
+    const match = Array.from(alertFeedChannel.options).find(
+      (option) => option.dataset.area && option.dataset.area === filters.area
     );
+    alertFeedChannel.value = match ? match.value : "all";
+    syncAlertFeedLinks();
   }
 
-  function clearAlertPilotHoneypot() {
-    if (alertPilotHoneypotInput) alertPilotHoneypotInput.value = "";
-  }
-
-  function resetAlertPilotOutcome() {
-    setAlertPilotStatus("", "");
-    setAlertPilotReference("");
-    if (alertPilotFallback) alertPilotFallback.hidden = true;
-    if (alertPilotCheckout) {
-      alertPilotCheckout.hidden = true;
-      alertPilotCheckout.removeAttribute("href");
-      delete alertPilotCheckout.dataset.plan;
-    }
-  }
-
-  function openAlertPilotForm() {
-    if (!alertPilotFormWrap || !openAlertPilotFormBtn) return;
-    syncAlertPilotScopeWarning();
-    setAlertPilotPlanLocked(false);
-    alertPilotFormWrap.hidden = false;
-    openAlertPilotFormBtn.setAttribute("aria-expanded", "true");
-    clearAlertPilotHoneypot();
-    resetAlertPilotOutcome();
-    syncAlertPilotCheckoutLabel();
-    window.setTimeout(() => {
-      alertPilotFormWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      if (alertPilotNameInput) alertPilotNameInput.focus();
-    }, 0);
-  }
-
-  function hasActiveMonitoringFilter() {
-    const params = new URLSearchParams(currentSavedSearchQuery());
-    return ["q", "area", "stage", "source", "impact", "ai", "new"].some((key) =>
-      Boolean(params.get(key))
-    );
-  }
-
-  function syncAlertPilotScopeWarning() {
-    if (!alertPilotScopeWarning) return;
-    alertPilotScopeWarning.hidden = hasActiveMonitoringFilter();
-  }
-
-  function syncAlertPilotPlanChoice() {
-    const selectedPlan = alertPilotPlanSelect && alertPilotPlanSelect.value === "team" ? "team" : "pro";
-    alertPilotPlanButtons.forEach((button) => {
-      const isSelected = button.dataset.alertPlan === selectedPlan;
-      button.setAttribute("aria-pressed", isSelected ? "true" : "false");
-    });
-    alertPilotPlanCards.forEach((card) => {
-      card.classList.toggle("is-selected", card.dataset.alertPlanCard === selectedPlan);
+  function relabelAlertFeedOptions() {
+    if (!alertFeedChannel) return;
+    Array.from(alertFeedChannel.options).forEach((option) => {
+      if (option.dataset.area) option.textContent = I18N.areaLabel(option.dataset.area);
     });
   }
 
-  function setAlertPilotPlanLocked(isLocked) {
-    if (alertPilotPlanSelect) alertPilotPlanSelect.disabled = isLocked;
-    alertPilotPlanButtons.forEach((button) => {
-      button.disabled = isLocked;
-    });
-  }
-
-  function syncAlertPilotCheckoutLabel() {
-    if (!alertPilotCheckout) return;
-    const plan = alertPilotCheckout.dataset.plan;
-    if (plan === "pro" || plan === "team") {
-      const labelKey = plan === "team" ? "alert_pilot_plan_team" : "alert_pilot_plan_pro";
-      alertPilotCheckout.textContent = I18N.t("alert_pilot_checkout_plan", {
-        plan: I18N.t(labelKey),
-      });
-      return;
-    }
-    alertPilotCheckout.textContent = I18N.t("alert_pilot_checkout");
-  }
-
-  function selectAlertPilotPlan(event) {
-    if (!alertPilotPlanSelect) return;
-    alertPilotPlanSelect.value = event.currentTarget.dataset.alertPlan === "team" ? "team" : "pro";
-    syncAlertPilotPlanChoice();
-    if (alertPilotNameInput) alertPilotNameInput.focus({ preventScroll: true });
-  }
-
-  function alertPilotPlanLabel(value) {
-    if (value === "team") return "Team — US$149/month";
-    return "Pro — US$29/month";
-  }
-
-  function alertPilotFrequencyLabel(value) {
-    return value === "weekly" ? "Weekly digest" : "Daily digest";
-  }
-
-  function currentMonitoringUrl() {
-    const params = buildFilterParams(true).toString();
-    return (
-      window.location.origin +
-      window.location.pathname +
-      (params ? "?" + params : "")
-    );
-  }
-
-  function buildAlertPilotMessage(values) {
-    const query = currentSavedSearchQuery();
-    const lines = [
-      "Japan Regulatory Alert Pilot request",
-      "",
-      "Request ID: " + values.requestId,
-      "Name: " + values.name,
-      "Company / organization: " + values.company,
-      "Work email: " + values.email,
-      "Plan: " + alertPilotPlanLabel(values.plan),
-      "Preferred frequency: " + alertPilotFrequencyLabel(values.frequency),
-      "Monitoring focus / business context: " + values.focus,
-      "Monitoring criteria: " + savedSearchDescription(query),
-      "Filter query: " + (query || "Latest updates / no additional filters"),
-      "Dashboard URL: " + currentMonitoringUrl(),
-      "Display language: " + filters.lang,
-      "",
-      "This is a request for a regulatory-monitoring pilot, not a request for legal advice.",
-    ];
-    return lines.join("\n");
-  }
-
-  async function submitAlertPilotRequest() {
-    resetAlertPilotOutcome();
-    if (!alertPilotForm || !alertPilotForm.checkValidity()) {
-      setAlertPilotStatus("alert_pilot_validation", "error");
-      if (alertPilotForm) alertPilotForm.reportValidity();
-      return;
-    }
-
-    // Fail closed without sending. Clear the field so browser autofill or a
-    // password manager cannot silently poison every later attempt in this dialog.
-    if (alertPilotHoneypotInput && alertPilotHoneypotInput.value) {
-      clearAlertPilotHoneypot();
-      setAlertPilotStatus("alert_pilot_failed", "error");
-      if (alertPilotFallback) alertPilotFallback.hidden = false;
-      return;
-    }
-
-    const values = {
-      name: plainText(alertPilotNameInput.value).slice(0, 120),
-      email: plainText(alertPilotEmailInput.value).slice(0, 254),
-      company: plainText(alertPilotCompanyInput.value).slice(0, 160),
-      plan: alertPilotPlanSelect.value === "team" ? "team" : "pro",
-      frequency: alertPilotFrequencySelect.value === "weekly" ? "weekly" : "daily",
-      focus: plainText(alertPilotFocusInput.value).slice(0, 500),
-      requestId: createAlertPilotRequestId(),
-    };
-    if (!values.name || !values.company || values.focus.length < 10) {
-      if (!values.name || !values.company) {
-        setAlertPilotStatus("alert_pilot_validation", "error");
-        if (!values.name) alertPilotNameInput.focus();
-        else alertPilotCompanyInput.focus();
-      } else {
-        setAlertPilotStatus("alert_pilot_focus_validation", "error");
-        alertPilotFocusInput.focus();
-      }
-      return;
-    }
-    if (!validAlertPilotRequestId(values.requestId)) {
-      setAlertPilotStatus("alert_pilot_failed", "error");
-      if (alertPilotFallback) alertPilotFallback.hidden = false;
-      return;
-    }
-
-    const endpoint = alertPilotEndpoint();
-    const unitTag = validAlertPilotUnitTag(ALERTS_CONFIG.inquiryUnitTag);
-    const formId = validAlertPilotNumericId(ALERTS_CONFIG.inquiryFormId);
-    const containerPost = validAlertPilotNumericId(ALERTS_CONFIG.inquiryContainerPost);
-    if (!endpoint || !unitTag || !formId || !containerPost) {
-      setAlertPilotStatus("alert_pilot_failed", "error");
-      if (alertPilotFallback) alertPilotFallback.hidden = false;
-      return;
-    }
-
-    const data = new FormData();
-    data.append("_wpcf7", formId);
-    data.append("_wpcf7_locale", "ja");
-    data.append("_wpcf7_unit_tag", unitTag);
-    data.append("_wpcf7_container_post", containerPost);
-    data.append("_wpcf7_posted_data_hash", "");
-    data.append("your-name", values.name);
-    data.append("your-email", values.email);
-    data.append(
-      "your-subject",
-      "[JLRW Alert Pilot " + values.requestId + "] " + alertPilotPlanLabel(values.plan)
-    );
-    data.append("your-message", buildAlertPilotMessage(values));
-
-    setAlertPilotSubmitting(true);
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        body: data,
-        mode: "cors",
-        credentials: "omit",
-        referrerPolicy: "origin",
-        headers: { Accept: "application/json" },
-      });
-      const result = await response.json();
-      if (!response.ok || !result || result.status !== "mail_sent") {
-        const providerStatus = result && typeof result.status === "string" ? result.status : "unknown";
-        console.warn("[JLRW] Alert pilot request was not accepted. status=" + providerStatus);
-        throw new Error("Inquiry was not accepted.");
-      }
-
-      const checkoutUrl = alertPilotCheckoutUrl(values.plan, values.requestId);
-      alertPilotNameInput.value = "";
-      alertPilotEmailInput.value = "";
-      alertPilotCompanyInput.value = "";
-      alertPilotFocusInput.value = "";
-      alertPilotConsentInput.checked = false;
-      clearAlertPilotHoneypot();
-      alertPilotPlanSelect.value = values.plan;
-      alertPilotFrequencySelect.value = values.frequency;
-      syncAlertPilotPlanChoice();
-      setAlertPilotReference(values.requestId);
-      if (checkoutUrl && alertPilotCheckout) {
-        setAlertPilotStatus("alert_pilot_success_checkout", "success");
-        alertPilotCheckout.href = checkoutUrl;
-        alertPilotCheckout.dataset.plan = values.plan;
-        syncAlertPilotCheckoutLabel();
-        alertPilotCheckout.hidden = false;
-        setAlertPilotPlanLocked(true);
-      } else {
-        setAlertPilotStatus("alert_pilot_success_manual", "success");
-      }
-    } catch (err) {
-      console.warn("[JLRW] Alert pilot request failed.", err);
-      setAlertPilotStatus("alert_pilot_failed", "error");
-      if (alertPilotFallback) alertPilotFallback.hidden = false;
-    } finally {
-      setAlertPilotSubmitting(false);
-    }
-  }
-
-  function initAlertPilot() {
-    const fallbackUrl = alertPilotFallbackUrl();
-    const privacyUrl = alertPilotPrivacyUrl();
-    if (fallbackUrl && alertPilotFallback) alertPilotFallback.href = fallbackUrl;
-    if (privacyUrl && alertPilotPrivacyLink) alertPilotPrivacyLink.href = privacyUrl;
+  function initAlerts() {
+    const monthly = alertCheckoutUrl("monthly");
+    const yearly = alertCheckoutUrl("yearly");
+    setAlertLink(alertSubscribeMonthly, monthly);
+    setAlertLink(alertSubscribeYearly, yearly);
+    const available = Boolean(monthly || yearly);
+    if (alertPlanActions) alertPlanActions.hidden = !available;
+    if (alertPlanUnavailable) alertPlanUnavailable.hidden = available;
+    setAlertLink(alertManageSubscription, available ? alertManageUrl() : "");
+    relabelAlertFeedOptions();
+    syncAlertFeedLinks();
   }
 
   function setQuickButtonState(button, active) {
@@ -2492,33 +2208,14 @@
     }
     if (savedSearchDialog) {
       savedSearchDialog.addEventListener("close", () => {
-        if (alertPilotFormWrap) alertPilotFormWrap.hidden = true;
-        if (openAlertPilotFormBtn) openAlertPilotFormBtn.setAttribute("aria-expanded", "false");
-        clearAlertPilotHoneypot();
-        resetAlertPilotOutcome();
-        setAlertPilotPlanLocked(false);
-        syncAlertPilotCheckoutLabel();
         if (savedSearchDialogOpener && typeof savedSearchDialogOpener.focus === "function") {
           savedSearchDialogOpener.focus();
         }
         savedSearchDialogOpener = null;
       });
     }
-    if (openAlertPilotFormBtn) {
-      openAlertPilotFormBtn.addEventListener("click", openAlertPilotForm);
-    }
-    alertPilotPlanButtons.forEach((button) => {
-      button.addEventListener("click", selectAlertPilotPlan);
-    });
-    if (alertPilotPlanSelect) {
-      alertPilotPlanSelect.addEventListener("change", syncAlertPilotPlanChoice);
-      syncAlertPilotPlanChoice();
-    }
-    if (alertPilotForm) {
-      alertPilotForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        submitAlertPilotRequest();
-      });
+    if (alertFeedChannel) {
+      alertFeedChannel.addEventListener("change", syncAlertFeedLinks);
     }
     if (languageSelect) {
       languageSelect.addEventListener("change", (e) => {
@@ -2555,7 +2252,7 @@
     applyLanguageDom();
     initModal();
     initSavedSearches();
-    initAlertPilot();
+    initAlerts();
     wireEvents();
     loadData();
   });

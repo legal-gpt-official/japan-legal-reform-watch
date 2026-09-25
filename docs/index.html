@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=localized-coverage-20260813" />
+  <link rel="stylesheet" href="./style.css?v=self-serve-alerts-20260925" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <!-- Saved searches / email-alert pilot -->
+  <!-- Saved searches / email alerts -->
   <dialog
     id="saved-search-dialog"
     class="saved-search-dialog"
@@ -109,219 +109,105 @@
         <div id="saved-search-list" class="saved-search-list"></div>
       </section>
 
-      <aside class="alert-pilot-card" aria-labelledby="alert-pilot-title">
-        <div>
-          <p class="alert-pilot-label" data-i18n="alert_pilot_label">Paid pilot</p>
-          <h3 id="alert-pilot-title" data-i18n="alert_pilot_title">Receive matching updates by email</h3>
-          <p data-i18n="alert_pilot_body">
-            Receive personalized alerts based on saved searches, including public-comment deadline reminders when structured official data is available.
-          </p>
-        </div>
-        <button
-          id="open-alert-pilot-form"
-          class="alert-pilot-button"
-          type="button"
-          aria-expanded="false"
-          aria-controls="alert-pilot-form-wrap"
-          data-i18n="alert_pilot_request"
-        >
-          Request pilot access &rarr;
-        </button>
-      </aside>
-
-      <section id="alert-pilot-form-wrap" class="alert-pilot-form-wrap" hidden aria-labelledby="alert-pilot-form-title">
-        <div class="alert-pilot-form-heading">
+      <section class="alert-plan" aria-labelledby="alert-plan-title">
+        <div class="alert-plan-heading">
           <div>
-            <p class="alert-pilot-label" data-i18n="alert_pilot_form_eyebrow">Founding pilot</p>
-            <h3 id="alert-pilot-form-title" data-i18n="alert_pilot_form_title">Request personalized alerts</h3>
+            <p class="alert-plan-label" data-i18n="alert_plan_label">Email alerts</p>
+            <h3 id="alert-plan-title" data-i18n="alert_plan_title">Daily email digest</h3>
           </div>
-          <p class="alert-pilot-form-price" data-i18n="alert_pilot_price_note">Pilot plans start at US$29/month.</p>
+          <p class="alert-plan-price">
+            <strong data-i18n="alert_plan_price_monthly">US$19/month</strong>
+            <span data-i18n="alert_plan_price_yearly">or US$190/year</span>
+          </p>
         </div>
-        <p class="alert-pilot-form-intro" data-i18n="alert_pilot_form_intro">
-          Submitting this form does not create a subscription or charge a fee. After sending, you can continue to secure checkout; we review the requested monitoring scope before activation.
+        <ul class="alert-plan-features">
+          <li data-i18n="alert_plan_feature_area">Choose one area, or all areas, at checkout</li>
+          <li data-i18n="alert_plan_feature_daily">Each morning (JST): updates newly detected by this dashboard in your area</li>
+          <li data-i18n="alert_plan_feature_deadlines">Public-comment deadline reminders 7 days, 3 days, and on the closing day, when structured official data is available</li>
+          <li data-i18n="alert_plan_feature_self_serve">Starts automatically after checkout; cancel or change billing yourself at any time</li>
+        </ul>
+        <div id="alert-plan-actions" class="alert-plan-actions" hidden>
+          <a
+            id="alert-subscribe-monthly"
+            class="btn-primary alert-plan-subscribe"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="alert_plan_subscribe_monthly"
+          >Subscribe monthly</a>
+          <a
+            id="alert-subscribe-yearly"
+            class="alert-plan-subscribe-secondary"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="alert_plan_subscribe_yearly"
+          >Subscribe yearly</a>
+        </div>
+        <p id="alert-plan-unavailable" class="alert-plan-unavailable" data-i18n="alert_plan_unavailable">
+          Email subscriptions are not open yet. The free feeds below are available now.
         </p>
-        <p
-          id="alert-pilot-scope-warning"
-          class="alert-pilot-scope-warning"
-          role="note"
+        <p class="alert-plan-note" data-i18n="alert_plan_note">
+          Checkout and billing are handled by Stripe. Alert emails are monitoring aids, not legal advice; original Japanese official sources remain authoritative.
+        </p>
+        <a
+          id="alert-manage-subscription"
+          class="alert-plan-manage"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
           hidden
-          data-i18n="alert_pilot_scope_warning"
-        >
-          No topic or filter is active in the dashboard. A broad request may match hundreds of updates; describe a specific focus below before submitting.
+          data-i18n="alert_plan_manage"
+        >Manage or cancel an existing subscription</a>
+      </section>
+
+      <section class="alert-feeds" aria-labelledby="alert-feeds-title">
+        <h3 id="alert-feeds-title" data-i18n="alert_feeds_title">Free feeds</h3>
+        <p data-i18n="alert_feeds_body">
+          Follow an area without an account: an RSS feed of newly detected updates and a calendar of open public-comment deadlines.
         </p>
-        <section class="alert-pilot-plans" aria-labelledby="alert-pilot-plans-title">
-          <div class="alert-pilot-section-heading">
-            <h4 id="alert-pilot-plans-title" data-i18n="alert_pilot_plans_title">Choose a monitoring scope</h4>
-            <p data-i18n="alert_pilot_plans_billing">Recurring monthly subscription, billed in US dollars.</p>
-          </div>
-          <div class="alert-pilot-plan-grid">
-            <article class="alert-pilot-plan-card is-selected" data-alert-plan-card="pro">
-              <div class="alert-pilot-plan-heading">
-                <h5 data-i18n="alert_pilot_plan_name_pro">Pro</h5>
-                <p class="alert-pilot-plan-price" data-i18n="alert_pilot_plan_pro_price">US$29/month</p>
-              </div>
-              <p class="alert-pilot-plan-audience" data-i18n="alert_pilot_plan_pro_audience">For an individual monitoring need</p>
-              <ul>
-                <li data-i18n="alert_pilot_plan_pro_criteria">1 monitoring criterion</li>
-                <li data-i18n="alert_pilot_plan_pro_recipients">1 email recipient</li>
-                <li data-i18n="alert_pilot_plan_delivery">Daily or weekly digest</li>
-                <li data-i18n="alert_pilot_plan_deadlines">Public-comment deadline reminders when structured official data is available</li>
-              </ul>
-              <button
-                class="alert-pilot-plan-select"
-                type="button"
-                data-alert-plan="pro"
-                aria-pressed="true"
-                data-i18n="alert_pilot_select_pro"
-              >Select Pro</button>
-            </article>
-            <article class="alert-pilot-plan-card" data-alert-plan-card="team">
-              <div class="alert-pilot-plan-heading">
-                <h5 data-i18n="alert_pilot_plan_name_team">Team</h5>
-                <p class="alert-pilot-plan-price" data-i18n="alert_pilot_plan_team_price">US$149/month</p>
-              </div>
-              <p class="alert-pilot-plan-audience" data-i18n="alert_pilot_plan_team_audience">For a small legal or compliance team</p>
-              <ul>
-                <li data-i18n="alert_pilot_plan_team_criteria">Up to 5 monitoring criteria</li>
-                <li data-i18n="alert_pilot_plan_team_recipients">Up to 5 email recipients</li>
-                <li data-i18n="alert_pilot_plan_delivery">Daily or weekly digest</li>
-                <li data-i18n="alert_pilot_plan_deadlines">Public-comment deadline reminders when structured official data is available</li>
-              </ul>
-              <button
-                class="alert-pilot-plan-select"
-                type="button"
-                data-alert-plan="team"
-                aria-pressed="false"
-                data-i18n="alert_pilot_select_team"
-              >Select Team</button>
-            </article>
-          </div>
-          <p class="alert-pilot-scope-note" data-i18n="alert_pilot_scope_note">
-            Monitoring criteria, sources, and delivery frequency are confirmed before activation; additional Team criteria and recipients are collected during that review. Alert emails are monitoring aids, not legal advice.
-          </p>
-        </section>
-        <form id="alert-pilot-form" class="alert-pilot-form" novalidate>
-          <label class="alert-pilot-honeypot" aria-hidden="true">
-            Website
-            <input id="alert-pilot-website" type="text" autocomplete="off" tabindex="-1" />
-          </label>
-          <div class="alert-pilot-form-grid">
-            <label class="alert-pilot-field" for="alert-pilot-name">
-              <span data-i18n="alert_pilot_name">Name</span>
-              <input id="alert-pilot-name" type="text" autocomplete="name" maxlength="120" required />
-            </label>
-            <label class="alert-pilot-field" for="alert-pilot-email">
-              <span data-i18n="alert_pilot_email">Work email</span>
-              <input id="alert-pilot-email" type="email" autocomplete="email" maxlength="254" required />
-            </label>
-            <label class="alert-pilot-field" for="alert-pilot-company">
-              <span data-i18n="alert_pilot_company">Company / organization</span>
-              <input id="alert-pilot-company" type="text" autocomplete="organization" maxlength="160" required />
-            </label>
-            <label class="alert-pilot-field" for="alert-pilot-plan">
-              <span data-i18n="alert_pilot_plan">Plan of interest</span>
-              <select id="alert-pilot-plan" required>
-                <option value="pro" data-i18n="alert_pilot_plan_pro">Pro — US$29/month</option>
-                <option value="team" data-i18n="alert_pilot_plan_team">Team — US$149/month</option>
-              </select>
-            </label>
-            <label class="alert-pilot-field" for="alert-pilot-frequency">
-              <span data-i18n="alert_pilot_frequency">Preferred frequency</span>
-              <select id="alert-pilot-frequency" required>
-                <option value="daily" data-i18n="alert_pilot_frequency_daily">Daily digest</option>
-                <option value="weekly" data-i18n="alert_pilot_frequency_weekly">Weekly digest</option>
-              </select>
-            </label>
-            <label class="alert-pilot-field alert-pilot-field-wide" for="alert-pilot-focus">
-              <span data-i18n="alert_pilot_focus">Monitoring focus / business context</span>
-              <textarea
-                id="alert-pilot-focus"
-                rows="3"
-                maxlength="500"
-                required
-                placeholder="e.g. AI governance rules affecting cloud services in Japan"
-                data-i18n-placeholder="alert_pilot_focus_placeholder"
-              ></textarea>
-              <small class="alert-pilot-field-help" data-i18n="alert_pilot_focus_help">
-                Describe the topic, regulator, keywords, or business activity that should define this monitoring criterion.
-              </small>
-            </label>
-          </div>
-          <label class="alert-pilot-consent" for="alert-pilot-consent">
-            <input id="alert-pilot-consent" type="checkbox" required />
-            <span>
-              <span data-i18n="alert_pilot_consent">I agree to send my contact details and current search criteria for this pilot request.</span>
-              <a
-                id="alert-pilot-privacy-link"
-                href="https://legal-gpt.com/privacy-policy/"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-i18n="alert_pilot_privacy"
-              >Privacy policy</a>
-            </span>
-          </label>
-          <div class="alert-pilot-submit-row">
-            <button id="submit-alert-pilot" class="btn-primary alert-pilot-submit" type="submit" data-i18n="alert_pilot_submit">
-              Send pilot request
-            </button>
-            <a
-              id="alert-pilot-fallback"
-              class="alert-pilot-fallback"
-              href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"
-              target="_blank"
-              rel="noopener noreferrer"
-              hidden
-              data-i18n="alert_pilot_fallback"
-            >Use the contact page instead</a>
-            <a
-              id="alert-pilot-checkout"
-              class="alert-pilot-checkout"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              hidden
-              data-i18n="alert_pilot_checkout"
-            >Continue to secure checkout</a>
-          </div>
-          <p id="alert-pilot-status" class="alert-pilot-status" role="status" aria-live="polite"></p>
-          <p
-            id="alert-pilot-reference"
-            class="alert-pilot-reference"
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-            hidden
-          >
-            <span data-i18n="alert_pilot_reference">Request reference</span>:
-            <strong id="alert-pilot-reference-value"></strong>
-          </p>
-        </form>
-        <section class="alert-pilot-faq" aria-labelledby="alert-pilot-faq-title">
-          <h4 id="alert-pilot-faq-title" data-i18n="alert_pilot_faq_title">Before you subscribe</h4>
-          <details>
-            <summary data-i18n="alert_pilot_faq_criterion_q">What is a monitoring criterion?</summary>
-            <p data-i18n="alert_pilot_faq_criterion_a">A criterion is one saved-search configuration: its keywords, filters, and selected period. We confirm the practical scope before activation.</p>
-          </details>
-          <details>
-            <summary data-i18n="alert_pilot_faq_start_q">When do alerts start?</summary>
-            <p data-i18n="alert_pilot_faq_start_a">Alerts start after payment is matched to your request, the monitoring scope is reviewed, and LegalOS sends an activation email. Checkout alone does not activate monitoring.</p>
-          </details>
-          <details>
-            <summary data-i18n="alert_pilot_faq_contents_q">What does an alert contain?</summary>
-            <p data-i18n="alert_pilot_faq_contents_a">Each alert identifies matching dashboard updates and links to the original Japanese official source. Summaries are for triage and are not legal advice.</p>
-          </details>
-          <details>
-            <summary data-i18n="alert_pilot_faq_cancel_q">How do I change or cancel a plan?</summary>
-            <p data-i18n="alert_pilot_faq_cancel_a">Use the LegalOS contact page to request a plan change or cancellation. We will confirm the effective timing and any billing effect.</p>
-            <a
-              class="alert-pilot-contact-link"
-              href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-i18n="alert_pilot_contact"
-            >Contact LegalOS</a>
-          </details>
-        </section>
+        <div class="alert-feeds-row">
+          <label for="alert-feed-channel" class="alert-feeds-label" data-i18n="alert_feeds_area">Area</label>
+          <select id="alert-feed-channel" class="alert-feeds-select">
+            <option value="all" data-i18n="opt_all_areas">All Areas</option>
+            <option value="dataprivacyai" data-area="Data / Privacy / AI">Data / Privacy / AI</option>
+            <option value="financeaml" data-area="Finance / AML">Finance / AML</option>
+            <option value="antitrustfairtrade" data-area="Antitrust / Fair Trade">Antitrust / Fair Trade</option>
+            <option value="consumeradvertising" data-area="Consumer / Advertising">Consumer / Advertising</option>
+            <option value="laboremployment" data-area="Labor / Employment">Labor / Employment</option>
+            <option value="corporategovernance" data-area="Corporate / Governance">Corporate / Governance</option>
+            <option value="economicsecurityfdi" data-area="Economic Security / FDI">Economic Security / FDI</option>
+            <option value="taxstampduty" data-area="Tax / Stamp Duty">Tax / Stamp Duty</option>
+            <option value="healthcarepharma" data-area="Healthcare / Pharmaceuticals">Healthcare / Pharmaceuticals</option>
+            <option value="energyenvironment" data-area="Energy / Environment">Energy / Environment</option>
+            <option value="foodagriculture" data-area="Food / Agriculture">Food / Agriculture</option>
+            <option value="transportinfrastructure" data-area="Transport / Infrastructure">Transport / Infrastructure</option>
+            <option value="realestatelanduse" data-area="Real Estate / Land Use">Real Estate / Land Use</option>
+            <option value="publicsafetydisaster" data-area="Public Safety / Disaster Management">Public Safety / Disaster Management</option>
+          </select>
+          <a id="alert-feed-rss" class="alert-feeds-link" href="./feeds/all.xml" data-i18n="alert_feeds_rss">RSS feed</a>
+          <a id="alert-feed-ics" class="alert-feeds-link" href="./feeds/all.ics" data-i18n="alert_feeds_ics">Deadline calendar (.ics)</a>
+        </div>
+      </section>
+
+      <section class="alert-plan-faq" aria-labelledby="alert-plan-faq-title">
+        <h4 id="alert-plan-faq-title" data-i18n="alert_faq_title">Before you subscribe</h4>
+        <details>
+          <summary data-i18n="alert_faq_start_q">When does the digest start?</summary>
+          <p data-i18n="alert_faq_start_a">From the next daily update after checkout. A digest is sent on mornings with newly detected updates or a deadline reminder in your area, and skipped on mornings with nothing to report.</p>
+        </details>
+        <details>
+          <summary data-i18n="alert_faq_contents_q">What does the digest contain?</summary>
+          <p data-i18n="alert_faq_contents_a">Updates first detected by this dashboard in your area, with the English title, the original Japanese title, the stage, and a link to the original Japanese official source, plus upcoming public-comment deadlines. “Newly detected” does not mean a new law or regulation. Summaries are for triage and are not legal advice.</p>
+        </details>
+        <details>
+          <summary data-i18n="alert_faq_change_q">How do I change the area?</summary>
+          <p data-i18n="alert_faq_change_a">The area is chosen at checkout. To follow a different area, cancel the current subscription in the subscription portal and subscribe again with the new area.</p>
+        </details>
+        <details>
+          <summary data-i18n="alert_faq_cancel_q">How do I cancel or update billing?</summary>
+          <p data-i18n="alert_faq_cancel_a">Use the subscription portal linked in every email and above. You can cancel, switch between monthly and yearly, change the delivery email, update your card, and download invoices. A cancellation takes effect at the end of the current billing period.</p>
+        </details>
       </section>
     </div>
   </dialog>
@@ -566,8 +452,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=localized-coverage-20260813"></script>
-  <script src="alerts-config.js?v=localized-coverage-20260813"></script>
-  <script src="app.js?v=localized-coverage-20260813"></script>
+  <script src="i18n.js?v=self-serve-alerts-20260925"></script>
+  <script src="alerts-config.js?v=self-serve-alerts-20260925"></script>
+  <script src="app.js?v=self-serve-alerts-20260925"></script>
 </body>
 </html>
