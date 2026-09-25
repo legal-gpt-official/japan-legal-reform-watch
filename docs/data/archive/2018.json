@@ -1,21 +1,39 @@
 [
   {
     "id": "raw-b8359f46f441229a",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2018-01-31)",
+    "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Employees' Pension Insurance Act and...",
     "title_ja": "厚生年金保険法施行規則等の一部を改正する省令",
     "area": "Finance / AML",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is a ministerial ordinance (Heisei 30 MHLW Ordinance No. 10) that partially amends the Enforcement Regulations of the Employees' Pension Insurance Act and related regulations, including the Enforcement Regulations of the National Pension Act (Showa 35 MHLW Ordinance No. 12). According to the metadata, the amending ordinance was promulgated on 2018-01-31 with an enforcement date of 2018-03-05. The record appears in an e-Gov Law Search update list; the specifics of the amendments are not detailed in the provided metadata.",
+    "business_impact_en": "Organizations involved in employee pension and national pension administration may need to review whether these amended enforcement regulations affect their reporting or procedural obligations.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the scope, content, and effective dates of the amendments.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=335M50000100012_20180305_430M60000100010",
     "published_at": "2018-01-31",
     "last_checked": "2026-09-17",
     "relevance_score": 30.0,
     "first_seen_at": "2026-09-18",
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided Japanese title and metadata; the substance of the amendments is not described. The promulgation (2018-01-31) and enforcement (2018-03-05) dates are as stated in the metadata and should be verified. The 'Finance / AML' triage label appears questionable, as this concerns pension enforcement regulations; treat all preliminary labels as unverified.",
+    "summarized_at": "2026-09-24T23:55:32Z",
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "厚生年金保険法施行規則等の一部を改正する省令（平成三十年厚生労働省令第十号）に関する法令更新情報です。原文によれば、国民年金法施行規則（昭和三十五年厚生省令第十二号）を対象として改正が行われ、公布日は2018年1月31日、施行日は2018年3月5日とされています。",
+    "business_impact_ja": "社会保険関連の事務手続や届出運用に影響が及ぶ可能性があります。年金制度に関わる実務対応の見直しが必要となる場合も考えられます。",
+    "recommended_action_ja": "改正内容や適用範囲の詳細については、e-Gov法令検索等の日本語公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-24T23:57:43Z",
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《厚生年金保险法施行规则》等部分修订省令",
+        "summary": "该项目为一部部分修订《厚生年金保险法施行规则》及相关规则（包括《国民年金法施行规则》（昭和35年厚生劳动省令第12号））的省令（平成30年厚生劳动省令第10号）。根据元数据，该修订省令于2018-01-31公布，生效日期为2018-03-05。该记录出现在e-Gov法令检索更新列表中；所提供的元数据未详细说明修订的具体内容。",
+        "business_impact": "参与厚生年金及国民年金管理事务的机构可能需要审视这些修订后的施行规则是否影响其报告或程序性义务。",
+        "recommended_action": "建议参考e-Gov上的日文官方来源，以确认修订的范围、内容及生效日期。"
+      }
+    }
   },
   {
     "id": "raw-31de764434333376",
