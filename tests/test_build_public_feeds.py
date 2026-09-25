@@ -121,6 +121,12 @@ class TestBuild(unittest.TestCase):
         self.assertEqual(names, expected)
         self.assertEqual(summary["rss_files"], len(ac.CHANNELS))
 
+    def test_calendars_are_stored_without_line_ending_conversion(self):
+        # autocrlf would otherwise store CRLF calendars as LF and Pages would
+        # serve them in violation of RFC 5545.
+        attributes = (REPO_ROOT / ".gitattributes").read_text(encoding="utf-8")
+        self.assertIn("docs/feeds/*.ics -text", attributes)
+
     def test_published_feeds_exist_for_every_channel(self):
         feeds_dir = REPO_ROOT / "docs" / "feeds"
         for channel in ac.CHANNELS:
