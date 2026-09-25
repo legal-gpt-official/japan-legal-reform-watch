@@ -1,4 +1,4 @@
-/* global window, document, localStorage, URLSearchParams */
+/* global window, document, localStorage, URL, URLSearchParams */
 
 (function () {
   "use strict";
@@ -9,6 +9,8 @@
   var languageSelect = document.getElementById("completion-language-select");
   var planWrap = document.getElementById("completion-plan");
   var planValue = document.getElementById("completion-plan-value");
+  var manageLink = document.getElementById("completion-manage");
+  var config = window.JLRW_ALERTS_CONFIG || {};
 
   function readStoredLanguage() {
     try {
@@ -32,7 +34,7 @@
 
   function selectedPlan() {
     var plan = new URLSearchParams(window.location.search).get("plan");
-    if (plan === "pro" || plan === "team") return plan;
+    if (plan === "monthly" || plan === "yearly") return plan;
     return "";
   }
 
@@ -43,9 +45,37 @@
       return;
     }
     planValue.textContent = I18N.t(
-      plan === "team" ? "checkout_thanks_plan_team" : "checkout_thanks_plan_pro"
+      plan === "yearly" ? "checkout_thanks_plan_yearly" : "checkout_thanks_plan_monthly"
     );
     planWrap.hidden = false;
+  }
+
+  // Only Stripe's own customer-portal login page may become this link.
+  function trustedManageUrl(value) {
+    if (typeof value !== "string" || !value.trim()) return "";
+    try {
+      var parsed = new URL(value.trim());
+      if (
+        parsed.protocol !== "https:" ||
+        parsed.host !== "billing.stripe.com" ||
+        parsed.username ||
+        parsed.password ||
+        parsed.pathname.indexOf("/p/login/") !== 0
+      ) {
+        return "";
+      }
+      parsed.hash = "";
+      return parsed.href;
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function updateManageLink() {
+    if (!manageLink) return;
+    var url = trustedManageUrl(config.manageSubscriptionUrl);
+    if (url) manageLink.setAttribute("href", url);
+    manageLink.hidden = !url;
   }
 
   function updateDashboardLinks(lang) {
@@ -85,6 +115,7 @@
     ? I18N.normalize(requestedLanguage)
     : I18N.normalize(readStoredLanguage() || I18N.DEFAULT_LANG);
   applyLanguage(initialLanguage, false);
+  updateManageLink();
 
   if (languageSelect) {
     languageSelect.addEventListener("change", function () {

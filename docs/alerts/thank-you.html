@@ -6,10 +6,10 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta
     name="description"
-    content="Checkout follow-up and activation information for the Japan Legal Reform Watch alert pilot."
+    content="What happens after checkout for the Japan Legal Reform Watch daily email digest."
   />
-  <title>Checkout follow-up — Japan Legal Reform Watch</title>
-  <link rel="stylesheet" href="thank-you.css?v=localized-coverage-20260813" />
+  <title>After checkout — Japan Legal Reform Watch</title>
+  <link rel="stylesheet" href="thank-you.css?v=self-serve-alerts-20260925" />
 </head>
 <body>
   <header class="completion-header">
@@ -35,14 +35,14 @@
   <main class="completion-container completion-main">
     <article class="completion-card" aria-labelledby="completion-title">
       <div class="completion-mark" aria-hidden="true">i</div>
-      <p class="completion-eyebrow" data-i18n="checkout_thanks_eyebrow">Checkout follow-up</p>
-      <h1 id="completion-title" data-i18n="checkout_thanks_title">Checkout follow-up</h1>
+      <p class="completion-eyebrow" data-i18n="checkout_thanks_eyebrow">Email digest</p>
+      <h1 id="completion-title" data-i18n="checkout_thanks_title">After checkout</h1>
       <p class="completion-intro" data-i18n="checkout_thanks_intro">
-        If Stripe has confirmed payment, your subscription request is ready for our monitoring-scope review.
+        If Stripe has confirmed your payment, your daily email digest is active. There is nothing else you need to do.
       </p>
 
       <div id="completion-plan" class="completion-plan" hidden aria-live="polite">
-        <span data-i18n="checkout_thanks_plan_label">Selected plan</span>
+        <span data-i18n="checkout_thanks_plan_label">Billing</span>
         <strong id="completion-plan-value"></strong>
       </div>
 
@@ -52,27 +52,27 @@
           <li>
             <div class="completion-step-number" aria-hidden="true">1</div>
             <div>
-              <h3 data-i18n="checkout_thanks_step1_title">We match the payment to your pilot request</h3>
+              <h3 data-i18n="checkout_thanks_step1_title">Stripe emails your receipt</h3>
               <p data-i18n="checkout_thanks_step1_body">
-                We use the non-sensitive request reference attached to checkout and the pilot inquiry submitted before payment.
+                The receipt goes to the email address entered at checkout. The digest is delivered to the same address.
               </p>
             </div>
           </li>
           <li>
             <div class="completion-step-number" aria-hidden="true">2</div>
             <div>
-              <h3 data-i18n="checkout_thanks_step2_title">We review the requested monitoring scope</h3>
+              <h3 data-i18n="checkout_thanks_step2_title">The first digest arrives with the next daily update</h3>
               <p data-i18n="checkout_thanks_step2_body">
-                We confirm that the selected sources, topics, and delivery frequency can be supported for the pilot.
+                The dashboard updates every morning, Japan time. A digest is sent on mornings with newly detected updates or a deadline reminder in the area you chose, and skipped when there is nothing to report.
               </p>
             </div>
           </li>
           <li>
             <div class="completion-step-number" aria-hidden="true">3</div>
             <div>
-              <h3 data-i18n="checkout_thanks_step3_title">You receive an activation email</h3>
+              <h3 data-i18n="checkout_thanks_step3_title">You manage the subscription yourself</h3>
               <p data-i18n="checkout_thanks_step3_body">
-                Alerts begin only after LegalOS sends an activation message to the work email in your pilot request.
+                Every email links to the subscription portal, where you can cancel, switch between monthly and yearly, change the delivery email, update your card, and download invoices.
               </p>
             </div>
           </li>
@@ -80,9 +80,9 @@
       </section>
 
       <aside class="completion-note" role="note">
-        <strong data-i18n="checkout_thanks_note_title">Activation is not automatic</strong>
+        <strong data-i18n="checkout_thanks_note_title">This page does not confirm payment</strong>
         <p data-i18n="checkout_thanks_note_body">
-          Payment confirms the subscription request. It does not mean that monitoring has already started.
+          Stripe’s receipt email is the confirmation. If you did not receive one, the checkout may not have completed.
         </p>
       </aside>
 
@@ -91,12 +91,14 @@
           Return to the dashboard
         </a>
         <a
+          id="completion-manage"
           class="completion-secondary"
-          href="https://legal-gpt.com/contact/?inquiry=jlrw-alert-pilot"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
-          data-i18n="checkout_thanks_contact"
-        >Contact LegalOS</a>
+          hidden
+          data-i18n="checkout_thanks_manage"
+        >Open the subscription portal</a>
       </div>
 
       <p class="completion-trust" data-i18n="checkout_thanks_trust">
@@ -119,7 +121,8 @@
     </div>
   </footer>
 
-  <script src="../i18n.js?v=localized-coverage-20260813"></script>
-  <script src="thank-you.js?v=localized-coverage-20260813"></script>
+  <script src="../i18n.js?v=self-serve-alerts-20260925"></script>
+  <script src="../alerts-config.js?v=self-serve-alerts-20260925"></script>
+  <script src="thank-you.js?v=self-serve-alerts-20260925"></script>
 </body>
 </html>
