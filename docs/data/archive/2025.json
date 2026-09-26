@@ -1316,6 +1316,12 @@
     "ai_notes": "Based only on the Japanese title and raw metadata; the specific amended provisions are not described. Metadata lists a promulgation date (2025-07-02) and a future enforcement date (2026-09-24); the 'In Force' triage label is keyword-based and not verified. Confirm against the authoritative Japanese source.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "地方自治法施行令等の一部を改正する政令（令和七年政令第二百三十七号）に関する法令更新情報です。対象法令は地方公営企業法施行令（昭和二十七年政令第四百三号）とされ、公布日は2025年7月2日、施行日は2026年9月24日と記載されています。",
+    "business_impact_ja": "地方公営企業法施行令に関連する事務や運用に影響が及ぶ可能性があります。施行日以降の対応を要する見直しが考えられます。",
+    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-26T00:03:55Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "施行令生效：《地方自治法施行令》等部分修订政令",
@@ -1323,13 +1329,7 @@
         "business_impact": "适用地方公营企业或地方自治相关施行规则的主体，可能需要审查修订条款是否影响其业务。实际影响可能取决于所变更的具体条款，而元数据中并未详细说明这些条款。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以核实此次修订的适用范围、受影响的条款及生效日期。"
       }
-    },
-    "summary_ja": "地方自治法施行令等の一部を改正する政令（令和七年政令第二百三十七号）に関する法令更新情報です。対象法令は地方公営企業法施行令（昭和二十七年政令第四百三号）とされ、公布日は2025年7月2日、施行日は2026年9月24日と記載されています。",
-    "business_impact_ja": "地方公営企業法施行令に関連する事務や運用に影響が及ぶ可能性があります。施行日以降の対応を要する見直しが考えられます。",
-    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索など日本語の公式情報源でご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-26T00:03:55Z",
-    "ja_summary_model": "claude-opus-4-8"
+    }
   },
   {
     "id": "raw-578a8663f6380b3c",
@@ -1352,6 +1352,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; the enforcement date (2026-09-24) is later than the listed promulgation date, so 'In Force' status is unverified and details should be checked against the official source.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の更新一覧に、地方自治法施行令等の一部を改正する政令（令和七年政令第二百三十七号）が掲載されています。対象法令は市町村の合併の特例に関する法律施行令（平成十七年政令第五十五号）で、公布日は2025年7月2日、施行日は2026年9月24日と示されています。",
+    "business_impact_ja": "市町村の合併の特例に関する施行令の改正であるため、関連する地方自治体の業務や制度運用に影響が及ぶ可能性があります。事業への具体的な影響は対象範囲により異なると考えられます。",
+    "recommended_action_ja": "改正内容や施行日の詳細については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-26T00:03:55Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "部分修订《地方自治法施行令》等的政令",
@@ -1359,13 +1365,7 @@
         "business_impact": "涉及日本地方政府行政或市町村合并事务的组织可能需要审视这些修订是否影响其业务或合规义务。",
         "recommended_action": "建议在得出任何结论之前，查阅日文官方来源并确认修订条款及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧に、地方自治法施行令等の一部を改正する政令（令和七年政令第二百三十七号）が掲載されています。対象法令は市町村の合併の特例に関する法律施行令（平成十七年政令第五十五号）で、公布日は2025年7月2日、施行日は2026年9月24日と示されています。",
-    "business_impact_ja": "市町村の合併の特例に関する施行令の改正であるため、関連する地方自治体の業務や制度運用に影響が及ぶ可能性があります。事業への具体的な影響は対象範囲により異なると考えられます。",
-    "recommended_action_ja": "改正内容や施行日の詳細については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-26T00:03:55Z",
-    "ja_summary_model": "claude-opus-4-8"
+    }
   },
   {
     "id": "raw-db8f291a73026b76",
@@ -1388,6 +1388,12 @@
     "ai_notes": "Based only on the Japanese title and metadata; the substance of the amendments is not provided. The metadata states a promulgation date of 2025-07-02 and an enforcement date of 2026-09-24, but this should be verified against the official source. The 'In Force' label is preliminary rule-based triage and not authoritative.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "地方自治法施行令（昭和二十二年政令第十六号）の一部を改正する政令（令和七年政令第二百三十七号）に関する法令更新情報です。原文によれば、公布日は2025年7月2日、施行日は2026年9月24日とされています。改正の具体的内容は本メタデータからは示されていません。",
+    "business_impact_ja": "地方自治法施行令の改正であるため、地方自治体の事務や関連する手続に影響が及ぶ可能性があります。改正内容によっては対応の検討が必要となることも考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-26T00:03:55Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "《地方自治法施行令》部分修订政令",
@@ -1395,13 +1401,7 @@
         "business_impact": "与日本地方政府行政程序有往来的主体可能受到影响，具体视所修订的条款而定，但此处未给出修订的实质内容。",
         "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认具体的修订内容、公布及生效详情。"
       }
-    },
-    "summary_ja": "地方自治法施行令（昭和二十二年政令第十六号）の一部を改正する政令（令和七年政令第二百三十七号）に関する法令更新情報です。原文によれば、公布日は2025年7月2日、施行日は2026年9月24日とされています。改正の具体的内容は本メタデータからは示されていません。",
-    "business_impact_ja": "地方自治法施行令の改正であるため、地方自治体の事務や関連する手続に影響が及ぶ可能性があります。改正内容によっては対応の検討が必要となることも考えられます。",
-    "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-26T00:03:55Z",
-    "ja_summary_model": "claude-opus-4-8"
+    }
   },
   {
     "id": "raw-58da269425eb5ed6",
@@ -1424,6 +1424,12 @@
     "ai_notes": "Based only on the Japanese title and metadata fields; the metadata lists a promulgation date and a future enforcement date, but substantive changes are not described and were not verified. The 'In Force' label is preliminary rule-based triage and may not reflect the stated 2026-09-24 enforcement date.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の更新一覧により、「地方自治法施行令等の一部を改正する政令」（令和七年政令第二百三十七号）が公表されています。原文によれば、対象法令は公職選挙法施行令（昭和二十五年政令第八十九号）で、公布日は2025年7月2日、施行日は2026年9月24日と示されています。",
+    "business_impact_ja": "公職選挙法施行令に関連する事務や手続に携わる場合、当該改正の内容が実務に影響する可能性があります。施行日以降の対応を検討する必要があると考えられます。",
+    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容および施行日を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-26T00:03:55Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "《地方自治法施行令等部分修订政令》生效",
@@ -1431,13 +1437,7 @@
         "business_impact": "受地方政府行政或公职选举相关程序影响的组织或机构，可能需要审视这些修订可能如何影响其义务或流程。",
         "recommended_action": "建议查阅e-Gov官方来源，以确认修订的范围、生效日期及具体内容。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧により、「地方自治法施行令等の一部を改正する政令」（令和七年政令第二百三十七号）が公表されています。原文によれば、対象法令は公職選挙法施行令（昭和二十五年政令第八十九号）で、公布日は2025年7月2日、施行日は2026年9月24日と示されています。",
-    "business_impact_ja": "公職選挙法施行令に関連する事務や手続に携わる場合、当該改正の内容が実務に影響する可能性があります。施行日以降の対応を検討する必要があると考えられます。",
-    "recommended_action_ja": "e-Gov法令検索など日本語の公式情報源で改正内容および施行日を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-26T00:03:55Z",
-    "ja_summary_model": "claude-opus-4-8"
+    }
   },
   {
     "id": "raw-218c40419f012e0e",
@@ -3385,14 +3385,14 @@
   },
   {
     "id": "raw-49c100673f327227",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Act No. 87)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item is an entry from the e-Gov Law Search law-update list concerning the Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Act No. 87), with a promulgation date recorded as 2025-12-12. The metadata references the Local Autonomy Act (Showa 22 Act No. 67) as an affected law and lists a law-update-list date of 2026-07-31. The precise scope, amended provisions, and effective dates are not detailed in the provided metadata.",
+    "business_impact_en": "Organizations in the healthcare and pharmaceutical sectors, and potentially entities affected by related administrative provisions, may need to consider whether these amendments affect their obligations. The actual impact could vary depending on the specific provisions and their effective dates.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, amended provisions, and applicable effective dates.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000067_20281211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3405,26 +3405,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the promulgation date is stated in the source but the specific amended provisions and effective dates are not detailed. The 'Promulgated' stage label is preliminary and rule-based. The reference to the Local Autonomy Act appears in the update-list context and its exact relationship to the amendment is unclear from the metadata.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法》等部分修正法律（令和7年法律第87号）公布",
+        "summary": "该条目为e-Gov法令检索法令更新列表中的一项，涉及《医疗法》等部分修正法律（令和7年法律第87号），记录的公布日期为2025-12-12。元数据中提及《地方自治法》（昭和22年法律第67号）为受影响的法律之一，并列出法令更新列表日期为2026-07-31。所提供的元数据未详细说明具体修正范围、修正条文及生效日期。",
+        "business_impact": "医疗和制药行业的相关机构，以及可能受相关行政条文影响的其他主体，或需考虑这些修正是否影响其义务。实际影响可能视具体条文及其生效日期而有所不同。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方来源，以确认具体修正范围、修正条文及适用的生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ddc0b5124aceaafd",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting the Immunization Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending act titled the Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Act No. 87), which affects the Immunization Act (Showa 23 Act No. 68). According to the metadata, the amending act carries a promulgation date of 2025-12-12 and a stated effective date of 2027-04-01. The details are drawn from an e-Gov Law Search update listing and should be verified against the official Japanese source.",
+    "business_impact_en": "Organizations in healthcare, pharmaceuticals, or immunization-related activities may need to consider how the amended provisions could affect their operations once the changes take effect.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, promulgation, and effective date of the amendments and their impact on the Immunization Act.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=323AC0000000068_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3437,26 +3441,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on e-Gov update-listing metadata; the raw summary indicates a promulgation date of 2025-12-12 and effective date of 2027-04-01, but the specific content of the amendments is not provided. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》生效：影响《预防接种法》",
+        "summary": "本项涉及一部名为《医疗法等部分修正法律》（令和7年法律第87号）的修正法律，该法影响《预防接种法》（昭和23年法律第68号）。根据元数据，该修正法律的公布日期为2025-12-12，规定的生效日期为2027-04-01。相关信息来自e-Gov法令检索的更新列表，应与日文官方来源核实。",
+        "business_impact": "从事医疗、制药或预防接种相关活动的机构，在相关修正条款生效后，可能需要考虑这些变化对其业务运营的影响。",
+        "recommended_action": "建议在e-Gov法令检索上查阅日文官方来源，以确认修正内容的范围、公布日期及生效日期，以及其对《预防接种法》的影响。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e8c414f705b6cc20",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting the Preventive Vaccination Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending law titled 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Law No. 87), listed with a promulgation date of 2025-12-12. According to the metadata, the target law affected is the Preventive Vaccination Act (Showa 23 Law No. 68). The record comes from the e-Gov Law Search law-update listing.",
+    "business_impact_en": "Organizations operating in healthcare or vaccination-related activities may need to review how the amendments to the Preventive Vaccination Act and related medical laws could affect their obligations. The specific substantive changes are not detailed in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search to confirm the scope, effective dates, and substantive changes before drawing any conclusions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=323AC0000000068_20271211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3469,26 +3477,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata; the 'Promulgated' stage and publication date are as stated in the source record but substantive provisions are unverified. Labels are keyword-based triage, not authoritative.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》公布（涉及预防接种法）",
+        "summary": "本条目涉及一部名为《医疗法等部分修正法律》（令和7年法律第87号）的修正法律，其公布日期登记为2025-12-12。根据元数据，受影响的目标法律为《预防接种法》（昭和23年法律第68号）。该记录来源于e-Gov法令检索的法令更新一览。",
+        "business_impact": "从事医疗或疫苗接种相关活动的机构可能需要审查对《预防接种法》及相关医疗法律的修正内容可能如何影响其义务。所提供的元数据中未详细说明具体的实质性变更内容。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令检索上的官方日文文本，以确认适用范围、生效日期及实质性变更内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-94fbcbe1aa21c27c",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Acts (affecting Preventive Vaccination Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending act, described in the metadata as 'Act Partially Amending the Medical Care Act and Related Acts' (Reiwa 7 Act No. 87), listed in connection with the Preventive Vaccination Act (Showa 23 Act No. 68) in the e-Gov Law Search update list. The metadata indicates a promulgation date of 2025-12-12. It appears in the context of amendments affecting healthcare and vaccination-related legislation, though full details are not provided.",
+    "business_impact_en": "Organizations in the healthcare or pharmaceutical sector may need to review how amendments to the Medical Care Act and related laws, including the Preventive Vaccination Act, could affect their obligations.",
+    "recommended_action_en": "Consider reviewing the official e-Gov Law Search source and the referenced statutes to confirm the scope, content, and effective dates of these amendments.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=323AC0000000068_20281211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3501,26 +3513,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:47:27Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese metadata and title only; the 'Promulgated' stage is a preliminary rule-based label and the publication date is stated in the metadata but should be verified against the official source. Relationship between the amending act and the Preventive Vaccination Act is drawn from the raw summary and not independently confirmed.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "日本政府法令更新：《医疗法等部分修正法律》已公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法》公布（涉及预防接种法）",
+        "summary": "该事项涉及一项修正法，元数据中记载为“医疗法等部分修正法”（令和7年法律第87号），在e-Gov法令检索更新列表中与《预防接种法》（昭和23年法律第68号）相关联列出。元数据显示公布日期为2025-12-12。该事项出现在涉及医疗保健及疫苗接种相关法律修正的背景下，但未提供完整细节。",
+        "business_impact": "医疗或制药领域的机构可能需要审查《医疗法》及相关法律（包括《预防接种法》）的修正内容可能如何影响其义务。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索官方来源及相关法规，以确认此次修正的范围、内容及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ee89532fd55bfd0e",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending law described as the Act Partially Amending the Medical Care Act and other laws (Reiwa 7 Law No. 87), listed in e-Gov Law Search. The metadata indicates a promulgation date of 2025-12-12 and a stated enforcement date of 2027-04-01. The record appears in a law-update listing that also references a separate targeted statute concerning remuneration for Ministry of Defense personnel (Showa 27 Law No. 266).",
+    "business_impact_en": "Organizations in the healthcare or pharmaceutical sectors may be affected if the amendments alter regulatory obligations, and the stated enforcement date could give lead time to prepare.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, affected provisions, and applicable dates.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=327AC0000000266_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3533,26 +3549,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the listing mixes an amending law with a seemingly unrelated targeted statute, so the exact relationship and scope are unverified. Promulgation and enforcement dates are as stated in the metadata and should be confirmed against the official source. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》拟定生效",
+        "summary": "本条目涉及一部修正法律，名为《医疗法等部分修正法律》（令和7年法律第87号），载于e-Gov法令检索。元数据显示公布日期为2025-12-12，规定的生效日期为2027-04-01。该记录出现在一份法令更新列表中，该列表还提及另一部涉及防卫省职员薪酬的单独目标法规（昭和27年法律第266号）。",
+        "business_impact": "如果此次修正改变了相关监管义务，医疗或制药行业的组织可能会受到影响，所述生效日期可能提供一定准备时间。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-d2eb0b3629ea4dd1",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting Public Assistance Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending act, the 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), listed in an e-Gov law-update record as amending the Public Assistance Act (Showa 25 Act No. 144). The metadata indicates a promulgation date of 2025-12-12 and a stated effective date of 2027-04-01. These dates and details come from the source listing and should be verified against the official text.",
+    "business_impact_en": "Organizations involved in healthcare, pharmaceuticals, or public assistance administration may be affected by changes introduced through this amending act. The scale and nature of any impact could depend on the specific provisions, which are not detailed in the metadata.",
+    "recommended_action_en": "Review the official e-Gov source and the full text of the amending act to confirm the affected provisions and the stated effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000144_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3565,26 +3585,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the Japanese title and an e-Gov update-list summary; the specific substantive changes are not provided. Promulgation (2025-12-12) and effective (2027-04-01) dates are drawn from the metadata and should be verified against the authoritative source. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》即将生效（涉及生活保护法）",
+        "summary": "本项涉及一项修正法律——《医疗法等部分修正法律》（令和7年法律第87号），该法律在e-Gov法令更新记录中被列为修正《生活保护法》（昭和25年法律第144号）。元数据显示公布日期为2025-12-12，规定生效日期为2027-04-01。这些日期及细节来自来源列表，应与官方文本核实。",
+        "business_impact": "从事医疗、制药或生活保护行政管理的机构可能受到本修正法律所引入变更的影响。任何影响的规模和性质可能取决于具体条款，而元数据中并未详细说明这些条款。",
+        "recommended_action": "建议查阅e-Gov官方来源及该修正法律的全文，以确认受影响的条款及规定的生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-af0b6ed8390fdf52",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Other Laws (Reiwa 7 Act No. 87)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending law, the Act Partially Amending the Medical Care Act and Other Laws (Reiwa 7 Act No. 87), listed via e-Gov Law Search. According to the metadata, the amending law carries a promulgation date of 2025-12-12 and a stated effective date of 2027-04-01. The metadata also references an affected law, the Special Measures Act on Relief for Minamata Disease Victims and Resolution of the Minamata Disease Problem (Heisei 21 Act No. 81).",
+    "business_impact_en": "Organizations in healthcare, pharmaceuticals, or related areas may be affected by amendments to the Medical Care Act and other listed laws, and could need to assess implications ahead of the stated effective date.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, affected provisions, and the promulgation and effective dates.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=421AC1000000081_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3597,26 +3621,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on Japanese title and raw metadata; the promulgation date (2025-12-12) and effective date (2027-04-01) are taken from the item and not independently verified. The relationship between the amending law and the referenced Minamata-related law is unclear from the metadata. Triage labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法》（令和7年法律第87号）预定生效",
+        "summary": "本条目涉及一部修正法律——《医疗法等部分修正法》（令和7年法律第87号），信息来源为e-Gov法令检索。根据元数据，该修正法律的公布日期为2025-12-12，规定的生效日期为2027-04-01。元数据还提及一部受影响的法律，即《水俁病受害者救济及水俁病问题解决特别措施法》（平成21年法律第81号）。",
+        "business_impact": "医疗、制药及相关领域的机构可能受到《医疗法》及其他相关法律修正内容的影响，或需要在规定的生效日期前评估相关影响。",
+        "recommended_action": "建议查阅e-Gov法令检索中的日文官方来源，以确认适用范围、受影响条文以及公布日期和生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-3adcd858d0d9d794",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting Local Public Service Mutual Aid Association Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending law, the Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Law No. 87), listed in the e-Gov Law Search update index as affecting the Local Public Service Mutual Aid Association Act (Showa 37 Law No. 152). According to the metadata, the amending law has a stated promulgation date of 2025-12-12 and a stated enforcement date of 2027-04-01. The preliminary triage labels categorize it under Healthcare / Pharmaceuticals and as scheduled to take effect.",
+    "business_impact_en": "Organizations in healthcare or those subject to the Local Public Service Mutual Aid Association Act may be affected by changes taking effect on the stated enforcement date. The specific substantive changes are not described in the provided metadata and could vary in scope.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the exact amendments, scope, and effective dates before drawing any conclusions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3629,26 +3657,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the e-Gov update-index metadata and titles; the metadata lists a promulgation date (2025-12-12) and enforcement date (2027-04-01), but the substance of the amendments is not provided. Triage labels are keyword-based and unverified.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修订法》生效在即（涉及地方公务员共济组合法）",
+        "summary": "本条目涉及一项修订法律，即《医疗法等部分修订法》（令和7年法律第87号），在e-Gov法令检索更新索引中列为影响《地方公务员等共济组合法》（昭和37年法律第152号）。根据元数据，该修订法律的公布日期为2025-12-12，施行日期为2027-04-01。初步分类标签将其归类为医疗/医药领域，并标记为即将生效。",
+        "business_impact": "医疗领域的机构，或适用《地方公务员等共济组合法》的机构，可能会受到在所述施行日期生效的变更影响。所提供的元数据中未描述具体的实质性修改内容，其影响范围可能有所不同。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令检索上的日文官方来源，以确认具体的修订内容、适用范围及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4689d34f92f8a8af",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting the Atomic Bomb Survivors' Support Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "According to the metadata from e-Gov Law Search, an amending law described as the Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Law No. 87) is listed with a promulgation date of 2025-12-12 and a stated enforcement date of 2027-04-01. The listing indicates it amends the Act on Relief for Atomic Bomb Survivors (Heisei 6 Law No. 117). This is a law-update listing entry; the specific content of the amendments is not provided in the metadata.",
+    "business_impact_en": "Organizations in the healthcare or pharmaceutical sectors, or those handling atomic bomb survivor support matters, may be affected once the amendments take effect, though the metadata does not specify the substantive changes.",
+    "recommended_action_en": "Consider reviewing the official e-Gov Law Search source to confirm the scope, content, and effective date of the amendments.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=406AC0000000117_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3661,26 +3693,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided e-Gov metadata; the raw summary lists promulgation (2025-12-12) and enforcement (2027-04-01) dates, but the substantive content of the amendments is not described. Preliminary triage labels are unverified. Verify against the authoritative Japanese source.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法》等部分修正法（涉及原子弹受害者援助法）",
+        "summary": "根据e-Gov法令检索的元数据，一项名为《部分修正医疗法及相关法律的法律》（令和7年法律第87号）的修正法列示的公布日期为2025-12-12，规定的生效日期为2027-04-01。该条目显示其修正了《原子弹受害者援助相关法律》（平成6年法律第117号）。这是一条法令更新列表条目，元数据中未提供修正内容的具体细节。",
+        "business_impact": "医疗保健或制药行业的机构，以及涉及原子弹受害者援助事务的机构，一旦修正内容生效，可能会受到影响，但元数据未说明具体的实质性变更内容。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以确认修正内容的范围、内容及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-61633fc1fd7acd69",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting Asbestos Health Damage Relief Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending act described as the 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), listed in an e-Gov Law Search update. According to the metadata, the target law affected is the Act on Asbestos Health Damage Relief (Heisei 18 Act No. 4). The metadata indicates a promulgation date of 2025-12-12 and a stated enforcement date of 2027-04-01.",
+    "business_impact_en": "Organizations connected to medical care or asbestos-related health damage relief may be affected once the amendments take effect, and could need to review any resulting changes.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, provisions, and effective dates of the amendments.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=418AC0000000004_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3693,26 +3729,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on provided metadata; the amending act's title references the Medical Care Act while the listed target law is the Asbestos Health Damage Relief Act, so scope is unclear. Promulgation and enforcement dates are as stated in the metadata and were not independently verified. Preliminary labels are keyword-based and unverified.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》生效在即（涉及石棉健康损害救济法）",
+        "summary": "本条目涉及一部名为《医疗法等部分修正法律》（令和7年法律第87号）的修正法律，收录于e-Gov法令检索的更新列表中。根据元数据，受影响的目标法律为《石棉健康损害救济法》（平成18年法律第4号）。元数据显示公布日期为2025-12-12，规定的生效日期为2027-04-01。",
+        "business_impact": "与医疗或石棉相关健康损害救济相关的机构在相关修正生效后可能受到影响，可能需要审视由此产生的变化。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方来源，以确认修正的范围、条款及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-24b1db13240ea4a7",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting the Local Public Service Mutual Aid...",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending act titled 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), listed in e-Gov Law Search as affecting the Local Public Service Mutual Aid Associations Act (Showa 37 Act No. 152). The metadata records a promulgation date of 2025-12-12 and a law-list update date. Details of the specific amendments are not provided in the metadata and should be confirmed against the official source.",
+    "business_impact_en": "Organizations in healthcare or those affected by the referenced mutual aid association rules may need to consider whether the amendments alter their obligations. Any operational effect could depend on provisions and effective dates not specified here.",
+    "recommended_action_en": "Review the official e-Gov Law Search source to confirm the scope, provisions, and effective dates of the amendment.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=337AC0000000152_20281211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3725,26 +3765,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on limited metadata; the exact amended provisions and effective dates are not stated. The title references the Medical Care Act while the listed target law is the Local Public Service Mutual Aid Associations Act, so the connection should be verified. 'Promulgated' is a preliminary keyword-based label, not a verified conclusion.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修订法律》公布（涉及地方公务员共济组合法）",
+        "summary": "该条目涉及一部名为《医疗法等部分修订法律》（令和7年法律第87号）的修订法律，e-Gov法令检索将其列为影响《地方公务员等共济组合法》（昭和37年法律第152号）的法律。元数据记录的公布日期为2025-12-12，并附有法令列表更新日期。元数据中未提供具体修订内容的详情，应以官方来源确认为准。",
+        "business_impact": "医疗相关机构或受所涉及的共济组合规则影响的组织可能需要考虑此次修订是否改变其相关义务。具体的运营影响可能取决于此处未列明的条款及生效日期。",
+        "recommended_action": "建议查阅e-Gov法令检索官方来源，以确认此次修订的范围、具体条款及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-8d73766fd5003f20",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (affecting Child Welfare Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item refers to an amending act titled 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), which the metadata lists as amending the Child Welfare Act (Showa 22 Act No. 164). According to the provided data, the promulgation date is 2025-12-12 and the scheduled enforcement date is 2027-04-01. This entry comes from an e-Gov law update listing and is an unofficial summary that should be verified against the official Japanese source.",
+    "business_impact_en": "Organizations in healthcare, pharmaceuticals, or child welfare-related activities may be affected by changes taking effect on the listed enforcement date and could need to review their practices accordingly.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the exact scope, provisions, and enforcement timing of this amending act.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000164_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3757,26 +3801,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the raw summary indicates the target law is the Child Welfare Act while the amending act references the Medical Care Act, so the precise scope should be verified. Enforcement date listed as future (2027-04-01); details unverified against the official source.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》：涉及《儿童福利法》修订，预定生效",
+        "summary": "该条目涉及一项名为《医疗法等部分修正法律》（令和7年法律第87号）的修正法律，元数据显示其修订对象包括《儿童福利法》（昭和22年法律第164号）。根据所提供的数据，公布日期为2025-12-12，预定生效日期为2027-04-01。本条目来源于e-Gov法令更新列表，属于非官方摘要，应与日文官方来源核对确认。",
+        "business_impact": "从事医疗、制药或儿童福利相关活动的机构可能会受到在所列生效日期生效的变更影响，可能需要相应审查其相关做法。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认该修正法律的确切适用范围、条款内容及生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-5306a32000394cf3",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws (Reiwa 7 Act No. 87)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item refers to an amending act titled 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), listed via e-Gov Law Search. According to the metadata, the affected law includes the Mariners' Insurance Act (Showa 14 Act No. 73), with a promulgation date of 2025-12-12 and a stated effective date of 2027-04-01. The details should be confirmed against the authoritative Japanese source.",
+    "business_impact_en": "Organizations in healthcare, pharmaceuticals, or related insurance areas may be affected by amendments to the Medical Care Act and associated laws, and could need to review how these changes apply to their operations before the stated effective date.",
+    "recommended_action_en": "Consider reviewing the official e-Gov Law Search source to verify the scope, affected provisions, and timing of this amending act.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=314AC0000000073_20270401_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3789,26 +3837,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the metadata states a promulgation date of 2025-12-12 and an effective date of 2027-04-01, but these and the affected laws should be verified against the authoritative Japanese source. Triage labels are keyword-based and unverified.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《修订医疗法等部分规定的法律》（令和7年法律第87号）",
+        "summary": "本条目指一项名为《修订医疗法等部分规定的法律》（令和7年法律第87号）的修正法律，收录于e-Gov法令检索。根据元数据，受影响的法律包括《船员保险法》（昭和14年法律第73号），公布日期为2025-12-12，规定的生效日期为2027-04-01。详情应以权威的日文来源为准进行确认。",
+        "business_impact": "医疗、制药或相关保险领域的组织可能会受到《医疗法》及相关法律修订的影响，并可能需要在规定的生效日期前审查这些变更对其业务的适用情况。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以核实本修正法律的适用范围、受影响条款及时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4fc7670b607e669d",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act to Partially Amend the Medical Care Act and Related Laws (affecting the Child Welfare Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "According to e-Gov Law Search metadata, an amending act titled 'Act to Partially Amend the Medical Care Act and Related Laws' (Reiwa 7, Act No. 87) is recorded with a promulgation date of 2025-12-12. The metadata indicates the amendment affects the Child Welfare Act (Showa 22, Act No. 164). The scope and substantive content of the changes are not detailed in the provided metadata.",
+    "business_impact_en": "Organizations in the healthcare, pharmaceutical, or child welfare sectors may be affected if the amendments alter existing obligations, though the specific effects cannot be determined from this metadata alone.",
+    "recommended_action_en": "Consider reviewing the official e-Gov Law Search source to confirm the amendment's contents, affected provisions, and any effective dates.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000164_20281211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3821,26 +3873,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on e-Gov metadata; a promulgation date is listed but details of the amendments are not provided. Preliminary labels ('Promulgated', 'Medium') are keyword-based triage and not legally verified. The URL contains a future-looking date component that is unverified.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修订法律》公布（涉及《儿童福利法》）",
+        "summary": "根据e-Gov法令检索的元数据记录，名为《医疗法等部分修订法律》（令和7年法律第87号）的修订法律，公布日期为2025-12-12。元数据显示该修订涉及《儿童福利法》（昭和22年法律第164号）。所提供的元数据中未详细说明修订的范围及实质内容。",
+        "business_impact": "医疗、制药或儿童福利相关领域的机构，若该修订改变了现行义务，可能会受到影响，但仅凭此元数据尚无法确定具体影响。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以确认此次修订的具体内容、受影响条款及任何生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-6cb9a0036a1e5780",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Acts (affecting the Mariners' Insurance Act)",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an Act partially amending the Medical Care Act and related laws (Reiwa 7 Law No. 87), listed in an e-Gov law update notice. The metadata indicates a promulgation date of 2025-12-12 and identifies the affected law as the Mariners' Insurance Act (Showa 14 Law No. 73). The details are drawn from a law-update listing and should be verified against the official Japanese source.",
+    "business_impact_en": "Organizations in the healthcare, pharmaceutical, or maritime insurance sectors may be affected and could need to review how the amendments relate to their obligations.",
+    "recommended_action_en": "Consider reviewing the official e-Gov source to confirm the scope, effective dates, and specific provisions of the amendment.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=314AC0000000073_20281211_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3853,26 +3909,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on Japanese title and update-listing metadata; the update notice references the Mariners' Insurance Act while the amending act name refers to the Medical Care Act. 'Promulgated' is a rule-based label; effective dates and full scope are unverified.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》公布（2025-12-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法》等部分修订法律（涉及船员保险法）",
+        "summary": "本条目涉及一部部分修订《医疗法》及相关法律的法律（令和7年法律第87号），列于e-Gov法令更新公告中。元数据显示公布日期为2025-12-12，并指出受影响的法律为《船员保险法》（昭和14年法律第73号）。相关细节来自法令更新列表，应与日文官方来源核对。",
+        "business_impact": "医疗、制药或海事保险相关领域的机构可能受到影响，或需审视此次修订与其自身义务之间的关联。",
+        "recommended_action": "建议考虑查阅e-Gov官方来源，以确认此次修订的范围、生效日期及具体条款。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-c7a292f453d66bb3",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-12-12)",
+    "title_en": "Act Partially Amending the Medical Care Act and Related Laws",
     "title_ja": "医療法等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item refers to an amending act described as the 'Act Partially Amending the Medical Care Act and Related Laws' (Reiwa 7 Act No. 87), recorded in e-Gov Law Search. The metadata lists a promulgation date of 2025-12-12 and a stated effective date of 2026-10-01. The underlying law update entry also references the Local Tax Act (Showa 25 Act No. 226), which may indicate related amendments; this should be confirmed against the official source.",
+    "business_impact_en": "Organizations in healthcare or pharmaceuticals, and potentially those affected by related tax provisions, may need to consider changes if the amendments take effect as scheduled. The scope and specific obligations could vary and are not detailed in the metadata.",
+    "recommended_action_en": "Review the official e-Gov Law Search source to confirm the exact scope, affected laws, promulgation, and effective dates before drawing any conclusions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20261001_507AC0000000087",
     "published_at": "2025-12-12",
@@ -3885,15 +3945,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on limited Japanese metadata; the entry mixes references to the Medical Care Act amendment and the Local Tax Act, so the precise relationship and scope are unverified. Dates reflect the metadata but should be confirmed against the authoritative source.",
+    "summarized_at": "2026-09-26T23:31:46Z",
+    "summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《医疗法等部分修正法律》定于2025-12-12生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医疗法等部分修正法律》拟生效",
+        "summary": "该项目涉及一部被称为《医疗法等部分修正法律》（令和7年法律第87号）的修正法律，记录于e-Gov法令检索系统。元数据列出的公布日期为2025-12-12，规定的生效日期为2026-10-01。相关法令更新条目还提及《地方税法》（昭和25年法律第226号），这可能表明存在相关修正内容；此点应对照官方来源进行确认。",
+        "business_impact": "医疗保健或制药相关机构，以及可能受相关税务条款影响的机构，若该修正案按计划生效，可能需要考虑相应变化。具体范围和义务可能有所不同，元数据中并未详细说明。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令检索官方来源，以确认具体范围、涉及的法律以及公布和生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f16530198d0c39b3",
