@@ -236,6 +236,12 @@
     "ai_notes": "Based only on the provided title and raw metadata; the promulgation date (2023-11-29) and enforcement date (2026-11-30) are as listed but should be verified against the official source. The rule-based 'Energy / Environment' label appears inconsistent with the described subject matter and is not treated as authoritative.",
     "summarized_at": "2026-09-26T00:01:54Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「情報通信技術の進展等の環境変化に対応するための社債、株式等の振替に関する法律等の一部を改正する法律」（令和五年法律第八十号）が2023年11月29日に公布されたと記載されています。この改正の対象法令の一つとして公認会計士法（昭和二十三年法律第百三号）が挙げられており、施行日は2026年11月30日と示されています。メタデータからは改正の具体的な内容までは確認できません。",
+    "business_impact_ja": "情報通信技術の進展に対応した改正として、公認会計士法をはじめとする関係法令の実務対応が求められる可能性があります。施行日が2026年11月30日とされているため、対象業務を有する事業者には準備期間の確保が考えられます。",
+    "recommended_action_ja": "改正内容および施行時期の詳細については、e-Govや所管官庁が公表する日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-09-26T23:34:14Z",
+    "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
         "title": "《为应对信息通信技术进展等环境变化而修订公司债、股份等振替相关法律的法律》即将生效",
@@ -243,13 +249,7 @@
         "business_impact": "受《注册会计师法》约束或受振替相关规则影响的主体可能需要考虑这些修订是否会要求在规定生效日期前作出调整。",
         "recommended_action": "建议查阅e-Gov法令检索上的日文官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧によると、「情報通信技術の進展等の環境変化に対応するための社債、株式等の振替に関する法律等の一部を改正する法律」（令和五年法律第八十号）が2023年11月29日に公布されたと記載されています。この改正の対象法令の一つとして公認会計士法（昭和二十三年法律第百三号）が挙げられており、施行日は2026年11月30日と示されています。メタデータからは改正の具体的な内容までは確認できません。",
-    "business_impact_ja": "情報通信技術の進展に対応した改正として、公認会計士法をはじめとする関係法令の実務対応が求められる可能性があります。施行日が2026年11月30日とされているため、対象業務を有する事業者には準備期間の確保が考えられます。",
-    "recommended_action_ja": "改正内容および施行時期の詳細については、e-Govや所管官庁が公表する日本語の公式情報源をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-26T23:34:14Z",
-    "ja_summary_model": "claude-opus-4-8"
+    }
   },
   {
     "id": "raw-dae6f07ddaff29bd",
