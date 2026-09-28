@@ -28,11 +28,11 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # English UI strings now live in docs/i18n.js (English is the canonical default),
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
-CACHE_BUSTER = "self-serve-alerts-20260925"
-APP_CACHE_BUSTER = "self-serve-alerts-20260925"
+CACHE_BUSTER = "self-serve-alerts-20260928"
+APP_CACHE_BUSTER = "self-serve-alerts-20260928"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "self-serve-alerts-20260925"
+I18N_CACHE_BUSTER = "self-serve-alerts-20260928"
 
 
 def object_body(name: str) -> str:

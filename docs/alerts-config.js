@@ -16,9 +16,9 @@
 
   window.JLRW_ALERTS_CONFIG = Object.freeze({
     checkoutLinks: Object.freeze({
-      monthly: "",
-      yearly: "",
+      monthly: "https://buy.stripe.com/cNiaEYa927jv7H36WW3cc00",
+      yearly: "https://buy.stripe.com/14A4gA1CwbzLbXjbdc3cc01",
     }),
-    manageSubscriptionUrl: "",
+    manageSubscriptionUrl: "https://billing.stripe.com/p/login/cNiaEYa927jv7H36WW3cc00",
   });
 })();
