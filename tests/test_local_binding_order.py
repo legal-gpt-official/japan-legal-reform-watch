@@ -145,13 +145,16 @@ def analyze(path: Path) -> list[tuple[str, int, str]]:
 
 
 PIPELINE_SCRIPTS = (
+    "alert_common.py",
     "anthropic_batch.py",
     "build_public_archives.py",
     "build_public_data.py",
+    "build_public_feeds.py",
     "evaluate_summary_model.py",
     "fetch_updates.py",
-    "generate_alert_digest.py",
     "public_comment_deadlines.py",
+    "send_alert_digests.py",
+    "setup_alert_billing.py",
     "source_health.py",
     "summarize_updates.py",
     "translate_updates.py",

@@ -40,7 +40,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/send_alert_digests.py scripts/setup_alert_billing.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -210,10 +210,42 @@ jobs:
       - name: Build yearly public archives
         run: python scripts/build_public_archives.py
 
+      # Free tier: static per-area RSS feeds and public-comment deadline
+      # calendars under docs/feeds, derived only from the published JSON.
+      - name: Build public feeds
+        run: python scripts/build_public_feeds.py
+
+      # Paid tier: the self-serve daily digest. Subscribers are read from Stripe
+      # at run time and never written to the repository or this public log.
+      # It runs BEFORE the commit so data/alert_digest_state.json (published item
+      # ids already announced) lands in the same commit as the data it describes.
+      # Scheduled runs only: a manual run must not mail subscribers; items it
+      # detects are picked up by the next scheduled run (3-day lookback).
+      # Mail delivery never blocks the data commit: every external failure
+      # (not configured, Stripe or Resend unavailable) exits 0 with a warning
+      # and leaves the items queued, and continue-on-error covers the rest.
+      - name: Send email digests
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        env:
+          STRIPE_ALERTS_API_KEY: ${{ secrets.STRIPE_ALERTS_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_STRIPE_PRODUCT_ID: ${{ vars.ALERT_STRIPE_PRODUCT_ID }}
+          ALERT_FROM_EMAIL: ${{ vars.ALERT_FROM_EMAIL }}
+          ALERT_REPLY_TO: ${{ vars.ALERT_REPLY_TO }}
+          ALERT_MANAGE_URL: ${{ vars.ALERT_MANAGE_URL }}
+        run: |
+          set -o pipefail
+          python scripts/send_alert_digests.py 2>&1 | tee alert_digest_run.log
+          {
+            echo "### Email digest"
+            grep -E '^(status|new_items|upcoming_deadlines|subscribers|subscribers_unrecognized_channel|subscribers_without_email|emails_sent|emails_duplicate|emails_failed|emails_skipped_nothing_to_report|state_updated|missing_settings|stripe_error)' alert_digest_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -225,7 +257,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"
