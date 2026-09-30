@@ -75,6 +75,10 @@ from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
     BatchItemError,
+    ModelRefusal,
+    raise_if_refused,
+    refusal_count,
+    with_lowest_thinking,
     BatchStillRunningError,
     DEFAULT_DISCOVERY_MAX_AGE_DAYS,
     batch_age_days,
@@ -143,6 +147,13 @@ EXPECTED_OUTPUT_TOKENS = 700
 # Provider billing is authoritative; unknown models report token usage but cannot
 # use a dollar cap.
 MODEL_PRICING_USD_PER_MTOK = {
+    "claude-sonnet-5-5": {
+        "input": 2.0,
+        "output": 10.0,
+        "cache_write_5m": 2.50,
+        "cache_write_1h": 4.0,
+        "cache_read": 0.20,
+    },
     "claude-sonnet-5": {
         "input": 2.0,
         "output": 10.0,
@@ -1137,15 +1148,16 @@ def translation_request_params(
     `system` is deliberately identical for every request regardless of the field
     subset, so the prompt-cache prefix stays byte-stable and keeps hitting.
     """
-    return dict(
+    # Translation is faithful rendering, not reasoning; thinking would add
+    # billed tokens and can truncate the structured JSON response. The off
+    # switch is model-specific (`between_tools` on Sonnet 5.5, where `disabled`
+    # is a 400), so it comes from the shared helper rather than a literal.
+    return with_lowest_thinking(dict(
         model=model,
         max_tokens=max_tokens_for(fields),
-        # Translation is faithful rendering, not reasoning; thinking would add
-        # billed tokens and can truncate the structured JSON response.
-        thinking={"type": "disabled"},
         system=cached_system_prompt(cache_ttl),
         messages=[{"role": "user", "content": build_user_content(item, locale, fields)}],
-    )
+    ))
 
 
 def message_usage(message) -> dict[str, int]:
@@ -1208,6 +1220,7 @@ def estimate_usage_cost_usd(
 
 
 def parse_translation_message(message, model: str) -> tuple[dict, str, dict[str, int]]:
+    raise_if_refused(message)
     text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
     return extract_json(text), getattr(message, "model", model), message_usage(message)
 
@@ -1546,6 +1559,8 @@ def classify_provider_error(exc) -> str:
     # an outage. Checked before the TimeoutError branch it would otherwise hit.
     if isinstance(exc, BatchStillRunningError):
         return "batch_still_running"
+    if isinstance(exc, ModelRefusal):
+        return "refusal"
     """Classify a provider exception, preferring type + HTTP status over message text.
 
     Returns one of: insufficient_credit / authentication_error / permission_error /
@@ -2900,6 +2915,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"title_reference_retry_successes: {title_reference_retry_successes}")
     print(f"translated_items          : {translated}")
     print(f"failed_items              : {failed}")
+    print(f"refused_items             : {refusal_count()}")
     print(f"quality_rejected_items    : {quality_rejected}")
     print(f"quality_parked_items      : {quality_parked}")
     print(f"rejection_records         : {len(rejected)}")

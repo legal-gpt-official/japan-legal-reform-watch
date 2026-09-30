@@ -92,7 +92,7 @@ jobs:
             --max-cost-usd 1.10 2>&1 | tee english_summary_run.log
           {
             echo "### English summary maintenance (batch)"
-            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' english_summary_run.log || true
+            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|summarized_items|failed_items|refused_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' english_summary_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^provider_status *: unavailable' english_summary_run.log; then
             ptype=$(sed -n 's/^provider_error_type *: //p' english_summary_run.log | head -n 1)
@@ -119,7 +119,7 @@ jobs:
             --max-cost-usd 0.80 2>&1 | tee japanese_summary_run.log
           {
             echo "### Japanese summary maintenance (batch)"
-            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|japanese_summarized_items|japanese_failed_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
+            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|japanese_summarized_items|japanese_failed_items|refused_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^provider_status *: unavailable' japanese_summary_run.log; then
             ptype=$(sed -n 's/^provider_error_type *: //p' japanese_summary_run.log | head -n 1)
@@ -193,7 +193,7 @@ jobs:
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
             echo "### Simplified-Chinese translation maintenance (batch)"
-            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|refused_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^(blocked_by_running_batch|preflight_trimmed) *: *[1-9]' translate_run.log; then
             echo "::warning::Translation batch deferred work this run (interlock or cost bound); it resumes next run."

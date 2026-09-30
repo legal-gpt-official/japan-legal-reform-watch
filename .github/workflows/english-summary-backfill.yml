@@ -232,9 +232,9 @@ jobs:
           echo "zh-Hans coverage: ${before_zh} -> ${after_zh} of ${total}" | tee -a "$GITHUB_STEP_SUMMARY"
           {
             echo "### English summary usage"
-            grep -E '^(api_calls|summarized_items|failed_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd)' summarize_run.log || true
+            grep -E '^(api_calls|summarized_items|failed_items|refused_items|english_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|estimated_cost_usd|max_cost_usd)' summarize_run.log || true
             echo "### zh-Hans refresh usage"
-            grep -E '^(api_calls|title_reference_retries|title_reference_retry_successes|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(api_calls|title_reference_retries|title_reference_retry_successes|translated_items|failed_items|refused_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
 
           if [ "$after" -lt "$before" ]; then

@@ -320,6 +320,12 @@ def projected_cost_usd(model: str, count: int, language: str) -> float | None:
     return count * (approx_input * price["input"] + summarizer.MAX_TOKENS * price["output"]) / 1e6
 
 
+def results_path(language: str, profile: str, model: str) -> Path:
+    """One path rule for `run` and `compare`, so a hard-profile run can be compared."""
+    suffix = "" if profile == "stratified" else f"_{profile}"
+    return EVAL_DIR / f"results_{language}{suffix}_{model}.json"
+
+
 def run_model(args) -> int:
     set_path = EVAL_SET_PATH if getattr(args, "profile", "stratified") == "stratified" else         EVAL_SET_PATH.with_name(f"summary_eval_set_{args.profile}.json")
     frozen = load_json(set_path, None)
@@ -391,13 +397,15 @@ def run_model(args) -> int:
     out = {
         "model": args.model,
         "language": args.language,
+        # Recorded so a comparison shows whether thinking tokens were in play:
+        # the same prompt costs very different amounts with and without them.
+        "thinking": summarizer.lowest_thinking_config(args.model),
         "ran_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "usage_totals": usage_totals,
         "estimated_cost_usd": spent,
         "records": records,
     }
-    suffix = "" if getattr(args, "profile", "stratified") == "stratified" else f"_{args.profile}"
-    path = EVAL_DIR / f"results_{args.language}{suffix}_{args.model}.json"
+    path = results_path(args.language, getattr(args, "profile", "stratified"), args.model)
     save_json(path, out)
     print(f"\nwrote {path}")
     return 0
@@ -427,6 +435,7 @@ def aggregate(run: dict) -> dict:
         "title_japanese_pct": rate(lambda s: s.get("title_has_japanese")),
         "title_over_cap_pct": rate(lambda s: s.get("title_over_cap")),
         "missing_japanese_pct": rate(lambda s: s.get("contains_japanese") is False),
+        "refusal_pct": 100.0 * sum(1 for r in records if r.get("error_type") == "refusal") / n,
         "mean_input_tokens": statistics.mean([u.get("input_tokens", 0) for u in usages]) if usages else 0,
         "mean_output_tokens": statistics.mean([u.get("output_tokens", 0) for u in usages]) if usages else 0,
         "mean_cost_usd": statistics.mean(costs) if costs else 0.0,
@@ -439,8 +448,9 @@ def aggregate(run: dict) -> dict:
 
 
 def compare(args) -> int:
-    base_path = EVAL_DIR / f"results_{args.language}_{args.baseline}.json"
-    cand_path = EVAL_DIR / f"results_{args.language}_{args.candidate}.json"
+    profile = getattr(args, "profile", "stratified")
+    base_path = results_path(args.language, profile, args.baseline)
+    cand_path = results_path(args.language, profile, args.candidate)
     base, cand = load_json(base_path, None), load_json(cand_path, None)
     for path, run in ((base_path, base), (cand_path, cand)):
         if not isinstance(run, dict):
@@ -456,6 +466,7 @@ def compare(args) -> int:
         ("title has Japanese %", "title_japanese_pct", "{:.1f}"),
         ("title over cap %", "title_over_cap_pct", "{:.1f}"),
         ("missing Japanese %", "missing_japanese_pct", "{:.1f}"),
+        ("refusal %", "refusal_pct", "{:.1f}"),
         ("mean input tokens", "mean_input_tokens", "{:.0f}"),
         ("mean output tokens", "mean_output_tokens", "{:.0f}"),
         ("mean USD / item", "mean_cost_usd", "{:.5f}"),
@@ -483,6 +494,8 @@ def compare(args) -> int:
         blockers.append("more Japanese characters in title_en")
     if b["missing_japanese_pct"] > a["missing_japanese_pct"]:
         blockers.append("more Japanese summaries missing Japanese script")
+    if b["refusal_pct"] > a["refusal_pct"]:
+        blockers.append("more safety refusals (items fall back to rule-based text)")
 
     print("\nautomatic verdict:")
     if blockers:
@@ -509,7 +522,8 @@ def compare(args) -> int:
             for key, value in (run_record.get("output") or {}).items():
                 lines.append(f"- `{key}`: {value}")
             lines.append("")
-    side_by_side = EVAL_DIR / f"side_by_side_{args.language}_{args.baseline}_vs_{args.candidate}.md"
+    suffix = "" if profile == "stratified" else f"_{profile}"
+    side_by_side = EVAL_DIR / f"side_by_side_{args.language}{suffix}_{args.baseline}_vs_{args.candidate}.md"
     side_by_side.parent.mkdir(parents=True, exist_ok=True)
     side_by_side.write_text("\n".join(lines), encoding="utf-8")
     print(f"\nside-by-side for human review: {side_by_side}")
@@ -552,6 +566,7 @@ def main(argv: list[str] | None = None) -> int:
     p_cmp.add_argument("--baseline", required=True)
     p_cmp.add_argument("--candidate", required=True)
     p_cmp.add_argument("--language", choices=("english", "japanese"), default="english")
+    p_cmp.add_argument("--profile", choices=("stratified", "hard"), default="stratified")
 
     args = parser.parse_args(argv)
     if args.command == "build-set":

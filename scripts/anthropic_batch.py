@@ -46,6 +46,80 @@ class BatchItemError(Exception):
         super().__init__(self.message)
 
 
+# --------------------------------------------------------------------------- #
+# Lowest thinking setting per model
+# --------------------------------------------------------------------------- #
+#
+# Every pipeline request is faithful rendering into a fixed JSON schema, not
+# reasoning, so each one asks for the least thinking the model accepts. That
+# setting is spelled differently per model, and the wrong spelling is a 400 on
+# every request -- which in the daily workflow's warn mode is a green job that
+# silently translates nothing:
+#
+# - Claude Sonnet 5.5 rejects {"type": "disabled"}; its off switch is
+#   {"type": "between_tools"} (no other field, effort `high` or below, and no
+#   other model accepts it). Omitting `thinking` there does NOT mean "off": it
+#   runs adaptive thinking at the default `high` effort, billed as output.
+# - Claude Opus 5.5 and Fable 5 / 5.1 cannot turn thinking off at all; the
+#   parameter is omitted and effort is the only lever (see CLAUDE.md before
+#   adopting either -- thinking tokens can cost more than the lower price saves).
+# - Every other model in use accepts {"type": "disabled"}. On Opus 4.8 / 4.7 that
+#   is identical to omitting the field, which is what the summarizer used to do.
+_BETWEEN_TOOLS_MODELS = ("claude-sonnet-5-5",)
+_ALWAYS_THINKING_MODELS = ("claude-opus-5-5", "claude-fable-5")
+
+
+def lowest_thinking_config(model: str) -> dict | None:
+    """The `thinking` value that minimises thinking on `model`, or None to omit it."""
+    if model.startswith(_BETWEEN_TOOLS_MODELS):
+        return {"type": "between_tools"}
+    if model.startswith(_ALWAYS_THINKING_MODELS):
+        return None
+    return {"type": "disabled"}
+
+
+def with_lowest_thinking(params: dict) -> dict:
+    """Return request params with the model's lowest thinking setting applied."""
+    thinking = lowest_thinking_config(params["model"])
+    if thinking is not None:
+        params["thinking"] = thinking
+    return params
+
+
+# --------------------------------------------------------------------------- #
+# Safety refusals
+# --------------------------------------------------------------------------- #
+#
+# A declined request is an HTTP 200 with stop_reason "refusal", so it never
+# raises on its own; without this check it surfaced as an unhelpful JSON parse
+# failure. Newer models decline in more categories, so a model change should be
+# able to show how often it happens. The count is per process and carries only
+# the category -- never request or response text.
+_refusal_categories: list[str] = []
+
+
+class ModelRefusal(Exception):
+    """The model declined the request (stop_reason == "refusal")."""
+
+    def __init__(self, category: str | None) -> None:
+        self.category = category or "unspecified"
+        super().__init__(f"model declined the request (category={self.category})")
+
+
+def raise_if_refused(message) -> None:
+    if getattr(message, "stop_reason", None) != "refusal":
+        return
+    details = getattr(message, "stop_details", None)
+    category = getattr(details, "category", None) if details is not None else None
+    refusal = ModelRefusal(category)
+    _refusal_categories.append(refusal.category)
+    raise refusal
+
+
+def refusal_count() -> int:
+    return len(_refusal_categories)
+
+
 @dataclass(frozen=True)
 class BatchRun:
     batch_id: str

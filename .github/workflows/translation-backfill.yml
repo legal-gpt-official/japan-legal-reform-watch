@@ -95,7 +95,7 @@ jobs:
             "${extra_args[@]}" 2>&1 | tee translate_run.log
           {
             echo "### Simplified-Chinese translation checkpoint"
-            grep -E '^(api_calls|translated_items|failed_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            grep -E '^(api_calls|translated_items|failed_items|refused_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Count translations after
