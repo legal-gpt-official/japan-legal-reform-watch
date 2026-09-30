@@ -95,6 +95,29 @@ class TestStageRequestShape(unittest.TestCase):
                 self.assertEqual((price["input"], price["output"], price["cache_read"]), (2.0, 10.0, 0.20))
 
 
+class TestSummaryModelAdoption(unittest.TestCase):
+    """Sonnet 5.5 was adopted for Stage 3 after the 2026-09-30 A/B evaluation."""
+
+    WORKFLOWS = Path(__file__).resolve().parents[1] / ".github" / "workflows"
+
+    def test_every_summary_workflow_pins_sonnet_5_5(self):
+        for name, expected in (("daily-update.yml", 2), ("english-summary-backfill.yml", 1),
+                               ("japanese-summary-backfill.yml", 1)):
+            with self.subTest(workflow=name):
+                text = (self.WORKFLOWS / name).read_text(encoding="utf-8")
+                self.assertEqual(text.count("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5"), expected)
+                self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: claude-opus", text)
+
+    def test_translation_model_is_unchanged(self):
+        text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
+        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5\s*$")
+
+    def test_title_prompt_targets_below_the_display_cap(self):
+        # Titles over TITLE_MAX_CHARS are cut mid-title; the prompt aims 10 below it.
+        self.assertIn("at most 110 characters", su.SYSTEM_PROMPT)
+        self.assertEqual(su.public_data.TITLE_MAX_CHARS, 120)
+
+
 class TestRefusalHandling(unittest.TestCase):
     def test_refusal_raises_instead_of_parsing(self):
         before = ab.refusal_count()

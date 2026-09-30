@@ -74,9 +74,9 @@ class TestSummarizeTitleCap(unittest.TestCase):
         }
 
     def test_summary_model_default_and_overrides(self):
-        self.assertEqual(su.DEFAULT_MODEL, "claude-opus-4-8")
+        self.assertEqual(su.DEFAULT_MODEL, "claude-sonnet-5-5")
         with mock.patch.dict("os.environ", {}, clear=True):
-            self.assertEqual(su.resolve_model(None), "claude-opus-4-8")
+            self.assertEqual(su.resolve_model(None), "claude-sonnet-5-5")
         with mock.patch.dict("os.environ", {"ANTHROPIC_SUMMARY_MODEL": "summary-env"}, clear=True):
             self.assertEqual(su.resolve_model(None), "summary-env")
         with mock.patch.dict(
@@ -1136,6 +1136,8 @@ class TestSummaryBatch(unittest.TestCase):
                 rc = su.main([
                     "--all-items", "--japanese-only", "--api-limit", "10",
                     "--parallel", "1", "--max-cost-usd", "0.015",
+                    # The arithmetic below is priced at Opus 4.8 rates.
+                    "--model", "claude-opus-4-8",
                 ])
 
             for handler in list(su.logger.handlers):
@@ -1516,13 +1518,14 @@ class TestModelPricingLookup(unittest.TestCase):
 
     def test_the_production_summary_model_is_unchanged(self):
         """Adding a row must not move production onto it. The switch is an
-        env-only change (ANTHROPIC_SUMMARY_MODEL) and has not been made."""
+        env-only change (ANTHROPIC_SUMMARY_MODEL); production moved to Sonnet 5.5
+        deliberately after an A/B evaluation, and Opus 5.5 is priced only."""
         workflow = (
             Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
         ).read_text(encoding="utf-8")
-        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8", workflow)
+        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5", workflow)
         self.assertNotIn("claude-opus-5-5", workflow)
-        self.assertEqual(su.DEFAULT_MODEL, "claude-opus-4-8")
+        self.assertEqual(su.DEFAULT_MODEL, "claude-sonnet-5-5")
 
 
 class TestStageTwoTitlePreservation(unittest.TestCase):

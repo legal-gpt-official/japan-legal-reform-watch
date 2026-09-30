@@ -62,7 +62,7 @@ jobs:
           # Pin the model explicitly, exactly as the Japanese step does. Relying
           # on DEFAULT_MODEL let a repository-level ANTHROPIC_MODEL silently
           # change the billed model for this step only.
-          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
         # Message Batches (50% discount, same model and same prompt, so no quality
         # change). --parallel does not apply to a batch. The USD cap is enforced as
         # a pre-flight token bound rather than a post-hoc measurement, because a
@@ -82,6 +82,11 @@ jobs:
         # the bound prices them at ~$0.012/call, i.e. $0.96, and the run would be
         # silently trimmed. That is exactly the failure this budget work started
         # from, so the cap is $1.10 and a test pins the invariant.
+        #
+        # Those per-call figures are Opus 4.8's. Since 2026-09-30 this step runs
+        # Sonnet 5.5, measured at ~42% of Opus per item in the A/B evaluation, so
+        # the cap is now headroom and --api-limit is what binds. The caps were
+        # left as they are so a revert to Opus needs no second edit.
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
@@ -108,7 +113,7 @@ jobs:
       - name: Maintain Japanese summaries
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
@@ -173,7 +178,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           # Translation-only model override: zh-Hans translation uses Sonnet 5;
-          # summarization stays on Opus 4.8. Precedence for translation is
+          # summarization uses Sonnet 5.5 (moved from Opus 4.8 on 2026-09-30). Precedence for translation is
           # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
           ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
         # Phase 3A: batched. A local wait that expires does NOT cancel the batch —

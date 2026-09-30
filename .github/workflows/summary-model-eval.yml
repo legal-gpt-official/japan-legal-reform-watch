@@ -15,17 +15,19 @@ on:
       baseline:
         description: "Baseline model (current production)"
         required: true
-        default: "claude-opus-4-8"
+        default: "claude-sonnet-5-5"
         type: choice
         options:
+          - "claude-sonnet-5-5"
           - "claude-opus-4-8"
           - "claude-sonnet-5"
       candidate:
         description: "Candidate model"
         required: true
-        default: "claude-sonnet-5-5"
+        default: "claude-opus-4-8"
         type: choice
         options:
+          - "claude-opus-4-8"
           - "claude-sonnet-5-5"
           - "claude-sonnet-5"
           - "claude-opus-5-5"

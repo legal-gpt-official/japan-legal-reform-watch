@@ -87,7 +87,7 @@ jobs:
         id: checkpoint
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
           ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
           BATCH_SIZE: ${{ inputs.batch_size }}
           PARALLELISM: ${{ inputs.parallelism }}
