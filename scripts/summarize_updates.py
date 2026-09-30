@@ -110,7 +110,7 @@ RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 LOG_PATH = REPO_ROOT / "logs" / "summarize.log"
 
 DEFAULT_LIMIT = 10
-DEFAULT_MODEL = "claude-opus-4-8"
+DEFAULT_MODEL = "claude-sonnet-5-5"
 MAX_TOKENS = 1500
 
 # Output size used to BUDGET a batch, as distinct from MAX_TOKENS, which stays
@@ -209,7 +209,9 @@ SYSTEM_PROMPT = (
     "only summarize it.\n"
     "- Return ONLY valid JSON, with no surrounding prose or markdown.\n\n"
     "Length and field guidance:\n"
-    "- title_en: a short English label, at most ~120 characters. Write it in English only — "
+    "- title_en: a short English label of at most 110 characters; anything over 120 is cut off "
+    "mid-title on the dashboard. Keep the instrument type and the subject; shorten long statute "
+    "names to their common short form rather than listing every amended act. Write it in English only — "
     "it must contain no Japanese characters (no kanji, hiragana, or katakana); romanize or "
     "translate any Japanese statute, agency, or place name.\n"
     "- summary_en: 2-3 sentences, factual.\n"
@@ -288,7 +290,7 @@ Options:
     --max-cost-usd USD
                   Stop scheduling direct calls after measured estimated cost
                   reaches the positive cap.
-    --model ID    Claude model id (default: claude-opus-4-8).
+    --model ID    Claude model id (default: claude-sonnet-5-5).
     --batch       Use Message Batches (same prompt/model, 50% token discount).
     --dry-run     Do everything except write the output file, backup, and cache.
 
@@ -1039,7 +1041,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--model",
         default=None,
-        help="Claude model id (default claude-opus-4-8; can also use ANTHROPIC_SUMMARY_MODEL).",
+        help="Claude model id (default claude-sonnet-5-5; can also use ANTHROPIC_SUMMARY_MODEL).",
     )
     parser.add_argument(
         "--batch",

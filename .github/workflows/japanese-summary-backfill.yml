@@ -71,7 +71,7 @@ jobs:
       - name: Backfill and checkpoint Japanese summaries
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-opus-4-8
+          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
           BATCH_SIZE: ${{ inputs.batch_size }}
           PARALLELISM: ${{ inputs.parallelism }}
           MAX_COST_USD: ${{ inputs.max_cost_usd }}
