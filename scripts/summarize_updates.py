@@ -77,6 +77,11 @@ from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
     BatchItemError,
+    ModelRefusal,
+    raise_if_refused,
+    refusal_count,
+    lowest_thinking_config,
+    with_lowest_thinking,
     BatchStillRunningError,
     DEFAULT_DISCOVERY_MAX_AGE_DAYS,
     batch_age_days,
@@ -143,6 +148,7 @@ MODEL_PRICING_USD_PER_MTOK = {
     "claude-opus-4-8": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-4-7": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
+    "claude-sonnet-5-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
     "claude-sonnet-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
     "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_write_5m": 3.75, "cache_write_1h": 6.0, "cache_read": 0.30},
     "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_write_5m": 1.25, "cache_write_1h": 2.0, "cache_read": 0.10},
@@ -427,17 +433,17 @@ def extract_json(text: str) -> dict:
 
 def summary_request_params(model: str, item: dict, raw: dict) -> dict:
     """Standard Messages parameters shared by synchronous and Batch requests."""
-    return dict(
+    return with_lowest_thinking(dict(
         model=model,
         max_tokens=MAX_TOKENS,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": build_user_content(item, raw)}],
-    )
+    ))
 
 
 def japanese_summary_request_params(model: str, item: dict, raw: dict) -> dict:
     """Messages parameters for a Japanese-source summary (never a translation)."""
-    return dict(
+    return with_lowest_thinking(dict(
         model=model,
         max_tokens=MAX_TOKENS,
         system=SYSTEM_PROMPT_JA,
@@ -452,7 +458,7 @@ def japanese_summary_request_params(model: str, item: dict, raw: dict) -> dict:
                 ),
             }
         ],
-    )
+    ))
 
 
 def message_usage(message) -> dict[str, int]:
@@ -467,6 +473,7 @@ def message_usage(message) -> dict[str, int]:
 
 
 def parse_summary_message(message, model: str) -> tuple[dict, str, dict[str, int]]:
+    raise_if_refused(message)
     text = next((b.text for b in message.content if getattr(b, "type", None) == "text"), "")
     return extract_json(text), getattr(message, "model", model), message_usage(message)
 
@@ -508,6 +515,8 @@ def classify_provider_error(exc) -> str:
     # would otherwise be reported as network_error.
     if isinstance(exc, BatchStillRunningError):
         return "batch_still_running"
+    if isinstance(exc, ModelRefusal):
+        return "refusal"
     name = type(exc).__name__
     status = _error_status(exc)
     if status == 401 or name == "AuthenticationError":
@@ -1811,6 +1820,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"api_calls       : {api_calls}")
     print(f"summarized_items: {summarized}")
     print(f"failed_items    : {failed}")
+    print(f"refused_items   : {refusal_count()}")
     print(f"skipped_api_budget: {skipped_api_budget}")
     print(f"english_remaining: {english_remaining}")
     print(f"japanese_cache_hits: {ja_cache_hits}")
