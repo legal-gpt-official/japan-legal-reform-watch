@@ -34,6 +34,7 @@ scripts/setup_alert_billing.py   # One-time idempotent Stripe product/prices/lin
 tests/                           # Offline regression tests (unittest; pytest-compatible).
 .github/workflows/daily-update.yml  # Manual/daily pipeline run (GitHub Actions).
 .github/workflows/translation-backfill.yml  # Manual translate-only zh-Hans backfill (GitHub Actions).
+.github/workflows/summary-model-eval.yml  # Manual Stage 3 model A/B eval; read-only, commits nothing, uploads an artifact.
 data/legal_updates.json          # Original hand-curated sample (schema reference only).
 data/raw_items.json              # Raw fetched items (output of fetch_updates.py; untrusted).
 data/summary_cache.json          # Stage 3 cache (created/updated by summarize_updates.py).

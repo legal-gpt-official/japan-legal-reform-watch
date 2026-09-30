@@ -1,0 +1,128 @@
+name: Summary model evaluation
+
+# Manual-only A/B run of scripts/evaluate_summary_model.py for a Stage 3 model
+# change. It runs the baseline and the candidate over the SAME committed frozen
+# set with the SAME production prompts, in English and Japanese, and prints the
+# automatic comparison into the Step Summary.
+#
+# It never changes published data, caches, or the production model, and it
+# commits nothing: results are uploaded as a short-lived artifact for human
+# review. Every run is capped by --max-cost-usd. The run logs carry only item
+# ids, error types, and token/cost figures -- never source or output text.
+on:
+  workflow_dispatch:
+    inputs:
+      baseline:
+        description: "Baseline model (current production)"
+        required: true
+        default: "claude-opus-4-8"
+        type: choice
+        options:
+          - "claude-opus-4-8"
+          - "claude-sonnet-5"
+      candidate:
+        description: "Candidate model"
+        required: true
+        default: "claude-sonnet-5-5"
+        type: choice
+        options:
+          - "claude-sonnet-5-5"
+          - "claude-sonnet-5"
+          - "claude-opus-5-5"
+      profile:
+        description: "Frozen set: hard (adversarial) or stratified (broad)"
+        required: true
+        default: "hard"
+        type: choice
+        options:
+          - "hard"
+          - "stratified"
+      max_cost_usd_per_run:
+        description: "Cap for EACH of the four runs (2 models x 2 languages)"
+        required: true
+        default: "1.00"
+        type: choice
+        options:
+          - "0.50"
+          - "1.00"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: summary-model-eval
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      # Inputs travel through env, never interpolated into the script text.
+      BASELINE: ${{ inputs.baseline }}
+      CANDIDATE: ${{ inputs.candidate }}
+      PROFILE: ${{ inputs.profile }}
+      MAX_COST: ${{ inputs.max_cost_usd_per_run }}
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Compile and run offline tests
+        run: |
+          python -m py_compile scripts/summarize_updates.py scripts/evaluate_summary_model.py scripts/anthropic_batch.py
+          python -m unittest discover -s tests
+
+      - name: Run both models over the frozen set
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ "$BASELINE" = "$CANDIDATE" ]; then
+            echo "::error::baseline and candidate must differ"; exit 1
+          fi
+          for language in english japanese; do
+            for model in "$BASELINE" "$CANDIDATE"; do
+              echo "::group::$model / $language / $PROFILE"
+              python scripts/evaluate_summary_model.py run \
+                --model "$model" --language "$language" --profile "$PROFILE" \
+                --limit 30 --max-cost-usd "$MAX_COST" --confirm-spend
+              echo "::endgroup::"
+            done
+          done
+
+      - name: Compare
+        run: |
+          set -euo pipefail
+          {
+            echo "## Summary model evaluation: $BASELINE vs $CANDIDATE ($PROFILE)"
+            for language in english japanese; do
+              echo ""
+              echo "### $language"
+              echo '```'
+              python scripts/evaluate_summary_model.py compare \
+                --baseline "$BASELINE" --candidate "$CANDIDATE" \
+                --language "$language" --profile "$PROFILE"
+              echo '```'
+            done
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload results for human review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: summary-model-eval
+          path: |
+            data/eval/results_*.json
+            data/eval/side_by_side_*.md
+          retention-days: 14
+          if-no-files-found: warn
