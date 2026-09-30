@@ -6,41 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Healthcare / Pharmaceuticals
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-d711e027d4c6a3a1-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20260829T000000Z
-DTSTART;VALUE=DATE:20260926
-DTEND;VALUE=DATE:20260927
-SUMMARY:Public comment closes: Draft Amendment to Enforcement Regulations f
- or Act on Comprehensive Securing of Regional Medical...
-DESCRIPTION:Closes 2026-09-26 23:59 JST.\nOriginal title: 「地域にお
- ける医療及び介護の総合的な確保の促進に関する法律
- 施行規則の一部を改正する省令案」に関する御意見の
- 募集について\ne-Gov Public Comment\nOfficial source: https://public-
- comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260168&Mod
- e=0\nMonitoring aid only\; not legal advice or an official translation. Or
- iginal Japanese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=495260168&Mode=0
-END:VEVENT
-BEGIN:VEVENT
-UID:jlrw-raw-a0ae5a5ab7d081a4-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20260729T000000Z
-DTSTART;VALUE=DATE:20260926
-DTEND;VALUE=DATE:20260927
-SUMMARY:Public comment closes: Public Comment on Draft Japanese Industrial 
- Standards for Medical Devices
-DESCRIPTION:Closes 2026-09-26 23:59 JST.\nOriginal title: 医療機器に
- 係る日本産業規格の制定案に関する御意見の募集につ
- いて\ne-Gov Public Comment\nOfficial source: https://public-comment.e-go
- v.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260119&Mode=0\nMonitor
- ing aid only\; not legal advice or an official translation. Original Japan
- ese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=495260119&Mode=0
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-ea4c652d9fca8942-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20260902T000000Z
 DTSTART;VALUE=DATE:20260930
@@ -106,8 +71,8 @@ UID:jlrw-raw-3b687c715bb6edf6-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20260919T000000Z
 DTSTART;VALUE=DATE:20261018
 DTEND;VALUE=DATE:20261019
-SUMMARY:Public comment closes: Regulatory proposal open for comment (2026-0
- 9-19)
+SUMMARY:Public comment closes: Public Comment on Draft Notice Amending Spec
+ ialist Qualification Certification for Intractable Disease and Child...
 DESCRIPTION:Closes 2026-10-19 00:00 JST.\nOriginal title: 難病の患者
  に対する医療等に関する法律施行規則第十五条第一項
  第一号イに規定する厚生労働大臣が定める認定機関が
@@ -139,5 +104,22 @@ DESCRIPTION:Closes 2026-10-25 23:59 JST.\nOriginal title: 医療機器に
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=495260161&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-c459f2e7d6b30ee3-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20260930T000000Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:Public comment closes: Regulatory proposal open for comment (2026-0
+ 9-29)
+DESCRIPTION:Closes 2026-11-28 23:59 JST.\nOriginal title: 医療機器に
+ 係る日本産業規格の改正案に関する御意見の募集につ
+ いて\ne-Gov Public Comment\nOfficial source: https://public-comment.e-go
+ v.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260199&Mode=0\nMonitor
+ ing aid only\; not legal advice or an official translation. Original Japan
+ ese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=495260199&Mode=0
 END:VEVENT
 END:VCALENDAR
