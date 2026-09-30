@@ -123,6 +123,29 @@ class TestAutomaticMetrics(unittest.TestCase):
         # Small ordinals are structural, not factual claims.
         self.assertEqual(ev.unsupported_numbers("Two or 3 points.", source), [])
 
+    def test_kanji_numerals_parse_to_their_values(self):
+        cases = {"三百四十一": 341, "七十二": 72, "二十": 20, "十七": 17,
+                 "二百七": 207, "千二百": 1200, "十": 10, "二〇二六": 2026}
+        for kanji, value in cases.items():
+            with self.subTest(kanji=kanji):
+                self.assertEqual(ev.kanji_numeral_value(kanji), value)
+
+    def test_faithful_renderings_are_not_unsupported(self):
+        # Order numbers arrive as kanji and dates sit in the official URL; a
+        # summary that writes "No. 341" or cites the page date is faithful.
+        src = ev.source_text({"source": {
+            "title_ja": "令和七年政令第三百四十一号（カスガマイシン等６品目）",
+            "source_url": "https://www.fsa.go.jp/news/r8/20260728/20260728.html",
+        }})
+        self.assertEqual(ev.unsupported_numbers("Cabinet Order No. 341", src), [])
+        self.assertEqual(ev.unsupported_numbers("掲載日 20260728", src), [])
+        self.assertEqual(ev.unsupported_numbers("カスガマイシン等６品目", src), [])
+        # Era years convert to Gregorian ones.
+        era_src = ev.source_text({"source": {"title_ja": "平成五年法律第八十八号 令和7年度 令和元年"}})
+        self.assertEqual(ev.unsupported_numbers("Act No. 88 of 1993, FY2025, 2019", era_src), [])
+        # A number the source never states is still caught.
+        self.assertEqual(ev.unsupported_numbers("ages 65-74", src), ["65", "74"])
+
     def test_english_score_flags_japanese_title(self):
         scored = ev.score_english(good_result(title_en="特定外来生物 designation"), entry())
         self.assertTrue(scored["title_has_japanese"])

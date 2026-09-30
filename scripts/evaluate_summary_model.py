@@ -61,6 +61,7 @@ import re
 import statistics
 import sys
 import time
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -255,10 +256,52 @@ def build_set(size: int, profile: str = "stratified") -> dict:
 # 2. Automatic metrics
 # --------------------------------------------------------------------------- #
 
+_KANJI_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4,
+                 "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+_KANJI_UNITS = {"十": 10, "百": 100, "千": 1000}
+_KANJI_NUMERAL_RE = re.compile(r"[〇一二三四五六七八九十百千]+")
+
+
+def kanji_numeral_value(text: str) -> int | None:
+    """Value of a kanji numeral such as 三百四十一 (341) or 二十 (20), else None."""
+    total, digit = 0, None
+    for ch in text:
+        if ch in _KANJI_DIGITS:
+            if digit is not None:  # positional form such as 二〇二六
+                return int("".join(str(_KANJI_DIGITS[c]) for c in text)) if all(
+                    c in _KANJI_DIGITS for c in text) else None
+            digit = _KANJI_DIGITS[ch]
+        else:
+            total += (1 if digit is None else digit) * _KANJI_UNITS[ch]
+            digit = None
+    return total + (digit or 0)
+
+
+_ERA_BASE_YEAR = {"明治": 1867, "大正": 1911, "昭和": 1925, "平成": 1988, "令和": 2018}
+_ERA_YEAR_RE = re.compile(r"(明治|大正|昭和|平成|令和)(元|\d+|[〇一二三四五六七八九十百]+)")
+
+
 def source_text(entry: dict) -> str:
+    """Everything the model was shown that can legitimately supply a number.
+
+    Statute and order numbers arrive as kanji numerals (令和七年政令第三百四十一号),
+    and a correct English or Japanese summary writes them as 341. The official
+    URL is also in the model's input and carries dates (…/20260728/…). Without
+    both, faithful renderings were scored as unsupported numbers.
+    """
     source = entry.get("source") or {}
-    return " ".join(str(source.get(key, "")) for key in
-                    ("title_ja", "raw_summary", "published_at", "source_name"))
+    text = unicodedata.normalize("NFKC", " ".join(
+        str(source.get(key, "")) for key in
+        ("title_ja", "raw_summary", "published_at", "source_name", "source_url")
+    ))
+    values = [kanji_numeral_value(m) for m in _KANJI_NUMERAL_RE.findall(text)]
+    # Era years become Gregorian ones in a faithful summary (平成五年 -> 1993,
+    # 令和7年度 -> FY2025), so the converted year is supported by the source too.
+    for era, number in _ERA_YEAR_RE.findall(text):
+        year = 1 if number == "元" else (int(number) if number.isdigit() else kanji_numeral_value(number))
+        if year is not None:
+            values.append(_ERA_BASE_YEAR[era] + year)
+    return text + " " + " ".join(str(v) for v in values if v is not None)
 
 
 def unsupported_numbers(output_text: str, source: str) -> list[str]:
@@ -268,7 +311,8 @@ def unsupported_numbers(output_text: str, source: str) -> list[str]:
     numbers, dates, or thresholds the source text never mentions.
     """
     found = []
-    for number in _NUMBER_RE.findall(output_text or ""):
+    # NFKC so a full-width ６ in a Japanese summary matches the source's 6.
+    for number in _NUMBER_RE.findall(unicodedata.normalize("NFKC", output_text or "")):
         if number in _TRIVIAL_NUMBERS or number in source:
             continue
         found.append(number)
