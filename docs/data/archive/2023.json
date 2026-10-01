@@ -231,7 +231,15 @@
     "last_checked": "2026-09-30",
     "relevance_score": 14.0,
     "first_seen_at": "2026-09-30",
-    "summary_source": "rule_based"
+    "summary_source": "rule_based",
+    "translations": {
+      "zh-Hans": {
+        "title": "e-Gov法令更新：《修订金融商品交易法等的法律》预定生效（2023-11-29）",
+        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
+        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
+        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+      }
+    }
   },
   {
     "id": "raw-b31f92554c2e2b70",
@@ -403,14 +411,14 @@
   },
   {
     "id": "raw-190b996c54bcd041",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2023-03-31)",
+    "title_en": "Act Partially Amending the Local Tax Act and Related Laws",
     "title_ja": "地方税法等の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "This item concerns an amending law titled 'Act Partially Amending the Local Tax Act and Related Laws' (Reiwa 5 Law No. 1), which amends the Local Tax Act (Showa 25 Law No. 226). According to the metadata, the promulgation date is listed as 2023-03-31 and the enforcement (effective) date as 2026-05-21. The record appears in an e-Gov law update listing dated 2026-09-11.",
+    "business_impact_en": "Organizations subject to Japanese local taxation may be affected by amendments to the Local Tax Act, so provisions and their timing could be relevant to compliance and tax planning.",
+    "recommended_action_en": "Review the official e-Gov source and the full text of the amending law to confirm the specific provisions, scope, and applicable effective dates.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20260521_505AC0000000001",
     "published_at": "2023-03-31",
@@ -423,15 +431,11 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-13T23:00:30Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "日本法令更新：《地方税法等部分修正法律》生效（2023-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata (title, law numbers, and listed dates); specific amended provisions and their current status are unverified. The metadata lists a promulgation date of 2023-03-31 and an enforcement date of 2026-05-21, which should be confirmed against the official source.",
+    "summary_source": "claude",
+    "summarized_at": "2026-10-01T00:47:06Z",
+    "summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-025ac734359af0ea",
@@ -591,7 +595,6 @@
     "last_checked": "2026-09-30",
     "relevance_score": 5.0,
     "first_seen_at": "2026-09-30",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "法令公布：《为推进民事相关程序等中信息通信技术利用等而完善相关法律的法律》（2023-06-14）",
@@ -599,6 +602,7 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   }
 ]

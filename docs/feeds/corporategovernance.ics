@@ -5,4 +5,40 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Corporate / Governance
 X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VEVENT
+UID:jlrw-raw-1d770139dddbc57b-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261001T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:Public comment closes: Draft Cabinet Order Amending Whistleblower P
+ rotection Act Annex 8 Designation – Public Comment
+DESCRIPTION:Closes 2026-10-30 23:59 JST.\nOriginal title: 「公益通報
+ 者保護法別表第八号の法律を定める政令の一部を改正
+ する政令（案）」に関する御意見募集について\ne-Gov Pub
+ lic Comment\nOfficial source: https://public-comment.e-gov.go.jp/servlet/P
+ ublic?CLASSNAME=PCMMSTDETAIL&id=235040017&Mode=0\nMonitoring aid only\; no
+ t legal advice or an official translation. Original Japanese official sour
+ ces remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=235040017&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-a25289b39c69eec8-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261001T000000Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:Public comment closes: Draft Cabinet Order Amending Whistleblower P
+ rotection Act Appended Table 8 Order – Public Comment
+DESCRIPTION:Closes 2026-10-30 23:59 JST.\nOriginal title: 「公益通報
+ 者保護法別表第八号の法律を定める政令の一部を改正
+ する政令（案）」に関する御意見募集について\ne-Gov Pub
+ lic Comment\nOfficial source: https://public-comment.e-gov.go.jp/servlet/P
+ ublic?CLASSNAME=PCMMSTDETAIL&id=235040018&Mode=0\nMonitoring aid only\; no
+ t legal advice or an official translation. Original Japanese official sour
+ ces remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=235040018&Mode=0
+END:VEVENT
 END:VCALENDAR

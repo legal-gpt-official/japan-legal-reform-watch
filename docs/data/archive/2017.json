@@ -181,20 +181,32 @@
   },
   {
     "id": "raw-3424afdba32f87ad",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2017-01-25)",
+    "title_en": "Cabinet Order Amending Livestock Price Stabilization Act Enforcement Order and Others (Reiwa 2017 No. 7)",
     "title_ja": "畜産物の価格安定に関する法律施行令等の一部を改正する政令",
     "area": "Food / Agriculture",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The metadata lists a Cabinet Order titled 'Cabinet Order to Partially Amend the Enforcement Order of the Act on Stabilization of Livestock Product Prices and Others' (Heisei 29 Cabinet Order No. 7), with a promulgation date of 25 January 2017. The e-Gov update list entry associates it with the Enforcement Order of the Act on Special Measures concerning Taxation (Showa 32 Cabinet Order No. 43) as the target law, and shows a list date of 2026-09-28.",
+    "business_impact_en": "The amendment may affect provisions of the taxation special-measures enforcement order, which could be relevant to businesses in the livestock or agricultural sector. The specific changes and their practical effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search to confirm which provisions were amended, their effective dates, and whether they are relevant to your operations.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=332CO0000000043_21171231_429CO0000000007",
     "published_at": "2017-01-25",
     "last_checked": "2026-09-30",
     "relevance_score": 30.0,
     "first_seen_at": "2026-09-30",
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and list metadata; the actual amended provisions are not provided. Note: the title_en label '(Reiwa 2017 ...)' is a mistake in era naming; the source states Heisei 29 (2017). The 2026-09-28 list date appears to be an update-list date, not an enactment date. Verify all details against the official source.",
+    "summarized_at": "2026-10-01T00:50:22Z",
+    "summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "政令修订：《畜产物价格稳定相关法律施行令》等",
+        "summary": "元数据列出了一项名为《畜产物价格稳定相关法律施行令等部分修订政令》（平成29年政令第7号）的政令，公布日期为2017年1月25日。e-Gov更新列表条目将其与作为对象法律的《租税特别措施法施行令》（昭和32年政令第43号）相关联，并显示列表日期为2026-09-28。",
+        "business_impact": "此次修订可能影响租税特别措施法施行令的相关条款，这可能与畜产或农业领域的企业相关。具体变更内容及其实际影响无法仅凭所提供的元数据确定。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方文本，以确认具体修订了哪些条款、其生效日期，以及是否与您的业务相关。"
+      }
+    }
   }
 ]
