@@ -9,6 +9,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import sys
 import tempfile
 import types
@@ -2101,7 +2102,12 @@ class TestTranslationBudgetCoversItsCallLimit(unittest.TestCase):
             self.workflow.index("name: Maintain English summaries"):
             self.workflow.index("name: Maintain Japanese summaries")
         ]
-        english_limit = int(english.split("--api-limit")[1].split()[0])
+        # Match the flag with its numeric value, not the first mention: the
+        # step's comments also say "--api-limit", and splitting on the first
+        # occurrence read a comment word instead of the configured limit.
+        match = re.search(r"--api-limit\s+(\d+)", english)
+        self.assertIsNotNone(match, "English summary step has no --api-limit value")
+        english_limit = int(match.group(1))
         self.assertGreater(
             int(flags["--limit"]), 37 + english_limit,
             "the limit must exceed new arrivals plus the English upgrades that "
