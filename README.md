@@ -365,6 +365,7 @@ japan-legal-reform-watch/
 │   ├── test_send_alert_digests.py     # Digest selection, rendering, Stripe/Resend flow, privacy
 │   ├── test_build_public_feeds.py     # RSS/ICS validity, escaping, folding, determinism
 │   ├── test_setup_alert_billing.py    # Stripe setup params and idempotency
+│   ├── test_agent_instructions_in_sync.py # AGENTS.md and CLAUDE.md share one body
 │   └── test_fetch_updates.py         # Stage 1 SOURCES config, parsers, id/hash stability (offline)
 ├── data/
 │   ├── legal_updates.json        # Original hand-curated sample (schema reference only)
