@@ -24,8 +24,14 @@
       yearly: "https://buy.stripe.com/14A4gA1CwbzLbXjbdc3cc01",
     }),
     localizedCheckoutLinks: Object.freeze({
-      ja: Object.freeze({ monthly: "", yearly: "" }),
-      "zh-Hans": Object.freeze({ monthly: "", yearly: "" }),
+      ja: Object.freeze({
+        monthly: "https://buy.stripe.com/cNidRaepifQ14uRfts3cc02",
+        yearly: "https://buy.stripe.com/dRmeVe3KE5bn1iF6WW3cc04",
+      }),
+      "zh-Hans": Object.freeze({
+        monthly: "https://buy.stripe.com/eVqaEY80UdHTf9v4OO3cc03",
+        yearly: "https://buy.stripe.com/28E5kE6WQcDPgdz4OO3cc05",
+      }),
     }),
     manageSubscriptionUrl: "https://billing.stripe.com/p/login/cNiaEYa927jv7H36WW3cc00",
   });
