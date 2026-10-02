@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -63,7 +64,12 @@ class FakeStripeHttp:
                 "id": self._id("plink"),
                 "url": f"https://buy.stripe.com/new{self.counter}",
                 "active": True,
-                "metadata": {"jlrw_role": params["metadata[jlrw_role]"], "jlrw_price": params["metadata[jlrw_price]"]},
+                "metadata": {
+                    "jlrw_role": params["metadata[jlrw_role]"],
+                    "jlrw_price": params["metadata[jlrw_price]"],
+                    "jlrw_language": params["metadata[jlrw_language]"],
+                },
+                "params": params,
             }
             self.links.append(obj)
             return 200, obj
@@ -105,6 +111,30 @@ class TestParams(unittest.TestCase):
         self.assertLessEqual(len(params["custom_text"]["submit"]["message"]), 1200)
         self.assertIn("not legal advice", params["custom_text"]["submit"]["message"])
 
+    def test_localized_links_translate_labels_but_keep_every_value(self):
+        english = sab.payment_link_params("alert_monthly", "price_1")["custom_fields"][0]["dropdown"]["options"]
+        for language, message_phrase in (("ja", "英語で配信"), ("zh-Hans", "以英文发送")):
+            with self.subTest(language=language):
+                params = sab.payment_link_params("alert_yearly", "price_1", language)
+                field = params["custom_fields"][0]
+                options = field["dropdown"]["options"]
+                # The digest reads only the value, so every language must store the same ones.
+                self.assertEqual([o["value"] for o in options], [o["value"] for o in english])
+                for localized, source in zip(options, english):
+                    self.assertNotEqual(localized["label"], source["label"])
+                    self.assertLessEqual(len(localized["label"]), 100)
+                self.assertEqual(field["key"], "area")
+                self.assertLessEqual(len(field["label"]["custom"]), 50)
+                self.assertNotEqual(field["label"]["custom"], sab.AREA_FIELD_LABELS["en"])
+                message = params["custom_text"]["submit"]["message"]
+                self.assertLessEqual(len(message), 1200)
+                self.assertIn(message_phrase, message)  # the email itself is English
+                self.assertEqual(
+                    params["after_completion"]["redirect"]["url"],
+                    ac.DASHBOARD_URL + f"alerts/thank-you.html?plan=yearly&lang={language}",
+                )
+                self.assertEqual(params["metadata"]["jlrw_language"], language)
+
     def test_portal_lets_customers_self_serve(self):
         params = sab.portal_params("prod_1", ["price_m", "price_y"])
         features = params["features"]
@@ -134,7 +164,11 @@ class TestRun(unittest.TestCase):
         self.assertEqual(len(http.products), 1)
         self.assertEqual(len(http.prices), 2)
         self.assertEqual(first["manage_url"], "https://billing.stripe.com/p/login/fake")
-        self.assertTrue(all(url.startswith("https://buy.stripe.com/") for url in first["payment_links"].values()))
+        self.assertEqual(set(first["payment_links"]), set(ac.CHECKOUT_LANGUAGES))
+        urls = [url for plans in first["payment_links"].values() for url in plans.values()]
+        self.assertEqual(len(urls), 6)  # monthly + yearly in three languages
+        self.assertEqual(len(set(urls)), 6)
+        self.assertTrue(all(url.startswith("https://buy.stripe.com/") for url in urls))
         self.assertFalse(next(l for l in http.links if l["url"] == LEGACY_PRO)["active"])
 
         posts_before = len(http.posts)
@@ -143,10 +177,102 @@ class TestRun(unittest.TestCase):
         self.assertEqual(len(http.posts), posts_before)
         self.assertEqual(second["payment_links"], first["payment_links"])
 
+    def _live_english_setup(self):
+        """Stripe as it is today: product, prices, and English links with no language tag."""
+        http = FakeStripeHttp()
+        http.products.append({"id": "prod_live", "metadata": {"jlrw_role": "alert_digest"}})
+        english = {}
+        for role, interval, amount in sab.PRICES:
+            price_id = f"price_live_{interval}"
+            http.prices.append({"id": price_id, "lookup_key": sab.lookup_key(role, interval, amount)})
+            url = f"https://buy.stripe.com/live_{interval}"
+            http.links.append(
+                {"id": f"plink_live_{interval}", "url": url, "active": True,
+                 "metadata": {"jlrw_role": role, "jlrw_price": price_id}}
+            )
+            english[sab.PLAN_PARAM[role]] = url
+        http.portals.append(
+            {"id": "bpc_live", "metadata": {"jlrw_role": "alert_portal"},
+             "login_page": {"url": "https://billing.stripe.com/p/login/live"}}
+        )
+        return http, english
+
+    def test_adding_languages_keeps_the_live_english_links(self):
+        http, english = self._live_english_setup()
+        result = sab.run(sab.Stripe("rk_live_x", http), apply=True, deactivate_legacy=False)
+
+        self.assertEqual(result["payment_links"]["en"], english)
+        for interval in ("month", "year"):
+            self.assertTrue(next(l for l in http.links if l["id"] == f"plink_live_{interval}")["active"])
+        self.assertFalse([a for a in result["actions"] if "deactivate" in a])
+        created = [path for path, _ in http.posts if path == "/v1/payment_links"]
+        self.assertEqual(len(created), 4)  # ja + zh-Hans, monthly + yearly
+        self.assertFalse([path for path, _ in http.posts if path.startswith("/v1/payment_links/")])
+        self.assertEqual(
+            sorted(l["metadata"]["jlrw_language"] for l in http.links if "params" in l),
+            ["ja", "ja", "zh-Hans", "zh-Hans"],
+        )
+
+    def test_a_new_price_replaces_links_language_by_language(self):
+        http, _ = self._live_english_setup()
+        sab.run(sab.Stripe("rk_live_x", http), apply=True, deactivate_legacy=False)  # add ja + zh-Hans
+        # A price change: the old monthly price is no longer found by its lookup key.
+        http.prices = [p for p in http.prices if not p["id"].endswith("_month")]
+
+        result = sab.run(sab.Stripe("rk_live_x", http), apply=True, deactivate_legacy=False)
+
+        superseded = [a for a in result["actions"] if a.startswith("deactivate superseded")]
+        self.assertEqual(
+            sorted(superseded),
+            sorted(f"deactivate superseded {language} alert_monthly link" for language in ac.CHECKOUT_LANGUAGES),
+        )
+        active_monthly = [l for l in http.links if l["active"] and l["metadata"].get("jlrw_role") == "alert_monthly"]
+        self.assertEqual(sorted(sab._language(l) for l in active_monthly), sorted(ac.CHECKOUT_LANGUAGES))
+        self.assertTrue(all(l["url"] != "https://buy.stripe.com/live_month" for l in active_monthly))
+        # The yearly links were not involved.
+        self.assertTrue(next(l for l in http.links if l["id"] == "plink_live_year")["active"])
+
     def test_legacy_links_stay_active_without_the_flag(self):
         http = FakeStripeHttp()
         sab.run(sab.Stripe("rk_test_x", http), apply=True, deactivate_legacy=False)
         self.assertTrue(next(l for l in http.links if l["url"] == LEGACY_PRO)["active"])
+
+
+class TestCheckoutLabelsMatchDashboard(unittest.TestCase):
+    """The checkout area list must use the dashboard's own area names."""
+
+    I18N_JS = (REPO_ROOT / "docs" / "i18n.js").read_text(encoding="utf-8")
+
+    def _dashboard_area_labels(self, language):
+        block = self.I18N_JS[self.I18N_JS.index("var AREA_LABELS = {"):]
+        block = block[: block.index("\n  };")]
+        start = block.index(f'    "{language}": {{' if "-" in language else f"    {language}: {{")
+        section = block[start: block.index("\n    },", start)]
+        return dict(re.findall(r'^\s+"([^"]+)": "([^"]+)",?$', section, re.M))
+
+    def _dashboard_string(self, language, key):
+        start = self.I18N_JS.index(f'    "{language}": {{' if "-" in language else f"    {language}: {{")
+        match = re.compile(rf'^\s+{key}: "([^"]+)",', re.M).search(self.I18N_JS, start)
+        self.assertIsNotNone(match)
+        return match.group(1)
+
+    def test_every_language_and_channel_has_the_dashboard_label(self):
+        self.assertEqual(ac.CHECKOUT_LANGUAGES, ("en", "ja", "zh-Hans"))
+        for language in ("ja", "zh-Hans"):
+            dashboard = self._dashboard_area_labels(language)
+            for channel in ac.CHANNELS:
+                with self.subTest(language=language, channel=channel.value):
+                    expected = (
+                        self._dashboard_string(language, "opt_all_areas")
+                        if channel.area is None
+                        else dashboard[channel.area]
+                    )
+                    self.assertEqual(ac.channel_label(channel, language), expected)
+
+    def test_english_and_unknown_languages_use_the_channel_label(self):
+        for channel in ac.CHANNELS:
+            self.assertEqual(ac.channel_label(channel), channel.label)
+            self.assertEqual(ac.channel_label(channel, "fr"), channel.label)
 
 
 class TestMain(unittest.TestCase):

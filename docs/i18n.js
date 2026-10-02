@@ -111,18 +111,28 @@
       alert_plan_label: "Email alerts",
       alert_plan_title: "Daily email digest",
       alert_plan_price_monthly: "US$19/month",
-      alert_plan_price_yearly: "or US$190/year",
-      alert_plan_feature_area: "Choose one area, or all areas, at checkout",
-      alert_plan_feature_daily:
-        "Each morning (JST): updates newly detected by this dashboard in your area",
+      alert_plan_price_yearly: "or US$190/year (the price of 10 months)",
+      alert_plan_intro:
+        "Receive an email each morning with the Japanese legal and regulatory updates that this dashboard has newly detected in the area you choose, so you do not need to check the dashboard yourself.",
+      alert_plan_contents_title: "Each email includes",
+      alert_plan_feature_daily: "Updates newly detected in your area, each listed once",
+      alert_plan_feature_item:
+        "For each update: the English title, the original Japanese title, the stage, the source, the publication date, an AI summary where available, and a link to the original Japanese official source",
       alert_plan_feature_deadlines:
-        "Public-comment deadline reminders 7 days, 3 days, and on the closing day, when structured official data is available",
+        "Public-comment deadline reminders 7 days and 3 days before closing and on the closing day, when structured official data is available",
+      alert_plan_terms_title: "How it works",
+      alert_plan_feature_area: "Choose one area, or all areas, on the Stripe checkout page",
+      alert_plan_feature_schedule:
+        "Sent on mornings (JST) with something to report; no email on other days",
+      alert_plan_feature_language: "Emails are in English and include the original Japanese titles",
       alert_plan_feature_self_serve:
-        "Starts automatically after checkout; cancel or change billing yourself at any time",
+        "Starts with the next daily update after checkout; cancel, switch between monthly and yearly, or change the delivery email at any time",
       alert_plan_subscribe_monthly: "Subscribe monthly",
       alert_plan_subscribe_yearly: "Subscribe yearly",
       alert_plan_unavailable:
         "Email subscriptions are not open yet. The free feeds below are available now.",
+      alert_plan_compare:
+        "The free feeds below carry the same updates for you to check yourself; the digest delivers them to your inbox and adds deadline reminders by email.",
       alert_plan_note:
         "Checkout and billing are handled by Stripe. Alert emails are monitoring aids, not legal advice; original Japanese official sources remain authoritative.",
       alert_plan_manage: "Manage or cancel an existing subscription",
@@ -136,9 +146,9 @@
       alert_faq_start_q: "When does the digest start?",
       alert_faq_start_a:
         "From the next daily update after checkout. A digest is sent on mornings with newly detected updates or a deadline reminder in your area, and skipped on mornings with nothing to report.",
-      alert_faq_contents_q: "What does the digest contain?",
-      alert_faq_contents_a:
-        "Updates first detected by this dashboard in your area, with the English title, the original Japanese title, the stage, and a link to the original Japanese official source, plus upcoming public-comment deadlines. “Newly detected” does not mean a new law or regulation. Summaries are for triage and are not legal advice.",
+      alert_faq_newly_q: "What does “newly detected” mean?",
+      alert_faq_newly_a:
+        "That this dashboard found the item for the first time in an official Japanese source it monitors. It does not mean a new law or regulation, or the date of enactment, amendment, or first government publication. Summaries are for triage and are not legal advice.",
       alert_faq_change_q: "How do I change the area?",
       alert_faq_change_a:
         "The area is chosen at checkout. To follow a different area, cancel the current subscription in the subscription portal and subscribe again with the new area.",
@@ -386,14 +396,26 @@
       alert_plan_label: "メールアラート",
       alert_plan_title: "日次メールダイジェスト",
       alert_plan_price_monthly: "月額19米ドル",
-      alert_plan_price_yearly: "または年額190米ドル",
-      alert_plan_feature_area: "決済時に分野を1つ、またはすべての分野を選択",
-      alert_plan_feature_daily: "毎朝（日本時間）：選択した分野で本ダッシュボードが新たに検出した更新",
-      alert_plan_feature_deadlines: "公式の構造化データがある場合、意見募集の締切7日前・3日前・当日にリマインダー",
-      alert_plan_feature_self_serve: "決済後に自動で開始。解約やお支払い情報の変更はいつでもご自身で可能",
+      alert_plan_price_yearly: "または年額190米ドル（10か月分の料金）",
+      alert_plan_intro:
+        "選択した分野で本ダッシュボードが新たに検出した日本の法令・規制関連の更新を、毎朝メールでお届けします。ダッシュボードをご自身で確認する必要はありません。",
+      alert_plan_contents_title: "各メールの内容",
+      alert_plan_feature_daily: "選択した分野で新たに検出された更新（同じ更新の掲載は1回のみ）",
+      alert_plan_feature_item:
+        "各更新の英語タイトル、日本語の原題、段階、情報源、公表日、AI要約（ある場合）、日本語の公式情報源へのリンク",
+      alert_plan_feature_deadlines:
+        "意見募集の締切リマインダー（締切7日前・3日前・当日。公式の構造化データがある場合）",
+      alert_plan_terms_title: "ご利用の流れ",
+      alert_plan_feature_area: "Stripeの決済画面で、分野を1つ、またはすべての分野を選択",
+      alert_plan_feature_schedule: "お知らせする内容がある朝（日本時間）にのみ配信し、ない日は配信しません",
+      alert_plan_feature_language: "メールは英語で配信されます（日本語の原題を併記）",
+      alert_plan_feature_self_serve:
+        "決済後、次回の日次更新から開始。解約、月払い・年払いの切替、配信先メールの変更はいつでもご自身で可能",
       alert_plan_subscribe_monthly: "月払いで申し込む",
       alert_plan_subscribe_yearly: "年払いで申し込む",
       alert_plan_unavailable: "メール配信のお申し込みはまだ受け付けていません。下の無料フィードは現在ご利用いただけます。",
+      alert_plan_compare:
+        "下の無料フィードでも同じ更新をご自身で確認できます。有料のダイジェストは、それを毎朝メールでお届けし、締切リマインダーもメールでお送りします。",
       alert_plan_note: "決済と請求はStripeが処理します。アラートメールはモニタリング補助であり、法的助言ではありません。日本語の公式情報源が優先します。",
       alert_plan_manage: "ご契約中の方：契約の管理・解約",
       alert_feeds_title: "無料フィード",
@@ -405,9 +427,9 @@
       alert_faq_start_q: "いつから配信されますか？",
       alert_faq_start_a:
         "決済後、次回の日次更新から配信されます。選択した分野で新たに検出された更新や締切リマインダーがある朝に配信し、お知らせする内容がない朝は配信しません。",
-      alert_faq_contents_q: "ダイジェストには何が含まれますか？",
-      alert_faq_contents_a:
-        "選択した分野で本ダッシュボードが初めて検出した更新（英語タイトル、日本語の原題、段階、日本語の公式情報源へのリンク）と、近く締切を迎える意見募集です。「新たに検出」は新しい法令や規制を意味しません。要約は確認の優先順位付けのためのものであり、法的助言ではありません。",
+      alert_faq_newly_q: "「新たに検出」とはどういう意味ですか？",
+      alert_faq_newly_a:
+        "本ダッシュボードが監視している日本の公式情報源で、その項目を初めて検出したという意味です。新しい法令や規制であること、または制定・改正・政府による初回公表の日付を意味するものではありません。要約は確認の優先順位付けのためのものであり、法的助言ではありません。",
       alert_faq_change_q: "分野を変更するには？",
       alert_faq_change_a: "分野は決済時に選択します。別の分野に変更する場合は、契約管理ページで現在の契約を解約し、新しい分野で改めてお申し込みください。",
       alert_faq_cancel_q: "解約やお支払い情報の変更は？",
@@ -622,14 +644,26 @@
       alert_plan_label: "邮件提醒",
       alert_plan_title: "每日邮件摘要",
       alert_plan_price_monthly: "每月19美元",
-      alert_plan_price_yearly: "或每年190美元",
-      alert_plan_feature_area: "结账时选择一个领域或全部领域",
-      alert_plan_feature_daily: "每天上午（日本时间）：本仪表板在您所选领域新检测到的更新",
-      alert_plan_feature_deadlines: "官方来源提供结构化数据时，在公开征求意见截止前7天、前3天及当天提醒",
-      alert_plan_feature_self_serve: "结账后自动开始；可随时自行取消或更改付款信息",
+      alert_plan_price_yearly: "或每年190美元（相当于10个月的费用）",
+      alert_plan_intro:
+        "每天上午通过邮件发送本仪表板在您所选领域新检测到的日本法律与监管更新，您无需自行查看仪表板。",
+      alert_plan_contents_title: "每封邮件包含",
+      alert_plan_feature_daily: "您所选领域新检测到的更新（同一更新只列出一次）",
+      alert_plan_feature_item:
+        "每条更新的英文标题、日文原题、阶段、来源、发布日期、AI摘要（如有）以及日文官方原始来源链接",
+      alert_plan_feature_deadlines:
+        "公开征求意见截止提醒（截止前7天、前3天及当天；官方来源提供结构化数据时）",
+      alert_plan_terms_title: "使用方式",
+      alert_plan_feature_area: "在 Stripe 结账页面选择一个领域或全部领域",
+      alert_plan_feature_schedule: "仅在有内容可报告的上午（日本时间）发送，其他日子不发送",
+      alert_plan_feature_language: "邮件以英文撰写（附日文原标题）",
+      alert_plan_feature_self_serve:
+        "结账后从下一次每日更新开始；可随时自行取消、切换按月或按年付费、更改接收邮箱",
       alert_plan_subscribe_monthly: "按月订阅",
       alert_plan_subscribe_yearly: "按年订阅",
       alert_plan_unavailable: "邮件订阅尚未开放。下方的免费订阅源现已可用。",
+      alert_plan_compare:
+        "下方的免费订阅源包含相同的更新，供您自行查看；付费摘要则每天上午发送到您的邮箱，并通过邮件提醒截止日期。",
       alert_plan_note: "结账和计费由 Stripe 处理。提醒邮件仅供监测参考，不构成法律建议；应以日文官方原始来源为准。",
       alert_plan_manage: "管理或取消现有订阅",
       alert_feeds_title: "免费订阅源",
@@ -640,9 +674,9 @@
       alert_faq_title: "订阅前须知",
       alert_faq_start_q: "摘要何时开始发送？",
       alert_faq_start_a: "从结账后的下一次每日更新开始。当您所选领域有新检测到的更新或截止日期提醒时，于当天上午发送；没有可报告内容时不发送。",
-      alert_faq_contents_q: "摘要包含哪些内容？",
-      alert_faq_contents_a:
-        "本仪表板在您所选领域首次检测到的更新（英文标题、日文原题、阶段及日文官方原始来源链接），以及即将截止的公开征求意见。“新检测到”并不表示新的法律或法规。摘要仅用于初步筛选，不构成法律建议。",
+      alert_faq_newly_q: "“新检测到”是什么意思？",
+      alert_faq_newly_a:
+        "指本仪表板首次在其监测的日本官方来源中发现该条目。它并不表示新的法律或法规，也不代表制定、修订或政府首次发布的日期。摘要仅用于初步筛选，不构成法律建议。",
       alert_faq_change_q: "如何更改领域？",
       alert_faq_change_a: "领域在结账时选择。如需关注其他领域，请在订阅管理页面取消当前订阅，然后以新的领域重新订阅。",
       alert_faq_cancel_q: "如何取消订阅或更新付款信息？",

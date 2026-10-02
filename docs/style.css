@@ -1374,6 +1374,42 @@ code {
   margin-top: 4px;
 }
 
+.alert-plan-intro {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.alert-plan-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 22px;
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.alert-plan-details-title {
+  margin: 0;
+  color: #e3cf9f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.alert-plan-details .alert-plan-features {
+  margin-top: 6px;
+}
+
+.alert-plan-compare {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
 .alert-plan-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1709,6 +1745,9 @@ code {
   }
   .alert-plan-price {
     align-items: flex-start;
+  }
+  .alert-plan-details {
+    grid-template-columns: 1fr;
   }
   .alert-plan-subscribe {
     justify-content: center;

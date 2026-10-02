@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Japan Legal Reform Watch by LegalOS — a free English-language dashboard of Japanese legal, regulatory, public comment, and administrative updates for foreign companies and compliance teams." />
   <title>Japan Legal Reform Watch by LegalOS</title>
-  <link rel="stylesheet" href="./style.css?v=self-serve-alerts-20260928" />
+  <link rel="stylesheet" href="./style.css?v=checkout-links-20261002" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -117,15 +117,31 @@
           </div>
           <p class="alert-plan-price">
             <strong data-i18n="alert_plan_price_monthly">US$19/month</strong>
-            <span data-i18n="alert_plan_price_yearly">or US$190/year</span>
+            <span data-i18n="alert_plan_price_yearly">or US$190/year (the price of 10 months)</span>
           </p>
         </div>
-        <ul class="alert-plan-features">
-          <li data-i18n="alert_plan_feature_area">Choose one area, or all areas, at checkout</li>
-          <li data-i18n="alert_plan_feature_daily">Each morning (JST): updates newly detected by this dashboard in your area</li>
-          <li data-i18n="alert_plan_feature_deadlines">Public-comment deadline reminders 7 days, 3 days, and on the closing day, when structured official data is available</li>
-          <li data-i18n="alert_plan_feature_self_serve">Starts automatically after checkout; cancel or change billing yourself at any time</li>
-        </ul>
+        <p class="alert-plan-intro" data-i18n="alert_plan_intro">
+          Receive an email each morning with the Japanese legal and regulatory updates that this dashboard has newly detected in the area you choose, so you do not need to check the dashboard yourself.
+        </p>
+        <div class="alert-plan-details">
+          <div>
+            <h4 class="alert-plan-details-title" data-i18n="alert_plan_contents_title">Each email includes</h4>
+            <ul class="alert-plan-features">
+              <li data-i18n="alert_plan_feature_daily">Updates newly detected in your area, each listed once</li>
+              <li data-i18n="alert_plan_feature_item">For each update: the English title, the original Japanese title, the stage, the source, the publication date, an AI summary where available, and a link to the original Japanese official source</li>
+              <li data-i18n="alert_plan_feature_deadlines">Public-comment deadline reminders 7 days and 3 days before closing and on the closing day, when structured official data is available</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="alert-plan-details-title" data-i18n="alert_plan_terms_title">How it works</h4>
+            <ul class="alert-plan-features">
+              <li data-i18n="alert_plan_feature_area">Choose one area, or all areas, on the Stripe checkout page</li>
+              <li data-i18n="alert_plan_feature_schedule">Sent on mornings (JST) with something to report; no email on other days</li>
+              <li data-i18n="alert_plan_feature_language">Emails are in English and include the original Japanese titles</li>
+              <li data-i18n="alert_plan_feature_self_serve">Starts with the next daily update after checkout; cancel, switch between monthly and yearly, or change the delivery email at any time</li>
+            </ul>
+          </div>
+        </div>
         <div id="alert-plan-actions" class="alert-plan-actions" hidden>
           <a
             id="alert-subscribe-monthly"
@@ -146,6 +162,9 @@
         </div>
         <p id="alert-plan-unavailable" class="alert-plan-unavailable" data-i18n="alert_plan_unavailable">
           Email subscriptions are not open yet. The free feeds below are available now.
+        </p>
+        <p class="alert-plan-compare" data-i18n="alert_plan_compare">
+          The free feeds below carry the same updates for you to check yourself; the digest delivers them to your inbox and adds deadline reminders by email.
         </p>
         <p class="alert-plan-note" data-i18n="alert_plan_note">
           Checkout and billing are handled by Stripe. Alert emails are monitoring aids, not legal advice; original Japanese official sources remain authoritative.
@@ -197,8 +216,8 @@
           <p data-i18n="alert_faq_start_a">From the next daily update after checkout. A digest is sent on mornings with newly detected updates or a deadline reminder in your area, and skipped on mornings with nothing to report.</p>
         </details>
         <details>
-          <summary data-i18n="alert_faq_contents_q">What does the digest contain?</summary>
-          <p data-i18n="alert_faq_contents_a">Updates first detected by this dashboard in your area, with the English title, the original Japanese title, the stage, and a link to the original Japanese official source, plus upcoming public-comment deadlines. “Newly detected” does not mean a new law or regulation. Summaries are for triage and are not legal advice.</p>
+          <summary data-i18n="alert_faq_newly_q">What does “newly detected” mean?</summary>
+          <p data-i18n="alert_faq_newly_a">That this dashboard found the item for the first time in an official Japanese source it monitors. It does not mean a new law or regulation, or the date of enactment, amendment, or first government publication. Summaries are for triage and are not legal advice.</p>
         </details>
         <details>
           <summary data-i18n="alert_faq_change_q">How do I change the area?</summary>
@@ -452,8 +471,8 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=self-serve-alerts-20260928"></script>
-  <script src="alerts-config.js?v=self-serve-alerts-20260928"></script>
-  <script src="app.js?v=self-serve-alerts-20260928"></script>
+  <script src="i18n.js?v=checkout-links-20261002"></script>
+  <script src="alerts-config.js?v=checkout-links-20261002"></script>
+  <script src="app.js?v=checkout-links-20261002"></script>
 </body>
 </html>

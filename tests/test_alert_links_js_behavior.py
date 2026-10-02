@@ -39,6 +39,7 @@ class TestAlertLinkJavaScriptBehavior(unittest.TestCase):
                 trustedIntegrationUrl,
                 alertCheckoutUrl,
                 alertManageUrl,
+                filters,
               };
               ` +
               source.slice(closingIndex);
@@ -47,6 +48,16 @@ class TestAlertLinkJavaScriptBehavior(unittest.TestCase):
               checkoutLinks: {
                 monthly: "https://buy.stripe.com/monthly-link",
                 yearly: "https://buy.stripe.com/yearly-link",
+              },
+              localizedCheckoutLinks: {
+                ja: {
+                  monthly: "https://buy.stripe.com/ja-monthly",
+                  yearly: "https://buy.stripe.com/ja-yearly?utm_source=dashboard",
+                },
+                "zh-Hans": {
+                  monthly: "https://buy.stripe.com/zh-monthly",
+                  yearly: "https://buy.stripe.com/zh-yearly",
+                },
               },
               manageSubscriptionUrl: "https://billing.stripe.com/p/login/abc123",
             };
@@ -68,11 +79,37 @@ class TestAlertLinkJavaScriptBehavior(unittest.TestCase):
             vm.runInNewContext(source, context, { filename: appPath });
             const helpers = context.window.__JLRW_ALERT_TEST__;
 
-            assert.equal(helpers.alertCheckoutUrl("monthly"), "https://buy.stripe.com/monthly-link");
-            assert.equal(helpers.alertCheckoutUrl("yearly"), "https://buy.stripe.com/yearly-link");
+            // English opens the English link with the Stripe page pinned to English,
+            // the language its area list is written in.
+            assert.equal(helpers.filters.lang, "en");
+            assert.equal(helpers.alertCheckoutUrl("monthly"), "https://buy.stripe.com/monthly-link?locale=en");
+            assert.equal(helpers.alertCheckoutUrl("yearly"), "https://buy.stripe.com/yearly-link?locale=en");
             // Anything that is not "yearly" falls back to the monthly link.
-            assert.equal(helpers.alertCheckoutUrl("team"), "https://buy.stripe.com/monthly-link");
+            assert.equal(helpers.alertCheckoutUrl("team"), "https://buy.stripe.com/monthly-link?locale=en");
             assert.equal(helpers.alertManageUrl(), "https://billing.stripe.com/p/login/abc123");
+
+            // Japanese and Chinese open their own links; existing query parameters stay.
+            helpers.filters.lang = "ja";
+            assert.equal(helpers.alertCheckoutUrl("monthly"), "https://buy.stripe.com/ja-monthly?locale=ja");
+            assert.equal(
+              helpers.alertCheckoutUrl("yearly"),
+              "https://buy.stripe.com/ja-yearly?utm_source=dashboard&locale=ja"
+            );
+            helpers.filters.lang = "zh-Hans";
+            assert.equal(helpers.alertCheckoutUrl("monthly"), "https://buy.stripe.com/zh-monthly?locale=zh");
+            assert.equal(helpers.alertCheckoutUrl("yearly"), "https://buy.stripe.com/zh-yearly?locale=zh");
+
+            // Without a link for the language (not yet created, or rejected as
+            // untrusted), the English link is used exactly as configured: no
+            // locale is forced onto an English area list.
+            for (const missing of ["", undefined, "https://evil.example/zh", "http://buy.stripe.com/zh"]) {
+              config.localizedCheckoutLinks["zh-Hans"].monthly = missing;
+              assert.equal(helpers.alertCheckoutUrl("monthly"), "https://buy.stripe.com/monthly-link", String(missing));
+            }
+            config.localizedCheckoutLinks = undefined;
+            helpers.filters.lang = "ja";
+            assert.equal(helpers.alertCheckoutUrl("yearly"), "https://buy.stripe.com/yearly-link");
+            helpers.filters.lang = "en";
 
             for (const bad of [
               "http://buy.stripe.com/monthly-link",
