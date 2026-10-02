@@ -87,17 +87,17 @@
     "last_checked": "2026-09-08",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the provided metadata; the record indicates a promulgation and effective date of 2020-06-24, but exact provisions and current status should be verified against the authoritative Japanese source. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-01T00:47:06Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "e-Gov法令検索の更新一覧によると、「科学技術基本法等の一部を改正する法律」（令和二年法律第六十三号）に関連する情報が掲載されています。原文では、対象法令として中小企業等経営強化法（平成十一年法律第十八号）が示され、公布日および施行日はいずれも2020年6月24日と記載されています。",
     "business_impact_ja": "科学技術関連法制の改正に伴う関連法令の改正であり、対象法令に該当する事業活動を行う場合には、関連規定を確認する必要が生じる可能性があります。",
     "recommended_action_ja": "改正内容の具体的な範囲や適用関係については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
-    "ja_summary_model": "claude-opus-4-8",
-    "confidence": "medium",
-    "ai_notes": "Based only on the provided metadata; the record indicates a promulgation and effective date of 2020-06-24, but exact provisions and current status should be verified against the authoritative Japanese source. Preliminary labels are keyword-based and not authoritative.",
-    "summary_source": "claude",
-    "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-516d87b1a184852c",
@@ -115,16 +115,16 @@
     "last_checked": "2026-09-08",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on limited metadata; the raw summary lists an enforcement date of 2021-04-01 but this should be verified against the authoritative Japanese source. The relationship between the amending act and the referenced SME management law is not fully clear from the metadata. Preliminary labels are keyword-based triage only.",
+    "summarized_at": "2026-10-01T00:47:06Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "e-Gov法令検索の法令更新一覧に、科学技術基本法等の一部を改正する法律（令和二年法律第六十三号）に関する情報が掲載されています。メタデータによれば、対象法令として中小企業等経営強化法（平成十一年法律第十八号）が示され、公布日は2020年6月24日、施行日は2021年4月1日とされています。",
     "business_impact_ja": "科学技術関連の制度や中小企業の経営強化に関わる法令改正が含まれるとされるため、該当分野で事業を行う場合には影響が生じる可能性があります。具体的な影響範囲は原文の確認によって精査する必要があると考えられます。",
     "recommended_action_ja": "記載内容は暫定的なモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正内容および施行日をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
-    "ja_summary_model": "claude-opus-4-8",
-    "confidence": "medium",
-    "ai_notes": "Based on limited metadata; the raw summary lists an enforcement date of 2021-04-01 but this should be verified against the authoritative Japanese source. The relationship between the amending act and the referenced SME management law is not fully clear from the metadata. Preliminary labels are keyword-based triage only.",
-    "summary_source": "claude",
-    "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8"
   }
 ]

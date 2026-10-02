@@ -6,25 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Food / Agriculture
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-19a17cd9dc66b168-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20260901T000000Z
-DTSTART;VALUE=DATE:20261001
-DTEND;VALUE=DATE:20261002
-SUMMARY:Public comment closes: Draft Amendments on New Food Additive Design
- ation and Standards under Food Sanitation Act Rules
-DESCRIPTION:Closes 2026-10-01 23:59 JST.\nOriginal title: 「食品衛生
- 法施行規則の一部を改正する内閣府令（案）及び食品
- 、添加物等の規格基準の一部を改正する告示（案）」
- （添加物の新規指定及び規格基準の改正）に関する御
- 意見の募集について\ne-Gov Public Comment\nOfficial source: https:
- //public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=2351
- 10034&Mode=0\nMonitoring aid only\; not legal advice or an official transl
- ation. Original Japanese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=235110034&Mode=0
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-23d90cb70d5a607e-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20260910T000000Z
 DTSTART;VALUE=DATE:20261008
@@ -116,5 +97,25 @@ DESCRIPTION:Closes 2026-10-25 23:59 JST.\nOriginal title: 「飼料及び
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=550004412&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-9b0a01b0929fe1c6-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261002T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Public comment closes: Draft amendment to Economic Security Promoti
+ on Act order on designated infrastructure providers (public comment)
+DESCRIPTION:Closes 2026-10-31 12:00 JST.\nOriginal title: 内閣府・財
+ 務省・農林水産省関係経済施策を一体的に講ずること
+ による安全保障の確保の推進に関する法律に基づく特
+ 定社会基盤事業者の指定等に関する命令の一部を改正
+ する命令案についての意見・情報の募集について\ne-Gov 
+ Public Comment\nOfficial source: https://public-comment.e-gov.go.jp/servle
+ t/Public?CLASSNAME=PCMMSTDETAIL&id=550004415&Mode=0\nMonitoring aid only\;
+  not legal advice or an official translation. Original Japanese official s
+ ources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=550004415&Mode=0
 END:VEVENT
 END:VCALENDAR

@@ -180,6 +180,36 @@
     }
   },
   {
+    "id": "raw-45d1b59245a837c6",
+    "title_en": "Ministerial Ordinance Amending Corporation Tax Act Enforcement Regulations (promulgated 2023; effective 2026-10-01)",
+    "title_ja": "法人税法施行規則の一部を改正する省令",
+    "area": "Tax / Stamp Duty",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "This item is a Ministry of Finance ordinance (Reiwa 5 MOF Ordinance No. 13) amending the Enforcement Regulations of the Corporation Tax Act (Showa 40 MOF Ordinance No. 12). The metadata lists a promulgation date of 2023-03-31 and an enforcement date of 2026-10-01, appearing in the e-Gov law update list dated 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Companies subject to Japanese corporation tax may be affected by changes to the enforcement regulations, but the nature and scope of any impact cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amended provisions, their effective date, and any applicability to your situation, ideally with qualified tax counsel.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=340M50000040012_20261001_505M60000040013",
+    "published_at": "2023-03-31",
+    "last_checked": "2026-10-02",
+    "relevance_score": 30.0,
+    "first_seen_at": "2026-10-02",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and basic metadata (law numbers and dates); the substance of the amendment is unknown. The 'In Force' stage label is a preliminary keyword-based label and was not independently verified; the metadata lists an enforcement date of 2026-10-01, which should be checked against the official source.",
+    "summarized_at": "2026-10-02T00:36:41Z",
+    "summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "《法人税法施行规则》部分修订省令（2023年公布，2026-10-01生效）",
+        "summary": "本条目为财务省令（令和5年财务省令第13号），修订《法人税法施行规则》（昭和40年财务省令第12号）。元数据列出公布日期为2023-03-31，生效日期为2026-10-01，出现在日期为2026-10-01的e-Gov法令更新列表中。所提供的元数据未包含修订的具体内容。",
+        "business_impact": "适用日本法人税的公司可能受到施行规则变更的影响，但具体影响的性质和范围无法从现有信息中确定。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认实际修订的条款、其生效日期及其对自身情况的适用性，理想情况下可考虑咨询具备资质的税务顾问。"
+      }
+    }
+  },
+  {
     "id": "raw-7a9001ff6b7f6eb3",
     "title_en": "Ministerial Ordinance Partially Amending the Regulations for Implementation of Vaccinations",
     "title_ja": "予防接種実施規則の一部を改正する省令",
@@ -231,7 +261,6 @@
     "last_checked": "2026-09-30",
     "relevance_score": 14.0,
     "first_seen_at": "2026-09-30",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《修订金融商品交易法等的法律》预定生效（2023-11-29）",
@@ -239,7 +268,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-b31f92554c2e2b70",
@@ -425,17 +455,17 @@
     "last_checked": "2026-09-11",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata (title, law numbers, and listed dates); specific amended provisions and their current status are unverified. The metadata lists a promulgation date of 2023-03-31 and an enforcement date of 2026-05-21, which should be confirmed against the official source.",
+    "summarized_at": "2026-10-01T00:47:06Z",
+    "summary_model": "claude-opus-4-8",
     "summary_ja": "地方税法（昭和二十五年法律第二百二十六号）の一部を改正する法律（令和五年法律第一号）に関する法令更新情報です。原文によれば、公布日は2023年3月31日、施行日は2026年5月21日とされています。",
     "business_impact_ja": "地方税に関する制度改正であることから、事業活動における税務上の取扱いに影響が生じる可能性があります。",
     "recommended_action_ja": "改正内容および施行時期の詳細については、e-Gov法令検索等の日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-13T23:00:30Z",
-    "ja_summary_model": "claude-opus-4-8",
-    "confidence": "medium",
-    "ai_notes": "Based only on metadata (title, law numbers, and listed dates); specific amended provisions and their current status are unverified. The metadata lists a promulgation date of 2023-03-31 and an enforcement date of 2026-05-21, which should be confirmed against the official source.",
-    "summary_source": "claude",
-    "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8"
   },
   {
     "id": "raw-025ac734359af0ea",
