@@ -6,10 +6,14 @@ has to click through the Stripe dashboard:
 
 1. the Product ``Japan Legal Reform Watch — Daily Email Digest``;
 2. a monthly and a yearly USD Price;
-3. one Payment Link per Price, each with a required ``Monitoring area``
-   dropdown built from alert_common.CHANNELS (the dashboard UI only allows 10
-   dropdown options; the API allows 200, which is why this is a script) and a
-   redirect to the dashboard's checkout follow-up page;
+3. one Payment Link per Price and dashboard language (English, Japanese,
+   Simplified Chinese), each with a required area dropdown built from
+   alert_common.CHANNELS (the Stripe dashboard only allows 10 dropdown options;
+   the API allows 200, which is why this is a script) and a redirect to the
+   dashboard's checkout follow-up page. Stripe does not translate custom-field
+   labels, so each language needs its own link; the option values are the same
+   in every language, so the digest treats all links alike. Links created before
+   languages existed carry no language tag and are kept as the English links;
 4. a customer-portal configuration with a no-code login page, where customers
    cancel, switch monthly/yearly, change their delivery email, update cards,
    and download invoices themselves;
@@ -41,7 +45,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
-from alert_common import CHANNELS, DASHBOARD_URL  # noqa: E402
+from alert_common import CHANNELS, CHECKOUT_LANGUAGES, DASHBOARD_URL, channel_label  # noqa: E402
 
 STRIPE_API = "https://api.stripe.com"
 USER_AGENT = "jlrw-alert-setup/1"
@@ -61,11 +65,28 @@ PLAN_PARAM = {"alert_monthly": "monthly", "alert_yearly": "yearly"}
 THANK_YOU_URL = DASHBOARD_URL + "alerts/thank-you.html"
 PRIVACY_POLICY_URL = "https://legal-gpt.com/privacy-policy/"
 AREA_FIELD_KEY = "area"
-AREA_FIELD_LABEL = "Monitoring area"
-SUBMIT_MESSAGE = (
-    "Alert emails are monitoring aids, not legal advice. Original Japanese official sources remain "
-    "authoritative. You can cancel at any time from the subscription portal linked in every email."
-)
+# Stripe limits: field label <= 50 characters, submit message <= 1200.
+AREA_FIELD_LABELS = {
+    "en": "Monitoring area",
+    "ja": "配信を受ける分野",
+    "zh-Hans": "接收邮件的领域",
+}
+# The digest email is written in English whatever the checkout language, so the
+# Japanese and Chinese checkouts say so next to the subscribe button.
+SUBMIT_MESSAGES = {
+    "en": (
+        "Alert emails are monitoring aids, not legal advice. Original Japanese official sources remain "
+        "authoritative. You can cancel at any time from the subscription portal linked in every email."
+    ),
+    "ja": (
+        "アラートメールは英語で配信されます（日本語の原題を併記）。モニタリングの補助であり、法的助言ではありません。"
+        "日本語の公式情報源が優先します。各メールに記載の契約管理ページから、いつでも解約できます。"
+    ),
+    "zh-Hans": (
+        "提醒邮件以英文发送（附日文原标题），仅供监测参考，不构成法律建议；应以日文官方原始来源为准。"
+        "您可随时通过每封邮件中的订阅管理链接取消订阅。"
+    ),
+}
 LEGACY_PAYMENT_LINK_URLS = frozenset(
     {
         "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00",  # retired Pro pilot
@@ -110,33 +131,40 @@ def flatten_params(value: Any, prefix: str = "") -> list[tuple[str, str]]:
     return pairs
 
 
-def area_dropdown_options() -> list[dict[str, str]]:
-    return [{"label": channel.label, "value": channel.value} for channel in CHANNELS]
+def area_dropdown_options(language: str = "en") -> list[dict[str, str]]:
+    return [{"label": channel_label(channel, language), "value": channel.value} for channel in CHANNELS]
 
 
-def payment_link_params(role: str, price_id: str) -> dict[str, Any]:
+def thank_you_url(role: str, language: str) -> str:
+    query = {"plan": PLAN_PARAM[role]}
+    if language != "en":
+        query["lang"] = language
+    return f"{THANK_YOU_URL}?{urlencode(query)}"
+
+
+def payment_link_params(role: str, price_id: str, language: str = "en") -> dict[str, Any]:
     return {
         "line_items": [{"price": price_id, "quantity": 1}],
         "custom_fields": [
             {
                 "key": AREA_FIELD_KEY,
-                "label": {"type": "custom", "custom": AREA_FIELD_LABEL},
+                "label": {"type": "custom", "custom": AREA_FIELD_LABELS[language]},
                 "type": "dropdown",
                 "optional": False,
-                "dropdown": {"options": area_dropdown_options()},
+                "dropdown": {"options": area_dropdown_options(language)},
             }
         ],
         "after_completion": {
             "type": "redirect",
-            "redirect": {"url": f"{THANK_YOU_URL}?plan={PLAN_PARAM[role]}"},
+            "redirect": {"url": thank_you_url(role, language)},
         },
         "submit_type": "subscribe",
         "billing_address_collection": "auto",
         "allow_promotion_codes": True,
         "tax_id_collection": {"enabled": True},
-        "custom_text": {"submit": {"message": SUBMIT_MESSAGE}},
+        "custom_text": {"submit": {"message": SUBMIT_MESSAGES[language]}},
         "subscription_data": {"metadata": {"jlrw_role": "alert_digest"}},
-        "metadata": {"jlrw_role": role, "jlrw_price": price_id},
+        "metadata": {"jlrw_role": role, "jlrw_price": price_id, "jlrw_language": language},
     }
 
 
@@ -227,9 +255,20 @@ class Stripe:
                 return
 
 
-def _role(obj: Mapping[str, Any]) -> str:
+def _metadata(obj: Mapping[str, Any], key: str) -> str:
     metadata = obj.get("metadata")
-    return metadata.get("jlrw_role", "") if isinstance(metadata, dict) else ""
+    value = metadata.get(key, "") if isinstance(metadata, dict) else ""
+    return value if isinstance(value, str) else ""
+
+
+def _role(obj: Mapping[str, Any]) -> str:
+    return _metadata(obj, "jlrw_role")
+
+
+def _language(link: Mapping[str, Any]) -> str:
+    # Links created before checkout languages existed have no tag; they are the
+    # live English links and must be found again, not replaced.
+    return _metadata(link, "jlrw_language") or "en"
 
 
 def run(stripe: Stripe, *, apply: bool, deactivate_legacy: bool, log: Callable[[str], None] = print) -> dict[str, Any]:
@@ -281,32 +320,31 @@ def run(stripe: Stripe, *, apply: bool, deactivate_legacy: bool, log: Callable[[
         else:
             price_ids[role] = f"<new {role} price>"
 
-    # 3. Payment links (and the legacy pilot links in the same pass)
+    # 3. Payment links, one per price and checkout language (and the legacy
+    # pilot links in the same pass)
     active_links = list(stripe.list("/v1/payment_links", [("active", "true")]))
-    links: dict[str, str] = {}
+    links: dict[str, dict[str, str]] = {language: {} for language in CHECKOUT_LANGUAGES}
     for role, _, _ in PRICES:
-        match = next(
-            (
-                link
-                for link in active_links
-                if _role(link) == role and link.get("metadata", {}).get("jlrw_price") == price_ids[role]
-            ),
-            None,
-        )
-        if match:
-            links[role] = match.get("url", "")
-            continue
-        actions.append(f"create payment link {role}")
-        if apply:
-            created = stripe.post("/v1/payment_links", payment_link_params(role, price_ids[role]))
-            links[role] = created.get("url", "")
-        else:
-            links[role] = f"<new {role} link>"
-        # A link for an older price of the same role stops selling the old price.
-        for stale in (link for link in active_links if _role(link) == role):
-            actions.append(f"deactivate superseded {role} link")
+        plan = PLAN_PARAM[role]
+        for language in CHECKOUT_LANGUAGES:
+            # Only links of this role AND language are candidates, so adding a
+            # language never touches the links of the others.
+            slot = [link for link in active_links if _role(link) == role and _language(link) == language]
+            match = next((link for link in slot if _metadata(link, "jlrw_price") == price_ids[role]), None)
+            if match:
+                links[language][plan] = match.get("url", "")
+                continue
+            actions.append(f"create {language} payment link {role}")
             if apply:
-                stripe.post(f"/v1/payment_links/{stale['id']}", {"active": False})
+                created = stripe.post("/v1/payment_links", payment_link_params(role, price_ids[role], language))
+                links[language][plan] = created.get("url", "")
+            else:
+                links[language][plan] = f"<new {language} {role} link>"
+            # A link for an older price in the same slot stops selling that price.
+            for stale in slot:
+                actions.append(f"deactivate superseded {language} {role} link")
+                if apply:
+                    stripe.post(f"/v1/payment_links/{stale['id']}", {"active": False})
     result["payment_links"] = links
 
     legacy = [link for link in active_links if link.get("url") in LEGACY_PAYMENT_LINK_URLS]
@@ -369,9 +407,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     for action in result["actions"] or ["nothing to change"]:
         print(f"action: {action}")
     print(f"product_id: {result['product_id']}")
-    for role, url in result["payment_links"].items():
-        print(f"payment_link_{PLAN_PARAM[role]}: {url}")
+    for language, plans in result["payment_links"].items():
+        for plan, url in plans.items():
+            print(f"payment_link_{plan}_{language}: {url}")
     print(f"manage_url: {result['manage_url']}")
+    links = result["payment_links"]
+    print("docs/alerts-config.js values:")
+    print(f"  checkoutLinks: {json.dumps(links['en'])}")
+    localized = {language: plans for language, plans in links.items() if language != "en"}
+    print(f"  localizedCheckoutLinks: {json.dumps(localized)}")
     print(f"legacy_links_still_active: {result['legacy_links_active'] if not (args.apply and args.deactivate_legacy) else 0}")
     return 0
 

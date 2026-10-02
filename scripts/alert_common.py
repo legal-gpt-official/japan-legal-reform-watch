@@ -71,6 +71,58 @@ CHANNELS: tuple[Channel, ...] = (
 
 CHANNELS_BY_VALUE: dict[str, Channel] = {channel.value: channel for channel in CHANNELS}
 
+# Stripe never translates a Payment Link's custom-field labels, so the checkout
+# area list exists once per dashboard language (setup_alert_billing.py creates
+# one Payment Link per language). Only the labels differ: every link stores the
+# same channel ``value``, so the digest reads subscriptions from any link alike.
+CHECKOUT_LANGUAGES: tuple[str, ...] = ("en", "ja", "zh-Hans")
+
+# Keep equal to AREA_LABELS and opt_all_areas in docs/i18n.js, so the area a
+# visitor filtered on the dashboard has the same name at checkout (a test
+# enforces it). English uses Channel.label.
+AREA_LABELS: dict[str, dict[str, str]] = {
+    "ja": {
+        "Data / Privacy / AI": "データ・プライバシー・AI",
+        "Economic Security / FDI": "経済安全保障・対内直接投資",
+        "Antitrust / Fair Trade": "独占禁止・公正取引",
+        "Finance / AML": "金融・マネーロンダリング対策",
+        "Tax / Stamp Duty": "税務・印紙税",
+        "Labor / Employment": "労働・雇用",
+        "Energy / Environment": "エネルギー・環境",
+        "Consumer / Advertising": "消費者・広告",
+        "Corporate / Governance": "会社・ガバナンス",
+        "Transport / Infrastructure": "運輸・インフラ",
+        "Food / Agriculture": "食品・農林水産",
+        "Real Estate / Land Use": "不動産・土地利用",
+        "Public Safety / Disaster Management": "公共安全・防災",
+        "Healthcare / Pharmaceuticals": "医療・医薬品",
+    },
+    "zh-Hans": {
+        "Data / Privacy / AI": "数据 / 隐私 / AI",
+        "Economic Security / FDI": "经济安全 / 外商直接投资",
+        "Antitrust / Fair Trade": "反垄断 / 公平交易",
+        "Finance / AML": "金融 / 反洗钱",
+        "Tax / Stamp Duty": "税务 / 印花税",
+        "Labor / Employment": "劳动 / 雇佣",
+        "Energy / Environment": "能源 / 环境",
+        "Consumer / Advertising": "消费者 / 广告",
+        "Corporate / Governance": "公司 / 治理",
+        "Transport / Infrastructure": "运输 / 基础设施",
+        "Food / Agriculture": "食品 / 农业",
+        "Real Estate / Land Use": "房地产 / 土地利用",
+        "Public Safety / Disaster Management": "公共安全 / 灾害管理",
+        "Healthcare / Pharmaceuticals": "医疗 / 制药",
+    },
+}
+ALL_AREAS_LABELS: dict[str, str] = {"ja": "すべての分野", "zh-Hans": "全部领域"}
+
+
+def channel_label(channel: Channel, language: str = "en") -> str:
+    """The channel's name in a checkout language, falling back to English."""
+    if channel.area is None:
+        return ALL_AREAS_LABELS.get(language, channel.label)
+    return AREA_LABELS.get(language, {}).get(channel.area, channel.label)
+
 # Keep aligned with docs/app.js SOURCE_DISPLAY_NAMES; a test enforces that every
 # configured fetch source has an entry here.
 SOURCE_DISPLAY_NAMES = {

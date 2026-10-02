@@ -718,6 +718,7 @@
     refreshMobileToggleLabel();
     refreshSavedSearchDialog();
     relabelAlertFeedOptions();
+    syncAlertCheckoutLinks();
     setSavedSearchStatus(savedSearchStatusKey, savedSearchStatusIsError);
   }
 
@@ -1108,10 +1109,29 @@
     }
   }
 
-  function alertCheckoutUrl(plan) {
-    const links = ALERTS_CONFIG.checkoutLinks;
-    if (!links) return "";
+  // Stripe never translates a Payment Link's custom-field labels, so the area
+  // list at checkout is only in the language it was written in. Each dashboard
+  // language therefore has its own Payment Link (same prices and area values),
+  // and `locale` pins the rest of the Stripe page to that language. While a
+  // language has no link yet, the English link is used unchanged.
+  const CHECKOUT_LOCALES = { en: "en", ja: "ja", "zh-Hans": "zh" };
+
+  function stripeCheckoutLink(links, plan) {
+    if (!links || typeof links !== "object") return "";
     return trustedIntegrationUrl(plan === "yearly" ? links.yearly : links.monthly, "buy.stripe.com", "/");
+  }
+
+  function alertCheckoutUrl(plan) {
+    const lang = filters.lang;
+    const localized = ALERTS_CONFIG.localizedCheckoutLinks;
+    const ownLink =
+      lang === I18N.DEFAULT_LANG
+        ? stripeCheckoutLink(ALERTS_CONFIG.checkoutLinks, plan)
+        : stripeCheckoutLink(localized && localized[lang], plan);
+    if (!ownLink) return stripeCheckoutLink(ALERTS_CONFIG.checkoutLinks, plan);
+    const url = new URL(ownLink);
+    url.searchParams.set("locale", CHECKOUT_LOCALES[lang] || CHECKOUT_LOCALES.en);
+    return trustedIntegrationUrl(url.href, "buy.stripe.com", "/");
   }
 
   function alertManageUrl() {
@@ -1160,7 +1180,8 @@
     });
   }
 
-  function initAlerts() {
+  // Re-run on every language change: the checkout link depends on it.
+  function syncAlertCheckoutLinks() {
     const monthly = alertCheckoutUrl("monthly");
     const yearly = alertCheckoutUrl("yearly");
     setAlertLink(alertSubscribeMonthly, monthly);
@@ -1169,6 +1190,10 @@
     if (alertPlanActions) alertPlanActions.hidden = !available;
     if (alertPlanUnavailable) alertPlanUnavailable.hidden = available;
     setAlertLink(alertManageSubscription, available ? alertManageUrl() : "");
+  }
+
+  function initAlerts() {
+    syncAlertCheckoutLinks();
     relabelAlertFeedOptions();
     syncAlertFeedLinks();
   }
