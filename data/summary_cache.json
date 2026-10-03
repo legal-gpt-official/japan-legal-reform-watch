@@ -41765,7 +41765,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on Japanese title and metadata; the promulgation date and law numbers are as provided but the actual substantive changes are not described. Rule-based labels (Tax/Stamp Duty, Promulgated, Medium) are unverified triage context. Verify against the authoritative Japanese source.",
     "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする改正が掲載されています。改正法令は「租税特別措置法施行令の一部を改正する政令」(令和八年政令第九十八号)で、公布日は2026年3月31日と記載されています。提供されたメタデータには、改正の具体的内容や施行日に関する記載は含まれていません。",
+    "business_impact_ja": "租税特別措置法施行令の改正であるため、租税特別措置に関わる税務上の取扱いに影響する可能性があります。ただし、具体的な改正内容がメタデータからは確認できないため、影響の有無や程度は不明です。",
+    "recommended_action_ja": "改正政令の本文、改正内容および施行日について、e-Govや官報などの日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "7b9d50cfffc828afe6d40f77cd03f501b8ff410ffc42bc4e0a67e06831b60bf0": {
     "title_en": "Draft Landscape Restoration Project Guidelines Out for Public Comment",
@@ -42797,7 +42803,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and a duplicate summary line; specific amounts, dates, comment deadline, and affected parties are unverified. The rule-based labels (area 'Other', impact 'Low') are weak triage context only. This is an unofficial summary; the Japanese source is authoritative.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "総務省の新着情報として、電話に関するユニバーサルサービス制度に基づく交付金の額及び交付方法の認可、並びに負担金の額及び徴収方法の認可に対する意見募集が公表されています(公表日:2026年9月30日)。提供されたメタデータは題名と同内容の概要のみであり、募集期間、対象となる具体的な金額や方法、手続の詳細は確認できません。",
+    "business_impact_ja": "電話に関するユニバーサルサービス制度の交付金・負担金の額や徴収方法に関わる事項であるため、同制度の負担や交付に関係する事業者に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は、メタデータからは判断できません。",
+    "recommended_action_ja": "募集期間、認可案の内容及び提出方法については、総務省の公式ページ(日本語の原文)で最新の情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "2160d5c37b0b64d43cc2cc84c9da52b442096fbe14cb0546057908b80d1935b7": {
     "title_en": "FSA announces revision of Q&A on personal information protection in financial institutions",
@@ -42807,7 +42819,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and basic metadata; no summary text or details of the revisions were provided. The Q&A is presumed to be FSA guidance rather than a statute, but this is unverified. Rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "金融庁は、「金融機関における個人情報保護に関するQ&A」を改正した旨を公表しました(公表日は2026年9月29日、金融庁の新着情報による)。提供されたメタデータには本文要旨が含まれておらず、改正の具体的な内容や適用時期は確認できません。",
+    "business_impact_ja": "金融機関における個人情報の取扱いに関する解釈や運用の考え方に変更が含まれている可能性があり、関連する社内規程や運用の見直しが必要となる場合も考えられます。ただし、具体的な影響の有無や程度は、原文を確認しなければ判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用時期については、金融庁が公表している原文(https://www.fsa.go.jp/news/r8/sonota/20260928/20260928.html)をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "6073a7382845090c7b203a7910fe23bca3290013c35e6599a8312439b625dec9": {
     "title_en": "Public Comment: Draft Revision of Japanese Industrial Standards for Medical Devices",
@@ -42817,7 +42835,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the specific standards, proposed changes, and their scope are not provided and are unverified. This is a draft out for comment, not an adopted standard. Preliminary labels are keyword-based. Verify all details against the official Japanese source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの意見募集案件一覧に、「医療機器に係る日本産業規格の改正案に関する御意見の募集について」が掲載されています。案の公示日は2026年9月29日、受付締切は2026年11月28日23時59分とされており、カテゴリーは厚生、問合せ先は厚生労働省医薬局医療機器審査管理課と記載されています。提供されたメタデータには、改正案の具体的な内容や成立・施行の状況は含まれていません。",
+    "business_impact_ja": "医療機器に関わる事業者にとって、改正案の内容次第では関連する日本産業規格への対応に影響が生じる可能性があります。ただし、具体的な影響は改正案の本文が確認できない限り判断できないと考えられます。",
+    "recommended_action_ja": "意見募集の対象となっている改正案の内容および受付方法については、e-Govの案件ページ等の日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "32414e2d7e18d7bef33ca908172d6b6dd94ec5b54860950bb4d74183c0d5e377": {
     "title_en": "NTA: Explanation of Partial Revision of Corporate Tax Basic Circular (Interpretive Notice)",
@@ -42827,7 +42851,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the revisions is not provided. The 'Finance / AML' area label is a keyword-based triage label and appears to be a weak fit for a corporate tax circular. The relationship between the notice date (June 30, Reiwa 8) and the listed published date (2026-09-30) is unverified. Verify all details against the official Japanese source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "国税庁の新着・通達情報として、令和８年６月30日付課法２−９ほか１課共同「法人税基本通達等の一部改正について」（法令解釈通達）等の趣旨説明が公表されています。提供されたメタデータには改正内容の具体的な中身や適用時期は含まれておらず、詳細は原文の確認が必要です。",
+    "business_impact_ja": "法人税に関する通達の改正に関連する情報であるため、法人税の取扱いや実務運用に影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、提供された情報のみからは判断できません。",
+    "recommended_action_ja": "国税庁の公式サイトに掲載されている通達本文および趣旨説明を確認し、自社の税務処理への関係の有無を検討されることが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c2afc9c5131382de0cacab30fff697fab08e75831794c4e8f2b363f62a7c0cbb": {
     "title_en": "MLIT: Revision of Road Pavement Structure Ministerial Ordinance and Technical Standards (Announcement)",
@@ -42837,7 +42867,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the Japanese title and a generic 'press release' summary; the content, legal status (whether promulgated or in force), and effective dates are unverified. Rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "国土交通省は2026年9月30日付の報道発表として、「車道及び側帯の舗装の構造の基準に関する省令」の改正および「舗装の構造に関する技術基準」の改定について公表しました。題名には、新技術の導入促進による舗装の長寿命化に向けた取組であることが示されています。提供されたメタデータには本文の詳細がなく、改正・改定の具体的内容、公布や施行の時期などは確認できません。",
+    "business_impact_ja": "舗装の設計・施工・維持管理に関わる事業者にとって、技術基準の見直しにより新技術の採用や仕様の考え方に影響が及ぶ可能性があります。ただし、具体的な影響範囲は原文の内容次第であり、現時点のメタデータからは判断できません。",
+    "recommended_action_ja": "改正内容、対象範囲および適用時期については、国土交通省の報道発表ページおよび関連する省令・技術基準の原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "00b82b3f137e84214e9a4c20d577de362b5dd0163d69b3fc12f7995308b82786": {
     "title_en": "JFTC Press Release: Cease-and-Desist and Surcharge Orders Re: Kanto Condo Major Repair Contractors",
@@ -42847,7 +42883,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); the nature of the alleged violation, named parties, and surcharge amounts are unverified. Rule-based labels are preliminary and not legally verified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "公正取引委員会は2026年9月28日付の報道発表として、関東地区所在のマンションの管理組合が設計コンサル業者に委託して発注する大規模修繕工事の施工業者らに対する排除措置命令及び課徴金納付命令等について公表しています。提供されたメタデータは題名と「報道発表」との記載のみであり、命令の対象事業者、違反行為の内容、課徴金額などの詳細は確認できません。",
+    "business_impact_ja": "マンション大規模修繕工事の施工業者や、設計コンサル業者を介した発注・受注の実務に関わる事業者にとって、独占禁止法上の取扱いを確認する契機となる可能性があります。もっとも、具体的な影響の範囲は原文の内容に依存するため、本メタデータのみからは判断できません。",
+    "recommended_action_ja": "命令の内容や対象行為の詳細については、公正取引委員会の報道発表の原文および関連資料をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "8016cc72e11df2826e80e4cfb9d56116aa4a3882e270a7d39fd16d0f957ea865": {
     "title_en": "Designated Intractable Diseases: Draft Amendments to MHLW Notice and Diagnostic Criteria (Comment Results)",
@@ -42857,7 +42899,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the amendments, the comments received, and the final status are not provided. The dates (draft publication 2026/09/28, comment deadline 2026/10/29) appear inconsistent with a results announcement, so they may refer to the original comment period, and the item's publication date and stage should be verified against the official source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "厚生労働省健康・生活衛生局難病対策課に関し、指定難病の指定および病状の程度の一部改正(案)と「指定難病に係る診断基準及び重症度分類等について」の一部改正(案)について、意見募集の結果が公表された旨の案件です。メタデータには案の公示日が2026年9月28日、受付締切日時が2026年10月29日23時59分と記載されていますが、提供された情報からは改正の具体的内容や成立・公布・施行の状況は確認できません。",
+    "business_impact_ja": "指定難病の対象や診断基準・重症度分類に関わる改正案であるため、医療機関、医薬品・医療機器関連事業者、患者支援に関わる事業などで、制度運用に影響が及ぶ可能性が考えられます。ただし、具体的な影響の有無や程度は、提供された情報のみからは判断できません。",
+    "recommended_action_ja": "意見募集の結果および改正案の具体的内容、今後の手続の状況について、e-Govの案件詳細ページや厚生労働省の公表資料など日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f4225e1efe0651610d2bd309c96384374774a058328ec6478171cfcabeccd40a": {
     "title_en": "Cabinet Order Amending the Child Welfare Act Enforcement Order (promulgated 2026-05-20)",
@@ -42867,7 +42915,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and listing metadata; the substance of the amendments is not provided and is unverified. The rule-based labels (area, stage, impact level) are weak triage context, not legal conclusions. The official Japanese source is authoritative.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、児童福祉法施行令(昭和二十三年政令第七十四号)を対象として「児童福祉法施行令の一部を改正する政令」(令和八年政令第百七十号)が掲載されています。公布日は2026年5月20日、施行日は2027年2月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "児童福祉法施行令に関連する事業や業務を行う事業者・団体では、施行日(2027年2月1日)に向けて実務上の対応が必要となる可能性があります。ただし、具体的な影響の有無や範囲は、改正内容の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、官報およびe-Gov法令検索に掲載された日本語の公式原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "5ce9d39ee76d5d2c3fcb332c4739df641a1f2f0234da61fa59f2dfc23cf9f25a": {
     "title_en": "Cabinet Order Amending Enforcement Order of Special Taxation Measures Act (Reiwa 8 No. 98)",
@@ -42877,7 +42931,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and law-update metadata; the substance of the amendments is not provided and is unverified. The promulgation and effective dates are taken from the listing and should be checked against the official source. Rule-based labels (Tax / Stamp Duty, Medium impact) are weak triage context only.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする改正が掲載されています。改正法令は「租税特別措置法施行令の一部を改正する政令」(令和八年政令第九十八号)で、公布日は2026年3月31日、施行日は2026年12月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "租税特別措置に関する政令の改正であるため、税務上の取扱いや各種特例の適用要件に関わる可能性がありますが、具体的な影響範囲は改正内容の確認が必要と考えられます。施行日が2026年12月1日とされているため、自社の税務処理や社内手続との関係を事前に整理する必要が生じる可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Govや官報など日本語の公式情報源で改正政令の本文および関連資料をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "fd2f7d872640fb8b38c794f7f79b38efc32c0e89e3e0d7b530488efbe6a7f503": {
     "title_en": "Cabinet Order Amending Enforcement Order of the Special Taxation Measures Act (Reiwa 8 No. 98)",
@@ -42887,7 +42947,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided and is unverified. The rule-based labels (Tax / Stamp Duty, Scheduled to Take Effect, Medium impact) are preliminary triage labels, not legal conclusions. Dates reflect the metadata only and should be checked against the official source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を改正する政令(令和八年政令第九十八号)が掲載されています。メタデータ上、公布日は2026年3月31日、施行日は2027年1月1日とされており、更新一覧日は20260928と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "租税特別措置法施行令に関する改正であるため、税務上の取扱いに関わる事業者の実務に影響する可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正政令の条文および新旧対照表等を日本語の公式情報源(e-Gov法令検索、官報、所管官庁の公表資料など)で確認し、自社に関係する改正点の有無を検討することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "4fa5f90304226a9e677162ea3d8a30551172ef1f2d8d66ab77efb2abcc0b6be7": {
     "title_en": "Cabinet Order Amending the Special Taxation Measures Act Enforcement Order (Reiwa 8 No. 98)",
@@ -42897,7 +42963,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title, law numbers, and listed promulgation date; amended provisions and effective dates are not provided. The source URL contains a date string (20280101) that may relate to a later effective date, but this is unverified. The 'Promulgated' stage label is a preliminary keyword-based label, not a legal conclusion.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする改正法令「租税特別措置法施行令の一部を改正する政令」(令和八年政令第九十八号)が掲載されています。公布日は2026年3月31日と記載されていますが、提供された情報からは改正の具体的な内容や施行日は確認できません。",
+    "business_impact_ja": "租税特別措置に関する政令の改正であるため、税務上の取扱いに影響する可能性がありますが、具体的な影響範囲は改正内容を確認するまで判断できません。",
+    "recommended_action_ja": "改正の内容および施行時期については、e-Govに掲載された改正政令の本文や所管官庁の公表資料など、日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "ea39edc7c8cc64867d10c47ce1a75539eecaad04867455b1445711d8dcbd75cb": {
     "title_en": "Cabinet Order Amending Enforcement Order of Special Taxation Measures Act (Promulgated 2026-03-31)",
@@ -42907,7 +42979,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and law-update metadata (promulgation and enforcement dates as listed); the content of the amendments is not provided and must be verified against the official source. Labels are keyword-based and unverified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする改正の掲載があります。改正法令は「租税特別措置法施行令の一部を改正する政令」(令和八年政令第九十八号)で、公布日は2026年3月31日、施行日は2028年4月1日と記載されています。提供されたメタデータには改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "租税特別措置に関する課税上の取扱いに関わる改正である可能性があり、該当する税制措置を利用または検討している事業者には影響が及ぶ可能性があります。ただし、具体的な改正内容がメタデータから確認できないため、影響の有無や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容と施行日等については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "d671309754ea5f082f2a88569a82c531009e35a3e8f17034d2cc3b81fd2b6ab2": {
     "title_en": "Cabinet Order Amending the Order for Enforcement of the Special Taxation Measures Act (Reiwa 8 No. 98)",
@@ -42917,7 +42995,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments and effective dates were not provided and are unverified. The source URL suggests a possible later effective date (around 2026-11-26), but this is an inference from the URL and should be checked against the official text.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象として、「租税特別措置法施行令の一部を改正する政令」(令和八年政令第九十八号)が2026年3月31日に公布された旨が掲載されています。更新一覧日は20260928と記載されていますが、改正内容の具体的な中身や施行日は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "租税特別措置に関する政令の改正であるため、租税特別措置法に基づく税制上の取扱いに関わる事業者の税務処理に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となり、現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行時期については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f1aceb0eb28924df188ce7af2c5d37c0bcd2550a322579b12e28a759f6354fcd": {
     "title_en": "Cabinet Order Amending the Child Welfare Act Enforcement Order (Reiwa 8 Order No. 12)",
@@ -42927,7 +43011,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and listing metadata (promulgation and effective dates as stated); the content of the amendments is not provided and is unverified. Preliminary rule-based labels (area, stage, impact level) are weak triage context only and were not relied on for substance.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、児童福祉法施行令(昭和二十三年政令第七十四号)を対象とする「児童福祉法施行令の一部を改正する政令」(令和八年政令第十二号)が掲載されています。メタデータ上、公布日は2026年2月16日、施行日は2026年11月1日とされています。具体的な改正内容は提供情報からは確認できません。",
+    "business_impact_ja": "児童福祉法に基づく事業や制度に関与する事業者・団体にとって、施行令の改正内容によっては運用面に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正政令の本文および新旧対照表等を日本語の公式情報源(e-Gov法令検索、官報、所管官庁の公表資料)で確認し、自社の業務との関係を精査することをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "435c665d92e9ab236e5af30d9f7baf4c3ce10d0813538f132c5a75a83c8099d1": {
     "title_en": "Cabinet Order Amending Enforcement Order of Special Taxation Measures Act (eff. 2026-11-01)",
@@ -42937,7 +43027,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The enforcement date is as listed in the source and should be verified. Rule-based labels (area, stage, impact level) are preliminary and unverified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする「租税特別措置法施行令の一部を改正する政令」(令和七年政令第百二十七号)が掲載されています。公布日は2025年3月31日、施行日は2026年11月1日と記載されています。更新一覧日は20260928とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "租税特別措置に関する政令の改正であるため、税務上の取扱いや特例の適用要件に関係する事業者に影響が及ぶ可能性があります。ただし、具体的な改正内容が示されていないため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正政令の条文および施行日の内容について、e-Govをはじめとする日本語の公式情報源で原文をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "fca180e383cb8c159c9ba5b55d23192946ac552f7e7fc573a30757511fb58cda": {
     "title_en": "Cabinet Order Amending Enforcement Order of Special Taxation Measures Act (eff. 2027-01-01)",
@@ -42947,7 +43043,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and metadata fields from the law update list; amended provisions are not stated and the English is an unofficial summary. The area, stage, and impact labels are preliminary keyword-based triage labels and are unverified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、租税特別措置法施行令(昭和三十二年政令第四十三号)を対象とする改正法令として「租税特別措置法施行令の一部を改正する政令」(令和七年政令第百二十七号)が掲載されています。公布日は2025年3月31日、施行日は2027年1月1日と記載されています。提供されたメタデータには、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "税制上の特例措置を定める施行令の改正であるため、税務処理や申告実務の一部に影響する可能性があります。ただし、具体的な改正内容がメタデータからは確認できないため、影響の有無や程度は不明であり、施行日に向けた確認が必要になると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "9bb82417c7aafa947c7c2d756f88e58f4467706604951b7df174773d704ebf3b": {
     "title_en": "MLIT announcement: driver monitoring systems to be mandated via road vehicle safety standards amendment",
@@ -42957,7 +43059,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the Japanese title and a generic press-release label; no details of the amendment, its legal status, or its timing were provided and none are asserted. Preliminary labels are keyword-based and unverified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "国土交通省の報道発表(2026年9月30日付)として、「ドライバーモニタリングシステムを義務化します ~道路運送車両の保安基準等の改正について~」と題する情報が公表されています。提供されたメタデータは題名と「報道発表」という区分のみであり、対象車両の範囲、適用時期、改正の法的状態などの詳細は原文メタデータからは確認できません。",
+    "business_impact_ja": "題名からは、車両の保安基準に関する改正を通じて、自動車の設計・製造・販売・運行に関わる事業者に何らかの対応が求められる可能性があります。ただし、具体的な対象や時期は提供情報から読み取れないため、影響の程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "対象範囲や適用時期、手続の詳細については、国土交通省の報道発表の原文および関連する公式資料をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "693b7b87a8f7e62bd895205ed0db712cd5aa26ef8688ec50ae182026c98158f3": {
     "title_en": "Cabinet Order on Related Orders for Science Council of Japan Act (amends Public Servant Retirement Management Order)",
@@ -42967,7 +43075,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata from the update list; the actual amendment text, scope, and applicability are unverified. Area, stage, and impact labels are keyword-based triage values, not legal conclusions. Official Japanese source is authoritative.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧によると、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)が2026年9月16日に公布されたとされています。この政令により、「職員の退職管理に関する政令」(平成二十年政令第三百八十九号)が改正対象となり、施行日は2026年10月1日と記載されています。提供されたメタデータからは、具体的な改正内容までは確認できません。",
+    "business_impact_ja": "対象が国家公務員の退職管理に関する政令であるため、主として公的機関の運用に関わる改正であると考えられ、一般の事業者への直接的な影響は限定的である可能性があります。ただし、退職公務員との接点がある事業者や、日本学術会議との関係がある事業者には、確認が必要となる場面もあると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索の掲載条文や官報などの日本語の公式情報源でご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "35f57042441e388a2413ce0924ba0addf5e529eb8a3b56468074f959e24833ac": {
     "title_en": "Cabinet Order on related orders for Science Council of Japan Act implementation (amends rainwater use order)",
@@ -42977,7 +43091,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the e-Gov update-list metadata (titles, law numbers, dates); the substance of the amendment was not provided and is unverified. Preliminary rule-based labels were treated as weak context only.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧(更新一覧日:2026年9月29日)によれば、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)が2026年9月16日に公布されています。この政令による改正の対象として、「雨水の利用の推進に関する法律第二条第二項の法人を定める政令」(平成二十六年政令第百七十二号)が掲載されており、施行日は2026年10月1日とされています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "改正の具体的な内容が不明であるため、事業への影響の有無や程度は判断できませんが、雨水の利用の推進に関する法律上の法人の範囲に関わる場合には、関係する法人に影響が及ぶ可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容や関係条文への影響については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "112e2f6c346e11b2107b99aa963eebfd23d04b6f9647ca145ec597ba9dc69a37": {
     "title_en": "Ministerial Ordinance Amending Pension Payment Rules (Onkyu Kyuyo Saisoku), Reiwa 8 No. 109",
@@ -42987,7 +43107,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and metadata fields; the specific amendments are not stated. English statute names are unofficial translations, and the rule-based stage and impact labels were not independently verified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧(更新一覧日:2026年9月30日)によれば、「恩給給与細則等の一部を改正する省令」(令和八年総務省令第百九号)が2026年9月16日に公布され、同年10月1日の施行日が示されています。対象法令は、旧軍人等の遺族に対する恩給等の特例に関する法律の規定により給すべき扶助料又は改定すべき扶助料の請求手続に関する省令(昭和三十一年総理府令第九十三号)です。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "恩給等の扶助料の請求手続に関する省令の改正であるため、一般の事業者への影響は限定的である可能性があります。ただし、当該手続に関与する団体や関係者には、手続面での影響が生じる可能性が考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f86a1c81dfc695e8347b96696b6ba9a95b0cd4f7953533dfd10d16d24b18639f": {
     "title_en": "Cabinet Order on Related Order Updates for Science Council of Japan Act (Amends Public Servant Post-Retirement Order)",
@@ -42997,7 +43123,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and structured metadata; the substance of the amendments was not provided. The effective date of 2026-10-01 comes from the metadata and is unverified against the official text. The 'In Force' label is preliminary and rule-based, not a legal conclusion. The rendering of the amended order's name is an unofficial translation.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)による改正が掲載されています。対象法令は「職員の退職管理に関する政令」(平成二十年政令第三百八十九号)で、公布日は2026年9月16日、施行日は2026年10月1日と記載されています。更新一覧日は2026年9月29日とされています。",
+    "business_impact_ja": "対象は職員の退職管理に関する政令であり、国の職員の退職管理に関わる運用に関係する可能性がありますが、民間事業者への具体的な影響は提供された情報からは明らかではありません。公務員の再就職や官民の人事交流に関わる事業者では、関連する取扱いに影響が及ぶ可能性も考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Govなど日本語の公式情報源で改正政令および新旧対照の原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "62b3b793213039369816c55f889407c95e38289c755a39cb7bd0166424bf62d9": {
     "title_en": "Cabinet Order on related orders for Science Council of Japan Act enforcement (amends rainwater-use order)",
@@ -43007,7 +43139,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the amendment's substance is not provided. Preliminary labels (area 'Other', stage 'In Force', impact 'Medium') are keyword-based and unverified. This English is an unofficial summary; verify against the official Japanese source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月29日)によると、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)が2026年9月16日に公布され、同年10月1日を施行日とすると記載されています。この政令による改正の対象として、「雨水の利用の推進に関する法律第二条第二項の法人を定める政令」(平成二十六年政令第百七十二号)が挙げられています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "対象政令は、雨水の利用の推進に関する法律上の法人の範囲を定めるものであり、同法の対象法人に関わる事業者や団体には影響する可能性があります。ただし、改正内容が不明なため、実際の影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や対象法人への影響については、e-Govの該当法令ページや官報など日本語の公式情報源で原文を確認することをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "1b1cff530b8b350b6abf908deaf2aa0122b43e0a6d1f7d5c39dcdd3493b8c376": {
     "title_en": "Public Comment: Draft Cabinet Order Amending Whistleblower Protection Act Appended Table 8 Designation",
@@ -44409,7 +44547,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and date metadata; the amendment content is not provided. The preliminary 'Antitrust / Fair Trade' area label appears inconsistent with the subject (retirement allowance mutual aid) and should be disregarded. The 'In Force' stage label is a rule-based triage label; the metadata lists an effective date of 2026-10-01, so verify the current status against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「中小企業退職金共済法施行令の一部を改正する政令」(令和八年政令第二百三十九号)が掲載されています。対象は中小企業退職金共済法施行令(昭和三十九年政令第百八十八号)で、公布日は2026年7月29日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "中小企業退職金共済制度を利用している事業者や、同制度に関わる実務を担当する部門では、施行日以降の取扱いに関わる可能性があります。ただし、改正内容が不明なため、影響の有無や程度は原文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の内容および適用関係については、e-Gov法令検索に掲載された改正政令の本文や、所管官庁の公式発表などの日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "1e40acff80ba82ebefeef0631588349f1e6a4c423494abbdd146d804c19041e3": {
     "title_en": "Draft Cabinet Office Order Amending Designation Rules for Specified Social Infrastructure Businesses (Public Comment)",
@@ -44419,7 +44563,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the content of the draft amendments is not provided and is unverified. This is a draft out for public comment, not an enacted or effective rule. Preliminary labels are keyword-based and non-authoritative.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの意見募集案件一覧に、経済安全保障推進法に基づく特定社会基盤事業者の指定等に関する内閣府令の一部を改正する内閣府令(案)等が公表されています。案の公示日は2026年10月1日、受付締切は同年10月31日12時とされ、カテゴリーは金融・保険、問合せ先は金融庁(企画市場局総務課調査室)と記載されています。現時点では意見募集の段階にある案であり、成立や施行の状態は原文の抜粋からは確認できません。",
+    "business_impact_ja": "金融・保険分野で特定社会基盤事業者の指定等に関わる事業者にとって、制度の運用内容に影響する可能性があります。ただし、改正案の具体的な内容は提供された情報からは明らかでなく、影響の有無や程度は案の本文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "案の本文、関連資料および意見募集要領について、e-Govおよび金融庁などの日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "a8e518c790095db5a4d8baa39b3c224406aa34cb6751e99b0d8f92ab63b98cd8": {
     "title_en": "Cabinet Order amending Immigration Act Enforcement Order and Special Act Enforcement Order (Peace Treaty)",
@@ -44429,7 +44579,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update metadata; the substance of the amendments is not provided and is unverified. Promulgation and enforcement dates are taken from the metadata and should be checked against the official source. The rule-based labels (Other / In Force / Medium) are weak triage context only.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「出入国管理及び難民認定法施行令及び日本国との平和条約に基づき日本の国籍を離脱した者等の出入国管理に関する特例法施行令の一部を改正する政令」(令和八年政令第二百六十八号)が掲載されています。対象法令は平成二十三年政令第四百二十号の特例法施行令で、公布日は2026年8月28日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "出入国管理に関する政令の改正であるため、在留資格や出入国手続に関わる業務を行う事業者や、外国人を雇用・受け入れる事業者に関係する可能性があります。ただし、改正内容が示されていないため、実際の影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および自社の業務との関係については、e-Gov法令検索の原文や官報など日本語の公式情報源でご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "96a0e1d640df7453669c4a801912f99e63b518bd9ab20a548b38500a30e69e25": {
     "title_en": "Cabinet Order amending Immigration Control Act and Special Immigration Act enforcement orders",
@@ -44439,7 +44595,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the actual amendment content is not provided. The rule-based labels (Other, In Force, Medium) are preliminary and unverified, and the stated dates should be confirmed against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によれば、「出入国管理及び難民認定法施行令及び日本国との平和条約に基づき日本の国籍を離脱した者等の出入国管理に関する特例法施行令の一部を改正する政令」(令和八年政令第二百六十八号)が2026年8月28日に公布され、施行日は2026年10月1日と記載されています。対象法令として出入国管理及び難民認定法施行令(平成十年政令第百七十八号)が挙げられています。提供された情報には改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "改正内容がメタデータからは確認できないため影響の程度は不明ですが、外国人の受入れや在留手続に関わる事業者の実務に関係する可能性があります。施行日が2026年10月1日とされているため、社内手続や運用への反映時期を検討する必要が生じる可能性が考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Govに掲載された改正政令の本文や所管官庁の公式情報をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "fcb1f94f9c929106174d5781419884f44600a658d907949b97d4fccb5a884462": {
     "title_en": "Cabinet Order Amending National Pension Act Enforcement Order and Others (Promulgated 2026-07-15)",
@@ -44449,7 +44611,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and listing metadata; amendment details are not provided. The rule-based area label (Labor / Employment) is weak context and may not match the instrument's subject (pension and disability benefits). Stage 'In Force' reflects the listed 2026-10-01 enforcement date; verify against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「国民年金法施行令等の一部を改正する政令」(令和八年政令第二百二十六号)が掲載されています。対象法令は「特定障害者に対する特別障害給付金の支給に関する法律施行令」(平成十七年政令第五十六号)で、公布日は2026年7月15日、施行日は2026年10月1日と記載されています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "特別障害給付金の制度や関連する年金事務に関わる事業者(従業員への制度案内や社会保険関連の事務を担う企業等)では、手続や運用に影響が及ぶ可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正政令の本文および新旧対照表等を官報やe-Govなど日本語の公式情報源で確認し、自社業務への関係の有無を検討されることが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "49048c872c892d3d45c5a7708920180eb62e89e9aa79ebaeaaf32fd5cdd3856c": {
     "title_en": "Cabinet Order Amending the National Pension Act Enforcement Order and Related Orders (Reiwa 8 No. 226)",
@@ -44459,7 +44627,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and listing metadata; the substance of the amendments is not provided. The 'Labor / Employment' area label is a preliminary keyword-based tag, and the 'In Force' stage label should be verified against the official source, since the stated enforcement date is 2026-10-01.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によれば、「国民年金法施行令等の一部を改正する政令」(令和八年政令第二百二十六号)が2026年7月15日に公布された旨が記載されています。対象法令は国民年金法施行令(昭和三十四年政令第百八十四号)で、施行日は2026年10月1日とされています。提供されたメタデータからは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "国民年金制度に関する施行令の改正であるため、従業員の社会保険・年金関連の手続や運用に影響が及ぶ可能性があります。ただし、改正の具体的な内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社の実務への関係については、e-Govに掲載された改正政令の本文や所管官庁の公式資料をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f0fce43dfb1806950b7e2b1c4e1f5839b98319ea915372226f1b93cc9ec325af": {
     "title_en": "Cabinet Order Amending National Pension Act Enforcement Order and Related Orders (Reiwa 8 No. 226)",
@@ -44469,7 +44643,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. The 'In Force' stage and 'Labor / Employment' area labels are rule-based and unverified. The 2026-10-01 enforcement date is as listed in the source metadata and is in the future relative to the publication date. The Japanese source is authoritative.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によれば、「国民年金法施行令等の一部を改正する政令」(令和八年政令第二百二十六号)が2026年7月15日に公布され、施行日は2026年10月1日とされています。対象法令として、年金生活者支援給付金の支給に関する法律施行令(平成三十年政令第三百六十四号)が挙げられています。提供された情報には、具体的な改正内容は含まれていません。",
+    "business_impact_ja": "年金関連制度に関わる事務や、給与・社会保険関連の実務を担う事業者では、改正内容によっては運用面の確認が必要となる可能性があります。ただし、影響の有無や程度は改正内容の確認なしには判断できません。",
+    "recommended_action_ja": "改正政令の本文および新旧対照表など、日本語の公式情報源(e-Gov法令検索、官報、所管官庁の公表資料)で具体的な改正内容と施行日をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "4284befe579499e005295832ae0bfb5c29785ff92a871e83b1e1adb0326f7093": {
     "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Medical Practitioners Act Order)",
@@ -44479,7 +44659,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and e-Gov update-list metadata; amendment content is not provided. The 'In Force' stage label is a preliminary rule-based label, and the 2026-10-01 effective date is as listed in the source and should be verified.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)に基づく医師法施行令(昭和二十八年政令第三百八十二号)の更新が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "医師法施行令の規定内容に変更が及ぶ可能性があり、医療・医療関連分野の事業者の運用や手続に影響する可能性があると考えられますが、具体的な影響は改正内容の確認が必要です。",
+    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索や官報等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "56eb8a550f675d57ed90a879fdc0f304c53748e1138fa73848a16f408c95773e": {
     "title_en": "Cabinet Order Partially Amending Dietitians Act Enforcement Order and Others (affects Radiological Technologists...",
@@ -44489,7 +44675,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is a preliminary rule-based tag, and the enforcement date (2026-10-01) is later than the publication date, so status should be verified against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が掲載されています。対象法令として診療放射線技師法施行令(昭和二十八年政令第三百八十五号)が挙げられ、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "診療放射線技師法施行令が改正対象に含まれているため、診療放射線技師の業務や関連する医療機関・事業者の運用に影響が及ぶ可能性があります。ただし、改正内容がメタデータに示されていないため、影響の有無や程度は不明であり、原文での確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的内容や適用関係については、e-Govの該当法令ページおよび官報等の日本語の公式情報源でご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "6b363d6d504ddf6271c744d9cf1b743ac01acec54b6c9fb8a1c3dbb905f07241": {
     "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Related Orders (Reiwa 8 No. 218)",
@@ -44499,7 +44691,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and e-Gov update-list metadata; amendment contents are unknown. The 'In Force' stage label is a preliminary rule-based label, and the effective date of 2026-10-01 is stated in the metadata. Verify all details against the official Japanese source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が2026年6月25日に公布された旨が示されており、施行日は2026年10月1日と記載されています。対象法令として「臨床検査技師等に関する法律施行令」(昭和三十三年政令第二百二十六号)が挙げられています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "臨床検査技師等に関する法律施行令の関係者や関連業務を行う事業者にとって、施行日以降の取扱いに影響が及ぶ可能性があります。ただし、改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容や経過措置の有無については、e-Govに掲載された改正政令の本文および官報等の日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "099cf371d267966f8d7b927812da19d78429bbfe520b09470d511d2ec61f0dcb": {
     "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects PT/OT Act Order)",
@@ -44509,7 +44707,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The 'In Force' stage label is a rule-based triage label, and the listed enforcement date (2026-10-01) appears to be in the future relative to the publication date, so current effect should be verified against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が掲載されています。メタデータ上、公布日は2026年6月25日、施行日は2026年10月1日とされ、対象法令として理学療法士及び作業療法士法施行令(昭和四十年政令第三百二十七号)が示されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "理学療法士・作業療法士に関わる業務や手続を扱う事業者において、施行日(2026年10月1日)に向けて影響が生じる可能性があります。ただし、改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容と施行時期を、e-Gov法令検索や官報など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "524967d62785da2262fde80db0ee7aae2114f333cde1a58dc4f66aabbfd1cc55": {
     "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Orthoptists Act Order)",
@@ -44519,7 +44723,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is a preliminary rule-based tag, and the enforcement date (2026-10-01) is stated in the metadata but should be verified against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が2026年6月25日に公布され、対象法令として視能訓練士法施行令(昭和四十六年政令第二百四十六号)が挙げられています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "視能訓練士法施行令に関わる医療・資格関連の事務や運用に影響が及ぶ可能性がありますが、改正内容が不明なため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "dc4344865ab9bcb8f63a8107152cf00c8bf3e9373e63a623eec71be99972a579": {
     "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (Dental Practitioners Act Order)",
@@ -44529,7 +44739,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided and the English is an unofficial summary. The preliminary labels (area 'Other', stage 'In Force', impact 'Medium') are keyword-based and unverified; the listed promulgation and effective dates come from the source metadata and should be checked against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)による歯科医師法施行令(昭和二十八年政令第三百八十三号)の改正が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。具体的な改正内容はメタデータからは確認できません。",
+    "business_impact_ja": "歯科医師法施行令に関わる事業者や関係機関において、施行日である2026年10月1日以降の取扱いに影響する可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的内容や関連する経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "0174cee198ff1e41fa59279337b7558029002852fc6b0ede3ce8aabe8371facb": {
     "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (affects Dental Technicians Act Order)",
@@ -44539,7 +44755,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and listing metadata; amendment content is not provided and is unverified. The rule-based labels (e.g., 'In Force') are preliminary; the stated effective date of 2026-10-01 should be checked against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)に伴う歯科技工士法施行令(昭和三十年政令第二百二十八号)の更新が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。具体的な改正内容はメタデータからは確認できません。",
+    "business_impact_ja": "歯科技工士法施行令に関わる事業者や関係機関において、手続や運用に影響が及ぶ可能性がありますが、改正内容が不明なため影響の有無や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索や官報など日本語の公式情報源で改正政令の本文を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f30e60297ddc9e9e127d3479965ee71975d21007107f5ce0d7f2b16595f7d527": {
     "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Public Health Nurses, Midwives and...",
@@ -44549,7 +44771,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is unknown. The preliminary 'In Force' stage label is rule-based, and the dates shown (promulgation 2026-06-25, enforcement 2026-10-01) should be verified against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、保健師助産師看護師法施行令(昭和二十八年政令第三百八十六号)について、栄養士法施行令等の一部を改正する政令(令和八年政令第二百十八号)による改正が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "保健師・助産師・看護師に関わる業務や、これらの職種を雇用・養成する事業者の運用に影響する可能性がありますが、具体的な影響は改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "改正政令の本文および新旧対照表等を日本語の公式情報源(e-Gov法令検索、官報等)で確認し、自社への関係の有無を検討することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "a83576e1a0c0d1ddbd8ba3b5af848b6ebe07dc01a3872689fe375e5202f0b583": {
     "title_en": "Cabinet Order Partially Amending Dietitians Act Enforcement Order and Others (Pharmacists Act Enforcement Order)",
@@ -44559,7 +44787,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and metadata from the law update list; amendment details are not provided. The rule-based labels (Other / In Force / Medium) are unverified, and the enforcement date is in the future relative to the promulgation date. English is an unofficial summary; verify against the Japanese source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、薬剤師法施行令(昭和三十六年政令第十三号)を対象とする改正として、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "薬剤師法施行令に関わる事務や運用を行う事業者・機関では、施行日(2026年10月1日)に向けて、内容次第で手続や社内規程の見直しが必要となる可能性があります。ただし、改正の具体的内容が不明であるため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正政令の本文および新旧対照表など、日本語の公式情報源(官報、e-Gov法令検索、所管官庁の公表資料)で具体的な改正内容と施行日をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c046cef71eefa23dd14df60aa829bc8c1e61f06fd09e00bd81d26d93da56ba63": {
     "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (promulgated 2026-06-25)",
@@ -44569,7 +44803,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The enforcement date (2026-10-01) is listed in the source metadata but should be verified against the official text. The rule-based 'In Force' and 'Medium' labels are preliminary and unverified, and the 'Other' area label is uninformative.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)が掲載されています。対象法令は栄養士法施行令(昭和二十八年政令第二百三十一号)で、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "栄養士法施行令の規定に関わる事業者や養成・教育機関、栄養士の配置を行う事業者などに、施行日以降、何らかの影響が生じる可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正内容と施行日までの対応要否について、官報および e-Gov 法令検索など日本語の公式情報源で改正政令の本文や関連する省令・通知を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "66845bf2878490df3c0bca56505e4171dbd49aa39f2c739b22e2e20dad6887ba": {
     "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order etc. (affects Cooks Act Enforcement Order)",
@@ -44579,7 +44819,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; amendment content is not provided. Stage label 'In Force' is a rule-based triage label and the listed effective date (2026-10-01) should be verified against the official source. English title is an unofficial translation.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)による調理師法施行令(昭和三十三年政令第三百三号)の改正が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されていますが、改正の具体的な内容は提供された情報からは確認できません。",
+    "business_impact_ja": "調理師法施行令に関わる事業者や養成施設等にとって、施行日以降の取扱いに影響する可能性がありますが、具体的な影響の有無や範囲は改正内容を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容や経過措置の有無については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "383ef811b7fd3e4c94479f09d5540b3209cc22d6eca64475a639200c074d8d3c": {
     "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (Confectionery Hygiene Act Order affected)",
@@ -44589,7 +44835,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; amendment contents are not visible. The 'In Force' stage label is a preliminary rule-based label, and the listed effective date (2026-10-01) should be verified against the official source. English is an unofficial summary.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「栄養士法施行令等の一部を改正する政令」(令和八年政令第二百十八号)に基づく製菓衛生師法施行令(昭和四十一年政令第三百八十七号)の更新が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。提供された情報には、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "製菓衛生師制度に関連する事業者や養成・試験関係者にとって、手続や要件等に関わる変更が含まれている可能性がありますが、具体的な内容は提供情報からは確認できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索に掲載された改正政令の本文および所管官庁の公表資料をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "ea2b42437dee0668f4cbcce093a34521b65e1c1c80a73cab3660375e422fb1ca": {
     "title_en": "Cabinet Order Amending Enforcement Order of Child and Child-Rearing Support Act",
@@ -44599,7 +44851,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and listing metadata; the content of the amendments is not given and is unverified. Rule-based labels (area 'Other', impact 'Medium') are weak triage signals; the 'In Force' stage appears to reflect the listed 2026-10-01 enforcement date, which is after the publication date.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、子ども・子育て支援法施行令(平成二十六年政令第二百十三号)を対象とする改正が掲載されています。改正法令は「子ども・子育て支援法施行令の一部を改正する政令」(令和八年政令第百八十八号)で、公布日は2026年5月29日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "子ども・子育て支援法に基づく制度に関わる事業者や関係者にとって、運用や手続に影響する可能性があります。ただし、改正内容がメタデータに含まれていないため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "802f91250c301419d585077ead3690e0b83c8949d6c35a72557c4df7bec55463": {
     "title_en": "Cabinet Order Amending Amending Order of Consumption Tax Act Enforcement Order",
@@ -44609,7 +44867,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is unknown. The enforcement date (2026-10-01) is a scheduled date per the metadata and should be verified against the official source. The 'In Force' stage label is rule-based and may not reflect that the enforcement date is in the future relative to the publication date.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によれば、「消費税法施行令等の一部を改正する政令の一部を改正する政令」(令和八年政令第百八号)が2026年3月31日に公布されたと記載されています。対象法令は消費税法施行令(昭和六十三年政令第三百六十号)で、施行日は2026年10月1日とされています。提供されたメタデータには、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "消費税法施行令が改正対象となっているため、消費税に関する実務や社内処理に影響が及ぶ可能性があります。ただし、具体的な改正内容はメタデータから読み取れず、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "abe843fad166661becc1549a4319a7368f7a730f07ef5cda9c2212dd7d8fa34c": {
     "title_en": "Cabinet Order Amending Corporation Tax Act Enforcement Order Amendment Order (Reiwa 7 No. 121)",
@@ -44619,7 +44883,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The effective date of 2026-10-01 is in the future relative to the promulgation date, so the 'In Force' rule-based label may not reflect current status and should be verified against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、法人税法施行令(昭和四十年政令第九十七号)を対象とする改正の記載があります。改正法令は「法人税法施行令及び法人税法施行令等の一部を改正する政令の一部を改正する政令」(令和七年政令第百二十一号)で、公布日は2025年3月31日、施行日は2026年10月1日と示されています。メタデータからは、具体的な改正内容までは確認できません。",
+    "business_impact_ja": "法人税の計算や申告に関わる実務に、2026年10月1日の施行日以降、影響が及ぶ可能性があります。具体的な影響の有無や範囲は、改正内容の確認を経て判断されるものと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日に関する経過措置等について、e-Govの法令本文や所管官庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "7985035ff335793a7ac1391e6dbac56f10212daeec33edfc0cd6da311dab4eb6": {
     "title_en": "Cabinet Order Amending the Registration and License Tax Act Enforcement Order (effective 2026-10-01)",
@@ -44629,7 +44899,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and listing metadata (promulgation 2025-03-31, effective 2026-10-01); amendment details are not provided. The 'In Force' rule-based label may not reflect that the effective date is in the future relative to promulgation, so the current legal status should be verified against the official source. English is an unofficial summary.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、登録免許税法施行令(昭和四十二年政令第百四十六号)を改正する政令(令和七年政令第百二十四号)が掲載されています。公布日は2025年3月31日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "登録免許税の課税や手続に関わる登記・登録を行う事業者にとって、施行日以降の取扱いに関係する可能性があります。ただし、改正内容がメタデータに示されていないため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行日の適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "62a613adbd37a57ef8f76200e71b163546806b69b0fcc8432905e12cde3fac6a": {
     "title_en": "MIC: Public Comment Results and Final Recommendation on Residential Proxy Countermeasures (IoT)",
@@ -44639,7 +44915,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and a short metadata summary; the recommendation's contents, the comments received, and any legal effect are unverified. The preliminary labels (area: Other, impact: Low) are keyword-based and not authoritative.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "総務省の新着情報として、「家庭用IoT機器を悪用するレジデンシャルプロキシの対策について（提言）」（案）に対する意見募集の結果と、提言が公表されたことが示されています。公表日は2026年10月2日とされています。提供されたメタデータには、提言の具体的な内容や寄せられた意見の詳細は含まれていません。",
+    "business_impact_ja": "家庭用IoT機器の提供や管理、通信サービスの提供などに関わる事業者にとって、提言の内容が今後の対応や方針検討に関連する可能性があります。ただし、提供情報だけでは具体的な影響範囲や法的な義務の有無は判断できません。",
+    "recommended_action_ja": "提言の内容や意見募集の結果の詳細については、総務省の公式ページで原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "8868baf402b9a2abf887928ddcbfe2de806fd6bfabcb8589afa893a8bb8a0fc2": {
     "title_en": "NTA: Partial Revision of Gasoline Tax Exemption Circulars (Japan-US Mutual Defense Assistance Agreement)",
@@ -44649,7 +44931,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the Japanese title and brief listing metadata; the content of the revisions, effective date, and the full list of circulars covered by 'etc.' are unverified. The rule-based labels (Finance / AML, Medium) are weak triage context and may not fit a tax-circular revision.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "国税庁が、「日米相互防衛援助協定の規定に基づく揮発油税及び地方揮発油税の免除の取扱いについて」等の一部改正に関する法令解釈通達を公表したとされています。提供された情報は題名と「国税庁新着情報・通達等」という概要のみで、改正の具体的な内容、適用時期、対象範囲は原文メタデータからは確認できません。",
+    "business_impact_ja": "揮発油税等の免除の取扱いに関連する取引を行う事業者にとっては、税務上の取扱いの解釈運用に影響する可能性があります。ただし、具体的な影響の有無や程度は、通達本文を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の内容や適用時期について、国税庁の公式サイトに掲載されている通達本文および新旧対照表等をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "25be028a21e05865afe044c3ff46850a5681a780e7a127c7312ab84c8979f7de": {
     "title_en": "Cabinet Order on Related Cabinet Orders for Science Council of Japan Act (Women's Advancement Act Order)",
@@ -44659,7 +44947,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendment is not provided. Promulgation and effective dates are as listed in the metadata and should be verified against the official source. The rule-based labels (area, stage, impact) are weak triage context only.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)による改正の情報が掲載されています。対象法令は「女性の職業生活における活躍の推進に関する法律施行令」(平成二十七年政令第三百十八号)で、公布日は2026-09-16、施行日は2026-10-01と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "対象が女性の職業生活における活躍の推進に関する法律施行令であることから、同法に基づく対応を行う事業者に関連する可能性がありますが、改正内容が示されていないため、実務上の影響の有無や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係の有無については、e-Govの法令データ等の日本語の公式情報源で改正後の条文を確認されることが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "267a96f4929839bff0a8fdc8a4ec86ff52eae16af01e08f3b659bc7b311eb921": {
     "title_en": "Cabinet Order amending the Order for Enforcement of the Act on Elimination of Discrimination against Persons with...",
@@ -44669,7 +44963,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the actual amended provisions are not provided. Dates and 'in force' status come from the metadata and are unverified. The rule-based labels (Other / In Force / Medium) are weak triage context only. English statute names are unofficial translations.",
     "summarized_at": "2026-10-03T00:14:32Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「日本学術会議法の施行に伴う関係政令の整備に関する政令」(令和八年政令第二百八十六号)が掲載されています。対象法令として「障害を理由とする差別の解消の推進に関する法律施行令」(平成二十八年政令第三十二号)が示されており、公布日は2026-09-16、施行日は2026-10-01と記載されています。具体的な改正内容の詳細は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "対象法令が障害を理由とする差別の解消の推進に関する法律の施行令であるため、同法に関連する事業者や行政手続に何らかの関係が生じる可能性があります。ただし、メタデータ上は改正の具体的内容が不明であり、実務への影響の有無や程度は原文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と自社への関係の有無については、e-Govに掲載された政令の原文および関係府省の公式情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T23:38:20Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "45f890198d76d29a3c5919d8854e6832caad7a98c35f663e6cb02b8c8aa37b6c": {
     "title_en": "Public comment: draft amendment to METI CO2 storage review standards",
@@ -45129,6 +45429,806 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and listing metadata; the substance of the amendments is unknown. Dates are as stated in the metadata and should be verified against the official source. The rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "f60cb48b55e82fdd6255149d1cffc8de941707a0feec37497369f807ce0bacb7": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Act: Volcano Special Measures Act",
+    "summary_en": "The e-Gov update list shows an amending law, Reiwa 8 Act No. 62 (the act on related legal adjustments accompanying enforcement of the Disaster Management Agency Establishment Act), affecting the Act on Special Measures for Active Volcanoes (Showa 48 Act No. 61). The metadata lists a promulgation date of 2026-07-17 and an effective date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations involved in volcano-related disaster preparedness or operating in designated volcanic areas may want to check whether the amendments affect the responsible authorities or procedures. The actual scope of impact cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending law and the updated Act on Special Measures for Active Volcanoes on e-Gov to confirm the exact changes and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on e-Gov update-list metadata; the substance of the amendments is not provided. Dates and law numbers are as listed in the metadata and unverified against the official text. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7f44db3fe2d874e6657b3c0aa079c58cc52e1d65231712dc1c45b131e3cc9687": {
+    "title_en": "Act on Related Law Amendments for Establishment of Disaster Management Agency (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update listing shows an amending act, 'Act on Maintenance of Related Laws Accompanying Enforcement of the Act for Establishment of the Disaster Management Agency' (Reiwa 8 Act No. 62), applied to the Act on the Number of Personnel of Administrative Organs (Showa 44 Act No. 33). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendment to the personnel-number act is not described in the provided metadata.",
+    "business_impact_en": "The amendment appears to concern the staffing framework of government administrative organs, so direct effects on private businesses may be limited or indirect. Organizations engaged with disaster-management authorities could see related administrative changes, but this cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the amendment's actual content, scope, and enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the amendment is not provided. Dates are taken from the metadata and should be verified against the official source. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c6423501255ed19dff77cbf526f11ff289fbd1609df8bb419d027987c6abedfe": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Local Allocation Tax Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Local Allocation Tax Act (Showa 25 Act No. 211). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. Only the entry affecting the Local Allocation Tax Act is described; the full scope of the amending act is not provided.",
+    "business_impact_en": "Impact on private-sector businesses appears limited based on the provided metadata, since the entry concerns a local allocation tax framework, but the wider related-law amendments could have effects not visible here. Organizations working with local governments or disaster-management programs may wish to check for relevance.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the exact amendments, scope, and enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and a brief metadata summary; the substance of the amendments to the Local Allocation Tax Act is not given. Dates and status are as listed in the metadata and unverified. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "fa6c73ec23d771a4746ee43c3f708f760a82219d23679dd4a0b0620d0a19471d": {
+    "title_en": "Act on Related Law Revisions for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Measures to Ensure Peace and Security of Japan in Situations That Will Have an Important Influence on Japan's Peace and Security (Heisei 11 Act No. 60). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment may be one of several related-law revisions tied to the establishment of a Disaster Management Agency, though its specific content is not provided in the metadata. Any effect on businesses is unclear and could depend on provisions not described here.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended law on e-Gov to confirm which provisions change and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not stated and the English statute names are unofficial translations. Dates and labels (including the 'Scheduled to Take Effect' stage) should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "820638133d7c2c9791580f117af6b4fad6af7ec2d636e52b0813a142f93295b9": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Act Enforcement – Basic Environment Act amendment",
+    "summary_en": "The e-Gov law update list shows that the Basic Environment Act (Act No. 91 of 1993) is affected by an amending act titled 'Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments to the Basic Environment Act is not included in the provided metadata.",
+    "business_impact_en": "The amendment to the Basic Environment Act may be a consequential or administrative adjustment linked to the establishment of a disaster management agency, but its substantive effect on businesses cannot be determined from the metadata. Any practical impact could depend on the actual amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Basic Environment Act on e-Gov to confirm which provisions change and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amended provisions are not shown and details are unverified. The metadata lists an update list date of 2026-10-01 alongside a 2026-11-02 enforcement date, so effective dates should be confirmed in the official source. The English title and law names are unofficial translations.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "1e9870678dad65c7e881af7a44f26744951dffcba0e06d5a846aaecca0e9ada8": {
+    "title_en": "Disaster Management Agency Act related-laws amendment (Law No. 62 of Reiwa 8)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Acts Accompanying the Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Act on the Authority of the Minister of Justice in Litigation Concerning the Interests of the State (Showa 22 Act No. 194). The metadata lists a promulgation date of 2026-07-17 and an effective date of 2026-11-02. The specific amendments to the target law are not described in the provided metadata.",
+    "business_impact_en": "The amendment appears to be a consequential change tied to the establishment of a disaster management agency, so any direct effect on private-sector businesses may be limited, though this cannot be confirmed from the metadata. Organizations that deal with national government agencies in litigation or disaster-related matters could potentially be affected.",
+    "recommended_action_en": "Review the official Japanese text on the e-Gov source to confirm the actual amendments and their scope before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the content of the amendments is not provided. Promulgation and effective dates are taken from the metadata and should be verified against the official source. The English act names are unofficial translations, and the rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "3bec153c24ac2066aa5c490f9e023e1b6c66ea2225d94ab4bba5ee995f5768e4": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act: Amends Disaster Victims Support Act",
+    "summary_en": "The e-Gov law update list shows an amending act (Reiwa 8 Act No. 62), titled as concerning the preparation of related laws accompanying the enforcement of the Disaster Management Agency Establishment Act. It amends the Act on Support for Reconstruction of Livelihoods of Disaster Victims (Heisei 10 Act No. 66). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment could affect how disaster-victim livelihood support provisions are administered, for example by changing references to responsible government bodies, but the specific changes are not stated in the provided metadata. Organizations involved in disaster response or related public programs may wish to check whether any provisions are relevant to them.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended law on e-Gov to confirm the actual changes, applicable provisions, and effective dates.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata from the update list; the content of the amendments is not provided. The title translation is unofficial, and the dates and labels (e.g., 'Scheduled to Take Effect') are preliminary and unverified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "8eead34d85ac0de9278802321d37c4c690bedcf3ddf590521fa51a61a3f2188b": {
+    "title_en": "Act on Related Law Amendments for Establishment of Disaster Management Agency (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov update list shows that the Act on the Arrangement of Related Acts Accompanying Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Promotion of Formation of Multipolar Distributed National Land (Showa 63 Act No. 83). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment may involve updates to terminology or administrative responsibilities in the amended land-development act, which could be relevant to organizations that interact with related national land or regional development frameworks. The actual scope of the changes is not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments and the enforcement date before assessing any relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and the English title translation is unofficial. Rule-based labels (area, stage, impact level) are weak triage signals only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "1b7919b7313b98644a35cdb686c434ae5689c4708178f1733b11656d66393ba5": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Nankai Trough Act amended)",
+    "summary_en": "According to the e-Gov law update listing, an amending act titled as the Act on Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) is listed as amending the Special Measures Act on Promoting Earthquake Disaster Prevention Measures for Nankai Trough Earthquakes (Heisei 14 Act No. 92). The listing shows a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Organizations subject to the Nankai Trough earthquake disaster prevention framework may find that agency references or procedures change, but the specific effects cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended Nankai Trough act on e-Gov to confirm what changes apply and when.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the e-Gov update-list metadata (titles, law numbers, dates); the content of the amendments is not provided and is unverified. Promulgation and enforcement dates are as listed in the source; the labels (area, stage, impact level) are preliminary and non-authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "3bf5a876f998b1d9c5216b35f4587abd71f2b100cd9d3801fd2efce6a685188d": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Nuclear Disaster Act amended)",
+    "summary_en": "The e-Gov law update list shows an amending act, listed as Reiwa 8 Act No. 62 and titled as a law on adjusting related laws in connection with the enforcement of the Disaster Management Agency Establishment Act. The listed target law is the Act on Special Measures Concerning Nuclear Emergency Preparedness (Heisei 11 Act No. 156). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "Operators and organizations involved in nuclear emergency preparedness or disaster response may be affected if the amendments change responsibilities, procedures, or the agencies they deal with. The actual scope of any change cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended provisions on e-Gov to determine whether and how they apply to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata from the e-Gov update list; the substance of the amendments is not described and is unverified. The English title is an unofficial rendering, and area, stage, and impact labels are preliminary rule-based triage only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "cd5d27588761479f3fbc12d76311209d0784ef3770c1fdfc3a53d1446f26953d": {
+    "title_en": "Act on Related Law Revisions for Disaster Management Agency Establishment Act (amends EIA Act)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Act No. 62 of Reiwa 8) is recorded as amending the Environmental Impact Assessment Act (Act No. 81 of Heisei 9). The metadata lists a promulgation date of 2026-07-17 and an effective date of 2026-11-02. The specific content of the amendments to the Environmental Impact Assessment Act is not included in the provided metadata.",
+    "business_impact_en": "Businesses involved in projects subject to environmental impact assessment may be affected, but the nature and extent of any change cannot be determined from the available information. Any effect could depend on the actual amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending Act and the revised Environmental Impact Assessment Act on e-Gov to confirm what provisions change and when they apply.",
+    "confidence": "medium",
+    "ai_notes": "Based only on e-Gov update-list metadata; amendment contents are not provided and are unverified. The 'Scheduled to Take Effect' stage and impact level are rule-based triage labels, not legal conclusions. This is an unofficial summary; the Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d57cc2a9bd79208c385bd8b426dae4a57926c83c52c306212b9ba32f0bb75e8b": {
+    "title_en": "Act on Related Law Revisions for Establishment of Disaster Prevention Agency (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, titled in Japanese as a law on the development of related laws accompanying the enforcement of the Disaster Prevention Agency Establishment Act, with Reiwa 8 Act No. 62. The record indicates a promulgation date of 2026-07-17 and an effective date of 2026-11-02, and lists the Act on Revitalization of Creation of Science, Technology and Innovation (Heisei 20 Act No. 63) as an affected law. The metadata does not describe the specific amendments.",
+    "business_impact_en": "Organizations whose activities relate to the listed science, technology and innovation law, or to disaster management administration, may be affected by the amendments depending on their content. The scope and practical effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, the affected provisions, and the effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the e-Gov update-list metadata; the actual amendment content is not provided. Dates and law numbers are as listed in the source record and should be verified. Area, stage, and impact labels are preliminary keyword-based triage labels, not legal conclusions.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "2998e431eb4125ae8e080a706d2b45d143ca8caed871dfaf27d48b5e703eac01": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act (ICT Administration Act amended)",
+    "summary_en": "The e-Gov law update list shows a law titled in Japanese as an act on the arrangement of related laws accompanying the implementation of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), with a listed promulgation date of 2026-07-17 and a listed enforcement date of 2026-11-02. The entry indicates it amends the Act on the Promotion of Administration Using Information and Communications Technology (Heisei 14 Act No. 151). The metadata does not describe the specific amendments.",
+    "business_impact_en": "Entities that interact with government procedures under the amended ICT administration law may be affected, but the nature and scope of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and the enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'update list date' (20261001) differs from the promulgation and enforcement dates, and the preliminary labels are keyword-based. Verify all details against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "187582d8fe94cd568e6784f8a7bd513cde91e8fd0ae611c485dba85632aa76b1": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (amends Large-Scale Earthquake Act)",
+    "summary_en": "The e-Gov law update list shows the Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) as an amending act affecting the Act on Special Measures for Large-Scale Earthquake Countermeasures (Showa 53 Act No. 73). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amendments to the Large-Scale Earthquake Act are not described in the provided metadata.",
+    "business_impact_en": "Organizations whose operations relate to earthquake preparedness or disaster management administration may find that responsible authorities or procedures change, though the provided metadata does not say what is amended. Any practical impact on businesses cannot be determined from the information given.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov and any related government explanatory materials to confirm the actual amendments and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. Dates and law numbers are taken from the metadata as given. Rule-based labels are preliminary and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "033fae929ee6c5aeff90d2b013fa0567fed3773a5b32ff686af2cf637195be80": {
+    "title_en": "Act on Related-Law Adjustments for Establishment of Disaster Prevention Agency (amends National Public Service Act)",
+    "summary_en": "The e-Gov law update list shows the Act on the Arrangement of Related Laws in Connection with Enforcement of the Disaster Prevention Agency Establishment Act (Reiwa 8 Act No. 62) as an amending act affecting the National Public Service Act (Showa 22 Act No. 120). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "The amendment appears to concern national public service personnel rules, so it may mainly affect government bodies; any effect on private-sector businesses is unclear and could be limited or indirect.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the updated National Public Service Act on e-Gov to confirm which provisions changed and whether they are relevant to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amended provisions are not described, the English title is an unofficial rendering, and dates and legal status should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4294294ee05eeb38cf2552999e9779c8b98d699114eddf6b2c44df4a181c7dc6": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Act (Aging Society Act amended)",
+    "summary_en": "The e-Gov law update list shows that the Basic Act on Measures for the Aging Society (Act No. 129 of 1995) is amended by the Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act (Act No. 62 of Reiwa 8). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments to the Aging Society Act is not described in the provided data.",
+    "business_impact_en": "Because the available data describes only a conforming amendment connected to the establishment of a Disaster Management Agency, any practical effect on businesses is unclear and may be limited. Organizations with activities related to disaster management or elderly-care policy could potentially be affected, but this cannot be determined from the metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, the enforcement date, and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on law-list metadata (titles, law numbers, dates); amendment details are not provided and are unverified. The stage and impact labels are rule-based triage hints, not legal conclusions. The English title is an unofficial rendering.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "ab4857824d5ad58ea847349e68bbf7916ca7f80c6274dbab8983114c7d461c46": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (2026 Act No. 62)",
+    "summary_en": "According to the e-Gov law update list, the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) is listed with a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The listing identifies the Act on the Promotion of Elimination of Discrimination on the Basis of Disability (Act No. 65 of 2013) as an affected law. The specific amendments to that law are not described in the provided metadata.",
+    "business_impact_en": "Organizations subject to the Act on the Promotion of Elimination of Discrimination on the Basis of Disability could be affected by amendments taking effect on the listed date, but the nature and scope of any changes cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search to confirm what, if anything, changes in the affected law and whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on update-list metadata; the actual amendment content is not provided. Dates and law numbers are as listed and unverified. Rule-based labels (area, stage, impact level) are weak triage context and may not reflect the substance of the changes to the affected law.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a1dbae363d70dd9092f766acf936bad925a7e1c83e25e9d5fc862e6562032baa": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment (amends Specially Designated Secrets Act)",
+    "summary_en": "The e-Gov law update list shows an act titled 'Act on the Development of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62), with a listed promulgation date of 2026-07-17 and a listed enforcement date of 2026-11-02. The entry indicates it amends the Act on the Protection of Specially Designated Secrets (Heisei 25 Act No. 108). The specific amended provisions are not stated in the available metadata.",
+    "business_impact_en": "Organizations that handle specially designated secrets or work with government agencies in the disaster management or security field may be affected, though the nature and scope of any change cannot be determined from this metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm which provisions of the Specially Designated Secrets Act are amended and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. Dates and law numbers are as listed in the source and should be verified against the official Japanese text. The preliminary area, stage and impact labels are keyword-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "063d94f2743e1d369e052efa1f369f0d851eb61d5ffc061a0b0e0c979c4e9bba": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on Adjustment of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), applied to the Act on Cooperation with United Nations Peacekeeping Operations and Other Operations (Heisei 4 Act No. 79). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amendments to the peacekeeping cooperation act are not described in the provided metadata.",
+    "business_impact_en": "Impact on businesses appears uncertain and may be limited, since the provided information indicates a related-law adjustment tied to a new agency's establishment. Organizations with interests in disaster management or peacekeeping-related activities could wish to check whether any provisions are relevant to them.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. The title is a shortened translation, and the enforcement date and legal status should be confirmed against the official source. Preliminary labels are weak context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "e67b2d21436b6ca2ffc1f574394f42c8ecdd7553f838f2b3994a24acd8b5914e": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list records an amending act, Reiwa 8 (2026) Act No. 62, concerning adjustments to related laws accompanying the enforcement of the Disaster Management Agency Establishment Act. The listed target law is the Act on Special Provisions for Hiring, Salaries and Working Hours of Fixed-Term General Service Researchers (Heisei 9 Act No. 65). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The listed target law concerns fixed-term research staff in the national public service, so the direct effect may be limited to government-related employers, though the actual scope of the amendment is not stated in the metadata. Organizations connected with national research institutions or disaster management bodies could wish to check whether any change affects them.",
+    "recommended_action_en": "Review the full text of the amending act and the revised provisions on the official Japanese e-Gov source to confirm the actual content and scope of the changes.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and the law-update metadata; the substance of the amendment to the target law is not provided and is unverified. The promulgation and enforcement dates come from the metadata and should be confirmed against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "f1e0fce9e8af88cfddd4cdfdc3cb4582eb6476d068382601e2dae1577a7dbf0f": {
+    "title_en": "Amending Act for Disaster Management Agency Establishment: Update to Public Services Reform Act",
+    "summary_en": "The e-Gov law update list shows that the Act on Development of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Reform of Public Services by Introduction of Competitive Bidding (Heisei 18 Act No. 51). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amended provisions are not stated in the available metadata.",
+    "business_impact_en": "Entities involved in public service outsourcing or competitive bidding under the amended act may be affected, but the scope and nature of the changes cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended provisions on e-Gov to confirm what changes apply and when.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the actual amended provisions are not given. The area, stage, and impact labels are rule-based and unverified, and the English title is shortened from the official statute name. Dates should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "27cbae52fa11ba5df7d533f8eabe1c5ce377331eedef61feb7850053d0c682ea": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Intl. Emergency Relief Teams Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, Reiwa 8 Act No. 62 (the act on arranging related laws accompanying implementation of the Disaster Management Agency Establishment Act), affecting the Act on the Dispatch of International Disaster Relief Teams (Showa 62 Act No. 93). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "Organizations involved in disaster response or international emergency relief coordination may find that administrative roles or procedures under the affected act could change, though the actual content of the amendment is not specified here.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Act on the Dispatch of International Disaster Relief Teams on e-Gov to confirm which provisions are changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the amended provisions and their substance are not provided. Dates and law numbers should be verified against the official source. The 2026-10-01 'update list date' and the enforcement date in the URL should also be checked.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "bfe516557c55581f4d4bf60457804ff20f584013f421eeab51b39fe96a54e16b": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act (Amends Economic Security Info Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, 'Act on the Arrangement of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62), with a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The listed target law is the Act on the Protection and Use of Critical Economic Security Information (Reiwa 6 Act No. 27). The provided metadata does not describe the specific amendments.",
+    "business_impact_en": "Organizations that handle information or clearances under the critical economic security information framework could be affected by changes to that law, but the nature and scope of any change cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the consolidated target law on e-Gov to confirm what provisions changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the actual amendment content is not provided and is unverified. The 'Scheduled to Take Effect' and 'Medium' labels are preliminary rule-based triage and not legally verified; the English title is an unofficial rendering.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "69388497316ec8144fe84accc91837cdf1b258001df737d98cc9fae3e00b5442": {
+    "title_en": "Act on Related Law Revisions for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, titled in Japanese as concerning the arrangement of related laws accompanying enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), as amending the Special Act on Fukushima Reconstruction and Revitalization (Heisei 24 Act No. 25). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations involved in Fukushima reconstruction measures or disaster-management-related administrative procedures may be affected, for example if responsible agencies or procedural references change. The actual scope and nature of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amendment provisions and any supplementary provisions, to confirm what changes apply and from when.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the amendment text itself was not provided, so the substance of the changes is unverified. The English title is an unofficial translation, and the area, stage, and impact labels are rule-based triage hints only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "98adfc059eb812fd7c8d330598d990456be6402145fe8da397c46fa198aca958": {
+    "title_en": "Act on Related Law Adjustments for Disaster Prevention Agency Establishment Act (amends FOI Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, 'Act on the Development of Related Laws Accompanying Enforcement of the Disaster Prevention Agency Establishment Act' (Reiwa 8 Act No. 62), with a promulgation date of 2026-07-17 and a listed enforcement date of 2026-11-02. The entry identifies the Act on Access to Information Held by Administrative Organs (Heisei 11 Act No. 42) as the law affected by this amendment. The specific content of the amendments is not provided in the available metadata.",
+    "business_impact_en": "Because the amendment touches the information disclosure law, it may affect how requests for information held by administrative organs are handled, possibly including references to the new agency. The actual scope and relevance to any business cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and effective date, to confirm what changes apply.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment details are not given, and the dates and law numbers should be verified against the official Japanese source. Preliminary labels (area, stage, impact level) are keyword-based and unverified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "bd15f57ca27ecaa6e9f42bd43bd07c020e8a9b761cddda9c2d5ab266c0d1a35d": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Act (affects Traffic Safety Policy Act)",
+    "summary_en": "According to the e-Gov law update listing, this item is an amending act (Reiwa 8 Act No. 62) adjusting related laws in connection with the enforcement of the Act establishing a Disaster Management Agency. The listing shows the Traffic Safety Policy Basic Act (Showa 45 Act No. 110) as the law affected, with a promulgation date of 2026-07-17 and a scheduled enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment appears to be a consequential adjustment tied to the new agency's establishment, so it may primarily affect government administrative arrangements; any direct impact on private-sector businesses is not indicated in the provided metadata and could be limited.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the exact amendments, scope, and enforcement date, and consult qualified counsel if relevance to your operations is unclear.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and a short e-Gov update-listing summary; the actual amendment content, other laws amended, and details of the enforcement schedule are unverified. The title's Traffic Safety Policy Basic Act rendering is an unofficial translation.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "e9bbbbfe7324678b7cf6fa2a9d1a50f1f6742c6454a00dcbcf0e30dbad205cff": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Adjustment of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) was promulgated on 2026-07-17, with an enforcement date of 2026-11-02. The listed target law is the Act on the Use of Information and Communications Technology in the Preservation of Documents by Private Businesses (Heisei 16 Act No. 149). The metadata does not state what specific amendments were made.",
+    "business_impact_en": "Businesses that preserve documents electronically under the targeted Act may want to check whether the amendment affects them. The nature and scope of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov (the source URL) to confirm what the amendment changes and whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. Area, stage, and impact labels are rule-based and unverified. The Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a290a50f559d2f718252746d3a132842c27e674ff71731762e218c67897e1bd6": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (amends Official Gazette Act)",
+    "summary_en": "The e-Gov law update list records an amending act, 'Act on the Arrangement of Related Laws in Connection with Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62), as amending the Act on the Publication of the Official Gazette (Reiwa 5 Act No. 85). The metadata gives a promulgation date of 2026-07-17 and a scheduled enforcement date of 2026-11-02. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "Depending on the content of the amendments, which is not shown in the metadata, the change could affect parties that rely on Official Gazette publication procedures. The practical impact on any given business is unclear from the information provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov (including the amended provisions and enforcement date) to determine whether the amendments are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata from the law update list; the content of the amendments is not provided. Dates are as stated in the metadata and unverified. English title and act names are unofficial translations. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "b038f9a24e1f3107437da8022a5770bbe3952f65e76b5b8c9e55659f29443f31": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Act (amends Public Records Management Act)",
+    "summary_en": "According to the e-Gov law update list, the Act on the Arrangement of Related Laws Accompanying Enforcement of the Act for Establishment of the Disaster Management Agency (Reiwa 8 Act No. 62) is listed as amending the Act on Public Records and Archives Management (Heisei 21 Act No. 66). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments to the target act is not described in the provided metadata.",
+    "business_impact_en": "Entities handling public records or dealing with national government bodies may be affected if the amendments change record-management provisions, but the scope and nature of any change cannot be determined from the metadata provided. Any impact is likely indirect and depends on the actual text of the amendments.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and the enforcement date, to determine whether any changes are relevant to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on update-list metadata and the Japanese titles; the substance of the amendments is unverified. The English act names are unofficial translations. Area and stage labels are rule-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "6475bac2f62af35948b4a4913e877db5701fd71820e26edf19f7ae9547881067": {
+    "title_en": "Act on Related Law Adjustments for the Disaster Management Agency Establishment Act (Food Supply Act amendment)",
+    "summary_en": "The e-Gov law update list shows an amending act titled in Japanese as the law on the adjustment of related laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), with a listed promulgation date of 2026-07-17 and a listed enforcement date of 2026-11-02. The listed target law is the Act on Measures for Difficult Food Supply Situations (Reiwa 6 Act No. 61). The metadata does not describe the specific content of the amendments.",
+    "business_impact_en": "Businesses connected to food supply or emergency response may find that provisions or administrative responsibilities under the target law could change, but the metadata does not say how. Any actual impact cannot be determined from the information provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their scope, and the effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. Other related laws may also be amended but are not listed. Dates and law numbers are as stated in the metadata and should be verified against the official source. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a060025a577ea54a9d2ea6a88c3787916d4220bbca260f8d0bf957995a6e4ed4": {
+    "title_en": "Act on Related Law Adjustments for Disaster Prevention Agency Establishment Act (amends Tohoku restoration fund law)",
+    "summary_en": "The e-Gov law update list records an amending act, Act No. 62 of Reiwa 8 (2026), concerning the adjustment of related laws accompanying implementation of the Disaster Prevention Agency Establishment Act. The listed target law is the Act on the Corporation for Revitalizing Businesses Affected by the Great East Japan Earthquake (Act No. 113 of 2011). The metadata gives a promulgation date of 2026-07-17 and an effective date of 2026-11-02.",
+    "business_impact_en": "Entities connected to the Great East Japan Earthquake business revitalization framework, or to disaster-management administration, may be affected by the adjustments, but the specific changes are not described in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the affected law on e-Gov to confirm the actual amendments and their relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. Dates and law numbers are as listed in the source and should be verified against the official Japanese text. English title names are unofficial translations.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "837753d74287020f1e504b3a14cc8dbd931c26350507ee6588db98a2450b568f": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (amends NOA Act)",
+    "summary_en": "The e-Gov update list records an amending act, 'Act on the Arrangement of Related Laws accompanying the Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62), affecting the National Government Organization Act (Showa 23 Act No. 120). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment appears to be part of organizational changes tied to a new disaster management agency, and could affect how government responsibilities in disaster management are allocated. Any direct effect on private-sector obligations is not indicated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and the enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief e-Gov metadata; the content of the amendments is not provided and was not verified. The rule-based labels are weak triage context, and the English title is an unofficial rendering.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d47963f2d1de1df17902610d6e827fa7c4ae9414f78c78873dabfe797817ef7a": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment (Reconstruction Agency Act amended)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Reconstruction Agency Establishment Act (Heisei 23 Act No. 125). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amendments to the Reconstruction Agency Establishment Act are not described in the provided metadata.",
+    "business_impact_en": "Entities that interact with disaster management or reconstruction-related government functions may see changes in administrative responsibilities or procedures, but the metadata does not show what the amendments contain. Any practical impact on a given business cannot be determined from this information.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Reconstruction Agency Establishment Act on e-Gov to confirm the actual scope of changes and the enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the content of the amendments is not provided. Title translation is unofficial. Stage and impact labels are rule-based and unverified; confirm dates and details against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "eaf4f7a4e49d52314e5c6a1fadd6472de99009790fdd66c48c695081d0fe0852": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Maintenance of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), which amends the Act on Special Measures for Preserving the Rights and Interests of Victims of Specified Extremely Severe Disasters (Heisei 8 Act No. 85). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Businesses or individuals who rely on the special measures for victims of specified extremely severe disasters may be affected, but the nature and extent of any change cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended provisions on e-Gov to confirm the actual changes and their relevance to your situation.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and the law-update metadata; the substance of the amendments is not provided and is unverified. Promulgation and enforcement dates are as listed in the source metadata and should be confirmed against the official source. Preliminary labels are keyword-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c11c82af736cd75698b6cc15cab4652d9ae37854f121eaf87a3888d60272fa79": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Act: Atomic Energy Basic Act Update",
+    "summary_en": "The e-Gov law update list shows an entry for the Atomic Energy Basic Act (Act No. 186 of 1955), amended by the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Act No. 62 of Reiwa 8). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The metadata does not describe the specific provisions changed.",
+    "business_impact_en": "Organizations involved in nuclear energy or disaster-related administration may be affected if the amendments change terminology, agency responsibilities, or procedures, but the substance of the changes cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended Atomic Energy Basic Act provisions and the effective date, to determine whether any changes are relevant.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the law update list metadata; specific amended provisions are not stated. Dates are as given in the listing and should be verified against the official source. The area, stage, and impact labels are preliminary keyword-based triage and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "907d6a43c0d35031553a4b3fb98323d5e680675c38341fd0e999dfddcc629651": {
+    "title_en": "Act on Related Law Revisions for Disaster Management Agency Act: Consumer Basic Act amended",
+    "summary_en": "The e-Gov law update list shows that the Consumer Basic Act (Act No. 78 of 1968) is amended by the Act on the Arrangement of Related Acts Accompanying Enforcement of the Disaster Management Agency Establishment Act (Act No. 62 of 2026). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendment to the Consumer Basic Act is not provided.",
+    "business_impact_en": "The amendment may involve technical changes related to the establishment of the Disaster Management Agency, but the actual effect on businesses cannot be determined from the metadata provided. Any impact on consumer-related obligations is unknown without reviewing the amended text.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Consumer Basic Act on e-Gov to confirm the actual changes and their effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata from the e-Gov update list; the substance of the amendment is not available. The promulgation and enforcement dates are taken from the listing and should be verified against the official source. Preliminary labels (area, stage, impact level) are keyword-based and unverified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4cbeb9a55fb41d548cea00ec5bfd8fd3d3d59dd8761dd435c7f99a8b76e057dc": {
+    "title_en": "Act on Related Law Revisions for Disaster Prevention Agency Establishment Act (Disaster Countermeasures Basic Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Acts Accompanying Enforcement of the Disaster Prevention Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Disaster Countermeasures Basic Act (Showa 36 Act No. 223). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "Organizations involved in disaster management or public-sector disaster preparedness may find that terminology, designated authorities, or procedures under the Disaster Countermeasures Basic Act change. The actual scope of any changes cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Disaster Countermeasures Basic Act on e-Gov to confirm the specific amendments and their relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief update-list metadata; the content of the amendments is not provided. Dates are taken from the metadata and should be verified against the official source. Area, stage, and impact labels are preliminary rule-based triage only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d820dd258fea645fabe0ebacda377c381b78a0718d882b4fa6f2bb38aaa45d90": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (MIC Establishment Act)",
+    "summary_en": "The e-Gov law update list shows an amending act titled in English roughly as the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), listed as amending the Act for Establishment of the Ministry of Internal Affairs and Communications (Heisei 11 Act No. 91). The metadata gives a promulgation date of 2026-07-17 and a scheduled enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment appears to concern the organizational framework of government ministries and may have limited direct effect on private businesses, though related amendments to other laws could potentially affect parties dealing with disaster-management or communications authorities. The scope of any practical effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their scope, and the enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and list metadata; the actual amended provisions were not provided. The English title is an unofficial rendering, and the enforcement date should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "978183a4870b47a16cdfe70ec098f693d4987fbc7fa38c7f52a3d8ec8f9a888b": {
+    "title_en": "Act on Related Law Adjustments for Disaster Resilience Agency Act: Amends Policy Evaluation Act",
+    "summary_en": "This e-Gov Law Search update entry lists an amendment to the Act on Policy Evaluation by Administrative Organs (Act No. 86 of 2001). The amending law is the Act on the Arrangement of Related Laws Accompanying Enforcement of the Disaster Resilience Agency Establishment Act (Act No. 62 of Reiwa 8). The entry gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The listing suggests a change to the legal basis for government policy evaluation tied to the establishment of a disaster resilience agency, which may mainly affect administrative bodies. Any effect on private businesses, if there is one, cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the exact amendments and enforcement date, and assess whether any provisions are relevant to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the law-update metadata; the substance of the amendment is not described. Titles are translated unofficially, and the preliminary rule-based labels (area, stage, impact level) are keyword-based and unverified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d2a77dfa9aae3afc147cd9fad4d53fdf75af990971789506db4e9aa299f44394": {
+    "title_en": "Act on Related Law Revisions for Disaster Management Agency Establishment Act (amends Special Zones Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), applied to the Act on Special Zones for Structural Reform (Heisei 14 Act No. 189). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Businesses or local bodies involved in structural reform special zones may be affected if the amendments change provisions that apply to them, but the nature and scope of any change cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions of the Special Zones Act and the enforcement date, to confirm whether and how it applies to your situation.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata fields; the substance of the amendments is unknown. The rule-based labels (area, stage, impact level) are preliminary and unverified. This is an unofficial summary; verify against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7bc256b24001fe4325f9fa4896481d2a6ce7619576065e3f2b7acfbf36ec5c2d": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Act; Tsunami Act amended",
+    "summary_en": "The e-Gov law update list shows an amending act (Reiwa 8 Act No. 62), titled as an act on the development of related laws accompanying the enforcement of the Disaster Management Agency Establishment Act, which amends the Act on Development of Tsunami-Resilient Communities (Heisei 23 Act No. 123). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The provided metadata does not describe the specific content of the amendments.",
+    "business_impact_en": "Organizations involved in tsunami-related regional planning or disaster-prevention administration may be affected if the amendments change responsible authorities or procedures, but the specific effects cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions of the Tsunami Act, to confirm the actual changes and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided and details are unverified. The promulgation and enforcement dates are as listed in the source metadata and should be confirmed against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "b99aa5a2d7daa8d75e471ec45472b67009d1ade39b1d22c801830c5d351ccdba": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act (Amends Digital Agency Act)",
+    "summary_en": "The e-Gov law update list shows an amending act titled in Japanese as an act on the arrangement of related laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62). The listing indicates it amends the Digital Agency Establishment Act (Reiwa 3 Act No. 36), with a promulgation date of 2026-07-17 and a stated enforcement date of 2026-11-02. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "The amendment may adjust provisions of the Digital Agency Establishment Act as part of broader administrative reorganization, which could be relevant to entities that interact with these agencies. The actual effect on any business cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm which provisions are amended and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; amended provisions, scope, and practical effects are unverified. The enforcement date is as stated in the listing and should be confirmed against the official source. Preliminary labels are rule-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "bd136529f4348b7b92f0f2fe8171e7e77b4a6f274cd9cc261d1123f5cf05a74d": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Tokyo Quake Act amended)",
+    "summary_en": "The e-Gov law update list shows an amending act, 'the Act on the Development of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62), with a listed promulgation date of 2026-07-17. It amends the Special Measures Act for Countermeasures against a Tokyo Inland Earthquake (Heisei 25 Act No. 88). The metadata lists an enforcement date of 2026-11-02.",
+    "business_impact_en": "Organizations subject to the amended earthquake countermeasures act may find that provisions or administrative responsibilities change as of the listed enforcement date. The scope and nature of any changes cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their scope, and the enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided, and enforcement and promulgation dates are as listed in the metadata, unverified against the official source. Labels are keyword-based triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "379bda438e49f137d705b541c8fd24c1862ccb7f31a372a38b5feae7ee580ca9": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Cabinet Office Act amended)",
+    "summary_en": "The e-Gov law update list shows an amending act, Reiwa 8 Act No. 62 (promulgated 2026-07-17), that makes related legal adjustments accompanying the implementation of the Disaster Management Agency Establishment Act. The listed target law is the Act for Establishment of the Cabinet Office (Heisei 11 Act No. 89), with a stated enforcement date of 2026-11-02.",
+    "business_impact_en": "Because the amendment relates to the establishment of a disaster management agency, it could affect how government disaster-related functions are organized, which may be relevant to organizations that interact with those authorities. The specific substantive changes are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and enforcement date, and assess whether any provisions are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief update-list metadata; the content of the amendments is not provided and the English title is an unofficial rendering. Rule-based labels (Public Safety / Disaster Management, Medium impact) are weak triage context only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "81ceb5883af1b39883f935d1ebc82b2a86f532227b80bc8de2b033e2b723776b": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), applied to the 2003 Act No. 79 on peace, independence and security of Japan and its people in armed attack situations and survival-threatening situations. The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The provided metadata does not describe the substance of the amendments, so any effect on businesses is unclear. Organizations connected to disaster management or emergency-response frameworks may wish to check whether the amendments are relevant to them.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and enforcement date, to confirm the actual scope and relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and the list metadata; the content of the amendments is not provided and the English title is an unofficial shortened rendering. Rule-based labels (area, stage, impact level) are weak triage context only and unverified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "78ef412224fe5564f9f49f9012a81ffdfeee09060ba6f8bb8be5a13482a0c442": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act (amends e-payment law)",
+    "summary_en": "The e-Gov law update list shows Act No. 62 of Reiwa 8 (2026), concerning the arrangement of related laws accompanying the implementation of the Disaster Management Agency Establishment Act, with a promulgation date of 2026-07-17. The listed target law is the Act on payment of national revenue and similar amounts by methods using information and communications technology (Act No. 39 of Reiwa 4). The listed enforcement date is 2026-11-02.",
+    "business_impact_en": "Entities that make payments to national government bodies by electronic methods may be affected if the amendment changes how such payments are handled, but the metadata does not describe the substance of any change.",
+    "recommended_action_en": "Review the amended text and enforcement provisions of the Japanese official source on e-Gov to confirm what, if anything, changes for your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the content of the amendment to the target law is not provided and is unverified. The promulgation and enforcement dates are taken from the metadata and should be checked against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "506bc5442814b18416e1f24e60464cd47c14157f75e8c55a00c48dacccf3fad4": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act (Law No. 62 of 2026)",
+    "summary_en": "The e-Gov law update list shows an amending act titled in Japanese as the Act on the Arrangement of Related Laws in connection with the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Law No. 62). The listed entry indicates it amends the Special Measures Act on Promotion of Earthquake Disaster Prevention Measures for Japan Trench and Chishima Trench Subduction-Zone Earthquakes (Heisei 16 Law No. 27). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "Organizations with obligations or interactions under the amended earthquake disaster-prevention framework, such as in affected coastal regions, may be affected by changes to the law. The actual scope and effect of the amendments are not described in the provided metadata and could vary.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended law on e-Gov to confirm the specific changes and their relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and law-list metadata; the content of the amendments is not provided. Names of the acts are unofficial translations. The dates are as listed in the source metadata and should be verified against the official source. The preliminary labels are keyword-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "ec7b89f57c3104fb137d44db143563322319ec5fa3d1b0b45f7c67c8064db2e1": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Reconstruction Act amended)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Acts accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Act on Reconstruction from Large-Scale Disasters (Heisei 25 Act No. 55). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02.",
+    "business_impact_en": "The amendment to the reconstruction act may reflect organizational or procedural changes tied to the new disaster management agency, which could be relevant to entities involved in disaster recovery or related government processes. The specific substantive changes are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their scope, and the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a short metadata summary from the e-Gov update list; the actual amended provisions are not provided and details are unverified. The preliminary labels are keyword-based and not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "e9bc36419551c67aa56cbbef294b61c049c48731071ce1897120c80f1cef34e9": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), which amends the Act on Special Measures for Pandemic Influenza and New Infectious Diseases Preparedness and Response (Act No. 31 of 2012). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Provisions of the pandemic preparedness special measures act may be revised, which could affect how responsibilities or procedures are assigned between government bodies. The actual scope and relevance to any particular business cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text at the linked e-Gov source to confirm the specific amendments and enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and metadata from the law update list; the actual amended provisions are not provided. The statute name and act number translations are unofficial and should be verified against the Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "790411ee678e3683a994f4db96b1c28d64209424e3e81c971324f6a6773a26aa": {
+    "title_en": "Act on Related Laws for Disaster Management Agency Establishment Act Implementation (amends APPI)",
+    "summary_en": "The e-Gov law update list records an act titled in Japanese as the Act on the Arrangement of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02, and identifies the Act on the Protection of Personal Information (Act No. 57 of 2003) as an affected law. The specific amendments to that law are not described in the provided metadata.",
+    "business_impact_en": "If the amendments touch provisions relevant to personal information handling, organizations subject to the Act on the Protection of Personal Information could be affected, but the nature and scope of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Consider reviewing the official Japanese text on e-Gov, and consulting qualified counsel as appropriate, to confirm which provisions of the Act on the Protection of Personal Information are amended and whether they are relevant.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the metadata and Japanese title; the content of the amendments is not provided. The 'Public Safety / Disaster Management' area label is a preliminary keyword-based label and may not reflect the personal information law context. The title in English is an unofficial translation; verify dates and details against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "597ad812d1389e100d195db7f8422bdd314187823aac7648cecf021b5141237b": {
+    "title_en": "Act on Related Law Adjustments for Disaster Prevention Agency Establishment Act (amends Do-shu-sei Special Zone Act)",
+    "summary_en": "According to the e-Gov law update listing, an amending act titled 'Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Prevention Agency Establishment Act' (Reiwa 8 Act No. 62) amends the Act on the Promotion of Wide-Area Administration in Special Zones for the Doshu (Regional Bloc) System (Heisei 18 Act No. 116). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "The practical effect on businesses is unclear from the metadata alone; it may be limited to administrative or terminology adjustments tied to the new disaster prevention agency framework, but this cannot be confirmed. Organizations connected to wide-area administration or disaster management may wish to check whether any provisions are relevant to them.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov (linked source) to confirm the actual amendments, their scope, and the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendments is not provided. The English statute names are unofficial translations. The 'Scheduled to Take Effect' and 'Medium' impact labels are rule-based and unverified. Promulgation and enforcement dates are as listed in the metadata and should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a31ddfd116631a9f9d72c1abb463644796fdad076fbbfd72e9d888e48948d0a1": {
+    "title_en": "Cabinet Order Amending the Radio Act Fee Order (promulgated 2026-07-17; effective 2026-10-01)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order partially amending the Order on Fees Related to the Radio Act (Cabinet Order No. 307 of 1958). The amending order is listed as Reiwa 8 Cabinet Order No. 228, with a promulgation date of 2026-07-17 and an effective date of 2026-10-01. The metadata does not describe which fees are changed or by how much.",
+    "business_impact_en": "Fees payable for procedures under the Radio Act, such as radio station licensing or related applications, may be affected from the effective date. The scope and amount of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm which fee items change and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the fee changes is not provided and is unverified. Rule-based labels (area: Other, stage: In Force, impact: Medium) are weak triage context only. The official Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "98094719801ceeb21f3294b256896a8459a3c9cb53adc5e573c397bef5703373": {
+    "title_en": "Cabinet Office Order Amending Enforcement Rules of the Act on Support for Children and Child-Rearing",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Office Order (Reiwa 8 Cabinet Office Order No. 54) partially amending the Enforcement Regulations of the Act on Support for Children and Child-Rearing (Heisei 26 Cabinet Office Order No. 44). The listed promulgation date is 2026-05-29 and the listed enforcement date is 2026-10-01. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Entities such as childcare providers, local governments, or employers involved in child and child-rearing support programs may be affected, but the nature and scope of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending order on e-Gov to confirm the specific changes and how they may relate to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and bibliographic metadata (law numbers and dates); the content of the amendments is not provided and is unverified. The 'In Force' label is a preliminary rule-based label; the listed enforcement date (2026-10-01) should be checked against the official source to confirm status.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d1f6baa7ec426aface5c7324df74121d90049f469066c3301574081d63c77602": {
+    "title_en": "Cabinet Office Order Amending the Child Welfare Act Enforcement Regulations (effective Oct. 1, 2026)",
+    "summary_en": "This is an entry in the e-Gov law update list for a Cabinet Office Order partially amending the Enforcement Regulations of the Child Welfare Act (Reiwa 8 Cabinet Office Order No. 15). The metadata gives a promulgation date of 2026-03-30 and an effective date of 2026-10-01. The specific provisions amended are not stated in the provided metadata.",
+    "business_impact_en": "Organizations operating under the Child Welfare Act framework, such as child welfare facilities or service providers, may be affected, but the scope of the amendments cannot be determined from the metadata. The practical impact could range from minor to substantive depending on the amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Office Order on e-Gov to confirm which provisions change and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided and is unverified. The 'Other' area and 'Medium' impact labels are preliminary keyword-based triage labels. Dates are as stated in the metadata and should be checked against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "975c62881689b676f88fe3bcceea3098903202ece35ff43c8bca7e32a0c003ca": {
+    "title_en": "Cabinet Office Ordinance Amending Child Welfare Act Enforcement Regulations (2026-10-01 effective)",
+    "summary_en": "According to the e-Gov law update list, a Cabinet Office Ordinance (Reiwa 8 Cabinet Office Ordinance No. 15) amending the Enforcement Regulations of the Child Welfare Act was promulgated on 2026-03-30. The metadata lists an enforcement date of 2026-10-01. The specific provisions amended are not included in the provided metadata.",
+    "business_impact_en": "Organizations involved in child welfare services or facilities may be affected, but the nature and scope of any changes cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm which provisions are changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is unknown. The enforcement date of 2026-10-01 is as listed in the metadata and the 'In Force' stage label is a preliminary rule-based label that may not reflect actual status as of today. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "151094deedcaab6115993b3518c84a1ecde8ffa53128419acc3404c228034ab3": {
+    "title_en": "Cabinet Order for Act on Preventing Damage from Unauthorized Acts on Critical Computers",
+    "summary_en": "The e-Gov update list shows a Cabinet Order (Order No. 47 of Reiwa 8, 2026) implementing the Act on Preventing Damage from Unauthorized Acts on Critical Computers. The metadata gives a promulgation date of 2026-03-23 and an effective date of 2026-10-01. The metadata does not include the order's substantive provisions.",
+    "business_impact_en": "Organizations that may operate or relate to critical computer systems could be affected once the order takes effect, but the scope and obligations cannot be determined from this metadata. The practical impact depends on the order's text and the underlying Act.",
+    "recommended_action_en": "Review the official Japanese text of the order and the underlying Act on e-Gov to confirm its scope, applicability, and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; substantive content is not provided. Dates are as listed in the metadata. The 'In Force' label is a preliminary rule-based label, and the stated effective date of 2026-10-01 may be in the future relative to publication. Verify against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "0d16a734c93b8f79416a92bdde5293a3536993f3ef80ddd7dae59fe9c7bf76f2": {
+    "title_en": "Cabinet Order amending National Pension Fund Order and related orders (promulgated 2025-12-24)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order amending the National Pension Fund Order and related orders (Reiwa 7 Cabinet Order No. 442), with a promulgation date of 2025-12-24 and an effective date of 2026-12-01. It is listed as amending the Cabinet Order on transitional measures accompanying the enforcement of the act amending the Employees' Pension Insurance Act and other laws to ensure the soundness and reliability of the public pension system (Heisei 26 Cabinet Order No. 74). The specific content of the amendments is not given in the provided metadata.",
+    "business_impact_en": "If the amendments touch pension-related transitional measures, they could affect employers, pension funds, or advisers handling public pension matters, but the actual scope cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and effective date, to determine whether any changes are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and metadata from the e-Gov update list; amendment details are not provided and the dates and order numbers should be verified against the official source. The 'Labor / Employment' area label is preliminary and keyword-based.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "af4548c7f94ad5a8dad4f1517f9885c0805e2b4d48850309990a9f94d34e05fe": {
+    "title_en": "Act on Related Law Amendments for Active Cyber Defense Act: Industrial Competitiveness Act change",
+    "summary_en": "The e-Gov update list shows an amending act (Act No. 43 of Reiwa 7), the act on arranging related laws accompanying implementation of the law on preventing damage from unauthorized acts against critical computers, which amends the Industrial Competitiveness Enhancement Act (Act No. 98 of 2013). The metadata lists a promulgation date of 2025-05-23 and an effective date of 2026-10-01.",
+    "business_impact_en": "Businesses subject to the Industrial Competitiveness Enhancement Act, particularly those involved in cybersecurity or critical computer systems, may be affected by the amended provisions. The specific changes and their scope cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the specific amended provisions and their effective date, to assess any relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the actual amended provisions are not provided. The 2026-10-01 effective date is a future date relative to promulgation, so the rule-based 'In Force' label may not reflect current status and should be verified. The English title is shortened and the translation of the statute names is unofficial.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "6782c0f0bbb550c4e65068de5dc40da721251ecb7b5be733bc646b9b8bbd9516": {
+    "title_en": "Act on Related Laws for Active Cyber Defense Act Implementation (Amends Police Duties Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, Act No. 43 of Reiwa 7 (2025), whose Japanese title refers to the arrangement of related laws accompanying implementation of the Act on Prevention of Damage from Unauthorized Acts Against Critical Computers. The listed target law is the Police Duties Execution Act (Act No. 136 of 1948). The metadata gives a promulgation date of 2025-05-23 and an effective date of 2026-10-01.",
+    "business_impact_en": "Amendments to the Police Duties Execution Act in connection with critical-computer protection may, depending on their content, affect organizations that operate critical information systems. The specific provisions and any obligations are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and the 2026-10-01 effective date, to confirm the scope and relevance to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The effective date (2026-10-01) is in the future relative to the publication date, so the preliminary 'In Force' label may not reflect current status and should be verified. The English statute names are unofficial translations.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a0b62b9d0ec95b653560bbf3289ba5abe1b2e250c300bcf314605442e20f711d": {
+    "title_en": "Amending Act on Digital Agency Establishment Act, tied to Critical Computer Cyber Harm Prevention Act",
+    "summary_en": "This e-Gov law update entry lists an amendment to the Act for Establishment of the Digital Agency (Act No. 36 of 2021). The amending act is Act No. 43 of 2025, titled as an act on the development of related laws accompanying the enforcement of the Act on Prevention of Damage from Unauthorized Acts Against Critical Computer Systems (unofficial translation). The metadata gives a promulgation date of 2025-05-23 and an enforcement date of 2026-10-01.",
+    "business_impact_en": "Organizations connected to the Digital Agency or to critical computer systems may wish to check whether the amendment affects them. The metadata does not describe the substance of the changes, so any impact is unclear.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments to the Digital Agency Establishment Act and their effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata (titles, law numbers, dates); the content of the amendments is not provided. The 'In Force' triage label may not match the stated 2026-10-01 enforcement date, so verify the status in the official source. English title is an unofficial translation.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "44a2f3dcdae76c23fe9171764ea0e0eea411929f363cb45ce116847c962fc65b": {
+    "title_en": "Act on Related Law Amendments for Critical Computer Cyber-Attack Prevention Act; NICT Act amended",
+    "summary_en": "The e-Gov law update list shows an amendment to the Act on the National Institute of Information and Communications Technology (Act No. 162 of 1999). The amending law is the Act on the Maintenance of Related Laws accompanying implementation of the Act on Prevention of Damage from Unauthorized Acts against Critical Computers (Act No. 43 of Reiwa 7), with a promulgation date of 2025-05-23 and a listed enforcement date of 2026-10-01.",
+    "business_impact_en": "Organizations connected to critical computer systems or NICT-related activities may be affected by the related legal framework, but the metadata does not describe the actual content of the amendments.",
+    "recommended_action_en": "Review the official e-Gov source text in Japanese to confirm the specific amendments to the NICT Act and their scope and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the amendment content is not provided. The enforcement date (2026-10-01) appears to be in the future relative to the publication date, so the preliminary 'In Force' label may be inaccurate; verify against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "21d6bd3dae4e049e44aba9f253e87f0d5a0621ba62fd27c35198b1be62f09a88": {
+    "title_en": "Act on Related Law Amendments for Active Cyber Defense Act; Amends Cybersecurity Basic Act",
+    "summary_en": "The e-Gov law update list shows an amending act (Act No. 43 of Reiwa 7, 2025) titled as an act on the arrangement of related laws accompanying implementation of the law on preventing damage from unauthorized acts against important computers. It is listed as amending the Basic Act on Cybersecurity (Act No. 104 of Heisei 26). The metadata gives a promulgation date of 2025-05-23 and a listed enforcement date of 2026-10-01.",
+    "business_impact_en": "Organizations subject to the Basic Act on Cybersecurity, or operating important computer systems, may be affected by the amendments once effective. The specific obligations and scope cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their scope, and the enforcement date before assessing any relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amendment content is not provided. The title translation is unofficial, and the 'In Force' label is a preliminary rule-based tag, since the listed enforcement date (2026-10-01) may be in the future. Verify against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c264ecfc9bc0784cdab73144cb3966511544b584c2019b9686e987a8ec2b80c5": {
+    "title_en": "Act on Related Laws for Implementing the Critical Computer Cyber Harm Prevention Act (Act No. 43 of 2025)",
+    "summary_en": "This e-Gov law update entry lists an amending act, Reiwa 7 Act No. 43 (promulgated 2025-05-23), that amends the Act on the Promotion of Information Processing (Showa 45 Act No. 90). The act is described as an accompanying legislative adjustment tied to the implementation of the law on preventing damage from unauthorized acts against critical computers. The metadata lists a scheduled effective date of 2026-10-01.",
+    "business_impact_en": "Organizations connected to information-processing or cybersecurity-related regimes may be affected by the amendments to the Act on the Promotion of Information Processing, though the specific changes are not described in the provided metadata. The practical scope and any obligations could depend on the full text of the amendments.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and the effective date before assessing any relevance to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is a preliminary rule-based label, and the listed effective date (2026-10-01) is in the future relative to the 2025-05-23 promulgation date, so current in-force status should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "6e8ba6458534334ce68d0e2e658cd4b28b76e2e66096baae816265b975df2f66": {
+    "title_en": "Act on Related Laws for Implementing Active Cyber Defense Act (Amends Cabinet Act)",
+    "summary_en": "The e-Gov update list shows that the Cabinet Act (Act No. 5 of 1947) is amended by an act on the arrangement of related laws accompanying implementation of the Act on Prevention of Damage from Unauthorized Acts Against Critical Computers (Act No. 43 of 2025). The metadata gives a promulgation date of 2025-05-23 and a scheduled enforcement date of 2026-10-01. Details of the amendments to the Cabinet Act are not included in the provided metadata.",
+    "business_impact_en": "The amendment appears to concern the Cabinet Act and related government organization, so any direct effect on businesses may be limited or indirect, though the related cybersecurity framework could eventually be relevant to operators of critical systems. The practical impact cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments and the enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The 'In Force' label is rule-based and the enforcement date (2026-10-01) may be in the future relative to the publication date, so current force should be verified against the official source. The short title in English is an unofficial rendering.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "46550e65c70a9def33e2b2235ac047ca781a083bd8c15be6c3a1cf24e45f7bcc": {
+    "title_en": "CAA Update to Foods with Function Claims Notification Database (Oct. 1)",
+    "summary_en": "The Consumer Affairs Agency (CAA) posted a government announcement dated 2026-10-01 stating that the notification information in its database for the Foods with Function Claims system was updated. The available metadata consists only of the title and does not describe which notifications were added, changed, or withdrawn.",
+    "business_impact_en": "Companies that notify or sell foods with function claims may find that database entries relevant to their products or competitors have changed. Any practical effect cannot be determined from the title alone.",
+    "recommended_action_en": "Review the official CAA page and the updated database entries in Japanese to confirm what was changed and whether it is relevant to your products.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief RSS entry; the content of the update is not described. Labels (Consumer / Advertising, Low impact) are preliminary keyword-based triage and unverified. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "5a43a9206dc29be5cdc7186afe3e260d696766390a3ac697454caa77e5c023d9": {
+    "title_en": "Public comment: draft amendment to designated activities notice under Immigration Control Act Art. 7(1)(2)",
+    "summary_en": "The Immigration Services Agency has opened a public comment procedure on a draft partial amendment to the notice that specifies the activities listed in the right-hand column of Row 5 of Appended Table I of the Immigration Control and Refugee Recognition Act, issued under Article 7, paragraph 1, item 2. The draft was announced on 2026-09-29 and comments are accepted until 2026-10-30 00:00. The metadata does not describe the content of the proposed amendment.",
+    "business_impact_en": "If the amendment is later adopted, it could change which activities fall within the relevant residence status category, which may affect organizations that sponsor or employ foreign nationals. The actual scope of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese public comment page and the attached draft documents to understand the proposed changes and the submission deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the content of the draft amendment and the specific residence status category are not stated and are unverified. This is a draft out for public comment, not an adopted or effective rule. Preliminary labels (area 'Other', impact 'Medium') are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "51b5ce5f82f3a278424c9cc07626ca52590a6214aaa7640833df913dcf81d4bf": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (2026 Act No. 64)",
+    "summary_en": "The e-Gov law update list shows an amending act titled 'Act Partially Amending the Financial Instruments and Exchange Act and the Payment Services Act' (Reiwa 8 Act No. 64) with a promulgation date of 2026-07-23. The entry lists the Financial Instruments and Exchange Act (Showa 23 Act No. 25) as an affected law, with an update list date of 2026-09-29. The provided metadata does not describe the content of the amendments or their effective dates.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act or the Payment Services Act may be affected, but the specific obligations or changes cannot be determined from the metadata provided. Any impact would depend on the content and effective dates of the amendments.",
+    "recommended_action_en": "Review the official Japanese text of the amending act on e-Gov, including its supplementary provisions on effective dates, and consult qualified counsel as appropriate.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; amendment content and effective dates are not provided and are unverified. The rule-based area label 'Consumer / Advertising' is a weak keyword-based label and may not reflect the actual subject matter. The Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d8b75cbbb08b4e080248eb5f611a5ecfc23e015925af24dc55b98470053f2d93": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (Reiwa 8 Act No. 64)",
+    "summary_en": "The e-Gov law update list shows an amending act, Reiwa 8 Act No. 64, which amends the Financial Instruments and Exchange Act and the Payment Services Act. The metadata gives a promulgation date of 2026-07-23 and an effective date of 2027-04-01. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act or the Payment Services Act may need to assess whether the amendments affect their operations once they take effect. The scope and content of any changes cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov and any related Financial Services Agency materials to confirm the amendment content, effective date, and any transitional provisions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and law-update metadata; amendment substance is not provided. The rule-based 'Consumer / Advertising' area label appears weakly supported and is not verified. Effective date and details should be checked against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "2653caf2f11ec93ca317fb9a55dabf3fc693a28a4c6f58ae769f66ab83816205": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (Reiwa 8 Act No. 64)",
+    "summary_en": "The e-Gov Law Search update list shows an amending act titled in Japanese as an act partially amending the Financial Instruments and Exchange Act and the Act on Settlements of Funds (Reiwa 8 Act No. 64), with a promulgation date of 2026-07-23. The target law listed is the Financial Instruments and Exchange Act (Showa 23 Act No. 25). The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act or the payment services framework may be affected, but the nature and scope of any changes cannot be determined from the provided metadata. The rule-based 'Consumer / Advertising' label is a weak keyword-based signal and may not reflect the actual subject matter.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including its supplementary provisions on effective dates, to understand the content and timing of the amendments.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; amendment content and effective dates are not provided and are unverified. The source URL suggests an effective-date reference of 2027-07-22, but this should be confirmed in the official text. Area, stage, and impact labels are preliminary rule-based triage labels, not legal conclusions. This is an unofficial summary; the Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "5eaa00e5040c087bc9b9cc419115f75a29ca37a65cf12aaf068e06a5366ab27e": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (2026 Act No. 64)",
+    "summary_en": "According to the e-Gov Law Search update list, an amending act (Reiwa 8 Act No. 64) revising the Financial Instruments and Exchange Act and the Act on Settlement of Funds is listed with a promulgation date of 2026-07-23 and an effective date of 2027-10-01. The metadata names the Financial Instruments and Exchange Act (Showa 23 Act No. 25) as the target law but does not describe the specific amendments.",
+    "business_impact_en": "Financial instruments businesses and payment or settlement service providers may be affected, but the scope and nature of any changes cannot be determined from the metadata provided. The rule-based 'Consumer / Advertising' label is only a weak keyword-based hint and may not reflect the actual content.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and supplementary provisions on effective dates, to determine whether and how it applies to your business.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. The dates and law numbers are as stated in the metadata and should be checked against the official source. Rule-based area, stage, and impact labels are not legally verified.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "6fbb8e280721928657a86ef4573a1ce3f0615f61a7141e6daa13f5e681d518ca": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (Reiwa 8 Act No. 64)",
+    "summary_en": "The e-Gov update list shows an amending act titled 'Act to Partially Amend the Financial Instruments and Exchange Act and the Payment Services Act' (Reiwa 8 Act No. 64), with a promulgation date of 2026-07-23. The target law listed is the Financial Instruments and Exchange Act (Showa 23 Act No. 25), and the update list date is given as 2026-09-29. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act or the Payment Services Act may be affected, but the specific obligations and effective dates cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the supplementary provisions on effective dates, and consult qualified legal counsel to assess any relevance to your business.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and basic e-Gov metadata; the content of the amendments and effective dates are not provided and are unverified. The 'Consumer / Advertising' area label is a preliminary keyword-based label and may not reflect the actual subject matter. The source URL suggests a future version date (2028-06-13), which is unconfirmed here.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "eebf247e6c2f234f4c720c5e92300d3fcfdd741adbcd89517581cdd1fbd8189a": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act and the Payment Services Act (Reiwa 8 Act No. 64)",
+    "summary_en": "The e-Gov law update list records an amending act titled in Japanese as an act partially amending the Financial Instruments and Exchange Act and the Act on Settlement of Funds (Reiwa 8 Act No. 64), with a promulgation date of 2026-07-23. The target law listed is the Financial Instruments and Exchange Act (Showa 23 Act No. 25). The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act or the payment services framework could be affected, but the specific obligations and scope cannot be determined from the metadata provided. Effective dates for individual provisions are not stated in the supplied text.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the supplementary provisions on effective dates, to determine whether and how the amendments apply to your activities.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amendment content and effective dates are unverified. The 'Consumer / Advertising' area label is a weak keyword-based triage label and may not reflect the actual subject matter. The English rendering of the second statute name is a translation of the Japanese title.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "94a8b6b34327d04d4ce39d8c9ef5c7a9bb7437b654616dd47f0e0b03378616e5": {
+    "title_en": "Amendment Act to Financial Instruments and Exchange Act and Payment Services Act (JBIC Act entry)",
+    "summary_en": "The e-Gov law update list records an amending act titled 'Act Partially Amending the Financial Instruments and Exchange Act and the Act on Settlements of Funds' (Reiwa 8 Act No. 64). The entry lists a promulgation date of 2026-07-23 and an enforcement date of 2027-04-01, and the affected law shown in this entry is the Japan Bank for International Cooperation Act (Heisei 23 Act No. 39). The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Because the amending act appears to alter the Financial Instruments and Exchange Act and the payment services law, financial and payment-related businesses may wish to check whether any provisions affect them. The specific effects cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the enforcement date on e-Gov to determine which provisions, if any, are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and the e-Gov update-list metadata; the content of the amendments is not provided. The entry concerns the JBIC Act as an affected law, so the rule-based labels (Consumer / Advertising) may not reflect the actual subject matter. Dates and law numbers should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7d4c79c0dad21636f1771c165773b2a747aeba2c021e292a395f0d52feac6807": {
+    "title_en": "Act amending Financial Instruments and Exchange Act and Payment Services Act (affects JBIC Act)",
+    "summary_en": "The e-Gov law update list records an amending act titled 'Act to Partially Amend the Financial Instruments and Exchange Act and the Act on Settlement of Funds' (Reiwa 8 Act No. 64), with a promulgation date of 2026-07-23. The listing shows it as an amendment affecting the Japan Bank for International Cooperation Act (Heisei 23 Act No. 39). The provided metadata does not describe the content of the amendments or give an effective date.",
+    "business_impact_en": "Depending on the amendments' substance, which is not stated in the provided data, financial instruments and payment-related businesses could be affected; the link to the JBIC Act appears to be a consequential amendment but this is unverified.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amending provisions and supplementary provisions on effective dates, to determine whether and how it applies to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment content and effective dates are not provided. The source URL suggests a 2027-07-22 enforcement reference, but this is unverified. The 'Consumer / Advertising' area label appears questionable for this item and should not be relied on.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4666af89d5690f32ae5814e3496955554a646d9d4c9e1f624347ce10e81afd05": {
+    "title_en": "Act Amending the Industrial Safety and Health Act and Working Environment Measurement Act (2025)",
+    "summary_en": "The metadata lists an amending act (Act No. 33 of Reiwa 7) that revises the Industrial Safety and Health Act (Act No. 57 of 1972) and the Working Environment Measurement Act. The act is shown with a promulgation date of 2025-05-14 and an effective date of 2026-10-01, as listed in the e-Gov law update list. The provided metadata does not describe the specific amendments.",
+    "business_impact_en": "Employers and organizations subject to the Industrial Safety and Health Act may be affected by the amendments, but the nature and scope of any changes cannot be determined from the metadata provided. Any obligations would depend on the actual amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the revised Industrial Safety and Health Act on e-Gov to confirm which provisions change and how they apply to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and e-Gov update-list metadata; specific amendment content is not provided. The 'Energy / Environment' area label is keyword-based and may not reflect the subject (occupational safety and health). The 2026-10-01 effective date is a future date relative to promulgation, so the 'In Force' stage label should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "512eb70d1a8111398ba224f2da19ce610d4d401a3f4de2c614e6d8fcf6d69727": {
+    "title_en": "Act Amending the Industrial Safety and Health Act and Working Environment Measurement Act (2025)",
+    "summary_en": "The e-Gov update list shows an amending act, Act No. 33 of Reiwa 7 (2025), that amends the Industrial Safety and Health Act and the Working Environment Measurement Act (Act No. 28 of Showa 50). The metadata gives a promulgation date of 2025-05-14 and an enforcement date of 2026-10-01, which is the update-list date for the Working Environment Measurement Act. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Depending on the substance of the amendments, which is not provided here, employers and organizations involved in workplace environment measurement may need to adjust related practices ahead of the 2026-10-01 enforcement date. The scope and degree of any impact cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and enforcement provisions, and consult qualified professionals as needed.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The rule-based 'Energy / Environment' area and 'In Force' stage labels are weak triage context, and as of the promulgation date the 2026-10-01 enforcement date may still be in the future, so current status should be verified against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9378eecf0d94b9e472b7053d7981057848ee47d3995be30248891890b2be96a3": {
+    "title_en": "Act Amending Occupational Safety and Health Act and Working Environment Measurement Act (Reiwa 7 No. 33)",
+    "summary_en": "The e-Gov law update list records Act No. 33 of Reiwa 7, which amends the Occupational Safety and Health Act and the Working Environment Measurement Act. The entry lists a promulgation date of 2025-05-14 and an enforcement date of 2026-10-01, and the target law shown in this entry is the Registration and License Tax Act (Act No. 35 of 1967). The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Depending on the amendment's content, which is not stated here, businesses subject to occupational safety and health or working environment measurement requirements may need to assess whether any changes apply to them. The relevance of the entry to the Registration and License Tax Act cannot be determined from the metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amendment provisions and supplementary provisions, to confirm the actual content, scope, and effective dates.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. The preliminary labels (Energy / Environment, In Force) are keyword-based and may be inaccurate; an enforcement date of 2026-10-01 appears to be in the future relative to the 2025-05-14 promulgation date, and the in-force status should not be assumed. Unofficial summary; verify against the official Japanese source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "94998d229f043e781ebaa5b196b8de3e7398851fd12164fad227c2f3e8aa4c56": {
+    "title_en": "Act Amending the Financial Instruments and Exchange Act (Act No. 79 of 2023), effective 2026-11-30",
+    "summary_en": "The e-Gov law update list shows an amending act, 'Act to Partially Amend the Financial Instruments and Exchange Act and Other Acts' (Reiwa 5 Act No. 79), affecting the Financial Instruments and Exchange Act (Showa 23 Act No. 25). The metadata gives a promulgation date of 2023-11-29 and a scheduled enforcement date of 2026-11-30. The substance of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act may be affected once the amendments take effect, but the specific obligations and scope cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amendment provisions and any supplementary provisions on enforcement dates, to confirm which changes apply and when.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata; no amendment content provided. The rule-based 'Consumer / Advertising' label is a weak keyword-based triage label and may not reflect the actual subject matter. Enforcement dates may differ by provision; verify against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "f5588250c39168f05bd6e97efee98c02ed58053e784848849c48099627e0af63": {
+    "title_en": "PMDA posts MHLW notice on revising package insert precautions for drugs (Oct 2, 2026)",
+    "summary_en": "The PMDA Safety Updates page announced that it has posted a notice instructing revisions to the 'precautions for use' (package insert precautions) of pharmaceutical products, issued by the Ministry of Health, Labour and Welfare and dated October 2, 2026. This is a government announcement; the metadata does not identify which drugs or which precautions are affected.",
+    "business_impact_en": "Marketing authorization holders and distributors of the affected drugs may need to update package inserts or related product information, and healthcare providers could see changes to labeling. The scope and timing of any obligations cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese notice on the linked PMDA page to confirm which products are covered and what revisions are instructed.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief source summary; the specific drugs, revisions, and deadlines are not provided and are unverified. Rule-based labels (area, stage, impact level) are preliminary triage aids only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "06b8c5061459da2a9386ccb5c13972d5c3e14e50d312af9212fb3b951e593054": {
+    "title_en": "PMDA posts MHLW notice directing revision of precautions for drugs (dated 29 Sep 2026)",
+    "summary_en": "PMDA's safety updates page lists a post stating that a notice instructing revisions to the 'Precautions' (package-insert cautionary information) for pharmaceuticals, issued by the Ministry of Health, Labour and Welfare and dated 29 September 2026, has been published. The available metadata does not identify which drugs or which precautions are affected. This is a government safety announcement; the specific content is not described in the provided information.",
+    "business_impact_en": "Marketing authorization holders and healthcare providers handling the affected drugs may need to update package inserts or related safety information, depending on the notice's content. The scope and impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the linked official PMDA/MHLW Japanese source to identify the specific drugs and revisions involved and to verify this unofficial summary.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief source label; the affected products, nature of the revisions, and any deadlines are not provided and are unverified. Rule-based labels were treated only as weak context.",
+    "summarized_at": "2026-10-03T23:36:36Z",
     "summary_model": "claude-sonnet-5-5"
   }
 }

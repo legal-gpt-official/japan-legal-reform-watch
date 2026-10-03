@@ -803,7 +803,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided Japanese title and raw metadata; the specific amendments are not described. Note the metadata mixes references to both the Local Autonomy Act and the Local Tax Act, so the exact affected law should be verified. The listed effective date (2026-09-24) is future-dated relative to the promulgation date; do not assume the changes are currently in force.",
     "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《地方自治法》部分修正法律（令和6年法律第65号）",
+        "summary": "该条目来自e-Gov法令检索的法令更新一览，涉及一部对《地方自治法》进行部分修正的法律（标注为令和6年法律第65号）。元数据列明公布日期为2024-06-26，标示的生效日期为2026-09-24，所涉及的法律被标注为《地方税法》（昭和25年法律第226号）。具体修正内容未在元数据中提供，应以日文官方来源为准进行核实。",
+        "business_impact": "受日本地方政府或地方税相关规则约束的组织可能受到影响，具体视所修正的条款而定。仅凭该元数据无法确定其影响范围及实际影响。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认此次修订的内容、范围及适用日期。"
+      }
+    }
   },
   {
     "id": "raw-485786c2863b7379",
@@ -825,7 +833,15 @@
     "confidence": "medium",
     "ai_notes": "Based only on the provided metadata; the specific amendments are not described. Metadata lists a stated enforcement date of 2026-09-24, so 'in force' status should be verified against the official source. Preliminary labels are keyword-based and unverified.",
     "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《地方自治法部分修正法》（令和6年法律第65号）生效",
+        "summary": "本条目涉及一部修正法，名为《地方自治法部分修正法》（令和6年法律第65号），根据元数据，该法影响《地方公营企业法》（昭和27年法律第292号）。元数据显示公布日期为2024-06-26，生效日期为2026-09-24。该记录出现在e-Gov法令检索更新列表中。",
+        "business_impact": "在相关变更生效后，在地方公营企业或地方政府框架下运营或与其有往来的组织可能会受到影响，但此处未详细说明具体条款。",
+        "recommended_action": "建议查阅e-Gov法令检索中的日文官方来源，以确认修正条款、适用范围及相关日期。"
+      }
+    }
   },
   {
     "id": "raw-f97bb44a8e88828c",
@@ -853,7 +869,15 @@
     "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で確認されることをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-07T23:23:40Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "法律修订：《出入国管理及难民认定法》及《技能实习法》修订",
+        "summary": "本项涉及一项修订法律（令和6年法律第60号），对《出入国管理及难民认定法》以及《关于外国人技能实习的适当实施及技能实习生保护的法律》进行修订。根据元数据，该法律已于2024-06-21公布，所载生效日期为2027-04-01。本内容为基于e-Gov法令检索有限元数据所作的非官方英文摘要的翻译。",
+        "business_impact": "从事外国人雇用或运营技能实习制度的相关机构，在修订内容生效后可能受到影响。所列明的未来生效日期表明，可能存在一段过渡期，在此期间进行相关准备工作可能具有意义。",
+        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方文本，以确认本次修订的适用范围、生效日期及具体要求的细节。"
+      }
+    }
   },
   {
     "id": "raw-275968e53a583f44",
@@ -881,7 +905,15 @@
     "recommended_action_ja": "施行時期や改正内容の詳細、また対象法令に関する記載の整合性について、e-Gov法令検索など日本語の公式情報源でご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "修正法：《出入国管理及难民认定法》与《技能实习法》",
+        "summary": "本项涉及一项修正法（令和6年法律第60号），对《出入国管理及难民认定法》以及《关于技能实习适当实施及技能实习生保护的法律》进行修订。元数据显示公布日期为2024-06-21，施行（生效）日期为2027-04-01。该记录出现在e-Gov法令更新列表中，并参照了目标法律编号（昭和40年法律第33号）。",
+        "business_impact": "涉及外国人在留资格或技能实习制度的相关机构可能受到未来生效的变更影响。",
+        "recommended_action": "建议在得出任何合规结论之前，查阅e-Gov官方来源以确认适用范围、具体条款及生效日期。"
+      }
+    }
   },
   {
     "id": "raw-acc50518307a8d86",
@@ -909,7 +941,15 @@
     "recommended_action_ja": "改正内容や施行日、対象法令の範囲については、e-Gov法令検索など日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "法律修订：《出入国管理及难民认定法》及《技能实习法》部分修订",
+        "summary": "本项目涉及部分修订《出入国管理及难民认定法》及《外国人技能实习的适当实施及技能实习生保护法》的法律（令和6年法律第60号）。根据元数据，该法于2024-06-21公布，所载生效日期为2027-04-01。请注意，原始摘要中还提及《地方税法》，这似乎存在不一致之处，应与官方来源核实。",
+        "business_impact": "涉及外国人技能实习或出入国管理相关流程的组织可能受到此次修订所带来变化的影响。具体范围及义务可能取决于本元数据未提供的细节。",
+        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认此次修订的范围、具体条款及生效时间。"
+      }
+    }
   },
   {
     "id": "raw-409c4d90ee6e8f50",
@@ -937,7 +977,15 @@
     "recommended_action_ja": "改正内容や施行日、対象法令の範囲については、e-Gov法令検索など日本語の公式情報源で最新の記載をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "法律修订：《出入国管理及难民认定法》及《技能实习法》",
+        "summary": "本条目涉及一项修订法律（令和6年法律第60号），对《出入国管理及难民认定法》以及《关于技能实习的适当实施及技能实习生保护的法律》进行修订。根据元数据，该修订的公布日期为2024-06-21，标明的生效日期为2027-04-01。该记录还提及《登录许可税法》以及昭和42年法律第35号，相关内容应以官方来源核实为准。",
+        "business_impact": "雇用或接收外国技能实习生的机构，一旦相关条款生效，可能会因入境管理及技能实习相关规则的变化而受到影响。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令官方来源，以确认适用范围、受影响的条款及适用的生效日期。"
+      }
+    }
   },
   {
     "id": "raw-5944049c842eec83",
@@ -991,7 +1039,15 @@
     "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《所得税法等部分修正法律》即将生效",
+        "summary": "本条目涉及一项修正法（令和6年法律第8号），其对《所得税法》（昭和40年法律第33号）进行部分修订，收录于e-Gov法令检索更新列表中。根据元数据，该修正法的公布日期为2024-03-30，生效日期为2027-01-01。元数据中未提供修订的具体内容。",
+        "business_impact": "所得税相关规则的修订一旦生效，可能会影响受影响的个人和企业的税务规划、申报或代扣代缴义务。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令检索的官方来源，以确认具体条款、适用范围及生效日期。"
+      }
+    }
   },
   {
     "id": "raw-e03603d54565dce5",
@@ -1019,7 +1075,15 @@
     "recommended_action_ja": "改正内容の詳細および施行時期については、e-Gov法令検索など日本語の公式情報源をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-13T23:00:30Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《地方税法等部分修正法律》定于生效",
+        "summary": "本条目涉及一部修订《地方税法》（昭和25年法律第226号）的修正法律（令和6年法律第4号），列于e-Gov法令检索更新索引中。元数据显示公布日期为2024-03-30，规定生效日期为2027-01-01。所提供的元数据未说明具体的实质性修改内容。",
+        "business_impact": "地方税相关规则的变更可能影响在日本适用地方税的组织和个人的纳税义务或申报事宜。仅凭元数据无法确定其具体影响的性质和范围。",
+        "recommended_action": "建议在得出任何结论之前，查阅e-Gov官方来源以确认具体条款、适用范围及生效时间。"
+      }
+    }
   },
   {
     "id": "raw-2dc736761cac454c",
