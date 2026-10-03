@@ -41775,7 +41775,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment and not enacted. Details unverified against the official source; preliminary rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの意見募集案件一覧に、「景観再生事業指針（案）の制定について」が掲載されています。案の公示日は2026年9月28日、受付締切日時は2026年10月27日18時で、カテゴリーは都市計画、問合せ先は国土交通省都市局公園緑地・景観課とされています。提供されたメタデータには指針案の具体的な内容は含まれておらず、現時点では案の段階にある意見募集と位置付けられます。",
+    "business_impact_ja": "景観や都市計画に関わる事業(開発、不動産、公共事業関連等)を行う事業者にとって、指針の内容次第で関連する事務や計画に影響する可能性が考えられますが、具体的な影響は案の本文が明らかでない限り判断できません。",
+    "recommended_action_ja": "指針案の内容、対象範囲および意見提出の方法については、e-Gov意見募集ページおよび所管の国土交通省都市局公園緑地・景観課が公表する日本語の一次資料をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "7258bfe712defe6c79b78bd646debbc0b5104923f4505bb0881634f24296ff28": {
     "title_en": "Amendment to Cabinet Office Ordinance on Standardization Criteria for Local Government Information Systems",
@@ -41837,7 +41843,13 @@
     "confidence": "medium",
     "ai_notes": "Based on provided metadata only. The metadata lists a promulgation date and a future effective date, but the specific substantive changes are not described; details should be verified against the authoritative Japanese source. Triage labels are keyword-based and not verified.",
     "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8"
+    "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧によれば、「外国為替法令に係る情報通信技術を活用した行政の推進等に関する法律施行規則」(平成十六年・各府省共同省令第二号)について、「一部を改正する命令」(令和八年・各府省共同省令第五号)が2026年9月9日に公布されたとされています。施行日は2027年1月4日と記載されています。提供された情報には改正の具体的な内容は含まれておらず、改正の中身は確認できません。",
+    "business_impact_ja": "外国為替法令に関する手続を情報通信技術を用いて行っている事業者にとって、申請・届出等の手続面に関わる変更が含まれる可能性があります。ただし、具体的な影響の有無や程度は、改正内容を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正命令の条文および新旧対照表などの内容について、e-Govをはじめとする日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "09ca8a95984dda0141aa8c7b8da8d4d60789d7201890ae1731f997f4e4c135e7": {
     "title_en": "Enforcement Regulation of the National Pension Act (Update Listing)",
@@ -42657,7 +42669,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on metadata; the amendment content is not provided. There is an apparent mismatch between the amending order title (National Tax Collection Act enforcement regulations) and the listed target law (national tax receipts adjustment fund regulations), which should be checked against the official source. The 'Other', 'Scheduled to Take Effect', and 'Medium' labels are preliminary and unverified.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「国税徴収法施行規則の一部を改正する省令」(令和八年財務省令第二十号)が掲載されています。対象法令は国税収納金整理資金事務取扱規則(昭和二十九年大蔵省令第三十九号)で、公布日は2026年3月31日、施行日は2027年4月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "国税の収納や徴収に関する事務手続を取り扱う事業者や関係機関では、施行日以降の事務取扱に関わる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認が前提となり、現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Govに掲載された省令本文および財務省など日本語の公式情報源でご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "b1cc3e554bbac2fb6a3a3890a6baad29934ee9b6360b9d31cdbb79184a526bd4": {
     "title_en": "Cabinet Order on Related Orders and Transitional Measures for Immigration Act/Technical Intern Training Act Amendments",
@@ -42667,7 +42685,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and the e-Gov update-list metadata; the amended content itself was not provided. The 'Labor / Employment' and 'Medium' impact labels are keyword-based and may overstate relevance for this specific conforming amendment.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧(更新一覧日2026年9月30日)に、「出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令」(令和七年政令第三百四十一号)による改正が掲載されています。対象法令は「国の利害に関係のある訴訟についての法務大臣の権限等に関する法律第七条第一項の公法人を定める政令」(昭和三十七年政令第三百九十三号)で、公布日は2025年10月1日、施行日は2027年4月1日と記載されています。提供された情報には、具体的な改正内容や経過措置の詳細は含まれていません。",
+    "business_impact_ja": "対象政令は訴訟に関する法務大臣の権限に係る公法人を定めるものであり、一般的な事業活動への直接の影響は限定的である可能性があります。ただし、改正の背景となる技能実習制度等の見直しとの関係で、外国人労働者を受け入れる事業者に関連する可能性も考えられるため、改正の具体的な内容を確認する必要があります。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "06df647d1e1cf60d02af2bc7b49daa99701dd29cadd5072117232b3e64b418c6": {
     "title_en": "Cabinet Order on ordinances and transitional measures for Immigration Act / Technical Intern Training Act amendments",
@@ -42677,7 +42701,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the actual amendments and transitional provisions are not described and are unverified. Labels such as 'Labor / Employment' and 'Scheduled to Take Effect' are rule-based triage hints, not legal conclusions. The 2027-04-01 date should be confirmed against the official source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧(更新一覧日:2026年9月30日)に、「出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令」(令和七年政令第三百四十一号)が掲載されています。この政令は2025年10月1日に公布され、施行日は2027年4月1日と記載されています。改正の対象として、情報通信技術を活用した行政の推進等に関する法律施行令(平成十五年政令第二十七号)が挙げられています。",
+    "business_impact_ja": "外国人の技能実習や出入国管理に関連する手続を扱う事業者にとって、施行日以降の手続や関係規定に影響が及ぶ可能性があります。ただし、提供された情報からは具体的な改正内容が確認できないため、影響の有無や程度は原文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の範囲については、e-Gov法令検索に掲載された政令本文など、日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "dd57ce1a9707632432a1450e72b9457c53e0e8b1ccfde8b1c9043ede82cde7fc": {
     "title_en": "Cabinet Order on Related Orders and Transitional Measures for Immigration Act/Technical Intern Act Amendment",
@@ -42687,7 +42717,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and the metadata summary; the substance of the amendments to the registration order is not provided. The 'Labor / Employment' area label is keyword-based and may overstate relevance to this particular order. Verify against the official Japanese source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧によれば、「出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令」(令和七年政令第三百四十一号)が2025年10月1日に公布されたと記載されています。この政令による改正の対象として、独立行政法人等登記令(昭和三十九年政令第二十八号)が挙げられており、施行日は2027年4月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "外国人の技能実習制度に関する法改正の関係政令の整備であるため、外国人材の受入れや関連手続に関与する事業者に、今後の制度変更の一環として関係する可能性があります。ただし、独立行政法人等登記令の具体的な改正内容は提供情報からは不明であり、実務上の影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容、経過措置および自社への関連性については、e-Gov法令検索などの日本語の公式情報源で政令の本文を確認することをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "caa3070e4ac26fd33bf41bace75c5214633e7027bad830daed641a3f16944de1": {
     "title_en": "Cabinet Order Amending Livestock Price Stabilization Act Enforcement Order and Others (Reiwa 2017 No. 7)",
@@ -42697,7 +42733,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and list metadata; the actual amended provisions are not provided. Note: the title_en label '(Reiwa 2017 ...)' is a mistake in era naming; the source states Heisei 29 (2017). The 2026-09-28 list date appears to be an update-list date, not an enactment date. Verify all details against the official source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「畜産物の価格安定に関する法律施行令等の一部を改正する政令」(平成二十九年政令第七号、公布日2017-01-25)が改正法令として掲載されています。対象法令として租税特別措置法施行令(昭和三十二年政令第四十三号)が示されており、更新一覧日は20260928と記載されています。改正の具体的な内容や施行日は、提供された情報からは確認できません。",
+    "business_impact_ja": "租税特別措置法施行令が対象法令に含まれているため、畜産物関連の事業や税務上の取扱いに関係する可能性がありますが、実際の影響の有無や程度は提供情報からは判断できません。",
+    "recommended_action_ja": "改正の内容および施行時期については、e-Gov法令検索等の日本語の公式情報源で原文を確認することをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c46c3900c212f353148dc9855fad6bb1212869553551233ccb4a20d9512a25b4": {
     "title_en": "MIC: Results of Public Comment on Draft Radio Act Review Standards Amendment",
@@ -42707,7 +42749,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the Japanese title and brief metadata; details of the amendment, comment results, and final status are unverified. The rule-based area label appears questionable for a Radio Act item and should not be relied on.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "総務省の新着情報として、「電波法関係審査基準の一部を改正する訓令案に係る意見募集の結果」が2026年9月30日付で公表されています。提供されたメタデータからは、訓令案に対する意見募集の結果が公表された段階であることがうかがえますが、改正内容、意見の件数や内容、施行時期などの詳細は記載されていません。",
+    "business_impact_ja": "電波法に基づく審査基準が改正される場合、無線局の免許・登録等の審査に関わる事業者の手続や要件に影響する可能性があります。ただし、具体的な影響の有無や範囲は、メタデータのみからは判断できないと考えられます。",
+    "recommended_action_ja": "改正訓令案の内容、意見募集の結果、成立・施行の状況については、総務省の公式ページ(掲載URL)および関連資料で、日本語の原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "8a9e2284f13a8dc1a962bb9a162f87b530dfe679c024560e3dbc1837de5b94da": {
     "title_en": "Public comment: draft amendment to MHLW list of designated OTC-guidance (yo-shido) drugs",
@@ -42717,7 +42765,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and short metadata; the contents of the draft amendment (which drugs are added or removed) are not provided and are unverified. The deadline is shown as 2026/10/31 00:00 in the source and should be confirmed against the official page.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの意見募集案件一覧に、医薬品医療機器等法第4条第5項第3号に基づき厚生労働大臣が指定する要指導医薬品の一部を改正する件(案)について、御意見の募集が掲載されています。案の公示日は2026年10月1日、受付締切は2026年10月31日0時と記載されており、所管は厚生労働省医薬局医薬品審査管理課です。提供されたメタデータには、改正案の具体的な内容は含まれていません。",
+    "business_impact_ja": "要指導医薬品の指定内容が改正される可能性があり、該当する医薬品の製造販売、流通、薬局等での販売に関わる事業者に影響が及ぶ可能性があります。ただし、具体的な影響は改正案の内容次第であり、現時点のメタデータからは判断できません。",
+    "recommended_action_ja": "改正案の具体的な内容、対象品目および提出方法については、e-Govに掲載された日本語の公式情報源および厚生労働省の公表資料をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c79c8151eea45bedcc2eb6c7ee2490af211e69878715f0956ff25936c2c69c08": {
     "title_en": "MIC Public Comment: Draft Revision of Telecom Competition Review Policy",
@@ -42727,7 +42781,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and a short RSS summary; the content of the draft revision and the comment period are not provided. The rule-based 'Data / Privacy / AI' area label appears questionable for a telecom competition-policy item and should be treated as weak context. Verify against the official Japanese source.",
     "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "総務省の新着情報として、2026年9月30日付で「電気通信事業分野における競争状況等の調査及び評価の実施に関する方針」の改定案に対する意見募集が公表されています。提供されたメタデータには、改定の具体的な内容、意見提出の期限や方法、施行時期に関する記載は含まれていません。また、本件は改定案の段階の意見募集であり、改定の成立や確定を示すものではありません。",
+    "business_impact_ja": "電気通信事業分野で事業を行う事業者にとって、競争状況の調査・評価の進め方に関する方針が見直される可能性があり、関連する報告や対応の実務に影響が生じる可能性が考えられます。ただし、具体的な影響の有無や程度は、提供情報からは判断できません。",
+    "recommended_action_ja": "改定案の具体的な内容、意見募集の期間および提出方法については、総務省の公式ページ(掲載URL)の原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "252980c3b0c9f74c772023b8db70d8e9e41ad3ceef0fd1989ada2a00edef5fb1": {
     "title_en": "MIC public comment: telephone universal service subsidy and contribution approvals",
@@ -43709,7 +43769,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The 'In Force' stage label is preliminary and keyword-based, and the enforcement date (2026-10-01) is later than the listed publication date, so current status should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によれば、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が2026年6月25日に公布され、その対象法令の一つとして調理師法施行規則(昭和三十三年厚生省令第四十六号)が挙げられています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "調理師や栄養士に関わる業務、養成施設、手続を扱う事業者にとって、施行日以降の取扱いに影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表などを日本語の公式情報源(e-Gov法令検索、官報、厚生労働省の公表資料等)で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f8403205db8a46d33a77deefae0b575121d8e6292163826dfa3380459edf7423": {
     "title_en": "Ministerial Ordinance Amending the Dietitians Act Enforcement Regulations, Affecting Confectionery Hygienist Rules",
@@ -43719,7 +43785,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the e-Gov update-list metadata; the content of the amendments is not provided. The enforcement date (2026-10-01) comes from the metadata and should be verified against the official source. The rule-based labels (area, stage, impact level) are preliminary and unverified.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)に基づく改正の情報が掲載されています。対象法令として製菓衛生師法施行規則(昭和四十一年厚生省令第四十五号)が挙げられており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "製菓衛生師法施行規則を対象とする改正であるため、製菓衛生師の資格や関連手続に関与する事業者・教育機関等に影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と施行日までの対応要否については、e-Govに掲載された改正省令の本文や厚生労働省等の日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "d6e981ef443e85c06ccb2db9736b99a1e9192007d31d0cb35f72e497770e0629": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations; Updates Building Sanitation Regulations",
@@ -43729,7 +43801,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on metadata (titles, dates, law numbers); amendment content is not provided. The 'In Force' stage label is preliminary and may not match the actual status, since the 2026-10-01 effective date is stated as scheduled and its relation to the current date is unverified. English law names are unofficial translations.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によれば、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が2026年6月25日に公布され、2026年10月1日に施行される旨が示されています。更新対象として「建築物における衛生的環境の確保に関する法律施行規則」(昭和四十六年厚生省令第二号)が記載されていますが、提供情報からは具体的な改正内容は確認できません。",
+    "business_impact_ja": "建築物における衛生的環境の確保に関する法律施行規則に関係する事業者(建築物の所有者・管理者等)において、施行日以降の運用に影響が生じる可能性がありますが、改正の具体的内容が不明なため、影響の有無や程度は原文の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正内容および自社の事業との関係については、e-Govに掲載された改正省令の本文や厚生労働省の公表資料など、日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "d668d9ba5c539021b7e1fb55de1c38c0e20d8753c3590dec11251fa35a3bf55f": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Rules, Incl. Barber Act Rules",
@@ -43739,7 +43817,13 @@
     "confidence": "low",
     "ai_notes": "Based only on the title and list metadata; the substance of the amendments is not provided. The 'In Force' stage label is a rule-based triage label and the effective date (2026-10-01) is later than the publication date, so current force should not be assumed. Verify against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)に関する情報が掲載されています。対象法令として理容師法施行規則(平成十年厚生省令第四号)が示されており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "理容師法施行規則の規定に関わる事業者や施設にとって、施行日以降の運用や手続に影響が及ぶ可能性があります。ただし、改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Govに掲載された改正省令の原文および所管官庁(厚生労働省)の公表情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "4aebfbff275bbc756bf95accc55d569382e53bee70e007b89ee3d25f51d5d765": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations, Incl. Beautician Act Rules",
@@ -43749,7 +43833,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' label is a preliminary rule-based label; the listed enforcement date (2026-10-01) should be verified against the official source. This is an unofficial summary.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)に基づく改正が掲載されています。対象法令として美容師法施行規則(平成十年厚生省令第七号)が示されており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "美容師法施行規則が改正対象に含まれているため、美容所の運営や美容師の業務に関する手続・様式等に関係する可能性がありますが、具体的な影響の有無や程度は提供情報からは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および自社の業務への関係については、e-Govに掲載された改正省令の本文や所管官庁(厚生労働省)の公表情報などの日本語の公式情報源でご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c8ccc05823724f9221c99529d6e04dacfaf5c726459c86633ed3e4dab34a8947": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations etc. (affects Physicians Act regs)",
@@ -43759,7 +43849,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The promulgation and enforcement dates come from the metadata and should be verified against the official source. The 'In Force' stage label is a preliminary rule-based label, and the enforcement date (2026-10-01) may be later than the publication date.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)による医師法施行規則(昭和二十三年厚生省令第四十七号)の改正が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "医師法施行規則が改正対象に含まれるため、医療機関や医療関連事業者の手続・書式・運用に関係する可能性がありますが、改正内容が不明なため影響の有無や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行日までの経過措置の有無について、e-Gov法令検索および厚生労働省の公式公表資料で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "2edef3e9e841ceec5d3c07b752c59eb7c33539f93d138248e8a8cad8f68565f8": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations; Affects Foreign Physician Clinical...",
@@ -43769,7 +43865,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; amendment contents are unknown. The ordinance appears to be an omnibus amendment, and the listed target regulation may be only one of several affected. The 'In Force' stage label is preliminary and unverified; the effective date (2026-10-01) is later than the publication date, so it should be checked against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。公布日は2026-06-25、施行日は2026-10-01と記載されており、対象法令として「外国医師等が行う臨床修練等に係る医師法第十七条等の特例等に関する法律施行規則」(昭和六十二年厚生省令第四十七号)が挙げられています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "外国医師等の臨床修練に関わる医療機関や関係事業者にとって、手続や運用に関する影響が生じる可能性がありますが、改正内容が不明のため影響の有無や程度は判断できません。なお、施行日は2026-10-01と記載されており、現時点では施行前の段階であると考えられます。",
+    "recommended_action_ja": "改正の具体的内容および対象法令への影響については、e-Gov法令検索や官報など日本語の公式情報源で改正省令の本文・新旧対照表をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "a678536c6758be0733b892c7e3029c508888e40e08293cc80e304ea6d587025a": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations, Others",
@@ -43779,7 +43881,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided and is unverified. The preliminary labels (area: Other, stage: In Force) are keyword-based and not legally verified; the effective date is listed as 2026-10-01, so confirm the current status against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として診療放射線技師法施行規則(昭和二十六年厚生省令第三十三号)が挙げられており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容や条文は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "診療放射線技師法施行規則に関わる業務や運用を行う事業者・医療関係者にとって、何らかの影響が生じる可能性があります。ただし、改正内容がメタデータからは不明であり、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)に先立ち、日本語の公式情報源(e-Gov法令検索および官報等)で改正省令の本文と新旧対照表を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "9177c44cdc50dc686117ef752b49d54b09c8468546b9572cea33860680bfb4f1": {
     "title_en": "MHLW ministerial ordinance amending Dietitians Act Enforcement Regulations and others (effective Oct 1, 2026)",
@@ -43789,7 +43897,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is preliminary, and the stated enforcement date (2026-10-01) should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によれば、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が2026年6月25日に公布され、施行日は2026年10月1日とされています。対象法令として臨床検査技師等に関する法律施行規則(昭和三十三年厚生省令第二十四号)が示されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "臨床検査技師等に関する法律施行規則の規定が改正対象に含まれるため、臨床検査や関連業務に携わる事業者・機関の運用や手続に影響が及ぶ可能性があります。ただし、改正内容が不明なため、実際の影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的内容および施行日(2026年10月1日)の扱いについて、e-Govに掲載された省令本文や厚生労働省の公表資料など日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "b1cdc4e003571daa4574614806cec6316ee62b324b91b922723bc2703d8d09ca": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations, etc. (affects Clinical Engineers Act regs)",
@@ -43799,7 +43913,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on update-list metadata (title, law numbers, dates); the substance of the amendments is not provided. The 'In Force' stage label is a preliminary rule-based label, and the stated enforcement date of 2026-10-01 should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。公布日は2026-06-25、施行日は2026-10-01とされ、対象法令として臨床工学技士法施行規則(昭和六十三年厚生省令第十九号)が挙げられています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "臨床工学技士法施行規則が改正対象に含まれるため、臨床工学技士の業務や関連する医療機関・事業者の運用に影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係の有無について、e-Govの掲載ページおよび官報など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "0fa1d78f2a33825ed63c67e85e99f61055a8c98a435b61810f71a2829bcb7dc6": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations etc. (Reiwa 8 MHLW Ord. No. 107)",
@@ -43809,7 +43929,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided and is unverified. Promulgation and enforcement dates are taken from the listing and should be checked against the official source. The rule-based labels (area, stage, impact) are weak triage context only.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。更新対象として理学療法士及び作業療法士法施行規則(昭和四十年厚生省令第四十七号)が挙げられており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "理学療法士及び作業療法士法施行規則に関わる事業者や関係機関において、施行日(2026年10月1日)に向けた確認が必要となる可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は原文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表など、日本語の公式情報源(e-Gov法令検索、官報、厚生労働省の公表資料等)で改正内容と施行日を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c4ce0e6ddab74878da70fe11b17d36bf30bca89cb5c517dd1417d2cd85822f94": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations and Others (Orthoptists Regs affected)",
@@ -43819,7 +43945,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the amended content is not given. The 'In Force' stage label is a preliminary keyword-based label, and the listed enforcement date (2026-10-01) should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、視能訓練士法施行規則(昭和四十六年厚生省令第二十八号)を対象とする改正が掲載されています。改正法令は「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)で、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "視能訓練士に関わる養成施設、医療機関、関係事業者の手続や運用に影響する可能性がありますが、具体的な影響の有無や範囲は改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)までに、e-Govおよび官報など日本語の公式情報源で改正省令の条文・改正内容と経過措置の有無をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "f5006c94e7c99e047a956be97866300700a38938770b802ab93f21cb7f6edf3a": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations (Prosthetists and Orthotists Act Regs. affected)",
@@ -43829,7 +43961,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is a preliminary rule-based label and was not independently verified; the dates shown (promulgation 2026-06-25, effective 2026-10-01) should be confirmed against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)に係る更新が掲載されています。対象法令として義肢装具士法施行規則(昭和六十三年厚生省令第二十号)が挙げられ、公布日は2026-06-25、施行日は2026-10-01と記載されています。提供されたメタデータからは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "義肢装具士法施行規則に関わる事業者や関係機関において、施行日以降の運用や手続に影響が生じる可能性があります。ただし、改正内容がメタデータに含まれていないため、影響の有無や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関連性については、e-Gov法令検索や官報など日本語の公式情報源で改正条文および施行日をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "98ef0f6dfb9222f56734880311e0e8e85f72e700c480cfeca0e0b3a3b8eac108": {
     "title_en": "MHLW Ordinance Amending Dietitians Act Enforcement Regulations etc. (Affects Paramedics Act Regs)",
@@ -43839,7 +43977,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; amendment content is not provided. The 'In Force' stage label is preliminary and keyword-based; the stated effective date (2026-10-01) is in the future relative to the promulgation date, so current force status should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が2026年6月25日に公布され、救急救命士法施行規則(平成三年厚生省令第四十四号)が改正対象に含まれています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "救急救命士法施行規則に関わる事業者や関係機関において、改正内容によっては手続や運用の見直しが必要となる可能性があります。ただし、改正の具体的内容が不明であるため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表などを日本語の公式情報源(e-Gov法令検索や厚生労働省の公表資料)で確認し、自社・自組織への関連性をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "e7cb5340fb952b1f395840910eb9c11d9893bcbc5f9b4dc6084b133d60f1af9b": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations and Others (Reiwa 8 No. 107)",
@@ -43849,7 +43993,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The enforcement date of 2026-10-01 is taken from the listed metadata and should be verified against the official source. The preliminary 'In Force' label is rule-based and not verified, since the listed enforcement date is in the future relative to the publication date.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)による改正として、歯科医師法施行規則(昭和二十三年厚生省令第四十八号)が掲載されています。メタデータ上、公布日は2026年6月25日、施行日は2026年10月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "歯科医師法施行規則に関わる事項について、施行日以降の取扱いが変更される可能性があります。ただし、改正内容が不明なため、事業への具体的な影響の有無や程度は、原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容や対象範囲については、e-Gov法令検索や官報等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "eaa01bc7f41e1fdf5a5063b2dfba268aec93001bd1715613c2eeea8c1d5caba2": {
     "title_en": "Ministerial Ordinance Amending the Dietitians Act Enforcement Regulations and Others (2026)",
@@ -43859,7 +44009,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is unknown. The 'In Force' label is a preliminary keyword-based label, and the enforcement date of 2026-10-01 should be verified against the official Japanese source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)による歯科衛生士法施行規則(平成元年厚生省令第四十六号)の改正が掲載されています。公布日は2026-06-25、施行日は2026-10-01と記載されており、更新一覧日は20261001とされています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "歯科衛生士法施行規則が改正対象に含まれるため、歯科衛生士の業務や養成・届出等に関わる事業者や教育機関に影響が及ぶ可能性があります。ただし、具体的な改正内容は原文メタデータからは不明であり、影響の有無や程度は条文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的内容および施行日等については、e-Govの掲載ページや官報など日本語の公式情報源で改正条文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "3689feaa545adc8578b0fb251541ace9009cb8eee458183d7b6edca86577fddc": {
     "title_en": "Ministerial Ordinance Amending Dietitians Act Enforcement Regulations (Dental Technicians Act regs affected)",
@@ -43869,7 +44025,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The 'In Force' stage label is a preliminary rule-based label, and the stated enforcement date (2026-10-01) should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として歯科技工士法施行規則(昭和三十年厚生省令第二十三号)が示されており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "歯科技工士法施行規則が改正対象に含まれているため、歯科技工に関わる事業者や関連する手続・運用に影響が生じる可能性があります。ただし、改正の具体的な内容が不明であるため、影響の有無や程度は原文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)に先立ち、e-Gov法令検索や官報などの日本語の公式情報源で改正省令の条文および新旧対照表を確認することをご検討ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c666ecd9cb0cbdaa4aecbb5b26a3a4be191a113117815bd7402dd016f9254b26": {
     "title_en": "MHLW Ministerial Ordinance Partially Amending Dietitians Act Enforcement Regulations, Etc. (2026)",
@@ -43879,7 +44041,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. The 'In Force' stage label is a rule-based triage label; the listed enforcement date (2026-10-01) is later than the publication date, so verify the actual status against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として保健師助産師看護師法施行規則(昭和二十六年厚生省令第三十四号)が示されており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "保健師助産師看護師法施行規則に関わる業務を行う医療・教育関連の事業者や関係機関において、施行日以降の運用や手続に影響が及ぶ可能性があります。ただし、改正内容が不明であるため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表など、日本語の公式情報源(e-Gov法令検索、官報、厚生労働省の公表資料等)で具体的な改正内容と施行日をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "4c860464637d6c8a577d8e3af42b287e10a38b1d71bdbbdc5368c2f7710f774d": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations and Others (Reiwa 8, No. 107)",
@@ -43889,7 +44057,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is unknown. The 'In Force' stage label is a rule-based triage label, and the listed effective date (2026-10-01) should be verified against the official source. This is an unofficial summary.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されており、更新対象法令として「あん摩マツサージ指圧師、はり師、きゆう師等に関する法律施行規則」(平成二年厚生省令第十九号)が挙げられています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "あん摩マッサージ指圧師、はり師、きゆう師等に関する業務や関連手続を扱う事業者・施術所等において、施行規則の改正内容によっては運用や書類様式等の見直しが必要となる可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は原文の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表等を日本語の公式情報源(e-Gov法令検索、官報、厚生労働省の公表資料など)で確認し、自社の業務との関係を検討することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "ccf132969099d1fefe4a9c39190181e535c6696c3b28c70d1020a8ac47918ac0": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations and Others (Judo Therapists Act rules...",
@@ -43899,7 +44073,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and listing metadata; the actual content of the amendments is not provided. The 'In Force' stage label is a preliminary keyword-based label, and the effective date (2026-10-01) may be later than the publication date, so the in-force status should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として柔道整復師法施行規則(平成二年厚生省令第二十号)が挙げられており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "柔道整復師法施行規則が改正対象となっているため、柔道整復師の業務や施術所の運営等に関わる事業者に、施行日以降の手続や運用面での影響が生じる可能性があります。ただし、改正内容が不明であるため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索および官報等の日本語の公式情報源で改正省令の本文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "a27bf43ca297d9518bdaa7fc3f673f2ac0a5d94757991fbca012f8b6fa66dabc": {
     "title_en": "MHLW Ordinance Partially Amending Dietitians Act Enforcement Regulations (affects Speech-Language Pathologists Act regs)",
@@ -43909,7 +44089,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The enforcement date (2026-10-01) is taken from the metadata and should be verified against the official source. Rule-based labels (area, stage, impact level) are preliminary and unverified.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)による改正が掲載されています。対象法令として言語聴覚士法施行規則(平成十年厚生省令第七十四号)が挙げられており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "言語聴覚士の養成、資格、業務等に関わる事業者や関係機関において、施行規則の改正内容によっては手続や運用の見直しが必要となる可能性があります。ただし、改正内容が不明であるため、影響の有無や程度は原文の確認が前提と考えられます。",
+    "recommended_action_ja": "改正の具体的内容および施行日までの経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "95ea96735b92738a8acdf426628974404a8cd47a900551b7a6b91f5da46f1ffe": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations (Clinical Training Ordinance affected)",
@@ -43919,7 +44105,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is a preliminary rule-based label, and the 2026-10-01 enforcement date is listed as a future date relative to the 2026-06-25 promulgation, so current force status should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日とされ、更新の対象法令として「医師法第十六条の二第一項に規定する臨床研修に関する省令」(平成十四年厚生労働省令第百五十八号)が示されています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "臨床研修に関する省令が更新対象に含まれているため、臨床研修に関わる医療機関や関係事業者の運用に影響する可能性があります。ただし、改正の具体的な内容が不明であるため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正内容や対象条文、施行に伴う経過措置の有無について、e-Gov法令検索および厚生労働省など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "652fbf94001457b4af3df336dfe0ee8c64a8aa6911e6946b17911757a908d5c3": {
     "title_en": "MHLW Ordinance Amending Dietitians Act Enforcement Regulations, Etc. (Promulgated 2026-06-25)",
@@ -43929,7 +44121,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; actual amendment content is unverified. The 'In Force' stage label is a preliminary keyword-based label, and the 2026-10-01 enforcement date is listed in the metadata as a scheduled date, so verify status against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として「歯科医師法第十六条の二第一項に規定する臨床研修に関する省令」(平成十七年厚生労働省令第百三号)が示されており、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "歯科医師の臨床研修に関わる医療機関、研修施設、教育機関などでは、施行日に向けて運用や関連手続への影響が生じる可能性があります。ただし、改正の具体的な内容が不明なため、影響の有無や程度は原文の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と関係する条項については、e-Govに掲載された改正省令の本文および厚生労働省の公表資料をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "c31f891d55a3f2a2a771ac5b11f145468fd090f3be9c9ffe86f24347b046e6df": {
     "title_en": "MHLW Ministerial Ordinance Amending Dietitians Act Enforcement Regulations and Others (2026)",
@@ -43939,7 +44137,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on listing metadata (title, law numbers, dates); the substance of the amendments is not provided. The 'In Force' stage label is a rule-based triage label, and the stated effective date (2026-10-01) should be verified against the official source. The ordinance title concerns dietitians, while the listed target law concerns pharmaceuticals and medical devices, so the scope should be confirmed in the source text.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。対象法令として「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律施行規則」(昭和三十六年厚生省令第一号)が示され、公布日は2026年6月25日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "医薬品・医療機器等に関する施行規則が改正対象に含まれていることから、同規則に基づく手続や管理体制を扱う事業者に影響する可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容と施行日の取扱いについて、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "3aef824c368a6153e0c7658010ff537ff33a958f4dc29cf20ce891a10d72e5a8": {
     "title_en": "MHLW Ordinance Partially Amending Dietitians Act Enforcement Regulations, etc. (2026 Ordinance No. 107)",
@@ -43949,7 +44153,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the actual amendments are not described. Preliminary labels (area: Other, stage: In Force, impact: Medium) are keyword-based and unverified. Dates are as shown in the listing and should be checked against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「栄養士法施行規則等の一部を改正する省令」(令和八年厚生労働省令第百七号)が掲載されています。公布日は2026年6月25日、施行日は2026年10月1日と記載されています。更新対象には、武力攻撃事態等における国民の保護のための措置に関する法律第九十一条第一項の規定による許可を受けようとする外国医療関係者が厚生労働大臣に提出しなければならない書面等を定める省令(平成十六年厚生労働省令第百三十号)が含まれています。",
+    "business_impact_ja": "外国医療関係者の許可申請に係る提出書面等の定めが改正対象に含まれるため、該当する手続に関与する事業者や機関に影響が及ぶ可能性があります。ただし、改正の具体的な内容は提供情報からは確認できず、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Govに掲載された改正省令および官報など日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "424450ef5d723c29bb22e61a09519be401e89bab21b9e0f0131d555eb37ef280": {
     "title_en": "Cabinet Order amending related orders for partial enforcement of Child and Child-Rearing Support Act amendments",
@@ -43959,7 +44169,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendment is not provided. The enforcement date (2026-10-01) is listed in the source, but the rule-based 'In Force' label may not reflect current status. Details are unverified; the official Japanese source is authoritative.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧によれば、「子ども・子育て支援法等の一部を改正する法律の一部の施行に伴う関係政令の整備に関する政令」(令和八年政令第百五十三号)が2026年4月30日付で公布され、国民年金法に基づき市町村に交付する事務費に関する政令(昭和三十五年政令第百二十二号)が改正対象として掲載されています。掲載情報上の施行日は2026年10月1日です。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "市町村に交付される国民年金関連の事務費に関する政令の改正であるため、主に自治体の事務や交付金の取扱いに関わる可能性があります。民間事業者への直接的な影響の有無は、提供情報のみからは判断できず、関連事務に携わる場合に影響が生じる可能性が考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報など日本語の公式情報源で改正政令の本文を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "84eceeff23d45291f3a07595877f68be63e2c2a5237a8adac3c8854df1ce4b71": {
     "title_en": "Cabinet Order amending Defined Contribution Pension Act Enforcement Order (child-care support law ancillary)",
@@ -43969,7 +44185,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and listing metadata; the substance of the amendments to the Defined Contribution Pension Act Enforcement Order is not provided. The 'In Force' stage label is preliminary and the enforcement date (2026-10-01) should be verified against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「子ども・子育て支援法等の一部を改正する法律の一部の施行に伴う関係政令の整備に関する政令」(令和八年政令第百五十三号)が2026年4月30日付で公布されています。この政令による改正の対象として、確定拠出年金法施行令(平成十三年政令第二百四十八号)が挙げられており、更新一覧上の施行日は2026年10月1日と記載されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "確定拠出年金法施行令が改正対象に含まれているため、確定拠出年金制度を導入・運営する事業者や、関連する給与・社会保険実務に何らかの影響が及ぶ可能性があります。ただし、改正の具体的な内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と施行日までの対応要否について、e-Govの条文情報や官報など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "a89b39d82a452b19628196c1d8cfee0bb654042416f067372a6c48c963978790": {
     "title_en": "Ministerial Ordinance Amending Consumption Tax Act Enforcement Regulations (promulgated 2026-03-31)",
@@ -43979,7 +44201,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; amendment contents are not provided and are unverified. The 'In Force' stage label is a preliminary keyword-based label, and the 2026-10-01 effective date is listed in the metadata, so whether the amendments are currently in force should be checked against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧によると、「消費税法施行規則等の一部を改正する省令」(令和八年財務省令第十九号)が2026年3月31日付で公布されており、対象法令として消費税法施行規則(昭和六十三年大蔵省令第五十三号)が挙げられています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "消費税に関する実務(申告、帳票、システム対応など)に影響する可能性がありますが、具体的な影響の有無や範囲は改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)に向け、e-Govや財務省・国税庁などの日本語の公式情報源で改正省令の条文および改正内容をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "9fd48a75e84686b730bf1df0ab4985101648918e0322f85f52cf991bd65e6ea2": {
     "title_en": "Cabinet Order on Related Orders and Transitional Measures for Immigration Act/Technical Intern Training Act Amendments",
@@ -43989,7 +44217,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the content of the amendments and transitional measures was not provided and is unverified. Area, stage, and impact labels are keyword-based triage and not legally verified. The English is an unofficial summary.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律の施行に伴う関係政令の整備及び経過措置に関する政令」(令和七年政令第三百四十一号)が掲載されています。メタデータ上、公布日は2025年10月1日、施行日は2027年4月1日とされ、対象法令として「障害を理由とする差別の解消の推進に関する法律施行令」(平成二十八年政令第三十二号)が示されています。具体的な改正内容や経過措置の詳細は、提供された情報からは確認できません。",
+    "business_impact_ja": "外国人の受入れや技能実習制度に関わる事業者、または障害を理由とする差別の解消の推進に関する法律施行令の適用を受ける事業者にとって、関係する規定や経過措置に影響が及ぶ可能性があります。ただし、改正の具体的な内容が不明であるため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "施行日(2027年4月1日)に先立ち、日本語の公式情報源(e-Gov法令検索掲載の本政令の本文等)で改正内容および経過措置を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "71b51f974797ef047f0b7159f948506e666b62614e53fdc16c47fc6cdff3e172": {
     "title_en": "Ministerial Ordinance Amending Enforcement Regulations of Educational Personnel Certification Act",
@@ -43999,7 +44233,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and update-list metadata; amendment contents are not stated. The enforcement date (2026-10-01) appears to be later than the listed publication date, so the 'In Force' preliminary label may not reflect current status; verify against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、教育職員免許法施行規則(昭和二十九年文部省令第二十六号)を対象とする改正が掲載されています。改正法令は「教育職員免許法施行規則等の一部を改正する省令」(令和七年文部科学省令第二十八号)で、公布日は2025年9月30日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "教員免許の取得・更新や教職課程の運営に関わる事業者・教育機関にとって、手続や要件に関する見直しが必要となる可能性があります。ただし、改正内容がメタデータに示されていないため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)に向け、e-Govに掲載された改正省令の本文および新旧対照表、文部科学省の公表資料を確認し、自社・自組織への関係性を整理することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "989a3a78ed07cebbf66872f866e1f3cc85ac813ca0f44fd698b13a4a81e654c4": {
     "title_en": "Ministerial Ordinance Amending the Income Tax Act Enforcement Regulations (Reiwa 7 MOF Ordinance No. 18)",
@@ -44009,7 +44249,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on title and update-list metadata; amendment contents are not provided. The enforcement date (2026-10-01) appears to be in the future relative to promulgation, and the rule-based 'In Force' label may not reflect the current legal status and should be verified. English is an unofficial summary.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、所得税法施行規則(昭和四十年大蔵省令第十一号)を改正する「所得税法施行規則の一部を改正する省令」(令和七年財務省令第十八号)が掲載されています。メタデータ上、公布日は2025年3月31日、施行日は2026年10月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "所得税に関する手続や書類の取扱いに関わる規則であるため、源泉徴収や各種届出などの実務に影響が及ぶ可能性があります。ただし、具体的な影響範囲は改正内容を確認するまで判断できません。",
+    "recommended_action_ja": "施行日(2026年10月1日)に向けて、e-Govや官報などの日本語の公式情報源で改正省令の条文と新旧対照表を確認し、自社の実務との関係を整理されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "d7da7a8fb7e2a02a0deb83efe51706ecf33bb60bd062057fe4077ee4e54eb1bb": {
     "title_en": "Ministerial Ordinance Amending Corporation Tax Act Enforcement Regulations (promulgated 2023; effective 2026-10-01)",
@@ -44019,7 +44265,13 @@
     "confidence": "medium",
     "ai_notes": "Based only on the title and basic metadata (law numbers and dates); the substance of the amendment is unknown. The 'In Force' stage label is a preliminary keyword-based label and was not independently verified; the metadata lists an enforcement date of 2026-10-01, which should be checked against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
-    "summary_model": "claude-sonnet-5-5"
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、法人税法施行規則(昭和四十年大蔵省令第十二号)を対象とする「法人税法施行規則の一部を改正する省令」(令和五年財務省令第十三号)が掲載されています。メタデータ上、公布日は2023-03-31、施行日は2026-10-01、更新一覧日は20261001と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "法人税の申告や経理処理に関する手続規定に関わる改正である可能性があり、施行日以降の実務対応に影響する可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   "4ae264aa50b07c071948047e81aea7516c2eaa2c889df5305c6d455f8a959ce5": {
     "title_en": "Public comment: Draft report by Cultural Affairs Council cultural properties planning panel",
@@ -44029,6 +44281,854 @@
     "confidence": "medium",
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the draft report is not provided, and the rule-based labels (area, stage, impact level) are unverified. This is an unofficial summary; verify against the official Japanese source.",
     "summarized_at": "2026-10-02T00:36:41Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "文化審議会文化財分科会企画調査会による答申（素案）について、意見募集が実施されている旨が公表されています。案の公示日は2026年10月1日、受付締切は2026年10月30日23時59分とされ、カテゴリーは文化、問合せ先は文化資源政策・記念物課企画係と記載されています。なお、素案の具体的な内容は提供されたメタデータからは確認できず、現時点では意見募集の段階にある案の公表と位置付けられます。",
+    "business_impact_ja": "文化財の保護や活用に関わる事業者や団体にとって、答申の方向性が今後の制度運用や施策に関係する可能性があります。ただし、素案の内容が不明なため、具体的な影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "素案の具体的な内容や意見提出の方法、締切については、e-Govの意見募集ページ等の日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "7cb30ae2a9c5d9382b40bf0765ee4fc586ead653c11ae24f5a3afe952eb34743": {
+    "title_en": "Public comment: draft cabinet order for national functions continuity and secondary capital law",
+    "summary_en": "This is a public comment solicitation on a draft enforcement order (and related instruments) under the Act on promoting measures to ensure continuity of national and social functions and to develop a secondary capital (副首都). The draft was published on 2026-10-03, with comments accepted until 23:59 on 2026-10-16. The listed category is local government, and the contact is the Secondary Capital Development Promotion Office of the Cabinet Secretariat's Regional Future Strategy Headquarters.",
+    "business_impact_en": "If the draft order is later finalized, it could affect entities involved in local government planning, regional development, or continuity-of-functions measures, though the provided metadata does not describe specific obligations. The short comment window may limit time to prepare input.",
+    "recommended_action_en": "Review the official Japanese source to confirm the draft's actual content, scope, and comment submission procedure before deciding whether to submit comments.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and short metadata; the content of the draft order is not provided, so substantive provisions and affected parties are unverified. The statute name is translated informally, and the category and labels are preliminary.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "「国家社会機能継続性確保施策及び副首都の整備に係る施策の推進に関する法律施行令等(案)」について、意見募集が行われています。案の公示日は2026年10月3日、受付締切は2026年10月16日23:59とされています。カテゴリーは地方自治、問合せ先は内閣官房地域未来戦略本部事務局副首都整備等推進室と記載されています。",
+    "business_impact_ja": "案の内容は提供された情報からは確認できませんが、副首都の整備や国家社会機能の継続性確保に関わる施策の運用に関連する事業者や地方自治体に、今後影響が及ぶ可能性が考えられます。なお、現時点は意見募集の段階であり、内容が確定したものではない点に留意が必要です。",
+    "recommended_action_ja": "締切が近いため、e-Govの意見募集ページおよび関係府省が公表する案の本文・関連資料を直接ご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "f9e5c51652fefa147084f73e1b6d1d22f20f3c4b3cfefc244d11257f10bd3ff0": {
+    "title_en": "MHLW ministerial ordinance amending Employees' Pension Insurance Act Enforcement Regulations (pension reform)",
+    "summary_en": "This is a Ministry of Health, Labour and Welfare ordinance (Reiwa 8 MHLW Ordinance No. 138) that revises related ministerial ordinances in connection with the partial enforcement of the act amending the National Pension Act and others to strengthen the pension system's functions in light of socio-economic changes. The listed target is the Enforcement Regulations of the Employees' Pension Insurance Act (Showa 29 MHLW Ordinance No. 37). The metadata gives a promulgation date of 2026-09-11 and an enforcement date of 2026-10-01.",
+    "business_impact_en": "Employers and payroll or social insurance administrators may need to check whether procedures or forms under employees' pension insurance are affected. The specific content of the amendments is not stated in the provided metadata, so the actual scope of impact is unclear.",
+    "recommended_action_en": "Review the official Japanese text of the ordinance on e-Gov to confirm what provisions were changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the substance of the amendments is not provided and was not verified. Dates and in-force status come from the source metadata; the rule-based labels (Labor / Employment, In Force, Medium) are weak triage context only. The English title is an unofficial rendering.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法施行規則(昭和二十九年厚生省令第三十七号)の改正が掲載されています。改正法令は、社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律の一部の施行に伴う厚生労働省関係省令の整備に関する省令(令和八年厚生労働省令第百三十八号)で、公布日は2026年9月11日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "厚生年金保険に関する手続や事務を所管・運用する事業者において、施行規則の改正内容に応じた対応が必要となる可能性があります。具体的な影響の有無や範囲は、改正内容の確認が前提となると考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)を踏まえ、e-Govや厚生労働省などの日本語の公式情報源で改正条文および関連通知を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "d51ae74980ff2a1a890893e909be2fa78b47b5cd37baa41f5845e06bc7998bf2": {
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of Waste Management Act",
+    "summary_en": "The e-Gov Law Search update list shows a ministerial ordinance (Ministry of the Environment Ordinance No. 25 of Reiwa 8) amending the Enforcement Regulations of the Waste Management and Public Cleansing Act (Ministry of Health and Welfare Ordinance No. 35 of 1971). The metadata lists a promulgation date of 2026-09-15 and an effective date of 2026-09-16. The specific content of the amendments is not provided in the available metadata.",
+    "business_impact_en": "Businesses that generate, collect, transport, or dispose of waste may be affected, but the nature and scope of any changes cannot be determined from the metadata provided. The effective date appears to be one day after promulgation, so any requirements could take effect quickly.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm which provisions are changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendments is unknown. The stage and impact labels are rule-based and unverified, and the dates and ordinance numbers should be confirmed against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「廃棄物の処理及び清掃に関する法律施行規則の一部を改正する省令」(令和八年環境省令第二十五号)が掲載されています。対象は廃棄物の処理及び清掃に関する法律施行規則(昭和四十六年厚生省令第三十五号)で、公布日は2026年9月15日、施行日は2026年9月16日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "廃棄物の排出、収集運搬、処理等に関わる事業者の実務や手続に影響する可能性がありますが、具体的な改正内容がメタデータに含まれていないため、影響の有無や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容と施行日を、e-Gov法令検索や官報など日本語の公式情報源で原文に当たってご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "6cc62b1eeed837ec50e6fca99a2db3f6d2af258b78f3b5d84b998432d7e40037": {
+    "title_en": "Cabinet Order amending Satellite Remote Sensing Records Act Enforcement Order (FEFTA-related)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 296), listed with a promulgation date of 2026-09-16, that makes related Cabinet Order adjustments accompanying the enforcement of an amendment to the Foreign Exchange and Foreign Trade Act. The target law in this entry is the Enforcement Order of the Act on Ensuring Appropriate Handling of Satellite Remote Sensing Records (Heisei 29 Cabinet Order No. 282). The listed enforcement date is 2027-01-04.",
+    "business_impact_en": "Entities that handle satellite remote sensing records, or that operate in areas touched by the Foreign Exchange and Foreign Trade Act amendment, may be affected by the revised enforcement order. The scope and practical effect of the changes cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the order on e-Gov to confirm the specific amendments and the 2027-01-04 enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and metadata from the update list; the actual amended provisions are not provided. The rule-based labels (Economic Security / FDI, Medium) are preliminary and unverified. Dates are as listed in the metadata and should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日: 2026年10月2日)によれば、「外国為替及び外国貿易法の一部を改正する法律の施行に伴う関係政令の整備等に関する政令」(令和八年政令第二百九十六号)が2026年9月16日付で公布されています。この政令は「衛星リモートセンシング記録の適正な取扱いの確保に関する法律施行令」(平成二十九年政令第二百八十二号)を改正対象として含んでおり、施行日は2027年1月4日と記載されています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "衛星リモートセンシング記録の取扱いに関与する事業者にとって、施行令の改正により関連する手続や要件が変わる可能性があります。ただし、具体的な改正内容はメタデータからは把握できないため、影響の有無や程度は条文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と適用範囲については、e-Gov法令検索に掲載された政令本文および関係省庁の公表資料など、日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "dce76b7629b2fbc2974763e11eee63fde56044ec6078126f8d6c7dd1f2d9d90d": {
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of Waste Management and Public Cleansing Act",
+    "summary_en": "The e-Gov update list shows a Ministry of the Environment ordinance (Reiwa 8 Ordinance No. 10) amending the Enforcement Regulations of the Waste Management and Public Cleansing Act. The record gives a promulgation date of 2026-03-30 and an enforcement date of 2027-04-01. The provided metadata does not describe the content of the amendments.",
+    "business_impact_en": "Businesses that generate, collect, transport, or dispose of waste may be affected, depending on which provisions are amended. The scope and extent of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to identify the specific provisions changed and confirm the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and metadata fields; the substance of the amendments is not provided and the enforcement date and ordinance number are unverified against the official text. The Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「廃棄物の処理及び清掃に関する法律施行規則の一部を改正する省令」(令和八年環境省令第十号)が掲載されています。原文メタデータによれば、公布日は2026年3月30日、施行日は2027年4月1日とされています。具体的な改正内容は提供された情報からは確認できません。",
+    "business_impact_ja": "廃棄物の処理や管理に関わる事業者の実務や手続に関係する可能性がありますが、影響の有無や程度は改正の具体的内容によると考えられます。",
+    "recommended_action_ja": "改正内容や経過措置の詳細については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "76bb929912d61e377fab745bffffdc5ae8c3c7fcf2e97268a8bbd79e942e25b2": {
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of Waste Management and Public Cleansing Act",
+    "summary_en": "An amending ministerial ordinance (Ministry of the Environment Ordinance No. 15 of Reiwa 7) to the Enforcement Regulations of the Waste Management and Public Cleansing Act appears in the e-Gov law update list. The metadata lists a promulgation date of 2025-04-22 and a scheduled effective date of 2027-04-01. The substance of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Businesses that generate, collect, transport, or dispose of waste may be affected, but the specific obligations or changes cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to identify the specific changes and confirm the effective date and any transitional provisions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the content of the amendments is not provided. Effective date (2027-04-01) is taken from the metadata and should be verified against the official source. Area/stage/impact labels are preliminary and unverified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「廃棄物の処理及び清掃に関する法律施行規則の一部を改正する省令」(令和七年環境省令第十五号)が掲載されています。対象は昭和四十六年厚生省令第三十五号で、公布日は2025年4月22日、施行日は2027年4月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "廃棄物の処理・管理に関わる事業者にとって、施行規則の改正内容によっては、手続や管理体制の見直しが必要となる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Gov法令検索や環境省など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "fc6517837e75d78459f0d3da44feeb80401d492b56cce2a0d340d19907f69203": {
+    "title_en": "Public comment: draft guideline on carbon dioxide storage business under the CO2 Storage Business Act",
+    "summary_en": "A public comment period is open on a draft guideline (proposal stage) concerning the implementation of carbon dioxide storage businesses under the Act on Carbon Dioxide Storage Business. The draft was announced on 2026-10-02, and comments are accepted until 2026-10-31 23:59. The listed contact is the Ministry of Economy, Trade and Industry's Agency for Natural Resources and Energy (Fuel Environment Compatible Utilization Promotion Division).",
+    "business_impact_en": "If finalized, the guideline could affect how companies planning or participating in CO2 storage projects approach their operations and procedures. The actual scope and requirements are not stated in the provided metadata and cannot be assessed here.",
+    "recommended_action_en": "Consider reviewing the official Japanese notice and the draft guideline text on the e-Gov public comment page to determine relevance and whether to submit comments before the deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the draft's content is not provided and has not been reviewed. The statute name is rendered from the Japanese title. This is a draft guideline out for public comment, not a finalized rule. Preliminary labels (area, stage, impact level) are unverified triage tags.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの意見募集案件として、「二酸化炭素の貯留事業に関する法律に基づく貯留事業の実施に係るガイドライン（案）」に対する意見公募が行われています。案の公示日は2026年10月2日、受付締切は2026年10月31日23時59分で、カテゴリーは工業、問合せ先は経済産業省資源エネルギー庁資源・燃料部燃料環境適合利用推進課と記載されています。対象はガイドライン案であり、確定した内容ではない段階の情報です。",
+    "business_impact_ja": "二酸化炭素の貯留事業に関与する、または関与を検討する事業者にとって、ガイドラインの運用上の考え方に関わる可能性があります。ただし、提供された情報からは具体的な記載内容や影響範囲は確認できず、案の段階であるため内容が変更される可能性も考えられます。",
+    "recommended_action_ja": "意見募集の締切が2026年10月31日とされているため、日本語の公式情報源（e-Govの案件ページ等）でガイドライン案の本文および募集要領を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5"
+  },
+  "133d40decb3b9309da9af9268566747ab53e18819ce970da3544fc6422a6f95a": {
+    "title_en": "Cabinet Order Amending Enforcement Order of Small and Medium Enterprise Retirement Allowance Mutual Aid Act",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 239) partially amending the Enforcement Order of the Small and Medium Enterprise Retirement Allowance Mutual Aid Act (Showa 39 Cabinet Order No. 188). The metadata lists a promulgation date of 2026-07-29 and an effective date of 2026-10-01. The provided metadata does not describe the content of the amendments.",
+    "business_impact_en": "Employers or organizations involved in the small and medium enterprise retirement allowance mutual aid system may be affected, but the nature and extent of any impact cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm what provisions are changed and whether they are relevant to your circumstances.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and date metadata; the amendment content is not provided. The preliminary 'Antitrust / Fair Trade' area label appears inconsistent with the subject (retirement allowance mutual aid) and should be disregarded. The 'In Force' stage label is a rule-based triage label; the metadata lists an effective date of 2026-10-01, so verify the current status against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "1e40acff80ba82ebefeef0631588349f1e6a4c423494abbdd146d804c19041e3": {
+    "title_en": "Draft Cabinet Office Order Amending Designation Rules for Specified Social Infrastructure Businesses (Public Comment)",
+    "summary_en": "The Financial Services Agency has published a draft Cabinet Office order, with related items, amending the existing Cabinet Office order on designating specified social infrastructure business operators under Japan's economic security promotion law. The draft is out for public comment, with a notice date of 2026-10-01 and a submission deadline of 2026-10-31 at 12:00. The category is listed as finance and insurance.",
+    "business_impact_en": "Financial and insurance-sector businesses may wish to check whether the proposed amendments could affect how specified social infrastructure operators are designated. Any actual effect cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese public comment page and the attached draft text to confirm the scope, details, and deadline before deciding whether to submit comments.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the content of the draft amendments is not provided and is unverified. This is a draft out for public comment, not an enacted or effective rule. Preliminary labels are keyword-based and non-authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a8e518c790095db5a4d8baa39b3c224406aa34cb6751e99b0d8f92ab63b98cd8": {
+    "title_en": "Cabinet Order amending Immigration Act Enforcement Order and Special Act Enforcement Order (Peace Treaty)",
+    "summary_en": "This item is a Cabinet Order (Reiwa 8 Cabinet Order No. 268) partially amending the Enforcement Order of the Immigration Control and Refugee Recognition Act and the Enforcement Order of the Special Act on Immigration Control of Persons Who Lost Japanese Nationality under the Peace Treaty. The metadata lists a promulgation date of 2026-08-28 and an enforcement date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Employers, foreign nationals, or immigration-related service providers may be affected if the amendments change procedures or requirements under these enforcement orders. The actual impact cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm which provisions are changed and whether they are relevant to your circumstances.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update metadata; the substance of the amendments is not provided and is unverified. Promulgation and enforcement dates are taken from the metadata and should be checked against the official source. The rule-based labels (Other / In Force / Medium) are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "96a0e1d640df7453669c4a801912f99e63b518bd9ab20a548b38500a30e69e25": {
+    "title_en": "Cabinet Order amending Immigration Control Act and Special Immigration Act enforcement orders",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 268) amending the Enforcement Order of the Immigration Control and Refugee Recognition Act and the Enforcement Order of the Special Act on Immigration Control of persons who lost Japanese nationality under the Peace Treaty. The metadata lists a promulgation date of 2026-08-28 and an effective date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Employers, foreign nationals, and organizations dealing with immigration procedures in Japan may be affected, but the scope and substance of the changes cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to identify which provisions are changed and whether they are relevant to your circumstances.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the actual amendment content is not provided. The rule-based labels (Other, In Force, Medium) are preliminary and unverified, and the stated dates should be confirmed against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "fcb1f94f9c929106174d5781419884f44600a658d907949b97d4fccb5a884462": {
+    "title_en": "Cabinet Order Amending National Pension Act Enforcement Order and Others (Promulgated 2026-07-15)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order partially amending the National Pension Act Enforcement Order and related orders, with a promulgation date of 2026-07-15 and a listed enforcement date of 2026-10-01. The affected instrument in this entry is the Enforcement Order of the Act on Payment of Special Disability Benefits to Specified Persons with Disabilities (Cabinet Order No. 56 of 2005). The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "The amendment could affect procedures or amounts relating to special disability benefits and related pension rules, which may be relevant to employers, payroll or benefits administrators, and advisers. The actual scope and practical effect cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order (Reiwa 8 Cabinet Order No. 226) on e-Gov to confirm the amended provisions and their relevance, consulting qualified counsel as appropriate.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and listing metadata; amendment details are not provided. The rule-based area label (Labor / Employment) is weak context and may not match the instrument's subject (pension and disability benefits). Stage 'In Force' reflects the listed 2026-10-01 enforcement date; verify against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "49048c872c892d3d45c5a7708920180eb62e89e9aa79ebaeaaf32fd5cdd3856c": {
+    "title_en": "Cabinet Order Amending the National Pension Act Enforcement Order and Related Orders (Reiwa 8 No. 226)",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Order titled 'Order Partially Amending the National Pension Act Enforcement Order, etc.' (Reiwa 8 Cabinet Order No. 226). The listed target is the National Pension Act Enforcement Order (Showa 34 Cabinet Order No. 184). The metadata gives a promulgation date of 2026-07-15 and an enforcement date of 2026-10-01.",
+    "business_impact_en": "Depending on the content of the amendments, which is not described in the metadata, the order could affect national pension-related procedures or obligations, including those handled by employers or individuals. The actual scope and relevance cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text of the amending order and the updated Enforcement Order on e-Gov to confirm which provisions are changed and whether they are relevant to your situation.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the substance of the amendments is not provided. The 'Labor / Employment' area label is a preliminary keyword-based tag, and the 'In Force' stage label should be verified against the official source, since the stated enforcement date is 2026-10-01.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "f0fce43dfb1806950b7e2b1c4e1f5839b98319ea915372226f1b93cc9ec325af": {
+    "title_en": "Cabinet Order Amending National Pension Act Enforcement Order and Related Orders (Reiwa 8 No. 226)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order titled 'Order Partially Amending the National Pension Act Enforcement Order, etc.' (Reiwa 8 Cabinet Order No. 226), listed with a promulgation date of 2026-07-15 and an enforcement date of 2026-10-01. The target law in this entry is the Enforcement Order of the Act on Payment of Pension-Based Livelihood Support Benefits (Heisei 30 Cabinet Order No. 364). The metadata does not describe the specific content of the amendments.",
+    "business_impact_en": "If the amendments take effect as listed, they could affect administration of pension-related benefits and related payroll or benefits processes, though the nature and scope of any change cannot be determined from the metadata provided. The 'Labor / Employment' area label is a preliminary keyword-based tag and may not reflect actual relevance.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and the effective date before assessing any relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. The 'In Force' stage and 'Labor / Employment' area labels are rule-based and unverified. The 2026-10-01 enforcement date is as listed in the source metadata and is in the future relative to the publication date. The Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4284befe579499e005295832ae0bfb5c29785ff92a871e83b1e1adb0326f7093": {
+    "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Medical Practitioners Act Order)",
+    "summary_en": "The e-Gov update list shows an amending Cabinet Order (Reiwa 8 Cabinet Order No. 218), titled as a partial amendment of the Dietitians Act Enforcement Order and others. The listing identifies the Medical Practitioners Act Enforcement Order (Showa 28 Cabinet Order No. 382) as an affected law, with a promulgation date of 2026-06-25 and a stated effective date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations operating in medical, dietetic, or related health-professional fields may be affected, but the nature and scope of any changes cannot be determined from the metadata alone. The practical impact is unclear until the amended text is reviewed.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm which provisions are changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and e-Gov update-list metadata; amendment content is not provided. The 'In Force' stage label is a preliminary rule-based label, and the 2026-10-01 effective date is as listed in the source and should be verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "56eb8a550f675d57ed90a879fdc0f304c53748e1138fa73848a16f408c95773e": {
+    "title_en": "Cabinet Order Partially Amending Dietitians Act Enforcement Order and Others (affects Radiological Technologists...",
+    "summary_en": "The e-Gov update list shows a Cabinet Order partially amending the Dietitians Act Enforcement Order and other orders (Reiwa 8 Cabinet Order No. 218), with a stated promulgation date of 2026-06-25. The listed target law is the Enforcement Order of the Act on Radiological Technologists (Showa 28 Cabinet Order No. 385), and the stated enforcement date is 2026-10-01. The metadata does not describe the content of the amendments.",
+    "business_impact_en": "Organizations involved in radiological technologist or related health-professional operations may be affected, but the nature and scope of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the updated enforcement order on e-Gov to confirm what provisions changed and the applicable effective dates.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is a preliminary rule-based tag, and the enforcement date (2026-10-01) is later than the publication date, so status should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "6b363d6d504ddf6271c744d9cf1b743ac01acec54b6c9fb8a1c3dbb905f07241": {
+    "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Related Orders (Reiwa 8 No. 218)",
+    "summary_en": "This e-Gov update-list entry concerns a Cabinet Order amending the Dietitians Act Enforcement Order and related orders (Reiwa 8 Cabinet Order No. 218). The affected order listed is the Enforcement Order of the Clinical Laboratory Technicians Act (Showa 33 Cabinet Order No. 226). The metadata gives a promulgation date of 2026-06-25 and an effective date of 2026-10-01; the substance of the amendments is not described.",
+    "business_impact_en": "Organizations involved with clinical laboratory technicians or related health-profession regulation may be affected, but the specific changes are not stated in the provided metadata. Any impact cannot be assessed without reviewing the text of the amendment.",
+    "recommended_action_en": "Review the official Japanese text of the amending order on e-Gov to confirm the actual changes and their relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and e-Gov update-list metadata; amendment contents are unknown. The 'In Force' stage label is a preliminary rule-based label, and the effective date of 2026-10-01 is stated in the metadata. Verify all details against the official Japanese source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "099cf371d267966f8d7b927812da19d78429bbfe520b09470d511d2ec61f0dcb": {
+    "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects PT/OT Act Order)",
+    "summary_en": "The e-Gov law update list shows a cabinet order, 'Order Partially Amending the Enforcement Order of the Dietitians Act and Others' (Reiwa 8 Cabinet Order No. 218), with a promulgation date of 2026-06-25. The listed target law is the Enforcement Order of the Act on Physical Therapists and Occupational Therapists (Showa 40 Cabinet Order No. 327), with a listed enforcement date of 2026-10-01. The content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations involved in physical therapy or occupational therapy, or in related qualification or administrative procedures, may be affected if the amendments touch provisions relevant to them. The scope and nature of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending order and the amended Enforcement Order on e-Gov to confirm what provisions are changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The 'In Force' stage label is a rule-based triage label, and the listed enforcement date (2026-10-01) appears to be in the future relative to the publication date, so current effect should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "524967d62785da2262fde80db0ee7aae2114f333cde1a58dc4f66aabbfd1cc55": {
+    "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Orthoptists Act Order)",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order partially amending the Dietitians Act Enforcement Order and related orders, listed with a promulgation date of 2026-06-25 and an enforcement date of 2026-10-01. The affected law in this entry is the Enforcement Order of the Orthoptists Act (Order No. 246 of 1971), and the amending order is identified as Reiwa 8 Cabinet Order No. 218. The specific content of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Entities operating in fields related to dietitians or orthoptists (such as training institutions or healthcare employers) may be affected, but the nature and extent of any impact cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the affected enforcement orders on e-Gov to confirm what provisions changed and whether they are relevant.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is a preliminary rule-based tag, and the enforcement date (2026-10-01) is stated in the metadata but should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "dc4344865ab9bcb8f63a8107152cf00c8bf3e9373e63a623eec71be99972a579": {
+    "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (Dental Practitioners Act Order)",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order titled 'Order Partially Amending the Enforcement Order of the Dietitians Act, etc.' (Reiwa 8 Cabinet Order No. 218), with a listed promulgation date of 2026-06-25. It is recorded as amending the Enforcement Order of the Dental Practitioners Act (Showa 28 Cabinet Order No. 383), with a listed effective date of 2026-10-01. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Dental practitioners, dental institutions, or related professional entities may be affected, but the nature and extent of any change cannot be determined from the metadata provided. Any actual impact would depend on the content of the amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the updated Enforcement Order of the Dental Practitioners Act on e-Gov to confirm the specific changes and their relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided and the English is an unofficial summary. The preliminary labels (area 'Other', stage 'In Force', impact 'Medium') are keyword-based and unverified; the listed promulgation and effective dates come from the source metadata and should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "0174cee198ff1e41fa59279337b7558029002852fc6b0ede3ce8aabe8371facb": {
+    "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (affects Dental Technicians Act Order)",
+    "summary_en": "The e-Gov law update list shows a cabinet order titled 'Order Partially Amending the Enforcement Order of the Dietitians Act and Others' (Reiwa 8 Cabinet Order No. 218), with a stated promulgation date of 2026-06-25. The listed target law is the Enforcement Order of the Dental Technicians Act (Showa 30 Cabinet Order No. 228), with a stated effective date of 2026-10-01. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Organizations involved in dental technician services or related professional qualification matters may be affected, but the nature and scope of any impact cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending order on e-Gov to confirm what provisions were changed and how they may relate to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and listing metadata; amendment content is not provided and is unverified. The rule-based labels (e.g., 'In Force') are preliminary; the stated effective date of 2026-10-01 should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "f30e60297ddc9e9e127d3479965ee71975d21007107f5ce0d7f2b16595f7d527": {
+    "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order and Others (affects Public Health Nurses, Midwives and...",
+    "summary_en": "The e-Gov update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 218) amending the Dietitians Act Enforcement Order and related orders, with the Enforcement Order of the Act on Public Health Nurses, Midwives and Nurses listed as an affected law. The metadata gives a promulgation date of 2026-06-25 and an enforcement date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations connected to the nursing or dietitian professions may be affected, but the nature and scope of any changes cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and how they apply to your situation.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is unknown. The preliminary 'In Force' stage label is rule-based, and the dates shown (promulgation 2026-06-25, enforcement 2026-10-01) should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a83576e1a0c0d1ddbd8ba3b5af848b6ebe07dc01a3872689fe375e5202f0b583": {
+    "title_en": "Cabinet Order Partially Amending Dietitians Act Enforcement Order and Others (Pharmacists Act Enforcement Order)",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order partially amending the Dietitians Act Enforcement Order and others (Reiwa 8 Cabinet Order No. 218), which affects the Order for Enforcement of the Pharmacists Act (Showa 36 Cabinet Order No. 13). The metadata lists a promulgation date of 2026-06-25 and an enforcement date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Depending on the substance of the amendments, which is not stated here, entities subject to the Pharmacists Act Enforcement Order could potentially be affected from the listed enforcement date. The scope and nature of any impact cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and enforcement date, and consult qualified professionals as needed.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata from the law update list; amendment details are not provided. The rule-based labels (Other / In Force / Medium) are unverified, and the enforcement date is in the future relative to the promulgation date. English is an unofficial summary; verify against the Japanese source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c046cef71eefa23dd14df60aa829bc8c1e61f06fd09e00bd81d26d93da56ba63": {
+    "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (promulgated 2026-06-25)",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Order partially amending the Enforcement Order of the Dietitians Act (Order No. 231 of 1953) and related orders. The amending order is listed as Reiwa 8 Cabinet Order No. 218, with a promulgation date of 2026-06-25 and a stated enforcement date of 2026-10-01. The metadata does not describe the content of the amendments.",
+    "business_impact_en": "Organizations involved in dietitian or nutrition-related licensing, training, or operations may be affected, but the specific scope cannot be determined from the metadata provided. The practical impact could range from minor to more substantial depending on the actual amendments.",
+    "recommended_action_en": "Review the official Japanese text of the amending order on e-Gov to confirm which provisions change and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the substance of the amendments is not provided. The enforcement date (2026-10-01) is listed in the source metadata but should be verified against the official text. The rule-based 'In Force' and 'Medium' labels are preliminary and unverified, and the 'Other' area label is uninformative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "66845bf2878490df3c0bca56505e4171dbd49aa39f2c739b22e2e20dad6887ba": {
+    "title_en": "Cabinet Order Amending Dietitians Act Enforcement Order etc. (affects Cooks Act Enforcement Order)",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Order partially amending the Dietitians Act Enforcement Order and related orders (Reiwa 8 Cabinet Order No. 218), with a promulgation date of 2026-06-25. The listed target is the Enforcement Order of the Cooks Act (Showa 33 Cabinet Order No. 303), and the listed effective date is 2026-10-01. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Organizations involved in cooking, dietetic, or food-service professional qualifications or related administrative procedures may be affected, but the nature and extent of any change cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the amended Enforcement Order on e-Gov to confirm the actual changes and their relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment content is not provided. Stage label 'In Force' is a rule-based triage label and the listed effective date (2026-10-01) should be verified against the official source. English title is an unofficial translation.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "383ef811b7fd3e4c94479f09d5540b3209cc22d6eca64475a639200c074d8d3c": {
+    "title_en": "Cabinet Order Amending the Dietitians Act Enforcement Order and Others (Confectionery Hygiene Act Order affected)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order titled 'Cabinet Order Partially Amending the Enforcement Order of the Dietitians Act, etc.' (Reiwa 8 Cabinet Order No. 218), with a promulgation date of 2026-06-25 and an effective date of 2026-10-01. The listed target law is the Enforcement Order of the Confectionery Hygiene Master Act (Showa 41 Cabinet Order No. 387). The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Businesses or individuals involved in confectionery hygiene qualifications or related administrative procedures could be affected, but the nature and scope of any change cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the amended Enforcement Order on e-Gov to confirm what provisions changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not visible. The 'In Force' stage label is a preliminary rule-based label, and the listed effective date (2026-10-01) should be verified against the official source. English is an unofficial summary.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "ea2b42437dee0668f4cbcce093a34521b65e1c1c80a73cab3660375e422fb1ca": {
+    "title_en": "Cabinet Order Amending Enforcement Order of Child and Child-Rearing Support Act",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Order partially amending the Enforcement Order of the Act on Support for Children and Child-Rearing (2014 Cabinet Order No. 213). The amending order is listed as Reiwa 8 Cabinet Order No. 188, with a promulgation date of 2026-05-29 and a listed enforcement date of 2026-10-01. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Organizations involved in child-care or child-rearing support programs, such as providers or employers contributing to related schemes, may be affected, but the specific impact cannot be determined from the metadata provided. The nature and scope of any changes remain unclear without the amendment text.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm what provisions change and whether the 2026-10-01 enforcement date applies to your situation.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the content of the amendments is not given and is unverified. Rule-based labels (area 'Other', impact 'Medium') are weak triage signals; the 'In Force' stage appears to reflect the listed 2026-10-01 enforcement date, which is after the publication date.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "802f91250c301419d585077ead3690e0b83c8949d6c35a72557c4df7bec55463": {
+    "title_en": "Cabinet Order Amending Amending Order of Consumption Tax Act Enforcement Order",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 108) that amends an earlier amending order relating to the Enforcement Order of the Consumption Tax Act (Cabinet Order No. 360 of 1988). The metadata gives a promulgation date of 2026-03-31 and an enforcement date of 2026-10-01. The substance of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Because the Consumption Tax Act Enforcement Order governs detailed consumption tax rules, this amendment may affect certain tax-related procedures or treatment for affected businesses from the stated enforcement date. The actual scope and relevance cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text at the e-Gov source to confirm the specific amendments and their effective dates, and consult a qualified tax professional as needed.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is unknown. The enforcement date (2026-10-01) is a scheduled date per the metadata and should be verified against the official source. The 'In Force' stage label is rule-based and may not reflect that the enforcement date is in the future relative to the publication date.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "abe843fad166661becc1549a4319a7368f7a730f07ef5cda9c2212dd7d8fa34c": {
+    "title_en": "Cabinet Order Amending Corporation Tax Act Enforcement Order Amendment Order (Reiwa 7 No. 121)",
+    "summary_en": "The e-Gov Law Search update list shows an amending Cabinet Order (Reiwa 7 Cabinet Order No. 121) that further amends the Order amending the Enforcement Order of the Corporation Tax Act and related orders. The target law is the Enforcement Order of the Corporation Tax Act (Showa 40 Cabinet Order No. 97). The metadata lists a promulgation date of 2025-03-31 and an effective date of 2026-10-01.",
+    "business_impact_en": "Corporate tax provisions under the Enforcement Order may be affected from the listed effective date, but the specific changes are not stated in the provided metadata. Companies subject to Japanese corporation tax could be affected depending on the content of the amendments.",
+    "recommended_action_en": "Review the official Japanese text of the amending order on e-Gov to identify which provisions change and confirm the effective date and any transitional measures.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the substance of the amendments is not provided. The effective date of 2026-10-01 is in the future relative to the promulgation date, so the 'In Force' rule-based label may not reflect current status and should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7985035ff335793a7ac1391e6dbac56f10212daeec33edfc0cd6da311dab4eb6": {
+    "title_en": "Cabinet Order Amending the Registration and License Tax Act Enforcement Order (effective 2026-10-01)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order partially amending the Enforcement Order of the Registration and License Tax Act (Order No. 146 of 1967). The amending order is listed as Reiwa 7 Cabinet Order No. 124, with a promulgation date of 2025-03-31 and an effective date of 2026-10-01. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Because the amendment content is not described, its effect is unclear; it could affect registration and license tax calculations or procedures for entities handling registrations in Japan. Any impact would depend on the specific provisions, which should be confirmed in the source text.",
+    "recommended_action_en": "Review the official Japanese text of the amending order and the updated Enforcement Order on e-Gov to determine which provisions changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata (promulgation 2025-03-31, effective 2026-10-01); amendment details are not provided. The 'In Force' rule-based label may not reflect that the effective date is in the future relative to promulgation, so the current legal status should be verified against the official source. English is an unofficial summary.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "62a613adbd37a57ef8f76200e71b163546806b69b0fcc8432905e12cde3fac6a": {
+    "title_en": "MIC: Public Comment Results and Final Recommendation on Residential Proxy Countermeasures (IoT)",
+    "summary_en": "The Ministry of Internal Affairs and Communications (MIC) announced the results of a public comment procedure on a draft recommendation concerning countermeasures against residential proxies that abuse household IoT devices. The ministry also published the recommendation itself. The item is a recommendation (teigen) following public comment, not a statute or binding regulation, based on the title provided.",
+    "business_impact_en": "Companies that make, sell, or operate household IoT devices or related network services may wish to consider whether the recommendation could inform future security expectations. Any actual obligations or follow-up measures are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese MIC announcement and the published recommendation to confirm its contents, addressees, and any follow-up measures.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a short metadata summary; the recommendation's contents, the comments received, and any legal effect are unverified. The preliminary labels (area: Other, impact: Low) are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "8868baf402b9a2abf887928ddcbfe2de806fd6bfabcb8589afa893a8bb8a0fc2": {
+    "title_en": "NTA: Partial Revision of Gasoline Tax Exemption Circulars (Japan-US Mutual Defense Assistance Agreement)",
+    "summary_en": "The National Tax Agency (NTA) published a notice of partial revisions to a legal interpretation circular (tsutatsu), including the circular on handling exemptions from gasoline tax and local gasoline tax under the Japan-US Mutual Defense Assistance Agreement. The listing was published on 2026-09-25 under the NTA's new announcements and circulars section. The specific changes are not described in the provided metadata.",
+    "business_impact_en": "Organizations dealing with gasoline tax or local gasoline tax exemptions connected to the Japan-US agreement may be affected if the revised interpretation changes how exemptions are handled. The actual scope and effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese NTA circular at the source URL to confirm the exact revisions, the affected circulars, and any effective dates.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief listing metadata; the content of the revisions, effective date, and the full list of circulars covered by 'etc.' are unverified. The rule-based labels (Finance / AML, Medium) are weak triage context and may not fit a tax-circular revision.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "25be028a21e05865afe044c3ff46850a5681a780e7a127c7312ab84c8979f7de": {
+    "title_en": "Cabinet Order on Related Cabinet Orders for Science Council of Japan Act (Women's Advancement Act Order)",
+    "summary_en": "The e-Gov update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 286) titled as an ordinance organizing related cabinet orders in connection with the implementation of the Science Council of Japan Act. It is listed as amending the Order for Enforcement of the Act on Promotion of Women's Participation and Advancement in the Workplace (Heisei 27 Cabinet Order No. 318). The metadata lists a promulgation date of 2026-09-16 and an effective date of 2026-10-01.",
+    "business_impact_en": "The amendment appears to be a consequential update tied to the Science Council of Japan Act, so it may have limited practical effect on employers, though the exact changes to the Women's Advancement Act enforcement order are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm what provisions of the enforcement order were actually amended and whether any apply to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendment is not provided. Promulgation and effective dates are as listed in the metadata and should be verified against the official source. The rule-based labels (area, stage, impact) are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "267a96f4929839bff0a8fdc8a4ec86ff52eae16af01e08f3b659bc7b311eb921": {
+    "title_en": "Cabinet Order amending the Order for Enforcement of the Act on Elimination of Discrimination against Persons with...",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order titled as an ordinance on arranging related Cabinet Orders in connection with the enforcement of the Science Council of Japan Act (Reiwa 8 Cabinet Order No. 286). It is listed as amending the Order for Enforcement of the Act on the Promotion of Elimination of Discrimination on the Grounds of Disability (Heisei 28 Cabinet Order No. 32). The metadata gives a promulgation date of 2026-09-16 and an enforcement date of 2026-10-01.",
+    "business_impact_en": "The practical effect on businesses is unclear from the metadata, since the specific amended provisions are not given and the change may be only a conforming amendment tied to the Science Council of Japan Act. Organizations subject to the disability discrimination elimination framework could want to check whether any provision relevant to them changed.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order and the amended enforcement order on e-Gov to confirm what, if anything, changed and its relevance to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; the actual amended provisions are not provided. Dates and 'in force' status come from the metadata and are unverified. The rule-based labels (Other / In Force / Medium) are weak triage context only. English statute names are unofficial translations.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "45f890198d76d29a3c5919d8854e6832caad7a98c35f663e6cb02b8c8aa37b6c": {
+    "title_en": "Public comment: draft amendment to METI CO2 storage review standards",
+    "summary_en": "This is a public comment solicitation on a draft ministerial directive (kunrei) that would partly amend the review standards and related rules for dispositions by the Minister of Economy, Trade and Industry under the law on carbon dioxide storage businesses. The draft was publicly announced on 2026-10-02, with comments accepted until 2026-10-31 23:59. The listed contact is the Fuel Environment Compatible Utilization Promotion Division, Resources and Fuel Department, Agency for Natural Resources and Energy, METI.",
+    "business_impact_en": "Companies planning or considering CO2 storage projects may be affected if the revised review standards change how permit or approval applications are assessed. The actual scope and effect cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese draft and accompanying materials on the e-Gov public comment page to determine whether the proposed changes are relevant and whether to submit comments before the deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the content of the proposed amendments is not provided and remains unverified. This is a draft out for public comment, not an adopted or effective rule. Rule-based labels (area, stage, impact level) are preliminary and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "5dd351fbb6e44302d656d421f7724c9b0d26721bcce28365fb078630187a6b7a": {
+    "title_en": "MOF Ordinance Amending Rules on Forms of National Accounting Books and Documents, Etc.",
+    "summary_en": "The e-Gov law update list shows a Ministry of Finance ordinance (Reiwa 8 MOF Ordinance No. 59) that amends the Ordinance on the Forms of National Accounting Books and Documents, Etc. and related ordinances. The listed target law is the Rules on Handling of the National Tax Receipts Adjustment Fund (Showa 29 MOF Ordinance No. 39). The metadata gives a promulgation date of 2026-09-10 and an effective date of 2026-09-24.",
+    "business_impact_en": "The amendment appears to concern national government accounting and tax-receipt handling procedures, so it may mainly affect public bodies and possibly financial institutions that handle national tax receipts. Whether it affects private businesses is not clear from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm the actual changes, their scope, and the effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The effective date and in-force status are taken from the metadata and not independently verified. Rule-based labels (area, stage, impact) are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "001f12a7666dde9c9546211f3298d5cdc5da9fe3f42d896abcc7a51cb8bbd915": {
+    "title_en": "MOF Ordinance Amending Rules on National Accounting Books and Documents (Tax Revenue Fund Rules)",
+    "summary_en": "The e-Gov update list shows a Ministry of Finance ordinance (Reiwa 8 MOF Ordinance No. 59), listed with a promulgation date of 2026-09-10, amending the ordinance on forms of national accounting books and documents and related ordinances. The listed target law is the Rules on Handling Procedures for the National Tax Receipts Adjustment Fund (Showa 29 Ministry of Finance Ordinance No. 39). The metadata lists an enforcement date of 2027-01-01.",
+    "business_impact_en": "The amendment could affect procedures or document formats handled under the national tax receipts fund rules, which may be relevant to parties dealing with national tax collection or payment handling. The actual scope of changes is not stated in the available metadata.",
+    "recommended_action_en": "Review the official Japanese amending ordinance and the updated rules on e-Gov to confirm the specific changes and their relevance to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata from the update list; the substance of the amendments is not provided. Promulgation and enforcement dates are as listed in the metadata and should be verified against the official source. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "87f6fe673952522afa9000bb10e429e87fd8982a8d258a3e2d075ee8edc10b7e": {
+    "title_en": "MOF Ordinance Amending Ordinance on National Accounting Books and Documents Formats (Reiwa 8 No. 59)",
+    "summary_en": "The e-Gov law update list shows a Ministry of Finance ordinance (Reiwa 8 MOF Ordinance No. 59), promulgated 2026-09-10, that amends the ordinance on forms of national accounting books and documents and related ordinances. The listed target law is the 1991 MOF ordinance on special handling of national tax collection and related administrative affairs when processed via electronic information processing systems. The metadata gives an effective date of 2027-01-01.",
+    "business_impact_en": "Organizations that handle national tax collection or accounting records through electronic systems may be affected, but the specific changes are not stated in the metadata. The actual scope could differ from what the preliminary labels suggest.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm the specific amendments, their scope, and the effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. Area, stage, and impact labels are preliminary rule-based triage and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d6e688d4ecc14d63a9b1203348c501f4f2744cbe07ddcaae121a0923fcae6cd0": {
+    "title_en": "Cabinet Office Ordinance amending Child Welfare Act Enforcement Regulations and ID certificate format rules",
+    "summary_en": "The e-Gov update list shows a Cabinet Office Ordinance (Reiwa 8 Cabinet Office Ordinance No. 75), promulgated 2026-09-07, amending the Child Welfare Act Enforcement Regulations and a related Cabinet Office Ordinance on special rules for the format of identification certificates carried by officials during on-site inspections under laws under the Children and Families Agency's jurisdiction. The source lists an effective date of 2026-10-01. The specific content of the amendments is not provided in the available metadata.",
+    "business_impact_en": "Because the metadata concerns the format of officials' identification certificates for on-site inspections, it may be relevant mainly to child welfare-related entities subject to such inspections, though any practical effect is unclear from the information given. The extent of any impact could not be determined without the amendment text.",
+    "recommended_action_en": "Review the official Japanese text of the ordinance on e-Gov to confirm the actual amendments, their scope, and the effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments was not provided and is unverified. Preliminary labels (area, stage, impact level) are keyword-based and not legally verified. The unofficial English should be checked against the official Japanese source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "fb5b10c86baff679c77d4dc9274a83cb98434b6fb64b4d228e2c4f6b90582fbf": {
+    "title_en": "Cabinet Office Ordinance amending Child Welfare Act Enforcement Regulations (ID certificate format)",
+    "summary_en": "The e-Gov update list shows a Cabinet Office Ordinance (Reiwa 8 Cabinet Office Ordinance No. 75) amending an ordinance on special provisions for the format of staff identification certificates carried during on-site inspections under laws under the Children and Families Agency's jurisdiction. The record lists the target law as the Enforcement Regulations of the Child Welfare Act, a promulgation date of 2026-09-07, and an effective date of 2026-10-01. The metadata does not describe the specific content of the amendment.",
+    "business_impact_en": "Entities subject to on-site inspections under child welfare-related laws may find that inspectors' identification certificates change in format. The practical effect on businesses is unclear from the provided information and may be limited.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the amendment's text, scope, and effective date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and e-Gov update-list metadata; the substance of the amendment is not provided. The preliminary 'In Force' and 'Other' labels are keyword-based and unverified; the effective date of 2026-10-01 should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "eabe3f61ce7c8ffe6fc3041b84431987d624c512403d1985d56fe9c4a81f16f4": {
+    "title_en": "Cabinet Office Ordinance amending Child Welfare Act enforcement rules and ID certificate format ordinance",
+    "summary_en": "The e-Gov Law Search update list shows a Cabinet Office Ordinance (Reiwa 8 Cabinet Office Ordinance No. 75) amending the Cabinet Office Ordinance on special provisions for the format of identification certificates carried by officials during on-site inspections under laws under the Children and Families Agency's jurisdiction (Reiwa 5 Cabinet Office Ordinance No. 42), and the Child Welfare Act enforcement regulations. The metadata lists a promulgation date of 2026-09-07 and an effective date of 2026-10-01. The specific content of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Organizations subject to on-site inspections under child welfare-related laws may see changes to the identification certificates carried by inspecting officials, though the practical effect is unclear from the metadata alone. Any impact on business operations is uncertain without reviewing the amended text.",
+    "recommended_action_en": "Review the official Japanese text of the ordinance on e-Gov to confirm what was amended and whether it is relevant to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and registry metadata; the substance of the amendments is not given. Dates and status come from the metadata and should be verified against the official source. The rule-based labels (area 'Other', stage 'In Force', impact 'Medium') are preliminary and unverified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a4060ec8515c8eafb52d28a51f2a4939c6e2a4317fe7afd2e0d73a5b77dc15b5": {
+    "title_en": "Cabinet Order Amending Order Specifying Laws under Appended Table 8 of Whistleblower Protection Act",
+    "summary_en": "The e-Gov law update list shows a Cabinet Order (Reiwa 8 Cabinet Order No. 184) amending the Cabinet Order that specifies the laws listed in Appended Table 8 of the Whistleblower Protection Act (Heisei 17 Cabinet Order No. 146). The metadata gives a promulgation date of 2026-05-29 and an effective date of 2026-10-01. The specific content of the amendment is not stated in the provided metadata.",
+    "business_impact_en": "If the amendment changes which laws fall within the scope of the Whistleblower Protection Act, it could affect the range of reportable matters and companies' internal reporting frameworks. The actual impact cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text of the amending Cabinet Order on e-Gov to confirm which laws are added or changed and how they relate to your organization.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendment is not provided. The preliminary label 'In Force' is rule-based and unverified, and the stated effective date of 2026-10-01 should be confirmed against the official source. English is an unofficial summary.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7b33fd59143bea11f74014a45c221cd76a67745d2207ab845b6486453bc2ea87": {
+    "title_en": "Public comment: draft amendment to rules on designated driving school instruction standards",
+    "summary_en": "A public comment period is open on a draft rule (proposal) amending the rules on detailed standards for instruction at designated driving schools and similar facilities. The draft was announced on 2026-10-02, with a comment deadline of 2026-11-01 00:00. The category is listed as Police, and the contact is the Driver's License Division, Traffic Bureau, National Police Agency.",
+    "business_impact_en": "If adopted, the changes could affect operators of designated driving schools and related training facilities, though the specific content and scope are not stated in the provided metadata. Any practical impact cannot be assessed without the draft text.",
+    "recommended_action_en": "Review the official Japanese public comment page and the attached draft text to confirm the actual content, scope, and submission procedure before the stated deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the proposed amendments is not provided. The title describes a rule amending an earlier amending rule, and my reading of this nested structure is unverified. Rule-based labels (area: Other, impact: Medium) are weak triage context only. Verify all details, including dates, against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "bbcf5b5dddfdfcc1e659a8032c64654a816c201acf927927c3075dadfcf6082d": {
+    "title_en": "Draft partial revision of basic policy on historic townscapes - public comment",
+    "summary_en": "This is a draft (proposed) partial revision of the national basic policy on maintaining and improving the historic character (rekishiteki fuchi) of local communities, released for public comment. The draft was announced on 2026-09-29, with comments accepted until 2026-10-28 18:00. The listed category is urban planning, and the contact is the Park, Green Space and Landscape Division of the Urban Bureau, Ministry of Land, Infrastructure, Transport and Tourism (MLIT).",
+    "business_impact_en": "If finalized, the revision could affect local governments' historic-townscape planning and related urban development or heritage-adjacent projects, though the specific content of the changes is not provided in the metadata. Any effect on businesses is uncertain and depends on the draft's actual text.",
+    "recommended_action_en": "Review the official Japanese public comment page and the draft text to confirm the actual changes and the submission deadline before deciding whether to respond.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief listing metadata; the content of the draft revision is not described. The topic reading (historic townscape policy under the so-called Historic Townscape Act framework) is inferred from the title and should be verified. Rule-based labels were treated as weak context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c9dcaf0a0066ed84425713f80385efb31e65a6d52e67a1dbe6f79fd381c665de": {
+    "title_en": "MLIT FY2025 Survey on Real Estate Brokerage Act Enforcement: Licensed Operators Up 12th Straight Year",
+    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism (MLIT) issued a press release on the results of its fiscal 2025 (Reiwa 7) survey on the enforcement status of the Real Estate Brokerage Act (Takuchi Tatemono Torihiki-gyo Ho). Per the title, the number of licensed real estate brokerage operators increased for the 12th consecutive year, and the numbers of supervisory dispositions and administrative guidance cases also increased. This is a government announcement of survey results, not a new or amended rule.",
+    "business_impact_en": "The reported increases in supervisory dispositions and administrative guidance may indicate continued regulatory attention on real estate brokerage operators, which could be relevant to firms operating or entering this sector in Japan. The announcement itself does not appear to impose new obligations.",
+    "recommended_action_en": "Review the official MLIT press release in Japanese to confirm the actual figures, the types of violations cited, and any implications for your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); actual figures, violation categories, and the publication date as given in the metadata are unverified. The area, stage, and impact labels are rule-based triage labels and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "0e5ce65df856f7621fb7340806184114fb298ba621c0f004c5811ec6ff07f066": {
+    "title_en": "MLIT Announces Vessel Use Suspension Order for Tokai Kisen under Marine Transport Act",
+    "summary_en": "This is a Ministry of Land, Infrastructure, Transport and Tourism (MLIT) press release, dated 2026-10-02, concerning an administrative action against Tokai Kisen Co., Ltd. The title indicates a vessel use suspension order issued under Article 17 of the Marine Transport Act. The provided metadata does not include the reasons for the order, the vessels affected, or the length of the suspension.",
+    "business_impact_en": "The order appears to apply to a specific operator, so direct effects on other companies may be limited. It could, however, signal regulatory attention to vessel operation and safety management in the maritime transport sector.",
+    "recommended_action_en": "Review the official MLIT press release in Japanese to confirm the details, scope, and grounds of the order.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); the grounds, vessels, and duration of the suspension are unverified. Rule-based labels are preliminary and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "e84236c29efd834ac435516b74642647965e19e7888ecd04c2ea0cd8d08e7e8e": {
+    "title_en": "MLIT Press Release: Ship Use Suspension Order for Vessel Operator (Maritime Transport Act Art. 17)",
+    "summary_en": "This is a Ministry of Land, Infrastructure, Transport and Tourism (MLIT) press release, dated 2026-10-02, concerning an administrative disposition (an order to suspend the use of a vessel) against a ship operating business under Article 17 of the Maritime Transport Act. The metadata provided does not identify the operator, the vessel, the grounds, or the length of the suspension.",
+    "business_impact_en": "The announcement may be of limited direct relevance beyond the operator concerned, though it could signal enforcement attention to vessel operation practices under the Maritime Transport Act. Actual relevance cannot be assessed without the details in the official release.",
+    "recommended_action_en": "Review the official Japanese MLIT press release to confirm the operator, grounds, and scope of the order and to judge whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); specifics of the order are unverified. The 'Low' impact label is a keyword-based triage label, not a verified conclusion.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c5f88781f9bb06fceb48d844a8bfad08b3a74d4afc1183811229efa8c4862f2d": {
+    "title_en": "JFTC press release: Revision of operating standards for subcontract payment law and Freelance Act guidance",
+    "summary_en": "The Japan Fair Trade Commission (JFTC) issued a press release dated 2026-10-01 concerning revisions to two documents: the operating standards for the law on preventing delayed payment and similar issues toward small contractors in manufacturing consignment and related transactions, and the interpretive guidance (\"considerations\") for the law on适正 transactions with specified contractors (freelancers). The metadata gives only the title and a generic 'press release' label, so the content, scope, and effective date of the revisions are not stated here.",
+    "business_impact_en": "Businesses that commission work from small contractors or freelancers may find that the JFTC's revised enforcement standards or interpretations affect how payment terms and transaction practices are assessed. The actual extent of any impact cannot be determined from the information provided.",
+    "recommended_action_en": "Review the original JFTC press release and the revised documents in Japanese to confirm what has changed, when, and whether it is relevant to your transactions.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and minimal metadata; the nature and details of the revisions are unverified. The preliminary area label 'Consumer / Advertising' appears questionable given the subject matter (subcontracting and freelancer transaction rules) and should not be relied on. This is an unofficial summary; verify against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "d29c9c68b57af99629c68571893fb22ff48c4367776a17bb22fc15bbea38dc55": {
+    "title_en": "MLIT press release: international guideline on Japan's port CNP certification issued",
+    "summary_en": "According to the title of a Ministry of Land, Infrastructure, Transport and Tourism (MLIT) press release dated 2026-10-01, an international version of the guideline on Carbon Neutral Port (CNP) certification has been issued. The announcement appears to concern promoting Japan's approach to assessing port decarbonization in overseas markets. The metadata gives only the title and a generic 'press release' label, so further details are not available.",
+    "business_impact_en": "Port operators, shipping companies, and infrastructure firms with overseas port interests may find the guideline relevant to how port decarbonization is assessed or certified. Any practical effect would depend on details not provided in the available metadata.",
+    "recommended_action_en": "Review the official Japanese MLIT press release and any attached guideline documents to confirm the scope, status, and applicability of the international guideline.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a generic 'press release' summary; contents of the guideline, whether it is binding or voluntary, and its intended audience are unverified. Area, stage, and impact labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9bb2eb63752b5a8765def88d78238af92ca10b602e6de2a94fd694f24140c13e": {
+    "title_en": "FSA announcement on Cabinet Office Order amending Banking Act Enforcement Regulations, etc.",
+    "summary_en": "The Financial Services Agency published an announcement concerning a Cabinet Office Order partially amending the Enforcement Regulations of the Banking Act and related instruments. The provided metadata contains only the Japanese title and no summary text, so the content, scope, and timing of the amendments are not stated here.",
+    "business_impact_en": "Banks and other financial institutions subject to the Banking Act may be affected, but the nature and extent of any impact cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese FSA page to confirm whether this is a draft, a final order, or a related notice, and what the amendments contain.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and preliminary rule-based labels; no summary text provided. Whether the order is final, its effective date, and its contents are unverified. The 'Finance / AML' label is a weak keyword-based triage label.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9566a5bff44060fbc6c894a428809603cafd17b18b09aec85f031e5c666ebcf7": {
+    "title_en": "MLIT Notice: Higher National Subsidy Rate for Disaster Public Housing, 2026 Kumamoto Quake (3 Municipalities)",
+    "summary_en": "This is a Ministry of Land, Infrastructure, Transport and Tourism (MLIT) press release, based on its Japanese title, announcing a notice designating three cities/towns as eligible for an increased national subsidy rate for constructing public housing for disaster victims related to the '2026 (Reiwa 8) Kumamoto Earthquake'. The stated aim is to ease the burden of public housing construction. The specific municipalities, subsidy rates, and effective details are not provided in the available metadata.",
+    "business_impact_en": "This may mainly affect the designated local governments and parties involved in publicly funded housing construction in the affected area, such as contractors or suppliers. Any broader effect on private-sector parties is unclear from the available information.",
+    "recommended_action_en": "Review the official MLIT press release at the source URL to confirm the designated municipalities, subsidy rate changes, and applicable conditions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a minimal 'press release' summary; municipality names, rates, legal basis, and effective dates are unverified. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "26008f263169045f569e1acb44c3729d72dca4c5b6af6f8732f81a038dedefdf": {
+    "title_en": "METI announces recommendation to Fuji Seisakusho Co., Ltd. under the Subcontract Act (Toritekiho)",
+    "summary_en": "On 2026-09-29, the Ministry of Economy, Trade and Industry (METI) published a news release stating that a recommendation was issued to Fuji Seisakusho Co., Ltd. under the 'Toritekiho' (取適法). The provided metadata contains only the Japanese title and a generic 'news release' label, so the nature of the alleged conduct and the content of the recommendation are not stated.",
+    "business_impact_en": "Companies that deal with subcontractors or contract manufacturers may find this relevant as an indication of METI's enforcement activity under this law. The specific implications for any given business cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese news release on the METI website to confirm the details of the recommendation and the legal basis cited.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and minimal metadata; the full name and scope of 'Toritekiho' and the details of the recommendation are unverified. The company name is romanized and may not match the company's official English name. Preliminary labels (antitrust/fair trade, government announcement, low impact) are keyword-based and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "3e4779dd007ce86f8d16f71240521f04687059fc91a8066b20e83ceccbdb94e5": {
+    "title_en": "TSE: Partial Amendment to Listing Rules Enforcement Rules re TDnet Fee Review",
+    "summary_en": "The Tokyo Stock Exchange (JPX) published an announcement dated 2026-09-28 concerning a partial amendment to its enforcement rules for the securities listing regulations and related rules, in connection with a review of TDnet usage fees. The linked document appears to be an outline of the revisions, with the metadata describing it as an old/new comparison table of the rule changes.",
+    "business_impact_en": "Companies that use TDnet to make timely disclosures may be affected if the revised rules change fees or related procedures. The specific scope, amounts, and timing cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese JPX document to confirm the actual changes, any fee details, and the applicable effective date.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title, a brief source description, and metadata; the document contents were not provided. Fee changes, effective date, and enactment status are unverified. The preliminary labels (Finance / AML, Medium) are keyword-based and may not be accurate.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "75db2f1773bff996c72ddf2a83b3de03fb8b5aaa94b3b57e4df4d8f71d65758c": {
+    "title_en": "MOF Ordinance Amending National Tax Tribunal and MOF Organization Rules (2026)",
+    "summary_en": "The e-Gov Law Search update list shows a Ministry of Finance ordinance (Reiwa 8 MOF Ordinance No. 48) amending the National Tax Tribunal organization rules and the Ministry of Finance organization rules (Heisei 13 MOF Ordinance No. 1). The metadata lists a promulgation date of 2026-07-01 and an effective date of 2026-10-01. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Because this appears to concern internal organizational rules of the Ministry of Finance and the National Tax Tribunal, it may have limited direct effect on private businesses, though any procedural or administrative changes could not be assessed from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm what the amendments change and whether any of them are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the amended provisions are unknown. The 'In Force' stage label is preliminary and keyword-based, and the stated effective date of 2026-10-01 should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "c2a6cac2468a151813d5821e5d8cde72624ed1ab1f70bbacac99be5a9d8c1c44": {
+    "title_en": "MIC Ordinance Amending Ordinance on Resident Registry Act Appendix Affairs (2026)",
+    "summary_en": "This e-Gov Law Search update entry lists an amending ordinance (Reiwa 8 Ministry of Internal Affairs and Communications Ordinance No. 75) to the ministerial ordinance that specifies affairs under Appendices 1 to 6 of the Basic Resident Registration Act (Heisei 14 MIC Ordinance No. 13). The metadata shows a promulgation date and an effective date of 2026-06-01. The specific amendments are not described in the provided metadata.",
+    "business_impact_en": "Organizations that handle resident registry information or related administrative procedures could possibly be affected, but the content of the changes is not stated in the available metadata. Any actual impact cannot be determined without reviewing the ordinance text.",
+    "recommended_action_en": "Review the official Japanese ordinance text on e-Gov to confirm what was amended and whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the substance of the amendment is not provided. The effective date shown (2026-06-01) and the 'In Force' label are as given in the metadata and should be verified against the official source. The listing update date (20260929) differs from the stated published date; this discrepancy is unexplained.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "3eb3cf72914c6b543ee697a9372c4ea37f57868e3fb8c33f0eaf528dcbc82deb": {
+    "title_en": "MIC ordinance amending ordinance on Basic Resident Register Act Annexes 1-6 affairs (Reiwa 8 No. 75)",
+    "summary_en": "The e-Gov Law Search update list shows an amending ordinance (Reiwa 8 Ministry of Internal Affairs and Communications Ordinance No. 75) to the ordinance specifying affairs prescribed by MIC ordinance under Annexes 1 to 6 of the Basic Resident Register Act (Heisei 14 MIC Ordinance No. 13). The metadata lists a promulgation date of 2026-06-01 and an effective date of 2026-06-14. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Organizations that handle resident register information or related administrative affairs may possibly be affected, but the scope and nature of any change cannot be determined from the available metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm what the amendment changes and whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and metadata fields; the substance of the amendment is not provided. Dates and law numbers are as listed in the metadata and should be verified against the official source. The rule-based labels (area, stage, impact level) are preliminary and unverified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "794c4ea403273775f18084c264510baa5616c23e03052e325299fd17b5f2aca8": {
+    "title_en": "Ministerial Ordinance Amending Legal Affairs Bureau Organization Rules (Reiwa 8 No. 28)",
+    "summary_en": "The e-Gov law update list shows a Ministry of Justice ordinance (Reiwa 8 Ministry of Justice Ordinance No. 28) amending the Rules on the Organization of Legal Affairs Bureaus and District Legal Affairs Bureaus (Heisei 13 Ministry of Justice Ordinance No. 11). The listed promulgation date is 2026-04-08 and the listed effective date is 2026-10-01. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "This appears to concern the internal organizational structure of Legal Affairs Bureaus, so any direct effect on businesses may be limited, though it could affect administrative procedures handled by those bureaus (for example, registration-related services). The specific effects cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the ordinance on e-Gov to confirm what organizational changes are made and whether they are relevant to your procedures with Legal Affairs Bureaus.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the content of the amendments is not provided. The 'In Force' stage label is a preliminary keyword-based label, and the effective date (2026-10-01) should be verified against the official source to confirm current status.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "bd83568c6d1f62a6e61ec14a3a4a9519a78e103c0411262cd3e1a49f039a35eb": {
+    "title_en": "MLIT Ministerial Ordinance Amending Ship Equipment and Small Vessel Safety Rules (promulgated 2026-04-01)",
+    "summary_en": "Per the e-Gov Law Search update list, this is a Ministry of Land, Infrastructure, Transport and Tourism (MLIT) ordinance, Reiwa 8 No. 37, that amends an earlier ordinance which itself amended the Ship Equipment Regulations and the Small Vessel Safety Regulations, among others. The metadata lists a promulgation date of 2026-04-01 and an effective date of 2026-10-01, and the target law is the Ship Equipment Regulations (Showa 9 Ministry of Communications Ordinance No. 6). The metadata does not describe the specific content of the amendments.",
+    "business_impact_en": "Ship owners, operators, shipbuilders, and equipment makers may be affected if the amendments change equipment or safety requirements, but the specific changes are not stated in the provided metadata. Any actual impact would depend on the full text.",
+    "recommended_action_en": "Review the official Japanese text at the e-Gov source to confirm the actual amendments, their scope, and any transitional provisions before assessing relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; substantive amendment content is unknown. The effective date of 2026-10-01 is as listed in the metadata and should be verified against the official source. The 'In Force' stage label is a preliminary rule-based label and may not reflect the status as of any given date, given the future effective date.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "28c888cb0c93846bbfd63101454a889851a906afa91a2be1550c39d95e952a27": {
+    "title_en": "MLIT Ministerial Order Amending Ship Equipment and Small Vessel Safety Rules (Life-Saving Appliances)",
+    "summary_en": "The e-Gov law update list shows a Ministerial Order of the Ministry of Land, Infrastructure, Transport and Tourism (Reiwa 8 Order No. 37), promulgated 2026-04-01, which amends an earlier amending order relating to ship equipment regulations and small vessel safety regulations. The listed target law is the Ship Life-Saving Appliances Regulations (Showa 40 Ministry of Transport Order No. 36), with a stated effective date of 2026-10-01.",
+    "business_impact_en": "Shipowners, operators, and equipment makers dealing with life-saving appliances may be affected once the order takes effect, but the specific changes are not described in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the order and the amended Ship Life-Saving Appliances Regulations on e-Gov to confirm the actual changes and their applicability.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the substance of the amendments is not provided. The 'In Force' label is rule-based and unverified, and the stated effective date (2026-10-01) appears to be after the publication date, so current force status should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "b4f5d811d640c4d7a6b07157cfb99df80ad61682079f621f9607cd3e3bea01d2": {
+    "title_en": "MLIT Ministerial Ordinance Amending Small Vessel Safety Rules Amendments (Reiwa 8 No. 37)",
+    "summary_en": "The e-Gov law update list shows an amending ministerial ordinance (Reiwa 8 Ministry of Land, Infrastructure, Transport and Tourism Ordinance No. 37) that amends an earlier ordinance revising the Ship Equipment Regulations and the Small Vessel Safety Regulations, among others. The listed target law is the Small Vessel Safety Regulations (Showa 49 Ministry of Transport Ordinance No. 36). The metadata gives a promulgation date of 2026-04-01 and an effective date of 2026-10-01.",
+    "business_impact_en": "Parties involved in small vessel construction, equipment, or inspection may be affected, but the specific changes are not stated in the provided metadata. The scope and practical effect cannot be determined without the amended text.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, their scope, and any transitional provisions before assessing relevance.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The preliminary 'In Force' label should not be relied upon, since the listed effective date (2026-10-01) is later than the promulgation date (2026-04-01); verify status against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "1d0c97f8f811db872263608467936c1efafffa52fd28ca348efe7c25ebcffb38": {
+    "title_en": "Ministerial Ordinance Amending Technical Standards for Waterworks Facilities (promulgated 2026-04-01)",
+    "summary_en": "The e-Gov Law Search update list shows an amending ministerial ordinance (Reiwa 8 MLIT Ordinance No. 40) to the Ministerial Ordinance Establishing Technical Standards for Waterworks Facilities (Heisei 12 MHW Ordinance No. 15). The metadata lists a promulgation date of 2026-04-01 and an enforcement date of 2026-10-01. The substance of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Entities involved in designing, constructing, or operating waterworks facilities may be affected, depending on what the amendments change. The scope and nature of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments, their applicability, and the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and update-list metadata; amendment content is unknown. The enforcement date (2026-10-01) appears to be in the future relative to the publication date, so the preliminary 'In Force' label should not be relied on. Verify all details against the official Japanese source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4fc0fd968871a56cb7e81968d31efc2bda416aa2f98070330dca9679bb06f99e": {
+    "title_en": "MOJ Ordinance Amending Real Estate Registration Rules and Corporate Security Registration Rules",
+    "summary_en": "This item is a Ministry of Justice ordinance (Reiwa 7 MOJ Ordinance No. 49) amending the Real Estate Registration Rules and the Corporate Security Registration Rules. The metadata lists a promulgation date of 2025-10-10 and an effective date of 2026-10-01. The listing is a law-update entry for the Corporate Security Registration Rules (Showa 33 MOJ Ordinance No. 38); the specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Entities that deal with real estate registration or corporate security registration may be affected by procedural changes, but the nature and extent of any changes cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm its content, scope, and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment details are not provided. The rule-based label 'In Force' is preliminary and appears inconsistent with the 2026-10-01 effective date, which is in the future relative to the promulgation date; verify status against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9f42e939c331ed5aedcac0c52f058aae5a98af73f2352f29b73acb5c13cb1827": {
+    "title_en": "Ministerial Ordinance Amending Real Estate Registration Rules and Enterprise Security Registration Rules",
+    "summary_en": "Metadata from the e-Gov Law Search update list indicates a Ministry of Justice ordinance (Reiwa 7 Ministry of Justice Ordinance No. 49) amending the Real Estate Registration Rules and the Enterprise Security Registration Rules. The listed promulgation date is 2025-10-10 and the listed effective date is 2026-10-01. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Parties that handle real estate registration filings, such as property owners, lenders, and registration service providers, may be affected by changes to registration procedures. The nature and extent of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending ordinance on the e-Gov source page to confirm its content, scope, and effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amendment contents are not provided and are unverified. The listed effective date (2026-10-01) falls after the promulgation date, so the preliminary 'In Force' label may not reflect current status and should be checked against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "ce15a15eaeda43d4bf4a421f6547f75452851cc783756d2aa39d04a210c3a74a": {
+    "title_en": "Public comment: draft tender guidelines for on-site technical and client-support services (MAFF)",
+    "summary_en": "This is a public comment solicitation (draft stage) on two draft implementation guidelines for private competitive bidding: one for on-site technical services and one for client support services (supervision support). The draft was announced on 2026-10-02, with comments accepted until 23:59 on 2026-10-15; it is categorized under agriculture, and the contact is the Construction Planning and Coordination Office, Design Division, Rural Development Bureau, Ministry of Agriculture, Forestry and Fisheries.",
+    "business_impact_en": "Companies that provide or may bid for technical, construction supervision-support, or related public-works services for the ministry may be affected if the guidelines are finalized as drafted. The short comment window could limit time to prepare any input.",
+    "recommended_action_en": "Review the official Japanese public comment page and the draft guidelines to confirm the scope, details, and the 2026-10-15 deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the content of the draft guidelines was not provided and is unverified. Labels (area, stage, impact level) are preliminary and rule-based.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "af76c16a538691a31999b56c73d453b49f4489513e9a274d4da7ef99a183a5a4": {
+    "title_en": "Public comment: draft Cabinet Order amending civil service recruitment exam categories",
+    "summary_en": "This is a public comment solicitation on a draft Cabinet Order (seirei-an) that would partially amend the Cabinet Order on the government positions and types covered by recruitment examinations and the personnel those examinations are meant to secure. The draft was announced on 2026-10-01, with a comment deadline of 2026-10-31 00:00, under the national public servant category. The contact is the Cabinet Secretariat's Cabinet Bureau of Personnel Affairs (human resources securement unit).",
+    "business_impact_en": "This appears to concern national civil service recruitment rather than private-sector obligations, so direct business impact may be limited. Organizations connected to government recruitment, exam preparation, or public-sector hiring could find the proposed changes relevant.",
+    "recommended_action_en": "Review the official Japanese public comment page to confirm the draft's contents, any attached materials, and the submission deadline before deciding whether any response is relevant.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief listing metadata; the content of the proposed amendments is not stated and is unverified. This is a draft out for public comment, not an enacted order. The preliminary rule-based labels were treated as weak context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a194c41b5c9c83b68439de26091edfd1e6989d87dca0fc1f75fa2da44b16afd1": {
+    "title_en": "FSA publishes draft Cabinet Office order amending designation rules under Economic Security Promotion Act",
+    "summary_en": "On 2026-10-01 the Financial Services Agency published a draft (案) Cabinet Office order that would partially amend the Cabinet Office order on the designation of specified critical infrastructure operators under Japan's Economic Security Promotion Act, along with related items (indicated by 'etc.'). Based on the title alone, this is a draft announcement; the specific amendments, the sectors affected, and any comment deadline or effective date are not stated in the provided metadata.",
+    "business_impact_en": "Financial-sector businesses that are or may become designated as specified critical infrastructure operators could potentially be affected if the draft is adopted. The actual scope and impact cannot be determined from the title alone.",
+    "recommended_action_en": "Review the official Japanese FSA announcement and its attached draft text to confirm the content of the proposed amendments, whether a public comment period applies, and any relevance to your business.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and metadata; no summary text was provided, so details, scope, deadlines, and whether it is open for public comment are unverified. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "7d03470399a2a0c892013bec97c9f6bb339e9ccb07d68486243541a6d0de3a46": {
+    "title_en": "MLIT press release: guidelines on introducing automated/remote cargo-handling machinery at ports",
+    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism (MLIT) announced in a press release dated 2026-09-30 that it has compiled guidelines for the smooth introduction of automated and remotely operated cargo-handling machinery. The announcement is framed as promoting automation at port sites. Only the title and a generic 'press release' summary were provided, so the guideline contents are not known.",
+    "business_impact_en": "Port operators, terminal companies, and equipment suppliers may find the guidelines relevant when considering automation or remote-operation projects. Whether the guidelines are advisory or carry any binding effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official MLIT press release and the guideline document in Japanese to confirm their scope, status, and any points relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a generic press-release label; guideline contents, legal status, and any applicability are unverified. The preliminary labels (area, stage, impact level) are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "73d7cd33a219cce21bb3980f32b270b194b4467094552b530193456edf834169": {
+    "title_en": "MIC: 23rd Study Group Meeting on Revising Local Government Information Security Policy Guidelines",
+    "summary_en": "The Ministry of Internal Affairs and Communications (MIC) posted a notice about the 23rd meeting of a study group on the revision of guidelines concerning information security policies for local governments. The metadata gives only the meeting title, so the agenda, discussion content, and any proposed revisions are not known from the provided information.",
+    "business_impact_en": "Any eventual revision of the guidelines could affect local governments and possibly vendors or contractors that serve them, but the metadata does not indicate whether any specific changes have been proposed or decided.",
+    "recommended_action_en": "Review the official MIC page in Japanese to confirm the meeting agenda, materials, and whether any draft revisions have been published.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a single-line summary that repeats it; the content of the meeting is unverified. The listed publication date and the rule-based labels are unverified triage metadata, and this is a study group meeting notice, not an enacted or finalized rule.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "8c6d254ec3bd15940c62e97dee5f36aa4fc0f5a58a6b9e4c47bde9caba4ea230": {
+    "title_en": "Consumer Affairs Agency announcement: partial revision of Food Labeling Standards",
+    "summary_en": "The Consumer Affairs Agency (CAA) posted a new-information notice titled 'Regarding a Partial Revision of the Food Labeling Standards', dated 2026-10-01. The provided metadata contains only the title and no details of the content, scope, effective date, or transition period of the revision.",
+    "business_impact_en": "If the revision affects labeling requirements, food manufacturers, importers, and sellers could potentially need to review their product labels, though the extent of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese notice on the CAA website to confirm what was revised, its status, and any applicable dates.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a repeated title as summary; no details on content, legal status, or effective date. Rule-based labels (Consumer / Advertising, Government Announcement, Medium) are unverified. This is an unofficial summary; verify against the official Japanese source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "1c006369bef0ab28fa3ae2a958f079c89e0383b79fc7f3ca9689d353cd9f22ee": {
+    "title_en": "JFTC press release: recommendation issued to Fuji Manufacturing Co., Ltd.",
+    "summary_en": "The Japan Fair Trade Commission (JFTC) published a press release dated 2026-09-29 titled 'Regarding a recommendation to Fuji Manufacturing Co., Ltd.' (company name romanized from the Japanese title). The provided metadata gives only the title and a generic 'press release' label, so the legal basis, the conduct concerned, and the content of the recommendation are not stated.",
+    "business_impact_en": "Direct impact is likely limited to the named company, but the underlying conduct and any wider relevance to other businesses cannot be assessed from the available information. Companies in related fields may wish to see whether the release raises points relevant to their own practices.",
+    "recommended_action_en": "Review the official Japanese JFTC press release at the source URL to confirm the legal basis, the facts, and the content of the recommendation.",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and minimal metadata; the nature of the recommendation (e.g., under which statute) is unverified. The company name romanization is a best guess. Rule-based labels (Antitrust / Fair Trade, Government Announcement, Low) are preliminary triage tags, not verified conclusions.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "a77c6e9ad967daa13b27240a2ec447ed1d18343b105ae0f6b6d8315571381cfa": {
+    "title_en": "Law on Related Law Adjustments for Disaster Management Agency Establishment Act (amends Crime Victims Benefits Act)",
+    "summary_en": "The e-Gov law update listing shows that the Act on the Arrangement of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Payment of Benefits to Crime Victims and Support for Crime Victims (Showa 55 Act No. 36). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendment is not stated in the provided metadata.",
+    "business_impact_en": "Organizations involved in crime victim support, benefit administration, or disaster-related public services may be affected if the amendment changes relevant provisions or agency references. The actual scope of any impact cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the specific amended provisions and the enforcement date, to determine whether any changes are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the substance of the amendments is not provided and is unverified. Dates and law numbers are as listed in the source metadata. Rule-based labels (area, stage, impact level) are preliminary and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "b0a5fb3f1597c16bfe76d5023dab40f6e0393666c071edd6d41fb4dff333e75f": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "This e-Gov law update list entry concerns an amending act, the Act on Arrangement of Related Acts accompanying enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), listed with a promulgation date of 2026-07-17 and a stated enforcement date of 2026-11-02. The entry identifies the Act on Payment of Benefits to Relief Victims of Aum Shinrikyo Crimes (Heisei 20 Act No. 80) as the target law amended by this act. The metadata does not describe the substance of the amendment.",
+    "business_impact_en": "Because the listed target law concerns benefit payments to crime victims, the practical effect on private businesses may be limited, though the amendment's actual content is not stated in the provided metadata. Organizations with a connection to disaster management administration or the target law could potentially be affected.",
+    "recommended_action_en": "Review the official Japanese text on the e-Gov Law Search page to confirm the scope, wording, and effective date of the amendment before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the e-Gov update list metadata; the substance of the amendment is not provided. The act appears to be an omnibus amendment, and only one affected law is shown in this entry. Promulgation and enforcement dates are taken from the metadata and unverified; the preliminary rule-based labels are weak context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "0d4485e0b30e3e9bf2c058cf0926c8665aca6e348bf83692390e289ee28e2759": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Payment of Condolence Money for Crime Victims Abroad (Heisei 28 Act No. 73). The record lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The metadata does not describe the specific content of the amendment.",
+    "business_impact_en": "The specific changes are not described in the metadata, so any practical impact is unclear. Organizations connected to the amended Act or to disaster-management administration may wish to check whether their responsibilities could be affected.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and the enforcement date before drawing any conclusions.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and a brief e-Gov update record; the content of the amendment is not provided. Dates and law numbers are as listed in the metadata and should be verified against the official source. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "30d8bf8f5fd10b74dd2c026809744406deef1e181ef931f4c0a221df91c19dc5": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Act on Measures for Protection of the People in Armed Attack Situations (Heisei 16 Act No. 112). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "Entities involved in civil protection, disaster management, or government-related contracting may be affected by changes to the amended law, depending on the content of the amendments. The scope and nature of any practical impact cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to identify the specific amended provisions and confirm the enforcement date and any transitional rules.",
+    "confidence": "medium",
+    "ai_notes": "Based only on law-update metadata (titles, law numbers, dates); the actual amendment content is not provided and is unverified. The preliminary area, stage, and impact labels are keyword-based and not legally verified. This is an unofficial summary; the Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "018929cf933fb86f52965e42b3caeaaf0fa2a16347c15127aef24e594bffaac9": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (amends State Property Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), with a listed promulgation date of 2026-07-17 and a listed enforcement date of 2026-11-02. The listed target law is the State Property Act (Showa 23 Act No. 73). The metadata does not describe the specific content of the amendments.",
+    "business_impact_en": "Entities that deal with national government property or interact with disaster-management administration may be affected, but the nature and extent of any change cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments to the State Property Act and the stated enforcement date.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided and was not verified. Labels such as area, stage, and impact level are preliminary keyword-based triage, not legal conclusions. Dates are as listed in the source metadata.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9cb6c6f4fc41e84729bd425335ad55c927918cde4efeb6c3f277c15a02c946b4": {
+    "title_en": "Act on Related Law Adjustments for Disaster Management Agency Establishment Act (Public Finance Act amended)",
+    "summary_en": "The e-Gov law update list shows that the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62) amends the Public Finance Act (Showa 22 Act No. 34). The metadata gives a promulgation date of 2026-07-17 and a scheduled enforcement date of 2026-11-02. The specific amended provisions are not stated in the provided metadata.",
+    "business_impact_en": "The amendment to the Public Finance Act may affect government fiscal and budgetary procedures tied to the new Disaster Management Agency, which could be relevant to entities working with national disaster-management budgets. The practical effect on private businesses cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the amended provisions, the enforcement date, and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided and is unverified. The title is a long statute name rendered in shortened English. Triage labels are rule-based and not legally verified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "4171b514dde3b3fb62b532257a9dc82679c315d53b9c7c9037811eecc96da3d0": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62)",
+    "summary_en": "The e-Gov law update list shows an amendment to the Act on Provision of Disaster Condolence Payments, etc. (Showa 48 Act No. 82), made by the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62). The listing gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The metadata does not describe the substance of the amendments.",
+    "business_impact_en": "Organizations involved in disaster-related payments or local government disaster administration may be affected if the amendments change relevant provisions, but the content of the changes is not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments and enforcement date, and consult qualified counsel if relevance to your operations is unclear.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment content and the exact meaning of the listed dates are unverified. The 'Medium' impact and 'Scheduled to Take Effect' labels are rule-based and not legally verified. The Japanese source is authoritative.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "9bf38254b5fd36ea4ad88c4ce90165d17252d326608c443c9373bb92f7ebffec": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment (Admin. Counselors Act)",
+    "summary_en": "The e-Gov law update list shows an amending act, the Act on the Arrangement of Related Laws accompanying the enforcement of the Disaster Management Agency Establishment Act (Reiwa 8 Act No. 62), affecting the Administrative Counselors Act (Showa 41 Act No. 99). The metadata lists a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific amendments to the Administrative Counselors Act are not described in the provided metadata.",
+    "business_impact_en": "The practical effect on businesses is unclear from the metadata and may be limited, since the target law concerns administrative counselors. The act may also amend other related laws not listed in this entry.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the actual amendments, the enforcement date, and whether any other related laws are affected.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. The enforcement date and legal status are taken from the metadata and should be verified against the official source. The preliminary labels are keyword-based and unverified.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "57e5df4419f36f86e25db775419180554916c300613cb859d8ba7c5b26803adb": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Act (Passport Act entry)",
+    "summary_en": "The e-Gov legal update listing records an amending act, \"Act on the Arrangement of Related Laws Accompanying Enforcement of the Disaster Management Agency Establishment Act\" (Reiwa 8 Act No. 62), as applying to the Passport Act (Act No. 267 of 1951). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific changes to the Passport Act are not described in the provided metadata.",
+    "business_impact_en": "The nature of any change to the Passport Act is unknown from the metadata, so any effect on passport-related procedures or on organizations that handle them cannot be determined. Impact could range from minor technical or organizational wording updates to more substantive changes.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm what, if anything, changes in the Passport Act and whether it is relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese titles and listing metadata; the content of the Passport Act amendment is not provided. The act title is an unofficial translation. The area label ('Public Safety / Disaster Management') likely reflects the amending act's title rather than the Passport Act's subject matter. Dates and status should be verified against the official source.",
+    "summarized_at": "2026-10-03T00:14:32Z",
+    "summary_model": "claude-sonnet-5-5"
+  },
+  "3a958590fd7564dfdda766baa2ab62098725edc62bfc0db0e432e666379b5661": {
+    "title_en": "Act on Related Law Amendments for Disaster Management Agency Establishment (amends Disaster Relief Act)",
+    "summary_en": "This e-Gov law-update entry lists the 'Act on the Maintenance of Related Laws Accompanying the Enforcement of the Disaster Management Agency Establishment Act' (Reiwa 8 Act No. 62) as an amending law affecting the Disaster Relief Act (Showa 22 Act No. 118). The metadata gives a promulgation date of 2026-07-17 and an enforcement date of 2026-11-02. The specific content of the amendments to the Disaster Relief Act is not included in the provided metadata.",
+    "business_impact_en": "Entities involved in disaster relief or disaster response arrangements under the Disaster Relief Act may be affected, for example if responsible authorities or procedures change. The actual scope and impact cannot be determined from the provided information.",
+    "recommended_action_en": "Review the official Japanese text of the amending Act and the revised Disaster Relief Act on e-Gov to confirm what provisions changed and whether they are relevant to your operations.",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the substance of the amendments is unknown. Dates are as stated in the metadata and should be verified against the official source. The rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-03T00:14:32Z",
     "summary_model": "claude-sonnet-5-5"
   }
 }
