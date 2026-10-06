@@ -1,0 +1,78 @@
+name: Access report email
+
+# Owner-only dashboard traffic email from Cloudflare Web Analytics.
+# Daily at 23:50 UTC (08:50 JST) so GitHub's usual schedule delay still lands it
+# around 09:00 JST; Mondays add the previous week, the 1st adds the previous
+# month. Read-only: it commits nothing and shares no concurrency group with the
+# data writers. This log is public, so the script prints no figures, recipient
+# address, or token.
+on:
+  schedule:
+    - cron: "50 23 * * *"
+  workflow_dispatch:
+    inputs:
+      periods:
+        description: "Which sections to send (auto = what today's schedule would send)"
+        type: choice
+        default: auto
+        options: [auto, daily, weekly, monthly, all]
+      mode:
+        description: "send = email the report; list-sites = print Cloudflare site tags only"
+        type: choice
+        default: send
+        options: [send, list-sites]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: access-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Compile report script
+        run: python -m py_compile scripts/alert_common.py scripts/send_alert_digests.py scripts/send_access_report.py
+
+      - name: Run access report tests
+        run: python -m unittest tests.test_send_access_report
+
+      - name: List Cloudflare site tags
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'list-sites'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python scripts/send_access_report.py --list-sites
+
+      # A manual resend gets its own idempotency key; the scheduled run keeps
+      # the per-JST-day key so a duplicated schedule trigger cannot send twice.
+      - name: Send access report
+        if: github.event_name == 'schedule' || inputs.mode == 'send'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_WEB_ANALYTICS_SITE_TAG: ${{ vars.CLOUDFLARE_WEB_ANALYTICS_SITE_TAG }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_FROM_EMAIL: ${{ vars.ALERT_FROM_EMAIL }}
+          ACCESS_REPORT_TO: ${{ secrets.ACCESS_REPORT_TO }}
+          PERIODS: ${{ inputs.periods || 'auto' }}
+          KEY_SUFFIX: ${{ github.event_name == 'workflow_dispatch' && format('manual-{0}-{1}', github.run_id, github.run_attempt) || '' }}
+        run: |
+          set -o pipefail
+          python scripts/send_access_report.py --periods "$PERIODS" --idempotency-key-suffix "$KEY_SUFFIX" 2>&1 | tee access_report_run.log
+          {
+            echo "### Access report"
+            grep -E '^(report_date|periods|status|missing_settings)=' access_report_run.log || true
+          } >> "$GITHUB_STEP_SUMMARY"
