@@ -14,13 +14,15 @@
 (function () {
   "use strict";
 
-  var CLOUDFLARE_WEB_ANALYTICS_TOKEN = "";
+  var CLOUDFLARE_WEB_ANALYTICS_TOKEN = "b9110a52a21a41dc9886d2c5a3c27b27";
   var BEACON_SRC = "https://static.cloudflareinsights.com/beacon.min.js";
 
   if (!/^[0-9a-f]{32}$/.test(CLOUDFLARE_WEB_ANALYTICS_TOKEN)) return;
 
   var script = document.createElement("script");
-  script.defer = true;
+  // Same as Cloudflare's own snippet: a module script (deferred by nature),
+  // which finds its settings through the data-cf-beacon attribute.
+  script.type = "module";
   script.src = BEACON_SRC;
   script.setAttribute(
     "data-cf-beacon",
