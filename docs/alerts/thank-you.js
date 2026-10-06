@@ -86,6 +86,13 @@
     });
   }
 
+  // i18n.js picks the section of the terms page for the current language.
+  function updateTermsLinks() {
+    document.querySelectorAll("[data-localized-terms]").forEach(function (link) {
+      link.setAttribute("href", I18N.subscriptionTermsUrl());
+    });
+  }
+
   function applyLanguage(lang, syncUrl) {
     var normalized = I18N.normalize(lang);
     I18N.setLang(normalized);
@@ -95,6 +102,7 @@
     if (languageSelect) languageSelect.value = normalized;
     updatePlan();
     updateDashboardLinks(normalized);
+    updateTermsLinks();
 
     if (syncUrl) {
       var params = new URLSearchParams(window.location.search);

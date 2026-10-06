@@ -136,6 +136,11 @@
       alert_plan_note:
         "Checkout and billing are handled by Stripe. Alert emails are monitoring aids, not legal advice; original Japanese official sources remain authoritative.",
       alert_plan_manage: "Manage or cancel an existing subscription",
+      alert_plan_consent: "Completing checkout means you agree to the Terms of Service.",
+      alert_legal_nav: "Email digest terms and disclosures",
+      alert_legal_terms: "Terms of Service",
+      alert_legal_commerce: "Disclosure under the Act on Specified Commercial Transactions (Japanese)",
+      alert_legal_privacy: "Privacy Policy (Japanese)",
       alert_feeds_title: "Free feeds",
       alert_feeds_body:
         "Follow an area without an account: an RSS feed of newly detected updates and a calendar of open public-comment deadlines.",
@@ -418,6 +423,11 @@
         "下の無料フィードでも同じ更新をご自身で確認できます。有料のダイジェストは、それを毎朝メールでお届けし、締切リマインダーもメールでお送りします。",
       alert_plan_note: "決済と請求はStripeが処理します。アラートメールはモニタリング補助であり、法的助言ではありません。日本語の公式情報源が優先します。",
       alert_plan_manage: "ご契約中の方：契約の管理・解約",
+      alert_plan_consent: "お申し込みの手続き（決済）を完了すると、利用規約に同意したものとみなされます。",
+      alert_legal_nav: "メール配信の利用規約と表記",
+      alert_legal_terms: "利用規約",
+      alert_legal_commerce: "特定商取引法に基づく表記",
+      alert_legal_privacy: "プライバシーポリシー",
       alert_feeds_title: "無料フィード",
       alert_feeds_body: "アカウント不要で分野をフォローできます。新たに検出された更新のRSSフィードと、受付中の意見募集の締切カレンダーです。",
       alert_feeds_area: "分野",
@@ -666,6 +676,11 @@
         "下方的免费订阅源包含相同的更新，供您自行查看；付费摘要则每天上午发送到您的邮箱，并通过邮件提醒截止日期。",
       alert_plan_note: "结账和计费由 Stripe 处理。提醒邮件仅供监测参考，不构成法律建议；应以日文官方原始来源为准。",
       alert_plan_manage: "管理或取消现有订阅",
+      alert_plan_consent: "完成结账即视为同意服务条款。",
+      alert_legal_nav: "邮件摘要的条款与说明",
+      alert_legal_terms: "服务条款（英文参考译文）",
+      alert_legal_commerce: "基于《特定商业交易法》的标示（日文）",
+      alert_legal_privacy: "隐私政策（日文）",
       alert_feeds_title: "免费订阅源",
       alert_feeds_body: "无需账户即可关注某一领域：新检测到的更新的 RSS 订阅源，以及正在征求意见的截止日期日历。",
       alert_feeds_area: "领域",
@@ -1031,6 +1046,14 @@
     return currentLang === "ja" ? "legal/disclaimer_ja.html" : "legal/disclaimer_en.html";
   }
 
+  // The email digest's terms page (on legal-gpt.com) is Japanese, which is
+  // authoritative, followed by an English reference translation. Japanese
+  // opens the page itself; every other language opens the English section.
+  var SUBSCRIPTION_TERMS_URL = "https://legal-gpt.com/japan-legal-reform-watch-terms/";
+  function subscriptionTermsUrl() {
+    return currentLang === "ja" ? SUBSCRIPTION_TERMS_URL : SUBSCRIPTION_TERMS_URL + "#jlrw-terms-en";
+  }
+
   // -------- Static DOM application --------
   // English is restored from the captured original markup (loss-less). Non-English
   // overlays are written as textContent so dictionary strings can never inject HTML.
@@ -1081,6 +1104,7 @@
     csvHeadersZh: csvHeadersZh,
     csvHeadersLocalized: csvHeadersLocalized,
     disclaimerPath: disclaimerPath,
+    subscriptionTermsUrl: subscriptionTermsUrl,
     applyStatic: applyStatic,
   };
 })();

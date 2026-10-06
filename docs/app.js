@@ -218,6 +218,7 @@
     alertSubscribeMonthly,
     alertSubscribeYearly,
     alertPlanUnavailable,
+    alertPlanLegal,
     alertManageSubscription,
     alertFeedChannel,
     alertFeedRss,
@@ -262,6 +263,7 @@
     alertSubscribeMonthly = $("#alert-subscribe-monthly");
     alertSubscribeYearly = $("#alert-subscribe-yearly");
     alertPlanUnavailable = $("#alert-plan-unavailable");
+    alertPlanLegal = $("#alert-plan-legal");
     alertManageSubscription = $("#alert-manage-subscription");
     alertFeedChannel = $("#alert-feed-channel");
     alertFeedRss = $("#alert-feed-rss");
@@ -713,6 +715,9 @@
     document.title = I18N.t("document_title");
     document.querySelectorAll("[data-localized-disclaimer]").forEach((link) => {
       link.setAttribute("href", I18N.disclaimerPath());
+    });
+    document.querySelectorAll("[data-localized-terms]").forEach((link) => {
+      link.setAttribute("href", I18N.subscriptionTermsUrl());
     });
     syncLanguageSelector();
     refreshMobileToggleLabel();
@@ -1189,6 +1194,8 @@
     const available = Boolean(monthly || yearly);
     if (alertPlanActions) alertPlanActions.hidden = !available;
     if (alertPlanUnavailable) alertPlanUnavailable.hidden = available;
+    // The terms consent line and legal links accompany the subscribe buttons.
+    if (alertPlanLegal) alertPlanLegal.hidden = !available;
     setAlertLink(alertManageSubscription, available ? alertManageUrl() : "");
   }
 
