@@ -12,10 +12,10 @@ on:
   workflow_dispatch:
     inputs:
       periods:
-        description: "Which sections to send (auto = what today's schedule would send)"
+        description: "Which sections to send (auto = what today's schedule would send; today = so far today, for checking against Cloudflare)"
         type: choice
         default: auto
-        options: [auto, daily, weekly, monthly, all]
+        options: [auto, today, daily, weekly, monthly, all]
       mode:
         description: "send = email the report; list-sites = print Cloudflare site tags only"
         type: choice

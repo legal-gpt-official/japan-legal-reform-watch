@@ -60,6 +60,10 @@ MAX_SEND_ATTEMPTS = 3
 HEX32_RE = re.compile(r"^[0-9a-f]{32}$")
 WEEKDAYS_JA = ("月", "火", "水", "木", "金", "土", "日")
 PERIOD_KINDS = ("daily", "weekly", "monthly")
+# Manual-only: today so far, against all of yesterday. Never scheduled and not
+# part of "all"; it exists to check the figures against the Cloudflare dashboard
+# on a day with data, e.g. right after setup.
+MANUAL_KINDS = ("today",)
 
 HttpFunc = Callable[..., tuple[int, Any]]
 
@@ -155,7 +159,10 @@ def _previous_month_start(first_of_month: date) -> date:
 
 
 def period_pair(kind: str, today: date) -> tuple[Period, Period]:
-    """(reported period, comparison period), both ending before ``today``."""
+    """(reported period, comparison period); only "today" includes today."""
+    if kind == "today":
+        current = Period(kind, today, today + timedelta(days=1))
+        return current, Period(kind, today - timedelta(days=1), today)
     if kind == "daily":
         current = Period(kind, today - timedelta(days=1), today)
         return current, Period(kind, current.start - timedelta(days=1), current.start)
@@ -187,10 +194,11 @@ def parse_kinds(value: str, today: date) -> list[str]:
     if value == "all":
         return list(PERIOD_KINDS)
     kinds = [part.strip() for part in value.split(",") if part.strip()]
-    unknown = [kind for kind in kinds if kind not in PERIOD_KINDS]
+    known = MANUAL_KINDS + PERIOD_KINDS
+    unknown = [kind for kind in kinds if kind not in known]
     if unknown or not kinds:
-        raise ValueError("periods must be auto, all, or a comma list of daily/weekly/monthly")
-    return [kind for kind in PERIOD_KINDS if kind in kinds]
+        raise ValueError("periods must be auto, all, or a comma list of today/daily/weekly/monthly")
+    return [kind for kind in known if kind in kinds]
 
 
 def chunks(start: date, end: date, size_days: int = CHUNK_DAYS) -> list[tuple[date, date]]:
@@ -374,6 +382,8 @@ def list_sites(http: HttpFunc, config: Config, today: date) -> list[tuple[str, s
             raise
         # The hostname only helps tell sites apart; fall back to tags alone.
         rows = graphql(http, config, sites_query("siteTag"), variables)
+    # A group count is not a traffic figure; it tells "no rows" from "rows dropped".
+    print(f"groups_returned={len(rows)}")
     for row in rows:
         dims = row.get("dimensions")
         if not isinstance(dims, Mapping):
@@ -391,8 +401,8 @@ def list_sites(http: HttpFunc, config: Config, today: date) -> list[tuple[str, s
 # Rendering
 # --------------------------------------------------------------------------
 
-KIND_TITLES = {"daily": "日次", "weekly": "週次", "monthly": "月次"}
-COMPARISON_LABELS = {"daily": "前日比", "weekly": "前週比", "monthly": "前月比"}
+KIND_TITLES = {"today": "本日速報", "daily": "日次", "weekly": "週次", "monthly": "月次"}
+COMPARISON_LABELS = {"today": "前日（終日）比", "daily": "前日比", "weekly": "前週比", "monthly": "前月比"}
 
 
 def _day_label(day: date) -> str:
@@ -401,6 +411,8 @@ def _day_label(day: date) -> str:
 
 def period_label(period: Period) -> str:
     last = period.end - timedelta(days=1)
+    if period.kind == "today":
+        return f"{_day_label(period.start)} 0:00〜送信時点"
     if period.kind == "daily":
         return _day_label(period.start)
     if period.kind == "monthly":

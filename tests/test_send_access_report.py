@@ -113,6 +113,15 @@ class PeriodTests(unittest.TestCase):
         self.assertEqual(march.days, 31)
         self.assertEqual(february.days, 29)
 
+    def test_today_is_manual_only_and_compares_with_yesterday(self):
+        current, previous = sar.period_pair("today", date(2026, 10, 6))
+        self.assertEqual((current.start, current.end), (date(2026, 10, 6), date(2026, 10, 7)))
+        self.assertEqual((previous.start, previous.end), (date(2026, 10, 5), date(2026, 10, 6)))
+        self.assertEqual(sar.parse_kinds("today", date(2026, 10, 6)), ["today"])
+        self.assertNotIn("today", sar.parse_kinds("all", date(2026, 6, 1)))
+        self.assertNotIn("today", sar.scheduled_kinds(date(2026, 6, 1)))
+        self.assertIn("送信時点", sar.period_label(current))
+
     def test_scheduled_kinds(self):
         self.assertEqual(sar.scheduled_kinds(date(2026, 10, 6)), ["daily"])
         self.assertEqual(sar.scheduled_kinds(date(2026, 10, 5)), ["daily", "weekly"])
