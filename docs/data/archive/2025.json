@@ -2648,6 +2648,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amendment details are not provided. The rule-based label 'In Force' is preliminary and appears inconsistent with the 2026-10-01 effective date, which is in the future relative to the promulgation date; verify status against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「不動産登記規則及び企業担保登記規則の一部を改正する省令」(令和七年法務省令第四十九号)が2025年10月10日に公布され、対象法令として企業担保登記規則(昭和三十三年法務省令第三十八号)が挙げられています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "不動産登記や企業担保登記の手続に関与する事業者にとって、登記実務や関連書式・社内手続に影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正省令の本文および新旧対照表など、日本語の公式情報源で具体的な改正内容と施行時期をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-04T23:55:52Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "修订《不动产登记规则》及《企业担保登记规则》的省令",
@@ -2655,13 +2661,7 @@
         "business_impact": "涉及不动产登记或企业担保登记事务的主体可能受到程序性变更的影响，但具体变更的性质和范围无法根据所提供的元数据确定。",
         "recommended_action": "建议在e-Gov上查阅该修订省令的日文官方文本，以确认其内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧によると、「不動産登記規則及び企業担保登記規則の一部を改正する省令」(令和七年法務省令第四十九号)が2025年10月10日に公布され、対象法令として企業担保登記規則(昭和三十三年法務省令第三十八号)が挙げられています。施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "不動産登記や企業担保登記の手続に関与する事業者にとって、登記実務や関連書式・社内手続に影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は現時点では判断できないと考えられます。",
-    "recommended_action_ja": "改正省令の本文および新旧対照表など、日本語の公式情報源で具体的な改正内容と施行時期をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-04T23:55:52Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-58fde7359d99be37",
@@ -2684,6 +2684,12 @@
     "ai_notes": "Based only on the Japanese title and update-list metadata; amendment contents are not provided and are unverified. The listed effective date (2026-10-01) falls after the promulgation date, so the preliminary 'In Force' label may not reflect current status and should be checked against the official source.",
     "summarized_at": "2026-10-03T00:14:32Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「不動産登記規則及び企業担保登記規則の一部を改正する省令」(令和七年法務省令第四十九号)が掲載されています。対象法令は不動産登記規則(平成十七年法務省令第十八号)で、公布日は2025年10月10日、施行日は2026年10月1日と記載されています。改正の具体的な内容は提供された情報からは確認できません。",
+    "business_impact_ja": "不動産登記に関わる手続や書式等に影響する可能性がありますが、具体的な改正内容は提供情報から確認できないため、影響の有無や程度は不明です。不動産の取得・管理・登記実務を行う事業者では、施行日(2026年10月1日)に向けて確認が必要となる可能性が考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索や官報、法務省の公表資料など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-04T23:55:52Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "省令修订：《不动产登记规则》及《企业担保登记规则》部分修订",
@@ -2691,13 +2697,7 @@
         "business_impact": "处理不动产登记申请的各方，例如房产所有人、贷款人及登记服务提供者，可能会受到登记程序变化的影响。由于现有元数据有限，无法确定具体影响的性质和范围。",
         "recommended_action": "建议在e-Gov来源页面查阅该修订省令的日文官方文本，以确认其具体内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「不動産登記規則及び企業担保登記規則の一部を改正する省令」(令和七年法務省令第四十九号)が掲載されています。対象法令は不動産登記規則(平成十七年法務省令第十八号)で、公布日は2025年10月10日、施行日は2026年10月1日と記載されています。改正の具体的な内容は提供された情報からは確認できません。",
-    "business_impact_ja": "不動産登記に関わる手続や書式等に影響する可能性がありますが、具体的な改正内容は提供情報から確認できないため、影響の有無や程度は不明です。不動産の取得・管理・登記実務を行う事業者では、施行日(2026年10月1日)に向けて確認が必要となる可能性が考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索や官報、法務省の公表資料など日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-04T23:55:52Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-7df73d118610af39",
@@ -9090,14 +9090,14 @@
   },
   {
     "id": "raw-1ff9e900c2d002ba",
-    "title_en": "e-Gov Law Update: Law or regulation promulgated (2025-05-21)",
+    "title_en": "Act Amending the Pharmaceuticals and Medical Devices Act and Others (Reiwa 7 Act No. 37); Registration Tax Act",
     "title_ja": "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov Law Search update list shows an amending act titled in Japanese as an act partially amending the law on ensuring the quality, efficacy and safety of pharmaceuticals, medical devices, etc. (and related laws), numbered Reiwa 7 Act No. 37, with a promulgation date of 2025-05-21. The listed target law in this entry is the Registration Tax Act (Showa 42 Act No. 35), indicating the amending act touches that law. The update list date is given as 20260806.",
+    "business_impact_en": "Organizations dealing with pharmaceuticals or medical devices may wish to check whether the amending act affects them, though this entry's listed target law (the Registration Tax Act) suggests only a tax-related component. The scope and effect of the changes cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and their effective dates, to confirm what applies and when.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=342AC0000000035_20280520_507AC0000000037",
     "published_at": "2025-05-21",
@@ -9110,41 +9110,49 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and list metadata; the actual amended provisions and effective dates were not provided. The source URL contains a date-like string (20280520), which is not confirmed as an effective date. The preliminary 'Promulgated' label is rule-based; the 2025-05-21 promulgation date is taken from the metadata but unverified.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "法令公布：《药品、医疗器械等的品质、有效性及安全性确保等相关法律》等部分修正法律（2025-05-21）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法律公布：修订《药品、医疗器械等品质、有效性及安全性确保法》等及《登记税法》",
+        "summary": "e-Gov法令检索更新列表显示了一项名为“部分修订关于确保药品、医疗器械等品质、有效性及安全性的法律”的修订法律（及相关法律），编号为令和7年法律第37号，公布日期为2025-05-21。该条目中列出的目标法律为《登记税法》（昭和42年法律第35号），表明该修订法律涉及该法。更新列表中标注的日期为20260806。",
+        "business_impact": "涉及药品或医疗器械业务的组织可能希望确认该修订法律是否对其产生影响，但本条目列出的目标法律（登记税法）表明其内容可能仅涉及税务相关部分。根据所提供的元数据，无法确定变更的范围和效果。",
+        "recommended_action": "建议参考e-Gov上的日文官方文本，包括修订条款及其生效日期，以确认具体适用内容及时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-04927185d66c6047",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-05-21)",
+    "title_en": "Amending Act to the Pharmaceuticals and Medical Devices Act (Act No. 37 of 2025) - Elderly Healthcare Act entry",
     "title_ja": "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list records an amending act, titled as a partial amendment of the law on ensuring the quality, efficacy and safety of pharmaceuticals, medical devices and related products (Reiwa 7 Act No. 37), as affecting the Act on Assurance of Medical Care for Elderly People (Showa 57 Act No. 80). The metadata lists a promulgation date of 2025-05-21 and an enforcement date of 2027-05-20, with an update-list date of 2026-09-15.",
+    "business_impact_en": "Organizations involved in healthcare, pharmaceuticals or medical-device operations may wish to check whether the amendments to the Elderly Healthcare Act affect them, though the metadata does not describe the substance of the changes. Any effect would likely depend on the specific provisions, which are not provided here.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and their enforcement dates, and consult qualified professionals to determine relevance.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=357AC0000000080_20270520_507AC0000000037",
     "published_at": "2025-05-21",
     "last_checked": "2026-09-15",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the content of the amendments is not described. Dates (promulgation 2025-05-21, enforcement 2027-05-20) are taken from the metadata and should be verified against the official source. The URL suggests a version-specific law text, but the amended provisions are unconfirmed. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《药品、医疗器械等的品质、有效性及安全性确保等相关法律》等部分修正法律预定于2025-05-21生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《医药品、医疗器械等品质、有效性及安全性确保等相关法律》修正法——涉及老年人医疗保障法条目",
+        "summary": "e-Gov法令更新列表记录了一项修正法，题为《医药品、医疗器械等品质、有效性及安全性确保等相关法律》的部分修正法（令和7年法律第37号），该修正影响《老年人医疗保障相关法律》（昭和57年法律第80号）。元数据列明公布日期为2025-05-21，生效日期为2027-05-20，更新列表日期为2026-09-15。",
+        "business_impact": "涉及医疗保健、医药品或医疗器械业务的机构或许希望确认《老年人医疗保障相关法律》的修正是否对其产生影响，但元数据并未描述具体修改内容。任何影响都可能取决于具体条款，而这些条款在此处并未提供。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正后的条款及其生效日期，并可考虑咨询相关专业人士以判断其相关性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-646c783242788dab",
@@ -9250,66 +9258,74 @@
   },
   {
     "id": "raw-a28450fad898160f",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2025-04-25)",
+    "title_en": "Act Partially Amending the Child Welfare Act (Reiwa 7 Act No. 29); amends Child Abuse Prevention Act",
     "title_ja": "児童福祉法等の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an amending act titled 'Act to Partially Amend the Child Welfare Act, etc.' (Reiwa 7 Act No. 29), promulgated on 2025-04-25. The entry lists the Act on the Prevention of Child Abuse, etc. (Heisei 12 Act No. 82) as the affected law, with an effective date of 2026-10-01 shown in the metadata.",
+    "business_impact_en": "Organizations involved in child welfare, childcare, education, or related services may be affected once the amendments take effect, though the specific changes are not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm the specific amendments and effective dates and consider whether professional advice is needed.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=412AC1000000082_20261001_507AC0000000029",
     "published_at": "2025-04-25",
     "last_checked": "2026-10-02",
     "relevance_score": 10.0,
     "first_seen_at": "2026-10-02",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 2026-10-01 date is the listed effective date for this entry and may not apply to all provisions. The 'In Force' stage label is preliminary and should not be relied on, since the listed effective date is in the future relative to the publication date.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "日本法令生效：《部分修订儿童福祉法等的法律》（2025-04-25）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《儿童福利法》等部分修订法律（令和7年法律第29号）：修订《虐待儿童防止法》",
+        "summary": "e-Gov法令更新列表显示了一部题为《部分修订儿童福利法等的法律》（令和7年法律第29号）的修订法律，已于2025-04-25公布。该条目列明受影响的法律为《关于防止虐待儿童等的法律》（平成12年法律第82号），元数据中显示的生效日期为2026-10-01。",
+        "business_impact": "从事儿童福利、保育、教育或相关服务的机构在相关修订生效后可能受到影响，但所提供的元数据未说明具体修订内容。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本以确认具体修订内容及生效日期，并可考虑是否需要寻求专业意见。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e1d24da7e824cfc7",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2025-04-25)",
+    "title_en": "Act Partially Amending the Child Welfare Act etc. (2025 Act No. 29) - Child Sexual Violence Prevention Act",
     "title_ja": "児童福祉法等の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The metadata indicates the amending act 'Act Partially Amending the Child Welfare Act, etc.' (Reiwa 7 Act No. 29) was promulgated on 2025-04-25, with an effective date of 2026-10-01. It is listed in the e-Gov update list as amending the Act on Measures to Prevent Sexual Violence Against Children by School Operators and Private Education/Childcare Business Operators (Reiwa 6 Act No. 69). The provided metadata does not describe the specific amendments.",
+    "business_impact_en": "Schools and private education or childcare operators covered by the underlying act may be affected once the amendments take effect, but the content and scope of changes cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov and the relevant ministry's guidance to confirm the actual amendments, their scope, and the effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=506AC0000000069_20261001_507AC0000000029",
     "published_at": "2025-04-25",
     "last_checked": "2026-10-02",
     "relevance_score": 10.0,
     "first_seen_at": "2026-10-02",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title, law numbers, and dates in the update-list metadata; amendment contents are not provided. The rule-based 'In Force' label may be misleading because the stated effective date (2026-10-01) is later than the promulgation date and may be in the future; verify current status against the official source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法规更新：《部分修订儿童福祉法等的法律》生效（2025-04-25）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法律修订：《儿童福祉法》等部分修正法律（令和7年法律第29号）——儿童性暴力防止相关法律",
+        "summary": "元数据显示，修正法律《部分修正儿童福祉法等的法律》（令和7年法律第29号）于2025-04-25公布，生效日期为2026-10-01。该法律在e-Gov更新列表中被列为修正《学校设置者及私立教育、保育从业者防止对儿童实施性暴力等措施法》（令和6年法律第69号）的法律。所提供的元数据未说明具体修正内容。",
+        "business_impact": "受上述基础法律管辖的学校及私立教育或保育从业者，在修正内容生效后可能受到影响，但具体修改的内容和范围无法根据所提供的元数据确定。",
+        "recommended_action": "建议查阅e-Gov上的日文官方原文及相关主管部门的指南，以确认实际修正内容、适用范围及生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-ddfdabda30c42c00",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Act Partially Amending the Income Tax Act and Others (Reiwa 7 Act No. 13), effective 2027-01-01",
     "title_ja": "所得税法等の一部を改正する法律",
     "area": "Tax / Stamp Duty",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows that the Act Partially Amending the Income Tax Act and Others (Reiwa 7 Act No. 13) amends the Income Tax Act (Showa 40 Act No. 33). The metadata gives a promulgation date of 2025-03-31 and an enforcement date of 2027-01-01. The specific amendments are not described in the provided metadata.",
+    "business_impact_en": "Depending on which provisions the amendment changes, it could affect income tax treatment relevant to individuals or businesses from the 2027-01-01 enforcement date. The metadata does not identify which provisions change, so the extent of any impact is unclear.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov and consult qualified tax or legal professionals to confirm which amended provisions apply and when.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=340AC0000000033_20270101_507AC0000000013",
     "published_at": "2025-03-31",
@@ -9322,26 +9338,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the amended provisions and their content are not stated. Dates and law numbers are taken from the provided metadata and should be verified against the official source. The area, stage, and impact labels are preliminary keyword-based triage labels and are not authoritative.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《所得税法等部分修正法律》（令和7年法律第13号），2027-01-01生效",
+        "summary": "根据e-Gov法令更新一览，《所得税法等部分修正法律》（令和7年法律第13号）对《所得税法》（昭和40年法律第33号）进行了修订。元数据显示公布日期为2025-03-31，生效日期为2027-01-01。所提供的元数据未说明具体修订内容。",
+        "business_impact": "视本次修订涉及哪些条款而定，自2027-01-01生效之日起，可能会影响与个人或企业相关的所得税处理。由于元数据未说明具体修改的条款，影响的范围尚不明确。",
+        "recommended_action": "建议查阅e-Gov上的日文官方原文，并可考虑咨询合格的税务或法律专业人士，以确认具体适用的修订条款及其适用时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a64724c12a41587d",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Act Partially Amending the Income Tax Act and Related Acts (Reiwa 7 Act No. 13), effective Oct 1, 2026",
     "title_ja": "所得税法等の一部を改正する法律",
     "area": "Tax / Stamp Duty",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "According to the e-Gov law update list, the Act Partially Amending the Income Tax Act and Related Acts (Reiwa 7 Act No. 13) amends the Income Tax Act (Showa 40 Act No. 33). The metadata gives a promulgation date of March 31, 2025 and an effective date of October 1, 2026. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Because the amendments target the Income Tax Act, they could affect income tax treatment for individuals and businesses, but the nature and scope of any changes cannot be determined from the available information.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the linked e-Gov law record to confirm which provisions change from October 1, 2026 and whether they are relevant to your situation.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=340AC0000000033_20261001_507AC0000000013",
     "published_at": "2025-03-31",
@@ -9354,15 +9374,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and basic law-update metadata; the substance of the amendments is unknown. The effective date (2026-10-01) may apply only to certain provisions. Preliminary labels (Tax / Stamp Duty, Scheduled to Take Effect, Medium) are keyword-based and unverified. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《所得税法等部分修正法》将于2026-10-01生效",
+        "summary": "根据e-Gov法令更新列表，《所得税法等部分修正法》（令和7年法律第13号）修订了《所得税法》（昭和40年法律第33号）。元数据显示公布日期为2025-03-31，生效日期为2026-10-01。所提供的元数据中未包含修订的具体内容。",
+        "business_impact": "由于本次修订针对《所得税法》，可能会影响个人和企业的所得税处理方式，但根据现有信息无法确定具体变更的性质和范围。",
+        "recommended_action": "建议查阅该修正法的日文官方文本以及相关的e-Gov法令记录，以确认自2026-10-01起哪些条款将发生变化，以及这些变化是否与自身情况相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-1a2463c0de8b8ca0",
@@ -9402,14 +9426,14 @@
   },
   {
     "id": "raw-19ee5eb284b9cb12",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Act amending the Act amending the Local Tax Act (Reiwa 7 Act No. 7), effective 2027-04-01",
     "title_ja": "地方税法及び地方税法等の一部を改正する法律の一部を改正する法律",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an amending act (Reiwa 7 Act No. 7) that amends the Act to Partially Amend the Local Tax Act and related acts. It is recorded as promulgated on 2025-03-31 with an effective date of 2027-04-01, and the target law is the Local Tax Act (Showa 25 Act No. 226). The provided metadata does not describe the substantive content of the amendments.",
+    "business_impact_en": "Because the Local Tax Act governs local taxes in Japan, the amendment may affect local tax treatment for some taxpayers once it takes effect, but the specific provisions and affected parties cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov to confirm which provisions are amended, their effective dates, and whether they are relevant to your circumstances.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20270401_507AC0000000007",
     "published_at": "2025-03-31",
@@ -9422,15 +9446,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and e-Gov update metadata; the substance of the amendments is not described and is unverified. The title, law numbers, and dates should be checked against the official source. Triage labels (area 'Other', impact 'Medium') are weak keyword-based context only.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《修订〈地方税法〉及〈地方税法等部分修正法〉的法律》预定生效（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法律生效：修订《地方税法及地方税法等部分修正法律》的法律（2027-04-01生效）",
+        "summary": "e-Gov法令更新列表显示了一部修正法律（令和7年第7号），该法律修正了《地方税法等部分修正法律》及相关法律。记录显示其公布日期为2025-03-31，生效日期为2027-04-01，修正对象为《地方税法》（昭和25年第226号）。所提供的元数据未说明该修正的具体内容。",
+        "business_impact": "由于《地方税法》规范日本地方税事项，该修正生效后可能对部分纳税人的地方税处理产生影响，但具体条款及受影响对象无法根据所提供的元数据确定。",
+        "recommended_action": "建议参考e-Gov上的日文官方文本，以确认具体修正条款、生效日期，以及是否与自身情况相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-5b85baabc0ca60eb",
@@ -9470,55 +9498,63 @@
   },
   {
     "id": "raw-76edecb560c05b50",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Act Partially Amending the Income Tax Act etc. (Reiwa 7 Act No. 13) - Special Taxation Measures Act update",
     "title_ja": "所得税法等の一部を改正する法律",
     "area": "Tax / Stamp Duty",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "An e-Gov law-update listing records that the Act Partially Amending the Income Tax Act, etc. (Reiwa 7 Act No. 13, promulgated 2025-03-31) amends the Act on Special Measures Concerning Taxation (Showa 32 Act No. 26). The listing shows a stated effective date of 2026-11-01 and an update-list date of 2026-09-15. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "Depending on which provisions are amended, this could affect tax treatment or special tax measures relevant to businesses and individuals taxed in Japan. The scope and nature of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official e-Gov text of the amending act and the affected Special Taxation Measures Act provisions, with qualified tax advisers where appropriate, to confirm what changes apply and when.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=332AC0000000026_20261101_507AC0000000013",
     "published_at": "2025-03-31",
     "last_checked": "2026-09-15",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the amended provisions and their content are not provided. The listing shows promulgation and a stated effective date of 2026-11-01, but effective-date and scope details should be verified against the official Japanese source. Rule-based labels (Tax / Stamp Duty, Scheduled to Take Effect, Medium) are preliminary and unverified.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《所得税法等部分修正法》（令和7年法律第13号）—《租税特别措施法》更新",
+        "summary": "一项e-Gov法令更新列表记载，《所得税法等部分修正法》（令和7年法律第13号，2025-03-31公布）修订了《租税特别措施法》（昭和32年法律第26号）。该列表显示生效日期为2026-11-01，更新列表日期为2026-09-15。所提供的元数据未包含具体修订条款。",
+        "business_impact": "根据所修订条款的不同，这可能影响在日本纳税的企业和个人相关的税务处理或特别税收措施。基于所提供的元数据，无法确定影响的具体范围和性质。",
+        "recommended_action": "建议在适当情况下，参考合格税务顾问，查阅e-Gov官方文本中该修正法及受影响的《租税特别措施法》相关条款，以确认适用的具体变更内容及适用时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-728d6133b3ac9db0",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2025-03-31)",
+    "title_en": "Act Partially Amending the Income Tax Act etc. (Special Taxation Measures Act amendment, effective 2027-01-01)",
     "title_ja": "所得税法等の一部を改正する法律",
     "area": "Tax / Stamp Duty",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov Law Search update list shows an amendment to the Act on Special Measures Concerning Taxation (Act No. 26 of 1957) made by the Act Partially Amending the Income Tax Act, etc. (Act No. 13 of Reiwa 7). The metadata lists a promulgation date of 2025-03-31 and an effective date of 2027-01-01, with an update list date of 2026-09-15. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Because the amendment concerns the Special Taxation Measures Act, it could affect tax treatment relevant to some businesses or individuals once effective, but the nature and scope of any change cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search, and consult qualified tax professionals as appropriate, to identify which provisions are amended and whether they are relevant to your situation.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=332AC0000000026_20270101_507AC0000000013",
     "published_at": "2025-03-31",
     "last_checked": "2026-09-15",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata fields; the actual amended provisions are not provided and were not reviewed. The stage and impact labels are preliminary keyword-based triage labels. The listed effective date should be verified against the official source, as some provisions of an amending act may take effect on different dates.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《所得税法等部分修正法》预定生效（2025-03-31）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "法令生效预告：《所得税法》等部分修正法律（《租税特别措施法》修订，2027-01-01生效）",
+        "summary": "e-Gov法令检索更新列表显示，《所得税法》等部分修正法律（令和7年法律第13号）对《租税特别措施法》（1957年法律第26号）作出了修订。元数据列明公布日期为2025-03-31，生效日期为2027-01-01，更新列表日期为2026-09-15。所提供的元数据中未包含修订的具体内容。",
+        "business_impact": "由于该修正涉及《租税特别措施法》，生效后可能影响部分企业或个人相关的税务处理，但根据所提供的元数据，无法确定具体变更的性质和范围。",
+        "recommended_action": "建议查阅e-Gov法令检索上的日文官方文本，并在适当情况下咨询具备资质的税务专业人士，以确认哪些条款被修订以及是否与自身情况相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-e768292e3ef15378",
@@ -10155,7 +10191,6 @@
     "last_checked": "2026-10-02",
     "relevance_score": 5.0,
     "first_seen_at": "2026-10-02",
-    "summary_source": "rule_based",
     "translations": {
       "zh-Hans": {
         "title": "e-Gov法令更新：《重要电子计算机不正行为造成损害防止法》生效（2025-05-23）",
@@ -10163,7 +10198,8 @@
         "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
         "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
       }
-    }
+    },
+    "summary_source": "rule_based"
   },
   {
     "id": "raw-e26eece3099e6b3a",

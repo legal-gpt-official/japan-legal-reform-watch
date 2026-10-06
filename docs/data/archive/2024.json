@@ -649,14 +649,14 @@
   },
   {
     "id": "raw-b3d79a801e54d7d7",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2024-06-26)",
+    "title_en": "Act Partially Amending the Local Autonomy Act (2024 Act No. 65) — Listed Against Local Tax Act",
     "title_ja": "地方自治法の一部を改正する法律",
     "area": "Other",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "An e-Gov Law Search update-list entry shows that the Act Partially Amending the Local Autonomy Act (Reiwa 6 Act No. 65), promulgated on 2024-06-26, is recorded as amending the Local Tax Act (Showa 25 Act No. 226). The listed effective date is 2026-09-24, and the update list date is 2026-09-11. The metadata does not describe the specific amendments.",
+    "business_impact_en": "Because the entry is linked to the Local Tax Act, organizations subject to local taxation may be affected from the listed effective date, but the nature and scope of any change cannot be determined from this metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending Act and the revised Local Tax Act provisions on e-Gov to identify which specific provisions change and whether they are relevant to your organization.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20260924_506AC0000000065",
     "published_at": "2024-06-26",
@@ -669,119 +669,139 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-12T22:57:03Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on title, law numbers, dates and a short metadata summary; the substance of the amendments is not provided. The preliminary labels (area, stage, impact level) are keyword-based and unverified. The effective date of 2026-09-24 is taken from the metadata and should be checked against the official source; the English is an unofficial summary.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《地方自治法部分修正法律》预定生效（2024-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "部分修订《地方自治法》的法律（令和6年第65号）——与《地方税法》相关联",
+        "summary": "e-Gov法令检索更新列表条目显示，2024-06-26公布的《部分修订地方自治法的法律》（令和6年第65号）被记录为修订《地方税法》（昭和25年第226号）。列出的生效日期为2026-09-24，更新列表日期为2026-09-11。元数据未描述具体修订内容。",
+        "business_impact": "由于该条目与《地方税法》相关联，受地方税制约的组织可能自列出的生效日期起受到影响，但无法根据此元数据确定变更的性质和范围。",
+        "recommended_action": "建议参考e-Gov上修订法律的日文官方文本及修订后的《地方税法》条文，以确认具体哪些条款发生变化，以及是否与贵组织相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-00cf9ef4421cbf4e",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2024-06-26)",
+    "title_en": "Act Partially Amending the Local Autonomy Act (Act No. 65 of 2024)",
     "title_ja": "地方自治法の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an amending act to the Local Autonomy Act (Act No. 67 of 1947), identified as Reiwa 6 Act No. 65, with a promulgation date of 2024-06-26. The listed enforcement date is 2026-09-24, which is the same as the update list date. The provided metadata does not describe the substance of the amendments.",
+    "business_impact_en": "The Local Autonomy Act governs the organization and operation of local governments, so entities that deal with local governments may be affected, but the specific impact cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the e-Gov source to confirm the amended provisions, their effective dates, and any relevance to your operations.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000067_20260924_506AC0000000065",
     "published_at": "2024-06-26",
     "last_checked": "2026-09-24",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title, law numbers, and promulgation/enforcement dates in the metadata; the content of the amendments is not provided. The 'In Force' stage label is rule-based and unverified, and enforcement may be staged by provision. Verify against the official source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《地方自治法部分修正法律》生效（2024-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "地方自治法部分修订法律（2024年第65号法律）",
+        "summary": "e-Gov法令更新列表显示了一项对《地方自治法》（1947年第67号法律）进行修订的法律，标注为令和6年第65号法律，公布日期为2024-06-26。列出的生效日期为2026-09-24，与更新列表日期相同。所提供的元数据未说明修订的具体内容。",
+        "business_impact": "《地方自治法》规范地方政府的组织与运作，因此与地方政府有往来的主体可能受到影响，但具体影响无法根据所提供的元数据确定。",
+        "recommended_action": "建议查阅该修订法律的日文官方文本及e-Gov来源，以确认修订条款的内容、其生效日期以及与自身业务的相关性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-515ac75f1f06c4ef",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2024-06-26)",
+    "title_en": "Act Partially Amending the Local Autonomy Act (2024 Act No. 65) - Entry in Bid-Rigging Involvement Act",
     "title_ja": "地方自治法の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The metadata lists the Act Partially Amending the Local Autonomy Act (Reiwa 6 Act No. 65), promulgated 2024-06-26, as an amending law affecting the Act on Elimination and Prevention of Involvement in Bid Rigging, etc. and Punishment of Acts by Employees that Harm the Fairness of Bidding, etc. (Heisei 14 Act No. 101). The source lists an update date and an enforcement date of 2026-09-24. The metadata does not describe the specific content of the amendment.",
+    "business_impact_en": "Companies that bid on or contract with local governments may be affected if the amendment changes rules related to bid-rigging prevention, but the specific changes are not stated in the provided information.",
+    "recommended_action_en": "Review the official e-Gov Japanese text of the amending Act and the affected law to confirm the actual amendments and the applicable enforcement date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=414AC1000000101_20260924_506AC0000000065",
     "published_at": "2024-06-26",
     "last_checked": "2026-09-24",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and list metadata; amendment content is not provided. The enforcement date of 2026-09-24 is as listed in the source and the 'In Force' label is a rule-based triage label that may not reflect actual status as of today. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "日本法令生效：修订《地方自治法》部分内容的法律（2024-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《地方自治法》部分修订法律（2024年第65号）——涉入围标行为相关法律修订事项",
+        "summary": "元数据列出了《地方自治法》部分修订法律（令和6年第65号法律），该法于2024-06-26公布，作为修订法影响《关于消除及防止参与围标等行为以及处罚损害招标公正性等职员行为的法律》（平成14年第101号法律）。来源列出了更新日期以及2026-09-24的生效日期。元数据未描述该修订的具体内容。",
+        "business_impact": "如果此次修订改变了与围标预防相关的规则，参与地方政府招标或与地方政府签订合同的企业可能会受到影响，但所提供的信息中未说明具体变更内容。",
+        "recommended_action": "建议查阅e-Gov上该修订法律及相关受影响法律的日文官方文本，以确认实际修订内容及适用的生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f7f4c3908833827a",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2024-06-26)",
+    "title_en": "Act Partially Amending the Local Autonomy Act (2024 Act No. 65) - Effect on Local Incorporated Administrative...",
     "title_ja": "地方自治法の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "According to the e-Gov update list, the Act Partially Amending the Local Autonomy Act (Reiwa 6 Act No. 65), promulgated on 2024-06-26, is listed as an amending act affecting the Local Incorporated Administrative Agencies Act (Heisei 15 Act No. 118). The entry shows an update list date and an enforcement date of 2026-09-24. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "Entities such as local incorporated administrative agencies, or businesses working with them, may be affected by the amended provisions once they take effect. The actual scope of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the amended provisions, the enforcement date, and whether they are relevant to your operations.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=415AC0000000118_20260924_506AC0000000065",
     "published_at": "2024-06-26",
     "last_checked": "2026-09-24",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and structured metadata; the content of the amendments is not provided. The listed enforcement date of 2026-09-24 is taken from the source metadata and may be a future date relative to today, so the 'In Force' preliminary label should not be assumed correct. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "日本法令数据库更新：《地方自治法》部分修订法律生效（2024-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《地方自治法部分修正法》（2024年第65号）对地方独立行政法人的影响",
+        "summary": "根据e-Gov更新列表，《地方自治法部分修正法》（令和6年第65号）于2024-06-26公布，被列为影响《地方独立行政法人法》（平成15年第118号）的修正法。该条目显示了更新列表日期及2026-09-24的生效日期。所提供的元数据中未包含具体修正条款的内容。",
+        "business_impact": "地方独立行政法人等机构，或与其有业务往来的企业，在相关修正条款生效后可能受到影响。具体影响范围无法根据所提供的元数据确定。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方来源，以确认具体修正条款、生效日期以及是否与自身业务相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-23559f732dada5b8",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2024-06-26)",
+    "title_en": "Act Partially Amending the Local Autonomy Act (2024 Act No. 65) - Effect on Municipal Merger Special Provisions Act",
     "title_ja": "地方自治法の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list records the Act Partially Amending the Local Autonomy Act (Reiwa 6 Act No. 65, promulgated 2024-06-26) as an amending act affecting the Act on Special Provisions for Merger of Municipalities (Heisei 16 Act No. 59). The listed enforcement date is 2026-09-24, which is the same as the update list date shown in the metadata. The provided metadata does not describe the content of the amendments.",
+    "business_impact_en": "Entities that interact with local governments or rely on municipal merger-related rules may be affected, but the nature and scope of any effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amended provisions and their effective dates, to confirm what changes apply and whether any are relevant to your operations.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=416AC0000000059_20260924_506AC0000000065",
     "published_at": "2024-06-26",
     "last_checked": "2026-09-24",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-25",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and update-list metadata; amendment contents are not provided. The enforcement date (2026-09-24) appears in the metadata, but the preliminary 'In Force' label should be verified against the official source, as that date may be in the future relative to the reader. Area and impact labels are keyword-based and unverified.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法律更新：《地方自治法部分修正法律》生效（2024-06-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《地方自治法》部分修订法律（2024年第65号）对《市町村合并特例法》的影响",
+        "summary": "e-Gov法令更新一览记录了《地方自治法部分修订法律》（令和6年法律第65号，2024-06-26公布）作为修订《市町村合并特例法》（平成16年法律第59号）的法律。所列生效日期为2026-09-24，与元数据中显示的更新列表日期相同。所提供的元数据未描述修订的具体内容。",
+        "business_impact": "与地方政府有往来或依赖市町村合并相关规则的主体可能受到影响，但根据所提供的元数据无法确定任何影响的性质和范围。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及其生效日期，以确认适用的变更内容以及是否与自身业务相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b43e6569c53bcd11",
@@ -989,29 +1009,33 @@
   },
   {
     "id": "raw-5944049c842eec83",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2024-05-17)",
+    "title_en": "Amending Act to Employment Insurance Act etc.: Change to Basic Resident Register Act (eff. 2028-10-01)",
     "title_ja": "雇用保険法等の一部を改正する法律",
     "area": "Labor / Employment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows that the Basic Resident Register Act (Act No. 81 of 1967) is amended by the Act Partially Amending the Employment Insurance Act, etc. (Act No. 26 of Reiwa 6). The amending act is listed as promulgated on 2024-05-17, with an effective date of 2028-10-01 for this entry. The metadata does not describe the substance of the amendment to the Basic Resident Register Act.",
+    "business_impact_en": "Organizations that handle resident register information, or whose HR and employment-insurance processes interact with it, may be affected from the listed effective date. The nature and extent of any impact cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov (the amending act and the amended Basic Resident Register Act provisions) to confirm the actual content of the amendment and its effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=342AC0000000081_20281001_506AC0000000026",
     "published_at": "2024-05-17",
     "last_checked": "2026-09-16",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-17",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and structured update-list metadata; the amendment's substance is not provided. The 'Labor / Employment' area label is keyword-based and may not reflect the Basic Resident Register Act provisions affected. The effective date applies to this specific entry; the amending act may have other effective dates. Verify against the official Japanese source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《雇佣保险法等部分修正法律》预定生效（2024-05-17）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《雇用保险法》等修正法：修改《住民基本登记法》（生效日2028-10-01）",
+        "summary": "e-Gov法令更新列表显示，《住民基本登记法》（昭和四十二年第81号法律）因《部分修正雇用保险法等的法律》（令和六年第26号法律）而被修订。该修正法列明的公布日期为2024-05-17，此条目的生效日期为2028-10-01。元数据中未说明对《住民基本登记法》修订的具体内容。",
+        "business_impact": "处理住民基本登记信息的机构，或其人事及雇用保险相关业务流程与该登记信息存在关联的机构，可能自列明的生效日期起受到影响。具体影响的性质和范围无法从所提供的元数据中确定。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本（该修正法及被修订的《住民基本登记法》相关条款），以确认修正的实际内容及其生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-89562596df11c5f3",
@@ -1087,29 +1111,33 @@
   },
   {
     "id": "raw-2dc736761cac454c",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2024-03-30)",
+    "title_en": "Act Partially Amending the Income Tax Act etc. (Special Taxation Measures Act; effective 2027-01-01)",
     "title_ja": "所得税法等の一部を改正する法律",
     "area": "Tax / Stamp Duty",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an entry for the Act Partially Amending the Income Tax Act, etc. (Reiwa 6 Act No. 8), promulgated on 2024-03-30, which amends the Special Taxation Measures Act (Showa 32 Act No. 26). The metadata gives an effective date of 2027-01-01 for this amendment entry and an update-list date of 2026-09-15. The specific content of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Depending on the provisions amended, tax treatment under the Special Taxation Measures Act could change for affected taxpayers from 2027-01-01, but the scope of any impact cannot be determined from the metadata alone.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, ideally with qualified tax advisers, to confirm which provisions are amended and whether they are relevant to your circumstances.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=332AC0000000026_20270101_506AC0000000008",
     "published_at": "2024-03-30",
     "last_checked": "2026-09-15",
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the substance of the amendments is unverified. The effective date applies to this specific amendment entry and other parts of the Act may take effect on different dates. Rule-based labels (Tax / Stamp Duty, Scheduled to Take Effect, Medium) are weak triage context only.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《所得税法等部分修正法律》将于2024-03-30生效",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《所得税法等部分修正法律》将于2027-01-01生效（涉及租税特别措施法）",
+        "summary": "e-Gov法令更新列表显示了一条关于《所得税法等部分修正法律》（令和6年法律第8号）的条目，该法律于2024-03-30公布，修订了《租税特别措施法》（昭和32年法律第26号）。元数据显示该修正条目的生效日期为2027-01-01，更新列表日期为2026-09-15。所提供的元数据中未包含修正内容的具体细节。",
+        "business_impact": "视所修订的具体条款而定，自2027-01-01起，受影响纳税人在《租税特别措施法》下的税务处理可能发生变化，但仅凭元数据无法确定具体影响范围。",
+        "recommended_action": "建议查阅e-Gov上的日文官方文本，并可考虑在有资质的税务顾问协助下，确认具体修订了哪些条款以及是否与自身情况相关。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-4778917659304da3",

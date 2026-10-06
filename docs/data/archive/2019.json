@@ -217,14 +217,14 @@
   },
   {
     "id": "raw-ffabd77317c9acb2",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2019-12-06)",
+    "title_en": "Act Partially Amending the Information Processing Promotion Act (Reiwa Act No. 67)",
     "title_ja": "情報処理の促進に関する法律の一部を改正する法律",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an amending act, 'Act Partially Amending the Act on the Promotion of Information Processing' (Reiwa Act No. 67 of 2019), as relating to the Act on Strengthening Management of Small and Medium-sized Enterprises (Heisei Act No. 18 of 1999). The metadata gives a promulgation date of 2019-12-06 and an enforcement date of 2020-05-15. The metadata does not describe the content of the amendments.",
+    "business_impact_en": "Because the substance of the amendment is not given, its effect on businesses cannot be determined from this metadata; it could be relevant to small and medium-sized enterprises or IT-related activities. Any actual impact would depend on the text of the amended provisions.",
+    "recommended_action_en": "Review the official Japanese text of the amending act and the amended Act on Strengthening Management of Small and Medium-sized Enterprises on e-Gov to confirm the specific changes and their relevance.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=411AC0000000018_20200515_501AC0000000067",
     "published_at": "2019-12-06",
@@ -237,14 +237,18 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-09T23:04:39Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on metadata (title, law numbers, dates); amendment content is not provided. The 'In Force' label is preliminary and rule-based, though the stated enforcement date of 2020-05-15 is consistent with it. Statute names are translated from the Japanese title and should be verified against the official source.",
+    "summarized_at": "2026-10-06T01:43:04Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《信息处理促进法》部分修订法律生效（2019-12-06）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《信息处理促进法》部分修正法（令和元年第67号）",
+        "summary": "e-Gov法令更新列表显示了一项修正法，即《信息处理促进法部分修正法》（2019年令和元年第67号），该法与《中小企业经营强化法》（1999年平成11年第18号）相关。元数据给出的公布日期为2019-12-06，生效日期为2020-05-15。元数据未说明修正的具体内容。",
+        "business_impact": "由于未给出修正内容的实质信息，无法根据该元数据判断其对企业的影响；该修正可能与中小企业或信息技术相关活动有关。实际影响将取决于修正条文的具体内容。",
+        "recommended_action": "建议查阅e-Gov上该修正法及经修正的《中小企业经营强化法》的日文官方文本，以确认具体修改内容及其相关性。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   }
 ]
