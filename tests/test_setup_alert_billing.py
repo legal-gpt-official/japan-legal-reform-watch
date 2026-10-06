@@ -22,6 +22,23 @@ import setup_alert_billing as sab  # noqa: E402
 LEGACY_PRO = "https://buy.stripe.com/fZu6oH2Fjg1D4mB3Eiawo00"
 
 
+def apply_checkout_text(link, params):
+    """Store consent and custom text the way Stripe returns them on a link."""
+    if "consent_collection[terms_of_service]" in params:
+        link["consent_collection"] = {
+            "payment_method_reuse_agreement": None,
+            "promotions": "none",
+            "terms_of_service": params["consent_collection[terms_of_service]"],
+        }
+    texts = link.setdefault("custom_text", {})
+    for key in ("after_submit", "shipping_address", "submit", "terms_of_service_acceptance"):
+        message = params.get(f"custom_text[{key}][message]")
+        if message is not None:
+            texts[key] = {"message": message}
+        else:
+            texts.setdefault(key, None)
+
+
 class FakeStripeHttp:
     """In-memory Stripe with just enough behavior for the setup script."""
 
@@ -70,12 +87,15 @@ class FakeStripeHttp:
                     "jlrw_language": params["metadata[jlrw_language]"],
                 },
                 "params": params,
+                "consent_collection": None,
             }
+            apply_checkout_text(obj, params)
             self.links.append(obj)
             return 200, obj
         if path.startswith("/v1/payment_links/"):
             link = next(l for l in self.links if l["id"] == path.rsplit("/", 1)[1])
             link["active"] = params.get("active") != "false"
+            apply_checkout_text(link, params)
             return 200, link
         if path == "/v1/billing_portal/configurations":
             obj = {
@@ -135,6 +155,22 @@ class TestParams(unittest.TestCase):
                 )
                 self.assertEqual(params["metadata"]["jlrw_language"], language)
 
+    def test_every_link_requires_the_terms_checkbox_in_its_language(self):
+        i18n = (REPO_ROOT / "docs" / "i18n.js").read_text(encoding="utf-8")
+        # The checkbox links the same page as the dashboard's terms links.
+        self.assertIn(f'SUBSCRIPTION_TERMS_URL = "{sab.TERMS_URL}"', i18n)
+        self.assertEqual(sab.TERMS_URLS["ja"], sab.TERMS_URL)
+        self.assertEqual(sab.TERMS_URLS["en"], sab.TERMS_URL + "#jlrw-terms-en")
+        self.assertEqual(sab.TERMS_URLS["zh-Hans"], sab.TERMS_URL + "#jlrw-terms-en")
+        for language in ac.CHECKOUT_LANGUAGES:
+            with self.subTest(language=language):
+                params = sab.payment_link_params("alert_monthly", "price_1", language)
+                self.assertEqual(params["consent_collection"], {"terms_of_service": "required"})
+                message = params["custom_text"]["terms_of_service_acceptance"]["message"]
+                self.assertLessEqual(len(message), 1200)
+                self.assertEqual(re.findall(r"\]\((https://[^)]+)\)", message), [sab.TERMS_URLS[language]])
+                self.assertEqual(params["custom_text"]["submit"]["message"], sab.SUBMIT_MESSAGES[language])
+
     def test_portal_lets_customers_self_serve(self):
         params = sab.portal_params("prod_1", ["price_m", "price_y"])
         features = params["features"]
@@ -186,9 +222,12 @@ class TestRun(unittest.TestCase):
             price_id = f"price_live_{interval}"
             http.prices.append({"id": price_id, "lookup_key": sab.lookup_key(role, interval, amount)})
             url = f"https://buy.stripe.com/live_{interval}"
+            # As created on 2026-09-29: no terms checkbox yet.
             http.links.append(
                 {"id": f"plink_live_{interval}", "url": url, "active": True,
-                 "metadata": {"jlrw_role": role, "jlrw_price": price_id}}
+                 "metadata": {"jlrw_role": role, "jlrw_price": price_id},
+                 "consent_collection": None,
+                 "custom_text": {"submit": {"message": sab.SUBMIT_MESSAGES["en"]}}}
             )
             english[sab.PLAN_PARAM[role]] = url
         http.portals.append(
@@ -207,7 +246,13 @@ class TestRun(unittest.TestCase):
         self.assertFalse([a for a in result["actions"] if "deactivate" in a])
         created = [path for path, _ in http.posts if path == "/v1/payment_links"]
         self.assertEqual(len(created), 4)  # ja + zh-Hans, monthly + yearly
-        self.assertFalse([path for path, _ in http.posts if path.startswith("/v1/payment_links/")])
+        # The live English links are only brought up to date in place, never replaced.
+        updates = [(path, params) for path, params in http.posts if path.startswith("/v1/payment_links/")]
+        self.assertEqual(
+            sorted(path for path, _ in updates),
+            ["/v1/payment_links/plink_live_month", "/v1/payment_links/plink_live_year"],
+        )
+        self.assertTrue(all("active" not in params for _, params in updates))
         self.assertEqual(
             sorted(l["metadata"]["jlrw_language"] for l in http.links if "params" in l),
             ["ja", "ja", "zh-Hans", "zh-Hans"],
@@ -231,6 +276,44 @@ class TestRun(unittest.TestCase):
         self.assertTrue(all(l["url"] != "https://buy.stripe.com/live_month" for l in active_monthly))
         # The yearly links were not involved.
         self.assertTrue(next(l for l in http.links if l["id"] == "plink_live_year")["active"])
+
+    def test_live_links_get_the_terms_checkbox_without_changing_url(self):
+        http, english = self._live_english_setup()
+        stripe = sab.Stripe("rk_live_x", http)
+        plan = sab.run(stripe, apply=False, deactivate_legacy=False)
+        self.assertEqual(http.posts, [])
+        for role in ("alert_monthly", "alert_yearly"):
+            self.assertIn(f"update en payment link {role} (terms consent, checkout text)", plan["actions"])
+
+        result = sab.run(stripe, apply=True, deactivate_legacy=False)
+        self.assertEqual(result["payment_links"]["en"], english)
+        for interval in ("month", "year"):
+            link = next(l for l in http.links if l["id"] == f"plink_live_{interval}")
+            self.assertTrue(link["active"])
+            self.assertEqual(link["consent_collection"]["terms_of_service"], "required")
+            self.assertEqual(
+                link["custom_text"]["terms_of_service_acceptance"]["message"],
+                sab.TERMS_ACCEPTANCE_MESSAGES["en"],
+            )
+        # Once current, a re-run changes nothing.
+        posts = len(http.posts)
+        self.assertEqual(sab.run(stripe, apply=True, deactivate_legacy=False)["actions"], [])
+        self.assertEqual(len(http.posts), posts)
+
+    def test_changed_checkout_text_is_updated_in_place(self):
+        http = FakeStripeHttp()
+        stripe = sab.Stripe("rk_test_x", http)
+        first = sab.run(stripe, apply=True, deactivate_legacy=False)
+        ja_monthly = next(l for l in http.links if l.get("url") == first["payment_links"]["ja"]["monthly"])
+        ja_monthly["custom_text"]["terms_of_service_acceptance"] = {"message": "older wording"}
+
+        second = sab.run(stripe, apply=True, deactivate_legacy=False)
+        self.assertEqual(second["actions"], ["update ja payment link alert_monthly (terms consent, checkout text)"])
+        self.assertEqual(second["payment_links"], first["payment_links"])
+        self.assertEqual(
+            ja_monthly["custom_text"]["terms_of_service_acceptance"]["message"],
+            sab.TERMS_ACCEPTANCE_MESSAGES["ja"],
+        )
 
     def test_legacy_links_stay_active_without_the_flag(self):
         http = FakeStripeHttp()

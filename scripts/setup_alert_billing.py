@@ -9,11 +9,14 @@ has to click through the Stripe dashboard:
 3. one Payment Link per Price and dashboard language (English, Japanese,
    Simplified Chinese), each with a required area dropdown built from
    alert_common.CHANNELS (the Stripe dashboard only allows 10 dropdown options;
-   the API allows 200, which is why this is a script) and a redirect to the
-   dashboard's checkout follow-up page. Stripe does not translate custom-field
-   labels, so each language needs its own link; the option values are the same
-   in every language, so the digest treats all links alike. Links created before
-   languages existed carry no language tag and are kept as the English links;
+   the API allows 200, which is why this is a script), a required Terms of
+   Service checkbox whose text links the terms in that language, and a
+   redirect to the dashboard's checkout follow-up page. Stripe does not
+   translate custom-field labels, so each language needs its own link; the
+   option values are the same in every language, so the digest treats all
+   links alike. Links created before languages existed carry no language tag
+   and are kept as the English links. A link whose consent setting or checkout
+   text is out of date is updated in place, so its URL never changes;
 4. a customer-portal configuration with a no-code login page, where customers
    cancel, switch monthly/yearly, change their delivery email, update cards,
    and download invoices themselves;
@@ -23,6 +26,9 @@ has to click through the Stripe dashboard:
 Every object is tagged with ``metadata[jlrw_role]`` and found again by that tag,
 so the script is safe to re-run. Without ``--apply`` it only reads Stripe and
 prints what it would do.
+
+Stripe accepts the Terms of Service checkbox only while the account's public
+details (Dashboard > Settings > Public details) carry a terms of service URL.
 
 The key is read from STRIPE_SETUP_API_KEY or ``--key-file`` and is never
 printed. Use a restricted key with write access to Products, Prices, Payment
@@ -64,6 +70,15 @@ PRICES = (
 PLAN_PARAM = {"alert_monthly": "monthly", "alert_yearly": "yearly"}
 THANK_YOU_URL = DASHBOARD_URL + "alerts/thank-you.html"
 PRIVACY_POLICY_URL = "https://legal-gpt.com/privacy-policy/"
+# The digest's terms page is Japanese (authoritative) followed by an English
+# reference translation: Japanese checkouts link the page, the others its
+# English section -- the same targets as the dashboard's I18N.subscriptionTermsUrl().
+TERMS_URL = "https://legal-gpt.com/japan-legal-reform-watch-terms/"
+TERMS_URLS = {
+    "en": TERMS_URL + "#jlrw-terms-en",
+    "ja": TERMS_URL,
+    "zh-Hans": TERMS_URL + "#jlrw-terms-en",
+}
 AREA_FIELD_KEY = "area"
 # Stripe limits: field label <= 50 characters, submit message <= 1200.
 AREA_FIELD_LABELS = {
@@ -85,6 +100,16 @@ SUBMIT_MESSAGES = {
     "zh-Hans": (
         "提醒邮件以英文发送（附日文原标题），仅供监测参考，不构成法律建议；应以日文官方原始来源为准。"
         "您可随时通过每封邮件中的订阅管理链接取消订阅。"
+    ),
+}
+# Replaces Stripe's default text beside the required Terms of Service checkbox
+# (Markdown links are allowed; Stripe's limit is 1200 characters).
+TERMS_ACCEPTANCE_MESSAGES = {
+    "en": f"I agree to the [Terms of Service]({TERMS_URLS['en']}) of the Japan Legal Reform Watch daily email digest.",
+    "ja": f"Japan Legal Reform Watch 日次メールダイジェストの[利用規約]({TERMS_URLS['ja']})に同意します。",
+    "zh-Hans": (
+        f"我同意 Japan Legal Reform Watch 每日邮件摘要的[服务条款]({TERMS_URLS['zh-Hans']})"
+        "（链接为英文参考译文，以日文版为准）。"
     ),
 }
 LEGACY_PAYMENT_LINK_URLS = frozenset(
@@ -142,6 +167,17 @@ def thank_you_url(role: str, language: str) -> str:
     return f"{THANK_YOU_URL}?{urlencode(query)}"
 
 
+def checkout_text_params(language: str) -> dict[str, Any]:
+    """The consent setting and texts every link carries; kept current on existing links."""
+    return {
+        "consent_collection": {"terms_of_service": "required"},
+        "custom_text": {
+            "submit": {"message": SUBMIT_MESSAGES[language]},
+            "terms_of_service_acceptance": {"message": TERMS_ACCEPTANCE_MESSAGES[language]},
+        },
+    }
+
+
 def payment_link_params(role: str, price_id: str, language: str = "en") -> dict[str, Any]:
     return {
         "line_items": [{"price": price_id, "quantity": 1}],
@@ -162,7 +198,7 @@ def payment_link_params(role: str, price_id: str, language: str = "en") -> dict[
         "billing_address_collection": "auto",
         "allow_promotion_codes": True,
         "tax_id_collection": {"enabled": True},
-        "custom_text": {"submit": {"message": SUBMIT_MESSAGES[language]}},
+        **checkout_text_params(language),
         "subscription_data": {"metadata": {"jlrw_role": "alert_digest"}},
         "metadata": {"jlrw_role": role, "jlrw_price": price_id, "jlrw_language": language},
     }
@@ -271,6 +307,22 @@ def _language(link: Mapping[str, Any]) -> str:
     return _metadata(link, "jlrw_language") or "en"
 
 
+def _checkout_text_outdated(link: Mapping[str, Any], language: str) -> bool:
+    wanted = checkout_text_params(language)
+    consent = link.get("consent_collection")
+    texts = link.get("custom_text")
+
+    def message(key: str) -> Any:
+        part = texts.get(key) if isinstance(texts, dict) else None
+        return part.get("message") if isinstance(part, dict) else None
+
+    return (
+        not isinstance(consent, dict)
+        or consent.get("terms_of_service") != wanted["consent_collection"]["terms_of_service"]
+        or any(message(key) != part["message"] for key, part in wanted["custom_text"].items())
+    )
+
+
 def run(stripe: Stripe, *, apply: bool, deactivate_legacy: bool, log: Callable[[str], None] = print) -> dict[str, Any]:
     result: dict[str, Any] = {}
     actions: list[str] = []
@@ -333,6 +385,11 @@ def run(stripe: Stripe, *, apply: bool, deactivate_legacy: bool, log: Callable[[
             match = next((link for link in slot if _metadata(link, "jlrw_price") == price_ids[role]), None)
             if match:
                 links[language][plan] = match.get("url", "")
+                # Bring the live link up to date in place: its URL is published.
+                if _checkout_text_outdated(match, language):
+                    actions.append(f"update {language} payment link {role} (terms consent, checkout text)")
+                    if apply:
+                        stripe.post(f"/v1/payment_links/{match['id']}", checkout_text_params(language))
                 continue
             actions.append(f"create {language} payment link {role}")
             if apply:
