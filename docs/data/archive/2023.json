@@ -200,6 +200,12 @@
     "ai_notes": "Based only on the title and basic metadata (law numbers and dates); the substance of the amendment is unknown. The 'In Force' stage label is a preliminary keyword-based label and was not independently verified; the metadata lists an enforcement date of 2026-10-01, which should be checked against the official source.",
     "summarized_at": "2026-10-02T00:36:41Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、法人税法施行規則(昭和四十年大蔵省令第十二号)を対象とする「法人税法施行規則の一部を改正する省令」(令和五年財務省令第十三号)が掲載されています。メタデータ上、公布日は2023-03-31、施行日は2026-10-01、更新一覧日は20261001と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "法人税の申告や経理処理に関する手続規定に関わる改正である可能性があり、施行日以降の実務対応に影響する可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正内容および施行日の詳細については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-03T00:17:15Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《法人税法施行规则》部分修订省令（2023年公布，2026-10-01生效）",
@@ -247,29 +253,33 @@
   },
   {
     "id": "raw-6c4b89624d3a8365",
-    "title_en": "e-Gov Law Update: Law or regulation scheduled to take effect (2023-11-29)",
+    "title_en": "Act Amending the Financial Instruments and Exchange Act (Act No. 79 of 2023), effective 2026-11-30",
     "title_ja": "金融商品取引法等の一部を改正する法律",
     "area": "Consumer / Advertising",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list shows an amending act, 'Act to Partially Amend the Financial Instruments and Exchange Act and Other Acts' (Reiwa 5 Act No. 79), affecting the Financial Instruments and Exchange Act (Showa 23 Act No. 25). The metadata gives a promulgation date of 2023-11-29 and a scheduled enforcement date of 2026-11-30. The substance of the amendments is not described in the provided metadata.",
+    "business_impact_en": "Firms subject to the Financial Instruments and Exchange Act may be affected once the amendments take effect, but the specific obligations and scope cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text on e-Gov, including the amendment provisions and any supplementary provisions on enforcement dates, to confirm which changes apply and when.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=323AC0000000025_20261130_505AC0000000079",
     "published_at": "2023-11-29",
     "last_checked": "2026-09-30",
     "relevance_score": 14.0,
     "first_seen_at": "2026-09-30",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on title and metadata; no amendment content provided. The rule-based 'Consumer / Advertising' label is a weak keyword-based triage label and may not reflect the actual subject matter. Enforcement dates may differ by provision; verify against the official source.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：《修订金融商品交易法等的法律》预定生效（2023-11-29）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "《金融商品交易法等部分修正法》（2023年第79号法律）将于2026-11-30生效",
+        "summary": "e-Gov法令更新列表显示了一项修正法律，即《金融商品交易法等部分修正法》（令和5年第79号法律），该法涉及对《金融商品交易法》（昭和23年第25号法律）的修改。元数据显示公布日期为2023-11-29，预定生效日期为2026-11-30。所提供的元数据未描述修正内容的具体实质。",
+        "business_impact": "受《金融商品交易法》管辖的企业在修正内容生效后可能受到影响，但根据所提供的元数据无法确定具体的义务和适用范围。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，包括修正条款以及有关生效日期的任何附则，以确认具体适用的变更内容及其生效时间。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-b31f92554c2e2b70",
@@ -465,7 +475,15 @@
     "recommended_action_ja": "改正内容および施行時期の詳細については、e-Gov法令検索等の日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-09-13T23:00:30Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summary_model": "claude-opus-4-8",
+    "translations": {
+      "zh-Hans": {
+        "title": "《地方税法等部分修正法》生效",
+        "summary": "本条目涉及一项名为《地方税法等部分修正法律》（令和5年法律第1号）的修正法律，该法律修正了《地方税法》（昭和25年法律第226号）。根据元数据，公布日期标注为2023-03-31，施行（生效）日期为2026-05-21。该记录出现在日期为2026-09-11的e-Gov法令更新列表中。",
+        "business_impact": "受日本地方税制约的组织可能会受到《地方税法》修订内容的影响，因此相关条款及其时间安排可能与合规和税务规划相关。",
+        "recommended_action": "建议查阅e-Gov官方来源及该修正法律的全文，以确认具体条款、适用范围及相应的生效日期。"
+      }
+    }
   },
   {
     "id": "raw-025ac734359af0ea",
