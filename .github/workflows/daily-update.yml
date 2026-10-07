@@ -220,8 +220,9 @@ jobs:
       - name: Build public feeds
         run: python scripts/build_public_feeds.py
 
-      # Crawlable pages: the static latest-updates list in docs/index.html and
-      # docs/sitemap.xml, derived only from the published JSON.
+      # Crawlable pages: the static latest-updates list and area navigation in
+      # docs/index.html, the area landing pages, the open public comments page,
+      # and docs/sitemap.xml, all derived only from the published JSON.
       - name: Build public pages
         run: python scripts/build_public_pages.py
 
@@ -255,7 +256,7 @@ jobs:
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -267,7 +268,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

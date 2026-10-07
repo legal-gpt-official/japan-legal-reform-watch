@@ -42,7 +42,10 @@ def item(item_id, **overrides):
 
 
 def page(block=""):
-    return f"<html><body><div id=\"cards\">\n{bpp.STATIC_START}{block}{bpp.STATIC_END}\n</div></body></html>"
+    return (
+        f"<html><body><div id=\"cards\">\n{bpp.STATIC_START}{block}{bpp.STATIC_END}\n</div>"
+        f"{bpp.AREA_NAV_START}{bpp.AREA_NAV_END}</body></html>"
+    )
 
 
 class TestLatestItems(unittest.TestCase):
@@ -113,7 +116,7 @@ class TestStaticBlock(unittest.TestCase):
 
 
 class TestBuild(unittest.TestCase):
-    def test_build_is_idempotent(self):
+    def test_build_writes_every_page_and_is_idempotent(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             data = tmp_path / "data.json"
@@ -124,18 +127,86 @@ class TestBuild(unittest.TestCase):
             first = bpp.build(data, index, sitemap, TODAY)
             second = bpp.build(data, index, sitemap, TODAY)
             html = index.read_text(encoding="utf-8")
-        self.assertEqual(first["static_latest_items"], 2)
-        self.assertTrue(first["index_changed"] and first["sitemap_changed"])
-        self.assertFalse(second["index_changed"] or second["sitemap_changed"])
+            pages = sorted(str(p.relative_to(tmp_path).as_posix()) for p in tmp_path.rglob("index.html"))
+        self.assertEqual(first["pages_written"], len(bpp.AREA_PAGES) + 1)
+        self.assertIn("index", first["files_changed"])
+        self.assertIn("sitemap", first["files_changed"])
+        self.assertEqual(second["files_changed"], [])
         self.assertEqual(html.count(bpp.STATIC_START), 1)
+        self.assertIn('href="./areas/finance-aml/"', html)
+        expected = sorted(
+            ["index.html", "public-comments/index.html"]
+            + [f"areas/{area.slug}/index.html" for area in bpp.AREA_PAGES]
+        )
+        self.assertEqual(pages, expected)
 
-    def test_sitemap_lists_site_pages_with_latest_checked_date(self):
-        root = ET.fromstring(bpp.render_sitemap(date(2026, 10, 6)))
-        urls = [u.find(SITEMAP_NS + "loc").text for u in root.findall(SITEMAP_NS + "url")]
-        self.assertEqual(urls[0], ac.SITE_URL)
-        self.assertIn(ac.SITE_URL + "legal/disclaimer_en.html", urls)
-        self.assertNotIn("thank-you", "".join(urls))
-        self.assertEqual(root.find(SITEMAP_NS + "url").find(SITEMAP_NS + "lastmod").text, "2026-10-06")
+    def test_sitemap_lists_given_pages_and_dates(self):
+        root = ET.fromstring(bpp.render_sitemap([(ac.SITE_URL, date(2026, 10, 6)), (ac.SITE_URL + "x/", None)]))
+        rows = root.findall(SITEMAP_NS + "url")
+        self.assertEqual([u.find(SITEMAP_NS + "loc").text for u in rows], [ac.SITE_URL, ac.SITE_URL + "x/"])
+        self.assertEqual(rows[0].find(SITEMAP_NS + "lastmod").text, "2026-10-06")
+        self.assertIsNone(rows[1].find(SITEMAP_NS + "lastmod"))
+
+
+class TestAreaPages(unittest.TestCase):
+    def test_every_area_channel_has_exactly_one_page(self):
+        areas = sorted(c.value for c in ac.CHANNELS if c.area)
+        self.assertEqual(sorted(a.channel for a in bpp.AREA_PAGES), areas)
+
+    def test_slugs_are_unique_and_url_safe(self):
+        slugs = [a.slug for a in bpp.AREA_PAGES]
+        self.assertEqual(len(slugs), len(set(slugs)))
+        for slug in slugs:
+            with self.subTest(slug=slug):
+                self.assertRegex(slug, r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+    def test_area_page_lists_only_that_area_and_carries_the_notices(self):
+        items = [
+            item("fin", title_en="Finance item"),
+            item("ene", title_en="Energy item", area="Energy / Environment"),
+        ]
+        finance = next(a for a in bpp.AREA_PAGES if a.slug == "finance-aml")
+        html = bpp.render_area_page(finance, items, TODAY)
+        self.assertIn("Finance item", html)
+        self.assertNotIn("Energy item", html)
+        self.assertIn(f'<link rel="canonical" href="{ac.SITE_URL}areas/finance-aml/" />', html)
+        self.assertIn("<h1 class=\"area-page-title\">Japan Financial Regulation &amp; AML Updates</h1>", html)
+        self.assertIn("not legal advice", html)
+        self.assertIn("remains authoritative", html)
+        self.assertIn("keyword rules", html)
+        self.assertIn('href="../../legal/disclaimer_en.html"', html)
+        self.assertIn('href="../../feeds/financeaml.xml"', html)
+        self.assertIn('href="../../style.css?v=' + bpp.STYLE_CACHE_BUSTER + '"', html)
+        self.assertIn('<span aria-current="page">Finance / AML</span>', html)
+
+    def test_area_page_escapes_untrusted_fields(self):
+        hostile = item("x", title_en="<script>alert(1)</script>", source_name="<b>src</b>")
+        finance = next(a for a in bpp.AREA_PAGES if a.slug == "finance-aml")
+        html = bpp.render_area_page(finance, [hostile], TODAY)
+        self.assertNotIn("<script>alert", html)
+        self.assertNotIn("<b>src</b>", html)
+
+    def test_open_comments_soonest_first_and_closed_excluded(self):
+        items = [
+            item("late", stage="Public Comment Open", comment_deadline="2026-11-30"),
+            item("soon", stage="Public Comment Open", comment_deadline="2026-10-10"),
+            item("past", stage="Public Comment Open", comment_deadline="2026-10-01"),
+            item("none", stage="Public Comment Open"),
+            item("closed", stage="Public Comment Closed", comment_deadline="2026-12-01"),
+        ]
+        self.assertEqual([i["id"] for i in bpp.open_comments(items, TODAY)], ["soon", "late"])
+        html = bpp.render_public_comments_page(items, TODAY)
+        self.assertIn("Comments due: 2026-10-10 (end of day, JST)", html)
+        self.assertNotIn("fsa.go.jp/past", html)
+        self.assertIn(f'<link rel="canonical" href="{ac.SITE_URL}public-comments/" />', html)
+        self.assertIn('href="../legal/disclaimer_en.html"', html)
+
+    def test_top_sources_are_counted_and_stably_ordered(self):
+        items = [item("a"), item("b"), item("c", source_name="B source"), item("d", source_name="A source")]
+        self.assertEqual(
+            bpp.top_sources(items, 3),
+            [("Financial Services Agency (FSA)", 2), ("A source", 1), ("B source", 1)],
+        )
 
 
 class TestPublishedSite(unittest.TestCase):
@@ -154,6 +225,16 @@ class TestPublishedSite(unittest.TestCase):
         # The static block sits inside the cards container app.js replaces.
         self.assertLess(html.index('id="cards"'), html.index(bpp.STATIC_START))
         self.assertLess(html.index(bpp.STATIC_END), html.index('id="load-more-wrap"'))
+        self.assertEqual(html.count(bpp.AREA_NAV_START), 1)
+        self.assertIn('style.css?v=' + bpp.STYLE_CACHE_BUSTER, html)
+
+    def test_published_area_pages_are_in_the_sitemap(self):
+        sitemap = (DOCS / "sitemap.xml").read_text(encoding="utf-8")
+        for area in bpp.AREA_PAGES:
+            with self.subTest(slug=area.slug):
+                self.assertTrue((DOCS / "areas" / area.slug / "index.html").is_file())
+                self.assertIn(f"<loc>{ac.SITE_URL}areas/{area.slug}/</loc>", sitemap)
+        self.assertIn(f"<loc>{ac.SITE_URL}public-comments/</loc>", sitemap)
 
     def test_robots_allows_crawling_and_names_the_sitemap(self):
         robots = (DOCS / "robots.txt").read_text(encoding="utf-8")
@@ -176,7 +257,7 @@ class TestPublishedSite(unittest.TestCase):
             workflow.index("python scripts/build_public_pages.py"),
         )
         self.assertLess(workflow.index("python scripts/build_public_pages.py"), workflow.index("name: Check data changes"))
-        self.assertEqual(workflow.count("docs/feeds docs/index.html docs/sitemap.xml"), 2)
+        self.assertEqual(workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments"), 2)
 
 
 if __name__ == "__main__":
