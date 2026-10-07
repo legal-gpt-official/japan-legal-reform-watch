@@ -205,6 +205,7 @@
     dataStatusList,
     saveSearchBtn,
     manageSavedSearchesBtn,
+    followByAreaBtn,
     savedSearchDialog,
     closeSavedSearchDialogBtn,
     savedSearchForm,
@@ -268,6 +269,7 @@
     alertFeedChannel = $("#alert-feed-channel");
     alertFeedRss = $("#alert-feed-rss");
     alertFeedIcs = $("#alert-feed-ics");
+    followByAreaBtn = $("#follow-by-area");
     exportCsvBtn = $("#export-csv");
     exportStatusEl = $("#export-status");
     loadMoreWrap = $("#load-more-wrap");
@@ -993,6 +995,17 @@
     window.setTimeout(() => {
       if (preferNameInput && savedSearchNameInput) savedSearchNameInput.focus();
       else if (closeSavedSearchDialogBtn) closeSavedSearchDialogBtn.focus();
+    }, 0);
+  }
+
+  // The header's "Follow for free" strip opens the same dialog, scrolled to
+  // its free-feed section, so area feeds stay in one place.
+  function openFeedOptions() {
+    openSavedSearches(false);
+    window.setTimeout(() => {
+      if (!alertFeedChannel) return;
+      alertFeedChannel.scrollIntoView({ block: "center" });
+      alertFeedChannel.focus();
     }, 0);
   }
 
@@ -2216,6 +2229,9 @@
     }
     if (manageSavedSearchesBtn) {
       manageSavedSearchesBtn.addEventListener("click", () => openSavedSearches(false));
+    }
+    if (followByAreaBtn) {
+      followByAreaBtn.addEventListener("click", openFeedOptions);
     }
     if (closeSavedSearchDialogBtn) {
       closeSavedSearchDialogBtn.addEventListener("click", closeSavedSearches);

@@ -23,7 +23,10 @@ from urllib.parse import urlencode, urlsplit
 from zoneinfo import ZoneInfo
 
 JST = ZoneInfo("Asia/Tokyo")
-DASHBOARD_URL = "https://legal-gpt-official.github.io/japan-legal-reform-watch/"
+# The site moved to a custom domain on 2026-10-07; GitHub Pages 301-redirects
+# the old github.io project URL here, so links already sent keep working.
+SITE_URL = "https://updates.legal-gpt.com/"
+DASHBOARD_URL = SITE_URL
 FEEDS_URL = DASHBOARD_URL + "feeds/"
 
 

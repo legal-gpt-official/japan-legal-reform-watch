@@ -215,6 +215,8 @@ def render_ics(items: Sequence[Mapping[str, Any]], channel: Channel, today: date
         lines.extend(
             (
                 "BEGIN:VEVENT",
+                # The UID host is an identifier, not a link: it stays on the old
+                # github.io name so subscribed calendars do not duplicate events.
                 "UID:" + _ics_text(f"jlrw-{item_id}-comment-deadline@legal-gpt-official.github.io"),
                 "DTSTAMP:" + stamp_day.strftime("%Y%m%d") + "T000000Z",
                 "DTSTART;VALUE=DATE:" + last_day.strftime("%Y%m%d"),
