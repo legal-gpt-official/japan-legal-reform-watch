@@ -19,7 +19,7 @@
   // Keys are shared; English values are byte-identical to the current UI.
   var STRINGS = {
     en: {
-      document_title: "Japan Legal Reform Watch by LegalOS",
+      document_title: "Japan Legal & Regulatory Updates in English — Japan Legal Reform Watch by LegalOS",
       brand_h1: "Japan Legal Reform Watch by LegalOS",
       tagline: "Free Japan Legal & Regulatory Update Monitor",
       header_about: "About this tool",
@@ -32,6 +32,10 @@
 
       ds_heading: "Data status",
       ds_note: "Monitoring aid only. Original Japanese official sources remain authoritative.",
+      follow_title: "Follow for free",
+      follow_rss: "RSS feed (all areas)",
+      follow_ics: "Public comment deadline calendar (.ics)",
+      follow_by_area: "Feeds by area & email alerts",
       ds_period: "Period",
       ds_updates: "Updates",
       ds_archive_total: "Archive total",
@@ -324,6 +328,10 @@
 
       ds_heading: "データ状況",
       ds_note: "モニタリング補助にすぎません。日本語の公式情報源が優先します。",
+      follow_title: "無料でフォロー",
+      follow_rss: "RSSフィード（全分野）",
+      follow_ics: "パブリックコメント締切カレンダー（.ics）",
+      follow_by_area: "分野別フィード・メール通知",
       ds_period: "対象期間",
       ds_updates: "更新件数",
       ds_archive_total: "アーカイブ総数",
@@ -577,6 +585,10 @@
 
       ds_heading: "数据状态",
       ds_note: "仅为监测辅助。以日文官方来源为准。",
+      follow_title: "免费关注",
+      follow_rss: "RSS 订阅源（全部领域）",
+      follow_ics: "公开征求意见截止日期日历（.ics）",
+      follow_by_area: "按领域订阅与邮件提醒",
       ds_period: "期间",
       ds_updates: "更新总数",
       ds_archive_total: "档案总数",
