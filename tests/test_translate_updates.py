@@ -2014,7 +2014,7 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         a 60 budget (skipped_no_budget: 219) and the untranslated count rose
         212 -> 221 in one day. Demand is ~37 new arrivals plus re-translation of
         every item the summary step just upgraded to an AI English summary."""
-        self.assertIn("--limit 140", self.daily)
+        self.assertIn("--limit 200", self.daily)
 
     def test_daily_and_backfill_use_direct_translation(self):
         daily_command = next(
@@ -2060,8 +2060,10 @@ class TestTranslationBudgetCoversItsCallLimit(unittest.TestCase):
     against $0.172029 actually billed.
     """
 
-    PREFLIGHT_USD_PER_CALL = 0.425521 / 60
-    MEASURED_USD_PER_CALL = 0.172029 / 60
+    # Re-measured on run 37709283488; this stage still runs Sonnet 5, so the
+    # rate is unchanged from the 2026-09-09 figure to within 0.3%.
+    PREFLIGHT_USD_PER_CALL = 0.700400 / 99
+    MEASURED_USD_PER_CALL = 0.265500 / 89
 
     @classmethod
     def setUpClass(cls):
@@ -2095,8 +2097,17 @@ class TestTranslationBudgetCoversItsCallLimit(unittest.TestCase):
         )
 
     def test_limit_absorbs_measured_daily_demand(self):
-        """Demand = new arrivals (~37/day) + re-translation of the English the
-        summary stage upgrades (measured 30/day, up to its own --api-limit)."""
+        """Demand is the English limit plus the arrivals that limit did not
+        already cover.
+
+        `arrivals + english_limit` is the strict upper bound and it is far above
+        what this stage actually requests, because an item that arrives today and
+        is summarized today is one translation, not two. Measured against the
+        English limit of 80: this stage made 89, 89 and 99 calls on 2026-10-06..08
+        against arrivals of 55, 67 and 39 -- an excess over the English limit of
+        9, 9 and 19. The margin below is twice the largest of those, and
+        `skipped_no_budget` (0 on every run since 09-15) is the signal that says
+        whether it is actually enough."""
         flags = self._translate_flags()
         english = self.workflow[
             self.workflow.index("name: Maintain English summaries"):
@@ -2108,10 +2119,11 @@ class TestTranslationBudgetCoversItsCallLimit(unittest.TestCase):
         match = re.search(r"--api-limit\s+(\d+)", english)
         self.assertIsNotNone(match, "English summary step has no --api-limit value")
         english_limit = int(match.group(1))
-        self.assertGreater(
-            int(flags["--limit"]), 37 + english_limit,
-            "the limit must exceed new arrivals plus the English upgrades that "
-            "invalidate an existing translation, or the backlog grows daily",
+        self.assertGreaterEqual(
+            int(flags["--limit"]), english_limit + 40,
+            "the limit must exceed the English limit by enough to cover the "
+            "arrivals those upgrades did not already include, or the backlog "
+            "grows daily; measured excess has been 9-19",
         )
 
     def test_the_cap_is_not_padded_far_beyond_the_estimate(self):
@@ -2135,8 +2147,8 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertIn("name: Translate Simplified Chinese updates", self.workflow)
         self.assertIn("python scripts/translate_updates.py", self.workflow)
         self.assertIn("--locale zh-Hans", self.workflow)
-        self.assertIn("--limit 140", self.workflow)
-        self.assertIn("--max-cost-usd 1.30", self.workflow)
+        self.assertIn("--limit 200", self.workflow)
+        self.assertIn("--max-cost-usd 1.50", self.workflow)
         self.assertIn("estimated_cost_usd", self.workflow)
 
     def test_translate_runs_after_summarize_and_before_check_changes(self):

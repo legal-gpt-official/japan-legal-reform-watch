@@ -7,6 +7,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import sys
 import tempfile
 import types
@@ -285,7 +286,7 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertNotIn("--parallel", invocation)
         self.assertIn("--all-items", step)
         self.assertIn("--english-only", step)
-        self.assertIn("--api-limit 80", step)
+        self.assertIn("--api-limit 150", step)
         # The USD cap must survive the switch: it is the only spend brake besides
         # the call count, and it used to be rejected outright alongside --batch.
         # It also has to move WITH the limit -- see TestDailyBudgetCoversItsCallLimit.
@@ -382,7 +383,7 @@ class TestSummaryBatch(unittest.TestCase):
         self.assertIn("name: Maintain Japanese summaries", workflow)
         self.assertIn("--all-items", workflow)
         self.assertIn("--japanese-only", workflow)
-        self.assertIn("--api-limit 50", workflow)
+        self.assertIn("--api-limit 100", workflow)
         self.assertIn("--batch", workflow)
         self.assertIn("--max-cost-usd 0.80", workflow)
         self.assertIn("Japanese summary provider unavailable", workflow)
@@ -1354,11 +1355,22 @@ class TestDailyBudgetCoversItsCallLimit(unittest.TestCase):
     Input sizes below are measured from production run 33569264923.
     """
 
-    # stage -> (measured input tokens per call, input $/MTok, output $/MTok)
-    MEASURED = {
-        "english": (34439 / 22, 5.0, 25.0),
-        "japanese": (30237 / 22, 5.0, 25.0),
-    }
+    # Measured input tokens per call, from runs 37400327832 / 37551702064 /
+    # 37709283488. The RATES are deliberately not hardcoded beside them: they are
+    # looked up from whatever model the workflow sets, because this test was
+    # written against Opus 4.8 and kept pricing at $5/$25 after production moved
+    # to Sonnet 5.5 at $2/$10. That made it 2.7x too conservative and it would
+    # have refused any English limit above 84 while the real bound allowed 228 --
+    # a stale guard blocking a change it had no reason to block.
+    MEASURED_INPUT_TOKENS = {"english": 1198, "japanese": 1113}
+
+    def _rates(self) -> dict:
+        model = re.search(
+            r"ANTHROPIC_SUMMARY_MODEL:\s*(\S+)", self._daily()
+        ).group(1)
+        rates = su.model_pricing(model)
+        self.assertIsNotNone(rates, f"{model} is not in MODEL_PRICING_USD_PER_MTOK")
+        return rates
 
     def _daily(self) -> str:
         return (
@@ -1393,8 +1405,10 @@ class TestDailyBudgetCoversItsCallLimit(unittest.TestCase):
                 flags = self._flags(step)
                 limit = int(flags["--api-limit"])
                 cap = float(flags["--max-cost-usd"])
-                tokens, in_rate, out_rate = self.MEASURED[stage]
-                needed = limit * self._budget_per_call(tokens, in_rate, out_rate)
+                rates = self._rates()
+                needed = limit * self._budget_per_call(
+                    self.MEASURED_INPUT_TOKENS[stage], rates["input"], rates["output"]
+                )
                 self.assertLessEqual(
                     needed, cap,
                     f"{stage}: --api-limit {limit} budgets to ${needed:.4f}, "
@@ -1402,13 +1416,17 @@ class TestDailyBudgetCoversItsCallLimit(unittest.TestCase):
                 )
 
     def test_the_limits_keep_up_with_measured_item_arrival(self):
-        """~38 new items/day were measured; a 30-call budget could not keep up."""
+        """Arrivals doubled to ~82/day over 2026-09-28..10-08 (656 items / 8 days
+        with runs, single days at 286). Japanese demand is arrivals only -- it is
+        generated from the Japanese source metadata, not from the English -- so
+        its limit alone has to clear that rate. At 50 it had slipped from 100%
+        coverage to 90.6% and stopped recovering."""
         workflow = self._daily()
         step = workflow[
             workflow.index("name: Maintain Japanese summaries"):
             workflow.index("name: Translate Simplified Chinese updates")
         ]
-        self.assertGreaterEqual(int(self._flags(step)["--api-limit"]), 40)
+        self.assertGreaterEqual(int(self._flags(step)["--api-limit"]), 82)
 
     def test_translation_limit_exceeds_the_summary_limit(self):
         """zh-Hans demand is new arrivals PLUS re-translation of every English

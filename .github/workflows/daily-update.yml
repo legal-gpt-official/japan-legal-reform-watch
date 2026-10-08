@@ -93,7 +93,7 @@ jobs:
             --all-items \
             --english-only \
             --batch \
-            --api-limit 80 \
+            --api-limit 150 \
             --max-cost-usd 1.10 2>&1 | tee english_summary_run.log
           {
             echo "### English summary maintenance (batch)"
@@ -120,7 +120,7 @@ jobs:
             --all-items \
             --japanese-only \
             --batch \
-            --api-limit 50 \
+            --api-limit 100 \
             --max-cost-usd 0.80 2>&1 | tee japanese_summary_run.log
           {
             echo "### Japanese summary maintenance (batch)"
@@ -192,8 +192,8 @@ jobs:
           python scripts/translate_updates.py \
             --locale zh-Hans \
             --batch \
-            --limit 140 \
-            --max-cost-usd 1.30 \
+            --limit 200 \
+            --max-cost-usd 1.50 \
             --retry-rejected-title-without-ja-reference \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
