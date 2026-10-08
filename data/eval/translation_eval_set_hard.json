@@ -1,0 +1,577 @@
+{
+  "created_at": "2026-10-08T05:26:41Z",
+  "profile": "hard",
+  "locale": "zh-Hans",
+  "prompt_version": "zh-hans-v3",
+  "items": [
+    {
+      "id": "raw-827358ca103ddfab",
+      "stage": "In Force",
+      "area": "Consumer / Advertising",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+      "title_en": "Act Partially Amending the Financial Instruments and Exchange Act and the Payment Services Act (affecting Postal...",
+      "summary_en": "This item refers to an amending act, cited as Reiwa 8 Act No. 64, that partially amends the Financial Instruments and Exchange Act and the Payment Services Act, with the target law listed as the Postal Privatization Act (Heisei 17 Act No. 97). The metadata indicates a promulgation date of 2026-07-23 and an enforcement date of 2026-08-12. This is an unofficial summary drawn from a law-update listing; the official Japanese source is authoritative.",
+      "business_impact_en": "Entities involved in financial instruments, payment services, or matters connected to postal privatization may be affected and could need to review how the amendments relate to their operations.",
+      "recommended_action_en": "Consider reviewing the official e-Gov source and the referenced statute text to verify the scope, dates, and applicability of the amendments.",
+      "hard_signals": [
+        "previously_rejected",
+        "long_title",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-20c3b640c091ef60",
+      "stage": "Court Decision",
+      "area": "Consumer / Advertising",
+      "source_name": "Courts in Japan (裁判所) Recent Supreme Court Decisions",
+      "title_ja": "令和5(あ)395 私的独占の禁止及び公正取引の確保に関する法律違反被告事件",
+      "title_en": "Supreme Court Decision on Alleged Violation of Japan's Antimonopoly Act (Case 2023 (A) 395)",
+      "summary_en": "This is a Supreme Court of Japan decision in a criminal case concerning an alleged violation of the Act on Prohibition of Private Monopolization and Maintenance of Fair Trade (the Antimonopoly Act). According to the provided metadata, the Third Petty Bench issued a decision dismissing the appeal, dated September 14, 2026, relating to a Tokyo High Court case (2021 (U) 784). Further details of the case and reasoning are not provided in the metadata.",
+      "business_impact_en": "Businesses subject to Japanese competition law may find this decision relevant to how the Antimonopoly Act is interpreted or enforced, and could wish to consider its implications.",
+      "recommended_action_en": "Consider reviewing the official Japanese decision on the Courts in Japan website to verify the outcome, reasoning, and any relevance to your circumstances.",
+      "hard_signals": [
+        "previously_rejected",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-171c6b76652b80f4",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律に基づく設備整備計画の認定等に関する省令の一部を改正する省令案についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Ministerial Ordinance Amending Rules on Renewable Energy Facility Plan Certification...",
+      "summary_en": "This item is a public comment consultation on a draft ministerial ordinance that would partially amend rules concerning the certification of facility development plans under a law promoting renewable energy electricity generation in harmony with sound development of agriculture, forestry, and fisheries. According to the metadata, the draft was published on 2026-07-24 with a comment deadline of 2026-08-22, and it is categorized under agriculture. The responsible contact is the Renewable Energy Office of the Ministry of Agriculture, Forestry and Fisheries.",
+      "business_impact_en": "Entities involved in renewable energy facilities on agricultural, forestry, or fishery land may be affected if the proposed amendments to the certification rules are adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and, if relevant, submitting comments before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-322330ff41471b25",
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "令和四年農林水産省告示第千六百五十号（農薬取締法第四条第一項第五号に掲げる場合に該当するかどうかの基準を定める件第一号の規定に基づき、同号の農林水産大臣が定める基準を定める件）の一部を改正する件（フェンメゾジチアズ）（案）についての意見・情報の募集について",
+      "title_en": "Public Comment: Proposed Partial Amendment on Pesticide Standards under the Agricultural Chemicals Regulation Act...",
+      "summary_en": "The Ministry of Agriculture, Forestry and Fisheries (MAFF) has opened a public comment period on a proposed partial amendment relating to standards under Article 4, Paragraph 1, Item 5 of the Agricultural Chemicals Regulation Act (Nouyaku Torishimari Ho), concerning the substance referred to as Fenmezoditiaz. According to the metadata, the draft was published on 2026-08-28 with a comment deadline of 2026-09-26 23:59. This is a draft out for public comment and has not been finalized or entered into force based on the information provided.",
+      "business_impact_en": "Parties involved in agriculture or pesticide registration and use may be affected if the proposed standards are adopted, and could wish to monitor the outcome. The relevance and scope would depend on the final text, which is not yet determined.",
+      "recommended_action_en": "Review the official Japanese source on the e-Gov public comment portal and consider whether to submit comments before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-650e4f27d85387d7",
+      "stage": "Public Comment Closed",
+      "area": "Data / Privacy / AI",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令（案）等」についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Amendment to Ministerial Ordinance on Standardization Criteria for Local Government...",
+      "summary_en": "This is a public comment invitation regarding a draft ministerial ordinance that would partially amend the ordinance setting standardization criteria for functions required of systems used to process certain tasks under Japan's law on standardization of local government information systems. According to the metadata, the draft was published on 2026-07-17 with a comment deadline of 2026-08-20 23:59. The contact is the Ministry of Internal Affairs and Communications (Local Tax Bureau, Planning Division, Digitalization Promotion Office), and the item is categorized under local finance and local taxation.",
+      "business_impact_en": "Organizations involved in local government information systems or related standardization may wish to note that proposed changes to system standardization criteria could affect future system requirements. Any effects would depend on the final content of the ordinance, which is not yet fixed.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and the draft documents on e-Gov to verify the scope and details before the stated comment deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-88c56c345de4bc03",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則の規定に基づき林業分野に特有の事情に鑑みて告示で定める基準等の一部を改正する告示案」についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Notice Amending Forestry-Specific Standards under the Foreign Worker Development & Employment...",
+      "summary_en": "This is a public comment invitation regarding a draft notice that would amend certain forestry-sector-specific standards established under the enforcement regulations of the Act on the Proper Implementation of Development and Employment of Foreign Nationals and the Protection of Such Foreign Nationals. The draft was published on 2026/06/16 with a comment deadline of 2026/07/15 23:59. The matter is categorized under forestry and is handled by the Forestry Agency's Forestry Labor and Management Measures Office.",
+      "business_impact_en": "Organizations involved in employing or developing foreign workers in the forestry sector may be affected if the proposed standards are adopted as amended.",
+      "recommended_action_en": "Review the official Japanese source and consider whether to submit comments before the stated deadline if relevant to your operations.",
+      "hard_signals": [
+        "name_separator",
+        "japan_specific_term",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-98a3a4d16eef7560",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "特定外来生物による生態系等に係る被害の防止に関する法律施行令の一部を改正する政令案、特定外来生物による生態系等に係る被害の防止に関する法律施行規則の一部を改正する省令案及び環境大臣が所掌する特定外来生物に係る特定飼養等施設の基準の細目等を定める件の改正案に対する意見募集（パブリック・コメント）について",
+      "title_en": "Public Comment: Draft Amendments to Invasive Alien Species Act Enforcement Order and Related Rules",
+      "summary_en": "Japan's Ministry of the Environment has opened a public comment period on draft amendments to the enforcement order and enforcement regulation under the Act on the Prevention of Adverse Ecological Impacts Caused by Designated Invasive Alien Species, as well as proposed changes to detailed standards for specified rearing facilities for designated invasive alien species. According to the metadata, the draft was announced on 2026-06-18 with a comment submission deadline of 2026-07-18. This is a draft out for public comment and not an enacted measure; the matter is handled by the Invasive Alien Species Office of the Wildlife Division, Nature Conservation Bureau.",
+      "business_impact_en": "Organizations that handle, rear, or maintain facilities for designated invasive alien species may be affected if the proposed standards and rules are later adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov and submitting comments before the stated deadline if relevant to your operations.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "japan_specific_term",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-02e20eb5225a2907",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "農地法施行規則及び農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律施行規則の一部を改正する省令案についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Amendments to Rules under Farmland Act and Renewable Energy Farming Promotion Act",
+      "summary_en": "This is a public comment consultation on a draft ministerial ordinance to partially amend the enforcement regulations of the Farmland Act and of the Act on Promoting Renewable Energy Electricity Generation Harmonized with Sound Agriculture, Forestry and Fisheries Development. According to the metadata, the draft was published on 2026-07-24 with a comment deadline of 2026-08-22, and the responsible body is Japan's Ministry of Agriculture, Forestry and Fisheries. The item relates to matters including farming-type solar power generation.",
+      "business_impact_en": "Organizations involved in agricultural land use or renewable energy projects on farmland may be affected by the proposed regulatory changes if they are adopted.",
+      "recommended_action_en": "Review the official Japanese source and consider whether to submit comments before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-0549bdaf78bfe729",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "租税特別措置法施行令第二十五条の十七第七項第二号イ、ロ⑵、ホ及びヘの規定に基づき、 内閣総理大臣、総務大臣、財務大臣、文部科学大臣、厚生労働大臣、農林水産大臣、経済産業大臣、国土交通大臣及び環境大臣が財務大臣と協議して定める業務、事業、事務、方法及び所轄庁を定める件の一部を改正する告示案についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Amendment to Notice under Order for Enforcement of Special Taxation Measures Act (Art. 25-17)",
+      "summary_en": "This is a public comment invitation on a draft notice amending provisions under Article 25-17, paragraph 7 of the Order for Enforcement of the Special Taxation Measures Act, concerning designated operations, businesses, affairs, methods, and competent authorities determined jointly by multiple ministers in consultation with the Minister of Finance. According to the metadata, the draft was published on 2026-08-20 with a comment deadline of 2026-09-18 23:59, and the contact is the MAFF Agriculture, Forestry and Fisheries Research Council Secretariat. It is a draft out for public comment, not an enacted measure.",
+      "business_impact_en": "Organizations relying on relevant special taxation measures may wish to monitor this proposal, as changes to designated operations or competent authorities could affect applicable procedures.",
+      "recommended_action_en": "Review the official Japanese notice and public comment details on the e-Gov source to verify scope and applicability before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-07760b27d11c3cae",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "エネルギーの使用の合理化及び非化石エネルギーへの転換等に関する法律施行令の一部を改正する政令案に対する意見公募要領",
+      "title_en": "Public Comment: Draft Cabinet Order Amending the Enforcement Order of the Act on Rationalization of Energy Use and...",
+      "summary_en": "This is a public comment notice for a draft Cabinet Order that would partially amend the enforcement order of Japan's Act on the Rationalization of Energy Use and Transition to Non-Fossil Energy. According to the metadata, the draft was published on 2026-06-15, with a comment submission deadline of 2026-07-15 23:59. The listed contact is the Agency for Natural Resources and Energy, Energy Efficiency and Renewable Energy Department, Energy Efficiency Division (Top Runner Program section).",
+      "business_impact_en": "Businesses subject to energy efficiency rules or the Top Runner Program may be affected if the proposed amendments are finalized, and could consider whether to submit comments during the consultation period.",
+      "recommended_action_en": "Review the official e-Gov public comment notice and the draft Cabinet Order text to confirm the scope, details, and submission deadline.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-18386593053a458a",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "南極地域の環境の保護に関する法律施行規則の一部を改正する省令案に対する意見の募集（パブリック・コメント）について",
+      "title_en": "Public Comment: Draft Ministerial Order Amending Enforcement Regulations of the Antarctic Environmental Protection Act",
+      "summary_en": "This item is a public comment (consultation) on a draft ministerial order that would partially amend the enforcement regulations under Japan's Act on the Protection of the Environment in Antarctica. According to the metadata, the draft was published on 2026/06/19 with a comment submission deadline of 2026/07/19, and the contact is the Ministry of the Environment's Nature Conservation Bureau. This is a proposal out for public comment, not an enacted or in-force measure.",
+      "business_impact_en": "Organizations involved in activities related to the Antarctic region or its environmental protection requirements may be affected if the proposed amendments are adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and the draft text on e-Gov to verify the proposed changes and the comment submission deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-22524fb54e7ce1d5",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "高圧ガス保安法に基づく高圧ガス製造保安責任者試験等に関する規則及び液化石油ガスの保安の確保及び取引の適正化に関する法律施行規則の一部を改正する省令（案）等に対する意見公募",
+      "title_en": "Draft amendment to rules on High Pressure Gas Production Safety Manager exams and LPG safety/transaction...",
+      "summary_en": "This is a public comment (opinion solicitation) on a draft ministerial ordinance that would partially amend rules concerning the High Pressure Gas Production Safety Manager examination (under the High Pressure Gas Safety Act) and the enforcement regulations of the Act on Securing Safety and Optimizing Transactions of Liquefied Petroleum Gas. According to the metadata, the draft was published on 2026-07-22 with a comment deadline of 2026-08-21 23:59, and the contact is Japan's Ministry of Economy, Trade and Industry (industrial and product safety group). It is categorized under securing the safety and security of citizens' lives.",
+      "business_impact_en": "Businesses involved in high pressure gas production or the LPG sector may be affected by changes to examination rules and enforcement regulations if the draft is adopted.",
+      "recommended_action_en": "Consider reviewing the official e-Gov public comment page and the underlying Japanese draft to understand the proposed changes and submission deadline.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-23d90cb70d5a607e",
+      "stage": "Public Comment Open",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "産業競争力強化法第百四十条の二第三項ただし書の経済産業省令・農林水産省令・国土交通省令で定める軽微な変更を定める省令（案）等に対する意見募集",
+      "title_en": "Public Comment on Draft Ministerial Ordinance Defining Minor Changes under the Industrial Competitiveness...",
+      "summary_en": "This is a public comment consultation on a draft ministerial ordinance to be jointly issued by the Ministry of Economy, Trade and Industry, the Ministry of Agriculture, Forestry and Fisheries, and the Ministry of Land, Infrastructure, Transport and Tourism, specifying the 'minor changes' referred to in the proviso to Article 140-2, Paragraph 3 of the Industrial Competitiveness Enhancement Act. According to the metadata, the draft was published on 2026-09-09 with a comment submission deadline of 2026-10-08. The item is handled by the Economic and Industrial Policy Bureau of METI.",
+      "business_impact_en": "Businesses subject to the relevant provisions of the Industrial Competitiveness Enhancement Act may be affected by how 'minor changes' are ultimately defined, which could influence related notification or approval procedures.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and the draft ordinance to understand the scope of the proposed definition and the comment submission period.",
+      "hard_signals": [
+        "name_separator",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-26f50897a7111a30",
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "令和四年農林水産省告示第千六百五十号（農薬取締法第四条第一項第五号に掲げる場合に該当するかどうかの基準を定める件第一号の規定に基づき、同号の農林水産大臣が定める基準を定める件）の一部を改正する件（アラクロール）（案）についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Amendment on Criteria under Agricultural Chemicals Regulation Act (Alachlor)",
+      "summary_en": "This is a request for public comments and information on a draft amendment to a Ministry of Agriculture, Forestry and Fisheries (MAFF) notification concerning criteria under the Agricultural Chemicals Regulation Act, relating to alachlor. According to the metadata, the draft was published on 2026-08-28 with a comment submission deadline of 2026-09-26 23:59. The matter is categorized under agriculture and is handled by MAFF's Agricultural Production Safety Management Division of the Consumer Affairs Bureau.",
+      "business_impact_en": "Parties involved in the manufacture, import, or use of agricultural chemicals such as alachlor may wish to note that criteria under the relevant regulation could be adjusted if the draft is adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and, where relevant, the comment submission process before the stated deadline to verify the details.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-3e3f515953df53a8",
+      "stage": "Public Comment Results Published",
+      "area": "Finance / AML",
+      "source_name": "Financial Services Agency (金融庁) 新着情報",
+      "title_ja": "令和８年金融機能強化法等改正に係る政令・内閣府令案等に対するパブリックコメントの結果等について公表しました。",
+      "title_en": "FSA Publishes Public Comment Results on Draft Cabinet/FSA Ordinances Related to Amendments to the Financial...",
+      "summary_en": "The Financial Services Agency (FSA) announced the publication of the results of a public comment procedure concerning draft cabinet orders and Cabinet Office/FSA ordinances related to amendments to the Financial Function Strengthening Act and related legislation (referred to as Reiwa 8). Based on the title, this item reports the outcome of a public comment process regarding these draft subordinate rules. The specific contents of the responses and any resulting changes are not provided in the metadata.",
+      "business_impact_en": "Financial institutions and related entities may find that finalized ordinances following this consultation could affect regulatory requirements, so the details could be relevant to compliance planning.",
+      "recommended_action_en": "Review the official FSA source to confirm the scope, content, and current status of the ordinances and the published comment results.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-3f7966ce0915434a",
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「主要食糧の需給及び価格の安定に関する法律施行令の一部を改正する政令案」、「主要食糧の需給及び価格の安定に関する法律の一部を改正する法律の施行に伴う経過措置に関する政令案」及び「平成七年三月二十七日農林水産省告示第四百五十七号（主要食糧の需給及び価格の安定に関する法律の施行に関する件）の一部を改正する件」についての意見・情報の募集について",
+      "title_en": "Public Comment: Draft Amendments to Cabinet Order and Notice under the Staple Food Supply-Demand and Price...",
+      "summary_en": "This is a public comment consultation by Japan's Ministry of Agriculture, Forestry and Fisheries seeking opinions and information on draft amendments related to the Act on Stabilization of Supply, Demand and Prices of Staple Food. The items include a draft Cabinet Order amending the Act's enforcement order, a draft Cabinet Order on transitional measures accompanying the amended Act, and a draft revision to a 1995 MAFF notice concerning the Act's enforcement. Per the metadata, the drafts were posted on 2026/07/30 with a comment deadline of 2026/08/28.",
+      "business_impact_en": "Businesses involved in staple food supply, distribution, or pricing may be affected if these draft amendments are later finalized, but the specific effects are not detailed in the provided metadata.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and the full draft texts on the e-Gov public comment page to understand scope and timing.",
+      "hard_signals": [
+        "name_separator",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-4ad59a1efef2ae9b",
+      "stage": "Public Comment Open",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "旧簡易ガスみなしガス小売事業者の指定旧供給地点の指定の解除（関東経済産業局所管分・令和８年８月報告分）に対する意見の募集について",
+      "title_en": "Public Comment: Proposed Cancellation of Designated Former Supply Points for Former Simplified-Gas Deemed Gas...",
+      "summary_en": "This is a public comment invitation regarding a proposal to cancel the designation of certain former supply points associated with former simplified-gas deemed gas retailers, under the jurisdiction of the Kanto Bureau of Economy, Trade and Industry (reported for August 2026). The notice was published on 2026-09-15 with a comment submission deadline of 2026-10-15 23:59. Inquiries are directed to the Gas Industry Division of the Kanto Bureau's Resources, Energy and Environment Department.",
+      "business_impact_en": "Gas retailers or entities connected to the affected supply points may wish to note the proposed cancellation of these designations, as it could relate to their supply-point status. The full scope and specific points affected are not detailed in the metadata.",
+      "recommended_action_en": "Consider reviewing the official e-Gov public comment source and the responsible Kanto Bureau division to confirm the affected supply points and the submission process before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-4e406bc667c47957",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "電気事業法施行規則第五十二条の二第一号ロの要件、第一号ハ及び第二号ロの機械器具並びに第一号ニ及び第二号ハの算定方法等並びに第五十三条第二項第五号の頻度に関する告示の一部改正（案）に対する意見公募",
+      "title_en": "Public Comment on Draft Partial Amendment to Notice under the Electricity Business Act Enforcement Regulation...",
+      "summary_en": "This is a public comment invitation on a draft partial amendment to a notice concerning provisions of the Electricity Business Act Enforcement Regulation, including requirements under Article 52-2, specified machinery and equipment, calculation methods, and the frequency referenced in Article 53(2)(v). According to the metadata, the draft was published on 2026-07-06 with a comment deadline of 2026-08-05 17:00, and the item is handled by the Electric Power Safety Division of the Industrial Safety and Security Group, Ministry of Economy, Trade and Industry. This is a draft out for public comment and has not been described as enacted or in force.",
+      "business_impact_en": "Entities in the electric power sector subject to the Electricity Business Act Enforcement Regulation may be affected by changes to technical requirements, equipment specifications, calculation methods, or inspection frequency if the draft is adopted.",
+      "recommended_action_en": "Review the official Japanese source and comment details to verify the scope and status of the proposed amendment.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-4fc6e9c21112c5b4",
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "令和四年農林水産省告示第千六百五十号（農薬取締法第四条第一項第五号に掲げる場合に該当するかどうかの基準を定める件第一号の規定に基づき、同号の農林水産大臣が定める基準を定める件）の一部を改正する件（クロチアニジン）（案）についての意見・情報の募集について",
+      "title_en": "Public Comment: Proposed Amendment to MAFF Notification on Agricultural Chemicals Regulation Act Criteria (Clothianidin)",
+      "summary_en": "This item is a public comment consultation by Japan's Ministry of Agriculture, Forestry and Fisheries (MAFF) on a proposed amendment relating to criteria under the Agricultural Chemicals Regulation Act, concerning the substance clothianidin. According to the metadata, the draft was posted on 2026/08/28 with a comment submission deadline of 2026/09/26 23:59. The responsible office is listed as the Agricultural Production Safety Management Division of MAFF's Food Safety and Consumer Affairs Bureau.",
+      "business_impact_en": "Businesses involved in agricultural chemicals or crop production may wish to note this proposed criteria change, as it could affect requirements related to clothianidin if adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and submitting comments before the stated deadline if relevant to your operations.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-51366df3672409ed",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "電波法施行規則の一部を改正する省令案等に係る意見募集 ー公共ブロードバンド移動通信システムの周波数拡張に係る制度整備ー",
+      "title_en": "Public Comment: Draft Amendment to Radio Act Enforcement Regulations on Public Broadband Mobile System Frequency...",
+      "summary_en": "This is a public comment consultation on a draft ministerial ordinance to amend part of the Radio Act Enforcement Regulations, related to regulatory arrangements for frequency expansion of public broadband mobile communication systems. According to the metadata, it was announced on 2026-07-11 with a comment submission deadline of 2026-08-10 23:59. The item is categorized under telecommunications and lists the Ministry of Internal Affairs and Communications (Telecommunications Bureau) as the contact.",
+      "business_impact_en": "Organizations involved in public broadband mobile communication systems or radio spectrum use may be affected if the proposed frequency-related rules are adopted.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and submitting comments before the stated deadline if relevant to your operations.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-5b21707ca85bbdc2",
+      "stage": "Public Comment Closed",
+      "area": "Data / Privacy / AI",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "電気通信事業法施行規則等の一部を改正する省令案等（新たなユニバーサルサービス制度に係る規定の整備）に対する意見募集",
+      "title_en": "Public Comment on Draft Amendments to Telecommunications Business Act Enforcement Regulations (New Universal...",
+      "summary_en": "Japan's Ministry of Internal Affairs and Communications (MIC) has opened a public comment period on a draft ministerial ordinance amending the enforcement regulations of the Telecommunications Business Act and related rules, concerning provisions for a new universal service system. According to the metadata, the draft was announced on 2026-08-29 with a comment submission deadline of 2026-10-02 23:59. The item is out for public comment and is categorized under telecommunications.",
+      "business_impact_en": "Telecommunications operators and related businesses could be affected by changes to universal service obligations if the draft is adopted, but the impact depends on the final text.",
+      "recommended_action_en": "Consider reviewing the official e-Gov public comment notice and the draft ordinance text, and note the stated comment deadline.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-5c6103d0e30b7133",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「特定試験成績及びその信頼性の確保のための基準に関する省令第５条から第19条までに定める基準に適合していることの確認及びその調査等について」の一部改正案についての意見・情報の募集について",
+      "title_en": "Public Comment on Partial Amendment to Ministerial Ordinance Standards for Ensuring Reliability of Specified Test...",
+      "summary_en": "This is a public comment (out for public comment) notice concerning a proposed partial amendment to rules regarding confirmation and investigation of compliance with the standards set out in Articles 5 to 19 of the Ministerial Ordinance on standards for ensuring specified test results and their reliability. The notice was published on 2026-09-04, with comments accepted until 2026-10-03 23:59, and is categorized under agriculture. The contact listed is the Agricultural Production Safety Management Division, Consumer Affairs and Food Safety Bureau, Ministry of Agriculture, Forestry and Fisheries.",
+      "business_impact_en": "Organizations involved in specified testing or reliability confirmation in the agricultural sector may wish to consider how a proposed change to these standards could affect their processes, though nothing is finalized at this stage.",
+      "recommended_action_en": "Review the official Japanese source and consider whether to submit comments before the stated deadline.",
+      "hard_signals": [
+        "name_separator",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-5cda1859806b505b",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "独立行政法人日本学生支援機構法施行令及び大学等における修学の支援に関する法律施行令の一部を改正する政令案に関するパブリック・コメント（意見公募手続き）の実施について",
+      "title_en": "Public Comment on Draft Cabinet Order Amending Enforcement Orders for JASSO Act and Higher Education Study Support Act",
+      "summary_en": "This is a public comment (opinion solicitation) procedure on a draft Cabinet Order that would partially amend the enforcement orders for the Japan Student Services Organization (JASSO) Act and the Act on Support for Study at Universities and Other Institutions. According to the metadata, the draft was published on 2026/06/25 with a comment submission deadline of 2026/07/25. The item is categorized under education, and the listed contact is the Student Support Division, Higher Education Bureau, Ministry of Education, Culture, Sports, Science and Technology (MEXT).",
+      "business_impact_en": "Organizations or individuals involved in student financial support or higher education study assistance programs may find that any resulting amendments could affect related administrative requirements. Any impact remains uncertain until the final Cabinet Order is confirmed.",
+      "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the scope, content, and current status of the draft amendment and the comment period.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-65308984a4b2efd2",
+      "stage": "Public Comment Open",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "電波法施行規則の一部を改正する省令案に係る意見募集（800MHz帯広帯域小電力無線システムの制度整備）",
+      "title_en": "Public Comment on Draft Amendment to Radio Law Enforcement Regulations (800 MHz Wideband Low-Power Wireless System...",
+      "summary_en": "Japan's Ministry of Internal Affairs and Communications (MIC) has opened a public comment period on a draft ministerial ordinance to partially amend the Enforcement Regulations of the Radio Law, concerning the regulatory framework for 800 MHz band wideband low-power wireless systems. According to the metadata, the draft was announced on 2026-09-12 with comments accepted until 2026-10-16 23:59. This is a proposal out for public comment, not an enacted rule.",
+      "business_impact_en": "Organizations involved in wireless equipment or telecommunications using the 800 MHz band may be affected if the proposed framework is adopted, and could consider whether to submit comments during the consultation period.",
+      "recommended_action_en": "Review the official e-Gov public comment notice and the draft ordinance text to assess relevance and any applicable deadlines.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-6d6365239ab02373",
+      "stage": "Public Comment Closed",
+      "area": "Other",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "科学技術・イノベーション創出の活性化に関する法律施行令の一部を改正する政令案に対する御意見募集について",
+      "title_en": "Public comment: draft partial amendment to the Enforcement Order of the Act on Enhancing R&D and Innovation Creation",
+      "summary_en": "This item is a public comment solicitation on a draft cabinet order to partially amend the enforcement order of Japan's Act on Vitalization of Science, Technology and Innovation Creation. According to the metadata, the draft was published on 2026/06/30 with a comment submission deadline of 2026/07/29 23:59, and it falls under the 'independent administrative agencies' category. The responsible office is the Cabinet Office's Science, Technology and Innovation Promotion Secretariat.",
+      "business_impact_en": "Organizations connected to science, technology, and innovation activities or related independent administrative agencies may want to monitor this proposal, as the amendment could affect applicable requirements if adopted.",
+      "recommended_action_en": "Review the official Japanese source at the provided e-Gov link to confirm the draft's scope and the comment submission deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-7185c8a805c25aae",
+      "stage": "In Force",
+      "area": "Finance / AML",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "独立行政法人郵便貯金簡易生命保険管理・郵便局ネットワーク支援機構に関する省令の一部を改正する省令",
+      "title_en": "Partial Amendment to Ministerial Ordinance on the Organization for Postal Savings, Postal Life Insurance and Post...",
+      "summary_en": "This item concerns a ministerial ordinance amending the ordinance relating to the Organization for Postal Savings, Postal Life Insurance and Post Office Network (originally Ministry of Internal Affairs and Communications Ordinance No. 98 of 2007). The amending ordinance is listed as Ministry of Internal Affairs and Communications Ordinance No. 103 of 2026, with a stated promulgation date and enforcement date of 2026-08-07. The specific substantive changes are not detailed in the provided metadata.",
+      "business_impact_en": "Entities connected to postal savings, postal life insurance, or the post office network administration may be affected by procedural or administrative changes introduced by the amendment.",
+      "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the exact scope, provisions, and effective date of the amendment.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-72fe769511a5b4df",
+      "stage": "Public Comment Closed",
+      "area": "Food / Agriculture",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "令和四年農林水産省告示第千六百五十号（農薬取締法第四条第一項第五号に掲げる場合に該当するかどうかの基準を定める件第一号の規定に基づき、同号の農林水産大臣が定める基準を定める件）の一部を改正する件（チアメトキサム）（案）についての意見・情報の募集について",
+      "title_en": "Public Comment on Draft Amendment to MAFF Notice on Agricultural Chemicals Regulation Act Criteria (Thiamethoxam)",
+      "summary_en": "Japan's Ministry of Agriculture, Forestry and Fisheries (MAFF) has opened a public comment period on a draft partial amendment to a 2022 MAFF notice concerning criteria under the Agricultural Chemicals Regulation Act, relating to the substance thiamethoxam. According to the metadata, the draft was published on 2026-08-28 with a comment deadline of 2026-09-26 23:59. The inquiry contact is listed as MAFF's Consumer Affairs Bureau, Agricultural Production Safety Management Division.",
+      "business_impact_en": "Parties involved in agriculture or the use of the pesticide thiamethoxam may wish to note that criteria under the relevant notice could be revised. Any change could affect applicable requirements once finalized.",
+      "recommended_action_en": "Consider reviewing the official Japanese source and, if relevant, the applicable requirements before the stated comment deadline.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense"
+      ]
+    },
+    {
+      "id": "raw-7e62a10d7fe7eb3a",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "環境省 (MOE) 報道発表",
+      "title_ja": "特定外来生物による生態系等に係る被害の防止に関する法律施行令の一部を改正する政令案、特定外来生物による生態系等に係る被害の防止に関する法律施行規則の一部を改正する省令案及び環境大臣が所掌する特定外来生物に係る特定飼養等施設の基準の細目等を定める件の改正案に対する意見募集（パブリック・コメント）について",
+      "title_en": "Public Comment on Draft Amendments to Invasive Alien Species Act Cabinet Order and Related Rules",
+      "summary_en": "Japan's Ministry of the Environment (MOE) has issued a public comment (public comment) notice concerning draft amendments to the Cabinet Order and Ministerial Ordinance enforcing the Act on the Prevention of Adverse Ecological Impacts Caused by Designated Invasive Alien Species, as well as a draft revision to the notice setting detailed standards for designated rearing facilities under the Minister of the Environment. The materials are presented as drafts open for public comment and are not described as enacted or in force. The subject area relates to the natural environment.",
+      "business_impact_en": "Organizations that rear, handle, or maintain facilities for designated invasive alien species could be affected if the proposed standards and rules are adopted.",
+      "recommended_action_en": "Review the official MOE source and the draft texts to assess any relevance and to identify the public comment submission window.",
+      "hard_signals": [
+        "name_separator",
+        "katakana_in_title_ja",
+        "japan_specific_term",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule"
+      ]
+    },
+    {
+      "id": "raw-80a44a29ed636dd0",
+      "stage": "Public Comment Closed",
+      "area": "Real Estate / Land Use",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "マンションの管理の適正化の推進に関する法律施行規則及び長期優良住宅の普及の促進に関する法律施行規則の一部を改正する省令案に関する意見募集について",
+      "title_en": "Public Comment: Draft Ministerial Ordinance Amending Enforcement Rules on Condominium Management and Long-Term...",
+      "summary_en": "This is a public comment invitation regarding a draft ministerial ordinance that would partially amend the enforcement rules of the Act on Promotion of Proper Condominium Management and the Act on Promotion of the Diffusion of Long-Term Quality Housing. According to the metadata, the draft was published on 2026/06/16 with a comment deadline of 2026/07/16, and is categorized under construction and housing. The responsible contact is listed as the Housing Bureau's counsellor for condominiums and rental housing.",
+      "business_impact_en": "Organizations involved in condominium management or long-term quality housing may be affected if the draft amendments are finalized, though the specific changes are not detailed in this metadata.",
+      "recommended_action_en": "Consider reviewing the official Japanese source to confirm the scope of the proposed amendments and the public comment process.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    },
+    {
+      "id": "raw-838a72a16b450ce1",
+      "stage": "Public Comment Closed",
+      "area": "Energy / Environment",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "労働安全衛生法及び作業環境測定法の一部を改正する法律の一部の施行に伴う厚生労働省関係告示の整備等に関する告示案及びサンプリング補助者講習規程（案）に関する御意見の募集について",
+      "title_en": "Public Comment: Draft MHLW Notices and Sampling Assistant Training Rules Tied to Amended Industrial Safety/Working...",
+      "summary_en": "This is a public comment item from e-Gov seeking opinions on a draft notice (告示案) to arrange Ministry of Health, Labour and Welfare notices in connection with partial enforcement of amendments to the Industrial Safety and Health Act and the Working Environment Measurement Act, along with a draft Sampling Assistant Training Regulation. According to the metadata, the proposal was published on 2026-06-19 with a comment deadline of 2026-07-18 20:00. The matter is handled by the Chemical Hazards Control Division of the Labour Standards Bureau's Industrial Safety and Health Department within MHLW.",
+      "business_impact_en": "Organizations involved in occupational safety, working environment measurement, or chemical substance handling may be affected if these draft notices and training rules are finalized.",
+      "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the scope of the draft notices, the training regulation, and the comment submission deadline.",
+      "hard_signals": [
+        "katakana_in_title_ja",
+        "instrument_term",
+        "long_title",
+        "stage_prefix_rule",
+        "number_dense",
+        "ellipsis_in_english_title"
+      ]
+    }
+  ]
+}

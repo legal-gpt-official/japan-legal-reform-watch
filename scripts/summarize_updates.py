@@ -152,6 +152,10 @@ MODEL_PRICING_USD_PER_MTOK = {
     "claude-sonnet-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
     "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_write_5m": 3.75, "cache_write_1h": 6.0, "cache_read": 0.30},
     "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_write_5m": 1.25, "cache_write_1h": 2.0, "cache_read": 0.10},
+    # Haiku 5.5 has a second rate card ($0.50 / $2.50) for prompts over 100K
+    # tokens. Every request here is a few thousand tokens, so only the short-
+    # prompt card applies. Priced for evaluation; not adopted by any workflow.
+    "claude-haiku-5-5": {"input": 0.10, "output": 0.50, "cache_write_5m": 0.125, "cache_write_1h": 0.20, "cache_read": 0.01},
 }
 FATAL_PROVIDER_ERRORS = ("insufficient_credit", "authentication_error", "permission_error")
 _CREDIT_SIGNALS = (

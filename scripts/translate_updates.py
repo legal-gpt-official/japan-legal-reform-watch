@@ -168,6 +168,15 @@ MODEL_PRICING_USD_PER_MTOK = {
         "cache_write_1h": 2.0,
         "cache_read": 0.10,
     },
+    # Short-prompt rate card only: the $0.50 / $2.50 card for prompts over 100K
+    # tokens never applies to a single-item translation request.
+    "claude-haiku-5-5": {
+        "input": 0.10,
+        "output": 0.50,
+        "cache_write_5m": 0.125,
+        "cache_write_1h": 0.20,
+        "cache_read": 0.01,
+    },
 }
 
 # The four translatable fields and their character limits. Over-limit output is
