@@ -232,7 +232,7 @@ def build_set(size: int, profile: str = "stratified", items=None, cache=None) ->
 # block a correct model. 勧 is deliberately absent -- the prompt asks for 勧告.
 NON_SIMPLIFIED_CHARS = frozenset(
     "與為國關規條號實發際準標時從業務員會這們說對個經濟進動產稅證據機構學醫藥環電網資訊開歷預處車門問題書長東應當結"
-    "労済関円検証沢図総広辺経営変団払帰単様歳薬楽駅鉄対発県隣険査価継続剤処乗"
+    "労済関円検証沢図総広辺経営変団払帰単様歳薬楽駅鉄対発県隣険査価継続剤処乗齢気"
 )
 
 # Which Chinese instrument word in a title the source supports.
@@ -264,6 +264,33 @@ STAGE_PREFIXES = {
     "Draft Guideline": "指南草案：",
     "Bill Submitted": "法案提交：",
 }
+
+
+def status_misstated(title: str, stage: str) -> str | None:
+    """A title that tells the reader the wrong consultation status, or None.
+
+    Unlike the preferred prefix (a style rule), this is a factual error: a
+    closed consultation titled as open invites a reader to prepare a comment
+    that can no longer be filed, and "results" on an item without results
+    claims a step that has not happened.
+    """
+    title = title or ""
+    closed_marker = any(m in title for m in ("已结束", "结束", "已截止", "截止"))
+    results_marker = "结果" in title
+    if stage == "Public Comment Closed":
+        if results_marker:
+            return "closed consultation titled as results published"
+        if "公开征求意见" in title and not closed_marker:
+            return "closed consultation titled as open"
+    elif stage == "Public Comment Open":
+        if results_marker:
+            return "open consultation titled as results published"
+        if "已结束" in title:
+            return "open consultation titled as closed"
+    elif stage == "Public Comment Results Published":
+        if "公开征求意见" in title and not results_marker:
+            return "results item titled without results"
+    return None
 
 
 def _digits(text: str) -> set[int]:
@@ -373,6 +400,7 @@ def score_translation(fields: dict, entry: dict, first_title_errors: list[str],
         "obligation_added": bool(_OBLIGATION_ZH.search(joined)) and not _OBLIGATION_EN.search(_english(entry)),
         "stage_prefix_expected": prefix is not None,
         "stage_prefix_ok": None if prefix is None else (fields.get("title") or "").startswith(prefix),
+        "status_misstated": status_misstated(fields.get("title") or "", entry.get("stage") or ""),
         "lengths": {f: len(str(fields.get(f) or "")) for f in translator.TRANSLATION_FIELDS},
     }
 
@@ -522,6 +550,7 @@ def aggregate(run: dict) -> dict:
         "numbers_dropped_pct": rate(lambda s: bool(s.get("numbers_dropped"))),
         "numbers_added_pct": rate(lambda s: bool(s.get("numbers_added"))),
         "obligation_added_pct": rate(lambda s: s.get("obligation_added")),
+        "status_misstated_pct": rate(lambda s: bool(s.get("status_misstated"))),
         "stage_prefix_ok_pct": (100.0 * sum(1 for s in with_prefix if s.get("stage_prefix_ok")) / len(with_prefix)) if with_prefix else 0.0,
         "mean_calls": statistics.mean([r.get("calls", 0) for r in records]) if records else 0,
         "mean_cost_usd": statistics.mean(costs) if costs else 0.0,
@@ -542,6 +571,7 @@ BLOCKING_METRICS = (
     ("numbers_added_pct", "more numbers not in the English (possible hallucination)"),
     ("numbers_dropped_pct", "more numbers dropped from the English"),
     ("obligation_added_pct", "more obligation wording the English does not support"),
+    ("status_misstated_pct", "more titles stating the wrong consultation status"),
     ("refusal_pct", "more safety refusals"),
 )
 
@@ -575,6 +605,7 @@ def compare(args) -> int:
         ("numbers dropped %", "numbers_dropped_pct", "{:.1f}"),
         ("numbers added %", "numbers_added_pct", "{:.1f}"),
         ("obligation added %", "obligation_added_pct", "{:.1f}"),
+        ("consultation status wrong %", "status_misstated_pct", "{:.1f}"),
         ("stage prefix followed %", "stage_prefix_ok_pct", "{:.1f}"),
         ("mean API calls / item", "mean_calls", "{:.2f}"),
         ("mean USD / item", "mean_cost_usd", "{:.5f}"),
@@ -648,6 +679,8 @@ def _flags(scores: dict) -> str:
             flags.append(f"{key}={scores[key]}")
     if scores.get("kana_anywhere"):
         flags.append("kana")
+    if scores.get("status_misstated"):
+        flags.append(scores["status_misstated"])
     if scores.get("obligation_added"):
         flags.append("obligation added")
     if scores.get("stage_prefix_ok") is False:

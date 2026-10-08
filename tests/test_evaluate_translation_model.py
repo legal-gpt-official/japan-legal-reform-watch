@@ -156,6 +156,23 @@ class TestMetrics(unittest.TestCase):
         # 断 is the Simplified form (Traditional is 斷).
         self.assertNotIn("断", ev.NON_SIMPLIFIED_CHARS)
 
+    def test_wrong_consultation_status_is_flagged(self):
+        closed = ev.frozen_entry(item(stage="Public Comment Closed"))
+        for title, expected in (
+            ("公开征求意见：《银行法施行规则》修订草案", "closed consultation titled as open"),
+            ("公开征求意见结果：《银行法施行规则》修订草案", "closed consultation titled as results published"),
+            ("（已结束）公开征求意见：《银行法施行规则》修订草案", None),
+            ("公开征求意见（已结束）：《银行法施行规则》修订草案", None),
+        ):
+            with self.subTest(title=title):
+                s = ev.score_translation(fields(title=title), closed, [], [])
+                self.assertEqual(s["status_misstated"], expected)
+        self.assertIn("status_misstated_pct", [key for key, _ in ev.BLOCKING_METRICS])
+
+    def test_japanese_only_forms_seen_in_real_output_are_caught(self):
+        s = score(fields(summary="前期高齢者交付金。电気事業法。截止日期为2026-08-22。"))
+        self.assertEqual(s["non_simplified_chars"], ["業", "気", "齢"])
+
     def test_body_kana_is_reported_but_does_not_block(self):
         s = score(fields(summary="第一号イ的要件。截止日期为2026-08-22。"))
         self.assertTrue(s["kana_anywhere"])
