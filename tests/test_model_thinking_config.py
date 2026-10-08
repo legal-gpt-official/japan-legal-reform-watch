@@ -47,7 +47,10 @@ class TestLowestThinkingConfig(unittest.TestCase):
         self.assertEqual(ab.lowest_thinking_config("claude-sonnet-5-5"), {"type": "between_tools"})
 
     def test_models_that_accept_disabled(self):
-        for model in ("claude-opus-4-8", "claude-sonnet-5", "claude-haiku-4-5-20251001"):
+        # Haiku 5.5 runs adaptive thinking when `thinking` is omitted, but accepts
+        # `disabled` at effort `high` or below; the stages leave effort at its
+        # default (`medium` on that model), so `disabled` is valid there.
+        for model in ("claude-opus-4-8", "claude-sonnet-5", "claude-haiku-4-5-20251001", "claude-haiku-5-5"):
             with self.subTest(model=model):
                 self.assertEqual(ab.lowest_thinking_config(model), {"type": "disabled"})
 
@@ -93,6 +96,16 @@ class TestStageRequestShape(unittest.TestCase):
             with self.subTest(pricing=pricing.__module__):
                 price = pricing("claude-sonnet-5-5")
                 self.assertEqual((price["input"], price["output"], price["cache_read"]), (2.0, 10.0, 0.20))
+
+    def test_haiku_5_5_is_priced_in_both_stages(self):
+        # Without a row, a capped run rejects the model, so the A/B eval could
+        # not run it. Short-prompt (<=100K tokens) rate card.
+        for pricing in (su.model_pricing, tu.model_pricing):
+            with self.subTest(pricing=pricing.__module__):
+                price = pricing("claude-haiku-5-5")
+                self.assertEqual((price["input"], price["output"], price["cache_read"]), (0.10, 0.50, 0.01))
+                self.assertIsNot(price, pricing("claude-haiku-4-5"))
+                self.assertEqual(pricing("claude-haiku-4-5")["input"], 1.0)
 
 
 class TestSummaryModelAdoption(unittest.TestCase):

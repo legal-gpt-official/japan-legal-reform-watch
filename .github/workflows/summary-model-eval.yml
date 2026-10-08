@@ -31,6 +31,7 @@ on:
           - "claude-sonnet-5-5"
           - "claude-sonnet-5"
           - "claude-opus-5-5"
+          - "claude-haiku-5-5"
       profile:
         description: "Frozen set: hard (adversarial) or stratified (broad)"
         required: true
