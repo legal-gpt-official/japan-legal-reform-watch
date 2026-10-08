@@ -152,7 +152,8 @@ MODEL_PRICING_USD_PER_MTOK = {
         "output": 10.0,
         "cache_write_5m": 2.50,
         "cache_write_1h": 4.0,
-        "cache_read": 0.20,
+        # 0.05x input, not the usual 0.1x (Sonnet 5 below is still $0.20).
+        "cache_read": 0.10,
     },
     "claude-sonnet-5": {
         "input": 2.0,
