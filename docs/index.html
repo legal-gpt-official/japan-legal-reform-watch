@@ -24,7 +24,7 @@
       "publisher": { "@type": "Organization", "name": "Legal GPT", "url": "https://legal-gpt.com/" }
     }
   </script>
-  <link rel="stylesheet" href="./style.css?v=area-pages-20261007" />
+  <link rel="stylesheet" href="./style.css?v=lang-switch-20261008" />
 </head>
 <body>
   <!-- Disclaimer Modal -->
@@ -290,7 +290,10 @@
       </div>
       <div class="header-actions">
         <div class="language-switcher">
-          <label class="language-switcher-label" for="language-select" data-i18n="lang_selector_label">Language</label>
+          <label class="language-switcher-label" for="language-select">
+            <svg class="language-switcher-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 12h19M12 2.5c2.6 2.7 3.9 5.9 3.9 9.5s-1.3 6.8-3.9 9.5M12 2.5C9.4 5.2 8.1 8.4 8.1 12s1.3 6.8 3.9 9.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span data-i18n="lang_selector_label">Language</span>
+          </label>
           <select id="language-select" class="language-select" data-i18n-aria-label="lang_selector_label" aria-label="Language">
             <option value="en">English</option>
             <option value="ja">日本語</option>
@@ -649,8 +652,8 @@
   </footer>
 
   <script src="analytics.js?v=analytics-20261006"></script>
-  <script src="i18n.js?v=area-pages-20261007"></script>
-  <script src="alerts-config.js?v=area-pages-20261007"></script>
-  <script src="app.js?v=area-pages-20261007"></script>
+  <script src="i18n.js?v=lang-switch-20261008"></script>
+  <script src="alerts-config.js?v=lang-switch-20261008"></script>
+  <script src="app.js?v=lang-switch-20261008"></script>
 </body>
 </html>
