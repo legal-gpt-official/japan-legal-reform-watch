@@ -73,7 +73,7 @@ AREA_TOP_SOURCES = 6
 SUMMARY_MAX_CHARS = 320
 
 # Shared with docs/index.html; bump both together when style.css changes.
-STYLE_CACHE_BUSTER = "area-pages-20261007"
+STYLE_CACHE_BUSTER = "lang-switch-20261008"
 ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
