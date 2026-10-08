@@ -1526,6 +1526,10 @@ class TestModelPricingLookup(unittest.TestCase):
         rates = su.model_pricing("claude-opus-5-5")
         self.assertEqual(rates["cache_read"], 0.20)
         self.assertNotEqual(rates["cache_read"], round(0.1 * rates["input"], 2))
+        # Sonnet 5.5 is the same 0.05x: $0.10 against $2, where 0.1x would be $0.20.
+        sonnet = su.model_pricing("claude-sonnet-5-5")
+        self.assertEqual(sonnet["cache_read"], 0.10)
+        self.assertNotEqual(sonnet["cache_read"], round(0.1 * sonnet["input"], 2))
 
     def test_cache_write_multipliers_hold_on_every_row(self):
         """These ones ARE derived: 5m = 1.25x input, 1h = 2x input."""

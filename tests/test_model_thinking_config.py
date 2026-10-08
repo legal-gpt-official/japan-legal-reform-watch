@@ -95,7 +95,9 @@ class TestStageRequestShape(unittest.TestCase):
         for pricing in (su.model_pricing, tu.model_pricing):
             with self.subTest(pricing=pricing.__module__):
                 price = pricing("claude-sonnet-5-5")
-                self.assertEqual((price["input"], price["output"], price["cache_read"]), (2.0, 10.0, 0.20))
+                # Cache reads are 0.05x input on Sonnet 5.5 (repriced; Sonnet 5 keeps 0.1x).
+                self.assertEqual((price["input"], price["output"], price["cache_read"]), (2.0, 10.0, 0.10))
+                self.assertEqual(pricing("claude-sonnet-5")["cache_read"], 0.20)
 
     def test_haiku_5_5_is_priced_in_both_stages(self):
         # Without a row, a capped run rejects the model, so the A/B eval could

@@ -133,7 +133,7 @@ EXPECTED_OUTPUT_TOKENS = 700
 # for transparent run-cost reporting and the optional safety cap; provider
 # billing remains authoritative. Unknown models report token usage without a
 # dollar estimate instead of guessing.
-# Source: platform.claude.com/docs/en/about-claude/pricing, checked 2026-08-20.
+# Source: platform.claude.com/docs/en/about-claude/pricing, checked 2026-10-08.
 # Sonnet 5's $2/$10 launch pricing is now the STANDARD price: the increase to
 # $3/$15 scheduled for 2026-09-01 was withdrawn. `cache_read` is the documented
 # 0.1x-of-input rate; charging cache tokens at the full input rate (as this table
@@ -141,14 +141,15 @@ EXPECTED_OUTPUT_TOKENS = 700
 # List prices, $/MTok. Cache writes follow the standard multipliers (5m = 1.25x
 # input, 1h = 2x input), but cache_read does NOT: it is 0.1x input on most
 # models and is quoted separately per model, so copy the published figure rather
-# than deriving it. Opus 5.5 is the case in point -- 0.1x its $4 input would be
-# $0.40, and the published rate is $0.20.
+# than deriving it. Opus 5.5 and Sonnet 5.5 are the case in point: both are
+# quoted at 0.05x input, so Opus 5.5 is $0.20 (0.1x would be $0.40) and
+# Sonnet 5.5 is $0.10 (0.1x would be $0.20, the rate Sonnet 5 still has).
 MODEL_PRICING_USD_PER_MTOK = {
     "claude-opus-5-5": {"input": 4.0, "output": 20.0, "cache_write_5m": 5.0, "cache_write_1h": 8.0, "cache_read": 0.20},
     "claude-opus-4-8": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-5": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
     "claude-opus-4-7": {"input": 5.0, "output": 25.0, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "cache_read": 0.50},
-    "claude-sonnet-5-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
+    "claude-sonnet-5-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.10},
     "claude-sonnet-5": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 4.0, "cache_read": 0.20},
     "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_write_5m": 3.75, "cache_write_1h": 6.0, "cache_read": 0.30},
     "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_write_5m": 1.25, "cache_write_1h": 2.0, "cache_read": 0.10},
