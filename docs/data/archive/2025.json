@@ -324,6 +324,42 @@
     }
   },
   {
+    "id": "raw-184b769a594a36ba",
+    "title_en": "MOFA Ministerial Ordinance Amending Rules on Electronic Payment of National Revenue (Reiwa 7 No. 7)",
+    "title_ja": "外務省の所管する法令に係る情報通信技術を利用する方法による国の歳入等の納付に関する法律施行規則の一部を改正する省令",
+    "area": "Other",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "The metadata describes a Ministry of Foreign Affairs ordinance (Reiwa 7 MOFA Ordinance No. 7) that partially amends the Enforcement Regulations of the Act on Payment of National Revenue Using Information and Communications Technology, as applied to MOFA-administered laws. The listing gives a promulgation date of 2025-03-27 and an effective date of 2025-04-01. The specific amended provisions are not included in the provided metadata.",
+    "business_impact_en": "This may affect procedures for paying certain fees or revenues to the national government electronically under MOFA-administered laws, for example in passport or other consular-related payments. The actual scope and practical effect cannot be determined from the metadata alone.",
+    "recommended_action_en": "Consider reviewing the official Japanese text on e-Gov, including the amended provisions and supplementary provisions, to determine whether any payment procedures relevant to your organization are affected.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=505M60000020002_20250401_507M60000020007",
+    "published_at": "2025-03-27",
+    "last_checked": "2026-10-09",
+    "relevance_score": 35.0,
+    "first_seen_at": "2026-10-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the title and listing metadata; the content of the amendments is not provided. The listing date field (20261008) appears inconsistent with the 2025 promulgation and effective dates and was not relied upon. The in-force status reflects the stated effective date and should be verified against the official source. The 'Other' area and 'Medium' impact labels are preliminary keyword-based triage only.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「外務省の所管する法令に係る情報通信技術を利用する方法による国の歳入等の納付に関する法律施行規則」(令和五年外務省令第二号)を改正する省令(令和七年外務省令第七号)が掲載されています。メタデータ上、公布日は2025-03-27、施行日は2025-04-01と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "外務省所管の法令に基づき、情報通信技術を利用して国の歳入等を納付する手続に関わる事業者や関係者にとって、納付方法や手続の運用に関係する可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正省令の条文および新旧対照等について、e-Gov法令検索や官報など日本語の公式情報源で内容と施行状況をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "外务省省令修订：利用信息通信技术缴纳国家岁入等的法律施行规则（令和7年第7号）",
+        "summary": "该元数据描述了外务省的一项省令（令和7年外务省令第7号），该省令对适用于外务省所管法令的《利用信息通信技术缴纳国家岁入等的法律施行规则》进行了部分修订。该列表给出的公布日期为2025-03-27，生效日期为2025-04-01。所提供的元数据中未包含具体的修订条款内容。",
+        "business_impact": "这可能会影响在外务省所管法令下以电子方式向国家缴纳某些费用或岁入的程序，例如护照或其他领事相关的缴费。仅凭元数据无法确定实际范围和实际影响。",
+        "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，包括修订条款及附则，以确定是否会影响与本机构相关的任何缴费程序。"
+      }
+    }
+  },
+  {
     "id": "raw-a5a65362c7fef330",
     "title_en": "METI Ministerial Ordinance Updating Regulations Following Amendments to the Consumer Product Safety Act and Related Laws",
     "title_ja": "消費生活用製品安全法等の一部を改正する法律の施行に伴う経済産業省関係省令の整備に関する省令",
@@ -3593,7 +3629,13 @@
         "business_impact": "经营学校或民间教育保育服务的机构可能需要审视所涉预防措施是否影响其义务。所列明的未来施行日期或为审视内部做法留出时间。",
         "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以在得出任何结论前确认其适用范围、要求及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Govの法令更新一覧に、児童福祉法施行規則(昭和二十三年厚生省令第十一号)が対象法令として掲載されています。改正法令は「学校設置者等及び民間教育保育等事業者による児童対象性暴力等の防止等のための措置に関する法律施行規則」(令和七年内閣府令第百四号)で、公布日は2025年12月25日、施行日は2026年12月25日と記載されています。メタデータ上の更新一覧日は20260928です。",
+    "business_impact_ja": "児童福祉法施行規則に関する改正が反映されることから、児童関連の事業や施設を運営する事業者で、関係する手続や運用に影響が及ぶ可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は条文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および適用範囲については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-62625277c5496f75",
@@ -3623,7 +3665,13 @@
         "business_impact": "如果此次修订涉及养老金相关的过渡措施，可能会影响处理公共养老金事务的雇主、养老金基金或顾问，但实际影响范围无法从所提供的元数据中确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及生效日期，以判断相关变更是否与自身业务有关。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「国民年金基金令等の一部を改正する政令」(令和七年政令第四百四十二号)が掲載されています。対象法令は、公的年金制度の健全性及び信頼性の確保のための厚生年金保険法等の一部を改正する法律の施行に伴う経過措置に関する政令(平成二十六年政令第七十四号)で、公布日は2025年12月24日、施行日は2026年12月1日と記載されています。更新一覧日は20260930とされていますが、改正の具体的な内容は提供された情報からは確認できません。",
+    "business_impact_ja": "年金制度の経過措置に関する政令の改正であるため、年金関連の社会保険実務や従業員への制度説明に関わる場合には、影響が生じる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認を要し、本情報のみでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用範囲については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-fda48c0cb1fd8c3e",
@@ -3694,6 +3742,42 @@
         "summary": "本项目涉及一项施行规则（令和7年法务省·厚生劳动省令第4号），关于外国人育成就业制度的适当实施及此类劳动者的保护。根据元数据，该规则修订了现行《技能实习法》的施行规则，公布日期为2025-09-30，规定生效日期为2027-04-01。该项目来自e-Gov法令更新一览，反映了一项预定的法规变更。",
         "business_impact": "在日本育成就业相关框架下雇用或担保外国劳动者的机构，可能需要审视本规则可能如何影响其合规义务。从技能实习制度过渡到育成就业制度，可能涉及程序及文件方面的变化。",
         "recommended_action": "建议考虑查阅e-Gov官方来源及所引用的省令，以在采取任何行动前确认其适用范围、义务及生效日期。"
+      }
+    }
+  },
+  {
+    "id": "raw-94f18fd89909a6c0",
+    "title_en": "Enforcement Regulation for the Act on Proper Implementation of Ikusei Shuro and Protection of Foreign Nationals",
+    "title_ja": "外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則",
+    "area": "Other",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "This item is an enforcement regulation (ministerial order) under the Act on the Proper Implementation of Ikusei Shuro (Employment for Skill Development) for Foreign Nationals and the Protection of Such Workers. The metadata lists it as a joint order of the Ministry of Justice and the Ministry of Health, Labour and Welfare (Reiwa 7, No. 4), with a promulgation date of 2025-09-30 and an effective date of 2025-10-01. It appears in the e-Gov law update list.",
+    "business_impact_en": "Employers, supervising or accepting organizations, and others involved in hiring foreign workers under the Ikusei Shuro framework may need to check whether the regulation's detailed procedures affect them. The specific obligations are not stated in the provided metadata.",
+    "recommended_action_en": "Review the full text of the regulation on the official e-Gov source to confirm its scope, requirements, and effective date.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=507M60000110004_20251001_000000000000000",
+    "published_at": "2025-09-30",
+    "last_checked": "2026-10-09",
+    "relevance_score": 15.0,
+    "first_seen_at": "2026-10-09",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the regulation's content and specific requirements were not provided. The 'update list date' in the raw summary (20261008) appears inconsistent with the 2025 publication date and should be verified. The 'In Force' label is rule-based and unverified; the stated effective date of 2025-10-01 should be checked against the official source.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律施行規則」(令和七年法務省・厚生労働省令第四号)が掲載されています。メタデータ上、公布日は2025年9月30日、施行日は2025年10月1日とされています。なお、更新一覧日は20261008と記載されており、公布日・施行日との前後関係は原文の記載のみでは確認できません。",
+    "business_impact_ja": "育成就労制度に関与する監理支援機関、受入れ側の事業者、関連する人事・労務の実務に、手続や運用面で影響が生じる可能性があります。具体的な規定内容はメタデータからは判明しないため、影響の範囲や程度は条文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "対象となる規定や適用関係については、e-Govに掲載された条文など日本語の公式情報源をあわせてご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "施行规则：《外国人育成就业适当实施及育成就业外国人保护法》",
+        "summary": "本条目为《外国人育成就业适当实施及育成就业外国人保护法》下的施行规则（省令）。元数据将其列为法务省与厚生劳动省的联合命令（令和7年第4号），公布日期为2025-09-30，生效日期为2025-10-01。该条目出现在e-Gov法令更新一览中。",
+        "business_impact": "在育成就业制度下雇用外国劳动者的雇主、监督机构或接收机构等相关方可能需要确认该规则的具体程序是否对其产生影响。所提供的元数据中未列明具体义务。",
+        "recommended_action": "建议考虑在e-Gov官方来源查阅该规则全文，以确认其适用范围、要求及生效日期。"
       }
     }
   },
@@ -3905,7 +3989,13 @@
         "business_impact": "适用《产业竞争力强化法》的企业，特别是涉及网络安全或重要电子计算机系统的企业，可能受到修订条款的影响。根据所提供的元数据，无法确定具体的变更内容及其适用范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括具体修订条款及其生效日期，以评估其与自身业务的相关性。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号)が掲載されています。対象法令は産業競争力強化法(平成二十五年法律第九十八号)で、公布日は2025年5月23日、施行日は2026年10月1日と記載されています。提供された情報からは、具体的な改正内容や条文の変更点までは確認できません。",
+    "business_impact_ja": "産業競争力強化法に関連する制度や手続に、2026年10月1日の施行時点で変更が及ぶ可能性があります。ただし、改正の具体的内容が不明なため、自社の事業への影響の有無や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および産業競争力強化法への影響については、e-Govの法令データや官報など日本語の公式情報源で、改正条文と施行に関する経過措置を確認することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-e6ecdf0cfefac1dc",
@@ -3935,7 +4025,13 @@
         "business_impact": "与重要计算机保护相关的《警察职务执行法》修订内容，可能视其具体内容而定，影响运营重要信息系统的组织。所提供的元数据中未说明具体条款及任何义务。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及2026-10-01的生效日期，以确认其适用范围及与贵组织的相关性。"
       }
-    }
+    },
+    "summary_ja": "e-Govの法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号、公布日2025年5月23日)による警察官職務執行法(昭和二十三年法律第百三十六号)の改正が掲載されています。更新一覧日は2026年10月1日、施行日は2026年10月1日と記載されています。改正の具体的な条文内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "警察官職務執行法の改正であり、事業者への直接の影響の有無や程度は提供情報からは判断できませんが、関連する重要電子計算機への不正行為対策の枠組みと併せて、サイバーセキュリティ対応や官公庁との連絡体制に関わる可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容および自社の業務との関係については、e-Gov法令検索等の日本語の公式情報源で改正条文と施行日をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-202077061efbe784",
@@ -3965,7 +4061,13 @@
         "business_impact": "与数字厅或重要电子计算机系统相关的机构可能希望确认此次修订是否对其产生影响。由于元数据未说明具体修订内容，其影响尚不明确。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认《数字厅设置法》的具体修订内容及其生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号、公布日2025年5月23日)による改正が、デジタル庁設置法(令和三年法律第三十六号)を対象として掲載されています。更新一覧日および施行日は2026年10月1日と記載されています。メタデータからは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "改正の具体的内容が示されていないため影響の有無は判断できませんが、デジタル庁の所掌や関連制度に変更が及ぶ場合には、関連する事業者の対応事項に影響する可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置の有無については、e-Gov法令検索および官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-008c21a5849e5edb",
@@ -3995,7 +4097,13 @@
         "business_impact": "与重要计算机系统或NICT相关活动有联系的机构可能受到相关法律框架的影响，但元数据未说明修订的具体内容。",
         "recommended_action": "建议考虑查阅e-Gov官方日文原文，以确认对NICT法的具体修订内容及其适用范围和生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号)による改正として、国立研究開発法人情報通信研究機構法(平成十一年法律第百六十二号)が掲載されています。メタデータ上、公布日は2025年5月23日、施行日は2026年10月1日と記載されています。改正の具体的な条文内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "対象は国立研究開発法人情報通信研究機構法であり、重要電子計算機に対する不正な行為への対策に関連する法整備の一環と考えられますが、一般の事業者に及ぶ影響の有無や範囲は、提供情報のみでは判断できません。関連事業を営む場合には、今後の運用や関連規定との関係で影響が生じる可能性があります。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係の有無については、e-Gov法令検索に掲載された公式の法令本文および所管官庁の公表資料をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-a0b0ad8e331b95d7",
@@ -4025,7 +4133,13 @@
         "business_impact": "适用《网络安全基本法》的组织，或运营重要电子计算机系统的组织，在该修订生效后可能受到影响。具体的义务与适用范围无法从所提供的元数据中确定。",
         "recommended_action": "建议在评估相关性之前，查阅e-Gov上的日文官方文本，以确认具体修订内容、适用范围及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号)による、サイバーセキュリティ基本法(平成二十六年法律第百四号)の改正が掲載されています。公布日は2025年5月23日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、改正の具体的な条文内容は確認できません。",
+    "business_impact_ja": "サイバーセキュリティ基本法の改正が2026年10月1日に施行される予定であり、サイバーセキュリティ対策やインシデント対応に関わる事業者の体制・規程に影響が生じる可能性があります。ただし、具体的な影響の有無や範囲は、改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関連性については、e-Govの法令データなど日本語の公式情報源で改正条文および施行日をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-7cfc5a5f785cf527",
@@ -4055,7 +4169,13 @@
         "business_impact": "与信息处理或网络安全相关制度有关联的组织可能受到《信息处理振兴法》修订内容的影响，但所提供的元数据中并未说明具体修订内容。实际适用范围及可能产生的义务或视修订全文而定。",
         "recommended_action": "建议在评估与本组织的相关性之前，先查阅e-Gov上的日文官方文本，以确认实际修订内容、适用范围及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号)による「情報処理の促進に関する法律」(昭和四十五年法律第九十号)の改正が掲載されています。公布日は2025年5月23日、施行日は2026年10月1日と記載されています。提供された情報には改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "情報処理の促進に関する法律に関わる事業者や、重要電子計算機のセキュリティに関連する事業者にとって、施行日以降に関係する規律や手続が変わる可能性があります。ただし、具体的な影響の有無や範囲は、改正内容を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係については、e-Gov法令検索等の日本語の公式情報源で条文や関連する政府発表をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-2f2511b044ab9801",
@@ -4085,7 +4205,13 @@
         "business_impact": "该修订似涉及《内阁法》及相关政府组织事项，因此对企业的直接影响可能有限或间接，不过相关的网络安全框架日后或与关键系统运营者相关。现有元数据无法确定其实际影响。",
         "recommended_action": "建议在得出任何结论之前，查阅e-Gov上的日文官方文本，以确认具体修订内容及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、内閣法(昭和二十二年法律第五号)を対象とする改正の掲載があります。改正法令は「重要電子計算機に対する不正な行為による被害の防止に関する法律の施行に伴う関係法律の整備等に関する法律」(令和七年法律第四十三号)で、公布日は2025年5月23日、施行日は2026年10月1日と記載されています。改正の具体的な条文内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "対象が内閣法であることから、直接の規制対象は主に政府機関の組織・権限に関する事項である可能性があります。ただし、関連する重要電子計算機の不正行為対策の枠組みとの関係で、サイバーセキュリティ対応に関わる事業者に間接的な影響が及ぶことも考えられます。",
+    "recommended_action_ja": "改正の具体的内容および自社への関連性については、e-Govの法令本文や官報など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-c22b93d5ce5e9a56",
@@ -4151,7 +4277,13 @@
         "business_impact": "适用《劳动安全卫生法》的雇主及相关机构可能受到此次修订影响，但根据现有元数据无法确定具体变更的性质与范围。任何义务的产生均取决于实际修订后的条款内容。",
         "recommended_action": "建议在e-Gov上查阅该修订法律及修订后《劳动安全卫生法》的日文官方文本，以确认具体修订条款及其对相关业务的适用情况。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働安全衛生法及び作業環境測定法の一部を改正する法律」(令和七年法律第三十三号)による労働安全衛生法(昭和四十七年法律第五十七号)の改正が掲載されています。公布日は2025年5月14日、施行日は2026年10月1日と記載されています。提供された情報には改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "労働安全衛生法に関する改正であるため、安全衛生管理に関わる社内の規程や運用に見直しが必要となる可能性があります。ただし、具体的な影響の有無や範囲は、改正内容の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う関連政省令等については、e-Govの該当ページおよび厚生労働省など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-20e21c1aa899517e",
@@ -4181,7 +4313,13 @@
         "business_impact": "视修正内容的具体情况而定（此处未提供），涉及工作场所环境测定的雇主和相关组织可能需要在2026-10-01施行日期之前调整相关做法。根据现有信息无法确定任何影响的范围和程度。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本以确认实际修正内容及施行条款，并可考虑在需要时咨询相关专业人士。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働安全衛生法及び作業環境測定法の一部を改正する法律」(令和七年法律第三十三号)に関する情報が掲載されています。メタデータ上、公布日は2025年5月14日、施行日は2026年10月1日とされ、対象法令として作業環境測定法(昭和五十年法律第二十八号)が示されています。具体的な改正内容はメタデータからは確認できません。",
+    "business_impact_ja": "作業環境測定や労働安全衛生に関わる事業者の運用、社内規程、委託先との契約等に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行に向けた関連政省令・通達の有無について、e-Gov法令検索や所管官庁など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-6848feac09ad1220",
@@ -4211,7 +4349,13 @@
         "business_impact": "由于此处未说明修订内容，受劳动安全卫生或作业环境测定相关要求约束的企业可能需要评估是否有任何变更适用于自身。该条目与《登录许可税法》的相关性无法从元数据中确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及附则，以确认实际内容、适用范围及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧によれば、「労働安全衛生法及び作業環境測定法の一部を改正する法律」(令和七年法律第三十三号、公布日2025-05-14)に関連して、登録免許税法(昭和四十二年法律第三十五号)が更新対象として掲載されています。施行日は2026-10-01と記載されており、更新一覧日も20261001とされています。掲載内容は法令更新一覧のメタデータに限られ、具体的な改正内容は提供情報から確認できません。",
+    "business_impact_ja": "改正法令の施行日が2026-10-01とされていることから、登録免許税法に関する実務や社内規程に影響が生じる可能性があります。ただし、具体的な改正内容が示されていないため、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "e-Govの法令データおよび官報等の日本語の公式情報源で、改正の具体的な内容と施行日をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-ba649c63d61c7939",
@@ -4455,7 +4599,13 @@
         "business_impact": "雇主、船员派遣机构或其他涉及船员雇用的相关方在该修订生效后可能受到影响，但根据现有元数据无法确定相关变更的性质和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及生效日期，以判断该修订是否及如何适用于相关业务。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)による船員職業安定法(昭和二十三年法律第百三十号)の更新情報が掲載されています。メタデータ上、公布日は2025年6月11日、施行日は2026年10月1日、更新一覧日は20261001と記載されています。具体的な改正内容は提供された情報からは確認できません。",
+    "business_impact_ja": "船員の職業紹介や募集等に関わる事業者の運用に影響が及ぶ可能性がありますが、改正の具体的内容が示されていないため、影響の範囲や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容、施行日及び関連する政省令等の有無について、e-Govの法令データ及び所管官庁の公表資料など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-9be953f8bed3bd34",
@@ -4485,7 +4635,13 @@
         "business_impact": "一旦修订生效，雇主可能受到有关残疾人就业相关条款修改的影响，但所提供的元数据中并未描述具体修改内容。实际适用范围和义务可能与仅凭标题所推测的情况有所不同。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括该修正法的具体条款及生效日期细节，以了解适用哪些修改内容及其适用时间。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)が2025年6月11日に公布されたと記載されています。この改正法令は、障害者の雇用の促進等に関する法律(昭和三十五年法律第百二十三号)を対象法令の一つとして更新一覧に掲載されており、更新一覧日および施行日は2026年10月1日と示されています。提供された情報には、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "障害者の雇用の促進等に関する法律に関わる雇用管理や社内規程に、施行日以降、見直しが必要となる可能性があります。ただし、具体的な改正内容は提供された情報からは確認できないため、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた対応事項については、e-Govや厚生労働省などの日本語の公式情報源で原文および関連資料をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-ec379f7adcb79caa",
@@ -4515,7 +4671,13 @@
         "business_impact": "海事领域的雇主或与船员配置相关的企业，在所列生效日期到来后，可能会受到船员雇用相关法律修订的影响。所提供的元数据中未描述具体变更范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认具体修正内容、适用范围及生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)による改正が掲載されています。対象法令は船員の雇用の促進に関する特別措置法(昭和五十二年法律第九十六号)で、公布日は2025年6月11日、施行日は2026年10月1日と記載されています。",
+    "business_impact_ja": "船員の雇用に関わる事業者や関連する雇用管理の実務に、施行日以降、規定の改正に伴う対応が生じる可能性があります。具体的な改正内容は提供情報からは確認できないため、影響の程度は不明であると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係の有無について、e-Gov法令検索の掲載ページや官報等、日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-870cc22e766ee280",
@@ -4545,7 +4707,13 @@
         "business_impact": "社会保险劳务士及依赖其服务的雇主可能受到《社会保险劳务士法》相关变更的影响。仅凭元数据无法确定影响的性质和程度。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认对《社会保险劳务士法》的实际修订内容及适用的生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Govの法令更新一覧に、社会保険労務士法(昭和四十三年法律第八十九号)について、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)による改正が掲載されています。公布日は2025年6月11日、施行日は2026年10月1日と記載されています。提供されたメタデータには、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "社会保険労務士法に関わる業務を行う事業者や、社会保険労務士への委託・連携を行う企業に、一定の影響が及ぶ可能性があります。ただし、改正内容がメタデータからは確認できないため、具体的な影響の程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や施行に関する経過措置については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-3e196d428f157751",
@@ -4575,7 +4743,13 @@
         "business_impact": "管理短时间劳动者或有期雇佣劳动者的雇主，在本次修订生效后可能受到相关变化的影响。所提供的元数据中未说明具体修订内容及适用范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括有关生效日期的附则，以确认具体修订内容及各条款的适用时间。"
       }
-    }
+    },
+    "summary_ja": "e-Govの法令更新一覧によると、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)が2025年6月11日に公布されたと記載されています。この改正法令は、短時間労働者及び有期雇用労働者の雇用管理の改善等に関する法律(平成五年法律第七十六号)を対象法令の一つとしており、施行日は2026年10月1日と示されています。提供された情報からは、具体的な改正内容までは確認できません。",
+    "business_impact_ja": "短時間労働者や有期雇用労働者を雇用する事業者において、雇用管理に関する社内規程や運用の見直しが必要となる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連する政省令・指針等の動向について、e-Gov法令検索や厚生労働省など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-0720d3c34e686876",
@@ -4605,7 +4779,13 @@
         "business_impact": "雇用有育儿或护理休假员工的雇主在相关修订条款生效后可能受到影响，但所提供的数据中未说明具体修改内容。对具体业务的影响可能取决于实际修订后的文本。",
         "recommended_action": "建议查阅e-Gov上该修订法及修订后的《育儿护理休假法》的日文官方文本，以了解具体修订内容及其生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)が2025年6月11日に公布されています。この改正法令は、育児休業、介護休業等育児又は家族介護を行う労働者の福祉に関する法律(平成三年法律第七十六号)を対象法令として更新一覧に掲載されており、施行日は2026年10月1日と記載されています。",
+    "business_impact_ja": "育児・介護を行う労働者に関する社内規程や運用に関わる可能性があり、2026年10月1日の施行日に向けて確認が必要となる場合が考えられます。具体的な改正内容や自社への影響は、原文の記載だけでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や適用関係については、e-Gov法令検索および所管官庁が公表する日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-9016ecac8f0472e6",
@@ -4635,7 +4815,13 @@
         "business_impact": "适用男女雇用机会均等法的雇主可能在修正内容生效后受到影响，但具体变更的性质和范围无法从该元数据中确定。",
         "recommended_action": "建议参考e-Gov上修正法及修订后法律的日文官方文本，以确认实际修正内容及其生效日期。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号、公布日2025年6月11日)による改正が掲載されています。対象法令として「雇用の分野における男女の均等な機会及び待遇の確保等に関する法律」(昭和四十七年法律第百十三号)が示され、施行日は2026年10月1日と記載されています。改正の具体的な条文内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "雇用の分野における男女の均等な機会及び待遇の確保等に関する法律に関わる社内規程や雇用管理の運用に、施行日以降に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認を経なければ判断できないと考えられます。",
+    "recommended_action_ja": "改正法の具体的な内容と施行日の詳細について、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-ceafebd9bb65d9f5",
@@ -4665,7 +4851,13 @@
         "business_impact": "在日本运营或使用劳动者派遣安排的企业，在相关修订条款生效后可能会受到影响，但所提供的信息中未说明具体变更内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认实际修订内容、哪些条款自2026-10-01起适用，以及其与自身业务的相关性。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)が掲載されています。対象法令は「労働者派遣事業の適正な運営の確保及び派遣労働者の保護等に関する法律」(昭和六十年法律第八十八号)で、公布日は2025年6月11日、施行日は2026年10月1日と記載されています。",
+    "business_impact_ja": "労働者派遣事業を営む事業者や派遣労働者を受け入れる事業者において、施行日以降の規定の適用に関連して、社内規程や契約実務等の確認が必要となる可能性があります。具体的な改正内容や影響範囲は、提供されたメタデータからは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置については、e-Gov法令検索に掲載された改正法令および所管官庁の公式情報で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-8c9031a977c3f738",
@@ -4695,7 +4887,13 @@
         "business_impact": "适用《女性参与及发展推进法》的雇主可能受到此次修订影响，但所提供的元数据未说明具体的义务或变更内容。相关条款是否适用及如何适用，可能取决于修订文本内容及公司具体情况。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本（以及任何相关政府指导文件），以确认修订的具体内容、生效日期，以及是否与所在组织相关。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)が2025年6月11日に公布されています。この改正法により、「女性の職業生活における活躍の推進に関する法律」(平成二十七年法律第六十四号)が改正対象とされ、施行日は2026年10月1日と記載されています。",
+    "business_impact_ja": "女性活躍推進法に基づく対応を行っている事業者にとっては、2026年10月1日の施行に向けて、社内の制度や運用の見直しが必要となる可能性があります。具体的な改正内容や対象範囲は提供情報からは確認できないため、影響の程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Gov法令検索や所管官庁が公表する日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-88006faccf5bf90a",
@@ -4725,7 +4923,13 @@
         "business_impact": "日本的雇主及人力资源部门可能受到影响，但根据现有元数据无法确定具体的义务或变更内容。实际影响将取决于修订的具体内容，而该内容并未在此提供。",
         "recommended_action": "建议查阅e-Gov上的官方日文文本，包括修订条款及有关生效时间的附则规定，以确定其对所在组织的适用情况。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令検索の更新一覧に、「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律」(昭和四十一年法律第百三十二号)を対象とする改正の掲載があります。改正法令は「労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律等の一部を改正する法律」(令和七年法律第六十三号)で、メタデータ上の公布日は2025年6月11日、施行日は2026年10月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "施行日が2026年10月1日とされているため、労働関係の社内規程や運用に見直しが必要となる可能性があります。ただし、改正の具体的な内容は提供情報に含まれておらず、影響の範囲や程度は条文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と施行日については、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5"
   },
   {
     "id": "raw-c42742582bcbadca",
@@ -9752,17 +9956,17 @@
     "last_checked": "2026-08-07",
     "relevance_score": 10.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title, source name, and date; the content of the revisions is unknown and unverified. The preliminary labels (Finance / AML, Low impact) are keyword-based and may not reflect the actual relevance, which appears to concern international corporate taxation.",
+    "summarized_at": "2026-10-08T00:49:17Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "国税庁は、2025年10月31日付の新着情報・通達等として「各対象会計年度の国際最低課税額に対する法人税に関するQ&A」の改訂を公表したとされています。原文のメタデータからは改訂の具体的内容までは示されておらず、Q&Aの改訂が行われた旨が確認できる情報です。",
     "business_impact_ja": "国際最低課税額に対する法人税（いわゆるグローバル・ミニマム課税）の対象となり得る企業においては、実務上の取扱いに関する解釈や対応方針の確認が必要となる可能性があります。",
     "recommended_action_ja": "改訂の具体的な内容および適用範囲については、国税庁の公式ページ等の一次情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title, source name, and date; the content of the revisions is unknown and unverified. The preliminary labels (Finance / AML, Low impact) are keyword-based and may not reflect the actual relevance, which appears to concern international corporate taxation.",
-    "summarized_at": "2026-10-08T00:49:17Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "国税厅修订《各适用会计年度国际最低课税额法人税Q&A》",
@@ -9787,17 +9991,17 @@
     "published_at": "2025-09-10",
     "last_checked": "2026-06-11",
     "relevance_score": 9.0,
+    "summary_source": "claude",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and a short tag; the type of action (e.g., guidance, recommendation, order) and underlying facts are unverified. The company name is a translation of the Japanese title. Labels are rule-based triage, not legally verified.",
+    "summarized_at": "2026-10-08T00:49:17Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "個人情報保護委員会（PPC）が、株式会社中央ビジネスサービスに対する個人情報の保護に関する法律に基づく行政上の対応について、2025年9月10日付で報道発表を行った旨が公表されています。原文の根拠情報は限られており、対応の具体的内容や事実関係の詳細は本メタデータからは確認できません。",
     "business_impact_ja": "個人情報を取り扱う事業者においては、個人情報保護法に基づく行政対応の動向が、自社の管理体制やコンプライアンス上の参考となる可能性があります。同種の対応事例が今後の実務運用の目安となることも考えられます。",
     "recommended_action_ja": "詳細な事実関係や対応内容については、個人情報保護委員会の公式な報道発表資料をご確認いただくことをご検討ください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:48:44Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "low",
-    "ai_notes": "Based only on the Japanese title and a short tag; the type of action (e.g., guidance, recommendation, order) and underlying facts are unverified. The company name is a translation of the Japanese title. Labels are rule-based triage, not legally verified.",
-    "summarized_at": "2026-10-08T00:49:17Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会新闻发布：对中央商业服务株式会社采取《个人信息保护法》行政措施",
@@ -9809,14 +10013,14 @@
   },
   {
     "id": "raw-f487eeb7469ba780",
-    "title_en": "PPC Update: Personal Information Protection Rules (2025-11-12)",
+    "title_en": "PPC Publishes Summary of FY2025 First-Half Activity Report",
     "title_ja": "令和７年度個人情報保護委員会上半期報告の概要等を公表しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's Personal Information Protection Commission (PPC) announced on 2025-11-12 that it has published an overview and related materials for its fiscal year 2025 (Reiwa 7) first-half activity report. The metadata describes the item only as an activity report and does not list specific contents, findings, or measures.",
+    "business_impact_en": "The report may offer insight into the PPC's recent activities and priorities, which could be relevant context for organizations handling personal information. Any concrete implications cannot be determined from the limited metadata provided.",
+    "recommended_action_en": "Review the official PPC publication in Japanese to confirm its actual contents and assess whether any part is relevant to your organization.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/aboutus/report?ref=ninf",
     "published_at": "2025-11-12",
@@ -9828,26 +10032,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief raw summary ('activity report, etc.'); the report's contents are not provided and are unverified. Labels such as area, stage, and impact level are preliminary keyword-based triage, not legal conclusions. This is an unofficial summary; the Japanese source is authoritative.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会动态：公布令和7年度上半期报告概要等（2025-11-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会公布2025年度上半年报告概要",
+        "summary": "日本个人信息保护委员会（PPC）于2025-11-12宣布，已公布其2025年度（令和7年度）上半年活动报告的概要及相关资料。元数据仅将该项目描述为活动报告，未列出具体内容、调查结果或措施。",
+        "business_impact": "该报告可能提供有关个人信息保护委员会近期活动与优先事项的信息，这对处理个人信息的组织而言可能具有一定参考价值。由于提供的元数据有限，无法确定任何具体影响。",
+        "recommended_action": "建议查阅个人信息保护委员会的日文官方发布内容，以确认其实际内容，并评估其中是否有与贵组织相关的部分。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-f3525f1bec2aadf0",
-    "title_en": "PMDA Safety Update: Labeling or precautions revision published (2025-03-05)",
+    "title_en": "PMDA posts MHLW notice on revising precautions for regenerative medicine products (Mar 5, 2025)",
     "title_ja": "使用上の注意の改訂指示通知（再生医療等製品）2025年3月5日付（厚生労働省より発出）を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The PMDA Safety Updates page lists a notice, issued by the Ministry of Health, Labour and Welfare and dated March 5, 2025, instructing revisions to the 'precautions for use' (package insert precautions) of regenerative medicine products. This is a government announcement posted to the PMDA safety information site; the specific products and revised content are not stated in the provided metadata.",
+    "business_impact_en": "Marketing authorization holders of regenerative medicine products may need to consider whether their product labeling is affected. Affected products and the extent of any required changes could not be determined from the available information.",
+    "recommended_action_en": "Review the official PMDA page and the underlying MHLW notice in Japanese to identify which products are covered and what revisions are instructed.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/ctp/0017.html",
     "published_at": "2025-03-05",
@@ -9860,26 +10068,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; products covered, revision details, and any deadlines are not provided and remain unverified. Area, stage, and impact labels are preliminary keyword-based triage, not verified conclusions.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：使用上注意事项修订指示通知（再生医疗等制品）(2025-03-05)",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA发布厚生劳动省关于修订再生医疗等产品使用注意事项的通知（2025-03-05）",
+        "summary": "PMDA安全性信息更新页面列出了一则由厚生劳动省发出、日期为2025-03-05的通知，指示修订再生医疗等产品的“使用注意事项”（说明书注意事项）。这是发布在PMDA安全性信息网站上的政府公告；所提供的元数据中未说明具体产品及修订内容。",
+        "business_impact": "再生医疗等产品的上市许可持有人可能需要考虑其产品标签是否受到影响。根据现有信息无法确定受影响的产品及所需变更的范围。",
+        "recommended_action": "建议查阅PMDA官方页面及厚生劳动省原始日文通知，以确定涉及哪些产品以及具体指示的修订内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-69fd7b66cf4cb683",
-    "title_en": "PMDA Safety Update: Labeling or precautions revision published (2025-03-05)",
+    "title_en": "PMDA posts MHLW notice directing revisions to drug package insert precautions (Mar 5, 2025)",
     "title_ja": "使用上の注意の改訂指示通知（医薬品）2025年3月5日付（厚生労働省より発出）を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The PMDA Safety Updates page lists a notice dated March 5, 2025, issued by the Ministry of Health, Labour and Welfare (MHLW), instructing revisions to the 'Precautions' (use precautions) sections of pharmaceutical product information. The metadata provided gives only the title and a generic page label; the specific drugs and revision details are not stated. This appears to be a government announcement posted on the PMDA site.",
+    "business_impact_en": "Marketing authorization holders and others handling the affected pharmaceuticals may need to consider whether their product labeling or safety information is affected. The scope and affected products cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the linked PMDA page and the underlying MHLW notice in Japanese to confirm which products are covered and what revisions are instructed.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/revision-of-precautions/0373.html",
     "published_at": "2025-03-05",
@@ -9892,15 +10104,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-12T08:49:42Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a minimal raw summary; affected drugs, revision content, and deadlines are not provided and are unverified. Rule-based labels (area, stage, impact level) are weak triage context only.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：使用注意事项修订指示通知发布（2025-03-05）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA公布厚生劳动省通知：指示修订药品使用注意事项（2025-03-05）",
+        "summary": "PMDA安全性信息更新页面刊载了一则厚生劳动省（MHLW）于2025年3月5日发布的通知，指示对药品信息中的'使用注意事项'部分进行修订。所提供的元数据仅包含标题和通用页面标签，具体涉及的药品及修订内容未予说明。这似乎是刊载于PMDA网站上的一则政府公告。",
+        "business_impact": "持有相关药品上市许可的主体及其他相关方可能需要考虑其产品标签或安全性信息是否受到影响。根据所提供的元数据，无法确定具体范围及受影响的产品。",
+        "recommended_action": "建议查阅PMDA相关页面链接及厚生劳动省原始日文通知，以确认具体涉及哪些产品及所指示的修订内容。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-d19785ba384eaab6",
