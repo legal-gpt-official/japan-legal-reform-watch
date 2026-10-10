@@ -272,6 +272,12 @@
     "ai_notes": "Based only on title and metadata; no amendment content provided. The rule-based 'Consumer / Advertising' label is a weak keyword-based triage label and may not reflect the actual subject matter. Enforcement dates may differ by provision; verify against the official source.",
     "summarized_at": "2026-10-03T23:36:36Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、金融商品取引法(昭和二十三年法律第二十五号)を対象とする改正法令「金融商品取引法等の一部を改正する法律」(令和五年法律第七十九号)が掲載されています。公布日は2023年11月29日、施行日は2026年11月30日と記載されており、更新一覧日は2026年9月29日とされています。メタデータには改正の具体的な内容は記載されていません。",
+    "business_impact_ja": "金融商品取引法の規律の対象となる事業者にとっては、施行日(2026年11月30日)に向けて社内規程や業務運用の見直しが必要となる可能性があります。ただし、改正の具体的な内容は提供情報からは確認できないため、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的内容、施行期日および関連する政省令等の整備状況については、e-Govの該当法令ページや所管官庁など日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《金融商品交易法等部分修正法》（2023年第79号法律）将于2026-11-30生效",
@@ -279,13 +285,7 @@
         "business_impact": "受《金融商品交易法》管辖的企业在修正内容生效后可能受到影响，但根据所提供的元数据无法确定具体的义务和适用范围。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，包括修正条款以及有关生效日期的任何附则，以确认具体适用的变更内容及其生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、金融商品取引法(昭和二十三年法律第二十五号)を対象とする改正法令「金融商品取引法等の一部を改正する法律」(令和五年法律第七十九号)が掲載されています。公布日は2023年11月29日、施行日は2026年11月30日と記載されており、更新一覧日は2026年9月29日とされています。メタデータには改正の具体的な内容は記載されていません。",
-    "business_impact_ja": "金融商品取引法の規律の対象となる事業者にとっては、施行日(2026年11月30日)に向けて社内規程や業務運用の見直しが必要となる可能性があります。ただし、改正の具体的な内容は提供情報からは確認できないため、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的内容、施行期日および関連する政省令等の整備状況については、e-Govの該当法令ページや所管官庁など日本語の公式情報源をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-09T01:09:44Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-b31f92554c2e2b70",
