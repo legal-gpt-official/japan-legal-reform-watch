@@ -4952,6 +4952,12 @@
     "ai_notes": "Based only on the Japanese title and brief status metadata; the bill's actual provisions, sponsors, and publication date are not provided and are unverified. This is a pending bill, not enacted law. Preliminary labels (Tax, Bill Submitted, Low impact) are keyword-based and non-authoritative.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "衆議院の議案情報に、「賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案」が掲載されています。区分は衆法(提出回次221、番号30)で、審議状況は「衆議院で審議中」と記載されています。提供された情報からは、法案の具体的な内容や成立・公布・施行の状況は確認できません。",
+    "business_impact_ja": "法案の題名から所得税に関する措置が検討対象となっている可能性がありますが、現時点では審議中の法案であり、具体的な事業への影響は内容次第と考えられます。給与・源泉徴収等の実務に関わる場合に備え、今後の審議動向に留意する必要がある可能性があります。",
+    "recommended_action_ja": "法案の内容や審議状況の最新情報については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：应对所得税负担增幅超过工资增长的所得税措施法案（众议院第30号议案）",
@@ -4959,13 +4965,7 @@
         "business_impact": "如果该法案最终获得通过，可能会改变个人所得税的处理方式，这又可能影响雇主的薪资及代扣代缴流程。由于该法案仍在审议中且细节未知，目前其影响尚不确定。",
         "recommended_action": "建议查阅众议院网站上的官方议案页面及日文法案文本，以核实其内容及当前审议状态。"
       }
-    },
-    "summary_ja": "衆議院の議案情報に、「賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案」が掲載されています。区分は衆法(提出回次221、番号30)で、審議状況は「衆議院で審議中」と記載されています。提供された情報からは、法案の具体的な内容や成立・公布・施行の状況は確認できません。",
-    "business_impact_ja": "法案の題名から所得税に関する措置が検討対象となっている可能性がありますが、現時点では審議中の法案であり、具体的な事業への影響は内容次第と考えられます。給与・源泉徴収等の実務に関わる場合に備え、今後の審議動向に留意する必要がある可能性があります。",
-    "recommended_action_ja": "法案の内容や審議状況の最新情報については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-fb57afab75ff2e47",
@@ -4988,6 +4988,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; the bill's actual provisions, sponsors, and publication date are not provided. The rule-based labels (Labor / Employment, Low impact) are weak triage hints and may not reflect the bill's true scope, which seems tax-related.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "衆議院の議案情報に、「賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案」(衆法、提出回次221、番号31)が掲載されており、審議状況は「衆議院で審議中」と記載されています。公表日は入力メタデータに示されておらず、法案の具体的な内容や成立・公布・施行の状況は、提供された情報からは確認できません。",
+    "business_impact_ja": "個人住民税に関する措置を扱う法案であることから、給与計算や特別徴収など個人住民税に関わる実務に影響が及ぶ可能性が考えられますが、具体的な内容は入力情報から読み取れないため、影響の有無や程度は不明です。",
+    "recommended_action_ja": "法案の条文、審議経過および今後の取扱いについては、衆議院の議案情報など日本語の公式情報源で最新の内容をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：应对个人居民税负担增速超过工资增长的相关措施法案",
@@ -4995,13 +5001,7 @@
         "business_impact": "如果该法案获得通过并成为法律，可能影响个人居民税相关规则，并可能间接影响雇主的薪资发放或代扣代缴实务。目前该法案仍处于提案阶段，根据现有资料，其具体内容及通过前景尚不明确。",
         "recommended_action": "建议在对其内容或相关性作出任何结论之前，先查阅众议院官网上的正式法案文本及审议状态。"
       }
-    },
-    "summary_ja": "衆議院の議案情報に、「賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案」(衆法、提出回次221、番号31)が掲載されており、審議状況は「衆議院で審議中」と記載されています。公表日は入力メタデータに示されておらず、法案の具体的な内容や成立・公布・施行の状況は、提供された情報からは確認できません。",
-    "business_impact_ja": "個人住民税に関する措置を扱う法案であることから、給与計算や特別徴収など個人住民税に関わる実務に影響が及ぶ可能性が考えられますが、具体的な内容は入力情報から読み取れないため、影響の有無や程度は不明です。",
-    "recommended_action_ja": "法案の条文、審議経過および今後の取扱いについては、衆議院の議案情報など日本語の公式情報源で最新の内容をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-a70546b543581e53",
@@ -5024,6 +5024,12 @@
     "ai_notes": "Based only on the Japanese title and brief status metadata; the bill text, sponsors, and specific provisions were not provided and are unverified. Publication date is missing. The preliminary labels (area, stage, impact) are keyword-based and not authoritative.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "衆議院の議案情報に、「新型コロナウイルス感染症対策検証委員会等の設置等に関する法律案」が掲載されています。区分は衆法(議員提出法案)で、提出回次は221、番号は34、審議状況は「衆議院で審議中」と記載されています。メタデータには公表日の記載がなく、法案の内容や成立・公布・施行の状況は示されていません。",
+    "business_impact_ja": "法案の具体的な内容が提供情報からは確認できないため、事業への影響は現時点では特定できませんが、今後の審議の進展によっては、感染症対策に関連する制度や関係事業者への影響が生じる可能性があります。",
+    "recommended_action_ja": "法案の内容および審議状況の最新情報については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：关于设立新型冠状病毒感染症对策验证委员会等的法律案",
@@ -5031,13 +5037,7 @@
         "business_impact": "若该法案获得推进并最终成立，可能导致政府对过往新型冠状病毒感染症应对措施进行审查，这或将在一定程度上影响涉及疫情相关政策的相关机构。就目前提供的元数据而言，尚未显示对企业有直接的义务。",
         "recommended_action": "建议考虑查阅日文官方法案页面及任何附带文本，以确认该法案的具体内容、提案人及当前审议状态。"
       }
-    },
-    "summary_ja": "衆議院の議案情報に、「新型コロナウイルス感染症対策検証委員会等の設置等に関する法律案」が掲載されています。区分は衆法(議員提出法案)で、提出回次は221、番号は34、審議状況は「衆議院で審議中」と記載されています。メタデータには公表日の記載がなく、法案の内容や成立・公布・施行の状況は示されていません。",
-    "business_impact_ja": "法案の具体的な内容が提供情報からは確認できないため、事業への影響は現時点では特定できませんが、今後の審議の進展によっては、感染症対策に関連する制度や関係事業者への影響が生じる可能性があります。",
-    "recommended_action_ja": "法案の内容および審議状況の最新情報については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-199aa1fca8e04d7b",
@@ -5060,6 +5060,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; no bill text, tax details, or dates were provided, and the publication date is blank. This is a proposed bill still under deliberation, not enacted law. Rule-based labels (area, stage, impact level) are unverified triage hints; the official Japanese source is authoritative.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "衆議院の議案情報によると、「非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関する法律案」は衆法(議員提出法律案)として第221回国会に提出され、番号は36、審議状況は「衆議院で審議中」と記載されています。提供されたメタデータには、法案の具体的な内容や公表日は含まれていません。",
+    "business_impact_ja": "法案の題名からは、非居住住宅への課税や超短期所有住宅等の譲渡に係る課税の特例が検討対象となっている可能性があり、不動産の保有・売買に関わる事業者に影響が及ぶ可能性が考えられます。ただし、現時点では審議中の法案であり、内容や成立の見通しはメタデータからは確認できません。",
+    "recommended_action_ja": "法案の具体的な内容や審議の進捗については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：《非居住住宅税及超短期所有住宅等转让事业所得等课税特例创设法》",
@@ -5067,13 +5073,7 @@
         "business_impact": "若该法案以某种形式获得通过，可能会影响日本住宅的非居住所有者，以及从事住宅物业快速买卖的相关方。由于现有元数据未说明适用范围、税率及适用条件，其具体影响尚不确定。",
         "recommended_action": "建议查阅众议院官方网站上的日文法案原文及审议状态，以确认其具体内容及进展情况。"
       }
-    },
-    "summary_ja": "衆議院の議案情報によると、「非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関する法律案」は衆法(議員提出法律案)として第221回国会に提出され、番号は36、審議状況は「衆議院で審議中」と記載されています。提供されたメタデータには、法案の具体的な内容や公表日は含まれていません。",
-    "business_impact_ja": "法案の題名からは、非居住住宅への課税や超短期所有住宅等の譲渡に係る課税の特例が検討対象となっている可能性があり、不動産の保有・売買に関わる事業者に影響が及ぶ可能性が考えられます。ただし、現時点では審議中の法案であり、内容や成立の見通しはメタデータからは確認できません。",
-    "recommended_action_ja": "法案の具体的な内容や審議の進捗については、衆議院の議案情報ページなど日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-3b0861a745c54a45",
@@ -5096,6 +5096,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; bill contents, sponsor details, and exact status are unverified. The rule-based labels (Other / Bill Submitted / Low) are preliminary and non-authoritative. No publication date was provided.",
     "summarized_at": "2026-10-09T01:04:11Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "衆議院の議案情報に掲載された「旧氏を通称として使用する機会の拡大を図るための措置等に関する法律案」に関する情報です。区分は参法(参議院提出法律案)で、提出回次は222、番号は1とされ、審議状況は「参議院で審議中」と記載されています。提供された情報には法案の具体的な内容や公表日は含まれておらず、成立・公布・施行の状況も示されていません。",
+    "business_impact_ja": "旧氏の通称使用に関わる手続や書類の取扱いに関連する可能性がありますが、法案の具体的内容が提供情報からは確認できないため、事業への影響は現時点では判断できません。人事・労務や顧客対応などで氏名の取扱いがある事業者にとっては、今後の審議動向が関係する可能性も考えられます。",
+    "recommended_action_ja": "法案の内容および審議状況の詳細については、衆議院・参議院の公式サイトの議案情報で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：关于扩大旧姓作为通称使用机会的措施法案",
@@ -5103,13 +5109,7 @@
         "business_impact": "如果此类措施最终被制定为法律，处理个人姓名的组织（例如雇主或服务提供商）可能需要审查旧姓记录或使用方式。所提供的元数据中未说明任何此类要求的具体内容。",
         "recommended_action": "建议在得出任何结论之前，先查阅官方日文法案页面及法案文本，以确认其具体条款及当前状态。"
       }
-    },
-    "summary_ja": "衆議院の議案情報に掲載された「旧氏を通称として使用する機会の拡大を図るための措置等に関する法律案」に関する情報です。区分は参法(参議院提出法律案)で、提出回次は222、番号は1とされ、審議状況は「参議院で審議中」と記載されています。提供された情報には法案の具体的な内容や公表日は含まれておらず、成立・公布・施行の状況も示されていません。",
-    "business_impact_ja": "旧氏の通称使用に関わる手続や書類の取扱いに関連する可能性がありますが、法案の具体的内容が提供情報からは確認できないため、事業への影響は現時点では判断できません。人事・労務や顧客対応などで氏名の取扱いがある事業者にとっては、今後の審議動向が関係する可能性も考えられます。",
-    "recommended_action_ja": "法案の内容および審議状況の詳細については、衆議院・参議院の公式サイトの議案情報で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-1ec88f221c1b2be6",
