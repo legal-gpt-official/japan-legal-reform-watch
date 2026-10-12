@@ -6608,6 +6608,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is a rule-based triage label, and the 2026-10-01 enforcement date appears to be in the future relative to the 2025-12-12 promulgation date, so the label should be verified. English is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による生活保護法(昭和二十五年法律第百四十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "生活保護法に関わる医療・介護等の分野の事業者や関係機関では、施行日に向けて制度運用や手続に関する確認が必要となる可能性があります。具体的な影響の有無や程度は、改正内容の確認を待つ必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と施行日などの条文上の取扱いについて、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《部分修订医疗法等的法律》（令和7年第87号）—生活保护法更新列出",
@@ -6615,13 +6621,7 @@
         "business_impact": "从事医疗或生活保护相关服务的机构可能希望确认此次修订是否会对其产生影响，但所提供的元数据中未说明具体变更内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括施行条款，以确认实际修订内容及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による生活保護法(昭和二十五年法律第百四十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "生活保護法に関わる医療・介護等の分野の事業者や関係機関では、施行日に向けて制度運用や手続に関する確認が必要となる可能性があります。具体的な影響の有無や程度は、改正内容の確認を待つ必要があると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容と施行日などの条文上の取扱いについて、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f5037b87aaa8a49a",
@@ -6644,6 +6644,12 @@
     "ai_notes": "Based only on update-list metadata (title, law numbers, promulgation and enforcement dates); amendment contents are not provided. The 'In Force' stage label is a rule-based triage label, and the 2026-10-01 enforcement date is listed as in the future relative to the 2025-12-12 promulgation date, so current force status should be verified. Unofficial summary; verify against the Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025-12-12)による「特別会計に関する法律」(平成十九年法律第二十三号)の改正が掲載されています。更新一覧日は20261001、施行日は2026-10-01と記載されています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "医療法等の改正に伴い、特別会計に関する法律の規定が変更される可能性があり、医療・医薬分野の事業者や関連する会計・補助金等の取扱いに影響が生じる可能性が考えられます。ただし、具体的な影響の有無や程度は、提供情報のみでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行日、経過措置については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）修订《特别会计法》",
@@ -6651,13 +6657,7 @@
         "business_impact": "视修正内容而定，医疗相关主体及涉及特别会计的主体可能受到影响，但根据现有元数据无法确定具体影响。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正条款及有关生效日期的附则，以确认适用范围。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025-12-12)による「特別会計に関する法律」(平成十九年法律第二十三号)の改正が掲載されています。更新一覧日は20261001、施行日は2026-10-01と記載されています。提供された情報からは、具体的な改正内容は確認できません。",
-    "business_impact_ja": "医療法等の改正に伴い、特別会計に関する法律の規定が変更される可能性があり、医療・医薬分野の事業者や関連する会計・補助金等の取扱いに影響が生じる可能性が考えられます。ただし、具体的な影響の有無や程度は、提供情報のみでは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行日、経過措置については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-cc5d9520a7f576fa",
@@ -6680,6 +6680,12 @@
     "ai_notes": "Based only on metadata and title; amended provisions are unknown. The 'In Force' label is a rule-based triage label; the metadata shows an enforcement date of 2026-10-01, so current force status should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「麻薬及び向精神薬取締法」(昭和二十八年法律第十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "麻薬及び向精神薬取締法に関わる医療・医薬品関連の事業や業務に、2026年10月1日の施行に伴う影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認を要するため、現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Gov法令検索や官報などの日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》：麻醉药品及精神药品管理法更新",
@@ -6687,13 +6693,7 @@
         "business_impact": "处理麻醉药品或精神药品的机构（如医疗机构和制药企业）可能受到在所述生效日期生效的修订条款的影响。根据所提供的元数据，无法确定变更的范围和性质。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认《麻醉药品及精神药品管理法》具体修订了哪些条款，以及这些条款是否与自身业务相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「麻薬及び向精神薬取締法」(昭和二十八年法律第十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "麻薬及び向精神薬取締法に関わる医療・医薬品関連の事業や業務に、2026年10月1日の施行に伴う影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認を要するため、現時点では判断できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Gov法令検索や官報などの日本語の公式情報源で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-c8417822fe7f040c",
@@ -6716,6 +6716,12 @@
     "ai_notes": "Based only on e-Gov update-list metadata; the content of the amendment is not provided. The enforcement date of 2026-10-01 is taken from the metadata and should be verified; the 'In Force' stage label is a preliminary rule-based label and may not reflect the current status. Unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正が掲載されています。対象法令は「防衛省の職員の給与等に関する法律」(昭和二十七年法律第二百六十六号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "防衛省の職員の給与等に関する法律に関わる改正であるため、防衛関連の調達や職員の処遇等に関与する事業者に影響する可能性がありますが、提供情報のみでは影響の範囲や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》部分修正法律（2025年第87号）：更新《防卫省职员给与法》",
@@ -6723,13 +6729,7 @@
         "business_impact": "由于受影响的法律涉及防卫省职员的薪酬事项，此次修正可能与大多数民间企业的直接相关性有限。与防卫相关医疗或人事事务有关联的机构，或可考虑核实是否有相关条款适用于其自身。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，包括修正法律本身及其附则，以确认实际适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正が掲載されています。対象法令は「防衛省の職員の給与等に関する法律」(昭和二十七年法律第二百六十六号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、改正の具体的な内容は確認できません。",
-    "business_impact_ja": "防衛省の職員の給与等に関する法律に関わる改正であるため、防衛関連の調達や職員の処遇等に関与する事業者に影響する可能性がありますが、提供情報のみでは影響の範囲や程度は判断できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-b6c2109335b1772a",
@@ -6752,6 +6752,12 @@
     "ai_notes": "Based only on the title and listing metadata; amended provisions are unknown. The 'In Force' stage label is preliminary, and the stated enforcement date is 2026-10-01, which may be in the future relative to the reader's date. Verify against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「精神保健及び精神障害者福祉に関する法律」(昭和二十五年法律第百二十三号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。個別の改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "精神保健や医療の分野に関わる事業者にとって、施行日以降、制度上の取扱いや運用に影響が及ぶ可能性があります。具体的な影響の有無や程度は、改正内容の確認を経なければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連規定については、e-Gov法令検索や官報などの日本語の公式情報源でご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（2025年第87号）：精神保健福利法条目更新",
@@ -6759,13 +6765,7 @@
         "business_impact": "在医疗或精神健康服务领域运营的机构可能受到《精神保健及精神障碍者福利相关法律》修改内容的影响，但仅凭此元数据无法确定修正内容的实质。具体影响将取决于具体条款及其适用日期。",
         "recommended_action": "建议查阅e-Gov官方发布的令和7年第87号法律文本及《精神保健及精神障碍者福利相关法律》的修正条款原文，以确认其适用范围及生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「精神保健及び精神障害者福祉に関する法律」(昭和二十五年法律第百二十三号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。個別の改正内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "精神保健や医療の分野に関わる事業者にとって、施行日以降、制度上の取扱いや運用に影響が及ぶ可能性があります。具体的な影響の有無や程度は、改正内容の確認を経なければ判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連規定については、e-Gov法令検索や官報などの日本語の公式情報源でご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-b5ac08f05646e095",
@@ -6788,6 +6788,12 @@
     "ai_notes": "Based only on metadata (titles, law numbers, promulgation and effective dates); amendment content is not provided. The rule-based 'In Force' stage label appears inconsistent with the 2026-10-01 effective date, which is after the publication date, so the stage should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による国家公務員共済組合法(昭和三十三年法律第百二十八号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報には、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "国家公務員共済組合法に関わる共済制度や関連する医療・福祉分野の実務に、施行日以降に影響が及ぶ可能性があります。ただし、具体的な改正内容が原文メタデータからは確認できないため、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容および施行に関する経過措置等については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《部分修订医疗法等的法律》（2025年第87号法律）：更新国家公务员共济组合法",
@@ -6795,13 +6801,7 @@
         "business_impact": "与国家公务员共济组合制度或医疗相关规定有关联的主体，在该修订生效后可能受到影响，但具体变更的性质和范围无法从该元数据中确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及附则，以确认具体变更内容及适用时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による国家公務員共済組合法(昭和三十三年法律第百二十八号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報には、改正の具体的な内容は含まれていません。",
-    "business_impact_ja": "国家公務員共済組合法に関わる共済制度や関連する医療・福祉分野の実務に、施行日以降に影響が及ぶ可能性があります。ただし、具体的な改正内容が原文メタデータからは確認できないため、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的な内容および施行に関する経過措置等については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-9b93764ab17d875e",
@@ -6824,6 +6824,12 @@
     "ai_notes": "Based only on update-list metadata; the content of the amendments is not provided. The preliminary 'In Force' stage label may not reflect the 2026-10-01 effective date, and the 'Healthcare' area label is keyword-based. Verify against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)を対象とする更新情報として、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。具体的な改正内容はメタデータからは確認できません。",
+    "business_impact_ja": "私立学校教職員共済制度に関わる事業者や学校法人等において、施行日に向けた制度運用や社内手続の見直しが必要となる可能性があります。ただし、改正の具体的な内容や対象範囲は提供情報からは不明であり、影響の程度は個別の確認が必要と考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)までに、e-Gov法令検索や官報等の日本語の公式情報源で改正法の条文および私立学校教職員共済法への具体的な改正内容をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》：《私立学校教职员共济法》更新",
@@ -6831,13 +6837,7 @@
         "business_impact": "与私立学校教职员共济给付或医疗行政相关的机构可能受到影响，但所提供的元数据中未说明具体变更内容。仅凭此条目无法确定影响的范围和程度。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认《私立学校教职员共济法》的哪些条款被修订及其确切生效日期。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)を対象とする更新情報として、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。具体的な改正内容はメタデータからは確認できません。",
-    "business_impact_ja": "私立学校教職員共済制度に関わる事業者や学校法人等において、施行日に向けた制度運用や社内手続の見直しが必要となる可能性があります。ただし、改正の具体的な内容や対象範囲は提供情報からは不明であり、影響の程度は個別の確認が必要と考えられます。",
-    "recommended_action_ja": "施行日(2026年10月1日)までに、e-Gov法令検索や官報等の日本語の公式情報源で改正法の条文および私立学校教職員共済法への具体的な改正内容をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-d9bb5290823790ba",
@@ -6860,6 +6860,12 @@
     "ai_notes": "Based only on metadata fields (titles, law numbers, dates). The effective date of 2026-10-01 is a future date relative to publication, so the 'In Force' preliminary label may be premature and should not be relied on. The substance of the amendment is not provided; the Medical Care Act itself and other amended laws are not detailed here. Verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による地方公務員等共済組合法(昭和三十七年法律第百五十二号)への改正が掲載されています。メタデータ上、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "地方公務員等共済組合法に関わる共済制度の運用や、関連する医療・給付実務に影響する可能性がありますが、具体的な影響の有無や範囲は提供情報だけでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容、経過措置および自組織への関係については、e-Govに掲載された法令本文や所管官庁の公式資料をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》等部分修正法律——《地方公务员互助会法》相关更新",
@@ -6867,13 +6873,7 @@
         "business_impact": "如果此次修正涉及互助会相关规定，可能与从事公共部门雇员福利或医疗相关行政事务的机构相关，但依据现有元数据无法确定其实际适用范围。",
         "recommended_action": "建议参阅e-Gov上的日文官方文本，包括修正法律的附则，以确认实际内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による地方公務員等共済組合法(昭和三十七年法律第百五十二号)への改正が掲載されています。メタデータ上、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "地方公務員等共済組合法に関わる共済制度の運用や、関連する医療・給付実務に影響する可能性がありますが、具体的な影響の有無や範囲は提供情報だけでは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容、経過措置および自組織への関係については、e-Govに掲載された法令本文や所管官庁の公式資料をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-759b8800fad91311",
@@ -6896,6 +6896,12 @@
     "ai_notes": "Based only on the update-list metadata and Japanese title; the specific amended provisions are not provided. The 'In Force' stage label is a rule-based triage label, and the stated effective date of 2026-10-01 should be verified against the official source. English is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布されたと記載されています。更新一覧日は2026年10月1日、施行日は2026年10月1日とされ、対象法令として「心神喪失等の状態で重大な他害行為を行った者の医療及び観察等に関する法律」(平成十五年法律第百十号)が挙げられています。提供された情報からは、具体的な改正内容は確認できません。",
+    "business_impact_ja": "対象法令は医療及び観察等に関するものであり、医療機関や関連事業者に影響が及ぶ可能性がありますが、改正内容が不明なため具体的な影響範囲は判断できません。施行日が2026年10月1日とされているため、準備期間を考慮した確認が必要になることが考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行に伴う経過措置、関係政省令等については、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《部分修正医疗法等的法律》（2025年第87号法律）—心理障碍犯罪者法更新",
@@ -6903,13 +6909,7 @@
         "business_impact": "涉及指定医疗机构或相关精神科医疗及观察的组织可能受到影响，但根据现有元数据无法确定具体变更的性质和范围。任何影响将取决于实际修正的条款内容。",
         "recommended_action": "建议查阅e-Gov上该修正法律及被修正法律的日文官方正式文本，以确认具体哪些条款发生变更及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布されたと記載されています。更新一覧日は2026年10月1日、施行日は2026年10月1日とされ、対象法令として「心神喪失等の状態で重大な他害行為を行った者の医療及び観察等に関する法律」(平成十五年法律第百十号)が挙げられています。提供された情報からは、具体的な改正内容は確認できません。",
-    "business_impact_ja": "対象法令は医療及び観察等に関するものであり、医療機関や関連事業者に影響が及ぶ可能性がありますが、改正内容が不明なため具体的な影響範囲は判断できません。施行日が2026年10月1日とされているため、準備期間を考慮した確認が必要になることが考えられます。",
-    "recommended_action_ja": "改正の具体的内容や施行に伴う経過措置、関係政省令等については、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-3a5140fb2a8673e8",
@@ -6932,6 +6932,12 @@
     "ai_notes": "Based only on the law update list metadata; amendment details are not provided. The 'In Force' label is rule-based and should not be relied on, since the listed enforcement date (2026-10-01) may be in the future relative to promulgation; verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による戦傷病者特別援護法(昭和三十八年法律第百六十八号)の改正が掲載されています。更新一覧日は2026年10月1日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "戦傷病者特別援護法に関連する医療・援護分野の事業者や関係機関において、今後の運用や手続に影響が及ぶ可能性がありますが、具体的な影響の有無や程度は原文の改正内容を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な条文・内容や施行に伴う経過措置の有無については、e-Govおよび所管官庁が公表する日本語の公式情報を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "部分修订《医疗法》等的法律（令和7年法律第87号）：修订《战伤病者特别援护法》",
@@ -6939,13 +6945,7 @@
         "business_impact": "由于此修正法是一项广泛的医疗制度修订，该条目可能与医疗相关机构有关，但仅凭元数据无法确定其对《战伤病者特别援护法》及相关企业的实际影响。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本（包括附则），以确认修订的范围及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による戦傷病者特別援護法(昭和三十八年法律第百六十八号)の改正が掲載されています。更新一覧日は2026年10月1日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "戦傷病者特別援護法に関連する医療・援護分野の事業者や関係機関において、今後の運用や手続に影響が及ぶ可能性がありますが、具体的な影響の有無や程度は原文の改正内容を確認するまで判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な条文・内容や施行に伴う経過措置の有無については、e-Govおよび所管官庁が公表する日本語の公式情報を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e57210f44a9315b7",
@@ -6968,6 +6968,12 @@
     "ai_notes": "Based only on the update-list metadata; amended provisions are not described. The 'In Force' label is rule-based and not verified; the 2026-10-01 enforcement date appears to be in the future relative to the publication date, so current effect should be confirmed against the official source. The 'Healthcare / Pharmaceuticals' area label may not reflect that the listed target law concerns child-rearing support.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「子ども・子育て支援法」(平成二十四年法律第六十五号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。原文メタデータからは、改正の具体的な内容は読み取れません。",
+    "business_impact_ja": "子ども・子育て支援法に関連する事業や制度運用を行う事業者・団体では、2026年10月1日の施行日に向けて、対応の要否を確認する必要が生じる可能性があります。ただし、改正内容が示されていないため、影響の範囲や程度は本情報のみでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容と自社への関係については、e-Gov法令検索や官報など日本語の公式情報源で、改正法令の本文および施行に関する情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》生效（涉及儿童及育儿支援法）",
@@ -6975,13 +6981,7 @@
         "business_impact": "在《儿童及育儿支援法》框架下运营的主体可能受到于列明日期生效的修正内容影响，但仅凭元数据无法确定具体变更的性质和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认具体哪些条文修正了《儿童及育儿支援法》，以及这些修正是否与自身业务相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「子ども・子育て支援法」(平成二十四年法律第六十五号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。原文メタデータからは、改正の具体的な内容は読み取れません。",
-    "business_impact_ja": "子ども・子育て支援法に関連する事業や制度運用を行う事業者・団体では、2026年10月1日の施行日に向けて、対応の要否を確認する必要が生じる可能性があります。ただし、改正内容が示されていないため、影響の範囲や程度は本情報のみでは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容と自社への関係については、e-Gov法令検索や官報など日本語の公式情報源で、改正法令の本文および施行に関する情報をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-a4d3c206e8ff7f56",
@@ -7004,6 +7004,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amendment content is not described. The 'In Force' label is a preliminary rule-based tag, and the 2026-10-01 enforcement date is in the future relative to the 2025-12-12 promulgation date, so the actual status and any staged enforcement should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)に基づく「難病の患者に対する医療等に関する法律」(平成二十六年法律第五十号)の更新情報が掲載されています。公布日は2025年12月12日、更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "難病の患者に対する医療等に関する法律に関わる医療機関、医薬関連事業者などでは、施行日以降の運用に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となり、本情報のみでは判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行時期の詳細については、e-Govの該当法令ページや官報など日本語の公式情報源をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修订法》（2025年第87号法律）：法令更新列表条目",
@@ -7011,13 +7017,7 @@
         "business_impact": "从事难治性疾病医疗或相关医疗服务的机构可能受到此次修订的影响，但所提供的元数据中未说明具体修订内容。列明的生效日期2026-10-01可能与规划相关，但仍需进一步核实。",
         "recommended_action": "建议查阅e-Gov上该修订法律及受影响法律的日文官方文本，以确认实际修订内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)に基づく「難病の患者に対する医療等に関する法律」(平成二十六年法律第五十号)の更新情報が掲載されています。公布日は2025年12月12日、更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "難病の患者に対する医療等に関する法律に関わる医療機関、医薬関連事業者などでは、施行日以降の運用に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となり、本情報のみでは判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行時期の詳細については、e-Govの該当法令ページや官報など日本語の公式情報源をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-0311234c20fad506",
@@ -7040,6 +7040,12 @@
     "ai_notes": "Based only on update-list metadata; amendment content is not provided. The rule-based 'In Force' label may not match the 2026-10-01 effective date (the date is in the future relative to the 2025-12-12 promulgation), so verify status against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「がん登録等の推進に関する法律」(平成二十五年法律第百十一号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "がん登録等の推進に関する法律に関わる医療機関や関連事業者において、施行日に向けて対応が必要となる可能性があります。ただし、改正内容の詳細は入力情報から読み取れないため、影響の程度は個別に確認する必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行に向けた経過措置の有無について、e-Gov法令検索や所管官庁など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）：修订癌症登记法",
@@ -7047,13 +7053,7 @@
         "business_impact": "涉及医疗机构或癌症登记数据处理的组织可能会受到影响，但根据现有元数据无法确定具体的变更内容及其适用范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括生效日期条款及《癌症登记法》被修订的具体条文，以确认实际适用的变更内容。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「がん登録等の推進に関する法律」(平成二十五年法律第百十一号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、改正の具体的な内容は確認できません。",
-    "business_impact_ja": "がん登録等の推進に関する法律に関わる医療機関や関連事業者において、施行日に向けて対応が必要となる可能性があります。ただし、改正内容の詳細は入力情報から読み取れないため、影響の程度は個別に確認する必要があると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行に向けた経過措置の有無について、e-Gov法令検索や所管官庁など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e4332c7c2b0bd513",
@@ -7076,6 +7076,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The effective date of 2026-10-01 is a future date relative to promulgation, so the 'In Force' rule-based stage label should not be relied on and may not reflect current status. All details should be verified against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布されたと記載されています。この改正法令に関連して、「特定Ｂ型肝炎ウイルス感染者給付金等の支給に関する特別措置法」(平成二十三年法律第百二十六号)が更新対象法令として挙げられており、更新一覧日および施行日は2026年10月1日とされています。個別の改正内容や条文の詳細は、提供された情報からは確認できません。",
+    "business_impact_ja": "施行日が2026年10月1日とされているため、医療・医薬分野に関わる事業者や関連制度を扱う組織では、今後の運用や手続に関係する可能性があります。ただし、具体的な影響の有無や程度は、改正内容を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》等部分修订法律（令和7年法律第87号）影响乙型肝炎给付相关法律",
@@ -7083,13 +7089,7 @@
         "business_impact": "涉及医疗相关业务或乙型肝炎给付管理的机构或许希望确认此次修订是否涉及其义务或相关程序。由于元数据未提供修订性质或范围的详细信息，具体影响尚不确定。",
         "recommended_action": "建议查阅e-Gov上该修订法律及相关受影响法律的官方文本，以确认实际修订内容及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布されたと記載されています。この改正法令に関連して、「特定Ｂ型肝炎ウイルス感染者給付金等の支給に関する特別措置法」(平成二十三年法律第百二十六号)が更新対象法令として挙げられており、更新一覧日および施行日は2026年10月1日とされています。個別の改正内容や条文の詳細は、提供された情報からは確認できません。",
-    "business_impact_ja": "施行日が2026年10月1日とされているため、医療・医薬分野に関わる事業者や関連制度を扱う組織では、今後の運用や手続に関係する可能性があります。ただし、具体的な影響の有無や程度は、改正内容を確認しなければ判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-83cf30c0988231c4",
@@ -7112,6 +7112,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amended provisions are not provided. The rule-based 'In Force' stage label appears inconsistent with the listed 2026-10-01 effective date and should not be relied on. Verify all details against the Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による「原子爆弾被爆者に対する援護に関する法律」(平成六年法律第百十七号)の更新情報が掲載されています。更新一覧日は20261001、施行日は2026年10月1日と記載されています。メタデータからは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "医療・福祉分野で原爆被爆者援護制度に関わる事業者や医療機関では、施行日以降の運用や手続に影響が及ぶ可能性があると考えられますが、具体的な影響は改正内容の確認が必要です。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Govの掲載ページおよび所管省庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》（令和7年第87号）更新——原子弹爆炸受害者援助法相关",
@@ -7119,13 +7125,7 @@
         "business_impact": "从事医疗相关业务或原子弹爆炸受害者援助项目的相关主体可能受到影响，但变更的性质和范围无法从所提供的元数据中确定。生效日期列为2026-10-01，因此任何相应义务不一定已经生效。",
         "recommended_action": "建议查阅e-Gov官方原文，以确认《原子弹爆炸受害者援助法》具体哪些条款被修正，以及生效日期适用于哪些内容。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による「原子爆弾被爆者に対する援護に関する法律」(平成六年法律第百十七号)の更新情報が掲載されています。更新一覧日は20261001、施行日は2026年10月1日と記載されています。メタデータからは、改正の具体的な内容は確認できません。",
-    "business_impact_ja": "医療・福祉分野で原爆被爆者援護制度に関わる事業者や医療機関では、施行日以降の運用や手続に影響が及ぶ可能性があると考えられますが、具体的な影響は改正内容の確認が必要です。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Govの掲載ページおよび所管省庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-4f16a97ca4b70b70",
@@ -7148,6 +7148,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amendment details are not provided. The 'In Force' label is a rule-based preliminary label, and the stated enforcement date (2026-10-01) is in the future relative to the promulgation date, so the current legal status should be verified against the official source. English is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による改正の記載があります。対象法令は「医療分野の研究開発に資するための匿名加工医療情報及び仮名加工医療情報に関する法律」(平成二十九年法律第二十八号)で、更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "匿名加工医療情報または仮名加工医療情報を取り扱う事業者や、医療分野の研究開発に関わる事業者にとって、施行日以降に関連する制度や運用へ影響が及ぶ可能性があります。ただし、影響の有無や程度は改正内容の確認が前提となります。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連規定については、e-Gov法令検索や官報など日本語の公式情報源で確認されることが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》等部分修订法律（令和7年法律第87号）——医疗研发用匿名加工数据相关法律更新",
@@ -7155,13 +7161,7 @@
         "business_impact": "处理用于研发的匿名加工或假名加工医疗信息的机构，例如医疗服务提供者、数据持有者及相关业务经营者，在相关修订生效后可能受到影响。根据所提供的元数据，无法确定具体义务的范围和性质。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认实际修订内容、适用范围及生效日期，并可考虑在适当情况下咨询合格的法律顾问。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号、公布日2025年12月12日)による改正の記載があります。対象法令は「医療分野の研究開発に資するための匿名加工医療情報及び仮名加工医療情報に関する法律」(平成二十九年法律第二十八号)で、更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "匿名加工医療情報または仮名加工医療情報を取り扱う事業者や、医療分野の研究開発に関わる事業者にとって、施行日以降に関連する制度や運用へ影響が及ぶ可能性があります。ただし、影響の有無や程度は改正内容の確認が前提となります。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連規定については、e-Gov法令検索や官報など日本語の公式情報源で確認されることが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-70cc86eee30a38af",
@@ -7184,6 +7184,12 @@
     "ai_notes": "Based only on law-update-list metadata (titles, law numbers, promulgation and effective dates); no amendment content was provided. The 'In Force' stage label is a preliminary rule-based label and appears inconsistent with the 2026-10-01 effective date relative to the 2025-12-12 publication date, so it should not be relied on. Verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)により、予防接種法(昭和二十三年法律第六十八号)が改正対象となっています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、予防接種法に係る具体的な改正内容は確認できません。",
+    "business_impact_ja": "予防接種法に関連する業務を行う医療機関、製薬企業、関連事業者などにおいて、施行日(2026年10月1日)に向けて運用や手続への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の詳細を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正法の条文、新旧対照表、所管省庁の通知・解説など日本語の公式情報源を確認し、自社業務への該当性を精査されることが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）：预防接种法更新",
@@ -7191,13 +7197,7 @@
         "business_impact": "从事疫苗接种、医疗提供或相关药事活动的机构在所列生效日期到来后可能受到影响，但影响的性质和程度无法根据所提供的元数据确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正法及其附则，以确认实际的修正内容和生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)により、予防接種法(昭和二十三年法律第六十八号)が改正対象となっています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報からは、予防接種法に係る具体的な改正内容は確認できません。",
-    "business_impact_ja": "予防接種法に関連する業務を行う医療機関、製薬企業、関連事業者などにおいて、施行日(2026年10月1日)に向けて運用や手続への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の詳細を確認しなければ判断できないと考えられます。",
-    "recommended_action_ja": "改正法の条文、新旧対照表、所管省庁の通知・解説など日本語の公式情報源を確認し、自社業務への該当性を精査されることが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-1d714159f9777676",
@@ -7220,6 +7220,12 @@
     "ai_notes": "Based only on law-update metadata (titles, law numbers, promulgation and enforcement dates); the substance of the amendments is not provided. The enforcement date (2026-10-01) is in the future relative to the promulgation date, so the 'In Force' rule-based label may be inaccurate and should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による改正が掲載されています。対象法令は「地域における医療及び介護の総合的な確保の促進に関する法律」(平成元年法律第六十四号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "医療・介護分野に関わる事業者や関連制度に関して、2026年10月1日の施行に向けた対応の検討が必要となる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認を要し、このメタデータのみでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "部分修订《医疗法》法律：更新《社区综合医疗及长期护理促进法》",
@@ -7227,13 +7233,7 @@
         "business_impact": "医疗及长期护理提供者或相关企业可能需要确认受影响法律的修订内容自所述施行日期起是否适用于自身。根据所提供的元数据，无法确定修订的具体范围和性质。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及任何附则或过渡措施，以确认实际内容及适用性。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による改正が掲載されています。対象法令は「地域における医療及び介護の総合的な確保の促進に関する法律」(平成元年法律第六十四号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "医療・介護分野に関わる事業者や関連制度に関して、2026年10月1日の施行に向けた対応の検討が必要となる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認を要し、このメタデータのみでは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-4090f94e88d6a8b5",
@@ -7256,6 +7256,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amendment contents are unknown. The 'In Force' stage label is rule-based and not verified, and the 2026-10-01 date appears to be a future enforcement date relative to the 2025-12-12 promulgation, so current force should be confirmed against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)は2025年12月12日に公布されており、対象法令として母子保健法(昭和四十年法律第百四十一号)が挙げられています。更新一覧日は2026年10月1日、施行日は2026年10月1日と記載されています。原文メタデータには、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "母子保健法に関する規定が改正対象に含まれていることから、医療・母子保健分野に関わる事業者の運用や手続に影響が及ぶ可能性があります。ただし、具体的な改正内容はメタデータから確認できないため、影響の有無や程度は条文等の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについては、e-Govの法令データや官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《部分修订医疗法等的法律》（令和7年法律第87号）——《母子保健法》更新",
@@ -7263,13 +7269,7 @@
         "business_impact": "从事母子保健服务的医疗机构及相关人员可能受到约2026-10-01起生效的变更影响，但本元数据无法确定该变更的性质和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括该修订法律的条文及关于生效日期的附则，以确认具体适用的变更内容及时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)は2025年12月12日に公布されており、対象法令として母子保健法(昭和四十年法律第百四十一号)が挙げられています。更新一覧日は2026年10月1日、施行日は2026年10月1日と記載されています。原文メタデータには、改正の具体的な内容は含まれていません。",
-    "business_impact_ja": "母子保健法に関する規定が改正対象に含まれていることから、医療・母子保健分野に関わる事業者の運用や手続に影響が及ぶ可能性があります。ただし、具体的な改正内容はメタデータから確認できないため、影響の有無や程度は条文等の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについては、e-Govの法令データや官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-687b8f138de0e0fd",
@@ -7292,6 +7292,12 @@
     "ai_notes": "Based only on update-list metadata (title, law numbers, promulgation and effective dates); amendment content is not provided. The 'In Force' stage label is rule-based and unverified, and the 2026-10-01 date may apply only to certain provisions, so effective dates should be checked in the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正情報が掲載されています。対象法令は「障害者の日常生活及び社会生活を総合的に支援するための法律」(平成十七年法律第百二十三号)で、公布日は2025-12-12、施行日は2026-10-01と記載されています。更新一覧日は20261001とされています。",
+    "business_impact_ja": "障害者総合支援法に関連する事業を行う事業者や医療・福祉分野の関係者にとって、改正内容によっては運用や手続の見直しが必要となる可能性があります。ただし、具体的な改正内容は提供された情報からは確認できず、影響の程度は不明です。",
+    "recommended_action_ja": "施行日(2026-10-01)に向けて、e-Govの法令本文や所管官庁の公表資料など日本語の公式情報源で、具体的な改正内容と自社への関係の有無をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》（令和7年第87号）：对《残疾人支持法》的更新",
@@ -7299,13 +7305,7 @@
         "business_impact": "从事医疗护理或残疾人支持服务的机构可能受到此次修正的影响，但根据现有元数据无法确定具体修改的性质和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正条文及有关生效日期的附则，以确认具体适用内容及适用时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正情報が掲載されています。対象法令は「障害者の日常生活及び社会生活を総合的に支援するための法律」(平成十七年法律第百二十三号)で、公布日は2025-12-12、施行日は2026-10-01と記載されています。更新一覧日は20261001とされています。",
-    "business_impact_ja": "障害者総合支援法に関連する事業を行う事業者や医療・福祉分野の関係者にとって、改正内容によっては運用や手続の見直しが必要となる可能性があります。ただし、具体的な改正内容は提供された情報からは確認できず、影響の程度は不明です。",
-    "recommended_action_ja": "施行日(2026-10-01)に向けて、e-Govの法令本文や所管官庁の公表資料など日本語の公式情報源で、具体的な改正内容と自社への関係の有無をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-a6de718d91c4bfb8",
@@ -7328,6 +7328,12 @@
     "ai_notes": "Based only on update-list metadata; the content of the amendments is not provided. The preliminary 'In Force' label is rule-based and may not reflect the status at the time of reading, since the listed effective date (2026-10-01) is later than the promulgation date. Verify all details against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「石綿による健康被害の救済に関する法律」(平成十八年法律第四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "石綿による健康被害の救済制度に関わる事業者や医療関係者にとって、制度上の取扱いや手続に影響が及ぶ可能性がありますが、具体的な影響の有無や程度は改正内容を確認しないと判断できないと考えられます。",
+    "recommended_action_ja": "施行日である2026年10月1日に向け、e-Gov法令検索や所管官庁の公式情報で改正の具体的な条文内容と経過措置を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）：石棉健康损害救济法更新",
@@ -7335,13 +7341,7 @@
         "business_impact": "涉及石棉相关健康损害救济或医疗行政的机构可能受到影响，但从此元数据中无法确定变更的性质和范围。任何影响都将取决于实际修正的条款。",
         "recommended_action": "建议查阅该修正法律的日文官方文本以及e-Gov上《石棉健康损害救济法》受影响条款，以确认具体适用的变更内容及生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「石綿による健康被害の救済に関する法律」(平成十八年法律第四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "石綿による健康被害の救済制度に関わる事業者や医療関係者にとって、制度上の取扱いや手続に影響が及ぶ可能性がありますが、具体的な影響の有無や程度は改正内容を確認しないと判断できないと考えられます。",
-    "recommended_action_ja": "施行日である2026年10月1日に向け、e-Gov法令検索や所管官庁の公式情報で改正の具体的な条文内容と経過措置を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-49a9132ae7b30f68",
@@ -7364,6 +7364,12 @@
     "ai_notes": "Based only on law-list metadata (title, law numbers, promulgation and enforcement dates); amendment contents are not provided. The preliminary 'In Force' label should not be relied on, since the listed enforcement date (2026-10-01) may be in the future depending on the current date. Unofficial summary; verify against the Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による国民健康保険法(昭和三十三年法律第百九十二号)の更新が掲載されています。改正法令の公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "国民健康保険法に関わる医療・保険関連の業務や制度対応に、施行日以降、影響が及ぶ可能性があります。ただし、改正の具体的内容が不明なため、影響の範囲や程度は現時点では判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容や施行に伴う経過措置の有無については、e-Govの該当ページや官報など日本語の公式情報源で、実際の条文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）修改《国民健康保险法》",
@@ -7371,13 +7377,7 @@
         "business_impact": "与日本健康保险制度相关的机构可能受到《国民健康保险法》修改的影响，但根据所提供的元数据无法确定修订的具体内容和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括其附则及生效日期，以确认具体修订了哪些条款以及各条款的生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による国民健康保険法(昭和三十三年法律第百九十二号)の更新が掲載されています。改正法令の公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "国民健康保険法に関わる医療・保険関連の業務や制度対応に、施行日以降、影響が及ぶ可能性があります。ただし、改正の具体的内容が不明なため、影響の範囲や程度は現時点では判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的内容や施行に伴う経過措置の有無については、e-Govの該当ページや官報など日本語の公式情報源で、実際の条文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-11b7d5accd595862",
@@ -7400,6 +7400,12 @@
     "ai_notes": "Based only on law-update list metadata (titles, law numbers, promulgation and enforcement dates); amendment content is not provided. The 'In Force' stage label is preliminary and may not be accurate, since the listed enforcement date (2026-10-01) is later than the promulgation date. Verify against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「高齢者の医療の確保に関する法律」(昭和五十七年法律第八十号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "医療・医薬分野の事業者や医療保険関連の業務に関わる事業者にとって、2026年10月1日の施行日に向けて、制度運用や関連手続への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の詳細については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》生效（涉及《老年人医疗保障法》）",
@@ -7407,13 +7413,7 @@
         "business_impact": "涉及医疗服务或老年人医疗保障的机构在修正内容生效后可能受到影响，但具体义务或变化内容无法根据所提供的元数据确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方正式文本，以确认修正条款的具体内容、适用范围及相应生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による「高齢者の医療の確保に関する法律」(昭和五十七年法律第八十号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "医療・医薬分野の事業者や医療保険関連の業務に関わる事業者にとって、2026年10月1日の施行日に向けて、制度運用や関連手続への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の詳細については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-7bab484982d1a3ae",
@@ -7436,6 +7436,12 @@
     "ai_notes": "Based only on e-Gov update-list metadata; no amendment content was provided. The target law name is translated from the Japanese title and may not match the official English name. The 'In Force' stage label is preliminary and keyword-based; the listed effective date (2026-10-01) is later than the item's publication date, so the amendment's status should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されており、対象法令として医療情報基盤・診療報酬審査支払機構法(昭和二十三年法律第百二十九号)が示されています。メタデータ上は更新一覧日が20261001となっていますが、改正の具体的な内容は提供情報からは確認できません。",
+    "business_impact_ja": "医療・医薬分野の事業者や医療情報基盤、診療報酬の審査支払に関わる事業者の業務に、施行日以降に影響が及ぶ可能性があります。ただし、具体的な影響の範囲や程度は、改正内容の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについて、e-Govの該当ページや官報など日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》等部分修订法律（令和7年法律第87号），2025-12-12公布",
@@ -7443,13 +7449,7 @@
         "business_impact": "医疗相关机构一旦该修订生效，可能会受到所引用法律变更的影响，但根据所提供的元数据，无法确定相关义务的范围和性质。",
         "recommended_action": "建议参阅e-Gov来源的日文官方文本及修订详情，以确认具体修订内容、适用条款及相应的生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されており、対象法令として医療情報基盤・診療報酬審査支払機構法(昭和二十三年法律第百二十九号)が示されています。メタデータ上は更新一覧日が20261001となっていますが、改正の具体的な内容は提供情報からは確認できません。",
-    "business_impact_ja": "医療・医薬分野の事業者や医療情報基盤、診療報酬の審査支払に関わる事業者の業務に、施行日以降に影響が及ぶ可能性があります。ただし、具体的な影響の範囲や程度は、改正内容の確認なしには判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについて、e-Govの該当ページや官報など日本語の公式情報源をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-49abf449ce35590f",
@@ -7472,6 +7472,12 @@
     "ai_notes": "Based only on the e-Gov update-list metadata (titles, law numbers, promulgation and enforcement dates); the content of the amendments is not provided and is unverified. The 'In Force' label is a preliminary keyword-based label, and the 2026-10-01 enforcement date is in the future relative to the 2025-12-12 promulgation date, so entry-into-force status should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による「感染症の予防及び感染症の患者に対する医療に関する法律」(平成十年法律第百十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "感染症法に基づく対応が関係する医療機関、医薬品関連事業者などにおいて、施行日(2026年10月1日)に向けた社内体制や手続の見直しが必要となる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認を要し、本情報のみでは判断できません。",
+    "recommended_action_ja": "改正条文、施行期日および関連する政省令・通知等について、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）：感染症法相关更新",
@@ -7479,13 +7485,7 @@
         "business_impact": "在日本从事医疗、感染症应对或相关业务的机构可能会受到修订条款的影响，但具体义务内容无法从所提供的元数据中确定。",
         "recommended_action": "建议查阅e-Gov上该修正法律及修订后的感染症法的日文官方文本，以确认适用的具体条款、生效时间，以及是否与自身业务相关。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による「感染症の予防及び感染症の患者に対する医療に関する法律」(平成十年法律第百十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "感染症法に基づく対応が関係する医療機関、医薬品関連事業者などにおいて、施行日(2026年10月1日)に向けた社内体制や手続の見直しが必要となる可能性があります。ただし、具体的な影響の有無や範囲は改正内容の確認を要し、本情報のみでは判断できません。",
-    "recommended_action_ja": "改正条文、施行期日および関連する政省令・通知等について、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-ea6c97f976389b0c",
@@ -7508,6 +7508,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is rule-based, and the 2026-10-01 effective date is a future date relative to the 2025-12-12 promulgation date, so the current status should be verified against the official source. English is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による児童福祉法(昭和二十二年法律第百六十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "児童福祉法に関連する事業や、医療・福祉分野の事業運営に影響が及ぶ可能性がありますが、具体的な影響の有無や範囲は改正内容を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や自社への関係については、e-Gov法令検索および所管官庁など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》：儿童福利法更新条目",
@@ -7515,13 +7521,7 @@
         "business_impact": "在儿童福利或相关医疗领域运营的机构可能受到《儿童福利法》修订的影响，但仅凭此元数据无法确定具体范围和义务。实际影响（如有）将取决于被修订的条款及任何实施细则。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本及任何相关法令或指引，以确认哪些条款被修订，以及这些修订是否与贵机构的运营相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による児童福祉法(昭和二十二年法律第百六十四号)の改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "児童福祉法に関連する事業や、医療・福祉分野の事業運営に影響が及ぶ可能性がありますが、具体的な影響の有無や範囲は改正内容を確認するまで判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や自社への関係については、e-Gov法令検索および所管官庁など日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-fdc3c0419a885951",
@@ -7544,6 +7544,12 @@
     "ai_notes": "Based only on the e-Gov update list metadata; the content of the amendments was not provided. The rule-based 'In Force' stage label is unverified, and the listed enforcement date (2026-10-01) may be in the future relative to publication. The 'Healthcare / Pharmaceuticals' area label is keyword-based, and this entry concerns an amendment to the My Number Act. Verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による改正の情報が掲載されています。対象法令は行政手続における特定の個人を識別するための番号の利用等に関する法律(平成二十五年法律第二十七号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供されたメタデータには改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "番号法の規定が改正対象となっているため、個人番号の取扱いや医療関連の事務に関わる事業者の運用に影響する可能性があります。ただし、具体的な改正内容はメタデータから確認できず、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)に向け、e-Gov法令検索や官報など日本語の公式情報源で改正条文および関連する政省令・通知の内容をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》（令和7年法律第87号）修订《我的号码法》",
@@ -7551,13 +7557,7 @@
         "business_impact": "处理个人号码的组织，例如在医疗或相关行政流程中，在该修正生效后可能受到影响。由于所提供的元数据有限，任何变更的范围和性质尚无法确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修订条款及施行日期，以确定该修订是否及如何适用于贵机构的业务。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による改正の情報が掲載されています。対象法令は行政手続における特定の個人を識別するための番号の利用等に関する法律(平成二十五年法律第二十七号)で、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供されたメタデータには改正の具体的な内容は含まれていません。",
-    "business_impact_ja": "番号法の規定が改正対象となっているため、個人番号の取扱いや医療関連の事務に関わる事業者の運用に影響する可能性があります。ただし、具体的な改正内容はメタデータから確認できず、影響の有無や程度は原文の確認が必要と考えられます。",
-    "recommended_action_ja": "施行日(2026年10月1日)に向け、e-Gov法令検索や官報など日本語の公式情報源で改正条文および関連する政省令・通知の内容をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-85222744877d7fad",
@@ -7580,6 +7580,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The rule-based 'In Force' stage label may not match the stated enforcement date of 2026-10-01 and should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)は2025年12月12日に公布され、船員保険法(昭和十四年法律第七十三号)が改正対象法令として記載されています。更新一覧日および施行日として2026年10月1日が示されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "船員保険法に関連する制度や手続に関わる事業者や関係機関では、2026年10月1日の施行日に向けて影響を受ける可能性があります。ただし、具体的な影響の有無や範囲は、改正内容が不明なため現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについては、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（2025年第87号）—船员保险法更新",
@@ -7587,13 +7593,7 @@
         "business_impact": "涉及船员保险或相关医疗及卫生行政事务的机构可能受到影响，但根据所提供的元数据无法确定影响的性质和范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括施行条款，以确认具体修正了哪些条款及其生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)は2025年12月12日に公布され、船員保険法(昭和十四年法律第七十三号)が改正対象法令として記載されています。更新一覧日および施行日として2026年10月1日が示されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "船員保険法に関連する制度や手続に関わる事業者や関係機関では、2026年10月1日の施行日に向けて影響を受ける可能性があります。ただし、具体的な影響の有無や範囲は、改正内容が不明なため現時点では判断できません。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の取扱いについては、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-c18d13dff082baa8",
@@ -7616,6 +7616,12 @@
     "ai_notes": "Based only on update-list metadata (title, law numbers, promulgation and enforcement dates); amendment details are not provided. The enforcement date is listed as 2026-10-01, which may be in the future, so the 'In Force' stage label may not reflect current status and should be verified. Area and impact labels are rule-based and unverified. Unofficial summary; verify against the Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による介護保険法(平成九年法律第百二十三号)の改正に関する項目が掲載されています。メタデータ上、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "介護保険法の規定に関わる事業者や医療・介護関連の事業者にとって、2026年10月1日の施行日に向けて運用や社内規程の見直しが必要となる可能性があります。ただし、改正の具体的内容は本メタデータからは不明であり、影響の程度は個別に確認する必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Govに掲載された改正法令本文および所管官庁の公式情報をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法律》（令和7年法律第87号）更新介护保险法",
@@ -7623,13 +7629,7 @@
         "business_impact": "视修正内容而定，涉及介护或医疗服务的机构可能会发现部分要求或程序自所述施行日期起发生变化。根据现有信息无法确定影响的范围和性质。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，以确认介护保险法的哪些条款被修正及各自的生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による介護保険法(平成九年法律第百二十三号)の改正に関する項目が掲載されています。メタデータ上、公布日は2025年12月12日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "介護保険法の規定に関わる事業者や医療・介護関連の事業者にとって、2026年10月1日の施行日に向けて運用や社内規程の見直しが必要となる可能性があります。ただし、改正の具体的内容は本メタデータからは不明であり、影響の程度は個別に確認する必要があると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Govに掲載された改正法令本文および所管官庁の公式情報をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-35ed3e30a3392de0",
@@ -7652,6 +7652,12 @@
     "ai_notes": "Based only on the title and metadata from the e-Gov update list; the content of the amendments is not provided. The 'In Force' stage label is preliminary, and the listed enforcement date (2026-10-01) may be in the future relative to the publication date, so current force status should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による住民基本台帳法(昭和四十二年法律第八十一号)の改正が掲載されています。メタデータ上、公布日は2025-12-12、施行日は2026-10-01、更新一覧日は20261001と記載されています。改正の具体的な内容は提供されたメタデータからは確認できません。",
+    "business_impact_ja": "住民基本台帳法に関わる手続や、医療・住民情報に関連する業務に影響が及ぶ可能性がありますが、具体的な影響範囲は原文の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》生效（涉及《居民登记法》），2026-10-01生效",
@@ -7659,13 +7665,7 @@
         "business_impact": "处理居民登记数据或医疗领域行政流程的组织可能受到影响，但仅凭此元数据无法确定实际影响范围。任何影响可能取决于具体的修正条款。",
         "recommended_action": "建议参阅e-Gov上的日文官方文本，包括相关修正条款及施行日期，以确定其是否及如何适用于自身业务。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による住民基本台帳法(昭和四十二年法律第八十一号)の改正が掲載されています。メタデータ上、公布日は2025-12-12、施行日は2026-10-01、更新一覧日は20261001と記載されています。改正の具体的な内容は提供されたメタデータからは確認できません。",
-    "business_impact_ja": "住民基本台帳法に関わる手続や、医療・住民情報に関連する業務に影響が及ぶ可能性がありますが、具体的な影響範囲は原文の確認なしには判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-39c288795d861a66",
@@ -7688,6 +7688,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The preliminary 'In Force' stage label appears inconsistent with the listed enforcement date of 2026-10-01 (which is after the 2025-12-12 publication date), so the current legal status should be verified in the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布され、同法による改正の対象法令として健康保険法(大正十一年法律第七十号)が記載されています。更新一覧日および施行日は2026年10月1日と示されています。提供情報は一覧の記載に限られ、具体的な改正内容は確認できません。",
+    "business_impact_ja": "健康保険法の改正が2026年10月1日に施行される旨が示されているため、医療機関、薬局、健康保険に関わる事業者の実務や社内規程に影響する可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は本情報のみでは判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索に掲載された改正法令の本文や所管官庁の公表資料などの日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法》部分修正法律：涉及《健康保险法》，2026-10-01生效",
@@ -7695,13 +7701,7 @@
         "business_impact": "日本的医疗服务提供者、保险机构及医药相关企业可能受到影响，但根据现有信息无法确定相关变更的性质和范围。",
         "recommended_action": "建议查阅e-Gov上该修正法律及修订后《健康保险法》的官方日文文本，以确认具体修改条款及其生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「医療法等の一部を改正する法律」(令和七年法律第八十七号)が2025年12月12日に公布され、同法による改正の対象法令として健康保険法(大正十一年法律第七十号)が記載されています。更新一覧日および施行日は2026年10月1日と示されています。提供情報は一覧の記載に限られ、具体的な改正内容は確認できません。",
-    "business_impact_ja": "健康保険法の改正が2026年10月1日に施行される旨が示されているため、医療機関、薬局、健康保険に関わる事業者の実務や社内規程に影響する可能性があります。ただし、改正の具体的内容が不明なため、影響の有無や程度は本情報のみでは判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や経過措置の有無については、e-Gov法令検索に掲載された改正法令の本文や所管官庁の公表資料などの日本語の公式情報源をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-3a5bd81851a28de2",
@@ -7724,6 +7724,12 @@
     "ai_notes": "Based only on the title and update-list metadata; amendment contents are unknown. The 'In Force' rule-based label may not reflect that the stated enforcement date (2026-10-01) appears to be in the future relative to promulgation; verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、医療法(昭和二十三年法律第二百五号)を対象に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報は更新一覧のメタデータのみであり、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "医療法の適用を受ける医療機関や関連事業者において、2026年10月1日の施行に向けて運用や体制の見直しが必要となる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となります。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Govの法令本文および所管官庁の公表資料など日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医疗法等部分修正法》（令和7年法律第87号）于2025-12-12公布",
@@ -7731,13 +7737,7 @@
         "business_impact": "医疗机构及相关企业可能受到《医疗法》变更的影响，但根据现有信息无法确定具体的义务或变更内容。影响范围或取决于在所列生效日期生效的具体条款。",
         "recommended_action": "建议查阅e-Gov上该修正法及其施行条款的日文官方文本，以确认实际变更内容及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、医療法(昭和二十三年法律第二百五号)を対象に、「医療法等の一部を改正する法律」(令和七年法律第八十七号)による改正が掲載されています。公布日は2025年12月12日、施行日は2026年10月1日と記載されています。提供された情報は更新一覧のメタデータのみであり、改正の具体的な内容は含まれていません。",
-    "business_impact_ja": "医療法の適用を受ける医療機関や関連事業者において、2026年10月1日の施行に向けて運用や体制の見直しが必要となる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となります。",
-    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Govの法令本文および所管官庁の公表資料など日本語の公式情報源をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-741c09b1c24fc8dc",
@@ -7760,6 +7760,12 @@
     "ai_notes": "Based only on law-update metadata (titles, law numbers, dates); the content of the amendments is not provided and was not inferred. The enforcement date applies as stated in the source entry and should be verified, as the amending act may have staggered effective dates. Rule-based labels are preliminary and unverified.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による国家戦略特別区域法(平成二十五年法律第百七号)の改正が掲載されています。公布日は2025年12月12日、施行日は2027年4月1日と記載されており、更新一覧日は20261009とされています。改正の具体的な内容は、提示されたメタデータからは確認できません。",
+    "business_impact_ja": "国家戦略特別区域法に関わる事業や、医療分野の特区制度を利用・検討している事業者にとって、制度上の取扱いに影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となり、現時点では判断できません。",
+    "recommended_action_ja": "施行日(2027年4月1日)に向けて、e-Govの該当法令ページや官報等の日本語の公式情報源で改正の具体的内容と関連政省令の動向をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "预定生效：《医疗法等部分修正法律》（令和7年法律第87号）修改《国家战略特别区域法》",
@@ -7767,13 +7773,7 @@
         "business_impact": "医疗相关机构或在国家战略特别区域内运营的组织可能受到影响，但根据所提供的元数据，无法确定具体影响的性质和范围。",
         "recommended_action": "建议参阅e-Gov上的日文官方文本，包括《国家战略特别区域法》的修正条款及施行日期，以确认是否有任何内容适用于相关业务运营。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、令和七年法律第八十七号「医療法等の一部を改正する法律」による国家戦略特別区域法(平成二十五年法律第百七号)の改正が掲載されています。公布日は2025年12月12日、施行日は2027年4月1日と記載されており、更新一覧日は20261009とされています。改正の具体的な内容は、提示されたメタデータからは確認できません。",
-    "business_impact_ja": "国家戦略特別区域法に関わる事業や、医療分野の特区制度を利用・検討している事業者にとって、制度上の取扱いに影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が前提となり、現時点では判断できません。",
-    "recommended_action_ja": "施行日(2027年4月1日)に向けて、e-Govの該当法令ページや官報等の日本語の公式情報源で改正の具体的内容と関連政省令の動向をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-4ef7585bdb080569",
@@ -8011,6 +8011,12 @@
     "ai_notes": "Based only on the Japanese title and update-list metadata; the order's substantive provisions are not provided. The preliminary label 'In Force' may be inaccurate, since the listed enforcement date (2026-10-01) is after the 2025-08-14 promulgation date; verify against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、日本学術会議法施行令(令和七年政令第二百九十九号)が掲載されています。メタデータ上、公布日は2025年8月14日、施行日は2026年10月1日とされています。提供された情報には条文の内容や具体的な改正点は含まれておらず、詳細は原文で確認する必要があります。",
+    "business_impact_ja": "日本学術会議に関連する制度や手続に関与する事業者・団体にとっては、施行日以降の取扱いに関係する可能性があります。ただし、メタデータのみでは具体的な影響範囲は判断できず、自社に関係するかどうかは原文の内容次第と考えられます。",
+    "recommended_action_ja": "施行日や具体的な規定内容については、e-Gov法令検索および官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《日本学术会议法施行令》（令和7年第299号）",
@@ -8018,13 +8024,7 @@
         "business_impact": "由于该政令涉及日本学术会议，可能主要与学术或研究相关机构有关，但所提供的元数据未说明其具体要求。实际影响可能取决于此处未提供的细节。",
         "recommended_action": "建议查阅e-Gov上的日文官方原文，以确认该政令的内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、日本学術会議法施行令(令和七年政令第二百九十九号)が掲載されています。メタデータ上、公布日は2025年8月14日、施行日は2026年10月1日とされています。提供された情報には条文の内容や具体的な改正点は含まれておらず、詳細は原文で確認する必要があります。",
-    "business_impact_ja": "日本学術会議に関連する制度や手続に関与する事業者・団体にとっては、施行日以降の取扱いに関係する可能性があります。ただし、メタデータのみでは具体的な影響範囲は判断できず、自社に関係するかどうかは原文の内容次第と考えられます。",
-    "recommended_action_ja": "施行日や具体的な規定内容については、e-Gov法令検索および官報など日本語の公式情報源で原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-96597435b2cee139",
@@ -8047,6 +8047,12 @@
     "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not provided. The rule-based labels (Other / In Force / Medium) are unverified, and the 2026-10-01 enforcement date is in the future relative to the 2025-08-14 promulgation date, so the 'In Force' label may not reflect current status. English title is an unofficial rendering.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「日本学術会議法施行令」(令和七年政令第二百九十九号)による内閣府本府組織令(平成十二年政令第二百四十五号)の改正が掲載されています。公布日は2025年8月14日、施行日は2026年10月1日と記載されており、改正の具体的な内容は提供された情報からは確認できません。",
+    "business_impact_ja": "主として内閣府本府組織令の組織規定に関する改正と考えられ、一般的な事業者への直接の影響は限定的である可能性がありますが、改正内容の詳細は不明であり、日本学術会議との関係がある事業者や団体には影響が生じる可能性も否定できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行日の最新状況について、e-Govの法令データおよび官報など日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《日本学术会议法施行令》修订：修改内阁府组织令",
@@ -8054,13 +8060,7 @@
         "business_impact": "该修订的实际效果似乎涉及政府机构的组织安排，因此对民间企业的直接影响可能有限，但这无法从元数据中确认。与日本学术会议或内阁府有往来的相关机构可能会受到影响，具体视内容而定。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，以确认实际修订内容、生效日期，以及是否有条款与所属机构相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「日本学術会議法施行令」(令和七年政令第二百九十九号)による内閣府本府組織令(平成十二年政令第二百四十五号)の改正が掲載されています。公布日は2025年8月14日、施行日は2026年10月1日と記載されており、改正の具体的な内容は提供された情報からは確認できません。",
-    "business_impact_ja": "主として内閣府本府組織令の組織規定に関する改正と考えられ、一般的な事業者への直接の影響は限定的である可能性がありますが、改正内容の詳細は不明であり、日本学術会議との関係がある事業者や団体には影響が生じる可能性も否定できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行日の最新状況について、e-Govの法令データおよび官報など日本語の公式情報源をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-6f1685747d494bbb",
@@ -8083,6 +8083,12 @@
     "ai_notes": "Based only on law-list metadata (title, numbers, dates); the amendment's substance is not provided. The rule-based 'In Force' label is preliminary, and the listed enforcement date (2026-10-01) is in the future relative to the promulgation date, so the current status should be verified. This is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、日本学術会議法施行令(平成十七年政令第二百九十九号)の改正が掲載されています。改正法令は令和七年政令第二百九十九号とされ、公布日は2025年8月14日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "日本学術会議に関する制度運用の変更が含まれる可能性があり、同会議と関わりのある研究機関や学術団体等では影響が生じることも考えられます。ただし、改正内容が不明なため、事業への具体的な影響は現時点では判断できません。",
+    "recommended_action_ja": "施行日が2026年10月1日とされていることを踏まえ、改正の具体的な内容や経過措置の有無について、e-Govの法令本文や官報など日本語の公式情報源でご確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《日本学术会议法施行令》修订，2025-08-14公布",
@@ -8090,13 +8096,7 @@
         "business_impact": "从元数据来看，实际影响尚不明确；该修订似涉及《日本学术会议法》的施行令，对大多数企业的直接相关性可能有限。与日本学术会议有往来的机构可能会受到影响，具体视修订内容而定。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，以确认此次修订的内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、日本学術会議法施行令(平成十七年政令第二百九十九号)の改正が掲載されています。改正法令は令和七年政令第二百九十九号とされ、公布日は2025年8月14日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "日本学術会議に関する制度運用の変更が含まれる可能性があり、同会議と関わりのある研究機関や学術団体等では影響が生じることも考えられます。ただし、改正内容が不明なため、事業への具体的な影響は現時点では判断できません。",
-    "recommended_action_ja": "施行日が2026年10月1日とされていることを踏まえ、改正の具体的な内容や経過措置の有無について、e-Govの法令本文や官報など日本語の公式情報源でご確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f4e3d873bdcb0a6c",
@@ -8695,6 +8695,12 @@
     "ai_notes": "Based only on the provided Japanese title and raw metadata; the 'Promulgated' stage and promulgation date are as stated in the metadata and were not independently verified. Effective-date suffix in the URL and future update-listing dates are not interpreted. Preliminary triage labels are unverified.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧に、住民基本台帳法(昭和四十二年法律第八十一号)を対象とする更新情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20と記載されています。提供されたメタデータからは、改正の具体的内容や施行日は確認できません。",
+    "business_impact_ja": "住民基本台帳法に関わる改正が含まれる可能性があり、住民情報や年金関連の手続・事務を扱う事業者では、運用への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が必要で、本情報のみからは判断できません。",
+    "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索および所管官庁の公表資料など日本語の公式情報源で確認することが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律公布：修改《国民年金法》以应对社会经济变化强化养老金制度功能",
@@ -8702,13 +8708,7 @@
         "business_impact": "与养老金管理或居民登记相关流程有关的机构可能受到影响，可能需要审查修订条款是否适用于自身情况。",
         "recommended_action": "建议参考官方e-Gov来源及权威日文文本，以确认修订内容的适用范围、生效日期及适用性。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、住民基本台帳法(昭和四十二年法律第八十一号)を対象とする更新情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20と記載されています。提供されたメタデータからは、改正の具体的内容や施行日は確認できません。",
-    "business_impact_ja": "住民基本台帳法に関わる改正が含まれる可能性があり、住民情報や年金関連の手続・事務を扱う事業者では、運用への影響が生じる可能性があります。ただし、具体的な影響の有無や程度は改正内容の確認が必要で、本情報のみからは判断できません。",
-    "recommended_action_ja": "改正の具体的内容や施行時期については、e-Gov法令検索および所管官庁の公表資料など日本語の公式情報源で確認することが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-6d3a7447bd14e0ef",
@@ -8731,6 +8731,12 @@
     "ai_notes": "Based on Japanese title and law-update metadata; promulgation and enforcement dates are as stated in the item and unverified. Preliminary triage labels ('Labor / Employment', 'Scheduled to Take Effect', 'Medium') are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)を対象とする改正の情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20、施行日は2028-04-01と記載されています。更新一覧日は20260916と表示されています。",
+    "business_impact_ja": "共済組合制度や年金制度に関わる事務、または従業員の社会保障関連の取扱いに影響する可能性があります。ただし、具体的な改正内容は提供された情報からは確認できず、影響の有無や程度は条文の確認が必要と考えられます。",
+    "recommended_action_ja": "施行日(2028-04-01)や具体的な改正内容について、e-Gov法令検索や所管官庁が公表する日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修正法：为强化年金制度机能（令和7年法律第74号）",
@@ -8738,13 +8744,7 @@
         "business_impact": "受年金及公务员共济相关规定影响的组织可能需要考虑修正后的规则可能如何影响其义务。由于所述施行日期为未来日期，相关影响可能是逐步产生而非立即发生。",
         "recommended_action": "建议考虑查阅e-Gov法令官方来源及相关基础法律，以确认适用范围、受影响条款及生效日期。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)を対象とする改正の情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20、施行日は2028-04-01と記載されています。更新一覧日は20260916と表示されています。",
-    "business_impact_ja": "共済組合制度や年金制度に関わる事務、または従業員の社会保障関連の取扱いに影響する可能性があります。ただし、具体的な改正内容は提供された情報からは確認できず、影響の有無や程度は条文の確認が必要と考えられます。",
-    "recommended_action_ja": "施行日(2028-04-01)や具体的な改正内容について、e-Gov法令検索や所管官庁が公表する日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-aa954ddcbe3394de",
@@ -8767,6 +8767,12 @@
     "ai_notes": "Based only on Japanese law-update metadata; promulgation and scheduled effective dates are as stated in the source and were not independently verified. Rule-based labels are weak context only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)について、令和七年法律第七十四号(社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律)による改正が掲載されています。メタデータ上、この改正法令の公布日は2025-06-20、施行日は2028-09-01とされています。改正の具体的な内容は、提供された情報には含まれていません。",
+    "business_impact_ja": "共済組合制度や年金関連の取扱いに関わる事業者や人事・労務担当部門において、施行日に向けて制度対応の確認が必要となる可能性があります。ただし、具体的な影響の有無や範囲は、提供情報からは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行に関する経過措置などについては、e-Govの法令本文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：加强年金制度功能",
@@ -8774,13 +8780,7 @@
         "business_impact": "年金制度框架及相关共济组合规定的变更，在修订生效后可能影响雇主与雇员的年金义务及相关管理事务。",
         "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以确认适用范围、受影响条款及具体生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)について、令和七年法律第七十四号(社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律)による改正が掲載されています。メタデータ上、この改正法令の公布日は2025-06-20、施行日は2028-09-01とされています。改正の具体的な内容は、提供された情報には含まれていません。",
-    "business_impact_ja": "共済組合制度や年金関連の取扱いに関わる事業者や人事・労務担当部門において、施行日に向けて制度対応の確認が必要となる可能性があります。ただし、具体的な影響の有無や範囲は、提供情報からは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行に関する経過措置などについては、e-Govの法令本文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e3807f0e4583f967",
@@ -8803,6 +8803,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; promulgation and effective dates are as stated in the source data and not independently verified. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)の改正に関する記載があります。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20、施行日は2029-09-01と記載されています。",
+    "business_impact_ja": "国家公務員共済組合法に関わる年金・共済制度の運用に関連する事業者や、従業員の年金・社会保険関連の実務を担う部門にとって、将来的に制度対応の確認が必要となる可能性があります。ただし、具体的な改正内容は提供情報からは確認できず、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置の有無については、e-Govに掲載された法令本文および所管官庁の公式情報をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：为应对社会经济变化强化年金制度机能",
@@ -8810,13 +8816,7 @@
         "business_impact": "适用国民年金或公共部门共济组合规则的组织可能需要关注这些修订可能如何影响与年金相关的义务。具体影响及时间安排可能视官方文本及任何实施性规定而有所变化。",
         "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令官方来源，以核实适用范围、受影响条款及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、国家公務員共済組合法(昭和三十三年法律第百二十八号)の改正に関する記載があります。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025-06-20、施行日は2029-09-01と記載されています。",
-    "business_impact_ja": "国家公務員共済組合法に関わる年金・共済制度の運用に関連する事業者や、従業員の年金・社会保険関連の実務を担う部門にとって、将来的に制度対応の確認が必要となる可能性があります。ただし、具体的な改正内容は提供情報からは確認できず、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置の有無については、e-Govに掲載された法令本文および所管官庁の公式情報をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-afdc66c80146de31",
@@ -8839,6 +8839,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; the amendment relationship and dates are as stated in the metadata and are unverified. Enforcement date of 2028-04-01 is listed but not independently confirmed. Preliminary labels (Labor/Employment, Medium) are weak triage context only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の更新一覧によると、「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。この改正法令の公布日は2025年6月20日、施行日は2028年4月1日と記載されています。更新一覧日は20260918とされています。",
+    "business_impact_ja": "施行日が2028年4月1日とされているため、社会保障協定に関連する厚生年金保険等の取扱いに関わる事業者や人事・労務の実務に、将来的に影響が生じる可能性があります。ただし、具体的な改正内容はメタデータからは確認できないため、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置の有無については、e-Gov法令検索や所管官庁が公表する日本語の公式情報を直接ご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：为强化养老金制度（令和7年法律第74号）",
@@ -8846,13 +8852,7 @@
         "business_impact": "从事养老金管理或员工福利相关业务的组织可能因养老金制度框架的变化而受到影响，并可能需要在所述生效日期前审查其相关义务。",
         "recommended_action": "建议查阅e-Gov Law Search上的日文官方来源，以确认此次修订的范围、内容及时间安排。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧によると、「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。この改正法令の公布日は2025年6月20日、施行日は2028年4月1日と記載されています。更新一覧日は20260918とされています。",
-    "business_impact_ja": "施行日が2028年4月1日とされているため、社会保障協定に関連する厚生年金保険等の取扱いに関わる事業者や人事・労務の実務に、将来的に影響が生じる可能性があります。ただし、具体的な改正内容はメタデータからは確認できないため、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置の有無については、e-Gov法令検索や所管官庁が公表する日本語の公式情報を直接ご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-bede3efe80ccdd91",
@@ -8875,6 +8875,12 @@
     "ai_notes": "Based only on the provided Japanese title and update-list metadata; specific substantive provisions are not detailed. The stated promulgation date (2025-06-20) and effective date (2026-10-01) come from the metadata and should be verified against the official source. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月18日)に、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。対象法令は「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "対象法令は社会保障協定の実施に伴う厚生年金保険法等の特例に関するものであり、海外との間で人材の派遣や受入れを行う企業の社会保険・年金関連の実務に関係する可能性があります。ただし、具体的な影響の有無や程度は改正内容を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "施行日(2026年10月1日)を見据え、e-Govの法令データや所管官庁の公表資料など日本語の公式情報源で改正の具体的内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：为应对社会经济变化强化养老金制度功能（令和7年法律第74号）",
@@ -8882,13 +8888,7 @@
         "business_impact": "从事养老金管理或跨境社会保障事务的机构可能需要考虑此次修订可能如何影响其义务。相关变化可能与受影响养老金条款所涉及的雇主及个人有关。",
         "recommended_action": "建议参阅e-Gov法令检索上的日文官方来源，以核实此次修订的范围、内容及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月18日)に、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。対象法令は「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "対象法令は社会保障協定の実施に伴う厚生年金保険法等の特例に関するものであり、海外との間で人材の派遣や受入れを行う企業の社会保険・年金関連の実務に関係する可能性があります。ただし、具体的な影響の有無や程度は改正内容を確認しなければ判断できないと考えられます。",
-    "recommended_action_ja": "施行日(2026年10月1日)を見据え、e-Govの法令データや所管官庁の公表資料など日本語の公式情報源で改正の具体的内容を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-7947903c4374262b",
@@ -8911,6 +8911,12 @@
     "ai_notes": "Based on the provided Japanese title and metadata; promulgation date (2025-06-20) and effective date (2028-04-01) are as stated in the metadata and should be verified. Preliminary labels are keyword-based and unverified.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)を対象とする改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2028年4月1日と記載されています。",
+    "business_impact_ja": "私立学校教職員共済制度に関わる学校法人等では、施行日以降に共済給付や手続、人事・労務面の取扱いに関する事項が関係する可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は条文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置・関連政省令については、e-Gov法令検索や所管官庁等の日本語の公式情報源でご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：为应对社会经济变化强化年金制度（令和7年法律第74号）",
@@ -8918,13 +8924,7 @@
         "business_impact": "与私立学校职员共济或受影响的年金安排相关的机构可能需要审查此次修订可能引起的义务或福利变化。",
         "recommended_action": "建议在得出任何结论之前，考虑查阅e-Gov法令检索的日文官方来源，以确认适用范围、具体条款及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)を対象とする改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2028年4月1日と記載されています。",
-    "business_impact_ja": "私立学校教職員共済制度に関わる学校法人等では、施行日以降に共済給付や手続、人事・労務面の取扱いに関する事項が関係する可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は条文の確認を要すると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置・関連政省令については、e-Gov法令検索や所管官庁等の日本語の公式情報源でご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-ba5042a16fed7a66",
@@ -8947,6 +8947,12 @@
     "ai_notes": "Based only on Japanese title and metadata. The metadata lists both a promulgation date (2025-06-20) and a future effective date (2028-09-01); effective status not independently verified. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法（昭和二十八年法律第二百四十五号）について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）による改正が掲載されています。公布日は2025年6月20日、施行日は2028年9月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "私立学校教職員共済制度に関わる学校法人等では、教職員の年金や共済関連の事務、社内規程などに影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行時期、経過措置については、e-Gov法令検索や所管官庁が公表する日本語の公式情報をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修订：为强化年金制度机能修改《国民年金法》等",
@@ -8954,13 +8960,7 @@
         "business_impact": "与年金管理或私立学校职员共济相关的机构，在这些修订于标注日期生效后，可能受到影响。",
         "recommended_action": "建议考虑查阅e-Gov官方来源，以确认这些修订的适用范围、生效日期及具体条款。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法（昭和二十八年法律第二百四十五号）について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」（令和七年法律第七十四号）による改正が掲載されています。公布日は2025年6月20日、施行日は2028年9月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "私立学校教職員共済制度に関わる学校法人等では、教職員の年金や共済関連の事務、社内規程などに影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容を確認しなければ判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行時期、経過措置については、e-Gov法令検索や所管官庁が公表する日本語の公式情報をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-30c6acf061ccaf92",
@@ -8983,6 +8983,12 @@
     "ai_notes": "Based only on Japanese title and metadata fields; the metadata indicates promulgation on 2025-06-20 and a scheduled enforcement date of 2029-09-01, which should be verified against the authoritative source. Labels are keyword-based triage only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。メタデータ上、公布日は2025年6月20日、施行日は2029年9月1日とされ、更新一覧日は20260918と記載されています。具体的な改正内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "私立学校の設置者や教職員の共済制度に関わる事業者において、将来の施行に向けて制度対応や社内手続の見直しが必要になる可能性があります。ただし、改正の具体的な内容が不明なため、実際の影響の有無や程度は原文の確認が前提になると考えられます。",
+    "recommended_action_ja": "自社への該当性や具体的な改正内容については、e-Govの法令データ等の日本語の公式情報源で改正条文および施行日をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《为强化适应社会经济变化的养老金制度功能而修订国民年金法等的法律》（涉及私立学校教职员共济）",
@@ -8990,13 +8996,7 @@
         "business_impact": "与私立学校教职员养老金或共济制度相关的组织在修订内容生效后可能受到影响，并可能需要审查相关的行政或缴费安排。",
         "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。メタデータ上、公布日は2025年6月20日、施行日は2029年9月1日とされ、更新一覧日は20260918と記載されています。具体的な改正内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "私立学校の設置者や教職員の共済制度に関わる事業者において、将来の施行に向けて制度対応や社内手続の見直しが必要になる可能性があります。ただし、改正の具体的な内容が不明なため、実際の影響の有無や程度は原文の確認が前提になると考えられます。",
-    "recommended_action_ja": "自社への該当性や具体的な改正内容については、e-Govの法令データ等の日本語の公式情報源で改正条文および施行日をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-189fa7ff41c09767",
@@ -9019,6 +9019,12 @@
     "ai_notes": "Based on metadata indicating a publication date of 2025-06-20 and effective date of 2027-09-01; specific provisions were not provided and remain unverified. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)に関する改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2027年9月1日と記載されています。更新一覧日は20260918と表示されています。",
+    "business_impact_ja": "厚生年金保険法の改正に関わるため、社会保険の加入・届出・給与計算などの実務に影響する可能性があります。ただし、提供された情報からは具体的な改正内容は確認できず、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置の有無については、e-Gov法令検索や厚生労働省など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订以强化养老金制度功能",
@@ -9026,13 +9032,7 @@
         "business_impact": "与养老金相关的法律变更可能会逐步影响雇主、养老金管理以及缴费或待遇安排。其影响程度可能取决于具体条款及所述的未来生效日期。",
         "recommended_action": "建议查阅e-Gov法令检索的官方来源及该修订法律全文，以确认其适用范围、具体条款及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)に関する改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2027年9月1日と記載されています。更新一覧日は20260918と表示されています。",
-    "business_impact_ja": "厚生年金保険法の改正に関わるため、社会保険の加入・届出・給与計算などの実務に影響する可能性があります。ただし、提供された情報からは具体的な改正内容は確認できず、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置の有無については、e-Gov法令検索や厚生労働省など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-c5ee63e72ecdb793",
@@ -9055,6 +9055,12 @@
     "ai_notes": "Based only on Japanese title and structured metadata; promulgation date and enforcement date are as stated in the raw summary and should be verified against the official source. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)に関する改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2027年10月1日と記載されています。なお、更新一覧日は20260918と記載されています。",
+    "business_impact_ja": "厚生年金保険法に関する改正であり、社会保険の適用や労務管理、給与計算などの実務に関係する可能性があります。ただし、メタデータには具体的な改正内容が示されていないため、影響の有無や程度は原文で確認する必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置については、e-Govの法令本文や所管官庁(厚生労働省など)の日本語の公式情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "生效预定：修订《国民年金法》等以强化年金制度机能的法律",
@@ -9062,13 +9068,7 @@
         "business_impact": "涉及员工年金或社会保险管理事务的机构可能会受到与年金相关义务变化的影响，但元数据中未详细说明具体影响。相关准备工作可能与标明的2027-10-01生效日期有关。",
         "recommended_action": "建议参考e-Gov法令检索上的日文官方来源，以确认修订内容的范围、条款及适用日期。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)に関する改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2027年10月1日と記載されています。なお、更新一覧日は20260918と記載されています。",
-    "business_impact_ja": "厚生年金保険法に関する改正であり、社会保険の適用や労務管理、給与計算などの実務に関係する可能性があります。ただし、メタデータには具体的な改正内容が示されていないため、影響の有無や程度は原文で確認する必要があると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置については、e-Govの法令本文や所管官庁(厚生労働省など)の日本語の公式情報をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-07c96c286b96c9e2",
@@ -9091,6 +9091,12 @@
     "ai_notes": "Based only on Japanese title and metadata; promulgation and enforcement dates are as stated in the update listing and are unverified. The rule-based 'Labor / Employment' label is weak triage context only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧において、厚生年金保険法(昭和二十九年法律第百十五号)に関し、改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2028年4月1日と記載されており、更新一覧日は20260918とされています。提供されたメタデータには、改正の具体的な内容は含まれていません。",
+    "business_impact_ja": "厚生年金保険法に関する改正であるため、社会保険の加入や手続、人事・労務管理の実務に関わる可能性があると考えられます。ただし、具体的な改正内容や対象範囲は提供情報から確認できず、影響の有無や程度は原文の確認が必要です。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の条文上の取扱いについては、e-Gov法令検索や所管官庁(厚生労働省等)の公式情報で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订法：为强化养老金制度机能（令和7年法律第74号）",
@@ -9098,13 +9104,7 @@
         "business_impact": "与养老金缴费或员工福利相关的组织可能受到养老金相关义务变化的影响，并可能需要在该修订生效后评估其适用情况。",
         "recommended_action": "建议参考e-Gov法令检索中的日文官方来源，以确认本次修订的适用范围、具体条款及生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧において、厚生年金保険法(昭和二十九年法律第百十五号)に関し、改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2028年4月1日と記載されており、更新一覧日は20260918とされています。提供されたメタデータには、改正の具体的な内容は含まれていません。",
-    "business_impact_ja": "厚生年金保険法に関する改正であるため、社会保険の加入や手続、人事・労務管理の実務に関わる可能性があると考えられます。ただし、具体的な改正内容や対象範囲は提供情報から確認できず、影響の有無や程度は原文の確認が必要です。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の条文上の取扱いについては、e-Gov法令検索や所管官庁(厚生労働省等)の公式情報で原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-ef203cc1e7dcc655",
@@ -9127,6 +9127,12 @@
     "ai_notes": "Based on e-Gov update-listing metadata; promulgation (2025-06-20) and enforcement (2026-10-01) dates are as stated in the raw summary but should be confirmed against the official source. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。原文メタデータでは、公布日は2025年6月20日、施行日は2026年10月1日とされ、更新一覧日は2026年9月18日と記載されています。具体的な改正内容はメタデータからは確認できません。",
+    "business_impact_ja": "厚生年金保険法の改正であるため、社会保険の加入・届出・保険料等に関する実務に影響が及ぶ可能性があります。ただし、具体的な改正内容が示されていないため、影響の範囲や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容と施行日に関する規定については、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で、あらためてご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等部分修订法律：为强化养老金制度机能",
@@ -9134,13 +9140,7 @@
         "business_impact": "一旦修订生效，适用日本养老金相关规则的组织在养老金制度下的义务可能发生变化，但具体范围在本元数据中未作详细说明。",
         "recommended_action": "建议参考e-Gov法令检索中的日文官方来源，以确认此次修订的内容、范围及适用日期。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。原文メタデータでは、公布日は2025年6月20日、施行日は2026年10月1日とされ、更新一覧日は2026年9月18日と記載されています。具体的な改正内容はメタデータからは確認できません。",
-    "business_impact_ja": "厚生年金保険法の改正であるため、社会保険の加入・届出・保険料等に関する実務に影響が及ぶ可能性があります。ただし、具体的な改正内容が示されていないため、影響の範囲や程度は原文の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容と施行日に関する規定については、e-Gov法令検索や所管官庁の公表資料など日本語の公式情報源で、あらためてご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-0eb5d35a0fa2bbdf",
@@ -9163,6 +9163,12 @@
     "ai_notes": "Based on the Japanese title and the update-listing metadata; the 2026-10-01 enforcement date is stated in the source data but should be verified. Preliminary triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月18日)に、健康保険法(大正十一年法律第七十号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2026年10月1日と記載されています。なお、提供された情報には、具体的な改正内容は含まれていません。",
+    "business_impact_ja": "健康保険法が改正対象に含まれていることから、社会保険の取扱いや労務管理に関わる事業者に、手続や社内運用の見直しが必要となる可能性があります。ただし、具体的な影響の範囲や内容は、改正条文を確認しない限り判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的内容および施行日を、e-Govに掲載された改正法令の本文や所管官庁(厚生労働省等)の公式資料で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订法律：应对社会经济变化强化养老金制度功能",
@@ -9170,13 +9176,7 @@
         "business_impact": "受日本养老金及健康保险相关规则约束的组织，在这些修订生效后，可能需要审查这些变化会如何影响其义务。",
         "recommended_action": "建议考虑查阅e-Gov法令检索官方来源及相关法律条文，以确认修订的范围和时间安排。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月18日)に、健康保険法(大正十一年法律第七十号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2026年10月1日と記載されています。なお、提供された情報には、具体的な改正内容は含まれていません。",
-    "business_impact_ja": "健康保険法が改正対象に含まれていることから、社会保険の取扱いや労務管理に関わる事業者に、手続や社内運用の見直しが必要となる可能性があります。ただし、具体的な影響の範囲や内容は、改正条文を確認しない限り判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的内容および施行日を、e-Govに掲載された改正法令の本文や所管官庁(厚生労働省等)の公式資料で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-9cbabcdeb26c2571",
@@ -9199,6 +9199,12 @@
     "ai_notes": "Based only on the provided metadata; the metadata indicates a promulgation date and a scheduled effective date of 2028-09-01, but the precise scope and current status should be verified against the authoritative Japanese source. Labels are keyword-based triage only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2028年9月1日と記載されています。更新一覧日は2026年9月18日とされています。",
+    "business_impact_ja": "厚生年金保険法に関わる改正であるため、社会保険の加入や手続、給与計算、人事労務管理等に影響が及ぶ可能性があります。ただし、提供された情報だけでは具体的な改正内容や自社への影響範囲は判断できず、施行日が先であることから、今後の政省令等の動向も含めた確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容、適用範囲および経過措置については、e-Govの該当法令ページや厚生労働省等の日本語の公式情報源で確認されることをおすすめします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修订：为应对社会经济变化强化年金制度而修订《国民年金法》等",
@@ -9206,13 +9212,7 @@
         "business_impact": "从事年金相关行政事务或员工福利的机构可能受到年金制度框架变化的影响，一旦相关条款生效，未来的合规要求也可能发生变化。",
         "recommended_action": "建议查阅e-Gov官方来源及修订法律全文，以确认受影响的条款、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2028年9月1日と記載されています。更新一覧日は2026年9月18日とされています。",
-    "business_impact_ja": "厚生年金保険法に関わる改正であるため、社会保険の加入や手続、給与計算、人事労務管理等に影響が及ぶ可能性があります。ただし、提供された情報だけでは具体的な改正内容や自社への影響範囲は判断できず、施行日が先であることから、今後の政省令等の動向も含めた確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容、適用範囲および経過措置については、e-Govの該当法令ページや厚生労働省等の日本語の公式情報源で確認されることをおすすめします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-5b1d34c32515ef1f",
@@ -9235,6 +9235,12 @@
     "ai_notes": "Based on provided metadata (title, raw summary, and rule-based labels); specific amended provisions and effects are not detailed here. Metadata suggests promulgation on 2025-06-20 and enforcement scheduled for 2029-10-01, but this should be verified against the authoritative Japanese source. Labels are preliminary triage only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、健康保険法(大正十一年法律第七十号)を対象として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。公布日は2025年6月20日、施行日は2029年10月1日と記載されています。なお、更新一覧日は20260918と表示されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "健康保険法に関する改正であり、社会保険の取扱いを含む人事・労務関連の実務に影響する可能性があります。ただし、施行日が2029年10月1日とされており、影響の有無や範囲は改正内容の確認を待つ必要があると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に係る経過措置については、e-Govの法令データおよび所管官庁が公表する日本語の公式情報をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修正法：为应对社会经济变化强化年金制度",
@@ -9242,13 +9248,7 @@
         "business_impact": "从事年金及社会保险管理的机构可能会受到《国民年金法》及相关法律修订的影响，可能需要在所述生效日期之前对其相关流程进行审查。",
         "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认适用范围、受影响条款及具体时间安排。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、健康保険法(大正十一年法律第七十号)を対象として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。公布日は2025年6月20日、施行日は2029年10月1日と記載されています。なお、更新一覧日は20260918と表示されています。具体的な改正内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "健康保険法に関する改正であり、社会保険の取扱いを含む人事・労務関連の実務に影響する可能性があります。ただし、施行日が2029年10月1日とされており、影響の有無や範囲は改正内容の確認を待つ必要があると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に係る経過措置については、e-Govの法令データおよび所管官庁が公表する日本語の公式情報をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f5fcc6b137ea485c",
@@ -9271,6 +9271,12 @@
     "ai_notes": "Based on e-Gov update-listing metadata. Metadata indicates a promulgation date of 2025-06-20 and enforcement date of 2029-04-01, but specific provisions and their effects are not detailed and should be verified. Triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2029年4月1日と記載されています。",
+    "business_impact_ja": "厚生年金保険法の改正であることから、社会保険の運用や従業員の年金関連の手続きに関わる事業者に、将来的な影響が及ぶ可能性があります。ただし、具体的な改正内容や適用範囲は提供された情報からは確認できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行時期の詳細については、e-Gov法令検索や所管官庁(厚生労働省等)の公式情報で原文をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：为应对社会经济变化强化年金制度机能（令和7年法律第74号）",
@@ -9278,13 +9284,7 @@
         "business_impact": "与年金相关法律的变化可能影响雇主和雇员的年金义务及相关行政事务，相关组织或需在所述生效日期之前做好准备。",
         "recommended_action": "建议考虑查阅e-Gov官方来源及修订法律全文，以核实其适用范围、具体条款及相关日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2029年4月1日と記載されています。",
-    "business_impact_ja": "厚生年金保険法の改正であることから、社会保険の運用や従業員の年金関連の手続きに関わる事業者に、将来的な影響が及ぶ可能性があります。ただし、具体的な改正内容や適用範囲は提供された情報からは確認できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行時期の詳細については、e-Gov法令検索や所管官庁(厚生労働省等)の公式情報で原文をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-8f465bd944941399",
@@ -9307,6 +9307,12 @@
     "ai_notes": "Based only on Japanese title and update-list metadata; the 2025-06-20 promulgation date is stated in the source, but specific provisions and effective dates are unverified. The rule-based 'Labor / Employment' and 'Promulgated' labels are weak triage context only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日と記載されており、更新一覧日は20260918とされています。提供されたメタデータには、改正の具体的な内容や施行日に関する記載は含まれていません。",
+    "business_impact_ja": "厚生年金保険法の改正に関わる情報であるため、社会保険の加入・届出や給与計算、労務管理などの実務に影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容や施行時期を確認しなければ判断できないと考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や所管官庁(厚生労働省等)の日本語の公式情報源で原文を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《为应对社会经济变化强化年金制度机能而修订国民年金法等的法律》公布",
@@ -9314,13 +9320,7 @@
         "business_impact": "日本年金相关法律的修订可能影响雇主及个人的年金相关义务及相关行政程序。具体影响的范围及时间取决于各具体条款及其生效日期。",
         "recommended_action": "建议在得出结论前，查阅e-Gov法令检索上的日文官方文本，以确认相关范围、条款内容及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日と記載されており、更新一覧日は20260918とされています。提供されたメタデータには、改正の具体的な内容や施行日に関する記載は含まれていません。",
-    "business_impact_ja": "厚生年金保険法の改正に関わる情報であるため、社会保険の加入・届出や給与計算、労務管理などの実務に影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容や施行時期を確認しなければ判断できないと考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や所管官庁(厚生労働省等)の日本語の公式情報源で原文を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e24e06342ecc32d3",
@@ -9343,6 +9343,12 @@
     "ai_notes": "Based on metadata indicating a promulgation date (2025-06-20) and scheduled enforcement date (2029-09-01); specific provisions were not provided and remain unverified. Triage labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Govの法令更新一覧において、厚生年金保険法(昭和二十九年法律第百十五号)に関し、改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2029年9月1日と記載されています。更新一覧日は20260918と記載されています。",
+    "business_impact_ja": "厚生年金保険法の改正に関するものであり、社会保険の適用や届出・事務手続等を扱う人事・労務部門に関係する可能性があります。ただし、具体的な改正内容や対象範囲は提供情報からは確認できず、影響の程度は別途確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Govの法令データおよび所管官庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修正：为强化养老金制度机能（令和7年法律第74号）",
@@ -9350,13 +9356,7 @@
         "business_impact": "从事养老金管理或员工福利相关业务的机构，一旦上述修正在所述日期生效，可能会受到养老金相关义务变化的影响。",
         "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源，以确认修正内容的适用范围、具体条款及生效日期。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧において、厚生年金保険法(昭和二十九年法律第百十五号)に関し、改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。公布日は2025年6月20日、施行日は2029年9月1日と記載されています。更新一覧日は20260918と記載されています。",
-    "business_impact_ja": "厚生年金保険法の改正に関するものであり、社会保険の適用や届出・事務手続等を扱う人事・労務部門に関係する可能性があります。ただし、具体的な改正内容や対象範囲は提供情報からは確認できず、影響の程度は別途確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Govの法令データおよび所管官庁の公表資料など日本語の公式情報源をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-aecc249f08779151",
@@ -9379,6 +9379,12 @@
     "ai_notes": "Based on Japanese title and law-database metadata; promulgation and enforcement dates are as stated in the source metadata and were not independently verified. Preliminary labels ('Labor/Employment', 'Medium') are keyword-based triage only.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。改正法令の公布日は2025年6月20日、掲載されている施行日は2029年10月1日です。更新一覧日は20260918と記載されています。",
+    "business_impact_ja": "厚生年金保険法に関わる改正であるため、社会保険の加入や手続、人事・給与実務等に関係する事業者に影響する可能性があります。ただし、具体的な改正内容は提供されたメタデータからは確認できず、影響の有無や程度は条文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Govに掲載された条文や所管官庁(厚生労働省等)の公式情報で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修正法：为强化年金制度机能",
@@ -9386,13 +9392,7 @@
         "business_impact": "涉及厚生年金或国民年金相关事务的机构可能因年金相关义务的变化而受到影响，并可能需要在所述2029年生效日期之前审阅相关的预定变更内容。",
         "recommended_action": "建议考虑查阅e-Gov法令检索的官方来源及相关法律文本，以确认修正内容的范围、具体内容及时间安排。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)について、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。改正法令の公布日は2025年6月20日、掲載されている施行日は2029年10月1日です。更新一覧日は20260918と記載されています。",
-    "business_impact_ja": "厚生年金保険法に関わる改正であるため、社会保険の加入や手続、人事・給与実務等に関係する事業者に影響する可能性があります。ただし、具体的な改正内容は提供されたメタデータからは確認できず、影響の有無や程度は条文の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Govに掲載された条文や所管官庁(厚生労働省等)の公式情報で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f230999f0935c89d",
@@ -9415,6 +9415,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; promulgation and effective dates are as stated in the metadata and should be verified against the official source. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)に関する改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。更新一覧日は2026年9月18日とされています。",
+    "business_impact_ja": "私立学校教職員共済法に基づく制度を扱う学校法人や、教職員の共済・年金関連の手続を担う部門において、施行日に向けた確認や実務対応が必要となる可能性があります。ただし、具体的な改正内容は提供されたメタデータからは確認できず、影響の範囲や程度は条文等の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置等について、e-Govの法令データ等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《国民年金法》等修订：强化养老金制度机能",
@@ -9422,13 +9428,7 @@
         "business_impact": "与养老金及共济制度相关的组织，包括私立学校教职员相关机构，可能需要审视本次修订可能对其义务产生的影响。一旦相关变更生效，薪酬、福利或行政流程可能会受到影响。",
         "recommended_action": "建议在得出任何结论之前，查阅e-Gov法令检索中的日文官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)に関する改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。更新一覧日は2026年9月18日とされています。",
-    "business_impact_ja": "私立学校教職員共済法に基づく制度を扱う学校法人や、教職員の共済・年金関連の手続を担う部門において、施行日に向けた確認や実務対応が必要となる可能性があります。ただし、具体的な改正内容は提供されたメタデータからは確認できず、影響の範囲や程度は条文等の確認を要すると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置等について、e-Govの法令データ等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-8b93e1f9043efb6b",
@@ -9451,6 +9451,12 @@
     "ai_notes": "Based only on the Japanese title and metadata; promulgation and enforcement dates are drawn from the provided fields and unverified. The preliminary 'Labor / Employment' area and 'Medium' impact labels are keyword-based triage only and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。メタデータ上、公布日は2025年6月20日、施行日は2026年12月1日と記載されており、更新一覧日は2026年9月18日とされています。改正の具体的な内容は提供情報からは確認できません。",
+    "business_impact_ja": "厚生年金保険法に関する改正であるため、社会保険の加入手続や保険料の取扱い、給与計算・労務管理の実務に影響する可能性があると考えられますが、具体的な影響範囲は条文の確認が必要です。",
+    "recommended_action_ja": "施行日(2026年12月1日)に関する記載を含め、改正内容および経過措置については、e-Govや所管官庁の日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "为强化养老金制度而修订《国民年金法》等相关法律",
@@ -9458,13 +9464,7 @@
         "business_impact": "涉及养老金缴纳、薪资或员工福利事务的机构，在相关修正条款生效后可能会受到国民年金及厚生年金相关规则变化的影响。所列生效日期可能需要对相关行政或合规流程进行审查。",
         "recommended_action": "建议在e-Gov法令检索上查阅日文官方来源，以确认具体修订条款的内容、适用范围以及相应的生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象とする改正法令として「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が掲載されています。メタデータ上、公布日は2025年6月20日、施行日は2026年12月1日と記載されており、更新一覧日は2026年9月18日とされています。改正の具体的な内容は提供情報からは確認できません。",
-    "business_impact_ja": "厚生年金保険法に関する改正であるため、社会保険の加入手続や保険料の取扱い、給与計算・労務管理の実務に影響する可能性があると考えられますが、具体的な影響範囲は条文の確認が必要です。",
-    "recommended_action_ja": "施行日(2026年12月1日)に関する記載を含め、改正内容および経過措置については、e-Govや所管官庁の日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-3edf27c5a7f38343",
@@ -9487,6 +9487,12 @@
     "ai_notes": "Based only on title and update-list metadata; actual amendment content is not provided. The rule-based stage label 'In Force' appears inconsistent with the listed effective date of 2026-10-01, so effective status should be verified against the official source. The English is an unofficial summary.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が、「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)の改正法令として掲載されています。公布日は2025年6月20日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "年金制度や社会保障協定に関連する法令が改正対象となっているため、社会保険の加入・手続や海外との人事労務管理に関わる事業者に、施行日以降、影響が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認が前提となります。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Govなど日本語の公式情報源や所管官庁の公表資料で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《年金制度功能强化法》（2025年第74号法律）：修订社会保障协定特例法",
@@ -9494,13 +9500,7 @@
         "business_impact": "受社会保障协定覆盖的雇主、福利管理者及跨境劳动者可能受到修订后特例规定的影响，但所提供的元数据中并未说明变更的具体范围和内容。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，包括修正条款及附则，以确认适用的具体变更内容及其适用时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)が、「社会保障協定の実施に伴う厚生年金保険法等の特例等に関する法律」(平成十九年法律第百四号)の改正法令として掲載されています。公布日は2025年6月20日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "年金制度や社会保障協定に関連する法令が改正対象となっているため、社会保険の加入・手続や海外との人事労務管理に関わる事業者に、施行日以降、影響が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認が前提となります。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Govなど日本語の公式情報源や所管官庁の公表資料で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-9cc9dfde66ed4115",
@@ -9523,6 +9523,12 @@
     "ai_notes": "Based only on the Japanese title and update-list metadata; the content of the amendments is not described. The enforcement date of 2026-10-01 is the update-list date and may apply only to some provisions. The preliminary labels (Labor / Employment, In Force) are keyword-based and unverified; the enforcement date appears to be in the future relative to promulgation, so 'In Force' should be checked against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、国民年金法(昭和三十四年法律第百四十一号)を対象とする改正が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、改正の具体的な内容は確認できません。",
+    "business_impact_ja": "年金制度に関する改正であるため、社会保険や従業員の年金関連の事務、手続、制度案内などに関係する可能性があります。ただし、具体的な影響の有無や範囲は、改正内容の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日の詳細、関連する政省令等については、e-Govの該当ページや所管官庁が公表する日本語の公式情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "根据社会经济变化强化养老金制度功能的《国民年金法》等部分修正法律（令和7年第74号）",
@@ -9530,13 +9536,7 @@
         "business_impact": "视具体条款而定，此次修正可能影响雇主、保险人或个人在养老金相关义务或程序方面的情况，但所提供的元数据中未说明具体变更内容。具体影响将取决于法律全文以及在所列生效日期生效的具体条款。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括有关生效日期的附则规定，以确定哪些条款可能与您的情况相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、国民年金法(昭和三十四年法律第百四十一号)を対象とする改正が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2026年10月1日と記載されています。提供されたメタデータからは、改正の具体的な内容は確認できません。",
-    "business_impact_ja": "年金制度に関する改正であるため、社会保険や従業員の年金関連の事務、手続、制度案内などに関係する可能性があります。ただし、具体的な影響の有無や範囲は、改正内容の確認が前提となると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日の詳細、関連する政省令等については、e-Govの該当ページや所管官庁が公表する日本語の公式情報をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e9571231ce18d4c1",
@@ -9559,6 +9559,12 @@
     "ai_notes": "Based only on the title and listing metadata; the content of the amendments is not described. The 'In Force' label is a preliminary rule-based label, and the enforcement date (2026-10-01) is later than the publication date, so the actual status of each provision should be verified in the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。原文メタデータによれば、公布日は2025年6月20日、施行日は2026年10月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "厚生年金保険法の改正であるため、社会保険の加入・届出等の実務に関わる事業者において、人事・給与・社会保険関連の運用に影響が及ぶ可能性があります。ただし、具体的な影響範囲は改正内容の確認を要し、提供情報からは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置等について、e-Govや厚生労働省などの日本語の公式情報源で原文をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《为适应社会经济变化而加强年金制度功能的国民年金法等部分修正法》（修订厚生年金保险法）",
@@ -9566,13 +9572,7 @@
         "business_impact": "雇主及工资或社会保险管理人员可能受到厚生年金保险相关规则变化的影响，具体取决于在所列日期生效的条款。根据所提供的元数据，无法确定具体的义务和适用范围。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括有关生效日期的附则，以确认适用哪些条款及其适用时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、厚生年金保険法(昭和二十九年法律第百十五号)を対象として、「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)による改正が掲載されています。原文メタデータによれば、公布日は2025年6月20日、施行日は2026年10月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "厚生年金保険法の改正であるため、社会保険の加入・届出等の実務に関わる事業者において、人事・給与・社会保険関連の運用に影響が及ぶ可能性があります。ただし、具体的な影響範囲は改正内容の確認を要し、提供情報からは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容や施行日に関する経過措置等について、e-Govや厚生労働省などの日本語の公式情報源で原文をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f14b547bbe79a2fb",
@@ -9631,6 +9631,12 @@
     "ai_notes": "Based only on Japanese title and metadata; a promulgation date is listed but the effective date and substantive provisions are unverified. Preliminary labels are keyword-based and not authoritative.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「貨物自動車運送事業法の一部を改正する法律」(令和七年法律第六十号、公布日2025年6月11日)による「物資の流通の効率化に関する法律」(平成十七年法律第八十五号)の更新が掲載されています。更新一覧日は2026年9月16日と記載されています。提供された情報からは、改正の具体的な内容や施行期日までは確認できません。",
+    "business_impact_ja": "物資の流通や貨物運送に関わる事業者にとって、同法に基づく義務や手続に変更が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行時期については、e-Gov法令検索など日本語の公式情報源で条文や附則をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《货物汽车运输事业法》部分修订法律（令和7年法律第60号）",
@@ -9638,13 +9644,7 @@
         "business_impact": "从事货物运输及物流业务的企业可能会受到基础监管框架变化的影响，但具体影响范围无法根据本元数据确定。",
         "recommended_action": "建议考虑查阅e-Gov法令检索官方来源，以核实该修订的内容、生效日期及其对自身业务的适用性。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「貨物自動車運送事業法の一部を改正する法律」(令和七年法律第六十号、公布日2025年6月11日)による「物資の流通の効率化に関する法律」(平成十七年法律第八十五号)の更新が掲載されています。更新一覧日は2026年9月16日と記載されています。提供された情報からは、改正の具体的な内容や施行期日までは確認できません。",
-    "business_impact_ja": "物資の流通や貨物運送に関わる事業者にとって、同法に基づく義務や手続に変更が生じる可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行時期については、e-Gov法令検索など日本語の公式情報源で条文や附則をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-0bb7e9818446bff2",
@@ -9667,6 +9667,12 @@
     "ai_notes": "Based only on Japanese title and metadata. The 'target law' field (mutual aid association act) appears inconsistent with the amending act title, and the preliminary 'Data/Privacy/AI' and 'Promulgated' labels are keyword-based triage only; entry-into-force status is not confirmed here.",
     "summarized_at": "2026-09-27T23:44:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「電気通信事業法及び日本電信電話株式会社等に関する法律の一部を改正する法律」(令和七年法律第四十六号、公布日2025-05-28)による改正が、国家公務員共済組合法(昭和三十三年法律第百二十八号)について記載されています。更新一覧日は20260916と表示されており、改正法令の公布が示されています。施行日や改正内容の詳細は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "対象法令が国家公務員共済組合法であるため、共済組合制度に関係する事業者や関係機関に、条文の更新を通じた影響が生じる可能性があります。ただし、改正の具体的内容が示されていないため、影響の有無や程度は原文を確認するまで判断できないと考えられます。",
+    "recommended_action_ja": "改正条文の内容および施行時期については、e-Govをはじめとする日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "日本《电气通信事业法》及《日本电信电话株式会社等相关法律》部分修正法",
@@ -9674,13 +9680,7 @@
         "business_impact": "在日本电信行业运营或依赖该行业的机构，如果此次修正改变了相关监管义务，可能会受到影响，但根据本元数据尚无法明确具体范围。",
         "recommended_action": "建议查阅e-Gov法令检索的官方来源，以确认修正内容、适用范围及生效日期的具体信息。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「電気通信事業法及び日本電信電話株式会社等に関する法律の一部を改正する法律」(令和七年法律第四十六号、公布日2025-05-28)による改正が、国家公務員共済組合法(昭和三十三年法律第百二十八号)について記載されています。更新一覧日は20260916と表示されており、改正法令の公布が示されています。施行日や改正内容の詳細は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "対象法令が国家公務員共済組合法であるため、共済組合制度に関係する事業者や関係機関に、条文の更新を通じた影響が生じる可能性があります。ただし、改正の具体的内容が示されていないため、影響の有無や程度は原文を確認するまで判断できないと考えられます。",
-    "recommended_action_ja": "改正条文の内容および施行時期については、e-Govをはじめとする日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-d5fdf4d8fb0d6dc0",
@@ -9703,6 +9703,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 'In Force' stage label is a preliminary rule-based label, and the listed effective date (2026-10-01) is in the future relative to the publication date, so current status should be verified against the official source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による「国家公務員の育児休業等に関する法律」(平成三年法律第百九号)の改正が掲載されています。公布日は2025年5月28日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "国家公務員の育児休業等に関する制度が対象であり、民間事業者への直接的な影響の有無や程度は、提供情報からは判断できません。ただし、関連する人事・労務制度や官公庁との取引に関わる場合には、確認が必要となる可能性があります。",
+    "recommended_action_ja": "改正の内容および施行日については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《防卫省设置法》等部分修正法律（令和7年第44号）",
@@ -9710,13 +9716,7 @@
         "business_impact": "由于列出的目标法律涉及国家公务员的育儿休业事宜，该修正可能主要影响国家公务员相关人事制度，对民间企业雇主的相关性可能有限。所提供的元数据中未描述修正的具体范围和内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认实际修正内容及生效日期，并评估是否有条款与贵组织相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による「国家公務員の育児休業等に関する法律」(平成三年法律第百九号)の改正が掲載されています。公布日は2025年5月28日、施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "国家公務員の育児休業等に関する制度が対象であり、民間事業者への直接的な影響の有無や程度は、提供情報からは判断できません。ただし、関連する人事・労務制度や官公庁との取引に関わる場合には、確認が必要となる可能性があります。",
-    "recommended_action_ja": "改正の内容および施行日については、e-Gov法令検索等の日本語の公式情報源で原文をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-02cbb01271983195",
@@ -9739,6 +9739,12 @@
     "ai_notes": "Based only on the law update list metadata; the content of the amendments is not provided and the listed effective date (2026-10-01) may be a future date. Rule-based labels (area 'Other', stage 'In Force', impact 'Medium') are weak triage context and were not relied on. Verify against the official Japanese source.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「国と民間企業との間の人事交流に関する法律」(平成十一年法律第二百二十四号)について、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による改正が掲載されています。当該改正法令の公布日は2025年5月28日、施行日は2026年10月1日と記載されています。改正の具体的な内容や条文への影響は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "国と民間企業との間の人事交流制度に関与する、または関与を検討している企業にとっては、2026年10月1日の施行日以降の運用に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認なしには判断できません。",
+    "recommended_action_ja": "改正の具体的内容および施行日を、e-Govの掲載ページや官報など日本語の公式情報源で確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《防卫省设置法等部分修正法律》（令和7年第44号）生效",
@@ -9746,13 +9752,7 @@
         "business_impact": "参与或正在考虑与国家政府机构进行人事交流的企业可能会发现该交流法的相关规定受到影响。元数据中未描述具体变更内容，因此其范围和相关性尚不明确。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正条款及生效日期安排，以确认具体变更内容及其相关性。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「国と民間企業との間の人事交流に関する法律」(平成十一年法律第二百二十四号)について、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による改正が掲載されています。当該改正法令の公布日は2025年5月28日、施行日は2026年10月1日と記載されています。改正の具体的な内容や条文への影響は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "国と民間企業との間の人事交流制度に関与する、または関与を検討している企業にとっては、2026年10月1日の施行日以降の運用に影響が及ぶ可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認なしには判断できません。",
-    "recommended_action_ja": "改正の具体的内容および施行日を、e-Govの掲載ページや官報など日本語の公式情報源で確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-957e478132e20d3a",
@@ -9775,6 +9775,12 @@
     "ai_notes": "Based only on law-update metadata; the content of the amendments is not provided. Rule-based labels (area: Other, stage: In Force) are weak triage context, and the 2026-10-01 enforcement date should be verified against the official source, as it appears to be a future date relative to promulgation.",
     "summarized_at": "2026-10-04T23:53:19Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による自衛隊法(昭和二十九年法律第百六十五号)の改正が掲載されています。公布日は2025年5月28日、施行日は2026年10月1日と記載されており、更新一覧日は20261001とされています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "自衛隊法に関する改正であるため、防衛関連の調達や契約、自衛隊との取引・協力関係を有する事業者には、影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容が確認できないため現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報など日本語の公式情報源で原文を確認されることをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《防卫省设置法等部分修正法律》生效（修订自卫队法）",
@@ -9782,13 +9788,7 @@
         "business_impact": "与防卫省或自卫队有业务往来的企业，例如承包商或供应商，可能会受到影响，但具体影响无法根据所提供的元数据确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本及该修正法律本身，以确认实际修正内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による自衛隊法(昭和二十九年法律第百六十五号)の改正が掲載されています。公布日は2025年5月28日、施行日は2026年10月1日と記載されており、更新一覧日は20261001とされています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "自衛隊法に関する改正であるため、防衛関連の調達や契約、自衛隊との取引・協力関係を有する事業者には、影響が及ぶ可能性があります。ただし、具体的な影響の有無や範囲は、改正内容が確認できないため現時点では判断できません。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報など日本語の公式情報源で原文を確認されることをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-8efe6838617e435a",
@@ -9811,6 +9811,12 @@
     "ai_notes": "Based only on metadata (title, law numbers, promulgation and enforcement dates); the content of the amendments is not provided. The enforcement date is as listed in the metadata and should be verified against the official source. The 'In Force' and 'Other' labels are preliminary and unverified.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省の職員の給与等に関する法律」(昭和二十七年法律第二百六十六号)が、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による改正の対象として掲載されています。同改正法の公布日は2025年5月28日、施行日は2026年10月1日と記載されており、更新一覧日は20261009とされています。",
+    "business_impact_ja": "防衛省の職員の給与等に関する規定が改正対象となっているため、防衛省の職員の処遇や関連する制度運用に関わる事業者・団体において、影響が生じる可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Gov法令検索および官報等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《防卫省设置法》等部分修正法律（涉及防卫省职员薪酬法）",
@@ -9818,13 +9824,7 @@
         "business_impact": "该修正案可能会改变有关防卫省职员薪酬及相关事项的规定，这可能与涉及防卫省职员或防卫相关采购的组织相关。所提供的元数据中未说明具体修改内容。",
         "recommended_action": "建议考虑查阅e-Gov上的日文官方文本，以确认哪些条款被修订，以及是否与贵组织相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「防衛省の職員の給与等に関する法律」(昭和二十七年法律第二百六十六号)が、「防衛省設置法等の一部を改正する法律」(令和七年法律第四十四号)による改正の対象として掲載されています。同改正法の公布日は2025年5月28日、施行日は2026年10月1日と記載されており、更新一覧日は20261009とされています。",
-    "business_impact_ja": "防衛省の職員の給与等に関する規定が改正対象となっているため、防衛省の職員の処遇や関連する制度運用に関わる事業者・団体において、影響が生じる可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は原文の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Gov法令検索および官報等の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-eb0d3ad6fa46711f",
@@ -10027,6 +10027,12 @@
     "ai_notes": "Based only on the Japanese title and listing metadata; the content of the amendments is not described. Dates (promulgation 2025-05-21, enforcement 2027-05-20) are taken from the metadata and should be verified against the official source. The URL suggests a version-specific law text, but the amended provisions are unconfirmed. Rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、「高齢者の医療の確保に関する法律」(昭和五十七年法律第八十号)に関する改正情報が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。",
+    "business_impact_ja": "医療・医薬品分野の事業者や、高齢者医療に関わる制度運用に関係する事業者において、施行日に向けた対応の検討が必要となる可能性があります。ただし、具体的な改正内容や適用範囲は提供されたメタデータからは確認できず、影響の程度は原文の確認が前提となると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Govに掲載された日本語の公式法令情報および所管官庁の公表資料をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品、医疗器械等品质、有效性及安全性确保等相关法律》修正法——涉及老年人医疗保障法条目",
@@ -10034,13 +10040,7 @@
         "business_impact": "涉及医疗保健、医药品或医疗器械业务的机构或许希望确认《老年人医疗保障相关法律》的修正是否对其产生影响，但元数据并未描述具体修改内容。任何影响都可能取决于具体条款，而这些条款在此处并未提供。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括修正后的条款及其生效日期，并可考虑咨询相关专业人士以判断其相关性。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、「高齢者の医療の確保に関する法律」(昭和五十七年法律第八十号)に関する改正情報が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。",
-    "business_impact_ja": "医療・医薬品分野の事業者や、高齢者医療に関わる制度運用に関係する事業者において、施行日に向けた対応の検討が必要となる可能性があります。ただし、具体的な改正内容や適用範囲は提供されたメタデータからは確認できず、影響の程度は原文の確認が前提となると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置の有無については、e-Govに掲載された日本語の公式法令情報および所管官庁の公表資料をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-646c783242788dab",
@@ -10063,6 +10063,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata. The metadata indicates a promulgation date of 2025-05-21 and an enforcement date of 2027-05-20, but the precise substantive changes and their scope are unverified. Preliminary labels are keyword-based triage only and not authoritative.",
     "summarized_at": "2026-10-01T00:47:06Z",
     "summary_model": "claude-opus-4-8",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。更新一覧上の対象法令は健康保険法(大正十一年法律第七十号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20260915とされています。",
+    "business_impact_ja": "医薬品・医療機器等や健康保険に関わる事業者にとって、関連する制度や手続に影響が及ぶ可能性があります。ただし、改正の具体的な内容は提供情報からは確認できず、影響の有無や範囲は条文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連政省令等の状況について、e-Govその他の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "部分修订《医药品、医疗器械等品质、有效性及安全性确保等相关法律》将生效",
@@ -10070,13 +10076,7 @@
         "business_impact": "在日本从事医药品、医疗器械或健康保险相关业务的机构可能受到影响，或需要审视此次修订与现有义务之间的关系。任何运营层面的变化可能取决于所列明的施行日期及本元数据中未包含的实施细节。",
         "recommended_action": "建议考虑查阅官方e-Gov法令文本及权威的日文官方来源，以确认适用范围、受影响条款及相关日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。更新一覧上の対象法令は健康保険法(大正十一年法律第七十号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20260915とされています。",
-    "business_impact_ja": "医薬品・医療機器等や健康保険に関わる事業者にとって、関連する制度や手続に影響が及ぶ可能性があります。ただし、改正の具体的な内容は提供情報からは確認できず、影響の有無や範囲は条文の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に向けた関連政省令等の状況について、e-Govその他の日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f7e7078a35e9fe97",
@@ -10099,6 +10099,12 @@
     "ai_notes": "Based only on a law-update listing; the substance of the amendments is not provided. The target law shown (civil protection) differs from the amending act's main subject (pharmaceuticals), and the 2027-05-20 enforcement date may apply only to certain provisions. The rule-based labels (area, stage, impact) are weak triage hints and unverified.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。公布日は2025年5月21日、施行日は2027年5月20日と記載されています。今回の更新の対象法令は「武力攻撃事態等における国民の保護のための措置に関する法律」(平成十六年法律第百十二号)とされています。",
+    "business_impact_ja": "医薬品・医療機器分野に関連する改正法の一環として、対象法令の規定に変更が生じている可能性があり、関係する事業者の業務や社内規程に影響が及ぶ可能性が考えられます。ただし、提供された情報だけでは具体的な改正内容や適用範囲は確認できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品医疗器械等法》修正法（令和7年第37号）对《国民保护法》的影响",
@@ -10106,13 +10112,7 @@
         "business_impact": "医药品或医疗器械行业的机构可能希望确认该修正法的相关条款是否影响其义务，但该列表未提供具体内容。与《国民保护法》的关联或意味着部分修正内容涉及应急响应安排，但这无法从元数据中确认。",
         "recommended_action": "建议在官方e-Gov网站上查阅该修正法全文及受影响的条款，以确认实际变更内容及其生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。公布日は2025年5月21日、施行日は2027年5月20日と記載されています。今回の更新の対象法令は「武力攻撃事態等における国民の保護のための措置に関する法律」(平成十六年法律第百十二号)とされています。",
-    "business_impact_ja": "医薬品・医療機器分野に関連する改正法の一環として、対象法令の規定に変更が生じている可能性があり、関係する事業者の業務や社内規程に影響が及ぶ可能性が考えられます。ただし、提供された情報だけでは具体的な改正内容や適用範囲は確認できません。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報などの日本語の公式情報源で原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-9064a0d77073a6af",
@@ -10135,6 +10135,12 @@
     "ai_notes": "Based only on law-list metadata (titles, numbers, dates); no amendment content was provided. The promulgation date and law number come from the metadata and should be verified against the official source. The URL suggests a possible future effective date, but this is not confirmed. The 'Promulgated' and 'Medium' labels are preliminary keyword-based triage labels.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律」(昭和三十五年法律第百四十五号)について、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)による改正が掲載されています。公布日は2025年5月21日と記載されており、更新一覧日は20261009とされています。提供された情報からは、改正の具体的な内容や個別の施行時期は確認できません。",
+    "business_impact_ja": "医薬品や医療機器等に関わる事業者の品質管理、承認、安全対策などの実務に、改正内容次第で影響が及ぶ可能性があると考えられます。ただし、具体的な影響範囲は、提供された情報のみからは判断できません。",
+    "recommended_action_ja": "改正の内容、施行時期、関連する政省令や通知の有無については、e-Govの法令データや厚生労働省などの日本語の公式情報源でご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品、医疗器械等品质、有效性及安全性确保等相关法律》部分修订法律（令和7年第37号）公布",
@@ -10142,13 +10148,7 @@
         "business_impact": "在日本经营医药品、医疗器械或相关产品的公司可能受到影响，但仅凭元数据无法确定任何变更的性质和范围。所提供文本中未说明各项条款的生效日期。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括关于生效日期的附则，以确认适用哪些修订内容及其生效时间。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律」(昭和三十五年法律第百四十五号)について、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)による改正が掲載されています。公布日は2025年5月21日と記載されており、更新一覧日は20261009とされています。提供された情報からは、改正の具体的な内容や個別の施行時期は確認できません。",
-    "business_impact_ja": "医薬品や医療機器等に関わる事業者の品質管理、承認、安全対策などの実務に、改正内容次第で影響が及ぶ可能性があると考えられます。ただし、具体的な影響範囲は、提供された情報のみからは判断できません。",
-    "recommended_action_ja": "改正の内容、施行時期、関連する政省令や通知の有無については、e-Govの法令データや厚生労働省などの日本語の公式情報源でご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-0d8dc442f719975d",
@@ -10171,6 +10171,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments and any transitional provisions are not stated. Dates and law numbers should be verified against the official Japanese source; the impact label is a preliminary rule-based estimate.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、臨床研究法(平成二十九年法律第十六号)を対象とする改正が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025-05-21、施行日は2027-05-20と記載されています。更新一覧日は20261009と表示されており、改正の具体的な内容は提供されたメタデータからは確認できません。",
+    "business_impact_ja": "臨床研究法の適用を受ける臨床研究の実施者や関連事業者にとって、施行日に向けて手続や社内体制の見直しが必要となる可能性があります。ただし、具体的な改正内容は原文メタデータからは不明であり、影響の有無や程度は条文の確認を要すると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行に伴う経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修订：《医药品、医疗器械等品质、有效性及安全性确保等相关法律》修正案（令和7年法律第37号），涉及《临床试验法》",
@@ -10178,13 +10184,7 @@
         "business_impact": "从事临床研究、医药品或医疗器械相关业务的机构可能会受到《临床试验法》修订内容的影响，具体影响程度视实际修订条款而定。所提供的元数据中未说明具体变更内容及其适用范围。",
         "recommended_action": "建议查阅e-Gov上公布的修正法律官方文本及修订后的《临床试验法》，以确认具体修改的条款内容及2027-05-20施行日期的适用方式。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、臨床研究法(平成二十九年法律第十六号)を対象とする改正が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025-05-21、施行日は2027-05-20と記載されています。更新一覧日は20261009と表示されており、改正の具体的な内容は提供されたメタデータからは確認できません。",
-    "business_impact_ja": "臨床研究法の適用を受ける臨床研究の実施者や関連事業者にとって、施行日に向けて手続や社内体制の見直しが必要となる可能性があります。ただし、具体的な改正内容は原文メタデータからは不明であり、影響の有無や程度は条文の確認を要すると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行に伴う経過措置の有無について、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-ae91a34e7168d61b",
@@ -10207,6 +10207,12 @@
     "ai_notes": "Based only on the Japanese title and metadata fields; the content of the amendments to the Narcotics and Psychotropics Control Act is not provided. Enforcement date (2027-05-20) is taken from the metadata and should be verified against the official source. The rule-based labels are weak triage context only.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、麻薬及び向精神薬取締法(昭和二十八年法律第十四号)に関する更新情報が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。",
+    "business_impact_ja": "麻薬及び向精神薬を取り扱う事業者や、医薬品・医療機器関連の事業者において、施行日に向けて社内規程や手続の見直しが必要となる可能性があります。ただし、具体的な改正内容はメタデータからは確認できないため、影響の範囲や程度は不明です。",
+    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Gov法令検索に掲載された条文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《药品、医疗器械等品质、有效性及安全性确保等相关法律》修正案（修订麻药取缔法）",
@@ -10214,13 +10220,7 @@
         "business_impact": "处理麻药或精神药物的企业，或在医药品及医疗器械领域运营的企业，在该修正案生效后可能受到影响。由于所提供的元数据中未描述对《麻药及精神药物取缔法》的具体修改内容，因此影响范围尚不明确。",
         "recommended_action": "建议查阅e-Gov上的日文官方正式文本，包括具体修订条款及生效日期，以确定其是否以及如何适用于贵方业务。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、麻薬及び向精神薬取締法(昭和二十八年法律第十四号)に関する更新情報が掲載されています。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。",
-    "business_impact_ja": "麻薬及び向精神薬を取り扱う事業者や、医薬品・医療機器関連の事業者において、施行日に向けて社内規程や手続の見直しが必要となる可能性があります。ただし、具体的な改正内容はメタデータからは確認できないため、影響の範囲や程度は不明です。",
-    "recommended_action_ja": "改正の具体的な内容や経過措置については、e-Gov法令検索に掲載された条文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-97fe9fb6267e31d1",
@@ -10243,6 +10243,12 @@
     "ai_notes": "Based only on the title and summary metadata; the specific amended provisions are not given. The 2027-05-20 date comes from the metadata and should be verified against the official source. The rule-based labels (Healthcare / Pharmaceuticals, Medium impact) may not reflect the Local Autonomy Act linkage.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)に関する項目が掲載されています。対象法令として地方自治法(昭和二十二年法律第六十七号)が示されており、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20261009とされていますが、改正の具体的な内容は提供情報からは確認できません。",
+    "business_impact_ja": "改正法は施行日が2027年5月20日とされているため、医薬品・医療機器関連事業者や地方公共団体との関係を持つ事業者に、一定の影響が及ぶ可能性があります。ただし、地方自治法に関する改正の具体的内容は提供情報に示されておらず、影響の有無や範囲は原文で確認する必要があると考えられます。",
+    "recommended_action_ja": "改正法の具体的な改正内容と地方自治法への関連条文について、e-Gov法令検索および所管官庁が公表する日本語の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《药品、医疗器械等品质、有效性及安全性确保等相关法律》等部分修正法律（令和7年法律第37号）：涉及《地方自治法》",
@@ -10250,13 +10256,7 @@
         "business_impact": "由于《地方自治法》被列为受影响的法律，该条目可能涉及地方政府相关条款，而非直接涉及药品或医疗器械相关规则，不过该修正法律更广泛的适用范围可能与医疗保健行业公司相关。仅凭元数据尚无法明确其对具体业务的实际影响。",
         "recommended_action": "建议查阅e-Gov官方来源及该修正法律全文，以确认具体适用条款、其生效日期，以及是否与贵机构业务相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)に関する項目が掲載されています。対象法令として地方自治法(昭和二十二年法律第六十七号)が示されており、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20261009とされていますが、改正の具体的な内容は提供情報からは確認できません。",
-    "business_impact_ja": "改正法は施行日が2027年5月20日とされているため、医薬品・医療機器関連事業者や地方公共団体との関係を持つ事業者に、一定の影響が及ぶ可能性があります。ただし、地方自治法に関する改正の具体的内容は提供情報に示されておらず、影響の有無や範囲は原文で確認する必要があると考えられます。",
-    "recommended_action_ja": "改正法の具体的な改正内容と地方自治法への関連条文について、e-Gov法令検索および所管官庁が公表する日本語の公式情報をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e15b4e94af2bf36e",
@@ -10279,6 +10279,12 @@
     "ai_notes": "Based only on the title and bibliographic metadata (law numbers, dates); the content of the amendments is not provided. The enforcement date of 2027-05-20 is as listed in the metadata and should be verified against the official source. Any interpretation of the 'Scheduled to Take Effect' and 'Medium' labels is preliminary and unverified.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、独立行政法人医薬品医療機器総合機構法(平成十四年法律第百九十二号)を対象とする改正の掲載があります。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20261009とされています。",
+    "business_impact_ja": "医薬品・医療機器分野の事業者にとって、独立行政法人医薬品医療機器総合機構に関する規定の改正が、手続や運用に関わる場合には影響する可能性があります。ただし、メタデータのみでは具体的な改正内容や適用範囲は分からず、影響の有無や程度は個別に確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置等について、e-Gov法令検索の原文や所管官庁の公表資料など日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品、医疗器械等品质、有效性及安全性确保等相关法律》等修正法（令和7年第37号法律）即将生效",
@@ -10286,13 +10292,7 @@
         "business_impact": "涉及医药品或医疗器械的企业在修正条款生效后可能受到影响，但由于该元数据未提供具体变更内容，无法确定实际影响。在获得修正文本之前，影响的范围和性质尚不明确。",
         "recommended_action": "建议查阅该修正法的日文官方文本及相关e-Gov页面链接，以确认实际的修正内容及其生效日期，并可考虑咨询具备相应资质的专业人士。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、独立行政法人医薬品医療機器総合機構法(平成十四年法律第百九十二号)を対象とする改正の掲載があります。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025年5月21日、施行日は2027年5月20日と記載されています。更新一覧日は20261009とされています。",
-    "business_impact_ja": "医薬品・医療機器分野の事業者にとって、独立行政法人医薬品医療機器総合機構に関する規定の改正が、手続や運用に関わる場合には影響する可能性があります。ただし、メタデータのみでは具体的な改正内容や適用範囲は分からず、影響の有無や程度は個別に確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行に伴う経過措置等について、e-Gov法令検索の原文や所管官庁の公表資料など日本語の公式情報源をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-aeedea7ee70e77e5",
@@ -10315,6 +10315,12 @@
     "ai_notes": "Based only on metadata from a law-update list entry; the substance and effective dates of the amendments are not given and are unverified. The promulgation date is taken from the metadata. The 'Promulgated' stage and impact labels are preliminary keyword-based triage labels, not legal conclusions.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日: 2026年10月9日)に、独立行政法人医薬品医療機器総合機構法(平成十四年法律第百九十二号)が掲載されています。同法は、令和七年法律第三十七号「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」による改正の対象とされ、同改正法の公布日は2025年5月21日と記載されています。提供されたメタデータからは、具体的な改正内容や施行日は確認できません。",
+    "business_impact_ja": "医薬品・医療機器分野の事業者にとって、独立行政法人医薬品医療機器総合機構に関する規定の改正が、承認審査や安全対策等の関連手続に影響する可能性が考えられます。ただし、具体的な影響の有無や程度は、改正条文や施行日の内容に左右されると考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行時期については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修正：修订《关于确保医药品、医疗器械等的质量、有效性及安全性等的法律》等",
@@ -10322,13 +10328,7 @@
         "business_impact": "若修正内容改变了监管要求，医药品及医疗器械行业的企业可能受到影响，但所提供的元数据并未说明具体修改内容或适用的条款。所提供文本中也未说明各项条款的生效日期。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认修正范围、哪些条款影响《独立行政法人医药品医疗器械综合机构法》及其生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日: 2026年10月9日)に、独立行政法人医薬品医療機器総合機構法(平成十四年法律第百九十二号)が掲載されています。同法は、令和七年法律第三十七号「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」による改正の対象とされ、同改正法の公布日は2025年5月21日と記載されています。提供されたメタデータからは、具体的な改正内容や施行日は確認できません。",
-    "business_impact_ja": "医薬品・医療機器分野の事業者にとって、独立行政法人医薬品医療機器総合機構に関する規定の改正が、承認審査や安全対策等の関連手続に影響する可能性が考えられます。ただし、具体的な影響の有無や程度は、改正条文や施行日の内容に左右されると考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行時期については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-2331b0bacc6dab5f",
@@ -10351,6 +10351,12 @@
     "ai_notes": "Based only on the title and listing metadata. The target law (a POW-treatment act) does not match the Healthcare / Pharmaceuticals label, which is a keyword-based triage label and may be a mismatch. The amending act appears to be an omnibus act amending multiple laws; the specific changes to the target law are not described. Dates are as listed and unverified against the official source.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。メタデータ上、公布日は2025年5月21日、施行日は2027年5月20日とされ、更新一覧日は20261009、対象法令は「武力攻撃事態及び存立危機事態における捕虜等の取扱いに関する法律」(平成十六年法律第百十七号)と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "改正法令の名称は医薬品・医療機器等に関する法律の改正を示していますが、対象法令として記載されているのは別の法律であり、実際にどの事業にどの程度の影響が及ぶかは、提供情報のみからは判断できないと考えられます。施行日が2027年5月20日とされているため、関連する事業者では今後の対応準備に関わる可能性があります。",
+    "recommended_action_ja": "対象法令と改正内容の関係や施行に関する正確な情報について、e-Gov法令検索の原文および所管官庁の公表資料をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品、医疗器械等的品质、有效性及安全性确保等相关法律》修正法（令和7年第37号）；更新《战俘待遇法》条文",
@@ -10358,13 +10364,7 @@
         "business_impact": "医药品和医疗器械公司可能希望确认这部更广泛的修正法中是否包含与其相关的条款，不过本条目涉及的是另一部目标法律的条文。根据所提供的元数据，此次具体更新对企业的实际影响尚不明确。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，包括该修正法的具体条款及生效日期，以确认实际受影响的法律及条款。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。メタデータ上、公布日は2025年5月21日、施行日は2027年5月20日とされ、更新一覧日は20261009、対象法令は「武力攻撃事態及び存立危機事態における捕虜等の取扱いに関する法律」(平成十六年法律第百十七号)と記載されています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "改正法令の名称は医薬品・医療機器等に関する法律の改正を示していますが、対象法令として記載されているのは別の法律であり、実際にどの事業にどの程度の影響が及ぶかは、提供情報のみからは判断できないと考えられます。施行日が2027年5月20日とされているため、関連する事業者では今後の対応準備に関わる可能性があります。",
-    "recommended_action_ja": "対象法令と改正内容の関係や施行に関する正確な情報について、e-Gov法令検索の原文および所管官庁の公表資料をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-154b9b8e3007c04c",
@@ -10387,6 +10387,12 @@
     "ai_notes": "Based only on the title and listing metadata; the substance of the amendments is not provided. The rule-based labels (Healthcare, Scheduled to Take Effect, Medium) are preliminary, and the enforcement date of 2027-05-20 should be verified against the official source, as individual provisions may take effect on different dates.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧において、薬剤師法(昭和三十五年法律第百四十六号)に関し、改正法令として「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。メタデータ上、公布日は2025年5月21日、施行日は2027年5月20日と記載されており、更新一覧日は20261009とされています。改正の具体的な内容は、提供された情報からは確認できません。",
+    "business_impact_ja": "薬剤師法に関わる改正が掲載されているため、薬剤師の業務や薬局、医薬品関連事業の運用に関係する可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認なしには判断できないと考えられます。",
+    "recommended_action_ja": "施行日や改正内容の詳細については、e-Gov法令検索や官報など日本語の公式情報源で、改正法の条文および施行に関する政省令等をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《医药品、医疗器械等品质、有效性及安全性确保等相关法律》修正法（修订药剂师法），令和7年第37号法律",
@@ -10394,13 +10400,7 @@
         "business_impact": "药剂师、药房以及医药品或医疗器械相关企业可能会受到药剂师相关条款变更的影响，但所提供的元数据中未说明具体修订内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方原文，以确认《药剂师法》具体哪些条款被修订及各自的生效时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧において、薬剤師法(昭和三十五年法律第百四十六号)に関し、改正法令として「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)が掲載されています。メタデータ上、公布日は2025年5月21日、施行日は2027年5月20日と記載されており、更新一覧日は20261009とされています。改正の具体的な内容は、提供された情報からは確認できません。",
-    "business_impact_ja": "薬剤師法に関わる改正が掲載されているため、薬剤師の業務や薬局、医薬品関連事業の運用に関係する可能性があります。ただし、具体的な影響の有無や程度は、改正内容の確認なしには判断できないと考えられます。",
-    "recommended_action_ja": "施行日や改正内容の詳細については、e-Gov法令検索や官報など日本語の公式情報源で、改正法の条文および施行に関する政省令等をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-0bf3a319809b0c2b",
@@ -10423,6 +10423,12 @@
     "ai_notes": "Based only on the Japanese title and the date/number metadata; the substance of the amendments is not provided and was not verified. Enforcement date (2027-05-20) is as stated in the metadata and should be checked against the official source, including any staggered effective dates. The 'Scheduled to Take Effect' and 'Medium' labels are preliminary rule-based triage labels, not legal conclusions.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Govの法令更新一覧に、医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律(昭和三十五年法律第百四十五号)を対象とする改正の掲載があります。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025-05-21、施行日は2027-05-20と記載されています。",
+    "business_impact_ja": "医薬品や医療機器等を取り扱う事業者にとって、施行日以降に適用される規律や手続に関わる改正である可能性があります。ただし、メタデータには改正の具体的な内容が含まれておらず、影響の有無や程度は原文の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日の適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修订：《医药品、医疗器械等品质、有效性及安全性确保法》等（令和7年第37号法律）",
@@ -10430,13 +10436,7 @@
         "business_impact": "制药和医疗器械行业的企业在修订内容生效后可能受到影响，但具体变更的性质和范围无法从所提供的元数据中确定。",
         "recommended_action": "建议在e-Gov上查阅该修订法律及其施行条款的日文官方文本，以确认实际修订内容及其是否与自身业务相关。"
       }
-    },
-    "summary_ja": "e-Govの法令更新一覧に、医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律(昭和三十五年法律第百四十五号)を対象とする改正の掲載があります。改正法令は「医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律等の一部を改正する法律」(令和七年法律第三十七号)で、公布日は2025-05-21、施行日は2027-05-20と記載されています。",
-    "business_impact_ja": "医薬品や医療機器等を取り扱う事業者にとって、施行日以降に適用される規律や手続に関わる改正である可能性があります。ただし、メタデータには改正の具体的な内容が含まれておらず、影響の有無や程度は原文の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日の適用関係については、e-Gov法令検索や官報など日本語の公式情報源で原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-9ee7dc9a9f47e2ce",
@@ -10531,6 +10531,12 @@
     "ai_notes": "Based only on the title and update-list metadata; the content of the amendments is not provided. The 2026-10-01 date is the listed effective date for this entry and may not apply to all provisions. The 'In Force' stage label is preliminary and should not be relied on, since the listed effective date is in the future relative to the publication date.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「児童福祉法等の一部を改正する法律」(令和七年法律第二十九号)が2025年4月25日に公布され、対象法令として「児童虐待の防止等に関する法律」(平成十二年法律第八十二号)が挙げられています。更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "児童虐待の防止等に関する法律に関わる事業者や、児童福祉分野に関連する業務を行う事業者にとって、施行日以降に影響が及ぶ可能性があります。ただし、改正内容が不明であるため、影響の有無や範囲は現時点では判断できません。",
+    "recommended_action_ja": "改正の具体的な内容および施行に伴う経過措置等については、e-Gov法令検索や所管官庁が公表する日本語の公式情報をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《儿童福利法》等部分修订法律（令和7年法律第29号）：修订《虐待儿童防止法》",
@@ -10538,13 +10544,7 @@
         "business_impact": "从事儿童福利、保育、教育或相关服务的机构在相关修订生效后可能受到影响，但所提供的元数据未说明具体修订内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本以确认具体修订内容及生效日期，并可考虑是否需要寻求专业意见。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「児童福祉法等の一部を改正する法律」(令和七年法律第二十九号)が2025年4月25日に公布され、対象法令として「児童虐待の防止等に関する法律」(平成十二年法律第八十二号)が挙げられています。更新一覧日および施行日は2026年10月1日と記載されています。改正の具体的な内容は、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "児童虐待の防止等に関する法律に関わる事業者や、児童福祉分野に関連する業務を行う事業者にとって、施行日以降に影響が及ぶ可能性があります。ただし、改正内容が不明であるため、影響の有無や範囲は現時点では判断できません。",
-    "recommended_action_ja": "改正の具体的な内容および施行に伴う経過措置等については、e-Gov法令検索や所管官庁が公表する日本語の公式情報をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e1d24da7e824cfc7",
@@ -10567,6 +10567,12 @@
     "ai_notes": "Based only on the title, law numbers, and dates in the update-list metadata; amendment contents are not provided. The rule-based 'In Force' label may be misleading because the stated effective date (2026-10-01) is later than the promulgation date and may be in the future; verify current status against the official source.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「児童福祉法等の一部を改正する法律」(令和七年法律第二十九号)が2025年4月25日に公布され、2026年10月1日を施行日とする更新が掲載されています。対象法令として、学校設置者等及び民間教育保育等事業者による児童対象性暴力等の防止等のための措置に関する法律(令和六年法律第六十九号)が挙げられています。",
+    "business_impact_ja": "学校設置者や民間教育保育等事業者に該当する事業者にとっては、児童対象性暴力等の防止措置に関する規律に関わる改正が含まれる可能性があります。ただし、具体的な改正内容や自社への適用の有無は、提供された情報のみでは判断できません。",
+    "recommended_action_ja": "改正の具体的な内容、対象範囲及び施行日については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律修订：《儿童福祉法》等部分修正法律（令和7年法律第29号）——儿童性暴力防止相关法律",
@@ -10574,13 +10580,7 @@
         "business_impact": "受上述基础法律管辖的学校及私立教育或保育从业者，在修正内容生效后可能受到影响，但具体修改的内容和范围无法根据所提供的元数据确定。",
         "recommended_action": "建议查阅e-Gov上的日文官方原文及相关主管部门的指南，以确认实际修正内容、适用范围及生效日期。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧によると、「児童福祉法等の一部を改正する法律」(令和七年法律第二十九号)が2025年4月25日に公布され、2026年10月1日を施行日とする更新が掲載されています。対象法令として、学校設置者等及び民間教育保育等事業者による児童対象性暴力等の防止等のための措置に関する法律(令和六年法律第六十九号)が挙げられています。",
-    "business_impact_ja": "学校設置者や民間教育保育等事業者に該当する事業者にとっては、児童対象性暴力等の防止措置に関する規律に関わる改正が含まれる可能性があります。ただし、具体的な改正内容や自社への適用の有無は、提供された情報のみでは判断できません。",
-    "recommended_action_ja": "改正の具体的な内容、対象範囲及び施行日については、e-Govの法令データや官報など日本語の公式情報源で原文をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-ddfdabda30c42c00",
@@ -10783,6 +10783,12 @@
     "ai_notes": "Based only on the title and listing metadata; the amended provisions and their content are not provided. The listing shows promulgation and a stated effective date of 2026-11-01, but effective-date and scope details should be verified against the official Japanese source. Rule-based labels (Tax / Stamp Duty, Scheduled to Take Effect, Medium) are preliminary and unverified.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、租税特別措置法(昭和三十二年法律第二十六号)について、「所得税法等の一部を改正する法律」(令和七年法律第十三号)による改正が掲載されています。提供された情報によれば、当該改正法令の公布日は2025年3月31日、施行日は2026年11月1日とされています。個別の改正内容については、提供されたメタデータからは確認できません。",
+    "business_impact_ja": "租税特別措置法の改正が2026年11月1日に施行される予定とされているため、同法に基づく税務上の取扱いが変更される可能性があります。具体的な影響は改正内容の詳細に依存するため、事業ごとに異なることが考えられます。",
+    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報など日本語の公式情報源で原文を確認することをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "《所得税法等部分修正法》（令和7年法律第13号）—《租税特别措施法》更新",
@@ -10790,13 +10796,7 @@
         "business_impact": "根据所修订条款的不同，这可能影响在日本纳税的企业和个人相关的税务处理或特别税收措施。基于所提供的元数据，无法确定影响的具体范围和性质。",
         "recommended_action": "建议在适当情况下，参考合格税务顾问，查阅e-Gov官方文本中该修正法及受影响的《租税特别措施法》相关条款，以确认适用的具体变更内容及适用时间。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、租税特別措置法(昭和三十二年法律第二十六号)について、「所得税法等の一部を改正する法律」(令和七年法律第十三号)による改正が掲載されています。提供された情報によれば、当該改正法令の公布日は2025年3月31日、施行日は2026年11月1日とされています。個別の改正内容については、提供されたメタデータからは確認できません。",
-    "business_impact_ja": "租税特別措置法の改正が2026年11月1日に施行される予定とされているため、同法に基づく税務上の取扱いが変更される可能性があります。具体的な影響は改正内容の詳細に依存するため、事業ごとに異なることが考えられます。",
-    "recommended_action_ja": "改正の具体的な内容および施行日については、e-Gov法令検索や官報など日本語の公式情報源で原文を確認することをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-728d6133b3ac9db0",
@@ -10819,6 +10819,12 @@
     "ai_notes": "Based only on title and metadata fields; the actual amended provisions are not provided and were not reviewed. The stage and impact labels are preliminary keyword-based triage labels. The listed effective date should be verified against the official source, as some provisions of an amending act may take effect on different dates.",
     "summarized_at": "2026-10-06T01:43:04Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、租税特別措置法(昭和三十二年法律第二十六号)を対象とする改正として、「所得税法等の一部を改正する法律」(令和七年法律第十三号)が掲載されています。メタデータ上、公布日は2025年3月31日、施行日は2027年1月1日と記載されています。",
+    "business_impact_ja": "租税特別措置法の規定内容に変更が生じている可能性があり、施行日以降の税務上の取扱いに関わる業務に影響が及ぶ可能性があります。具体的な改正内容や対象範囲は提供された情報からは確認できないため、影響の有無や程度は別途の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Gov法令検索に掲載された改正法令の本文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法令生效预告：《所得税法》等部分修正法律（《租税特别措施法》修订，2027-01-01生效）",
@@ -10826,13 +10832,7 @@
         "business_impact": "由于该修正涉及《租税特别措施法》，生效后可能影响部分企业或个人相关的税务处理，但根据所提供的元数据，无法确定具体变更的性质和范围。",
         "recommended_action": "建议查阅e-Gov法令检索上的日文官方文本，并在适当情况下咨询具备资质的税务专业人士，以确认哪些条款被修订以及是否与自身情况相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年9月15日)に、租税特別措置法(昭和三十二年法律第二十六号)を対象とする改正として、「所得税法等の一部を改正する法律」(令和七年法律第十三号)が掲載されています。メタデータ上、公布日は2025年3月31日、施行日は2027年1月1日と記載されています。",
-    "business_impact_ja": "租税特別措置法の規定内容に変更が生じている可能性があり、施行日以降の税務上の取扱いに関わる業務に影響が及ぶ可能性があります。具体的な改正内容や対象範囲は提供された情報からは確認できないため、影響の有無や程度は別途の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日の詳細については、e-Gov法令検索に掲載された改正法令の本文や所管官庁の公表資料など、日本語の公式情報源をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-f5b3440e9080e505",
@@ -10855,6 +10855,12 @@
     "ai_notes": "Based only on title and update-list metadata; the content of the amendments is not provided. Labels are preliminary and unverified. Effective date is stated as scheduled (2027-01-01) per the metadata and should be verified against the official source.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、地方自治法(昭和二十二年法律第六十七号)を対象とする改正の掲載があります。改正法令は「政治資金規正法等の一部を改正する法律」(令和七年法律第二号)で、公布日は2025年1月8日、施行日は2027年1月1日と記載されています。",
+    "business_impact_ja": "施行日は2027年1月1日とされており、地方自治法に関する規律の変更が、地方公共団体との取引や関係を有する事業者に影響する可能性があります。ただし、改正の具体的な内容はメタデータからは確認できないため、影響の有無や程度は別途の確認が必要と考えられます。",
+    "recommended_action_ja": "改正の具体的な内容や施行日については、e-Govの日本語の公式情報源で条文および附則をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-11T00:13:37Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "法律更新：《部分修订政治资金规正法等的法律》（地方自治法修订）",
@@ -10862,13 +10868,7 @@
         "business_impact": "适用《地方自治法》或《政治资金规正法》的主体在修订生效后可能受到影响，但所提供的元数据中未描述具体变更内容。",
         "recommended_action": "建议查阅e-Gov上的日文官方文本，以确认具体修订条款及其可能与贵组织的关联。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧(更新一覧日:2026年10月9日)に、地方自治法(昭和二十二年法律第六十七号)を対象とする改正の掲載があります。改正法令は「政治資金規正法等の一部を改正する法律」(令和七年法律第二号)で、公布日は2025年1月8日、施行日は2027年1月1日と記載されています。",
-    "business_impact_ja": "施行日は2027年1月1日とされており、地方自治法に関する規律の変更が、地方公共団体との取引や関係を有する事業者に影響する可能性があります。ただし、改正の具体的な内容はメタデータからは確認できないため、影響の有無や程度は別途の確認が必要と考えられます。",
-    "recommended_action_ja": "改正の具体的な内容や施行日については、e-Govの日本語の公式情報源で条文および附則をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-11T00:13:37Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   },
   {
     "id": "raw-e768292e3ef15378",
@@ -11216,17 +11216,17 @@
     "last_checked": "2026-08-07",
     "relevance_score": 6.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and listing metadata; the PDF contents were not available, so details of the FAQ and any changes from prior versions are unverified. Preliminary labels are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-11T00:10:25Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "国税庁の新着・通達等として、非居住者に係る金融口座情報の自動的交換のための報告制度に関するFAQ（報告事項の提供）がPDF形式で公表されています。公表日は2025年12月26日とされています。提供された情報は表題および国税庁新着情報・通達等である旨の記載にとどまり、FAQの具体的内容は本メタデータからは確認できません。",
     "business_impact_ja": "金融口座情報の報告義務を負う金融機関等において、報告事項の提供に関する実務対応の参考となる可能性があります。実際の影響は当該FAQの具体的記載内容によって異なると考えられます。",
     "recommended_action_ja": "国税庁の公式サイトに掲載されている当該PDFの原文を確認し、報告実務への影響の有無を精査されることをご検討ください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:29Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and listing metadata; the PDF contents were not available, so details of the FAQ and any changes from prior versions are unverified. Preliminary labels are keyword-based and not authoritative.",
-    "summarized_at": "2026-10-11T00:10:25Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "国税厅FAQ：非居民金融账户信息自动交换报告制度（申报事项提供）",
@@ -11252,17 +11252,17 @@
     "last_checked": "2026-08-07",
     "relevance_score": 6.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and basic metadata; the PDF contents were not reviewed, so details, changes from prior versions, and applicability are unverified. Area, stage, and impact labels are preliminary keyword-based triage labels.",
+    "summarized_at": "2026-10-11T00:10:25Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "国税庁の新着・通達等として、非居住者に係る金融口座情報の自動的交換のための報告制度（CRS）に関するFAQ（令和8年1月1日以降用）がPDFで公表されています。原文メタデータからは、当該FAQ文書の掲載が確認できるにとどまります。",
     "business_impact_ja": "金融機関等の報告義務者において、非居住者の金融口座情報の報告実務に関する取扱いを確認する必要が生じる可能性があります。",
     "recommended_action_ja": "詳細については、国税庁の公式サイトに掲載されたFAQ本文（PDF）をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:29Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and basic metadata; the PDF contents were not reviewed, so details, changes from prior versions, and applicability are unverified. Area, stage, and impact labels are preliminary keyword-based triage labels.",
-    "summarized_at": "2026-10-11T00:10:25Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "国税厅发布：非居民金融账户信息自动交换报告制度FAQ（2026年1月1日起适用）",
@@ -11287,17 +11287,17 @@
     "published_at": "2025-12-26",
     "last_checked": "2026-06-11",
     "relevance_score": 6.0,
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; no budget figures or organizational details were provided. The budget is described as a draft proposal. English is an unofficial summary to be verified against the official Japanese source.",
+    "summarized_at": "2026-10-11T00:10:25Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "個人情報保護委員会（PPC）が、令和8年度の予算案および機構定員の概要を公表したことが新着情報として示されています。原文の記載は「予算・決算」に関する内容とされており、詳細な数値や施策は本メタデータからは確認できません。",
     "business_impact_ja": "予算・定員に関する情報であり、事業への直接的な影響は限定的と考えられますが、PPCの今後の体制や取り組み方針を把握する上で参考となる可能性があります。",
     "recommended_action_ja": "具体的な内容については、個人情報保護委員会の公式ページで公表資料をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:53Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and brief metadata; no budget figures or organizational details were provided. The budget is described as a draft proposal. English is an unofficial summary to be verified against the official Japanese source.",
-    "summarized_at": "2026-10-11T00:10:25Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "个人信息保护委员会公布2026年度预算案及机构编制概要",
@@ -11323,17 +11323,17 @@
     "last_checked": "2026-08-07",
     "relevance_score": 6.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and basic metadata; the PDF contents were not available, so details, effective dates, and applicability are unverified. The preliminary labels (Finance / AML, Government Announcement, Low impact) are keyword-based and not authoritative. The English title is an unofficial rendering.",
+    "summarized_at": "2026-10-11T00:10:25Z",
+    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "国税庁が、非居住者に係る暗号資産等取引情報の自動的交換のための報告制度に関するFAQ（PDF資料）を新着情報・通達等として公表しました。公表日は2025年9月22日とされています。提供されたメタデータからは、FAQの具体的な内容や詳細は確認できません。",
     "business_impact_ja": "暗号資産等の取引を扱う事業者において、非居住者に係る取引情報の報告に関する対応が関係する可能性があります。実務上の影響の有無や程度は、FAQの内容を確認する必要があると考えられます。",
     "recommended_action_ja": "国税庁の公式サイトに掲載されている当該FAQ（PDF資料）の原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:09:58Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and basic metadata; the PDF contents were not available, so details, effective dates, and applicability are unverified. The preliminary labels (Finance / AML, Government Announcement, Low impact) are keyword-based and not authoritative. The English title is an unofficial rendering.",
-    "summarized_at": "2026-10-11T00:10:25Z",
-    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "国税厅FAQ：非居民加密资产等交易信息自动交换报告制度",
@@ -11345,14 +11345,14 @@
   },
   {
     "id": "raw-eb532ff6716d3fa6",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-22)",
+    "title_en": "NTA Pamphlet: Overview of Withholding Tax Changes (Japan-Armenia Tax Treaty)",
     "title_ja": "源泉所得税の改正のあらまし（日アルメニア新租税条約）（PDF/225KB）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) published a PDF pamphlet (about 225KB) on 2025-12-22 titled as an overview of changes to withholding income tax under the new Japan-Armenia tax treaty. It appears to be a government explanatory publication. The provided metadata does not describe the specific changes, rates, or effective dates.",
+    "business_impact_en": "Businesses or individuals making or receiving cross-border payments involving Armenia may find that withholding tax treatment could be affected, depending on the treaty's terms. The scope and timing of any such effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese NTA pamphlet to confirm which payment types, rates, and effective dates are covered, and consult a qualified tax professional as needed.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/publication/pamph/pdf/0025012-048.pdf",
     "published_at": "2025-12-22",
@@ -11365,26 +11365,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:10Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the PDF contents were not available, so treaty details, rates, and effective dates are unverified. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "国税厅更新：预扣所得税修订概要（日本-亚美尼亚新租税条约）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "国税厅手册：源泉所得税修订概要（日本—亚美尼亚新租税条约）",
+        "summary": "国税厅（NTA）于2025-12-22发布了一份约225KB的PDF手册，题为源泉所得税在日本与亚美尼亚新租税条约下的修订概要。该文件似为政府说明性出版物。所提供的元数据未描述具体的修订内容、税率或生效日期。",
+        "business_impact": "涉及与亚美尼亚之间跨境支付的企业或个人可能会发现源泉所得税的处理方式受到影响，具体视条约条款而定。所提供的元数据无法确定该影响的范围和时间。",
+        "recommended_action": "建议查阅国税厅官方日文手册，以确认涉及的具体付款类型、税率和生效日期，并可考虑在需要时咨询合格的税务专业人士。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-bf62a138436cd0b1",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-11-27)",
+    "title_en": "NTA Pamphlet: Overview of Withholding Income Tax Changes (Japan-Turkmenistan New Tax Treaty)",
     "title_ja": "源泉所得税の改正のあらまし（日トルクメニスタン新租税条約）（PDF/335KB）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) posted a PDF pamphlet on 2025-11-27 titled as an overview of changes to withholding income tax relating to a new Japan-Turkmenistan tax treaty. This is a government announcement/explanatory publication; the provided metadata does not describe its contents, the treaty's entry-into-force status, or specific rate changes.",
+    "business_impact_en": "If the treaty and related changes apply, they could affect withholding tax treatment of certain cross-border payments between Japan and Turkmenistan. The scope and timing of any effect cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese NTA pamphlet at the source URL to confirm the treaty's status, effective dates, and any changes relevant to your cross-border payments.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/publication/pamph/pdf/0025010-131.pdf",
     "published_at": "2025-11-27",
@@ -11397,26 +11401,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:10Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the PDF contents were not available, so treaty status, effective dates, and specific changes are unverified.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "日本国税厅通知：预扣所得税相关税务管理指导更新（日本-土库曼斯坦新租税条约）（2025-11-27）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "国税厅宣传册：源泉所得税修订概要（日本—土库曼斯坦新租税条约）",
+        "summary": "日本国税厅（NTA）于2025-11-27发布了一份PDF宣传册，题为关于日本与土库曼斯坦新租税条约相关源泉所得税变更的概要。这是一份政府公告/说明性出版物；所提供的元数据未说明其具体内容、该条约的生效状态或具体税率变更。",
+        "business_impact": "如果该条约及相关变更适用，可能会影响日本与土库曼斯坦之间某些跨境支付的源泉所得税处理方式。根据所提供的元数据，无法确定任何影响的范围和时间。",
+        "recommended_action": "建议查阅来源网址中的日本国税厅官方宣传册，以确认该条约的状态、生效日期以及与您的跨境支付相关的任何变更。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-2e251fa57a32636a",
-    "title_en": "JSDA Public Comment Closed: Regulatory comment period closed (2025-11-18)",
+    "title_en": "JSDA draft partial amendments to internal compliance officer rules (public comment)",
     "title_ja": "「協会員の内部管理責任者等に関する規則」等の一部改正案について",
     "area": "Finance / AML",
     "stage": "Public Comment Closed",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) published a draft of partial amendments to its 'Rules on Internal Control Managers of Association Members' and related rules, dated 2025-11-18. The public comment period is listed as 2025-11-18 to 2025-12-17, and the preliminary label indicates it has closed. The specific content of the proposed amendments is not provided in the available metadata.",
+    "business_impact_en": "JSDA member firms, such as securities dealers, may be affected if the amendments are adopted, potentially concerning internal control manager arrangements. The scope and any effective date cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese JSDA document and any subsequent announcements to confirm the amendment details, adoption status, and timing.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comments",
     "source_url": "https://www.jsda.or.jp/about/public/bosyu/files/20251118_naikankisoku.pdf.pdf",
     "published_at": "2025-11-18",
@@ -11432,26 +11440,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title, publication date, and comment period; the contents of the draft are not available. The 'Public Comment Closed' stage and 'Finance / AML' area are keyword-based preliminary labels, not verified. Whether the amendments were finalized is unknown.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《协会员内部管理责任者等相关规则》等部分修订案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "（已结束）公开征求意见：《协会会员内部管理责任人等相关规则》等部分修订案",
+        "summary": "日本证券业协会（JSDA）发布了关于修订《协会会员内部管理责任人等相关规则》及相关规则的部分修订草案，发布日期为2025-11-18。公开征求意见期列为2025-11-18至2025-12-17，初步标签显示该意见征集已结束。现有元数据中未提供拟修订内容的具体细节。",
+        "business_impact": "如该修订获得采纳，JSDA会员公司（如证券公司）可能受到影响，内容或涉及内部管理责任人相关安排。根据现有元数据，无法确定具体适用范围及生效日期。",
+        "recommended_action": "建议查阅日文官方的JSDA文件及后续公告，以确认修订的具体内容、采纳情况及时间安排。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-afb579e901ac9828",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-08-06)",
+    "title_en": "NTA pamphlet: Overview of withholding income tax changes (Japan-Ukraine new tax treaty)",
     "title_ja": "源泉所得税の改正のあらまし（日ウクライナ新租税条約）（PDF/241KB）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) posted a PDF pamphlet on 2025-08-06 titled as an overview of changes to withholding income tax in connection with a new Japan-Ukraine tax treaty. This is a government announcement/explanatory publication; the metadata provides no details of its contents.",
+    "business_impact_en": "If the treaty changes apply to withholding tax on cross-border payments, companies and individuals with Japan-Ukraine payment flows may need to check whether their withholding treatment is affected. Scope and effective dates cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese NTA pamphlet to confirm what changes are described, to whom they apply, and from when.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/publication/pamph/pdf/0025007-037.pdf",
     "published_at": "2025-08-06",
@@ -11464,26 +11476,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "low",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the PDF contents were not available. Treaty status, effective dates, and specific rate changes are unverified. English is an unofficial summary; the Japanese source is authoritative.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "日本国税厅通知：预扣所得税修订概要（日乌新租税条约）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "国税厅手册：源泉所得税改正概要（日乌新租税条约）",
+        "summary": "国税厅（NTA）于2025-08-06发布了一份PDF手册，题为日乌新租税条约相关源泉所得税改正概要。这是一份政府公告/说明性出版物；元数据未提供其内容细节。",
+        "business_impact": "如果该条约变更适用于跨境支付的源泉所得税，涉及日本与乌克兰之间支付往来的公司和个人可能需要确认其源泉征税处理是否受到影响。根据所提供的元数据，无法确定适用范围和生效日期。",
+        "recommended_action": "建议查阅国税厅官方日文手册，以确认其中描述了哪些变更、适用对象为何，以及自何时起适用。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-2151bc7c10a9bb32",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2025-05-27)",
+    "title_en": "Amendment to Rules on Commercial and R&D-Stage Power Reactors (Nuclear Regulation Authority Rule No. 4, 2025)",
     "title_ja": "実用発電用原子炉の設置、運転等に関する規則及び研究開発段階発電用原子炉の設置、運転等に関する規則の一部を改正する規則",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The e-Gov law update list records an amending rule to the Rules on the Installation and Operation of Commercial Power Reactors and the corresponding rules for R&D-stage power reactors (Nuclear Regulation Authority Rule No. 4 of Reiwa 7). The metadata lists a promulgation date and an effective date of 2025-05-27. The substance of the amendments is not included in the provided metadata.",
+    "business_impact_en": "Operators and others involved in nuclear power reactor installation or operation may be affected, but the specific changes and their scope cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese text of the amending rule via the e-Gov source link to confirm the actual amendments and their effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=353M50000400077_20250527_507M60080000004",
     "published_at": "2025-05-27",
@@ -11496,26 +11512,30 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-22T21:26:11Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and update-list metadata; amendment content is not provided. The listed update date (2026-08-21) differs from the promulgation date, and labels are keyword-based and unverified. English is an unofficial summary; verify against the official Japanese source.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：法令生效（2025-05-27）——《商用发电用核反应堆设施设置运转等相关规则》及《研发阶段发电用核反应堆设施设置运转等相关规则》部分修正规则",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "修订《实用发电用原子炉设置运转等相关规则》及《研发阶段发电用原子炉设置运转等相关规则》（核能规制委员会规则第4号，2025年）",
+        "summary": "e-Gov法令更新列表记录了一项修订规则，修订对象为《实用发电用原子炉的设置、运转等相关规则》及相应的研发阶段发电用原子炉规则（令和7年核能规制委员会规则第4号）。元数据列出的公布日期及生效日期均为2025-05-27。所提供的元数据未包含修订的具体内容。",
+        "business_impact": "从事核能发电用原子炉设置或运转的经营者等可能受到影响，但具体变更内容及适用范围无法从所提供的元数据中确定。",
+        "recommended_action": "建议通过e-Gov来源链接查阅该修订规则的日文官方文本，以确认实际修订内容及其生效日期。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-a8f8183ae4438e0e",
-    "title_en": "JSDA Public Comment Closed: Regulatory comment period closed (2025-05-20)",
+    "title_en": "JSDA Draft Amendments to Equity Crowdfunding Business Rules (Public Comment)",
     "title_ja": "「株式投資型クラウドファンディング業務に関する規則」等の一部改正案について",
     "area": "Finance / AML",
     "stage": "Public Comment Closed",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Japan Securities Dealers Association (JSDA) published a draft partial amendment to its rules on equity-investment-type crowdfunding business and related rules, released for public comment on 2025-05-20. The stated comment period ran from 2025-05-20 to 2025-06-18. This is a draft proposal; the metadata does not describe the specific changes.",
+    "business_impact_en": "Firms engaged in equity crowdfunding business that are subject to JSDA self-regulatory rules may be affected if the amendments are adopted in some form. The scope and effect cannot be determined from the metadata provided.",
+    "recommended_action_en": "Review the official Japanese JSDA document at the source URL to confirm the content of the draft amendments, the current status of the comment process, and whether any final rules have been issued.",
     "source_name": "Japan Securities Dealers Association (JSDA) Public Comments",
     "source_url": "https://www.jsda.or.jp/about/public/bosyu/files/20250520_cf_kisoku.pdf",
     "published_at": "2025-05-20",
@@ -11531,15 +11551,19 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:11:17Z",
     "ja_summary_model": "claude-opus-4-8",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title, a brief raw summary, and dates; the substance of the amendments is not available. The 'Public Comment Closed' stage label is a preliminary rule-based label inferred from the comment period dates and is unverified. Whether the amendments were adopted or took effect is not stated.",
+    "summarized_at": "2026-10-12T00:18:23Z",
+    "summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《股权众筹业务相关规则》等部分修订草案",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "（已结束）公开征求意见：《股权投资型众筹业务相关规则》等部分修订案",
+        "summary": "日本证券业协会（JSDA）公布了关于股权投资型众筹业务规则及相关规则的部分修订草案，于2025-05-20起公开征求意见。公开征求意见期间为2025-05-20至2025-06-18。该文件为草案提案，元数据未说明具体修改内容。",
+        "business_impact": "从事股权众筹业务且受JSDA自律规则约束的公司，若修订案以某种形式获得通过，可能会受到影响。根据所提供的元数据，无法确定具体范围和影响程度。",
+        "recommended_action": "建议查阅来源网址中的日文官方JSDA文件，以确认修订草案的具体内容、意见征集程序的当前状态，以及是否已发布最终规则。"
       }
-    },
-    "summary_source": "rule_based"
+    }
   },
   {
     "id": "raw-c735a10257b2fe20",
