@@ -20,6 +20,12 @@
     "ai_notes": "Based only on title and update-list metadata; the nature of the update is not described. The list date (20261009) and the 1976 promulgation date are taken as given and not verified. The 'Finance / AML' and 'Promulgated' labels are keyword-based and may not reflect actual relevance.",
     "summarized_at": "2026-10-10T00:33:47Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "e-Gov法令検索の法令更新一覧に、「経済協力開発機構金融支援基金への加盟に伴う措置に関する法律」(昭和五十一年法律第三十八号、公布日1976-05-29)が改正法令として掲載されています。対象法令は「特別会計に関する法律」(平成十九年法律第二十三号)で、更新一覧日は20261009と記載されています。提供されたメタデータからは、具体的な改正内容や施行日は確認できません。",
+    "business_impact_ja": "対象法令は特別会計に関する法律であり、主として国の会計制度に関わるものと考えられ、一般の事業者への直接的な影響は限定的である可能性があります。ただし、改正内容がメタデータからは不明であるため、影響の有無や程度は判断できません。",
+    "recommended_action_ja": "改正の具体的な内容、施行時期および関係条文については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-12T00:20:26Z",
+    "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
         "title": "经济合作开发组织金融支援基金加盟相关措施法（1976年）——e-Gov更新列表条目",
@@ -27,12 +33,6 @@
         "business_impact": "根据有限的元数据，这似乎与政府特别会计及财政安排有关，因此对大多数民间企业的直接业务影响似乎不大，但仅凭元数据无法确认这一点。",
         "recommended_action": "建议查阅e-Gov法令检索中的日文官方文本，以确认该更新条目所涉及的内容，以及是否与本机构相关。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の法令更新一覧に、「経済協力開発機構金融支援基金への加盟に伴う措置に関する法律」(昭和五十一年法律第三十八号、公布日1976-05-29)が改正法令として掲載されています。対象法令は「特別会計に関する法律」(平成十九年法律第二十三号)で、更新一覧日は20261009と記載されています。提供されたメタデータからは、具体的な改正内容や施行日は確認できません。",
-    "business_impact_ja": "対象法令は特別会計に関する法律であり、主として国の会計制度に関わるものと考えられ、一般の事業者への直接的な影響は限定的である可能性があります。ただし、改正内容がメタデータからは不明であるため、影響の有無や程度は判断できません。",
-    "recommended_action_ja": "改正の具体的な内容、施行時期および関係条文については、e-Gov法令検索など日本語の公式情報源で原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-12T00:20:26Z",
-    "ja_summary_model": "claude-sonnet-5-5"
+    }
   }
 ]
