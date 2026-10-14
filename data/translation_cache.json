@@ -155016,21 +155016,21 @@
       "raw-baa9465464eb172f": {
         "source_hash": "80d87120ea0816b0e75cb8b1c29614354bd2070acff41396cba0c8305015810e",
         "prompt_version": "zh-hans-v3",
-        "attempts": 2,
+        "attempts": 3,
         "reasons": [
           "title repeats a word back-to-back"
         ],
-        "last_rejected_at": "2026-10-14T00:19:20Z",
+        "last_rejected_at": "2026-10-14T23:50:46Z",
         "model": "claude-sonnet-5"
       },
       "raw-26b9b72956969cb4": {
         "source_hash": "dcb7b51cb76f7eb9a4381c0f2f9007a7d546edb84eb02bfb5e6f976c1548bccb",
         "prompt_version": "zh-hans-v3",
-        "attempts": 2,
+        "attempts": 3,
         "reasons": [
           "title contains Japanese kana"
         ],
-        "last_rejected_at": "2026-10-14T00:19:20Z",
+        "last_rejected_at": "2026-10-14T23:50:46Z",
         "model": "claude-sonnet-5"
       }
     }
