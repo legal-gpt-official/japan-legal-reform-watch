@@ -344,7 +344,7 @@ def dates_in_text(text: str) -> set[str]:
 # The English prompt is given derived fields; their names are internal and must
 # never reach a card.
 INPUT_FIELD_NAME_RE = re.compile(
-    r"source_evidence|legal_identifiers|raw_summary|published_at|title_only|structured_metadata|descriptive_text")
+    r"source_evidence|legal_identifiers|court_case_numbers|raw_summary|published_at|title_only|structured_metadata|descriptive_text")
 
 
 # Generic party wording in business_impact_en ("persons or businesses",

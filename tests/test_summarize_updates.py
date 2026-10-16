@@ -1836,5 +1836,141 @@ class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
         self.assertEqual(next(iter(cache.values()))["confidence"], "medium")
 
 
+
+class TestEnglishRequeue(unittest.TestCase):
+    """An audit can ask for specific English summaries to be redone, once."""
+
+    def _run(self, tmp, api_limit, created_at="2025-01-01T00:00:00Z"):
+        import requeue
+        base = Path(tmp)
+        item = TestSummarizeTitleCap()._item()
+        item.update(TestSummarizeTitleCap()._result("Old AI title with Reiwa 15 error"))
+        item.update(TestSummarizeTitleCap()._ja_result())
+        item.update({"summary_source": "claude", "summarized_at": "2020-01-01T00:00:00Z",
+                     "summary_model": "claude-opus-4-8", "summary_ja_source": "claude",
+                     "ja_summarized_at": "2020-01-01T00:00:00Z", "ja_summary_model": "m"})
+        key = su.cache_key(item, {})
+        cache = {key: {**{f: item[f] for f in su.AI_FIELDS},
+                       **{f: item[f] for f in su.JA_AI_FIELDS},
+                       "summary_ja_source": "claude", "ja_summarized_at": "2020-01-01T00:00:00Z",
+                       "ja_summary_model": "m",
+                       "summarized_at": "2020-01-01T00:00:00Z", "summary_model": "claude-opus-4-8"}}
+        paths = {name: base / name for name in ("legal_updates.json", "summary_cache.json", "raw.json", "requeue.json")}
+        paths["legal_updates.json"].write_text(json.dumps([item]), encoding="utf-8")
+        paths["summary_cache.json"].write_text(json.dumps(cache), encoding="utf-8")
+        paths["raw.json"].write_text("[]", encoding="utf-8")
+        paths["requeue.json"].write_text(json.dumps(
+            {"created_at": created_at, "english": [item["id"]], "zh-Hans": []}), encoding="utf-8")
+        fresh = TestSummarizeTitleCap()._result("Fresh AI title, Heisei 15")
+        usage = {"input_tokens": 1, "output_tokens": 1, "cache_creation_input_tokens": 0,
+                 "cache_read_input_tokens": 0}
+        calls = {"n": 0}
+
+        def fake(client, model, it, raw):
+            calls["n"] += 1
+            return fresh, model, usage
+
+        patches = {
+            "INPUT_PATH": paths["legal_updates.json"], "OUTPUT_PATH": paths["legal_updates.json"],
+            "BEFORE_AI_PATH": base / "before_ai.json", "CACHE_PATH": paths["summary_cache.json"],
+            "RAW_PATH": paths["raw.json"], "LOG_PATH": base / "summarize.log",
+            "make_client": idle_workspace_client, "request_summary": fake,
+            "request_japanese_summary": mock.Mock(side_effect=AssertionError("Japanese must not run")),
+        }
+        saved = requeue.REQUEUE_PATH
+        requeue.REQUEUE_PATH = paths["requeue.json"]
+        out = io.StringIO()
+        try:
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(out):
+                rc = su.main(["--all-items", "--english-only", "--api-limit", str(api_limit), "--parallel", "2"])
+        finally:
+            requeue.REQUEUE_PATH = saved
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+        published = json.loads(paths["legal_updates.json"].read_text(encoding="utf-8"))[0]
+        return rc, calls["n"], published, item, out.getvalue()
+
+    def test_a_listed_summary_is_redone_and_japanese_is_untouched(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            rc, n, published, before, out = self._run(tmp, api_limit=5)
+        self.assertEqual(rc, 0)
+        self.assertEqual(n, 1)
+        self.assertIn("requeued_items  : 1", out)
+        self.assertEqual(published["title_en"], "Fresh AI title, Heisei 15")
+        self.assertEqual(published["summary_source"], "claude")
+        for field in (*su.JA_AI_FIELDS, *su.JA_PROVENANCE_FIELDS):
+            self.assertEqual(published[field], before[field])
+
+    def test_without_budget_the_current_summary_stays(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, published, before, _ = self._run(tmp, api_limit=0)
+        self.assertEqual(n, 0)
+        self.assertEqual(published["title_en"], before["title_en"])
+        self.assertEqual(published["summary_source"], "claude")
+
+    def test_a_summary_newer_than_the_request_is_not_redone(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, published, before, _ = self._run(tmp, api_limit=5, created_at="2019-01-01T00:00:00Z")
+        self.assertEqual(n, 0)
+        self.assertEqual(published["title_en"], before["title_en"])
+
+
+class TestCourtCaseNumbers(unittest.TestCase):
+    def test_case_codes_are_romanized_by_rule(self):
+        item = {"title_ja": "令和7(許)23 手数料還付申立て却下決定に対する許可抗告事件"}
+        raw = {"raw_summary": "令和8年9月30日 最高裁判所第二小法廷 決定 破棄自判 東京高等裁判所 令和7(ラ)184"}
+        got = [(c["era_year"], c["code_romanized"], c["number"], c["gregorian_year"])
+               for c in su.court_case_numbers(item, raw)]
+        self.assertEqual(got, [("令和 7", "Kyo", 23, 2025), ("令和 7", "Ra", 184, 2025)])
+
+    def test_every_code_seen_in_the_corpus_romanizes(self):
+        for code, expected in (("あ", "A"), ("ク", "Ku"), ("し", "Shi"), ("ラ", "Ra"), ("ネ", "Ne"),
+                               ("受", "Ju"), ("オ", "O"), ("行ツ", "Gyo-Tsu"), ("行ヒ", "Gyo-Hi"),
+                               ("ム", "Mu"), ("う", "U"), ("ワ", "Wa")):
+            self.assertEqual(su.romanize_case_code(code), expected, code)
+        self.assertIsNone(su.romanize_case_code("X"))
+
+    def test_the_english_payload_and_prompt_carry_them(self):
+        item = {**TestSummarizeTitleCap()._item(), "title_ja": "令和8(ク)407 宗教法人解散命令申立事件"}
+        content = su.build_user_content(item, {"raw_summary": "東京高等裁判所 令和7(ラ)1003"})
+        self.assertIn('"code_romanized": "Ra"', content)
+        self.assertIn('"code_romanized": "Ku"', content)
+        prompt = " ".join(su.SYSTEM_PROMPT.split())
+        self.assertIn("use code_romanized exactly", prompt)
+        self.assertIn("court_case_numbers", prompt)
+
+
+
+class TestOfficialStatuteNames(unittest.TestCase):
+    def test_official_english_names_reach_the_prompt_keyed_by_exact_title(self):
+        prompt = su.SYSTEM_PROMPT
+        for ja, en in (("資金決済に関する法律", "Payment Services Act"),
+                       ("租税特別措置法", "Act on Special Measures Concerning Taxation"),
+                       ("労働安全衛生規則", "Ordinance on Industrial Safety and Health"),
+                       ("外国為替及び外国貿易法", "Foreign Exchange and Foreign Trade Act")):
+            self.assertEqual(su.OFFICIAL_EN_STATUTE_NAMES[ja], en)
+            self.assertIn(f"{ja} -> {en}", prompt)
+        self.assertIn("renamed or predecessor law", " ".join(prompt.split()))
+
+
+class TestRequeueFile(unittest.TestCase):
+    def test_the_committed_request_is_well_formed(self):
+        import requeue
+        path = requeue.REQUEUE_PATH
+        if not path.exists():
+            self.skipTest("no requeue request committed")
+        data = json.loads(path.read_text(encoding="utf-8"))
+        self.assertRegex(data["created_at"], r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+        for section in requeue.SECTIONS:
+            ids = data.get(section, [])
+            self.assertEqual(len(ids), len(set(ids)), f"{section} lists an id twice")
+            self.assertTrue(all(i.startswith("raw-") for i in ids))
+        self.assertFalse(set(data.get("english", [])) & set(data.get("zh-Hans", [])),
+                         "an English regeneration already re-translates; do not list it twice")
+
+
 if __name__ == "__main__":
     unittest.main()

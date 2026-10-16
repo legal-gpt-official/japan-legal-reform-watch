@@ -629,12 +629,21 @@ def is_public_comment_title(title_ja: str) -> bool:
     return contains_any(title_ja, _PC_KEYWORDS) or "public comment" in title_lower
 
 
+# "結果" that names the DRAFT under consultation, not the outcome of one:
+# 審議結果（案）についての意見募集, 評価結果（案）に対する意見募集,
+# 検証結果と今後の方向性（案）に対する意見公募. Food Safety Commission
+# assessments and spectrum-use evaluations are consulted on in exactly this
+# form, and 15 open or closed calls were published as "results" until
+# 2026-10-16 -- off the Open filter and the public-comments page.
+_DRAFT_NAMED_RESULT_RE = re.compile(r"結果[^（(。、「」]{0,30}?[（(]案[）)]")
+
+
 def classify_stage(title_ja: str, source_type: str) -> str:
     title_lower = title_ja.lower()
     pc_context = is_public_comment(source_type) or is_public_comment_title(title_ja)
     if contains_any(title_ja, _PC_RESULT_MARKERS_EXPLICIT) or contains_any(title_lower, _PC_RESULT_MARKERS_EN):
         return "Public Comment Results Published"
-    if pc_context and contains_any(title_ja, _PC_RESULT_MARKERS_GENERIC):
+    if pc_context and contains_any(_DRAFT_NAMED_RESULT_RE.sub("", title_ja), _PC_RESULT_MARKERS_GENERIC):
         return "Public Comment Results Published"
     if contains_any(title_ja, _PC_CLOSED_MARKERS) or contains_any(title_lower, _PC_CLOSED_MARKERS_EN):
         return "Public Comment Closed"
