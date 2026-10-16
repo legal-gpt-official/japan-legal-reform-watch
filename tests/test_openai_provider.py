@@ -82,17 +82,32 @@ class TestProviderSelection(unittest.TestCase):
         for model in ("claude-sonnet-5-5", "claude-sonnet-5", "", None):
             self.assertFalse(op.is_openai_model(model))
 
-    def test_code_defaults_and_backfills_stay_on_claude(self):
-        """Only the daily workflow opts in, by env, for two steps; the code
-        defaults and the manual backfills still route to Claude."""
+    def test_code_defaults_and_summary_backfills_stay_on_claude(self):
+        """Workflows opt in by env; the code defaults and the summary backfills
+        still route to Claude. The translation backfill moved with the daily
+        zh-Hans step (see test_translation_backfill_matches_the_daily_zh_step)."""
         self.assertFalse(op.is_openai_model(su.DEFAULT_MODEL))
         self.assertFalse(op.is_openai_model(tu.DEFAULT_TRANSLATION_MODEL))
-        for name in ("translation-backfill.yml",
-                     "japanese-summary-backfill.yml", "english-summary-backfill.yml"):
+        for name in ("japanese-summary-backfill.yml", "english-summary-backfill.yml"):
             text = (REPO_ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
             with self.subTest(name):
                 self.assertNotIn("gpt-", text)
                 self.assertNotIn("OPENAI_API_KEY", text)
+
+    def test_translation_backfill_matches_the_daily_zh_step(self):
+        """A backfill must produce what the daily run would, and must not depend
+        on Anthropic credit: same model, Flex, low effort, direct calls."""
+        text = (REPO_ROOT / ".github" / "workflows" / "translation-backfill.yml").read_text(encoding="utf-8")
+        self.assertEqual(text.count("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}"), 1)
+        self.assertNotIn("ANTHROPIC_API_KEY: ${{", text)
+        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
+        self.assertIn("OPENAI_SERVICE_TIER: flex", text)
+        self.assertIn("OPENAI_REASONING_EFFORT: low", text)
+        command = text[text.index("python scripts/translate_updates.py"):].split("2>&1")[0]
+        self.assertIn("--parallel 5", command)
+        self.assertNotIn("--batch", command)
+        self.assertIn("--retry-rejected-title-without-ja-reference", command)
+        self.assertIn("--provider-failure-mode fail", command)
 
     def test_daily_openai_steps_are_flex_and_least_privilege(self):
         """The OpenAI key reaches exactly the three switched steps, all on Flex
