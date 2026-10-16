@@ -11906,17 +11906,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication information only; budget details and approval status are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁の新着・通達等として、「令和8年度予算の概要について（機構・定員関係）」が令和7年12月付で公表されています。原文の要約は「国税庁新着情報・通達等」との記載にとどまり、機構・定員に関する予算概要を扱うものと示されています。具体的な内容の詳細は本メタデータからは確認できません。",
     "business_impact_ja": "国税庁の機構・定員に関する事項であり、直接的な事業影響は限定的である可能性がありますが、税務行政の体制に関連する動向として留意する余地は考えられます。",
     "recommended_action_ja": "詳細は国税庁の公式サイト等の一次情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication information only; budget details and approval status are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:52Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "国税厅公告：2026财年机构与人员编制相关预算概要",
+        "summary": "日本国税厅公布了涉及机构与人员编制的2026财年预算概要，发布于2025-12-26。标题表明该概要为2025年12月的文件，但未提供预算金额或具体的机构或人员编制调整。",
+        "business_impact": "该公告可能通过机构与人员编制相关预算安排涉及国税厅的组织单位及人员；无法仅凭标题确定其对纳税人或企业的影响。",
+        "recommended_action": "查阅国税厅官方来源可能有助于明确该预算的状态及其中所述的机构与人员编制措施。"
+      }
+    }
   },
   {
     "id": "raw-89ed4ba6c499327b",
@@ -11934,17 +11942,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; budget details are unavailable, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁の新着情報・通達等として、「令和8年度予算の概要について（経費関係）」と題するPDF資料（令和7年12月）が公表されています。公表日は2025年12月26日とされていますが、提供されたメタデータからは資料の具体的な内容は明らかではありません。",
     "business_impact_ja": "国税庁の予算・経費に関する情報として、行政運営や関連手続の動向を把握する上で参考となる可能性があります。",
     "recommended_action_ja": "詳細については、国税庁の公式サイトに掲載された原文資料をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and listing date only; budget details are unavailable, and this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:52Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "国税厅公告：2026财年预算概要（经费相关）",
+        "summary": "日本国税厅（NTA）于2025-12-26公布了2026财年预算中经费相关部分的概要。所链接PDF的落款日期为2025年12月；标题未明确该预算的批准状态，也未说明各项经费项目。",
+        "business_impact": "仅凭标题无法确定受影响的企业或个人，标题仅表明这是一份经费相关预算概要。",
+        "recommended_action": "查阅日文官方PDF可能有助于了解经费分配、预算状态及其与特定企业或个人是否相关。"
+      }
+    }
   },
   {
     "id": "raw-cac2c577f53c5efb",
@@ -11962,17 +11978,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; substantive budget details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁の新着・通達等として、「令和８年度予算（酒類業振興関係）の概要」が公表されています。公表日は2025年12月26日とされ、酒類業の振興に関する予算の概要に関する情報と示されています。提供された情報は概要のみで、具体的な予算内容や措置の詳細は原文に記載されていない範囲では確認できません。",
     "business_impact_ja": "酒類の製造・販売等に関連する事業者にとっては、振興関連の予算措置の内容次第で支援策や施策の動向を把握する必要が生じる可能性があります。詳細が不明なため、影響の程度は現時点では限定的と考えられます。",
     "recommended_action_ja": "具体的な予算内容や関連施策については、国税庁の公式ページ等の日本語の一次情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; substantive budget details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:52Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "政府公告：2026年度酒类行业振兴相关预算概要",
+        "summary": "国税厅于2025-12-26发布了2026年度酒类行业振兴相关预算概要。该政府公告的标题未明确预算金额、措施或资格条件。",
+        "business_impact": "酒类行业企业可能会认为该预算概要与振兴相关措施有关，但现有标题并未明确具体支持或资格条件。",
+        "recommended_action": "查阅国税厅官方来源可能有助于明确与酒类行业振兴相关的预算措施、金额及任何资格条件。"
+      }
+    }
   },
   {
     "id": "raw-40cda6d78d22fd4d",
@@ -11990,17 +12014,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; the audit results themselves were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁は、令和６事務年度における法人税等の調査事績の概要を公表しました（公表日：令和７年12月）。新着情報・通達等として掲載されているもので、詳細は原文に基づく確認が必要です。",
     "business_impact_ja": "法人税等に関する調査の傾向や重点を把握する上での参考情報となる可能性があります。自社の税務対応の点検や体制整備の検討に資する場合が考えられます。",
     "recommended_action_ja": "国税庁の公式ウェブサイトに掲載された当該公表資料の原文をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; the audit results themselves were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:52Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "日本国税厅公告：2024事务年度法人税等税种调查实绩",
+        "summary": "日本国税厅于2025-12-02发布了题为“2024事务年度法人税等税种调查实绩概要（2025年12月）”的公告。该标题表明这是一份调查实绩概要，而非法律修订或公开征求意见。",
+        "business_impact": "缴纳法人税的法人可能会发现，该概要有助于了解日本国税厅所报告的税务调查活动，但仅凭标题无法确定任何调查结论或新增义务。",
+        "recommended_action": "可考虑查阅日本国税厅官方概要，以了解所涵盖的税种、调查结论及报告期间。"
+      }
+    }
   },
   {
     "id": "raw-5ac16b0840ffb27c",
@@ -12018,17 +12050,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; no report contents were provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁が、令和6事務年度における法人税等の申告（課税）事績の概要を令和7年10月に公表しました。国税庁の新着情報・通達等として掲載された発表であり、法人税等の申告状況に関する事績の取りまとめと考えられます。詳細な内容は原文メタデータからは特定できません。",
     "business_impact_ja": "法人税等の申告動向を示す統計的資料として、税務に関する状況把握の参考となる可能性があります。",
     "recommended_action_ja": "具体的な内容や数値については、国税庁の公式発表資料をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and announcement date only; no report contents were provided. This unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:59Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "日本国税厅发布2024事务年度法人税申报及课税实绩概况",
+        "summary": "日本国税厅公布了2024事务年度法人税等税种的申报及课税实绩概况。该概况标注日期为2025年10月，公告于2025-10-30发布。",
+        "business_impact": "适用法人税的企业可能会发现，所公布的申报及课税实绩有助于了解税收行政趋势，但标题未提供任何数据或调查结果。",
+        "recommended_action": "查阅国税厅官方概况或可明确所涵盖的税种、报告期间以及申报及课税实绩。"
+      }
+    }
   },
   {
     "id": "raw-7d2825ad10d636e1",
@@ -12046,17 +12086,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; form coverage and printing details are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁の新着情報・通達等として、マルチコピー機で印刷できる申告書・申請書・届出書等に関する情報が2025年10月24日付で公表されています。原文のメタデータでは詳細な内容は簡潔な記載にとどまっており、対象となる様式の具体的な範囲までは示されていません。",
     "business_impact_ja": "申告や各種手続に用いる様式の入手方法に関わる情報であるため、税務手続を行う事業者の実務対応に影響する可能性があります。",
     "recommended_action_ja": "国税庁の公式ページで対象様式や利用方法の詳細をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and listing date only; form coverage and printing details are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:59Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "国税厅公告：可使用多功能复印机打印的税务表格",
+        "summary": "国税厅发布了日期为2025-10-24的公告，内容涉及可使用多功能复印机打印的纳税申报表、申请表、申报事项表及其他表格。标题未指明可用的表格或打印流程。",
+        "business_impact": "使用这些表格的纳税人和申请人可能多一种打印选择，具体取决于所涵盖的表格和多功能复印机。",
+        "recommended_action": "查阅国税厅官方页面或可了解哪些表格可供使用以及如何打印。"
+      }
+    }
   },
   {
     "id": "raw-6a3b95d34f474a45",
@@ -12074,17 +12122,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication listing only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁が、令和６年度における租税滞納状況の概要をまとめた資料（PDF形式）を新着情報・通達等として公表したものです。公表日は2025年8月27日とされています。提供されたメタデータからは、滞納状況の具体的な数値や内訳までは確認できません。",
     "business_impact_ja": "税務当局による滞納状況の公表は、徴収動向や実務対応を把握するうえで参考となる可能性があります。事業への直接的な影響の有無は、公表資料の具体的内容を確認したうえで判断する必要があると考えられます。",
     "recommended_action_ja": "詳細については、国税庁が公表する原文PDFおよび関連する公式情報をご確認いただくことをお勧めします。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication listing only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:59Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "国税厅报告：2024财政年度税款滞纳情况概况",
+        "summary": "国税厅于2025-08-27发布了2024财政年度税款滞纳情况概况。这是一份政府报告；所提供的标题未列明报告结果，也未指出任何法律变更。",
+        "business_impact": "该报告可能为有未清偿税款的纳税人提供背景信息，但仅凭标题无法确定其义务或征收程序有任何变化。",
+        "recommended_action": "查阅日文官方报告可能有助于了解报告中的税款滞纳数据、涵盖范围以及有关税款征收的讨论。"
+      }
+    }
   },
   {
     "id": "raw-87d1f28ef674fd6f",
@@ -12102,17 +12158,25 @@
     "last_checked": "2026-08-07",
     "relevance_score": 3.0,
     "first_seen_at": "2026-08-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication listing, not the FAQ text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "国税庁の新着・通達等として、移転価格税制の適用に係る簡素化・合理化アプローチに関するFAQ（令和7年6月）が掲載されています。公表日は2025年6月30日とされていますが、提供されたメタデータでは「国税庁新着情報・通達等」との記載にとどまり、FAQの具体的内容は示されていません。",
     "business_impact_ja": "移転価格税制の適用を受ける事業者において、当該FAQの内容によっては実務対応や文書化の考え方に影響が生じる可能性があります。もっとも、詳細が示されていないため、影響の有無や程度は現時点では明確ではないと考えられます。",
     "recommended_action_ja": "国税庁の公式ウェブサイトで当該FAQの原文および関連通達を確認し、必要に応じて自社の状況に照らして精査することが望ましいと考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication listing, not the FAQ text; this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:59Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "日本国税厅关于转让定价税制适用简化与合理化方法的常见问题解答",
+        "summary": "日本国税厅发布了日期为2025年6月的常见问题解答，内容涉及适用转让定价规则的简化与合理化方法。该公告发布于2025-06-30；标题并未明确该常见问题解答的具体范围，也未表明法律要求有任何变化。",
+        "business_impact": "适用转让定价规则的企业可能会发现，该常见问题解答与简化及合理化方法如何适用于自身有关，但其中的适用资格标准及实际影响尚未提供。",
+        "recommended_action": "可考虑查阅日文官方常见问题解答，以进一步了解该方法的范围、适用资格标准及应用。"
+      }
+    }
   },
   {
     "id": "raw-55e0e4dcbb06e296",
@@ -12129,17 +12193,25 @@
     "published_at": "2025-06-11",
     "last_checked": "2026-06-11",
     "relevance_score": 3.0,
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "個人情報保護委員会（PPC）が、令和６年度第４四半期における総合的な案内所等の受付状況を公表したとの新着情報です。原文の要約は『活動報告等』とされており、具体的な受付内容や詳細は本メタデータからは示されていません。",
     "business_impact_ja": "受付状況の公表は活動報告の性質を持つと考えられ、直ちに事業運営へ具体的な影響が生じる可能性は限定的と考えられます。ただし、個人情報の取扱いに関する問い合わせ傾向を把握する参考情報となる可能性があります。",
     "recommended_action_ja": "詳細な受付状況や趣旨については、個人情報保護委員会の公式サイト上の公表資料をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T03:17:59Z",
-    "summary_model": "gpt-6.1-sol"
+    "translations": {
+      "zh-Hans": {
+        "title": "个人信息保护委员会公布2024财年第四季度咨询受理统计数据",
+        "summary": "2025-06-11，个人信息保护委员会（PPC）宣布公布其综合咨询窗口及相关服务在2024财年第四季度的受理统计数据。这是一则活动报告公告；标题未提供统计数据或其结果。",
+        "business_impact": "该报告可能与PPC信息服务的使用者相关，但标题未指明具体受影响的企业，也未表明义务有任何变化。",
+        "recommended_action": "建议查阅日文官方报告，了解所涵盖的服务、受理数据及随附说明。"
+      }
+    }
   },
   {
     "id": "raw-9480e287dee1b4b9",
