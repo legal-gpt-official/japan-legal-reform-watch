@@ -1970,6 +1970,133 @@ class TestRequeueFile(unittest.TestCase):
             self.assertTrue(all(i.startswith("raw-") for i in ids))
         self.assertFalse(set(data.get("english", [])) & set(data.get("zh-Hans", [])),
                          "an English regeneration already re-translates; do not list it twice")
+        self.assertFalse(set(data.get("english", [])) & set(data.get("english_title", [])),
+                         "a full English regeneration already rewrites the title")
+
+
+
+class TestTitleOnlyRequeue(unittest.TestCase):
+    """Truncated titles are redone alone; the summary body is never touched."""
+
+    TRUNCATED = "Ministerial Ordinance Partially Amending the Enforcement Regulation of the Act on Domestic Animal Infectious..."
+
+    def _run(self, tmp, new_title, api_limit=5, created_at="2025-01-01T00:00:00Z", confidence="medium"):
+        import requeue
+        base = Path(tmp)
+        item = TestSummarizeTitleCap()._item()
+        item.update(TestSummarizeTitleCap()._result(self.TRUNCATED))
+        item.update(TestSummarizeTitleCap()._ja_result())
+        item.update({"summary_source": "claude", "summarized_at": "2020-01-01T00:00:00Z",
+                     "summary_model": "claude-opus-4-8", "summary_ja_source": "claude",
+                     "ja_summarized_at": "2020-01-01T00:00:00Z", "ja_summary_model": "m",
+                     "confidence": confidence})
+        key = su.cache_key(item, {})
+        cache = {key: {**{f: item[f] for f in su.AI_FIELDS},
+                       **{f: item[f] for f in su.JA_AI_FIELDS},
+                       "summary_ja_source": "claude", "ja_summarized_at": "2020-01-01T00:00:00Z",
+                       "ja_summary_model": "m",
+                       "summarized_at": "2020-01-01T00:00:00Z", "summary_model": "claude-opus-4-8"}}
+        paths = {n: base / n for n in ("legal_updates.json", "summary_cache.json", "raw.json", "requeue.json")}
+        paths["legal_updates.json"].write_text(json.dumps([item]), encoding="utf-8")
+        paths["summary_cache.json"].write_text(json.dumps(cache), encoding="utf-8")
+        paths["raw.json"].write_text("[]", encoding="utf-8")
+        paths["requeue.json"].write_text(json.dumps(
+            {"created_at": created_at, "english": [], "english_title": [item["id"]], "zh-Hans": []}),
+            encoding="utf-8")
+        usage = {"input_tokens": 1, "output_tokens": 1, "cache_creation_input_tokens": 0,
+                 "cache_read_input_tokens": 0}
+        calls = {"n": 0}
+
+        def fake_title(client, model, it, raw):
+            calls["n"] += 1
+            return {"title_en": new_title}, model, usage
+
+        patches = {
+            "INPUT_PATH": paths["legal_updates.json"], "OUTPUT_PATH": paths["legal_updates.json"],
+            "BEFORE_AI_PATH": base / "before_ai.json", "CACHE_PATH": paths["summary_cache.json"],
+            "RAW_PATH": paths["raw.json"], "LOG_PATH": base / "summarize.log",
+            "make_client": idle_workspace_client, "request_title": fake_title,
+            "request_summary": mock.Mock(side_effect=AssertionError("the body must not be regenerated")),
+            "request_japanese_summary": mock.Mock(side_effect=AssertionError("Japanese must not run")),
+        }
+        saved = requeue.REQUEUE_PATH
+        requeue.REQUEUE_PATH = paths["requeue.json"]
+        out = io.StringIO()
+        try:
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(out):
+                rc = su.main(["--all-items", "--english-only", "--api-limit", str(api_limit), "--parallel", "2"])
+        finally:
+            requeue.REQUEUE_PATH = saved
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+        published = json.loads(paths["legal_updates.json"].read_text(encoding="utf-8"))[0]
+        saved_cache = json.loads(paths["summary_cache.json"].read_text(encoding="utf-8"))[key]
+        return rc, calls["n"], published, item, saved_cache, out.getvalue()
+
+    def test_only_the_title_changes(self):
+        new = "Ministerial Ordinance Amending Domestic Animal Infectious Diseases Control Act Regulations"
+        with tempfile.TemporaryDirectory() as tmp:
+            rc, n, published, before, cache, out = self._run(tmp, new)
+        self.assertEqual((rc, n), (0, 1))
+        self.assertEqual(published["title_en"], new)
+        self.assertEqual(cache["title_en"], new)
+        self.assertIn("title_regenerated_at", cache)
+        for field in ("summary_en", "business_impact_en", "recommended_action_en", "summarized_at",
+                      *su.JA_AI_FIELDS, *su.JA_PROVENANCE_FIELDS):
+            self.assertEqual(published[field], before[field], field)
+        self.assertIn("titles_regenerated: 1", out)
+
+    def test_an_incomplete_or_japanese_title_is_rejected_and_the_old_one_kept(self):
+        for bad in ("A" * 121, "Ordinance Amending the Act on...", "家畜伝染病予防法施行規則 amendment"):
+            with self.subTest(bad=bad[:30]), tempfile.TemporaryDirectory() as tmp:
+                _rc, n, published, before, cache, out = self._run(tmp, bad)
+                self.assertEqual(n, 1)
+                self.assertEqual(published["title_en"], before["title_en"])
+                self.assertNotIn("title_regenerated_at", cache)
+                self.assertIn("titles_failed   : 1", out)
+
+    def test_not_redone_once_newer_and_not_without_budget(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, *_ = self._run(tmp, "x", created_at="2019-01-01T00:00:00Z")
+        self.assertEqual(n, 0)
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, published, before, *_ = self._run(tmp, "x", api_limit=0)
+        self.assertEqual(n, 0)
+        self.assertEqual(published["title_en"], before["title_en"])
+
+    def test_cached_confidence_is_capped_without_an_api_call(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, _n, published, *_ = self._run(tmp, "Complete title", created_at="2019-01-01T00:00:00Z",
+                                               confidence="high")
+        self.assertEqual(published["confidence"], "medium", "title-only evidence cannot support high")
+
+    def test_title_prompt_keeps_the_title_consistent_with_the_summary(self):
+        prompt = " ".join(su.TITLE_SYSTEM_PROMPT.split())
+        self.assertIn("must agree with the current English summary", prompt)
+        self.assertIn("no ellipsis", prompt)
+        content = su.build_user_content(TestSummarizeTitleCap()._item(), {})
+        self.assertNotIn("current_english_summary", content, "the full-summary prompt is unchanged")
+        title_content = su.build_title_user_content({**TestSummarizeTitleCap()._item(), "summary_en": "S."}, {})
+        self.assertIn('"current_english_summary": "S."', title_content)
+
+
+class TestOfficialOfficeNames(unittest.TestCase):
+    def test_offices_named_in_the_contact_field_get_their_official_english_name(self):
+        raw = {"raw_summary": "案の公示日：2026/09/01 問合せ先（所管省庁・部局名等）：厚生労働省医薬局医薬品審査管理課"}
+        self.assertEqual(su.official_office_names({"title_ja": "x"}, raw),
+                         [{"ja": "厚生労働省医薬局",
+                           "official_en": "Pharmaceutical Safety Bureau, Ministry of Health, Labour and Welfare"}])
+        self.assertEqual(su.official_office_names({"title_ja": "x"}, {"raw_summary": "厚生労働省健康・生活衛生局"}), [],
+                         "an office whose official English name could not be confirmed is not listed")
+
+    def test_the_prompt_forbids_substituting_another_or_former_office(self):
+        prompt = " ".join(su.SYSTEM_PROMPT.split())
+        self.assertIn("never substitute a different office, a broader or narrower one, or a former name", prompt)
+        payload = su.english_source_payload({"title_ja": "x"}, {"raw_summary": "国土交通省都市局"})
+        self.assertEqual(payload["official_office_names"][0]["official_en"].split(",")[0], "City Bureau")
 
 
 if __name__ == "__main__":
