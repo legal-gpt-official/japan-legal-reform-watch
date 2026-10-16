@@ -2503,5 +2503,38 @@ class TestStatuteGlossary(unittest.TestCase):
         self.assertIn("Payment Services Act (資金決済に関する法律) -> 资金结算法", tu.SYSTEM_PROMPT)
 
 
+
+class TestTitleOnlyChangeRequestsOnlyTheTitle(TranslateTestBase):
+    """After an English title-only regeneration, Stage 4 must re-translate the
+    title alone: the three unchanged body fields come from the field cache, so
+    the Chinese body stays exactly as reviewed and the call is small."""
+
+    def test_only_the_title_field_is_requested(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self.install_counting_api()
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        first_body = {k: self.read_output()[0]["translations"][LOCALE][k]
+                      for k in ("summary", "business_impact", "recommended_action")}
+
+        requested = []
+
+        def fake_request(client, model, it, locale, *fields):
+            requested.append(tuple(fields[0]) if fields else tu.TRANSLATION_FIELDS)
+            return {"title": "公开征求意见：药店调剂指南修订草案（完整标题）"}, "fake-model"
+
+        tu.request_translation = fake_request
+        changed = dict(self.read_output()[0], title_en="Public Comment: Draft Pharmacy Guidelines Amendment (complete)")
+        self.write_input([changed])
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(requested, [("title",)])
+        block = self.read_output()[0]["translations"][LOCALE]
+        self.assertEqual(block["title"], "公开征求意见：药店调剂指南修订草案（完整标题）")
+        self.assertEqual({k: block[k] for k in first_body}, first_body)
+
+
 if __name__ == "__main__":
     unittest.main()

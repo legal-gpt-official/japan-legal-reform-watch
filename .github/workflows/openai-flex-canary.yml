@@ -38,6 +38,23 @@ on:
           - "0.10"
           - "0.20"
           - "0.50"
+      requeue_preview:
+        description: "Instead of the stage rehearsal, preview data/requeue.json (old vs new English and Chinese for a sample; read-only)"
+        required: false
+        default: false
+        type: boolean
+      preview_full:
+        description: "Requeue preview: full English regenerations to sample"
+        required: false
+        default: "20"
+        type: choice
+        options: ["10", "20", "40"]
+      preview_titles:
+        description: "Requeue preview: title-only regenerations to sample"
+        required: false
+        default: "30"
+        type: choice
+        options: ["15", "30", "60"]
 
 permissions:
   contents: read
@@ -77,6 +94,7 @@ jobs:
           python -m unittest discover -s tests
 
       - name: Japanese summaries on gpt-6.1-sol (Flex, dry run)
+        if: ${{ !inputs.requeue_preview }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
@@ -97,7 +115,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: zh-Hans translation on gpt-6.1-sol (Flex, dry run)
-        if: always()
+        if: ${{ always() && !inputs.requeue_preview }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
@@ -117,3 +135,30 @@ jobs:
             grep -E '^(model|api_calls|translated_items|failed_items|refused_items|quality_rejected_items|title_reference_retries|title_reference_retry_successes|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd|duration_seconds|batch_duration_seconds)' translate_run.log || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # Read-only preview of data/requeue.json before production regeneration:
+      # the same production functions over a deterministic sample, old vs new
+      # English and Chinese side by side in an artifact. Writes nothing back.
+      - name: Requeue preview on gpt-6.1-sol (Flex, read-only)
+        if: ${{ inputs.requeue_preview }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
+          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+          PREVIEW_FULL: ${{ inputs.preview_full }}
+          PREVIEW_TITLES: ${{ inputs.preview_titles }}
+        run: |
+          set -o pipefail
+          python scripts/preview_requeue.py --full "$PREVIEW_FULL" --titles "$PREVIEW_TITLES" --confirm-spend | tee preview.log
+          { echo '### Requeue preview'; echo '```'; tail -n 3 preview.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload requeue preview for human review
+        if: ${{ always() && inputs.requeue_preview }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: requeue-preview
+          path: |
+            data/eval/requeue_preview.json
+            data/eval/requeue_preview.md
+          retention-days: 14
+          if-no-files-found: warn

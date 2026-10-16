@@ -2099,5 +2099,51 @@ class TestOfficialOfficeNames(unittest.TestCase):
         self.assertEqual(payload["official_office_names"][0]["official_en"].split(",")[0], "City Bureau")
 
 
+
+class TestOfficeNamesRespectTheReorganization(unittest.TestCase):
+    def test_the_pre_2023_bureau_is_not_mapped_to_the_new_name(self):
+        """医薬・生活衛生局 (until 2023-08) and 医薬局 (from 2023-09) are different
+        offices; an older notice keeps its own bureau name."""
+        old = {"raw_summary": "問合せ先（所管省庁・部局名等）：厚生労働省医薬・生活衛生局医薬安全対策課"}
+        self.assertEqual(su.official_office_names({"title_ja": "x"}, old), [])
+        new = {"raw_summary": "問合せ先（所管省庁・部局名等）：厚生労働省医薬局医薬安全対策課"}
+        self.assertEqual(len(su.official_office_names({"title_ja": "x"}, new)), 1)
+
+
+class TestRequeuePreviewIsReadOnly(unittest.TestCase):
+    def test_preview_writes_only_under_data_eval_and_needs_confirmation(self):
+        source = (SCRIPTS_DIR / "preview_requeue.py").read_text(encoding="utf-8")
+        self.assertNotIn("save_json(", source)
+        self.assertNotIn("OUTPUT_PATH", source)
+        # The only writes are the two preview files under data/eval.
+        self.assertEqual(source.count("write_text("), 2)
+        self.assertEqual(source.count("OUT_JSON.write_text(") + source.count("OUT_MD.write_text("), 2)
+        self.assertIn('"data" / "eval"', source)
+        import preview_requeue
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out), mock.patch.object(
+            preview_requeue.su, "provider_client", side_effect=AssertionError("no API without confirmation")
+        ):
+            self.assertEqual(preview_requeue.main(["--full", "1", "--titles", "1"]), 0)
+        self.assertIn("Nothing was called", out.getvalue())
+
+    def test_preview_workflow_is_read_only_and_matches_the_daily_models(self):
+        text = (SCRIPTS_DIR.parent / ".github" / "workflows" / "openai-flex-canary.yml").read_text(encoding="utf-8")
+        self.assertIn("contents: read", text)
+        self.assertNotIn("contents: write", text)
+        self.assertNotIn("git push", text)
+        step = text[text.index("name: Requeue preview on gpt-6.1-sol"):]
+        self.assertIn("if: ${{ inputs.requeue_preview }}", step)
+        self.assertIn("ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol", step)
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol", step)
+        self.assertIn("OPENAI_SERVICE_TIER: flex", text)
+
+    def test_sampling_prefers_the_defect_items_and_is_deterministic(self):
+        import preview_requeue
+        ids = [f"raw-{n:03d}" for n in range(50)]
+        self.assertEqual(preview_requeue.pick(ids, 3, {"raw-040"}), ["raw-040", "raw-000", "raw-001"])
+        self.assertEqual(preview_requeue.pick(ids[:2], 5, set()), ids[:2])
+
+
 if __name__ == "__main__":
     unittest.main()
