@@ -2550,5 +2550,90 @@ class TestTitleQuestionMark(unittest.TestCase):
         self.assertEqual(tu.title_quality_errors("数字厅：电影《驾照返还!?》与我的号码卡开展联动（公告）"), [])
 
 
+
+class TestRequeueFixSurvivesALaterTitleChange(TranslateTestBase):
+    """2026-10-16 regression: an audit re-translation fixed a Chinese body, but
+    the field cache kept the first (defective) rendering of the same English;
+    a later English title change rebuilt the body from the cache and undid the
+    fix. Both the overwrite-on-requeue and the sync section prevent it."""
+
+    BAD = dict(good_translation(), summary="这是针对第三条の三修订草案的公开征求意见。")
+    FIXED = dict(good_translation(), summary="这是针对第三条之三修订草案的公开征求意见。")
+
+    def setUp(self):
+        super().setUp()
+        import requeue
+        self.rq = requeue
+        self._saved_rq = requeue.REQUEUE_PATH
+        requeue.REQUEUE_PATH = Path(self._tmp.name) / "requeue.json"
+
+    def tearDown(self):
+        self.rq.REQUEUE_PATH = self._saved_rq
+        super().tearDown()
+
+    def _api(self, fields_by_call):
+        calls = []
+
+        def fake(client, model, item, locale, *requested):
+            req = tuple(requested[0]) if requested else tu.TRANSLATION_FIELDS
+            calls.append(req)
+            data = fields_by_call[min(len(calls) - 1, len(fields_by_call) - 1)]
+            return {f: data[f] for f in req}, "fake-model"
+
+        tu.make_client = _idle_workspace_client
+        tu.request_translation = fake
+        return calls
+
+    def _title_change(self):
+        item = self.read_output()[0]
+        item["title_en"] = item["title_en"] + " (complete title)"
+        self.write_input([item])
+        calls = self._api([dict(self.FIXED, title="公开征求意见：药店调剂指南修订草案（完整）")])
+        rc, _ = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls, [("title",)], "only the title is re-translated")
+        return self.read_output()[0]["translations"][LOCALE]
+
+    def test_a_requeued_retranslation_replaces_the_memoized_body(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._api([self.BAD])
+        self.run_main(["--locale", LOCALE, "--limit", "30"])           # defective first rendering
+        cache = self.read_cache()
+        cache["entries"][LOCALE][item["id"]]["translated_at"] = "2020-01-01T00:00:00Z"
+        self.write_cache(cache)
+        self.rq.REQUEUE_PATH.write_text(json.dumps(
+            {"created_at": "2025-01-01T00:00:00Z", "zh-Hans": [item["id"]]}), encoding="utf-8")
+        self._api([self.FIXED])
+        self.run_main(["--locale", LOCALE, "--limit", "30"])           # audit fix
+        self.assertEqual(self.read_output()[0]["translations"][LOCALE]["summary"], self.FIXED["summary"])
+        self.rq.REQUEUE_PATH.write_text(json.dumps({"created_at": "2025-01-01T00:00:00Z"}), encoding="utf-8")
+        block = self._title_change()
+        self.assertEqual(block["summary"], self.FIXED["summary"], "the fix must survive")
+
+    def test_the_sync_section_repairs_a_stale_field_cache_without_an_api_call(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._api([self.BAD])
+        self.run_main(["--locale", LOCALE, "--limit", "30"])
+        # Simulate the state left by the earlier bug: entry fixed, field cache stale.
+        cache = self.read_cache()
+        cache["entries"][LOCALE][item["id"]]["summary"] = self.FIXED["summary"]
+        self.write_cache(cache)
+        published = self.read_output()[0]
+        published["translations"][LOCALE]["summary"] = self.FIXED["summary"]
+        self.write_input([published])
+        self.rq.REQUEUE_PATH.write_text(json.dumps(
+            {"created_at": "2025-01-01T00:00:00Z", "zh-Hans-sync": [item["id"]]}), encoding="utf-8")
+        calls = self._api([self.FIXED])
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(calls, [], "sync costs nothing")
+        self.assertEqual(parse_summary(out)["field_cache_synced"], "1")
+        block = self._title_change()
+        self.assertEqual(block["summary"], self.FIXED["summary"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -587,7 +587,7 @@ def field_cache_lookup(field_entries: dict, key: str, field: str, prompt_version
 
 def store_field_translation(
     field_entries: dict, key: str, field: str, text: str, prompt_version: str,
-    translated_at: str, model: str,
+    translated_at: str, model: str, replace: bool = False,
 ) -> bool:
     """Memoize one field translation. Returns True when a new entry was added.
 
@@ -602,8 +602,10 @@ def store_field_translation(
     existing = field_entries.get(key)
     if isinstance(existing, dict) and existing.get("reviewed") is True:
         return False
-    if field_cache_lookup(field_entries, key, field, prompt_version) is not None:
+    if not replace and field_cache_lookup(field_entries, key, field, prompt_version) is not None:
         return False  # already memoized; do not churn translated_at
+    if replace and isinstance(existing, dict) and existing.get("text") == text.strip():
+        return False
     field_entries[key] = {
         "field": field,
         "text": text.strip(),
@@ -915,13 +917,52 @@ def commit_translation(
     apply_translation(item, fields, locale)
     entries[item_id] = cache_entry(source_hash, PROMPT_VERSION, now, model_used, fields)
     added = 0
+    # An audit-requested re-translation replaces the memoized text it was
+    # ordered to fix. Without this the field cache kept the first, defective
+    # rendering (memoization never overwrites), and on 2026-10-16 a later
+    # English title change rebuilt 16 Chinese bodies from it -- undoing kana,
+    # character-form and era fixes made earlier the same day.
+    replace = item_id in REQUEUED_THIS_RUN
     for field in TRANSLATION_FIELDS:
         if store_field_translation(
             field_entries, field_keys[field], field, fields[field],
-            PROMPT_VERSION, now, model_used,
+            PROMPT_VERSION, now, model_used, replace=replace,
         ):
             added += 1
     return added
+
+
+# Ids taken as "requeued" candidates in the current run (see requeue.due); their
+# fresh translation overwrites the field cache. Reset at the start of each run.
+REQUEUED_THIS_RUN: set[str] = set()
+
+
+def sync_field_cache_from_entries(items: list[dict], entries: dict, field_entries: dict,
+                                  locale: str, item_ids) -> int:
+    """Make the field cache hold an item's own current, valid translation.
+
+    For items whose Chinese was fixed by an earlier requeue (data/requeue.json
+    section `zh-Hans-sync`), the field cache may still hold the pre-fix text for
+    the same English. This copies the item's current entry -- already validated
+    and published -- over those field entries, so any later partial rebuild
+    reuses the fixed text. No API call; reviewed entries are never touched.
+    """
+    wanted = set(item_ids)
+    synced = 0
+    for item in items:
+        item_id = item.get("id") or ""
+        if item_id not in wanted:
+            continue
+        entry = entries.get(item_id)
+        if candidate_reason(entry, compute_source_hash(item, locale, PROMPT_VERSION), PROMPT_VERSION) is not None:
+            continue  # only a current, valid translation is trusted as the fix
+        _known, _missing, keys = resolve_cached_fields(item, field_entries, locale)
+        for field in TRANSLATION_FIELDS:
+            if store_field_translation(field_entries, keys[field], field, entry[field],
+                                       PROMPT_VERSION, entry.get("translated_at") or "",
+                                       entry.get("model") or "", replace=True):
+                synced += 1
+    return synced
 
 
 # --------------------------------------------------------------------------- #
@@ -1944,6 +1985,7 @@ def process_translation_batch(
         if (reason is None and len(candidates) < max(0, limit)
                 and requeue.due(requeue_request, locale, item_id, cached.get("translated_at"))):
             reason = "requeued"
+            REQUEUED_THIS_RUN.add(item_id)
         if reason is None:
             apply_translation(it, cached, locale)
             stats["cache_hits"] += 1
@@ -2427,6 +2469,10 @@ def main(argv: list[str] | None = None) -> int:
     if seeded_fields:
         logger.info("FIELD CACHE seeded %d field translations from existing entries", seeded_fields)
     reviewed_fields = apply_reviewed_fields(field_entries, load_reviewed_fields(locale))
+    REQUEUED_THIS_RUN.clear()
+    field_cache_synced = sync_field_cache_from_entries(
+        items, entries, field_entries, locale,
+        requeue.load(requeue.REQUEUE_PATH).get(f"{locale}-sync", set()))
     if reviewed_fields:
         logger.info("FIELD CACHE pinned %d human-reviewed field translations", reviewed_fields)
 
@@ -2582,6 +2628,7 @@ def main(argv: list[str] | None = None) -> int:
                 and api_calls + len(pending_direct) < args.limit
                 and requeue.due(requeue_request, locale, item_id, cached.get("translated_at"))):
             reason = "requeued"
+            REQUEUED_THIS_RUN.add(item_id)
             requeued_items += 1
 
         if reason is None:
@@ -3005,6 +3052,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"requeued_items            : {requeued_items}")
     print(f"field_cache_hits          : {field_cache_hits}")
     print(f"field_cache_seeded        : {seeded_fields}")
+    print(f"field_cache_synced        : {field_cache_synced}")
     print(f"field_cache_reviewed      : {reviewed_fields}")
     print(f"reviewed_refreshed_items  : {reviewed_refreshed}")
     print(f"field_cache_added         : {field_cache_added}")
