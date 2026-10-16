@@ -73,14 +73,14 @@
   },
   {
     "id": "raw-fe479eef2674a4b5",
-    "title_en": "MOFA Ministerial Ordinance Amending Rules on Online Payment of National Revenue (Reiwa 6 Ord. No. 3)",
+    "title_en": "Ministerial Ordinance amending ICT-based payment rules under Ministry of Foreign Affairs laws",
     "title_ja": "外務省の所管する法令に係る情報通信技術を利用する方法による国の歳入等の納付に関する法律施行規則の一部を改正する省令",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a Ministry of Foreign Affairs ministerial ordinance (Reiwa 6 MOFA Ordinance No. 3) partially amending the enforcement rules for the law on paying national revenue and similar amounts using information and communications technology, as applied to laws under MOFA jurisdiction. The metadata lists a promulgation date of 2024-03-29 and an effective date of 2024-04-01. The specific content of the amendments is not included in the provided metadata.",
-    "business_impact_en": "Procedures for electronically paying fees or other amounts to the national government under MOFA-administered laws (for example, possibly certain consular or passport-related payments) may be affected, though the actual scope cannot be determined from the metadata provided.",
-    "recommended_action_en": "Review the official Japanese text of the amending ordinance on e-Gov to confirm which provisions changed and whether they are relevant to your payment procedures.",
+    "summary_en": "Ministry of Foreign Affairs Ordinance No. 3 of 2024 amends the enforcement rules for the Act on Payment of National Revenue, etc. Using Information and Communications Technology under laws administered by the Ministry of Foreign Affairs (Ministry of Foreign Affairs Ordinance No. 2 of 2023). The metadata gives a promulgation date of 2024-03-29 and an effective date of 2024-04-01, but does not describe the amended provisions.",
+    "business_impact_en": "Persons making payments of national revenue or other covered amounts under laws administered by the Ministry of Foreign Affairs may be affected by changes to ICT-based payment procedures; the specific changes and payment categories are not provided.",
+    "recommended_action_en": "Review the official Japanese ordinance to confirm the amended payment procedures, their scope, and any transitional provisions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=505M60000020002_20240401_506M60000020003",
     "published_at": "2024-03-29",
@@ -88,10 +88,6 @@
     "relevance_score": 35.0,
     "first_seen_at": "2026-10-09",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and metadata fields; the substance of the amendments was not provided. The listing date in the metadata (20261008) is inconsistent with the 2024 promulgation date and was not relied upon. The 'In Force' label is a keyword-based triage label; the stated 2024-04-01 effective date should be verified against the official source. Examples of possibly affected payments are speculative.",
-    "summarized_at": "2026-10-09T01:04:11Z",
-    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "e-Gov法令検索の法令更新一覧に、外務省の所管する法令に係る情報通信技術を利用する方法による国の歳入等の納付に関する法律施行規則(令和五年外務省令第二号)を改正する省令(令和六年外務省令第三号)が掲載されています。メタデータ上、公布日は2024年3月29日、施行日は2024年4月1日とされています。改正の具体的な内容は、提供された情報からは確認できません。",
     "business_impact_ja": "外務省所管の手続における国の歳入等の電子的な納付方法に関わる規則の改正であり、該当する手続を利用する事業者や関係者に、納付手続の運用面で影響が及ぶ可能性があります。ただし、具体的な改正内容が不明なため、影響の有無や程度は原文の確認なしには判断できないと考えられます。",
     "recommended_action_ja": "改正の具体的な内容や自社の手続との関係については、e-Govに掲載された官報・法令の原文など日本語の公式情報源をご確認いただくことをお勧めします。",
@@ -100,12 +96,16 @@
     "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "外务省省令修订：关于利用信息通信技术缴纳国家岁入等款项的法律施行规则（令和6年第3号省令）",
-        "summary": "这是外务省的一项省令（令和6年外务省令第3号），部分修订了关于利用信息通信技术缴纳国家岁入等款项的法律的施行规则，适用于外务省主管的相关法令。元数据列明公布日期为2024-03-29，生效日期为2024-04-01。所提供的元数据中未包含修订的具体内容。",
-        "business_impact": "根据外务省主管法令，以电子方式向国家缴纳费用或其他款项的程序可能受到影响（例如可能涉及某些领事或护照相关的款项），但具体影响范围无法根据所提供的元数据确定。",
-        "recommended_action": "建议在e-Gov上查阅该修订省令的日文官方文本，以确认具体修改了哪些条款，以及是否与您的缴费流程相关。"
+        "title": "修订外务省主管法令所涉利用信息通信技术缴纳国家收入等款项施行规则的省令",
+        "summary": "2024年外务省令第3号修订了《外务省主管法令所涉利用信息通信技术方式缴纳国家收入等款项法施行规则》（2023年外务省令第2号）。元数据显示，公布日期为2024-03-29，生效日期为2024-04-01，但未说明修订条款。",
+        "business_impact": "根据外务省主管法令缴纳国家收入或其他适用款项的人员，可能受到利用信息通信技术缴款程序变更的影响；具体变更及缴款类别未予提供。",
+        "recommended_action": "建议查阅日文官方省令，以确认修订后的缴款程序、适用范围及任何过渡规定。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, without the substantive provisions; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T05:55:37Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-a25be37bb3540afe",
@@ -172,10 +172,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "《租税特别措置法施行规则》部分修订省令",
-        "summary": "本项涉及一项省令（2024年财务省令第24号），修订《租税特别措置法施行规则》（1957年财务省令第15号）的部分内容。根据元数据，该修订省令的公布日期为2024-03-30，生效日期为2026-09-01。相关信息来自e-Gov法令检索的更新列表，应与日文官方来源核实。",
-        "business_impact": "由于此项涉及日本租税特别措置相关的施行规则，受该税收规则约束的组织可能需要在所述生效日期之前审视该修订是否会影响其义务。",
-        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认修订的范围、内容及生效日期。"
+        "title": "部分修订《租税特别措施法施行规则》的省令",
+        "summary": "本条目涉及一项省令（2024年财务省令第24号），该省令部分修订《租税特别措施法施行规则》（1957年财务省令第15号）。根据元数据，该修订省令的公布日期为2024-03-30，生效日期为2026-09-01。此信息来自e-Gov法令检索的更新列表，应对照日文官方来源核实。",
+        "business_impact": "由于此项修订涉及日本租税特别措施下的施行规则，适用这些税务规则的组织可能需要在所述生效日期之前，审查修订是否可能影响其义务。",
+        "recommended_action": "可考虑查阅e-Gov法令检索上的日文官方来源，以确认修订的范围、内容和生效日期。"
       }
     }
   },
@@ -1045,14 +1045,14 @@
   },
   {
     "id": "raw-f97bb44a8e88828c",
-    "title_en": "Amendment to Immigration Control and Refugee Recognition Act and Technical Intern Training Act",
+    "title_en": "Act amending immigration control and technical intern training legislation",
     "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律",
     "area": "Labor / Employment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This item concerns an amending law (Reiwa 6 Act No. 60) that revises the Immigration Control and Refugee Recognition Act and the Act on Proper Technical Intern Training and Protection of Technical Intern Trainees. According to the metadata, it was published (promulgated) on 2024-06-21 with a stated enforcement date of 2027-04-01. This is an unofficial English summary based on limited metadata from e-Gov Law Search.",
-    "business_impact_en": "Organizations involved in hiring foreign workers or operating technical intern training programs may be affected by the changes once they take effect. The listed future enforcement date suggests there could be a transition period during which preparations may be relevant.",
-    "recommended_action_en": "Consider reviewing the official Japanese text on e-Gov Law Search to confirm the scope, effective date, and detailed requirements of the amendment.",
+    "summary_en": "Act No. 60 of 2024 amends the Immigration Control and Refugee Recognition Act (Cabinet Order No. 319 of 1951) and the Act on Proper Technical Intern Training and Protection of Technical Intern Trainees. The listing records promulgation on 2024-06-21 and an effective date of 2027-04-01 for the amendment to the immigration instrument.",
+    "business_impact_en": "Foreign nationals subject to immigration control, technical intern trainees, and organizations conducting technical intern training may be affected by the amendments, although the listing does not describe the substantive changes.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended immigration and technical intern training provisions, their scope, and the application of the stated effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=326CO0000000319_20270401_506AC0000000060",
     "published_at": "2024-06-21",
@@ -1060,10 +1060,6 @@
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-08",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the Japanese title and metadata only. Metadata states promulgation on 2024-06-21 and enforcement on 2027-04-01, but the amended details are not provided; area/stage/impact labels are preliminary and unverified.",
-    "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "e-Gov法令検索の更新一覧によると、出入国管理及び難民認定法（昭和二十六年政令第三百十九号）を対象として、当該法及び技能実習の適正な実施等に関する法律の一部を改正する法律（令和六年法律第六十号）が2024年6月21日に公布されました。原文では施行日は2027年4月1日と示されています。",
     "business_impact_ja": "外国人の受入れや技能実習に関する制度変更を含む可能性があり、外国人材の雇用・管理を行う事業者の実務に影響が及ぶことが考えられます。",
     "recommended_action_ja": "改正内容や施行時期の詳細については、e-Gov法令検索など日本語の公式情報源で確認されることをお勧めします。",
@@ -1072,12 +1068,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法律修订：《出入国管理及难民认定法》及《技能实习法》修订",
-        "summary": "本项涉及一项修订法律（令和6年法律第60号），对《出入国管理及难民认定法》以及《关于外国人技能实习的适当实施及技能实习生保护的法律》进行修订。根据元数据，该法律已于2024-06-21公布，所载生效日期为2027-04-01。本内容为基于e-Gov法令检索有限元数据所作的非官方英文摘要的翻译。",
-        "business_impact": "从事外国人雇用或运营技能实习制度的相关机构，在修订内容生效后可能受到影响。所列明的未来生效日期表明，可能存在一段过渡期，在此期间进行相关准备工作可能具有意义。",
-        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方文本，以确认本次修订的适用范围、生效日期及具体要求的细节。"
+        "title": "修订《出入国管理及难民认定法》及《外国人技能实习适当实施及技能实习生保护法》的法律",
+        "summary": "2024年第60号法律修订了《出入国管理及难民认定法》（1951年第319号政令）及《外国人技能实习适当实施及技能实习生保护法》。该列表记载的公布日期为2024-06-21，出入国管理法令修订的生效日期为2027-04-01。",
+        "business_impact": "受出入国管理的外国人、技能实习生及开展技能实习的机构可能受到这些修订的影响，但该列表未说明实质性变更内容。",
+        "recommended_action": "查阅日文官方来源可能有助于明确经修订的出入国管理及技能实习条款、其适用范围，以及所列生效日期的适用情况。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary requires verification against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T05:57:35Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-275968e53a583f44",
@@ -1117,14 +1117,14 @@
   },
   {
     "id": "raw-acc50518307a8d86",
-    "title_en": "Act Amending the Immigration Control and Refugee Recognition Act and the Technical Intern Training Act",
+    "title_en": "Act amending immigration and technical intern training laws: Local Tax Act update",
     "title_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律",
     "area": "Labor / Employment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This item refers to an act partially amending the Immigration Control and Refugee Recognition Act and the Act on Proper Technical Intern Training and Protection of Technical Intern Trainees (Reiwa 6 Act No. 60). According to the metadata, it was promulgated on 2024-06-21 with a stated enforcement date of 2027-04-01. Note that the raw summary also references the Local Tax Act, which appears inconsistent and should be verified against the official source.",
-    "business_impact_en": "Organizations involved in foreign technical intern training or immigration-related processes may be affected by changes introduced through this amendment. The scope and specific obligations could depend on details not provided in this metadata.",
-    "recommended_action_en": "Review the official Japanese source on e-Gov to confirm the amendment's scope, provisions, and enforcement timing.",
+    "summary_en": "Act No. 60 of 2024 amends the Immigration Control and Refugee Recognition Act and the Act on Proper Implementation of Technical Intern Training for Foreign Nationals and Protection of Technical Intern Trainees. This listing concerns its amendment to the Local Tax Act (Act No. 226 of 1950), with promulgation on 2024-06-21 and a stated effective date of 2027-04-01; the update-list date is 20260911.",
+    "business_impact_en": "Although the headline concerns immigration and technical intern training, this entry concerns a Local Tax Act amendment and may affect local taxpayers; the metadata does not identify the specific taxpayers or tax provisions affected.",
+    "recommended_action_en": "Review of the official Japanese source could clarify which Local Tax Act provisions change on 2027-04-01 and whether transitional provisions apply.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=325AC0000000226_20270401_506AC0000000060",
     "published_at": "2024-06-21",
@@ -1132,10 +1132,6 @@
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-12",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on Japanese title and metadata only; specifics of the amendment are unverified. The raw summary contains an apparent inconsistency (a reference to the Local Tax Act alongside the immigration/technical intern amendment), so the affected law and details should be confirmed against the official source. Enforcement date (2027-04-01) is stated in the metadata but not independently verified.",
-    "summarized_at": "2026-10-01T00:47:06Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "出入国管理及び難民認定法及び外国人の技能実習の適正な実施及び技能実習生の保護に関する法律の一部を改正する法律（令和六年法律第六十号）に関する法令更新情報です。メタデータによれば、公布日は2024年6月21日、施行日は2027年4月1日とされています。なお、更新一覧における対象法令の記載には地方税法との記述も含まれており、原文情報の整理・確認を要すると考えられます。",
     "business_impact_ja": "技能実習制度や外国人材の受入れに関わる制度変更として、外国人を雇用・受入れする事業者の実務や体制に影響が及ぶ可能性があります。施行が2027年4月1日とされているため、それまでの準備が求められる可能性が考えられます。",
     "recommended_action_ja": "改正内容や施行日、対象法令の範囲については、e-Gov法令検索など日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
@@ -1144,12 +1140,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "法律修订：《出入国管理及难民认定法》及《技能实习法》部分修订",
-        "summary": "本项目涉及部分修订《出入国管理及难民认定法》及《外国人技能实习的适当实施及技能实习生保护法》的法律（令和6年法律第60号）。根据元数据，该法于2024-06-21公布，所载生效日期为2027-04-01。请注意，原始摘要中还提及《地方税法》，这似乎存在不一致之处，应与官方来源核实。",
-        "business_impact": "涉及外国人技能实习或出入国管理相关流程的组织可能受到此次修订所带来变化的影响。具体范围及义务可能取决于本元数据未提供的细节。",
-        "recommended_action": "建议查阅e-Gov上的日文官方来源，以确认此次修订的范围、具体条款及生效时间。"
+        "title": "《出入境管理及难民认定法》及《外国人技能实习适当实施及技能实习生保护法》的修正法：《地方税法》更新",
+        "summary": "2024年第60号法律修订了《出入境管理及难民认定法》和《外国人技能实习适当实施及技能实习生保护法》。本条目涉及该法律对《地方税法》（1950年第226号法律）的修订，公布日期为2024-06-21，所载生效日期为2027-04-01；更新列表日期为2026-09-11。",
+        "business_impact": "虽然标题涉及出入境管理和技能实习，但本条目涉及《地方税法》的修订，可能影响地方税纳税人；元数据未指明受影响的具体纳税人或税收条款。",
+        "recommended_action": "查阅日文官方来源或可明确《地方税法》的哪些条款将于2027-04-01变更，以及是否适用过渡条款。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the amendment text; the specific tax changes are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T05:57:35Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-409c4d90ee6e8f50",

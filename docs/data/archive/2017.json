@@ -37,14 +37,14 @@
   },
   {
     "id": "raw-2043334c0c35e68c",
-    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of the Act on Price Adjustment of Sugar and Starch",
+    "title_en": "Ministerial Ordinance amending sugar and starch price adjustment rules and related ordinances",
     "title_ja": "砂糖及びでん粉の価格調整に関する法律施行規則等の一部を改正する省令",
     "area": "Other",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This item is a ministerial ordinance (MAFF Ordinance No. 6 of 2017) that partially amends the enforcement regulations of the Act on Price Adjustment of Sugar and Starch and related rules. According to the metadata, the affected legislation includes a MAFF ordinance concerning the operations, finance, accounting, and personnel management of the Agriculture and Livestock Industries Corporation (an incorporated administrative agency). The metadata lists a promulgation date of 2017-01-25.",
-    "business_impact_en": "Organizations involved in sugar or starch pricing, or those interacting with the Agriculture and Livestock Industries Corporation, may be affected by amended enforcement regulations and administrative procedures.",
-    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, effective date, and specific provisions of the amendment.",
+    "summary_en": "Ministry of Agriculture, Forestry and Fisheries Ordinance No. 6 of 2017, promulgated on 2017-01-25, amends the enforcement regulations for the Act on Price Adjustment of Sugar and Starch and related ordinances. The listed target is the Ordinance on Business Operations, Finance, Accounting and Personnel Management of the Independent Administrative Agency Agriculture and Livestock Industries Corporation, Ministry of Agriculture, Forestry and Fisheries Ordinance No. 104 of 2003.",
+    "business_impact_en": "The Agriculture and Livestock Industries Corporation may be affected through amendments to its operational, financial, accounting or personnel-management framework, rather than solely through the sugar and starch pricing rules highlighted in the title. The metadata does not identify the specific provisions changed.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the changes to the Corporation's governing ordinance, their effective date and any transitional provisions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=415M60000200104_21171231_429M60000200006",
     "published_at": "2017-01-25",
@@ -52,10 +52,6 @@
     "relevance_score": 35.0,
     "first_seen_at": "2026-08-20",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on metadata from a law-update listing; the preliminary 'Promulgated' stage and 2017 promulgation date are from the source but should be verified against the authoritative Japanese text. Rule-based labels (area/stage/impact) are unverified triage hints.",
-    "summarized_at": "2026-08-20T21:28:00Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "「砂糖及びでん粉の価格調整に関する法律施行規則等の一部を改正する省令」（平成二十九年農林水産省令第六号）に関する情報です。対象法令は独立行政法人農畜産業振興機構の業務運営、財務及び会計並びに人事管理に関する省令（平成十五年農林水産省令第百四号）であり、公布日は2017年1月25日と記載されています。e-Gov法令検索の更新一覧に基づく情報で、更新一覧日は2026年8月19日とされています。",
     "business_impact_ja": "砂糖・でん粉の価格調整や農畜産業振興機構の業務運営等に関連する事業者において、省令改正の内容次第では対応の要否を検討する必要が生じる可能性があります。",
     "recommended_action_ja": "改正の具体的な内容や施行状況については、e-Gov法令検索等の日本語の公式情報源で最新の条文をご確認いただくことをお勧めします。",
@@ -64,12 +60,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "省令修订：《砂糖及淀粉价格调整法》施行规则等部分修订",
-        "summary": "本项为一项省令（2017年农林水产省令第6号），部分修订《砂糖及淀粉价格调整法》施行规则及相关规则。根据元数据，受影响的法规包括涉及农畜产业振兴机构（一家独立行政法人）业务、财务、会计及人事管理的农林水产省令。元数据列明的公布日期为2017-01-25。",
-        "business_impact": "涉及砂糖或淀粉价格事务的机构，或与农畜产业振兴机构有往来的机构，可能受到修订后的施行规则及行政程序的影响。",
-        "recommended_action": "建议参考e-Gov法令检索上的日文官方来源，以确认本次修订的适用范围、生效日期及具体条款。"
+        "title": "修订《砂糖及淀粉价格调整法施行规则》等的省令",
+        "summary": "2017-01-25公布的2017年农林水产省令第6号修订了《砂糖及淀粉价格调整法》的施行规则及相关省令。所列修订对象为《独立行政法人农畜产业振兴机构业务运营、财务、会计及人事管理省令》（2003年农林水产省令第104号）。",
+        "business_impact": "农畜产业振兴机构可能因其业务运营、财务、会计或人事管理框架的修订而受到影响，而不仅仅是受到标题所强调的砂糖及淀粉定价规则的影响。元数据未指明具体修订条款。",
+        "recommended_action": "查阅日文官方来源或可明确该机构管理省令的修订内容、生效日期及任何过渡条款。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary requires verification against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T05:55:37Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-da252d285e630d76",
@@ -109,14 +109,14 @@
   },
   {
     "id": "raw-42d52b83c1a15b56",
-    "title_en": "Ministerial Ordinance Amending Enforcement Regulations of the Pharmaceuticals and Medical Devices Act",
+    "title_en": "Ministerial Ordinance Amending Enforcement Regulations on Pharmaceuticals and Medical Devices",
     "title_ja": "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律施行規則の一部を改正する省令",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "This item concerns a ministerial ordinance amending the Enforcement Regulations of Japan's Act on Securing Quality, Efficacy and Safety of Pharmaceuticals, Medical Devices and Other Products (Ministry of Health, Labour and Welfare Ordinance No. 2 of 2017). According to the provided metadata, the amending ordinance carries a promulgation date of January 25, 2017. The specific content of the amendments is not described in the metadata provided.",
-    "business_impact_en": "Businesses dealing with pharmaceuticals, medical devices, or related products may need to consider whether these regulatory amendments affect their compliance obligations.",
-    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov Law Search to confirm the scope and details of the amendments.",
+    "summary_en": "Ministry of Health, Labour and Welfare Ordinance No. 2 of 2017 was promulgated on 2017-01-25. It amends the Enforcement Regulations of the Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices, issued as Ministry of Health and Welfare Ordinance No. 1 of 1961; the metadata does not specify the amended provisions or effective date.",
+    "business_impact_en": "Businesses dealing in pharmaceuticals and medical devices may be affected by changes to the enforcement regulations governing their quality, efficacy and safety, but the metadata does not identify the specific requirements changed.",
+    "recommended_action_en": "Review of the official Japanese ordinance could clarify the amended provisions, their scope and the effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=336M50000100001_21171231_429M60000100002",
     "published_at": "2017-01-25",
@@ -124,10 +124,6 @@
     "relevance_score": 35.0,
     "first_seen_at": "2026-09-09",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and metadata; the substantive content of the amendments is not provided and remains unverified. The 'Promulgated' label is preliminary rule-based triage and should be confirmed against the official source.",
-    "summarized_at": "2026-09-08T23:16:05Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律施行規則（昭和三十六年厚生省令第一号）の一部を改正する省令（平成二十九年厚生労働省令第二号）に関する情報です。原文によれば、公布日は2017年1月25日とされています。改正の具体的内容はメタデータには示されていません。",
     "business_impact_ja": "医薬品・医療機器等に関わる事業者において、施行規則の改正内容によっては手続や運用の見直しが必要となる可能性があります。影響の有無や程度は改正の具体的内容によると考えられます。",
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正省令の具体的な条文や適用時期をご確認いただくことをお勧めします。",
@@ -136,12 +132,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "省令修订：《医药品、医疗机器等品质、有效性及安全性确保等相关法律施行规则》部分修订",
-        "summary": "本条目涉及一项修订日本《医药品、医疗机器等品质、有效性及安全性确保等相关法律》施行规则的省令（厚生劳动省令2017年第2号）。根据所提供的元数据，该修订省令的公布日期为2017-01-25。所提供的元数据中未描述修订的具体内容。",
-        "business_impact": "从事医药品、医疗机器或相关产品业务的企业可能需要考虑这些法规修订是否影响其合规义务。",
-        "recommended_action": "建议考虑查阅e-Gov法令检索上的日文官方来源，以确认修订的范围和详细内容。"
+        "title": "修订《药品、医疗器械等质量、有效性及安全性确保等法施行规则》的省令",
+        "summary": "2017年厚生劳动省令第2号于2017-01-25公布。该省令修订了以1961年厚生省令第1号发布的《药品、医疗器械等质量、有效性及安全性确保等法施行规则》；元数据未注明修订条款或生效日期。",
+        "business_impact": "从事药品和医疗器械业务的企业可能受到有关其质量、有效性及安全性的施行规则变更的影响，但元数据未列明具体变更了哪些要求。",
+        "recommended_action": "查阅日文官方省令可能有助于明确修订条款、其适用范围及生效日期。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T05:55:37Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-ae9dd7ce2324ccae",
