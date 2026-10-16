@@ -2428,11 +2428,13 @@ class TestRequeue(TranslateTestBase):
         super().setUp()
         import requeue
         self.rq = requeue
-        self._saved_rq = requeue.REQUEUE_PATH
+        # Both request files: the committed automatic one must never leak in.
+        self._saved_rq = (requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH)
         requeue.REQUEUE_PATH = Path(self._tmp.name) / "requeue.json"
+        requeue.AUTO_REQUEUE_PATH = Path(self._tmp.name) / "requeue_auto.json"
 
     def tearDown(self):
-        self.rq.REQUEUE_PATH = self._saved_rq
+        self.rq.REQUEUE_PATH, self.rq.AUTO_REQUEUE_PATH = self._saved_rq
         super().tearDown()
 
     def _seed(self, item, translated_at="2020-01-01T00:00:00Z"):
@@ -2564,11 +2566,13 @@ class TestRequeueFixSurvivesALaterTitleChange(TranslateTestBase):
         super().setUp()
         import requeue
         self.rq = requeue
-        self._saved_rq = requeue.REQUEUE_PATH
+        # Both request files: the committed automatic one must never leak in.
+        self._saved_rq = (requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH)
         requeue.REQUEUE_PATH = Path(self._tmp.name) / "requeue.json"
+        requeue.AUTO_REQUEUE_PATH = Path(self._tmp.name) / "requeue_auto.json"
 
     def tearDown(self):
-        self.rq.REQUEUE_PATH = self._saved_rq
+        self.rq.REQUEUE_PATH, self.rq.AUTO_REQUEUE_PATH = self._saved_rq
         super().tearDown()
 
     def _api(self, fields_by_call):
