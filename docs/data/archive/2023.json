@@ -1,7 +1,7 @@
 [
   {
     "id": "raw-2c04e8ec55c741ea",
-    "title_en": "Ministerial Ordinance Amending the Enforcement Regulations of the Preventive Vaccination Law (MHLW Ordinance No. 84...",
+    "title_en": "MHLW Ordinance Amending Preventive Vaccination Law Enforcement Regulations, Effective June 19, 2023",
     "title_ja": "感染症の予防及び感染症の患者に対する医療に関する法律等の一部を改正する法律の一部の施行に伴う厚生労働省関係省令の整備に関する省令附則第四項の規定によりなおその効力を有するものとされた同令第二条の規定による改正前の予防接種法施行規則の一部を改正する省令",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "In Force",
@@ -28,7 +28,7 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "厚生劳动省令修订：《预防接种法施行规则》（厚生劳动省令第84号）",
+        "title": "厚生劳动省修订《预防接种法施行规则》的省令于2023-06-19生效",
         "summary": "本条目涉及厚生劳动省（MHLW）修订日本《预防接种法施行规则》（原为1958年厚生省令第27号）的省令。根据元数据，该修订省令为2023年厚生劳动省令第84号，公布日期与生效日期均为2023-06-19。该修订与关于感染症预防及感染症患者医疗相关法律的修正相关联，并出现在e-Gov法令检索更新列表中。",
         "business_impact": "参与疫苗接种、医疗服务提供或公共卫生行政的机构可能会发现接种相关规则下的操作或程序要求受到影响。仅凭元数据无法确定具体影响范围。",
         "recommended_action": "建议查阅e-Gov法令检索官方来源，以确认具体修改的条款及其对自身情况的适用性。"
@@ -577,14 +577,14 @@
   },
   {
     "id": "raw-2ed63754b20d189b",
-    "title_en": "Amendment to Commercial Power Reactor Rules and R&D Stage Reactor Rules (Reg. No. 4 of 2023)",
+    "title_en": "Rule amending installation and operation rules for commercial and R&D power reactors",
     "title_ja": "実用発電用原子炉の設置、運転等に関する規則及び研究開発段階発電用原子炉の設置、運転等に関する規則の一部を改正する規則",
     "area": "Other",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This entry from the e-Gov law update list concerns an amending rule to the Rules on the Installation and Operation of Commercial Power Reactors and the equivalent rules for R&D-stage power reactors (Nuclear Regulation Authority Rule No. 4 of Reiwa 5). The metadata lists a promulgation date of 2023-09-28 and an enforcement date of 2025-06-06. The text of the amendments is not included in the metadata, so their substance is unknown.",
-    "business_impact_en": "Operators of, or suppliers and contractors to, nuclear power reactors may need to check whether the amended provisions affect their operations or documentation. The scope and extent of any impact cannot be determined from the metadata provided.",
-    "recommended_action_en": "Review the official Japanese source on e-Gov and the amending rule text to confirm the specific changes, their effective date, and any applicability to your activities.",
+    "summary_en": "Nuclear Regulation Authority Rule No. 4 of 2023 amends the Rules on the Installation and Operation of Commercial Power Reactors (Ministry of International Trade and Industry Ordinance No. 77 of 1978) and the rules covering research-and-development-stage power reactors. The metadata states a promulgation date of 2023-09-28 and an effective date of 2025-06-06, but does not describe the amended provisions.",
+    "business_impact_en": "Operators of commercial power reactors and research-and-development-stage power reactors may be affected by changes to the rules governing reactor installation and operation; the specific operational implications cannot be determined from the supplied information.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended provisions, their scope for each reactor category, and any transitional arrangements associated with the stated effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=353M50000400077_20250606_505M60080000004",
     "published_at": "2023-09-28",
@@ -592,10 +592,6 @@
     "relevance_score": 5.0,
     "first_seen_at": "2026-08-22",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and listing metadata; the content of the amendments was not provided. The in-force status is inferred from the listed enforcement date (2025-06-06) and the update list date, and should be verified against the official source. The preliminary labels (area: Other, impact: Medium) are weak keyword-based triage context only.",
-    "summarized_at": "2026-10-12T00:18:23Z",
-    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "実用発電用原子炉の設置、運転等に関する規則（昭和五十三年通商産業省令第七十七号）及び研究開発段階発電用原子炉に関する規則の一部を改正する規則（令和五年原子力規制委員会規則第四号）に関する情報です。メタデータによれば、公布日は2023年9月28日、施行日は2025年6月6日とされています。改正の具体的な内容は原文メタデータに記載されていません。",
     "business_impact_ja": "発電用原子炉の設置・運転等に関わる事業者において、規則改正に伴う対応の要否を確認する必要が生じる可能性があります。改正の詳細内容によっては、実務上の手続や体制に影響が及ぶことも考えられます。",
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正規則の具体的な条文および施行日を含む詳細をご確認いただくことをお勧めします。",
@@ -604,12 +600,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "修订：实用发电用原子炉设置运转规则及研发阶段发电用原子炉设置运转规则（令和5年第4号）",
-        "summary": "此条目来自e-Gov法令更新一览，涉及对《实用发电用原子炉的设置、运转等相关规则》及研发阶段发电用原子炉相应规则的修订规则（原子力规制委员会规则令和5年第4号）。元数据显示公布日期为2023-09-28，生效日期为2025-06-06。元数据未包含修订内容的具体文本，因此其实质内容尚不明确。",
-        "business_impact": "核动力反应堆的运营者，或其供应商及承包商，可能需要确认修订条款是否影响其运营或文件要求。具体影响的范围和程度无法根据所提供的元数据确定。",
-        "recommended_action": "建议查阅e-Gov上的日文官方来源及修订规则的文本，以确认具体修改内容、生效日期及其对自身业务的适用性。"
+        "title": "修订实用发电用核反应堆及研发阶段发电用核反应堆设置、运行等规则的规则",
+        "summary": "2023年第4号原子能规制委员会规则修订了《实用发电用核反应堆设置、运行等规则》（1978年第77号通商产业省令）及《研发阶段发电用核反应堆设置、运行等规则》。元数据显示，公布日期为2023-09-28，生效日期为2025-06-06，但未说明修订条款的内容。",
+        "business_impact": "实用发电用核反应堆及研发阶段发电用核反应堆的运营者可能受到核反应堆设置和运行相关规则变更的影响；根据所提供的信息，无法确定具体的运营影响。",
+        "recommended_action": "查阅日文官方来源或可明确修订条款、其对各类核反应堆的适用范围，以及与所述生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the substantive amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T06:02:08Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-b49bffa961584f78",
