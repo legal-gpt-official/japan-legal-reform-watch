@@ -320,6 +320,16 @@ class TestCompletenessMetrics(unittest.TestCase):
         public_comment = {"source": {"raw_summary": "案の公示日：2026/06/16 受付締切日時：2026/07/15 23:59 カテゴリー：林業"}}
         self.assertEqual(ev.key_dates(public_comment), ["2026-07-15"])
 
+    def test_japanese_and_internal_field_names_in_the_body_are_flagged(self):
+        clean = ev.score_english(good_result(), entry())
+        self.assertFalse(clean["body_has_japanese"])
+        self.assertFalse(clean["mentions_input_fields"])
+        dirty = ev.score_english(good_result(
+            summary_en="A Cabinet Order on the 整備 of related orders.",
+            ai_notes="Based on the title (source_evidence: title_only)."), entry())
+        self.assertTrue(dirty["body_has_japanese"])
+        self.assertTrue(dirty["mentions_input_fields"])
+
     def test_overconfidence_is_measured_before_the_cap(self):
         scored = ev.score_english(good_result(confidence="medium"), entry(), model_confidence="high")
         self.assertTrue(scored["model_overconfident"])

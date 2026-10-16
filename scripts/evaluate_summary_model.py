@@ -341,6 +341,12 @@ def dates_in_text(text: str) -> set[str]:
     return found
 
 
+# The English prompt is given derived fields; their names are internal and must
+# never reach a card.
+INPUT_FIELD_NAME_RE = re.compile(
+    r"source_evidence|legal_identifiers|raw_summary|published_at|title_only|structured_metadata|descriptive_text")
+
+
 def identifier_in_text(number: int, text: str) -> bool:
     """True when the output cites the instrument number ('No. 341' or similar)."""
     return re.search(rf"(?:No\.?|Number|#)\s*{number}(?!\d)", text, re.IGNORECASE) is not None
@@ -395,6 +401,8 @@ def score_english(result: dict, entry: dict, model_confidence: str | None = None
             model_confidence in summarizer.CONFIDENCE_RANK
             and summarizer.CONFIDENCE_RANK[model_confidence] > summarizer.CONFIDENCE_RANK[ceiling]
         ),
+        "body_has_japanese": summarizer.public_data.contains_japanese(body),
+        "mentions_input_fields": bool(INPUT_FIELD_NAME_RE.search(joined + " " + str(result.get("ai_notes", "")))),
         "identifiers_expected": len(identifiers),
         "identifiers_kept": sum(1 for i in identifiers if identifier_in_text(i["number"], joined)),
         "primary_identifier_expected": primary is not None,
@@ -600,6 +608,8 @@ def aggregate(run: dict) -> dict:
     agg["primary_identifier_kept_pct"] = pct("primary_identifier_kept", "primary_identifier_expected")
     agg["key_dates_kept_pct"] = pct("key_dates_kept", "key_dates_expected")
     agg["model_overconfident_pct"] = rate(lambda s: s.get("model_overconfident"))
+    agg["body_japanese_pct"] = rate(lambda s: s.get("body_has_japanese"))
+    agg["input_field_leak_pct"] = rate(lambda s: s.get("mentions_input_fields"))
     lengths = [s.get("lengths") or {} for s in ok]
     for field in ("summary_en", "business_impact_en", "recommended_action_en"):
         values = [l[field] for l in lengths if field in l]
@@ -631,6 +641,8 @@ def compare(args) -> int:
         ("main law number kept %", "primary_identifier_kept_pct", "{:.1f}"),
         ("key dates kept %", "key_dates_kept_pct", "{:.1f}"),
         ("overconfident (pre-cap) %", "model_overconfident_pct", "{:.1f}"),
+        ("Japanese in body %", "body_japanese_pct", "{:.1f}"),
+        ("input field names shown %", "input_field_leak_pct", "{:.1f}"),
         ("mean len summary", "mean_len_summary_en", "{:.0f}"),
         ("mean len business impact", "mean_len_business_impact_en", "{:.0f}"),
         ("mean len recommended act.", "mean_len_recommended_action_en", "{:.0f}"),
@@ -676,6 +688,10 @@ def compare(args) -> int:
         blockers.append("more Japanese summaries missing Japanese script")
     if b["refusal_pct"] > a["refusal_pct"]:
         blockers.append("more safety refusals (items fall back to rule-based text)")
+    if b["body_japanese_pct"] > a["body_japanese_pct"]:
+        blockers.append("more Japanese characters in the English body")
+    if b["input_field_leak_pct"] > a["input_field_leak_pct"]:
+        blockers.append("more internal input field names shown to readers")
     for key, label in (("identifiers_kept_pct", "drops more law numbers"),
                        ("primary_identifier_kept_pct", "drops the main law number more often"),
                        ("key_dates_kept_pct", "drops more promulgation / effective / deadline dates")):
