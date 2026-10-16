@@ -40,7 +40,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/send_alert_digests.py scripts/setup_alert_billing.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/requeue.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -222,6 +222,20 @@ jobs:
       # and docs/sitemap.xml, all derived only from the published JSON.
       - name: Build public pages
         run: python scripts/build_public_pages.py
+
+      # Offline quality audit of every published item (no API calls, no data
+      # writes): the defect classes the 2026-10-16 multilingual audit fixed --
+      # Japanese in English, truncated titles, dropped or mis-dated law numbers,
+      # case-code romanization, wrong/former bureau names, Chinese kana and era
+      # errors, truncated or gate-failing Chinese, open/closed prefix contradicting
+      # the stage, Chinese drifting from its cache entry, e-Gov calls labelled as
+      # results. HIGH findings raise ::warning annotations and print a ready-to-
+      # paste data/requeue.json section; they never block the data commit.
+      - name: Quality audit
+        run: |
+          set -o pipefail
+          python scripts/quality_audit.py | tee quality_audit.log
+          { echo "### Quality audit"; sed -n '1,200p' quality_audit.log | grep -v '^::warning::'; } >> "$GITHUB_STEP_SUMMARY"
 
       # Paid tier: the self-serve daily digest. Subscribers are read from Stripe
       # at run time and never written to the repository or this public log.
