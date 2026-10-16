@@ -1877,8 +1877,8 @@ class TestEnglishRequeue(unittest.TestCase):
             "make_client": idle_workspace_client, "request_summary": fake,
             "request_japanese_summary": mock.Mock(side_effect=AssertionError("Japanese must not run")),
         }
-        saved = requeue.REQUEUE_PATH
-        requeue.REQUEUE_PATH = paths["requeue.json"]
+        saved = (requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH)
+        requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = paths["requeue.json"], base / "requeue_auto.json"
         out = io.StringIO()
         try:
             with mock.patch.multiple(su, **patches), mock.patch.dict(
@@ -1886,7 +1886,7 @@ class TestEnglishRequeue(unittest.TestCase):
             ), contextlib.redirect_stdout(out):
                 rc = su.main(["--all-items", "--english-only", "--api-limit", str(api_limit), "--parallel", "2"])
         finally:
-            requeue.REQUEUE_PATH = saved
+            requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = saved
             for handler in list(su.logger.handlers):
                 handler.close()
             su.logger.handlers.clear()
@@ -2098,8 +2098,8 @@ class TestTitleOnlyRequeue(unittest.TestCase):
             "request_summary": mock.Mock(side_effect=AssertionError("the body must not be regenerated")),
             "request_japanese_summary": mock.Mock(side_effect=AssertionError("Japanese must not run")),
         }
-        saved = requeue.REQUEUE_PATH
-        requeue.REQUEUE_PATH = paths["requeue.json"]
+        saved = (requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH)
+        requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = paths["requeue.json"], base / "requeue_auto.json"
         out = io.StringIO()
         try:
             with mock.patch.multiple(su, **patches), mock.patch.dict(
@@ -2107,7 +2107,7 @@ class TestTitleOnlyRequeue(unittest.TestCase):
             ), contextlib.redirect_stdout(out):
                 rc = su.main(["--all-items", "--english-only", "--api-limit", str(api_limit), "--parallel", "2"])
         finally:
-            requeue.REQUEUE_PATH = saved
+            requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = saved
             for handler in list(su.logger.handlers):
                 handler.close()
             su.logger.handlers.clear()
