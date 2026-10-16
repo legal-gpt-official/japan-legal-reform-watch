@@ -2484,9 +2484,9 @@ class TestRequeue(TranslateTestBase):
         self.assertIn(LOCALE, self.read_output()[0]["translations"])
 
     def test_a_missing_or_malformed_request_is_ignored(self):
-        self.assertEqual(self.rq.load(Path(self._tmp.name) / "absent.json")["zh-Hans"], set())
+        self.assertEqual(self.rq.load(Path(self._tmp.name) / "absent.json")["zh-Hans"], {})
         self.rq.REQUEUE_PATH.write_text("{not json", encoding="utf-8")
-        self.assertEqual(self.rq.load()["english"], set())
+        self.assertEqual(self.rq.load()["english"], {})
         self.rq.REQUEUE_PATH.write_text(json.dumps({"zh-Hans": ["x"]}), encoding="utf-8")
         self.assertFalse(self.rq.due(self.rq.load(), "zh-Hans", "x", None), "no created_at: nothing is due")
 

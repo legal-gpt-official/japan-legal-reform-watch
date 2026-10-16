@@ -159,16 +159,13 @@ class TestAlignStagePrefix(unittest.TestCase):
 
 
 class TestDailyWorkflowRunsTheAudit(unittest.TestCase):
-    def test_the_audit_runs_after_the_pages_and_before_the_commit_without_blocking(self):
+    def test_the_audit_runs_through_the_policy_step_without_blocking(self):
         wf = (REPO_ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
-        pages, audit, commit = (wf.index("name: Build public pages"), wf.index("name: Quality audit"),
-                                wf.index("name: Commit and push updated data"))
-        self.assertLess(pages, audit)
-        self.assertLess(audit, commit)
-        step = wf[audit:wf.index("\n      - name:", audit + 1)]
-        self.assertIn("python scripts/quality_audit.py", step)
+        start = wf.index("name: Quality audit and publication policy")
+        step = wf[start:wf.index("\n      - name:", start + 1)]
+        self.assertIn("python scripts/quality_gate.py", step)
         self.assertNotIn("--fail-on-high", step, "findings warn; they never block the data commit")
-        self.assertNotIn("API_KEY", step)
+        self.assertLess(start, wf.index("name: Commit and push updated data"))
         self.assertIn("scripts/quality_audit.py", wf[:wf.index("name: Fetch raw updates")])
 
 

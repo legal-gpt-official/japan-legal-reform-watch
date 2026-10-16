@@ -1,0 +1,71 @@
+name: Semantic audit
+
+# Manual, READ-ONLY sampled semantic review (scripts/semantic_audit.py): a
+# reviewer model reads a deterministic, risk-weighted sample of published items
+# against their Japanese source and reports meaning-level errors with quoted
+# evidence (obligations, regulated parties, draft vs enacted, transitional
+# measures, identifiers, dates, Chinese/Japanese meaning shifts). Findings are
+# suggestions for a person to confirm; this workflow commits nothing and uploads
+# an artifact. A weekly schedule is proposed but not enabled until the owner
+# approves it.
+on:
+  workflow_dispatch:
+    inputs:
+      size:
+        description: "Items to sample"
+        required: true
+        default: "20"
+        type: choice
+        options: ["10", "20", "40"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: semantic-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SIZE: ${{ inputs.size }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Compile and run offline tests
+        run: |
+          python -m py_compile scripts/semantic_audit.py scripts/openai_provider.py scripts/summarize_updates.py
+          python -m unittest discover -s tests
+
+      - name: Sampled semantic review on gpt-6.1-sol (Flex), read-only
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
+        run: |
+          set -o pipefail
+          python scripts/semantic_audit.py --size "$SIZE" --max-cost-usd 0.30 --confirm-spend | tee semantic.log
+          { echo '### Semantic audit'; echo '```'; tail -n 1 semantic.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload findings for human review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-audit
+          path: |
+            data/eval/semantic_audit.json
+            data/eval/semantic_audit.md
+          retention-days: 30
+          if-no-files-found: warn

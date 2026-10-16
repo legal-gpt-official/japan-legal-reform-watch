@@ -1562,7 +1562,7 @@ def main(argv: list[str] | None = None) -> int:
     raw_by_id = {r.get("id"): r for r in raw_list if isinstance(r, dict) and r.get("id")}
     # Audit-requested one-shot English regeneration (data/requeue.json). Only
     # listed items whose cached summary predates the request are redone.
-    requeue_request = requeue.load(requeue.REQUEUE_PATH)
+    requeue_request = requeue.load()
     requeued_items = 0
     title_jobs: list[tuple[dict, str, dict]] = []
     titles_regenerated = titles_failed = 0

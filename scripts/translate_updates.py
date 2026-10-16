@@ -2004,7 +2004,7 @@ def process_translation_batch(
 
     started_at = time.monotonic()
     candidates: list[tuple[dict, str, bool, dict, tuple, dict]] = []
-    requeue_request = requeue.load(requeue.REQUEUE_PATH)
+    requeue_request = requeue.load()
 
     for it in items:
         item_id = it.get("id") or ""
@@ -2502,7 +2502,7 @@ def main(argv: list[str] | None = None) -> int:
     REQUEUED_THIS_RUN.clear()
     field_cache_synced = sync_field_cache_from_entries(
         items, entries, field_entries, locale,
-        requeue.load(requeue.REQUEUE_PATH).get(f"{locale}-sync", set()))
+        requeue.load().get(f"{locale}-sync", set()))
     if reviewed_fields:
         logger.info("FIELD CACHE pinned %d human-reviewed field translations", reviewed_fields)
 
@@ -2638,7 +2638,7 @@ def main(argv: list[str] | None = None) -> int:
         loop_items = items
 
     pending_direct: list[tuple[dict, str, bool, str, dict, tuple, dict]] = []
-    requeue_request = requeue.load(requeue.REQUEUE_PATH)
+    requeue_request = requeue.load()
     requeued_items = 0
 
     for it in loop_items:

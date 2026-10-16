@@ -25,29 +25,43 @@ import json
 from pathlib import Path
 
 REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue.json"
+# Written only by scripts/quality_gate.py in enforce mode: items a HIGH audit
+# finding asked to be redone. Same format; read together with REQUEUE_PATH.
+AUTO_REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue_auto.json"
 SECTIONS = ("english", "english_title", "zh-Hans", "zh-Hans-sync")
 
 
-def load(path: Path | None = None) -> dict:
-    """{"since": str, <section>: set, ...}; empty when absent or malformed."""
-    path = path or REQUEUE_PATH
-    empty = {"since": "", **{section: set() for section in SECTIONS}}
+def _read(path: Path) -> dict:
+    """{section: {id: created_at}} for one request file; empty when absent or malformed."""
     try:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return empty
+        return {}
     since = data.get("created_at") if isinstance(data, dict) else None
     if not isinstance(since, str) or not since:
-        return empty
-    out = {"since": since}
+        return {}
+    out = {}
     for section in SECTIONS:
         ids = data.get(section) or []
-        out[section] = {i for i in ids if isinstance(i, str)} if isinstance(ids, list) else set()
+        if isinstance(ids, list):
+            out[section] = {i: since for i in ids if isinstance(i, str)}
     return out
+
+
+def load(path: Path | None = None) -> dict:
+    """{section: {item_id: requested_at}} from one file, or from the manual and
+    automatic request files together (the later request wins per item)."""
+    paths = [path] if path is not None else [REQUEUE_PATH, AUTO_REQUEUE_PATH]
+    merged: dict = {section: {} for section in SECTIONS}
+    for p in paths:
+        for section, ids in _read(p).items():
+            for item_id, since in ids.items():
+                if since > merged[section].get(item_id, ""):
+                    merged[section][item_id] = since
+    return merged
 
 
 def due(requeue: dict, section: str, item_id: str, generated_at: str | None) -> bool:
     """True when this item was listed and its output predates the request."""
-    if item_id not in requeue.get(section, ()):
-        return False
-    return (generated_at or "") < requeue.get("since", "")
+    since = (requeue.get(section) or {}).get(item_id)
+    return since is not None and (generated_at or "") < since
