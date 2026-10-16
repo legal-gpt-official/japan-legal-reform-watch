@@ -279,11 +279,11 @@ class TestSummaryBatch(unittest.TestCase):
             workflow.index("name: Maintain English summaries"):
             workflow.index("name: Maintain Japanese summaries")
         ]
-        # Phase 3A: batched. --parallel is rejected together with --batch, so it
-        # must be gone from the invocation itself (comments may still mention it).
+        # gpt-6.1-sol on Flex since 2026-10-16: direct calls (a gpt-* model
+        # refuses --batch), bounded parallel waves.
         invocation = step[step.index("python scripts/summarize_updates.py"):step.index("2>&1")]
-        self.assertIn("--batch", invocation)
-        self.assertNotIn("--parallel", invocation)
+        self.assertNotIn("--batch", invocation)
+        self.assertIn("--parallel 5", invocation)
         self.assertIn("--all-items", step)
         self.assertIn("--english-only", step)
         self.assertIn("--api-limit 150", step)
@@ -292,7 +292,7 @@ class TestSummaryBatch(unittest.TestCase):
         # It also has to move WITH the limit -- see TestDailyBudgetCoversItsCallLimit.
         self.assertIn("--max-cost-usd 1.10", step)
         self.assertIn("English summary provider unavailable", workflow)
-        self.assertIn("### English summary maintenance (batch)", workflow)
+        self.assertIn("### English summary maintenance (gpt-6.1-sol, Flex)", workflow)
 
     def test_daily_workflow_reports_every_batch_stage_metric(self):
         """Phase 3A is an observation run: the Step Summary has to carry enough to
@@ -310,7 +310,7 @@ class TestSummaryBatch(unittest.TestCase):
                         "reasoning_tokens", "flex_calls", "estimated_cost_usd",
                         "provider_status")
         for stage, marker, end, metrics in (
-            ("english", "name: Maintain English summaries", "name: Maintain Japanese summaries", batch_metrics),
+            ("english", "name: Maintain English summaries", "name: Maintain Japanese summaries", flex_metrics),
             ("japanese", "name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates", flex_metrics),
             ("translate", "name: Translate Simplified Chinese updates", "name: Build yearly public archives", flex_metrics),
         ):
@@ -1794,7 +1794,8 @@ class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
                        "Do not pad", "lowered automatically",
                        "never mention the input's field names", "announced (published_at)",
                        "Keep every specific party, obligated entity",
-                       "Do not add parties the source does not name"):
+                       "Do not add parties beyond those the source names",
+                       "cannot be determined only when neither the title nor the named instrument"):
             self.assertIn(phrase, prompt)
 
     def test_every_fresh_english_result_path_applies_the_cap(self):
