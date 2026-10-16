@@ -12215,14 +12215,14 @@
   },
   {
     "id": "raw-9480e287dee1b4b9",
-    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-12-24)",
+    "title_en": "PPC announcement: Commissioner Oshima attends EDPB data protection conference",
     "title_ja": "大島委員が、欧州データ保護会議（EDPB）主催「第２回十分性認定国データ保護会議」に出席しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's Personal Information Protection Commission (PPC) announced on 2025-12-24 that Commissioner Oshima attended the second Data Protection Conference of Countries with Adequacy Decisions, hosted by the European Data Protection Board (EDPB). This is an announcement of international cooperation activity; the supplied title does not describe a regulatory change.",
+    "business_impact_en": "The announcement may be relevant to entities subject to data protection oversight, but the title does not identify specific affected groups or business implications.",
+    "recommended_action_en": "Review of the official PPC announcement could clarify the conference discussions and whether any implications for international data protection cooperation are described.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/enforcement/cooperation/20251202_EDPB?ref=ninf",
     "published_at": "2025-12-24",
@@ -12236,24 +12236,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会动态：与数据／隐私／AI相关的监管公告（2025-12-24）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PPC公告：大岛委员出席EDPB数据保护会议",
+        "summary": "日本个人信息保护委员会（PPC）于2025-12-24宣布，大岛委员出席了由欧洲数据保护委员会（EDPB）主办的第二届获充分性认定国家数据保护会议。这是一则国际合作活动公告；所提供的标题未描述监管变化。",
+        "business_impact": "该公告可能与受数据保护监管的实体有关，但标题未指明具体受影响群体或业务影响。",
+        "recommended_action": "查阅PPC官方公告或可了解会议讨论内容，以及公告是否提及对国际数据保护合作的任何影响。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only, with the announcement date taken from listing metadata; conference details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:44:06Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-6a1c9add156dda79",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-04)",
+    "title_en": "NTA leaflet on digital invoices for sellers and buyers",
     "title_ja": "リーフレット「売り手も買い手もスッキリ楽々！デジタルインボイス」（PDF/1.16MB）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's National Tax Agency listed a leaflet on digital invoices for sellers and buyers on 2025-12-04. This is an informational publication; the title does not establish any change in legal requirements.",
+    "business_impact_en": "Sellers and buyers may find the leaflet relevant to their use of digital invoices, but its specific operational implications cannot be determined from the title.",
+    "recommended_action_en": "Reviewing the official Japanese leaflet could clarify its guidance on digital invoices for sellers and buyers.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/about/introduction/torikumi/jigyousyadx/pdf/03.pdf",
     "published_at": "2025-12-04",
@@ -12268,24 +12272,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "国税厅更新：税务管理指南更新（2025-12-04）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "日本国税厅发布面向卖方和买方的数字发票宣传单",
+        "summary": "日本国税厅于2025-12-04列出了一份面向卖方和买方的数字发票宣传单。这是一份信息性出版物；其标题并不表明法律要求有任何变化。",
+        "business_impact": "卖方和买方可能会发现该宣传单与其数字发票的使用有关，但仅凭标题无法确定其对具体业务操作的影响。",
+        "recommended_action": "查阅日文官方宣传单或可明确其中面向卖方和买方的数字发票指引。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing details only; the leaflet's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:44:06Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-57261ea123f590c3",
-    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-09-29)",
+    "title_en": "PPC announcement on visit by the European Data Protection Board chair",
     "title_ja": "欧州データ保護会議（EDPB）議長の来訪について掲載しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's Personal Information Protection Commission (PPC) published an announcement on 2025-09-29 concerning a visit by the chair of the European Data Protection Board (EDPB). The title does not describe the visit's discussions or outcomes.",
+    "business_impact_en": "The affected business groups and any practical implications cannot be determined from the visit announcement's title.",
+    "recommended_action_en": "Review of the official PPC announcement may clarify the visit's purpose, discussions and any stated outcomes.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/enforcement/cooperation/250925_Anu_Talus?ref=ninf",
     "published_at": "2025-09-29",
@@ -12299,24 +12307,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会（PPC）更新：与数据／隐私／AI相关的监管公告（2025-09-29）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会关于欧洲数据保护委员会主席来访的公告",
+        "summary": "日本个人信息保护委员会（PPC）于2025-09-29发布了关于欧洲数据保护委员会（EDPB）主席来访的公告。标题未说明此次来访的讨论内容或成果。",
+        "business_impact": "无法从来访公告的标题确定受影响的企业群体及任何实际影响。",
+        "recommended_action": "查阅PPC官方公告可能有助于了解此次来访的目的、讨论内容及任何已说明的成果。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication metadata only; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:44:06Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-395c1e3f8ba226e1",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-08-05)",
+    "title_en": "PMDA safety announcement on cerebral amyloid angiopathy after human dried dura mater transplantation",
     "title_ja": "「ヒト乾燥硬膜の移植既往のある「脳アミロイド血管症」発症者が報告されたことへの対応について」を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-08-05, the Pharmaceuticals and Medical Devices Agency (PMDA) announced that it had posted information on a response to reported cerebral amyloid angiopathy in people with a history of human dried dura mater transplantation. The title does not specify the response measures or establish a causal relationship.",
+    "business_impact_en": "People with a history of human dried dura mater transplantation may be affected by the response described in the announcement, but the title does not identify any specific measures.",
+    "recommended_action_en": "Review of the official Japanese notice could clarify the reported cases, the scope of the response, and any measures concerning people with this transplantation history.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/devices/0121.html",
     "published_at": "2025-08-05",
@@ -12331,24 +12343,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布关于有人乾燥硬膜移植既往史者出现“脑淀粉样血管病”病例的应对信息（2025-08-05）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA发布人干燥硬脑膜移植后脑淀粉样血管病相关安全公告",
+        "summary": "2025-08-05，药品医疗器械综合机构（PMDA）宣布，已发布有关应对具有人干燥硬脑膜移植史者发生脑淀粉样血管病报告的信息。标题未说明应对措施，也未确立因果关系。",
+        "business_impact": "具有人干燥硬脑膜移植史者可能受到公告所述应对措施的影响，但标题未指明任何具体措施。",
+        "recommended_action": "可考虑查阅日文官方告示，以明确所报告的病例、应对范围以及涉及具有此类移植史者的任何措施。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "This unofficial English summary is based on the title and listing date only; the response details are unknown and must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:44:06Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-e53ee87830eff001",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-12-19)",
+    "title_en": "Notices on preparing required editions of patient medicine and vaccine recipient guides",
     "title_ja": "患者向医薬品ガイド（必須版）及びワクチン接種を受ける人へのガイド（必須版）の作成等に関する通知および事務連絡を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "PMDA announced on 2025-12-19 that it had posted a notice and an administrative communication concerning preparation and related matters for patient medicine guides (required edition) and guides for vaccine recipients (required edition). The title does not specify the detailed requirements or any implementation dates.",
+    "business_impact_en": "Preparers of patient medicine guides and guides for vaccine recipients may be affected because the posted documents concern preparation of the required editions of those guides.",
+    "recommended_action_en": "Review of the official Japanese notice and administrative communication would help clarify the intended preparers, preparation requirements and any implementation dates.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/items-information/guide-for-patients/0003.html",
     "published_at": "2025-12-19",
@@ -12363,24 +12379,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布患者用医药品指南（必备版）及疫苗接种者指南（必备版）制作等相关通知和事务联络",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "关于编制患者用药品指南及疫苗接种者指南必备版的通知",
+        "summary": "医药品医疗器械综合机构（PMDA）于2025-12-19宣布，已发布一份通知和一份事务联络，内容涉及患者用药品指南（必备版）及疫苗接种者指南（必备版）的编制等事项。标题未说明具体要求或任何实施日期。",
+        "business_impact": "患者用药品指南和疫苗接种者指南的编制者可能受到影响，因为所发布文件涉及这些指南必备版的编制。",
+        "recommended_action": "查阅日文官方通知和事务联络，有助于明确所针对的编制者、编制要求及任何实施日期。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; the documents' contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:31Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-dd33e7a9c3d680e9",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-12-18)",
+    "title_en": "PMDA posts statement on impaired leaflet mobility after TAVI valve deployment",
     "title_ja": "「関係団体からのお知らせ」に「TAVI弁展開後における弁尖可動不良事象に関するステートメント」を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-12-18, the Pharmaceuticals and Medical Devices Agency (PMDA) announced that it had posted a statement on impaired leaflet mobility after TAVI valve deployment in its notices from related organizations section. The title identifies the statement's subject but does not provide its findings or recommendations.",
+    "business_impact_en": "Healthcare professionals performing transcatheter aortic valve implantation (TAVI) may find the statement relevant because it concerns impaired leaflet mobility after valve deployment.",
+    "recommended_action_en": "Review of the official Japanese posting and linked statement would help establish the events described, the statement's scope, and any clinical recommendations.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/medical-safety-info/0011.html",
     "published_at": "2025-12-18",
@@ -12395,24 +12415,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布药品或医疗器械安全性信息（2025-12-18）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA发布关于TAVI瓣膜展开后瓣叶活动受限的声明",
+        "summary": "2025-12-18，医药品医疗器械综合机构（PMDA）宣布，已在其“相关团体通知”栏目发布关于TAVI瓣膜展开后瓣叶活动受限的声明。标题明确了声明的主题，但未提供其调查结果或建议。",
+        "business_impact": "开展经导管主动脉瓣植入术（TAVI）的医疗专业人员可能会认为该声明与其工作相关，因为声明涉及瓣膜展开后瓣叶活动受限的问题。",
+        "recommended_action": "查阅日文官方发布内容及其链接的声明，将有助于了解所述事件、声明的范围及其中的任何临床建议。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; the statement's contents were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:31Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-5956e94f12685443",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-12-05)",
+    "title_en": "PMDA announcement: risk information under evaluation for regenerative medical products",
     "title_ja": "「再生医療等製品に関する評価中のリスク等の情報について」を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Pharmaceuticals and Medical Devices Agency (PMDA) announced on 2025-12-05 that it had posted information on risks under evaluation concerning regenerative medical products. The title does not identify the products, risks, or evaluation findings.",
+    "business_impact_en": "Manufacturers and users of regenerative medical products may find the posted information relevant to product safety, but the title alone does not establish which products are concerned or whether any action is indicated.",
+    "recommended_action_en": "Reviewing the official PMDA posting could clarify the products concerned, the risks being evaluated, and any accompanying safety information.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/ctp/0016.html",
     "published_at": "2025-12-05",
@@ -12427,24 +12451,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布关于再生医疗等产品评估中风险等信息（2025-12-05）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA公告：再生医疗等产品正在评估中的风险信息",
+        "summary": "医药品医疗器械综合机构（PMDA）于2025-12-05宣布，已发布有关再生医疗等产品正在评估中的风险信息。标题未指明具体产品、风险或评估结果。",
+        "business_impact": "再生医疗等产品的制造商和使用者可能会发现，所发布的信息与产品安全有关，但仅凭标题无法确定涉及哪些产品，也无法确定是否提示采取任何措施。",
+        "recommended_action": "查阅PMDA官方发布内容或可明确所涉及的产品、正在评估的风险以及随附的任何安全信息。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the underlying safety information was not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:31Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-a4bec48fc15fd52a",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-12-03)",
+    "title_en": "PMDA announces relocation of MID-NET onsite center",
     "title_ja": "[MID-NET]オンサイトセンターを移設しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Pharmaceuticals and Medical Devices Agency (PMDA) announced on 2025-12-03 that the MID-NET onsite center has relocated. The title does not provide the new location or the relocation date.",
+    "business_impact_en": "Users of the MID-NET onsite center may need to account for the relocation when planning onsite access.",
+    "recommended_action_en": "Reviewing the official PMDA announcement may clarify the new location, relocation date, and any changes to onsite access.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/mid-net/0015.html",
     "published_at": "2025-12-03",
@@ -12459,24 +12487,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全信息更新：药品或医疗器械安全信息发布（2025-12-03）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA宣布MID-NET现场中心迁址",
+        "summary": "医药品医疗器械综合机构（PMDA）于2025-12-03宣布，MID-NET现场中心已迁址。标题未提供新地址或迁址日期。",
+        "business_impact": "MID-NET现场中心的用户在规划现场访问时，可能需要考虑迁址情况。",
+        "recommended_action": "查阅PMDA官方公告可能有助于明确新地址、迁址日期以及现场访问方面的任何变化。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date; relocation details were not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:31Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-63266ac26f6c018a",
-    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-10-24)",
+    "title_en": "PPC updates call for proposals on anonymized information held by administrative agencies",
     "title_ja": "「「行政機関等匿名加工情報」に関する提案の募集について」を更新しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-10-24, the Personal Information Protection Commission (PPC) announced an update to its call for proposals concerning anonymized information held by administrative agencies and similar bodies. The title does not specify what changed or give a submission deadline.",
+    "business_impact_en": "The update may be relevant to prospective applicants seeking to use anonymized information held by administrative agencies and similar bodies, but eligibility and proposal requirements cannot be determined from the title.",
+    "recommended_action_en": "Reviewing the official Japanese announcement could clarify the updated details, applicant eligibility, proposal requirements, and any submission deadline.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/application/gyouseikikantoutokumeikakoujouhou_teianboshu?ref=ninf#kouji",
     "published_at": "2025-10-24",
@@ -12490,24 +12522,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "个人信息保护委员会更新：数据/隐私/AI相关监管公告（2025-10-24）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "个人信息保护委员会更新“行政机关等匿名加工信息”提案征集信息",
+        "summary": "2025-10-24，个人信息保护委员会（PPC）宣布更新有关行政机关及类似机构所持匿名加工信息的提案征集信息。标题未说明具体变更内容，也未给出提交截止日期。",
+        "business_impact": "此次更新可能与寻求使用行政机关及类似机构所持匿名加工信息的潜在申请人有关，但无法从标题确定申请资格和提案要求。",
+        "recommended_action": "查阅日文官方公告或可明确更新的详细内容、申请人资格、提案要求以及是否有提交截止日期。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; the update's contents are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:31Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-d21553df66ba7fb1",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-08-29)",
+    "title_en": "PMDA news release on medicine information for patient associations through collaboration",
     "title_ja": "日本ライソゾーム病患者家族会協議会、全国ポンぺ病患者と家族の会との連携による患者会向け医薬品情報提供について（ニュースリリース）",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "A PMDA news release dated 2025-08-29 concerns providing medicine information to patient associations through collaboration with the Japan Council of Lysosomal Disease Patient and Family Associations and the National Pompe Disease Patients and Families Association. The title does not specify the medicines covered or how the information will be provided.",
+    "business_impact_en": "Lysosomal disease and Pompe disease patient and family associations may be affected by this medicine-information initiative; its practical scope is not clear from the title.",
+    "recommended_action_en": "Reviewing the official Japanese news release could clarify the information covered, intended recipients and arrangements for providing it.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/about-pmda/news-release/0087.pdf",
     "published_at": "2025-08-29",
@@ -12522,24 +12558,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性信息更新：药品或医疗器械安全信息发布（2025-08-29）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA发布关于通过合作向患者团体提供药品信息的新闻稿",
+        "summary": "PMDA于2025-08-29发布的新闻稿涉及与日本溶酶体病患者家属会协议会、全国庞贝病患者及家属会合作，向患者团体提供药品信息。标题未说明所涉及的药品或信息将如何提供。",
+        "business_impact": "溶酶体病和庞贝病患者及家属团体可能受到这项药品信息举措的影响；从标题尚无法明确其实际范围。",
+        "recommended_action": "查阅日文官方新闻稿可能有助于明确所涉及的信息、预期接收对象以及信息提供安排。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; association names are unofficial English translations, and the release's detailed contents are unavailable here. This unofficial summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:39Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-532bbeedf83c796a",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-07-22)",
+    "title_en": "PMDA announcement: recommendations on perioperative administration of andexanet alfa",
     "title_ja": "「関係学会等からの医薬品の適正使用に関するお知らせ」に「アンデキサネット アルファの周術期投与に関する提言」を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-07-22, the Pharmaceuticals and Medical Devices Agency (PMDA) announced that it had posted recommendations on perioperative administration of andexanet alfa. The recommendations were added to its notices from relevant academic societies and other organizations on the proper use of medicines.",
+    "business_impact_en": "Healthcare professionals involved in perioperative administration of andexanet alfa may find the recommendations relevant to its use, but the title does not disclose the specific recommendations.",
+    "recommended_action_en": "Review of the official Japanese posting and linked recommendations would help clarify their scope and the advice on perioperative administration.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/properly-use-alert/0001.html",
     "published_at": "2025-07-22",
@@ -12554,24 +12594,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布关于安地思特α围手术期给药建议的药品适当使用相关信息（2025-07-22）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA公告：安得赛α围手术期给药建议",
+        "summary": "2025-07-22，日本药品医疗器械综合机构（PMDA）宣布已发布关于安得赛α围手术期给药的建议。这些建议已添加至其有关学会等组织关于药品合理使用的通知栏目。",
+        "business_impact": "参与安得赛α围手术期给药的医疗专业人员可能会发现这些建议与该药的使用有关，但标题未披露具体建议内容。",
+        "recommended_action": "查阅日文官方发布内容及所链接的建议，将有助于明确其适用范围及围手术期给药方面的建议。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the recommendations' contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:39Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-fe7eef0904a32fcc",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-06-09)",
+    "title_en": "PMDA guide search for people receiving vaccinations",
     "title_ja": "ワクチン接種を受ける人へのガイド検索",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "A Pharmaceuticals and Medical Devices Agency (PMDA) announcement dated 2025-06-09 concerns a search page for guides for people receiving vaccinations. The title does not identify a particular vaccine or describe the guidance provided.",
+    "business_impact_en": "People receiving vaccinations may find the page relevant for locating vaccine recipient guides; the available information does not establish any change to vaccination guidance.",
+    "recommended_action_en": "Reviewing the official PMDA page could clarify which vaccine recipient guides are available and what information they contain.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/items-information/vacc-guide/0002.html",
     "published_at": "2025-06-09",
@@ -12586,24 +12630,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布药品或医疗器械安全性信息（2025-06-09）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA面向疫苗接种者的指南检索",
+        "summary": "医药品医疗器械综合机构（PMDA）于2025-06-09发布的公告涉及面向疫苗接种者的指南检索页面。标题未指明具体疫苗，也未描述所提供的指导内容。",
+        "business_impact": "疫苗接种者可能会发现该页面有助于查找疫苗接种者指南；现有信息并不能确定疫苗接种指导有任何变化。",
+        "recommended_action": "可考虑查阅PMDA官方页面，以了解有哪些疫苗接种者指南可供查阅，以及这些指南包含哪些信息。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only, with the listing date and source attribution; guide contents are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:39Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-102fb1f4f116f533",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-05-12)",
+    "title_en": "PMDA announces one-minute information-gathering video for healthcare professionals",
     "title_ja": "「医薬関係者向け動画 1分でおさえよう！PMDAからの情報収集」を公表しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-05-12, the Pharmaceuticals and Medical Devices Agency (PMDA) announced publication of a video for healthcare professionals titled \"Learn in One Minute: Gathering Information from PMDA.\" This is an informational announcement, not a stated regulatory amendment.",
+    "business_impact_en": "Healthcare professionals may find the video relevant to obtaining information from PMDA; the title does not specify which information services it covers.",
+    "recommended_action_en": "Reviewing the official PMDA announcement and video may clarify which information sources and collection methods are covered.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/0001.html",
     "published_at": "2025-05-12",
@@ -12618,24 +12666,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布医药品或医疗器械安全性信息（2025-05-12）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA公布面向医疗卫生专业人员的一分钟信息收集视频",
+        "summary": "2025-05-12，医药品医疗器械综合机构（PMDA）宣布发布面向医疗卫生专业人员的视频，题为《一分钟掌握：从PMDA收集信息》。这是一则信息性公告，并未表明涉及监管规定修订。",
+        "business_impact": "医疗卫生专业人员可能会发现该视频与从PMDA获取信息有关；标题未明确其涵盖哪些信息服务。",
+        "recommended_action": "查阅PMDA官方公告和视频可能有助于明确其涵盖哪些信息来源和收集方法。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the video content was not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:39Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-8e81cd6270ac2238",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-02-18)",
+    "title_en": "Safety procedure revision notice for thalidomide, lenalidomide and pomalidomide products",
     "title_ja": "「サリドマイド製剤、レナリドミド製剤及びポマリドミド製剤の使用に当たっての安全管理手順の改訂について（周知依頼）」を掲載しました",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-02-18, the Pharmaceuticals and Medical Devices Agency (PMDA) announced the posting of a notice requesting dissemination of revised safety management procedures for the use of thalidomide, lenalidomide and pomalidomide products. The title does not specify the procedural changes or their implementation date.",
+    "business_impact_en": "Healthcare professionals using thalidomide, lenalidomide or pomalidomide products may be affected by changes to the safety management procedures for their use.",
+    "recommended_action_en": "Review of the official Japanese notice could clarify the revised procedures, their intended recipients and any implementation timing.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/0002.html",
     "published_at": "2025-02-18",
@@ -12650,24 +12702,28 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：关于沙利度胺制剂、来那度胺制剂及泊马度胺制剂使用安全管理程序的修订（周知请求）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "沙利度胺、来那度胺及泊马度胺制剂安全管理程序修订通知",
+        "summary": "2025-02-18，日本医药品医疗器械综合机构（PMDA）宣布已发布一则通知，请求周知沙利度胺、来那度胺及泊马度胺制剂使用安全管理程序的修订。标题未说明程序的具体变更内容或实施日期。",
+        "business_impact": "使用沙利度胺、来那度胺或泊马度胺制剂的医疗卫生专业人员可能受到相关使用安全管理程序变更的影响。",
+        "recommended_action": "可考虑查阅日文官方通知，以明确修订后的程序、预期接收对象及任何实施时间安排。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and posting date only; the revised procedures were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:39Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-2273ffc7c06138c8",
-    "title_en": "PMDA Safety Update: Pharmaceutical or medical device safety information published (2025-02-10)",
+    "title_en": "PMDA Announcement on Collaboration with Patient Organizations",
     "title_ja": "患者会との連携に関する取り組み",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The Pharmaceuticals and Medical Devices Agency (PMDA) listed an announcement on initiatives for collaboration with patient organizations, dated 2025-02-10. The title does not specify the initiatives or any regulatory changes.",
+    "business_impact_en": "Patient organizations may find the announcement relevant to their collaboration with PMDA, but the available title does not establish specific implications.",
+    "recommended_action_en": "Review of the official Japanese announcement could clarify the initiatives covered and any opportunities for patient organizations to participate.",
     "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
     "source_url": "https://www.pmda.go.jp/safety/0004.html",
     "published_at": "2025-02-10",
@@ -12682,12 +12738,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "PMDA安全性更新：发布药品或医疗器械安全信息（2025-02-10）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "PMDA发布与患者组织合作相关公告",
+        "summary": "医药品医疗器械综合机构（PMDA）列出了一则关于与患者组织合作举措的公告，日期为2025-02-10。标题未说明具体举措或任何监管变化。",
+        "business_impact": "患者组织可能认为该公告与其同PMDA的合作有关，但现有标题并未明确具体影响。",
+        "recommended_action": "可考虑查阅日文官方公告，以了解所涵盖的举措以及患者组织可能获得的参与机会。"
       }
     },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date; substantive details were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:46:47Z",
+    "summary_model": "gpt-6.1-sol"
   }
 ]
