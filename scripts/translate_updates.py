@@ -1054,6 +1054,7 @@ _PUNCT_DUP_RE = re.compile(r"([、，。：；])\1")
 _OPEN_PHRASE_RE = re.compile(r"公开征求意见(?!结果)")
 
 _BRACKET_PAIRS = (("《", "》"), ("（", "）"), ("(", ")"))
+_QUOTED_SPAN_RE = re.compile(r"《[^》]*》|「[^」]*」|“[^”]*”|\"[^\"]*\"")
 
 # Known-bad statute renderings that drop a Japan-specific concept. Applied to the
 # TITLE ONLY (never to body fields) and matched as exact substrings, so correct
@@ -1081,6 +1082,13 @@ def title_quality_errors(title) -> list[str]:
         problems.append("title contains HTML/Markdown")
     if "…" in text or "..." in text:
         problems.append("title contains an ellipsis")
+    # A notice title is a statement, never a question. The 2026-10-16 requeue
+    # preview produced "…的省令出版？" and a published title ended "…刊summary?state"
+    # -- stray fragments the other checks missed. A quoted name may carry one
+    # (the film 《驾照返还!?》), so quoted spans are not checked.
+    unquoted = _QUOTED_SPAN_RE.sub("", text)
+    if "?" in unquoted or "？" in unquoted:
+        problems.append("title contains a question mark")
     if _KANA_RE.search(text):
         problems.append("title contains Japanese kana")
     if _PUNCT_DUP_RE.search(text):

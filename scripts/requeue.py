@@ -6,6 +6,7 @@ data/requeue.json names items whose AI output was found defective by an audit:
       "created_at": "2026-10-16T09:00:00Z",
       "reason": "short note",
       "english": ["raw-...", ...],     # regenerate the English summary
+      "english_title": ["raw-...", ...], # regenerate only the English title
       "zh-Hans": ["raw-...", ...]      # re-translate the Chinese block
     }
 
@@ -22,11 +23,11 @@ import json
 from pathlib import Path
 
 REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue.json"
-SECTIONS = ("english", "zh-Hans")
+SECTIONS = ("english", "english_title", "zh-Hans")
 
 
 def load(path: Path | None = None) -> dict:
-    """{"since": str, "english": set, "zh-Hans": set}; empty when absent or malformed."""
+    """{"since": str, <section>: set, ...}; empty when absent or malformed."""
     path = path or REQUEUE_PATH
     empty = {"since": "", **{section: set() for section in SECTIONS}}
     try:
