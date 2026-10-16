@@ -361,14 +361,14 @@
   },
   {
     "id": "raw-a5a65362c7fef330",
-    "title_en": "METI Ministerial Ordinance Updating Regulations Following Amendments to the Consumer Product Safety Act and Related Laws",
+    "title_en": "METI Ordinance Amending Technical Standards for Liquefied Petroleum Gas Appliances",
     "title_ja": "消費生活用製品安全法等の一部を改正する法律の施行に伴う経済産業省関係省令の整備に関する省令",
     "area": "Consumer / Advertising",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This item is a Ministry of Economy, Trade and Industry (METI) ministerial ordinance to align related ministerial regulations with amendments to the Consumer Product Safety Act and related laws. According to the metadata, it affects the ministerial ordinance on technical standards for liquefied petroleum gas appliances (Showa 43 MITI Ordinance No. 23). The metadata lists a promulgation date of 2025-01-31 and an effective date of 2025-12-25.",
-    "business_impact_en": "Businesses handling liquefied petroleum gas appliances or covered consumer products may need to review whether updated technical standards or related regulatory requirements apply to them. The changes could affect compliance obligations for affected product categories.",
-    "recommended_action_en": "Review the official Japanese source on e-Gov Law Search to confirm the scope, applicable standards, and the effective date before drawing any conclusions.",
+    "summary_en": "Ministry of Economy, Trade and Industry Ordinance No. 6 of 2025 adjusts ministry ordinances in connection with implementation of the Act Partially Amending the Consumer Product Safety Act and Other Acts. The listed amendment concerns the Ordinance on Technical Standards for Liquefied Petroleum Gas Appliances, etc. (Ministry of International Trade and Industry Ordinance No. 23 of 1968). The metadata gives a promulgation date of 2025-01-31 and an effective date of 2025-12-25.",
+    "business_impact_en": "Businesses subject to technical standards for liquefied petroleum gas appliances and related equipment may be affected by the listed amendment; the metadata does not identify which technical requirements change.",
+    "recommended_action_en": "Review of the official Japanese text could clarify the amended technical-standard provisions, their scope and any transitional arrangements associated with the 2025-12-25 effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=343M50000400023_20251225_507M60000400006",
     "published_at": "2025-01-31",
@@ -376,10 +376,6 @@
     "relevance_score": 35.0,
     "first_seen_at": "2026-08-26",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the provided metadata (Japanese title and raw summary); the effective date of 2025-12-25 is stated in the metadata but should be verified against the official source. The 'Consumer / Advertising' and 'In Force' labels are preliminary rule-based triage tags and not authoritative.",
-    "summarized_at": "2026-08-25T21:30:36Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "経済産業省は、消費生活用製品安全法等の一部を改正する法律の施行に伴い、経済産業省関係省令を整備する省令（令和七年経済産業省令第六号）を公布しました。これにより、液化石油ガス器具等の技術上の基準等に関する省令（昭和四十三年通商産業省令第二十三号）が改正対象とされています。原文によれば、公布日は2025年1月31日、施行日は2025年12月25日と示されています。",
     "business_impact_ja": "液化石油ガス器具等の技術上の基準に関わる事業者においては、改正内容に応じて対応の検討が必要となる可能性があります。関連製品の設計・製造・表示等に影響が及ぶことも考えられます。",
     "recommended_action_ja": "改正の具体的な内容や適用範囲、施行日については、e-Gov法令検索など日本語の公式情報源で確認されることをお勧めします。",
@@ -388,12 +384,16 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "经济产业省省令：为配合《消费生活用产品安全法》等修订而整备相关省令",
-        "summary": "本项为经济产业省（METI）为使相关省令与《消费生活用产品安全法》及相关法律的修订保持一致而制定的省令。根据元数据，该省令涉及液化石油气器具技术标准相关省令（昭和43年通商产业省令第23号）。元数据显示公布日期为2025-01-31，生效日期为2025-12-25。",
-        "business_impact": "处理液化石油气器具或相关消费产品的企业可能需要审查更新后的技术标准或相关监管要求是否适用于自身。这些变化可能影响相关产品类别的合规义务。",
-        "recommended_action": "建议在得出任何结论前，先查阅e-Gov法令检索上的日文官方来源，以确认适用范围、适用标准及生效日期。"
+        "title": "《关于配合〈消费生活用产品安全法等部分修正法〉施行整备经济产业省相关省令的省令》：液化石油气器具技术标准修订",
+        "summary": "2025年第6号经济产业省令配合《消费生活用产品安全法等部分修正法》的施行，对该省相关省令作出调整。所列修订涉及《液化石油气器具等技术标准省令》（1968年第23号通商产业省令）。元数据显示，公布日期为2025-01-31，生效日期为2025-12-25。",
+        "business_impact": "受液化石油气器具及相关设备技术标准约束的企业可能受到所列修订的影响；元数据未指明哪些技术要求发生变化。",
+        "recommended_action": "可考虑查阅日文官方文本，以明确修订后的技术标准条款、其适用范围，以及与2025-12-25生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing metadata, not the substantive provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T04:49:14Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-d5b8da22a2a84b5c",
@@ -8964,14 +8964,14 @@
   },
   {
     "id": "raw-7947903c4374262b",
-    "title_en": "Amendment to National Pension Act and Related Laws to Strengthen Pension System (Reiwa 7 Law No. 74)",
+    "title_en": "Pension reform Act: amendment to the Private School Personnel Mutual Aid Act",
     "title_ja": "社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律",
     "area": "Labor / Employment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This item concerns a law amending the National Pension Act and related statutes to strengthen the functions of the pension system in light of socio-economic changes, as recorded in the e-Gov Law Search update list. The metadata affects the Private School Personnel Mutual Aid Act (Showa 28 Law No. 245) and cites a promulgation date of 2025-06-20 and a stated effective date of 2028-04-01. This is an unofficial English summary of Japanese law metadata and must be verified against the official source.",
-    "business_impact_en": "Organizations connected to private school personnel mutual aid or affected pension arrangements may need to review potential changes to obligations or benefits arising from this amendment.",
-    "recommended_action_en": "Consider reviewing the official Japanese source at e-Gov Law Search to confirm the scope, provisions, and effective date before drawing any conclusions.",
+    "summary_en": "Act No. 74 of 2025, an Act to amend the National Pension Act and other laws to strengthen pension system functions in response to socioeconomic changes, amends the Private School Personnel Mutual Aid Act (Act No. 245 of 1953). The listing records promulgation on 2025-06-20 and an effective date of 2028-04-01 for this amendment.",
+    "business_impact_en": "Private school personnel covered by the mutual aid system may be affected by this amendment. Although the reform Act has a broader pension-related title, this listing specifically concerns the Private School Personnel Mutual Aid Act and does not describe the substantive changes.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended mutual aid provisions, any transitional arrangements, and the scope of the 2028-04-01 effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=328AC0000000245_20280401_507AC0000000074",
     "published_at": "2025-06-20",
@@ -8979,10 +8979,6 @@
     "relevance_score": 10.0,
     "first_seen_at": "2026-09-19",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the provided Japanese title and metadata; promulgation date (2025-06-20) and effective date (2028-04-01) are as stated in the metadata and should be verified. Preliminary labels are keyword-based and unverified.",
-    "summarized_at": "2026-09-27T23:44:06Z",
-    "summary_model": "claude-opus-4-8",
     "summary_ja": "e-Gov法令検索の法令更新一覧に、私立学校教職員共済法(昭和二十八年法律第二百四十五号)を対象とする改正情報が掲載されています。改正法令は「社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律」(令和七年法律第七十四号)で、公布日は2025年6月20日、施行日は2028年4月1日と記載されています。",
     "business_impact_ja": "私立学校教職員共済制度に関わる学校法人等では、施行日以降に共済給付や手続、人事・労務面の取扱いに関する事項が関係する可能性があります。ただし、具体的な改正内容はメタデータからは確認できず、影響の有無や程度は条文の確認を要すると考えられます。",
     "recommended_action_ja": "改正の具体的な内容や施行に向けた経過措置・関連政省令については、e-Gov法令検索や所管官庁等の日本語の公式情報源でご確認いただくことが望ましいと考えられます。",
@@ -8991,12 +8987,16 @@
     "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "《国民年金法》等修订：为应对社会经济变化强化年金制度（令和7年法律第74号）",
-        "summary": "本条目涉及一部为应对社会经济变化、强化年金制度功能而修订《国民年金法》及相关法律的法律，记录于e-Gov法令检索更新列表中。该元数据涉及《私立学校职员共济法》（昭和28年法律第245号），并载明公布日期为2025-06-20，规定生效日期为2028-04-01。这是对日本法律元数据的非官方英文摘要的中文翻译，须以官方来源为准进行核实。",
-        "business_impact": "与私立学校职员共济或受影响的年金安排相关的机构可能需要审查此次修订可能引起的义务或福利变化。",
-        "recommended_action": "建议在得出任何结论之前，考虑查阅e-Gov法令检索的日文官方来源，以确认适用范围、具体条款及生效日期。"
+        "title": "养老金改革法：修订《私立学校教职员共济法》",
+        "summary": "2025年第74号法律《关于为适应社会经济变化而强化养老金制度功能的国民年金法等部分修订等的法律》修订了《私立学校教职员共济法》（1953年第245号法律）。该列表记载的公布日期为2025-06-20，此项修订的生效日期为2028-04-01。",
+        "business_impact": "适用共济制度的私立学校教职员可能受到此项修订的影响。尽管该改革法的名称涉及更广泛的养老金事项，但本列表具体涉及《私立学校教职员共济法》，并未说明实质性变更内容。",
+        "recommended_action": "可考虑查阅日文官方来源，以明确修订后的共济条款、任何过渡安排以及2028-04-01生效日期的适用范围。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing metadata, not the substantive provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T04:51:23Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-ba5042a16fed7a66",
@@ -11226,10 +11226,10 @@
     "ja_summary_model": "claude-opus-4-8",
     "translations": {
       "zh-Hans": {
-        "title": "（已结束）公开征求意见：《协会会员外务员等处分相关程序规则》等部分修订草案",
-        "summary": "日本证券业协会（JSDA）就处分通知等文件数字化相关事宜，发布了关于登记外务员（外務員）等处分程序规则及相关规则的部分修订草案。该事项为公开征求意见，意见征集期标注为2025-09-16至2025-10-15；初步标签显示该征集期已结束。",
-        "business_impact": "若该修订获得采纳，可能会改变JSDA会员公司接收或处理处分通知及相关程序的方式，或对内部合规工作流程产生影响。由于目前提供的信息有限，具体范围和影响尚无法确定。",
-        "recommended_action": "建议查阅JSDA官方日文文件，以确认修订草案的具体内容、是否已定稿，以及任何生效日期。"
+        "title": "（已结束）公开征求意见：日本证券业协会《会员外务员等处分程序规则》等关于处分通知数字化的修订草案",
+        "summary": "日本证券业协会（JSDA）公布了《会员外务员等处分程序规则》及相关规则的部分修订草案，涉及处分通知及类似文件的数字化。该事项为公开征求意见，所列意见征集期为2025-09-16至2025-10-15；初步标签显示该期间已结束。",
+        "business_impact": "如获通过，修订可能改变日本证券业协会会员公司接收或处理处分通知及相关程序的方式，并可能影响内部合规工作流程。根据所提供的有限元数据，无法确定实际范围和影响。",
+        "recommended_action": "建议查阅日本证券业协会的日文官方文件，确认修订草案的内容、是否已定稿以及任何生效日期。"
       }
     }
   },

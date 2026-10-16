@@ -181,14 +181,14 @@
   },
   {
     "id": "raw-3424afdba32f87ad",
-    "title_en": "Cabinet Order Amending Livestock Price Stabilization Act Enforcement Order and Others (Reiwa 2017 No. 7)",
+    "title_en": "Cabinet Order amending livestock price stabilization orders and a tax special measures order",
     "title_ja": "畜産物の価格安定に関する法律施行令等の一部を改正する政令",
     "area": "Food / Agriculture",
     "stage": "Promulgated",
     "impact_level": "Medium",
-    "summary_en": "The metadata lists a Cabinet Order titled 'Cabinet Order to Partially Amend the Enforcement Order of the Act on Stabilization of Livestock Product Prices and Others' (Heisei 29 Cabinet Order No. 7), with a promulgation date of 25 January 2017. The e-Gov update list entry associates it with the Enforcement Order of the Act on Special Measures concerning Taxation (Showa 32 Cabinet Order No. 43) as the target law, and shows a list date of 2026-09-28.",
-    "business_impact_en": "The amendment may affect provisions of the taxation special-measures enforcement order, which could be relevant to businesses in the livestock or agricultural sector. The specific changes and their practical effect cannot be determined from the metadata provided.",
-    "recommended_action_en": "Review the official Japanese text on e-Gov Law Search to confirm which provisions were amended, their effective dates, and whether they are relevant to your operations.",
+    "summary_en": "Cabinet Order No. 7 of 2017, amending the Enforcement Order of the Act on Price Stabilization of Livestock Products and other orders, was promulgated on 2017-01-25. The listed amendment target is the Enforcement Order of the Act on Special Measures Concerning Taxation, Cabinet Order No. 43 of 1957; the metadata does not describe the amended provisions or give an effective date.",
+    "business_impact_en": "Taxpayers covered by the Enforcement Order of the Act on Special Measures Concerning Taxation may be affected by the listed amendment, despite the livestock price stabilization subject of the amending order's title. The metadata does not identify the particular taxpayers or tax measures concerned.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended tax provisions, their scope and any effective-date or transitional provisions.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=332CO0000000043_21171231_429CO0000000007",
     "published_at": "2017-01-25",
@@ -196,10 +196,6 @@
     "relevance_score": 30.0,
     "first_seen_at": "2026-09-30",
     "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on title and list metadata; the actual amended provisions are not provided. Note: the title_en label '(Reiwa 2017 ...)' is a mistake in era naming; the source states Heisei 29 (2017). The 2026-09-28 list date appears to be an update-list date, not an enactment date. Verify all details against the official source.",
-    "summarized_at": "2026-10-01T00:50:22Z",
-    "summary_model": "claude-sonnet-5-5",
     "summary_ja": "e-Gov法令検索の法令更新一覧に、「畜産物の価格安定に関する法律施行令等の一部を改正する政令」(平成二十九年政令第七号、公布日2017-01-25)が改正法令として掲載されています。対象法令として租税特別措置法施行令(昭和三十二年政令第四十三号)が示されており、更新一覧日は20260928と記載されています。改正の具体的な内容や施行日は、提供された情報からは確認できません。",
     "business_impact_ja": "租税特別措置法施行令が対象法令に含まれているため、畜産物関連の事業や税務上の取扱いに関係する可能性がありますが、実際の影響の有無や程度は提供情報からは判断できません。",
     "recommended_action_ja": "改正の内容および施行時期については、e-Gov法令検索等の日本語の公式情報源で原文を確認することをご検討ください。",
@@ -208,11 +204,15 @@
     "ja_summary_model": "claude-sonnet-5-5",
     "translations": {
       "zh-Hans": {
-        "title": "政令修订：《畜产物价格稳定相关法律施行令》等",
-        "summary": "元数据列出了一项名为《畜产物价格稳定相关法律施行令等部分修订政令》（平成29年政令第7号）的政令，公布日期为2017年1月25日。e-Gov更新列表条目将其与作为对象法律的《租税特别措施法施行令》（昭和32年政令第43号）相关联，并显示列表日期为2026-09-28。",
-        "business_impact": "此次修订可能影响租税特别措施法施行令的相关条款，这可能与畜产或农业领域的企业相关。具体变更内容及其实际影响无法仅凭所提供的元数据确定。",
-        "recommended_action": "建议查阅e-Gov法令检索上的日文官方文本，以确认具体修订了哪些条款、其生效日期，以及是否与您的业务相关。"
+        "title": "修订《畜产品价格稳定法施行令》等及《租税特别措施法施行令》的政令",
+        "summary": "修订《畜产品价格稳定法施行令》及其他政令的2017年第7号政令于2017-01-25公布。所列修订对象为《租税特别措施法施行令》（1957年第43号政令）；元数据未说明修订条款，也未提供生效日期。",
+        "business_impact": "尽管修订政令的标题以畜产品价格稳定为主题，适用《租税特别措施法施行令》的纳税人仍可能受到所列修订的影响。元数据未指明涉及的具体纳税人或税收措施。",
+        "recommended_action": "可考虑查阅日文官方来源，以明确修订的税收条款、其适用范围以及任何生效日期或过渡性规定。"
       }
-    }
+    },
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the operative provisions; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T04:49:38Z",
+    "summary_model": "gpt-6.1-sol"
   }
 ]
