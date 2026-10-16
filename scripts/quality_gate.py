@@ -30,6 +30,8 @@ Policy (certainty of the check x impact on a reader):
 | zh_missing           | high      | low    | keep (already English fallback); requeue |
 | pc_stage_results     | medium    | high   | keep; MANUAL (fix the Stage 2 rule)      |
 | en/ja/zh_stale_open  | high      | medium | keep (status badge + deadline shown); requeue |
+| ja_law_number_dropped| high      | medium | keep (title shows the instrument); requeue Japanese |
+| en/ja/zh_iso_datetime| high      | low    | keep (date, time and zone are correct); requeue |
 
 Withholding is re-decided on every run from the current data, so it needs no
 state: once a regenerated rendering passes, it is published again. Automatic
@@ -88,6 +90,10 @@ POLICY = {
     "en_stale_open": ("high", "medium", "keep; requeue English"),
     "ja_stale_open": ("high", "medium", "keep; requeue Japanese"),
     "zh_stale_open": ("high", "medium", "keep; requeue Chinese"),
+    "ja_law_number_dropped": ("high", "medium", "keep; requeue Japanese"),
+    "en_iso_datetime": ("high", "low", "keep; rewritten on the next run"),
+    "ja_iso_datetime": ("high", "low", "keep; requeue Japanese"),
+    "zh_iso_datetime": ("high", "low", "keep; requeue Chinese"),
 }
 assert set(POLICY) == set(qa.HIGH), "every HIGH check needs a publication policy"
 

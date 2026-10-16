@@ -1777,7 +1777,7 @@ class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
         su.calibrate_confidence(original, *title_only)
         self.assertEqual(original["confidence"], "high", "the caller's dict must not be mutated")
 
-    def test_english_prompt_receives_derived_facts_but_japanese_prompt_does_not(self):
+    def test_english_prompt_receives_derived_facts_japanese_only_the_numbers_as_written(self):
         item = {**TestSummarizeTitleCap()._item(), "title_ja": "関係政令の整備に関する政令"}
         raw = {"raw_summary": EGOV_LAW_SUMMARY}
         english = su.build_user_content(item, raw)
@@ -1785,7 +1785,10 @@ class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
         self.assertIn('"number": 341', english)
         japanese = su.japanese_summary_request_params("m", item, raw)["messages"][0]["content"]
         self.assertNotIn("source_evidence", japanese)
-        self.assertNotIn("legal_identifiers", japanese)
+        # Since 2026-10-16 the Japanese prompt gets the instrument numbers too, in
+        # their Japanese written form only (no converted English facts).
+        self.assertIn('"as_written": "令和七年政令第三百四十一号"', japanese)
+        self.assertNotIn('"gregorian_year"', japanese)
 
     def test_prompt_states_the_completeness_and_confidence_rules(self):
         prompt = " ".join(su.SYSTEM_PROMPT.split())
@@ -1923,7 +1926,7 @@ class TestDeadlineInPayload(unittest.TestCase):
         item = {"title_ja": "告示案に係る意見募集", "comment_deadline": "2026-09-25T00:00:00+09:00",
                 "comment_deadline_source": "related_egov_item", "comment_deadline_inherited": True}
         payload = su.source_payload(item, {})
-        self.assertEqual(payload["comment_deadline"], "2026-09-25T00:00:00+09:00")
+        self.assertEqual(payload["comment_deadline"], "2026-09-25 00:00 JST", "readable, time and zone kept")
         self.assertIn("e-Gov", payload["comment_deadline_basis"])
         self.assertNotIn("comment_deadline", su.source_payload({"title_ja": "x"}, {}))
 
