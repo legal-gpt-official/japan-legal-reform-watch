@@ -4537,21 +4537,39 @@
   },
   {
     "id": "raw-54da13d5121f7ae3",
-    "title_en": "e-Gov Law Update: Draft Amendment to Environmental Impact Assessment Rules (2025-06-20)",
+    "title_en": "Act Amending the Environmental Impact Assessment Act",
     "title_ja": "環境影響評価法の一部を改正する法律",
     "area": "Energy / Environment",
     "stage": "Scheduled to Take Effect",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Act No. 73 of 2025 amends the Environmental Impact Assessment Act (Act No. 81 of 1997). The metadata records promulgation on 2025-06-20 and an effective date of 2027-04-01, but does not describe the substantive amendments.",
+    "business_impact_en": "Project proponents subject to the Environmental Impact Assessment Act may be affected by changes to the Act, although the metadata does not identify the requirements or projects affected.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended provisions, their scope, and any transitional arrangements associated with the 2027-04-01 effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=409AC0000000081_20270401_507AC0000000073",
     "published_at": "2025-06-20",
     "last_checked": "2026-10-15",
     "relevance_score": 12.0,
     "first_seen_at": "2026-10-16",
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:16:55Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境影響評価法の一部を改正する法律（令和七年法律第七十三号）について、メタデータには公布日が2025年6月20日、施行日が2027年4月1日と記載されています。改正内容の詳細は、提供情報には含まれていません。",
+    "business_impact_ja": "環境影響評価に関わる事業では、改正内容によって手続や実務への影響が生じる可能性がありますが、提供情報のみでは具体的な影響は判断できません。",
+    "recommended_action_ja": "e-Gov法令検索などの日本語の公式情報源で、改正条文、施行日および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-16T03:19:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "《环境影响评价法部分修正法》",
+        "summary": "2025年第73号法律对《环境影响评价法》（1997年第81号法律）作出修订。元数据记载的公布日期为2025-06-20，生效日期为2027-04-01，但未说明实质性修订内容。",
+        "business_impact": "适用《环境影响评价法》的项目实施者可能受到该法修订的影响，但元数据未指明受影响的要求或项目。",
+        "recommended_action": "查阅日文官方来源或可明确修订条款、其适用范围，以及与2027-04-01生效日期相关的任何过渡安排。"
+      }
+    }
   },
   {
     "id": "raw-40f73267f36df99b",
@@ -11874,14 +11892,14 @@
   },
   {
     "id": "raw-8c0b0daec56afb8a",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-26)",
+    "title_en": "NTA announcement: FY2026 budget overview on organization and staffing",
     "title_ja": "令和8年度予算の概要について（機構・定員関係）（令和7年12月）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's National Tax Agency announced an overview of its FY2026 budget concerning organization and staffing, published on 2025-12-26. The title identifies the overview as a December 2025 document but does not provide budget amounts or specific organizational or staffing changes.",
+    "business_impact_en": "The announcement may concern National Tax Agency organizational units and personnel through budget provisions for organization and staffing; effects on taxpayers or businesses cannot be determined from the title.",
+    "recommended_action_en": "Reviewing the official National Tax Agency source may clarify the budget's status and the organizational and staffing measures described.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/information/release/kokuzeicho/2025/teiin_kiko/01.htm",
     "published_at": "2025-12-26",
@@ -11894,26 +11912,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅更新：税务行政指导更新（2025-12-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication information only; budget details and approval status are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-89ed4ba6c499327b",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-26)",
+    "title_en": "NTA Announcement: FY2026 Budget Overview (Expenditures)",
     "title_ja": "令和8年度予算の概要について（経費関係）（PDF/89KB）（令和7年12月）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency (NTA) announced an overview of its FY2026 budget concerning expenditures, published on 2025-12-26. The linked PDF is dated December 2025; the title does not establish the budget's approval status or describe individual expenditure items.",
+    "business_impact_en": "The affected businesses or persons cannot be determined from the title, which identifies only an expenditure-related budget overview.",
+    "recommended_action_en": "Reviewing the official Japanese PDF may clarify the expenditure allocations, budget status, and any relevance to particular businesses or persons.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/information/release/pdf/0025012-018.pdf",
     "published_at": "2025-12-26",
@@ -11926,26 +11940,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:18Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅更新：税务行政指导更新（2025-12-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; budget details are unavailable, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-cac2c577f53c5efb",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-26)",
+    "title_en": "Government announcement: FY2026 budget overview for alcoholic beverage industry promotion",
     "title_ja": "令和８年度予算（酒類業振興関係）の概要",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency published an overview of the FY2026 budget relating to alcoholic beverage industry promotion on 2025-12-26. This government announcement's title does not specify budget amounts, measures, or eligibility conditions.",
+    "business_impact_en": "Alcoholic beverage industry businesses may find the budget overview relevant to promotion-related measures, but the available title does not establish specific support or eligibility.",
+    "recommended_action_en": "Reviewing the official National Tax Agency source could clarify the budget measures, amounts, and any eligibility conditions relevant to alcoholic beverage industry promotion.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/taxes/sake/index.htm#kihon",
     "published_at": "2025-12-26",
@@ -11958,26 +11968,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅更新：税务行政指导更新（2025-12-26）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; substantive budget details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-40cda6d78d22fd4d",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-12-02)",
+    "title_en": "NTA announcement: Corporate tax audit results for administrative year 2024",
     "title_ja": "令和６事務年度 法人税等の調査事績の概要（令和７年12月）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's National Tax Agency published an announcement on 2025-12-02 titled \"Overview of Corporate Tax and Related Tax Audit Results for Administrative Year 2024 (December 2025).\" The title identifies an audit-results overview, not a legislative amendment or public consultation.",
+    "business_impact_en": "Corporations subject to corporate tax may find the overview relevant to understanding the NTA's reported audit activity, but the title alone does not establish any findings or new obligations.",
+    "recommended_action_en": "Review the official NTA overview for the taxes covered, audit findings, and reporting period.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/information/release/kokuzeicho/2025/hojin_chosa/index.htm",
     "published_at": "2025-12-02",
@@ -11990,26 +11996,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅动态：税务行政指导更新（2025-12-02）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; the audit results themselves were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:52Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-5ac16b0840ffb27c",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-10-30)",
+    "title_en": "NTA overview of corporate tax filing and assessment results for administrative year 2024",
     "title_ja": "令和6事務年度 法人税等の申告(課税)事績の概要（令和7年10月）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's National Tax Agency announced an overview of corporate tax and related tax filing and assessment results for administrative year 2024. The overview is dated October 2025, and the announcement was published on 2025-10-30.",
+    "business_impact_en": "Corporations subject to corporate tax may find the reported filing and assessment results relevant to understanding tax administration trends, but the title provides no figures or findings.",
+    "recommended_action_en": "Review of the official NTA overview could clarify the taxes covered, reporting period, and filing and assessment results.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/information/release/kokuzeicho/2025/hojin_shinkoku/index.htm",
     "published_at": "2025-10-30",
@@ -12022,26 +12024,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅动态：税务行政指南更新（2025-10-30）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; no report contents were provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-7d2825ad10d636e1",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-10-24)",
+    "title_en": "NTA announcement: Tax forms printable on multifunction copiers",
     "title_ja": "マルチコピー機で印刷できる申告書・申請書・届出書等",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency published an announcement dated 2025-10-24 on tax returns, applications, notifications and other forms that can be printed using multifunction copiers. The title does not identify the available forms or printing procedures.",
+    "business_impact_en": "Taxpayers and applicants using these forms may have an additional printing option, depending on which forms and multifunction copiers are covered.",
+    "recommended_action_en": "Reviewing the official NTA page could clarify which forms are available and how to print them.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/maruti/01.htm",
     "published_at": "2025-10-24",
@@ -12054,26 +12052,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:25Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅更新：可在多功能复印机打印的申报书、申请书、申报表等",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and listing date only; form coverage and printing details are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-6a3b95d34f474a45",
-    "title_en": "NTA Update: Tax administration guidance updated (2025-08-27)",
+    "title_en": "NTA Report: Overview of Tax Arrears for Fiscal Year 2024",
     "title_ja": "令和６年度租税滞納状況の概要（PDF/3,136KB）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "The National Tax Agency published an overview of tax arrears for fiscal year 2024 on 2025-08-27. This is a government report; the supplied title does not provide its findings or identify any legal changes.",
+    "business_impact_en": "The report may provide context for taxpayers with outstanding tax liabilities, but the title alone does not establish any change in their obligations or collection procedures.",
+    "recommended_action_en": "Reviewing the official Japanese report may help clarify the reported arrears figures, coverage, and any discussion of tax collection.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/information/release/kokuzeicho/2025/sozei_taino/pdf/sozei_taino.pdf",
     "published_at": "2025-08-27",
@@ -12086,26 +12080,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅动态：税务征管指引更新（2025-08-27）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication listing only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-87d1f28ef674fd6f",
-    "title_en": "NTA Update: Tax System Measures (2025-06-30)",
+    "title_en": "NTA FAQ on the Simplified and Streamlined Approach to Transfer Pricing",
     "title_ja": "移転価格税制の適用に係る簡素化・合理化アプローチに関するFAQ（令和7年6月）",
     "area": "Finance / AML",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Japan's National Tax Agency announced an FAQ dated June 2025 on the simplified and streamlined approach to applying transfer pricing rules. The announcement was published on 2025-06-30; the title does not establish the FAQ's detailed scope or any changes to legal requirements.",
+    "business_impact_en": "Businesses subject to transfer pricing rules may find the FAQ relevant to how the simplified and streamlined approach applies to them, although its eligibility criteria and practical implications are not provided.",
+    "recommended_action_en": "Reviewing the official Japanese FAQ could clarify the approach's scope, eligibility criteria, and application.",
     "source_name": "国税庁 (NTA) 新着・通達",
     "source_url": "https://www.nta.go.jp/taxes/shiraberu/kokusai/kansokagourika/index.htm",
     "published_at": "2025-06-30",
@@ -12118,26 +12108,22 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "国税厅更新：转让定价税制适用相关措施（2025-06-30）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication listing, not the FAQ text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-55e0e4dcbb06e296",
-    "title_en": "PPC Update: Regulatory announcement related to Data / Privacy / AI (2025-06-11)",
+    "title_en": "PPC publishes FY2024 fourth-quarter inquiry reception statistics",
     "title_ja": "令和６年度第４四半期における総合的な案内所等の受付状況を公表しました。",
     "area": "Data / Privacy / AI",
     "stage": "Government Announcement",
     "impact_level": "Low",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "On 2025-06-11, the Personal Information Protection Commission (PPC) announced publication of reception statistics for its comprehensive information desks and related services for the fourth quarter of fiscal year 2024. This is an activity-report announcement; the title does not provide the statistics or their findings.",
+    "business_impact_en": "The report may be relevant to users of the PPC's information services, but the title does not identify specific affected businesses or indicate changes to obligations.",
+    "recommended_action_en": "Review the official Japanese report for the services covered, reception figures, and any accompanying explanations.",
     "source_name": "個人情報保護委員会 (PPC) 新着情報",
     "source_url": "https://www.ppc.go.jp/personalinfo/legal/supervision?ref=ninf#annai",
     "published_at": "2025-06-11",
@@ -12149,15 +12135,11 @@
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-08-13T01:18:31Z",
     "ja_summary_model": "claude-opus-4-8",
-    "translations": {
-      "zh-Hans": {
-        "title": "个人信息保护委员会更新：与数据／隐私／AI相关的监管公告（2025-06-11）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
-      }
-    },
-    "summary_source": "rule_based"
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T03:17:59Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-9480e287dee1b4b9",
