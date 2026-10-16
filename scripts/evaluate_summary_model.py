@@ -257,28 +257,11 @@ def build_set(size: int, profile: str = "stratified") -> dict:
 # 2. Automatic metrics
 # --------------------------------------------------------------------------- #
 
-_KANJI_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4,
-                 "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
-_KANJI_UNITS = {"十": 10, "百": 100, "千": 1000}
 _KANJI_NUMERAL_RE = re.compile(r"[〇一二三四五六七八九十百千]+")
+kanji_numeral_value = summarizer.kanji_numeral_value
 
 
-def kanji_numeral_value(text: str) -> int | None:
-    """Value of a kanji numeral such as 三百四十一 (341) or 二十 (20), else None."""
-    total, digit = 0, None
-    for ch in text:
-        if ch in _KANJI_DIGITS:
-            if digit is not None:  # positional form such as 二〇二六
-                return int("".join(str(_KANJI_DIGITS[c]) for c in text)) if all(
-                    c in _KANJI_DIGITS for c in text) else None
-            digit = _KANJI_DIGITS[ch]
-        else:
-            total += (1 if digit is None else digit) * _KANJI_UNITS[ch]
-            digit = None
-    return total + (digit or 0)
-
-
-_ERA_BASE_YEAR = {"明治": 1867, "大正": 1911, "昭和": 1925, "平成": 1988, "令和": 2018}
+_ERA_BASE_YEAR = summarizer.ERA_BASE_YEAR
 _ERA_YEAR_RE = re.compile(r"(明治|大正|昭和|平成|令和)(元|\d+|[〇一二三四五六七八九十百]+)")
 
 
@@ -320,13 +303,85 @@ def unsupported_numbers(output_text: str, source: str) -> list[str]:
     return sorted(set(found))
 
 
-def score_english(result: dict, entry: dict) -> dict:
-    """Automatic, checkable quality signals for one English result."""
+# Metadata fields whose dates carry legal meaning. e-Gov's 更新一覧日 (the day
+# the list was updated) and 案の公示日 are bookkeeping, not legal dates.
+KEY_DATE_FIELDS = ("公布日", "施行日", "受付締切日時", "募集終了日", "募集期間")
+_ISO_DATE_RE = re.compile(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})")
+_MONTHS = {m: i for i, m in enumerate(
+    ("january", "february", "march", "april", "may", "june", "july", "august",
+     "september", "october", "november", "december"), 1)}
+_MDY_RE = re.compile(r"\b(" + "|".join(_MONTHS) + r")\s+(\d{1,2}),?\s+(\d{4})", re.IGNORECASE)
+_DMY_RE = re.compile(r"\b(\d{1,2})\s+(" + "|".join(_MONTHS) + r"),?\s+(\d{4})", re.IGNORECASE)
+_FIELD_SPLIT_RE = re.compile(r"[;\n]|\s(?=[^\s:：]{2,8}[:：])")
+
+
+def key_dates(entry: dict) -> list[str]:
+    """ISO dates stated in legally meaningful metadata fields (closing date for a period)."""
+    raw_summary = unicodedata.normalize("NFKC", (entry.get("source") or {}).get("raw_summary") or "")
+    dates: list[str] = []
+    for segment in _FIELD_SPLIT_RE.split(raw_summary):
+        field = re.split(r"[:：]", segment, maxsplit=1)[0].strip()
+        if field not in KEY_DATE_FIELDS:
+            continue
+        matches = _ISO_DATE_RE.findall(segment)
+        if field == "募集期間" and matches:
+            matches = matches[-1:]
+        for y, m, d in matches:
+            iso = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
+            if iso not in dates:
+                dates.append(iso)
+    return dates
+
+
+def dates_in_text(text: str) -> set[str]:
+    """Every calendar date written in the output, in ISO form."""
+    found = {f"{int(y):04d}-{int(m):02d}-{int(d):02d}" for y, m, d in _ISO_DATE_RE.findall(text)}
+    found |= {f"{int(y):04d}-{_MONTHS[mo.lower()]:02d}-{int(d):02d}" for mo, d, y in _MDY_RE.findall(text)}
+    found |= {f"{int(y):04d}-{_MONTHS[mo.lower()]:02d}-{int(d):02d}" for d, mo, y in _DMY_RE.findall(text)}
+    return found
+
+
+def identifier_in_text(number: int, text: str) -> bool:
+    """True when the output cites the instrument number ('No. 341' or similar)."""
+    return re.search(rf"(?:No\.?|Number|#)\s*{number}(?!\d)", text, re.IGNORECASE) is not None
+
+
+def entry_item_raw(entry: dict) -> tuple[dict, dict]:
+    """Rebuild the production (item, raw) pair from a frozen entry.
+
+    The frozen `source` payload IS the production prompt input, so every model
+    sees byte-identical prompts.
+    """
+    source = entry.get("source") or {}
+    item = {"id": entry.get("id"), **source}
+    labels = source.get("preliminary_rule_based_labels") or {}
+    for key in ("area", "stage", "impact_level"):
+        item.setdefault(key, labels.get(key, ""))
+    raw = {"raw_summary": source.get("raw_summary", ""), "source_type": source.get("source_type", "")}
+    return item, raw
+
+
+def score_english(result: dict, entry: dict, model_confidence: str | None = None) -> dict:
+    """Automatic, checkable quality signals for one English result.
+
+    `model_confidence` is what the model said before calibrate_confidence()
+    capped it; `confidence` is what production would publish.
+    """
     schema_ok = summarizer.valid_result(result)
     text_fields = {k: str(result.get(k, "")) for k in summarizer.AI_TEXT_FIELDS}
     joined = " ".join(text_fields.values())
     probe = dict(result)
     probe["summary_source"] = "claude"
+    item, raw = entry_item_raw(entry)
+    evidence = summarizer.source_evidence(item, raw)
+    identifiers = summarizer.legal_identifiers(item, raw)
+    body = " ".join(text_fields[k] for k in ("summary_en", "business_impact_en", "recommended_action_en"))
+    primary = next((i for i in identifiers if i["role"] == "amending_instrument"),
+                   identifiers[0] if identifiers else None)
+    expected_dates = key_dates(entry)
+    output_dates = dates_in_text(joined)
+    model_confidence = model_confidence or result.get("confidence")
+    ceiling = summarizer.MAX_CONFIDENCE_BY_EVIDENCE[evidence]
     return {
         "schema_compliant": schema_ok,
         "title_has_japanese": summarizer.public_data.contains_japanese(text_fields["title_en"]),
@@ -334,6 +389,18 @@ def score_english(result: dict, entry: dict) -> dict:
         "caution_violations": summarizer.caution_phrases_in_item(probe),
         "unsupported_numbers": unsupported_numbers(joined, source_text(entry)),
         "confidence": result.get("confidence"),
+        "model_confidence": model_confidence,
+        "source_evidence": evidence,
+        "model_overconfident": bool(
+            model_confidence in summarizer.CONFIDENCE_RANK
+            and summarizer.CONFIDENCE_RANK[model_confidence] > summarizer.CONFIDENCE_RANK[ceiling]
+        ),
+        "identifiers_expected": len(identifiers),
+        "identifiers_kept": sum(1 for i in identifiers if identifier_in_text(i["number"], joined)),
+        "primary_identifier_expected": primary is not None,
+        "primary_identifier_kept": primary is not None and identifier_in_text(primary["number"], body),
+        "key_dates_expected": len(expected_dates),
+        "key_dates_kept": sum(1 for d in expected_dates if d in output_dates),
         "lengths": {k: len(v) for k, v in text_fields.items()},
     }
 
@@ -375,9 +442,37 @@ def results_path(language: str, profile: str, model: str) -> Path:
     return EVAL_DIR / f"results_{language}{suffix}_{model}.json"
 
 
+def eval_set_path(profile: str) -> Path:
+    return EVAL_SET_PATH if profile == "stratified" else EVAL_SET_PATH.with_name(f"summary_eval_set_{profile}.json")
+
+
+def rescore_english(run: dict, profile: str) -> dict:
+    """Recompute English scores from the stored outputs with the current metrics.
+
+    A reused baseline (or a run made before a metric existed) is then scored on
+    exactly the same rules as the fresh candidate. The confidence the model
+    originally returned is kept when the run recorded it.
+    """
+    frozen = load_json(eval_set_path(profile), None)
+    if run.get("language") != "english" or not isinstance(frozen, dict):
+        return run
+    entries = {e["id"]: e for e in frozen.get("items", [])}
+    for record in run.get("records", []):
+        entry, output = entries.get(record.get("id")), record.get("output")
+        if entry is None or not isinstance(output, dict):
+            continue
+        previous = record.get("scores") or {}
+        model_confidence = previous.get("model_confidence") or output.get("confidence")
+        published = output
+        if summarizer.valid_result(output):
+            item, raw = entry_item_raw(entry)
+            published = summarizer.calibrate_confidence(output, item, raw)
+        record["scores"] = score_english(published, entry, model_confidence)
+    return run
+
+
 def run_model(args) -> int:
-    set_path = EVAL_SET_PATH if getattr(args, "profile", "stratified") == "stratified" else         EVAL_SET_PATH.with_name(f"summary_eval_set_{args.profile}.json")
-    frozen = load_json(set_path, None)
+    frozen = load_json(eval_set_path(getattr(args, "profile", "stratified")), None)
     if not isinstance(frozen, dict) or not frozen.get("items"):
         raise SystemExit("ERROR: no evaluation set. Run `build-set` first.")
     entries = frozen["items"][: max(0, args.limit)]
@@ -402,16 +497,7 @@ def run_model(args) -> int:
         if spent >= args.max_cost_usd:
             print(f"cost cap reached after {index - 1} items; stopping.")
             break
-        # The frozen `source` payload IS the production prompt input, so the two
-        # models see byte-identical prompts.
-        item = {"id": entry["id"], **entry["source"]}
-        item.setdefault("title_ja", entry["source"].get("title_ja", ""))
-        labels = entry["source"].get("preliminary_rule_based_labels") or {}
-        item.setdefault("area", labels.get("area", ""))
-        item.setdefault("stage", labels.get("stage", ""))
-        item.setdefault("impact_level", labels.get("impact_level", ""))
-        raw = {"raw_summary": entry["source"].get("raw_summary", ""),
-               "source_type": entry["source"].get("source_type", "")}
+        item, raw = entry_item_raw(entry)
         record = {"id": entry["id"], "stage": entry.get("stage"), "area": entry.get("area")}
         try:
             if args.language == "japanese":
@@ -423,7 +509,11 @@ def run_model(args) -> int:
                 result, model_used, usage = summarizer.unpack_api_outcome(
                     summarizer.request_summary(client, args.model, item, raw)
                 )
-                record["scores"] = score_english(result, entry)
+                # Score what production would publish: the same cap runs there.
+                model_confidence = result.get("confidence")
+                if summarizer.valid_result(result):
+                    result = summarizer.calibrate_confidence(result, item, raw)
+                record["scores"] = score_english(result, entry, model_confidence)
             record["output"] = result
             record["model"] = model_used
             record["usage"] = usage
@@ -496,9 +586,24 @@ def aggregate(run: dict) -> dict:
         "mean_cost_usd": statistics.mean(costs) if costs else 0.0,
         "total_cost_usd": run.get("estimated_cost_usd", 0.0),
         "confidence": {},
+        "model_confidence": {},
     }
     for level in ("high", "medium", "low"):
         agg["confidence"][level] = sum(1 for s in scored if s.get("confidence") == level)
+        agg["model_confidence"][level] = sum(1 for s in scored if s.get("model_confidence") == level)
+
+    def pct(kept: str, expected: str) -> float | None:
+        total = sum(int(s.get(expected) or 0) for s in scored)
+        return None if not total else 100.0 * sum(int(s.get(kept) or 0) for s in scored) / total
+
+    agg["identifiers_kept_pct"] = pct("identifiers_kept", "identifiers_expected")
+    agg["primary_identifier_kept_pct"] = pct("primary_identifier_kept", "primary_identifier_expected")
+    agg["key_dates_kept_pct"] = pct("key_dates_kept", "key_dates_expected")
+    agg["model_overconfident_pct"] = rate(lambda s: s.get("model_overconfident"))
+    lengths = [s.get("lengths") or {} for s in ok]
+    for field in ("summary_en", "business_impact_en", "recommended_action_en"):
+        values = [l[field] for l in lengths if field in l]
+        agg[f"mean_len_{field}"] = statistics.mean(values) if values else None
     return agg
 
 
@@ -511,7 +616,7 @@ def compare(args) -> int:
         if not isinstance(run, dict):
             raise SystemExit(f"ERROR: missing run file {path}. Run `run` for that model first.")
 
-    a, b = aggregate(base), aggregate(cand)
+    a, b = aggregate(rescore_english(base, profile)), aggregate(rescore_english(cand, profile))
     rows = [
         ("items evaluated", "items", "{:.0f}"),
         ("schema compliance %", "schema_compliance_pct", "{:.1f}"),
@@ -522,6 +627,13 @@ def compare(args) -> int:
         ("title over cap %", "title_over_cap_pct", "{:.1f}"),
         ("missing Japanese %", "missing_japanese_pct", "{:.1f}"),
         ("refusal %", "refusal_pct", "{:.1f}"),
+        ("law numbers kept %", "identifiers_kept_pct", "{:.1f}"),
+        ("main law number kept %", "primary_identifier_kept_pct", "{:.1f}"),
+        ("key dates kept %", "key_dates_kept_pct", "{:.1f}"),
+        ("overconfident (pre-cap) %", "model_overconfident_pct", "{:.1f}"),
+        ("mean len summary", "mean_len_summary_en", "{:.0f}"),
+        ("mean len business impact", "mean_len_business_impact_en", "{:.0f}"),
+        ("mean len recommended act.", "mean_len_recommended_action_en", "{:.0f}"),
         ("mean input tokens", "mean_input_tokens", "{:.0f}"),
         ("mean output tokens", "mean_output_tokens", "{:.0f}"),
         ("  of which reasoning", "mean_reasoning_tokens", "{:.0f}"),
@@ -530,11 +642,20 @@ def compare(args) -> int:
     ]
     print(f"\n{'metric':26s} {args.baseline:>22s} {args.candidate:>22s}")
     print("-" * 74)
+    def cell(value, fmt):
+        return "n/a" if value is None else fmt.format(value)
+
     for label, key, fmt in rows:
-        print(f"{label:26s} {fmt.format(a[key]):>22s} {fmt.format(b[key]):>22s}")
+        if a.get(key) is None and b.get(key) is None:
+            continue  # metric does not apply to this language
+        print(f"{label:26s} {cell(a.get(key), fmt):>22s} {cell(b.get(key), fmt):>22s}")
     print(f"{'confidence high/med/low':26s} "
           f"{'/'.join(str(a['confidence'][k]) for k in ('high','medium','low')):>22s} "
           f"{'/'.join(str(b['confidence'][k]) for k in ('high','medium','low')):>22s}")
+    if any(a["model_confidence"].values()) or any(b["model_confidence"].values()):
+        print(f"{'  as returned (pre-cap)':26s} "
+              f"{'/'.join(str(a['model_confidence'][k]) for k in ('high','medium','low')):>22s} "
+              f"{'/'.join(str(b['model_confidence'][k]) for k in ('high','medium','low')):>22s}")
 
     if a["mean_cost_usd"]:
         print(f"\ncost per item: {100 * b['mean_cost_usd'] / a['mean_cost_usd']:.1f}% of baseline")
@@ -555,6 +676,11 @@ def compare(args) -> int:
         blockers.append("more Japanese summaries missing Japanese script")
     if b["refusal_pct"] > a["refusal_pct"]:
         blockers.append("more safety refusals (items fall back to rule-based text)")
+    for key, label in (("identifiers_kept_pct", "drops more law numbers"),
+                       ("primary_identifier_kept_pct", "drops the main law number more often"),
+                       ("key_dates_kept_pct", "drops more promulgation / effective / deadline dates")):
+        if a.get(key) is not None and b.get(key) is not None and b[key] < a[key]:
+            blockers.append(label)
 
     print("\nautomatic verdict:")
     if blockers:

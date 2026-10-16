@@ -46,6 +46,14 @@ on:
         required: false
         default: ""
         type: string
+      languages:
+        description: "Which summary languages to evaluate (english skips the Japanese runs and their spend)"
+        required: true
+        default: "both"
+        type: choice
+        options:
+          - "both"
+          - "english"
       profile:
         description: "Frozen set: hard (adversarial) or stratified (broad)"
         required: true
@@ -55,7 +63,7 @@ on:
           - "hard"
           - "stratified"
       max_cost_usd_per_run:
-        description: "Cap for EACH of the four runs (2 models x 2 languages)"
+        description: "Cap for EACH run (2 models x the selected languages)"
         required: true
         default: "1.00"
         type: choice
@@ -84,6 +92,7 @@ jobs:
       MAX_COST: ${{ inputs.max_cost_usd_per_run }}
       OPENAI_REASONING_EFFORT: ${{ inputs.openai_reasoning_effort }}
       BASELINE_RUN_ID: ${{ inputs.baseline_run_id }}
+      LANGUAGES: ${{ inputs.languages == 'english' && 'english' || 'english japanese' }}
 
     steps:
       - name: Check out
@@ -114,7 +123,8 @@ jobs:
           gh run download "$BASELINE_RUN_ID" --repo "$GITHUB_REPOSITORY" -n summary-model-eval -D "$RUNNER_TEMP/baseline"
           suffix=""; [ "$PROFILE" = "stratified" ] || suffix="_$PROFILE"
           mkdir -p data/eval
-          for name in "results_english${suffix}_${BASELINE}.json" "results_japanese${suffix}_${BASELINE}.json"; do
+          for language in $LANGUAGES; do
+            name="results_${language}${suffix}_${BASELINE}.json"
             src="$RUNNER_TEMP/baseline/$name"
             if [ ! -f "$src" ]; then
               echo "::error::run $BASELINE_RUN_ID has no $name (wrong profile or baseline model?)"; exit 1
@@ -133,7 +143,7 @@ jobs:
           if [ "$BASELINE" = "$CANDIDATE" ]; then
             echo "::error::baseline and candidate must differ"; exit 1
           fi
-          for language in english japanese; do
+          for language in $LANGUAGES; do
             for model in "$BASELINE" "$CANDIDATE"; do
               if [ "$model" = "$BASELINE" ] && [ -n "$BASELINE_RUN_ID" ]; then
                 echo "baseline $model / $language reused from run $BASELINE_RUN_ID; not called"; continue
@@ -151,7 +161,7 @@ jobs:
           set -euo pipefail
           {
             echo "## Summary model evaluation: $BASELINE vs $CANDIDATE ($PROFILE)"
-            for language in english japanese; do
+            for language in $LANGUAGES; do
               echo ""
               echo "### $language"
               echo '```'

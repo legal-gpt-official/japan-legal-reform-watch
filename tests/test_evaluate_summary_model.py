@@ -284,5 +284,81 @@ class TestSpendSafety(unittest.TestCase):
             self.assertNotIn(f"save_json({forbidden}", source)
 
 
+
+EGOV_ENTRY = {
+    "id": "raw-egov",
+    "source": {
+        "title_ja": "関係政令の整備に関する政令",
+        "raw_summary": (
+            "更新一覧日: 20260812; 対象法令: 特定複合観光施設区域整備法施行令; "
+            "法令番号: 平成三十一年政令第七十二号; 改正法令: 関係政令の整備に関する政令; "
+            "改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01"
+        ),
+        "published_at": "2025-10-01", "source_name": "e-Gov Law Search", "source_url": "",
+    },
+}
+
+
+class TestCompletenessMetrics(unittest.TestCase):
+    def test_law_numbers_and_key_dates_are_scored(self):
+        kept = ev.score_english(good_result(
+            summary_en="Cabinet Order No. 341 of 2025 amends Cabinet Order No. 72 of 2019; "
+                       "promulgated October 1, 2025 and effective 2027-04-01."), EGOV_ENTRY)
+        self.assertEqual((kept["identifiers_expected"], kept["identifiers_kept"]), (2, 2))
+        self.assertTrue(kept["primary_identifier_kept"])
+        self.assertEqual((kept["key_dates_expected"], kept["key_dates_kept"]), (2, 2))
+
+        dropped = ev.score_english(good_result(
+            summary_en="A Cabinet Order amends a related order; effective 1 April 2027."), EGOV_ENTRY)
+        self.assertEqual(dropped["identifiers_kept"], 0)
+        self.assertFalse(dropped["primary_identifier_kept"])
+        self.assertEqual(dropped["key_dates_kept"], 1)
+
+    def test_bookkeeping_dates_are_not_required(self):
+        # 更新一覧日 is the list-update day, not a legal date.
+        self.assertEqual(ev.key_dates(EGOV_ENTRY), ["2025-10-01", "2027-04-01"])
+        public_comment = {"source": {"raw_summary": "案の公示日：2026/06/16 受付締切日時：2026/07/15 23:59 カテゴリー：林業"}}
+        self.assertEqual(ev.key_dates(public_comment), ["2026-07-15"])
+
+    def test_overconfidence_is_measured_before_the_cap(self):
+        scored = ev.score_english(good_result(confidence="medium"), entry(), model_confidence="high")
+        self.assertTrue(scored["model_overconfident"])
+        self.assertEqual(scored["confidence"], "medium")
+        self.assertFalse(ev.score_english(good_result(), entry())["model_overconfident"])
+
+    def test_dropping_law_numbers_is_a_blocker(self):
+        import tempfile, types
+        kept = ev.score_english(good_result(summary_en="Cabinet Order No. 341 and No. 72."), EGOV_ENTRY)
+        dropped = ev.score_english(good_result(), EGOV_ENTRY)
+        helper = TestComparisonVerdict()
+        ev_dir = ev.EVAL_DIR
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                ev.EVAL_DIR = Path(tmp)
+                ev.save_json(ev.EVAL_DIR / "results_english_base.json", helper._run("base", [kept]))
+                ev.save_json(ev.EVAL_DIR / "results_english_cand.json", helper._run("cand", [dropped]))
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    ev.compare(types.SimpleNamespace(baseline="base", candidate="cand", language="english"))
+            out = buf.getvalue()
+            self.assertIn("law numbers kept %", out)
+            self.assertIn("BLOCKER: drops more law numbers", out)
+        finally:
+            ev.EVAL_DIR = ev_dir
+
+    def test_reused_runs_are_rescored_with_current_metrics(self):
+        frozen = ev.load_json(ev.eval_set_path("hard"), None)
+        first = frozen["items"][0]
+        run = {"language": "english", "records": [
+            {"id": first["id"], "scores": {"schema_compliant": True},
+             "output": good_result(confidence="high")}]}
+        rescored = ev.rescore_english(run, "hard")["records"][0]["scores"]
+        self.assertIn("identifiers_expected", rescored)
+        self.assertEqual(rescored["model_confidence"], "high")
+        # The frozen hard set has no descriptive-text item at its head, so the
+        # published confidence is capped exactly as production would cap it.
+        self.assertEqual(rescored["confidence"], "medium")
+
+
 if __name__ == "__main__":
     unittest.main()

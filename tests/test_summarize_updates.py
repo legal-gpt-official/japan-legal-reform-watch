@@ -1717,5 +1717,120 @@ class TestValidationFailureKeepsPaidCache(unittest.TestCase):
             self.assertEqual(next(iter(saved.values()))["title_en"], "Fresh AI title")
 
 
+
+EGOV_LAW_SUMMARY = (
+    "更新一覧日: 20260812; 対象法令: 特定複合観光施設区域整備法施行令; "
+    "法令番号: 平成三十一年政令第七十二号; 改正法令: 関係政令の整備に関する政令; "
+    "改正法令番号: 令和七年政令第三百四十一号; 公布日: 2025-10-01; 施行日: 2027-04-01"
+)
+
+
+class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
+    """Deterministic facts handed to the English prompt, and the confidence cap."""
+
+    def test_identifiers_are_converted_and_carry_their_e_gov_role(self):
+        ids = su.legal_identifiers({"title_ja": "関係政令の整備に関する政令"},
+                                   {"raw_summary": EGOV_LAW_SUMMARY})
+        self.assertEqual(
+            [(i["instrument"], i["number"], i["gregorian_year"], i["era_year"], i["role"]) for i in ids],
+            [("政令", 72, 2019, "平成 31", "target_law"), ("政令", 341, 2025, "令和 7", "amending_instrument")],
+        )
+        self.assertEqual(ids[1]["as_written"], "令和七年政令第三百四十一号")
+
+    def test_identifiers_in_a_title_and_ministry_ordinances_are_found(self):
+        ids = su.legal_identifiers(
+            {"title_ja": "令和8年国税庁告示第4号及び平成十五年厚生労働省令第百号の改正"}, {})
+        self.assertEqual([(i["instrument"], i["number"], i["role"]) for i in ids],
+                         [("国税庁告示", 4, "mentioned"), ("厚生労働省令", 100, "mentioned")])
+        self.assertEqual(su.legal_identifiers({"title_ja": "令和元年法律第一号"}, {})[0]["gregorian_year"], 2019)
+
+    def test_numbered_things_that_are_not_instruments_are_ignored(self):
+        for title in ("令和元年台風第19号による被害", "令和8年度病害虫発生予報第6号", "第三回検討会"):
+            self.assertEqual(su.legal_identifiers({"title_ja": title}, {}), [], title)
+
+    def test_source_evidence_classes(self):
+        cases = [
+            ({"title_ja": "法律案"}, {"raw_summary": ""}, "title_only"),
+            ({"title_ja": "法律案"}, {"raw_summary": "報道発表"}, "title_only"),
+            ({"title_ja": "PMDAの安全性情報"}, {"raw_summary": "PMDA 安全対策業務 新着情報"}, "title_only"),
+            ({"title_ja": "消費者安全法施行規則の一部を改正する内閣府令(案)に関する意見募集について"},
+             {"raw_summary": "「消費者安全法施行規則の一部を改正する内閣府令(案)」に関する意見募集について"},
+             "title_only"),
+            ({"title_ja": "政令"}, {"raw_summary": EGOV_LAW_SUMMARY}, "title_and_structured_metadata"),
+            ({"title_ja": "案"}, {"raw_summary": "案の公示日：2026/06/16 受付締切日時：2026/07/15 23:59 "
+                                                  "カテゴリー：林業"}, "title_and_structured_metadata"),
+            ({"title_ja": "ガイダンス"},
+             {"raw_summary": "経済産業省は、同族企業の統治に関する指針を取りまとめ、本日公表しました。"},
+             "descriptive_text"),
+        ]
+        for item, raw, expected in cases:
+            self.assertEqual(su.source_evidence(item, raw), expected, raw)
+
+    def test_confidence_is_capped_by_evidence_and_never_raised(self):
+        result = TestSummarizeTitleCap()._result("t")
+        title_only = ({"title_ja": "法律案"}, {"raw_summary": ""})
+        described = ({"title_ja": "指針"}, {"raw_summary": "経済産業省は、同族企業の統治に関する指針を取りまとめ、本日公表しました。"})
+        self.assertEqual(su.calibrate_confidence({**result, "confidence": "high"}, *title_only)["confidence"], "medium")
+        self.assertEqual(su.calibrate_confidence({**result, "confidence": "low"}, *title_only)["confidence"], "low")
+        self.assertEqual(su.calibrate_confidence({**result, "confidence": "high"}, *described)["confidence"], "high")
+        original = {**result, "confidence": "high"}
+        su.calibrate_confidence(original, *title_only)
+        self.assertEqual(original["confidence"], "high", "the caller's dict must not be mutated")
+
+    def test_english_prompt_receives_derived_facts_but_japanese_prompt_does_not(self):
+        item = {**TestSummarizeTitleCap()._item(), "title_ja": "関係政令の整備に関する政令"}
+        raw = {"raw_summary": EGOV_LAW_SUMMARY}
+        english = su.build_user_content(item, raw)
+        self.assertIn('"source_evidence": "title_and_structured_metadata"', english)
+        self.assertIn('"number": 341', english)
+        japanese = su.japanese_summary_request_params("m", item, raw)["messages"][0]["content"]
+        self.assertNotIn("source_evidence", japanese)
+        self.assertNotIn("legal_identifiers", japanese)
+
+    def test_prompt_states_the_completeness_and_confidence_rules(self):
+        prompt = " ".join(su.SYSTEM_PROMPT.split())
+        for phrase in ("legal_identifiers", "source_evidence", "effective date",
+                       "Never write an instrument number that is not in legal_identifiers",
+                       "Do not pad", "lowered automatically"):
+            self.assertIn(phrase, prompt)
+
+    def test_every_fresh_english_result_path_applies_the_cap(self):
+        source = Path(su.__file__).read_text(encoding="utf-8")
+        # sequential, batch, parallel, and recovered-batch paths
+        self.assertEqual(source.count("result = calibrate_confidence(result,"), 4)
+
+    def test_batch_path_publishes_and_caches_the_capped_confidence(self):
+        item = TestSummarizeTitleCap()._item()
+        item["relevance_score"] = 10
+        result = {**TestSummarizeTitleCap()._result("AI title"), "confidence": "high"}
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            input_path = base / "legal_updates.json"
+            cache_path = base / "summary_cache.json"
+            raw_path = base / "raw_items.json"
+            input_path.write_text(json.dumps([item]), encoding="utf-8")
+            raw_path.write_text(json.dumps([{"id": item["id"], "raw_summary": "報道発表"}]), encoding="utf-8")
+            patches = {
+                "INPUT_PATH": input_path, "OUTPUT_PATH": input_path,
+                "BEFORE_AI_PATH": base / "before_ai.json", "CACHE_PATH": cache_path,
+                "RAW_PATH": raw_path, "LOG_PATH": base / "summarize.log",
+                "make_client": idle_workspace_client,
+                "request_summary_batch": lambda client, model, candidates, *, timeout_seconds, custom_ids=None:
+                    ("msgbatch_cap", [(result, model)]),
+            }
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(io.StringIO()):
+                rc = su.main(["--limit", "1", "--batch"])
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+            published = json.loads(input_path.read_text(encoding="utf-8"))
+            cache = json.loads(cache_path.read_text(encoding="utf-8"))
+        self.assertEqual(rc, 0)
+        self.assertEqual(published[0]["confidence"], "medium")
+        self.assertEqual(next(iter(cache.values()))["confidence"], "medium")
+
+
 if __name__ == "__main__":
     unittest.main()
