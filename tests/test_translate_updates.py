@@ -2032,7 +2032,7 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         self.assertNotIn("--batch", backfill_command)
 
     def test_daily_sets_translation_model(self):
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.daily)
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
 
     def test_backfill_remains_translate_only(self):
         for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
@@ -2179,20 +2179,21 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertGreaterEqual(self.workflow.count("data/translation_cache.json"), 2)
 
     def test_api_key_only_exposed_to_ai_summary_and_translation_steps(self):
-        key_line = "ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}"
-        ai_steps = (
-            "name: Maintain English summaries",
-            "name: Maintain Japanese summaries",
-            "name: Translate Simplified Chinese updates",
-        )
-
-        self.assertEqual(self.workflow.count(key_line), len(ai_steps))
-        for step_name in ai_steps:
-            step_start = self.workflow.index(step_name)
-            step_end = self.workflow.find("\n      - name:", step_start + len(step_name))
-            if step_end == -1:
-                step_end = len(self.workflow)
-            self.assertEqual(self.workflow[step_start:step_end].count(key_line), 1)
+        # Each provider key reaches only the steps that call that provider:
+        # Anthropic for English summaries, OpenAI for Japanese and zh-Hans.
+        for key_line, ai_steps in (
+            ("ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}",
+             ("name: Maintain English summaries",)),
+            ("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}",
+             ("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates")),
+        ):
+            self.assertEqual(self.workflow.count(key_line), len(ai_steps))
+            for step_name in ai_steps:
+                step_start = self.workflow.index(step_name)
+                step_end = self.workflow.find("\n      - name:", step_start + len(step_name))
+                if step_end == -1:
+                    step_end = len(self.workflow)
+                self.assertEqual(self.workflow[step_start:step_end].count(key_line), 1)
 
     def test_source_health_and_action_pins_preserved(self):
         self.assertIn("uses: actions/checkout@v5", self.workflow)
@@ -2295,10 +2296,11 @@ class TestTranslationModelOverride(unittest.TestCase):
         cls.daily = (root / "daily-update.yml").read_text(encoding="utf-8")
         cls.backfill = (root / "translation-backfill.yml").read_text(encoding="utf-8")
 
-    def test_both_workflows_set_translation_model_to_sonnet_5(self):
-        for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
-            with self.subTest(workflow=name):
-                self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", wf)
+    def test_translation_models_per_workflow(self):
+        """Daily moved to gpt-6.1-sol on Flex (2026-10-16); the manual backfill
+        stays on Sonnet 5."""
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
+        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.backfill)
 
     def test_both_workflows_use_direct_mode_to_avoid_checkpoint_timeout(self):
         for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
@@ -2313,7 +2315,7 @@ class TestTranslationModelOverride(unittest.TestCase):
         # The model-override *assignment* appears exactly once per workflow (the
         # translate step), so summarization is not switched to Sonnet. (The bare
         # token also appears in an explanatory comment, hence matching the value.)
-        self.assertEqual(self.daily.count("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5"), 1)
+        self.assertEqual(self.daily.count("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol"), 1)
         self.assertEqual(self.backfill.count("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5"), 1)
 
     def test_switch_is_env_only(self):

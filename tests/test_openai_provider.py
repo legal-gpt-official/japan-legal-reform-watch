@@ -82,16 +82,38 @@ class TestProviderSelection(unittest.TestCase):
         for model in ("claude-sonnet-5-5", "claude-sonnet-5", "", None):
             self.assertFalse(op.is_openai_model(model))
 
-    def test_production_defaults_stay_on_claude(self):
-        """Rollback is the absence of a switch: nothing routes to OpenAI by default."""
+    def test_code_defaults_and_backfills_stay_on_claude(self):
+        """Only the daily workflow opts in, by env, for two steps; the code
+        defaults and the manual backfills still route to Claude."""
         self.assertFalse(op.is_openai_model(su.DEFAULT_MODEL))
         self.assertFalse(op.is_openai_model(tu.DEFAULT_TRANSLATION_MODEL))
-        for name in ("daily-update.yml", "translation-backfill.yml",
+        for name in ("translation-backfill.yml",
                      "japanese-summary-backfill.yml", "english-summary-backfill.yml"):
             text = (REPO_ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
             with self.subTest(name):
                 self.assertNotIn("gpt-", text)
                 self.assertNotIn("OPENAI_API_KEY", text)
+
+    def test_daily_openai_steps_are_flex_and_least_privilege(self):
+        """The OpenAI key reaches exactly the two switched steps, both on Flex
+        without --batch (refused for gpt-* models), and neither also carries
+        the Anthropic key it no longer uses."""
+        text = (REPO_ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
+        key = "OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}"
+        self.assertEqual(text.count(key), 2)
+        for start, end in (("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
+                           ("name: Translate Simplified Chinese updates", "name: Build yearly public archives")):
+            step = text[text.index(start):text.index(end)]
+            with self.subTest(start):
+                self.assertIn(key, step)
+                self.assertIn("gpt-6.1-sol", step)
+                self.assertIn("OPENAI_SERVICE_TIER: flex", step)
+                self.assertIn("OPENAI_REASONING_EFFORT: low", step)
+                self.assertIn("--parallel 5", step)
+                self.assertNotIn("ANTHROPIC_API_KEY: ${{", step)
+                command = step[step.index("python scripts/"):]
+                self.assertNotIn("--batch", command.split("2>&1")[0])
+                self.assertIn("flex_calls", step)
 
     def test_key_check_follows_the_provider(self):
         with mock.patch.dict(os.environ, {"ANTHROPIC_API_KEY": "x"}, clear=True):

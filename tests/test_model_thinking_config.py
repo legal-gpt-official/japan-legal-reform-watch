@@ -111,21 +111,36 @@ class TestStageRequestShape(unittest.TestCase):
 
 
 class TestSummaryModelAdoption(unittest.TestCase):
-    """Sonnet 5.5 was adopted for Stage 3 after the 2026-09-30 A/B evaluation."""
+    """Sonnet 5.5 was adopted for Stage 3 after the 2026-09-30 A/B evaluation.
+
+    Since 2026-10-16 the daily Japanese-summary and zh-Hans steps run on
+    gpt-6.1-sol (OpenAI Flex); English summaries and every backfill stay on
+    Claude."""
 
     WORKFLOWS = Path(__file__).resolve().parents[1] / ".github" / "workflows"
 
     def test_every_summary_workflow_pins_sonnet_5_5(self):
-        for name, expected in (("daily-update.yml", 2), ("english-summary-backfill.yml", 1),
+        for name, expected in (("daily-update.yml", 1), ("english-summary-backfill.yml", 1),
                                ("japanese-summary-backfill.yml", 1)):
             with self.subTest(workflow=name):
                 text = (self.WORKFLOWS / name).read_text(encoding="utf-8")
                 self.assertEqual(text.count("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5"), expected)
                 self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: claude-opus", text)
 
-    def test_translation_model_is_unchanged(self):
+    def test_daily_english_stays_on_claude_and_japanese_moves_to_openai(self):
         text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
-        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5\s*$")
+        english = text[text.index("name: Maintain English summaries"):text.index("name: Maintain Japanese summaries")]
+        japanese = text[text.index("name: Maintain Japanese summaries"):text.index("name: Translate Simplified Chinese updates")]
+        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5", english)
+        self.assertIn("--batch", english)
+        self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: gpt-", english)
+        self.assertIn("ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol", japanese)
+        self.assertIn("OPENAI_SERVICE_TIER: flex", japanese)
+        self.assertNotIn("--batch", japanese[japanese.index("python scripts/"):].split("2>&1")[0])
+
+    def test_translation_model_is_gpt_6_1_sol_on_flex(self):
+        text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
+        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
 
     def test_title_prompt_targets_below_the_display_cap(self):
         # Titles over TITLE_MAX_CHARS are cut mid-title; the prompt aims 10 below it.

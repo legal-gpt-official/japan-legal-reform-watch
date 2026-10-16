@@ -107,24 +107,29 @@ jobs:
 
       # Maintain Japanese coverage for newly published or source-changed items.
       # Existing complete Japanese summaries are cache hits and cost nothing.
-      # Phase 3A: batched like the English stage. A batch left running by a lost
-      # runner is reclaimed on a later run from its self-describing custom_ids,
-      # and no new batch is submitted while one is still in flight.
+      # gpt-6.1-sol on OpenAI Flex since 2026-10-16 (A/B eval: equal quality at
+      # 62-65% of Sonnet 5.5's per-item cost; canary run 38835823697). Flex
+      # bills at the Batch rate on a synchronous call, so there is no batch to
+      # recover; an unbilled 429 capacity response leaves the item for the next
+      # run. Revert: restore ANTHROPIC_API_KEY + ANTHROPIC_SUMMARY_MODEL:
+      # claude-sonnet-5-5 and `--batch` in place of `--parallel 5`.
       - name: Maintain Japanese summaries
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
         run: |
           set -o pipefail
           python scripts/summarize_updates.py \
             --all-items \
             --japanese-only \
-            --batch \
+            --parallel 5 \
             --api-limit 100 \
             --max-cost-usd 0.80 2>&1 | tee japanese_summary_run.log
           {
-            echo "### Japanese summary maintenance (batch)"
-            grep -E '^(batch_id|api_calls|recovered_items|batch_blocked|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|japanese_summarized_items|japanese_failed_items|refused_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
+            echo "### Japanese summary maintenance (gpt-6.1-sol, Flex)"
+            grep -E '^(model|api_calls|japanese_summarized_items|japanese_failed_items|refused_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^provider_status *: unavailable' japanese_summary_run.log; then
             ptype=$(sed -n 's/^provider_error_type *: //p' japanese_summary_run.log | head -n 1)
@@ -176,14 +181,17 @@ jobs:
       # then the cap has to clear the inflated estimate or it silently trims.
       - name: Translate Simplified Chinese updates
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Translation-only model override: zh-Hans translation uses Sonnet 5;
-          # summarization uses Sonnet 5.5 (moved from Opus 4.8 on 2026-09-30). Precedence for translation is
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # zh-Hans translation runs on gpt-6.1-sol via OpenAI Flex since
+          # 2026-10-16 (A/B eval: better title-gate and naming results at 70-74%
+          # of Sonnet 5's per-item cost; canary run 38835823697). Precedence is
           # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
-          ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
-        # Phase 3A: batched. A local wait that expires does NOT cancel the batch —
-        # it keeps running provider-side and is collected on a later run, so nothing
-        # already paid for is thrown away. warn mode: a provider-wide error (e.g.
+          # Revert: ANTHROPIC_API_KEY + ANTHROPIC_TRANSLATION_MODEL:
+          # claude-sonnet-5 and `--batch` in place of `--parallel 5`.
+          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
+        # warn mode: a provider-wide error (e.g.
         # insufficient credit) must NOT stop the legal-data pipeline — translations
         # are simply not added this run and a warning annotation is surfaced. A
         # genuine integrity-gate failure (exit 1) still stops the job via pipefail.
@@ -191,14 +199,14 @@ jobs:
           set -o pipefail
           python scripts/translate_updates.py \
             --locale zh-Hans \
-            --batch \
+            --parallel 5 \
             --limit 200 \
             --max-cost-usd 1.50 \
             --retry-rejected-title-without-ja-reference \
             --provider-failure-mode warn 2>&1 | tee translate_run.log
           {
-            echo "### Simplified-Chinese translation maintenance (batch)"
-            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|refused_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            echo "### Simplified-Chinese translation maintenance (gpt-6.1-sol, Flex)"
+            grep -E '^(batch_id|api_calls|reclaimed_batch_items|reclaim_skipped_items|reclaim_failed_items|blocked_by_running_batch|batch_succeeded|batch_errored|batch_expired|batch_canceled|batch_missing|batch_duration_seconds|translated_items|failed_items|refused_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|field_cache_hits|field_cache_seeded|field_cache_reviewed|field_cache_added|reviewed_refreshed_items|partial_field_requests|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|preflight_cost_usd|preflight_ceiling_usd|preflight_trimmed|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
           if grep -Eq '^(blocked_by_running_batch|preflight_trimmed) *: *[1-9]' translate_run.log; then
             echo "::warning::Translation batch deferred work this run (interlock or cost bound); it resumes next run."

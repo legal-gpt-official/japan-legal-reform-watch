@@ -300,16 +300,22 @@ class TestSummaryBatch(unittest.TestCase):
         workflow = (
             Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
         ).read_text(encoding="utf-8")
-        for stage, marker, end in (
-            ("english", "name: Maintain English summaries", "name: Maintain Japanese summaries"),
-            ("japanese", "name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
-            ("translate", "name: Translate Simplified Chinese updates", "name: Build yearly public archives"),
+        batch_metrics = ("batch_id", "batch_succeeded", "batch_errored", "batch_expired",
+                         "batch_missing", "input_tokens", "output_tokens",
+                         "cache_read_input_tokens", "estimated_cost_usd",
+                         "preflight_cost_usd")
+        # The Japanese and zh-Hans steps run on OpenAI Flex (direct calls): no
+        # batch to report, but cost, reasoning and the Flex confirmation are.
+        flex_metrics = ("input_tokens", "output_tokens", "cache_read_input_tokens",
+                        "reasoning_tokens", "flex_calls", "estimated_cost_usd",
+                        "provider_status")
+        for stage, marker, end, metrics in (
+            ("english", "name: Maintain English summaries", "name: Maintain Japanese summaries", batch_metrics),
+            ("japanese", "name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates", flex_metrics),
+            ("translate", "name: Translate Simplified Chinese updates", "name: Build yearly public archives", flex_metrics),
         ):
             step = workflow[workflow.index(marker):workflow.index(end)]
-            for metric in ("batch_id", "batch_succeeded", "batch_errored", "batch_expired",
-                           "batch_missing", "input_tokens", "output_tokens",
-                           "cache_read_input_tokens", "estimated_cost_usd",
-                           "preflight_cost_usd"):
+            for metric in metrics:
                 self.assertIn(metric, step, f"{stage} stage is missing {metric}")
 
     def test_daily_workflow_has_an_explicit_job_timeout(self):
