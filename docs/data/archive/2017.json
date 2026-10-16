@@ -196,6 +196,10 @@
     "relevance_score": 30.0,
     "first_seen_at": "2026-09-30",
     "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the operative provisions; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T04:49:38Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "e-Gov法令検索の法令更新一覧に、「畜産物の価格安定に関する法律施行令等の一部を改正する政令」(平成二十九年政令第七号、公布日2017-01-25)が改正法令として掲載されています。対象法令として租税特別措置法施行令(昭和三十二年政令第四十三号)が示されており、更新一覧日は20260928と記載されています。改正の具体的な内容や施行日は、提供された情報からは確認できません。",
     "business_impact_ja": "租税特別措置法施行令が対象法令に含まれているため、畜産物関連の事業や税務上の取扱いに関係する可能性がありますが、実際の影響の有無や程度は提供情報からは判断できません。",
     "recommended_action_ja": "改正の内容および施行時期については、e-Gov法令検索等の日本語の公式情報源で原文を確認することをご検討ください。",
@@ -209,10 +213,6 @@
         "business_impact": "尽管修订政令的标题以畜产品价格稳定为主题，适用《租税特别措施法施行令》的纳税人仍可能受到所列修订的影响。元数据未指明涉及的具体纳税人或税收措施。",
         "recommended_action": "可考虑查阅日文官方来源，以明确修订的税收条款、其适用范围以及任何生效日期或过渡性规定。"
       }
-    },
-    "confidence": "medium",
-    "ai_notes": "Based on the title and structured metadata, not the operative provisions; this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T04:49:38Z",
-    "summary_model": "gpt-6.1-sol"
+    }
   }
 ]
