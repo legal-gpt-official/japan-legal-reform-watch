@@ -77,7 +77,7 @@ class TestPolicy(unittest.TestCase):
     def test_state_counts_requeues_and_forgets_fixed_items(self):
         d = {"requeue": {"english": ["raw-a"]}, "parked": ["raw-p"]}
         s = qg.next_state({"attempts": {"raw-a": {"count": 1}, "raw-gone": {"count": 1},
-                                        "raw-p": {"count": 2}}}, d, "2026-10-17")
+                                        "raw-p": {"count": 2}}}, d, {"raw-a"}, "2026-10-17")
         self.assertEqual(s["attempts"]["raw-a"]["count"], 2)
         self.assertEqual(s["attempts"]["raw-p"]["count"], 2)
         self.assertNotIn("raw-gone", s["attempts"])
@@ -88,6 +88,130 @@ class TestPolicy(unittest.TestCase):
         for write in ("save_json(qa.PUBLISHED_PATH", "save_json(STATE_PATH", "save_json(requeue.AUTO_REQUEUE_PATH"):
             self.assertIn(write, enforce_block, "every write is inside the enforce branch")
         self.assertEqual(source.count("save_json("), 3)
+
+
+class TestEnforceOnTheRealCorpus(unittest.TestCase):
+    """Runs the real enforce path (main) over a temporary copy of the published
+    corpus, the way the daily step does, and compares item by item."""
+
+    def setUp(self):
+        import shutil
+        import tempfile
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
+        paths = {}
+        for name, src in (("published", qa.PUBLISHED_PATH), ("raw", qa.RAW_PATH), ("cache", qa.CACHE_PATH)):
+            dst = self.tmp / f"{name}.json"
+            shutil.copyfile(src, dst)
+            paths[name] = dst
+        (self.tmp / "state.json").write_text('{"version": 1, "attempts": {}}', encoding="utf-8")
+        for target, attr, value in ((qa, "PUBLISHED_PATH", paths["published"]), (qa, "RAW_PATH", paths["raw"]),
+                                    (qa, "CACHE_PATH", paths["cache"]), (qg, "STATE_PATH", self.tmp / "state.json"),
+                                    (qg.requeue, "AUTO_REQUEUE_PATH", self.tmp / "auto.json")):
+            patcher = mock.patch.object(target, attr, value)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        self.before = json.loads(paths["published"].read_text(encoding="utf-8"))
+
+    def _enforce(self, extra: dict) -> tuple[list[dict], str]:
+        real_audit = qa.audit
+
+        def audit(items, raw, cache):
+            result = real_audit(items, raw, cache)
+            for check, ids in extra.items():
+                result["found"].setdefault(check, []).extend(ids)
+            return result
+        out = io.StringIO()
+        with mock.patch.object(qa, "audit", audit), contextlib.redirect_stdout(out):
+            self.assertEqual(qg.main(["--mode", "enforce"]), 0)
+        return json.loads(qa.PUBLISHED_PATH.read_text(encoding="utf-8")), out.getvalue()
+
+    def _translated_ai_ids(self, n):
+        return [i["id"] for i in self.before
+                if i.get("summary_source") == "claude" and (i.get("translations") or {}).get("zh-Hans")][:n]
+
+    def _changed(self, after):
+        old = {i["id"]: i for i in self.before}
+        return sorted(i["id"] for i in after if i != old[i["id"]])
+
+    def test_the_current_corpus_is_published_unchanged_and_reruns_are_idempotent(self):
+        published_bytes = qa.PUBLISHED_PATH.read_bytes()
+        after, out = self._enforce({})
+        self.assertEqual(self._changed(after), [], "requeue-only findings never change what is published")
+        self.assertEqual(len(after), len(self.before))
+        self.assertEqual(qa.PUBLISHED_PATH.read_bytes(), published_bytes, "no rewrite, so no daily diff")
+        state_bytes = (self.tmp / "state.json").read_bytes()
+        auto_bytes = (self.tmp / "auto.json").read_bytes() if (self.tmp / "auto.json").exists() else b""
+        self._enforce({})
+        self.assertEqual((self.tmp / "state.json").read_bytes(), state_bytes, "a rerun spends no attempt")
+        self.assertEqual((self.tmp / "auto.json").read_bytes() if (self.tmp / "auto.json").exists() else b"",
+                         auto_bytes, "an unprocessed request keeps its time")
+
+    def test_attempts_count_only_requests_a_stage_actually_processed(self):
+        item_id = self._translated_ai_ids(1)[0]
+        extra = {"zh_kana_or_ja_forms": [item_id]}
+        self._enforce(extra)
+        state_file = self.tmp / "state.json"
+        count = lambda: json.loads(state_file.read_text(encoding="utf-8"))["attempts"][item_id]["count"]  # noqa: E731
+        self.assertEqual(count(), 1)
+        for _ in range(3):  # no budget for three days: still requested, no attempt spent
+            self._enforce(extra)
+        self.assertEqual(count(), 1)
+        auto = json.loads((self.tmp / "auto.json").read_text(encoding="utf-8"))
+        requested_at = auto["zh-Hans"][item_id]
+
+        def processed():  # the translate stage redid it after the request, and it still fails
+            cache = json.loads(qa.CACHE_PATH.read_text(encoding="utf-8"))
+            from datetime import datetime, timedelta
+            later = datetime.strptime(requested_at, "%Y-%m-%dT%H:%M:%SZ") + timedelta(seconds=1)
+            cache["entries"]["zh-Hans"][item_id]["translated_at"] = later.strftime("%Y-%m-%dT%H:%M:%SZ")
+            qa.CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+            auto = json.loads((self.tmp / "auto.json").read_text(encoding="utf-8"))
+            auto["zh-Hans"][item_id] = requested_at
+            (self.tmp / "auto.json").write_text(json.dumps(auto), encoding="utf-8")
+        processed()
+        with mock.patch.object(qg, "datetime") as dt:
+            dt.now.return_value.strftime.return_value = "2099-01-01T00:00:00Z"
+            self._enforce(extra)
+        self.assertEqual(count(), 2, "processed and still failing: a second attempt")
+        auto = json.loads((self.tmp / "auto.json").read_text(encoding="utf-8"))
+        requested_at = auto["zh-Hans"][item_id]
+        processed()
+        _, out = self._enforce(extra)
+        self.assertIn("parked after 2 attempts 1", out, "after two processed attempts it waits for a person")
+        auto = json.loads((self.tmp / "auto.json").read_text(encoding="utf-8"))
+        self.assertNotIn(item_id, auto.get("zh-Hans", {}))
+        after, _ = self._enforce({})
+        self.assertEqual(self._changed(after), [])
+
+    def test_a_broken_check_flagging_hundreds_withholds_nothing(self):
+        broken = self._translated_ai_ids(400)
+        after, out = self._enforce({"zh_era": broken[:300], "en_law_number_year": broken[300:]})
+        self.assertIn("circuit breaker", out)
+        self.assertIn("::warning::Publication policy would withhold 400", out)
+        self.assertEqual(self._changed(after), [], "no item may lose its English or Chinese")
+        auto = json.loads((self.tmp / "auto.json").read_text(encoding="utf-8"))
+        self.assertTrue(auto.get("zh-Hans") or auto.get("english"), "regeneration is still requested")
+
+    def test_at_the_limit_only_the_flagged_renderings_are_withheld(self):
+        ids = self._translated_ai_ids(qg.MAX_WITHHOLD_PER_RUN)
+        after, out = self._enforce({"zh_truncated": ids[:-1], "en_law_number_year": ids[-1:]})
+        self.assertNotIn("circuit breaker", out)
+        self.assertEqual(self._changed(after), sorted(ids))
+        by_id = {i["id"]: i for i in after}
+        for item_id in ids[:-1]:
+            self.assertNotIn("translations", by_id[item_id])
+            self.assertEqual(by_id[item_id]["summary_source"], "claude", "a Chinese defect keeps the English")
+        self.assertEqual(by_id[ids[-1]]["summary_source"], "rule_based")
+        for item_id in ids:
+            for key in ("title_ja", "source_name", "source_url", "stage", "published_at"):
+                self.assertEqual(by_id[item_id].get(key), {i["id"]: i for i in self.before}[item_id].get(key))
+
+    def test_one_over_the_limit_trips_the_breaker(self):
+        ids = self._translated_ai_ids(qg.MAX_WITHHOLD_PER_RUN + 1)
+        after, out = self._enforce({"zh_truncated": ids})
+        self.assertIn("circuit breaker", out)
+        self.assertEqual(self._changed(after), [])
 
 
 class TestDailyWorkflowPolicyStep(unittest.TestCase):
@@ -101,7 +225,8 @@ class TestDailyWorkflowPolicyStep(unittest.TestCase):
                       "name: Build public pages", "name: Commit and push updated data"):
             self.assertLess(gate, wf.index(later), later)
         step = wf[gate:wf.index("\n      - name:", gate + 1)]
-        self.assertIn("QUALITY_GATE_MODE: report", step, "enforcement needs the owner's approval")
+        self.assertIn("QUALITY_GATE_MODE: enforce", step)
+        self.assertEqual(qg.MAX_WITHHOLD_PER_RUN, 15, "the breaker the owner approved enforcement with")
         self.assertNotIn("API_KEY", step)
 
     def test_state_files_are_committed(self):
