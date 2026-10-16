@@ -1,10 +1,14 @@
 {
- "created_at": "2026-10-16T06:37:18Z",
- "reason": "2026-10-16 daily-QC rollout: one English summary garbled the MAFF Food Safety and Consumer Affairs Bureau name; one closed JSDA consultation's Chinese title read as open",
+ "created_at": "2026-10-16T08:51:06Z",
+ "reason": "2026-10-16 stale-wording follow-up: regenerated summaries of consultations whose deadline is inherited from e-Gov said no deadline was given (payload now carries comment_deadline)",
  "english": [
-  "raw-2126e38a1e52950f"
+  "raw-cdf08d69b70638f7",
+  "raw-dce152df72edc09d",
+  "raw-0c9a53571a2e384e"
  ],
- "zh-Hans": [
-  "raw-108aadb90834aecf"
+ "japanese": [
+  "raw-e7b550b119ddbac6",
+  "raw-dd1900dce0156117",
+  "raw-2de63923a2d22f38"
  ]
 }

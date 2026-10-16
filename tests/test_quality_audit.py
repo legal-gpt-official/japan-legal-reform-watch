@@ -147,6 +147,9 @@ class TestQualityAudit(unittest.TestCase):
         found = run(neutral, raw={})
         for check in ("en_stale_open", "ja_stale_open", "zh_stale_open"):
             self.assertNotIn(check, found, check)
+        results = item(**dict(base, stage="Public Comment Results Published"),
+                       zh={"recommended_action": "建议查阅官方来源，以确认省令草案的内容、当前状态及公开征求意见结果。"})
+        self.assertNotIn("zh_stale_open", run(results, raw={}), "'current status' is faithful, not open-tense")
         still_open = item(**dict(base, stage="Public Comment Open"),
                           summary_en="MAFF is seeking public comments on a draft notice.",
                           summary_ja="農林水産省は意見募集を行っています。", zh={"summary": "正在公开征求意见。"})

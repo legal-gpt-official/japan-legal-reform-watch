@@ -539,7 +539,7 @@ def cache_key(item: dict, raw_by_id: dict) -> str:
 def source_payload(item: dict, raw: dict) -> dict:
     """Return only source metadata shared by the English and Japanese prompts."""
     raw_summary = (raw.get("raw_summary") or item.get("raw_summary") or "").strip()
-    return {
+    payload = {
         "id": item.get("id", ""),
         "title_ja": item.get("title_ja", ""),
         "source_name": item.get("source_name", ""),
@@ -557,6 +557,14 @@ def source_payload(item: dict, raw: dict) -> dict:
             ),
         },
     }
+    # The trusted structured public-comment deadline Stage 2 publishes on the card
+    # (own metadata, or inherited from the matching e-Gov listing). Without it a
+    # summary of an inherited-deadline item said no deadline was given.
+    if item.get("comment_deadline"):
+        payload["comment_deadline"] = item["comment_deadline"]
+        if item.get("comment_deadline_inherited"):
+            payload["comment_deadline_basis"] = "official e-Gov public-comment listing for the same consultation"
+    return payload
 
 
 _KANJI_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4,

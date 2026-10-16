@@ -1918,6 +1918,16 @@ class TestEnglishRequeue(unittest.TestCase):
         self.assertEqual(published["title_en"], before["title_en"])
 
 
+class TestDeadlineInPayload(unittest.TestCase):
+    def test_the_published_structured_deadline_reaches_both_prompts(self):
+        item = {"title_ja": "告示案に係る意見募集", "comment_deadline": "2026-09-25T00:00:00+09:00",
+                "comment_deadline_source": "related_egov_item", "comment_deadline_inherited": True}
+        payload = su.source_payload(item, {})
+        self.assertEqual(payload["comment_deadline"], "2026-09-25T00:00:00+09:00")
+        self.assertIn("e-Gov", payload["comment_deadline_basis"])
+        self.assertNotIn("comment_deadline", su.source_payload({"title_ja": "x"}, {}))
+
+
 class TestJapaneseRequeue(unittest.TestCase):
     """The `japanese` requeue section redoes a Japanese summary in --japanese-only runs only."""
 
