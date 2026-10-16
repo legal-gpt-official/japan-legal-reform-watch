@@ -11511,6 +11511,12 @@
     "ai_notes": "Based only on the Japanese title, publication date, and comment period; the contents of the draft are not available. The 'Public Comment Closed' stage and 'Finance / AML' area are keyword-based preliminary labels, not verified. Whether the amendments were finalized is unknown.",
     "summarized_at": "2026-10-12T00:18:23Z",
     "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "2025年11月18日、「協会員の内部管理責任者等に関する規則」等の一部改正案が公示され、意見募集が行われました（募集期間：2025年11月18日～12月17日）。提供されたメタデータには、具体的な改正内容や施行予定の記載はありません。",
+    "business_impact_ja": "改正案の内容によっては、協会員の内部管理責任者等に関する社内規程や管理体制に影響する可能性があります。",
+    "recommended_action_ja": "日本証券業協会の日本語公式資料で、改正案の具体的内容、対象範囲およびその後の公表情報を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-16T08:43:32Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "（已结束）公开征求意见：《协会会员内部管理责任人等相关规则》等部分修订案",
@@ -11518,13 +11524,7 @@
         "business_impact": "如该修订获得采纳，JSDA会员公司（如证券公司）可能受到影响，内容或涉及内部管理责任人相关安排。根据现有元数据，无法确定具体适用范围及生效日期。",
         "recommended_action": "建议查阅日文官方的JSDA文件及后续公告，以确认修订的具体内容、采纳情况及时间安排。"
       }
-    },
-    "summary_ja": "2025年11月18日、「協会員の内部管理責任者等に関する規則」等の一部改正案が公示され、意見募集が行われました（募集期間：2025年11月18日～12月17日）。提供されたメタデータには、具体的な改正内容や施行予定の記載はありません。",
-    "business_impact_ja": "改正案の内容によっては、協会員の内部管理責任者等に関する社内規程や管理体制に影響する可能性があります。",
-    "recommended_action_ja": "日本証券業協会の日本語公式資料で、改正案の具体的内容、対象範囲およびその後の公表情報を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-16T08:43:32Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-afb579e901ac9828",
