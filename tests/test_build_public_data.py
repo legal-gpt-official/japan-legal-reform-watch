@@ -84,6 +84,32 @@ class TestStageClassification(unittest.TestCase):
             "Public Comment Results Published",
         )
 
+    def test_a_draft_named_result_is_a_call_not_results(self):
+        """15 calls were published as results until 2026-10-16 because the
+        consulted document's own name contains 結果 (審議結果（案）)."""
+        for title in (
+            "シアナジンに係る食品健康影響評価に関する審議結果（案）についての意見・情報の募集について",
+            "令和7年度電波の利用状況調査に係る電波の有効利用の程度の評価結果（案）に対する意見募集（各種無線システム及び公共業務用無線局）",
+            "ガスシステム改革の検証結果と今後の方向性（案）に対する意見公募について",
+            "ブロマシルに係る食品健康影響評価に関する審議結果(案)についての意見・情報の募集について",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_stage(title, "public_comment_rss"), "Public Comment Open")
+        self.assertEqual(
+            bpd.classify_stage("（受付終了）シアナジンに係る審議結果（案）についての意見・情報の募集について",
+                               "public_comment_rss"),
+            "Public Comment Closed",
+        )
+
+    def test_real_results_still_win_when_a_draft_name_also_contains_results(self):
+        for title in (
+            "○○の改正（案）に関する御意見の募集の結果について",
+            "審議結果（案）についての意見・情報の募集の結果について",
+            "評価結果（案）に対する意見募集結果の公示",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(bpd.classify_stage(title, "public_comment_rss"), "Public Comment Results Published")
+
     def test_results_marker_wins_over_closed_marker(self):
         # Results markers are checked before closed markers.
         self.assertEqual(

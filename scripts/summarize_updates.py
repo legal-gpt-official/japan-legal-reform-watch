@@ -75,6 +75,7 @@ from pathlib import Path
 
 import build_public_data as public_data
 import openai_provider
+import requeue
 from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
@@ -202,6 +203,22 @@ CAUTION_PHRASES = (
 
 logger = logging.getLogger("jlrw.summarize")
 
+# Official English titles from the Government of Japan's Japanese Law
+# Translation database (japaneselawtranslation.go.jp), checked 2026-10-16, for
+# statutes the 2026-10-16 audit found rendered inconsistently. Keyed by the
+# exact Japanese title: a renamed or predecessor law (薬事法 before 薬機法) has a
+# different Japanese title and keeps its own name.
+OFFICIAL_EN_STATUTE_NAMES = {
+    "資金決済に関する法律": "Payment Services Act",
+    "金融商品取引法": "Financial Instruments and Exchange Act",
+    "租税特別措置法": "Act on Special Measures Concerning Taxation",
+    "労働安全衛生法": "Industrial Safety and Health Act",
+    "労働安全衛生規則": "Ordinance on Industrial Safety and Health",
+    "外国為替及び外国貿易法": "Foreign Exchange and Foreign Trade Act",
+    "私的独占の禁止及び公正取引の確保に関する法律": "Act on Prohibition of Private Monopolization and Maintenance of Fair Trade",
+    "個人情報の保護に関する法律": "Act on the Protection of Personal Information",
+}
+
 SYSTEM_PROMPT = (
     "You assist a compliance-triage dashboard that turns Japanese government legal, "
     "regulatory, and public-comment announcements into short, cautious English for "
@@ -229,6 +246,9 @@ SYSTEM_PROMPT = (
     "State the instrument with role 'amending_instrument' (or, if there is none, the one the item is "
     "about) in summary_en, and name the law with role 'target_law' together with its number. Never "
     "write an instrument number that is not in legal_identifiers or the metadata.\n"
+    "- court_case_numbers lists court case numbers with the case code already romanized. Write each "
+    "as era year, code_romanized in parentheses and number, e.g. 'Reiwa 7 (Ra) No. 184' — use "
+    "code_romanized exactly; never invent another romanization of the code.\n"
     "- Where the metadata gives them, also state: the instrument type (Act, Cabinet Order, Ministerial "
     "Ordinance, Notice, draft, bill), whether it amends an existing instrument or is new, the "
     "promulgation date, the effective date, a public-comment deadline, the responsible ministry, and "
@@ -238,8 +258,14 @@ SYSTEM_PROMPT = (
     "statements that would fit any item.\n"
     "- Readers see only your English. Write every field in English, with no Japanese characters "
     "(translate or romanize names), and never mention the input's field names (such as "
-    "source_evidence, legal_identifiers, raw_summary, or published_at); describe the basis in plain "
-    "words, e.g. 'based on the title and listing metadata'.\n\n"
+    "source_evidence, legal_identifiers, court_case_numbers, raw_summary, or published_at); describe "
+    "the basis in plain "
+    "words, e.g. 'based on the title and listing metadata'.\n"
+    "- Official English statute names (Japanese Law Translation). When the metadata names one of these "
+    "exact Japanese titles, use its official English title; do not apply it to a differently named, "
+    "renamed or predecessor law:\n"
+    + "".join(f"  - {ja} -> {en}\n" for ja, en in OFFICIAL_EN_STATUTE_NAMES.items())
+    + "\n"
     "Length and field guidance:\n"
     "- title_en: a short English label of at most 110 characters; anything over 120 is cut off "
     "mid-title on the dashboard. Keep the instrument type and the subject; shorten long statute "
@@ -535,6 +561,58 @@ def legal_identifiers(item: dict, raw: dict) -> list[dict]:
     return found
 
 
+# Court case numbers (令和7(ラ)184) carry a kana or kanji case code. Its standard
+# romanization is fixed, not a matter of style: ラ is "Ra" (an English summary
+# wrote "La" in four Supreme Court items), あ is "A", 受 is "Ju".
+_CASE_CODE_KANA = {
+    "あ": "A", "い": "I", "う": "U", "え": "E", "お": "O", "か": "Ka", "き": "Ki", "く": "Ku",
+    "け": "Ke", "こ": "Ko", "さ": "Sa", "し": "Shi", "す": "Su", "せ": "Se", "そ": "So",
+    "た": "Ta", "ち": "Chi", "つ": "Tsu", "て": "Te", "と": "To", "な": "Na", "に": "Ni",
+    "ぬ": "Nu", "ね": "Ne", "の": "No", "は": "Ha", "ひ": "Hi", "ふ": "Fu", "へ": "He",
+    "ほ": "Ho", "ま": "Ma", "み": "Mi", "む": "Mu", "め": "Me", "も": "Mo", "や": "Ya",
+    "ゆ": "Yu", "よ": "Yo", "ら": "Ra", "り": "Ri", "る": "Ru", "れ": "Re", "ろ": "Ro",
+    "わ": "Wa", "を": "Wo",
+}
+_CASE_CODE_KANJI = {"受": "Ju", "許": "Kyo", "行": "Gyo"}
+COURT_CASE_RE = re.compile(r"(明治|大正|昭和|平成|令和)(元|\d+)\s*[（(]([^)）\s]{1,3})[)）]\s*(\d+)")
+
+
+def romanize_case_code(code: str) -> str | None:
+    """行ツ -> Gyo-Tsu, ラ -> Ra, 受 -> Ju; None for anything unrecognised."""
+    parts = []
+    for ch in code:
+        if ch in _CASE_CODE_KANJI:
+            parts.append(_CASE_CODE_KANJI[ch])
+            continue
+        hira = chr(ord(ch) - 0x60) if "ァ" <= ch <= "ヶ" else ch
+        if hira not in _CASE_CODE_KANA:
+            return None
+        parts.append(_CASE_CODE_KANA[hira])
+    return "-".join(parts) or None
+
+
+def court_case_numbers(item: dict, raw: dict) -> list[dict]:
+    """Case numbers stated in the title or listing, with the code romanized."""
+    text = unicodedata.normalize(
+        "NFKC", (item.get("title_ja") or "") + " " + (raw.get("raw_summary") or item.get("raw_summary") or ""))
+    found, seen = [], set()
+    for era, year_text, code, number in COURT_CASE_RE.findall(text):
+        romaji = romanize_case_code(code)
+        key = (era, year_text, code, number)
+        if romaji is None or key in seen:
+            continue
+        seen.add(key)
+        year = 1 if year_text == "元" else int(year_text)
+        found.append({
+            "as_written": f"{era}{year_text}({code}){number}",
+            "era_year": f"{era} {year}",
+            "gregorian_year": ERA_BASE_YEAR[era] + year,
+            "code_romanized": romaji,
+            "number": int(number),
+        })
+    return found
+
+
 # raw_summary values that are only a feed's category label (報道発表, 地球環境,
 # PMDA 安全対策業務 新着情報) carry no information about the item itself.
 _LABEL_ONLY_MAX_CHARS = 20
@@ -595,6 +673,7 @@ def english_source_payload(item: dict, raw: dict) -> dict:
     payload = source_payload(item, raw)
     payload["source_evidence"] = source_evidence(item, raw)
     payload["legal_identifiers"] = legal_identifiers(item, raw)
+    payload["court_case_numbers"] = court_case_numbers(item, raw)
     return payload
 
 
@@ -1371,6 +1450,10 @@ def main(argv: list[str] | None = None) -> int:
 
     raw_list = load_json(RAW_PATH, [])  # requirement 7: optional auxiliary input
     raw_by_id = {r.get("id"): r for r in raw_list if isinstance(r, dict) and r.get("id")}
+    # Audit-requested one-shot English regeneration (data/requeue.json). Only
+    # listed items whose cached summary predates the request are redone.
+    requeue_request = requeue.load(requeue.REQUEUE_PATH)
+    requeued_items = 0
     cache = load_json(CACHE_PATH, {})
     if not isinstance(cache, dict):
         cache = {}
@@ -1555,6 +1638,23 @@ def main(argv: list[str] | None = None) -> int:
                     logger.error("FAIL JA %s type=%s", it.get("id"), error_type)
             continue
 
+        if (
+            isinstance(cached, dict) and valid_result(cached)
+            and args.english_only
+            and requeue.due(requeue_request, "english", it.get("id") or "", cached.get("summarized_at"))
+            and api_key_available and not provider_fatal and not cost_cap_reached()
+            and (api_limit is None or (
+                len(pending) + len(pending_ja)
+                if (args.batch or (args.english_only and args.parallel > 1))
+                else api_calls + provider_aborted + cost_budget_skipped
+            ) < api_limit)
+        ):
+            # Fall through to the cache-miss path: this summary was found
+            # defective. Only taken while there is budget to redo it now, so an
+            # item that cannot be redone this run keeps its current summary.
+            requeued_items += 1
+            logger.info("REQUEUE EN %s", it.get("id"))
+            cached = None
         if isinstance(cached, dict) and valid_result(cached):
             apply_result(it, cached, cached.get("summarized_at", fetched_at), cached.get("summary_model", model))
             cache_hits += 1
@@ -2052,6 +2152,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"target_items    : {len(targets)}")
     print(f"api_limit       : {api_limit if api_limit is not None else 'none'}")
     print(f"cache_hits      : {cache_hits}")
+    print(f"requeued_items  : {requeued_items}")
     print(f"api_calls       : {api_calls}")
     print(f"summarized_items: {summarized}")
     print(f"failed_items    : {failed}")

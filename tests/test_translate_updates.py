@@ -2420,5 +2420,88 @@ class TestParkedTitleRootCauses(unittest.TestCase):
         self.assertEqual(tu.PROMPT_VERSION, "zh-hans-v3")
 
 
+
+class TestRequeue(TranslateTestBase):
+    """data/requeue.json re-translates exactly the listed items, once."""
+
+    def setUp(self):
+        super().setUp()
+        import requeue
+        self.rq = requeue
+        self._saved_rq = requeue.REQUEUE_PATH
+        requeue.REQUEUE_PATH = Path(self._tmp.name) / "requeue.json"
+
+    def tearDown(self):
+        self.rq.REQUEUE_PATH = self._saved_rq
+        super().tearDown()
+
+    def _seed(self, item, translated_at="2020-01-01T00:00:00Z"):
+        cache = tu.default_cache()
+        source_hash = tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION)
+        cache["entries"][LOCALE][item["id"]] = tu.cache_entry(
+            source_hash, tu.PROMPT_VERSION, translated_at, "old-model", good_translation())
+        self.write_cache(cache)
+        published = dict(item)
+        published["translations"] = {LOCALE: good_translation()}
+        self.write_input([published])
+
+    def _request(self, ids, created_at="2025-01-01T00:00:00Z"):
+        self.rq.REQUEUE_PATH.write_text(json.dumps(
+            {"created_at": created_at, "reason": "test", "english": [], LOCALE: ids}), encoding="utf-8")
+
+    def test_a_listed_item_is_retranslated_once(self):
+        item = sample_item()
+        self._seed(item)
+        self._request([item["id"]])
+        fixed = dict(good_translation(), title="公开征求意见：药店调剂指南修订草案（修正）")
+        calls = self.install_counting_api(fields=fixed)
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 1)
+        self.assertEqual(parse_summary(out)["requeued_items"], "1")
+        self.assertEqual(self.read_output()[0]["translations"][LOCALE]["title"], fixed["title"])
+
+        calls = self.install_counting_api()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(calls["n"], 0, "satisfied once: the newer translation is not redone")
+        self.assertEqual(parse_summary(out)["requeued_items"], "0")
+
+    def test_an_unlisted_item_is_never_retranslated(self):
+        item = sample_item()
+        self._seed(item)
+        self._request(["raw-someone-else"])
+        calls = self.install_counting_api()
+        self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(calls["n"], 0)
+
+    def test_without_budget_the_current_translation_stays(self):
+        item = sample_item()
+        self._seed(item)
+        self._request([item["id"]])
+        calls = self.install_counting_api()
+        self.run_main(["--locale", LOCALE, "--limit", "0"])
+        self.assertEqual(calls["n"], 0)
+        self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
+    def test_a_missing_or_malformed_request_is_ignored(self):
+        self.assertEqual(self.rq.load(Path(self._tmp.name) / "absent.json")["zh-Hans"], set())
+        self.rq.REQUEUE_PATH.write_text("{not json", encoding="utf-8")
+        self.assertEqual(self.rq.load()["english"], set())
+        self.rq.REQUEUE_PATH.write_text(json.dumps({"zh-Hans": ["x"]}), encoding="utf-8")
+        self.assertFalse(self.rq.due(self.rq.load(), "zh-Hans", "x", None), "no created_at: nothing is due")
+
+
+
+class TestStatuteGlossary(unittest.TestCase):
+    """No official Chinese statute names exist; the corpus majority is used."""
+
+    def test_meaning_level_variants_are_pinned(self):
+        self.assertEqual(tu.GLOSSARY_ZH_HANS["Payment Services Act (資金決済に関する法律)"], "资金结算法")
+        self.assertEqual(tu.GLOSSARY_ZH_HANS["Industrial Safety and Health (労働安全衛生)"], "劳动安全卫生")
+        self.assertEqual(
+            tu.GLOSSARY_ZH_HANS["Act on Special Measures Concerning Taxation (租税特別措置法)"], "租税特别措施法")
+        self.assertIn("Payment Services Act (資金決済に関する法律) -> 资金结算法", tu.SYSTEM_PROMPT)
+
+
 if __name__ == "__main__":
     unittest.main()

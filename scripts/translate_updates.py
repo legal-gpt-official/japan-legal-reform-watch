@@ -72,6 +72,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import openai_provider
+import requeue
 from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
@@ -258,6 +259,12 @@ GLOSSARY_ZH_HANS = {
     "学校医 (school physician)": "校医",
     "学校歯科医 (school dentist)": "校牙医",
     "学校薬剤師 (school pharmacist)": "校药剂师",
+    # Japan has no official Chinese statute translations; these follow the
+    # rendering most of the corpus already uses. 2026-10-16 audit: 资金清算
+    # (清算 = clearing, a different concept) and the typo 劣动 were found.
+    "Payment Services Act (資金決済に関する法律)": "资金结算法",
+    "Act on Special Measures Concerning Taxation (租税特別措置法)": "租税特别措施法",
+    "Industrial Safety and Health (労働安全衛生)": "劳动安全卫生",
 }
 
 logger = logging.getLogger("jlrw.translate")
@@ -1918,6 +1925,7 @@ def process_translation_batch(
 
     started_at = time.monotonic()
     candidates: list[tuple[dict, str, bool, dict, tuple, dict]] = []
+    requeue_request = requeue.load(requeue.REQUEUE_PATH)
 
     for it in items:
         item_id = it.get("id") or ""
@@ -1925,6 +1933,9 @@ def process_translation_batch(
         source_hash = compute_source_hash(it, locale, PROMPT_VERSION)
         cached = entries.get(item_id)
         reason = candidate_reason(cached, source_hash, PROMPT_VERSION)
+        if (reason is None and len(candidates) < max(0, limit)
+                and requeue.due(requeue_request, locale, item_id, cached.get("translated_at"))):
+            reason = "requeued"
         if reason is None:
             apply_translation(it, cached, locale)
             stats["cache_hits"] += 1
@@ -1942,6 +1953,9 @@ def process_translation_batch(
             (isinstance(cached, dict) and cached.get("source_hash") == source_hash),
         )
         known_fields, missing_fields, field_keys = resolve_cached_fields(it, field_entries, locale)
+        if reason == "requeued":
+            # The memoized fields are what was found defective; ask for all four.
+            known_fields, missing_fields = {}, TRANSLATION_FIELDS
         if not missing_fields:
             # Fully memoized from identical English elsewhere: no request needed
             # and no --limit budget consumed.
@@ -2540,6 +2554,8 @@ def main(argv: list[str] | None = None) -> int:
         loop_items = items
 
     pending_direct: list[tuple[dict, str, bool, str, dict, tuple, dict]] = []
+    requeue_request = requeue.load(requeue.REQUEUE_PATH)
+    requeued_items = 0
 
     for it in loop_items:
         item_id = it.get("id") or ""
@@ -2551,6 +2567,14 @@ def main(argv: list[str] | None = None) -> int:
         # cached translation still passes the field + title quality checks (so an
         # older-version entry, or any low-quality title, is a cache miss).
         reason = candidate_reason(cached, source_hash, PROMPT_VERSION)
+        # Audit-requested one-shot re-translation (data/requeue.json), taken only
+        # while there is budget to redo it now: an item that cannot be redone
+        # this run keeps its current translation rather than losing it.
+        if (reason is None and api_allowed and not provider_fatal
+                and api_calls + len(pending_direct) < args.limit
+                and requeue.due(requeue_request, locale, item_id, cached.get("translated_at"))):
+            reason = "requeued"
+            requeued_items += 1
 
         if reason is None:
             # Adopt cached translation. translated_at is NOT touched (no churn).
@@ -2575,6 +2599,8 @@ def main(argv: list[str] | None = None) -> int:
         # three rule-based sentences across every not-yet-summarized item, so this
         # removes both their input and their output tokens.
         known_fields, missing_fields, field_keys = resolve_cached_fields(it, field_entries, locale)
+        if reason == "requeued":
+            known_fields, missing_fields = {}, TRANSLATION_FIELDS
         if not missing_fields:
             # Nothing left to ask for. Rebuild the item entry from memoized fields
             # at no cost; this does NOT consume the --limit API budget.
@@ -2968,6 +2994,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"omit_title_ja_reference   : {str(args.omit_title_ja_reference).lower()}")
     print(f"input_items               : {len(items)}")
     print(f"cache_hits                : {cache_hits}")
+    print(f"requeued_items            : {requeued_items}")
     print(f"field_cache_hits          : {field_cache_hits}")
     print(f"field_cache_seeded        : {seeded_fields}")
     print(f"field_cache_reviewed      : {reviewed_fields}")
