@@ -1792,7 +1792,9 @@ class TestSourceEvidenceAndIdentifiers(unittest.TestCase):
         for phrase in ("legal_identifiers", "source_evidence", "effective date",
                        "Never write an instrument number that is not in legal_identifiers",
                        "Do not pad", "lowered automatically",
-                       "never mention the input's field names", "announced (published_at)"):
+                       "never mention the input's field names", "announced (published_at)",
+                       "Keep every specific party, obligated entity",
+                       "Do not add parties the source does not name"):
             self.assertIn(phrase, prompt)
 
     def test_every_fresh_english_result_path_applies_the_cap(self):

@@ -330,6 +330,14 @@ class TestCompletenessMetrics(unittest.TestCase):
         self.assertTrue(dirty["body_has_japanese"])
         self.assertTrue(dirty["mentions_input_fields"])
 
+    def test_generic_party_wording_in_business_impact_is_reported(self):
+        generic = ev.score_english(good_result(
+            business_impact_en="The proposal may concern persons or businesses and other stakeholders."), entry())
+        specific = ev.score_english(good_result(
+            business_impact_en="Registered money lenders may be affected by the draft."), entry())
+        self.assertTrue(generic["generic_impact"])
+        self.assertFalse(specific["generic_impact"])
+
     def test_overconfidence_is_measured_before_the_cap(self):
         scored = ev.score_english(good_result(confidence="medium"), entry(), model_confidence="high")
         self.assertTrue(scored["model_overconfident"])

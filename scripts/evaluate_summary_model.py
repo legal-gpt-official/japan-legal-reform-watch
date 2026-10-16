@@ -347,6 +347,18 @@ INPUT_FIELD_NAME_RE = re.compile(
     r"source_evidence|legal_identifiers|raw_summary|published_at|title_only|structured_metadata|descriptive_text")
 
 
+# Generic party wording in business_impact_en ("persons or businesses",
+# "stakeholders"). Reported, never a blocker: it is a reading aid, not a
+# verdict, because it cannot tell whether the source named a specific party
+# at all ("the affected businesses or persons cannot be determined" is right
+# when it did not). Read the flagged items in the side-by-side file.
+_GENERIC = r"(?:persons|businesses|individuals|organi[sz]ations|entities|companies|parties)"
+GENERIC_IMPACT_RE = re.compile(
+    rf"\bstakeholders?\b|\b{_GENERIC}\s+(?:and|or)\s+(?:other\s+)?{_GENERIC}\b"
+    r"|\borgani[sz]ations working with\b",
+    re.IGNORECASE)
+
+
 def identifier_in_text(number: int, text: str) -> bool:
     """True when the output cites the instrument number ('No. 341' or similar)."""
     return re.search(rf"(?:No\.?|Number|#)\s*{number}(?!\d)", text, re.IGNORECASE) is not None
@@ -402,6 +414,7 @@ def score_english(result: dict, entry: dict, model_confidence: str | None = None
             and summarizer.CONFIDENCE_RANK[model_confidence] > summarizer.CONFIDENCE_RANK[ceiling]
         ),
         "body_has_japanese": summarizer.public_data.contains_japanese(body),
+        "generic_impact": bool(GENERIC_IMPACT_RE.search(text_fields["business_impact_en"])),
         "mentions_input_fields": bool(INPUT_FIELD_NAME_RE.search(joined + " " + str(result.get("ai_notes", "")))),
         "identifiers_expected": len(identifiers),
         "identifiers_kept": sum(1 for i in identifiers if identifier_in_text(i["number"], joined)),
@@ -609,6 +622,7 @@ def aggregate(run: dict) -> dict:
     agg["key_dates_kept_pct"] = pct("key_dates_kept", "key_dates_expected")
     agg["model_overconfident_pct"] = rate(lambda s: s.get("model_overconfident"))
     agg["body_japanese_pct"] = rate(lambda s: s.get("body_has_japanese"))
+    agg["generic_impact_pct"] = rate(lambda s: s.get("generic_impact"))
     agg["input_field_leak_pct"] = rate(lambda s: s.get("mentions_input_fields"))
     lengths = [s.get("lengths") or {} for s in ok]
     for field in ("summary_en", "business_impact_en", "recommended_action_en"):
@@ -642,6 +656,7 @@ def compare(args) -> int:
         ("key dates kept %", "key_dates_kept_pct", "{:.1f}"),
         ("overconfident (pre-cap) %", "model_overconfident_pct", "{:.1f}"),
         ("Japanese in body %", "body_japanese_pct", "{:.1f}"),
+        ("generic impact subject %", "generic_impact_pct", "{:.1f}"),
         ("input field names shown %", "input_field_leak_pct", "{:.1f}"),
         ("mean len summary", "mean_len_summary_en", "{:.0f}"),
         ("mean len business impact", "mean_len_business_impact_en", "{:.0f}"),
