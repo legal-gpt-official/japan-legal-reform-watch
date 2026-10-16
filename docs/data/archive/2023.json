@@ -592,6 +592,10 @@
     "relevance_score": 5.0,
     "first_seen_at": "2026-08-22",
     "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, not the substantive amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T06:02:08Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "実用発電用原子炉の設置、運転等に関する規則（昭和五十三年通商産業省令第七十七号）及び研究開発段階発電用原子炉に関する規則の一部を改正する規則（令和五年原子力規制委員会規則第四号）に関する情報です。メタデータによれば、公布日は2023年9月28日、施行日は2025年6月6日とされています。改正の具体的な内容は原文メタデータに記載されていません。",
     "business_impact_ja": "発電用原子炉の設置・運転等に関わる事業者において、規則改正に伴う対応の要否を確認する必要が生じる可能性があります。改正の詳細内容によっては、実務上の手続や体制に影響が及ぶことも考えられます。",
     "recommended_action_ja": "e-Gov法令検索等の日本語の公式情報源で、改正規則の具体的な条文および施行日を含む詳細をご確認いただくことをお勧めします。",
@@ -605,11 +609,7 @@
         "business_impact": "实用发电用核反应堆及研发阶段发电用核反应堆的运营者可能受到核反应堆设置和运行相关规则变更的影响；根据所提供的信息，无法确定具体的运营影响。",
         "recommended_action": "查阅日文官方来源或可明确修订条款、其对各类核反应堆的适用范围，以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "confidence": "medium",
-    "ai_notes": "Based on the title and structured metadata, not the substantive amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T06:02:08Z",
-    "summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-b49bffa961584f78",
