@@ -109,6 +109,25 @@ class TestQualityAudit(unittest.TestCase):
         self.assertNotIn("zh_title_gate", found)
         self.assertNotIn("zh_era", found, "an era year the source states is allowed")
 
+    def test_era_in_a_court_case_number_or_a_converted_year_is_not_an_era_error(self):
+        court = {"raw-court": {"raw_summary": "令和8年8月28日 最高裁判所第二小法廷 判決 棄却 東京高等裁判所 令和6(ネ)714"}}
+        base = dict(id="raw-court", title_ja="令和6(受)2169 建物買取代金請求事件", source_name="Courts in Japan (裁判所)",
+                    stage="Court Decision", published_at="2026-08-28",
+                    title_en="Supreme Court judgment on a building purchase price claim",
+                    summary_en="Judgment of 2026-08-28 dismissing the appeal (Reiwa 6 (Ju) No. 2169).",
+                    business_impact_en="x.", recommended_action_en="Review the judgment.")
+        case = item(**base, zh={"title": "最高法院判决：令和6年（受）第2169号建筑物买取价款请求案",
+                                "summary": "2026-08-28判决驳回上诉。"})
+        converted = item(**base, zh={"title": "最高法院判决：建筑物买取价款请求案",
+                                     "summary": "令和8年（2026-08-28）判决驳回上诉。"})
+        self.assertNotIn("zh_era", run(case, raw=court))
+        self.assertNotIn("zh_era", run(converted, raw=court))
+
+    def test_a_wrong_era_conversion_is_still_an_era_error(self):
+        wrong = item(summary_en=GOOD_EN["summary_en"].replace("Cabinet Order No. 72 of 2019", "Cabinet Order No. 72"),
+                     zh={"summary": "修订《牙科卫生师法施行规则》（昭和一年厚生省令第46号）。"})
+        self.assertIn("zh_era", run(wrong, raw={"raw-egov": {"raw_summary": "法令番号: 平成元年厚生省令第四十六号"}}))
+
     def test_stage_prefix_contradictions_only(self):
         closed_open = item(stage="Public Comment Closed", zh={"title": "公开征求意见：某规则修订草案"})
         variant = item(stage="Public Comment Closed", zh={"title": "公开征求意见（已结束）：某规则修订草案"})

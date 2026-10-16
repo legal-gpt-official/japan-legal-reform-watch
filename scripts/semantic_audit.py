@@ -28,6 +28,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -134,6 +135,75 @@ def sample(items: list[dict], raw_by_id: dict, size: int, today: str, recent_day
     return half + rest
 
 
+NOT_ADOPTED_STAGES = ("Public Comment Open", "Public Comment Closed", "Bill Submitted", "Draft Guideline")
+_LAW_NUMBER_RE = re.compile(r"(No\.\s*\d+\s+of\s+)(\d{4})")
+_ISO_DATE_RE = re.compile(r"\b(\d{4})(-\d{2}-\d{2})\b")
+
+
+def _append(field: str, sentence: str):
+    def mutate(item: dict) -> bool:
+        item[field] = (item.get(field) or "").rstrip() + " " + sentence
+        return True
+    return mutate
+
+
+def _shift_law_year(item: dict) -> bool:
+    text = item.get("summary_en") or ""
+    if not _LAW_NUMBER_RE.search(text):
+        return False
+    item["summary_en"] = _LAW_NUMBER_RE.sub(lambda m: m.group(1) + str(int(m.group(2)) - 5), text, count=1)
+    return True
+
+
+def _shift_date(item: dict) -> bool:
+    text = item.get("summary_en") or ""
+    if not _ISO_DATE_RE.search(text):
+        return False
+    item["summary_en"] = _ISO_DATE_RE.sub(lambda m: str(int(m.group(1)) + 1) + m.group(2), text, count=1)
+    return True
+
+
+def _zh_abolished(item: dict) -> bool:
+    zh = (item.get("translations") or {}).get("zh-Hans")
+    if not zh:
+        return False
+    zh["summary"] = (zh.get("summary") or "") + "该法规已被正式废止，相关义务即日失效。"
+    return True
+
+
+# Planted defects that are unambiguously wrong against any source. Each run can
+# seed a few into copies of items outside the sample to measure whether the
+# reviewer still catches what it exists to catch; a missed canary is a warning
+# that the review has gone lenient. Canaries are in-memory copies only.
+CANARIES = (
+    ("draft_vs_enacted", lambda i: (i.get("stage") in NOT_ADOPTED_STAGES) and _append(
+        "summary_en", "The measure has been enacted and is now in force.")(i)),
+    ("obligation_misstated", _append(
+        "business_impact_en", "All businesses in Japan must comply by 2026-12-31 or face criminal penalties.")),
+    ("identifier_error", _shift_law_year),
+    ("date_error", _shift_date),
+    ("zh_meaning_shift", _zh_abolished),
+)
+
+
+def seed_canaries(items: list[dict], exclude: set, count: int, today: str) -> list[tuple[str, dict]]:
+    """Deterministic planted-defect copies of AI items not in the sample."""
+    pool = sorted((i for i in items if i.get("summary_source") == "claude" and i.get("id") not in exclude),
+                  key=lambda i: hashlib.sha256(f"canary|{today}|{i.get('id')}".encode()).hexdigest())
+    out, used = [], set()
+    for n in range(count):
+        kind, mutate = CANARIES[n % len(CANARIES)]
+        for item in pool:
+            if item["id"] in used:
+                continue
+            copy = json.loads(json.dumps(item))
+            if mutate(copy):
+                used.add(item["id"])
+                out.append((kind, copy))
+                break
+    return out
+
+
 def build_user(item: dict, raw: dict) -> str:
     payload = {
         "japanese_source": {
@@ -167,6 +237,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--model", default=os.environ.get("SEMANTIC_AUDIT_MODEL", DEFAULT_MODEL))
     parser.add_argument("--max-cost-usd", type=float, default=0.30)
     parser.add_argument("--today", default=datetime.now(timezone.utc).date().isoformat())
+    parser.add_argument("--canaries", type=int, default=0,
+                        help="planted-defect copies to review alongside the sample (sensitivity check)")
     parser.add_argument("--confirm-spend", action="store_true")
     args = parser.parse_args(argv)
     if not openai_provider.is_openai_model(args.model):
@@ -175,15 +247,17 @@ def main(argv: list[str] | None = None) -> int:
     items = load(su.INPUT_PATH, [])
     raw_by_id = {r.get("id"): r for r in load(su.RAW_PATH, []) if isinstance(r, dict)}
     chosen = sample(items, raw_by_id, args.size, args.today)
-    print(f"model {args.model} | sample {len(chosen)} of {sum(1 for i in items if i.get('summary_source') == 'claude')}")
+    canaries = seed_canaries(items, {i["id"] for i in chosen}, args.canaries, args.today)
+    print(f"model {args.model} | sample {len(chosen)} of {sum(1 for i in items if i.get('summary_source') == 'claude')}"
+          f" | canaries {len(canaries)}")
     if not args.confirm_spend:
         print("Nothing was called. Re-run with --confirm-spend.")
         return 0
 
     client = openai_provider.make_client()
     usage_total = su.message_usage(None)
-    records = []
-    for item in chosen:
+    records, canary_records = [], []
+    for kind, item in [(None, i) for i in chosen] + canaries:
         raw = raw_by_id.get(item["id"], {})
         if (su.estimate_usage_cost_usd(usage_total, args.model) or 0.0) >= args.max_cost_usd:
             print("cost cap reached; stopping.")
@@ -197,32 +271,54 @@ def main(argv: list[str] | None = None) -> int:
             rec["issues"] = result.get("issues") or []
         except Exception as exc:  # never log provider bodies or item text
             rec["error_type"] = su.classify_provider_error(exc)
-        records.append(rec)
-        print(f"{item['id']} {rec.get('verdict', 'ERR ' + rec.get('error_type', ''))} "
-              f"issues={len(rec.get('issues', []))}")
+        if kind:
+            rec["canary"] = kind
+            rec["detected"] = bool(rec.get("issues"))
+            rec["type_matched"] = any(i.get("type") == kind for i in rec.get("issues", []))
+            canary_records.append(rec)
+            print(f"canary {kind} {item['id']} detected={rec['detected']} type_matched={rec['type_matched']}")
+        else:
+            records.append(rec)
+            print(f"{item['id']} {rec.get('verdict', 'ERR ' + rec.get('error_type', ''))} "
+                  f"issues={len(rec.get('issues', []))}")
 
     cost = su.estimate_usage_cost_usd(usage_total, args.model) or 0.0
     flagged = [r for r in records if r.get("issues")]
+    reviewed_canaries = [r for r in canary_records if "error_type" not in r]
+    caught = sum(1 for r in reviewed_canaries if r["detected"])
     out = {"ran_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": args.model,
-           "sampled": len(records), "flagged": len(flagged), "usage": usage_total, "cost_usd": cost,
-           "records": records}
+           "reasoning_effort": openai_provider.reasoning_effort(),
+           "sampled": len(records), "flagged": len(flagged),
+           "canaries": len(reviewed_canaries), "canaries_caught": caught,
+           "usage": usage_total, "cost_usd": cost, "records": records, "canary_records": canary_records}
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     lines = [f"# Semantic audit {out['ran_at']}", "",
-             f"sampled {len(records)}, flagged {len(flagged)}, cost ${cost:.4f}", ""]
+             f"sampled {len(records)}, flagged {len(flagged)}, canaries caught {caught}/{len(reviewed_canaries)}, "
+             f"cost ${cost:.4f}", "",
+             "Findings are suggestions from a reviewer model. Confirm each against the official Japanese source "
+             "before listing an id in data/requeue.json; nothing here changes published data.", ""]
     for r in flagged:
         lines += [f"## {r['id']} — {r['source_name']} — {r['stage']}", f"- title_ja: {r['title_ja']}"]
         for issue in r["issues"]:
             lines += [f"- **{issue['severity']} {issue['type']} ({issue['language']})**: {issue['explanation']}",
                       f"  - source: {issue['source_evidence']}", f"  - output: {issue['output_evidence']}"]
         lines.append("")
+    if canary_records:
+        lines += ["## Canaries (planted defects, in-memory copies)", ""]
+        lines += [f"- {r['canary']} on {r['id']}: detected={r.get('detected')} type_matched={r.get('type_matched')}"
+                  for r in canary_records]
     OUT_MD.write_text("\n".join(lines), encoding="utf-8")
     by_type = {}
     for r in flagged:
         for issue in r["issues"]:
             key = f"{issue['severity']}:{issue['type']}"
             by_type[key] = by_type.get(key, 0) + 1
-    print(f"sampled {len(records)} flagged {len(flagged)} by_type {by_type} cost ${cost:.4f}")
+    if caught < len(reviewed_canaries):
+        print(f"::warning::Semantic audit missed {len(reviewed_canaries) - caught} of {len(reviewed_canaries)} "
+              "planted defects; treat a clean result with caution.")
+    print(f"sampled {len(records)} flagged {len(flagged)} by_type {by_type} "
+          f"canaries {caught}/{len(reviewed_canaries)} cost ${cost:.4f}")
     return 0
 
 

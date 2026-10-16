@@ -1,14 +1,18 @@
 name: Semantic audit
 
-# Manual, READ-ONLY sampled semantic review (scripts/semantic_audit.py): a
+# Weekly + manual, READ-ONLY sampled semantic review (scripts/semantic_audit.py): a
 # reviewer model reads a deterministic, risk-weighted sample of published items
 # against their Japanese source and reports meaning-level errors with quoted
 # evidence (obligations, regulated parties, draft vs enacted, transitional
 # measures, identifiers, dates, Chinese/Japanese meaning shifts). Findings are
 # suggestions for a person to confirm; this workflow commits nothing and uploads
-# an artifact. A weekly schedule is proposed but not enabled until the owner
-# approves it.
+# an artifact, so an AI verdict alone can never change published data. Each run
+# also reviews a few planted-defect copies (canaries) and warns when the
+# reviewer misses one. Weekly (Monday 10:00 JST, owner-approved 2026-10-16),
+# clear of the 06:00 JST daily data run.
 on:
+  schedule:
+    - cron: "0 1 * * 1"
   workflow_dispatch:
     inputs:
       size:
@@ -17,6 +21,18 @@ on:
         default: "20"
         type: choice
         options: ["10", "20", "40"]
+      canaries:
+        description: "Planted-defect copies reviewed for sensitivity"
+        required: true
+        default: "5"
+        type: choice
+        options: ["0", "5", "10"]
+      reasoning_effort:
+        description: "Reviewer reasoning effort"
+        required: true
+        default: "medium"
+        type: choice
+        options: ["low", "medium"]
 
 permissions:
   contents: read
@@ -30,7 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      SIZE: ${{ inputs.size }}
+      SIZE: ${{ inputs.size || '20' }}
+      CANARIES: ${{ inputs.canaries || '5' }}
+      OPENAI_REASONING_EFFORT: ${{ inputs.reasoning_effort || 'medium' }}
     steps:
       - name: Check out
         uses: actions/checkout@v5
@@ -53,10 +71,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_SERVICE_TIER: flex
-          OPENAI_REASONING_EFFORT: low
         run: |
           set -o pipefail
-          python scripts/semantic_audit.py --size "$SIZE" --max-cost-usd 0.30 --confirm-spend | tee semantic.log
+          python scripts/semantic_audit.py --size "$SIZE" --canaries "$CANARIES" --max-cost-usd 0.30 --confirm-spend | tee semantic.log
           { echo '### Semantic audit'; echo '```'; tail -n 1 semantic.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload findings for human review

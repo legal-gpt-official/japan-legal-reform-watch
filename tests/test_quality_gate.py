@@ -156,13 +156,37 @@ class TestSemanticAudit(unittest.TestCase):
         self.assertNotIn("save_json(", source)
         self.assertEqual(source.count("write_text("), 2)
 
-    def test_workflow_is_manual_read_only(self):
+    def test_workflow_is_weekly_and_read_only(self):
         wf = (REPO_ROOT / ".github" / "workflows" / "semantic-audit.yml").read_text(encoding="utf-8")
         self.assertIn("workflow_dispatch:", wf)
-        self.assertNotIn("schedule:", wf, "a schedule needs the owner's approval")
+        self.assertIn('cron: "0 1 * * 1"', wf, "weekly, clear of the 21:00 UTC daily run")
         self.assertIn("contents: read", wf)
-        self.assertNotIn("git push", wf)
+        self.assertNotIn("contents: write", wf)
+        for forbidden in ("git push", "git commit", "requeue.json", "legal_updates.json"):
+            self.assertNotIn(forbidden, wf, "an AI verdict alone never changes published data")
         self.assertIn("OPENAI_SERVICE_TIER: flex", wf)
+        self.assertIn('--canaries "$CANARIES"', wf)
+
+    def test_canaries_are_planted_copies_outside_the_sample(self):
+        items = self._items()
+        items[5]["stage"] = "Public Comment Open"
+        items[6]["summary_en"] = "Cabinet Order No. 341 of 2025 amends an order; effective 2026-04-01."
+        items[7]["summary_en"] = "Promulgated 2026-04-01."
+        before = json.dumps(items, sort_keys=True)
+        chosen = {"raw-000", "raw-001"}
+        seeded = sa.seed_canaries(items, chosen, 5, "2026-10-16")
+        self.assertEqual(json.dumps(items, sort_keys=True), before, "the published items are never mutated")
+        kinds = [k for k, _ in seeded]
+        self.assertEqual(kinds, ["draft_vs_enacted", "obligation_misstated", "identifier_error", "date_error",
+                                 "zh_meaning_shift"])
+        ids = [c["id"] for _, c in seeded]
+        self.assertEqual(len(set(ids)), 5)
+        self.assertFalse(chosen & set(ids))
+        by_kind = dict(seeded)
+        self.assertIn("enacted", by_kind["draft_vs_enacted"]["summary_en"])
+        self.assertIn("of 2020", by_kind["identifier_error"]["summary_en"])
+        self.assertIn("2027-04-01", by_kind["date_error"]["summary_en"])
+        self.assertEqual(seeded, sa.seed_canaries(items, chosen, 5, "2026-10-16"), "deterministic")
 
 
 if __name__ == "__main__":
