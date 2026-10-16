@@ -2179,13 +2179,14 @@ class TestWorkflowTranslateStep(unittest.TestCase):
         self.assertGreaterEqual(self.workflow.count("data/translation_cache.json"), 2)
 
     def test_api_key_only_exposed_to_ai_summary_and_translation_steps(self):
-        # Each provider key reaches only the steps that call that provider:
-        # Anthropic for English summaries, OpenAI for Japanese and zh-Hans.
+        # Each provider key reaches only the steps that call that provider.
+        # Since 2026-10-16 every AI step runs on OpenAI, so the daily workflow
+        # exposes no Anthropic key at all.
         for key_line, ai_steps in (
-            ("ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}",
-             ("name: Maintain English summaries",)),
+            ("ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}", ()),
             ("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}",
-             ("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates")),
+             ("name: Maintain English summaries", "name: Maintain Japanese summaries",
+              "name: Translate Simplified Chinese updates")),
         ):
             self.assertEqual(self.workflow.count(key_line), len(ai_steps))
             for step_name in ai_steps:

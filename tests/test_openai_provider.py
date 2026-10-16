@@ -95,13 +95,14 @@ class TestProviderSelection(unittest.TestCase):
                 self.assertNotIn("OPENAI_API_KEY", text)
 
     def test_daily_openai_steps_are_flex_and_least_privilege(self):
-        """The OpenAI key reaches exactly the two switched steps, both on Flex
-        without --batch (refused for gpt-* models), and neither also carries
+        """The OpenAI key reaches exactly the three switched steps, all on Flex
+        without --batch (refused for gpt-* models), and none also carries
         the Anthropic key it no longer uses."""
         text = (REPO_ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
         key = "OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}"
-        self.assertEqual(text.count(key), 2)
-        for start, end in (("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
+        self.assertEqual(text.count(key), 3)
+        for start, end in (("name: Maintain English summaries", "name: Maintain Japanese summaries"),
+                           ("name: Maintain Japanese summaries", "name: Translate Simplified Chinese updates"),
                            ("name: Translate Simplified Chinese updates", "name: Build yearly public archives")):
             step = text[text.index(start):text.index(end)]
             with self.subTest(start):
