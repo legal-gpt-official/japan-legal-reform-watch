@@ -1,0 +1,119 @@
+name: OpenAI Flex canary
+
+# Manual-only rehearsal of the proposed OpenAI path for the two stages that may
+# move to gpt-6.1-sol: Japanese summaries (Stage 3, --japanese-only) and zh-Hans
+# translation (Stage 4). It runs the PRODUCTION scripts exactly as a daily run
+# would -- same prompts, validation, title gate and retries -- but with
+# --dry-run, so it writes no published data, no cache and commits nothing.
+# What it measures is what the A/B evaluation could not: Flex availability and
+# latency, 429 capacity responses, real per-call cost, and the run summaries the
+# daily workflow would print. English summaries stay on Claude and are not run.
+on:
+  workflow_dispatch:
+    inputs:
+      api_limit:
+        description: "New API calls per stage (each item is one call; title retries may add a few)"
+        required: true
+        default: "10"
+        type: choice
+        options:
+          - "5"
+          - "10"
+          - "20"
+      parallel:
+        description: "Concurrent requests per stage"
+        required: true
+        default: "5"
+        type: choice
+        options:
+          - "1"
+          - "5"
+          - "10"
+      max_cost_usd_per_stage:
+        description: "Measured spend cap for EACH stage"
+        required: true
+        default: "0.20"
+        type: choice
+        options:
+          - "0.10"
+          - "0.20"
+          - "0.50"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: openai-flex-canary
+  cancel-in-progress: false
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      # Inputs travel through env, never interpolated into the script text.
+      API_LIMIT: ${{ inputs.api_limit }}
+      PARALLEL: ${{ inputs.parallel }}
+      MAX_COST: ${{ inputs.max_cost_usd_per_stage }}
+      OPENAI_SERVICE_TIER: flex
+      OPENAI_REASONING_EFFORT: low
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Compile and run offline tests
+        run: |
+          python -m py_compile scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/openai_provider.py
+          python -m unittest discover -s tests
+
+      - name: Japanese summaries on gpt-6.1-sol (Flex, dry run)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
+        run: |
+          set -o pipefail
+          python scripts/summarize_updates.py \
+            --all-items \
+            --japanese-only \
+            --dry-run \
+            --parallel "$PARALLEL" \
+            --api-limit "$API_LIMIT" \
+            --max-cost-usd "$MAX_COST" 2>&1 | tee japanese_summary_run.log
+          {
+            echo "### Japanese summaries: gpt-6.1-sol, Flex, dry run"
+            echo '```'
+            grep -E '^(model|api_calls|japanese_summarized_items|japanese_failed_items|refused_items|japanese_remaining|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd|duration_seconds)' japanese_summary_run.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: zh-Hans translation on gpt-6.1-sol (Flex, dry run)
+        if: always()
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+        run: |
+          set -o pipefail
+          python scripts/translate_updates.py \
+            --locale zh-Hans \
+            --dry-run \
+            --parallel "$PARALLEL" \
+            --limit "$API_LIMIT" \
+            --max-cost-usd "$MAX_COST" \
+            --retry-rejected-title-without-ja-reference \
+            --provider-failure-mode warn 2>&1 | tee translate_run.log
+          {
+            echo "### zh-Hans translation: gpt-6.1-sol, Flex, dry run"
+            echo '```'
+            grep -E '^(model|api_calls|translated_items|failed_items|refused_items|quality_rejected_items|title_reference_retries|title_reference_retry_successes|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd|duration_seconds|batch_duration_seconds)' translate_run.log || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

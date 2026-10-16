@@ -1532,11 +1532,15 @@ class TestModelPricingLookup(unittest.TestCase):
         self.assertNotEqual(sonnet["cache_read"], round(0.1 * sonnet["input"], 2))
 
     def test_cache_write_multipliers_hold_on_every_row(self):
-        """These ones ARE derived: 5m = 1.25x input, 1h = 2x input."""
+        """These ones ARE derived: 5m = 1.25x input, 1h = 2x input.
+
+        OpenAI has a single cache-write rate (1.25x, 30-minute TTL) and no 1h
+        tier, so its rows carry 1.25x in both keys rather than an invented 2x."""
         for model, rates in su.MODEL_PRICING_USD_PER_MTOK.items():
             with self.subTest(model):
                 self.assertAlmostEqual(rates["cache_write_5m"], 1.25 * rates["input"], places=4)
-                self.assertAlmostEqual(rates["cache_write_1h"], 2.0 * rates["input"], places=4)
+                expected_1h = 1.25 if model.startswith("gpt-") else 2.0
+                self.assertAlmostEqual(rates["cache_write_1h"], expected_1h * rates["input"], places=4)
 
     def test_the_production_summary_model_is_unchanged(self):
         """Adding a row must not move production onto it. The switch is an

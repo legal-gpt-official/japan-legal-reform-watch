@@ -69,6 +69,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import evaluate_summary_model as summary_eval
+import openai_provider
 from anthropic_batch import lowest_thinking_config
 import translate_updates as translator
 
@@ -387,7 +388,10 @@ def projected_cost_usd(model: str, count: int) -> float | None:
     if price is None:
         return None
     approx_input = 3500  # system prompt + glossary + one item, uncached
-    return 2 * count * (approx_input * price["input"] + translator.MAX_TOKENS * price["output"]) / 1e6
+    # Reasoning headroom bills as output on an OpenAI reasoning model.
+    ceiling = (openai_provider.max_output_tokens(translator.MAX_TOKENS)
+               if openai_provider.is_openai_model(model) else translator.MAX_TOKENS)
+    return 2 * count * (approx_input * price["input"] + ceiling * price["output"]) / 1e6
 
 
 def translate_once(client, model: str, item: dict) -> tuple[dict, str, dict]:
@@ -418,14 +422,16 @@ def run_model(args) -> int:
         print("\nNothing was called. Re-run with --confirm-spend to make real API calls.")
         return 0
 
-    client = translator.make_client()
+    client = translator.provider_client(args.model)
     usage_totals = translator.message_usage(None)
     spent = 0.0
     records = []
 
-    def account(usage: dict, model_used: str) -> float | None:
+    def account(usage: dict, model_used: str, record: dict) -> float | None:
         nonlocal spent
         translator.add_usage(usage_totals, usage)
+        record["usage_output_tokens"] = record.get("usage_output_tokens", 0) + usage.get("output_tokens", 0)
+        record["usage_reasoning_tokens"] = record.get("usage_reasoning_tokens", 0) + usage.get("reasoning_tokens", 0)
         estimate = translator.estimate_usage_cost_usd(usage, model_used)
         if estimate is not None:
             spent += estimate
@@ -441,7 +447,7 @@ def run_model(args) -> int:
         try:
             fields, model_used, usage = translate_once(client, args.model, item)
             record["calls"] += 1
-            cost += account(usage, model_used) or 0.0
+            cost += account(usage, model_used, record) or 0.0
             first_errors = translator.title_quality_errors(fields["title"])
             final_errors = first_errors
             if first_errors:
@@ -450,7 +456,7 @@ def run_model(args) -> int:
                 retry_item = dict(item, title_ja="")
                 retry_fields, retry_model, retry_usage = translate_once(client, args.model, retry_item)
                 record["calls"] += 1
-                cost += account(retry_usage, retry_model) or 0.0
+                cost += account(retry_usage, retry_model, record) or 0.0
                 final_errors = translator.title_quality_errors(retry_fields["title"])
                 record["first_pass_title"] = fields["title"]
                 fields = retry_fields
@@ -482,7 +488,11 @@ def run_model(args) -> int:
         "profile": args.profile,
         "locale": LOCALE,
         "prompt_version": translator.PROMPT_VERSION,
-        "thinking": lowest_thinking_config(args.model),
+        "thinking": (
+            {"openai_reasoning_effort": openai_provider.reasoning_effort()}
+            if openai_provider.is_openai_model(args.model)
+            else lowest_thinking_config(args.model)
+        ),
         "ran_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "usage_totals": usage_totals,
         "estimated_cost_usd": spent,
@@ -524,6 +534,9 @@ def aggregate(run: dict) -> dict:
         "obligation_added_pct": rate(lambda s: s.get("obligation_added")),
         "stage_prefix_ok_pct": (100.0 * sum(1 for s in with_prefix if s.get("stage_prefix_ok")) / len(with_prefix)) if with_prefix else 0.0,
         "mean_calls": statistics.mean([r.get("calls", 0) for r in records]) if records else 0,
+        "mean_output_tokens": statistics.mean(usage_o) if (usage_o := [r["usage_output_tokens"] for r in records if "usage_output_tokens" in r]) else 0,
+        # Part of mean_output_tokens, not in addition to it.
+        "mean_reasoning_tokens": statistics.mean(usage_r) if (usage_r := [r["usage_reasoning_tokens"] for r in records if "usage_reasoning_tokens" in r]) else 0,
         "mean_cost_usd": statistics.mean(costs) if costs else 0.0,
         "total_cost_usd": run.get("estimated_cost_usd", 0.0),
         "title_reasons": dict(reasons.most_common()),
@@ -577,6 +590,8 @@ def compare(args) -> int:
         ("obligation added %", "obligation_added_pct", "{:.1f}"),
         ("stage prefix followed %", "stage_prefix_ok_pct", "{:.1f}"),
         ("mean API calls / item", "mean_calls", "{:.2f}"),
+        ("mean output tokens / item", "mean_output_tokens", "{:.0f}"),
+        ("  of which reasoning", "mean_reasoning_tokens", "{:.0f}"),
         ("mean USD / item", "mean_cost_usd", "{:.5f}"),
         ("total USD", "total_cost_usd", "{:.4f}"),
     ]
@@ -589,6 +604,9 @@ def compare(args) -> int:
             print(f"title gate reasons ({name}): " + ", ".join(f"{k} x{v}" for k, v in agg["title_reasons"].items()))
     if a["mean_cost_usd"]:
         print(f"\ncost per item: {100 * b['mean_cost_usd'] / a['mean_cost_usd']:.1f}% of baseline")
+        if b["mean_cost_usd"] >= a["mean_cost_usd"]:
+            # Not a quality blocker, but a switch made to save money has no case.
+            print("  NOTE: the candidate is not cheaper per item than the baseline.")
 
     found = blockers(a, b)
     print("\nautomatic verdict:")

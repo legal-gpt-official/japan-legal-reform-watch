@@ -73,6 +73,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import build_public_data as public_data
+import openai_provider
 from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
@@ -157,6 +158,13 @@ MODEL_PRICING_USD_PER_MTOK = {
     # tokens. Every request here is a few thousand tokens, so only the short-
     # prompt card applies. Priced for evaluation; not adopted by any workflow.
     "claude-haiku-5-5": {"input": 0.10, "output": 0.50, "cache_write_5m": 0.125, "cache_write_1h": 0.20, "cache_read": 0.01},
+    # OpenAI, priced for the provider A/B evaluation; not adopted by any workflow.
+    # Source: developers.openai.com/api/docs/models/gpt-6.1-sol, checked 2026-10-16.
+    # Per-token rates equal Sonnet 5.5's, but GPT-6.1 Sol cannot switch reasoning
+    # off and reasoning bills as output, so per-call cost must be measured. OpenAI
+    # has one cache-write rate (1.25x, 30-minute TTL) and no 1h tier, so both
+    # write keys carry it. Prompts over 272K tokens bill higher; none come close.
+    "gpt-6.1-sol": {"input": 2.0, "output": 10.0, "cache_write_5m": 2.50, "cache_write_1h": 2.50, "cache_read": 0.10},
 }
 FATAL_PROVIDER_ERRORS = ("insufficient_credit", "authentication_error", "permission_error")
 _CREDIT_SIGNALS = (
@@ -476,6 +484,13 @@ def message_usage(message) -> dict[str, int]:
         "output_tokens": int(getattr(usage, "output_tokens", 0) or 0),
         "cache_creation_input_tokens": int(getattr(usage, "cache_creation_input_tokens", 0) or 0),
         "cache_read_input_tokens": int(getattr(usage, "cache_read_input_tokens", 0) or 0),
+        # Already included in output_tokens (never priced twice). Reported so a
+        # provider that cannot disable reasoning shows how much of its output
+        # was reasoning rather than summary.
+        "reasoning_tokens": int(getattr(usage, "reasoning_tokens", 0) or 0),
+        # Responses served at OpenAI's Flex tier (Batch-rate pricing). Per
+        # response it is 0 or 1; summed over a run it counts Flex calls.
+        "flex_calls": int(getattr(usage, "flex_calls", 0) or 0),
     }
 
 
@@ -530,7 +545,7 @@ def classify_provider_error(exc) -> str:
         return "authentication_error"
     if status == 403 or name == "PermissionDeniedError":
         return "permission_error"
-    if status == 402:
+    if status == 402 or openai_provider.is_insufficient_quota(exc):
         return "insufficient_credit"
     if status == 429 or name == "RateLimitError":
         return "rate_limit"
@@ -571,7 +586,8 @@ def estimate_usage_cost_usd(usage: dict[str, int], model: str, *, batch: bool = 
     price = model_pricing(model)
     if price is None:
         return None
-    multiplier = 0.5 if batch else 1.0
+    # Batch (either provider) and OpenAI Flex both bill at half the list rate.
+    multiplier = 0.5 if (batch or usage.get("flex_calls", 0)) else 1.0
     return multiplier * (
         usage.get("input_tokens", 0) * price["input"]
         + usage.get("cache_creation_input_tokens", 0) * price["cache_write_5m"]
@@ -585,8 +601,27 @@ def make_client():
     return anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
 
 
+def provider_client(model: str):
+    """Client for the provider that serves `model` (direct-call paths only)."""
+    if openai_provider.is_openai_model(model):
+        return openai_provider.make_client()
+    return make_client()
+
+
+def provider_api_key_available(model: str) -> bool:
+    if openai_provider.is_openai_model(model):
+        return openai_provider.api_key_available()
+    return bool(os.environ.get("ANTHROPIC_API_KEY"))
+
+
 def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str, dict[str, int]]:
     """Call Claude synchronously and return (result_dict, model_used)."""
+    if openai_provider.is_openai_model(model):
+        return parse_summary_message(openai_provider.create_structured(
+            client, model=model, system=SYSTEM_PROMPT, user=build_user_content(item, raw),
+            schema=RESULT_SCHEMA, schema_name="english_summary",
+            visible_max_tokens=MAX_TOKENS, cache_key="jlrw-summary-en",
+        ), model)
     kwargs = summary_request_params(model, item, raw)
     try:
         # Preferred: structured outputs guarantee schema-valid JSON.
@@ -606,6 +641,12 @@ def request_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, st
 def request_japanese_summary(client, model: str, item: dict, raw: dict) -> tuple[dict, str, dict[str, int]]:
     """Generate Japanese summary fields directly from Japanese source metadata."""
     kwargs = japanese_summary_request_params(model, item, raw)
+    if openai_provider.is_openai_model(model):
+        return parse_summary_message(openai_provider.create_structured(
+            client, model=model, system=kwargs["system"], user=kwargs["messages"][0]["content"],
+            schema=JA_RESULT_SCHEMA, schema_name="japanese_summary",
+            visible_max_tokens=MAX_TOKENS, cache_key="jlrw-summary-ja",
+        ), model)
     try:
         resp = client.messages.create(
             output_config={"format": {"type": "json_schema", "schema": JA_RESULT_SCHEMA}},
@@ -1130,13 +1171,19 @@ def main(argv: list[str] | None = None) -> int:
     # spend brake into a no-op for the whole run.
     if args.max_cost_usd is not None and model_pricing(model) is None:
         parser.error("--max-cost-usd requires a model with configured pricing")
+    # The Batch path (recovery, interlock, pre-flight count_tokens) is Anthropic-
+    # only. Refuse rather than fall back, so a model switch that forgot to drop
+    # --batch fails loudly instead of running on the wrong provider.
+    if args.batch and openai_provider.is_openai_model(model):
+        parser.error("--batch is Anthropic-only; run OpenAI models without --batch")
 
-    api_key_available = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    api_key_available = provider_api_key_available(model)
+    key_name = "OPENAI_API_KEY" if openai_provider.is_openai_model(model) else "ANTHROPIC_API_KEY"
 
     setup_logging()
     if not api_key_available:
         logger.warning(
-            "ANTHROPIC_API_KEY is not set; applying current cache entries only and making no API calls."
+            "%s is not set; applying current cache entries only and making no API calls.", key_name
         )
 
     items = load_json(INPUT_PATH, None)
@@ -1298,7 +1345,7 @@ def main(argv: list[str] | None = None) -> int:
                 pending_ja.append((it, key, raw))
                 continue
             if client is None:
-                client = make_client()
+                client = provider_client(model)
             api_calls += 1
             try:
                 result, model_used, usage = unpack_api_outcome(
@@ -1367,7 +1414,7 @@ def main(argv: list[str] | None = None) -> int:
                 pending_ja.append((it, key, raw))
                 continue
             if client is None:
-                client = make_client()
+                client = provider_client(model)
             api_calls += 1
             try:
                 result, model_used, usage = unpack_api_outcome(
@@ -1433,7 +1480,7 @@ def main(argv: list[str] | None = None) -> int:
 
         # Cache miss -> call Claude synchronously (compatibility/manual mode).
         if client is None:
-            client = make_client()
+            client = provider_client(model)
         api_calls += 1
         try:
             result, model_used, usage = unpack_api_outcome(
@@ -1553,7 +1600,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.english_only and not args.batch and args.parallel > 1 and pending:
         if client is None:
-            client = make_client()
+            client = provider_client(model)
 
         def request_one_english(candidate):
             item, _key, raw = candidate
@@ -1615,7 +1662,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.japanese_only and not args.batch and args.parallel > 1 and pending_ja:
         if client is None:
-            client = make_client()
+            client = provider_client(model)
 
         def request_one(candidate):
             item, _key, raw = candidate
@@ -1856,6 +1903,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"output_tokens   : {usage_totals['output_tokens']}")
     print(f"cache_creation_input_tokens: {usage_totals['cache_creation_input_tokens']}")
     print(f"cache_read_input_tokens: {usage_totals['cache_read_input_tokens']}")
+    print(f"reasoning_tokens: {usage_totals['reasoning_tokens']}")
+    print(f"flex_calls      : {usage_totals['flex_calls']}")
     print(f"estimated_cost_usd: {estimated_cost_usd:.6f}" if cost_estimate_complete else "estimated_cost_usd: unknown")
     print(f"max_cost_usd    : {args.max_cost_usd if args.max_cost_usd is not None else 'none'}")
     print(f"caution_warnings: {caution_warnings}")

@@ -32,6 +32,20 @@ on:
           - "claude-sonnet-5-5"
           - "claude-haiku-4-5"
           - "claude-sonnet-5"
+          - "gpt-6.1-sol"
+      openai_reasoning_effort:
+        description: "Reasoning effort for an OpenAI candidate (ignored for Claude; gpt-6.1-sol cannot turn reasoning off)"
+        required: true
+        default: "low"
+        type: choice
+        options:
+          - "low"
+          - "medium"
+      baseline_run_id:
+        description: "Optional: reuse the baseline results from this earlier run's artifact instead of calling the baseline model again (no baseline spend). Only valid while the frozen set and prompts are unchanged."
+        required: false
+        default: ""
+        type: string
       profile:
         description: "Frozen set: hard (title-gate and naming traps) or stratified (broad)"
         required: true
@@ -51,6 +65,8 @@ on:
 
 permissions:
   contents: read
+  # Only to download an earlier run's artifact when baseline_run_id is set.
+  actions: read
 
 concurrency:
   group: translation-model-eval
@@ -66,6 +82,8 @@ jobs:
       CANDIDATE: ${{ inputs.candidate }}
       PROFILE: ${{ inputs.profile }}
       MAX_COST: ${{ inputs.max_cost_usd_per_run }}
+      OPENAI_REASONING_EFFORT: ${{ inputs.openai_reasoning_effort }}
+      BASELINE_RUN_ID: ${{ inputs.baseline_run_id }}
 
     steps:
       - name: Check out
@@ -82,18 +100,43 @@ jobs:
 
       - name: Compile and run offline tests
         run: |
-          python -m py_compile scripts/translate_updates.py scripts/evaluate_translation_model.py scripts/anthropic_batch.py
+          python -m py_compile scripts/translate_updates.py scripts/evaluate_translation_model.py scripts/anthropic_batch.py scripts/openai_provider.py
           python -m unittest discover -s tests
+
+      - name: Reuse baseline results from an earlier run
+        if: ${{ inputs.baseline_run_id != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASELINE_RUN_ID: ${{ inputs.baseline_run_id }}
+        run: |
+          set -euo pipefail
+          case "$BASELINE_RUN_ID" in (*[!0-9]*|'') echo "::error::baseline_run_id must be a numeric run id"; exit 1;; esac
+          gh run download "$BASELINE_RUN_ID" --repo "$GITHUB_REPOSITORY" -n translation-model-eval -D "$RUNNER_TEMP/baseline"
+          suffix=""; [ "$PROFILE" = "stratified" ] || suffix="_$PROFILE"
+          mkdir -p data/eval
+          for name in "results_translation${suffix}_${BASELINE}.json"; do
+            src="$RUNNER_TEMP/baseline/$name"
+            if [ ! -f "$src" ]; then
+              echo "::error::run $BASELINE_RUN_ID has no $name (wrong profile or baseline model?)"; exit 1
+            fi
+            cp "$src" "data/eval/$name"
+            echo "reused $name from run $BASELINE_RUN_ID"
+          done
 
       - name: Run both models over the frozen set
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Only read when a gpt-* model is selected; unset otherwise.
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           set -euo pipefail
           if [ "$BASELINE" = "$CANDIDATE" ]; then
             echo "::error::baseline and candidate must differ"; exit 1
           fi
           for model in "$BASELINE" "$CANDIDATE"; do
+            if [ "$model" = "$BASELINE" ] && [ -n "$BASELINE_RUN_ID" ]; then
+              echo "baseline $model reused from run $BASELINE_RUN_ID; not called"; continue
+            fi
             echo "::group::$model / $PROFILE"
             python scripts/evaluate_translation_model.py run \
               --model "$model" --profile "$PROFILE" \

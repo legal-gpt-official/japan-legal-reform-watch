@@ -446,6 +446,9 @@ class TestUsageAndCostSafety(TranslateTestBase):
                 "output_tokens": 202,
                 "cache_creation_input_tokens": 303,
                 "cache_read_input_tokens": 404,
+                # Claude responses carry no reasoning counter.
+                "reasoning_tokens": 0,
+                "flex_calls": 0,
             },
         )
 
