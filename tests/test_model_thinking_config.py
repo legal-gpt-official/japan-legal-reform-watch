@@ -8,6 +8,7 @@ These tests pin the request shape each stage sends per model.
 
 import sys
 import types
+import re
 import unittest
 from pathlib import Path
 
@@ -120,23 +121,26 @@ class TestSummaryModelAdoption(unittest.TestCase):
     WORKFLOWS = Path(__file__).resolve().parents[1] / ".github" / "workflows"
 
     def test_every_summary_workflow_pins_sonnet_5_5(self):
-        for name, expected in (("daily-update.yml", 1), ("english-summary-backfill.yml", 1),
+        # The daily workflow has moved both summary steps to gpt-6.1-sol; the
+        # backfills stay on Sonnet 5.5. Count env lines, not revert comments.
+        for name, expected in (("daily-update.yml", 0), ("english-summary-backfill.yml", 1),
                                ("japanese-summary-backfill.yml", 1)):
             with self.subTest(workflow=name):
                 text = (self.WORKFLOWS / name).read_text(encoding="utf-8")
-                self.assertEqual(text.count("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5"), expected)
+                self.assertEqual(
+                    len(re.findall(r"(?m)^\s*ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5\s*$", text)), expected)
                 self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: claude-opus", text)
 
-    def test_daily_english_stays_on_claude_and_japanese_moves_to_openai(self):
+    def test_daily_english_and_japanese_summaries_run_on_openai_flex(self):
+        """English moved on 2026-10-16 after the 54-item re-evaluation (PR #47)."""
         text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
         english = text[text.index("name: Maintain English summaries"):text.index("name: Maintain Japanese summaries")]
         japanese = text[text.index("name: Maintain Japanese summaries"):text.index("name: Translate Simplified Chinese updates")]
-        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5", english)
-        self.assertIn("--batch", english)
-        self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: gpt-", english)
-        self.assertIn("ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol", japanese)
-        self.assertIn("OPENAI_SERVICE_TIER: flex", japanese)
-        self.assertNotIn("--batch", japanese[japanese.index("python scripts/"):].split("2>&1")[0])
+        for step in (english, japanese):
+            self.assertIn("ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol", step)
+            self.assertIn("OPENAI_SERVICE_TIER: flex", step)
+            self.assertIn("OPENAI_REASONING_EFFORT: low", step)
+            self.assertNotIn("--batch", step[step.index("python scripts/"):].split("2>&1")[0])
 
     def test_translation_model_is_gpt_6_1_sol_on_flex(self):
         text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
