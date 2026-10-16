@@ -54,3 +54,5 @@ docs/data/*.before_ai.json
 # --- Model evaluation runs (frozen set is committed; results are not) ---
 data/eval/results_*.json
 data/eval/side_by_side_*.md
+data/eval/semantic_audit.*
+data/eval/requeue_preview.*

@@ -40,7 +40,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/requeue.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
@@ -209,6 +209,25 @@ jobs:
       # The canonical public JSON remains the complete, uncapped corpus used by
       # the AI stages. Browser-facing yearly files are regenerated afterwards so
       # they always contain the final English summaries and translations.
+      # Offline quality audit + publication policy (scripts/quality_gate.py; no
+      # API calls). Runs BEFORE the archives, feeds and static pages so that,
+      # once enforcement is enabled, a withheld rendering never reaches them.
+      # The audit re-checks every published item for the defect classes the
+      # 2026-10-16 multilingual audit fixed. The policy decides per finding type
+      # (certainty x impact): withhold only the certainly-wrong, legally
+      # misleading rendering (falling back to the truthful rule-based English or
+      # the English text in the Chinese view), auto-correct deterministic
+      # prefixes, requeue the rest with a per-item cap. MODE is "report" until
+      # the owner approves "enforce": report prints what enforce would do and
+      # changes nothing. Findings never block the data commit.
+      - name: Quality audit and publication policy
+        env:
+          QUALITY_GATE_MODE: report
+        run: |
+          set -o pipefail
+          python scripts/quality_gate.py --mode "$QUALITY_GATE_MODE" | tee quality_audit.log
+          { echo "### Quality audit"; sed -n '1,240p' quality_audit.log | grep -v '^::warning::'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Build yearly public archives
         run: python scripts/build_public_archives.py
 
@@ -222,20 +241,6 @@ jobs:
       # and docs/sitemap.xml, all derived only from the published JSON.
       - name: Build public pages
         run: python scripts/build_public_pages.py
-
-      # Offline quality audit of every published item (no API calls, no data
-      # writes): the defect classes the 2026-10-16 multilingual audit fixed --
-      # Japanese in English, truncated titles, dropped or mis-dated law numbers,
-      # case-code romanization, wrong/former bureau names, Chinese kana and era
-      # errors, truncated or gate-failing Chinese, open/closed prefix contradicting
-      # the stage, Chinese drifting from its cache entry, e-Gov calls labelled as
-      # results. HIGH findings raise ::warning annotations and print a ready-to-
-      # paste data/requeue.json section; they never block the data commit.
-      - name: Quality audit
-        run: |
-          set -o pipefail
-          python scripts/quality_audit.py | tee quality_audit.log
-          { echo "### Quality audit"; sed -n '1,200p' quality_audit.log | grep -v '^::warning::'; } >> "$GITHUB_STEP_SUMMARY"
 
       # Paid tier: the self-serve daily digest. Subscribers are read from Stripe
       # at run time and never written to the repository or this public log.
@@ -267,7 +272,7 @@ jobs:
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -279,7 +284,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

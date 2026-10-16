@@ -64,7 +64,9 @@ HIGH = ("en_japanese", "en_title_truncated", "en_main_law_number", "en_law_numbe
         "en_case_code", "en_field_names", "en_wrong_bureau", "zh_missing",
         "zh_kana_or_ja_forms", "zh_era", "zh_truncated", "zh_title_gate", "zh_stage_prefix",
         "zh_cache_mismatch", "pc_stage_results")
-MEDIUM = ("en_target_law_number", "en_key_date", "ja_main_law_number", "confidence_over_evidence")
+MEDIUM = ("en_target_law_number", "en_key_date", "ja_main_law_number", "confidence_over_evidence",
+          "en_transitional_omitted", "en_draft_status_missing", "en_enactment_overstated",
+          "zh_obligation_added")
 # Which requeue section fixes each HIGH check (see scripts/requeue.py).
 REMEDY = {
     "en_japanese": "english", "en_main_law_number": "english", "en_law_number_year": "english",
@@ -94,6 +96,25 @@ ERA_RE = re.compile(r"(明治|大正|昭和|平成|令和)(元|\d+|[〇一二三
 ERA_EN = {"meiji": "明治", "taisho": "大正", "showa": "昭和", "heisei": "平成", "reiwa": "令和"}
 END_PUNCT = tuple("。．.！？!?）)」”\"》】")
 PC_RESULT_MARKERS = ("結果について", "結果の公示", "意見募集の結果", "意見募集結果", "の結果")
+
+# Deterministic proxies for the semantic errors a sampled review looks for.
+# They are cheap first-pass signals (medium), not verdicts.
+TRANSITIONAL_JA = ("経過措置",)
+DRAFT_JA = ("（案）", "(案)", "法律案", "改正案", "省令案", "政令案", "告示案", "府令案", "規則案", "指針案", "ガイドライン案")
+NOT_ADOPTED_STAGES = ("Public Comment Open", "Public Comment Closed", "Bill Submitted", "Draft Guideline")
+DRAFT_EN_RE = re.compile(r"\b(draft|proposed|proposal|bills?|consultation|public comment|comments)\b", re.I)
+ENACTED_EN_RE = re.compile(r"\b(has been enacted|was enacted|has entered into force|entered into force|is now in force|took effect)\b", re.I)
+NEGATION_RE = re.compile(r"\b(not|no|never|whether|rather than|yet to|before)\b", re.I)
+OBLIGATION_ZH_RE = re.compile(r"必须|应当|务必")
+OBLIGATION_EN_RE = re.compile(r"\b(must|shall|required|requires|obliged|obligation|obligations|mandatory)\b", re.I)
+
+
+def enactment_overstated(text: str) -> bool:
+    """An unnegated claim of enactment / entry into force."""
+    for sentence in re.split(r"(?<=[.;])\s+", text):
+        if ENACTED_EN_RE.search(sentence) and not NEGATION_RE.search(sentence):
+            return True
+    return False
 
 
 def era_pairs(text: str) -> set[tuple[str, int]]:
@@ -162,6 +183,21 @@ def audit(items: list[dict], raw_by_id: dict, cache: dict) -> dict:
                     r"\(([A-Z][a-z]{0,3}(?:-[A-Z][a-z]{0,3})?)\)\s*(?:No\.\s*)?\d+", displayed)}
                 if expected and written - expected:
                     hit("en_case_code")
+
+        if ai:
+            source_ja = (item.get("title_ja") or "") + " " + (raw.get("raw_summary") or "")
+            en_all = " ".join(item.get(k) or "" for k in su.AI_TEXT_FIELDS)
+            if any(m in source_ja for m in TRANSITIONAL_JA) and "transitional" not in en_all.lower():
+                hit("en_transitional_omitted")
+            stage = item.get("stage") or ""
+            if stage in NOT_ADOPTED_STAGES:
+                if any(m in (item.get("title_ja") or "") for m in DRAFT_JA) and not DRAFT_EN_RE.search(en_all):
+                    hit("en_draft_status_missing")
+                if enactment_overstated(item.get("summary_en") or ""):
+                    hit("en_enactment_overstated")
+            if zh and OBLIGATION_ZH_RE.search(" ".join(str(v) for v in zh.values())) \
+                    and not OBLIGATION_EN_RE.search(en_all):
+                hit("zh_obligation_added")
 
         if item.get("summary_ja_source") == "claude":
             ja = " ".join(item.get(k) or "" for k in su.JA_AI_FIELDS)
