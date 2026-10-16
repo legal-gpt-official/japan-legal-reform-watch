@@ -117,9 +117,16 @@ def enactment_overstated(text: str) -> bool:
     return False
 
 
-def era_pairs(text: str) -> set[tuple[str, int]]:
+# In the Japanese source an era year is also written without 年 inside a court
+# case number (令和6(受)2169), which a correct translation renders 令和6年（受）.
+ERA_SOURCE_RE = re.compile(r"(明治|大正|昭和|平成|令和)(元|\d+|[〇一二三四五六七八九十百]+)(?:年|[(（])")
+ERA_START = {"明治": 1868, "大正": 1912, "昭和": 1926, "平成": 1989, "令和": 2019}
+ERA_END = {"明治": 1912, "大正": 1926, "昭和": 1989, "平成": 2019, "令和": 9999}
+
+
+def era_pairs(text: str, pattern: re.Pattern = ERA_RE) -> set[tuple[str, int]]:
     out = set()
-    for era, year in ERA_RE.findall(unicodedata.normalize("NFKC", text)):
+    for era, year in pattern.findall(unicodedata.normalize("NFKC", text)):
         value = 1 if year == "元" else su.kanji_numeral_value(year)
         if value:
             out.add((era, value))
@@ -212,10 +219,15 @@ def audit(items: list[dict], raw_by_id: dict, cache: dict) -> dict:
             text = " ".join(str(v) for v in zh.values())
             if KANA_RE.search(tu._QUOTED_SPAN_RE.sub("", text)) or any(ch in et.NON_SIMPLIFIED_CHARS for ch in text):
                 hit("zh_kana_or_ja_forms")
-            allowed = era_pairs((item.get("title_ja") or "") + (raw.get("raw_summary") or ""))
+            source_text = (item.get("title_ja") or "") + " " + (raw.get("raw_summary") or "")
+            allowed = era_pairs(source_text, ERA_SOURCE_RE)
             en_text = " ".join(item.get(k) or "" for k in su.AI_TEXT_FIELDS)
             allowed |= {(ERA_EN[e.lower()], int(y)) for e, y in
                         re.findall(r"\b(Meiji|Taisho|Showa|Heisei|Reiwa)\s+(\d+)", en_text)}
+            # A correct conversion of a Western year the source or English states is not an error.
+            for year in {int(y) for y in re.findall(r"(?<!\d)(1[89]\d\d|20\d\d)(?!\d)", source_text + " " + en_text)}:
+                allowed |= {(era, year - start + 1) for era, start in ERA_START.items()
+                            if start <= year <= ERA_END[era]}
             if era_pairs(text) - allowed:
                 hit("zh_era")
             for f_en, f_zh in (("summary_en", "summary"), ("business_impact_en", "business_impact"),
