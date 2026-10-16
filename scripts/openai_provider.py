@@ -14,9 +14,18 @@ an OpenAI model, and reverting is the same one-line model change.
 
 Scope, deliberately: direct (synchronous) calls only. The Anthropic Message
 Batch path carries provider-side recovery and a submission interlock that took
-several iterations to get right; an OpenAI Batch path is only worth building if
-the A/B evaluation shows the model is worth adopting. Until then the stages
-refuse ``--batch`` with an OpenAI model instead of silently falling back.
+several iterations to get right, and none of it is needed here: Flex processing
+(``OPENAI_SERVICE_TIER=flex``) bills at the Batch rate on an ordinary
+synchronous call, so a response is either in hand or it was never paid for.
+The stages refuse ``--batch`` with an OpenAI model instead of silently falling
+back.
+
+Flex (developers.openai.com/api/docs/guides/flex-processing, checked
+2026-10-16): gpt-6.1-sol is listed at $1 / $5 per MTok (cached read $0.05,
+write $1.25); responses are slower; capacity shortfalls return HTTP 429
+"Resource Unavailable", which is NOT billed; there is no automatic fallback to
+standard; the SDK's 10-minute default timeout should be raised (15 min used).
+A failed item simply keeps its fallback and is retried on the next run.
 
 Facts used here (developers.openai.com, checked 2026-10-16):
 - gpt-6.1-sol: $2 input / $10 output / $0.10 cached read / $2.50 cache write
@@ -51,6 +60,10 @@ DEFAULT_REASONING_HEADROOM_TOKENS = 4000
 
 _INSUFFICIENT_QUOTA_CODES = ("insufficient_quota", "billing_hard_limit_reached")
 
+SERVICE_TIERS = ("flex", "default", "auto")
+FLEX_TIMEOUT_SECONDS = 900.0
+FLEX_MAX_RETRIES = 4
+
 
 def is_openai_model(model: str | None) -> bool:
     return bool(model) and str(model).startswith(OPENAI_MODEL_PREFIXES)
@@ -77,6 +90,16 @@ def max_output_tokens(visible_ceiling: int) -> int:
     return int(visible_ceiling) + reasoning_headroom_tokens()
 
 
+def service_tier() -> str | None:
+    """Requested tier from OPENAI_SERVICE_TIER, or None to send no tier at all."""
+    tier = (os.environ.get("OPENAI_SERVICE_TIER") or "").strip()
+    if not tier:
+        return None
+    if tier not in SERVICE_TIERS:
+        raise ValueError(f"OPENAI_SERVICE_TIER must be one of {', '.join(SERVICE_TIERS)}")
+    return tier
+
+
 def api_key_available() -> bool:
     return bool(os.environ.get("OPENAI_API_KEY"))
 
@@ -84,6 +107,10 @@ def api_key_available() -> bool:
 def make_client():
     """Construct an OpenAI client. Reads OPENAI_API_KEY from the environment."""
     import openai  # local import: Claude-only runs need no OpenAI SDK
+    if service_tier() == "flex":
+        # Flex queues behind standard traffic: allow a longer wait, and a few
+        # more SDK retries for the unbilled 429 capacity responses.
+        return openai.OpenAI(timeout=FLEX_TIMEOUT_SECONDS, max_retries=FLEX_MAX_RETRIES)
     return openai.OpenAI()
 
 
@@ -129,6 +156,10 @@ def _usage(resp) -> SimpleNamespace:
         cache_read_input_tokens=cached,
         cache_creation_input_tokens=written,
         reasoning_tokens=int(getattr(out_details, "reasoning_tokens", 0) or 0),
+        # 1 only when the response itself says it was served at the Flex tier,
+        # which the cost estimators price at half. A missing or different tier
+        # is priced at Standard, so the estimate can only err high.
+        flex_calls=1 if getattr(resp, "service_tier", None) == "flex" else 0,
     )
 
 
@@ -178,7 +209,7 @@ def request_params(
     visible_max_tokens: int, cache_key: str,
 ) -> dict:
     """Responses API parameters equivalent to one Messages structured-output call."""
-    return {
+    params = {
         "model": model,
         "instructions": _system_text(system),
         "input": user,
@@ -192,6 +223,10 @@ def request_params(
         # needs them after the call returns.
         "store": False,
     }
+    tier = service_tier()
+    if tier:
+        params["service_tier"] = tier
+    return params
 
 
 def create_structured(client, **kwargs) -> SimpleNamespace:

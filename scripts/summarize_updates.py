@@ -488,6 +488,9 @@ def message_usage(message) -> dict[str, int]:
         # provider that cannot disable reasoning shows how much of its output
         # was reasoning rather than summary.
         "reasoning_tokens": int(getattr(usage, "reasoning_tokens", 0) or 0),
+        # Responses served at OpenAI's Flex tier (Batch-rate pricing). Per
+        # response it is 0 or 1; summed over a run it counts Flex calls.
+        "flex_calls": int(getattr(usage, "flex_calls", 0) or 0),
     }
 
 
@@ -583,7 +586,8 @@ def estimate_usage_cost_usd(usage: dict[str, int], model: str, *, batch: bool = 
     price = model_pricing(model)
     if price is None:
         return None
-    multiplier = 0.5 if batch else 1.0
+    # Batch (either provider) and OpenAI Flex both bill at half the list rate.
+    multiplier = 0.5 if (batch or usage.get("flex_calls", 0)) else 1.0
     return multiplier * (
         usage.get("input_tokens", 0) * price["input"]
         + usage.get("cache_creation_input_tokens", 0) * price["cache_write_5m"]
@@ -1899,6 +1903,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"output_tokens   : {usage_totals['output_tokens']}")
     print(f"cache_creation_input_tokens: {usage_totals['cache_creation_input_tokens']}")
     print(f"cache_read_input_tokens: {usage_totals['cache_read_input_tokens']}")
+    print(f"reasoning_tokens: {usage_totals['reasoning_tokens']}")
+    print(f"flex_calls      : {usage_totals['flex_calls']}")
     print(f"estimated_cost_usd: {estimated_cost_usd:.6f}" if cost_estimate_complete else "estimated_cost_usd: unknown")
     print(f"max_cost_usd    : {args.max_cost_usd if args.max_cost_usd is not None else 'none'}")
     print(f"caution_warnings: {caution_warnings}")

@@ -43,12 +43,13 @@ ITEM = {
 
 
 def response(text="{}", *, status="completed", reason=None, refusal=False,
-             input_tokens=1200, cached=1000, written=0, output=300, reasoning=120):
+             input_tokens=1200, cached=1000, written=0, output=300, reasoning=120, tier="default"):
     parts = [types.SimpleNamespace(type="output_text", text=text)]
     if refusal:
         parts = [types.SimpleNamespace(type="refusal", refusal="declined")]
     return types.SimpleNamespace(
         model=MODEL,
+        service_tier=tier,
         status=status,
         incomplete_details=types.SimpleNamespace(reason=reason) if reason else None,
         output=[
@@ -183,6 +184,56 @@ class TestResponseMapping(unittest.TestCase):
             op.to_message(response(status="incomplete", reason="max_output_tokens"), MODEL)
         self.assertIsInstance(raised.exception, ValueError)
         self.assertEqual(tu.classify_error(raised.exception), "item_validation_error")
+
+
+class TestFlexTier(unittest.TestCase):
+    """Flex bills at the Batch rate on a synchronous call; the estimate may only
+    halve a response that the API itself reports as served at Flex."""
+
+    def test_tier_is_sent_only_when_configured(self):
+        kwargs = dict(model=MODEL, system="S", user="U", schema=su.JA_RESULT_SCHEMA,
+                      schema_name="j", visible_max_tokens=1500, cache_key="k")
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertNotIn("service_tier", op.request_params(**kwargs))
+        with mock.patch.dict(os.environ, {"OPENAI_SERVICE_TIER": "flex"}, clear=True):
+            self.assertEqual(op.request_params(**kwargs)["service_tier"], "flex")
+        with mock.patch.dict(os.environ, {"OPENAI_SERVICE_TIER": "priority"}, clear=True):
+            with self.assertRaises(ValueError):
+                op.request_params(**kwargs)
+
+    def test_flex_response_is_priced_at_half(self):
+        standard = su.message_usage(op.to_message(response(tier="default"), MODEL))
+        flex = su.message_usage(op.to_message(response(tier="flex"), MODEL))
+        self.assertEqual((standard["flex_calls"], flex["flex_calls"]), (0, 1))
+        for mod in (su, tu):
+            full = mod.estimate_usage_cost_usd(standard, MODEL)
+            self.assertAlmostEqual(mod.estimate_usage_cost_usd(flex, MODEL), full / 2)
+
+    def test_unreported_tier_is_priced_at_standard(self):
+        """If Flex was requested but the response does not confirm it, the cost
+        cap must not assume the discount."""
+        msg = op.to_message(response(tier=None), MODEL)
+        self.assertEqual(su.message_usage(msg)["flex_calls"], 0)
+
+    def test_flex_client_waits_longer(self):
+        fake = types.SimpleNamespace(OpenAI=mock.Mock(return_value="client"))
+        with mock.patch.dict(sys.modules, {"openai": fake}),                 mock.patch.dict(os.environ, {"OPENAI_SERVICE_TIER": "flex"}, clear=True):
+            op.make_client()
+        fake.OpenAI.assert_called_once_with(timeout=op.FLEX_TIMEOUT_SECONDS, max_retries=op.FLEX_MAX_RETRIES)
+        fake.OpenAI.reset_mock()
+        with mock.patch.dict(sys.modules, {"openai": fake}), mock.patch.dict(os.environ, {}, clear=True):
+            op.make_client()
+        fake.OpenAI.assert_called_once_with()
+
+    def test_flex_capacity_429_is_retryable_not_fatal(self):
+        """Unbilled capacity shortfall: the item keeps its fallback for next run."""
+        err = type("RateLimitError", (Exception,), {})("Resource Unavailable")
+        err.status_code = 429
+        err.body = {"code": "resource_unavailable"}
+        for mod in (su, tu):
+            kind = mod.classify_provider_error(err)
+            self.assertEqual(kind, "rate_limit")
+            self.assertNotIn(kind, mod.FATAL_PROVIDER_ERRORS)
 
 
 class TestErrorClassification(unittest.TestCase):
