@@ -71,6 +71,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import openai_provider
 from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
     BatchDiscoveryUnavailable,
@@ -177,6 +178,18 @@ MODEL_PRICING_USD_PER_MTOK = {
         "cache_write_5m": 0.125,
         "cache_write_1h": 0.20,
         "cache_read": 0.01,
+    },
+    # OpenAI, priced for the provider A/B evaluation; not adopted by any workflow.
+    # Source: developers.openai.com/api/docs/models/gpt-6.1-sol, checked 2026-10-16.
+    # Same per-token rates as Sonnet 5.5 (cache read 0.05x), but reasoning cannot
+    # be switched off and bills as output. One cache-write rate (1.25x, 30-minute
+    # TTL) and no 1h tier, so both write keys carry it.
+    "gpt-6.1-sol": {
+        "input": 2.0,
+        "output": 10.0,
+        "cache_write_5m": 2.50,
+        "cache_write_1h": 2.50,
+        "cache_read": 0.10,
     },
 }
 
@@ -1084,6 +1097,19 @@ def make_client():
     return anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
 
 
+def provider_client(model: str):
+    """Client for the provider that serves `model` (direct-call paths only)."""
+    if openai_provider.is_openai_model(model):
+        return openai_provider.make_client()
+    return make_client()
+
+
+def provider_api_key_available(model: str) -> bool:
+    if openai_provider.is_openai_model(model):
+        return openai_provider.api_key_available()
+    return bool(os.environ.get("ANTHROPIC_API_KEY"))
+
+
 def resolve_model(cli_model: str | None) -> str:
     return (
         cli_model
@@ -1180,6 +1206,9 @@ def message_usage(message) -> dict[str, int]:
             getattr(usage, "cache_creation_input_tokens", 0) or 0
         ),
         "cache_read_input_tokens": int(getattr(usage, "cache_read_input_tokens", 0) or 0),
+        # Already included in output_tokens (never priced twice); reported so a
+        # model that cannot disable reasoning shows how much output it was.
+        "reasoning_tokens": int(getattr(usage, "reasoning_tokens", 0) or 0),
     }
 
 
@@ -1250,6 +1279,15 @@ def request_translation(
     fields: tuple[str, ...] = TRANSLATION_FIELDS,
 ) -> tuple[dict, str, dict[str, int]]:
     """Call Claude synchronously with a five-minute prompt-cache breakpoint."""
+    if openai_provider.is_openai_model(model):
+        # Same system prompt, user content and per-subset schema as Claude; the
+        # stable system prompt is cached automatically by prefix.
+        return parse_translation_message(openai_provider.create_structured(
+            client, model=model, system=SYSTEM_PROMPT,
+            user=build_user_content(item, locale, fields),
+            schema=result_schema(fields), schema_name="translation",
+            visible_max_tokens=max_tokens_for(fields), cache_key=f"jlrw-translate-{locale}",
+        ), model)
     import anthropic  # local import so the no-api path needs no SDK
 
     kwargs = translation_request_params(model, item, locale, cache_ttl="5m", fields=fields)
@@ -1582,7 +1620,7 @@ def classify_provider_error(exc) -> str:
         return "authentication_error"
     if status == 403 or name == "PermissionDeniedError":
         return "permission_error"
-    if status == 402:
+    if status == 402 or openai_provider.is_insufficient_quota(exc):
         return "insufficient_credit"
     if status == 429 or name == "RateLimitError":
         return "rate_limit"
@@ -2352,9 +2390,14 @@ def main(argv: list[str] | None = None) -> int:
         if published_signature(it, locale) is not None
     }
 
-    has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
-    api_allowed = (not args.no_api) and has_key
     model = resolve_model(args.model)
+    # The Batch path (recovery, interlock, pre-flight count_tokens) is Anthropic-
+    # only; refuse rather than silently run a different provider.
+    if args.batch and openai_provider.is_openai_model(model):
+        parser.error("--batch is Anthropic-only; run OpenAI models without --batch")
+    has_key = provider_api_key_available(model)
+    key_name = "OPENAI_API_KEY" if openai_provider.is_openai_model(model) else "ANTHROPIC_API_KEY"
+    api_allowed = (not args.no_api) and has_key
     if args.max_cost_usd is not None and model_pricing(model) is None:
         parser.error("--max-cost-usd requires a model with configured pricing")
 
@@ -2367,7 +2410,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.no_api:
         logger.info("--no-api: applying valid cache only; no API calls will be made.")
     elif not has_key:
-        logger.info("ANTHROPIC_API_KEY not set: applying valid cache only; no API calls will be made.")
+        logger.info("%s not set: applying valid cache only; no API calls will be made.", key_name)
 
     client = None
     cache_hits = api_calls = translated = failed = quality_rejected = 0
@@ -2576,7 +2619,7 @@ def main(argv: list[str] | None = None) -> int:
 
         if api_allowed and api_calls < args.limit:
             if client is None:
-                client = make_client()
+                client = provider_client(model)
             api_calls += 1
             try:
                 request_item = it
@@ -2670,7 +2713,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if pending_direct:
         if client is None:
-            client = make_client()
+            client = provider_client(model)
 
         def request_one(candidate):
             item, _item_id, _had_locale, _source_hash, _known, missing, _keys = candidate
@@ -2969,7 +3012,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.no_api:
         print("(--no-api: applied valid cache only; no API calls)")
     elif not has_key:
-        print("(no ANTHROPIC_API_KEY: applied valid cache only; no API calls)")
+        print(f"(no {key_name}: applied valid cache only; no API calls)")
     if args.dry_run:
         print("(dry-run: output file and cache were not written)")
     # A provider outage with no successful translations is a "provider unavailable"

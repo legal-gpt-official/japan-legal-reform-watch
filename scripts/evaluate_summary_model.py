@@ -65,6 +65,7 @@ import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
+import openai_provider
 import summarize_updates as summarizer
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -361,7 +362,11 @@ def projected_cost_usd(model: str, count: int, language: str) -> float | None:
     if price is None:
         return None
     approx_input = 900 if language == "japanese" else 800
-    return count * (approx_input * price["input"] + summarizer.MAX_TOKENS * price["output"]) / 1e6
+    # An OpenAI reasoning model may spend its reasoning headroom on top of the
+    # visible ceiling, and it bills as output, so the worst case includes it.
+    ceiling = (openai_provider.max_output_tokens(summarizer.MAX_TOKENS)
+               if openai_provider.is_openai_model(model) else summarizer.MAX_TOKENS)
+    return count * (approx_input * price["input"] + ceiling * price["output"]) / 1e6
 
 
 def results_path(language: str, profile: str, model: str) -> Path:
@@ -389,7 +394,7 @@ def run_model(args) -> int:
         print("\nNothing was called. Re-run with --confirm-spend to make real API calls.")
         return 0
 
-    client = summarizer.make_client()
+    client = summarizer.provider_client(args.model)
     usage_totals = summarizer.message_usage(None)
     spent = 0.0
     records = []
@@ -443,7 +448,11 @@ def run_model(args) -> int:
         "language": args.language,
         # Recorded so a comparison shows whether thinking tokens were in play:
         # the same prompt costs very different amounts with and without them.
-        "thinking": summarizer.lowest_thinking_config(args.model),
+        "thinking": (
+            {"openai_reasoning_effort": openai_provider.reasoning_effort()}
+            if openai_provider.is_openai_model(args.model)
+            else summarizer.lowest_thinking_config(args.model)
+        ),
         "ran_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "usage_totals": usage_totals,
         "estimated_cost_usd": spent,
@@ -482,6 +491,8 @@ def aggregate(run: dict) -> dict:
         "refusal_pct": 100.0 * sum(1 for r in records if r.get("error_type") == "refusal") / n,
         "mean_input_tokens": statistics.mean([u.get("input_tokens", 0) for u in usages]) if usages else 0,
         "mean_output_tokens": statistics.mean([u.get("output_tokens", 0) for u in usages]) if usages else 0,
+        # Part of mean_output_tokens, not in addition to it.
+        "mean_reasoning_tokens": statistics.mean([u.get("reasoning_tokens", 0) for u in usages]) if usages else 0,
         "mean_cost_usd": statistics.mean(costs) if costs else 0.0,
         "total_cost_usd": run.get("estimated_cost_usd", 0.0),
         "confidence": {},
@@ -513,6 +524,7 @@ def compare(args) -> int:
         ("refusal %", "refusal_pct", "{:.1f}"),
         ("mean input tokens", "mean_input_tokens", "{:.0f}"),
         ("mean output tokens", "mean_output_tokens", "{:.0f}"),
+        ("  of which reasoning", "mean_reasoning_tokens", "{:.0f}"),
         ("mean USD / item", "mean_cost_usd", "{:.5f}"),
         ("total USD", "total_cost_usd", "{:.4f}"),
     ]
@@ -526,6 +538,9 @@ def compare(args) -> int:
 
     if a["mean_cost_usd"]:
         print(f"\ncost per item: {100 * b['mean_cost_usd'] / a['mean_cost_usd']:.1f}% of baseline")
+        if b["mean_cost_usd"] >= a["mean_cost_usd"]:
+            # Not a quality blocker, but a switch made to save money has no case.
+            print("  NOTE: the candidate is not cheaper per item than the baseline.")
 
     blockers = []
     if b["schema_compliance_pct"] < a["schema_compliance_pct"]:

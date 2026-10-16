@@ -32,6 +32,15 @@ on:
           - "claude-sonnet-5"
           - "claude-opus-5-5"
           - "claude-haiku-5-5"
+          - "gpt-6.1-sol"
+      openai_reasoning_effort:
+        description: "Reasoning effort for an OpenAI candidate (ignored for Claude; gpt-6.1-sol cannot turn reasoning off)"
+        required: true
+        default: "low"
+        type: choice
+        options:
+          - "low"
+          - "medium"
       profile:
         description: "Frozen set: hard (adversarial) or stratified (broad)"
         required: true
@@ -66,6 +75,7 @@ jobs:
       CANDIDATE: ${{ inputs.candidate }}
       PROFILE: ${{ inputs.profile }}
       MAX_COST: ${{ inputs.max_cost_usd_per_run }}
+      OPENAI_REASONING_EFFORT: ${{ inputs.openai_reasoning_effort }}
 
     steps:
       - name: Check out
@@ -82,12 +92,14 @@ jobs:
 
       - name: Compile and run offline tests
         run: |
-          python -m py_compile scripts/summarize_updates.py scripts/evaluate_summary_model.py scripts/anthropic_batch.py
+          python -m py_compile scripts/summarize_updates.py scripts/evaluate_summary_model.py scripts/anthropic_batch.py scripts/openai_provider.py
           python -m unittest discover -s tests
 
       - name: Run both models over the frozen set
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Only read when a gpt-* model is selected; unset otherwise.
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           set -euo pipefail
           if [ "$BASELINE" = "$CANDIDATE" ]; then
