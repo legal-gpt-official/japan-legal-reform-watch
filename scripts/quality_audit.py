@@ -28,6 +28,8 @@ ready-to-paste data/requeue.json section):
 - zh_cache_mismatch      published Chinese differs from its current cache entry
                          (the 2026-10-16 field-cache rewind class)
 - pc_stage_results       an e-Gov call for comments labelled as results
+- en/ja/zh_stale_open    a closed consultation whose text still says comments are
+                         being accepted (written while it was open)
 
 MEDIUM (counted, ids listed): en_target_law_number, en_key_date,
 ja_main_law_number, confidence_over_evidence.
@@ -63,7 +65,7 @@ LOCALE = "zh-Hans"
 HIGH = ("en_japanese", "en_title_truncated", "en_main_law_number", "en_law_number_year",
         "en_case_code", "en_field_names", "en_wrong_bureau", "zh_missing",
         "zh_kana_or_ja_forms", "zh_era", "zh_truncated", "zh_title_gate", "zh_stage_prefix",
-        "zh_cache_mismatch", "pc_stage_results")
+        "zh_cache_mismatch", "pc_stage_results", "en_stale_open", "ja_stale_open", "zh_stale_open")
 MEDIUM = ("en_target_law_number", "en_key_date", "ja_main_law_number", "confidence_over_evidence",
           "en_transitional_omitted", "en_draft_status_missing", "en_enactment_overstated",
           "zh_obligation_added")
@@ -75,6 +77,7 @@ REMEDY = {
     "zh_missing": "zh-Hans", "zh_kana_or_ja_forms": "zh-Hans", "zh_era": "zh-Hans",
     "zh_truncated": "zh-Hans", "zh_title_gate": "zh-Hans", "zh_stage_prefix": "zh-Hans",
     "zh_cache_mismatch": "zh-Hans", "pc_stage_results": "stage rule (scripts/build_public_data.py)",
+    "en_stale_open": "english", "ja_stale_open": "japanese", "zh_stale_open": "zh-Hans",
 }
 
 JP_RE = re.compile(r"[぀-ヿ一-鿿]")
@@ -106,6 +109,27 @@ DRAFT_EN_RE = re.compile(r"\b(draft|proposed|proposal|bills?|consultation|public
 ENACTED_EN_RE = re.compile(r"\b(has been enacted|was enacted|has entered into force|entered into force|is now in force|took effect)\b", re.I)
 NEGATION_RE = re.compile(r"\b(not|no|never|whether|rather than|yet to|before)\b", re.I)
 OBLIGATION_ZH_RE = re.compile(r"必须|应当|务必")
+# A consultation summary is written while it is open and stays published after
+# it closes; on a closed or results stage these say comments are still taken.
+CLOSED_PC_STAGES = ("Public Comment Closed", "Public Comment Results Published")
+STALE_OPEN_EN_RE = re.compile(
+    r"\b(?:is|are)\s+(?:currently\s+|now\s+)?(?:seeking|inviting|soliciting|accepting|requesting|calling for)\b"
+    r"[^.]{0,60}?\b(?:comments?|opinions?|input|information|views)\b"
+    r"|\b(?:is|are|remains?)\s+(?:currently\s+|now\s+|still\s+)?(?:open|out)\s+for\s+(?:public\s+)?(?:comments?|consultation)"
+    r"|\bcurrently\s+(?:open|out|under|in|at)\b[^.]{0,30}?\b(?:comments?|consultation)"
+    # "comments are accepted until <date>" states the period with its date; not flagged.
+    r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome)"
+    r"(?!\s+(?:until|through|by)\b)", re.I)
+STALE_OPEN_JA_RE = re.compile(r"募集を行っています|募集しています|受け付けています|受付中|意見募集中|募集中(?:の|であり|です|で)")
+STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)[^。；，]{0,12}?(?:征求|征询)")
+
+
+def stale_open_en(text: str) -> bool:
+    """Open-tense wording, ignoring sentences that only ask the reader to check (whether ...)."""
+    return any(STALE_OPEN_EN_RE.search(s) and "whether" not in s.lower()
+               for s in re.split(r"(?<=[.;])\s+", text))
+
+
 OBLIGATION_EN_RE = re.compile(r"\b(must|shall|required|requires|obliged|obligation|obligations|mandatory)\b", re.I)
 
 
@@ -212,6 +236,16 @@ def audit(items: list[dict], raw_by_id: dict, cache: dict) -> dict:
             primary = next((i for i in ids if i["role"] == "amending_instrument"), ids[0] if ids else None)
             if primary and not ja_number_kept(primary, ja):
                 hit("ja_main_law_number")
+
+        if (item.get("stage") or "") in CLOSED_PC_STAGES:
+            if ai and stale_open_en(" ".join(item.get(k) or "" for k in su.AI_TEXT_FIELDS[1:])):
+                hit("en_stale_open")
+            if item.get("summary_ja_source") == "claude" and STALE_OPEN_JA_RE.search(
+                    " ".join(item.get(k) or "" for k in su.JA_AI_FIELDS)):
+                hit("ja_stale_open")
+            if zh and STALE_OPEN_ZH_RE.search(" ".join(str(zh.get(k) or "") for k in
+                                                        ("summary", "business_impact", "recommended_action"))):
+                hit("zh_stale_open")
 
         if ai and not zh:
             hit("zh_missing")

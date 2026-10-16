@@ -217,12 +217,14 @@ jobs:
       # (certainty x impact): withhold only the certainly-wrong, legally
       # misleading rendering (falling back to the truthful rule-based English or
       # the English text in the Chinese view), auto-correct deterministic
-      # prefixes, requeue the rest with a per-item cap. MODE is "report" until
-      # the owner approves "enforce": report prints what enforce would do and
-      # changes nothing. Findings never block the data commit.
+      # prefixes, requeue the rest with a per-item cap. "enforce" since
+      # 2026-10-16 (owner-approved after the circuit breaker was verified on the
+      # real corpus: more than 15 withholds in one run withholds nothing and
+      # warns). Set "report" to print what enforce would do and change nothing.
+      # Findings never block the data commit.
       - name: Quality audit and publication policy
         env:
-          QUALITY_GATE_MODE: report
+          QUALITY_GATE_MODE: enforce
         run: |
           set -o pipefail
           python scripts/quality_gate.py --mode "$QUALITY_GATE_MODE" | tee quality_audit.log

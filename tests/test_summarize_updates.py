@@ -1918,6 +1918,85 @@ class TestEnglishRequeue(unittest.TestCase):
         self.assertEqual(published["title_en"], before["title_en"])
 
 
+class TestJapaneseRequeue(unittest.TestCase):
+    """The `japanese` requeue section redoes a Japanese summary in --japanese-only runs only."""
+
+    def _run(self, tmp, api_limit, created_at="2025-01-01T00:00:00Z"):
+        import requeue
+        base = Path(tmp)
+        item = TestSummarizeTitleCap()._item()
+        item.update(TestSummarizeTitleCap()._result("AI title"))
+        item.update({"summary_ja": "農林水産省は意見募集を行っています。", "business_impact_ja": "影響の可能性があります。",
+                     "recommended_action_ja": "原文を確認してください。", "summary_source": "claude",
+                     "summarized_at": "2020-01-01T00:00:00Z", "summary_model": "m",
+                     "summary_ja_source": "claude", "ja_summarized_at": "2020-01-01T00:00:00Z",
+                     "ja_summary_model": "m"})
+        key = su.cache_key(item, {})
+        cache = {key: {**{f: item[f] for f in su.AI_FIELDS}, **{f: item[f] for f in su.JA_AI_FIELDS},
+                       "summary_ja_source": "claude", "ja_summarized_at": "2020-01-01T00:00:00Z",
+                       "ja_summary_model": "m", "summarized_at": "2020-01-01T00:00:00Z", "summary_model": "m"}}
+        paths = {n: base / n for n in ("legal_updates.json", "summary_cache.json", "raw.json", "requeue.json")}
+        paths["legal_updates.json"].write_text(json.dumps([item]), encoding="utf-8")
+        paths["summary_cache.json"].write_text(json.dumps(cache), encoding="utf-8")
+        paths["raw.json"].write_text("[]", encoding="utf-8")
+        paths["requeue.json"].write_text(json.dumps({"created_at": created_at, "japanese": [item["id"]]}),
+                                         encoding="utf-8")
+        fresh = {"summary_ja": "農林水産省は2026年7月30日に案を公示し、意見募集を行いました。",
+                 "business_impact_ja": "影響の可能性があります。", "recommended_action_ja": "原文を確認してください。"}
+        usage = {"input_tokens": 1, "output_tokens": 1, "cache_creation_input_tokens": 0,
+                 "cache_read_input_tokens": 0}
+        calls = {"n": 0}
+
+        def fake(client, model, it, raw):
+            calls["n"] += 1
+            return fresh, model, usage
+
+        patches = {
+            "INPUT_PATH": paths["legal_updates.json"], "OUTPUT_PATH": paths["legal_updates.json"],
+            "BEFORE_AI_PATH": base / "before_ai.json", "CACHE_PATH": paths["summary_cache.json"],
+            "RAW_PATH": paths["raw.json"], "LOG_PATH": base / "summarize.log",
+            "make_client": idle_workspace_client, "request_japanese_summary": fake,
+            "request_summary": mock.Mock(side_effect=AssertionError("English must not run")),
+        }
+        saved = (requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH)
+        requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = paths["requeue.json"], base / "none.json"
+        out = io.StringIO()
+        try:
+            with mock.patch.multiple(su, **patches), mock.patch.dict(
+                os.environ, {"ANTHROPIC_API_KEY": "test-key"}, clear=False
+            ), contextlib.redirect_stdout(out):
+                rc = su.main(["--all-items", "--japanese-only", "--api-limit", str(api_limit)])
+        finally:
+            requeue.REQUEUE_PATH, requeue.AUTO_REQUEUE_PATH = saved
+            for handler in list(su.logger.handlers):
+                handler.close()
+            su.logger.handlers.clear()
+        published = json.loads(paths["legal_updates.json"].read_text(encoding="utf-8"))[0]
+        return rc, calls["n"], published, item
+
+    def test_a_listed_japanese_summary_is_redone_and_english_is_untouched(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            rc, n, published, before = self._run(tmp, api_limit=5)
+        self.assertEqual((rc, n), (0, 1))
+        self.assertIn("意見募集を行いました", published["summary_ja"])
+        for field in (*su.AI_FIELDS, "summary_source", "summarized_at"):
+            self.assertEqual(published.get(field), before.get(field))
+
+    def test_without_budget_or_after_regeneration_nothing_is_called(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, published, before = self._run(tmp, api_limit=0)
+        self.assertEqual(n, 0)
+        self.assertEqual(published["summary_ja"], before["summary_ja"], "the current text stays, never a gap")
+        with tempfile.TemporaryDirectory() as tmp:
+            _rc, n, _p, _b = self._run(tmp, api_limit=5, created_at="2019-01-01T00:00:00Z")
+        self.assertEqual(n, 0)
+
+    def test_the_prompts_ask_for_time_neutral_consultation_wording(self):
+        self.assertIn("never state whether comments are being accepted now", " ".join(su.SYSTEM_PROMPT.split()))
+        self.assertIn("募集中", su.SYSTEM_PROMPT_JA)
+        self.assertNotIn("'out for public comment'", su.SYSTEM_PROMPT)
+
+
 class TestCourtCaseNumbers(unittest.TestCase):
     def test_case_codes_are_romanized_by_rule(self):
         item = {"title_ja": "令和7(許)23 手数料還付申立て却下決定に対する許可抗告事件"}

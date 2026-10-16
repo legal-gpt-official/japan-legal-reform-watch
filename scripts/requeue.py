@@ -7,6 +7,7 @@ data/requeue.json names items whose AI output was found defective by an audit:
       "reason": "short note",
       "english": ["raw-...", ...],     # regenerate the English summary
       "english_title": ["raw-...", ...], # regenerate only the English title
+      "japanese": ["raw-...", ...],    # regenerate the Japanese summary (--japanese-only runs)
       "zh-Hans": ["raw-...", ...],     # re-translate the Chinese block
       "zh-Hans-sync": ["raw-...", ...] # no API: make the field cache hold this
                                        # item's current (already fixed) Chinese
@@ -28,7 +29,7 @@ REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue.json"
 # Written only by scripts/quality_gate.py in enforce mode: items a HIGH audit
 # finding asked to be redone. Same format; read together with REQUEUE_PATH.
 AUTO_REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue_auto.json"
-SECTIONS = ("english", "english_title", "zh-Hans", "zh-Hans-sync")
+SECTIONS = ("english", "english_title", "japanese", "zh-Hans", "zh-Hans-sync")
 
 
 def _read(path: Path) -> dict:
@@ -45,6 +46,9 @@ def _read(path: Path) -> dict:
         ids = data.get(section) or []
         if isinstance(ids, list):
             out[section] = {i: since for i in ids if isinstance(i, str)}
+        elif isinstance(ids, dict):
+            # Per-item request times (written by quality_gate.py).
+            out[section] = {i: t for i, t in ids.items() if isinstance(i, str) and isinstance(t, str) and t}
     return out
 
 

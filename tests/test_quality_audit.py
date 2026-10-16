@@ -128,6 +128,30 @@ class TestQualityAudit(unittest.TestCase):
                      zh={"summary": "修订《牙科卫生师法施行规则》（昭和一年厚生省令第46号）。"})
         self.assertIn("zh_era", run(wrong, raw={"raw-egov": {"raw_summary": "法令番号: 平成元年厚生省令第四十六号"}}))
 
+    def test_a_closed_consultation_still_described_as_open_is_flagged_per_language(self):
+        base = dict(iid="raw-pc", source_name="e-Gov Public Comment (意見募集案件一覧)", stage="Public Comment Closed",
+                    title_ja="○○省令案に関する意見募集について", summary_ja_source="claude",
+                    business_impact_ja="影響の可能性があります。", recommended_action_ja="原文を確認してください。")
+        stale = item(**base, summary_en="MAFF is seeking public comments on a draft notice; the deadline is 2026-08-28.",
+                     summary_ja="農林水産省は省令案について意見募集を行っています。",
+                     zh={"summary": "农林水产省正在就该省令草案公开征求意见。"})
+        found = run(stale, raw={})
+        for check in ("en_stale_open", "ja_stale_open", "zh_stale_open"):
+            self.assertEqual(found.get(check), ["raw-pc"], check)
+        neutral = item(**base,
+                       summary_en="MAFF published a draft notice for public comment on 2026-07-30; the stated deadline "
+                                  "is 2026-08-28. Comments are accepted until 2026-08-28.",
+                       recommended_action_en="Confirm on the official page whether the comment period remains open.",
+                       summary_ja="農林水産省は2026年7月30日に省令案を公示し、意見募集を行いました（締切：2026年8月28日）。",
+                       zh={"summary": "农林水产省已于2026-07-30就该省令草案公开征求意见，截止日期为2026-08-28。"})
+        found = run(neutral, raw={})
+        for check in ("en_stale_open", "ja_stale_open", "zh_stale_open"):
+            self.assertNotIn(check, found, check)
+        still_open = item(**dict(base, stage="Public Comment Open"),
+                          summary_en="MAFF is seeking public comments on a draft notice.",
+                          summary_ja="農林水産省は意見募集を行っています。", zh={"summary": "正在公开征求意见。"})
+        self.assertFalse({"en_stale_open", "ja_stale_open", "zh_stale_open"} & set(run(still_open, raw={})))
+
     def test_stage_prefix_contradictions_only(self):
         closed_open = item(stage="Public Comment Closed", zh={"title": "公开征求意见：某规则修订草案"})
         variant = item(stage="Public Comment Closed", zh={"title": "公开征求意见（已结束）：某规则修订草案"})

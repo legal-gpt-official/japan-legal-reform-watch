@@ -259,7 +259,11 @@ SYSTEM_PROMPT = (
     "- Do not state that a law has been enacted, promulgated, or has entered into force "
     "unless the provided source text clearly supports it.\n"
     "- If the item indicates a public comment, draft, proposal, consultation, draft guideline, "
-    "or government announcement, clearly label it as such (e.g., 'draft', 'out for public comment', 'proposed').\n"
+    "or government announcement, clearly label it as such (e.g., 'draft', 'subject to public comment', 'proposed').\n"
+    "- The summary stays published after a consultation closes, so never state whether comments are "
+    "being accepted now: no 'is seeking comments', 'is open for public comment', 'currently', 'remains "
+    "open', 'comments are invited'. Describe the event and its dates instead, e.g. 'MAFF published a "
+    "draft notice for public comment on 2026-07-30; the stated comment deadline is 2026-08-28.'\n"
     "- area, stage, and impact_level are preliminary rule-based labels for triage. They are not "
     "legally verified conclusions and must not be treated as authoritative.\n"
     "- Preserve caution: the official Japanese source is authoritative; your English is an unofficial "
@@ -344,6 +348,9 @@ SYSTEM_PROMPT_JA = (
     "- 法的助言や、特定の当事者に対する断定的な対応指示をしないでください。\n"
     "- 成立、公布、施行などの法的状態は、原文が明確に示す場合に限って記載してください。\n"
     "- 意見募集、案、提案、協議、ガイドライン案、政府発表は、その段階が分かる表現にしてください。\n"
+    "- 要約は意見募集の終了後も掲載され続けます。現在受付中かどうかを述べる表現（「意見募集を行っています」"
+    "「募集中」「受け付けています」「現時点では意見募集中」等）は使わず、公示と日付を記載してください。"
+    "例:「農林水産省は、2026年7月30日に〇〇案を公示し、意見・情報の募集を行いました（受付締切：2026年8月28日）。」\n"
     "- area、stage、impact_level は機械的な暫定分類であり、法的に確認された結論として扱わないでください。\n"
     "- 日本語の公式情報源が優先し、この要約は確認の端緒となる非公式のモニタリング情報です。\n"
     "- 落ち着いた企業法務向けの文体とし、宣伝的・扇情的な表現を避けてください。\n"
@@ -1691,6 +1698,21 @@ def main(argv: list[str] | None = None) -> int:
             # a rule-based English preview remains rule_based even when the
             # Japanese body is a Claude summary.
             it["summary_source"] = it.get("summary_source") or "rule_based"
+            if (
+                isinstance(cached, dict) and valid_japanese_result(cached)
+                and requeue.due(requeue_request, "japanese", it.get("id") or "", cached.get("ja_summarized_at"))
+                and api_key_available and not provider_fatal and not cost_cap_reached()
+                and (api_limit is None or (
+                    len(pending_ja) if (args.batch or args.parallel > 1)
+                    else api_calls + provider_aborted + cost_budget_skipped
+                ) < api_limit)
+            ):
+                # Audit-requested regeneration of this Japanese summary, taken
+                # only while there is budget to redo it now; the English body
+                # and its provenance are untouched.
+                requeued_items += 1
+                logger.info("REQUEUE JA %s", it.get("id"))
+                cached = None
             if isinstance(cached, dict) and valid_japanese_result(cached):
                 apply_cached_japanese_result(it, cached, fetched_at, model)
                 ja_cache_hits += 1
