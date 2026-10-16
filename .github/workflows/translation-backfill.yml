@@ -72,13 +72,17 @@ jobs:
 
       - name: Translate Simplified Chinese updates
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          # Translation-only model override: zh-Hans translation uses Sonnet 5;
-          # summarization stays on Opus 4.8. Precedence for translation is
-          # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
-          ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
+          # Same model and tier as the daily zh-Hans step (gpt-6.1-sol on OpenAI
+          # Flex since 2026-10-16), so a backfill produces what the daily run
+          # would and does not depend on Anthropic credit. Revert:
+          # ANTHROPIC_API_KEY + ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5 and
+          # drop --parallel.
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
         # Direct calls persist a completed checkpoint without depending on one
-        # long-running Message Batch. fail mode: a provider-wide error while
+        # long-running batch. fail mode: a provider-wide error while
         # untranslated candidates remain exits 1, failing the backfill before any
         # commit so a credit/auth problem is loud and no partial state is pushed.
         run: |
@@ -89,13 +93,15 @@ jobs:
           fi
           python scripts/translate_updates.py \
             --locale zh-Hans \
+            --parallel 5 \
             --limit 30 \
             --max-cost-usd "${{ inputs.max_cost_usd }}" \
+            --retry-rejected-title-without-ja-reference \
             --provider-failure-mode fail \
             "${extra_args[@]}" 2>&1 | tee translate_run.log
           {
-            echo "### Simplified-Chinese translation checkpoint"
-            grep -E '^(api_calls|translated_items|failed_items|refused_items|quality_rejected_items|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|estimated_cost_usd|max_cost_usd)' translate_run.log || true
+            echo "### Simplified-Chinese translation checkpoint (gpt-6.1-sol, Flex)"
+            grep -E '^(model|api_calls|translated_items|failed_items|refused_items|quality_rejected_items|quality_parked_items|rejection_records|rejections_pruned|title_reference_retries|title_reference_retry_successes|provider_status|provider_error_type|provider_aborted_items|cost_budget_skipped|input_tokens|output_tokens|cache_creation_input_tokens|cache_read_input_tokens|reasoning_tokens|flex_calls|estimated_cost_usd|max_cost_usd)' translate_run.log || true
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Count translations after

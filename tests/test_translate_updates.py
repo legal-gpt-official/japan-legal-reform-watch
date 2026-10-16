@@ -1217,6 +1217,59 @@ class TestTitleRejectionMemo(TranslateTestBase):
         self.assertEqual(parse_summary(out)["quality_parked_items"], "0")
         self.assertIn(LOCALE, self.read_output()[0]["translations"])
 
+    def test_records_carry_the_instructions_fingerprint(self):
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        self._run_once(item)
+        record = self.read_cache()["rejected"][LOCALE][item["id"]]
+        self.assertEqual(record["instructions"], tu.INSTRUCTIONS_FINGERPRINT)
+
+    def test_changing_the_instructions_releases_the_park_once(self):
+        """A prompt or glossary clarification does not bump PROMPT_VERSION, so
+        nothing that already passed is re-translated, but a parked item gets
+        one fresh budget under the new instructions -- and is parked again if
+        it still fails."""
+        item = sample_item()
+        self.write_input([item])
+        self.write_cache(tu.default_cache())
+        for _ in range(tu.MAX_TITLE_ATTEMPTS):
+            self._run_once(item)
+        _rc, summary, calls = self._run_once(item)
+        self.assertEqual(calls["n"], 0)
+
+        original = tu.INSTRUCTIONS_FINGERPRINT
+        try:
+            tu.INSTRUCTIONS_FINGERPRINT = "0" * 16
+            _rc, summary, calls = self._run_once(item)
+            self.assertEqual(calls["n"], 1, "new instructions deserve a fresh attempt")
+            self.assertEqual(summary["quality_parked_items"], "0")
+            for _ in range(tu.MAX_TITLE_ATTEMPTS - 1):
+                self._run_once(item)
+            _rc, summary, calls = self._run_once(item)
+            self.assertEqual(calls["n"], 0, "still failing under the new instructions: parked again")
+        finally:
+            tu.INSTRUCTIONS_FINGERPRINT = original
+
+    def test_a_record_without_a_fingerprint_no_longer_parks(self):
+        """Records written before the fingerprint existed came from older
+        instructions, so they release once."""
+        item = sample_item()
+        self.write_input([item])
+        cache = tu.default_cache()
+        cache["rejected"][LOCALE][item["id"]] = {
+            "source_hash": tu.compute_source_hash(item, LOCALE, tu.PROMPT_VERSION),
+            "prompt_version": tu.PROMPT_VERSION,
+            "attempts": tu.MAX_TITLE_ATTEMPTS + 2,
+            "reasons": ["title contains Japanese kana"],
+        }
+        self.write_cache(cache)
+        calls = self.install_counting_api()
+        rc, out = self.run_main(["--locale", LOCALE, "--limit", "30"])
+        self.assertEqual(rc, 0)
+        self.assertEqual(calls["n"], 1)
+        self.assertIn(LOCALE, self.read_output()[0]["translations"])
+
     def test_a_later_success_prunes_the_record(self):
         item = sample_item()
         self.write_input([item])
@@ -2326,6 +2379,45 @@ class TestTranslationModelOverride(unittest.TestCase):
         self.assertEqual(tu.DEFAULT_TRANSLATION_MODEL, "claude-haiku-4-5-20251001")
         with mock.patch.dict(os.environ, {"ANTHROPIC_TRANSLATION_MODEL": "claude-sonnet-5"}, clear=True):
             self.assertEqual(tu.resolve_model(None), "claude-sonnet-5")
+
+
+
+class TestParkedTitleRootCauses(unittest.TestCase):
+    """The five titles parked on 2026-10-16 failed for three reasons. Each is
+    fixed in the instructions; the gate that caught them stays as strict."""
+
+    def test_the_gate_still_rejects_every_original_failure(self):
+        for title, reason in (
+            ("最高裁判决：违反《禁止私人垄断法》案（令和5(あ)395）", "title contains Japanese kana"),
+            ("最高裁判决：宗教法人解散命令申请案（令和8(ク)407）", "title contains Japanese kana"),
+            ("法案提交：修改《公立学校学校医等公务灾害补偿法》", "title repeats a word back-to-back"),
+            ("《金融商品交易法》及《资金结算法》部分修改法（涉及邮政…", "title contains an ellipsis"),
+        ):
+            with self.subTest(title=title):
+                self.assertIn(reason, tu.title_quality_errors(title))
+
+    def test_the_corrected_forms_pass(self):
+        for title in (
+            "最高裁判决：违反《禁止私人垄断法》案（2023年(A)第395号）",
+            "法案提交：修改《公立学校校医、校牙医及校药剂师公务灾害补偿法》",
+            "《金融商品交易法》及《资金结算法》部分修改法",
+        ):
+            with self.subTest(title=title):
+                self.assertEqual(tu.title_quality_errors(title), [])
+
+    def test_the_prompt_names_each_root_cause(self):
+        prompt = " ".join(tu.SYSTEM_PROMPT.split())
+        self.assertIn("court case numbers carry a kana case code", prompt)
+        self.assertIn("Never copy that kana into the title", prompt)
+        self.assertIn("drop the unfinished trailing fragment", prompt)
+        self.assertEqual(tu.GLOSSARY_ZH_HANS["学校医 (school physician)"], "校医")
+        self.assertEqual(tu.GLOSSARY_ZH_HANS["学校歯科医 (school dentist)"], "校牙医")
+        self.assertEqual(tu.GLOSSARY_ZH_HANS["学校薬剤師 (school pharmacist)"], "校药剂师")
+
+    def test_clarifying_the_prompt_did_not_invalidate_existing_translations(self):
+        """Every published translation is keyed on PROMPT_VERSION; bumping it
+        would re-translate all ~4,300 of them."""
+        self.assertEqual(tu.PROMPT_VERSION, "zh-hans-v3")
 
 
 if __name__ == "__main__":

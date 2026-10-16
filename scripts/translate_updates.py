@@ -253,6 +253,11 @@ GLOSSARY_ZH_HANS = {
     "育成就労制度": "育成就业制度",
     "外国人の育成就労の適正な実施及び育成就労外国人の保護に関する法律": "外国人育成就业适当实施及育成就业外国人保护法",
     "Training and Employment": "育成就业",
+    # A Japanese name that repeats a word (公立学校の学校医) must not become a
+    # back-to-back repeat in Chinese (公立学校学校医); use the standard terms.
+    "学校医 (school physician)": "校医",
+    "学校歯科医 (school dentist)": "校牙医",
+    "学校薬剤師 (school pharmacist)": "校药剂师",
 }
 
 logger = logging.getLogger("jlrw.translate")
@@ -283,7 +288,13 @@ SYSTEM_PROMPT = (
     f"- Aim for at most ~{TITLE_TARGET_CHARS} characters; never exceed {TITLE_MAX_CHARS} characters.\n"
     "- The title must be a complete phrase. Never cut it off mid-way.\n"
     "- Never use '...', '…' or '……'. If the English title is itself truncated with an "
-    "ellipsis, do NOT carry the ellipsis over — render a complete, concise Chinese title instead.\n"
+    "ellipsis, do NOT carry the ellipsis over — render a complete, concise Chinese title instead: "
+    "drop the unfinished trailing fragment (e.g. an unclosed parenthetical such as '(Case No. "
+    "Reiwa 8...' or '(affecting Postal...') rather than guessing how it ends.\n"
+    "- Japanese court case numbers carry a kana case code (e.g. 令和5(あ)395, 令和8(ク)407). Never "
+    "copy that kana into the title: write the case number as the English title gives it, keeping its "
+    "romanized code (e.g. 2023年(A)第395号 for 'Case 2023 (A) 395'); if the English title gives no "
+    "complete case number, omit it.\n"
     "- Do not repeat the same stage expression within one title. Use '公开征求意见' at most once, "
     "and do not combine '关于…的公开征求意见' with '公开征求意见：…' in the same title.\n"
     "- Do not repeat the same word or particle back-to-back, and do not leave a dangling fragment "
@@ -1438,6 +1449,15 @@ def candidate_reason(cached, source_hash: str, prompt_version: str):
     return None
 
 
+# Fingerprint of the exact instructions sent with every request. A parked title
+# rejection only stands while the instructions that produced it are unchanged:
+# clarifying the prompt or glossary (which, by design, does not bump
+# PROMPT_VERSION and so re-translates nothing that already passed) gives each
+# parked item exactly one fresh attempt budget, instead of leaving it on the
+# English fallback until its English happens to change.
+INSTRUCTIONS_FINGERPRINT = hashlib.sha256(SYSTEM_PROMPT.encode("utf-8")).hexdigest()[:16]
+
+
 def rejection_record(rejected: dict, item_id: str, source_hash: str, prompt_version: str):
     """The live rejection record for this exact English, or None.
 
@@ -1453,6 +1473,8 @@ def rejection_record(rejected: dict, item_id: str, source_hash: str, prompt_vers
         return None
     if record.get("prompt_version") != prompt_version:
         return None
+    if record.get("instructions") != INSTRUCTIONS_FINGERPRINT:
+        return None
     return record
 
 
@@ -1464,6 +1486,7 @@ def note_title_rejection(
     record = rejection_record(rejected, item_id, source_hash, prompt_version) or {
         "source_hash": source_hash,
         "prompt_version": prompt_version,
+        "instructions": INSTRUCTIONS_FINGERPRINT,
         "attempts": 0,
     }
     record["attempts"] = int(record.get("attempts") or 0) + 1
