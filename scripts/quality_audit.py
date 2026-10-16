@@ -121,7 +121,9 @@ STALE_OPEN_EN_RE = re.compile(
     r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome)"
     r"(?!\s+(?:until|through|by)\b)", re.I)
 STALE_OPEN_JA_RE = re.compile(r"募集を行っています|募集しています|受け付けています|受付中|意見募集中|募集中(?:の|であり|です|で)")
-STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)[^。；，]{0,12}?(?:征求|征询)")
+# "当前状态及公开征求意见结果" (current status and the results) is a faithful
+# "current status", not an open-tense claim: list separators and results are excluded.
+STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)(?!状态|情况)[^。；，、及和]{0,12}?(?:征求|征询)(?!意见结果|结果)")
 
 
 def stale_open_en(text: str) -> bool:
