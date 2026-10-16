@@ -282,6 +282,38 @@ def comment_deadline_display(value: Any) -> str:
     return parsed.astimezone(JST).strftime("%Y-%m-%d %H:%M JST")
 
 
+# An ISO date-time WITH a time (and usually an offset) inside running text, as a
+# model copies it from metadata: 2026-09-29T23:59:00+09:00. Plain dates are left
+# alone; they are already readable.
+_ISO_DATETIME_IN_TEXT_RE = re.compile(
+    r"(?<![\d-])(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?(Z|[+-]\d{2}:?\d{2})?(?![\d:])")
+
+
+def readable_iso_datetimes(text: str) -> str:
+    """Rewrite ISO date-times in reader-facing text as 'YYYY-MM-DD HH:MM JST'.
+
+    The instant is converted to JST, never dropped: the date, the time (seconds
+    kept when not :00) and the time zone all survive, so a deadline means
+    exactly what the metadata said. A date-time without an offset is JST, as
+    everywhere else in this pipeline; an unparseable one is left unchanged.
+    """
+    if not isinstance(text, str) or "T" not in text:
+        return text
+
+    def _repl(match: "re.Match[str]") -> str:
+        iso = match.group(0)
+        try:
+            parsed = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+        except ValueError:
+            return iso
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=JST)
+        local = parsed.astimezone(JST)
+        return local.strftime("%Y-%m-%d %H:%M:%S JST" if local.second else "%Y-%m-%d %H:%M JST")
+
+    return _ISO_DATETIME_IN_TEXT_RE.sub(_repl, text)
+
+
 def open_comment_deadline(item: Mapping[str, Any], today: date) -> tuple[date, int] | None:
     """(last filing day, days remaining) for an open consultation, else None."""
     if item.get("stage") != "Public Comment Open":

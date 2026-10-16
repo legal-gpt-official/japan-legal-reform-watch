@@ -71,6 +71,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import alert_common
 import openai_provider
 import requeue
 from anthropic_batch import (
@@ -904,7 +905,8 @@ def normalized_fields(merged: dict) -> dict:
     if not valid_translation(merged):
         raise ValueError("model returned invalid/oversize translation fields")
     return {
-        field: normalize_name_separators(normalize_dates(merged[field].strip()))
+        field: normalize_name_separators(normalize_dates(
+            alert_common.readable_iso_datetimes(merged[field].strip())))
         for field in TRANSLATION_FIELDS
     }
 

@@ -28,6 +28,9 @@ ready-to-paste data/requeue.json section):
 - zh_cache_mismatch      published Chinese differs from its current cache entry
                          (the 2026-10-16 field-cache rewind class)
 - pc_stage_results       an e-Gov call for comments labelled as results
+- ja_law_number_dropped  an instrument number the source states, left out of
+                         the Japanese summary (amending, amended or mentioned)
+- en/ja/zh_iso_datetime  a raw ISO date-time (…T23:59:00+09:00) shown to readers
 - en/ja/zh_stale_open    a closed consultation whose text still says comments are
                          being accepted (written while it was open)
 
@@ -65,7 +68,8 @@ LOCALE = "zh-Hans"
 HIGH = ("en_japanese", "en_title_truncated", "en_main_law_number", "en_law_number_year",
         "en_case_code", "en_field_names", "en_wrong_bureau", "zh_missing",
         "zh_kana_or_ja_forms", "zh_era", "zh_truncated", "zh_title_gate", "zh_stage_prefix",
-        "zh_cache_mismatch", "pc_stage_results", "en_stale_open", "ja_stale_open", "zh_stale_open")
+        "zh_cache_mismatch", "pc_stage_results", "en_stale_open", "ja_stale_open", "zh_stale_open",
+        "ja_law_number_dropped", "en_iso_datetime", "ja_iso_datetime", "zh_iso_datetime")
 MEDIUM = ("en_target_law_number", "en_key_date", "ja_main_law_number", "confidence_over_evidence",
           "en_transitional_omitted", "en_draft_status_missing", "en_enactment_overstated",
           "zh_obligation_added")
@@ -78,6 +82,8 @@ REMEDY = {
     "zh_truncated": "zh-Hans", "zh_title_gate": "zh-Hans", "zh_stage_prefix": "zh-Hans",
     "zh_cache_mismatch": "zh-Hans", "pc_stage_results": "stage rule (scripts/build_public_data.py)",
     "en_stale_open": "english", "ja_stale_open": "japanese", "zh_stale_open": "zh-Hans",
+    "ja_law_number_dropped": "japanese", "en_iso_datetime": "english", "ja_iso_datetime": "japanese",
+    "zh_iso_datetime": "zh-Hans",
 }
 
 JP_RE = re.compile(r"[぀-ヿ一-鿿]")
@@ -120,6 +126,9 @@ STALE_OPEN_EN_RE = re.compile(
     # "comments are accepted until <date>" states the period with its date; not flagged.
     r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome)"
     r"(?!\s+(?:until|through|by)\b)", re.I)
+# A raw ISO date-time shown to readers (2026-09-29T23:59:00+09:00). The English
+# and Chinese stages rewrite these deterministically; this catches a regression.
+ISO_DATETIME_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}")
 STALE_OPEN_JA_RE = re.compile(r"募集を行っています|募集しています|受け付けています|受付中|意見募集中|募集中(?:の|であり|です|で)")
 # "当前状态及公开征求意见结果" (current status and the results) is a faithful
 # "current status", not an open-tense claim: list separators and results are excluded.
@@ -238,6 +247,16 @@ def audit(items: list[dict], raw_by_id: dict, cache: dict) -> dict:
             primary = next((i for i in ids if i["role"] == "amending_instrument"), ids[0] if ids else None)
             if primary and not ja_number_kept(primary, ja):
                 hit("ja_main_law_number")
+            # Any instrument number the source states, amending or amended, that
+            # the Japanese summary replaced with 関連告示 / 同省令 or left out.
+            if any(not ja_number_kept(i, ja) for i in ids):
+                hit("ja_law_number_dropped")
+            if ISO_DATETIME_RE.search(ja):
+                hit("ja_iso_datetime")
+        if zh and ISO_DATETIME_RE.search(" ".join(str(v) for v in zh.values())):
+            hit("zh_iso_datetime")
+        if ai and ISO_DATETIME_RE.search(" ".join(item.get(k) or "" for k in su.AI_TEXT_FIELDS)):
+            hit("en_iso_datetime")
 
         if (item.get("stage") or "") in CLOSED_PC_STAGES:
             if ai and stale_open_en(" ".join(item.get(k) or "" for k in su.AI_TEXT_FIELDS[1:])):
