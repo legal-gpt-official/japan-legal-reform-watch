@@ -7,7 +7,9 @@ data/requeue.json names items whose AI output was found defective by an audit:
       "reason": "short note",
       "english": ["raw-...", ...],     # regenerate the English summary
       "english_title": ["raw-...", ...], # regenerate only the English title
-      "zh-Hans": ["raw-...", ...]      # re-translate the Chinese block
+      "zh-Hans": ["raw-...", ...],     # re-translate the Chinese block
+      "zh-Hans-sync": ["raw-...", ...] # no API: make the field cache hold this
+                                       # item's current (already fixed) Chinese
     }
 
 An item is due only while its cached output is OLDER than `created_at`: the
@@ -23,7 +25,7 @@ import json
 from pathlib import Path
 
 REQUEUE_PATH = Path(__file__).resolve().parent.parent / "data" / "requeue.json"
-SECTIONS = ("english", "english_title", "zh-Hans")
+SECTIONS = ("english", "english_title", "zh-Hans", "zh-Hans-sync")
 
 
 def load(path: Path | None = None) -> dict:
