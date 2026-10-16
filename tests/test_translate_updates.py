@@ -2536,5 +2536,19 @@ class TestTitleOnlyChangeRequestsOnlyTheTitle(TranslateTestBase):
         self.assertEqual({k: block[k] for k in first_body}, first_body)
 
 
+
+class TestTitleQuestionMark(unittest.TestCase):
+    def test_a_stray_question_mark_is_rejected(self):
+        self.assertIn("title contains a question mark",
+                      tu.title_quality_errors("部分修订《关于独立行政法人统计中心的省令》的省令出版？"))
+        self.assertIn("title contains a question mark", tu.title_quality_errors("修订省令?"))
+        self.assertEqual(tu.title_quality_errors("部分修订《关于独立行政法人统计中心的省令》的省令"), [])
+        self.assertIn("title contains a question mark", tu.title_quality_errors(
+            "（已结束）公开征求意见：国土交通大臣所定标准刊summary?state"))
+
+    def test_a_question_mark_inside_a_quoted_name_is_allowed(self):
+        self.assertEqual(tu.title_quality_errors("数字厅：电影《驾照返还!?》与我的号码卡开展联动（公告）"), [])
+
+
 if __name__ == "__main__":
     unittest.main()
