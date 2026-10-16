@@ -914,6 +914,7 @@ def commit_translation(
     Returns the number of NEW field-cache entries added, so a run can report how
     much future work it just eliminated.
     """
+    fields = align_stage_prefix(fields, item.get("stage") or "")
     apply_translation(item, fields, locale)
     entries[item_id] = cache_entry(source_hash, PROMPT_VERSION, now, model_used, fields)
     added = 0
@@ -930,6 +931,35 @@ def commit_translation(
         ):
             added += 1
     return added
+
+
+_OPEN_PREFIX = "公开征求意见："
+_CLOSED_PREFIX = "（已结束）公开征求意见："
+_CLOSED_VARIANTS = ("公开征求意见（已结束）：", "（已结束）公开征求意见:", "公开征求意见(已结束)：")
+
+
+def align_stage_prefix(fields: dict, stage: str) -> dict:
+    """Make a public-comment title's status prefix agree with the item's stage.
+
+    The stage is a structured fact (Stage 2 closes a consultation at its
+    trusted deadline), and the title prefix is the only status a Chinese reader
+    sees in a list. The model follows the prefix format most of the time; on
+    2026-10-16 one closed JSDA consultation still read 公开征求意见：…, i.e. open.
+    Only the two public-comment prefixes are touched, deterministically.
+    """
+    title = fields.get("title") or ""
+    new = title
+    if stage == "Public Comment Closed":
+        for variant in _CLOSED_VARIANTS:
+            if new.startswith(variant):
+                new = _CLOSED_PREFIX + new[len(variant):]
+        if new.startswith(_OPEN_PREFIX):
+            new = _CLOSED_PREFIX + new[len(_OPEN_PREFIX):]
+    elif stage == "Public Comment Open" and new.startswith(_CLOSED_PREFIX):
+        new = _OPEN_PREFIX + new[len(_CLOSED_PREFIX):]
+    if new == title or title_quality_errors(new):
+        return fields
+    return {**fields, "title": new}
 
 
 # Ids taken as "requeued" candidates in the current run (see requeue.due); their
