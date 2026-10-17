@@ -6,23 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Transport / Infrastructure
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-da916879d83bf1fc-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20260918T000000Z
-DTSTART;VALUE=DATE:20261017
-DTEND;VALUE=DATE:20261018
-SUMMARY:Public comment closes: Public Comment on Draft Cabinet Office Order
-  Amending the Road Traffic Act Enforcement Regulations
-DESCRIPTION:Closes 2026-10-18 00:00 JST.\nOriginal title: 「道路交通
- 法施行規則の一部を改正する内閣府令案」に対する意
- 見の募集について\ne-Gov Public Comment\nOfficial source: https://p
- ublic-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=1202600
- 26&Mode=0\nMonitoring aid only\; not legal advice or an official translati
- on. Original Japanese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=120260026&Mode=0
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-9499c505ab5366db-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261030
@@ -93,5 +76,23 @@ DESCRIPTION:Closes 2026-11-05 14:00 JST.\nOriginal title: 道路運送車
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=155260934&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-6b2e19679d6c2904-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261017T000000Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:Public comment closes: Draft ministerial ordinance aligning MLIT or
+ dinances with urban renaissance law amendments
+DESCRIPTION:Closes 2026-11-14 23:59 JST.\nOriginal title: 都市再生特
+ 別措置法等の一部を改正する法律の施行に伴う国土交
+ 通省関係省令の整備等に関する省令案に関する意見募
+ 集について\ne-Gov Public Comment\nOfficial source: https://public-com
+ ment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=155260416&Mode=0
+ \nMonitoring aid only\; not legal advice or an official translation. Origi
+ nal Japanese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=155260416&Mode=0
 END:VEVENT
 END:VCALENDAR
