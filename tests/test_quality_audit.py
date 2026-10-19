@@ -150,6 +150,13 @@ class TestQualityAudit(unittest.TestCase):
         results = item(**dict(base, stage="Public Comment Results Published"),
                        zh={"recommended_action": "建议查阅官方来源，以确认省令草案的内容、当前状态及公开征求意见结果。"})
         self.assertNotIn("zh_stale_open", run(results, raw={}), "'current status' is faithful, not open-tense")
+        for ja, zh in (("総務省は省令案について意見募集を実施しています。", "该草案仍处于公开征求意见阶段。"),
+                       ("総務省は意見募集を行っている旨を公表しています。", "本事项处于征求意见期间。")):
+            found = run(item(**base, summary_ja=ja, zh={"summary": zh}), raw={})
+            self.assertIn("ja_stale_open", found, ja)
+            self.assertIn("zh_stale_open", found, zh)
+        past = item(**base, summary_ja="総務省は意見募集を行っていたことが公表されています。")
+        self.assertNotIn("ja_stale_open", run(past, raw={}), "a past form is correct")
         still_open = item(**dict(base, stage="Public Comment Open"),
                           summary_en="MAFF is seeking public comments on a draft notice.",
                           summary_ja="農林水産省は意見募集を行っています。", zh={"summary": "正在公开征求意见。"})

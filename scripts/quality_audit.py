@@ -129,10 +129,15 @@ STALE_OPEN_EN_RE = re.compile(
 # A raw ISO date-time shown to readers (2026-09-29T23:59:00+09:00). The English
 # and Chinese stages rewrite these deterministically; this catches a regression.
 ISO_DATETIME_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}")
-STALE_OPEN_JA_RE = re.compile(r"募集を行っています|募集しています|受け付けています|受付中|意見募集中|募集中(?:の|であり|です|で)")
+# 実施しています / 行っている旨 were missed until 2026-10-19 (157 closed items);
+# a past form (行っていた) is correct and never matches.
+STALE_OPEN_JA_RE = re.compile(
+    r"(?:募集|意見公募手続|パブリックコメント|手続)を(?:実施し|行っ|受け付け)て(?:い(?!た)|おり)"
+    r"|募集しています|受け付けています|受付中|意見募集中|実施中|募集中(?:の|であり|です|で)")
 # "当前状态及公开征求意见结果" (current status and the results) is a faithful
 # "current status", not an open-tense claim: list separators and results are excluded.
-STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)(?!状态|情况)[^。；，、及和]{0,12}?(?:征求|征询)(?!意见结果|结果)")
+STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)(?!状态|情况)[^。；，、及和]{0,12}?(?:征求|征询)(?!意见结果|结果)"
+                              r"|处于(?:公开)?征求意见(?:阶段|期间|期)")
 
 
 def stale_open_en(text: str) -> bool:
