@@ -124,20 +124,29 @@ STALE_OPEN_EN_RE = re.compile(
     r"|\b(?:is|are|remains?)\s+(?:currently\s+|now\s+|still\s+)?(?:open|out)\s+for\s+(?:public\s+)?(?:comments?|consultation)"
     r"|\bcurrently\s+(?:open|out|under|in|at)\b[^.]{0,30}?\b(?:comments?|consultation)"
     # "comments are accepted until <date>" states the period with its date; not flagged.
-    r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome)"
-    r"(?!\s+(?:until|through|by)\b)", re.I)
+    r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome|solicited)"
+    r"(?!\s+(?:until|through|by)\b)"
+    r"|\b(?:a|the)\s+(?:public\s+)?comment\s+period\s+is\s+(?:currently\s+|now\s+|still\s+)?open\b"
+    r"|\b(?:is|are)\s+(?:currently\s+|now\s+)?conducting\s+(?:a\s+|the\s+)?(?:public\s+comment|consultation)", re.I)
 # A raw ISO date-time shown to readers (2026-09-29T23:59:00+09:00). The English
 # and Chinese stages rewrite these deterministically; this catches a regression.
 ISO_DATETIME_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}")
 # 実施しています / 行っている旨 were missed until 2026-10-19 (157 closed items);
 # a past form (行っていた) is correct and never matches.
+# Japanese phrasing varies too much to enumerate (two rounds of listed phrasings
+# still missed 309 closed items by 2026-10-19), so this is a rule rather than a
+# list: a consultation noun, optionally a parenthetical, を/が, a conducting verb
+# in a present (not past) progressive form; or 現時点 ... consultation stage.
+_PC_NOUN = r"(?:意見募集|意見・情報の募集|募集|意見公募手続|意見公募|公募|パブリックコメント|手続)"
 STALE_OPEN_JA_RE = re.compile(
-    r"(?:募集|意見公募手続|パブリックコメント|手続)を(?:実施し|行っ|受け付け)て(?:い(?!た)|おり)"
+    _PC_NOUN + r"[）」』]?(?:（[^）。]{0,24}）)?(?:を|が)(?:実施|行|受け付け|受付|募集)(?:し|され|われ|っ|れ)?て(?:い(?!た|まし)|おり(?!まし))"
+    r"|現時点(?:では|は|で)?[^。]{0,12}" + _PC_NOUN + r"[^。結]{0,4}段階"
     r"|募集しています|受け付けています|受付中|意見募集中|実施中|募集中(?:の|であり|です|で)")
 # "当前状态及公开征求意见结果" (current status and the results) is a faithful
 # "current status", not an open-tense claim: list separators and results are excluded.
 STALE_OPEN_ZH_RE = re.compile(r"(?:正在|目前|现正|当前|现在)(?!状态|情况)[^。；，、及和]{0,12}?(?:征求|征询)(?!意见结果|结果)"
-                              r"|处于(?:公开)?征求意见(?:阶段|期间|期)")
+                              r"|(?:正在|现正)就[^。；]{0,60}?(?:征求|征询|征集)"
+                              r"|处于[^。；，]{0,10}?(?:征求意见|意见征询|意见征集)(?:阶段|期间|期)")
 
 
 def stale_open_en(text: str) -> bool:

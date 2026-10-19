@@ -155,6 +155,17 @@ class TestQualityAudit(unittest.TestCase):
             found = run(item(**base, summary_ja=ja, zh={"summary": zh}), raw={})
             self.assertIn("ja_stale_open", found, ja)
             self.assertIn("zh_stale_open", found, zh)
+        for ja in ("意見募集が行われています。", "意見公募が実施されています。", "意見公募を実施しています。",
+                   "意見募集（パブリックコメント）を実施しています。", "現時点では意見募集の段階です。"):
+            self.assertIn("ja_stale_open", run(item(**base, summary_ja=ja), raw={}), ja)
+        for ja in ("意見募集が公示されています。", "意見募集の結果が公表されています。", "意見募集が行われていました。", "意見公募を実施しておりました。", "現時点では意見募集の結果段階です。"):
+            self.assertNotIn("ja_stale_open", run(item(**base, summary_ja=ja), raw={}), ja)
+        for en in ("A public comment period is open on a draft notice.",
+                   "The FSA announced that it is conducting a public comment procedure.",
+                   "Public comments are being solicited on this draft."):
+            self.assertIn("en_stale_open", run(item(**base, summary_en=en), raw={}), en)
+        for zh in ("本事项涉及相关措施，处于提案／征求意见阶段。", "农林水产省正在就丙硫克百威农药对蜜蜂影响的评估报告草案征求意见。"):
+            self.assertIn("zh_stale_open", run(item(**base, zh={"summary": zh}), raw={}), zh)
         past = item(**base, summary_ja="総務省は意見募集を行っていたことが公表されています。")
         self.assertNotIn("ja_stale_open", run(past, raw={}), "a past form is correct")
         still_open = item(**dict(base, stage="Public Comment Open"),
