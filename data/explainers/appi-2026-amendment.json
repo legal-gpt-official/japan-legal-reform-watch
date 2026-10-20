@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "dossier_id": "appi-2026-amendment",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 amendment of the Act on the Protection of Personal Information (the 'three-year review')",
+  "instrument_type": "statute",
+  "current_stage": "promulgated",
+  "related_item_ids": [
+    "raw-c4b40a5c0ab3c41d",
+    "raw-bc73d55ab418c98d",
+    "raw-1ee8756a4a76280e",
+    "raw-929efc6b19ee3f4d"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第五十六号",
+      "name_ja": "個人情報の保護に関する法律等の一部を改正する法律",
+      "name_en": "Act Partially Amending the Act on the Protection of Personal Information and Other Acts"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "PPC: 2026 amendment page (decisions and materials)",
+      "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou/"
+    },
+    {
+      "label": "PPC: Commission meeting list",
+      "url": "https://www.ppc.go.jp/enforcement/minutes/"
+    },
+    {
+      "label": "PPC: news and press releases",
+      "url": "https://www.ppc.go.jp/news/"
+    },
+    {
+      "label": "e-Gov Law Search: APPI revision history",
+      "url": "https://laws.e-gov.go.jp/law/415AC0000000057"
+    },
+    {
+      "label": "e-Gov public comment list (search: 個人情報の保護に関する法律)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Act on the Protection of Personal Information (APPI) contains a review clause, added by the 2020 amendment, under which the government examines the Act every three years in light of international trends and technological change. The Personal Information Protection Commission (PPC) began this review in 2023, held hearings with business and consumer groups and experts, published an interim summary for public comment in June 2024, and announced its policy for the legislative changes on 9 January 2026.",
+      "The House of Councillors' summary of the bill lists the main changes. Personal information may be provided without the individual's consent to a third party that prepares statistics and similar outputs, where the content of that statistics preparation has been made public; the PPC's later materials explain that this 'statistics preparation' can include AI development and that publicly available sensitive personal information may also be acquired for it. Rules are added on notifying the legal representative when handling personal information of persons under 16. Individuals may request that use of 'specified biometric personal information' (information containing features of parts of the body, such as facial feature data) be stopped even when it has not been handled unlawfully.",
+      "The bill also prohibits inappropriate use and improper acquisition of 'contactable personal-related information' (information such as phone numbers, addresses, email addresses or cookie IDs that can be used to contact a specific individual), creates an administrative surcharge that the PPC may order a business to pay where it obtained a financial gain through unlawful handling of personal information, and raises the statutory penalties for unlawfully providing personal information databases. Parallel changes on notifying the legal representatives of persons under 16 are made to the My Number Act and to the act on anonymised and pseudonymised medical information."
+    ],
+    "source_ids": [
+      "s3",
+      "s6",
+      "s7"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet decided on the bill and submitted it to the Diet on 7 April 2026. In the House of Representatives it was examined by a special committee on regional revitalisation, children's policy and the digital society, which attached a supplementary resolution, and the House passed it on 26 May 2026. In the House of Councillors it was examined by the special committee on the digital society and the use of artificial intelligence and passed on 10 July 2026, which enacted it. It was promulgated on 17 July 2026 as Act No. 56 of 2026.",
+      "The supplementary resolution asks the government, among other things, to hear stakeholders before making Commission rules, to keep the system consistent with foreign regimes such as the EU General Data Protection Regulation, and to avoid unduly discouraging research and development, including AI development; such resolutions are not legally binding. After promulgation the PPC adopted a roadmap (31 July 2026) and an overview of the matters to be set by Cabinet Order, Commission rules and guidelines (26 August 2026). On 9 September 2026 it decided how the rules will be prepared: it presents a 'basic approach' theme by theme, holds exchanges of views with groups representing individuals and businesses and secretariat hearings, then presents the specific content and draft texts, and then runs a public comment procedure.",
+      "The PPC has since presented three sets of basic approaches. On 16 September 2026 it covered handling that is clearly not contrary to the individual's will in view of how the data was obtained (for example, data passed between a hotel booking site and a hotel), children's personal information and facial feature data. On 1 October 2026 it covered the statistics exception (including AI development), proper handling by service providers to whom data is entrusted, and data breach reporting and notification. On 14 October 2026 it covered contactable personal-related information, a strengthened opt-out system, and the administrative surcharge."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4",
+      "s7"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-01-17",
+        "text": "e-Gov Law Search lists amendments to the Act taking effect on 17 January 2027; the PPC roadmap states that the provisions digitalising service of documents by public notice take effect six months after promulgation.",
+        "source_ids": [
+          "s4",
+          "s5"
+        ]
+      },
+      {
+        "text": "Under the process the PPC decided on 9 September 2026, the specific content and draft texts of the Cabinet Order and Commission rules will be presented to the Commission after stakeholder exchanges and hearings, and will then be put to public comment; guidelines and Q&A are to follow theme by theme.",
+        "source_ids": [
+          "s7"
+        ]
+      }
+    ],
+    "expected": [
+      "Draft Cabinet Orders and Commission rules are normally published on e-Gov for a public comment period, usually of at least 30 days, before adoption."
+    ],
+    "uncertainties": [
+      "The date on which the main provisions take effect has not been set; under the Act it can be no later than two years after promulgation (July 2028).",
+      "The PPC's basic approaches are discussion materials, not final rules. The final content of the Cabinet Order, Commission rules and guidelines, including how the surcharge is calculated and what qualifies for the statistics exception, had not been decided when this explainer was verified."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Businesses that handle personal information in Japan may be affected in several ways once the main provisions take effect. Sharing data for statistics or AI development may become possible without consent if the statutory conditions, including publication, are met; certain transfers that are clearly consistent with how data was obtained may also no longer need consent. Services used by minors, facial or other biometric data processing, outsourcing arrangements, breach response and the use of contact identifiers such as cookie IDs may need review against the new rules.",
+      "The new administrative surcharge adds a financial consequence for unlawful handling that produced a gain, alongside higher criminal penalties for unlawfully providing databases. The precise obligations depend on the Cabinet Order, Commission rules and guidelines, which are still being prepared and will be put to public comment."
+    ],
+    "checklist": [
+      "Identify processing that relies on consent and could fall within the statistics or 'clearly not contrary to the individual's will' exceptions, and what would have to be published.",
+      "Identify services or data sets involving persons under 16 and processes for notifying legal representatives.",
+      "Inventory facial or other biometric processing and how a request to stop use would be handled.",
+      "Review outsourcing contracts, breach response procedures and the acquisition and use of contact identifiers.",
+      "Follow the PPC's basic approaches and the forthcoming draft Cabinet Order, rules and guidelines, including public comment periods."
+    ],
+    "source_ids": [
+      "s3",
+      "s4",
+      "s7"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-04-07",
+      "label": "Cabinet decision and submission to the Diet",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-05-26",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-07-10",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十六号",
+      "label": "Promulgated as Act No. 56 of 2026",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-09-09",
+      "label": "PPC decides the process for preparing the Cabinet Order, rules and guidelines",
+      "source_ids": [
+        "s7"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-14",
+      "label": "PPC presents its third set of basic approaches (surcharge, opt-out, contact information)",
+      "source_ids": [
+        "s7"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2027-01-17",
+      "instrument_number": "令和八年法律第五十六号",
+      "label": "First amendments take effect (per e-Gov Law Search)",
+      "source_ids": [
+        "s5"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "令和8年 改正個人情報保護法について",
+      "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou/",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "議案審議経過情報: 個人情報の保護に関する法律等の一部を改正する法律案 (Cabinet bill No. 54, 221st Diet)",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE26F2.htm",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "House of Councillors",
+      "title": "個人情報の保護に関する法律等の一部を改正する法律案（閣法第五四号）要旨",
+      "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/580221540.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "個人情報の保護に関する法律等の一部を改正する法律の成立を受けた個人情報保護委員会の今後の取組について (31 July 2026)",
+      "url": "https://www.ppc.go.jp/files/pdf/260731_kongonotorikumi.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search (Digital Agency)",
+      "title": "個人情報の保護に関する法律: revision history",
+      "url": "https://laws.e-gov.go.jp/law/415AC0000000057",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "個人情報保護法等の一部を改正する法律について (outline and review history, July 2026)",
+      "url": "https://www.ppc.go.jp/files/pdf/260717_kaiseihounitsuite.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s7",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "政令・規則・ガイドライン等の整備に関する今後の進め方 (9 September 2026) and 政令・規則の整備に向けた基本的な考え方 ①②③ (16 September, 1 October and 14 October 2026)",
+      "url": "https://www.ppc.go.jp/files/pdf/260909_kongonosusumekatanitsuite.pdf",
+      "accessed_at": "2026-10-20"
+    }
+  ],
+  "verified_at": "2026-10-20",
+  "source_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
+  "author": "claude",
+  "review_notes": "Updated 2026-10-20 after owner review: added the PPC overview of matters to be set by Cabinet Order and rules (26 August), the preparation process (9 September: themes, stakeholder exchanges and secretariat hearings, specific content, draft texts, then public comment) and the three basic-approach documents of 16 September, 1 October and 14 October 2026 (260916/261001/261014_kihonntekinakanngaekatanitsuite_1-3.pdf, linked from the PPC amendment page). Added the PPC's own notices on the dashboard as related records. The dashboard holds the Diet record and PPC notices only; e-Gov Law Search had not been matched to this Act. Not yet reviewed by a person. Second update 2026-10-20: watch_pages changed to listing pages (ministry pages, meeting and press lists, e-Gov revision history, e-Gov comment list)."
+}
