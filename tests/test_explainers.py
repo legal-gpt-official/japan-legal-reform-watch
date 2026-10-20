@@ -495,7 +495,7 @@ class TestRepositoryState(unittest.TestCase):
         raw = json.loads((REPO_ROOT / "data" / "raw_items.json").read_text(encoding="utf-8"))
         index = ex.OfficialIndex.build(raw)
         explainers = ex.load_explainers()
-        reports = ex.validate_all(explainers, index, TODAY)
+        reports = ex.validate_all(explainers, index, max(TODAY, ex.datetime.now(ex.JST).date()))
         for dossier_id, report in reports.items():
             with self.subTest(dossier_id):
                 self.assertEqual(report.errors, [])
