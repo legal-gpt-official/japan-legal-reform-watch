@@ -6,23 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Energy / Environment
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-d388e6a8b2ad9674-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20260919T000000Z
-DTSTART;VALUE=DATE:20261019
-DTEND;VALUE=DATE:20261020
-SUMMARY:Public comment closes: Public Comment on Draft Amendment to Enforce
- ment Regulation of the Gas Business Act
-DESCRIPTION:Closes 2026-10-19 23:59 JST.\nOriginal title: ガス事業法
- 施行規則の一部を改正する省令（案）等に対する意見
- 募集について\ne-Gov Public Comment\nOfficial source: https://public-
- comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595320032&Mod
- e=0\nMonitoring aid only\; not legal advice or an official translation. Or
- iginal Japanese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=595320032&Mode=0
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-a7945a9d1ec23241-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20260930T000000Z
 DTSTART;VALUE=DATE:20261029
@@ -146,5 +129,57 @@ DESCRIPTION:Closes 2026-11-16 17:00 JST.\nOriginal title: 「エネルギ
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=620340009&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-10335d740f4a339e-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261020T000000Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:Public comment closes: Proposed partial changes to Sanriku Fukko Na
+ tional Park boundaries and plan
+DESCRIPTION:Closes 2026-11-18 00:00 JST.\nOriginal title: 三陸復興国
+ 立公園（南三陸金華山地域）の公園区域及び公園計画
+ の変更［一部変更］に関する意見の募集（パブリック
+ ・コメント）について\nMinistry of the Environment (MOE)\nOfficia
+ l source: https://www.env.go.jp/press/press_05735.html\nMonitoring aid onl
+ y\; not legal advice or an official translation. Original Japanese officia
+ l sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://www.env.go.jp/press/press_05735.html
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-f1961d37e8a62771-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261020T000000Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:Public comment closes: Public consultation on proposed Ise-Shima Na
+ tional Park boundary and park plan changes
+DESCRIPTION:Closes 2026-11-18 00:00 JST.\nOriginal title: 伊勢志摩国
+ 立公園の公園区域及び公園計画の変更［第７次点検］
+ に関する意見の募集（パブリック・コメント）につい
+ て\nMinistry of the Environment (MOE)\nOfficial source: https://www.env.g
+ o.jp/press/press_05734.html\nMonitoring aid only\; not legal advice or an 
+ official translation. Original Japanese official sources remain authoritat
+ ive.
+TRANSP:TRANSPARENT
+URL:https://www.env.go.jp/press/press_05734.html
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-e55b225ffe0ba6ba-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261020T000000Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Public comment closes: Draft notice amending methods for calculatin
+ g odor index and odor emission intensity
+DESCRIPTION:Closes 2026-11-19 00:00 JST.\nOriginal title: 「臭気指数
+ 及び臭気排出強度の算定の方法の一部を改正する告示
+ 案」 に関する御意見の募集（パブリック・コメント）
+ について\ne-Gov Public Comment\nOfficial source: https://public-commen
+ t.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260064&Mode=0\nM
+ onitoring aid only\; not legal advice or an official translation. Original
+  Japanese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=195260064&Mode=0
 END:VEVENT
 END:VCALENDAR

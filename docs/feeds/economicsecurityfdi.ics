@@ -5,4 +5,21 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Economic Security / FDI
 X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VEVENT
+UID:jlrw-raw-e45e78485c5b4613-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261020T000000Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Public comment closes: Draft Cabinet Order amending the Foreign Exc
+ hange Order and Export Trade Control Order
+DESCRIPTION:Closes 2026-11-18 17:00 JST.\nOriginal title: 外国為替令
+ 及び輸出貿易管理令の一部を改正する政令案等に対す
+ る意見募集について\ne-Gov Public Comment\nOfficial source: https:
+ //public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=5953
+ 20041&Mode=0\nMonitoring aid only\; not legal advice or an official transl
+ ation. Original Japanese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=595320041&Mode=0
+END:VEVENT
 END:VCALENDAR
