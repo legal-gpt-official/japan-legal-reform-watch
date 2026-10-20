@@ -770,12 +770,121 @@ code {
   font-size: 14px;
 }
 
+/* Reform explainer on item pages (scripts/build_public_pages.py). Every
+   section is a <details open> so the text is readable without JS. */
+.explainer {
+  border-top: 3px solid var(--color-accent);
+}
+
+.explainer-kicker {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.explainer-meta {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy-2);
+}
+
+.explainer-alert {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--color-impact-medium);
+  background: var(--color-bg);
+  font-size: 13px;
+}
+
+.explainer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.explainer-nav a {
+  padding: 4px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--color-navy-2);
+  text-decoration: none;
+}
+
+.explainer-nav a:hover,
+.explainer-nav a:focus-visible {
+  border-color: var(--color-navy-2);
+}
+
+.explainer-section {
+  border-top: 1px solid var(--color-border);
+  padding: 10px 0 4px;
+}
+
+.explainer-section > summary {
+  cursor: pointer;
+  list-style-position: outside;
+}
+
+.explainer-section > summary h3 {
+  display: inline;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--color-navy);
+}
+
+.explainer-section h4 {
+  margin: 12px 0 4px;
+  font-size: 14px;
+  color: var(--color-navy-2);
+}
+
+.explainer-text,
+.explainer-list,
+.explainer-dates {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.explainer-list,
+.explainer-dates,
+.explainer-sources {
+  margin: 4px 0 8px;
+  padding-left: 20px;
+}
+
+.explainer-refs {
+  margin: 4px 0 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.explainer-sources-title {
+  margin: 14px 0 4px;
+  font-size: 15px;
+  color: var(--color-navy);
+}
+
+.explainer-sources {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 600px) {
   .area-page-title {
     font-size: 24px;
   }
   .area-page-section {
     padding: 16px;
+  }
+  .explainer-section > summary h3 {
+    font-size: 16px;
   }
 }
 

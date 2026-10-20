@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "dossier_id": "appi-2026-amendment",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 amendment of the Act on the Protection of Personal Information (the 'three-year review')",
+  "instrument_type": "statute",
+  "current_stage": "promulgated",
+  "related_item_ids": [
+    "raw-c4b40a5c0ab3c41d"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第五十六号",
+      "name_ja": "個人情報の保護に関する法律等の一部を改正する法律",
+      "name_en": "Act Partially Amending the Act on the Protection of Personal Information and Other Acts"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Act on the Protection of Personal Information (APPI) contains a review clause, added by the 2020 amendment, under which the government examines the Act every three years in light of international trends and technological change. The Personal Information Protection Commission (PPC) began this review in 2023, held hearings with business and consumer groups and experts, published an interim summary for public comment in June 2024, and announced its policy for the legislative changes on 9 January 2026.",
+      "The House of Councillors' summary of the bill lists the main changes. Personal information may be provided without the individual's consent to a third party that prepares statistics and similar outputs, where the content of that statistics preparation has been made public. Rules are added on notifying the legal representative when handling personal information of persons under 16. Individuals may request that use of 'specified biometric personal information' (information containing features of parts of the body) be stopped even when it has not been handled unlawfully.",
+      "The bill also prohibits inappropriate use and improper acquisition of 'contactable personal-related information' (information that can be used to contact a specific individual), creates an administrative surcharge that the PPC may order a business to pay where it obtained a financial gain through unlawful handling of personal information, and raises the statutory penalties for unlawfully providing personal information databases. Parallel changes on notifying the legal representatives of persons under 16 are made to the My Number Act and to the act on anonymised and pseudonymised medical information."
+    ],
+    "source_ids": [
+      "s3",
+      "s6"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet decided on the bill and submitted it to the Diet on 7 April 2026. In the House of Representatives it was examined by a special committee on regional revitalisation, children's policy and the digital society, which attached a supplementary resolution, and the House passed it on 26 May 2026. In the House of Councillors it was examined by the special committee on the digital society and the use of artificial intelligence and passed on 10 July 2026, which enacted it. It was promulgated on 17 July 2026.",
+      "The House of Representatives' supplementary resolution asks the government, among other things, to hear stakeholders before making Commission rules, to keep the system consistent with foreign regimes such as the EU General Data Protection Regulation, and to avoid unduly discouraging research and development, including AI development. Such resolutions are not legally binding. After promulgation the PPC set out a roadmap (31 July 2026), an overview of matters to be set by Cabinet Order and Commission rules (26 August 2026), and a process including stakeholder hearings (9 September 2026)."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-01-17",
+        "text": "e-Gov Law Search lists amendments to the Act taking effect on 17 January 2027; the PPC roadmap states that the provisions digitalising service of documents by public notice take effect six months after promulgation.",
+        "source_ids": [
+          "s4",
+          "s5"
+        ]
+      },
+      {
+        "text": "The PPC has stated that it is preparing the Cabinet Order, Commission rules, guidelines and Q&A needed to implement the amendment, following its published roadmap.",
+        "source_ids": [
+          "s1",
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Draft Cabinet Orders and Commission rules are normally published for public comment before they are adopted.",
+      "The main provisions take effect on a date set by Cabinet Order within two years of promulgation."
+    ],
+    "uncertainties": [
+      "The date on which the main provisions take effect has not been set; under the Act it can be no later than two years after promulgation (July 2028).",
+      "Details such as how the administrative surcharge is calculated, what counts as statistics preparation, and the requirements for under-16 notifications are left to the Cabinet Order, Commission rules and guidelines, which were still being prepared when this explainer was verified."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Businesses that handle personal information in Japan may be affected in several ways once the main provisions take effect. Sharing data for statistics, including uses in AI development where the conditions are met, may become possible without consent if the statutory conditions such as publication are satisfied. Services used by minors, facial or other biometric data processing, and handling of contact details such as email addresses or phone identifiers may need review against the new rules.",
+      "The new administrative surcharge adds a financial consequence for unlawful handling that produced a gain, alongside higher criminal penalties for unlawfully providing databases. The precise obligations depend on the implementing Cabinet Order, Commission rules and guidelines, which are not yet final."
+    ],
+    "checklist": [
+      "Identify processing that relies on consent and could fall within the new statistics exception, and note what would have to be published.",
+      "Identify services or data sets involving persons under 16 and processes for notifying legal representatives.",
+      "Inventory processing of facial or other biometric features and how a request to stop use would be handled.",
+      "Review how contact information obtained from third parties is acquired and used.",
+      "Follow the PPC's draft Cabinet Order, rules and guidelines, including public comment periods."
+    ],
+    "source_ids": [
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-04-07",
+      "label": "Cabinet decision and submission to the Diet",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-05-26",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-07-10",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十六号",
+      "label": "Promulgated as Act No. 56 of 2026",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2027-01-17",
+      "instrument_number": "令和八年法律第五十六号",
+      "label": "First amendments take effect (per e-Gov Law Search)",
+      "source_ids": [
+        "s5"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "令和8年 改正個人情報保護法について",
+      "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "議案審議経過情報: 個人情報の保護に関する法律等の一部を改正する法律案 (Cabinet bill No. 54, 221st Diet)",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE26F2.htm",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "House of Councillors",
+      "title": "個人情報の保護に関する法律等の一部を改正する法律案（閣法第五四号）要旨",
+      "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/580221540.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "個人情報の保護に関する法律等の一部を改正する法律の成立を受けた個人情報保護委員会の今後の取組について (31 July 2026)",
+      "url": "https://www.ppc.go.jp/files/pdf/260731_kongonotorikumi.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search (Digital Agency)",
+      "title": "個人情報の保護に関する法律: revision history",
+      "url": "https://laws.e-gov.go.jp/law/415AC0000000057",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "個人情報保護法等の一部を改正する法律について (outline and review history, July 2026)",
+      "url": "https://www.ppc.go.jp/files/pdf/260717_kaiseihounitsuite.pdf",
+      "accessed_at": "2026-10-20"
+    }
+  ],
+  "verified_at": "2026-10-20",
+  "source_fingerprint": "sha256:e61dcd9db9fd7995c18e176098130ecc",
+  "author": "claude",
+  "review_notes": "Trial explainer. Review history and post-enactment steps from the PPC amendment page, PPC outline (260717_kaiseihounitsuite.pdf) and roadmap; contents from the House of Councillors bill summary; dates from the House of Representatives record and the e-Gov Law API (law_revisions/415AC0000000057). The dashboard holds the Diet record only; e-Gov Law Search had not been matched to this Act on the dashboard when verified. Re-checked 2026-10-20 (second pass): instrument numbers and formal names against e-Gov Law Search records; dates against the House of Representatives records and e-Gov revision data; content against the cited ministry and House of Councillors documents. Not yet reviewed by a person."
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "dossier_id": "fefta-2026-inward-investment-screening",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 amendment of the Foreign Exchange and Foreign Trade Act: stronger screening of inward direct investment",
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-b64a881640710550",
+    "raw-dc54cdd31d953032",
+    "raw-3ed46b4baf2869ad",
+    "raw-78e1fe47563b798f"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第三十号",
+      "name_ja": "外国為替及び外国貿易法の一部を改正する法律",
+      "name_en": "Act Partially Amending the Foreign Exchange and Foreign Trade Act"
+    },
+    {
+      "number": "令和八年政令第二百九十六号",
+      "name_ja": "外国為替及び外国貿易法の一部を改正する法律の施行に伴う関係政令の整備等に関する政令",
+      "name_en": "Cabinet Order adjusting related Cabinet Orders for the entry into force of the amending Act"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan screens certain investments by foreign investors in Japanese companies under the Foreign Exchange and Foreign Trade Act (FEFTA). The Ministry of Finance explained in March 2026 that promoting inward direct investment remains an important policy goal, but that the scope of national security has expanded rapidly into the economic field, so investments that may harm national security need to be addressed appropriately.",
+      "According to the Ministry's outline of the bill, the amendment makes five main changes. First, the acquisition by a foreign investor of 50% or more of the voting rights in an overseas company or other entity that holds certain investments in Japanese companies (and similar acts) is added to the transactions regulated as inward direct investment. Second, where an investor takes measures to remove national-security concerns (risk mitigation measures), those measures must be included in the prior notification, and any later change to them must be notified in advance.",
+      "Third, where a person who is not a foreign investor carries out an investment on behalf of a non-resident under a contract or similar arrangement, without using the non-resident's name, that person is treated as a foreign investor. Fourth, for investments that do not require prior notification but are highly likely to fall into a category that could seriously harm national security because of future changes in international circumstances, the government may request reports where particularly necessary and may recommend or order measures such as the disposal of shares. Fifth, the Minister of Finance and the ministers responsible for the business sector must consult the heads of other relevant government bodies when they consider it necessary in screening."
+    ],
+    "source_ids": [
+      "s1"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet submitted the bill to the Diet in March 2026. It was referred to the Financial Affairs Committee of the House of Representatives, passed by that House on 14 May 2026, and passed by the House of Councillors on 29 May 2026, which enacted it. It was promulgated on 5 June 2026 as Act No. 30 of 2026.",
+      "The provision obliging ministers to consult other government bodies took effect on promulgation. The Cabinet then adopted an implementing Cabinet Order (Cabinet Order No. 296 of 2026), which was published in draft for public comment on e-Gov in July 2026 and promulgated on 16 September 2026. Its supplementary provisions state that the amending Act takes effect on 4 January 2027, and that a limited set of the Order's provisions took effect on 16 September 2026."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-01-04",
+        "text": "The amending Act's remaining provisions and most of Cabinet Order No. 296 take effect, as stated in the Order's supplementary provisions and recorded by e-Gov Law Search.",
+        "source_ids": [
+          "s3",
+          "s4"
+        ]
+      },
+      {
+        "text": "Under the Order's transitional provisions, several of the amended rules in the Cabinet Order on Inward Direct Investment apply to transactions made on or after the day on which 30 days have passed, counting from the Order's effective date; earlier transactions remain under the previous rules.",
+        "source_ids": [
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Before new notification rules apply, the Ministry of Finance usually publishes updated notification forms, Q&A and guidance; check its inward direct investment pages.",
+      "Further ministerial ordinances or public notices may be issued to set out details that the Act and the Cabinet Order leave to them."
+    ],
+    "uncertainties": [
+      "How the new power to request reports on investments that did not require prior notification will be applied in practice has not been described in the sources reviewed here.",
+      "The exact first day on which the transitional 30-day rule ends should be confirmed in official guidance rather than calculated independently.",
+      "This explainer does not cover any separate changes to the list of designated business sectors, which are made by public notice."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "The changes mainly concern foreign investors, and groups with foreign shareholders, that invest in Japanese companies in sectors covered by FEFTA screening. Indirect acquisitions through an overseas holding entity that holds investments in Japanese companies may now be regulated as inward direct investment, so group restructurings and acquisitions abroad can have Japanese filing consequences.",
+      "Commitments made to address national-security concerns become part of the formal notification, and changing them requires advance notice. Arrangements in which a nominee or agent acquires shares for a non-resident without using the non-resident's name are brought within the rules. Whether a given transaction requires notification depends on the detailed rules in the Act, the Cabinet Order and related public notices, which this summary does not reproduce."
+    ],
+    "checklist": [
+      "Map group structures in which an overseas entity holds investments in Japanese companies, and review planned acquisitions of such entities for timing around 4 January 2027 and the 30-day transition.",
+      "Review deal documents and internal procedures that set out risk mitigation commitments, and how a later change would be notified in advance.",
+      "Review nominee, trust or agency arrangements under which shares are acquired for non-resident principals.",
+      "Monitor Ministry of Finance and Bank of Japan materials for updated forms, Q&A and guidance before the effective date."
+    ],
+    "source_ids": [
+      "s1",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-03-17",
+      "label": "Bill received by the House of Representatives (Cabinet bill)",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-05-14",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-05-29",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十号",
+      "label": "Promulgated as Act No. 30 of 2026",
+      "source_ids": [
+        "s2",
+        "s3"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十号",
+      "label": "Duty to consult other government bodies takes effect",
+      "source_ids": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-09-16",
+      "instrument_number": "令和八年政令第二百九十六号",
+      "label": "Implementing Cabinet Order No. 296 of 2026 promulgated",
+      "source_ids": [
+        "s4"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-01-04",
+      "instrument_number": "令和八年法律第三十号",
+      "label": "Main provisions of the Act and of Cabinet Order No. 296 take effect",
+      "source_ids": [
+        "s3",
+        "s4"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of Finance",
+      "title": "「外国為替及び外国貿易法の一部を改正する法律案」について (bill outline, March 2026)",
+      "url": "https://www.mof.go.jp/about_mof/bills/221diet/kb20260317g.html",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "議案審議経過情報: 外国為替及び外国貿易法の一部を改正する法律案 (Cabinet bill No. 27, 221st Diet)",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2076.htm",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search (Digital Agency)",
+      "title": "外国為替及び外国貿易法: version as amended by Act No. 30 of 2026",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=324AC0000000228_20270104_508AC0000000030",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search (Digital Agency)",
+      "title": "対内直接投資等に関する政令: version as amended by Cabinet Order No. 296 of 2026, including its supplementary provisions",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=355CO0000000261_20270104_508CO0000000296",
+      "accessed_at": "2026-10-20"
+    }
+  ],
+  "verified_at": "2026-10-20",
+  "source_fingerprint": "sha256:e185ab44b0850c939007d0afb7799adb",
+  "author": "claude",
+  "review_notes": "Trial explainer. Facts checked against the MOF bill outline, the House of Representatives progress record, and the e-Gov Law API (law_revisions for 324AC0000000228 and 355CO0000000261; supplementary provisions of Cabinet Order No. 296). The e-Gov public comment page could not be opened without JavaScript, so the consultation is described only from the dashboard's e-Gov feed record. Re-checked 2026-10-20 (second pass): instrument numbers and formal names against e-Gov Law Search records; dates against the House of Representatives records and e-Gov revision data; content against the cited ministry and House of Councillors documents. Not yet reviewed by a person."
+}

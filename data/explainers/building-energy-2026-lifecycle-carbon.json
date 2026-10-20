@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "dossier_id": "building-energy-2026-lifecycle-carbon",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 amendment of the Building Energy Efficiency Act: life-cycle carbon assessment of buildings",
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-aab3bc4c1e342b3c"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第七十五号",
+      "name_ja": "建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律",
+      "name_en": "Act Partially Amending the Act on the Improvement of Energy Consumption Performance of Buildings"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Ministry of Land, Infrastructure, Transport and Tourism (MLIT) states that the building sector accounts for about 40% of Japan's greenhouse gas emissions. To work towards carbon neutrality by 2050, the amendment creates a system for assessing the carbon emitted over a building's whole life cycle, from the manufacture of materials to demolition, and takes measures to keep pace with energy-saving technology in view of future tightening of energy efficiency standards.",
+      "Building owners, architects, construction companies and manufacturers of building materials are given duties to make efforts (non-binding 'duties to endeavour') towards reducing life-cycle carbon, and the government will issue a guideline on life-cycle carbon assessment. For buildings of specified uses above a certain size, the building owner must notify the results of the assessment to the Minister 14 days before construction starts; the uses and size are to be set by Cabinet Order. Manufacturers that calculate the carbon emission factor of materials under the national rules may indicate this on the materials.",
+      "The amendment also lets the Minister certify buildings using special structures or equipment as equivalent to the higher 'inducement' energy standard, so that they can use the floor-area-ratio relief available to certified buildings; requires the largest housing suppliers (designated as 'upper housing top runners', roughly a quarter of the market according to MLIT) to prepare medium- to long-term plans and report on them every year; creates third-party certification and labelling of buildings' environmental performance; and renames the Act (in Japanese, 建築物のエネルギー消費性能の向上及び脱炭素化の促進に関する法律; roughly, the Act on Improving the Energy Performance of Buildings and Promoting Decarbonisation, an unofficial translation)."
+    ],
+    "source_ids": [
+      "s1",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet decided on the bill on 27 March 2026 and submitted it to the Diet the same day. It was examined by the Committee on Land, Infrastructure and Transport of each House, passed by the House of Representatives on 4 June 2026 and by the House of Councillors on 24 July 2026, which enacted it. It was promulgated on 31 July 2026 as Act No. 75 of 2026.",
+      "Under the Act's supplementary provisions, only preparatory provisions took effect on promulgation, a first group of provisions takes effect on a date set by Cabinet Order within one year (recorded by e-Gov Law Search as 1 April 2027), and the remaining provisions take effect on a date set by Cabinet Order within two years of promulgation."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-04-01",
+        "text": "A first group of amendments listed in Article 1(ii) of the supplementary provisions takes effect, according to e-Gov Law Search.",
+        "source_ids": [
+          "s4"
+        ]
+      },
+      {
+        "text": "Before the main provisions take effect, the government may already prepare the life-cycle carbon assessment guideline and accept registrations of certification bodies, as the supplementary provisions allow.",
+        "source_ids": [
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Cabinet Orders and ministerial ordinances setting the building uses and sizes subject to mandatory notification, and other details, are normally published in draft for public comment before adoption."
+    ],
+    "uncertainties": [
+      "The date on which the main provisions, including the mandatory life-cycle carbon notification, take effect had not been set when this explainer was verified; the Act requires it to be no later than two years after promulgation (July 2028).",
+      "The building uses and size thresholds for mandatory notification, and the criteria for designating upper housing top runners, depend on Cabinet Orders and ordinances that had not been published when this explainer was verified."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Developers and owners planning larger non-residential or other specified buildings should expect to carry out a life-cycle carbon assessment and notify its results before construction once the main provisions apply, subject to the uses and sizes the Cabinet Order sets. Designers, contractors and building material manufacturers have new duties to endeavour, and material manufacturers may need emission-factor data calculated under the national rules if customers ask for it.",
+      "Large housing suppliers that may be designated as upper housing top runners would have planning and annual reporting obligations. Voluntary third-party certification and labelling of environmental performance may become relevant to marketing and to tenants' or investors' sustainability requirements."
+    ],
+    "checklist": [
+      "Identify building projects whose construction would start after the main provisions take effect and could fall within the notification requirement.",
+      "For material manufacturers, review whether product carbon data can be calculated under the forthcoming national rules.",
+      "Track the life-cycle carbon assessment guideline and the draft Cabinet Order on covered uses and sizes."
+    ],
+    "source_ids": [
+      "s1",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-03-27",
+      "label": "Cabinet decision and submission to the Diet",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-06-04",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-07-24",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-07-31",
+      "instrument_number": "令和八年法律第七十五号",
+      "label": "Promulgated as Act No. 75 of 2026",
+      "source_ids": [
+        "s2",
+        "s4"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-07-31",
+      "instrument_number": "令和八年法律第七十五号",
+      "label": "Preparatory supplementary provisions take effect",
+      "source_ids": [
+        "s4"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2027-04-01",
+      "instrument_number": "令和八年法律第七十五号",
+      "label": "First group of amendments takes effect",
+      "source_ids": [
+        "s4"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of Land, Infrastructure, Transport and Tourism",
+      "title": "「建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律案」を閣議決定 (press release, 27 March 2026)",
+      "url": "https://www.mlit.go.jp/report/press/house05_hh_001129.html",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "議案審議経過情報: 建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律案 (Cabinet bill No. 39, 221st Diet)",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2376.htm",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "House of Councillors",
+      "title": "建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律案（閣法第三九号）要旨",
+      "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/580221390.pdf",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search (Digital Agency)",
+      "title": "建築物のエネルギー消費性能の向上及び脱炭素化の促進に関する法律: version as amended by Act No. 75 of 2026, including its supplementary provisions",
+      "url": "https://elaws.e-gov.go.jp/document?lawid=427AC0000000053_20270401_508AC0000000075",
+      "accessed_at": "2026-10-20"
+    }
+  ],
+  "verified_at": "2026-10-20",
+  "source_fingerprint": "sha256:3b68dd358d6b1c6df2a27be8b67b1bd4",
+  "author": "claude",
+  "review_notes": "Trial explainer. Content from the MLIT press release and House of Councillors summary; effective-date structure from Article 1 of the Act's supplementary provisions via the e-Gov Law API; 2027-04-01 is a fixed date in e-Gov's revision list, while 2028-07-30 is e-Gov's placeholder for the Cabinet Order date (enforcement comment: 公布の日から起算して二年を超えない範囲内において政令で定める日) and is deliberately not presented as a date. Re-checked 2026-10-20 (second pass): instrument numbers and formal names against e-Gov Law Search records; dates against the House of Representatives records and e-Gov revision data; content against the cited ministry and House of Councillors documents. Not yet reviewed by a person."
+}

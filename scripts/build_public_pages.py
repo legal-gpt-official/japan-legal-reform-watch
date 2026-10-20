@@ -20,10 +20,14 @@ does not run JavaScript sees an empty page. This stage writes:
 
 An item page also shows a factual timeline of related official records
 (``law_timeline.py``: the same instrument, the bill it came from, the public
-comment on its draft) built from ``data/raw_items.json``.
+comment on its draft) built from ``data/raw_items.json``, and, when one is
+published for the reform, the hand-written explainer from
+``data/explainers/`` (``explainers.py``: Background, History, What's Next,
+Business Impact). An item page with a published explainer is indexable even
+when its own summary is rule-based.
 
-It reads ``docs/data/legal_updates.json`` and ``data/raw_items.json`` and
-changes neither.
+It reads ``docs/data/legal_updates.json``, ``data/raw_items.json`` and
+``data/explainers/`` and changes none of them.
 Output is deterministic for a given input and JST date (no wall-clock
 timestamps), so an unchanged corpus produces no diff. Every record field is
 untrusted: text is HTML/XML-escaped and only http(s) source URLs are emitted
@@ -64,7 +68,8 @@ from alert_common import (  # noqa: E402
     summary_is_ai,
     write_text_atomic,
 )
-from law_timeline import Dossier, build_dossiers  # noqa: E402
+import explainers as ex  # noqa: E402
+from law_timeline import Dossier  # noqa: E402
 from law_timeline import summarize as summarize_timelines  # noqa: E402
 
 REPO_ROOT = SCRIPTS_DIR.parent
@@ -85,7 +90,7 @@ AREA_TOP_SOURCES = 6
 SUMMARY_MAX_CHARS = 320
 
 # Shared with docs/index.html; bump both together when style.css changes.
-STYLE_CACHE_BUSTER = "lang-switch-20261008"
+STYLE_CACHE_BUSTER = "explainers-20261020"
 ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
@@ -265,8 +270,9 @@ def item_page_path(item: Mapping[str, Any]) -> str:
     return f"{ITEM_DIR_NAME}/{item_id}/" if item_id and clean_text(item.get("title_en")) else ""
 
 
-def item_is_indexable(item: Mapping[str, Any]) -> bool:
-    return bool(item_page_path(item)) and summary_is_ai(item)
+def item_is_indexable(item: Mapping[str, Any], explainer: "ex.Published | None" = None) -> bool:
+    """AI-summarized items, and any item whose reform has a published explainer."""
+    return bool(item_page_path(item)) and (summary_is_ai(item) or explainer is not None)
 
 
 def page_items(items: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
@@ -286,11 +292,16 @@ def iso_date_prefix(value: Any) -> date | None:
     return strict_iso_date(value[:10]) if isinstance(value, str) else None
 
 
-def item_lastmod(item: Mapping[str, Any], dossier: Dossier | None = None) -> date | None:
+def item_lastmod(
+    item: Mapping[str, Any],
+    dossier: Dossier | None = None,
+    explainer: "ex.Published | None" = None,
+) -> date | None:
     """Latest date the page's content can have changed, read from the record alone.
 
     Publication, first detection, the English summary / title timestamps,
-    and the day its timeline last gained a related record -- never
+    the day its timeline last gained a related record, and its explainer's
+    verification date -- never
     ``last_checked`` or the build date, so the sitemap does not change on a
     day nothing in the item did.
     """
@@ -300,6 +311,8 @@ def item_lastmod(item: Mapping[str, Any], dossier: Dossier | None = None) -> dat
     ]
     if dossier is not None:
         dates.append(dossier.latest_detected)
+    if explainer is not None:
+        dates.append(strict_iso_date(explainer.data.get("verified_at")))
     valid = [d for d in dates if d]
     return max(valid) if valid else None
 
@@ -728,10 +741,223 @@ def render_timeline(item_id: str, dossier: Dossier, page_ids: set[str]) -> list[
     return parts
 
 
+EXPLAINER_NOTICE = (
+    "This explainer was written from the official sources listed below and checked against the records on "
+    "this dashboard. It is a plain-English monitoring aid, not legal advice, and it is not official. Statements "
+    "under Expected procedural steps describe the usual procedure, not a forecast; Outstanding uncertainties "
+    "lists what was not confirmed. The original Japanese sources are authoritative."
+)
+INSTRUMENT_TYPE_LABELS = {
+    "statute": "Act (statute)",
+    "cabinet_order": "Cabinet Order",
+    "ministerial_ordinance": "Ministerial Ordinance",
+    "notice": "Public Notice",
+    "guideline": "Guideline",
+    "other": "Multiple or other instruments",
+}
+
+
+def _paragraphs(values: Any, indent: str = "        ") -> list[str]:
+    return [f'{indent}<p class="explainer-text">{escape(clean_text(v))}</p>' for v in values or [] if clean_text(v)]
+
+
+def _bullets(values: Any, indent: str = "        ") -> list[str]:
+    rows = [f"{indent}  <li>{escape(clean_text(v))}</li>" for v in values or [] if clean_text(v)]
+    return [f'{indent}<ul class="explainer-list">', *rows, f"{indent}</ul>"] if rows else []
+
+
+def _source_refs(ids: Any, numbers: Mapping[str, int]) -> str:
+    refs = sorted({numbers[i] for i in ids or [] if i in numbers})
+    return " ".join(f'<a href="#explainer-source-{n}">[{n}]</a>' for n in refs)
+
+
+CATEGORY_LABELS = {
+    "facts": "background and history",
+    "procedure": "expected procedural steps",
+    "outlook": "confirmed next steps and uncertainties",
+    "assessment": "business impact",
+}
+
+
+def render_page_status(status: Mapping[str, Any]) -> str:
+    """One line on the legal status of this page's own instrument, from its e-Gov records.
+
+    The explainer describes the whole reform; an amending ordinance on one page
+    can still be partly pending when the Act on another is in force.
+    """
+    pieces = [f"{status['instrument']} ({status['number']})"]
+    if status.get("target"):
+        pieces.append(f"amending {status['target']}")
+    facts = []
+    if status.get("promulgated"):
+        facts.append(f"promulgated {status['promulgated'].isoformat()}")
+    if status.get("effective_dates"):
+        facts.append("effective date(s) recorded by e-Gov: " + ", ".join(d.isoformat() for d in status["effective_dates"]))
+    if status.get("pending"):
+        facts.append("at least one effective date not yet fixed (to be set by Cabinet Order)")
+    return "This page's record: " + ", ".join(pieces) + (" — " + "; ".join(facts) if facts else "") + "."
+
+
+def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | None = None) -> list[str]:
+    """The explainer sections the review policy allows. Every value is escaped; links pass ``safe_http_url``.
+
+    All sections are ``<details open>`` so the full text is in the static
+    HTML and readable without JavaScript; a reader may fold any of them.
+    Categories held back by the review policy are left out and named.
+    """
+    visible = entry.visible
+    data = entry.data
+    sources = [s for s in data.get("official_sources") or [] if isinstance(s, Mapping)]
+    numbers = {s.get("id"): n for n, s in enumerate(sources, start=1)}
+    stage = ex.STAGE_LABELS.get(str(data.get("current_stage")), "")
+    instrument = INSTRUMENT_TYPE_LABELS.get(str(data.get("instrument_type")), "")
+    verified = clean_text(data.get("verified_at"))
+    meta = " · ".join(
+        part
+        for part in (
+            f"Current stage of the reform: {stage}" if stage else "",
+            f"Instrument: {instrument}" if instrument else "",
+            f"Last verified: {verified}" if verified else "",
+        )
+        if part
+    )
+    parts = [
+        '    <section class="area-page-section explainer" aria-labelledby="explainer-title">',
+        '      <p class="explainer-kicker">Reform explainer</p>',
+        f'      <h2 id="explainer-title">{escape(clean_text(data.get("title_en")))}</h2>',
+        f'      <p class="explainer-meta">{escape(meta)}</p>',
+        f'      <p class="static-latest-note">{escape(EXPLAINER_NOTICE)}</p>',
+    ]
+    named = [
+        f"{clean_text(i.get('name_en'))} ({clean_text(i.get('name_ja'))}, {clean_text(i.get('number'))})"
+        for i in data.get("instruments") or []
+        if isinstance(i, Mapping) and clean_text(i.get("number"))
+    ]
+    if named:
+        parts.append(
+            f'      <p class="explainer-refs">Instruments (English names are unofficial descriptions): '
+            f'{escape("; ".join(named))}</p>'
+        )
+    if page_status:
+        parts.append(f'      <p class="explainer-meta">{escape(render_page_status(page_status))}</p>')
+    for notice in entry.report.notices:
+        parts.append(f'      <p class="explainer-alert" role="note">{escape(notice)}</p>')
+    held = [CATEGORY_LABELS[c] for c in ex.CATEGORIES if c not in visible]
+    if held:
+        parts.append(
+            '      <p class="explainer-refs">Not shown until reviewed: ' + escape(", ".join(held)) + ".</p>"
+        )
+    show_next = "outlook" in visible or "procedure" in visible
+    nav = [("explainer-background", "Background"), ("explainer-history", "History")]
+    nav += [("explainer-next", "What&#39;s Next")] if show_next else []
+    nav += [("explainer-impact", "Business Impact")] if "assessment" in visible else []
+    parts.append('      <nav class="explainer-nav" aria-label="Explainer sections">')
+    parts += [f'        <a href="#{anchor}">{label}</a>' for anchor, label in nav]
+    parts.append("      </nav>")
+
+    def section(anchor: str, heading: str, body: list[str], refs: str = "") -> None:
+        parts.append(f'      <details class="explainer-section" id="{anchor}" open>')
+        parts.append(f"        <summary><h3>{heading}</h3></summary>")
+        parts.extend(body)
+        if refs:
+            parts.append(f'        <p class="explainer-refs">Sources: {refs}</p>')
+        parts.append("      </details>")
+
+    background = data.get("background") or {}
+    section(
+        "explainer-background",
+        "Background &amp; Purpose",
+        _paragraphs(background.get("paragraphs")),
+        _source_refs(background.get("source_ids"), numbers),
+    )
+
+    history = data.get("history") or {}
+    body = _paragraphs(history.get("paragraphs"))
+    dated = []
+    for row in data.get("key_dates") or []:
+        if not isinstance(row, Mapping):
+            continue
+        when = strict_iso_date(row.get("date"))
+        if when:
+            dated.append((when, clean_text(row.get("label")), _source_refs(row.get("source_ids"), numbers)))
+    if dated:
+        body.append('        <ol class="explainer-dates">')
+        for when, label, refs in sorted(dated, key=lambda r: (r[0], r[1])):
+            body.append(f"          <li><strong>{when.isoformat()}</strong> — {escape(label)} {refs}</li>")
+        body.append("        </ol>")
+    body.append(
+        '        <p class="explainer-refs">The timeline of related official records below lists the '
+        "records this dashboard has matched.</p>"
+    )
+    section(
+        "explainer-history",
+        "Legislative &amp; Regulatory History",
+        body,
+        _source_refs(history.get("source_ids"), numbers),
+    )
+
+    steps = data.get("next_steps") or {}
+    body = []
+    if "outlook" in visible:
+        body.append("        <h4>Confirmed next steps</h4>")
+    confirmed = [s for s in steps.get("confirmed") or [] if isinstance(s, Mapping) and clean_text(s.get("text"))]
+    if "outlook" in visible and confirmed:
+        body.append('        <ul class="explainer-list">')
+        for step in confirmed:
+            when = strict_iso_date(step.get("date"))
+            lead = f"<strong>{when.isoformat()}</strong> — " if when else ""
+            refs = _source_refs(step.get("source_ids"), numbers)
+            body.append(f"          <li>{lead}{escape(clean_text(step.get('text')))} {refs}</li>")
+        body.append("        </ul>")
+    elif "outlook" in visible:
+        body.append('        <p class="explainer-text">No further step has been confirmed by an official source.</p>')
+    if steps.get("expected") and "procedure" in visible:
+        body.append("        <h4>Expected procedural steps</h4>")
+        body.append(
+            '        <p class="explainer-refs">The usual procedure for this kind of instrument; not a '
+            "forecast for this reform.</p>"
+        )
+        body += _bullets(steps.get("expected"))
+    if "outlook" in visible:
+        body.append("        <h4>Outstanding uncertainties</h4>")
+        body += _bullets(steps.get("uncertainties"))
+    if show_next:
+        section("explainer-next", "What Happens Next", body)
+
+    if "assessment" in visible:
+        impact = data.get("business_impact") or {}
+        body = _paragraphs(impact.get("paragraphs"))
+        if impact.get("checklist"):
+            body.append("        <h4>Points to check</h4>")
+            body += _bullets(impact.get("checklist"))
+        section(
+            "explainer-impact",
+            "Business Impact &amp; Practical Considerations",
+            body,
+            _source_refs(impact.get("source_ids"), numbers),
+        )
+
+    parts.append('      <h3 class="explainer-sources-title">Official sources</h3>')
+    parts.append('      <ol class="explainer-sources">')
+    for n, source in enumerate(sources, start=1):
+        title = escape(clean_text(source.get("title")))
+        publisher = escape(clean_text(source.get("publisher")))
+        accessed = escape(clean_text(source.get("accessed_at")))
+        kind = "" if source.get("kind") == "primary" else " (secondary source)"
+        url = safe_http_url(source.get("url"))
+        name = f'<a href="{escape(url)}" target="_blank" rel="noopener noreferrer">{title}</a>' if url else title
+        parts.append(f'        <li id="explainer-source-{n}">{name} — {publisher}{kind}; accessed {accessed}</li>')
+    parts.append("      </ol>")
+    parts.append("    </section>")
+    return parts
+
+
 def render_item_page(
     item: Mapping[str, Any],
     dossier: Dossier | None = None,
     page_ids: set[str] | None = None,
+    explainer: "ex.Published | None" = None,
+    page_status: Mapping[str, Any] | None = None,
 ) -> str:
     """The standalone page for one published item.
 
@@ -748,6 +974,7 @@ def render_item_page(
     area = clean_text(item.get("area"))
     stage = clean_text(item.get("stage"))
     ai = summary_is_ai(item)
+    indexable = ai or explainer is not None
     area_page = AREA_PAGE_BY_AREA.get(area)
     area_label = CHANNEL_BY_VALUE[area_page.channel].label if area_page else ""
 
@@ -768,6 +995,9 @@ def render_item_page(
 
     if ai:
         description = shorten(clean_text(item.get("summary_en")), ITEM_DESCRIPTION_MAX_CHARS)
+    elif explainer is not None:
+        background = (explainer.data.get("background") or {}).get("paragraphs") or [""]
+        description = shorten(clean_text(background[0]), ITEM_DESCRIPTION_MAX_CHARS)
     else:
         description = (
             "Unofficial English label for an official Japanese update"
@@ -819,6 +1049,8 @@ def render_item_page(
             "rule-based label; please read the original Japanese source.</p>",
         ]
     parts.append("    </section>")
+    if explainer is not None:
+        parts += render_explainer(explainer, page_status)
     if dossier is not None:
         parts += render_timeline(item_page_id(item), dossier, page_ids or set())
 
@@ -832,7 +1064,7 @@ def render_item_page(
         current="",
         page_type="WebPage",
         parent=(area_label, area_page_path(area_page)) if area_page else None,
-        indexable=ai,
+        indexable=indexable,
         area_nav=False,
     )
 
@@ -867,10 +1099,16 @@ def build(
     today: date,
     site_dir: Path | None = None,
     raw_path: Path | None = None,
+    explainers_dir: Path | None = None,
 ) -> dict[str, Any]:
     site_dir = site_dir or index_path.parent
     items = load_items(data_path)
-    dossiers = build_dossiers(load_items(raw_path)) if raw_path is not None and raw_path.exists() else {}
+    index = ex.OfficialIndex.build(load_items(raw_path)) if raw_path is not None and raw_path.exists() else None
+    dossiers = index.timeline if index else {}
+    explained: dict[str, ex.Published] = {}
+    reports: dict[str, ex.Report] = {}
+    if index is not None and explainers_dir is not None:
+        explained, reports = ex.published_by_item(ex.load_explainers(explainers_dir), index, today)
     updated = latest_checked(items)
 
     html = index_path.read_text(encoding="utf-8")
@@ -892,25 +1130,41 @@ def build(
     page_ids = {item_page_id(item) for item in with_pages}
     item_pages_changed = 0
     timeline_pages = 0
+    explainer_pages = 0
     for item in with_pages:
         path = item_page_path(item)
         dossier = dossiers.get(item_page_id(item))
+        explainer = explained.get(item_page_id(item))
         timeline_pages += dossier is not None
+        explainer_pages += explainer is not None
         item_pages_changed += write_if_changed(
-            site_dir / path / "index.html", render_item_page(item, dossier, page_ids)
+            site_dir / path / "index.html",
+            render_item_page(
+                item, dossier, page_ids, explainer,
+                index.page_status(item_page_id(item)) if explainer is not None and index else None,
+            ),
         )
-        if item_is_indexable(item):
-            sitemap_entries.append((SITE_URL + path, item_lastmod(item, dossier)))
+        if item_is_indexable(item, explainer):
+            sitemap_entries.append((SITE_URL + path, item_lastmod(item, dossier, explainer)))
     removed = prune_item_pages(site_dir / ITEM_DIR_NAME, {item_page_id(item) for item in with_pages})
     changed["sitemap"] = write_if_changed(sitemap_path, render_sitemap(sitemap_entries))
 
     return {
         "pages_written": len(AREA_PAGES) + 1,
         "item_pages": len(with_pages),
-        "item_pages_indexable": sum(1 for item in with_pages if item_is_indexable(item)),
+        "item_pages_indexable": sum(
+            1 for item in with_pages if item_is_indexable(item, explained.get(item_page_id(item)))
+        ),
         "item_pages_changed": item_pages_changed,
         "item_pages_removed": removed,
         "item_pages_with_timeline": timeline_pages,
+        "item_pages_with_explainer": explainer_pages,
+        "explainers": {
+            "files": len(reports),
+            "published": len({entry.dossier_id for entry in explained.values()}),
+            "withheld_with_errors": sorted(d for d, r in reports.items() if not r.ok),
+            "policy": ex.publish_policy(),
+        },
         "timelines": summarize_timelines(dossiers),
         "files_changed": sorted(name for name, was_changed in changed.items() if was_changed),
     }
@@ -943,10 +1197,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--index", type=Path, default=INDEX_PATH)
     parser.add_argument("--sitemap", type=Path, default=SITEMAP_PATH)
     parser.add_argument("--raw", type=Path, default=RAW_PATH, help="raw history for item timelines")
+    parser.add_argument(
+        "--explainers", type=Path, default=ex.EXPLAINERS_DIR, help="hand-written reform explainers"
+    )
     parser.add_argument("--today", type=date.fromisoformat, default=None, help="JST date (YYYY-MM-DD)")
     args = parser.parse_args(argv)
     today = args.today or datetime.now(JST).date()
-    print(json.dumps(build(args.data, args.index, args.sitemap, today, raw_path=args.raw), sort_keys=True))
+    print(json.dumps(build(args.data, args.index, args.sitemap, today, raw_path=args.raw, explainers_dir=args.explainers), sort_keys=True))
     return 0
 
 
