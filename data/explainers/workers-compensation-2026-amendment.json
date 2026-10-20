@@ -7,7 +7,11 @@
   "instrument_type": "statute",
   "current_stage": "partially_in_force",
   "related_item_ids": [
-    "raw-fcf7a0bc5ba7a17c"
+    "raw-fcf7a0bc5ba7a17c",
+    "raw-2f302498355a1e52",
+    "raw-a262bb67775456f6",
+    "raw-b72a1d2c82bc7285",
+    "raw-07f41efe81f3455b"
   ],
   "instruments": [
     {
@@ -16,25 +20,39 @@
       "name_en": "Act Partially Amending the Industrial Accident Compensation Insurance Act and Other Acts"
     }
   ],
+  "watch_pages": [
+    {
+      "label": "MHLW: Labour Policy Council, workers' compensation insurance subcommittee (latest meeting materials)",
+      "url": "https://www.mhlw.go.jp/stf/newpage_76665.html"
+    },
+    {
+      "label": "e-Gov Law Search: Industrial Accident Compensation Insurance Act revision history",
+      "url": "https://laws.e-gov.go.jp/law/322AC0000000050"
+    }
+  ],
   "background": {
     "paragraphs": [
       "Industrial Accident Compensation Insurance (rousai hoken) pays benefits to workers injured or made ill at work, and to their bereaved families. The Ministry of Health, Labour and Welfare (MHLW) explains that, in view of changes in the employment structure such as greater participation of women in work and more diverse ways of working, the amendment aims to build a broader safety net against occupational accidents.",
       "Under the amendment, a husband no longer has to be aged 60 or over, or in a disability state specified by ministerial ordinance, to be eligible as a bereaved family member for survivors' compensation pensions; that requirement applied only to husbands. Where there is one bereaved family member, the pension amount becomes uniformly 175 days of the benefit base daily amount, abolishing a special amount that applied to a wife aged 55 or over or with a specified disability. Corresponding changes are made to special survivors' pensions under the Act on Asbestos Health Damage Relief.",
-      "The amendment also sets out in the Act the requirements for organisations through which self-employed persons and others join the insurance under 'special enrolment', and allows the government to order such organisations to improve their operations and to end the insurance relationship if an order is breached. The limitation period for claiming benefits is extended from two to five years for diseases, specified by Cabinet Order, for which it is not easy to judge whether they are work-related; the Labour Standards Act is amended to match. A provisional measure under which businesses specified by Cabinet Order are, for the time being, not compulsorily covered by the insurance is abolished."
+      "The amendment also sets out in the Act that organisations through which self-employed persons and others join the insurance under 'special enrolment' must meet requirements set by ministerial ordinance, and allows the government to order them to improve their operations and to end the insurance relationship if an order is breached. The limitation period for claiming benefits is extended from two to five years for diseases, specified by Cabinet Order, for which it is not easy to judge whether they are work-related, and the Labour Standards Act is amended to match. A provisional measure under which certain small agriculture, forestry and fisheries businesses are not compulsorily covered (they could join voluntarily) is abolished."
     ],
     "source_ids": [
       "s1",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "history": {
     "paragraphs": [
-      "The Cabinet submitted the bill to the Diet on 7 April 2026. It was examined by the Committee on Health, Labour and Welfare of each House, passed by the House of Representatives on 2 June 2026 and by the House of Councillors on 10 July 2026, which enacted it. It was promulgated on 17 July 2026 as Act No. 60 of 2026.",
-      "On the day of promulgation the MHLW Labour Standards Bureau issued a notice to prefectural labour bureaus explaining the content and effective dates, and stated that the Cabinet Orders and ministerial ordinances needed for implementation will be considered while hearing the views of labour, management and other parties."
+      "The Cabinet submitted the bill to the Diet on 7 April 2026. It was examined by the Committee on Health, Labour and Welfare of each House, passed by the House of Representatives on 2 June 2026 and by the House of Councillors on 10 July 2026, which enacted it. It was promulgated on 17 July 2026 as Act No. 60 of 2026. On the same day the MHLW Labour Standards Bureau explained the content and effective dates to prefectural labour bureaus.",
+      "The workers' compensation insurance subcommittee of the Labour Policy Council has since examined the implementing rules. On 29 September 2026 it found appropriate a draft Cabinet Order setting 1 April 2031 as the effective date of the provisions in Article 1(ii) of the supplementary provisions, which include the abolition of the provisional measure for small agriculture, forestry and fisheries businesses. On 9 October 2026 it found broadly appropriate the draft Cabinet Order and ministerial ordinance implementing the main provisions, which are to take effect on 1 April 2027.",
+      "Under those drafts, the diseases eligible for the five-year limitation period are cerebrovascular or heart diseases, mental disorders, and asbestos-related diseases, each as specified by ministerial ordinance. Special enrolment organisations would have to meet requirements including proper handling of insurance premiums and procedures, activities to prevent occupational accidents suited to their members, clear rules on organisation and membership, support and advice to members, and, for organisations covering freelancers in general, at least one year of activity, at least 100 members and offices or consultation spaces available in all 47 prefectures."
     ],
     "source_ids": [
       "s1",
-      "s2"
+      "s2",
+      "s5",
+      "s6"
     ]
   },
   "next_steps": {
@@ -48,12 +66,6 @@
         ]
       },
       {
-        "text": "Certain provisions took effect on promulgation. The abolition of the provisional non-coverage measure and some other provisions take effect on a date set by Cabinet Order within five years of promulgation.",
-        "source_ids": [
-          "s1"
-        ]
-      },
-      {
         "text": "The Act requires the government to review how the amended acts are working after five years from their entry into force and to take necessary measures based on the results.",
         "source_ids": [
           "s1"
@@ -61,27 +73,28 @@
       }
     ],
     "expected": [
-      "Cabinet Orders and ministerial ordinances to implement the amendment are normally discussed with the relevant councils and published in draft for public comment before adoption."
+      "After the council's reports, the Cabinet Orders are normally adopted by the Cabinet and promulgated, and the ministerial ordinances issued by the Minister, before the provisions they implement take effect."
     ],
     "uncertainties": [
-      "Which diseases will qualify for the five-year limitation period depends on a Cabinet Order that had not been made when this explainer was verified.",
-      "The ministerial ordinance requirements for special enrolment organisations had not been published when this explainer was verified.",
-      "The date on which the provisional non-coverage measure ends has not been set; it can be no later than five years after promulgation."
+      "When this explainer was verified, the Cabinet Orders and ministerial ordinance examined by the council had not been confirmed as adopted or promulgated; their content may still change.",
+      "1 April 2031 for the end of the provisional measure is a draft date found appropriate by the council, not yet a fixed date; e-Gov Law Search still lists the Act's outer limit for those provisions (five years after promulgation, July 2031)."
     ]
   },
   "business_impact": {
     "paragraphs": [
-      "The main changes alter the benefits that the insurance pays and who may receive them, rather than creating new reporting duties for most employers. Employers may wish to reflect the new survivor eligibility rules in HR information given to employees and in any company benefit schemes that refer to the statutory benefits.",
-      "Organisations that operate special enrolment for self-employed persons, such as associations of sole contractors, will have statutory requirements to meet and may be subject to improvement orders. Businesses that currently fall under the provisional non-coverage measure should follow the Cabinet Order that ends it, since compulsory coverage would bring premium and procedural obligations."
+      "The main changes alter the benefits that the insurance pays and who may receive them, rather than creating new reporting duties for most employers. Employers may wish to reflect the new survivor eligibility rules and the longer limitation period for certain cardiovascular, mental and asbestos-related diseases in HR information given to employees and in any company benefit schemes that refer to the statutory benefits.",
+      "Organisations that operate special enrolment for self-employed persons and freelancers will have to meet the requirements set by ministerial ordinance, and businesses that engage freelancers may see changes in which organisations can offer special enrolment. Small agriculture, forestry and fisheries businesses currently outside compulsory coverage should expect compulsory coverage, with premium and procedural obligations, from the date the Cabinet Order fixes."
     ],
     "checklist": [
-      "Update HR guidance on survivors' benefits and on the limitation period for claims.",
-      "If you engage self-employed persons who join through special enrolment organisations, note that those organisations will be subject to statutory requirements.",
-      "Check whether any part of your business is currently outside compulsory coverage under the provisional measure, and follow the Cabinet Order that will end it.",
-      "Watch MHLW for draft Cabinet Orders and ministerial ordinances and their public comment periods."
+      "Update HR guidance on survivors' benefits and on the limitation period for claims ahead of 1 April 2027.",
+      "If you engage self-employed persons or freelancers who join through special enrolment organisations, check whether those organisations will meet the new requirements.",
+      "For agriculture, forestry or fisheries operations outside compulsory coverage, follow the Cabinet Order fixing the date when the provisional measure ends.",
+      "Watch MHLW for the promulgated Cabinet Orders and ministerial ordinances."
     ],
     "source_ids": [
-      "s1"
+      "s1",
+      "s5",
+      "s6"
     ]
   },
   "key_dates": [
@@ -131,6 +144,22 @@
       ]
     },
     {
+      "kind": "other",
+      "date": "2026-09-29",
+      "label": "Council finds the draft effective-date Cabinet Order (1 April 2031) appropriate",
+      "source_ids": [
+        "s6"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-09",
+      "label": "Council finds the draft implementing Cabinet Order and ordinance broadly appropriate",
+      "source_ids": [
+        "s5"
+      ]
+    },
+    {
       "kind": "effective",
       "date": "2027-04-01",
       "instrument_number": "令和八年法律第六十号",
@@ -170,13 +199,29 @@
       "id": "s4",
       "kind": "primary",
       "publisher": "e-Gov Law Search (Digital Agency)",
-      "title": "石綿による健康被害の救済に関する法律: version as amended by Act No. 60 of 2026",
-      "url": "https://elaws.e-gov.go.jp/document?lawid=418AC0000000004_20270401_508AC0000000060",
+      "title": "労働者災害補償保険法: revision history (Act No. 60 of 2026: 2026-07-17, 2027-04-01, and a Cabinet Order date within five years)",
+      "url": "https://laws.e-gov.go.jp/law/322AC0000000050",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "第133回労働政策審議会労働条件分科会労災保険部会資料 (9 October 2026: draft implementing Cabinet Order and ordinance, consultation and report)",
+      "url": "https://www.mhlw.go.jp/stf/newpage_76665.html",
+      "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "第132回労働政策審議会労働条件分科会労災保険部会資料 (29 September 2026: draft effective-date Cabinet Order and report)",
+      "url": "https://www.mhlw.go.jp/stf/newpage_76405.html",
       "accessed_at": "2026-10-20"
     }
   ],
   "verified_at": "2026-10-20",
-  "source_fingerprint": "sha256:a3f9cf67f6be7e46583a26f88e0cfd0e",
+  "source_fingerprint": "sha256:6ae1b867ae8e6201ed24fffb8e7fb361",
   "author": "claude",
-  "review_notes": "Trial explainer. Content and effective dates from the MHLW promulgation notice (第5 施行期日); House of Councillors summary; House of Representatives record; e-Gov Law API revisions for 418AC0000000004 and 314AC0000000073 (2027-04-01). The notice identifies the early provisions only by cross-reference, so this explainer does not name which provisions took effect on promulgation. Re-checked 2026-10-20 (second pass): instrument numbers and formal names against e-Gov Law Search records; dates against the House of Representatives records and e-Gov revision data; content against the cited ministry and House of Councillors documents. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner request to re-check ministry publications: added the 132nd (29 September 2026) and 133rd (9 October 2026) meetings of the workers' compensation insurance subcommittee (draft effective-date Cabinet Order: 1 April 2031 for Article 1(ii) provisions; draft implementing Cabinet Order and ordinance: diseases for the five-year limitation period, special enrolment organisation requirements, effective 1 April 2027), and MHLW's identification of the provisional measure as covering small agriculture, forestry and fisheries businesses. e-Gov Law API (law_revisions/322AC0000000050) still listed 2031-07-16 (the statutory outer limit) on 2026-10-20, so the 2031 date is described as a draft. Not yet reviewed by a person."
 }

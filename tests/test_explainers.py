@@ -41,6 +41,7 @@ def explainer(dossier_id="export-control-order", related=("raw-order-a", "raw-pc
         "related_item_ids": list(related),
         "instruments": [{"number": ORDER_NO, "name_ja": "輸出貿易管理令の一部を改正する政令",
                          "name_en": "Cabinet Order amending the Export Trade Control Order"}],
+        "watch_pages": [{"label": "METI export control notices", "url": "https://www.meti.go.jp/policy/anpo/"}],
         "background": {"paragraphs": ["Why the order changes."], "source_ids": ["s1"]},
         "history": {"paragraphs": ["How it got here."], "source_ids": ["s1"]},
         "next_steps": {
@@ -422,11 +423,30 @@ class TestOfficialFacts(Base):
         guideline["next_steps"]["confirmed"] = []
         self.assertEqual(self.report(stamped(self.index, guideline)).errors, [])
 
-    def test_moving_stage_is_reverified_after_thirty_days(self):
-        data = stamped(self.index, explainer(verified_at="2026-09-15"))
+    def test_moving_stage_is_rechecked_on_schedule_without_new_records(self):
+        data = stamped(self.index, explainer(verified_at="2026-10-05"))
         for source in data["official_sources"]:
-            source["accessed_at"] = "2026-09-15"
-        self.assertIn("verification_old", self.report(data).warnings)
+            source["accessed_at"] = "2026-10-05"
+        report = self.report(data)
+        self.assertIn("scheduled_recheck", report.warnings)
+        self.assertNotIn("official_records_changed", report.warnings)  # nothing new was ingested
+        queue = ex.build_queue(self.index, {}, {data["dossier_id"]: data}, TODAY)
+        self.assertIn("scheduled_recheck", queue["entries"][0]["reasons"])
+        settled = stamped(self.index, explainer(verified_at="2026-10-05", current_stage="in_force", key_dates=[]))
+        settled["next_steps"]["confirmed"] = []
+        for source in settled["official_sources"]:
+            source["accessed_at"] = "2026-10-05"
+        index = ex.OfficialIndex.build([r for r in corpus() if r["id"] != "raw-order-c"])
+        settled = stamped(index, settled)
+        report = ex.validate(settled["dossier_id"], settled, index, TODAY)
+        self.assertNotIn("scheduled_recheck", report.warnings, report.errors)
+
+    def test_watch_pages_must_be_official(self):
+        good = stamped(self.index, explainer(watch_pages=[{"label": "MOF", "url": "https://www.mof.go.jp/x"}]))
+        self.assertEqual(self.report(good).errors, [])
+        bad = stamped(self.index, explainer(watch_pages=[{"label": "News", "url": "https://news.example.com/"}]))
+        self.assertTrue(any("watch_pages" in e for e in self.report(bad).errors))
+        self.assertIn("no_watch_pages", self.report(stamped(self.index, explainer(watch_pages=[]))).warnings)
 
 
 class TestFingerprintChanges(Base):

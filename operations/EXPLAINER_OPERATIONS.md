@@ -37,10 +37,15 @@ python scripts/explainers.py preview <dossier-id> --out page.html   # ローカ�
   - `validation_errors`：検証エラー（公開は止まっている）
   - `official_records_changed`：関連する公式記録が追加・変更された（fingerprint 不一致）
   - `stage_overtaken:*`：記載した日付を過ぎ、段階が進んだ可能性がある（施行日経過、意見募集終了、公布の記録）
-  - `verification_old`：最終確認から日数が経過した（手続途中の段階は 30 日、確定段階は 180 日）
+  - `scheduled_recheck`：手続途中の案件（全部施行・廃案・撤回以外）で、最終確認から 14 日を過ぎた。**新しい公式記録が取り込まれていなくても**、`watch_pages` に挙げた所管省庁のページ等を定期的に再確認するための理由
+  - `verification_old`：確定段階（全部施行など）の案件で、最終確認から 180 日を過ぎた
   - `awaiting_review:<区分>`：内容は有効だが、公開基準を満たすレビューを待っている
 - 一度「見送り」（`status: "skipped"`）や「調査不能」（`status: "blocked"`）と記録した案件は、公式記録が変わるまで再提示しない。
 - 同じ案件の `first_queued_on` は保たれるので、毎日不要な差分は出ない。
+
+### 定期再確認（`watch_pages`）
+
+手続を進める情報の多くは、ダッシュボードが取得していないページに出る。例：審議会の資料・答申、政令案・省令案のパブコメ、結果公示、施行期日政令の閣議決定、ガイドライン・Q&A。そこで手続途中の解説には `watch_pages`（所管省庁・国会・e-Gov など公式ページの URL と説明）を記録する。キューは 14 日ごとに `scheduled_recheck` として再確認を求めるので、そのつど `watch_pages` と e-Gov 法令 API の改正履歴を確認し、新しい公表があれば解説を更新する。なければ確認したことを `stamp` で記録する。公式ページが見つからない場合は警告 `no_watch_pages` が出る。
 
 **未検出を不存在と扱わない。** ダッシュボードが取得していない資料（各省の結果公示ページ、官報、審議会資料、Cabinet Order の施行期日政令など）で状況が変わっていることがある。キューは手掛かりであり、事実の判定は必ず一次資料で行う。
 
@@ -65,6 +70,8 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
    - **政省令・告示**：e-Gov パブリック・コメント、e-Gov 法令検索、所管省庁
    - **JPX・日本証券業協会**：それぞれの自主規制規則についてだけの一次資料（`kind: "self_regulatory"`）。国の法令の成立・公布・施行の根拠にはできない。
    - ニュースや法律事務所の解説は `kind: "secondary"` として補助的に使うだけ。重要な法的事実は一次資料と照合する。
+   - **最新の公表資料を必ず確認する。** 法案段階の資料だけで書かない。所管省庁の報道発表一覧、審議会のページ、e-Gov パブリック・コメント（結果公示を含む）、e-Gov 法令 API の改正履歴を、確認日（`verified_at`）時点まで調べる。
+   - 取得方法の注意：衆議院のページは Shift_JIS。経済産業省のサイトは自動取得を拒否する（403）ことがあり、e-Gov パブリック・コメントの詳細ページは JavaScript が必要。その場合はブラウザで開いて読む。読めなかった資料は出典に挙げない。
 4. `scaffold <item-id> --id <dossier-id>` で下書きを作り（既存なら編集）、各項目を書く。
 5. `validate` と `preview` で確認する。
 6. ブランチを作り、PR を出す。`Pull request checks` が全テストと検証を実行する。
@@ -89,6 +96,7 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 | `current_stage` | 法形式ごとに許される段階（下表） |
 | `related_item_ids` | `data/raw_items.json` の ID |
 | `instruments` | 法令番号・正式名称（日本語）・英語の説明的名称。e-Gov 記録にある番号は名称が一致しないとエラー |
+| `watch_pages` | 定期再確認する公式ページ（`label`・`url`。*.go.jp、JPX、JSDA のみ） |
 | `background` / `history` / `business_impact` | `paragraphs`（平文）と `source_ids` |
 | `next_steps` | `confirmed`（出典つき・日付任意）、`expected`、`uncertainties`（必須） |
 | `key_dates` | 種別・日付・説明・出典。法的事実の日付は `primary` 出典が必須 |
@@ -158,6 +166,8 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 ## 7. 更新
 
 - `update` 候補は、差分のある公式記録（`new_related_item_ids`）と一次資料を確認し、必要な箇所だけを直す。全文を作り直さない。
+- `scheduled_recheck` 候補は、`watch_pages` と e-Gov 法令 API の改正履歴を確認する。新しい公表（審議会の答申、政令の閣議決定・公布、施行期日の確定、パブコメ結果、ガイドラインなど）があれば反映する。施行期日が確定したら、仮の最終期限ではなく確定日を `key_dates` と `confirmed` に書く。
+- 関係する公式記録がダッシュボードにあれば、`related_item_ids` に加える（例：所管省庁の報道発表、関連する政省令の e-Gov 記録、パブコメ）。そのページにも解説が表示され、fingerprint の対象になる。
 - 内容を直したら `stamp --verified-on <確認日>` を実行する。`human_reviewed` だった区分は再レビュー待ちに戻る。
 - 内容を直す必要がなかった場合も、資料を確認したうえで `stamp` する（fingerprint と確認日の更新）。
 

@@ -7,20 +7,36 @@
   "instrument_type": "statute",
   "current_stage": "partially_in_force",
   "related_item_ids": [
-    "raw-aab3bc4c1e342b3c"
+    "raw-aab3bc4c1e342b3c",
+    "raw-c50ef7ea8627688d"
   ],
   "instruments": [
     {
       "number": "令和八年法律第七十五号",
       "name_ja": "建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律",
       "name_en": "Act Partially Amending the Act on the Improvement of Energy Consumption Performance of Buildings"
+    },
+    {
+      "number": "令和八年政令第二百九十二号",
+      "name_ja": "建築物のエネルギー消費性能の向上等に関する法律施行令の一部を改正する政令",
+      "name_en": "Cabinet Order amending the Enforcement Order of the Act (top-runner designation thresholds)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MLIT press releases (housing and buildings)",
+      "url": "https://www.mlit.go.jp/report/press/house05_hh_001150.html"
+    },
+    {
+      "label": "MLIT: bill press release (27 March 2026)",
+      "url": "https://www.mlit.go.jp/report/press/house05_hh_001129.html"
     }
   ],
   "background": {
     "paragraphs": [
       "The Ministry of Land, Infrastructure, Transport and Tourism (MLIT) states that the building sector accounts for about 40% of Japan's greenhouse gas emissions. To work towards carbon neutrality by 2050, the amendment creates a system for assessing the carbon emitted over a building's whole life cycle, from the manufacture of materials to demolition, and takes measures to keep pace with energy-saving technology in view of future tightening of energy efficiency standards.",
       "Building owners, architects, construction companies and manufacturers of building materials are given duties to make efforts (non-binding 'duties to endeavour') towards reducing life-cycle carbon, and the government will issue a guideline on life-cycle carbon assessment. For buildings of specified uses above a certain size, the building owner must notify the results of the assessment to the Minister 14 days before construction starts; the uses and size are to be set by Cabinet Order. Manufacturers that calculate the carbon emission factor of materials under the national rules may indicate this on the materials.",
-      "The amendment also lets the Minister certify buildings using special structures or equipment as equivalent to the higher 'inducement' energy standard, so that they can use the floor-area-ratio relief available to certified buildings; requires the largest housing suppliers (designated as 'upper housing top runners', roughly a quarter of the market according to MLIT) to prepare medium- to long-term plans and report on them every year; creates third-party certification and labelling of buildings' environmental performance; and renames the Act (in Japanese, 建築物のエネルギー消費性能の向上及び脱炭素化の促進に関する法律; roughly, the Act on Improving the Energy Performance of Buildings and Promoting Decarbonisation, an unofficial translation)."
+      "The amendment also lets the Minister certify buildings using special structures or equipment as equivalent to the higher 'inducement' energy standard, so that they can use the relief available to certified buildings, including floor-area-ratio relief; requires the largest housing suppliers, designated as 'upper housing top runners', to prepare medium- to long-term plans and report on them every year, with ministerial recommendations where efforts are clearly insufficient; creates third-party certification and labelling of buildings' environmental performance; and renames the Act (in Japanese, 建築物のエネルギー消費性能の向上及び脱炭素化の促進に関する法律; roughly, the Act on Improving the Energy Performance of Buildings and Promoting Decarbonisation, an unofficial translation)."
     ],
     "source_ids": [
       "s1",
@@ -29,22 +45,24 @@
   },
   "history": {
     "paragraphs": [
-      "The Cabinet decided on the bill on 27 March 2026 and submitted it to the Diet the same day. It was examined by the Committee on Land, Infrastructure and Transport of each House, passed by the House of Representatives on 4 June 2026 and by the House of Councillors on 24 July 2026, which enacted it. It was promulgated on 31 July 2026 as Act No. 75 of 2026.",
-      "Under the Act's supplementary provisions, only preparatory provisions took effect on promulgation, a first group of provisions takes effect on a date set by Cabinet Order within one year (recorded by e-Gov Law Search as 1 April 2027), and the remaining provisions take effect on a date set by Cabinet Order within two years of promulgation."
+      "The Cabinet decided on the bill on 27 March 2026 and submitted it to the Diet the same day. It was examined by the Committee on Land, Infrastructure and Transport of each House, passed by the House of Representatives on 4 June 2026 and by the House of Councillors on 24 July 2026, which enacted it. It was promulgated on 31 July 2026 as Act No. 75 of 2026; only preparatory supplementary provisions took effect that day.",
+      "A draft amendment of the Act's Enforcement Order, setting the designation thresholds for upper housing top runners, was published for public comment on e-Gov from 7 August to 6 September 2026. On 11 September 2026 the Cabinet adopted two Cabinet Orders: one fixing 1 April 2027 as the effective date of the provisions in Article 1(ii) of the supplementary provisions, which cover the upper housing top-runner scheme and the ministerial certification of leading energy-saving technology, and Cabinet Order No. 292 of 2026 amending the Enforcement Order. Both were promulgated on 16 September 2026.",
+      "Cabinet Order No. 292 sets the annual supply volumes above which a supplier can be designated as an upper housing top runner: 2,000 units for built-for-sale detached houses, 2,000 units for condominiums for sale, 2,000 units for custom-built detached houses, and 15,000 units for rental apartments."
     ],
     "source_ids": [
-      "s1",
       "s2",
-      "s4"
+      "s4",
+      "s5"
     ]
   },
   "next_steps": {
     "confirmed": [
       {
         "date": "2027-04-01",
-        "text": "A first group of amendments listed in Article 1(ii) of the supplementary provisions takes effect, according to e-Gov Law Search.",
+        "text": "The upper housing top-runner scheme (with the designation thresholds of Cabinet Order No. 292) and the ministerial certification of leading energy-saving technology take effect.",
         "source_ids": [
-          "s4"
+          "s4",
+          "s5"
         ]
       },
       {
@@ -55,26 +73,28 @@
       }
     ],
     "expected": [
-      "Cabinet Orders and ministerial ordinances setting the building uses and sizes subject to mandatory notification, and other details, are normally published in draft for public comment before adoption."
+      "A Cabinet Order fixing the date of the main provisions, and Cabinet Orders and ministerial ordinances setting the building uses and sizes subject to mandatory life-cycle carbon notification, would normally be published in draft for public comment before adoption."
     ],
     "uncertainties": [
-      "The date on which the main provisions, including the mandatory life-cycle carbon notification, take effect had not been set when this explainer was verified; the Act requires it to be no later than two years after promulgation (July 2028).",
-      "The building uses and size thresholds for mandatory notification, and the criteria for designating upper housing top runners, depend on Cabinet Orders and ordinances that had not been published when this explainer was verified."
+      "The date on which the main provisions, including mandatory life-cycle carbon notification and third-party certification, take effect had not been set when this explainer was verified; the Act requires it to be no later than two years after promulgation (July 2028).",
+      "The building uses and size thresholds for mandatory notification, and the content of the national life-cycle carbon assessment guideline, had not been published when this explainer was verified."
     ]
   },
   "business_impact": {
     "paragraphs": [
-      "Developers and owners planning larger non-residential or other specified buildings should expect to carry out a life-cycle carbon assessment and notify its results before construction once the main provisions apply, subject to the uses and sizes the Cabinet Order sets. Designers, contractors and building material manufacturers have new duties to endeavour, and material manufacturers may need emission-factor data calculated under the national rules if customers ask for it.",
-      "Large housing suppliers that may be designated as upper housing top runners would have planning and annual reporting obligations. Voluntary third-party certification and labelling of environmental performance may become relevant to marketing and to tenants' or investors' sustainability requirements."
+      "From 1 April 2027, housing suppliers whose annual supply exceeds the thresholds in Cabinet Order No. 292 can be designated as upper housing top runners and would then have to prepare medium- to long-term plans and report on them every year. Developers using special structures or equipment may seek ministerial certification to access the relief available to certified energy-efficient buildings.",
+      "Developers and owners planning larger buildings of the specified uses should expect to carry out a life-cycle carbon assessment and notify its results before construction once the main provisions apply, subject to the uses and sizes still to be set. Designers, contractors and building material manufacturers have new duties to endeavour, and material manufacturers may be asked for emission-factor data calculated under the national rules."
     ],
     "checklist": [
+      "For housing suppliers, compare annual supply by category with the 2,000 and 15,000-unit thresholds ahead of 1 April 2027.",
       "Identify building projects whose construction would start after the main provisions take effect and could fall within the notification requirement.",
       "For material manufacturers, review whether product carbon data can be calculated under the forthcoming national rules.",
-      "Track the life-cycle carbon assessment guideline and the draft Cabinet Order on covered uses and sizes."
+      "Track the life-cycle carbon assessment guideline and the Cabinet Orders on covered uses, sizes and the main effective date."
     ],
     "source_ids": [
       "s1",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "key_dates": [
@@ -123,12 +143,22 @@
       ]
     },
     {
+      "kind": "promulgated",
+      "date": "2026-09-16",
+      "instrument_number": "令和八年政令第二百九十二号",
+      "label": "Effective-date Cabinet Order and Cabinet Order No. 292 promulgated (Cabinet decision 11 September)",
+      "source_ids": [
+        "s5"
+      ]
+    },
+    {
       "kind": "partially_effective",
       "date": "2027-04-01",
       "instrument_number": "令和八年法律第七十五号",
-      "label": "First group of amendments takes effect",
+      "label": "Upper housing top-runner scheme and ministerial certification take effect",
       "source_ids": [
-        "s4"
+        "s4",
+        "s5"
       ]
     }
   ],
@@ -164,10 +194,18 @@
       "title": "建築物のエネルギー消費性能の向上及び脱炭素化の促進に関する法律: version as amended by Act No. 75 of 2026, including its supplementary provisions",
       "url": "https://elaws.e-gov.go.jp/document?lawid=427AC0000000053_20270401_508AC0000000075",
       "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Land, Infrastructure, Transport and Tourism",
+      "title": "改正建築物省エネ法の施行に伴う関係政令を閣議決定 (press release, 11 September 2026)",
+      "url": "https://www.mlit.go.jp/report/press/house05_hh_001150.html",
+      "accessed_at": "2026-10-20"
     }
   ],
   "verified_at": "2026-10-20",
-  "source_fingerprint": "sha256:3b68dd358d6b1c6df2a27be8b67b1bd4",
+  "source_fingerprint": "sha256:b0f879f6f81ade1408b56a4f7148cc1e",
   "author": "claude",
-  "review_notes": "Trial explainer. Content from the MLIT press release and House of Councillors summary; effective-date structure from Article 1 of the Act's supplementary provisions via the e-Gov Law API; 2027-04-01 is a fixed date in e-Gov's revision list, while 2028-07-30 is e-Gov's placeholder for the Cabinet Order date (enforcement comment: 公布の日から起算して二年を超えない範囲内において政令で定める日) and is deliberately not presented as a date. Re-checked 2026-10-20 (second pass): instrument numbers and formal names against e-Gov Law Search records; dates against the House of Representatives records and e-Gov revision data; content against the cited ministry and House of Councillors documents. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner review: added the MLIT release of 11 September 2026 (effective-date Cabinet Order fixing 1 April 2027 for Article 1(ii) provisions; Cabinet Order No. 292 setting top-runner thresholds of 2,000 / 2,000 / 2,000 / 15,000 units; promulgation 16 September 2026) and the e-Gov public comment on the draft Enforcement Order (7 August to 6 September 2026). The previous statement that the designation criteria were unpublished was wrong and has been removed. The effective-date Cabinet Order's number was not confirmed in a primary source and is not stated. Not yet reviewed by a person."
 }

@@ -205,12 +205,13 @@ MAX_LIST_ITEM_CHARS = 600
 MAX_LIST_ITEMS = 10
 MAX_TITLE_CHARS = 140
 STALE_VERIFICATION_DAYS = 180
-# A reform still moving through the procedure is re-verified sooner: a status
-# this dashboard does not ingest (comment results on a ministry page, a Diet
-# vote, a Cabinet Order fixing a date) may have changed without any linked
-# record arriving, and absence of a record is never evidence that nothing
-# happened.
-MOVING_STAGE_VERIFICATION_DAYS = 30
+# A reform still moving through the procedure is re-checked on a schedule,
+# whether or not a linked record arrived: much of what moves a reform forward
+# (council reports, draft orders, comment results, a Cabinet Order fixing a
+# date, guidance) is published on ministry pages this dashboard does not
+# ingest, and absence of a record is never evidence that nothing happened.
+# The explainer's ``watch_pages`` name the official pages to re-check.
+MOVING_STAGE_VERIFICATION_DAYS = 14
 SETTLED_STAGES = frozenset({"in_force", "in_effect", "lapsed", "withdrawn", "not_adopted"})
 _MARKUP_RE = re.compile(r"<\s*[A-Za-z/!]|```|\]\(")
 
@@ -572,7 +573,7 @@ def validate(
         stage_now = data.get("current_stage")
         limit = STALE_VERIFICATION_DAYS if stage_now in SETTLED_STAGES else MOVING_STAGE_VERIFICATION_DAYS
         if (today - verified).days > limit:
-            warnings.append("verification_old")
+            warnings.append("verification_old" if stage_now in SETTLED_STAGES else "scheduled_recheck")
     _effective_review(data, report, verified)
 
     for item_id in index.closure(related):
@@ -607,6 +608,22 @@ def validate(
             errors.append(f"{where}.number must be a Japanese instrument number such as 令和八年法律第三十号")
         _check_text(entry.get("name_ja"), f"{where}.name_ja", 300, errors)
         _check_text(entry.get("name_en"), f"{where}.name_en", 300, errors)
+
+    watch = data.get("watch_pages", [])
+    if not isinstance(watch, list):
+        errors.append("watch_pages must be a list of {label, url}")
+        watch = []
+    for i, page in enumerate(watch):
+        where = f"watch_pages[{i}]"
+        if not isinstance(page, Mapping):
+            errors.append(f"{where}: must be an object")
+            continue
+        _check_text(page.get("label"), f"{where}.label", 200, errors)
+        url = safe_http_url(page.get("url"))
+        if not url or not (_is_government(url) or _is_self_regulatory(url)):
+            errors.append(f"{where}.url must be an official page (*.go.jp, JPX or JSDA)")
+    if not watch and data.get("current_stage") not in SETTLED_STAGES and status == "published":
+        warnings.append("no_watch_pages")
 
     sources = data.get("official_sources")
     known: set[str] = set()
@@ -966,8 +983,9 @@ def build_queue(
         if report.errors and data.get("status") in ("published", "draft"):
             reasons.append("validation_errors")
         reasons += [w for w in report.warnings if w == "official_records_changed" or w.startswith("stage_overtaken")]
-        if "verification_old" in report.warnings and data.get("status") == "published":
-            reasons.append("verification_old")
+        for reason in ("verification_old", "scheduled_recheck"):
+            if reason in report.warnings and data.get("status") in ("published", "draft"):
+                reasons.append(reason)
         held = awaiting_review(data, report, policy)
         if held:
             reasons.append("awaiting_review:" + "+".join(held))
@@ -980,6 +998,7 @@ def build_queue(
         priority += 40 if "official_records_changed" in reasons else 0
         priority += 30 if any(r.startswith("stage_overtaken") for r in reasons) else 0
         priority += 5 if "verification_old" in reasons else 0
+        priority += 20 if "scheduled_recheck" in reasons else 0
         priority += 10 if held else 0
         new_records = sorted(set(closure) - set(related))
         entries.append(
@@ -992,6 +1011,10 @@ def build_queue(
                 "reasons": sorted(set(reasons)),
                 "errors": report.errors[:10],
                 "review": dict(report.review),
+                "verified_at": data.get("verified_at"),
+                "watch_pages": [
+                    p.get("url") for p in data.get("watch_pages") or [] if isinstance(p, Mapping) and p.get("url")
+                ],
                 "record_count": len(closure),
                 "item_ids": closure[:QUEUE_ITEM_IDS_SHOWN],
                 "new_related_item_ids": new_records[:QUEUE_ITEM_IDS_SHOWN],
