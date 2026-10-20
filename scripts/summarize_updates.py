@@ -1010,6 +1010,8 @@ def request_title(client, model: str, item: dict, raw: dict) -> tuple[dict, str,
             client, model=model, system=TITLE_SYSTEM_PROMPT, user=user,
             schema=TITLE_SCHEMA, schema_name="english_title",
             visible_max_tokens=300, cache_key="jlrw-title-en",
+            # ~200 tokens: below OpenAI's 1,024-token cacheable minimum.
+            cache_prefix=False,
         ), model)
     kwargs = with_lowest_thinking(dict(
         model=model, max_tokens=300, system=TITLE_SYSTEM_PROMPT,
@@ -1044,6 +1046,10 @@ def request_japanese_summary(client, model: str, item: dict, raw: dict) -> tuple
             client, model=model, system=kwargs["system"], user=kwargs["messages"][0]["content"],
             schema=JA_RESULT_SCHEMA, schema_name="japanese_summary",
             visible_max_tokens=MAX_TOKENS, cache_key="jlrw-summary-ja",
+            # SYSTEM_PROMPT_JA is ~735 tokens, below OpenAI's 1,024-token
+            # cacheable minimum: a breakpoint could never be read, and the old
+            # implicit one wrote every whole request at 1.25x (openai_provider).
+            cache_prefix=False,
         ), model)
     try:
         resp = client.messages.create(

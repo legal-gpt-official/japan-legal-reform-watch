@@ -76,6 +76,19 @@ class FakeClient:
         return self._resp
 
 
+def developer_block(params):
+    """The single input_text block of the developer (system prompt) message."""
+    message = params["input"][0]
+    assert message["role"] == "developer" and len(message["content"]) == 1
+    return message["content"][0]
+
+
+def user_text(params):
+    message = params["input"][1]
+    assert message["role"] == "user" and len(message["content"]) == 1
+    return message["content"][0]["text"]
+
+
 class TestProviderSelection(unittest.TestCase):
     def test_only_gpt_models_route_to_openai(self):
         self.assertTrue(op.is_openai_model("gpt-6.1-sol"))
@@ -172,7 +185,7 @@ class TestRequestShape(unittest.TestCase):
         self.assertEqual(self.params(OPENAI_REASONING_HEADROOM_TOKENS="0")["max_output_tokens"], 1500)
 
     def test_anthropic_system_blocks_are_flattened(self):
-        self.assertEqual(self.params()["instructions"], "SYS")
+        self.assertEqual(developer_block(self.params())["text"], "SYS")
 
     def test_unsupported_effort_is_rejected(self):
         """`none` / `minimal` are 400s on gpt-6.1-sol; fail before any call."""
@@ -189,6 +202,84 @@ class TestRequestShape(unittest.TestCase):
             with self.subTest(sorted(schema["properties"])):
                 self.assertFalse(schema["additionalProperties"])
                 self.assertEqual(sorted(schema["required"]), sorted(schema["properties"]))
+
+
+class TestPromptCaching(unittest.TestCase):
+    """Only the shared system prompt may be written to OpenAI's prompt cache.
+
+    In the default implicit mode the breakpoint sits after the item data, so
+    every request wrote its whole input at 1.25x; a stage whose system prompt
+    is under the 1,024-token minimum (the Japanese summary, ~735 tokens) never
+    read any of it back -- run 38980537852: 112,335 tokens written, 0 read.
+    """
+
+    def call(self, fn, *args):
+        client = FakeClient(response(json.dumps({}, ensure_ascii=False)))
+        with contextlib.suppress(Exception):
+            fn(client, MODEL, *args)
+        self.assertEqual(len(client.calls), 1)
+        return client.calls[0]
+
+    def stage_calls(self):
+        item, raw = dict(ITEM), {"raw_summary": "r"}
+        return {
+            "english": self.call(su.request_summary, item, raw),
+            "zh-Hans": self.call(tu.request_translation, item, "zh-Hans", ("title",)),
+            "japanese": self.call(su.request_japanese_summary, item, raw),
+            "title": self.call(su.request_title, item, raw),
+        }
+
+    def test_every_request_is_explicit_mode_with_no_top_level_instructions(self):
+        """Explicit mode drops the implicit breakpoint after the item data, and
+        top-level `instructions` cannot carry a breakpoint at all."""
+        for stage, call in self.stage_calls().items():
+            with self.subTest(stage):
+                self.assertNotIn("instructions", call)
+                self.assertNotIn("prompt_cache_options", call)  # extra_body: any SDK version
+                self.assertEqual(call["extra_body"], {"prompt_cache_options": {"mode": "explicit"}})
+                self.assertEqual([m["role"] for m in call["input"]], ["developer", "user"])
+                self.assertNotIn("prompt_cache_breakpoint", call["input"][1]["content"][0])
+
+    def test_breakpoint_only_where_the_system_prompt_can_be_cached(self):
+        calls = self.stage_calls()
+        for stage in ("english", "zh-Hans"):
+            with self.subTest(stage):
+                self.assertEqual(developer_block(calls[stage])["prompt_cache_breakpoint"], {"mode": "explicit"})
+        for stage in ("japanese", "title"):
+            with self.subTest(stage):
+                self.assertNotIn("prompt_cache_breakpoint", developer_block(calls[stage]))
+
+    def test_item_data_never_precedes_the_static_prefix(self):
+        """The developer block is byte-identical across items; only the user
+        message changes."""
+        other = dict(ITEM, id="jlrw-test-2", title_ja="別の省令案")
+        for fn, args_a, args_b in (
+            (su.request_japanese_summary, (dict(ITEM), {"raw_summary": "a"}), (other, {"raw_summary": "b"})),
+            (su.request_summary, (dict(ITEM), {"raw_summary": "a"}), (other, {"raw_summary": "b"})),
+        ):
+            with self.subTest(fn.__name__):
+                a, b = self.call(fn, *args_a), self.call(fn, *args_b)
+                self.assertEqual(developer_block(a), developer_block(b))
+                self.assertNotEqual(user_text(a), user_text(b))
+                self.assertEqual(a["prompt_cache_key"], b["prompt_cache_key"])
+
+    def test_japanese_prompt_is_still_below_the_cacheable_minimum(self):
+        """Tripwire for `cache_prefix=False` on the Japanese summary. Measured
+        with o200k_base on 2026-10-20: 735 tokens from 1,138 characters (about
+        0.65 token per character). Past ~1,600 characters the prompt may reach
+        1,024 tokens; then measure it and pass cache_prefix=True instead."""
+        self.assertLess(len(su.SYSTEM_PROMPT_JA), 1600)
+
+    def test_measured_japanese_run_reprices_to_plain_input(self):
+        """Run 38980537852's Japanese step totals: 89 Flex calls, 267 plain
+        input, 112,335 written, 0 read, 23,407 output = $0.2577. The same
+        input billed as plain input (no breakpoint, explicit mode) is $0.2296,
+        i.e. $0.00290 -> $0.00258 per call."""
+        before = {"input_tokens": 267, "cache_creation_input_tokens": 112_335,
+                  "cache_read_input_tokens": 0, "output_tokens": 23_407, "flex_calls": 89}
+        after = dict(before, input_tokens=267 + 112_335, cache_creation_input_tokens=0)
+        self.assertAlmostEqual(su.estimate_usage_cost_usd(before, MODEL), 0.2577, places=4)
+        self.assertAlmostEqual(su.estimate_usage_cost_usd(after, MODEL), 0.2296, places=4)
 
 
 class TestResponseMapping(unittest.TestCase):
@@ -312,8 +403,8 @@ class TestStageRouting(unittest.TestCase):
         self.assertEqual(result, payload)
         self.assertEqual(model, MODEL)
         call = client.calls[0]
-        self.assertEqual(call["instructions"], su.SYSTEM_PROMPT)
-        self.assertEqual(call["input"], su.build_user_content(dict(ITEM), {"raw_summary": "r"}))
+        self.assertEqual(developer_block(call)["text"], su.SYSTEM_PROMPT)
+        self.assertEqual(user_text(call), su.build_user_content(dict(ITEM), {"raw_summary": "r"}))
         self.assertIs(call["text"]["format"]["schema"], su.RESULT_SCHEMA)
         self.assertEqual(usage["reasoning_tokens"], 120)
 
@@ -323,7 +414,7 @@ class TestStageRouting(unittest.TestCase):
         result, _model, _usage = su.request_japanese_summary(client, MODEL, dict(ITEM), {})
         self.assertEqual(result, payload)
         call = client.calls[0]
-        self.assertEqual(call["instructions"], su.SYSTEM_PROMPT_JA)
+        self.assertEqual(developer_block(call)["text"], su.SYSTEM_PROMPT_JA)
         self.assertIs(call["text"]["format"]["schema"], su.JA_RESULT_SCHEMA)
 
     def test_translation_requests_only_the_missing_fields(self):
@@ -331,8 +422,8 @@ class TestStageRouting(unittest.TestCase):
         result, _model, _usage = tu.request_translation(client, MODEL, dict(ITEM), "zh-Hans", ("title",))
         self.assertEqual(result, {"title": "公开征求意见：施行令修订草案"})
         call = client.calls[0]
-        self.assertEqual(call["instructions"], tu.SYSTEM_PROMPT)
-        self.assertEqual(call["input"], tu.build_user_content(dict(ITEM), "zh-Hans", ("title",)))
+        self.assertEqual(developer_block(call)["text"], tu.SYSTEM_PROMPT)
+        self.assertEqual(user_text(call), tu.build_user_content(dict(ITEM), "zh-Hans", ("title",)))
         self.assertEqual(call["text"]["format"]["schema"]["required"], ["title"])
         self.assertEqual(call["prompt_cache_key"], "jlrw-translate-zh-Hans")
 

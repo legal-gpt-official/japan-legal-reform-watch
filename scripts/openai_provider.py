@@ -37,6 +37,25 @@ Facts used here (developers.openai.com, checked 2026-10-16):
 - Usage: input_tokens INCLUDES cached reads and cache writes
   (input_tokens_details.cached_tokens / .cache_write_tokens).
 - temperature / top_p are rejected when reasoning is on; none are sent.
+
+Prompt caching (developers.openai.com/api/docs/guides/prompt-caching, checked
+2026-10-20). On GPT-5.6 and later the default ("implicit") mode puts ONE cache
+breakpoint at the end of the latest user message and writes everything up to
+it at 1.25x, item data included; a later request reads only at a matching
+lookup boundary, and nothing shorter than 1,024 tokens is cacheable. The
+endpoint of the opening developer block (here the system prompt) is such a
+boundary, so a stage whose system prompt is over the minimum reads it back
+(English ~1,600 tokens, zh-Hans ~1,900) but still pays 1.25x on every item's
+own tail, and a stage whose system prompt is under it (Japanese summary ~735,
+title ~200, semantic audit ~320) never reads anything and pays 1.25x on its
+whole input -- the guide's "minimum cacheable length cost trap". Requests are
+therefore sent in "explicit" mode: the system prompt is a developer message
+with one breakpoint at its end when it is long enough to be cached
+(``cache_prefix=True``) and none when it is not, which the guide documents as
+"does not use prompt caching or create cache writes". Item data after the
+breakpoint is billed at the plain input rate either way. Top-level
+``instructions`` cannot carry a breakpoint, and is itself "a system (or
+developer) message", so the prompt text reaches the model unchanged.
 """
 
 from __future__ import annotations
@@ -204,21 +223,42 @@ def to_message(resp, model: str) -> SimpleNamespace:
     )
 
 
+def _input_messages(system, user: str, cache_prefix: bool) -> list[dict]:
+    """The system prompt as a developer message, then the item as a user message.
+
+    The breakpoint marks the end of the only part every request shares; the
+    item data after it is never written to the cache.
+    """
+    developer = {"type": "input_text", "text": _system_text(system)}
+    if cache_prefix:
+        developer["prompt_cache_breakpoint"] = {"mode": "explicit"}
+    return [
+        {"role": "developer", "content": [developer]},
+        {"role": "user", "content": [{"type": "input_text", "text": user}]},
+    ]
+
+
 def request_params(
     *, model: str, system, user: str, schema: dict, schema_name: str,
-    visible_max_tokens: int, cache_key: str,
+    visible_max_tokens: int, cache_key: str, cache_prefix: bool = True,
 ) -> dict:
-    """Responses API parameters equivalent to one Messages structured-output call."""
+    """Responses API parameters equivalent to one Messages structured-output call.
+
+    ``cache_prefix`` says whether the system prompt is long enough (1,024
+    tokens) to be cached; pass False for a shorter one, so it is neither
+    written at 1.25x nor marked with a breakpoint that can never be read.
+    """
     params = {
         "model": model,
-        "instructions": _system_text(system),
-        "input": user,
+        "input": _input_messages(system, user, cache_prefix),
         "reasoning": {"effort": reasoning_effort()},
         "max_output_tokens": max_output_tokens(visible_max_tokens),
         "text": {"format": {"type": "json_schema", "name": schema_name, "schema": schema, "strict": True}},
-        # Groups requests that share the stable system prompt so the prefix cache
-        # is reused; carries no item data.
+        # Separate cache accounting per stage; carries no item data.
         "prompt_cache_key": cache_key,
+        # Only the breakpoint above is written; no implicit one after the item.
+        # Sent through extra_body so an SDK that predates the field passes it on.
+        "extra_body": {"prompt_cache_options": {"mode": "explicit"}},
         # Responses are not retained by OpenAI for later retrieval; nothing here
         # needs them after the call returns.
         "store": False,

@@ -221,7 +221,8 @@ def build_user(item: dict, raw: dict) -> str:
 def review(client, model: str, item: dict, raw: dict) -> tuple[dict, dict]:
     message = openai_provider.create_structured(
         client, model=model, system=SYSTEM_PROMPT, user=build_user(item, raw), schema=SCHEMA,
-        schema_name="semantic_audit", visible_max_tokens=MAX_OUTPUT_TOKENS, cache_key="jlrw-semantic-audit")
+        schema_name="semantic_audit", visible_max_tokens=MAX_OUTPUT_TOKENS, cache_key="jlrw-semantic-audit",
+        cache_prefix=False)  # ~320-token prompt: below OpenAI's cacheable minimum
     result, _model, usage = su.parse_summary_message(message, model)
     return result, usage
 
