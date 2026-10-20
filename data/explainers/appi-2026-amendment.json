@@ -23,6 +23,22 @@
     {
       "label": "PPC: 2026 amendment page (decisions and materials)",
       "url": "https://www.ppc.go.jp/personalinfo/legal/r8kaiseihogohou/"
+    },
+    {
+      "label": "PPC: Commission meeting list",
+      "url": "https://www.ppc.go.jp/enforcement/minutes/"
+    },
+    {
+      "label": "PPC: news and press releases",
+      "url": "https://www.ppc.go.jp/news/"
+    },
+    {
+      "label": "e-Gov Law Search: APPI revision history",
+      "url": "https://laws.e-gov.go.jp/law/415AC0000000057"
+    },
+    {
+      "label": "e-Gov public comment list (search: 個人情報の保護に関する法律)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
     }
   ],
   "background": {
@@ -217,5 +233,5 @@
   "verified_at": "2026-10-20",
   "source_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
   "author": "claude",
-  "review_notes": "Updated 2026-10-20 after owner review: added the PPC overview of matters to be set by Cabinet Order and rules (26 August), the preparation process (9 September: themes, stakeholder exchanges and secretariat hearings, specific content, draft texts, then public comment) and the three basic-approach documents of 16 September, 1 October and 14 October 2026 (260916/261001/261014_kihonntekinakanngaekatanitsuite_1-3.pdf, linked from the PPC amendment page). Added the PPC's own notices on the dashboard as related records. The dashboard holds the Diet record and PPC notices only; e-Gov Law Search had not been matched to this Act. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner review: added the PPC overview of matters to be set by Cabinet Order and rules (26 August), the preparation process (9 September: themes, stakeholder exchanges and secretariat hearings, specific content, draft texts, then public comment) and the three basic-approach documents of 16 September, 1 October and 14 October 2026 (260916/261001/261014_kihonntekinakanngaekatanitsuite_1-3.pdf, linked from the PPC amendment page). Added the PPC's own notices on the dashboard as related records. The dashboard holds the Diet record and PPC notices only; e-Gov Law Search had not been matched to this Act. Not yet reviewed by a person. Second update 2026-10-20: watch_pages changed to listing pages (ministry pages, meeting and press lists, e-Gov revision history, e-Gov comment list)."
 }

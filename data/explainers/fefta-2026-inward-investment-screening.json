@@ -32,12 +32,20 @@
   ],
   "watch_pages": [
     {
-      "label": "MOF: inward direct investment under FEFTA (notices and Q&A)",
+      "label": "MOF: inward direct investment under FEFTA (notices, materials, Q&A)",
       "url": "https://www.mof.go.jp/policy/international_policy/gaitame_kawase/fdi/"
     },
     {
-      "label": "MOF: FEFTA press releases",
+      "label": "MOF: FEFTA press release list",
       "url": "https://www.mof.go.jp/policy/international_policy/gaitame_kawase/press_release/index.html"
+    },
+    {
+      "label": "e-Gov Law Search: FEFTA revision history",
+      "url": "https://laws.e-gov.go.jp/law/324AC0000000228"
+    },
+    {
+      "label": "e-Gov public comment list (search: 対内直接投資)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
     }
   ],
   "background": {
@@ -238,5 +246,5 @@
   "verified_at": "2026-10-20",
   "source_fingerprint": "sha256:dc350dd89c279e546c7ec9c6604f63c3",
   "author": "claude",
-  "review_notes": "Updated 2026-10-20 after owner review: added the MOF release of 16 September 2026 (Cabinet decision 11 September; promulgation of the Cabinet Order, ministerial order and public notices and publication of the public comment results on 16 September; entry into force 4 January 2027 and full application 3 February 2027) and the MOF English summary (indirect investment, deemed foreign investors, non-designated sector reports, JFIC, designated-sector review, director reappointment, attachments). Dates also checked against the House of Representatives record and the e-Gov Law API. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner review: added the MOF release of 16 September 2026 (Cabinet decision 11 September; promulgation of the Cabinet Order, ministerial order and public notices and publication of the public comment results on 16 September; entry into force 4 January 2027 and full application 3 February 2027) and the MOF English summary (indirect investment, deemed foreign investors, non-designated sector reports, JFIC, designated-sector review, director reappointment, attachments). Dates also checked against the House of Representatives record and the e-Gov Law API. Not yet reviewed by a person. Second update 2026-10-20: watch_pages changed to listing pages (ministry pages, meeting and press lists, e-Gov revision history, e-Gov comment list)."
 }

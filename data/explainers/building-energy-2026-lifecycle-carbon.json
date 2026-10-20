@@ -24,12 +24,24 @@
   ],
   "watch_pages": [
     {
-      "label": "MLIT press releases (housing and buildings)",
-      "url": "https://www.mlit.go.jp/report/press/house05_hh_001150.html"
+      "label": "MLIT: Building Energy Efficiency Act page (updates on the top-runner scheme and the Act)",
+      "url": "https://www.mlit.go.jp/jutakukentiku/house/shoenehou.html"
     },
     {
-      "label": "MLIT: bill press release (27 March 2026)",
-      "url": "https://www.mlit.go.jp/report/press/house05_hh_001129.html"
+      "label": "MLIT: Building Energy Efficiency Act, latest laws and notices",
+      "url": "https://www.mlit.go.jp/jutakukentiku/house/29.html"
+    },
+    {
+      "label": "MLIT: press release list",
+      "url": "https://www.mlit.go.jp/report/press/index.html"
+    },
+    {
+      "label": "e-Gov Law Search: revision history of the Act",
+      "url": "https://laws.e-gov.go.jp/law/427AC0000000053"
+    },
+    {
+      "label": "e-Gov public comment list (search: 建築物のエネルギー消費性能)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
     }
   ],
   "background": {
@@ -47,22 +59,24 @@
     "paragraphs": [
       "The Cabinet decided on the bill on 27 March 2026 and submitted it to the Diet the same day. It was examined by the Committee on Land, Infrastructure and Transport of each House, passed by the House of Representatives on 4 June 2026 and by the House of Councillors on 24 July 2026, which enacted it. It was promulgated on 31 July 2026 as Act No. 75 of 2026; only preparatory supplementary provisions took effect that day.",
       "A draft amendment of the Act's Enforcement Order, setting the designation thresholds for upper housing top runners, was published for public comment on e-Gov from 7 August to 6 September 2026. On 11 September 2026 the Cabinet adopted two Cabinet Orders: one fixing 1 April 2027 as the effective date of the provisions in Article 1(ii) of the supplementary provisions, which cover the upper housing top-runner scheme and the ministerial certification of leading energy-saving technology, and Cabinet Order No. 292 of 2026 amending the Enforcement Order. Both were promulgated on 16 September 2026.",
-      "Cabinet Order No. 292 sets the annual supply volumes above which a supplier can be designated as an upper housing top runner: 2,000 units for built-for-sale detached houses, 2,000 units for condominiums for sale, 2,000 units for custom-built detached houses, and 15,000 units for rental apartments."
+      "Under the amended Act (Articles 22-2 and 25-2), the Minister is to designate as an upper housing top runner a supplier whose number of houses of the relevant type built in the previous fiscal year is at or above the threshold set by Cabinet Order, so a supplier exactly at the threshold is included; a supplier at or above the threshold that has not been designated must notify the Minister of that number. Cabinet Order No. 292 of 2026 sets the thresholds at 2,000 units for standardised detached houses built for sale (分譲型一戸建て規格住宅), 2,000 units for standardised condominiums and other multi-unit housing built for sale (分譲型規格共同住宅等), 2,000 units for standardised detached houses built under construction contracts (請負型一戸建て規格住宅), and 15,000 units for standardised multi-unit housing built under construction contracts (請負型規格共同住宅等, which MLIT describes as rental apartments)."
     ],
     "source_ids": [
       "s2",
       "s4",
-      "s5"
+      "s5",
+      "s6"
     ]
   },
   "next_steps": {
     "confirmed": [
       {
         "date": "2027-04-01",
-        "text": "The upper housing top-runner scheme (with the designation thresholds of Cabinet Order No. 292) and the ministerial certification of leading energy-saving technology take effect.",
+        "text": "The upper housing top-runner scheme, with the thresholds set by Cabinet Order No. 292, and the ministerial certification of leading energy-saving technology take effect.",
         "source_ids": [
           "s4",
-          "s5"
+          "s5",
+          "s6"
         ]
       },
       {
@@ -82,11 +96,11 @@
   },
   "business_impact": {
     "paragraphs": [
-      "From 1 April 2027, housing suppliers whose annual supply exceeds the thresholds in Cabinet Order No. 292 can be designated as upper housing top runners and would then have to prepare medium- to long-term plans and report on them every year. Developers using special structures or equipment may seek ministerial certification to access the relief available to certified energy-efficient buildings.",
+      "From 1 April 2027, a housing supplier whose number of houses of a given type built in the previous fiscal year meets or exceeds the threshold in Cabinet Order No. 292 (2,000 or 15,000 units, depending on the type) is to be designated as an upper housing top runner and must then prepare medium- to long-term plans and report on them every year; a supplier that meets or exceeds the threshold but has not been designated must notify the Minister of its numbers. Developers using special structures or equipment may seek ministerial certification to access the relief available to certified energy-efficient buildings.",
       "Developers and owners planning larger buildings of the specified uses should expect to carry out a life-cycle carbon assessment and notify its results before construction once the main provisions apply, subject to the uses and sizes still to be set. Designers, contractors and building material manufacturers have new duties to endeavour, and material manufacturers may be asked for emission-factor data calculated under the national rules."
     ],
     "checklist": [
-      "For housing suppliers, compare annual supply by category with the 2,000 and 15,000-unit thresholds ahead of 1 April 2027.",
+      "For housing suppliers, count the standardised houses of each type built in the previous fiscal year and compare them with the thresholds (2,000 or 15,000 units; reaching the threshold exactly is enough), ahead of 1 April 2027.",
       "Identify building projects whose construction would start after the main provisions take effect and could fall within the notification requirement.",
       "For material manufacturers, review whether product carbon data can be calculated under the forthcoming national rules.",
       "Track the life-cycle carbon assessment guideline and the Cabinet Orders on covered uses, sizes and the main effective date."
@@ -94,7 +108,9 @@
     "source_ids": [
       "s1",
       "s3",
-      "s5"
+      "s4",
+      "s5",
+      "s6"
     ]
   },
   "key_dates": [
@@ -158,7 +174,8 @@
       "label": "Upper housing top-runner scheme and ministerial certification take effect",
       "source_ids": [
         "s4",
-        "s5"
+        "s5",
+        "s6"
       ]
     }
   ],
@@ -202,10 +219,18 @@
       "title": "改正建築物省エネ法の施行に伴う関係政令を閣議決定 (press release, 11 September 2026)",
       "url": "https://www.mlit.go.jp/report/press/house05_hh_001150.html",
       "accessed_at": "2026-10-20"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Ministry of Land, Infrastructure, Transport and Tourism",
+      "title": "建築物のエネルギー消費性能の向上等に関する法律施行令の一部を改正する政令 案文・理由 (attachment to the 11 September 2026 release)",
+      "url": "https://www.mlit.go.jp/report/press/content/002021671.pdf",
+      "accessed_at": "2026-10-20"
     }
   ],
   "verified_at": "2026-10-20",
   "source_fingerprint": "sha256:b0f879f6f81ade1408b56a4f7148cc1e",
   "author": "claude",
-  "review_notes": "Updated 2026-10-20 after owner review: added the MLIT release of 11 September 2026 (effective-date Cabinet Order fixing 1 April 2027 for Article 1(ii) provisions; Cabinet Order No. 292 setting top-runner thresholds of 2,000 / 2,000 / 2,000 / 15,000 units; promulgation 16 September 2026) and the e-Gov public comment on the draft Enforcement Order (7 August to 6 September 2026). The previous statement that the designation criteria were unpublished was wrong and has been removed. The effective-date Cabinet Order's number was not confirmed in a primary source and is not stated. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner review: added the MLIT release of 11 September 2026 (effective-date Cabinet Order fixing 1 April 2027 for Article 1(ii) provisions; Cabinet Order No. 292 setting top-runner thresholds of 2,000 / 2,000 / 2,000 / 15,000 units; promulgation 16 September 2026) and the e-Gov public comment on the draft Enforcement Order (7 August to 6 September 2026). The previous statement that the designation criteria were unpublished was wrong and has been removed. The effective-date Cabinet Order's number was not confirmed in a primary source and is not stated. Not yet reviewed by a person. Second update 2026-10-20 after owner review: the thresholds are inclusive (Articles 22-2 and 25-2 of the amended Act: 基準戸数以上), so 'exceeds' was corrected to 'meets or exceeds'; designation is mandatory (指定するものとする); the count is of standardised houses of each type built in the previous fiscal year; non-designated suppliers at or above the threshold must notify; categories are named as in the Act; watch_pages now list MLIT's Act page, laws page and press list, the e-Gov revision history and the e-Gov comment list."
 }

@@ -29,12 +29,20 @@
   ],
   "watch_pages": [
     {
-      "label": "METI news releases (search for 産業競争力強化法 and 生活維持物品役務需要減等)",
+      "label": "METI: Industrial Competitiveness Enhancement Act policy page (open in a browser; automated fetches are refused)",
+      "url": "https://www.meti.go.jp/policy/economy/kyosoryoku_kyoka/index.html"
+    },
+    {
+      "label": "METI: news release list (open in a browser)",
       "url": "https://www.meti.go.jp/press/index.html"
     },
     {
       "label": "e-Gov Law Search: Industrial Competitiveness Enhancement Act revision history",
       "url": "https://laws.e-gov.go.jp/law/425AC0000000098"
+    },
+    {
+      "label": "e-Gov public comment list (search: 産業競争力強化法)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
     }
   ],
   "background": {
@@ -228,5 +236,5 @@
   "verified_at": "2026-10-20",
   "source_fingerprint": "sha256:c28839caf9c79a1da8b8a4dfb0228cff",
   "author": "claude",
-  "review_notes": "Updated 2026-10-20 after owner request to re-check ministry publications: added the METI news release of 28 July 2026 (Cabinet decision on the effective-date Cabinet Order and Cabinet Order No. 244; promulgation and entry into force 31 July 2026; read in a browser because the METI site refuses automated fetches) and the September 2026 public comments on the everyday goods and services scheme (four e-Gov consultations, one read in full). The effective-date Cabinet Order's number appears only in a secondary source and is not stated. Not yet reviewed by a person."
+  "review_notes": "Updated 2026-10-20 after owner request to re-check ministry publications: added the METI news release of 28 July 2026 (Cabinet decision on the effective-date Cabinet Order and Cabinet Order No. 244; promulgation and entry into force 31 July 2026; read in a browser because the METI site refuses automated fetches) and the September 2026 public comments on the everyday goods and services scheme (four e-Gov consultations, one read in full). The effective-date Cabinet Order's number appears only in a secondary source and is not stated. Not yet reviewed by a person. Second update 2026-10-20: watch_pages changed to listing pages (ministry pages, meeting and press lists, e-Gov revision history, e-Gov comment list)."
 }
