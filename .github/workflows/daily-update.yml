@@ -274,7 +274,7 @@ jobs:
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -286,7 +286,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

@@ -135,10 +135,12 @@ class TestBuild(unittest.TestCase):
         self.assertEqual(html.count(bpp.STATIC_START), 1)
         self.assertIn('href="./areas/finance-aml/"', html)
         expected = sorted(
-            ["index.html", "public-comments/index.html"]
+            ["index.html", "public-comments/index.html", "u/a/index.html", "u/b/index.html"]
             + [f"areas/{area.slug}/index.html" for area in bpp.AREA_PAGES]
         )
         self.assertEqual(pages, expected)
+        self.assertEqual(first["item_pages_changed"], 2)
+        self.assertEqual(second["item_pages_changed"], 0)
 
     def test_sitemap_lists_given_pages_and_dates(self):
         root = ET.fromstring(bpp.render_sitemap([(ac.SITE_URL, date(2026, 10, 6)), (ac.SITE_URL + "x/", None)]))
@@ -257,7 +259,136 @@ class TestPublishedSite(unittest.TestCase):
             workflow.index("python scripts/build_public_pages.py"),
         )
         self.assertLess(workflow.index("python scripts/build_public_pages.py"), workflow.index("name: Check data changes"))
-        self.assertEqual(workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments"), 2)
+        self.assertEqual(
+            workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u"), 2
+        )
+
+    def test_every_published_item_has_a_page_and_ai_items_are_in_the_sitemap(self):
+        items = bpp.load_items(DOCS / "data" / "legal_updates.json")
+        sitemap = (DOCS / "sitemap.xml").read_text(encoding="utf-8")
+        for record in bpp.page_items(items):
+            path = bpp.item_page_path(record)
+            self.assertTrue((DOCS / path / "index.html").is_file(), path)
+            listed = f"<loc>{ac.SITE_URL}{path}</loc>" in sitemap
+            self.assertEqual(listed, bpp.item_is_indexable(record), path)
+        published = {bpp.item_page_id(record) for record in items}
+        on_disk = {child.name for child in (DOCS / bpp.ITEM_DIR_NAME).iterdir()}
+        self.assertEqual(on_disk - published, set(), "pages of unpublished items should be pruned")
+
+
+AI_ITEM = dict(
+    summary_source="claude",
+    title_ja="下水道法施行令の一部を改正する政令（案）",
+    summary_en="Draft amendment published for comment.",
+    business_impact_en="Operators may be affected.",
+    recommended_action_en="Review the consultation documents.",
+    impact_level="Medium",
+)
+
+
+class TestItemPages(unittest.TestCase):
+    def test_ai_item_page_shows_summary_attribution_and_notices(self):
+        html = bpp.render_item_page(item("raw-abc", **AI_ITEM))
+        self.assertIn(f'<link rel="canonical" href="{ac.SITE_URL}u/raw-abc/" />', html)
+        self.assertNotIn("noindex", html)
+        self.assertIn('<h1 class="area-page-title">Title raw-abc</h1>', html)
+        self.assertIn('lang="ja">下水道法施行令の一部を改正する政令（案）</p>', html)
+        self.assertIn('href="https://www.fsa.go.jp/raw-abc" target="_blank" rel="noopener noreferrer"', html)
+        self.assertIn("Source: Financial Services Agency (FSA)", html)
+        self.assertIn("Published: 2026-10-01", html)
+        self.assertIn("Stage: Government Announcement", html)
+        for text in AI_ITEM.values():
+            if text.endswith("."):
+                self.assertIn(text, html)
+        self.assertIn("not legal advice", html)
+        self.assertIn("remains authoritative", html)
+        self.assertIn('href="../../legal/disclaimer_en.html"', html)
+        self.assertIn('href="../../legal/disclaimer_ja.html"', html)
+        # Breadcrumb goes through the item's area page.
+        self.assertIn('<a href="../../areas/finance-aml/">Finance / AML</a>', html)
+        self.assertIn('href="../../style.css?v=' + bpp.STYLE_CACHE_BUSTER + '"', html)
+        self.assertIn('src="../../analytics.js?v=' + bpp.ANALYTICS_CACHE_BUSTER + '"', html)
+        self.assertNotIn("app.js", html)
+        self.assertNotIn("i18n.js", html)
+
+    def test_rule_based_item_page_is_noindex_and_omits_the_template(self):
+        html = bpp.render_item_page(item("raw-rule"))
+        self.assertIn('<meta name="robots" content="noindex, follow" />', html)
+        self.assertNotIn("Template sentence", html)
+        self.assertIn("not yet available", html)
+        self.assertFalse(bpp.item_is_indexable(item("raw-rule")))
+        self.assertTrue(bpp.item_is_indexable(item("raw-ai", **AI_ITEM)))
+
+    def test_untrusted_fields_are_escaped_and_unsafe_urls_are_not_links(self):
+        hostile = item(
+            "raw-x",
+            title_en="<script>alert(1)</script>",
+            title_ja="<img src=x onerror=alert(1)>",
+            source_name="<b>src</b>",
+            source_url="javascript:alert(1)",
+            stage='"><svg onload=alert(1)>',
+            **{k: v for k, v in AI_ITEM.items() if k not in ("title_ja", "business_impact_en")},
+            business_impact_en="</script><script>alert(2)</script>",
+        )
+        html = bpp.render_item_page(hostile)
+        for raw in ("<script>alert", "<img src=x", "<b>src</b>", "javascript:", "<svg", "</script><script>"):
+            self.assertNotIn(raw, html)
+        self.assertNotIn("View the original Japanese source", html)
+
+    def test_unsafe_or_duplicate_ids_get_no_page(self):
+        for bad in ("../etc", "a/b", ".hidden", "", "x" * 81, "a b", None, 5):
+            with self.subTest(bad=bad):
+                self.assertEqual(bpp.item_page_path(item("x") | {"id": bad}), "")
+        self.assertEqual(bpp.item_page_path(item("raw-1", title_en="")), "")
+        rows = bpp.page_items([item("raw-1"), item("raw-1", title_en="Second"), item("../x")])
+        self.assertEqual([r["title_en"] for r in rows], ["Title raw-1"])
+
+    def test_page_ignores_last_checked_so_quiet_days_rewrite_nothing(self):
+        a = bpp.render_item_page(item("raw-1", **AI_ITEM))
+        b = bpp.render_item_page(item("raw-1", last_checked="2026-12-31", **AI_ITEM))
+        self.assertEqual(a, b)
+        self.assertEqual(
+            bpp.item_lastmod(item("raw-1", summarized_at="2026-10-17T22:55:49Z", last_checked="2026-12-31")),
+            date(2026, 10, 17),
+        )
+
+    def test_listings_link_to_the_item_page_and_keep_the_source_link(self):
+        html = bpp.render_static_item(item("raw-a"), prefix="../../")
+        self.assertIn('class="static-latest-title" href="../../u/raw-a/"', html)
+        self.assertIn('href="https://www.fsa.go.jp/raw-a" target="_blank" rel="noopener noreferrer"', html)
+        block = bpp.render_static_latest([item("raw-a")], None)
+        self.assertIn('href="./u/raw-a/"', block)
+
+    def test_build_lists_only_ai_pages_in_the_sitemap_and_prunes_stale_pages(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            data = tmp_path / "data.json"
+            index = tmp_path / "index.html"
+            sitemap = tmp_path / "sitemap.xml"
+            index.write_text(page(), encoding="utf-8")
+            stale = tmp_path / "u" / "raw-gone"
+            stale.mkdir(parents=True)
+            (stale / "index.html").write_text("old", encoding="utf-8")
+            foreign = tmp_path / "u" / "raw-keep"
+            foreign.mkdir()
+            (foreign / "index.html").write_text("x", encoding="utf-8")
+            (foreign / "notes.txt").write_text("not ours", encoding="utf-8")
+            data.write_text(
+                json.dumps([item("raw-ai", summarized_at="2026-10-05T01:00:00Z", **AI_ITEM), item("raw-rule")]),
+                encoding="utf-8",
+            )
+            result = bpp.build(data, index, sitemap, TODAY)
+            root = ET.fromstring(sitemap.read_text(encoding="utf-8"))
+            self.assertFalse(stale.exists())
+            self.assertTrue(foreign.exists())
+            self.assertTrue((tmp_path / "u" / "raw-rule" / "index.html").is_file())
+        rows = {u.find(SITEMAP_NS + "loc").text: u.find(SITEMAP_NS + "lastmod") for u in root.findall(SITEMAP_NS + "url")}
+        self.assertIn(ac.SITE_URL + "u/raw-ai/", rows)
+        self.assertEqual(rows[ac.SITE_URL + "u/raw-ai/"].text, "2026-10-05")
+        self.assertNotIn(ac.SITE_URL + "u/raw-rule/", rows)
+        self.assertEqual(result["item_pages"], 2)
+        self.assertEqual(result["item_pages_indexable"], 1)
+        self.assertEqual(result["item_pages_removed"], 1)
 
 
 if __name__ == "__main__":

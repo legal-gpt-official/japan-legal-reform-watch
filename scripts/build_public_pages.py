@@ -13,6 +13,9 @@ does not run JavaScript sees an empty page. This stage writes:
 * one static landing page per monitoring area under ``docs/areas/<slug>/``
   and a cross-area page of open public comments under
   ``docs/public-comments/``;
+* one static page per published item under ``docs/u/<id>/`` -- only an
+  item with an AI summary is indexable; a rule-based item's page is
+  ``noindex`` because its body would be the template every such item shares;
 * ``docs/sitemap.xml`` listing the indexable pages.
 
 It reads only ``docs/data/legal_updates.json`` and changes nothing in it.
@@ -26,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass
@@ -78,6 +82,11 @@ ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
 PUBLIC_COMMENTS_DIR_NAME = "public-comments"
+# One page per item at ``u/<id>/``. The id is the stable published id, so the
+# URL survives title changes; never rename this directory.
+ITEM_DIR_NAME = "u"
+ITEM_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$")
+ITEM_DESCRIPTION_MAX_CHARS = 155
 
 # Pages a search engine should index, relative to SITE_URL. The thank-you
 # page is noindex and the feeds are not pages, so neither is listed.
@@ -228,6 +237,62 @@ def area_page_path(page: AreaPage) -> str:
     return f"{AREAS_DIR_NAME}/{page.slug}/"
 
 
+AREA_PAGE_BY_AREA: dict[str, AreaPage] = {
+    str(CHANNEL_BY_VALUE[page.channel].area): page for page in AREA_PAGES
+}
+
+
+def item_page_id(item: Mapping[str, Any]) -> str:
+    """The item's id when it is safe as a URL path segment, else ''.
+
+    Published ids are ``raw-<hex>``; anything else (path separators, dots,
+    spaces, an over-long value) gets no page rather than an unsafe path.
+    """
+    value = item.get("id")
+    return value if isinstance(value, str) and ITEM_ID_PATTERN.match(value) else ""
+
+
+def item_page_path(item: Mapping[str, Any]) -> str:
+    item_id = item_page_id(item)
+    return f"{ITEM_DIR_NAME}/{item_id}/" if item_id and clean_text(item.get("title_en")) else ""
+
+
+def item_is_indexable(item: Mapping[str, Any]) -> bool:
+    return bool(item_page_path(item)) and summary_is_ai(item)
+
+
+def page_items(items: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
+    """Items that get a page (safe id and an English title); the first occurrence of an id wins."""
+    seen: set[str] = set()
+    rows = []
+    for item in items:
+        item_id = item_page_id(item)
+        if item_page_path(item) and item_id not in seen:
+            seen.add(item_id)
+            rows.append(item)
+    return rows
+
+
+def iso_date_prefix(value: Any) -> date | None:
+    """The date of an ISO date or UTC timestamp such as ``2026-10-17T22:55:49Z``."""
+    return strict_iso_date(value[:10]) if isinstance(value, str) else None
+
+
+def item_lastmod(item: Mapping[str, Any]) -> date | None:
+    """Latest date the page's content can have changed, read from the record alone.
+
+    Publication, first detection, and the English summary / title timestamps
+    -- never ``last_checked`` or the build date, so the sitemap does not
+    change on a day nothing in the item did.
+    """
+    dates = [
+        iso_date_prefix(item.get(key))
+        for key in ("published_at", "first_seen_at", "summarized_at", "title_regenerated_at")
+    ]
+    valid = [d for d in dates if d]
+    return max(valid) if valid else None
+
+
 def dashboard_area_url(page: AreaPage) -> str:
     return SITE_URL + "?" + urlencode({"area": CHANNEL_BY_VALUE[page.channel].area})
 
@@ -242,7 +307,16 @@ def shorten(text: str, limit: int) -> str:
     return cut + "…"
 
 
-def render_static_item(item: Mapping[str, Any], *, show_area: bool = True, show_deadline: bool = False) -> str:
+def render_static_item(
+    item: Mapping[str, Any],
+    *,
+    show_area: bool = True,
+    show_deadline: bool = False,
+    prefix: str = "",
+) -> str:
+    """One list entry. With ``prefix`` (the relative path to the site root) the
+    title opens the item's own page and the official source gets a link of its
+    own; without it the title links straight to the official source."""
     title = escape(clean_text(item.get("title_en")))
     meta = [
         clean_text(item.get("published_at")),
@@ -253,7 +327,10 @@ def render_static_item(item: Mapping[str, Any], *, show_area: bool = True, show_
     meta_html = " · ".join(escape(part) for part in meta if part)
     lines = ['        <li class="static-latest-item">']
     url = safe_http_url(item.get("source_url"))
-    if url:
+    own_page = item_page_path(item) if prefix else ""
+    if own_page:
+        lines.append(f'          <a class="static-latest-title" href="{prefix}{own_page}">{title}</a>')
+    elif url:
         lines.append(
             f'          <a class="static-latest-title" href="{escape(url)}" '
             f'target="_blank" rel="noopener noreferrer">{title}</a>'
@@ -266,6 +343,11 @@ def render_static_item(item: Mapping[str, Any], *, show_area: bool = True, show_
         deadline = comment_deadline_display(item.get("comment_deadline"))
         if deadline:
             lines.append(f'          <span class="static-latest-deadline">Comments due: {escape(deadline)}</span>')
+    if own_page and url:
+        lines.append(
+            f'          <a class="static-latest-meta" href="{escape(url)}" target="_blank" '
+            'rel="noopener noreferrer">Original Japanese source</a>'
+        )
     # Rule-based previews are the same template sentence on every item, so
     # only an AI summary adds anything worth showing here.
     if summary_is_ai(item):
@@ -275,7 +357,7 @@ def render_static_item(item: Mapping[str, Any], *, show_area: bool = True, show_
     return "\n".join(lines)
 
 
-def render_item_list(items: Sequence[Mapping[str, Any]], **options: bool) -> str:
+def render_item_list(items: Sequence[Mapping[str, Any]], **options: Any) -> str:
     body = "\n".join(render_static_item(item, **options) for item in items)
     return f'        <ol class="static-latest-list">\n{body}\n        </ol>'
 
@@ -289,7 +371,7 @@ def render_static_latest(items: Sequence[Mapping[str, Any]], updated: date | Non
         '        <p class="static-latest-note">Newest official publications from the Japanese sources this '
         "dashboard monitors. Titles and AI summaries are unofficial English monitoring aids, not legal "
         "advice; each link opens the original Japanese official source, which remains authoritative.</p>\n"
-        f"{render_item_list(items)}\n"
+        f"{render_item_list(items, prefix='./')}\n"
         "      </section>\n"
         f"      {STATIC_END}"
     )
@@ -340,9 +422,12 @@ def replace_static_block(html: str, block: str) -> str:
     return replace_block(html, STATIC_START, STATIC_END, block)
 
 
-def json_ld(data: Mapping[str, Any]) -> str:
-    # "</" cannot close the script element when escaped as "<\/".
-    return json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
+def json_ld(data: Mapping[str, Any], *, compact: bool = False) -> str:
+    # Record text is untrusted: with no literal "<" or ">" it can neither close
+    # the script element nor open a "<!--<script" escape state inside it.
+    text = json.dumps(data, ensure_ascii=False, indent=None if compact else 2,
+                      separators=(",", ":") if compact else None)
+    return text.replace("<", "\\u003c").replace(">", "\\u003e")
 
 
 def render_page(
@@ -354,14 +439,40 @@ def render_page(
     breadcrumb: str,
     body: str,
     current: str,
+    page_type: str = "CollectionPage",
+    parent: tuple[str, str] | None = None,
+    indexable: bool = True,
+    area_nav: bool = True,
 ) -> str:
-    """A complete static page at ``SITE_URL + path`` (two directories deep)."""
+    """A complete static page at ``SITE_URL + path`` (one or two directories deep).
+
+    ``parent`` is an optional middle breadcrumb as (name, path from the site
+    root); ``indexable=False`` adds ``noindex`` while keeping links followable.
+    ``area_nav=False`` leaves out the list of every area and compacts the
+    JSON-LD, which keeps the thousands of item pages small.
+    """
     prefix = "../../" if path.count("/") == 2 else "../"
     url = SITE_URL + path
+    crumbs = [("Japan Legal Reform Watch", SITE_URL)]
+    if parent:
+        crumbs.append((parent[0], SITE_URL + parent[1]))
+    crumbs.append((breadcrumb, url))
+    robots = "" if indexable else '\n  <meta name="robots" content="noindex, follow" />'
+    parent_crumb = f' &rsaquo; <a href="{prefix}{parent[1]}">{escape(parent[0])}</a>' if parent else ""
+    nav = (
+        '    <nav class="area-nav" aria-labelledby="area-nav-title">\n'
+        '      <h2 id="area-nav-title" class="area-nav-title">Other areas</h2>\n'
+        '        <ul class="area-nav-list">\n'
+        f"{render_area_links(prefix, current)}\n"
+        "        </ul>\n"
+        "    </nav>\n"
+        if area_nav
+        else ""
+    )
     structured = json_ld(
         {
             "@context": "https://schema.org",
-            "@type": "CollectionPage",
+            "@type": page_type,
             "name": heading,
             "description": description,
             "url": url,
@@ -370,11 +481,12 @@ def render_page(
             "breadcrumb": {
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Japan Legal Reform Watch", "item": SITE_URL},
-                    {"@type": "ListItem", "position": 2, "name": breadcrumb, "item": url},
+                    {"@type": "ListItem", "position": position, "name": name, "item": crumb_url}
+                    for position, (name, crumb_url) in enumerate(crumbs, start=1)
                 ],
             },
-        }
+        },
+        compact=not area_nav,
     )
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -383,7 +495,7 @@ def render_page(
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{escape(title)}</title>
   <meta name="description" content="{escape(description)}" />
-  <link rel="canonical" href="{escape(url)}" />
+  <link rel="canonical" href="{escape(url)}" />{robots}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Japan Legal Reform Watch by LegalOS" />
   <meta property="og:title" content="{escape(heading)}" />
@@ -419,17 +531,11 @@ def render_page(
 
   <main class="container area-page-main">
     <nav class="area-breadcrumb" aria-label="Breadcrumb">
-      <a href="{prefix}">Japan Legal Reform Watch</a> &rsaquo; <span aria-current="page">{escape(breadcrumb)}</span>
+      <a href="{prefix}">Japan Legal Reform Watch</a>{parent_crumb} &rsaquo; <span aria-current="page">{escape(breadcrumb)}</span>
     </nav>
     <h1 class="area-page-title">{escape(heading)}</h1>
 {body}
-    <nav class="area-nav" aria-labelledby="area-nav-title">
-      <h2 id="area-nav-title" class="area-nav-title">Other areas</h2>
-        <ul class="area-nav-list">
-{render_area_links(prefix, current)}
-        </ul>
-    </nav>
-  </main>
+{nav}  </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -493,14 +599,16 @@ def render_area_page(page: AreaPage, items: Sequence[Mapping[str, Any]], today: 
             '      <h2 id="open-comments-title">Open public comments</h2>',
             '      <p class="static-latest-note">Consultations still accepting comments, soonest deadline first. '
             "Confirm the deadline and submission method in the official source.</p>",
-            render_item_list(open_items[:AREA_OPEN_COMMENTS_COUNT], show_area=False, show_deadline=True),
+            render_item_list(
+                open_items[:AREA_OPEN_COMMENTS_COUNT], show_area=False, show_deadline=True, prefix="../../"
+            ),
             "    </section>",
         ]
     parts += [
         '    <section class="area-page-section" aria-labelledby="latest-title">',
         '      <h2 id="latest-title">Latest updates</h2>',
         '      <p class="static-latest-note">Newest official publications first.</p>',
-        render_item_list(latest, show_area=False) if latest else '      <p>No dated updates yet.</p>',
+        render_item_list(latest, show_area=False, prefix="../../") if latest else '      <p>No dated updates yet.</p>',
         "    </section>",
     ]
     sources = top_sources(in_area, AREA_TOP_SOURCES)
@@ -542,7 +650,7 @@ def render_public_comments_page(items: Sequence[Mapping[str, Any]], today: date)
         '    <section class="area-page-section" aria-labelledby="open-comments-title">',
         '      <h2 id="open-comments-title">Open public comments</h2>',
         '      <p class="static-latest-note">Confirm the deadline and submission method in the official source.</p>',
-        render_item_list(open_items, show_deadline=True) if open_items
+        render_item_list(open_items, show_deadline=True, prefix="../") if open_items
         else "      <p>No open public comments with a published deadline right now.</p>",
         "    </section>",
     ]
@@ -557,6 +665,109 @@ def render_public_comments_page(items: Sequence[Mapping[str, Any]], today: date)
         breadcrumb="Open public comments",
         body="\n".join(parts),
         current=PUBLIC_COMMENTS_DIR_NAME,
+    )
+
+
+def render_item_page(item: Mapping[str, Any]) -> str:
+    """The standalone page for one published item.
+
+    Shows only fields the dashboard card already shows, every one escaped,
+    and the source link only when it passes ``safe_http_url``. A rule-based
+    body is never shown -- it is the same template sentence on every such
+    item -- so those pages carry only the metadata and are ``noindex``. No
+    field that changes without the item changing (``last_checked``, the
+    build date) is shown, so a quiet day rewrites no page.
+    """
+    title_en = clean_text(item.get("title_en"))
+    title_ja = clean_text(item.get("title_ja"))
+    source = source_display_name(item.get("source_name"))
+    area = clean_text(item.get("area"))
+    stage = clean_text(item.get("stage"))
+    ai = summary_is_ai(item)
+    area_page = AREA_PAGE_BY_AREA.get(area)
+    area_label = CHANNEL_BY_VALUE[area_page.channel].label if area_page else ""
+
+    published = strict_iso_date(item.get("published_at"))
+    facts = [("Published", published.isoformat() if published else "not stated by the source")]
+    impact = clean_text(item.get("impact_level"))
+    facts += [
+        (label, value)
+        for label, value in (("Source", source), ("Stage", stage), ("Area", area), ("Impact (preliminary)", impact))
+        if value
+    ]
+    deadline = comment_deadline_display(item.get("comment_deadline"))
+    if deadline:
+        facts.append(("Comment deadline", deadline))
+    first_seen = strict_iso_date(item.get("first_seen_at"))
+    if first_seen:
+        facts.append(("First detected by this dashboard", first_seen.isoformat()))
+
+    if ai:
+        description = shorten(clean_text(item.get("summary_en")), ITEM_DESCRIPTION_MAX_CHARS)
+    else:
+        description = (
+            "Unofficial English label for an official Japanese update"
+            f"{' from ' + source if source else ''}, with a link to the original Japanese source."
+        )
+
+    parts = []
+    if title_ja:
+        parts.append(f'    <p class="area-page-intro" lang="ja">{escape(title_ja)}</p>')
+    facts_text = " · ".join(f"{label}: {value}" for label, value in facts)
+    parts.append(f'    <p class="area-page-stats">{escape(facts_text)}</p>')
+    parts.append('    <p class="area-page-actions">')
+    url = safe_http_url(item.get("source_url"))
+    if url:
+        parts.append(
+            f'      <a class="area-page-action" href="{escape(url)}" target="_blank" '
+            'rel="noopener noreferrer">View the original Japanese source</a>'
+        )
+    if area_page:
+        parts.append(
+            f'      <a class="area-page-action" href="../../{area_page_path(area_page)}">'
+            f"More {escape(area_label)} updates</a>"
+        )
+    parts.append('      <a class="area-page-action" href="../../">Search all updates in the dashboard</a>')
+    parts.append("    </p>")
+
+    parts.append('    <section class="area-page-section" aria-labelledby="item-summary-title">')
+    if ai:
+        parts += [
+            '      <h2 id="item-summary-title">AI summary</h2>',
+            '      <p class="static-latest-note">Generated by AI from the Japanese source metadata. It is an '
+            "unofficial monitoring aid, not legal advice, and may contain errors. The area, stage, and impact "
+            "labels are preliminary keyword-based triage labels. Confirm every point in the original Japanese "
+            "source.</p>",
+        ]
+        for heading, key in (
+            ("Summary", "summary_en"),
+            ("Business Impact", "business_impact_en"),
+            ("Recommended Action", "recommended_action_en"),
+        ):
+            text = clean_text(item.get(key))
+            if text:
+                parts.append(f"      <h3>{heading}</h3>")
+                parts.append(f'      <p class="area-page-intro">{escape(text)}</p>')
+    else:
+        parts += [
+            '      <h2 id="item-summary-title">Summary</h2>',
+            "      <p>An English AI summary is not yet available for this update. The English title is a "
+            "rule-based label; please read the original Japanese source.</p>",
+        ]
+    parts.append("    </section>")
+
+    return render_page(
+        path=item_page_path(item),
+        title=f"{title_en} — Japan Legal Reform Watch",
+        description=description,
+        heading=title_en,
+        breadcrumb=shorten(title_en, 60),
+        body="\n".join(parts),
+        current="",
+        page_type="WebPage",
+        parent=(area_label, area_page_path(area_page)) if area_page else None,
+        indexable=ai,
+        area_nav=False,
     )
 
 
@@ -608,12 +819,46 @@ def build(
     changed[path] = write_if_changed(site_dir / path / "index.html", render_public_comments_page(items, today))
     sitemap_entries.append((SITE_URL + path, updated))
     sitemap_entries += [(SITE_URL + path, None) for path in STATIC_SITEMAP_PATHS]
+
+    with_pages = page_items(items)
+    item_pages_changed = 0
+    for item in with_pages:
+        path = item_page_path(item)
+        item_pages_changed += write_if_changed(site_dir / path / "index.html", render_item_page(item))
+        if item_is_indexable(item):
+            sitemap_entries.append((SITE_URL + path, item_lastmod(item)))
+    removed = prune_item_pages(site_dir / ITEM_DIR_NAME, {item_page_id(item) for item in with_pages})
     changed["sitemap"] = write_if_changed(sitemap_path, render_sitemap(sitemap_entries))
 
     return {
         "pages_written": len(AREA_PAGES) + 1,
+        "item_pages": len(with_pages),
+        "item_pages_indexable": sum(1 for item in with_pages if item_is_indexable(item)),
+        "item_pages_changed": item_pages_changed,
+        "item_pages_removed": removed,
         "files_changed": sorted(name for name, was_changed in changed.items() if was_changed),
     }
+
+
+def prune_item_pages(item_dir: Path, keep: set[str]) -> int:
+    """Remove the pages of items that are no longer published.
+
+    Only a directory this script could have written -- a safe-id name holding
+    nothing but ``index.html`` -- is removed; anything else is left alone.
+    """
+    if not item_dir.is_dir():
+        return 0
+    removed = 0
+    for child in sorted(item_dir.iterdir()):
+        if not child.is_dir() or child.name in keep or not ITEM_ID_PATTERN.match(child.name):
+            continue
+        contents = list(child.iterdir())
+        if len(contents) != 1 or contents[0].name != "index.html" or not contents[0].is_file():
+            continue
+        contents[0].unlink()
+        child.rmdir()
+        removed += 1
+    return removed
 
 
 def main(argv: Sequence[str] | None = None) -> int:
