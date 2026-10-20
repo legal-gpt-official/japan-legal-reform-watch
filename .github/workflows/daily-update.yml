@@ -40,7 +40,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/law_timeline.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests

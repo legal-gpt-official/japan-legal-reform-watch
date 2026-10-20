@@ -18,7 +18,12 @@ does not run JavaScript sees an empty page. This stage writes:
   ``noindex`` because its body would be the template every such item shares;
 * ``docs/sitemap.xml`` listing the indexable pages.
 
-It reads only ``docs/data/legal_updates.json`` and changes nothing in it.
+An item page also shows a factual timeline of related official records
+(``law_timeline.py``: the same instrument, the bill it came from, the public
+comment on its draft) built from ``data/raw_items.json``.
+
+It reads ``docs/data/legal_updates.json`` and ``data/raw_items.json`` and
+changes neither.
 Output is deterministic for a given input and JST date (no wall-clock
 timestamps), so an unchanged corpus produces no diff. Every record field is
 untrusted: text is HTML/XML-escaped and only http(s) source URLs are emitted
@@ -59,10 +64,13 @@ from alert_common import (  # noqa: E402
     summary_is_ai,
     write_text_atomic,
 )
+from law_timeline import Dossier, build_dossiers  # noqa: E402
+from law_timeline import summarize as summarize_timelines  # noqa: E402
 
 REPO_ROOT = SCRIPTS_DIR.parent
 DOCS_DIR = REPO_ROOT / "docs"
 DATA_PATH = DOCS_DIR / "data" / "legal_updates.json"
+RAW_PATH = REPO_ROOT / "data" / "raw_items.json"
 INDEX_PATH = DOCS_DIR / "index.html"
 SITEMAP_PATH = DOCS_DIR / "sitemap.xml"
 
@@ -278,17 +286,20 @@ def iso_date_prefix(value: Any) -> date | None:
     return strict_iso_date(value[:10]) if isinstance(value, str) else None
 
 
-def item_lastmod(item: Mapping[str, Any]) -> date | None:
+def item_lastmod(item: Mapping[str, Any], dossier: Dossier | None = None) -> date | None:
     """Latest date the page's content can have changed, read from the record alone.
 
-    Publication, first detection, and the English summary / title timestamps
-    -- never ``last_checked`` or the build date, so the sitemap does not
-    change on a day nothing in the item did.
+    Publication, first detection, the English summary / title timestamps,
+    and the day its timeline last gained a related record -- never
+    ``last_checked`` or the build date, so the sitemap does not change on a
+    day nothing in the item did.
     """
     dates = [
         iso_date_prefix(item.get(key))
         for key in ("published_at", "first_seen_at", "summarized_at", "title_regenerated_at")
     ]
+    if dossier is not None:
+        dates.append(dossier.latest_detected)
     valid = [d for d in dates if d]
     return max(valid) if valid else None
 
@@ -668,7 +679,60 @@ def render_public_comments_page(items: Sequence[Mapping[str, Any]], today: date)
     )
 
 
-def render_item_page(item: Mapping[str, Any]) -> str:
+TIMELINE_NOTICE = (
+    "Related official records are linked only when names and instrument numbers match exactly, so this "
+    "timeline may be incomplete. Dates are as stated by the official sources. It is a monitoring aid, not "
+    "legal advice; the original Japanese sources are authoritative."
+)
+
+
+def render_timeline(item_id: str, dossier: Dossier, page_ids: set[str]) -> list[str]:
+    """The timeline section of an item page. Every source-derived value is escaped."""
+    parts = [
+        '    <section class="area-page-section" aria-labelledby="item-timeline-title">',
+        '      <h2 id="item-timeline-title">Timeline of related official records</h2>',
+        f'      <p class="static-latest-note">{escape(TIMELINE_NOTICE)}</p>',
+        '      <ol class="static-latest-list">',
+    ]
+    for event in dossier.events:
+        when = event.when.isoformat() if event.when else "Date not stated by the source"
+        lines = ['        <li class="static-latest-item">']
+        lines.append(f'          <span class="static-latest-title">{escape(when)} — {escape(event.label)}</span>')
+        if event.detail_ja:
+            lines.append(f'          <span class="static-latest-meta" lang="ja">{escape(event.detail_ja)}</span>')
+        links = []
+        other_pages = [other for other in event.item_ids if other in page_ids and other != item_id]
+        if item_id in event.item_ids:
+            links.append('<span class="static-latest-meta">(this update)</span>')
+        elif other_pages:
+            links.append(
+                f'<a class="static-latest-meta" href="../../{ITEM_DIR_NAME}/{escape(other_pages[0])}/">'
+                "Dashboard page</a>"
+            )
+        url = safe_http_url(event.source_url)
+        if url:
+            links.append(
+                f'<a class="static-latest-meta" href="{escape(url)}" target="_blank" '
+                'rel="noopener noreferrer">Original Japanese source</a>'
+            )
+        lines += [f"          {link}" for link in links]
+        lines.append("        </li>")
+        parts += lines
+    parts.append("      </ol>")
+    if dossier.next_step:
+        parts += [
+            "      <h3>What happens next</h3>",
+            f'      <p class="area-page-intro">{escape(dossier.next_step)}</p>',
+        ]
+    parts.append("    </section>")
+    return parts
+
+
+def render_item_page(
+    item: Mapping[str, Any],
+    dossier: Dossier | None = None,
+    page_ids: set[str] | None = None,
+) -> str:
     """The standalone page for one published item.
 
     Shows only fields the dashboard card already shows, every one escaped,
@@ -755,6 +819,8 @@ def render_item_page(item: Mapping[str, Any]) -> str:
             "rule-based label; please read the original Japanese source.</p>",
         ]
     parts.append("    </section>")
+    if dossier is not None:
+        parts += render_timeline(item_page_id(item), dossier, page_ids or set())
 
     return render_page(
         path=item_page_path(item),
@@ -800,9 +866,11 @@ def build(
     sitemap_path: Path,
     today: date,
     site_dir: Path | None = None,
+    raw_path: Path | None = None,
 ) -> dict[str, Any]:
     site_dir = site_dir or index_path.parent
     items = load_items(data_path)
+    dossiers = build_dossiers(load_items(raw_path)) if raw_path is not None and raw_path.exists() else {}
     updated = latest_checked(items)
 
     html = index_path.read_text(encoding="utf-8")
@@ -821,12 +889,18 @@ def build(
     sitemap_entries += [(SITE_URL + path, None) for path in STATIC_SITEMAP_PATHS]
 
     with_pages = page_items(items)
+    page_ids = {item_page_id(item) for item in with_pages}
     item_pages_changed = 0
+    timeline_pages = 0
     for item in with_pages:
         path = item_page_path(item)
-        item_pages_changed += write_if_changed(site_dir / path / "index.html", render_item_page(item))
+        dossier = dossiers.get(item_page_id(item))
+        timeline_pages += dossier is not None
+        item_pages_changed += write_if_changed(
+            site_dir / path / "index.html", render_item_page(item, dossier, page_ids)
+        )
         if item_is_indexable(item):
-            sitemap_entries.append((SITE_URL + path, item_lastmod(item)))
+            sitemap_entries.append((SITE_URL + path, item_lastmod(item, dossier)))
     removed = prune_item_pages(site_dir / ITEM_DIR_NAME, {item_page_id(item) for item in with_pages})
     changed["sitemap"] = write_if_changed(sitemap_path, render_sitemap(sitemap_entries))
 
@@ -836,6 +910,8 @@ def build(
         "item_pages_indexable": sum(1 for item in with_pages if item_is_indexable(item)),
         "item_pages_changed": item_pages_changed,
         "item_pages_removed": removed,
+        "item_pages_with_timeline": timeline_pages,
+        "timelines": summarize_timelines(dossiers),
         "files_changed": sorted(name for name, was_changed in changed.items() if was_changed),
     }
 
@@ -866,10 +942,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--data", type=Path, default=DATA_PATH)
     parser.add_argument("--index", type=Path, default=INDEX_PATH)
     parser.add_argument("--sitemap", type=Path, default=SITEMAP_PATH)
+    parser.add_argument("--raw", type=Path, default=RAW_PATH, help="raw history for item timelines")
     parser.add_argument("--today", type=date.fromisoformat, default=None, help="JST date (YYYY-MM-DD)")
     args = parser.parse_args(argv)
     today = args.today or datetime.now(JST).date()
-    print(json.dumps(build(args.data, args.index, args.sitemap, today), sort_keys=True))
+    print(json.dumps(build(args.data, args.index, args.sitemap, today, raw_path=args.raw), sort_keys=True))
     return 0
 
 
