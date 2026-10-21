@@ -5,6 +5,7 @@ import copy
 import sys
 import unittest
 from pathlib import Path
+from html import escape
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -47,7 +48,7 @@ class TestLocalizedExplainres(unittest.TestCase):
                     html = "\n".join(bpp.render_explainer(localized, locale=lang))
                     self.assertIn(bundle["translations"][lang]["title"], html)
                     self.assertIn(bundle["translations"][lang]["quick_take"]["what_changed"], html)
-                    self.assertIn(bundle["translations"][lang]["business_impact"][0], html)
+                    self.assertIn(escape(bundle["translations"][lang]["business_impact"][0]), html)
                     self.assertIn("explainer-source-1", html)
 
     def test_stale_fingerprint_blocks_localized_publication(self):
