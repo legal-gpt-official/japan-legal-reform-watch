@@ -36,6 +36,9 @@ def explainer(dossier_id="export-control-order", related=("raw-order-a", "raw-pc
         "status": "published",
         "review_state": "ai_checked",
         "title_en": "Amendment of the Export Trade Control Order",
+        "quick_take": {"what_changed": "The order updates export rules.",
+                       "who_is_affected": "Exporters of covered goods.",
+                       "what_to_do_now": "Check whether licences are required."},
         "instrument_type": "cabinet_order",
         "current_stage": "partially_in_force",
         "related_item_ids": list(related),
@@ -333,16 +336,32 @@ class TestRendering(Base):
 
 
 class TestReviewPolicy(Base):
-    def test_default_policy_requires_human_review_for_every_category(self):
-        self.assertEqual(ex.publish_policy({}), {c: "human_reviewed" for c in ex.CATEGORIES})
+    def test_quick_take_is_required_for_published_and_escaped(self):
+        data = stamped(self.index, explainer(quick_take=None))
+        self.assertTrue(any("quick_take" in e for e in self.report(data).errors))
+        data = stamped(self.index, explainer())
+        entry = ex.Published(data["dossier_id"], data, self.report(data),
+                             frozenset(ex.CATEGORIES))
+        html = "\n".join(bpp.render_explainer(entry))
+        self.assertIn("At a glance", html)
+        self.assertIn("What Changed?", html)
+        self.assertIn("Who Is Affected?", html)
+        self.assertIn("What Should Businesses Do Now?", html)
+        data["quick_take"]["what_changed"] = "<script>alert(1)</script>"
+        self.assertTrue(any("quick_take.what_changed" in e for e in self.report(data).errors))
+
+    def test_default_policy_publishes_ai_checked_but_not_unreviewed(self):
+        self.assertEqual(ex.publish_policy({}), {c: "ai_checked" for c in ex.CATEGORIES})
         data = stamped(self.index, explainer())
         report = self.report(data)
         self.assertTrue(report.ok)
-        self.assertFalse(ex.publishable(data, report, ex.publish_policy({})))
-        self.assertEqual(ex.awaiting_review(data, report, ex.publish_policy({})), list(ex.CATEGORIES))
+        self.assertTrue(ex.publishable(data, report, ex.publish_policy({})))
+        self.assertEqual(ex.awaiting_review(data, report, ex.publish_policy({})), [])
+        data["review_state"] = "unreviewed"
+        self.assertFalse(ex.publishable(data, self.report(data), ex.publish_policy({})))
 
     def test_policy_override_is_per_category_and_strict(self):
-        policy = ex.publish_policy({ex.POLICY_ENV: "facts=ai_checked, procedure=ai_checked"})
+        policy = ex.publish_policy({ex.POLICY_ENV: "facts=ai_checked, assessment=human_reviewed"})
         self.assertEqual(policy["facts"], "ai_checked")
         self.assertEqual(policy["assessment"], "human_reviewed")
         for bad in ("facts=unreviewed", "law=ai_checked", "facts", "facts=AI"):
@@ -350,7 +369,7 @@ class TestReviewPolicy(Base):
                 ex.publish_policy({ex.POLICY_ENV: bad})
 
     def test_assessment_can_wait_while_facts_are_published(self):
-        policy = ex.publish_policy({ex.POLICY_ENV: "facts=ai_checked,procedure=ai_checked,outlook=ai_checked"})
+        policy = ex.publish_policy({ex.POLICY_ENV: "assessment=human_reviewed"})
         data = stamped(self.index, explainer())
         report = self.report(data)
         self.assertTrue(ex.publishable(data, report, policy))
@@ -368,11 +387,13 @@ class TestReviewPolicy(Base):
         data["human_review"] = {"reviewer": "owner", "reviewed_at": "2026-10-20"}
         report = self.report(data)
         self.assertEqual(report.errors, [])
-        self.assertTrue(ex.publishable(data, report, ex.publish_policy({})))
+        strict = {c: "human_reviewed" for c in ex.CATEGORIES}
+        self.assertTrue(ex.publishable(data, report, strict))
         data["human_review"]["reviewed_at"] = "2026-10-19"  # older than verified_at
         report = self.report(data)
         self.assertIn("human_review_outdated", report.warnings)
-        self.assertFalse(ex.publishable(data, report, ex.publish_policy({})))
+        self.assertFalse(ex.publishable(data, report, strict))
+        self.assertTrue(ex.publishable(data, report, ex.publish_policy({})))
 
     def test_section_review_raises_single_categories(self):
         data = stamped(self.index, explainer(
@@ -382,16 +403,15 @@ class TestReviewPolicy(Base):
         report = self.report(data)
         self.assertEqual(report.review["facts"], "human_reviewed")
         self.assertEqual(report.review["assessment"], "ai_checked")
-        self.assertEqual(ex.visible_categories(report, ex.publish_policy({})), {"facts"})
+        self.assertEqual(ex.visible_categories(report, {c: "human_reviewed" for c in ex.CATEGORIES}), {"facts"})
         bad = stamped(self.index, explainer(section_review={"legal": "human_reviewed"}))
         self.assertTrue(any("section_review" in e for e in self.report(bad).errors))
 
-    def test_queue_lists_explainers_awaiting_review(self):
+    def test_ai_checked_explainers_are_not_queued_for_human_review(self):
         data = stamped(self.index, explainer())
         queue = ex.build_queue(self.index, {}, {data["dossier_id"]: data}, TODAY)
-        entry = queue["entries"][0]
-        self.assertEqual(entry["kind"], "update")
-        self.assertIn("awaiting_review:facts+procedure+outlook+assessment", entry["reasons"])
+        self.assertFalse(any("awaiting_review" in r
+                             for e in queue["entries"] for r in e["reasons"]))
 
 
 class TestOfficialFacts(Base):
