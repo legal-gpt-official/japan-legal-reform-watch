@@ -1,8 +1,11 @@
 """Official-source-based localized reform explainers (Japanese and Simplified Chinese).
 
 English is canonical. A translation is displayed ONLY if it covers every
-paragraph, next step, checklist and dated label AND matches the canonical
-verification date/fingerprint. Never silently serve stale translations.
+paragraph, next step, checklist and dated label, states no date or number the
+English does not (``explainer_facts``), AND its OWN freshness stamp matches the
+canonical verification date, fingerprint and English file. Each locale carries
+its own stamp (``translations.<lang>.english_*``), so refreshing one language
+never revalidates the other. Never silently serve stale translations.
 """
 from __future__ import annotations
 
@@ -13,35 +16,49 @@ import re
 from pathlib import Path
 from typing import Any, Mapping
 
+import explainer_facts as ef
 import explainers as ex
 
 LOCALES = ("ja", "zh-Hans")
 URL_SLUGS = {"ja": "ja", "zh-Hans": "zh"}
 LANG_LABELS = {"en": "English", "ja": "日本語", "zh-Hans": "简体中文"}
 TRANSLATIONS_DIR = ex.REPO_ROOT / "data" / "explainer_locales"
-_PLAIN = re.compile(r"<[^>]+>|\\[.{0,80}\\]\\(.{0,200}\\)|```")
+_PLAIN = re.compile(r"<[^>]+>|\[[^\]\n]{1,80}\]\([^)\s]{1,200}\)|```")
 _MAX_TEXT = 2600
+STAMP_KEYS = ("english_verified_at", "english_source_fingerprint", "english_file_sha")
 
 
-def load_locales(directory: Path = TRANSLATIONS_DIR) -> dict[str, dict]:
+def load_locales(directory: Path = TRANSLATIONS_DIR, problems: list[str] | None = None) -> dict[str, dict]:
+    """Translation bundles by dossier id. An unreadable file is skipped (English stays
+    publishable) and, when ``problems`` is given, reported there so CI can flag it."""
     out = {}
     if directory.is_dir():
         for p in sorted(directory.glob("*.json")):
             try:
                 value = json.loads(p.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
+            except (OSError, ValueError) as exc:
+                if problems is not None:
+                    problems.append(f"{p.name}: unreadable translation file ({type(exc).__name__})")
                 continue
             if isinstance(value, dict) and value.get("dossier_id") == p.stem:
                 out[p.stem] = value
+            elif problems is not None:
+                problems.append(f"{p.name}: dossier_id must equal the file name")
     return out
 
 
 def canonical_file_sha(dossier_id: str) -> str:
-    """Git's blob SHA-1 of the exact canonical English JSON, including same-day edits."""
+    """Git's blob SHA-1 of the exact canonical English JSON, including same-day edits.
+
+    CRLF is folded to LF first, as Git does when it stores a text file, so a
+    Windows checkout (core.autocrlf) computes the same value as CI and
+    ``git hash-object``; without that every translation looked stale locally
+    and a local page build deleted every Japanese and Chinese page.
+    """
     path = ex.EXPLAINERS_DIR / (dossier_id + ".json")
     if not path.is_file():
         return ""
-    raw = path.read_bytes()
+    raw = path.read_bytes().replace(b"\r\n", b"\n")
     return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + bytes([0]) + raw).hexdigest()
 
 
@@ -53,22 +70,52 @@ def _list_matches(local: Any, canonical: Any) -> bool:
     return isinstance(local, list) and isinstance(canonical, list) and len(local) == len(canonical) and all(_good_text(s) for s in local)
 
 
+def english_texts(en: Mapping[str, Any]) -> list[str]:
+    """Every English string a translation renders, plus the structured dates beside them."""
+    out = [en.get("title_en"), *((en.get("quick_take") or {}).values())]
+    for key in ("background", "history", "business_impact"):
+        out += (en.get(key) or {}).get("paragraphs") or []
+    out += (en.get("business_impact") or {}).get("checklist") or []
+    steps = en.get("next_steps") or {}
+    for step in steps.get("confirmed") or []:
+        if isinstance(step, Mapping):
+            out += [step.get("text"), step.get("date")]
+    out += (steps.get("expected") or []) + (steps.get("uncertainties") or [])
+    for row in en.get("key_dates") or []:
+        if isinstance(row, Mapping):
+            out += [row.get("label"), row.get("date")]
+    return [s for s in out if isinstance(s, str)]
+
+
+def local_texts(tr: Mapping[str, Any]) -> list[str]:
+    quick = tr.get("quick_take") if isinstance(tr.get("quick_take"), Mapping) else {}
+    out = [tr.get("title"), *quick.values()]
+    for key in ("background", "history", "business_impact", "checklist", "key_dates"):
+        out += tr.get(key) if isinstance(tr.get(key), list) else []
+    steps = tr.get("next_steps") if isinstance(tr.get("next_steps"), Mapping) else {}
+    for key in ("confirmed", "expected", "uncertainties"):
+        out += steps.get(key) if isinstance(steps.get(key), list) else []
+    return [s for s in out if isinstance(s, str)]
+
+
 def translation_problems(en: Mapping[str, Any], bundle: Mapping[str, Any], lang: str) -> list[str]:
     problems = []
     if lang not in LOCALES:
         return ["unsupported locale"]
     if bundle.get("dossier_id") != en.get("dossier_id"):
         problems.append("dossier id mismatch")
-    if bundle.get("english_verified_at") != en.get("verified_at"):
-        problems.append("stale English verification date")
-    if bundle.get("english_source_fingerprint") != en.get("source_fingerprint"):
-        problems.append("stale official-record fingerprint")
-    expected_blob = canonical_file_sha(str(en.get("dossier_id", "")))
-    if not expected_blob or bundle.get("english_file_sha") != expected_blob:
-        problems.append("stale canonical English file SHA")
     tr = (bundle.get("translations") or {}).get(lang)
     if not isinstance(tr, Mapping):
         return problems + [f"{lang}: no translation"]
+    # The stamp belongs to the locale, not the bundle: one shared stamp let a
+    # refreshed Japanese text re-certify a Chinese text written for older English.
+    if tr.get("english_verified_at") != en.get("verified_at"):
+        problems.append("stale English verification date")
+    if tr.get("english_source_fingerprint") != en.get("source_fingerprint"):
+        problems.append("stale official-record fingerprint")
+    expected_blob = canonical_file_sha(str(en.get("dossier_id", "")))
+    if not expected_blob or tr.get("english_file_sha") != expected_blob:
+        problems.append("stale canonical English file SHA")
     if not _good_text(tr.get("title")):
         problems.append(f"{lang}: invalid title")
     quick = tr.get("quick_take")
@@ -89,6 +136,9 @@ def translation_problems(en: Mapping[str, Any], bundle: Mapping[str, Any], lang:
         problems.append(f"{lang}: checklist entries do not match English")
     if not _list_matches(tr.get("key_dates"), en.get("key_dates")):
         problems.append(f"{lang}: date labels do not match English")
+    unsupported = ef.unsupported_facts(english_texts(en), local_texts(tr))
+    if unsupported:
+        problems.append(f"{lang}: states a date or number the English does not: " + ", ".join(unsupported))
     return problems
 
 
@@ -128,8 +178,8 @@ def validate_translations() -> tuple[list[str], list[str]]:
     is invalid and fails CI to prevent publishing malformed locale content.
     """
     english = ex.load_explainers()
-    bundles = load_locales()
     errors, warnings = [], []
+    bundles = load_locales(problems=errors)
     for dossier_id, data in sorted(english.items()):
         if data.get("status") != "published":
             continue
@@ -145,7 +195,9 @@ def validate_translations() -> tuple[list[str], list[str]]:
                 warnings.append(f"{dossier_id} ({lang}): outdated translation withheld; English-only until refreshed")
             elif invalid:
                 errors.extend(f"{dossier_id} ({lang}): {p}" for p in invalid)
-    for dossier_id in bundles:
+    for dossier_id, bundle in sorted(bundles.items()):
+        if any(key in bundle for key in STAMP_KEYS):
+            errors.append(f"{dossier_id}: move english_* stamps into translations.<lang> (one per locale)")
         if dossier_id not in english:
             errors.append(f"{dossier_id}: translation has no canonical English explainer")
     return errors, warnings

@@ -1929,8 +1929,7 @@
               ${/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(u.id || "") ?
                 '<a class="source-button" href="./u/' + encodeURIComponent(u.id) + '/?lang=' +
                 encodeURIComponent(filters.lang) + '">' +
-                escapeHtml(filters.lang === "ja" ? "詳しい法改正解説" :
-                  filters.lang === "zh-Hans" ? "查看法改正详解" : "Full record / explainer") + '</a>' : ''}
+                escapeHtml(I18N.t("card_detail_page")) + '</a>' : ''}
               <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
                 ${escapeHtml(I18N.t("card_view_source"))}
               </a>

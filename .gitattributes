@@ -1,3 +1,8 @@
 # iCalendar (RFC 5545) requires CRLF line endings; store the generated
 # deadline calendars byte-for-byte so no checkout setting rewrites them.
 docs/feeds/*.ics -text
+
+# Reform explainers are hashed (Git blob SHA) to detect stale translations;
+# keep them LF in every checkout so the hash matches on Windows too.
+data/explainers/*.json text eol=lf
+data/explainer_locales/*.json text eol=lf

@@ -511,6 +511,14 @@ class TestPageStatus(Base):
 
 
 class TestRepositoryState(unittest.TestCase):
+    # The committed explainers are checked against the committed raw history,
+    # which every daily run extends: a newly fetched official record (a bill
+    # enacted, an order promulgated) can invalidate yesterday's explainer. That
+    # must block a pull request (pr-checks.yml runs this blocking) but must not
+    # stop the daily data pipeline or the page rebuild, which already withhold
+    # the invalid explainer and report it in their own validation step.
+    @unittest.skipIf(os.environ.get("JLRW_LIVE_EXPLAINER_STATE") == "report",
+                     "live explainer state is reported by the workflow's validation step")
     def test_committed_explainers_validate(self):
         raw = json.loads((REPO_ROOT / "data" / "raw_items.json").read_text(encoding="utf-8"))
         index = ex.OfficialIndex.build(raw)
@@ -545,6 +553,31 @@ class TestRepositoryState(unittest.TestCase):
         self.assertNotIn("secrets.", workflow)
         self.assertIn("python -m unittest discover -s tests", workflow)
         self.assertIn("python scripts/explainers.py validate", workflow)
+        # Pull requests are the blocking gate: no report-only switch, no "|| echo".
+        self.assertNotIn("JLRW_LIVE_EXPLAINER_STATE", workflow)
+        for line in workflow.splitlines():
+            if "validate" in line and "python scripts/" in line:
+                self.assertNotIn("||", line)
+
+    def test_data_writing_workflows_survive_concurrent_merges(self):
+        # The scheduled writer merges explainer PRs while the daily run is in
+        # flight; a plain `git push` then failed and the day's data commit was lost.
+        for name in ("daily-update.yml", "publish-explainer-pages.yml"):
+            with self.subTest(workflow=name):
+                workflow = (REPO_ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
+                self.assertIn("git pull --rebase origin", workflow)
+                self.assertIn("git rebase --abort", workflow)
+                self.assertNotRegex(workflow, r"(?m)^\s*git push\s*$")
+                self.assertNotIn("--force", workflow)
+                self.assertIn("JLRW_LIVE_EXPLAINER_STATE: report", workflow)
+                self.assertIn("concurrency:\n  group: japan-legal-reform-data-writer", workflow)
+        publish = (REPO_ROOT / ".github" / "workflows" / "publish-explainer-pages.yml").read_text(encoding="utf-8")
+        self.assertIn("ref: ${{ github.event.repository.default_branch }}", publish)
+        for path in ("scripts/explainer_locales.py", "scripts/explainer_facts.py"):
+            self.assertIn(f'- "{path}"', publish)
+        for forbidden in ("secrets.", "ANTHROPIC", "OPENAI", "STRIPE", "RESEND", "fetch_updates", "summarize_updates",
+                          "translate_updates", "send_alert_digests"):
+            self.assertNotIn(forbidden, publish)
 
     def test_operations_guide_names_the_commands(self):
         guide = (REPO_ROOT / "operations" / "EXPLAINER_OPERATIONS.md").read_text(encoding="utf-8")
