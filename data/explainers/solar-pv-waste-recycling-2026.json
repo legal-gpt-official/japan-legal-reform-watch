@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "dossier_id": "solar-pv-waste-recycling-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 Solar PV Waste Recycling Act: new framework for large-scale panel disposal",
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-98218145b7662d49"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第三十三号",
+      "name_ja": "太陽電池廃棄物の再資源化等の推進に関する法律",
+      "name_en": "Act on the Promotion of Recycling and Other Measures for Solar Cell Waste"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MOE: solar PV panel recycling reform and implementing materials",
+      "url": "https://www.env.go.jp/recycle/recycling/renewable/page_00345.html"
+    },
+    {
+      "label": "MOE: waste and recycling policy news",
+      "url": "https://www.env.go.jp/news/recycle/"
+    },
+    {
+      "label": "MOE: monthly press releases",
+      "url": "https://www.env.go.jp/press/"
+    },
+    {
+      "label": "e-Gov: Act No. 33 of 2026 and amendment history",
+      "url": "https://laws.e-gov.go.jp/law/508AC0000000033"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan expects a sharp rise in end-of-life solar panels from the late 2030s, potentially reaching about 500,000 tonnes a year. The Ministry of the Environment identifies the gap between recycling and landfill costs and the still-developing nationwide processing network as major obstacles. The 2026 Act establishes a phased framework to reduce disposal and promote recycling.",
+      "The framework addresses commercial-use solar cells, especially operators disposing of large quantities. It provides for ministerial standards and a prior notification system for large-scale disposal plans. It also allows recycling businesses to seek approval of a plan under which specified Waste Management Act permit requirements are replaced by a special arrangement. Manufacturers, importers and sellers are addressed through measures on design and information about materials."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "Following joint deliberations on solar-panel recycling and a March 2025 council recommendation, the Cabinet approved the bill on 3 April 2026. The Diet passed the bill on 29 May 2026. It was promulgated on 5 June 2026 as Act No. 33 of 2026.",
+      "At a joint Environment Ministry and METI council meeting on 6 October 2026, officials discussed the enacted Act, the process for drafting subordinate regulations, and a basic policy. The meeting materials confirm that the main implementation date is to be set by Cabinet Order within one year and six months after promulgation. The main disposal-plan regime should not be treated as already operational merely because the Act has been promulgated."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The principal provisions will take effect on a date designated by Cabinet Order within one year and six months after promulgation on 5 June 2026; the Act does not itself fix that date.",
+        "source_ids": [
+          "s2",
+          "s3"
+        ]
+      },
+      {
+        "text": "The government is developing subordinate regulations and a basic policy, as shown in the 6 October 2026 council materials.",
+        "source_ids": [
+          "s3",
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Subordinate regulations will normally specify which commercial solar cells and disposal quantities trigger the large-disposal notification regime and the details of implementing procedures.",
+      "The competent ministers normally publish implementing standards and guidance before the main obligations take effect."
+    ],
+    "uncertainties": [
+      "The exact commencement date of the main disposal-plan and recycling arrangements has not been verified as fixed by Cabinet Order.",
+      "The quantitative threshold for a large-scale disposal plan, the detailed application procedures, and the final implementing standards remain to be checked when subordinate legislation is published."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Operators planning to decommission or replace commercial PV modules should assess likely disposal quantities, identify licensed contractors and recycling routes, and track the forthcoming quantitative threshold. Under the enacted framework, a large commercial disposer must submit a disposal plan before covered disposal; the general waiting period is 30 days after acceptance of the notice, subject to statutory exceptions and implementing rules. This is a future operational requirement, not a claim that the main regime is already in force.",
+      "Recycling contractors may benefit from ministerial approval of efficient collection and processing plans, with special treatment under the Waste Management Act for approved operations. Module manufacturers, importers and sellers should monitor the design and material-information measures. Existing waste-management duties and any applicable FIT/FIP decommissioning reserves remain separate from the new framework."
+    ],
+    "checklist": [
+      "Identify commercial PV assets likely to undergo replacement, repowering or decommissioning, and estimate the mass of modules to be discarded.",
+      "Track the Cabinet Order setting the main effective date and the quantitative threshold for large disposal plans.",
+      "Review waste contractors, transport arrangements, material disclosures and potential recycling routes before contracting for decommissioning.",
+      "Do not assume the proposed 30-day waiting period or permit exception applies before the relevant provisions and subordinate rules take effect."
+    ],
+    "source_ids": [
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "other",
+      "date": "2026-04-03",
+      "label": "Cabinet approved the bill",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-05-29",
+      "label": "Diet enacted the Solar PV Waste Recycling Act",
+      "source_ids": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十三号",
+      "label": "Promulgated as Act No. 33 of 2026",
+      "source_ids": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-06",
+      "label": "Joint council considered implementing rules and the basic policy",
+      "source_ids": [
+        "s4"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "太陽光パネルリサイクル関連 (official law and implementation portal)",
+      "url": "https://www.env.go.jp/recycle/recycling/renewable/page_00345.html",
+      "accessed_at": "2026-10-21"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "太陽電池廃棄物の再資源化等の推進に関する法律案の閣議決定について (3 April 2026)",
+      "url": "https://www.env.go.jp/press/press_03716.html",
+      "accessed_at": "2026-10-21"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "太陽電池廃棄物の再資源化等の推進に関する法律について (joint council document, October 2026)",
+      "url": "https://www.env.go.jp/council/content/03recycle03/000433712.pdf",
+      "accessed_at": "2026-10-21"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "太陽光発電設備リサイクル制度合同会議 第11回 (6 October 2026)",
+      "url": "https://www.env.go.jp/council/03recycle/page_00131.html",
+      "accessed_at": "2026-10-21"
+    }
+  ],
+  "verified_at": "2026-10-21",
+  "source_fingerprint": "sha256:a290f62d4c81f218c1d134a1c139131e",
+  "author": "chatgpt",
+  "review_notes": "Primary materials checked 2026-10-21: MOE reform portal, 3 April Cabinet decision, and 6 October council papers. The original queue was last generated 2026-10-20 because the 21 October daily workflow had not completed at the time of selection. The dashboard currently indexes the Diet bill as this dossier's seed; a separate 2026 Waste Management Act amendment also amended this Act and is tracked in its own dossier. The principal effective date and quantitative threshold are not confirmed. Awaiting independent human review."
+}
