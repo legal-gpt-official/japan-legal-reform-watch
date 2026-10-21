@@ -519,6 +519,13 @@ def render_page(
         },
         compact=not area_nav,
     )
+    lang_redirect = ""
+    if lang == "en" and alternates:
+        lang_redirect = (
+            '<script>(function(){var x=new URLSearchParams(location.search).get("lang");'
+            'if(x){var a=document.querySelector("link[rel=alternate][hreflang="+CSS.escape(x)+"]");'
+            'if(a)location.replace(a.href);}})();</script>'
+        )
     return f"""<!DOCTYPE html>
 <html lang="{escape(lang)}">
 <head>
@@ -592,7 +599,7 @@ def render_page(
   </footer>
 
   <script src="{prefix}analytics.js?v={ANALYTICS_CACHE_BUSTER}"></script>
-  {"<script>if(new URLSearchParams(location.search).has('lang')){var x=new URLSearchParams(location.search).get('lang');var a=document.querySelector('link[rel=alternate][hreflang=\\\"'+x+'\\\"]');if(a)location.replace(a.href);}</script>" if lang == "en" and alternates else ""}
+  {lang_redirect}
 
 </body>
 </html>
