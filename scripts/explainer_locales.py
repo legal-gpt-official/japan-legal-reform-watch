@@ -7,6 +7,7 @@ verification date/fingerprint. Never silently serve stale translations.
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -35,6 +36,15 @@ def load_locales(directory: Path = TRANSLATIONS_DIR) -> dict[str, dict]:
     return out
 
 
+def canonical_file_sha(dossier_id: str) -> str:
+    """Git's blob SHA-1 of the exact canonical English JSON, including same-day edits."""
+    path = ex.EXPLAINERS_DIR / (dossier_id + ".json")
+    if not path.is_file():
+        return ""
+    raw = path.read_bytes()
+    return hashlib.sha1(f"blob {len(raw)}\\0".encode("ascii") + raw).hexdigest()
+
+
 def _good_text(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip()) and len(value) <= _MAX_TEXT and not _PLAIN.search(value)
 
@@ -53,6 +63,9 @@ def translation_problems(en: Mapping[str, Any], bundle: Mapping[str, Any], lang:
         problems.append("stale English verification date")
     if bundle.get("english_source_fingerprint") != en.get("source_fingerprint"):
         problems.append("stale official-record fingerprint")
+    expected_blob = canonical_file_sha(str(en.get("dossier_id", "")))
+    if not expected_blob or bundle.get("english_file_sha") != expected_blob:
+        problems.append("stale canonical English file SHA")
     tr = (bundle.get("translations") or {}).get(lang)
     if not isinstance(tr, Mapping):
         return problems + [f"{lang}: no translation"]
