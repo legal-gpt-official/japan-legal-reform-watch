@@ -90,7 +90,7 @@ AREA_TOP_SOURCES = 6
 SUMMARY_MAX_CHARS = 320
 
 # Shared with docs/index.html; bump both together when style.css changes.
-STYLE_CACHE_BUSTER = "explainers-20261020"
+STYLE_CACHE_BUSTER = "quicktake-20261021"
 ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
@@ -742,8 +742,9 @@ def render_timeline(item_id: str, dossier: Dossier, page_ids: set[str]) -> list[
 
 
 EXPLAINER_NOTICE = (
-    "This explainer was written from the official sources listed below and checked against the records on "
-    "this dashboard. It is a plain-English monitoring aid, not legal advice, and it is not official. Statements "
+    "This AI-assisted explainer was prepared from the official sources listed below and checked against the "
+    "records on this dashboard. It is a plain-English monitoring aid, not legal advice, and it is not "
+    "official. Statements "
     "under Expected procedural steps describe the usual procedure, not a forecast; Outstanding uncertainties "
     "lists what was not confirmed. The original Japanese sources are authoritative."
 )
@@ -847,6 +848,28 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
         parts.append(
             '      <p class="explainer-refs">Not shown until reviewed: ' + escape(", ".join(held)) + ".</p>"
         )
+    quick_take = data.get("quick_take")
+    if isinstance(quick_take, Mapping):
+        cards = []
+        for key, heading, category, ids in (
+            ("what_changed", "What Changed?", "facts", (data.get("background") or {}).get("source_ids")),
+            ("who_is_affected", "Who Is Affected?", "assessment", (data.get("business_impact") or {}).get("source_ids")),
+            ("what_to_do_now", "What Should Businesses Do Now?", "assessment",
+             (data.get("business_impact") or {}).get("source_ids")),
+        ):
+            if category not in visible or not clean_text(quick_take.get(key)):
+                continue
+            citation = _source_refs(ids, numbers)
+            refs = f' <span class="explainer-quick-refs">{citation}</span>' if citation else ""
+            cards.append(
+                '        <div class="explainer-quick-card">'
+                f'<h3>{heading}</h3><p>{escape(clean_text(quick_take[key]))}{refs}</p></div>'
+            )
+        if cards:
+            parts.append('      <section class="explainer-quick" aria-label="At a glance">')
+            parts.append('        <h3 class="explainer-quick-title">At a glance</h3>')
+            parts += cards
+            parts.append("      </section>")
     show_next = "outlook" in visible or "procedure" in visible
     nav = [("explainer-background", "Background"), ("explainer-history", "History")]
     nav += [("explainer-next", "What&#39;s Next")] if show_next else []
