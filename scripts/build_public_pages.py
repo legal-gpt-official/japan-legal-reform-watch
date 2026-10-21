@@ -1321,9 +1321,21 @@ def prune_item_pages(item_dir: Path, keep: set[str]) -> int:
         if not child.is_dir() or child.name in keep or not ITEM_ID_PATTERN.match(child.name):
             continue
         contents = list(child.iterdir())
-        if len(contents) != 1 or contents[0].name != "index.html" or not contents[0].is_file():
+        allowed = {"index.html", *el.URL_SLUGS.values()}
+        if not contents or any(p.name not in allowed for p in contents):
             continue
-        contents[0].unlink()
+        locales = [p for p in contents if p.is_dir()]
+        if any(p.name not in el.URL_SLUGS.values()
+               or sorted(q.name for q in p.iterdir()) != ["index.html"]
+               or not (p / "index.html").is_file() for p in locales):
+            continue
+        files = [p for p in contents if p.is_file()]
+        if any(p.name != "index.html" for p in files) or len(files) != 1:
+            continue
+        for p in locales:
+            (p / "index.html").unlink()
+            p.rmdir()
+        files[0].unlink()
         child.rmdir()
         removed += 1
     return removed
