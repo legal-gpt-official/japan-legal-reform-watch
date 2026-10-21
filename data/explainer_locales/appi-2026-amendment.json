@@ -1,9 +1,10 @@
 {
   "dossier_id": "appi-2026-amendment",
-  "english_verified_at": "2026-10-20",
-  "english_source_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
   "translations": {
     "ja": {
+      "english_verified_at": "2026-10-20",
+      "english_source_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
+      "english_file_sha": "e30066c130dd61d3b708b9f0f1cd842a601ad3e2",
       "title": "2026年個人情報保護法改正―3年ごと見直しとAI・こども・生体情報への対応",
       "quick_take": {
         "what_changed": "一定の統計作成・AI開発目的のデータ利用例外、こども・生体情報・連絡可能な個人関連情報への規律、違法な取扱いによる利益に対する課徴金制度等を設けた。",
@@ -55,6 +56,9 @@
       ]
     },
     "zh-Hans": {
+      "english_verified_at": "2026-10-20",
+      "english_source_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
+      "english_file_sha": "e30066c130dd61d3b708b9f0f1cd842a601ad3e2",
       "title": "日本2026年个人信息保护法修订：AI数据使用、未成年人和生物识别",
       "quick_take": {
         "what_changed": "修法为特定统计与AI开发用途增加个人信息使用例外，加强对儿童、生物识别及可联系个人的相关信息的保护，并引入针对某些违法获利行为的行政附加金。",
@@ -105,6 +109,5 @@
         "部分修订实施（依据e-Gov法律检索）"
       ]
     }
-  },
-  "english_file_sha": "e30066c130dd61d3b708b9f0f1cd842a601ad3e2"
+  }
 }

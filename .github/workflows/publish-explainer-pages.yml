@@ -10,6 +10,9 @@ on:
       - "data/explainers/**"
       - "data/explainer_locales/**"
       - "scripts/explainers.py"
+      - "scripts/explainer_locales.py"
+      - "scripts/explainer_facts.py"
+      - "scripts/law_timeline.py"
       - "scripts/build_public_pages.py"
       - "docs/style.css"
       - ".github/workflows/publish-explainer-pages.yml"
@@ -32,6 +35,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
+          # The latest main, not the triggering commit: this run may have waited
+          # behind the daily data run in the concurrency group, and building from
+          # the older commit would make the push fail or regress its pages.
+          ref: ${{ github.event.repository.default_branch }}
           persist-credentials: true
 
       - name: Set up Python
@@ -44,15 +51,24 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - name: Run offline regression tests
+        # Live repository-state explainer checks (official records drifting away
+        # from an explainer) are reported by the explainer validation step and
+        # withhold only that explainer; they must not stop this whole run.
+        env:
+          JLRW_LIVE_EXPLAINER_STATE: report
         run: python -m unittest discover -s tests
 
+      # Report-only here: the page build itself withholds every invalid explainer
+      # and every invalid or stale translation, so one defective explainer must
+      # not stop the pages of all the others from being rebuilt. Pull requests
+      # are gated by pr-checks.yml, where both validations are blocking.
       - name: Validate reform explainers
         env:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}
-        run: python scripts/explainers.py validate
+        run: python scripts/explainers.py validate || echo "::warning::An explainer failed validation and is withheld."
 
       - name: Validate translations
-        run: python scripts/explainer_locales.py validate
+        run: python scripts/explainer_locales.py validate || echo "::warning::A translation failed validation and is withheld; English is published."
 
       - name: Build public pages
         env:
@@ -68,7 +84,14 @@ jobs:
             echo "Generated static pages already match the published corpus."
           else
             git commit -m "Publish AI-checked reform explainers"
-            git push
+            # main may have moved while this job ran (an explainer PR merged by the
+            # scheduled writer, say). Rebase this commit onto it instead of losing
+            # the run; a real conflict aborts the rebase and fails loudly.
+            for attempt in 1 2 3; do
+              if git push origin HEAD:"$(git branch --show-current)"; then break; fi
+              if [ "$attempt" = 3 ]; then echo "::error::push failed after 3 attempts"; exit 1; fi
+              git pull --rebase origin "$(git branch --show-current)" || { git rebase --abort; echo "::error::main changed generated files concurrently; rerun this workflow"; exit 1; }
+            done
           fi
 
       - name: Request GitHub Pages build

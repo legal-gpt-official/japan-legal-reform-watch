@@ -851,12 +851,40 @@ CATEGORY_LABELS = {
 }
 
 
-def render_page_status(status: Mapping[str, Any]) -> str:
+PAGE_STATUS_UI = {
+    "ja": {
+        "lead": "このページの記録", "amending": "{target}を改正", "promulgated": "{date}公布",
+        "effective": "e-Govに記録された施行日：{dates}",
+        "pending": "少なくとも一つの施行日は未確定（政令で定められる予定）",
+    },
+    "zh-Hans": {
+        "lead": "本页记录", "amending": "修订{target}", "promulgated": "{date}公布",
+        "effective": "e-Gov记载的实施日期：{dates}",
+        "pending": "至少一个实施日期尚未确定（将由政令规定）",
+    },
+}
+
+
+def render_page_status(status: Mapping[str, Any], locale: str = "en") -> str:
     """One line on the legal status of this page's own instrument, from its e-Gov records.
 
     The explainer describes the whole reform; an amending ordinance on one page
-    can still be partly pending when the Act on another is in force.
+    can still be partly pending when the Act on another is in force. Translated
+    pages need the line as much as the English one, so it is localized too.
     """
+    ui = PAGE_STATUS_UI.get(locale)
+    if ui:
+        pieces = [f"{status['instrument']}（{status['number']}）"]
+        if status.get("target"):
+            pieces.append(ui["amending"].format(target=status["target"]))
+        if status.get("promulgated"):
+            pieces.append(ui["promulgated"].format(date=status["promulgated"].isoformat()))
+        if status.get("effective_dates"):
+            pieces.append(ui["effective"].format(
+                dates="、".join(d.isoformat() for d in status["effective_dates"])))
+        if status.get("pending"):
+            pieces.append(ui["pending"])
+        return f"{ui['lead']}：" + "；".join(pieces) + "。"
     pieces = [f"{status['instrument']} ({status['number']})"]
     if status.get("target"):
         pieces.append(f"amending {status['target']}")
@@ -912,7 +940,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
             f'{escape("; ".join(named))}</p>'
         )
     if page_status:
-        parts.append(f'      <p class="explainer-meta">{escape(render_page_status(page_status))}</p>')
+        parts.append(f'      <p class="explainer-meta">{escape(render_page_status(page_status, locale))}</p>')
     for notice in entry.report.notices:
         parts.append(f'      <p class="explainer-alert" role="note">{escape(notice)}</p>')
     held = [CATEGORY_LABELS[c] for c in ex.CATEGORIES if c not in visible]
@@ -980,10 +1008,11 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
         for when, label, refs in sorted(dated, key=lambda r: (r[0], r[1])):
             body.append(f"          <li><strong>{when.isoformat()}</strong> — {escape(label)} {refs}</li>")
         body.append("        </ol>")
-    body.append(
-        '        <p class="explainer-refs">The timeline of related official records below lists the '
-        "records this dashboard has matched.</p>"
-    )
+    if locale == "en":  # translated pages carry no timeline for this sentence to point to
+        body.append(
+            '        <p class="explainer-refs">The timeline of related official records below lists the '
+            "records this dashboard has matched.</p>"
+        )
     section(
         "explainer-history",
         escape(ui["history"]),
@@ -1168,7 +1197,7 @@ def render_item_page(
     if not translated:
         parts.append("    </section>")
     if explainer is not None:
-        parts += render_explainer(explainer, page_status if locale == "en" else None, locale)
+        parts += render_explainer(explainer, page_status, locale)
     if dossier is not None and locale == "en":
         parts += render_timeline(item_page_id(item), dossier, page_ids or set())
 
@@ -1284,7 +1313,8 @@ def build(
             local_path = path + el.URL_SLUGS[lang] + "/"
             item_pages_changed += write_if_changed(
                 site_dir / local_path / "index.html",
-                render_item_page(item, dossier, page_ids, translated, None,
+                render_item_page(item, dossier, page_ids, translated,
+                                 index.page_status(item_page_id(item)) if index else None,
                                  locale=lang, available_locales=tuple(local_entries)),
             )
             localized_pages += 1

@@ -43,6 +43,11 @@ jobs:
         run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/law_timeline.py scripts/explainers.py scripts/explainer_locales.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
 
       - name: Run offline regression tests
+        # Live repository-state explainer checks (official records drifting away
+        # from an explainer) are reported by the explainer validation step and
+        # withhold only that explainer; they must not stop this whole run.
+        env:
+          JLRW_LIVE_EXPLAINER_STATE: report
         run: python -m unittest discover -s tests
 
       - name: Fetch raw updates
@@ -315,7 +320,14 @@ jobs:
             exit 0
           fi
           git commit -m "Daily update legal reform data"
-          git push
+          # main may have moved while this job ran (an explainer PR merged by the
+          # scheduled writer, say). Rebase this commit onto it instead of losing
+          # the run; a real conflict aborts the rebase and fails loudly.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:"$(git branch --show-current)"; then break; fi
+            if [ "$attempt" = 3 ]; then echo "::error::push failed after 3 attempts"; exit 1; fi
+            git pull --rebase origin "$(git branch --show-current)" || { git rebase --abort; echo "::error::main changed generated files concurrently; rerun this workflow"; exit 1; }
+          done
           echo "committed=true" >> "$GITHUB_OUTPUT"
 
       - name: Request Pages build for committed data

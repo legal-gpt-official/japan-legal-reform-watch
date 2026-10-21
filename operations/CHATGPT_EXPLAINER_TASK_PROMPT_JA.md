@@ -101,7 +101,7 @@
   - `quick_take`：`what_changed`（主要な改正内容）、`who_is_affected`（具体的な対象企業）、`what_to_do_now`（今できる準備）。各360文字以内。背景・法令の状態・企業への影響と矛盾しないことを照合します。
   - `key_dates`：法的事実の日付は `primary` の出典を付けます。
   - `official_sources`：実際に読んだ資料だけを挙げます。`accessed_at` は閲覧日です。
-- **日本語・中国語への詳細解説の展開を同時に行います。** 英文JSONを一次資料で確定した後、`data/explainer_locales/<dossier_id>.json` に日本語（`ja`）と簡体字中国語（`zh-Hans`）の全文翻訳を保存します。タイトル、3点要約、背景の全段落、経緯の全段落、confirmed/expected/uncertaintiesの全項目、企業への影響の全段落、チェックリスト、key_datesのラベルを同じ順序・件数で翻訳します。英文の`verified_at`と`source_fingerprint`をそれぞれ`english_verified_at`、`english_source_fingerprint`、`english_file_sha`に複写します。日付・政令の施行状況・法律番号・閾値・義務と推奨を英語版と照合します。英語版に変更があれば翻訳を該当部分だけ修正し、古い翻訳を表示させないよう同期情報も更新します。翻訳に追加の従量課金AI APIを使いません。
+- **日本語・中国語への詳細解説の展開を同時に行います。** 英文JSONを一次資料で確定した後、`data/explainer_locales/<dossier_id>.json` に日本語（`ja`）と簡体字中国語（`zh-Hans`）の全文翻訳を保存します。タイトル、3点要約、背景の全段落、経緯の全段落、confirmed/expected/uncertaintiesの全項目、企業への影響の全段落、チェックリスト、key_datesのラベルを同じ順序・件数で翻訳します。英文の`verified_at`と`source_fingerprint`、および英文JSONの`git hash-object`の値を、**翻訳した言語ごとに** `translations.ja` / `translations.zh-Hans` の中の`english_verified_at`、`english_source_fingerprint`、`english_file_sha`に複写します（ファイル直下には置きません）。片方の言語しか英語版に合わせて直していない場合は、直した言語の同期キーだけを更新します。翻訳に英語版にない日付・数値があると、その言語ページは公開されません。日付・政令の施行状況・法律番号・閾値・義務と推奨を英語版と照合します。英語版に変更があれば翻訳を該当部分だけ修正し、古い翻訳を表示させないよう同期情報も更新します。翻訳に追加の従量課金AI APIを使いません。
 - 原則として英・日・中国語の3言語を用意し、翻訳の完全性を検証してからPRを作成します。翻訳資料を作れなかった場合は英語版のみの公開について理由を報告し、古い翻訳が表示されないことを確認します。
 - 英語は簡潔で中立的にします。誇張や宣伝的な表現を使いません。HTML・Markdown・コードフェンスは使いません。
 - `status` は、内容に自信があれば `published`、未完成なら `draft` にします。`review_state` は `ai_checked` にします（`human_reviewed` にはしません）。
