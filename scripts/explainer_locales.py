@@ -42,7 +42,7 @@ def canonical_file_sha(dossier_id: str) -> str:
     if not path.is_file():
         return ""
     raw = path.read_bytes()
-    return hashlib.sha1(f"blob {len(raw)}\\0".encode("ascii") + raw).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + bytes([0]) + raw).hexdigest()
 
 
 def _good_text(value: Any) -> bool:
