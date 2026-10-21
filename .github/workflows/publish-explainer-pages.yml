@@ -51,6 +51,9 @@ jobs:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}
         run: python scripts/explainers.py validate
 
+      - name: Validate translations
+        run: python scripts/explainer_locales.py validate
+
       - name: Build public pages
         env:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}
