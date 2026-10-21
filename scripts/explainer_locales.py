@@ -96,3 +96,43 @@ def localized_entry(entry: ex.Published, bundle: Mapping[str, Any], lang: str) -
     for old, txt in zip(data["key_dates"], t["key_dates"]):
         old["label"] = txt
     return ex.Published(entry.dossier_id, data, entry.report, entry.visible)
+
+
+def validate_all_translations() -> list[str]:
+    """Fail CI for any published canonical explainer without up-to-date full translations."""
+    english = ex.load_explainers()
+    bundles = load_locales()
+    errors = []
+    for dossier_id, data in sorted(english.items()):
+        if data.get("status") != "published":
+            continue
+        bundle = bundles.get(dossier_id)
+        if bundle is None:
+            errors.append(f"{dossier_id}: translations are missing")
+            continue
+        for lang in LOCALES:
+            errors += [f"{dossier_id}: {message}"
+                       for message in translation_problems(data, bundle, lang)]
+    for dossier_id in bundles:
+        if dossier_id not in english:
+            errors.append(f"{dossier_id}: translation has no canonical English explainer")
+    return errors
+
+
+def main() -> int:
+    import sys
+    if sys.argv[1:] != ["validate"]:
+        print("usage: python scripts/explainer_locales.py validate")
+        return 2
+    errors = validate_all_translations()
+    for error in errors:
+        print(f"ERROR: {error}")
+    if errors:
+        print(f"Translation validation failed: {len(errors)} errors")
+        return 1
+    print("Japanese and Chinese translations validated against all published English explainers")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
