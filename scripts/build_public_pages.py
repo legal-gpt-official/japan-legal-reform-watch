@@ -1266,6 +1266,12 @@ def build(
                 available_locales=tuple(local_entries),
             ),
         )
+        for lang in el.LOCALES:
+            if lang not in local_entries:
+                stale = site_dir / path / el.URL_SLUGS[lang]
+                if stale.is_dir() and sorted(p.name for p in stale.iterdir()) == ["index.html"]:
+                    (stale / "index.html").unlink()
+                    stale.rmdir()
         for lang, translated in local_entries.items():
             local_path = path + el.URL_SLUGS[lang] + "/"
             item_pages_changed += write_if_changed(
