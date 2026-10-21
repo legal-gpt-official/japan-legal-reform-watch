@@ -387,7 +387,13 @@
         "business_impact": "特定油轮运营商可能受到影响，因为该法案涉及担保这些油轮特定赔偿义务履行的合同；元数据未说明拟议修订内容。",
         "recommended_action": "建议查阅官方法案文本和审议记录，以核查拟议修订内容、其适用范围及任何拟议生效日期条款。"
       }
-    }
+    },
+    "summary_ja": "「特定タンカーに係る特定賠償義務履行担保契約等に関する特別措置法の一部を改正する法律案」は、第222回国会に提出された閣法第17号です。提供情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "特定タンカーに係る特定賠償義務履行担保契約等に関わる事業に影響する可能性がありますが、提供情報だけでは具体的な改正内容や影響範囲は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、衆議院の日本語公式議案情報で法案本文と最新の審議経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-21T23:58:25Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-c58dade62c4a08eb",
@@ -5666,6 +5672,66 @@
         "summary": "这项由内阁提交的法案涉及地方公共团体议会议员及首长选举日期及相关事项的临时特例措施。该法案被列为第222届国会第16号法案，由众议院审议中。",
         "business_impact": "地方议会议员及地方政府首长候选人可能受到拟议选举日期措施的影响，但具体时间及范围尚未提供。",
         "recommended_action": "建议考虑查阅官方法案文本及审议记录，了解拟议选举日期、涵盖的选举及立法状态。"
+      }
+    }
+  },
+  {
+    "id": "raw-511cb432c94d219b",
+    "title_en": "Withdrawn bill on income tax measures addressing tax burden increases exceeding wage growth",
+    "title_ja": "賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案",
+    "area": "Tax / Stamp Duty",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The House of Representatives listing identifies a bill on income tax measures to address increases in the income tax burden exceeding wage growth. It is listed as House of Representatives Bill No. 30, submitted in the 221st Diet session, with its deliberation status recorded as withdrawn.",
+    "business_impact_en": "The proposal may be relevant to income taxpayers whose tax burden increases exceed wage growth, but the metadata does not describe the proposed measures and records the bill as withdrawn.",
+    "recommended_action_en": "Review of the official bill text and legislative history would help clarify the proposed income tax measures and the recorded withdrawal.",
+    "source_name": "House of Representatives (衆議院) 議案情報",
+    "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D72.htm",
+    "published_at": "",
+    "last_checked": "2026-10-21",
+    "relevance_score": 13.0,
+    "first_seen_at": "2026-10-22",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured legislative metadata; the proposed measures are not described, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-21T23:56:24Z",
+    "summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "《关于为应对所得税负担增幅超过工资涨幅而应就所得税采取措施的法律案》已撤回",
+        "summary": "众议院列表列明了一项关于采取所得税措施以应对所得税负担增幅超过工资涨幅的法律案。该案列为第221届国会提交的众议院第30号法律案，审议状态记载为已撤回。",
+        "business_impact": "该提案可能与税负增幅超过工资涨幅的所得税纳税人有关，但元数据未说明拟议措施，并记载该法律案已撤回。",
+        "recommended_action": "查阅官方法律案文本及立法历程，有助于厘清拟议的所得税措施及所记载的撤回情况。"
+      }
+    }
+  },
+  {
+    "id": "raw-66ad06863627386b",
+    "title_en": "Bill on Measures to Reduce Tax and Social Insurance Contribution Burdens on Employed Persons",
+    "title_ja": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+    "area": "Finance / AML",
+    "stage": "Bill Submitted",
+    "impact_level": "Low",
+    "summary_en": "The House of Representatives listing identifies a bill concerning measures to reduce the burden of taxes and social insurance contributions on employed persons. It is listed as House of Representatives Bill No. 1 of the 222nd session, under deliberation in that House.",
+    "business_impact_en": "Employed persons may be affected by the proposed measures concerning their tax and social insurance contribution burdens, but the listing does not describe the measures or their scope.",
+    "recommended_action_en": "Review of the official Japanese bill text would help clarify the proposed measures, eligibility and legislative progress.",
+    "source_name": "House of Representatives (衆議院) 議案情報",
+    "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE36B6.htm",
+    "published_at": "",
+    "last_checked": "2026-10-21",
+    "relevance_score": 13.0,
+    "first_seen_at": "2026-10-22",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information, not the bill text; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-21T23:56:24Z",
+    "summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "法案提交：《为减轻就业人员税收及社会保险费负担应采取措施的法律案》",
+        "summary": "众议院议案目录列有一项关于减轻就业人员税收及社会保险费负担措施的法案。该法案列为第222届国会众议院第1号法案，由众议院审议中。",
+        "business_impact": "就业人员可能受到有关其税收及社会保险费负担的拟议措施影响，但该目录未说明这些措施或其适用范围。",
+        "recommended_action": "查阅日文官方法案文本将有助于明确拟议措施、适用资格及立法进展。"
       }
     }
   },
