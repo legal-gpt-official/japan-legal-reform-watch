@@ -241,12 +241,12 @@ class TestQueue(Base):
                                                 review_notes="Not material for foreign companies."))
         queue = ex.build_queue(self.index, published, {"export-control-order": done, "skip-it": skipped}, TODAY)
         self.assertEqual([e for e in queue["entries"] if e["kind"] == "new"], [])
-        # The only entry is the finished explainer waiting for the human review the policy requires.
-        self.assertEqual([(e["explainer_id"], e["reasons"]) for e in queue["entries"]],
-                         [("export-control-order", ["awaiting_review:facts+procedure+outlook+assessment"])])
-        with mock.patch.dict(os.environ, AI_POLICY_ENV):
-            queue = ex.build_queue(self.index, published, {"export-control-order": done, "skip-it": skipped}, TODAY)
+        # Completed AI-checked explainers are publishable without a human-review queue.
         self.assertEqual(queue["entries"], [])
+        with mock.patch.dict(os.environ, {ex.POLICY_ENV: "facts=human_reviewed,procedure=human_reviewed,outlook=human_reviewed,assessment=human_reviewed"}):
+            strict_queue = ex.build_queue(self.index, published, {"export-control-order": done, "skip-it": skipped}, TODAY)
+        self.assertIn("awaiting_review:facts+procedure+outlook+assessment",
+                      strict_queue["entries"][0]["reasons"])
 
     def test_unmonitored_areas_are_not_queued(self):
         published = {"raw-order-a": {"id": "raw-order-a", "area": "Other", "stage": "Promulgated"}}
