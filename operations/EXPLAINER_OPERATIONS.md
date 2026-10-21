@@ -106,6 +106,7 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 | `related_item_ids` | `data/raw_items.json` の ID |
 | `instruments` | 法令番号・正式名称（日本語）・英語の説明的名称。e-Gov 記録にある番号は名称が一致しないとエラー |
 | `watch_pages` | 定期再確認する公式ページ（`label`・`url`。*.go.jp、JPX、JSDA のみ） |
+| `quick_take` | `what_changed` / `who_is_affected` / `what_to_do_now` の3点を、各360字以内の簡潔な英語で必須記載（公開する解説）。事実・影響・今行う準備を区別し、未施行の義務を施行済みと書かない |
 | `background` / `history` / `business_impact` | `paragraphs`（平文）と `source_ids` |
 | `next_steps` | `confirmed`（出典つき・日付任意）、`expected`、`uncertainties`（必須） |
 | `key_dates` | 種別・日付・説明・出典。法的事実の日付は `primary` 出典が必須 |
@@ -145,19 +146,20 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 
 - 解説そのものが表示されるのは、`status: "published"`、検証エラーなし、`facts` が基準を満たす場合だけ。
 - `facts` 以外で基準に届かない区分はページから省かれ、「Not shown until reviewed」と区分名が表示される。
-- 基準は `scripts/explainers.py` の `PUBLISH_POLICY`。**現在（2026-10-20 オーナー決定）は全区分 `human_reviewed`**。
-- リポジトリ変数 `EXPLAINER_PUBLISH_POLICY` で区分ごとに上書きできる（コード変更不要）。将来の想定設定：
+- 基準は `scripts/explainers.py` の `PUBLISH_POLICY`。**2026-10-21 オーナー決定：4区分すべて `ai_checked` で事前の人間レビューなしに公開可**。ただし `status: "published"`、一次資料に基づく確認、`quick_take`、解説全体の検証エラー0件を必須とする。
+- 公開後に誤りが発見された場合は速やかに修正し、必要なら `status: "withdrawn"` として非表示にする。誤りを疑う未確認事項は公開せず `uncertainties` に明記する。
+- リポジトリ変数 `EXPLAINER_PUBLISH_POLICY` が設定されている場合はそれが優先する。旧設定（`human_reviewed`）が残っていれば削除またはAI基準へ変更する。例：
 
   ```
-  EXPLAINER_PUBLISH_POLICY=facts=ai_checked,procedure=ai_checked,outlook=ai_checked
+  EXPLAINER_PUBLISH_POLICY=facts=ai_checked,procedure=ai_checked,outlook=ai_checked,assessment=ai_checked
   ```
 
-  （`assessment` は `human_reviewed` のまま）。不正な値は実行を止める。
+  不正な値は実行を止める。
 
 - `human_reviewed` は、人が実際に内容を読んだときだけ設定する。`human_review.reviewer` と `reviewed_at` が必須。`reviewed_at` が `verified_at` より古い場合（解説を直して再 stamp した場合）は自動的に `ai_checked` 扱いに戻り、再レビュー待ちになる。
 - 一部の区分だけ人が確認した場合は `section_review` で区分ごとに上げる。
 
-### 人によるレビューの手順（オーナー）
+### 任意の人間レビューの手順（オーナー）
 
 1. PR の `data/explainers/*.json` と `preview` の HTML、出典リンクを読む。
 2. 問題がなければ、該当ファイルに次を加える（全区分なら `review_state`、一部なら `section_review`）。
@@ -167,11 +169,13 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
    "human_review": {"reviewer": "<GitHub ユーザー名>", "reviewed_at": "YYYY-MM-DD"}
    ```
 
-3. `validate` と PR チェックが通れば、PR をマージする。
+3. `validate` と PR チェックが通れば、必要に応じてPRをマージする。**人間によるレビューを公開の必須要件にはしない**。
 
 ### 公開ページへの反映
 
-マージ後、次の日次実行（06:00 JST）で `docs/u/<id>/` が再生成される。急ぐ場合は Actions の `Daily update legal reform data` を手動実行する（取得・要約・翻訳も走る点に注意）。sitemap の `lastmod` は解説の `verified_at` を反映する。
+新規・更新案件は所管省庁・国会・e-Govの一次資料と照合し、`stamp`・`validate`・PR上の全CIに成功した場合に限ってマージする。明確な事実関係の矛盾・根拠の欠落・CI失敗があれば公開しない。毎日の担当AIによる自動マージはオーナーの2026-10-21の承認によるが、`main` への直接pushは禁止。
+
+マージ後、次の日次実行（06:00 JST開始・遅延する場合あり）で `docs/u/<id>/` が再生成される。急ぐ場合は Actions の `Daily update legal reform data` を手動実行する（取得・要約・翻訳も走る点に注意）。sitemap の `lastmod` は解説の `verified_at` を反映する。
 
 ## 7. 更新
 
