@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "data/explainers/**"
+      - "data/explainer_locales/**"
       - "scripts/explainers.py"
       - "scripts/build_public_pages.py"
       - "docs/style.css"
