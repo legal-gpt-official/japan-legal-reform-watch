@@ -36,14 +36,23 @@ class TestLocalizedExplainres(unittest.TestCase):
         cls.canonical = ex.load_explainers()
         cls.translations = el.load_locales()
 
-    def test_initial_seven_are_complete_in_both_languages(self):
+    def test_initial_seven_locales_are_rendered_only_when_fresh(self):
+        # All seven have been backfilled. Do NOT require permanent freshness in
+        # every PR: a later canonical English update must be publishable even
+        # before the corresponding Japanese/Chinese rewrite catches up.
         for dossier_id in INITIAL_DOSSIERS:
             with self.subTest(dossier=dossier_id):
                 data = self.canonical[dossier_id]
                 bundle = self.translations[dossier_id]
                 for lang in el.LOCALES:
-                    self.assertEqual([], el.translation_problems(data, bundle, lang))
+                    self.assertIn(lang, bundle["translations"])
+                    problems = el.translation_problems(data, bundle, lang)
+                    stale = any(p in el.STALE_MARKERS for p in problems)
                     localized = el.localized_entry(entry_for(data), bundle, lang)
+                    if stale:
+                        self.assertIsNone(localized, "stale translation must not be published")
+                        continue
+                    self.assertEqual([], problems)
                     self.assertIsNotNone(localized)
                     html = "\n".join(bpp.render_explainer(localized, locale=lang))
                     self.assertIn(bundle["translations"][lang]["title"], html)
