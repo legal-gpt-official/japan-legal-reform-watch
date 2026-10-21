@@ -92,18 +92,17 @@ REVIEW_STATES = ("unreviewed", "ai_checked", "human_reviewed")
 # ``ai_checked`` means the writer completed the checklist in
 # operations/EXPLAINER_OPERATIONS.md; ``human_reviewed`` needs a dated
 # ``human_review`` record by a named reviewer, made no earlier than the
-# explainer's ``verified_at``. Owner decision 2026-10-20: every category needs
-# human review until the first explainers have been read. The intended later
-# setting is facts/procedure/outlook at ai_checked and assessment at
-# human_reviewed. The repository variable EXPLAINER_PUBLISH_POLICY (for
-# example "facts=ai_checked,procedure=ai_checked") overrides single
-# categories in the daily workflow without a code change.
+# explainer's ``verified_at``. Owner decision 2026-10-21: publish all
+# categories after AI verification against official primary sources, without
+# mandatory pre-publication human review. Invalid or unreviewed explainers
+# remain withheld. EXPLAINER_PUBLISH_POLICY may impose stricter per-category
+# requirements as an explicit repository-level override.
 CATEGORIES = ("facts", "procedure", "outlook", "assessment")
 PUBLISH_POLICY = {
-    "facts": "human_reviewed",
-    "procedure": "human_reviewed",
-    "outlook": "human_reviewed",
-    "assessment": "human_reviewed",
+    "facts": "ai_checked",
+    "procedure": "ai_checked",
+    "outlook": "ai_checked",
+    "assessment": "ai_checked",
 }
 POLICY_ENV = "EXPLAINER_PUBLISH_POLICY"
 
@@ -586,6 +585,16 @@ def validate(
         return report
 
     _check_text(data.get("title_en"), "title_en", MAX_TITLE_CHARS, errors)
+    quick_take = data.get("quick_take")
+    if status == "published" and not isinstance(quick_take, Mapping):
+        errors.append("quick_take: published explainers must provide an at-a-glance summary")
+    elif quick_take is not None:
+        if not isinstance(quick_take, Mapping):
+            errors.append("quick_take must be an object")
+        else:
+            for key in ("what_changed", "who_is_affected", "what_to_do_now"):
+                if status == "published" or key in quick_take:
+                    _check_text(quick_take.get(key), f"quick_take.{key}", 360, errors)
     instrument_type = data.get("instrument_type")
     if instrument_type not in INSTRUMENT_TYPES:
         errors.append(f"instrument_type must be one of {', '.join(INSTRUMENT_TYPES)}")
@@ -1203,6 +1212,7 @@ def scaffold(index: OfficialIndex, item_id: str, dossier_id: str, today: date) -
         "instrument_type": "statute",
         "current_stage": "",
         "related_item_ids": related,
+        "quick_take": {"what_changed": "", "who_is_affected": "", "what_to_do_now": ""},
         "background": {"paragraphs": [], "source_ids": []},
         "history": {"paragraphs": [], "source_ids": []},
         "next_steps": {"confirmed": [], "expected": [], "uncertainties": []},
