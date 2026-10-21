@@ -111,25 +111,49 @@ def localized_entry(entry: ex.Published, bundle: Mapping[str, Any], lang: str) -
     return ex.Published(entry.dossier_id, data, entry.report, entry.visible)
 
 
-def validate_all_translations() -> list[str]:
-    """Fail CI for any published canonical explainer without up-to-date full translations."""
+STALE_MARKERS = (
+    "stale English verification date",
+    "stale official-record fingerprint",
+    "stale canonical English file SHA",
+)
+
+
+def validate_translations() -> tuple[list[str], list[str]]:
+    """Return blocking errors and non-blocking absence/staleness warnings.
+
+    English publication must remain possible while a translation catches up.
+    The page builder checks these same freshness keys and withholds outdated
+    locale pages, so a stale or absent locale can never be shown as current.
+    A translation that *claims* current English keys but has broken sections
+    is invalid and fails CI to prevent publishing malformed locale content.
+    """
     english = ex.load_explainers()
     bundles = load_locales()
-    errors = []
+    errors, warnings = [], []
     for dossier_id, data in sorted(english.items()):
         if data.get("status") != "published":
             continue
         bundle = bundles.get(dossier_id)
         if bundle is None:
-            errors.append(f"{dossier_id}: translations are missing")
+            warnings.append(f"{dossier_id}: Japanese and Chinese translations pending; English-only")
             continue
         for lang in LOCALES:
-            errors += [f"{dossier_id}: {message}"
-                       for message in translation_problems(data, bundle, lang)]
+            problems = translation_problems(data, bundle, lang)
+            stale = [p for p in problems if p in STALE_MARKERS]
+            invalid = [p for p in problems if p not in STALE_MARKERS]
+            if stale:
+                warnings.append(f"{dossier_id} ({lang}): outdated translation withheld; English-only until refreshed")
+            elif invalid:
+                errors.extend(f"{dossier_id} ({lang}): {p}" for p in invalid)
     for dossier_id in bundles:
         if dossier_id not in english:
             errors.append(f"{dossier_id}: translation has no canonical English explainer")
-    return errors
+    return errors, warnings
+
+
+def validate_all_translations() -> list[str]:
+    """Compatibility: return only problems severe enough to block publication."""
+    return validate_translations()[0]
 
 
 def main() -> int:
@@ -137,13 +161,15 @@ def main() -> int:
     if sys.argv[1:] != ["validate"]:
         print("usage: python scripts/explainer_locales.py validate")
         return 2
-    errors = validate_all_translations()
+    errors, warnings = validate_translations()
+    for warning in warnings:
+        print(f"WARNING: {warning}")
     for error in errors:
         print(f"ERROR: {error}")
     if errors:
-        print(f"Translation validation failed: {len(errors)} errors")
+        print(f"Translation validation failed: {len(errors)} errors ({len(warnings)} pending)")
         return 1
-    print("Japanese and Chinese translations validated against all published English explainers")
+    print(f"Translation integrity passed; pending/outdated locales: {len(warnings)}")
     return 0
 
 
