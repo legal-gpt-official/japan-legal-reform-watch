@@ -523,8 +523,14 @@ def render_page(
     if lang == "en" and alternates:
         lang_redirect = (
             '<script>(function(){var x=new URLSearchParams(location.search).get("lang");'
-            'if(x){var a=document.querySelector("link[rel=alternate][hreflang="+CSS.escape(x)+"]");'
-            'if(a)location.replace(a.href);}})();</script>'
+            'if(x&&x!=="en"){var links=document.querySelectorAll("link[rel=alternate][hreflang]");'
+            'for(var i=0;i<links.length;i++){if(links[i].getAttribute("hreflang")===x){'
+            'location.replace(links[i].href);return;}}'
+            'var n=document.getElementById("explainer-locale-fallback");'
+            'if(n&&(x==="ja"||x==="zh-Hans")){n.textContent=x==="ja"?'
+            '"日本語の詳細解説は現在更新中です。確認済みの英語版を表示しています。":'
+            '"中文版详细解读正在更新，当前显示经过核对的英文版。";'
+            'n.hidden=false;}}})();</script>'
         )
     return f"""<!DOCTYPE html>
 <html lang="{escape(lang)}">
@@ -1104,6 +1110,8 @@ def render_item_page(
         )
 
     parts = []
+    if explainer is not None and locale == "en":
+        parts.append('<p id="explainer-locale-fallback" class="explainer-alert" role="status" hidden></p>')
     if explainer is not None:
         labels = {"en": "English", "ja": "日本語", "zh-Hans": "简体中文"}
         switch_links = []

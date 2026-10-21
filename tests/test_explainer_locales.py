@@ -105,6 +105,48 @@ class TestLocalizedExplainres(unittest.TestCase):
         self.assertIn("企業への影響と実務対応", html)
         self.assertNotIn('id="item-summary-title"', html)
 
+
+    def test_missing_and_stale_locales_do_not_block_valid_english(self):
+        from unittest import mock
+        data = self.canonical[INITIAL_DOSSIERS[0]]
+        with mock.patch.object(el.ex, "load_explainers", return_value={data["dossier_id"]: data}), \
+             mock.patch.object(el, "load_locales", return_value={}):
+            errors, warnings = el.validate_translations()
+            self.assertEqual([], errors)
+            self.assertTrue(any("English-only" in w for w in warnings))
+        stale = copy.deepcopy(self.translations[data["dossier_id"]])
+        stale["english_file_sha"] = "0" * 40
+        with mock.patch.object(el.ex, "load_explainers", return_value={data["dossier_id"]: data}), \
+             mock.patch.object(el, "load_locales", return_value={data["dossier_id"]: stale}):
+            errors, warnings = el.validate_translations()
+            self.assertEqual([], errors)
+            self.assertEqual(2, len(warnings))
+
+    def test_malformed_current_locale_blocks_ci(self):
+        from unittest import mock
+        data = self.canonical[INITIAL_DOSSIERS[0]]
+        invalid = copy.deepcopy(self.translations[data["dossier_id"]])
+        invalid["translations"]["ja"]["history"] = []
+        with mock.patch.object(el.ex, "load_explainers", return_value={data["dossier_id"]: data}), \
+             mock.patch.object(el, "load_locales", return_value={data["dossier_id"]: invalid}):
+            errors, warnings = el.validate_translations()
+            self.assertEqual([], warnings)
+            self.assertTrue(any("history" in e for e in errors))
+
+    def test_missing_locale_fallback_is_explained_on_english_page(self):
+        data = self.canonical[INITIAL_DOSSIERS[0]]
+        item = {
+            "id": "raw-111222333", "title_en": "Official original",
+            "source_url": "https://www.mof.go.jp/example.html",
+            "summary_source": "claude", "published_at": "2026-09-01",
+        }
+        html = bpp.render_item_page(item, explainer=entry_for(data), available_locales=("ja",))
+        self.assertIn("explainer-locale-fallback", html)
+        self.assertIn("中文版详细解读正在更新", html)
+        self.assertIn("日本語の詳細解説は現在更新中", html)
+        self.assertIn('hreflang="ja"', html)
+        self.assertNotIn('hreflang="zh-Hans"', html)
+
     def test_default_english_remains_fully_rendered(self):
         data = self.canonical[INITIAL_DOSSIERS[0]]
         item = {
