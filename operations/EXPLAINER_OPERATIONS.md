@@ -106,7 +106,7 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 | `related_item_ids` | `data/raw_items.json` の ID |
 | `instruments` | 法令番号・正式名称（日本語）・英語の説明的名称。e-Gov 記録にある番号は名称が一致しないとエラー |
 | `watch_pages` | 定期再確認する公式ページ（`label`・`url`。*.go.jp、JPX、JSDA のみ） |
-| `quick_take` | `what_changed` / `who_is_affected` / `what_to_do_now` の3点を、各360字以内の簡潔な英語で必須記載（公開する解説）。事実・影響・今行う準備を区別し、未施行の義務を施行済みと書かない |
+| `data/explainer_locales/<dossier_id>.json` | 英文を基準とした日本語（`ja`）・簡体字中国語（`zh-Hans`）の全文翻訳。`english_verified_at` と `english_source_fingerprint` が英語版に一致し、各文章・箇条書き・年月日の項目数も一致しない限り、その言語ページを生成しない。出典URL・施行日の基準は英語版を継承する |\n| `quick_take` | `what_changed` / `who_is_affected` / `what_to_do_now` の3点を、各360字以内の簡潔な英語で必須記載（公開する解説）。事実・影響・今行う準備を区別し、未施行の義務を施行済みと書かない |
 | `background` / `history` / `business_impact` | `paragraphs`（平文）と `source_ids` |
 | `next_steps` | `confirmed`（出典つき・日付任意）、`expected`、`uncertainties`（必須） |
 | `key_dates` | 種別・日付・説明・出典。法的事実の日付は `primary` 出典が必須 |
@@ -205,3 +205,14 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
   1. ChatGPT が解説 JSON を返答として出力し、オーナー（または Work 等のエージェント）が GitHub の Web 画面で `data/explainers/` にファイルを追加して PR を作る。`Pull request checks` が検証する。
   2. リポジトリのコードを実行できる環境（Codex のクラウドタスク、Claude Code の定期タスクなど）で、コマンドの実行から PR 作成までを行う。
 - どの方式でも、公開の最終判断は PR のマージと公開基準（`PUBLISH_POLICY`）による。外部の作業者に `main` への直接 push 権限を与えない運用を推奨する。
+
+
+## 9. 日本語・中国語の詳細解説（2026-10-21追加）
+
+- 英語を唯一の事実上の正本とする。国会・所管省庁・e-Gov等の一次資料で英語版の事実を確認し、その英語版から日本語版と中国語（簡体字）版を作る。翻訳サービスへの追加の従量課金API呼び出しは行わない。
+- 翻訳ファイルは `data/explainer_locales/<dossier_id>.json`。構造：`{dossier_id,english_verified_at,english_source_fingerprint,translations:{ja:{...},"zh-Hans":{...}}}`。各言語には `title`, `quick_take`, `background[]`, `history[]`, `next_steps:{confirmed[],expected[],uncertainties[]}`, `business_impact[]`, `checklist[]`, `key_dates[]` を含める。配列の各要素は英語の同じ位置の要素を忠実に翻訳し、箇条書きは省略しない。
+- 翻訳では公布・成立・施行、未確定の政令指定日、努力義務と強制義務、金額・割合・日付・閾値、以上と超えるを英語版と照合する。省庁の公式名称・法律の日本語正式名称や一次資料の名称を勝手に改変しない。
+- `scripts/explainer_locales.py` は翻訳全項目の有無、英語版と同じ文章・リスト数、マークアップ禁止、`english_verified_at` と `english_source_fingerprint` の一致を判定する。検証不完全・古い翻訳は公開しない。英語版は従来の品質・公開基準に従い表示する。
+- `scripts/build_public_pages.py` が同一法改正の各記録ページに `/u/<id>/`（英語）、`/u/<id>/ja/`（日本語）、`/u/<id>/zh/`（簡体字中国語）を生成し、相互言語リンクと `hreflang` を付ける。該当言語の翻訳が未整備または英語版変更により失効した場合は、その言語ページを生成せず旧ページも削除する。日本語・中国語版の法改正解説本文は静的HTMLとして読める。法律の原記録・時系列は英語版に引き続き掲載する。
+- 毎日の解説作成タスクでは原則として**英・日・中国語の3言語が揃った段階でPRを出す**。英語版更新後は、変更部分だけを両言語に反映し、上記2つの英語版一致キーも更新する。翻訳が追いつかない場合はその理由を報告し、古い翻訳の公開を避ける。
+- 翻訳ファイル単体のPRのマージでも `publish-explainer-pages.yml` が静的ページを再生成する。GitHub Pagesの更新完了前に公開済みと報告しない。
