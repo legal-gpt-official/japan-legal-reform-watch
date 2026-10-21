@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "data/explainers/**"
+      - "data/explainer_locales/**"
       - "scripts/explainers.py"
       - "scripts/build_public_pages.py"
       - "docs/style.css"
@@ -49,6 +50,9 @@ jobs:
         env:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}
         run: python scripts/explainers.py validate
+
+      - name: Validate translations
+        run: python scripts/explainer_locales.py validate
 
       - name: Build public pages
         env:

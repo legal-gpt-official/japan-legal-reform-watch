@@ -101,6 +101,8 @@
   - `quick_take`：`what_changed`（主要な改正内容）、`who_is_affected`（具体的な対象企業）、`what_to_do_now`（今できる準備）。各360文字以内。背景・法令の状態・企業への影響と矛盾しないことを照合します。
   - `key_dates`：法的事実の日付は `primary` の出典を付けます。
   - `official_sources`：実際に読んだ資料だけを挙げます。`accessed_at` は閲覧日です。
+- **日本語・中国語への詳細解説の展開を同時に行います。** 英文JSONを一次資料で確定した後、`data/explainer_locales/<dossier_id>.json` に日本語（`ja`）と簡体字中国語（`zh-Hans`）の全文翻訳を保存します。タイトル、3点要約、背景の全段落、経緯の全段落、confirmed/expected/uncertaintiesの全項目、企業への影響の全段落、チェックリスト、key_datesのラベルを同じ順序・件数で翻訳します。英文の`verified_at`と`source_fingerprint`をそれぞれ`english_verified_at`、`english_source_fingerprint`、`english_file_sha`に複写します。日付・政令の施行状況・法律番号・閾値・義務と推奨を英語版と照合します。英語版に変更があれば翻訳を該当部分だけ修正し、古い翻訳を表示させないよう同期情報も更新します。翻訳に追加の従量課金AI APIを使いません。
+- 原則として英・日・中国語の3言語を用意し、翻訳の完全性を検証してからPRを作成します。翻訳資料を作れなかった場合は英語版のみの公開について理由を報告し、古い翻訳が表示されないことを確認します。
 - 英語は簡潔で中立的にします。誇張や宣伝的な表現を使いません。HTML・Markdown・コードフェンスは使いません。
 - `status` は、内容に自信があれば `published`、未完成なら `draft` にします。`review_state` は `ai_checked` にします（`human_reviewed` にはしません）。
 - `review_notes` に、確認した資料と、確認できなかった点を英語で簡潔に書きます。
@@ -108,7 +110,7 @@
 
 ### 7. 検証と GitHub への反映
 
-- (b) ができる場合：`python scripts/explainers.py validate` を実行し、`error:` が 0 件になるまで直します。
+- (b) ができる場合：`python scripts/explainers.py validate` と `python scripts/explainer_locales.py validate` を実行し、`error:` が 0 件になるまで直します。
 - (c) ができる場合：`explainers/<日付>` のようなブランチを作り、`data/explainers/` の変更だけをコミットして、`main` 宛ての PR を作成します。PR 本文に次を書きます。
   - 対象案件
   - 変更理由（キューの `reasons`）

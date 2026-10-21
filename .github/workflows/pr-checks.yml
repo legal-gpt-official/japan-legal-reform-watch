@@ -39,6 +39,9 @@ jobs:
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
 
+      - name: Validate all published explainer translations
+        run: python scripts/explainer_locales.py validate
+
       - name: Validate reform explainers
         env:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}

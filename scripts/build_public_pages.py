@@ -69,6 +69,7 @@ from alert_common import (  # noqa: E402
     write_text_atomic,
 )
 import explainers as ex  # noqa: E402
+import explainer_locales as el  # noqa: E402
 from law_timeline import Dossier  # noqa: E402
 from law_timeline import summarize as summarize_timelines  # noqa: E402
 
@@ -90,7 +91,7 @@ AREA_TOP_SOURCES = 6
 SUMMARY_MAX_CHARS = 320
 
 # Shared with docs/index.html; bump both together when style.css changes.
-STYLE_CACHE_BUSTER = "quicktake-20261021"
+STYLE_CACHE_BUSTER = "trilingual-20261021"
 ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
@@ -467,6 +468,8 @@ def render_page(
     parent: tuple[str, str] | None = None,
     indexable: bool = True,
     area_nav: bool = True,
+    lang: str = "en",
+    alternates: Mapping[str, str] | None = None,
 ) -> str:
     """A complete static page at ``SITE_URL + path`` (one or two directories deep).
 
@@ -475,13 +478,17 @@ def render_page(
     ``area_nav=False`` leaves out the list of every area and compacts the
     JSON-LD, which keeps the thousands of item pages small.
     """
-    prefix = "../../" if path.count("/") == 2 else "../"
+    prefix = "../" * len(path.rstrip("/").split("/"))
     url = SITE_URL + path
     crumbs = [("Japan Legal Reform Watch", SITE_URL)]
     if parent:
         crumbs.append((parent[0], SITE_URL + parent[1]))
     crumbs.append((breadcrumb, url))
     robots = "" if indexable else '\n  <meta name="robots" content="noindex, follow" />'
+    alternate_links = "".join(
+        f'\n  <link rel="alternate" hreflang="{escape(code)}" href="{escape(SITE_URL + target)}" />'
+        for code, target in (alternates or {}).items()
+    )
     parent_crumb = f' &rsaquo; <a href="{prefix}{parent[1]}">{escape(parent[0])}</a>' if parent else ""
     nav = (
         '    <nav class="area-nav" aria-labelledby="area-nav-title">\n'
@@ -500,7 +507,7 @@ def render_page(
             "name": heading,
             "description": description,
             "url": url,
-            "inLanguage": "en",
+            "inLanguage": lang,
             "isPartOf": {"@type": "WebSite", "name": "Japan Legal Reform Watch by LegalOS", "url": SITE_URL},
             "breadcrumb": {
                 "@type": "BreadcrumbList",
@@ -512,14 +519,21 @@ def render_page(
         },
         compact=not area_nav,
     )
+    lang_redirect = ""
+    if lang == "en" and alternates:
+        lang_redirect = (
+            '<script>(function(){var x=new URLSearchParams(location.search).get("lang");'
+            'if(x){var a=document.querySelector("link[rel=alternate][hreflang="+CSS.escape(x)+"]");'
+            'if(a)location.replace(a.href);}})();</script>'
+        )
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="{escape(lang)}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{escape(title)}</title>
   <meta name="description" content="{escape(description)}" />
-  <link rel="canonical" href="{escape(url)}" />{robots}
+  <link rel="canonical" href="{escape(url)}" />{alternate_links}{robots}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Japan Legal Reform Watch by LegalOS" />
   <meta property="og:title" content="{escape(heading)}" />
@@ -585,6 +599,8 @@ def render_page(
   </footer>
 
   <script src="{prefix}analytics.js?v={ANALYTICS_CACHE_BUSTER}"></script>
+  {lang_redirect}
+
 </body>
 </html>
 """
@@ -741,6 +757,55 @@ def render_timeline(item_id: str, dossier: Dossier, page_ids: set[str]) -> list[
     return parts
 
 
+EXPLAINER_UI = {
+    "en": {
+        "kicker": "Reform explainer", "glance": "At a glance",
+        "changed": "What Changed?", "affected": "Who Is Affected?",
+        "do": "What Should Businesses Do Now?", "instruments": "Instruments",
+        "current_stage": "Current stage of the reform", "instrument": "Instrument",
+        "verified": "Last verified", "background": "Background & Purpose",
+        "history": "Legislative & Regulatory History", "next": "What Happens Next",
+        "impact": "Business Impact & Practical Considerations",
+        "confirmed": "Confirmed next steps", "expected": "Expected procedural steps",
+        "uncertainties": "Outstanding uncertainties", "check": "Points to check",
+        "sources": "Official sources", "nav_history": "History", "nav_next": "What's Next",
+        "nav_impact": "Business Impact",
+        "official": "The original Japanese official sources are authoritative. AI-assisted translation; not legal advice.",
+        "record": "Official record (original metadata)",
+    },
+    "ja": {
+        "kicker": "法改正の詳しい解説", "glance": "要点を3分で確認",
+        "changed": "何が変わったか", "affected": "影響を受ける事業者",
+        "do": "企業が今すべきこと", "instruments": "関係法令",
+        "current_stage": "法改正の現在の段階", "instrument": "法令の種類",
+        "verified": "最終確認日", "background": "改正の背景と目的",
+        "history": "法案・法令制定の経緯", "next": "今後の予定と未確定事項",
+        "impact": "企業への影響と実務対応",
+        "confirmed": "確定している今後の予定", "expected": "通常想定される手続",
+        "uncertainties": "未確定事項", "check": "確認事項",
+        "sources": "公的な出典資料", "nav_history": "経緯", "nav_next": "今後の予定",
+        "nav_impact": "企業への影響",
+        "official": "本解説は公式資料に基づくAI支援による翻訳です。法的助言ではありません。日本語の原典が優先されます。",
+        "record": "元の法令公表情報",
+    },
+    "zh-Hans": {
+        "kicker": "日本法律修订详解", "glance": "三点速览",
+        "changed": "有哪些变化？", "affected": "哪些企业受到影响？",
+        "do": "企业现在应采取哪些行动？", "instruments": "相关法律法规",
+        "current_stage": "修订当前阶段", "instrument": "法律文件类型",
+        "verified": "最近核实日期", "background": "修订背景与目的",
+        "history": "立法与监管进程", "next": "下一步进展与不确定事项",
+        "impact": "对企业的影响及实务建议",
+        "confirmed": "已经确定的后续安排", "expected": "通常的程序步骤",
+        "uncertainties": "尚未确定的事项", "check": "核查清单",
+        "sources": "官方资料来源", "nav_history": "立法历程", "nav_next": "后续安排",
+        "nav_impact": "企业影响",
+        "official": "本解读为依据日本官方资料制作的AI辅助翻译，不构成法律意见。请以日文官方原文为准。",
+        "record": "官方原始记录",
+    },
+}
+
+
 EXPLAINER_NOTICE = (
     "This AI-assisted explainer was prepared from the official sources listed below and checked against the "
     "records on this dashboard. It is a plain-English monitoring aid, not legal advice, and it is not "
@@ -799,7 +864,7 @@ def render_page_status(status: Mapping[str, Any]) -> str:
     return "This page's record: " + ", ".join(pieces) + (" — " + "; ".join(facts) if facts else "") + "."
 
 
-def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | None = None) -> list[str]:
+def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | None = None, locale: str = "en") -> list[str]:
     """The explainer sections the review policy allows. Every value is escaped; links pass ``safe_http_url``.
 
     All sections are ``<details open>`` so the full text is in the static
@@ -808,6 +873,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     """
     visible = entry.visible
     data = entry.data
+    ui = EXPLAINER_UI.get(locale, EXPLAINER_UI['en'])
     sources = [s for s in data.get("official_sources") or [] if isinstance(s, Mapping)]
     numbers = {s.get("id"): n for n, s in enumerate(sources, start=1)}
     stage = ex.STAGE_LABELS.get(str(data.get("current_stage")), "")
@@ -816,18 +882,18 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     meta = " · ".join(
         part
         for part in (
-            f"Current stage of the reform: {stage}" if stage else "",
-            f"Instrument: {instrument}" if instrument else "",
-            f"Last verified: {verified}" if verified else "",
+            f"{ui['current_stage']}: {stage}" if stage else "",
+            f"{ui['instrument']}: {instrument}" if instrument else "",
+            f"{ui['verified']}: {verified}" if verified else "",
         )
         if part
     )
     parts = [
         '    <section class="area-page-section explainer" aria-labelledby="explainer-title">',
-        '      <p class="explainer-kicker">Reform explainer</p>',
+        f'      <p class="explainer-kicker">{escape(ui["kicker"])}</p>',
         f'      <h2 id="explainer-title">{escape(clean_text(data.get("title_en")))}</h2>',
         f'      <p class="explainer-meta">{escape(meta)}</p>',
-        f'      <p class="static-latest-note">{escape(EXPLAINER_NOTICE)}</p>',
+        f'      <p class="static-latest-note">{escape(EXPLAINER_NOTICE if locale == "en" else ui["official"])}</p>',
     ]
     named = [
         f"{clean_text(i.get('name_en'))} ({clean_text(i.get('name_ja'))}, {clean_text(i.get('number'))})"
@@ -836,7 +902,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     ]
     if named:
         parts.append(
-            f'      <p class="explainer-refs">Instruments (English names are unofficial descriptions): '
+            f'      <p class="explainer-refs">{escape(ui["instruments"])} (English names are unofficial descriptions): '
             f'{escape("; ".join(named))}</p>'
         )
     if page_status:
@@ -852,9 +918,9 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     if isinstance(quick_take, Mapping):
         cards = []
         for key, heading, category, ids in (
-            ("what_changed", "What Changed?", "facts", (data.get("background") or {}).get("source_ids")),
-            ("who_is_affected", "Who Is Affected?", "assessment", (data.get("business_impact") or {}).get("source_ids")),
-            ("what_to_do_now", "What Should Businesses Do Now?", "assessment",
+            ("what_changed", ui["changed"], "facts", (data.get("background") or {}).get("source_ids")),
+            ("who_is_affected", ui["affected"], "assessment", (data.get("business_impact") or {}).get("source_ids")),
+            ("what_to_do_now", ui["do"], "assessment",
              (data.get("business_impact") or {}).get("source_ids")),
         ):
             if category not in visible or not clean_text(quick_take.get(key)):
@@ -867,15 +933,15 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
             )
         if cards:
             parts.append('      <section class="explainer-quick" aria-label="At a glance">')
-            parts.append('        <h3 class="explainer-quick-title">At a glance</h3>')
+            parts.append(f'        <h3 class="explainer-quick-title">{escape(ui["glance"])}</h3>')
             parts += cards
             parts.append("      </section>")
     show_next = "outlook" in visible or "procedure" in visible
-    nav = [("explainer-background", "Background"), ("explainer-history", "History")]
-    nav += [("explainer-next", "What&#39;s Next")] if show_next else []
-    nav += [("explainer-impact", "Business Impact")] if "assessment" in visible else []
+    nav = [("explainer-background", ui["background"]), ("explainer-history", ui["nav_history"])]
+    nav += [("explainer-next", ui["nav_next"])] if show_next else []
+    nav += [("explainer-impact", ui["nav_impact"])] if "assessment" in visible else []
     parts.append('      <nav class="explainer-nav" aria-label="Explainer sections">')
-    parts += [f'        <a href="#{anchor}">{label}</a>' for anchor, label in nav]
+    parts += [f'        <a href="#{anchor}">{escape(label)}</a>' for anchor, label in nav]
     parts.append("      </nav>")
 
     def section(anchor: str, heading: str, body: list[str], refs: str = "") -> None:
@@ -889,7 +955,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     background = data.get("background") or {}
     section(
         "explainer-background",
-        "Background &amp; Purpose",
+        escape(ui["background"]),
         _paragraphs(background.get("paragraphs")),
         _source_refs(background.get("source_ids"), numbers),
     )
@@ -914,7 +980,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     )
     section(
         "explainer-history",
-        "Legislative &amp; Regulatory History",
+        escape(ui["history"]),
         body,
         _source_refs(history.get("source_ids"), numbers),
     )
@@ -922,7 +988,7 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     steps = data.get("next_steps") or {}
     body = []
     if "outlook" in visible:
-        body.append("        <h4>Confirmed next steps</h4>")
+        body.append(f'        <h4>{escape(ui["confirmed"])}</h4>')
     confirmed = [s for s in steps.get("confirmed") or [] if isinstance(s, Mapping) and clean_text(s.get("text"))]
     if "outlook" in visible and confirmed:
         body.append('        <ul class="explainer-list">')
@@ -935,32 +1001,32 @@ def render_explainer(entry: "ex.Published", page_status: Mapping[str, Any] | Non
     elif "outlook" in visible:
         body.append('        <p class="explainer-text">No further step has been confirmed by an official source.</p>')
     if steps.get("expected") and "procedure" in visible:
-        body.append("        <h4>Expected procedural steps</h4>")
+        body.append(f'        <h4>{escape(ui["expected"])}</h4>')
         body.append(
             '        <p class="explainer-refs">The usual procedure for this kind of instrument; not a '
             "forecast for this reform.</p>"
         )
         body += _bullets(steps.get("expected"))
     if "outlook" in visible:
-        body.append("        <h4>Outstanding uncertainties</h4>")
+        body.append(f'        <h4>{escape(ui["uncertainties"])}</h4>')
         body += _bullets(steps.get("uncertainties"))
     if show_next:
-        section("explainer-next", "What Happens Next", body)
+        section("explainer-next", escape(ui["next"]), body)
 
     if "assessment" in visible:
         impact = data.get("business_impact") or {}
         body = _paragraphs(impact.get("paragraphs"))
         if impact.get("checklist"):
-            body.append("        <h4>Points to check</h4>")
+            body.append(f'        <h4>{escape(ui["check"])}</h4>')
             body += _bullets(impact.get("checklist"))
         section(
             "explainer-impact",
-            "Business Impact &amp; Practical Considerations",
+            escape(ui["impact"]),
             body,
             _source_refs(impact.get("source_ids"), numbers),
         )
 
-    parts.append('      <h3 class="explainer-sources-title">Official sources</h3>')
+    parts.append(f'      <h3 class="explainer-sources-title">{escape(ui["sources"])}</h3>')
     parts.append('      <ol class="explainer-sources">')
     for n, source in enumerate(sources, start=1):
         title = escape(clean_text(source.get("title")))
@@ -981,6 +1047,8 @@ def render_item_page(
     page_ids: set[str] | None = None,
     explainer: "ex.Published | None" = None,
     page_status: Mapping[str, Any] | None = None,
+    locale: str = "en",
+    available_locales: Sequence[str] = (),
 ) -> str:
     """The standalone page for one published item.
 
@@ -991,8 +1059,13 @@ def render_item_page(
     field that changes without the item changing (``last_checked``, the
     build date) is shown, so a quiet day rewrites no page.
     """
-    title_en = clean_text(item.get("title_en"))
+    translated = locale != "en" and explainer is not None
+    title_en = clean_text(explainer.data.get("title_en") if translated else item.get("title_en"))
     title_ja = clean_text(item.get("title_ja"))
+    path = item_page_path(item) + (el.URL_SLUGS[locale] + "/" if translated else "")
+    prefix = "../" * len(path.rstrip("/").split("/"))
+    alternates = {"en": item_page_path(item)}
+    alternates.update({k: item_page_path(item) + el.URL_SLUGS[k] + "/" for k in available_locales})
     source = source_display_name(item.get("source_name"))
     area = clean_text(item.get("area"))
     stage = clean_text(item.get("stage"))
@@ -1016,7 +1089,10 @@ def render_item_page(
     if first_seen:
         facts.append(("First detected by this dashboard", first_seen.isoformat()))
 
-    if ai:
+    if translated:
+        description = shorten(clean_text((explainer.data.get("quick_take") or {}).get("what_changed")),
+                              ITEM_DESCRIPTION_MAX_CHARS)
+    elif ai:
         description = shorten(clean_text(item.get("summary_en")), ITEM_DESCRIPTION_MAX_CHARS)
     elif explainer is not None:
         background = (explainer.data.get("background") or {}).get("paragraphs") or [""]
@@ -1028,7 +1104,16 @@ def render_item_page(
         )
 
     parts = []
-    if title_ja:
+    if explainer is not None:
+        labels = {"en": "English", "ja": "日本語", "zh-Hans": "简体中文"}
+        switch_links = []
+        for code in ("en", *available_locales):
+            dest = item_page_path(item) + (el.URL_SLUGS[code] + "/" if code != "en" else "")
+            marker = ' aria-current="page"' if code == locale else ""
+            switch_links.append(f'<a href="{prefix}{dest}" lang="{code}"{marker}>{labels[code]}</a>')
+        parts.append('<nav class="explainer-langs" aria-label="Language / 言語 / 语言">' +
+                     " ".join(switch_links) + "</nav>")
+    if title_ja and locale != "ja":
         parts.append(f'    <p class="area-page-intro" lang="ja">{escape(title_ja)}</p>')
     facts_text = " · ".join(f"{label}: {value}" for label, value in facts)
     parts.append(f'    <p class="area-page-stats">{escape(facts_text)}</p>')
@@ -1041,14 +1126,15 @@ def render_item_page(
         )
     if area_page:
         parts.append(
-            f'      <a class="area-page-action" href="../../{area_page_path(area_page)}">'
+            f'      <a class="area-page-action" href="{prefix}{area_page_path(area_page)}">'
             f"More {escape(area_label)} updates</a>"
         )
-    parts.append('      <a class="area-page-action" href="../../">Search all updates in the dashboard</a>')
+    parts.append(f'      <a class="area-page-action" href="{prefix}?lang={escape(locale)}">Search all updates in the dashboard</a>')
     parts.append("    </p>")
 
-    parts.append('    <section class="area-page-section" aria-labelledby="item-summary-title">')
-    if ai:
+    if not translated:
+        parts.append('    <section class="area-page-section" aria-labelledby="item-summary-title">')
+    if ai and not translated:
         parts += [
             '      <h2 id="item-summary-title">AI summary</h2>',
             '      <p class="static-latest-note">Generated by AI from the Japanese source metadata. It is an '
@@ -1065,20 +1151,21 @@ def render_item_page(
             if text:
                 parts.append(f"      <h3>{heading}</h3>")
                 parts.append(f'      <p class="area-page-intro">{escape(text)}</p>')
-    else:
+    elif not translated:
         parts += [
             '      <h2 id="item-summary-title">Summary</h2>',
             "      <p>An English AI summary is not yet available for this update. The English title is a "
             "rule-based label; please read the original Japanese source.</p>",
         ]
-    parts.append("    </section>")
+    if not translated:
+        parts.append("    </section>")
     if explainer is not None:
-        parts += render_explainer(explainer, page_status)
-    if dossier is not None:
+        parts += render_explainer(explainer, page_status if locale == "en" else None, locale)
+    if dossier is not None and locale == "en":
         parts += render_timeline(item_page_id(item), dossier, page_ids or set())
 
     return render_page(
-        path=item_page_path(item),
+        path=path,
         title=f"{title_en} — Japan Legal Reform Watch",
         description=description,
         heading=title_en,
@@ -1089,6 +1176,8 @@ def render_item_page(
         parent=(area_label, area_page_path(area_page)) if area_page else None,
         indexable=indexable,
         area_nav=False,
+        lang=locale,
+        alternates=alternates if explainer is not None else None,
     )
 
 
@@ -1132,6 +1221,7 @@ def build(
     reports: dict[str, ex.Report] = {}
     if index is not None and explainers_dir is not None:
         explained, reports = ex.published_by_item(ex.load_explainers(explainers_dir), index, today)
+    locale_bundles = el.load_locales(explainers_dir.parent / "explainer_locales") if explainers_dir else {}
     updated = latest_checked(items)
 
     html = index_path.read_text(encoding="utf-8")
@@ -1154,19 +1244,43 @@ def build(
     item_pages_changed = 0
     timeline_pages = 0
     explainer_pages = 0
+    localized_pages = 0
     for item in with_pages:
         path = item_page_path(item)
         dossier = dossiers.get(item_page_id(item))
         explainer = explained.get(item_page_id(item))
         timeline_pages += dossier is not None
         explainer_pages += explainer is not None
+        bundle = locale_bundles.get(explainer.dossier_id, {}) if explainer else {}
+        local_entries = {
+            lang: translated for lang in el.LOCALES
+            if explainer is not None
+            for translated in [el.localized_entry(explainer, bundle, lang)]
+            if translated is not None
+        }
         item_pages_changed += write_if_changed(
             site_dir / path / "index.html",
             render_item_page(
                 item, dossier, page_ids, explainer,
                 index.page_status(item_page_id(item)) if explainer is not None and index else None,
+                available_locales=tuple(local_entries),
             ),
         )
+        for lang in el.LOCALES:
+            if lang not in local_entries:
+                stale = site_dir / path / el.URL_SLUGS[lang]
+                if stale.is_dir() and sorted(p.name for p in stale.iterdir()) == ["index.html"]:
+                    (stale / "index.html").unlink()
+                    stale.rmdir()
+        for lang, translated in local_entries.items():
+            local_path = path + el.URL_SLUGS[lang] + "/"
+            item_pages_changed += write_if_changed(
+                site_dir / local_path / "index.html",
+                render_item_page(item, dossier, page_ids, translated, None,
+                                 locale=lang, available_locales=tuple(local_entries)),
+            )
+            localized_pages += 1
+            sitemap_entries.append((SITE_URL + local_path, item_lastmod(item, dossier, explainer)))
         if item_is_indexable(item, explainer):
             sitemap_entries.append((SITE_URL + path, item_lastmod(item, dossier, explainer)))
     removed = prune_item_pages(site_dir / ITEM_DIR_NAME, {item_page_id(item) for item in with_pages})
@@ -1182,6 +1296,7 @@ def build(
         "item_pages_removed": removed,
         "item_pages_with_timeline": timeline_pages,
         "item_pages_with_explainer": explainer_pages,
+        "localized_explainer_pages": localized_pages,
         "explainers": {
             "files": len(reports),
             "published": len({entry.dossier_id for entry in explained.values()}),
@@ -1206,9 +1321,21 @@ def prune_item_pages(item_dir: Path, keep: set[str]) -> int:
         if not child.is_dir() or child.name in keep or not ITEM_ID_PATTERN.match(child.name):
             continue
         contents = list(child.iterdir())
-        if len(contents) != 1 or contents[0].name != "index.html" or not contents[0].is_file():
+        allowed = {"index.html", *el.URL_SLUGS.values()}
+        if not contents or any(p.name not in allowed for p in contents):
             continue
-        contents[0].unlink()
+        locales = [p for p in contents if p.is_dir()]
+        if any(p.name not in el.URL_SLUGS.values()
+               or sorted(q.name for q in p.iterdir()) != ["index.html"]
+               or not (p / "index.html").is_file() for p in locales):
+            continue
+        files = [p for p in contents if p.is_file()]
+        if any(p.name != "index.html" for p in files) or len(files) != 1:
+            continue
+        for p in locales:
+            (p / "index.html").unlink()
+            p.rmdir()
+        files[0].unlink()
         child.rmdir()
         removed += 1
     return removed
