@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "dossier_id": "jogmec-2026-october-bill",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "October 2026 JOGMEC amendment bill: oil transport investment and carbon capture support",
+  "quick_take": {
+    "what_changed": "The Cabinet's bill would add oil-transport investment and grants for carbon dioxide capture, transport and storage to JOGMEC's statutory activities.",
+    "who_is_affected": "Energy resource developers, oil transport projects, and carbon capture and storage sponsors could be affected if the bill becomes law.",
+    "what_to_do_now": "Monitor the bill and any changes in the Diet; do not treat proposed JOGMEC support as an available programme yet."
+  },
+  "instrument_type": "statute",
+  "current_stage": "bill_submitted",
+  "related_item_ids": [
+    "raw-5a08ed933c98e331"
+  ],
+  "instruments": [
+    {
+      "number": "平成十四年法律第九十四号",
+      "name_ja": "独立行政法人エネルギー・金属鉱物資源機構法",
+      "name_en": "Japan Organization for Metals and Energy Security Act (the existing Act proposed to be amended)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House of Representatives: JOGMEC amendment bill",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm"
+    },
+    {
+      "label": "Cabinet Legislation Bureau: submitted bill",
+      "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367"
+    },
+    {
+      "label": "METI: bills and legislative proposals",
+      "url": "https://www.meti.go.jp/intro/law/index.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Cabinet Legislation Bureau explains that international conditions have increased the importance of secure energy and metal mineral supplies. The government proposes to strengthen the support available for Japanese companies to secure those resources.",
+      "The bill would expand JOGMEC's functions to include investment relating to oil transportation and grants for funding carbon dioxide capture, transport and storage. These are proposed public support functions; they do not themselves impose new obligations on private project sponsors."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet approved and submitted the proposal on 13 October 2026 as Cabinet Bill No. 13 in the 222nd Diet. The House of Representatives' official record does not show enactment or promulgation as of this verification."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [],
+    "expected": [
+      "The Diet may examine and amend the bill before voting. If both Houses pass it, an enacted Act is promulgated and enters into force according to its supplementary provisions or an implementing order. This is not a forecast of passage."
+    ],
+    "uncertainties": [
+      "The bill has no enacted amendment Act number or confirmed commencement date.",
+      "Funding eligibility, grant conditions and implementation budgets are not established by the materials reviewed."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Energy transport and carbon capture project sponsors may assess whether the proposed functions would create a future funding opportunity. A submitted bill alone provides no right to apply for those proposed new functions."
+    ],
+    "checklist": [
+      "Check the official Diet status and amendments to the bill.",
+      "Map any planned oil transportation or carbon capture, transport and storage investment to the proposed functions.",
+      "Wait for enacted legislation and implementing rules before assuming that new JOGMEC support is available."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-10-13",
+      "label": "Cabinet Bill No. 13 submitted to the 222nd Diet",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Cabinet Legislation Bureau",
+      "title": "JOGMEC amendment bill, Cabinet bill 13, 222nd Diet",
+      "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367",
+      "accessed_at": "2026-10-22"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Official legislative status of Cabinet bill 13 in the 222nd Diet",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm",
+      "accessed_at": "2026-10-22"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Existing JOGMEC Act (Act No. 94 of 2002)",
+      "url": "https://laws.e-gov.go.jp/law/414AC0000000094",
+      "accessed_at": "2026-10-22"
+    }
+  ],
+  "verified_at": "2026-10-22",
+  "source_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
+  "author": "chatgpt",
+  "review_notes": "Checked Cabinet Legislation Bureau and House of Representatives primary source pages on 2026-10-22; e-Gov Law Search link was accessible but its body could not be retrieved in this execution. The instruments entry identifies the existing JOGMEC Act, not an invented 2026 amendment number."
+}
