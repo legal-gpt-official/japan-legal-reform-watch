@@ -37,34 +37,6 @@
       "first_queued_on": "2026-10-20"
     },
     {
-      "queue_id": "instrument:令和八年法律第三十八号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 35,
-      "reasons": [
-        "diet_bill",
-        "statute_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 6,
-      "item_ids": [
-        "raw-2d528613b01a6ec4",
-        "raw-4aaf20d116d385fb",
-        "raw-5a70192e2746a812",
-        "raw-a1efd2eaf87c47f4",
-        "raw-be568fb3b62e8695",
-        "raw-cfe05f52392d52d7"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "経済施策を一体的に講ずることによる安全保障の確保の推進に関する法律及び株式会社国際協力銀行法の一部を改正する法律",
-      "stage": "In Force",
-      "newest_record_first_seen": "2026-09-30",
-      "suggested_seed_item_id": "raw-2d528613b01a6ec4",
-      "first_queued_on": "2026-10-20"
-    },
-    {
       "queue_id": "instrument:令和八年法律第五十八号",
       "kind": "new",
       "explainer_id": null,
@@ -117,30 +89,6 @@
       "first_queued_on": "2026-10-20"
     },
     {
-      "queue_id": "instrument:令和八年法律第四十四号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 35,
-      "reasons": [
-        "diet_bill",
-        "statute_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 2,
-      "item_ids": [
-        "raw-19673549af343a4f",
-        "raw-209f659b2a8bb31a"
-      ],
-      "areas": [
-        "Energy / Environment"
-      ],
-      "title_ja": "ポリ塩化ビフェニル廃棄物の適正な処理の推進に関する特別措置法及び中間貯蔵・環境安全事業株式会社法の一部を改正する法律案",
-      "stage": "Enacted",
-      "newest_record_first_seen": "2026-08-06",
-      "suggested_seed_item_id": "raw-19673549af343a4f",
-      "first_queued_on": "2026-10-20"
-    },
-    {
       "queue_id": "bill:raw-4b49d092c6530183",
       "kind": "new",
       "explainer_id": null,
@@ -180,27 +128,6 @@
       "stage": "Government Announcement",
       "newest_record_first_seen": "2026-08-06",
       "suggested_seed_item_id": "raw-528dc420ddae884d",
-      "first_queued_on": "2026-10-20"
-    },
-    {
-      "queue_id": "bill:raw-5a08ed933c98e331",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 25,
-      "reasons": [
-        "diet_bill"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-5a08ed933c98e331"
-      ],
-      "areas": [
-        "Energy / Environment"
-      ],
-      "title_ja": "独立行政法人エネルギー・金属鉱物資源機構法の一部を改正する法律案",
-      "stage": "Bill Submitted",
-      "newest_record_first_seen": "2026-10-15",
-      "suggested_seed_item_id": "raw-5a08ed933c98e331",
       "first_queued_on": "2026-10-20"
     },
     {
@@ -569,6 +496,72 @@
       "newest_record_first_seen": "2026-10-22",
       "suggested_seed_item_id": "raw-08b316bd494b648e",
       "first_queued_on": "2026-10-22"
+    },
+    {
+      "queue_id": "draft:raw-bbe3073b46935614",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-bbe3073b46935614"
+      ],
+      "areas": [
+        "Labor / Employment"
+      ],
+      "title_ja": "「労働安全衛生法施行令の一部を改正する政令案」及び「労働安全衛生規則の一部を改正する省令案」に関する御意見の募集について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-10-22",
+      "suggested_seed_item_id": "raw-bbe3073b46935614",
+      "first_queued_on": "2026-10-23"
+    },
+    {
+      "queue_id": "draft:raw-e45e78485c5b4613",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-e45e78485c5b4613"
+      ],
+      "areas": [
+        "Economic Security / FDI"
+      ],
+      "title_ja": "外国為替令及び輸出貿易管理令の一部を改正する政令案等に対する意見募集について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-10-20",
+      "suggested_seed_item_id": "raw-e45e78485c5b4613",
+      "first_queued_on": "2026-10-23"
+    },
+    {
+      "queue_id": "instrument:令和八年政令第三百二十一号",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft",
+        "instrument_promulgated",
+        "linked_across_sources"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-07760b27d11c3cae",
+        "raw-265d544815f0e65e"
+      ],
+      "areas": [
+        "Energy / Environment"
+      ],
+      "title_ja": "エネルギーの使用の合理化及び非化石エネルギーへの転換等に関する法律施行令の一部を改正する政令案に対する意見公募要領",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-10-23",
+      "suggested_seed_item_id": "raw-07760b27d11c3cae",
+      "first_queued_on": "2026-10-23"
     }
   ]
 }

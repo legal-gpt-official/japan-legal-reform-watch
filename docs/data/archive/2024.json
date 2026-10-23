@@ -632,6 +632,12 @@
     "ai_notes": "Based on the title and structured listing information, not the operative provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:18Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者等に対する補償金等の支給等に関する法律の施行に伴う関係政令の整備及び経過措置に関する政令（令和六年政令第三百八十五号）は、2024年12月18日に公布され、2025年1月17日に施行されました。提供情報では、改正対象として補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が示されていますが、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "改正対象の施行令に関係する業務では、適用関係や経過措置の確認が必要となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索等で、改正条文、施行日及び経過措置を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-21T23:57:19Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "关于旧《优生保护法》相关补偿的政令：相关修订",
@@ -639,13 +645,7 @@
         "business_impact": "受该补助金预算施行令涵盖的补助金领取者可能受到此次配套修订的影响，而不仅限于标题中提及的补偿领取者；元数据未说明变更的条款或实际影响。",
         "recommended_action": "查阅日文官方来源或可明确哪些补助金相关条款得到修订，以及过渡措施如何适用。"
       }
-    },
-    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者等に対する補償金等の支給等に関する法律の施行に伴う関係政令の整備及び経過措置に関する政令（令和六年政令第三百八十五号）は、2024年12月18日に公布され、2025年1月17日に施行されました。提供情報では、改正対象として補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が示されていますが、具体的な改正内容は記載されていません。",
-    "business_impact_ja": "改正対象の施行令に関係する業務では、適用関係や経過措置の確認が必要となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索等で、改正条文、施行日及び経過措置を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-21T23:57:19Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-5495b6c5bb94238a",
@@ -720,6 +720,42 @@
     }
   },
   {
+    "id": "raw-0194125d19826ca1",
+    "title_en": "Cabinet Order amending the Enforcement Order of the Pharmaceuticals and Medical Devices Agency Act",
+    "title_ja": "独立行政法人医薬品医療機器総合機構法施行令の一部を改正する政令",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "In Force",
+    "impact_level": "Medium",
+    "summary_en": "Cabinet Order No. 115 of 2024 amends the Enforcement Order of the Act on the Pharmaceuticals and Medical Devices Agency (Cabinet Order No. 83 of 2004). The stated promulgation date is 2024-03-29, and the stated effective date is 2024-04-01.",
+    "business_impact_en": "The amendment may affect the Pharmaceuticals and Medical Devices Agency because it changes the enforcement order for the Act governing the agency; the supplied information does not identify specific operational changes or affected business categories.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended provisions and any implications for the agency's operations.",
+    "source_name": "e-Gov Law Search (法令更新一覧)",
+    "source_url": "https://elaws.e-gov.go.jp/document?lawid=416CO0000000083_20240401_506CO0000000115",
+    "published_at": "2024-03-29",
+    "last_checked": "2026-10-22",
+    "relevance_score": 25.0,
+    "first_seen_at": "2026-10-23",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the amended provisions were not supplied, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-22T23:55:18Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "独立行政法人医薬品医療機器総合機構法施行令（平成十六年政令第八十三号）の一部を改正する政令（令和六年政令第百十五号）は、2024年3月29日に公布され、2024年4月1日に施行されました。提供された更新情報には、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "同施行令に関係する事業では、改正内容によって業務への影響が生じる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:57:11Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "修订《独立行政法人医药品医疗器械综合机构法施行令》的政令",
+        "summary": "2024年第115号政令修订了《独立行政法人医药品医疗器械综合机构法施行令》（2004年第83号政令）。所载公布日期为2024-03-29，所载生效日期为2024-04-01。",
+        "business_impact": "该修订可能影响医药品医疗器械综合机构，因为其修改了规范该机构的法律的施行令；所提供的信息未指明具体的运营变更或受影响的业务类别。",
+        "recommended_action": "可考虑查阅日文官方来源，以明确修订条款及其对该机构运营可能产生的影响。"
+      }
+    }
+  },
+  {
     "id": "raw-130005618e7b2c51",
     "title_en": "Cabinet Office Ordinance amending insurance business regulations",
     "title_ja": "金融商品取引法等の一部を改正する法律の一部の施行に伴う金融庁関係内閣府令の整理に関する内閣府令",
@@ -740,6 +776,12 @@
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:11:09Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「金融商品取引法等の一部を改正する法律の一部の施行に伴う金融庁関係内閣府令の整理に関する内閣府令」（令和六年内閣府令第七号）は、2024年1月31日に公布され、2024年2月1日に施行されました。提供情報では、改正対象として保険業法施行規則（平成八年大蔵省令第五号）が示されていますが、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "保険業法施行規則に基づく業務や社内規程に影響する可能性がありますが、具体的な影響範囲は提供情報のみでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-21T23:57:30Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "关于配合《金融商品交易法等部分修订法》部分施行整理金融厅相关内阁府令的内阁府令",
@@ -747,13 +789,7 @@
         "business_impact": "受《保险业法施行规则》规管的保险公司可能受到此次修订的影响；所提供的信息未指明具体条款或业务操作变化。",
         "recommended_action": "查阅日文官方来源将有助于确定哪些保险业条款发生了变化，以及是否适用过渡条款。"
       }
-    },
-    "summary_ja": "「金融商品取引法等の一部を改正する法律の一部の施行に伴う金融庁関係内閣府令の整理に関する内閣府令」（令和六年内閣府令第七号）は、2024年1月31日に公布され、2024年2月1日に施行されました。提供情報では、改正対象として保険業法施行規則（平成八年大蔵省令第五号）が示されていますが、具体的な改正内容は記載されていません。",
-    "business_impact_ja": "保険業法施行規則に基づく業務や社内規程に影響する可能性がありますが、具体的な影響範囲は提供情報のみでは判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-21T23:57:30Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-5c0a85a5dc190a9f",
@@ -963,7 +999,13 @@
         "business_impact": "银行可能受到标题所述修订的影响，但此条目具体涉及受《保险业法施行规则》规管的保险公司。无法根据所提供的元数据确定具体业务影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确经修订的保险条款、其适用范围以及与所述生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "summary_ja": "銀行法施行規則等の一部を改正する内閣府令（令和六年内閣府令第百四号）は、2024年11月29日に公布され、施行日は2024年11月30日と記載されています。2026年10月19日の更新一覧では、対象法令として保険業法施行規則（平成八年大蔵省令第五号）が示されています。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲の判断には条文の確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正条文、施行日および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:27Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-58d7dc24c92748a3",
@@ -1173,7 +1215,13 @@
         "business_impact": "银行可能受到标题所述修订的影响，而具体列明的修订对象涉及《保险业法》下的保险公司。元数据未指明所修改的条款及其对业务运营的影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确经修订的保险相关条款、其适用范围及任何过渡安排。"
       }
-    }
+    },
+    "summary_ja": "e-Gov法令更新一覧の情報によると、「銀行法施行規則等の一部を改正する内閣府令」（令和六年内閣府令第五十七号）は2024年5月17日に公布され、同年5月18日に施行されました。対象法令として「保険業法施行規則」（平成八年大蔵省令第五号）が記載されていますが、具体的な改正内容は提供情報には示されていません。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、具体的な影響範囲は改正条文の確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:27Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-fe529c60d87f9359",

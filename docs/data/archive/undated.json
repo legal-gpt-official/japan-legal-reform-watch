@@ -380,6 +380,12 @@
     "ai_notes": "Based on the title and structured listing information, not the bill text; the English is unofficial and should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:11:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「特定タンカーに係る特定賠償義務履行担保契約等に関する特別措置法の一部を改正する法律案」は、第222回国会に提出された閣法第17号です。提供情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "特定タンカーに係る特定賠償義務履行担保契約等に関わる事業に影響する可能性がありますが、提供情報だけでは具体的な改正内容や影響範囲は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、衆議院の日本語公式議案情報で法案本文と最新の審議経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-21T23:58:25Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：修订《特定油轮特定赔偿义务履行担保合同等特别措施法》",
@@ -387,13 +393,7 @@
         "business_impact": "特定油轮运营商可能受到影响，因为该法案涉及担保这些油轮特定赔偿义务履行的合同；元数据未说明拟议修订内容。",
         "recommended_action": "建议查阅官方法案文本和审议记录，以核查拟议修订内容、其适用范围及任何拟议生效日期条款。"
       }
-    },
-    "summary_ja": "「特定タンカーに係る特定賠償義務履行担保契約等に関する特別措置法の一部を改正する法律案」は、第222回国会に提出された閣法第17号です。提供情報では、衆議院で審議中とされています。",
-    "business_impact_ja": "特定タンカーに係る特定賠償義務履行担保契約等に関わる事業に影響する可能性がありますが、提供情報だけでは具体的な改正内容や影響範囲は確認できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として参照し、衆議院の日本語公式議案情報で法案本文と最新の審議経過を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-21T23:58:25Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-c58dade62c4a08eb",
@@ -3843,7 +3843,13 @@
         "business_impact": "警察官可能受到影响，因为该法案涉及规范其职务执行的法律；元数据未列明拟议修改内容或任何具体业务影响。",
         "recommended_action": "查阅官方法案文本和审议记录将有助于明确警察职务的拟议修改内容及该法案的立法进展。"
       }
-    }
+    },
+    "summary_ja": "「警察官職務執行法の一部を改正する法律案」は、第222回国会に提出された閣法第15号です。提供された議案情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "改正内容によっては事業活動に関係する可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として位置付け、衆議院の日本語公式議案情報で法案本文や最新の審議状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:58:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-761dc16694bf720c",
