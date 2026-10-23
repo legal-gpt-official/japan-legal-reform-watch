@@ -3836,6 +3836,12 @@
     "ai_notes": "Based on the title and structured listing information, not the bill text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:07Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「警察官職務執行法の一部を改正する法律案」は、第222回国会に提出された閣法第15号です。提供された議案情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "改正内容によっては事業活動に関係する可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として位置付け、衆議院の日本語公式議案情報で法案本文や最新の審議状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:58:31Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "法案提交：《警察官职务执行法》修正案",
@@ -3843,13 +3849,7 @@
         "business_impact": "警察官可能受到影响，因为该法案涉及规范其职务执行的法律；元数据未列明拟议修改内容或任何具体业务影响。",
         "recommended_action": "查阅官方法案文本和审议记录将有助于明确警察职务的拟议修改内容及该法案的立法进展。"
       }
-    },
-    "summary_ja": "「警察官職務執行法の一部を改正する法律案」は、第222回国会に提出された閣法第15号です。提供された議案情報では、衆議院で審議中とされています。",
-    "business_impact_ja": "改正内容によっては事業活動に関係する可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として位置付け、衆議院の日本語公式議案情報で法案本文や最新の審議状況を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:58:31Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-761dc16694bf720c",
@@ -5679,7 +5679,13 @@
         "business_impact": "地方议会议员及地方政府首长候选人可能受到拟议选举日期措施的影响，但具体时间及范围尚未提供。",
         "recommended_action": "建议考虑查阅官方法案文本及审议记录，了解拟议选举日期、涵盖的选举及立法状态。"
       }
-    }
+    },
+    "summary_ja": "「地方公共団体の議会の議員及び長の選挙期日等の臨時特例に関する法律案」は、第222回国会提出の閣法第16号です。提供情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "地方公共団体の選挙期日等に関係する業務では、法案の内容や審議の進展が確認事項となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、衆議院の日本語公式情報で法案本文と最新の審議状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-511cb432c94d219b",
@@ -5709,7 +5715,13 @@
         "business_impact": "该提案可能与税负增幅超过工资涨幅的所得税纳税人有关，但元数据未说明拟议措施，并记载该法律案已撤回。",
         "recommended_action": "查阅官方法律案文本及立法历程，有助于厘清拟议的所得税措施及所记载的撤回情况。"
       }
-    }
+    },
+    "summary_ja": "衆議院の議案情報には、「賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案」が、第221回提出の衆法第30号として記載されています。審議状況は「撤回」とされています。",
+    "business_impact_ja": "所得税に関する検討動向として参考になる可能性がありますが、撤回された本法案の情報のみから、事業上の税負担や実務への変更は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、衆議院の日本語公式議案情報で、法案の内容と撤回の経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-66ad06863627386b",
@@ -5738,6 +5750,48 @@
         "summary": "众议院议案目录列有一项关于减轻就业人员税收及社会保险费负担措施的法案。该法案列为第222届国会众议院第1号法案，由众议院审议中。",
         "business_impact": "就业人员可能受到有关其税收及社会保险费负担的拟议措施影响，但该目录未说明这些措施或其适用范围。",
         "recommended_action": "查阅日文官方法案文本将有助于明确拟议措施、适用资格及立法进展。"
+      }
+    },
+    "summary_ja": "「就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案」は、第222回国会に提出された衆法第1号です。提供情報では衆議院で審議中とされており、具体的な措置の内容や成立・施行については示されていません。",
+    "business_impact_ja": "法案の内容や今後の審議結果によっては、就業者の税・社会保険料負担に関わる企業実務に影響する可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、衆議院の日本語公式議案情報で法案本文と最新の審議経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  {
+    "id": "raw-767cc2bab97288a9",
+    "title_en": "Withdrawn bill on individual inhabitant tax burdens exceeding wage growth",
+    "title_ja": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
+    "area": "Labor / Employment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The bill concerned measures addressing increases in individual inhabitant tax burdens exceeding wage growth and related issues. It was listed as House of Representatives Bill No. 31 in the 221st Diet session, with its deliberation status recorded as withdrawn.",
+    "business_impact_en": "The subject may be relevant to individual inhabitant tax payers because it concerns tax burden increases relative to wage growth; the listing records a withdrawn proposal, not an enacted change.",
+    "recommended_action_en": "Reviewing the official bill text and legislative history may clarify the proposed tax measures and the recorded withdrawal.",
+    "source_name": "House of Representatives (衆議院) 議案情報",
+    "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D32.htm",
+    "published_at": "",
+    "last_checked": "2026-10-23",
+    "relevance_score": 13.0,
+    "first_seen_at": "2026-10-24",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information; detailed provisions and dates are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案」は、第221回国会に提出された衆法第31号です。衆議院の議案情報では、審議状況は「撤回」とされています。",
+    "business_impact_ja": "個人住民税に関する措置を扱う法案ですが、撤回とされているため、この情報から事業者の税務・給与実務への変更が生じるとは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、法案の内容や審議経過については、衆議院の日本語の公式議案情報を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "应对个人住民税负担增幅超过工资涨幅等问题的法案已撤回",
+        "summary": "该法案涉及应对个人住民税负担增幅超过工资涨幅及相关问题的措施。该法案被列为第221届国会众议院第31号法案，审议状态记录为已撤回。",
+        "business_impact": "该议题涉及税收负担相对于工资增长的增加，因此可能与个人住民税纳税人有关；该条目记录的是已撤回的提案，而非已制定的变更。",
+        "recommended_action": "查阅官方法案文本和立法历程，可能有助于了解拟议的税收措施及已记录的撤回情况。"
       }
     }
   },

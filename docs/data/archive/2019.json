@@ -241,7 +241,15 @@
     "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源で改正条文や施行時点の内容を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-22T23:57:22Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "修订《预防接种法施行令》等相关政令的政令",
+        "summary": "修订《预防接种法施行令》等相关政令的2019年第116号政令于2019-09-27公布，并于2019-10-01生效。所列被修订的法规为《医药品医疗器械综合机构法施行令》，即2004年第83号政令。",
+        "business_impact": "此次修订可能涉及医药品医疗器械综合机构，因为所列被修订的法规规范该机构，而非仅涉及预防接种。元数据未指明变更的条款，也未确定对医药品或医疗器械企业的影响。",
+        "recommended_action": "查阅日文官方来源或可明确2004年第83号政令的修订内容及任何相关过渡条款。"
+      }
+    }
   },
   {
     "id": "raw-0927c43c04902e68",
@@ -281,21 +289,20 @@
   },
   {
     "id": "raw-5d9aa066d2f95f18",
-    "title_en": "e-Gov Law Update: Law or regulation in force (2019-03-29)",
+    "title_en": "Cabinet Order amending the Enforcement Order for the Pharmaceuticals and Medical Devices Agency Act",
     "title_ja": "独立行政法人医薬品医療機器総合機構法施行令の一部を改正する政令",
     "area": "Healthcare / Pharmaceuticals",
     "stage": "In Force",
     "impact_level": "Medium",
-    "summary_en": "This is a rule-based preview and has not yet been reviewed or summarized by AI. A Japanese government source has published an item related to the original Japanese title below; it should be reviewed against the official Japanese source.",
-    "business_impact_en": "The business impact has not yet been assessed. Companies operating in Japan should review the official source if the item is relevant to their sector or operations.",
-    "recommended_action_en": "Review the original Japanese source and determine whether the item may affect your legal, regulatory, or compliance obligations in Japan.",
+    "summary_en": "Cabinet Order No. 113 of 2019 amends the Enforcement Order for the Act on the Pharmaceuticals and Medical Devices Agency, Independent Administrative Agency (Cabinet Order No. 83 of 2004). The stated promulgation date is 2019-03-29, and the stated effective date is 2019-04-01.",
+    "business_impact_en": "The amendment may affect the Pharmaceuticals and Medical Devices Agency because it changes the enforcement order for the Act governing that agency; the available information does not identify specific operational changes or affected external parties.",
+    "recommended_action_en": "Review of the official Japanese text could clarify the amended provisions and any transitional arrangements associated with the 2019-04-01 effective date.",
     "source_name": "e-Gov Law Search (法令更新一覧)",
     "source_url": "https://elaws.e-gov.go.jp/document?lawid=416CO0000000083_20190401_431CO0000000113",
     "published_at": "2019-03-29",
     "last_checked": "2026-10-22",
     "relevance_score": 25.0,
     "first_seen_at": "2026-10-23",
-    "summary_source": "rule_based",
     "summary_ja": "独立行政法人医薬品医療機器総合機構法施行令（平成十六年政令第八十三号）を改正する「独立行政法人医薬品医療機器総合機構法施行令の一部を改正する政令」（平成三十一年政令第百十三号）は、2019年3月29日に公布され、2019年4月1日に施行されました。提供情報には、具体的な改正内容は記載されていません。",
     "business_impact_ja": "同施行令に関係する事業や手続に影響する可能性がありますが、提供情報のみでは具体的な影響範囲は判断できません。",
     "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
@@ -304,12 +311,17 @@
     "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
-        "title": "e-Gov法令更新：法律或法规已生效（2019-03-29）",
-        "summary": "以下内容为基于规则生成的预览，尚未经AI审阅或摘要。日本政府官方来源已发布与下方日文原标题相关的信息；具体内容请以日文官方来源为准。",
-        "business_impact": "业务影响尚未评估。在日本开展业务的公司如认为该事项与其行业或业务相关，应查阅官方来源。",
-        "recommended_action": "建议查阅原始日文来源，并判断该条目是否可能影响您在日本的法律、监管或合规义务。"
+        "title": "修订《独立行政法人医药品医疗器械综合机构法施行令》的政令",
+        "summary": "2019年第113号政令修订了《独立行政法人医药品医疗器械综合机构法施行令》（2004年第83号政令）。所载公布日期为2019-03-29，所载生效日期为2019-04-01。",
+        "business_impact": "该修订可能影响医药品医疗器械综合机构，因为其修改了规范该机构的法律的施行令；现有信息未明确具体的运营变化或受影响的外部主体。",
+        "recommended_action": "查阅日文官方文本或可明确修订条款，以及与2019-04-01生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-1927ea0acc12f3b3",
@@ -404,6 +416,12 @@
     "ai_notes": "Based on the title and structured metadata, which identify the amending and amended orders but do not provide the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:24Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧（更新一覧日：2026年10月20日）には、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）の改正情報が記載されています。改正法令は、アイヌの人々の誇りが尊重される社会を実現するための施策の推進に関する法律施行令（令和元年政令第八号）で、公布日は2019年5月22日、施行日は2019年5月24日とされています。",
+    "business_impact_ja": "補助金等に関係する事業では、改正内容の確認が必要となる可能性がありますが、提供情報だけでは具体的な変更点や影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、改正条文や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:39Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《推进实现阿伊努人自豪感受到尊重的社会相关措施法施行令》：修订补助金预算执行规则",
@@ -411,13 +429,7 @@
         "business_impact": "该预算执行政令所涵盖的补助金领取者可能受到此次修订的影响；所指明的被修订法规涉及补助金管理，而非一般性的阿伊努政策措施。元数据未指明变更的条款或受影响的具体领取者。",
         "recommended_action": "建议考虑查阅日文官方来源，核实哪些补助金预算执行条款已被修订，以及是否有任何过渡条款适用。"
       }
-    },
-    "summary_ja": "法令更新一覧（更新一覧日：2026年10月20日）には、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）の改正情報が記載されています。改正法令は、アイヌの人々の誇りが尊重される社会を実現するための施策の推進に関する法律施行令（令和元年政令第八号）で、公布日は2019年5月22日、施行日は2019年5月24日とされています。",
-    "business_impact_ja": "補助金等に関係する事業では、改正内容の確認が必要となる可能性がありますが、提供情報だけでは具体的な変更点や影響範囲は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、改正条文や適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:59:39Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-3c32ccf38b93f980",
@@ -447,7 +459,13 @@
         "business_impact": "负责发放上述一次性补偿金的都道府县可能受到事务费拨款相关规定的影响。所列修订涉及补助金预算施行令，但所提供的信息未说明修订条款及其实际影响。",
         "recommended_action": "查阅日文官方来源或可明确经修订的补助金预算相关条款，以及这些条款对向都道府县拨付事务费的适用情况。"
       }
-    }
+    },
+    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者に対する一時金の支給等に関する法律に基づき都道府県に交付する事務費に関する政令（平成三十一年政令第百六十号）は、2019年4月24日に公布・施行されました。提供情報では、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が改正対象として記載されています。",
+    "business_impact_ja": "都道府県に交付する事務費に関係する制度運用への影響が考えられますが、提供情報だけでは具体的な改正内容や民間事業者への影響は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語条文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-1f4872a246dbfbdc",

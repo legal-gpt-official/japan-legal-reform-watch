@@ -48,14 +48,14 @@
     "ja_summary_model": "gpt-6.1-sol"
   },
   "8b24631d943818ccf011518c8badcb3d6b984b252c3f8b676a6a4f6c8704ed68": {
-    "title_en": "Public Comment on Draft Supervisory Guideline Amendments for Small/Medium and Regional Financial Institutions",
-    "summary_en": "Japan's Financial Services Agency (FSA) has published a draft partial amendment to its 'Comprehensive Supervisory Guidelines for Small/Medium-sized and Regional Financial Institutions' and related documents for public comment. The draft was posted on 2026-06-08, with the comment period closing on 2026-07-08 at 15:00. The item is categorized under finance and insurance, and full details are available only in the official Japanese source.",
-    "business_impact_en": "Small and regional financial institutions may need to review how proposed changes to supervisory guidelines could affect their compliance and oversight practices if finalized. The proposal is still at the public comment stage and its content and effect are not finalized.",
-    "recommended_action_en": "Consider reviewing the official Japanese announcement on e-Gov and any associated FSA documents to understand the scope of the draft and the comment submission deadline.",
+    "title_en": "Draft amendments to supervisory guidelines for small and regional financial institutions",
+    "summary_en": "The Financial Services Agency published proposed partial amendments to the Comprehensive Guidelines for Supervision of Small and Regional Financial Institutions and related guidelines for public comment on 2026-06-08. The stated comment deadline is 2026-07-08 15:00 JST; the supplied information does not describe the proposed changes.",
+    "business_impact_en": "Small and regional financial institutions may be affected because the proposal concerns their supervisory guidelines, but the specific operational implications cannot be determined from the supplied information.",
+    "recommended_action_en": "Review of the official Japanese consultation documents could clarify the amended provisions, the scope of the related guidelines, and any proposed implementation timetable.",
     "confidence": "medium",
-    "ai_notes": "Based on the Japanese title and brief metadata only; this is a draft out for public comment, not an enacted rule. Specific substantive changes are not described in the provided data. Rule-based labels (Finance/AML, Medium) are weak triage context and unverified.",
-    "summarized_at": "2026-06-10T09:03:52Z",
-    "summary_model": "claude-opus-4-8",
+    "ai_notes": "Based on the title and structured metadata, without the draft text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "金融庁は、2026年6月8日に「中小・地域金融機関向けの総合的な監督指針」等の一部改正案を公示し、意見募集の受付締切を2026年7月8日15時としました。提供された情報には、具体的な改正内容は記載されていません。",
     "business_impact_ja": "中小・地域金融機関などでは、改正案の内容により監督上の対応や業務管理に影響が生じる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
     "recommended_action_ja": "e-Govの当該案件ページや金融庁の日本語公式資料で、改正案の内容、対象範囲及びその後の公表状況を確認することが考えられます。",
@@ -92,12 +92,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted measure. Specific content of the amendments is unverified. Preliminary labels are weak triage context only; verify against the authoritative Japanese source.",
     "summarized_at": "2026-06-10T09:04:05Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "厚生労働省職業安定局が、受入事業主が講ずべき措置に関する指針及び送出事業主が講ずべき措置に関する指針の一部改正案について、意見募集を実施しています。案の公示日は2026年6月9日、意見の受付締切は2026年7月8日23時59分とされ、カテゴリーは労働に分類されています。",
-    "business_impact_ja": "受入事業主及び送出事業主に関する指針が改正される場合、対象となる事業者の講ずべき措置に影響が及ぶ可能性があります。改正の具体的内容によっては、社内の対応体制の見直しが必要となることも考えられます。",
-    "recommended_action_ja": "改正案の詳細や意見募集の状況については、e-Gov及び所管省庁の日本語の公式情報を確認することをご検討ください。",
+    "summary_ja": "受入事業主及び送出事業主が講ずべき措置に関する各指針の一部改正案が、2026年6月9日に公示され、意見募集の対象とされました（受付締切：2026年7月8日23:59 JST）。問い合わせ先は、職業安定局雇用開発企画課建設・港湾対策室とされています。",
+    "business_impact_ja": "対象となる受入事業主・送出事業主の措置に影響する可能性がありますが、提供された情報には具体的な改正内容がなく、影響範囲は確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Govの日本語公示資料で改正案の内容、対象範囲及びその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:48:38Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "e82e9210c7946edb8b7fa7e51f1592f88de0f9d3a2c9e6250bf82188e3841042": {
     "title_en": "Public Comment on Proposed Amendment to Basic Guidelines for Vacant House Measures",
@@ -124,12 +124,12 @@
     "ai_notes": "Based only on the provided Japanese title and metadata; the substance of the draft revision is not detailed and should be verified against the official source. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-06-10T09:04:25Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "環境省自然環境局総務課動物愛護管理室が、「人とペットの災害対策ガイドライン」の改訂案について意見募集（パブリック・コメント）を実施しています。案の公示日は2026年6月8日、意見の受付締切日時は2026年6月27日00:00とされています。カテゴリーは「国民生活の安全・安心の確保」と示されています。",
-    "business_impact_ja": "災害時のペットの取扱いに関わる事業や、動物愛護・防災に関連する事業を営む場合、改訂内容によっては運用や備えの見直しに影響が及ぶ可能性があります。現時点では改訂案の段階であり、最終的な内容は確定していないと考えられます。",
-    "recommended_action_ja": "詳細や意見提出の可否については、e-Govおよび環境省の公式情報源で募集内容や締切、改訂案の全文をご確認いただくことをご検討ください。",
+    "summary_ja": "「人とペットの災害対策ガイドライン」の改訂案に係る意見募集が、2026年6月8日に公示されました（受付締切：2026年6月27日00:00 JST）。問合せ先は、環境省自然環境局総務課動物愛護管理室です。",
+    "business_impact_ja": "ペットに関わる事業者等では、改訂案の内容によって災害対策の検討に影響する可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov公示や環境省の公式資料で改訂案の内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "c2d714979a1560ba4ebaea1ce3497a55e6ff587cfb519a13a67d63019f0999f7": {
     "title_en": "Public consultation on draft amendments to veterinary medicinal product control regulations",
@@ -446,12 +446,12 @@
     "ai_notes": "Based on the Japanese title and limited metadata; this is a draft out for public comment, not an enacted rule. Specific provisions of the amendment are not provided and remain unverified against the official source.",
     "summarized_at": "2026-06-12T07:04:52Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "警察庁交通局運転免許課は、「道路交通法施行規則の一部を改正する内閣府令案」に対する意見募集を実施しています。案の公示日は2026年6月12日、意見の受付締切は2026年7月11日23:59とされています。現時点では意見募集の段階であり、改正内容の確定を示すものではありません。",
-    "business_impact_ja": "道路交通法施行規則に関わる事業や運転免許関連の運用に影響が生じる可能性があります。改正案の具体的内容によっては、対応の検討が必要となることも考えられます。",
-    "recommended_action_ja": "e-Govの意見募集ページや警察庁の公式情報を確認し、改正案の詳細や締切状況を把握されることをお勧めします。",
+    "summary_ja": "「道路交通法施行規則の一部を改正する内閣府令案」が2026年6月12日に公示され、意見募集の受付締切は2026年7月11日23:59 JSTとされています。問合せ先は警察庁交通局運転免許課で、提供情報には改正案の具体的な内容は記載されていません。",
+    "business_impact_ja": "改正案の内容によっては、道路交通法施行規則に関係する事業実務に影響する可能性がありますが、提供情報だけでは対象業務や影響の詳細は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Govの日本語の公式公示資料で改正案の内容や対象範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:47:27Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:49:49Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "d302dee1486d6dcd7203a486735268874ea56dd38c55b9b66f3d46a0d61434fa": {
     "title_en": "Cabinet Order Designating Local Severe Disaster for Forest Fire in Otsuchi, Iwate, with Notice of Covered Area",
@@ -678,12 +678,12 @@
     "ai_notes": "Based on the Japanese title and raw summary metadata; this is a draft out for public comment, not an enacted measure. Details are unverified against the authoritative source. Preliminary labels are weak triage context only.",
     "summarized_at": "2026-06-16T02:18:39Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "厚生労働省職業安定局が、送出労働者に対する不合理な待遇の禁止等に関する指針の一部を改正する案について、意見募集を実施しています。案の公示日は2026年6月16日、意見の受付締切は2026年7月15日23時59分とされ、カテゴリーは労働に分類されています。現時点では改正案に関する意見募集の段階であり、内容が確定したものではありません。",
-    "business_impact_ja": "送出労働者の待遇に関する指針の改正が行われる場合、関連する雇用管理や取扱いに影響が及ぶ可能性があります。改正の内容や範囲によっては、対応の検討が必要となることも考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページや所管省庁の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja": "「送出労働者に対する不合理な待遇の禁止等に関する指針」の一部を改正する案が2026年6月16日に公示され、意見募集の対象とされました（受付締切：2026年7月15日23:59 JST）。問合せ先は職業安定局雇用開発企画課建設・港湾対策室とされており、提供された情報には改正案の具体的内容は示されていません。",
+    "business_impact_ja": "送出労働者の待遇に関わる事業では、改正案の内容によって待遇や関連する運用の確認が必要となる可能性がありますが、提供情報のみでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料や所管部局の公式情報で、改正案の内容およびその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:44:34Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:48:16Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "dba00264cb6ada9eba56735f1e94ac27751f5cac7cd5118d0030007447ea5f03": {
     "title_en": "Public Comment: Draft First Report by Youth Protection Working Group on Information Distribution in Digital Spaces",
@@ -694,12 +694,12 @@
     "ai_notes": "Based on the Japanese title and metadata; this is a draft report open for public comment, not an enacted measure. The preliminary 'Data/Privacy/AI' label appears keyword-based and may not fully reflect the document's scope, which concerns youth protection and information distribution. Details unverified against the official source.",
     "summarized_at": "2026-06-17T00:45:27Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "総務省情報流通行政局情報流通振興課は、「デジタル空間における情報流通の諸課題への対処に関する検討会青少年保護ワーキンググループ第一次報告書（案）」に関する意見募集を実施しています。案の公示日は2026年6月17日、意見の受付締切は2026年7月8日23時59分とされています。カテゴリーは電気通信に分類されています。",
-    "business_impact_ja": "デジタル空間における情報流通や青少年保護に関わる事業者にとって、今後の報告書の内容次第で対応の検討が必要となる可能性があります。現段階では報告書は案であり、意見募集を経た検討過程にあると考えられます。",
-    "recommended_action_ja": "詳細や最新の状況については、e-Govおよび総務省の公式情報源で報告書案の内容と意見募集の状況をご確認いただくことをお勧めします。",
+    "summary_ja": "「デジタル空間における情報流通の諸課題への対処に関する検討会青少年保護ワーキンググループ第一次報告書（案）」が2026年6月17日に公示され、意見募集の対象とされました（受付締切：2026年7月8日23:59 JST）。カテゴリーは電気通信で、問い合わせ先は総務省情報流通行政局情報流通振興課です。",
+    "business_impact_ja": "デジタル空間での情報流通や青少年保護に関わる事業者には、今後の検討動向を把握する上で参考となる可能性があります。ただし、提供された情報には報告書案の具体的内容がなく、個別の事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として参照し、e-Govの日本語公示ページや総務省の公式資料で、報告書案の内容と意見募集要領を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:48:38Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "1fdb8ca73f3137abb1594ec735e5562b19aa3dcc00129ba503ba07087050b5a3": {
     "title_en": "Public Comment: Draft Ordinance on Universal Service for Mobile-Network Fixed Telephony",
@@ -3852,20 +3852,20 @@
     "summary_model": "claude-opus-4-8"
   },
   "af5ae3a93a2ac05f5e0d4a7a81f43c53287d2fd91f4e9864df70c4f289fb3568": {
-    "summary_ja": "資源エネルギー庁の次世代電力・ガス事業基盤構築小委員会 電力安定供給ワーキンググループにおいて、長期脱炭素電源オークションの第４回募集に向けたガイドライン（案）に関する意見募集が行われています。案の公示日は2026年7月17日、意見の受付締切は2026年8月16日23:59とされています。所管は資源エネルギー庁 電力・ガス事業部 電力基盤整備課です。",
-    "business_impact_ja": "長期脱炭素電源オークションへの参加を検討する電源事業者等にとって、募集条件や運用に関するルールが影響する可能性があります。今後の制度内容の確定に向けた検討状況を注視する必要が考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govおよび資源エネルギーの公式情報源で原文をご確認いただくことをお勧めします。",
+    "summary_ja": "2026年7月17日、長期脱炭素電源オークションの「第４回募集に向けて（案）」及び「長期脱炭素電源オークションガイドライン（案）」が意見募集案件として公示されました。受付締切は2026年8月16日23:59 JSTで、問合せ先は資源エネルギー庁電力・ガス事業部電力基盤整備課です。",
+    "business_impact_ja": "長期脱炭素電源オークションへの参加を検討する事業者にとって、第４回募集に向けた検討や参加準備に関係する可能性がありますが、具体的な内容や影響は提供されたメタデータからは確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Govの日本語公示資料及び資源エネルギー庁の公式情報で、各案の内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8",
-    "title_en": "Public Comment on Draft Guideline for 4th Long-Term Decarbonized Power Source Auction",
-    "summary_en": "This is a draft ('an') put out for public comment by Japan's Agency for Natural Resources and Energy (Electricity and Gas Industry Department) regarding preparations for the fourth round of the Long-Term Decarbonized Power Source Auction, including a draft Long-Term Decarbonized Power Source Auction Guideline. According to the metadata, the draft was published on 2026-07-17 with a comment submission deadline of 2026-08-16 23:59. The item is categorized under industry and was handled through the e-Gov public comment system.",
-    "business_impact_en": "Businesses involved in electricity supply or decarbonized power generation may wish to note that changes to the auction guideline could affect participation rules and planning for future auction rounds. Any potential impact remains provisional while this is still at the draft/public-comment stage.",
-    "recommended_action_en": "Consider reviewing the official Japanese source and draft guideline on the e-Gov public comment site to confirm the scope, timing, and details.",
+    "ja_summarized_at": "2026-10-23T23:48:52Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "title_en": "Draft guidelines and fourth-round preparations for the Long-Term Decarbonization Power Source Auction",
+    "summary_en": "Draft materials on preparations for the fourth round of the Long-Term Decarbonization Power Source Auction and draft auction guidelines were published for public comment on 2026-07-17, with a stated deadline of 2026-08-16 23:59 JST. The title identifies the Electricity Stable Supply Working Group of the Subcommittee for Building Next-Generation Electricity and Gas Business Infrastructure; the listed contact is the Electricity Infrastructure Development Division, Electricity and Gas Industry Department, Agency for Natural Resources and Energy.",
+    "business_impact_en": "Power generators considering participation in the fourth auction round may be affected by the proposed auction arrangements and guidelines, although the listing does not describe their substantive requirements.",
+    "recommended_action_en": "Reviewing the official Japanese drafts could clarify the proposed fourth-round auction arrangements, participation requirements, and changes to the guidelines.",
     "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not enacted rules. The rule-based 'Public Comment Closed' label conflicts with the stated deadline of 2026-08-16, so the current status should be verified against the official source. Labels are weak triage context only.",
-    "summarized_at": "2026-09-13T22:58:20Z",
-    "summary_model": "claude-opus-4-8"
+    "ai_notes": "Based on the title and structured listing information; the draft texts were not provided, so substantive changes are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol"
   },
   "7882ea5bbe6af3a62fa0bf6fd9ab1bae161d8c606ce48325ae9e47cf415b6873": {
     "summary_ja": "「特定重要物資の安定的な供給の確保に関する基本指針の変更案」の一部修正について、2026年8月11日に案が公示され、意見募集が行われました（受付締切：2026年8月26日23時59分）。問合せ先は内閣府政策統括官（経済安全保障担当）です。",
@@ -3900,12 +3900,12 @@
     "summary_model": "gpt-6.1-sol"
   },
   "ba91335176bce978233e430764cb071b2895f8ea21962867ca1a6502024c7e5a": {
-    "summary_ja": "環境省自然環境局国立公園課は、日光国立公園の特別地域内において許可を受けなければ採取または損傷してはならない高山植物その他これに類する植物を指定する件（案）について、パブリックコメントを実施しています。案の公示日は2026年7月21日、意見の受付締切は2026年8月21日00:00とされています。",
-    "business_impact_ja": "日光国立公園の特別地域における植物の採取等に関わる事業者や活動者にとって、指定内容次第で対象植物の取扱いに影響が生じる可能性があります。",
-    "recommended_action_ja": "詳細および正確な指定対象や手続については、e-Govの意見募集ページや環境省の公式情報を確認されることをお勧めします。",
+    "summary_ja": "2026年7月21日、日光国立公園の特別地域内で、許可なく採取・損傷してはならない高山植物その他これに類する植物を指定する件の案が公示され、意見募集の対象とされました。受付締切は2026年8月21日00:00 JSTで、問合せ先は環境省自然環境局国立公園課です。",
+    "business_impact_ja": "日光国立公園の特別地域内で植物の採取・損傷を伴う事業活動について、案の指定対象や内容が許可の要否の確認に関係する可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov掲載の案や環境省の日本語公式資料で、指定対象植物と適用範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:00Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Designation of Alpine and Similar Plants in Nikko National Park Special Zones",
     "summary_en": "Japan's Ministry of the Environment (Natural Environment Bureau, National Park Division) has opened a public comment period on a draft designating alpine and similar plants that may not be collected or damaged without permission within the special zones of Nikko National Park. According to the metadata, the draft was announced on 2026/07/21 with a comment submission deadline of 2026/08/21. This is a draft out for public comment and not a finalized or enforced measure.",
     "business_impact_en": "If adopted, the designation could affect activities involving the collection or handling of specified plants within the special zones of Nikko National Park, and may create permit-related considerations for those operating there.",
@@ -3918,12 +3918,12 @@
     "title_model": "gpt-6.1-sol"
   },
   "2157f7a5e8ef32f3a67647ed978886faa3373ea480510cd2136fd78c9613c262": {
-    "summary_ja": "環境省自然環境局国立公園課は、三陸復興国立公園の特別地域内において許可を受けなければ採取・損傷してはならない高山植物その他これに類する植物を指定する件（案）について、意見募集（パブリックコメント）を実施しています。案の公示日は2026年7月21日、受付締切は2026年8月21日00:00とされ、カテゴリーは環境保全と示されています。現時点では案の段階であり、指定内容が確定したものではありません。",
-    "business_impact_ja": "三陸復興国立公園の特別地域内で植物採取等に関わる事業や活動を行う場合、指定対象となる植物の採取・損傷に係る許可の要否に影響が生じる可能性があります。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集ページや環境省の公式情報源をご確認いただくことが考えられます。",
+    "summary_ja": "2026年7月21日、三陸復興国立公園の特別地域内で、許可なく採取又は損傷してはならない高山植物その他これに類する植物を指定する件の案が公示され、意見募集の対象とされました。受付締切は2026年8月21日00:00 JSTで、問合せ先は環境省自然環境局国立公園課です。",
+    "business_impact_ja": "案の内容によっては、三陸復興国立公園の特別地域内で植物の採取又は損傷を伴う事業活動について、許可対象の確認に影響する可能性があります。",
+    "recommended_action_ja": "e-Govの日本語公示資料や環境省の公式情報で、指定対象の植物、案の詳細及びその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:07Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Designation of Protected Plants in Sanriku Reconstruction National Park",
     "summary_en": "This is a draft ('an') out for public comment via e-Gov, concerning the designation of alpine plants and similar species within special zones of the Sanriku Reconstruction National Park that may not be collected or damaged without permission. According to the metadata, the draft was published on 2026-07-21 with a comment submission deadline of 2026-08-21, under the category of environmental conservation. The responsible body is listed as the National Park Division of the Nature Conservation Bureau, Ministry of the Environment.",
     "business_impact_en": "Entities involved in land use, tourism, or activities within the affected national park zones may need to consider potential restrictions on collecting or damaging designated plants. The practical impact would depend on the final designated species and rules, which are not confirmed in this draft stage.",
@@ -3968,12 +3968,12 @@
     "summary_model": "claude-opus-4-8"
   },
   "3bc7b7e5be097e959e06dfc326f060ad0e53ba2da7eece496070c80e0392a3aa": {
-    "summary_ja": "警察庁は、「警備業法施行規則の一部を改正する内閣府令案」等について意見募集を実施しています。案の公示日は2026年8月7日、意見の受付締切日時は2026年9月5日23:59とされています。所管は警察庁長官官房企画課とされています。",
-    "business_impact_ja": "警備業に関する規則改正の内容によっては、関連する事業者の実務や体制に影響が及ぶ可能性があります。募集段階のため、確定的な影響を判断することは現時点では難しいと考えられます。",
-    "recommended_action_ja": "e-Gov等の日本語の公式情報源で改正府令案の具体的内容や締切、提出方法をご確認いただくことをお勧めします。",
+    "summary_ja": "「警備業法施行規則の一部を改正する内閣府令案」等が2026年8月7日に公示され、意見募集の対象とされました（受付締切：2026年9月5日23:59 JST）。問合せ先は警察庁長官官房企画課であり、提供された情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "警備業に関わる事業者の業務に影響する可能性がありますが、影響の範囲や内容は府令案等の確認が必要と考えられます。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov意見募集案件ページおよび掲載資料で、改正案の内容やその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:33Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Draft Cabinet Office Ordinance amending the Regulations for Enforcement of the Security Services Act",
     "summary_en": "A draft Cabinet Office Ordinance partially amending the Regulations for Enforcement of the Security Services Act, together with related proposals, was published for public comment on 2026-08-07. The stated comment deadline was 2026/09/05 at 23:59; the contact office is the Planning Division, Commissioner General's Secretariat, National Police Agency.",
     "business_impact_en": "Security service providers may be affected by proposed changes to the regulations governing their activities, but the supplied information does not identify the provisions or operational requirements concerned.",
@@ -4002,12 +4002,12 @@
     "title_model": "gpt-6.1-sol"
   },
   "dc8b4cd09dca118ca003f6af54c4c66a371842904aae515d73bb3da83205cbd3": {
-    "summary_ja": "厚生労働省医薬局医薬品審査管理課より、「医薬品の臨床試験の実施の基準に関する省令等の一部を改正する省令（案）」に関する意見募集が公示されました。案の公示日は2026年7月31日、受付締切は2026年8月30日23:59とされています。現時点では省令案に対する意見募集の段階です。",
-    "business_impact_ja": "医薬品の臨床試験（GCP）に関わる事業者において、改正案の内容次第では実施基準への対応が必要となる可能性があります。臨床試験の運用や関連手続への影響も考えられます。",
-    "recommended_action_ja": "改正案の具体的な内容や締切については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "2026年7月31日、「医薬品の臨床試験の実施の基準に関する省令等の一部を改正する省令（案）」に関する意見募集が公示されました。受付締切は2026年8月30日23:59 JSTで、問合せ先は厚生労働省医薬局医薬品審査管理課です。",
+    "business_impact_ja": "医薬品の臨床試験に関わる事業者では、改正案の内容によって、試験の実施体制や手順への影響を確認する必要が生じる可能性があります。提供されたメタデータには具体的な改正内容がなく、影響の詳細は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、e-Govの当該案件や厚生労働省の日本語公式資料で、改正案の具体的内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:40:48Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:00Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment: Draft Amendment to Ministerial Ordinance on Good Clinical Practice Standards for Pharmaceuticals",
     "summary_en": "Japan's Ministry of Health, Labour and Welfare (Pharmaceutical Safety Bureau, Pharmaceutical Evaluation Division) has opened a public comment period on a draft ministerial ordinance that would partially amend the ordinance concerning standards for conducting clinical trials of pharmaceuticals (Good Clinical Practice) and related provisions. According to the metadata, the draft was published on 2026-07-31 and comments are accepted until 2026-08-30 23:59. This is a draft out for public comment and has not been enacted or brought into force.",
     "business_impact_en": "Organizations involved in pharmaceutical clinical trials in Japan may want to monitor this proposal, as changes to clinical trial conduct standards could affect trial operations and compliance practices if later adopted.",
@@ -4776,12 +4776,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "3f0b6426f9f75fb1e9723e06ca672a1ae1d16d9e6685b4cf324cdc9ecd6e590b": {
-    "summary_ja": "総務省総合通信基盤局電波部移動通信課より、陸上無線通信委員会報告（案）に対する意見募集が実施されています。対象は「業務用陸上無線通信の高度化等に関する技術的条件」のうち「300MHz帯無線式列車制御システムに係る技術的条件」で、案の公示日は2026年7月17日、受付締切は2026年8月20日23:59とされています。現時点では意見募集の段階にあります。",
-    "business_impact_ja": "300MHz帯を用いた無線式列車制御システムに関わる事業者において、将来の技術的条件の内容次第で対応の検討が必要となる可能性があります。",
-    "recommended_action_ja": "e-Govの意見募集案件ページ等の日本語の公式情報源で、対象範囲や締切、報告案の詳細をご確認いただくことが考えられます。",
+    "summary_ja": "2026年7月17日、「業務用陸上無線通信の高度化等に関する技術的条件」のうち「300MHz帯無線式列車制御システムに係る技術的条件」に関する陸上無線通信委員会報告（案）が公示され、意見募集が行われました（受付締切：2026年8月20日23:59 JST）。問合せ先は総務省総合通信基盤局電波部移動通信課です。",
+    "business_impact_ja": "300MHz帯無線式列車制御システムに関わる事業者では、報告案の技術的条件がシステムの設計や運用の検討に関係する可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、e-Govの公示資料や総務省の日本語公式情報で、報告案の内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T07:42:06Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:50:10Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public comment: draft report on 300 MHz band wireless train control technical conditions",
     "summary_en": "A public comment solicitation was published on 2026-07-17 for a draft report of the Land Mobile Radio Communications Committee. The draft concerns technical conditions for a 300 MHz band wireless train control system, as part of the broader topic of technical conditions for advancing business-use land mobile radio communications. The metadata lists a comment deadline of 2026-08-20 23:59, with the Mobile Communications Division of the Ministry of Internal Affairs and Communications named as the contact.",
     "business_impact_en": "If the draft is later adopted, it could affect radio equipment makers, railway operators, and telecom-related parties involved in wireless train control systems. The practical scope and any obligations are not stated in the provided metadata.",
@@ -10328,12 +10328,12 @@
     "summary_model": "claude-opus-4-8"
   },
   "31f442e570070c5a57f9eec626f07117b2526351182dcf4ac600f4e942968a80": {
-    "summary_ja": "財務省主計局給与共済課は、国家公務員共済組合法等の運用方針の一部を改正する案について意見募集を実施しています。案の公示日は2026年6月29日、意見の受付締切は2026年7月29日午前0時とされ、カテゴリーは国家公務員と示されています。本件は改正案の段階であり、確定した内容ではありません。",
-    "business_impact_ja": "国家公務員共済に関連する運用方針の改正案であるため、対象範囲によっては関連する事務や取扱いに影響が及ぶ可能性があります。改正内容や適用範囲によっては、実務対応の見直しを検討する必要が生じることも考えられます。",
-    "recommended_action_ja": "詳細や最新の状況については、e-Gov意見募集案件一覧および財務省の公式情報をご確認いただくことをおすすめします。",
+    "summary_ja": "2026年6月29日、「国家公務員共済組合法等の運用方針の一部を改正する案」が公示され、意見募集の受付締切は2026年7月29日00:00 JSTとされました。問い合わせ先は財務省主計局給与共済課共済第２係であり、提供された情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "国家公務員共済に関係する業務に影響する可能性がありますが、具体的な影響は提供された情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Govの日本語公示資料や財務省の公式情報で、改正案の内容と対象範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:44:34Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:48:16Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to Operational Policy under the National Public Officers Mutual Aid Association Act",
     "summary_en": "This is a public comment invitation regarding a draft amendment to the operational policy under the National Public Officers Mutual Aid Association Act and related rules. According to the metadata, the draft was announced on 2026/06/29 with a comment submission deadline of 2026/07/29 00:00. The item is categorized under national public officers, with the contact listed as the Salary and Mutual Aid Division of the Budget Bureau, Ministry of Finance.",
     "business_impact_en": "Entities or individuals connected to the national public officers' mutual aid system may find that changes to the operational policy could affect related administrative or benefit arrangements once finalized.",
@@ -10344,12 +10344,12 @@
     "summary_model": "claude-opus-4-8"
   },
   "bf8bfce6ee56e9816f0b8e476265169694d0b4d79be5ba111bd0c560868668c3": {
-    "summary_ja": "金融庁は、企業内容等の開示に関する内閣府令第十九条の九第五項に規定するサステナビリティ開示基準を指定する件の一部を改正する案について、パブリックコメントを実施しています。案の公示日は2026年6月24日、意見の受付締切は2026年7月24日17:00とされ、カテゴリーは金融・保険に分類されています。所管は金融庁企画市場局企業開示課です。",
-    "business_impact_ja": "サステナビリティ開示基準の指定に関わる改正案であるため、有価証券報告書等における開示対象となる企業の開示実務に影響が及ぶ可能性があります。今後の基準内容の確定により対応の見直しが必要となることも考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集ページや金融庁の公式発表をご確認いただくことをご検討ください。",
+    "summary_ja": "金融庁は、2026年6月24日、「企業内容等の開示に関する内閣府令第十九条の九第五項に規定するサステナビリティ開示基準を指定する件」の一部改正案を公示し、パブリックコメントの実施を公表しました。受付締切は2026年7月24日17:00 JSTであり、提供された情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "サステナビリティ開示基準の指定に関する改正案であり、企業の開示実務に影響する可能性がありますが、対象範囲や具体的な影響は案の本文を確認する必要があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語のe-Gov掲載資料や金融庁の公式情報で、改正案の内容、適用対象および今後の公表情報を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:44:34Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:48:16Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "FSA Opens Public Comment on Draft Amendment to Sustainability Disclosure Standards Designation",
     "summary_en": "The Financial Services Agency (FSA) has opened a public comment procedure on a draft amendment to the designation of sustainability disclosure standards referred to in Article 19-9, paragraph 5 of the Cabinet Office Ordinance on Disclosure of Corporate Affairs. According to the metadata, the draft was announced on 2026-06-24 with a comment submission deadline of 2026-07-24 at 17:00. The item is categorized under finance and insurance, with inquiries handled by the FSA's Corporate Disclosure Division.",
     "business_impact_en": "Companies subject to Japanese corporate disclosure requirements may need to monitor potential changes to designated sustainability disclosure standards, which could affect future reporting obligations.",
@@ -11124,12 +11124,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "ea62abdb729f48463bfbbadf1a9199dacf6cff1c3992aa56add94d0b46dbe195": {
-    "summary_ja": "防衛省は、自衛隊法施行規則の一部を改正する省令案、事務官等の採用試験等に関する訓令の一部を改正する訓令案、及び防衛省の任期付隊員の採用手続等に関する訓令の一部を改正する訓令案について、意見募集を実施しています。原文によれば、案の公示日は2026年7月1日、受付締切は2026年7月30日23時59分とされ、カテゴリーは防衛、所管は防衛省大臣官房秘書課と示されています。これは意見募集の段階にある案であり、内容が確定したものではありません。",
-    "business_impact_ja": "防衛省の職員採用手続や採用試験に関わる規程改正の案であるため、関連する採用実務や人事手続に影響が生じる可能性があります。改正内容の確定時期や具体的な範囲によって影響の程度は変わり得ると考えられます。",
-    "recommended_action_ja": "詳細や最新の受付状況については、e-Govの当該意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "防衛省は、2026年7月1日、自衛隊法施行規則、事務官等の採用試験等に関する訓令及び防衛省の任期付隊員の採用手続等に関する訓令の一部をそれぞれ改正する案を公示し、意見募集の対象としました。受付締切は2026年7月30日23:59 JSTです。具体的な改正内容は、提供されたメタデータには記載されていません。",
+    "business_impact_ja": "防衛省の採用試験や任期付隊員の採用手続に関係する業務に影響する可能性がありますが、具体的な事業への影響は改正案の内容確認が必要と考えられます。",
+    "recommended_action_ja": "この要約は非公式のモニタリング情報として扱い、e-Govの当該案件ページ及び防衛省の日本語公式資料で、改正案の内容や適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:48:38Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Self-Defense Forces Act Regulation and Recruitment Directive Amendments",
     "summary_en": "This is a public comment invitation from Japan's Ministry of Defense concerning draft amendments to the enforcement regulations of the Self-Defense Forces Act, along with draft directives on recruitment examinations for administrative officials and on procedures for hiring fixed-term personnel. The item was posted on 2026-07-01 with a stated comment submission deadline of 2026-07-30. Inquiries are directed to the Secretariat Division of the Minister's Secretariat at the Ministry of Defense.",
     "business_impact_en": "Organizations or individuals connected to Ministry of Defense personnel recruitment processes may wish to note that recruitment and fixed-term hiring procedures could be affected if the draft amendments are adopted.",
@@ -11450,12 +11450,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "74a3a6dfd1dfec61efb0b3ad31274e4f2f2e0c9c60520c68b5244bdd09b26574": {
-    "summary_ja": "航空局安全部航空安全推進室が、「部品等脱落防止措置に関する技術基準細則」の一部改正に関する意見募集を実施しています。原文によれば、案の公示日は2026年7月6日、受付締切は2026年8月7日17時とされており、現時点では意見募集の段階にあります。",
-    "business_impact_ja": "航空分野において部品等の脱落防止措置に関わる技術基準の改正が検討されているため、関連する事業者に実務上の影響が生じる可能性があります。",
-    "recommended_action_ja": "改正内容や締切等の詳細については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "「部品等脱落防止措置に関する技術基準細則」の一部改正案が、2026年7月6日に公示され、意見募集の対象とされました（受付締切：2026年8月7日17:00 JST）。カテゴリーは航空で、問い合わせ先は航空局安全部航空安全推進室です。",
+    "business_impact_ja": "航空関連事業における部品等の脱落防止措置に関係する可能性がありますが、具体的な影響は改正案の内容を確認する必要があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Govの日本語公示および掲載された改正案で、変更内容や適用対象をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:48:52Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to Aviation Technical Rules on Preventing Parts from Falling Off",
     "summary_en": "This is a public comment (opinion solicitation) on a proposed partial amendment to the 'Detailed Rules of Technical Standards concerning Measures to Prevent Parts and Other Items from Falling Off,' categorized under aviation. According to the metadata, the proposal was published on 2026-07-06 with a comment submission deadline of 2026-08-07 at 17:00. The contact listed is the Aviation Safety Promotion Office, Safety Department, Civil Aviation Bureau.",
     "business_impact_en": "Entities involved in aviation operations or aircraft maintenance may be affected if the technical standards for preventing parts from falling off are amended. The change could influence relevant compliance or operational requirements once finalized.",
@@ -12124,12 +12124,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "8785d548df4fb470df8e62dc1fdf85b7903cc16064ce7c58373da47c6378acb7": {
-    "summary_ja": "内閣府政策統括官（サイバー安全保障担当）付が所管する、重要電子計算機に対する不正な行為による被害の防止に関する法律に基づく命令の一部を改正する命令案について、意見募集が行われています。案の公示日は2026年7月3日、受付締切は2026年8月2日00:00とされ、カテゴリーは「国民生活の安全・安心の確保」と記載されています。特別社会基盤事業者による特定侵害事象等の報告等に関する事項の改正が対象とされています。",
-    "business_impact_ja": "特別社会基盤事業者に該当する場合、特定侵害事象等の報告に関する手続や要件に影響が及ぶ可能性があります。改正の内容によっては、対応体制の見直しが必要となることも考えられます。",
-    "recommended_action_ja": "詳細や現在の受付状況については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "「重要電子計算機に対する不正な行為による被害の防止に関する法律に基づく特別社会基盤事業者による特定侵害事象等の報告等に関する命令」を一部改正する命令案が、2026年7月3日に公示され、意見募集の対象とされました（受付締切：2026年8月2日00:00 JST）。問合せ先は内閣府政策統括官（サイバー安全保障担当）付であり、提供情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "特別社会基盤事業者における特定侵害事象等の報告に関する実務に影響する可能性がありますが、具体的な影響は命令案の内容を確認する必要があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Govの日本語公示資料や所管部局の公式情報で、命令案の内容と対象範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:07Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment: Draft Order Amending Specified Infringement Reporting by Special Infrastructure Operators",
     "summary_en": "This is a public comment solicitation regarding a draft order that would partially amend the order on reporting of specified infringement events and related matters by special social infrastructure operators, issued under the law on preventing harm from unauthorized acts against critical computers. According to the metadata, the draft was published on 2026/07/03 with a comment deadline of 2026/08/02. The contact is listed as the Cabinet Office's policy office for cyber security.",
     "business_impact_en": "Operators classified as special social infrastructure operators may face changes to their reporting obligations for cyber-related infringement events if the draft is adopted. The final scope and requirements could differ from the draft.",
@@ -12142,12 +12142,12 @@
     "title_model": "gpt-6.1-sol"
   },
   "87fc8bab9c2759122fce09485dc1c4bcb87f3da5df8a329b3d5b5875e5b2c950": {
-    "summary_ja": "資源エネルギー庁電力・ガス事業部電力産業・市場室により、「一般送配電事業託送供給等約款料金算定規則の一部を改正する省令案等」に対する意見公募が公示されました。案の公示日は2026年6月30日、意見の受付締切は2026年7月29日23:59とされています。現時点では省令案に対する意見募集の段階であり、改正内容が確定したものではありません。",
-    "business_impact_ja": "託送供給等に係る料金算定に関わる事業者においては、規則改正の内容次第で料金算定の実務に影響が及ぶ可能性があります。詳細な影響の程度は、省令案の具体的内容によって変わり得ると考えられます。",
-    "recommended_action_ja": "e-Govの意見募集案件ページおよび所管省庁の公式情報を確認し、締切や案の詳細をご確認いただくことが考えられます。",
+    "summary_ja": "一般送配電事業託送供給等約款料金算定規則の一部を改正する省令案等について、2026年6月30日に意見公募要領が公示されました（受付締切：2026年7月29日23:59 JST）。問合せ先は資源エネルギー庁電力・ガス事業部電力産業・市場室であり、提供情報には改正案の具体的内容や施行時期は記載されていません。",
+    "business_impact_ja": "一般送配電事業の託送供給等約款に係る料金算定に影響する可能性がありますが、具体的な影響範囲は改正案の内容を確認する必要があると考えられます。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Govの当該案件ページに掲載された日本語の省令案や関連資料で、改正内容と対象範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:07Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public comment on draft ordinance amending general electricity transmission and distribution tariff rules",
     "summary_en": "A public consultation concerns a draft ministerial ordinance and related proposals to amend the rules for calculating wheeling service and related tariff charges for general electricity transmission and distribution businesses. The draft was announced on 2026/06/30, with comments due by 2026/07/29 23:59. The responsible office is the Electricity Industry and Market Office, Electricity and Gas Industry Department, Agency for Natural Resources and Energy.",
     "business_impact_en": "General electricity transmission and distribution businesses may be affected because the proposal concerns the rules used to calculate their wheeling service and related tariff charges; the specific calculation changes are not provided.",
@@ -12158,12 +12158,12 @@
     "summary_model": "gpt-6.1-sol"
   },
   "f4943dff1699f2545d3862ac2d630dccdf6ff3376698191ca145f0cbb8ec6d7c": {
-    "summary_ja": "経済産業省ＧＸグループ資源循環経済課より、紙製造業を行う者の古紙利用に関する判断基準を定める省令の一部を改正する省令（案）について、意見公募が実施されています。案の公示日は2026年6月26日、意見受付締切は2026年7月26日23:59とされ、カテゴリーは環境保全に分類されています。",
-    "business_impact_ja": "紙製造業に属する事業を行う者について、古紙の利用に関する判断基準の見直しに伴い、対応が必要となる可能性があります。改正の具体的内容によっては、関連する事業活動に影響が及ぶことも考えられます。",
-    "recommended_action_ja": "e-Gov（意見募集案件一覧）掲載の省令案本文および所管省庁の公式情報を確認のうえ、意見提出期限や改正内容の詳細をご確認いただくことが望まれます。",
+    "summary_ja": "紙製造業に属する事業を行う者の古紙の利用に関する判断の基準となるべき事項を定める省令の一部を改正する省令案について、2026年6月26日に意見公募要領が公示されました（受付締切：2026年7月26日23:59 JST）。問合せ先は経済産業省ＧＸグループ資源循環経済課とされており、提供情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "紙製造業の古紙利用に関する判断基準に変更が生じる可能性がありますが、具体的な事業への影響は省令案の内容を確認する必要があると考えられます。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Govの当該案件ページや経済産業省の日本語公式資料で、省令案の内容と手続の詳細を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:07Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to Ministerial Ordinance on Recovered Paper Use Standards for Paper Manufacturers",
     "summary_en": "This is a public comment notice regarding a draft ministerial ordinance that would partially amend the ordinance setting the judgment standards for the use of recovered (waste) paper by businesses engaged in paper manufacturing. According to the metadata, the draft was published on 2026-06-26 with a comment submission deadline of 2026-07-26, and it is categorized under environmental conservation. The listed contact is the Resource Circulation Economy Division, GX Group, Ministry of Economy, Trade and Industry.",
     "business_impact_en": "Paper manufacturing businesses may be affected if the proposed standards for recovered paper use are changed, potentially altering compliance expectations. The precise effects cannot be determined from this metadata alone.",
@@ -12174,12 +12174,12 @@
     "summary_model": "claude-opus-4-8"
   },
   "7527b05abc3de40ba6fa7df532b240e17fead944ff8903ba980ba431f00ccd41": {
-    "summary_ja": "経済産業省GXグループ資源循環経済課が、ガラス容器製造業を行う者のカレット利用に関する判断の基準となるべき事項を定める省令の一部を改正する省令（案）について、意見公募を実施しています。案の公示日は2026年6月26日、意見の受付締切は2026年7月26日23:59とされ、カテゴリーは環境保全に分類されています。現時点では改正省令の案に対する意見募集の段階です。",
-    "business_impact_ja": "ガラス容器製造事業者におけるカレット（再生資源）利用に関する判断基準の見直しにつながる可能性があり、資源循環に関する対応の検討が必要となることも考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件および経済産業省の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja": "ガラス容器製造業に属する事業を行う者のカレット利用に関する判断基準を定める省令の一部改正案が、2026年6月26日に公示され、意見公募の対象とされました。受付締切は2026年7月26日23:59 JSTで、問合せ先は経済産業省ＧＸグループ資源循環経済課です。",
+    "business_impact_ja": "ガラス容器製造業のカレット利用に関する判断基準に変更が生じる可能性がありますが、提供された情報には具体的な改正内容は示されていません。",
+    "recommended_action_ja": "非公式のモニタリング情報としての本要約を確認の端緒とし、e-Govの日本語公示資料で改正案の内容や適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:07Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to Ministerial Ordinance on Cullet Use Criteria for Glass Container Manufacturers",
     "summary_en": "This is a public comment notice (opinion solicitation outline) for a draft ministerial ordinance that would partially amend the ordinance setting judgment criteria for cullet (recycled glass) use by businesses in the glass container manufacturing industry. According to the metadata, the draft was published on 2026-06-26 with a comment deadline of 2026-07-26, and it is categorized under environmental conservation, with the contact listed as the Ministry of Economy, Trade and Industry's Resource Circulation Economy Division (GX Group). As a draft out for public comment, it has not been finalized.",
     "business_impact_en": "Businesses in glass container manufacturing may need to consider how revised cullet-use criteria could affect their recycling practices and compliance obligations if the draft is adopted.",
@@ -12190,12 +12190,12 @@
     "summary_model": "claude-opus-4-8"
   },
   "478118c5f904873b23f99da8440ded76e9b4721d06bbd2c83d64bdff08902e02": {
-    "summary_ja": "文部科学省高等教育局私学部私学行政課は、学校法人の寄附行為及び寄附行為の変更の認可に関する審査基準等の一部改正について、意見公募手続（パブリックコメント）を実施しています。案の公示日は2026年6月25日、意見の受付締切は2026年7月25日23時59分とされ、カテゴリーは教育に分類されています。",
-    "business_impact_ja": "学校法人の寄附行為やその変更認可に係る審査基準の見直しに関わるため、該当する法人の運営や認可手続の実務に影響が生じる可能性があります。",
-    "recommended_action_ja": "改正案の詳細や締切等については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことが望まれます。",
+    "summary_ja": "学校法人の寄附行為及び寄附行為の変更の認可に関する審査基準等の一部改正案が、2026年6月25日に公示され、意見公募手続の対象とされました（受付締切：2026年7月25日23:59 JST）。問合せ先は文部科学省高等教育局私学部私学行政課です。",
+    "business_impact_ja": "学校法人の寄附行為やその変更の認可に関する審査に影響する可能性がありますが、改正案の具体的な内容や影響範囲は、提供されたメタデータからは確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料や文部科学省の公式情報で、改正案の内容及び意見公募手続の詳細を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:46:02Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to Review Criteria for Approval of School Corporation Endowment Acts and Their Changes",
     "summary_en": "The Ministry of Education, Culture, Sports, Science and Technology (MEXT) has opened a public comment procedure on a proposed partial amendment to the review criteria concerning approval of school corporations' endowment acts (kifu koi) and changes to them. According to the metadata, the draft was posted on 2026-06-25 with a comment deadline of 2026-07-25. The item is categorized under education and is handled by MEXT's Higher Education Bureau, Private Education Institutions Department.",
     "business_impact_en": "Organizations operating as or affiliated with school corporations may be affected by changes to how endowment acts and their amendments are reviewed for approval. The practical effect, if any, could depend on the final content adopted after the comment period.",
@@ -12952,12 +12952,12 @@
     "summary_model": "gpt-6.1-sol"
   },
   "017df16dfa6b3f97c4789cb329d379751e625d59f2565482dad12bb71c38e605": {
-    "summary_ja": "環境省水・大気環境局環境管理課農薬環境管理室により、「生活環境動植物の被害防止に係る農薬登録基準値（案）」に対する意見募集（パブリックコメント）が実施されています。案の公示日は2026年7月9日、意見の受付締切日時は2026年8月8日午前0時とされています。",
-    "business_impact_ja": "農薬の登録基準値に関わる事業者にとっては、今後の基準値の設定内容によって業務や対応に影響が生じる可能性があります。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govおよび環境省の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "「生活環境動植物の被害防止に係る農薬登録基準値（案）」が2026年7月9日に公示され、意見募集の対象とされました（受付締切：2026年8月8日00:00 JST）。問合せ先は環境省水・大気環境局環境管理課農薬環境管理室です。",
+    "business_impact_ja": "農薬の登録に関わる事業では、案の内容によって登録に係る検討に影響する可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式公示資料で基準値案の内容や対象農薬を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:47:27Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:41Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Pesticide Registration Standard Values to Prevent Harm to Living Environment Flora and Fauna",
     "summary_en": "Japan's Ministry of the Environment has opened a public comment period on a draft standard concerning pesticide registration threshold values aimed at preventing harm to flora and fauna in the living environment. According to the metadata, the draft was published on 2026-07-09 with a comment submission deadline of 2026-08-08. The contact listed is the Pesticide Environment Management Office of the Water and Air Environment Bureau, Ministry of the Environment.",
     "business_impact_en": "Businesses involved in pesticide manufacturing, registration, or use may want to monitor whether revised registration standard values could affect product compliance requirements.",
@@ -13016,12 +13016,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "01f235c45e2731822b0bbaaf54be5963bc8d1de27eea7860b375c4f52dc35cf1": {
-    "summary_ja": "国土交通省航空局は、「旅客に周知すべき安全情報に関する一般指針」の一部改正案について意見募集を実施しています。案の公示日は2026年7月8日、意見の受付締切は2026年8月7日17:00とされ、カテゴリーは航空です。問合せ先は国土交通省航空局安全部航空安全推進室と記載されています。",
-    "business_impact_ja": "航空分野において旅客への安全情報の周知に関わる事業者に、対応の見直しが求められる可能性があります。改正内容によっては関連する運用や表示の確認が必要になることも考えられます。",
-    "recommended_action_ja": "改正案の詳細や締切、対応の要否については、e-Govなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "「旅客に周知すべき安全情報に関する一般指針」の一部改正案が2026年7月8日に公示され、意見募集の対象とされました（受付締切：2026年8月7日17:00 JST）。カテゴリーは航空で、問合せ先は国土交通省航空局安全部航空安全推進室です。",
+    "business_impact_ja": "航空分野で旅客への安全情報の周知に関わる事業者は、改正内容によって情報提供の方法等に影響を受ける可能性がありますが、提供されたメタデータには具体的な改正内容は示されていません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語公示資料や国土交通省の公式情報で、改正案の内容と対象範囲を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:47:27Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:41Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Amendment to General Guidelines on Passenger Safety Information in Aviation",
     "summary_en": "This is a public comment invitation regarding a proposed partial amendment to the 'General Guidelines on Safety Information to be Communicated to Passengers', in the aviation category. According to the metadata, the draft was announced on 2026/07/08 with a submission deadline of 2026/08/07 at 17:00, and the contact is the Air Safety Promotion Office, Safety Division, Civil Aviation Bureau, Ministry of Land, Infrastructure, Transport and Tourism.",
     "business_impact_en": "Businesses involved in passenger air transport may be affected by changes to how safety information is communicated to passengers, depending on the final content of the amendment.",
@@ -13178,12 +13178,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "19c587178b8eff58a9b3968e4ea25b72485b9e72303350bf4dd2b6dfb7694a75": {
-    "summary_ja": "総務省総合通信基盤局は、「消費者保護ルールの更なる適正化とＤＸ時代への対応の在り方」に係る一部答申（案）について意見募集を実施しています。案の公示日は2026年7月1日、受付締切は2026年7月31日00:00と示されており、カテゴリーは電気通信、所管は同局電気通信事業部料金サービス課消費者契約適正化推進室とされています。現時点では答申（案）に対する意見募集の段階です。",
-    "business_impact_ja": "電気通信分野における消費者保護ルールの見直しに関する内容であるため、電気通信事業者の契約・料金・消費者対応に関わる実務へ影響が及ぶ可能性があります。今後の答申・制度化の動向によっては対応の検討が必要になることも考えられます。",
-    "recommended_action_ja": "e-Govおよび総務省の公式情報を確認し、答申（案）の内容や意見募集の状況、その後の進捗を継続的にご確認いただくことが考えられます。",
+    "summary_ja": "2026年7月1日、「消費者保護ルールの更なる適正化とＤＸ時代への対応の在り方」に係る一部答申（案）が公示され、意見募集の対象とされました（受付締切：2026年7月31日00:00 JST）。カテゴリーは電気通信で、問合せ先は総務省総合通信基盤局電気通信事業部料金サービス課消費者契約適正化推進室です。",
+    "business_impact_ja": "電気通信分野の消費者保護や契約に関する業務について、今後の検討動向を把握する上で参考となる可能性があります。ただし、提供情報には答申案の具体的な内容がなく、個別の事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載ページや総務省の公表資料で、答申案の本文と関連情報を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:47:27Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:41Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "Public Comment on Draft Partial Report on Further Refining Consumer Protection Rules and Responding to the DX Era",
     "summary_en": "Japan's Ministry of Internal Affairs and Communications (MIC) has released a draft partial report (an) titled 'Further Refinement of Consumer Protection Rules and Approaches for the DX Era' for public comment. The item falls under the telecommunications category, with the draft announced on 2026/07/01 and a comment deadline of 2026/07/31. Inquiries are directed to the Consumer Contract Appropriateness Promotion Office within MIC's Telecommunications Business Department.",
     "business_impact_en": "Telecommunications service providers and businesses handling consumer contracts may want to monitor this consultation, as any resulting changes to consumer protection rules could affect contract and disclosure practices.",
@@ -14764,12 +14764,12 @@
     "summary_model": "claude-sonnet-5-5"
   },
   "6319660a4597c7bc423093c76c339c6512c1a20e2335a35317780857013d5161": {
-    "summary_ja": "金融庁は、「連結財務諸表の用語、様式及び作成方法に関する規則に規定する金融庁長官が定める企業会計の基準を指定する件」に関するパブリックコメントを実施しています。案の公示日は2026年7月10日、意見の受付締切は2026年8月10日17時とされています。所管は金融庁企画市場局企業開示課です。",
-    "business_impact_ja": "連結財務諸表の作成に用いる企業会計の基準の指定に関わる内容であるため、財務報告や開示実務に影響が及ぶ可能性があります。改正の具体的な内容によっては対応の検討が必要になることも考えられます。",
-    "recommended_action_ja": "e-Govの意見募集案件ページや金融庁の公式情報を確認し、締切日時や案の詳細を最新の一次情報でご確認いただくことをお勧めします。",
+    "summary_ja": "金融庁は2026年7月10日、「連結財務諸表の用語、様式及び作成方法に関する規則に規定する金融庁長官が定める企業会計の基準を指定する件」の案を公示し、パブリックコメントの実施を公表しました。受付締切は2026年8月10日17:00 JSTです。",
+    "business_impact_ja": "連結財務諸表の作成に適用する企業会計基準の確認に関係する可能性がありますが、提供された情報だけでは指定内容や具体的な影響は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov公示資料や金融庁の公式情報で、案の内容および適用対象を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-12T08:48:44Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:50:10Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_en": "FSA public comment: designation of accounting standards under consolidated financial statements rules",
     "summary_en": "This is a public comment solicitation published by the Financial Services Agency (FSA) on 2026-07-10 concerning a proposed notice designating the corporate accounting standards specified by the FSA Commissioner under the rules on terminology, forms, and preparation methods of consolidated financial statements. The comment period is listed as running until 2026-08-10 at 17:00. The metadata does not describe the substance of the proposal.",
     "business_impact_en": "If adopted, the designation could be relevant to companies that prepare consolidated financial statements, but the specific effects cannot be determined from the available metadata.",
@@ -32078,14 +32078,14 @@
     "summary_model": "claude-opus-4-8"
   },
   "1000e9c711935c4853a4e5ae6b8972ef15cd955773dade7108684c81ea368205": {
-    "title_en": "Public comment on draft ministerial ordinance amending the Postal Act Enforcement Regulations",
-    "summary_en": "This is a public comment (opinion solicitation) on a draft ministerial ordinance to partially amend the Enforcement Regulations of the Postal Act and related rules, published by Japan's Ministry of Internal Affairs and Communications. According to the metadata, the draft was announced on 2026/08/20 and the comment period closes on 2026/09/18 at 23:59, under the postal affairs category. The item is at the public comment stage and has not been described as finalized or in force.",
-    "business_impact_en": "Organizations involved in postal or correspondence-delivery services may wish to note that proposed changes to these regulations could affect applicable requirements if adopted.",
-    "recommended_action_en": "Consider reviewing the official Japanese source and the draft text to confirm the scope and details and to note the comment submission deadline.",
+    "title_en": "Public consultation on draft Ministerial Ordinance amending Postal Act enforcement rules",
+    "summary_en": "A draft Ministerial Ordinance amending the Regulations for Enforcement of the Postal Act and related proposals were published for public comment on 2026-08-20; the stated deadline was 2026-09-18 23:59 JST. The listed contacts are the Postal Service Division and the Correspondence Delivery Business Office of the Planning Division, both within the Postal Services Department, Information and Communications Bureau, Ministry of Internal Affairs and Communications.",
+    "business_impact_en": "Postal service and correspondence delivery operators may be affected by the proposed amendments, but the listing does not identify the provisions or operational requirements that would change.",
+    "recommended_action_en": "Review of the official consultation materials could clarify the proposed amendments, their scope and any proposed implementation dates.",
     "confidence": "medium",
-    "ai_notes": "Based on the Japanese title and provided metadata only; the specific content of the proposed amendments is not detailed and is unverified. Preliminary labels are keyword-based triage, not authoritative.",
-    "summarized_at": "2026-08-20T04:09:23Z",
-    "summary_model": "claude-opus-4-8",
+    "ai_notes": "Based on the title and structured listing metadata; the draft provisions were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:53Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "「郵便法施行規則等の一部を改正する省令案等」が2026年8月20日に公示され、意見募集の対象とされました（受付締切：2026年9月18日23:59 JST）。カテゴリーは郵務で、問い合わせ先として総務省情報流通行政局郵政行政部郵便課および企画課信書便事業室が記載されています。",
     "business_impact_ja": "郵便・信書便に関わる事業に影響する可能性がありますが、提供された情報には改正案の具体的内容がなく、影響範囲は確認できません。",
     "recommended_action_ja": "本要約は非公式のモニタリング情報のため、e-Govの日本語公示資料や総務省の公式情報で、改正案の内容と関連事業への影響を確認することが考えられます。",
@@ -34926,14 +34926,14 @@
     "title_model": "gpt-6.1-sol"
   },
   "5f7934150fe7f8fa80daf649e5428480d0f66e982644e4f5fa2eeaface3ae9c3": {
-    "title_en": "Public Comment on Draft Ministerial Ordinance Amending Regional Economy Basic Plan Rules",
-    "summary_en": "This item is a public comment consultation on a draft ministerial ordinance that would partially amend the ordinance concerning basic plans and related matters under Article 4, Paragraph 1 of the Act on Strengthening the Foundation for Regional Growth and Development through the Promotion of Regional Economy Driving Enterprises. According to the metadata, the draft was published on 2026-08-20 and the comment period is stated to close on 2026-09-18. The contact office listed is the Regional Economic and Industrial Policy Division of the Economic and Industrial Policy Bureau, Ministry of Economy, Trade and Industry.",
-    "business_impact_en": "Organizations involved in regionally-based economic development or enterprises subject to related basic plans could be affected if the proposed amendments are finalized. The practical impact remains uncertain while the measure is only at the draft public comment stage.",
-    "recommended_action_en": "Consider reviewing the official Japanese source on e-Gov to confirm the scope of the draft amendment and the comment submission deadline.",
+    "title_en": "Draft Ministerial Ordinance Amending Basic Plan Rules for Regional Economy-Driving Projects",
+    "summary_en": "A public-comment announcement published on 2026-08-20 concerns a draft Ministerial Ordinance amending the ordinance on basic plans under Article 4, paragraph 1 of the Act on Strengthening the Foundations for Regional Growth and Development through the Promotion of Regional Economy-Driving Projects, and related drafts. The stated comment deadline is 2026-09-18 23:59 JST; the contact is the Regional Economic and Industrial Policy Division of the Economic and Industrial Policy Bureau, Ministry of Economy, Trade and Industry.",
+    "business_impact_en": "Businesses undertaking regional economy-driving projects may be affected by changes to the associated basic-plan rules, although the specific amendments and their practical effects are not described.",
+    "recommended_action_en": "Review of the official Japanese consultation materials could clarify the proposed basic-plan amendments, the related drafts and their intended scope.",
     "confidence": "medium",
-    "ai_notes": "Based only on the provided Japanese title and metadata; this is a draft out for public comment, not an enacted rule. Statute and agency names are translated/romanized unofficially and should be verified against the authoritative source. Preliminary labels are keyword-based triage only.",
-    "summarized_at": "2026-08-21T21:33:58Z",
-    "summary_model": "claude-opus-4-8",
+    "ai_notes": "Based on the title and structured listing details, not the draft text; the specific changes are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:53Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "「地域経済牽引事業の促進による地域の成長発展の基盤強化に関する法律第四条第一項に規定する基本計画等に関する省令の一部を改正する省令（案）」等が2026年8月20日に公示され、意見募集の対象とされました（受付締切：2026年9月18日23:59 JST）。問合せ先は経済産業省経済産業政策局地域経済産業政策課であり、提供情報には改正案の具体的内容は記載されていません。",
     "business_impact_ja": "地域経済牽引事業に関係する事業者にとって、基本計画等に関する取扱いの変更が影響する可能性がありますが、具体的な影響は改正案本文の確認が必要と考えられます。",
     "recommended_action_ja": "非公式のモニタリング情報として、e-Govの当該案件ページや経済産業省の日本語公式資料で、改正案の内容と対象範囲を確認することが考えられます。",
@@ -36150,12 +36150,12 @@
     "ai_notes": "Based on limited Japanese metadata; 'Reiwa 9' corresponds to fiscal year 2027, though this was not explicitly stated in the source. Rule-based labels (Labor/Employment, Medium) are unverified triage hints only.",
     "summarized_at": "2026-08-25T21:30:36Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "厚生労働省大臣官房厚生科学課は、「令和９年度厚生労働科学研究に対する御意見募集について」として意見募集を実施しています。原文によれば、案の公示日は2026年8月25日、受付締切は2026年9月25日23:59とされ、カテゴリーは「厚生」と示されています。現時点では意見募集の段階にある情報です。",
-    "business_impact_ja": "厚生労働科学研究に関連する事業や研究活動を行う場合、募集内容によっては今後の方針に影響が及ぶ可能性があります。詳細は原文の対象範囲を確認する必要があると考えられます。",
-    "recommended_action_ja": "提出期限や具体的な募集内容については、e-Gov等の日本語の公式情報源で最新の内容をご確認いただくことをお勧めします。",
+    "summary_ja": "令和９年度厚生労働科学研究に対する意見募集について、2026年8月25日に案が公示されました。受付締切は2026年9月25日23:59 JSTで、問合せ先は厚生労働省大臣官房厚生科学課です。",
+    "business_impact_ja": "厚生労働科学研究に関係する事業者にとって、意見募集の内容が今後の研究動向を把握する参考となる可能性がありますが、提供情報だけでは具体的な事業影響は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、対象となる研究の範囲や募集内容の詳細は、e-Govの公示および厚生労働省の日本語公式資料で確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-25T21:31:46Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:50:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "2595d8d4a3e3b75ba14d69075601e0a84371f37f2ddc9d8fe2fa5797389e1b27": {
     "title_en": "Ministerial Ordinance Amending Immunization Act Enforcement and Immunization Implementation Regulations",
@@ -36296,14 +36296,14 @@
     "ja_summary_model": "gpt-6.1-sol"
   },
   "c0b375387223c03a2494572807e9184d28fa5731b1e69598198233c9054efdf9": {
-    "title_en": "Public Comment on Draft Baseload Market Guidelines",
-    "summary_en": "This is a public comment invitation on draft guidelines for the baseload electricity market, published by the Agency for Natural Resources and Energy (Electricity and Gas Industry Department) under Japan's Ministry of Economy, Trade and Industry. The draft was announced on 2026-08-26, with a comment submission deadline of 2026-09-24 at 23:59. It is categorized under industry and remains at the draft/consultation stage.",
-    "business_impact_en": "Entities participating in or affected by Japan's baseload electricity market may wish to note that the guidelines could influence market rules once finalized.",
-    "recommended_action_en": "Review the official e-Gov public comment listing and the draft guidelines to confirm the scope, requirements, and submission process.",
+    "title_en": "Draft Baseload Market Guidelines: Public Consultation",
+    "summary_en": "Draft Baseload Market Guidelines were published for public comment on 2026/08/26, with a stated deadline of 2026-09-24 23:59 JST. The responsible office is the Electricity Industry and Market Office, Electricity and Gas Industry Department, Agency for Natural Resources and Energy, Ministry of Economy, Trade and Industry.",
+    "business_impact_en": "Baseload electricity market participants may be affected by the proposed guidelines, but the supplied information does not describe their substantive provisions.",
+    "recommended_action_en": "Review of the official Japanese consultation materials could clarify the proposed market guidance, its scope and any implementation arrangements.",
     "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment, not an enacted rule, and details are unverified. Preliminary labels are triage-only and not authoritative.",
-    "summarized_at": "2026-08-27T00:32:52Z",
-    "summary_model": "claude-opus-4-8",
+    "ai_notes": "Based on the title and structured metadata; the draft text was not provided, so substantive changes are unknown. This is an unofficial English summary; the official Japanese source is authoritative.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "経済産業省資源エネルギー庁電力・ガス事業部電力産業・市場室により、「ベースロード市場ガイドライン（案）」に対する意見募集がe-Govで公示されています。案の公示日は2026年8月26日、意見の受付締切は2026年9月24日23:59とされ、カテゴリーは工業に分類されています。",
     "business_impact_ja": "ベースロード市場に関わる電力事業者等の運用や取引実務に影響が及ぶ可能性があります。現時点では案の段階であり、最終的な内容は確定していないと考えられます。",
     "recommended_action_ja": "e-Govの意見募集案件ページ等、日本語の公式情報源で案の内容および締切を確認されることをお勧めします。",
@@ -36418,12 +36418,12 @@
     "ai_notes": "Based on the provided Japanese title and metadata indicating a draft enforcement order out for public comment; specific provisions not available and unverified. Preliminary labels are keyword-based triage only.",
     "summarized_at": "2026-08-27T00:32:52Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "こども家庭庁支援局障害児支援課より、医療的ケア児等及び重症心身障害者並びにそれらの家族に対する支援に関する法律施行令案について、e-Govを通じた意見募集が実施されています。案の公示日は2026年8月25日、受付締切は2026年9月24日12:00とされており、カテゴリーは社会福祉に分類されています。現時点では意見募集の段階であり、施行令の内容が確定したものではありません。",
-    "business_impact_ja": "医療的ケア児や重症心身障害者への支援に関わる事業者や関係者にとって、今後の施行令の内容によって対応が必要となる可能性があります。意見募集の段階であるため、確定した影響については引き続き注視が必要と考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページやこども家庭庁の公式情報をご確認いただくことをお勧めします。",
+    "summary_ja": "「医療的ケア児等及び重症心身障害者並びにそれらの家族に対する支援に関する法律施行令案」が2026年8月25日に公示され、意見募集の対象とされました（受付締切：2026年9月24日12:00 JST）。カテゴリーは社会福祉で、問合せ先はこども家庭庁支援局障害児支援課です。",
+    "business_impact_ja": "医療的ケア児等や重症心身障害者、その家族への支援に関わる事業者に関係する可能性がありますが、提供された情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語公示ページやこども家庭庁の公式資料で、施行令案の内容と関係事業への影響を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-08-27T00:35:32Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:33Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_regenerated_at": "2026-10-16T06:17:44Z",
     "title_model": "gpt-6.1-sol"
   },
@@ -38092,14 +38092,14 @@
     "title_model": "gpt-6.1-sol"
   },
   "4c624b90ef14e15a4a0b4d69efd7bf72a91c40f2bd1b6c26391a4c0c8ca0fb8d": {
-    "title_en": "Public Comment on Draft Amendment to PFOS Product Container, Packaging and Invoice Labeling Requirements",
-    "summary_en": "This is a public comment (Japanese 'public comment' / opinion solicitation) on a draft amendment concerning labeling requirements for containers, packaging, or invoices of products that use PFOS or its salts, which are designated as a Class I Specified Chemical Substance under the Enforcement Order of the Act on the Regulation of Manufacture and Evaluation of Chemical Substances. According to the metadata, the draft was posted on 2026-09-01 with a comment deadline of 2026-10-01, and the contact is the Chemical Substances Safety Office of the Ministry of the Environment. It concerns measures to prevent environmental pollution caused by such substances and is at the proposal/consultation stage.",
-    "business_impact_en": "Businesses that manufacture, import, or handle products containing PFOS or its salts may be affected by potential changes to required labeling on containers, packaging, or invoices. The outcome could influence compliance and documentation practices, but details remain subject to the final text.",
-    "recommended_action_en": "Consider reviewing the official Japanese source and the draft text to understand the proposed labeling changes and the public comment period.",
+    "title_en": "Draft notice amending labeling requirements for specified products containing PFOS or its salts",
+    "summary_en": "A draft notice partially amending labeling requirements for containers, packaging or invoices for specified products containing PFOS or its salts and other covered substances was published for public comment on 2026-09-01. The requirements concern measures to prevent environmental pollution by Class I Specified Chemical Substances for products specified under the supplementary provisions of the Enforcement Order of the Act on the Evaluation of Chemical Substances and Regulation of Their Manufacture, etc.; the stated comment deadline is 2026-10-01 00:00 JST. The listed contact is the Chemical Substances Examination Office, Chemical Substances Safety Division, Environmental Health Department, Minister's Secretariat, Ministry of the Environment.",
+    "business_impact_en": "Businesses handling the specified products containing PFOS or its salts and other covered substances may be affected by changes to the information displayed on containers, packaging or invoices. The supplied information does not identify the precise labeling changes or full product scope.",
+    "recommended_action_en": "Review the official Japanese draft and supporting materials to check the covered products and substances, proposed labeling changes and any implementation provisions.",
     "confidence": "medium",
-    "ai_notes": "Based only on the provided Japanese title and summary metadata; this is a draft out for public comment, not an enacted rule, and specific labeling changes are unverified. Preliminary triage labels are keyword-based and not authoritative.",
-    "summarized_at": "2026-09-01T00:27:36Z",
-    "summary_model": "claude-opus-4-8",
+    "ai_notes": "Based on the title and structured listing information, not the draft text; the precise amendments are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:53Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "2026年9月1日、ＰＦＯＳ又はその塩等が使用されている所定の製品について、容器、包装又は送り状に表示すべき環境汚染防止措置等の事項を一部改正する案が公示され、意見公募の対象とされました。受付締切は2026年10月1日00:00 JSTで、問合せ先は環境省大臣官房環境保健部化学物質安全課化学物質審査室です。",
     "business_impact_ja": "対象製品を取り扱う事業者には、容器、包装又は送り状の表示内容に影響する可能性があります。ただし、提供情報だけでは具体的な変更内容や対象範囲の詳細は確認できません。",
     "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料や環境省の公式情報で、改正案の内容と対象製品・表示事項の詳細を確認することが考えられます。",
@@ -38374,12 +38374,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; this is a draft out for public comment and not enacted law. Details unverified against the official source.",
     "summarized_at": "2026-09-01T00:27:36Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "農林水産省農林水産技術会議事務局研究企画課は、「重要品種の育成及びその種苗の生産の振興に関する法律施行規則案」について意見・情報の募集を実施しています。原文によれば、案の公示日は2026年8月31日、受付締切は2026年9月29日23:59とされ、カテゴリーは農業に分類されています。現時点では施行規則案に対する意見募集の段階であり、規則として確定した段階を示すものではありません。",
-    "business_impact_ja": "重要品種の育成や種苗の生産に関連する事業者においては、施行規則の内容次第で対応の検討が必要となる可能性があります。募集結果を踏まえて規定内容が変わる余地も考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集ページや農林水産省の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "農林水産省は、2026年8月31日に「重要品種の育成及びその種苗の生産の振興に関する法律施行規則案」を公示し、意見・情報の募集を行いました（受付締切：2026年9月29日23:59 JST）。問合せ先は農林水産技術会議事務局研究企画課であり、提供情報には規則案の具体的内容は示されていません。",
+    "business_impact_ja": "重要品種の育成や種苗の生産に関わる事業者に関連する可能性がありますが、具体的な事業影響は規則案の本文を確認する必要があると考えられます。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、e-Govの公示ページや農林水産省の日本語公式資料で、規則案の内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-01T00:30:03Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:49:33Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "97a01d012ffa1577838844a13aaa4746e9cc8018ea0c01650ed7ab5ea4ed846d": {
     "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Dietitians Act and Related Regulations",
@@ -49522,12 +49522,12 @@
     "ai_notes": "Based on the title and structured listing details; the report's substantive contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:39Z",
     "summary_model": "gpt-6.1-sol",
-    "summary_ja": "総務省総合通信基盤局電波部移動通信課が、「電波有効利用委員会報告（案）」に対する意見募集を実施しています。案の公示日は2026年9月19日、意見の受付締切は2026年10月19日23:59とされ、カテゴリーは電気通信に分類されています。",
-    "business_impact_ja": "電波利用や電気通信に関連する事業を営む場合、今後の制度動向に応じて事業運営へ影響が及ぶ可能性があります。",
-    "recommended_action_ja": "詳細および正確な内容については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "「電波有効利用委員会報告（案）」に対する意見募集が、2026年9月19日に公示されました（受付締切：2026年10月19日23:59 JST）。カテゴリーは電気通信で、問合せ先は総務省総合通信基盤局電波部移動通信課とされています。",
+    "business_impact_ja": "電波利用に関わる事業者にとって、報告案の内容が検討上の参考となる可能性がありますが、提供情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Govの日本語公示ページや総務省の公式資料で、報告案の内容と意見募集の詳細を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-24T23:57:43Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:50:03Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "27c190977da5921eff68746519e50546e3e92c7ad877caad1308affa6654d2d6": {
     "title_en": "Public Comment on Draft Frequency Reallocation Action Plan (FY2026 Edition)",
@@ -49554,12 +49554,12 @@
     "ai_notes": "Based on the title and structured listing information; the draft text was not provided, and the English law title is an unofficial translation to be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-18T22:50:17Z",
     "summary_model": "gpt-6.1-sol",
-    "summary_ja": "農林水産技術会議事務局研究企画課が、「重要品種の育成及びその種苗の生産の振興に関する法律施行令案」について意見・情報の募集を実施しています。原文によれば、案の公示日は2026年9月18日、受付締切日時は2026年10月17日23時59分とされ、カテゴリーは農業です。現時点では意見募集の段階にあり、施行令の内容が確定したことを示す記載はありません。",
-    "business_impact_ja": "品種の育成や種苗の生産に関わる事業者にとって、施行令の内容次第で関連する手続や対応に影響が及ぶ可能性があります。募集段階であるため、今後の内容の変動も考えられます。",
-    "recommended_action_ja": "e-Govの意見募集案件詳細や所管省庁の公式情報を確認し、締切日時や案の具体的内容を把握されることが望ましいと考えられます。",
+    "summary_ja": "「重要品種の育成及びその種苗の生産の振興に関する法律施行令案」に関する意見・情報の募集が、2026年9月18日に公示されました。受付締切は2026年10月17日23:59 JSTで、問合せ先は農林水産技術会議事務局研究企画課です。",
+    "business_impact_ja": "重要品種の育成やその種苗の生産に関わる事業に影響する可能性がありますが、提供されたメタデータには施行令案の具体的な内容がなく、影響の範囲や程度は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Govの日本語公示ページで施行令案本文や関連資料を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-24T23:57:43Z",
-    "ja_summary_model": "claude-opus-4-8",
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "title_regenerated_at": "2026-10-16T06:09:06Z",
     "title_model": "gpt-6.1-sol"
   },
@@ -49588,12 +49588,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; specific content of the draft amendment is not provided and remains unverified. Contact and dates are as stated in the untrusted metadata.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "警察庁交通局運転免許課は、「道路交通法施行規則の一部を改正する内閣府令案」について意見募集を実施しています。案の公示日は2026年9月18日、意見の受付締切は2026年10月18日00:00とされています。本件はe-Gov意見募集案件一覧に掲載された、意見募集の段階にある案件です。",
-    "business_impact_ja": "道路交通法施行規則の改正に関する内容次第では、運転免許関連の実務や手続に影響が及ぶ可能性があります。現時点では案の段階であり、最終的な内容は確定していないと考えられます。",
-    "recommended_action_ja": "改正案の詳細や意見提出の要否については、e-Govの意見募集ページなど日本語の公式情報源をご確認いただくことが望ましいと考えられます。",
+    "summary_ja": "「道路交通法施行規則の一部を改正する内閣府令案」が2026年9月18日に公示され、意見募集の対象とされました（受付締切：2026年10月18日00:00 JST）。問合せ先は警察庁交通局運転免許課であり、提供されたメタデータには改正案の具体的内容は記載されていません。",
+    "business_impact_ja": "改正案の内容によっては、運転免許に関係する事業実務に影響する可能性がありますが、具体的な影響は提供された情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料や警察庁の公式情報で、改正案の内容と手続の状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-24T23:57:43Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "ed3d3bd652c416be41364b3e6c1c1d10c76312069a5c42b079b0fa71c353d898": {
     "title_en": "Public Comment on Draft Partial Amendment to the Basic Policy for Urban Renaissance",
@@ -49700,12 +49700,12 @@
     "ai_notes": "Based only on the Japanese title and brief metadata; the substance of the amendments is not described. The preliminary 'Labor / Employment' label appears inconsistent with the immunization-related contact office and should not be relied upon.",
     "summarized_at": "2026-09-24T23:55:32Z",
     "summary_model": "claude-opus-4-8",
-    "summary_ja": "厚生労働省は、厚生労働省組織令及び厚生科学審議会令の一部を改正する政令案について、意見募集を実施しています。原文によれば、案の公示日は2026年9月19日、受付締切は2026年10月19日00:00とされ、問合せ先は厚生労働省健康・生活衛生局感染症対策部予防接種課と示されています。現時点では意見募集の段階であり、政令の制定・施行には至っていないと解されます。",
-    "business_impact_ja": "組織令等の改正は厚生労働省の所掌体制に関わるものであり、感染症対策や予防接種に関連する事業・実務に間接的な影響が生じる可能性があります。改正内容の詳細によっては、関係手続や連絡窓口の変更に留意する必要が考えられます。",
-    "recommended_action_ja": "詳細および最新の状況については、e-Govの意見募集案件ページなど日本語の公式情報源をご確認いただくことをお勧めします。",
+    "summary_ja": "厚生労働省組織令及び厚生科学審議会令の一部を改正する政令案について、2026年9月19日に案が公示され、意見募集の受付締切は2026年10月19日00:00 JSTとされています。問合せ先は厚生労働省健康・生活衛生局感染症対策部予防接種課であり、提供情報には改正案の具体的な内容は記載されていません。",
+    "business_impact_ja": "改正案の内容によっては、関係事業者の行政対応に関係する可能性がありますが、提供情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの当該案件や厚生労働省の日本語公式資料で、改正案の内容とその後の公表状況を確認することが考えられます。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-09-24T23:57:43Z",
-    "ja_summary_model": "claude-opus-4-8"
+    "ja_summarized_at": "2026-10-23T23:50:03Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "f797f92eb4a9cd2251ef263a6e206eb42ab0621d2ce0d0f99113e9e4f0a31854": {
     "title_en": "Ministerial Ordinance Partially Amending the Enforcement Regulations of the Electricity Business Act and Related Rules",
@@ -73373,7 +73373,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:07Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則及び前払式支払手段に関する内閣府令の一部を改正する内閣府令（令和八年内閣府令第三十六号）は、2026年4月1日に公布・施行されました。メタデータには、対象法令として保険業法施行規則（平成八年大蔵省令第五号）、更新一覧日として2026年10月19日が記載されていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "保険業や前払式支払手段に関する業務に影響する可能性がありますが、具体的な影響範囲は、このメタデータだけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:16Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "5b766167ece8318d8e852fae8ce9f513e0ba4cec66f84f18cc2b64c88013cbb3": {
     "title_en": "Cabinet Office Ordinance amending the Regulation for Enforcement of the Insurance Business Act",
@@ -73383,7 +73389,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, without the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:07Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）の一部を改正する内閣府令（令和八年内閣府令第二十一号）が、2026年3月31日に公布され、同日に施行された旨が記載されています。更新一覧日は2026年10月19日とされていますが、改正内容の詳細は提供情報に含まれていません。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、具体的な影響範囲は提供情報のみでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索の日本語本文で改正内容、適用範囲および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "020971e5ae251f7e9c15f3014c8913e0a597b4579f2fc76502fab7d6f1f1636c": {
     "title_en": "Child sexual violence prevention rules: amendment to child welfare facility standards",
@@ -73441,7 +73453,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the substantive provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:19Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧には、保険業法施行規則（平成八年大蔵省令第五号）を対象とする改正法令として、「銀行法施行規則等の一部を改正する内閣府令の一部を改正する内閣府令」（令和七年内閣府令第七十九号）が記載されています。メタデータ上の公布日・施行日はともに2025年8月29日、更新一覧日は2026年10月19日ですが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "保険業法施行規則に関係する事業者の業務や社内規程に影響する可能性がありますが、提供情報のみでは具体的な影響範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式法令本文や改正資料により、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "bc1030d01469a3e4d1f20e68b7d610f1590bf9959a61b7057a5f193bab292a2a": {
     "title_en": "Cabinet Office Ordinance Amending the Regulation for Enforcement of the Insurance Business Act",
@@ -73451,7 +73469,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:19Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正する「保険業法施行規則の一部を改正する内閣府令」（令和七年内閣府令第七十一号）について、公布日は2025年7月23日、施行日は2026年3月31日と記載されています。提供情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "保険業に関する業務や社内規程に影響する可能性がありますが、具体的な影響範囲は提供情報だけでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正内容や施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "78065e310d02b7723bc8b71191a7d28c6fc11df323d7e68d4b38c35cea516c19": {
     "title_en": "Cabinet Office Ordinance amending Mutual Loan Business Act rules and related regulations",
@@ -73525,7 +73549,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:31Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、保険業法施行規則（平成八年大蔵省令第五号）を対象とする改正法令として、銀行法施行規則等の一部を改正する内閣府令（令和六年内閣府令第十九号）が掲載されています。原文には、公布日が2024年3月22日、施行日が2024年4月1日と記載されています。",
+    "business_impact_ja": "保険業法施行規則の適用を受ける事業の業務や手続に影響する可能性がありますが、提供情報だけでは具体的な改正内容や影響範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で改正条文や適用範囲、施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "54c43c42d3b23b74c6e2201103808689be2783faad7bdf0cc7f79df0a452f7a3": {
     "title_en": "Cabinet Office Ordinance amending the Regulation for Enforcement of the Insurance Business Act",
@@ -73535,7 +73565,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:31Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）の一部を改正する内閣府令（令和五年内閣府令第三十七号）は、2023年3月31日に公布され、2023年4月1日に施行されました。提供情報には、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "保険業法施行規則の適用を受ける業務に影響する可能性がありますが、具体的な影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "21ba49c380016c241975b519e4a94d2982a05ad91c6e7f093df0d91ef4ec8191": {
     "title_en": "Cabinet Office Ordinance amending Banking Act regulations and related rules",
@@ -73545,7 +73581,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary requires verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:42Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、保険業法施行規則（平成八年大蔵省令第五号）を対象とする改正法令として、銀行法施行規則等の一部を改正する内閣府令（令和四年内閣府令第六十一号）が記載されています。原文記載の公布日は2022年10月31日、施行日は2022年11月1日で、更新一覧日は2026年10月19日です。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正内容や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "40e9dace2a964336f292a52bf202e2ee8c4a51391344b769c4bc534cd8633c72": {
     "title_en": "Cabinet Office Ordinance Amending the Insurance Business Act Enforcement Regulations",
@@ -73603,7 +73645,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication metadata only; class details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:42Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "公正取引委員会は、2026年10月19日、東京コミュニケーションアート専門学校における「フリーランス法出前授業」の開催について報道発表しました。提供されたメタデータには、授業の開催日時や具体的な内容は記載されていません。",
+    "business_impact_ja": "フリーランス法に関する理解促進の取組として、関連事業者の情報収集の参考となる可能性がありますが、本件の具体的な事業への影響は提供情報からは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、開催概要や授業内容については公正取引委員会の日本語の公式発表をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "5284e7f624fe91ee03ad3668f5d18247fc04befebf779c07c9b18eaf045e63f7": {
     "title_en": "Proposed partial changes to Sanriku Fukko National Park boundaries and plan",
@@ -73613,7 +73661,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and supplied consultation dates; the substance of the proposed changes was not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:54Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境省は、2026年10月19日に三陸復興国立公園（南三陸金華山地域）の公園区域及び公園計画の一部変更に関する意見募集を公表しました。受付締切は2026年11月18日00:00 JSTです。提供された情報には、具体的な変更内容は示されていません。",
+    "business_impact_ja": "対象地域に関係する事業では、公園区域や公園計画の変更内容によって事業計画等に影響が生じる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、環境省の日本語公表資料及びe-Govの意見募集情報で、変更内容や受付締切を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:38Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4e542c68f67045934ad75ba7693b286080921526c0e5a6876f734f29f9d8eb94": {
     "title_en": "Public consultation on proposed Ise-Shima National Park boundary and park plan changes",
@@ -73639,7 +73693,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; details of the emails and agency guidance were not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:54Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "消費者庁は、2026年10月19日、同庁から調査の協力依頼を受けたと騙る電子メールについて注意喚起を公表しました。提供された情報には、メールの具体的な内容や手口の詳細は記載されていません。",
+    "business_impact_ja": "消費者庁からの調査協力依頼に関係すると称するメールを受信した場合、依頼の真偽の確認が必要となる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として本要約を参照し、注意喚起の詳細は消費者庁の日本語公式公表ページで確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:52Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "5c92636e2a86c7808d484cc24d46a81c44fc3456c3c9758d382d5cd194367fa9": {
     "title_en": "Request for cooperation with the 2026 Survey on Industrial Safety and Health",
@@ -73649,7 +73709,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and announcement date only; survey details are unavailable in the supplied material, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:54Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "厚生労働省は、2026年10月19日付で「令和８年労働安全衛生調査（実態調査）」への協力を求める案内を公表しました。提供されたメタデータには、調査対象、回答方法、回答期限の記載はありません。",
+    "business_impact_ja": "調査対象となる事業者では、回答に向けた情報確認や社内調整が必要となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、厚生労働省の日本語公式ページで調査対象や回答方法、回答期限を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:52Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "ca2edd3c76555c9e684011c01885801b6015321debbd9b9b64e211924f1ae49e": {
     "title_en": "Bill on Temporary Special Measures for Local Assembly and Local Government Head Election Dates",
@@ -73659,7 +73725,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information; substantive provisions and dates are not provided, and enactment is not established. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:54Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「地方公共団体の議会の議員及び長の選挙期日等の臨時特例に関する法律案」は、第222回国会提出の閣法第16号です。提供情報では、衆議院で審議中とされています。",
+    "business_impact_ja": "地方公共団体の選挙期日等に関係する業務では、法案の内容や審議の進展が確認事項となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、衆議院の日本語公式情報で法案本文と最新の審議状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4cd54936ffc44603059a87cc8ef0a2c2b70a2c1de28ca4f0a0280b733f457154": {
     "title_en": "Act Amending the Code of Criminal Procedure",
@@ -73669,7 +73741,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:13:06Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧には、刑事訴訟法（昭和二十三年法律第百三十一号）を改正する「刑事訴訟法の一部を改正する法律」（令和八年法律第六十七号）が記載されています。原文には、公布日が2026年7月24日、施行日が2026年10月20日、更新一覧日が2026年10月14日と示されています。",
+    "business_impact_ja": "刑事手続に関係する事業上の対応に影響する可能性がありますが、提供情報には改正内容が記載されていないため、具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov等の日本語の公式情報源で改正条文、施行日及び経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:33Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "0cd39bb516c85bcd6cfc3fb3a900117d6e47e70ad652686ea5725c780ff61e3d": {
     "title_en": "Cabinet Office Ordinance amending financial instruments business rules: insurance rules update",
@@ -73679,7 +73757,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:13:06Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正対象とする「金融商品取引業等に関する内閣府令等の一部を改正する内閣府令」（令和七年内閣府令第二十三号）は、2025年3月28日に公布され、施行日は2025年5月1日と記載されています。提供情報には、具体的な改正内容は示されていません。",
+    "business_impact_ja": "保険業法施行規則の改正により、関連業務への影響が生じる可能性がありますが、提供情報のみでは対象業務や必要な対応は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:50:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "7eaadebb72c2f8c6288a662d39e022ef4ad2275c4a77458160e568e16d57ba26": {
     "title_en": "Cabinet Office Ordinance amending financial instruments business rules and related ordinances",
@@ -74667,7 +74751,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:24Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "金融庁は、「秋季金融庁-米国SEC金融規制対話」の開催について公表しました。提供された情報には、対話の具体的な議題や結果の記載はありません。",
+    "business_impact_ja": "日米の金融規制に関わる事業者にとって、規制当局間の対話の内容が情報収集上の参考となる可能性がありますが、本情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、詳細は金融庁の日本語公式公表資料で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:16Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "15fbba8a51e74019e0c5239dfcfd7b094ed9c0c7c3ad015709fdcbf64da68704": {
     "title_en": "Cabinet Order on Ainu policy measures: amendment to subsidy budget execution rules",
@@ -74709,7 +74799,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing metadata, not the operative text; the English is unofficial, and the relationship between the headline subject and the identified amended order requires verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）を対象法令とし、預貯金者の意思に基づく個人番号の利用による預貯金口座の管理等に関する法律第十四条の政令で定める金額を定める政令（令和三年政令第百五十五号）を改正法令とする情報が記載されています。公布日・施行日はともに2021年5月19日、更新一覧日は2026年10月20日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "対象法令に関係する事業では、改正内容の確認が必要となる可能性がありますが、このメタデータだけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索の本文・沿革等で、両政令の関係、改正内容および公布・施行日を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "eac8d2df8c27c39dc994f739aa9b2eb3ec3cac580669589d076f157bd297d24c": {
     "title_en": "Cabinet Order on prefectural administrative expenses for former Eugenic Protection Act lump-sum payments",
@@ -74719,7 +74815,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information, not the operative provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者に対する一時金の支給等に関する法律に基づき都道府県に交付する事務費に関する政令（平成三十一年政令第百六十号）は、2019年4月24日に公布・施行されました。提供情報では、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が改正対象として記載されています。",
+    "business_impact_ja": "都道府県に交付する事務費に関係する制度運用への影響が考えられますが、提供情報だけでは具体的な改正内容や民間事業者への影響は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語条文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4d1b86d2897b8f9fb1ad70f2613466a84f22db9643e122db1ff2dbff56b72a28": {
     "title_en": "Digital Agency announces launch of My Number Card for Android",
@@ -74729,7 +74831,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; service details were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "デジタル庁は、2026年10月20日付の公表情報で、「Androidのマイナンバーカード」の提供開始を案内しました。提供機能や利用条件などの詳細は、入力された日本語メタデータには記載されていません。",
+    "business_impact_ja": "マイナンバーカードに関連するサービスを扱う事業者では、提供内容によって、自社サービスとの関係や利用者向け案内の確認が必要となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、デジタル庁の日本語公式ページで提供内容や利用条件を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:44Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "e8ca242caa3bd0a31554b9eb9e6a22b97f3bd9f2658a9b331b29cd73f22b5077": {
     "title_en": "Digital Agency announcement on the AI and Digital Reform Promotion Council meeting",
@@ -74739,7 +74847,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "デジタル庁は、2026年10月20日、AI・デジタル改革推進会議の開催に関する情報を掲載しました。提供されたメタデータには、会議の開催日時や議題、検討内容の詳細は示されていません。",
+    "business_impact_ja": "会議の議題や検討内容によっては、企業のAI活用やデジタル化に関する動向把握に関係する可能性がありますが、本情報のみから具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、デジタル庁の日本語公式ページで開催概要や関連資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:00Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "109667fb65589be2e2b567ec58440ecc3263cf07794d2255a9c3c4bbf2f05070": {
     "title_en": "Digital Agency announcement on Government AI Gennai agent environment and Gennai Standards",
@@ -74749,7 +74863,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and listing date only; this unofficial English summary requires verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:34Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "デジタル庁は、2026年10月20日、ガバメントAI「源内」におけるAIエージェント利用環境の提供開始のお知らせと「源内基準」を掲載しました。提供されたメタデータには、利用環境や基準の具体的な内容は記載されていません。",
+    "business_impact_ja": "ガバメントAI「源内」に関わる事業者にとって、AIエージェントの利用環境や「源内基準」の内容が検討上の参考となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、詳細についてはデジタル庁の日本語公式ページでお知らせと「源内基準」を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:00Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "c4db20b228a61ce481365b6351c9cae93d3da6c064565c958dc3683639eb3dca": {
     "title_en": "MAFF announcement: domestic SAF for Blue Impulse display flights and used cooking oil collection",
@@ -74759,7 +74879,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication details only; operational details are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:34Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "農林水産省は2026年10月20日、ブルーインパルスによる展示飛行に国産SAFを使用し、その原料となる廃食用油を回収するキャンペーンを実施すると発表しました。提供されたメタデータには、展示飛行や回収キャンペーンの実施日時・参加方法の記載はありません。",
+    "business_impact_ja": "廃食用油の排出・回収やSAFに関わる事業者にとって、資源回収や国産SAFの利用に関する取組を把握する参考となる可能性があります。",
+    "recommended_action_ja": "実施内容や参加条件などの詳細については、農林水産省の日本語の公式発表を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:26Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "c9bb949149d8ef102f796442ee543d37706cf7a9f240fdfb72023d5b15ebd0ce": {
     "title_en": "METI announcement: domestic SAF for Blue Impulse display flight and used cooking oil collection",
@@ -74769,7 +74895,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and announcement date only; implementation details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:34Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は2026年10月20日、ブルーインパルスによる展示飛行で国産SAFを使用すると発表しました。あわせて、原料となる廃食用油を回収するキャンペーンの実施を発表しました。",
+    "business_impact_ja": "国産SAFや廃食用油の回収に関わる事業者にとって、関連する取組を把握する参考となる可能性があります。",
+    "recommended_action_ja": "実施内容や対象などの詳細については、経済産業省の日本語ニュースリリース本文で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:26Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "031ae67c29de348e66d3c43e9fbf22c231a4ecb6ee270b39f0360e6071bbf358": {
     "title_en": "MLIT announcement: Domestic SAF for Blue Impulse display flight and used cooking oil collection",
@@ -74779,7 +74911,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; operational details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:34Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "国土交通省は、2026年10月20日、ブルーインパルスによる展示飛行で国産ＳＡＦを使用する旨の報道発表を行いました。あわせて、原料となる廃食用油を回収するキャンペーンの実施を発表しました。",
+    "business_impact_ja": "廃食用油の回収や国産ＳＡＦに関わる事業者にとって、関連する取組を把握する参考となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、実施内容やキャンペーンの詳細は、国土交通省の日本語の公式発表で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:26Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "b542371acca3045e9814f13b89f196824f998cead0553fb38d6cc7d588861ca3": {
     "title_en": "METI receives Chubu Electric Power Miraiz filing to amend specified retail supply terms",
@@ -74789,7 +74927,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; receipt of the notification does not establish approval or effectiveness, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:34Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は、2026年10月20日、中部電力ミライズ株式会社から特定小売供給約款の変更届出を受理した旨を公表しました。提供された情報には、変更内容や適用時期の詳細は示されていません。",
+    "business_impact_ja": "当該約款が適用される電力契約について、変更内容に応じて契約条件等に影響する可能性がありますが、提供情報のみでは具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、変更内容や適用時期については、経済産業省の日本語公表資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:26Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "61009dba7b6b77850fdf81751e6fcaee3cc3b705ad52c1f3b99e090d5a4393af": {
     "title_en": "Announcement of possible registered-business data leak at Housing Energy-Saving 2024 Campaign office",
@@ -74799,7 +74943,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; the extent and circumstances of the possible leak are unknown. This is an unofficial English summary and must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:39Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境省は、2026年10月20日、「住宅省エネ2024キャンペーン」の事務局における登録事業者情報の漏洩の可能性について公表しました。提供された情報からは、漏洩の有無、対象情報や影響範囲の詳細は確認できません。",
+    "business_impact_ja": "同キャンペーンの登録事業者において、自社に関する情報への影響を確認する必要が生じる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、環境省の日本語公式発表で漏洩の可能性や対象範囲、対応に関する詳細を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:26Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "6fec629c5594f692a5a34ffc4eb8bc4f1d2dc12af0ad70d79b8b09997f71b287": {
     "title_en": "Announcement of possible registered-business data leak at Housing Energy Efficiency 2024 Campaign office",
@@ -74809,7 +74959,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication details only; the scope and confirmation status of the possible leak are not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:39Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "国土交通省は、2026年10月20日付で、「住宅省エネ2024キャンペーン」の事務局における登録事業者情報の漏洩の可能性について報道発表しました。提供されたメタデータには、漏洩の有無、対象情報や影響範囲の詳細は記載されていません。",
+    "business_impact_ja": "同キャンペーンの登録事業者については、自社情報への影響の有無を確認する必要が生じる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として本要約を参照し、詳細は国土交通省の日本語の報道発表本文で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:33Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "7d4b084de2fa0322cd02b43129e754058eec7e526d01572e10335a092a0162a7": {
     "title_en": "FSA publishes agenda for first study group meeting on digital and decentralized finance",
@@ -74819,7 +74975,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; the agenda's contents are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:39Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "金融庁は、2026年10月21日、「デジタル・分散型金融への対応のあり方等に関する研究会」（第１回）の議事次第を公表しました。提供情報には、具体的な議題や検討内容の記載はありません。",
+    "business_impact_ja": "デジタル・分散型金融に関わる事業者にとって、今後の検討動向を把握する手掛かりとなる可能性がありますが、今回の提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、詳細については金融庁の日本語公式ページに掲載された議事次第等を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:50:03Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "fe3bc16924a9a7b81a98675c524923604588fe3358deee57f6cb0c4ff5e413e2": {
     "title_en": "Digital Agency announces local-government recruitment for shared AI services pilot",
@@ -74829,7 +74991,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; project details were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:39Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "デジタル庁は、2026年10月20日、「自治体からの照会事務の自動化などの国・地方AI共通サービスに関する実証事業」の参加自治体の募集を公表しました。募集対象は都道府県及び市区町村であり、提供された情報には募集期限や参加条件の記載はありません。",
+    "business_impact_ja": "自治体向けAIサービスや業務自動化に関わる事業者にとって、国・地方AI共通サービスの実証動向を把握する上で参考となる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のデジタル庁公式ページで実証内容、参加条件及び募集日程を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:50:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "304eac6b56a63f3cdf581077fd28e5b737496d0c5229f4c4d4b1959dea67e1f7": {
     "title_en": "Government announcement on postponement of mandatory halal certification in Indonesia",
@@ -75143,7 +75311,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and listing date only; the product name is an unofficial English rendering, and recall details require verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-21T23:56:19Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "2026年10月21日付のPMDA安全対策業務の新着情報に、照射赤血球液-LR「日赤」を該当回収品目とするクラスI回収情報が掲載されています。提供されたメタデータには、回収理由、対象ロット、回収範囲などの詳細は記載されていません。",
+    "business_impact_ja": "当該製品を取り扱う医療機関等では、回収対象の範囲によって、在庫確認や使用・供給管理への影響が生じる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、PMDAの日本語公式回収情報で対象製品、回収理由、対象ロットおよび対応内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:00Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "499d262b48a80c3b229ccfb6944c618114114c8773b90cb4ba4eee8a89324b74": {
     "title_en": "Withdrawn bill on income tax measures addressing tax burden increases exceeding wage growth",
@@ -75153,7 +75327,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured legislative metadata; the proposed measures are not described, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-21T23:56:24Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "衆議院の議案情報には、「賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案」が、第221回提出の衆法第30号として記載されています。審議状況は「撤回」とされています。",
+    "business_impact_ja": "所得税に関する検討動向として参考になる可能性がありますが、撤回された本法案の情報のみから、事業上の税負担や実務への変更は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、衆議院の日本語公式議案情報で、法案の内容と撤回の経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4ee3811e3aeb9b2adc5db74d32bea4639f59bd560d3266ef2396775a061e3dc7": {
     "title_en": "Bill on Measures to Reduce Tax and Social Insurance Contribution Burdens on Employed Persons",
@@ -75163,7 +75343,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information, not the bill text; this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-21T23:56:24Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案」は、第222回国会に提出された衆法第1号です。提供情報では衆議院で審議中とされており、具体的な措置の内容や成立・施行については示されていません。",
+    "business_impact_ja": "法案の内容や今後の審議結果によっては、就業者の税・社会保険料負担に関わる企業実務に影響する可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、衆議院の日本語公式議案情報で法案本文と最新の審議経過を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:13Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "ac12a6a02f93e40ae7d0325b5fdb42f443796e0d0d8f0cfef87807cfd6c078ee": {
     "title_en": "Notice of 57th Review Board Meeting on Recognition of Specified Asbestos-Affected Construction Workers",
@@ -75173,7 +75359,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication information only; the board name is translated literally, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-21T23:56:24Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "厚生労働省は、2026年10月21日付で「第５７回特定石綿被害建設業務労働者等認定審査会」の開催案内を公表しました。提供された情報には、開催日時、議題や審査内容の詳細は記載されていません。",
+    "business_impact_ja": "石綿被害に関係する建設事業者等にとって、認定審査に関する動向を確認する契機となる可能性がありますが、この情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、開催日時や議題等の詳細は厚生労働省の日本語公式掲載ページで確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "e5158b78e8052e39173140805f1193906c7ef4fc2a42f1c093f9df55b9e8ee32": {
     "title_en": "JFTC announcement: Niigata expert meeting and One-Day Fair Trade Commission event",
@@ -75183,7 +75375,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication date only; event details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-21T23:56:24Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "公正取引委員会は、2026年10月21日、新潟地区における有識者との懇談会及び新潟市における「一日公正取引委員会」の開催について報道発表しました。提供された情報には、開催日時や具体的な内容は記載されていません。",
+    "business_impact_ja": "新潟地区の事業者にとって、公正取引委員会の活動に関する情報を得る機会となる可能性がありますが、具体的な事業への影響は提供情報からは判断できません。",
+    "recommended_action_ja": "開催日時、内容及び参加方法等について、公正取引委員会の日本語公式発表を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:50:03Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4bc0fcec254c0f409a0e14148c5c83389966a1117e8f9c49b8a3922e05479d8f": {
     "title_en": "Notice of the 24th Expert Meeting on Promoting Use of the Adult Guardianship System",
@@ -75557,7 +75755,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and publication details only; the recommendation's substance was not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:55:39Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は、2026年10月22日、王子コンテナー株式会社に対して下請法に基づく勧告が行われた旨を公表しました。提供されたメタデータには、勧告の具体的な内容や対象行為は記載されていません。",
+    "business_impact_ja": "下請取引に関する管理体制を点検する際の参考となる可能性がありますが、具体的な事業への影響は提供情報のみでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、経済産業省の日本語ニュースリリース本文で、勧告の内容や対象行為を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "bd757f39f2b53c4968b2da65c2837b2a5e85d741c8a10c0778f12767b4b01a26": {
     "title_en": "Ministerial Ordinance Amending Technical Standards for Powered Fire Pumps",
@@ -75615,7 +75819,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and announcement date only; the recommendation's substance is unavailable. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:55:51Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "公正取引委員会は、2026年10月22日付で「王子コンテナー株式会社に対する勧告について」と題する報道発表を公表しました。提供された情報には、勧告の具体的な内容や根拠法令は示されていません。",
+    "business_impact_ja": "勧告の内容によっては、関連する取引実務や社内管理の確認に参考となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、公正取引委員会の日本語の報道発表本文で勧告の内容や対象行為を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "b02ccbd252a0e3d01ebe74ed91a3a347eb9ac2d3ca6adba550ca1d168df1d285": {
     "title_en": "Announcement of possible personal information leak following unauthorized access at Studio Inc.",
@@ -75641,7 +75851,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; the meeting materials were not provided, so substantive proposals and their scope are unknown. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:55:51Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "デジタル庁は、2026年10月22日付の公表情報で、AI・デジタル改革推進会議（第1回）の議事次第および資料の掲載を案内しました。提供されたメタデータには、議論や資料の具体的な内容は示されていません。",
+    "business_impact_ja": "掲載資料は、AI・デジタル改革に関する政策動向を把握する参考となる可能性がありますが、提供情報のみでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として本要約を参照し、デジタル庁の日本語公式ページで議事次第および資料の内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:52Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "d6ee552b01ed8ff3d92300c0ab1085fcb00ff011ac640311db5926c46d544596": {
     "title_en": "First study group meeting on telecom data protection and security in the frontier AI era",
@@ -75651,7 +75867,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; meeting details and outcomes are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:02Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "総務省は、2026年10月22日付で「フロンティアAI時代の通信事業におけるデータの保護・セキュリティの在り方に関する検討会（第1回）」に関する情報を公表しました。提供された情報には、具体的な検討内容や決定事項は記載されていません。",
+    "business_impact_ja": "通信事業におけるデータ保護・セキュリティの検討動向を把握する上で参考となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、総務省の日本語公式ページで公表内容や関連資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "faaf62e8058f987dfbf609ea33f6c4d919b5cae3b251e579cc4e3f932d08ea1d": {
     "title_en": "Act Partially Amending the Postal Privatization Act and Related Acts",
@@ -75661,7 +75883,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information, not the substantive provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:02Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "郵政民営化法（平成十七年法律第九十七号）を対象とする「郵政民営化法等の一部を改正する法律」（令和八年法律第五十号）は、2026年6月25日に公布され、施行日は2026年12月1日とされています。e-Gov法令更新一覧の更新一覧日は2026年10月22日であり、提供情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "郵政関連事業に影響する可能性がありますが、具体的な影響範囲や対応の要否は、提供情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報としての本要約を確認の端緒とし、e-Gov法令検索等の日本語の公式情報源で改正条文、施行日および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:41Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "07fc95d13f1eebaedc69918b338bc3a4820702a13a632e3817fe61f8a7bed369": {
     "title_en": "Act Amending the Postal Service Privatization Act and Related Acts",
@@ -75671,7 +75899,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:02Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "郵政民営化法等の一部を改正する法律（令和八年法律第五十号）は、2026年6月25日に公布され、日本郵政株式会社法（平成十七年法律第九十八号）を改正するものです。メタデータには施行日が2026年12月1日、法令更新一覧日が2026年10月22日と記載されています。",
+    "business_impact_ja": "日本郵政株式会社法に関係する事業や業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正条文、附則および施行日をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:41Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "d42d1412715c4ff2985bd695b340b4c9a7a7d0fb08b4b7e5b25547737bd55a46": {
     "title_en": "Act Amending the Postal Privatization Act and Related Acts",
@@ -75681,7 +75915,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing metadata; the amended provisions were not provided, and the English law names are unofficial translations to be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:02Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、郵政民営化法等の一部を改正する法律（令和八年法律第五十号）による、独立行政法人郵便貯金簡易生命保険管理・郵便局ネットワーク支援機構法（平成十七年法律第百一号）の改正が記載されています。公布日は2026年6月25日、施行日は2026年12月1日、更新一覧日は2026年10月22日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "対象法令に関係する業務に影響する可能性がありますが、提供情報のみでは影響の内容や範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文、施行日および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:49Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "39582335273dda98c04da8c2b8f50d13e7af4be5dac56420e5ba62a568c7fb0a": {
     "title_en": "Act Amending the Postal Privatization Act and Related Acts",
@@ -75691,7 +75931,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information; the amendment's substantive provisions were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:13Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "郵政民営化法等の一部を改正する法律（令和八年法律第五十号）は、2026年6月25日に公布され、施行日は2026年11月1日と記載されています。2026年10月22日付の法令更新一覧では、対象法令として日本郵便株式会社法（平成十七年法律第百号）が示されています。",
+    "business_impact_ja": "日本郵便株式会社法に関係する事業や取引について、改正内容の確認が必要となる可能性があります。具体的な変更内容や事業への影響は、提供されたメタデータのみでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で、改正条文、施行日および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:49Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "1783e33af00ed22a2ed661cb94070a5ddaef7cde264f1ef07c522b7d880ade17": {
     "title_en": "Goods Distribution Efficiency Amendment Act: Registration and License Tax Act update",
@@ -75701,7 +75947,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:13Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、登録免許税法（昭和四十二年法律第三十五号）を対象とする改正法令として、物資の流通の効率化に関する法律の一部を改正する法律（令和八年法律第二十一号）が記載されています。公布日は2026年5月20日、施行日は2026年11月1日とされ、更新一覧日は2026年10月22日です。",
+    "business_impact_ja": "登録免許税に関係する事業上の手続や税務処理に影響する可能性がありますが、提供されたメタデータだけでは具体的な改正内容や適用対象は確認できません。",
+    "recommended_action_ja": "この要約は非公式の確認の端緒として、e-Govの日本語法令本文などの公式情報源で、改正内容、適用対象および施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:49Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4191f904640e0c66565d84503b375fd73410514ca68cd0442ed400882fda5c4d": {
     "title_en": "Act amending the Act on Efficiency of Goods Distribution: transport agency law update",
@@ -75711,7 +75963,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, without amendment text; the English summary is unofficial and must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:13Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、物資の流通の効率化に関する法律の一部を改正する法律（令和八年法律第二十一号）による、独立行政法人鉄道建設・運輸施設整備支援機構法（平成十四年法律第百八十号）の改正が記載されています。公布日は2026年5月20日、施行日は2026年11月1日、更新一覧日は2026年10月22日とされています。",
+    "business_impact_ja": "対象法令に関係する事業では、改正内容の確認が必要となる可能性がありますが、提供されたメタデータには具体的な改正内容がなく、事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govなどの日本語の公式情報源で改正条文、施行日および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "646b45cf4ef152559f3d2e5a9422fbc97e16c9cc838c9247fc5e8ea04570901b": {
     "title_en": "Act Amending the Act on Improving the Efficiency of Goods Distribution",
@@ -75721,7 +75979,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:13Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "物資の流通の効率化に関する法律（平成十七年法律第八十五号）を改正する「物資の流通の効率化に関する法律の一部を改正する法律」（令和八年法律第二十一号）について、公布日は2026年5月20日、施行日は2026年11月1日と記載されています。e-Gov法令更新一覧の更新一覧日は2026年10月22日であり、提供情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "物資の流通に関わる事業では、改正内容に応じて業務への影響が生じる可能性がありますが、提供情報だけでは対象事業者や具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正条文、適用対象および施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "eee60ce23955eb56f4bbd617afc6ef035aa567feb0d9a14dd9c1409203f47550": {
     "title_en": "Act Amending the Local Tax Act and Other Acts",
@@ -75731,7 +75995,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing metadata, not the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:13Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧には、地方税法（昭和二十五年法律第二百二十六号）を対象とする「地方税法等の一部を改正する法律」（令和八年法律第二号）が記載されています。メタデータ上の公布日は2026年3月31日、施行日は2026年11月1日、更新一覧日は2026年10月22日です。",
+    "business_impact_ja": "地方税に関する事業上の税務対応に影響する可能性がありますが、提供情報には改正内容の詳細がなく、具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、e-Gov等の日本語の公式情報源で改正条文、施行日および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4f02815f8e6241edc885f8f5272c31c760e554b3b102a0dfa4b857364d70440b": {
     "title_en": "CAA publishes materials for ninth public-private council on digital transaction platforms",
@@ -75741,7 +76011,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title and announcement date only; the meeting materials were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:22Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "消費者庁は、2026年10月22日、第9回取引デジタルプラットフォーム官民協議会の資料を掲載したと公表しました。提供された情報には、資料の具体的な内容や制度変更に関する記載はありません。",
+    "business_impact_ja": "取引デジタルプラットフォームに関わる事業者にとって、協議内容を把握するための参考情報となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "確認の端緒となる非公式のモニタリング情報として参照し、消費者庁の日本語公式ページに掲載された資料の内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "a44ae6d02aa92a000bd0d989bd97b965d03e349855c2fdb7e4538ebce42a9954": {
     "title_en": "METI announces request to corrugated board industry federation on fair trading",
@@ -75751,7 +76027,13 @@
     "confidence": "medium",
     "ai_notes": "Based on the title only; the federation name is translated literally, and the request's details are unavailable. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-22T23:56:22Z",
-    "summary_model": "gpt-6.1-sol"
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は、2026年10月22日、全国段ボール工業組合連合会に対して取引適正化に向けた要請を行った旨を公表しました。提供されたメタデータには、要請の具体的内容は記載されていません。",
+    "business_impact_ja": "段ボール関連事業者にとって、取引適正化に関する確認事項が生じる可能性がありますが、具体的な影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、経済産業省の日本語ニュースリリース本文で要請の内容や対象範囲を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:50:03Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   "4f185fe919fa9967901d2bf01f45fc4c52d0a9cd7a83a99509df1d626d30c1bd": {
     "title_en": "Recall notification: Mercedes-Benz C200 and other models",
@@ -75839,7 +76121,15 @@
     "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索の日本語条文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-22T23:56:59Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "title_en": "Cabinet Order amending the enforcement order for the Pharmaceuticals and Medical Devices Agency Act",
+    "summary_en": "Cabinet Order No. 228 of 2020 adjusts related Cabinet Orders in connection with implementation of an Act amending the Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices and other laws. The listed amendment concerns the Enforcement Order of the Act on the Pharmaceuticals and Medical Devices Agency, Cabinet Order No. 83 of 2004; the stated promulgation date is 2020-07-28 and effective date is 2020-09-01.",
+    "business_impact_en": "The amendment may affect the Pharmaceuticals and Medical Devices Agency through changes to its governing enforcement order, rather than necessarily imposing direct changes on pharmaceutical or medical-device businesses. The listing does not identify the amended provisions or specific operational effects.",
+    "recommended_action_en": "Reviewing the official Japanese text could clarify which provisions of the agency's enforcement order changed and whether any transitional arrangements apply.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:01Z",
+    "summary_model": "gpt-6.1-sol"
   },
   "d8cf53c53f24567628701a952a54e3d497fc3afe099665b3ca345dda4b9c31a3": {
     "summary_ja": "独立行政法人医薬品医療機器総合機構法施行令（平成十六年政令第八十三号）を改正する「独立行政法人医薬品医療機器総合機構法施行令の一部を改正する政令」（平成三十一年政令第百十三号）は、2019年3月29日に公布され、2019年4月1日に施行されました。提供情報には、具体的な改正内容は記載されていません。",
@@ -75847,6 +76137,506 @@
     "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-22T23:57:22Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "title_en": "Cabinet Order amending the Enforcement Order for the Pharmaceuticals and Medical Devices Agency Act",
+    "summary_en": "Cabinet Order No. 113 of 2019 amends the Enforcement Order for the Act on the Pharmaceuticals and Medical Devices Agency, Independent Administrative Agency (Cabinet Order No. 83 of 2004). The stated promulgation date is 2019-03-29, and the stated effective date is 2019-04-01.",
+    "business_impact_en": "The amendment may affect the Pharmaceuticals and Medical Devices Agency because it changes the enforcement order for the Act governing that agency; the available information does not identify specific operational changes or affected external parties.",
+    "recommended_action_en": "Review of the official Japanese text could clarify the amended provisions and any transitional arrangements associated with the 2019-04-01 effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "e9832e1309247cf16e404cb69ea7bd698db1011e6c3b27ae7c163178c517e524": {
+    "title_en": "Draft Notice amending frequency ranges for specified experimental radio stations",
+    "summary_en": "On 2026-10-23, the Ministry of Internal Affairs and Communications announced a public-comment consultation on a draft Notice partially amending Ministry of Internal Affairs and Communications Notice No. 43 of 2026. The existing Notice specifies frequency ranges and related matters for specified experimental radio stations under Article 7, item 5 of the Regulations for Enforcement of the Radio Act; the title does not specify the proposed changes or a comment deadline.",
+    "business_impact_en": "Operators of specified experimental radio stations may be affected because the draft concerns the frequency ranges available for those stations.",
+    "recommended_action_en": "Review of the official Japanese consultation materials could clarify the proposed frequency changes, their scope and the comment deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the draft's substantive changes are unknown, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:46Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "総務省は、2026年10月23日、令和8年総務省告示第43号（電波法施行規則第7条第5号の規定に基づく特定実験試験局として使用可能な周波数の範囲等を定める件）の一部を改正する告示案に関する意見募集を公表しました。公表内容は改正案の段階であり、提供された情報には具体的な変更内容や受付締切の記載はありません。",
+    "business_impact_ja": "特定実験試験局を利用する事業では、使用可能な周波数の範囲等に関する改正案が実験・試験の計画に影響する可能性がありますが、具体的な影響は提供情報からは判断できません。",
+    "recommended_action_ja": "総務省の日本語公式公表資料で、改正案の具体的な内容、意見募集の受付締切及び関連資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:47:57Z",
     "ja_summary_model": "gpt-6.1-sol"
+  },
+  "dfdd9125d65080e4d1cc06cfe65efb86de828090d859dd3def5042b0a03c4d14": {
+    "title_en": "Draft ministerial ordinance and energy-efficiency criteria for gas and electric water heaters",
+    "summary_en": "A public-comment notice published on 2026-10-22 concerns a draft Ministerial Ordinance partially amending the enforcement regulations of the Act on Rationalizing Energy Use and Shifting to Non-fossil Energy, and proposed criteria for manufacturers and related entities to improve the energy consumption performance of gas and electric water heaters. The stated comment deadline is 2026-11-20 20:00 JST; the contact is the Top Runner Program team, Energy Conservation Division, Energy Conservation and New Energy Department, Agency for Natural Resources and Energy.",
+    "business_impact_en": "Manufacturers and related entities handling gas and electric water heaters may be affected by the proposed energy-performance criteria and amendments to the enforcement regulations, although the specific changes are not described in the listing.",
+    "recommended_action_en": "Reviewing the official Japanese notice and draft documents could clarify the proposed performance criteria, amended provisions, and implementation timing.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information, not the draft text; this unofficial English summary requires verification against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:46Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "2026年10月22日、エネルギーの使用の合理化及び非化石エネルギーへの転換等に関する法律施行規則の一部を改正する省令案と、ガス温水機器及び電気温水機器のエネルギー消費性能の向上に関する製造事業者等の判断の基準等について、意見公募要領が公示されました。受付締切は2026年11月20日20:00 JSTで、問合せ先は資源エネルギー庁の省エネルギー課トップランナー制度担当です。",
+    "business_impact_ja": "ガス温水機器及び電気温水機器の製造事業者等では、エネルギー消費性能に関する判断基準等の見直しが事業に影響する可能性があります。ただし、提供情報だけでは具体的な変更内容や対象範囲は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料及び資源エネルギー庁の公式情報で、省令案や判断基準等の具体的な内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:47:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "2213896a4428bc919b138900b78ca38218cbb85a47c7c362d8c0e99503ccdc68": {
+    "title_en": "Draft Cabinet Order adjusting related orders for workers' accident compensation insurance amendments",
+    "summary_en": "A draft Cabinet Order would adjust related Cabinet Orders in connection with implementation of an Act partially amending the Industrial Accident Compensation Insurance Act and other laws. The draft was published for public comment on 2026-10-22, with a stated deadline of 2026-11-23 17:00 JST; the listed contact is the Workers' Accident Compensation Administration Division, Labour Standards Bureau.",
+    "business_impact_en": "Employers and workers covered by industrial accident compensation insurance may be affected by the proposed adjustments, but the listing does not identify the Cabinet Orders or provisions to be changed.",
+    "recommended_action_en": "Review of the official Japanese draft could clarify which Cabinet Orders and provisions would change and the proposed implementation arrangements.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information; the draft's substantive provisions are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:46Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「労働者災害補償保険法等の一部を改正する法律の施行に伴う関係政令の整備に関する政令案」が2026年10月22日に公示され、意見募集の対象とされました（受付締切：2026年11月23日17:00 JST）。所管の問合せ先は労働基準局労災管理課とされています。",
+    "business_impact_ja": "労災保険に関する事業者の実務に影響する可能性がありますが、提供された情報には政令案の具体的な変更内容は示されていません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov掲載資料や所管省庁の公式情報で、政令案の内容と関係業務への影響をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:47:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "272fdf627e0ff57f240dd0a69ea062a81ec8842532deaf11ddcdd504fc0aab22": {
+    "title_en": "Public consultation on draft ministerial ordinance amending container and packaging recycling rules",
+    "summary_en": "A public consultation on a draft ministerial ordinance amending the Enforcement Regulations of the Act on the Promotion of Sorted Collection and Recycling of Containers and Packaging, and related proposals, was announced on 2026-10-22. The stated comment deadline is 2026-11-21 18:00 JST; the contact is the Resource Circulation Economy Division, GX Group, Innovation and Environment Bureau, Ministry of Economy, Trade and Industry.",
+    "business_impact_en": "Businesses subject to the container and packaging sorted-collection and recycling rules may be affected by the proposed amendments, but the available information does not identify the provisions or obligations that would change.",
+    "recommended_action_en": "Reviewing the official Japanese consultation documents could clarify the proposed amended provisions, affected business categories and any proposed implementation dates.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information, without the draft text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:46Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "容器包装に係る分別収集及び再商品化の促進等に関する法律施行規則の一部を改正する省令案等が、2026年10月22日に公示され、意見公募の対象とされました（受付締切：2026年11月21日18:00 JST）。問い合わせ先は経済産業省イノベーション・環境局GXグループ資源循環経済課であり、提供情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "容器包装の分別収集・再商品化に関わる事業に影響する可能性がありますが、具体的な対象や影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、e-Govの日本語公示資料や所管省庁の公式情報で、省令案等の内容と対象範囲を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:47:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "81fbf7047753931aa3381fa6b0615d5202c176c913f976977c6a97f96ef7d5a4": {
+    "title_en": "Public consultation on draft notice amending the Frequency Allocation Plan",
+    "summary_en": "The Ministry of Internal Affairs and Communications announced a public consultation on 2026-10-23 concerning a draft notice partially amending the Frequency Allocation Plan. The title does not specify the proposed changes or a comment deadline.",
+    "business_impact_en": "Radio spectrum users may be affected by changes to frequency allocations, but the title does not identify the frequency bands or uses concerned.",
+    "recommended_action_en": "Reviewing the official source could clarify the proposed allocation changes, affected frequency bands and uses, and consultation deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; the draft's substantive provisions are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:46Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "総務省は、2026年10月23日、周波数割当計画の一部を変更する告示案に係る意見募集を公表しました。提供された情報には、変更案の具体的内容や意見の受付締切は記載されていません。",
+    "business_impact_ja": "周波数を利用する事業では、変更案の内容によって、利用する周波数の割当てに関係する可能性がありますが、提供された情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、総務省の日本語公式情報で告示案の内容、対象周波数及び意見の受付締切を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:47:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "88447b1bc9895ec9af514970dbffe13f099fbd033ba27d7b6f1d46288bb397a1": {
+    "title_en": "Public consultation on draft guidelines for measures to mitigate adverse effects on election fairness",
+    "summary_en": "The Ministry of Internal Affairs and Communications announced a public consultation on 2026-10-23 concerning draft guidelines and related materials for the appropriate and effective implementation of measures to mitigate adverse effects on election fairness. The supplied title does not specify the proposed measures or a comment deadline.",
+    "business_impact_en": "The potentially affected persons or businesses cannot be determined from the title, which does not identify who would implement the election-fairness measures.",
+    "recommended_action_en": "Review of the official consultation materials could clarify the proposed measures, their intended implementers, and the comment deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the draft's substantive content is unavailable here, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:53Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "総務省は、2026年10月23日に「選挙の公正に対する悪影響を軽減するための措置の適切かつ有効な実施に関する指針案等」に対する意見募集を公表しました。提供された情報には、指針案等の具体的内容や対象、意見の受付締切は示されていません。",
+    "business_impact_ja": "指針案等の対象となる事業については、選挙の公正に対する悪影響を軽減する措置の実施に関係する可能性がありますが、具体的な影響は提供情報からは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、総務省の日本語の公式公表資料で、指針案等の内容、対象範囲および意見募集要領を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:04Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "f6e78c4e25de2208c58524b85049b165a5c143e08b41d0e1fa616a3f010b6649": {
+    "title_en": "Public consultation on FY2027 Children and Families Science Research",
+    "summary_en": "A proposal concerning FY2027 Children and Families Science Research was published for public comment on 2026-10-23, with a stated deadline of 2026-11-21 00:00 JST. The responsible contact is the Maternal and Child Health Division, Child Development Bureau, Children and Families Agency.",
+    "business_impact_en": "The proposal may be relevant to researchers working on children and families science, but the available information does not identify specific research topics, eligible participants, or funding implications.",
+    "recommended_action_en": "Reviewing the official consultation materials could clarify the proposed research scope and the stated submission deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information; the proposal's substantive contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:46:53Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「令和９年度こども家庭科学研究」に関する案が2026年10月23日に公示され、意見募集の対象とされました（受付締切：2026年11月21日00:00 JST）。問合せ先は、こども家庭庁成育局母子保健課です。",
+    "business_impact_ja": "こども家庭科学研究に関わる事業者・研究機関にとって、研究に関する検討の参考となる可能性がありますが、提供された情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、案の内容や意見提出要領については、e-Gov掲載資料などの日本語の公式情報源で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:04Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "20c9f01e86af94eff58358dc0c24996bcab30b60ebac2fdaa0604938cfcf0086": {
+    "title_en": "SESC recommendation for a monetary penalty over insider trading by a Toho Zinc employee",
+    "summary_en": "On 2026-10-23, the Securities and Exchange Surveillance Commission announced a recommendation for an order to pay an administrative monetary penalty concerning insider trading by an employee of Toho Zinc Co., Ltd. The announcement concerns a recommendation, not a confirmed final penalty order.",
+    "business_impact_en": "The recommendation may have enforcement implications for the Toho Zinc Co., Ltd. employee concerned; the supplied information does not specify the penalty amount or transaction details.",
+    "recommended_action_en": "Review of the official Japanese announcement could clarify the alleged trading conduct, the recommended penalty amount, and the procedural status.",
+    "confidence": "high",
+    "ai_notes": "Based on the supplied title and brief descriptive text, which provide no detailed enforcement findings; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:01Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "2026年10月23日付の公表情報は、東邦亜鉛株式会社従業員による内部者取引に対する課徴金納付命令の勧告に関するものです。提供された情報からは、具体的な取引内容や課徴金額、納付命令の発出の有無は確認できません。",
+    "business_impact_ja": "上場会社における内部情報の管理や従業員の株式取引管理を検討する際の参考となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、詳細については証券取引等監視委員会の日本語公表資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:04Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "37ee2199500047f633cceba1704bee6faaa398ad552de0e4093d313ab9db3753": {
+    "title_en": "NTA interpretive circular amending \"Base Annual Interest Rates for 2026\"",
+    "summary_en": "The National Tax Agency announced a partial amendment to \"Base Annual Interest Rates for 2026\" on 2026-10-23. The item is a legal interpretation circular; the title does not specify the revised rates or their application dates.",
+    "business_impact_en": "The amendment may affect those using the specified 2026 base annual interest rates, but the title does not identify the affected taxpayer categories or how the rates are used.",
+    "recommended_action_en": "Review of the official Japanese circular could clarify which rates were amended, their application dates, and the taxpayers or calculations concerned.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the amendment's substantive details are unavailable, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:01Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "国税庁は、2026年10月23日付で「『令和8年分の基準年利率について』の一部改正について（法令解釈通達）」を公表しました。提供されたメタデータには、具体的な改正内容や適用時期は示されていません。",
+    "business_impact_ja": "令和8年分の基準年利率を参照する業務に影響する可能性がありますが、具体的な影響は通達本文の確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、国税庁の日本語公式情報源で通達本文、改正内容及び適用時期を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:04Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "dbceb9a930ec337e0d33692a4bc891904dbb623ae55620ba5b27ae4f1485e94c": {
+    "title_en": "Public consultation on draft guidelines for textbook publication and adoption, including digital formats",
+    "summary_en": "The Ministry of Education, Culture, Sports, Science and Technology published a preliminary draft concerning the development of guidelines on textbook publication and adoption, including digital formats, for public comment on 2026-10-23. The stated comment deadline is 2026-11-08 23:59 JST; the listed contact is the Textbook Division, Elementary and Secondary Education Bureau.",
+    "business_impact_en": "Textbook publishers and those responsible for textbook adoption may be affected by the proposed guidelines because they address publication and adoption, including digital formats; specific proposed requirements are not provided.",
+    "recommended_action_en": "Review of the official Japanese consultation materials could clarify the proposed scope, treatment of digital textbooks, and implications for publication and adoption.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information, not the draft text; this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:01Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "文部科学省は、2026年10月23日、「デジタルな形態を含む教科書の発行・採択等に関する指針の策定に向けて（素案）」を公示し、意見募集を実施しました。受付締切は2026年11月8日23:59 JSTで、所管は初等中等教育局教科書課です。",
+    "business_impact_ja": "デジタルな形態を含む教科書の発行・採択に関係する事業者にとって、今後の指針の内容が事業運営上の検討事項となる可能性があります。ただし、提供情報には素案の具体的内容がなく、個別の影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として位置付け、e-Govの当該案件ページや文部科学省の日本語公式資料で、素案の内容とその後の公表状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:04Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "2494d8c6c38b713c4c3eb311726dccd6162b13a5c720bab9de6d2492a617c65f": {
+    "title_en": "Cabinet Order amending the Pharmaceuticals and Medical Devices Agency Act Enforcement Order",
+    "summary_en": "Cabinet Order No. 70 of 2026 amends the Enforcement Order of the Act on the Pharmaceuticals and Medical Devices Agency, Independent Administrative Agency (Cabinet Order No. 83 of 2004). The listed promulgation date is 2026-03-27 and the effective date is 2026-04-01.",
+    "business_impact_en": "The amendment may affect the Pharmaceuticals and Medical Devices Agency, whose governing Act's Enforcement Order is amended; the metadata does not identify changes affecting particular pharmaceutical or medical-device businesses.",
+    "recommended_action_en": "Review of the official Japanese source could clarify the amended provisions and any implications for the agency's operations.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:01Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "独立行政法人医薬品医療機器総合機構法施行令（平成十六年政令第八十三号）の一部を改正する政令（令和八年政令第七十号）は、2026年3月27日に公布され、施行日は2026年4月1日と記載されています。提供情報には、具体的な改正内容は示されていません。",
+    "business_impact_ja": "医薬品医療機器総合機構に関係する業務に影響する可能性がありますが、提供情報のみでは対象業務や影響の内容は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文や施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "daf379153db767d1a22dc0a0c932df2aef30bf50e1726ea25ba3554ab38e75da": {
+    "title_en": "Cabinet Order Amending the Export Trade Control Order",
+    "summary_en": "Cabinet Order No. 325 of 2026 amends the Export Trade Control Order (Cabinet Order No. 378 of 1949). The listed promulgation date is 2026-10-09, and the effective date is 2026-10-16.",
+    "business_impact_en": "Exporters subject to the Export Trade Control Order may be affected, but the supplied information does not identify the amended provisions or the exports concerned.",
+    "recommended_action_en": "Review the official Japanese source for the amended provisions, the exports covered, and any transitional arrangements.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the substantive amendments were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "輸出貿易管理令（昭和二十四年政令第三百七十八号）の一部を改正する政令（令和八年政令第三百二十五号）は、2026年10月9日に公布され、同年10月16日に施行されました。提供された更新情報には、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "輸出に関係する事業では、改正内容によって管理手続等に影響が生じる可能性がありますが、提供情報だけでは対象や影響範囲を判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "88d187324dbb4e931a8acaadba70a25cc0ad14c74f6e951856083d25a659edb8": {
+    "title_en": "Supreme Court judgment on claim to revoke an administrative disposition",
+    "summary_en": "On 2026-10-23, the Third Petty Bench of the Supreme Court issued a judgment in Reiwa 7 (Gyo-Hi) No. 310, concerning a claim to revoke an administrative disposition. It reversed the lower-court judgment and decided the case itself; the listed lower-court case is Fukuoka High Court, Reiwa 4 (Gyo-Ko) No. 42.",
+    "business_impact_en": "The affected businesses or persons cannot be determined from the supplied description, which does not identify the administrative disposition or the parties; any practical implications may depend on those details and the Court's reasoning.",
+    "recommended_action_en": "Review of the official judgment could clarify the disposition challenged, the Court's reasoning, and the outcome for the parties.",
+    "confidence": "high",
+    "ai_notes": "Based on the descriptive court listing; the judgment's reasoning and parties are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "令和7(行ヒ)310行政処分取消請求事件について、最高裁判所第三小法廷は令和8年10月23日に破棄自判の判決をしました。原審は福岡高等裁判所の令和4(行コ)42事件であり、提供情報には具体的な争点や判断理由は示されていません。",
+    "business_impact_ja": "行政処分に関わる事業への影響を検討する際に参考となる可能性がありますが、提供情報のみでは対象分野や具体的な影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、裁判所の公式日本語情報で判決本文や判断理由を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:10Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "0fa1821278d3e382119da080076ee855e92661c2fea75c660337ddc4936678ac": {
+    "title_en": "Public consultation on proposed Kushiro Shitsugen National Park boundary and plan changes",
+    "summary_en": "The Ministry of the Environment announced a public consultation on 2026-10-23 concerning proposed changes to the boundaries and park plan of Kushiro Shitsugen National Park as part of its second review. The supplied title does not specify the changes or the comment deadline.",
+    "business_impact_en": "The proposed boundary and park plan changes may affect people or businesses with land or activities within the park or areas covered by the proposed changes, but the title does not identify specific activities or locations affected.",
+    "recommended_action_en": "Reviewing the official consultation documents could clarify the proposed boundary changes, park plan revisions, affected areas and comment deadline.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only, with the announcement date supplied separately; the substance of the proposed changes is unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:15Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境省は、2026年10月23日、釧路湿原国立公園の公園区域及び公園計画の変更［第２次点検］に関する意見募集について公表しました。提供された情報には、具体的な変更内容や意見の受付締切は示されていません。",
+    "business_impact_ja": "対象地域での事業や事業計画について、公園区域及び公園計画の変更内容を確認する必要が生じる可能性があります。具体的な影響は、提供された情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、環境省の日本語の公式公表資料で変更案の内容、対象区域及び意見募集の受付締切を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "2df55a80c1c1c82c4df7f531ba8516c0ee6bfb4fc8c19cb74c388c0591ee42c5": {
+    "title_en": "PMDA adds June 2026 suspected malfunction case reports for combination products",
+    "summary_en": "On 2026-10-23, the Pharmaceuticals and Medical Devices Agency (PMDA) announced that it had added June 2026 information to its suspected malfunction case reports for combination products. This is a safety information update, not an announcement of a new or amended legal instrument.",
+    "business_impact_en": "Manufacturers of combination products may find the added case-report information relevant to product safety monitoring; the title does not identify specific products or reported malfunctions.",
+    "recommended_action_en": "Review of the official PMDA source could clarify which combination products and suspected malfunctions are covered by the June 2026 information.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; case details and any associated safety measures were not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:15Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "PMDAは、2026年10月23日付の公表情報で、「不具合が疑われる症例報告に関する情報（コンビネーション製品）」に2026年6月分の情報を追加したことを示しました。提供されたメタデータには、個別の製品名や症例の詳細は記載されていません。",
+    "business_impact_ja": "コンビネーション製品を取り扱う事業者では、安全性情報の収集・評価に関係する可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、PMDAの日本語公式掲載ページで追加情報の内容と自社製品との関連性を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:38Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "d9cd6acf883966dc5b7fec13f7e32f5f81056d23b0b57eb978d8a9ad0ce2515a": {
+    "title_en": "PMDA safety update: June 2026 suspected malfunction reports for regenerative medical products",
+    "summary_en": "The Pharmaceuticals and Medical Devices Agency (PMDA) announced on 2026-10-23 that it had added June 2026 information to its reports on cases involving suspected malfunctions of regenerative medical products. The title does not identify individual products or describe the reported cases.",
+    "business_impact_en": "Manufacturers and users of regenerative medical products may find the added reports relevant to product safety monitoring, but the title does not establish any product-specific risk.",
+    "recommended_action_en": "Review of the official PMDA source could clarify which products and cases are covered by the June 2026 information.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; the case details were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:15Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "PMDAは、2026年10月23日、「不具合が疑われる症例報告に関する情報（再生医療等製品）」に2026年6月分の情報を追加したと公表しました。提供されたメタデータには、個別の製品名や症例の詳細は記載されていません。",
+    "business_impact_ja": "再生医療等製品を取り扱う事業者にとって、安全性情報の確認や評価に関係する可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、PMDAの日本語公式ページで追加情報の内容をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:44Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "1562bfb8f8b7fb54937ecb6b4ac9076ce07ee09274c9514cef96d70b87b33b88": {
+    "title_en": "PMDA update: June 2026 reports of suspected medical device malfunctions",
+    "summary_en": "The Pharmaceuticals and Medical Devices Agency (PMDA) announced on 2026-10-23 that it added June 2026 information to its case reports concerning suspected medical device malfunctions. The title does not identify individual devices or describe the reported cases.",
+    "business_impact_en": "Medical device manufacturers and healthcare providers using medical devices may find the added reports relevant to device safety monitoring, depending on which devices and cases are covered.",
+    "recommended_action_en": "Reviewing the official Japanese source could help identify the devices and reported cases covered by the June 2026 update.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; case details and any associated safety measures are unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:15Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "PMDAは、2026年10月23日、「不具合が疑われる症例報告に関する情報（医療機器）」に2026年6月分の情報を追加したと公表しました。提供されたメタデータには、個別の医療機器や症例の詳細は記載されていません。",
+    "business_impact_ja": "医療機器に関わる事業者にとって、安全性情報の収集・評価の参考となる可能性がありますが、個別製品への影響は本メタデータのみでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、PMDAの日本語公式掲載ページで追加情報の内容をご確認いただくことが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:44Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "d7d801df91455828a327506b7e11d7bfe700c092ecc3b2ee16f84d5c84d8d3fb": {
+    "title_en": "Cabinet approves Energy White Paper 2026",
+    "summary_en": "The Ministry of Economy, Trade and Industry announced on 2026-10-23 that the Cabinet approved the Annual Report on Energy for Fiscal Year 2025 (Energy White Paper 2026). This is a government announcement concerning an annual report, not an announcement of legislation.",
+    "business_impact_en": "Energy-sector businesses may find the report relevant to their review of government energy reporting, but the title does not identify specific policy measures or business obligations.",
+    "recommended_action_en": "Review the official announcement and report for their coverage of energy issues and any policy developments discussed.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; the report's contents were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:15Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は、2026年10月23日付のニュースリリースで、「令和7年度エネルギーに関する年次報告」（エネルギー白書2026）が閣議決定されたと公表しました。提供されたメタデータには、報告の具体的な内容や制度変更に関する記載はありません。",
+    "business_impact_ja": "エネルギーに関する動向を把握するための参考情報となる可能性がありますが、提供情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、経済産業省の日本語ニュースリリースおよび年次報告本文で詳細を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:44Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "86af5d299b7bde17afdfabaa9ae8f03ab2e2b71ef185566d4a0e9088577085af": {
+    "title_en": "MOE announcement on possible recipient-information leak involving an email newsletter",
+    "summary_en": "On 2026-10-23, the Ministry of the Environment announced a possible leak of recipient information for an email newsletter in which the ministry is involved. The title does not confirm that a leak occurred or specify its scope.",
+    "business_impact_en": "Recipients of the email newsletter may be affected if their recipient information was disclosed; the information involved and the recipients concerned cannot be determined from the title.",
+    "recommended_action_en": "Reviewing the official Japanese announcement may clarify which newsletter and recipient information are involved and whether any recipient response is described.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication date only; the incident's details are unavailable here, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境省は、2026年10月23日、同省が関わるメールマガジンの配信先情報について、漏えいの可能性がある旨を公表しました。提供された情報からは、漏えいの有無、対象範囲や原因などの詳細は確認できません。",
+    "business_impact_ja": "当該メールマガジンに関係する事業者では、配信先情報への影響を確認する必要が生じる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として、環境省の日本語の報道発表原文で、漏えいの可能性の詳細や対象範囲、対応状況を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:44Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "c2170909ffb80c8066215aea87ae0fb6a47ee87e93a06ba6ceb6454a16ecc2f2": {
+    "title_en": "Withdrawn bill on individual inhabitant tax burdens exceeding wage growth",
+    "summary_en": "The bill concerned measures addressing increases in individual inhabitant tax burdens exceeding wage growth and related issues. It was listed as House of Representatives Bill No. 31 in the 221st Diet session, with its deliberation status recorded as withdrawn.",
+    "business_impact_en": "The subject may be relevant to individual inhabitant tax payers because it concerns tax burden increases relative to wage growth; the listing records a withdrawn proposal, not an enacted change.",
+    "recommended_action_en": "Reviewing the official bill text and legislative history may clarify the proposed tax measures and the recorded withdrawal.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured listing information; detailed provisions and dates are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案」は、第221回国会に提出された衆法第31号です。衆議院の議案情報では、審議状況は「撤回」とされています。",
+    "business_impact_ja": "個人住民税に関する措置を扱う法案ですが、撤回とされているため、この情報から事業者の税務・給与実務への変更が生じるとは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、法案の内容や審議経過については、衆議院の日本語の公式議案情報を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:19Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "0e8dc9fcde7b2314434c2f0aa7de462485656eb4c7240823a82b3e7997d22d96": {
+    "title_en": "Act Amending the Postal Privatization Act and Other Acts",
+    "summary_en": "The Act Amending the Postal Privatization Act and Other Acts (Act No. 50 of 2026) was promulgated on 2026-06-25. The listing identifies the Japan Post Co., Ltd. Act (Act No. 100 of 2005) as the amended law and gives an effective date of 2026-12-01.",
+    "business_impact_en": "Japan Post Co., Ltd. may be affected by amendments to its governing Act, but the listing does not describe the substantive changes.",
+    "recommended_action_en": "Review of the official Japanese source would help establish the amended provisions affecting Japan Post Co., Ltd. and any transitional arrangements associated with the stated effective date.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata, without the amendment text; the scope of the changes is not established, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧には、日本郵便株式会社法（平成十七年法律第百号）を対象とする改正法令として、郵政民営化法等の一部を改正する法律（令和八年法律第五十号）が記載されています。原文に記載された公布日は2026年6月25日、施行日は2026年12月1日で、更新一覧日は2026年10月22日です。",
+    "business_impact_ja": "日本郵便株式会社法の改正に伴い、関連する事業や業務に影響が生じる可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲は判断できません。",
+    "recommended_action_ja": "この要約は非公式のモニタリング情報として、e-Gov等の日本語の公式情報源で改正内容と施行に関する詳細を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:49Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "54e1d0e3cc9f04cec7c9d556c685913defe09448f12dda60eae8f6eb85480ec4": {
+    "title_en": "MAFF announcement: certification of Sun Agro's fertilizer raw-material stockpiling plan",
+    "summary_en": "On 2026-10-23, the Ministry of Agriculture, Forestry and Fisheries announced the certification of Sun Agro Co., Ltd.'s supply assurance plan for stockpiling fertilizer raw materials under the Economic Security Promotion Act. The title does not specify the materials, stockpile quantities, or certification conditions.",
+    "business_impact_en": "The certification may be relevant to Sun Agro Co., Ltd.'s fertilizer raw-material stockpiling activities, but the title alone does not establish its operational implications.",
+    "recommended_action_en": "Reviewing the official announcement could clarify the certified plan's scope, covered raw materials, and any stated conditions.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; plan details are unavailable, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:23Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "農林水産省は、2026年10月23日、経済安全保障推進法に基づく肥料原料の備蓄に係るサンアグロ株式会社の供給確保計画の認定について公表しました。提供されたメタデータには、計画の具体的な内容や認定条件は記載されていません。",
+    "business_impact_ja": "肥料原料の調達・供給に関わる事業者にとって、備蓄や供給確保に関する動向を把握する上で参考となる可能性があります。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、計画の内容や認定の詳細は農林水産省の日本語公表資料で確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol"
+  },
+  "6b28c182cc06a5d27af06bb5ef9521687d091cb2f78e84161d28b49b916a1559": {
+    "title_en": "Basel Committee G-SIB assessment revisions and consultation on methodology review",
+    "summary_en": "The Financial Services Agency announced on 2026-10-24 the Basel Committee on Banking Supervision's revisions to the assessment framework for global systemically important banks (G-SIBs) to address window-dressing behavior. The announcement also covers a consultation document on a review of the G-SIB assessment methodology; no consultation deadline is provided.",
+    "business_impact_en": "Global systemically important banks may be affected by changes to the framework used to assess them and by the methodology review described in the consultation document.",
+    "recommended_action_en": "Reviewing the official Japanese announcement and linked Basel Committee documents may clarify the assessment changes, implementation timing, and consultation details.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; the substantive revisions and consultation terms are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:29Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "fecf7e16ad3013d50016c02e9b2212250bf1995d68a11248f9b3ed290153d9bb": {
+    "title_en": "Ministry of the Environment reports participation in 23rd Paris Agreement Article 6.4 meeting",
+    "summary_en": "Japan's Ministry of the Environment announced on 2026-10-23 that it participated in the 23rd meeting of the Paris Agreement Article 6.4 Supervisory Body. The title does not state the meeting's outcomes or any regulatory changes.",
+    "business_impact_en": "The affected business groups and any practical implications cannot be determined from the title, which reports meeting participation without describing decisions.",
+    "recommended_action_en": "Review the official Japanese announcement for the meeting outcomes and any implications identified by the Ministry.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; meeting details and outcomes were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:29Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "e145f0a3ce9a8ff680aa4ac46782bf4d6c70fdfaf0983d1a1de38633fe2ec7f7": {
+    "title_en": "MLIT announcement on smart interchange project approvals and preparatory studies",
+    "summary_en": "On 2026-10-23, the Ministry of Land, Infrastructure, Transport and Tourism announced project approvals for expressway companies concerning smart interchanges and the start of preparatory-stage studies. The announcement states that locations for new smart interchange projects have been selected.",
+    "business_impact_en": "Expressway companies may be affected by the project approvals and preparatory studies for smart interchanges, although the title does not identify the companies or locations.",
+    "recommended_action_en": "Review of the official announcement could clarify the selected locations, the expressway companies concerned, and the scope of the approvals and preparatory studies.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication date only; project details are unavailable here, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:29Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "75966ca3d108621ccedc148477f6c842c837d228909c0cf268f72a0d0bd097b0": {
+    "title_en": "Recall Notification: BRP SPYDER RT LTD and Other Models",
+    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism published an announcement on 2026-10-23 concerning a recall notification for BRP SPYDER RT LTD and other models. The title does not identify the other models, the defect, affected vehicles or remedial measures.",
+    "business_impact_en": "Owners and operators of BRP SPYDER RT LTD and the other covered models may be affected by the recall, depending on the vehicle coverage specified in the official announcement.",
+    "recommended_action_en": "Review of the official announcement could clarify the covered models and vehicles, the defect and any remedial measures.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; recall details are unavailable in the supplied information, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:29Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "70dae3be5b2d2209dd0c1d670e6eb9d37d8beb51cebdeeca9f8b57f9ceab59ce": {
+    "title_en": "MLIT announcement: additional airline access to Osaka International Airport for domestic flights",
+    "summary_en": "On 2026-10-23, the Ministry of Land, Infrastructure, Transport and Tourism announced that additional airlines would operate domestic flights at Osaka International Airport. The announcement concerns permission to operate using a congested airport; the title does not identify the airlines or the start dates.",
+    "business_impact_en": "Airlines operating domestic flights at Osaka International Airport may be affected by the additional airline access and the associated permission to use the congested airport.",
+    "recommended_action_en": "Reviewing the official Japanese announcement may clarify which airlines received permission, its scope, and when operations are expected to begin.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication date only; permission details and operating schedules were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:29Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "e94dfc18ac372642901fd8cc5a0ef3e35a87873023fa220550ab60ce77027130": {
+    "title_en": "FSA announcement on the Asia GX Consortium High-Level Meeting 2026",
+    "summary_en": "The Financial Services Agency published an announcement on 2026-10-24 concerning the holding of the Asia GX Consortium High-Level Meeting 2026. The supplied title does not specify the meeting date, agenda or outcomes.",
+    "business_impact_en": "The affected businesses or persons cannot be determined from the title alone, which identifies the meeting but not its participants or any business implications.",
+    "recommended_action_en": "Reviewing the official announcement may clarify the meeting date, participants, agenda and any stated outcomes.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication date only; meeting details are unavailable. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:38Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "ef7dda605699a7c75818b88e9ce9c237937d209108a0ffb4f0f2d62e55586154": {
+    "title_en": "Notice of the 214th Meeting of the Labour Policy Council's Labour Conditions Subcommittee",
+    "summary_en": "The Ministry of Health, Labour and Welfare published a notice on 2026-10-23 announcing the 214th meeting of the Labour Policy Council's Labour Conditions Subcommittee. The supplied title does not specify the meeting date or agenda.",
+    "business_impact_en": "Employers and workers may find the meeting relevant because the subcommittee concerns labour conditions, but the title does not identify any proposed changes or specific sectors affected.",
+    "recommended_action_en": "Reviewing the official meeting notice could clarify the meeting date, agenda and any attendance arrangements.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details; no agenda or substantive meeting information was provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:38Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "f3c31c58a4be7a76c5c8b90817771f30a1aa0a6e20fd458179abf15a30af3045": {
+    "title_en": "MOE announces first panel meeting on subordinate legislation for solar cell waste recycling",
+    "summary_en": "On 2026-10-23, the Ministry of the Environment announced the first meeting of a study panel on developing subordinate legislation and related measures under the Act on Promotion of Recycling and Related Activities for Solar Cell Waste. The announcement does not establish the content or adoption status of any subordinate legislation.",
+    "business_impact_en": "Entities involved in recycling solar cell waste may be affected by the subordinate legislation under discussion, but the title does not identify specific obligations or regulated categories.",
+    "recommended_action_en": "Reviewing the official Japanese announcement may clarify the meeting schedule, scope of discussion and any supporting materials on the planned subordinate legislation.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the Act's English title is an unofficial translation, and legislative details must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:38Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "684aa2048371a7537374a35eebad8f2efd340fb563ef8083808a7a6462740620": {
+    "title_en": "Environmental education leader training on waste-to-resource systems and a sound material-cycle society",
+    "summary_en": "On 2026-10-23, the Ministry of the Environment announced fiscal 2026 environmental education and learning leader training for teachers and other participants, in cooperation with sites providing hands-on experience opportunities. The session concerns learning from workplaces that support a sound material-cycle society, focusing on how waste becomes resources and practical approaches to resource circulation.",
+    "business_impact_en": "The training may be relevant to teachers and other environmental education and learning leader trainees because it addresses waste-to-resource systems and practical resource circulation.",
+    "recommended_action_en": "Reviewing the official announcement would help confirm the training date, participant eligibility, participating sites and application arrangements.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date; training details were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:38Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "f9edd07caa85b2c3db9dc75a7dba03979930d60a08ec619e33f162512afc1bf6": {
+    "title_en": "MOE announcement on a panel discussion about recovered soil use for Fukushima environmental restoration",
+    "summary_en": "On 2026-10-23, the Ministry of the Environment published an announcement concerning a panel discussion on its initiatives for Fukushima's environmental restoration, including the use of soil recovered for reconstruction and revitalization. The title does not specify the discussion date or details of the initiatives.",
+    "business_impact_en": "The announcement may be relevant to those involved in Fukushima's environmental restoration and recovered-soil use, but the title does not identify specific businesses or indicate operational changes.",
+    "recommended_action_en": "Reviewing the official Japanese announcement could clarify the panel's schedule, the soil-use initiatives discussed, and their intended scope.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only; the rendering of the soil-related terminology is unofficial, and the Japanese source is authoritative.",
+    "summarized_at": "2026-10-23T23:47:38Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "a3977ab56ed8e101c918763ffc433d9504b81a616bb7804a12ce7400c89718b8": {
+    "title_en": "Supreme Court judgment on a challenge to public assistance reductions",
+    "summary_en": "On 2026-10-23, the Third Petty Bench of the Supreme Court delivered judgment in Reiwa 6 (Gyo-Hi) No. 339, a case seeking revocation of decisions reducing public assistance. The listed disposition was reversal with the Supreme Court deciding the case itself; the lower-court case was Reiwa 4 (Gyo-Ko) No. 1 at the Akita Branch of the Sendai High Court.",
+    "business_impact_en": "The judgment may affect public assistance recipients challenging benefit reductions, but the supplied description does not establish the substantive ruling or its wider scope.",
+    "recommended_action_en": "Reviewing the official Japanese judgment would help clarify the outcome for the claimants, the court's reasoning, and the scope of the ruling.",
+    "confidence": "high",
+    "ai_notes": "Based on the title and descriptive court listing; the reasoning and detailed relief are not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:48Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "ec31917f1e81c13a8379afb4a636f36c665aef856ce9e989b5c69a6bd7684724": {
+    "title_en": "Supreme Court judgment on cancellation of a public assistance change decision",
+    "summary_en": "On 2026-10-23, the Third Petty Bench of the Supreme Court issued a judgment in Reiwa 6 (Gyo-Hi) No. 386, concerning a claim to cancel a decision changing public assistance. The Court reversed the lower judgment and decided the case itself; the listed lower-court case is Osaka High Court, Reiwa 4 (Gyo-Ko) No. 18.",
+    "business_impact_en": "The judgment may be relevant to public assistance recipients challenging decisions changing their assistance, but the supplied description does not explain the reasoning or substantive outcome.",
+    "recommended_action_en": "Reviewing the official Japanese judgment would help clarify the outcome, reasoning, and scope of the ruling on public assistance changes.",
+    "confidence": "high",
+    "ai_notes": "Based on the title and descriptive court listing; the judgment's reasoning and detailed disposition are not supplied, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:48Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "4af510209bac2bf187c73ce728ed37d301fc6e7a3e18b3083f8316431d31f0ab": {
+    "title_en": "Supreme Court judgment on cancellation of a public assistance modification decision",
+    "summary_en": "On 2026-10-23, the Supreme Court's Third Petty Bench delivered judgment in Reiwa 7 (Gyo-Hi) No. 205, a case seeking cancellation of an administrative decision modifying public assistance. The Court reversed the lower judgment and rendered its own decision; the listing identifies the lower-court case as Fukuoka High Court, Reiwa 4 (Gyo-Ko) No. 34.",
+    "business_impact_en": "The judgment may be relevant to public assistance recipients affected by decisions modifying their assistance, but the supplied description does not establish the reasoning or broader implications.",
+    "recommended_action_en": "Reviewing the official Japanese judgment would help clarify the grounds for reversal and the disposition of the challenged assistance modification.",
+    "confidence": "high",
+    "ai_notes": "Based on the title and descriptive court listing; the reasoning and detailed outcome are not supplied, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:48Z",
+    "summary_model": "gpt-6.1-sol"
+  },
+  "a8907453d11d2fb6fdeaeed8f32c11aa33f0ae595465845fdf9198983e10c279": {
+    "title_en": "Government announcement: 32nd AI Governance Study Group meeting",
+    "summary_en": "The Ministry of Internal Affairs and Communications published an announcement titled \"AI Governance Study Group (32nd meeting)\" on 2026-10-23. The supplied title does not specify the meeting date, agenda or outcomes.",
+    "business_impact_en": "The announcement may be relevant to businesses developing or using AI because it concerns AI governance, but the title does not identify specific affected sectors or obligations.",
+    "recommended_action_en": "Reviewing the official Japanese announcement may clarify the meeting agenda, available materials and any stated outcomes.",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; meeting content is unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:48Z",
+    "summary_model": "gpt-6.1-sol"
   }
 }

@@ -992,6 +992,12 @@
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:31Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "銀行法施行規則等の一部を改正する内閣府令（令和六年内閣府令第百四号）は、2024年11月29日に公布され、施行日は2024年11月30日と記載されています。2026年10月19日の更新一覧では、対象法令として保険業法施行規則（平成八年大蔵省令第五号）が示されています。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲の判断には条文の確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正条文、施行日および経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:27Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "修订《银行法施行规则》等规则的内阁府令",
@@ -999,13 +1005,7 @@
         "business_impact": "银行可能受到标题所述修订的影响，但此条目具体涉及受《保险业法施行规则》规管的保险公司。无法根据所提供的元数据确定具体业务影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确经修订的保险条款、其适用范围以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "銀行法施行規則等の一部を改正する内閣府令（令和六年内閣府令第百四号）は、2024年11月29日に公布され、施行日は2024年11月30日と記載されています。2026年10月19日の更新一覧では、対象法令として保険業法施行規則（平成八年大蔵省令第五号）が示されています。",
-    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲の判断には条文の確認が必要と考えられます。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正条文、施行日および経過措置の有無を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:59:27Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-58d7dc24c92748a3",
@@ -1208,6 +1208,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:31Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧の情報によると、「銀行法施行規則等の一部を改正する内閣府令」（令和六年内閣府令第五十七号）は2024年5月17日に公布され、同年5月18日に施行されました。対象法令として「保険業法施行規則」（平成八年大蔵省令第五号）が記載されていますが、具体的な改正内容は提供情報には示されていません。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、具体的な影響範囲は改正条文の確認が必要と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:27Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "关于部分修订《银行法施行规则》等的内阁府令",
@@ -1215,13 +1221,7 @@
         "business_impact": "银行可能受到标题所述修订的影响，而具体列明的修订对象涉及《保险业法》下的保险公司。元数据未指明所修改的条款及其对业务运营的影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确经修订的保险相关条款、其适用范围及任何过渡安排。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧の情報によると、「銀行法施行規則等の一部を改正する内閣府令」（令和六年内閣府令第五十七号）は2024年5月17日に公布され、同年5月18日に施行されました。対象法令として「保険業法施行規則」（平成八年大蔵省令第五号）が記載されていますが、具体的な改正内容は提供情報には示されていません。",
-    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、具体的な影響範囲は改正条文の確認が必要と考えられます。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:59:27Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-fe529c60d87f9359",
@@ -1251,7 +1251,13 @@
         "business_impact": "尽管标题提及银行相关规则，受《保险业法施行规则》规管的保险公司仍可能受到此次修订的影响；具体变更未作说明。",
         "recommended_action": "可考虑查阅日文官方来源，以明确经修订的保险条款以及与2024-04-01生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "summary_ja": "法令更新一覧には、保険業法施行規則（平成八年大蔵省令第五号）を対象とする改正法令として、銀行法施行規則等の一部を改正する内閣府令（令和六年内閣府令第十九号）が掲載されています。原文には、公布日が2024年3月22日、施行日が2024年4月1日と記載されています。",
+    "business_impact_ja": "保険業法施行規則の適用を受ける事業の業務や手続に影響する可能性がありますが、提供情報だけでは具体的な改正内容や影響範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で改正条文や適用範囲、施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:23Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-b3d79a801e54d7d7",

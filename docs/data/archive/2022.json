@@ -349,7 +349,15 @@
     "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正条文と施行時点の内容を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-22T23:57:11Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "修订《独立行政法人医药品医疗器械综合机构法施行令》的政令",
+        "summary": "2022年第106号政令修订了《独立行政法人医药品医疗器械综合机构法施行令》（2004年第83号政令）。所载公布日期为2022-03-25，所载生效日期为2022-04-01。",
+        "business_impact": "此次修订可能影响独立行政法人医药品医疗器械综合机构，其所依据法律的施行令得到修订；所提供的信息未指明变更的条款，也未指明对制药或医疗器械企业的任何影响。",
+        "recommended_action": "查阅日文官方文本可能有助于明确修订条款、其适用范围以及与2022-04-01生效日期相关的任何过渡安排。"
+      }
+    }
   },
   {
     "id": "raw-a0d4e30b166282ad",
@@ -523,7 +531,13 @@
         "business_impact": "尽管标题提及《银行法》相关规则，受《保险业法施行规则》规管的保险公司仍可能受到此次所列修订的影响。元数据未指明修订的条款及其对业务运作的影响。",
         "recommended_action": "查阅日文官方来源可能有助于明确经修订的保险相关条款、其适用范围，以及与所载生效日期相关的任何过渡安排。"
       }
-    }
+    },
+    "summary_ja": "法令更新一覧には、保険業法施行規則（平成八年大蔵省令第五号）を対象とする改正法令として、銀行法施行規則等の一部を改正する内閣府令（令和四年内閣府令第六十一号）が記載されています。原文記載の公布日は2022年10月31日、施行日は2022年11月1日で、更新一覧日は2026年10月19日です。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容がなく、影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正内容や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-105cde0643f3f78b",
@@ -546,6 +560,12 @@
     "ai_notes": "Based on the title and structured metadata, not the ordinance text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:42Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正する「保険業法施行規則の一部を改正する内閣府令」（令和四年内閣府令第四十六号）は、2022年7月4日に公布・施行されました。提供された更新情報には、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "保険業法施行規則に関係する事業の規制対応に影響する可能性がありますが、具体的な影響はこのメタデータのみでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:39Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "修订《保险业法施行规则》的内阁府令",
@@ -553,13 +573,7 @@
         "business_impact": "受《保险业法施行规则》规管的保险公司可能受到影响，但元数据未明确哪些要求或业务发生了变化。",
         "recommended_action": "查阅日文官方来源或可明确修订条款以及与保险公司相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正する「保険業法施行規則の一部を改正する内閣府令」（令和四年内閣府令第四十六号）は、2022年7月4日に公布・施行されました。提供された更新情報には、具体的な改正内容は記載されていません。",
-    "business_impact_ja": "保険業法施行規則に関係する事業の規制対応に影響する可能性がありますが、具体的な影響はこのメタデータのみでは判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:59:39Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-561c78aa9d0e0878",
@@ -654,6 +668,12 @@
     "ai_notes": "Based on the title and structured metadata, without the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:12:42Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正対象とする「保険業法施行規則等の一部を改正する内閣府令」（令和四年内閣府令第三十六号）は、2022年4月28日に公布され、2022年5月9日に施行されました。提供情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "保険業に関する業務や社内規程に影響する可能性がありますが、具体的な影響範囲は提供情報のみでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-22T23:59:39Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "修订《保险业法施行规则》等的内阁府令",
@@ -661,13 +681,7 @@
         "business_impact": "保险公司可能受到《保险业法施行规则》变更的影响，但元数据未指明修订的要求或其他规则变更的范围。",
         "recommended_action": "查阅日文官方府令将有助于了解修订条款、受影响的其他规则，以及与所载生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "保険業法施行規則（平成八年大蔵省令第五号）を改正対象とする「保険業法施行規則等の一部を改正する内閣府令」（令和四年内閣府令第三十六号）は、2022年4月28日に公布され、2022年5月9日に施行されました。提供情報には具体的な改正内容は記載されていません。",
-    "business_impact_ja": "保険業に関する業務や社内規程に影響する可能性がありますが、具体的な影響範囲は提供情報のみでは判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-22T23:59:39Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-ce7019e5eb0ef2c3",
