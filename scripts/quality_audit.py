@@ -127,7 +127,12 @@ STALE_OPEN_EN_RE = re.compile(
     r"|\bcomments?\s+(?:and\s+information\s+)?(?:are|is)\s+(?:being\s+)?(?:invited|accepted|sought|welcome|solicited)"
     r"(?!\s+(?:until|through|by)\b)"
     r"|\b(?:a|the)\s+(?:public\s+)?comment\s+period\s+is\s+(?:currently\s+|now\s+|still\s+)?open\b"
-    r"|\b(?:is|are)\s+(?:currently\s+|now\s+)?conducting\s+(?:a\s+|the\s+)?(?:public\s+comment|consultation)", re.I)
+    r"|\b(?:is|are)\s+(?:currently\s+|now\s+)?conducting\s+(?:a\s+|the\s+)?(?:public\s+comment|consultation)"
+    # "is still at the draft/public-comment stage" (6 closed items until 2026-10-23, whose
+    # faithful Chinese 处于…征求意见阶段 was requeued and parked); "at the draft stage" stays true.
+    r"|\b(?:is|are|remains?)\s+(?:(?:currently|now|still|only)\s+)*(?:at|in)\s+(?:the|a)\s+"
+    r"(?:draft[\s/-]*(?:and\s+)?)?(?:proposal[\s/-]*(?:and\s+)?)?(?:public[\s-]+comment|consultation|comment)\b"
+    r"[^.]{0,20}?\b(?:stage|phase|period)", re.I)
 # A raw ISO date-time shown to readers (2026-09-29T23:59:00+09:00). The English
 # and Chinese stages rewrite these deterministically; this catches a regression.
 ISO_DATETIME_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}")

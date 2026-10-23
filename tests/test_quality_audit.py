@@ -164,6 +164,18 @@ class TestQualityAudit(unittest.TestCase):
                    "The FSA announced that it is conducting a public comment procedure.",
                    "Public comments are being solicited on this draft."):
             self.assertIn("en_stale_open", run(item(**base, summary_en=en), raw={}), en)
+        # The six English summaries behind the parked zh_stale_open items (2026-10-23).
+        for en in ("It concerns pollution measures and is at the proposal/consultation stage.",
+                   "The item is at the public comment stage and has not been described as finalized.",
+                   "The impact remains uncertain while the measure is only at the draft public comment stage.",
+                   "It is categorized under industry and remains at the draft/consultation stage.",
+                   "The proposal is still at the public comment stage and its content is not finalized.",
+                   "Any impact remains provisional while this is still at the draft/public-comment stage."):
+            self.assertIn("en_stale_open", run(item(**base, summary_en=en), raw={}), en)
+        for en in ("The instrument remains at the draft stage until it is finalized.",
+                   "The draft was published for public comment; the public comment period ended on 2026-09-18.",
+                   "Confirm whether the item is still at the public comment stage."):
+            self.assertNotIn("en_stale_open", run(item(**base, summary_en=en), raw={}), en)
         for zh in ("本事项涉及相关措施，处于提案／征求意见阶段。", "农林水产省正在就丙硫克百威农药对蜜蜂影响的评估报告草案征求意见。"):
             self.assertIn("zh_stale_open", run(item(**base, zh={"summary": zh}), raw={}), zh)
         past = item(**base, summary_ja="総務省は意見募集を行っていたことが公表されています。")
