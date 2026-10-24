@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "dossier_id": "election-online-ai-2026-amendment",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "2026 election law amendment: AI-created online material and large platforms",
+  "quick_take": {
+    "what_changed": "Act No. 58 of 2026 changes rules for online election material, including disclosure of certain AI-created or altered images and videos, and adds election-fairness duties for designated large platforms.",
+    "who_is_affected": "Distributors of election-related online material and designated large specified telecommunications service providers; election-communications businesses should assess their role.",
+    "what_to_do_now": "Prepare disclosure controls for covered AI imagery before the main 1 March 2027 commencement. Designated large platforms should review risk-mitigation measures and annual reporting."
+  },
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-0d3112096f733526",
+    "raw-216ab112ab6d7b3e",
+    "raw-3f487c2aaa57379c",
+    "raw-8699ec498f4fc026",
+    "raw-99131b0a0eff51f6"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第五十八号",
+      "name_ja": "公職選挙法及び特定電気通信による情報の流通によって発生する権利侵害等への対処に関する法律の一部を改正する法律",
+      "name_en": "Act Partially Amending the Public Offices Election Act and the Information Distribution Platform Act"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MIC election reform information page",
+      "url": "https://www.soumu.go.jp/senkyo/senkyo_s/news/senkyo/seiken_housou/000191240.html"
+    },
+    {
+      "label": "e-Gov Public Offices Election Act revision history",
+      "url": "https://laws.e-gov.go.jp/law/325AC1000000100"
+    },
+    {
+      "label": "e-Gov Information Distribution Platform Act revision history",
+      "url": "https://laws.e-gov.go.jp/law/413AC0000000137"
+    },
+    {
+      "label": "e-Gov public comment list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Public Offices Election Act governs the distribution of election-related material. The 2026 amendment also modifies the Information Distribution Platform Act, which regulates certain large online services.",
+      "The reform removes rules specific to distributing election material by email and aligns that method with the rules for websites and similar services. Covered online material containing AI-created or AI-altered images or video must disclose that fact. Minor changes and imagery not likely to be mistaken for actual photographs, such as illustrations or animation, are excluded.",
+      "Internet users must avoid publicly spreading false statements about candidates or distorting facts in a way that impairs electoral fairness. Designated large specified telecommunications service providers must take appropriate measures to mitigate relevant adverse effects on electoral fairness. The minister is to publish guidelines and these providers must disclose their implementation annually."
+    ],
+    "source_ids": [
+      "s1",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "Members of the House of Representatives submitted House bill No. 26 on 24 June 2026. The House passed it on 26 June and the House of Councillors on 13 July. It was promulgated on 17 July 2026 as Act No. 58 of 2026.",
+      "e-Gov records for both amended laws include provisions with dates of 17 July 2026 and 1 March 2027. The overall amendment is therefore partially, not wholly, in force. Official prefectural election-administration guidance identifies 1 March 2027 as the main commencement date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-03-01",
+        "text": "The main provisions are scheduled to commence on 1 March 2027.",
+        "source_ids": [
+          "s2",
+          "s3"
+        ]
+      },
+      {
+        "text": "The Minister for Internal Affairs and Communications is to publish guidelines on large-platform measures addressing risks to electoral fairness.",
+        "source_ids": [
+          "s3"
+        ]
+      }
+    ],
+    "expected": [
+      "Affected operators ordinarily review new ministerial guidelines and adapt their controls before the relevant provisions commence."
+    ],
+    "uncertainties": [
+      "The ministry’s detailed linked guidance could not be opened in this review; the final operational expectations for different platforms require follow-up.",
+      "Whether a particular image or video requires an AI disclosure depends on the statutory conditions and exclusions; the rule does not cover all uses of AI."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Campaign communications providers and agencies distributing election-related material should review whether covered AI-created or AI-altered images and videos require disclosure. This is not a universal labeling rule for every AI-generated image.",
+      "The specific duties to mitigate election-fairness risks and disclose implementation annually concern designated large specified telecommunications service providers, not every website operator or social-media user."
+    ],
+    "checklist": [
+      "Identify election-related online material using AI-created or AI-altered imagery and assess the statutory exclusions.",
+      "Prepare review and disclosure workflows for covered material before 1 March 2027.",
+      "If a designated large platform, review risk-mitigation controls and annual public-disclosure arrangements.",
+      "Track ministerial guidance and e-Gov amendment history for implementation details."
+    ],
+    "source_ids": [
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-06-24",
+      "label": "House bill No. 26 submitted in the 221st Diet",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-06-26",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-07-13",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Promulgated as Act No. 58 of 2026",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Certain provisions effective from promulgation",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-03-01",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Main provisions take effect",
+      "source_ids": [
+        "s2",
+        "s3"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "221st Diet House bill No. 26: legislative history",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2AAA.htm",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Public Offices Election Act revision history for Act No. 58 of 2026",
+      "url": "https://laws.e-gov.go.jp/law/325AC1000000100",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s3",
+      "kind": "secondary",
+      "publisher": "Oita Prefecture Election Administration",
+      "title": "Online election communications reform, updated 19 October 2026",
+      "url": "https://www.pref.oita.jp/site/senkyo/260717kaisei.html",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s4",
+      "kind": "secondary",
+      "publisher": "Sagamihara City Election Administration",
+      "title": "Election and platform law amendment, updated 30 September 2026",
+      "url": "https://www.city.sagamihara.kanagawa.jp/shisei/1026766/senkyo/1026794/1036306.html",
+      "accessed_at": "2026-10-23"
+    }
+  ],
+  "verified_at": "2026-10-23",
+  "source_fingerprint": "sha256:e2189df99da0e345efbd16ceec6484f8",
+  "author": "chatgpt",
+  "review_notes": "Verified on 2026-10-23 using House legislative history, e-Gov records in the current repository and prefectural election-administration guidance updated 19 October 2026. MIC detailed page was inaccessible and is not listed as a reviewed source. AI-checked only."
+}
