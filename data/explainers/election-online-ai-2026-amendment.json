@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "dossier_id": "election-online-ai-2026-amendment",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 election law amendment: AI-created online content and large platforms",
+  "quick_take": {
+    "what_changed": "Act No. 58 of 2026 amends election-related online communication rules, including disclosures for covered AI-created or altered imagery and measures for designated large platforms.",
+    "who_is_affected": "Persons distributing election-related online material and designated large specified telecommunications service providers; not every use of AI is covered.",
+    "what_to_do_now": "Review covered imagery and disclosure workflows before the principal 1 March 2027 commencement. Designated large platforms should prepare risk-mitigation and annual reporting controls."
+  },
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-0d3112096f733526",
+    "raw-216ab112ab6d7b3e",
+    "raw-3f487c2aaa57379c",
+    "raw-8699ec498f4fc026",
+    "raw-99131b0a0eff51f6"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第五十八号",
+      "name_ja": "公職選挙法及び特定電気通信による情報の流通によって発生する権利侵害等への対処に関する法律の一部を改正する法律",
+      "name_en": "Act Partially Amending the Public Offices Election Act and the Information Distribution Platform Act"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MIC election law reform information",
+      "url": "https://www.soumu.go.jp/senkyo/senkyo_s/news/senkyo/seiken_housou/000191240.html"
+    },
+    {
+      "label": "e-Gov Public Offices Election Act",
+      "url": "https://laws.e-gov.go.jp/law/325AC1000000100"
+    },
+    {
+      "label": "e-Gov Information Distribution Platform Act",
+      "url": "https://laws.e-gov.go.jp/law/413AC0000000137"
+    },
+    {
+      "label": "e-Gov public comment list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The amendment revises election-related online communications under the Public Offices Election Act and adds obligations for certain large online services under the Information Distribution Platform Act.",
+      "Email-specific restrictions on distributing election material are removed and aligned with the rules for websites. Election-related online material containing AI-created or AI-altered images or video must disclose that fact, subject to exclusions for minor changes and imagery unlikely to be mistaken for real photographs, such as illustrations or animation.",
+      "Internet users must avoid publicly disseminating false statements about candidates or distorting facts so as to impair electoral fairness. Designated large specified telecommunications service providers must take appropriate risk-mitigation measures. The minister must publish guidelines, and designated providers must disclose their implementation annually."
+    ],
+    "source_ids": [
+      "s1",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "House bill No. 26 was submitted on 24 June 2026. The House of Representatives passed it on 26 June, the House of Councillors passed it on 13 July, and Act No. 58 of 2026 was promulgated on 17 July 2026.",
+      "Official election-administration guidance updated on 19 October 2026 confirms 1 March 2027 as the principal commencement date. The Diet record distinguishes the 13 July enactment from the 17 July promulgation; these are not interchangeable."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-03-01",
+        "text": "The principal provisions commence on 1 March 2027.",
+        "source_ids": [
+          "s2",
+          "s3"
+        ]
+      },
+      {
+        "text": "The Minister for Internal Affairs and Communications must issue and publish guidelines concerning measures by designated large platforms.",
+        "source_ids": [
+          "s3"
+        ]
+      }
+    ],
+    "expected": [
+      "Affected operators ordinarily review the final ministerial guidelines and adapt their operational controls before commencement."
+    ],
+    "uncertainties": [
+      "The detailed ministry guidance could not be accessed in this review. The precise operational expectations for particular platforms require further checking.",
+      "The disclosure rule is limited by statutory conditions and exclusions; it does not apply automatically to every AI-generated image."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Campaign communications providers and agencies distributing election-related material should identify covered AI-created or altered imagery and plan disclosures. The amendment does not impose a universal label on all AI content.",
+      "The risk-mitigation and annual implementation-disclosure duties apply to designated large specified telecommunications service providers, not every website operator or ordinary social-media user."
+    ],
+    "checklist": [
+      "Identify election-related online imagery and assess the statutory disclosure conditions and exclusions.",
+      "Establish review and disclosure procedures before 1 March 2027.",
+      "If a designated large platform, prepare measures addressing election-fairness risks and annual implementation disclosure.",
+      "Monitor MIC guidelines and e-Gov revision records."
+    ],
+    "source_ids": [
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-06-24",
+      "label": "House bill No. 26 submitted",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-06-26",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-07-13",
+      "label": "Passed by the House of Councillors and enacted",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Promulgated as Act No. 58 of 2026",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-07-17",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Certain provisions took effect on promulgation",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-03-01",
+      "instrument_number": "令和八年法律第五十八号",
+      "label": "Principal provisions commence",
+      "source_ids": [
+        "s2",
+        "s3"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "221st Diet House bill No. 26 legislative history",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2AAA.htm",
+      "accessed_at": "2026-10-24"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Public Offices Election Act revision history",
+      "url": "https://laws.e-gov.go.jp/law/325AC1000000100",
+      "accessed_at": "2026-10-24"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Oita Prefecture Election Administration",
+      "title": "Online election law amendment guidance updated 19 October 2026",
+      "url": "https://www.pref.oita.jp/site/senkyo/260717kaisei.html",
+      "accessed_at": "2026-10-24"
+    }
+  ],
+  "verified_at": "2026-10-24",
+  "source_fingerprint": "sha256:e2189df99da0e345efbd16ceec6484f8",
+  "author": "chatgpt",
+  "review_notes": "AI-checked on 2026-10-24 against the Diet legislative record and official prefectural election-administration guidance. The e-Gov revision-history page did not expose readable HTML in this environment; its relevant dates derive from the previously checked record and must be rechecked if the official-record fingerprint changes. MIC detailed page was inaccessible. The prefectural guidance conflates enactment and promulgation on 17 July; the Diet's 13 July enactment date is used."
+}
