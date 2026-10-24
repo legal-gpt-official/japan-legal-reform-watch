@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "dossier_id": "health-insurance-2026-amendment",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan’s 2026 health insurance reform: benefits, financial income and implementation",
+  "quick_take": {
+    "what_changed": "Act No. 31 of 2026 changes health insurance benefits, including certain OTC-equivalent medicines, financial-income reporting for older-person healthcare, childbirth support and reduced child premiums.",
+    "who_is_affected": "Health insurers, financial institutions handling statutory tax reports, healthcare providers, municipalities, and insured families.",
+    "what_to_do_now": "Prepare for the main 1 April 2027 commencement. Track separate Cabinet Order dates for other provisions rather than treating statutory outer limits or draft implementation schedules as fixed dates."
+  },
+  "instrument_type": "statute",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-033b98709c8ed991",
+    "raw-089158bbd3890087",
+    "raw-08db2824125e3248",
+    "raw-0c8e5ad97103d9a1",
+    "raw-1504cca087ac57f6",
+    "raw-191bb96e80d3be31",
+    "raw-1af36eabac6b71b1",
+    "raw-2ce1d574cf658f71",
+    "raw-2e34e3e0b6cb2ac4",
+    "raw-2ed70488665fe711",
+    "raw-392b5ac8fd50e3a0",
+    "raw-43002bd63af612d0"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年法律第三十一号",
+      "name_ja": "健康保険法等の一部を改正する法律",
+      "name_en": "Act Partially Amending the Health Insurance Act and Related Acts"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MHLW Medical Insurance Council meeting list",
+      "url": "https://www.mhlw.go.jp/stf/newpage_28708.html"
+    },
+    {
+      "label": "MHLW medical insurance policy page",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/index.html"
+    },
+    {
+      "label": "MHLW press release list",
+      "url": "https://www.mhlw.go.jp/stf/houdou/index.html"
+    },
+    {
+      "label": "e-Gov Health Insurance Act revision history",
+      "url": "https://laws.e-gov.go.jp/law/211AC0000000070"
+    },
+    {
+      "label": "e-Gov public comment list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Act No. 31 of 2026 aims to make Japanese health insurance benefits and cost-sharing more sustainable and equitable. It amends multiple laws and its provisions do not all commence on the same date.",
+      "The Act introduces partially non-insured treatment for certain medicines considered particularly substitutable by over-the-counter products. It also provides for online submission by financial institutions of statutory reports on listed-share dividends and other financial income to the regional insurers for older people, for use in premium and patient cost-sharing assessments.",
+      "The reform revises childbirth-related benefits, expands the national health insurance reduction in per-person premiums for children from preschool age to high-school age, and establishes support for hospital efficiency and working-condition improvements. Statutory reporting duties must be distinguished from duties merely to make efforts."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet submitted the bill on 13 March 2026. The House of Representatives passed it on 28 April and the House of Councillors on 29 May. The Act was promulgated on 5 June 2026 as Act No. 31 of 2026.",
+      "MHLW presented the enacted Act to the Medical Insurance Council on 18 June 2026. The council’s 16 October 2026 materials considered the implementation timetable for reflecting financial income in older-person healthcare and the systems changes required of financial institutions and public bodies.",
+      "MHLW identifies the main commencement as 1 April 2027, with exceptions including provisions effective on promulgation and on 1 August 2026. Other measures, including OTC-equivalent medicines, childbirth and financial-income reporting, depend on separately designated Cabinet Order dates."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2027-04-01",
+        "text": "The main provisions take effect on 1 April 2027, subject to exceptions stated in the Act.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "text": "Separate Cabinet Orders must specify the commencement dates of certain OTC-equivalent medicine, childbirth and financial-income reporting provisions.",
+        "source_ids": [
+          "s2"
+        ]
+      }
+    ],
+    "expected": [
+      "The competent authorities ordinarily issue implementing Cabinet Orders, ordinances and operational specifications before the affected measures commence."
+    ],
+    "uncertainties": [
+      "The reviewed materials do not establish final Cabinet Order commencement dates for the measures that require them. A statutory outer limit is not a fixed commencement date.",
+      "The 16 October 2026 MHLW materials discuss a proposed financial-income reporting timetable. The timetable should not be treated as an enacted legal commencement date."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Financial institutions covered by the new statutory-reporting provisions should plan secure electronic transmission and data-quality controls. MHLW’s timetable materials discuss systems work by financial institutions, municipalities and insurance administrators; the binding commencement date must be verified separately.",
+      "Insurers, healthcare providers and employers communicating employee benefits should review which measures affect their processes. The financial-institution reporting duty does not apply to every employer, and the hospital efficiency provisions must not be characterized as universal mandatory certification."
+    ],
+    "checklist": [
+      "Map the affected insurance, financial-reporting and employee-benefit processes and the applicable legal provisions.",
+      "If a financial institution, review statutory-report data flows and planned electronic submission without assuming a fixed commencement date.",
+      "If an insurer or healthcare provider, review the new benefit categories and monitor the implementing instruments.",
+      "Follow MHLW Medical Insurance Council materials and Cabinet Orders fixing the remaining commencement dates."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-03-13",
+      "label": "Cabinet bill submitted to the Diet",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "passed_house_of_representatives",
+      "date": "2026-04-28",
+      "label": "Passed by the House of Representatives",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "enacted",
+      "date": "2026-05-29",
+      "label": "Passed by the House of Councillors; enacted",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十一号",
+      "label": "Promulgated as Act No. 31 of 2026",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十一号",
+      "label": "Certain provisions took effect on promulgation",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-08-01",
+      "instrument_number": "令和八年法律第三十一号",
+      "label": "Further specified provisions took effect",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-16",
+      "label": "Medical Insurance Council discussed the proposed financial-income reporting timetable",
+      "source_ids": [
+        "s4"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-04-01",
+      "instrument_number": "令和八年法律第三十一号",
+      "label": "Main provisions take effect, subject to exceptions",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Councillors",
+      "title": "Health Insurance Act amendment, 221st Diet Cabinet bill No. 25: history and summary",
+      "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221080221025.htm",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Act No. 31 of 2026 overview in Medical Insurance Council materials dated 16 October 2026",
+      "url": "https://www.mhlw.go.jp/content/12401000/001759824.pdf",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "212th Medical Insurance Council meeting materials, 18 June 2026",
+      "url": "https://www.mhlw.go.jp/stf/newpage_73929.html",
+      "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Medical Insurance Council meeting list and 218th meeting, 16 October 2026",
+      "url": "https://www.mhlw.go.jp/stf/newpage_28708.html",
+      "accessed_at": "2026-10-23"
+    }
+  ],
+  "verified_at": "2026-10-23",
+  "source_fingerprint": "sha256:67bfc22c29487bdf672ff392c196eeba",
+  "author": "chatgpt",
+  "review_notes": "Verified against the Diet bill history and MHLW materials on 2026-10-23, including the 16 October 2026 council meeting. Multiple provisions are already in force; several Cabinet Order commencement dates remain unconfirmed. AI-checked only; no human review claimed."
+}
