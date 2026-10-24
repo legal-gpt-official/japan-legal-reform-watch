@@ -303,6 +303,11 @@
     "last_checked": "2026-10-22",
     "relevance_score": 25.0,
     "first_seen_at": "2026-10-23",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-23T23:47:08Z",
+    "summary_model": "gpt-6.1-sol",
     "summary_ja": "独立行政法人医薬品医療機器総合機構法施行令（平成十六年政令第八十三号）を改正する「独立行政法人医薬品医療機器総合機構法施行令の一部を改正する政令」（平成三十一年政令第百十三号）は、2019年3月29日に公布され、2019年4月1日に施行されました。提供情報には、具体的な改正内容は記載されていません。",
     "business_impact_ja": "同施行令に関係する事業や手続に影響する可能性がありますが、提供情報のみでは具体的な影響範囲は判断できません。",
     "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
@@ -316,12 +321,7 @@
         "business_impact": "该修订可能影响医药品医疗器械综合机构，因为其修改了规范该机构的法律的施行令；现有信息未明确具体的运营变化或受影响的外部主体。",
         "recommended_action": "查阅日文官方文本或可明确修订条款，以及与2019-04-01生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and structured metadata; the substantive amendments are not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-23T23:47:08Z",
-    "summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-1927ea0acc12f3b3",
@@ -452,6 +452,12 @@
     "ai_notes": "Based on the title and structured listing information, not the operative provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者に対する一時金の支給等に関する法律に基づき都道府県に交付する事務費に関する政令（平成三十一年政令第百六十号）は、2019年4月24日に公布・施行されました。提供情報では、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が改正対象として記載されています。",
+    "business_impact_ja": "都道府県に交付する事務費に関係する制度運用への影響が考えられますが、提供情報だけでは具体的な改正内容や民間事業者への影響は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語条文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "关于原《优生保护法》一次性补偿金发放所涉都道府县事务费的政令",
@@ -459,13 +465,7 @@
         "business_impact": "负责发放上述一次性补偿金的都道府县可能受到事务费拨款相关规定的影响。所列修订涉及补助金预算施行令，但所提供的信息未说明修订条款及其实际影响。",
         "recommended_action": "查阅日文官方来源或可明确经修订的补助金预算相关条款，以及这些条款对向都道府县拨付事务费的适用情况。"
       }
-    },
-    "summary_ja": "旧優生保護法に基づく優生手術等を受けた者に対する一時金の支給等に関する法律に基づき都道府県に交付する事務費に関する政令（平成三十一年政令第百六十号）は、2019年4月24日に公布・施行されました。提供情報では、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）が改正対象として記載されています。",
-    "business_impact_ja": "都道府県に交付する事務費に関係する制度運用への影響が考えられますが、提供情報だけでは具体的な改正内容や民間事業者への影響は確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語条文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-23T23:48:31Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-1f4872a246dbfbdc",

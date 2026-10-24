@@ -272,6 +272,12 @@
     "ai_notes": "Based on the title and structured listing metadata, not the operative text; the English is unofficial, and the relationship between the headline subject and the identified amended order requires verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T23:41:30Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）を対象法令とし、預貯金者の意思に基づく個人番号の利用による預貯金口座の管理等に関する法律第十四条の政令で定める金額を定める政令（令和三年政令第百五十五号）を改正法令とする情報が記載されています。公布日・施行日はともに2021年5月19日、更新一覧日は2026年10月20日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "対象法令に関係する事業では、改正内容の確認が必要となる可能性がありますが、このメタデータだけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索の本文・沿革等で、両政令の関係、改正内容および公布・施行日を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:48:31Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "规定账户管理金额并修订补助金预算执行施行令的政令",
@@ -279,13 +285,7 @@
         "business_impact": "虽然标题涉及存款人使用个人编号管理账户，但所列修订涉及补助金预算执行施行令，可能影响补助金领取者；未提供具体变更及其实际适用范围。",
         "recommended_action": "建议查阅日文官方来源，以确认根据第14条规定的金额及补助金预算执行施行令中被修订的条款。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、補助金等に係る予算の執行の適正化に関する法律施行令（昭和三十年政令第二百五十五号）を対象法令とし、預貯金者の意思に基づく個人番号の利用による預貯金口座の管理等に関する法律第十四条の政令で定める金額を定める政令（令和三年政令第百五十五号）を改正法令とする情報が記載されています。公布日・施行日はともに2021年5月19日、更新一覧日は2026年10月20日とされていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "対象法令に関係する事業では、改正内容の確認が必要となる可能性がありますが、このメタデータだけでは具体的な影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索の本文・沿革等で、両政令の関係、改正内容および公布・施行日を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-23T23:48:31Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-ef6b674623f86b8b",
