@@ -11862,6 +11862,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-20T00:13:06Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「金融商品取引業等に関する内閣府令等の一部を改正する内閣府令」（令和七年内閣府令第八号）は、2025年2月7日に公布され、2025年4月1日に施行されました。メタデータには、対象法令として保険業法施行規則（平成八年大蔵省令第五号）が記載されていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、影響の範囲や必要な対応は、このメタデータだけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索等で改正条文や施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-24T22:57:38Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "部分修订《金融商品交易业等相关内阁府令》等的内阁府令",
@@ -11869,13 +11875,7 @@
         "business_impact": "尽管标题侧重于金融商品交易业规则，受《保险业法施行规则》规管的保险公司仍可能受到此次所列修订的影响。元数据未说明变更的条款及其对业务运作的影响。",
         "recommended_action": "可考虑查阅日文官方修订文本及受影响的保险规则条款，以帮助明确适用范围、生效日期安排及任何过渡条款。"
       }
-    },
-    "summary_ja": "「金融商品取引業等に関する内閣府令等の一部を改正する内閣府令」（令和七年内閣府令第八号）は、2025年2月7日に公布され、2025年4月1日に施行されました。メタデータには、対象法令として保険業法施行規則（平成八年大蔵省令第五号）が記載されていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "保険業法施行規則に関係する業務に影響する可能性がありますが、影響の範囲や必要な対応は、このメタデータだけでは判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索等で改正条文や施行に関する規定を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-24T22:57:38Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-f487eeb7469ba780",
