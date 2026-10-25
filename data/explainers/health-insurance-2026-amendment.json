@@ -7,7 +7,7 @@
   "quick_take": {
     "what_changed": "Act No. 31 of 2026 changes health insurance benefits, including certain OTC-equivalent medicines, financial-income reporting for older-person healthcare, childbirth support and reduced child premiums.",
     "who_is_affected": "Health insurers, financial institutions handling statutory tax reports, healthcare providers, municipalities, and insured families.",
-    "what_to_do_now": "Prepare for the main 1 April 2027 commencement. Track separate Cabinet Order dates for other provisions rather than treating statutory outer limits or draft implementation schedules as fixed dates."
+    "what_to_do_now": "Prepare for the fixed 1 March 2027 commencement of partially non-insured treatment for certain OTC-equivalent medicines and the main 1 April 2027 commencement. Track Cabinet Order dates still pending for other provisions."
   },
   "instrument_type": "statute",
   "current_stage": "partially_in_force",
@@ -30,6 +30,11 @@
       "number": "令和八年法律第三十一号",
       "name_ja": "健康保険法等の一部を改正する法律",
       "name_en": "Act Partially Amending the Health Insurance Act and Related Acts"
+    },
+    {
+      "number": "令和八年政令第三百二十号",
+      "name_ja": "健康保険法等の一部を改正する法律の一部の施行期日を定める政令",
+      "name_en": "Cabinet Order Specifying the Commencement Date for Certain Provisions of the 2026 Health Insurance Amendment"
     }
   ],
   "watch_pages": [
@@ -52,6 +57,10 @@
     {
       "label": "e-Gov public comment list",
       "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    },
+    {
+      "label": "MHLW newly issued legal instruments",
+      "url": "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html"
     }
   ],
   "background": {
@@ -69,13 +78,15 @@
     "paragraphs": [
       "The Cabinet submitted the bill on 13 March 2026. The House of Representatives passed it on 28 April and the House of Councillors on 29 May. The Act was promulgated on 5 June 2026 as Act No. 31 of 2026.",
       "MHLW presented the enacted Act to the Medical Insurance Council on 18 June 2026. The council’s 16 October 2026 materials considered the implementation timetable for reflecting financial income in older-person healthcare and the systems changes required of financial institutions and public bodies.",
-      "MHLW identifies the main commencement as 1 April 2027, with exceptions including provisions effective on promulgation and on 1 August 2026. Other measures, including OTC-equivalent medicines, childbirth and financial-income reporting, depend on separately designated Cabinet Order dates."
+      "MHLW identifies the main commencement as 1 April 2027, with exceptions including provisions effective on promulgation and on 1 August 2026. Cabinet Order No. 320 of 2026, promulgated on 30 September 2026, fixed 1 March 2027 for the provisions on partially non-insured treatment for certain OTC-equivalent medicines. Commencement dates for childbirth and financial-income reporting measures remain subject to separate designation."
     ],
     "source_ids": [
       "s1",
       "s2",
       "s3",
-      "s4"
+      "s4",
+      "s5",
+      "s6"
     ]
   },
   "next_steps": {
@@ -89,9 +100,17 @@
         ]
       },
       {
-        "text": "Separate Cabinet Orders must specify the commencement dates of certain OTC-equivalent medicine, childbirth and financial-income reporting provisions.",
+        "text": "Separate Cabinet Orders must still specify commencement dates for certain childbirth and financial-income reporting provisions; the OTC-equivalent medicine date is already fixed.",
         "source_ids": [
           "s2"
+        ]
+      },
+      {
+        "date": "2027-03-01",
+        "text": "The provisions on partially non-insured treatment for certain OTC-equivalent medicines take effect on 1 March 2027 under Cabinet Order No. 320 of 2026.",
+        "source_ids": [
+          "s5",
+          "s6"
         ]
       }
     ],
@@ -99,25 +118,28 @@
       "The competent authorities ordinarily issue implementing Cabinet Orders, ordinances and operational specifications before the affected measures commence."
     ],
     "uncertainties": [
-      "The reviewed materials do not establish final Cabinet Order commencement dates for the measures that require them. A statutory outer limit is not a fixed commencement date.",
+      "The reviewed sources do not establish final Cabinet Order dates for remaining childbirth and financial-income reporting measures. The 1 March 2027 OTC-equivalent medicine date is fixed, not a statutory outer limit or draft target.",
       "The 16 October 2026 MHLW materials discuss a proposed financial-income reporting timetable. The timetable should not be treated as an enacted legal commencement date."
     ]
   },
   "business_impact": {
     "paragraphs": [
       "Financial institutions covered by the new statutory-reporting provisions should plan secure electronic transmission and data-quality controls. MHLW’s timetable materials discuss systems work by financial institutions, municipalities and insurance administrators; the binding commencement date must be verified separately.",
-      "Insurers, healthcare providers and employers communicating employee benefits should review which measures affect their processes. The financial-institution reporting duty does not apply to every employer, and the hospital efficiency provisions must not be characterized as universal mandatory certification."
+      "Insurers, healthcare providers and employers communicating employee benefits should review which measures affect their processes. Providers and insurers should prepare communications and billing controls for the fixed 1 March 2027 start of partially non-insured treatment for certain OTC-equivalent medicines. Hospital efficiency provisions must not be characterized as universal mandatory certification."
     ],
     "checklist": [
       "Map the affected insurance, financial-reporting and employee-benefit processes and the applicable legal provisions.",
       "If a financial institution, review statutory-report data flows and planned electronic submission without assuming a fixed commencement date.",
       "If an insurer or healthcare provider, review the new benefit categories and monitor the implementing instruments.",
-      "Follow MHLW Medical Insurance Council materials and Cabinet Orders fixing the remaining commencement dates."
+      "Follow MHLW Medical Insurance Council materials and Cabinet Orders fixing the remaining commencement dates.",
+      "For insurers and healthcare providers, verify patient communications and billing readiness for the fixed 1 March 2027 OTC-equivalent medicine commencement."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s4"
+      "s4",
+      "s5",
+      "s6"
     ]
   },
   "key_dates": [
@@ -174,11 +196,30 @@
       ]
     },
     {
+      "kind": "promulgated",
+      "date": "2026-09-30",
+      "instrument_number": "令和八年政令第三百二十号",
+      "label": "Cabinet Order No. 320 of 2026 promulgated, fixing the OTC-equivalent medicine commencement",
+      "source_ids": [
+        "s5"
+      ]
+    },
+    {
       "kind": "other",
       "date": "2026-10-16",
       "label": "Medical Insurance Council discussed the proposed financial-income reporting timetable",
       "source_ids": [
         "s4"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2027-03-01",
+      "instrument_number": "令和八年法律第三十一号",
+      "label": "Partially non-insured treatment for certain OTC-equivalent medicines takes effect",
+      "source_ids": [
+        "s5",
+        "s6"
       ]
     },
     {
@@ -224,10 +265,26 @@
       "title": "Medical Insurance Council meeting list and 218th meeting, 16 October 2026",
       "url": "https://www.mhlw.go.jp/stf/newpage_28708.html",
       "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Cabinet Order No. 320 of 2026 fixing the commencement date of specified provisions",
+      "url": "https://www.mhlw.go.jp/hourei/doc/hourei/H260930S0110.pdf",
+      "accessed_at": "2026-10-25"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Health Insurance Amendment implementation schedule by measure",
+      "url": "https://www.mhlw.go.jp/content/12401000/001676383.pdf",
+      "accessed_at": "2026-10-25"
     }
   ],
-  "verified_at": "2026-10-23",
+  "verified_at": "2026-10-25",
   "source_fingerprint": "sha256:67bfc22c29487bdf672ff392c196eeba",
   "author": "chatgpt",
-  "review_notes": "Verified against the Diet bill history and MHLW materials on 2026-10-23, including the 16 October 2026 council meeting. Multiple provisions are already in force; several Cabinet Order commencement dates remain unconfirmed. AI-checked only; no human review claimed."
+  "review_notes": "AI rechecked 2026-10-25 against MHLW Cabinet Order No. 320 (promulgated 30 September 2026), which fixes 1 March 2027 for partially non-insured OTC-equivalent medicine provisions. Other childbirth/financial-income Cabinet Order dates remain separate. Existing Diet, e-Gov and council sources retained. No human review claimed."
 }
