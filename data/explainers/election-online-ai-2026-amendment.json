@@ -7,14 +7,16 @@
   "quick_take": {
     "what_changed": "Act No. 58 of 2026 changes rules for online election material, including disclosure of certain AI-created or altered images and videos, and adds election-fairness duties for designated large platforms.",
     "who_is_affected": "Distributors of election-related online material and designated large specified telecommunications service providers; election-communications businesses should assess their role.",
-    "what_to_do_now": "Prepare disclosure controls for covered AI imagery before the main 1 March 2027 commencement. Designated large platforms should review risk-mitigation measures and annual reporting."
+    "what_to_do_now": "Prepare AI-image disclosure controls before the main 1 March 2027 commencement. Designated large platforms should review risk-mitigation measures and annual reporting. MIC's draft guidance is open for comment until 24 November 2026."
   },
   "instrument_type": "statute",
   "current_stage": "partially_in_force",
   "related_item_ids": [
     "raw-0d3112096f733526",
+    "raw-0d58d5cceaa7fcb0",
     "raw-216ab112ab6d7b3e",
     "raw-3f487c2aaa57379c",
+    "raw-688515010112945d",
     "raw-8699ec498f4fc026",
     "raw-99131b0a0eff51f6"
   ],
@@ -58,13 +60,16 @@
   "history": {
     "paragraphs": [
       "Members of the House of Representatives submitted House bill No. 26 on 24 June 2026. The House passed it on 26 June and the House of Councillors on 13 July. It was promulgated on 17 July 2026 as Act No. 58 of 2026.",
-      "e-Gov records for both amended laws include provisions with dates of 17 July 2026 and 1 March 2027. The overall amendment is therefore partially, not wholly, in force. Official prefectural election-administration guidance identifies 1 March 2027 as the main commencement date."
+      "e-Gov records for both amended laws include provisions with dates of 17 July 2026 and 1 March 2027. The overall amendment is therefore partially, not wholly, in force. Official prefectural election-administration guidance identifies 1 March 2027 as the main commencement date.",
+      "On 24 October 2026, the Ministry of Internal Affairs and Communications opened public comment on draft election-fairness risk-mitigation guidelines and a related implementing ordinance amendment. Comments close on 24 November 2026; neither draft is a final binding instrument."
     ],
     "source_ids": [
       "s1",
       "s2",
       "s3",
-      "s4"
+      "s4",
+      "s5",
+      "s6"
     ]
   },
   "next_steps": {
@@ -82,31 +87,39 @@
         "source_ids": [
           "s3"
         ]
+      },
+      {
+        "date": "2026-11-24",
+        "text": "Public comment on MIC's draft election-fairness guideline and implementing ordinance closes on 24 November 2026.",
+        "source_ids": [
+          "s5"
+        ]
       }
     ],
     "expected": [
       "Affected operators ordinarily review new ministerial guidelines and adapt their controls before the relevant provisions commence."
     ],
     "uncertainties": [
-      "The ministry’s detailed linked guidance could not be opened in this review; the final operational expectations for different platforms require follow-up.",
+      "MIC's 24 October 2026 guideline and ordinance texts are drafts; final requirements may change. The draft guideline says its listed mitigation examples are recommendations, not individually mandatory measures, and it does not directly require deletion of particular posts.",
       "Whether a particular image or video requires an AI disclosure depends on the statutory conditions and exclusions; the rule does not cover all uses of AI."
     ]
   },
   "business_impact": {
     "paragraphs": [
       "Campaign communications providers and agencies distributing election-related material should review whether covered AI-created or AI-altered images and videos require disclosure. This is not a universal labeling rule for every AI-generated image.",
-      "The specific duties to mitigate election-fairness risks and disclose implementation annually concern designated large specified telecommunications service providers, not every website operator or social-media user."
+      "The statutory duties to mitigate election-fairness risks and disclose implementation annually concern designated large specified telecommunications service providers, not every website or social-media user. The draft guideline lists recommended examples involving moderation, monetization and AI content controls; these examples are not each a separate mandatory measure."
     ],
     "checklist": [
       "Identify election-related online material using AI-created or AI-altered imagery and assess the statutory exclusions.",
       "Prepare review and disclosure workflows for covered material before 1 March 2027.",
-      "If a designated large platform, review risk-mitigation controls and annual public-disclosure arrangements.",
+      "If a designated large platform, assess the statutory mitigation and annual-disclosure duties separately from the draft guideline's recommended examples.",
       "Track ministerial guidance and e-Gov amendment history for implementation details."
     ],
     "source_ids": [
       "s2",
       "s3",
-      "s4"
+      "s4",
+      "s6"
     ]
   },
   "key_dates": [
@@ -154,6 +167,22 @@
       ]
     },
     {
+      "kind": "comment_opened",
+      "date": "2026-10-24",
+      "label": "MIC opened consultation on draft election-fairness guidelines and ordinance",
+      "source_ids": [
+        "s5"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-24",
+      "label": "Deadline for comments on the draft guidelines and ordinance",
+      "source_ids": [
+        "s5"
+      ]
+    },
+    {
       "kind": "effective",
       "date": "2027-03-01",
       "instrument_number": "令和八年法律第五十八号",
@@ -196,10 +225,26 @@
       "title": "Election and platform law amendment, updated 30 September 2026",
       "url": "https://www.city.sagamihara.kanagawa.jp/shisei/1026766/senkyo/1026794/1036306.html",
       "accessed_at": "2026-10-23"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Internal Affairs and Communications / e-Gov",
+      "title": "Public comment on election-fairness mitigation guideline and ordinance, opened 24 October 2026",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=145210789",
+      "accessed_at": "2026-10-25"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Ministry of Internal Affairs and Communications / e-Gov",
+      "title": "Draft guideline on effective election-fairness risk mitigation, 24 October 2026",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322779",
+      "accessed_at": "2026-10-25"
     }
   ],
-  "verified_at": "2026-10-23",
-  "source_fingerprint": "sha256:e2189df99da0e345efbd16ceec6484f8",
+  "verified_at": "2026-10-25",
+  "source_fingerprint": "sha256:6e79e2c86c09eeffb0151ec7dc6642dd",
   "author": "chatgpt",
-  "review_notes": "Verified on 2026-10-23 using House legislative history, e-Gov records in the current repository and prefectural election-administration guidance updated 19 October 2026. MIC detailed page was inaccessible and is not listed as a reviewed source. AI-checked only."
+  "review_notes": "AI rechecked 2026-10-25 against the 24 October MIC/e-Gov consultation and 25-page draft guideline, in addition to the earlier Diet and e-Gov sources. Distinguishes statutory duties from nonbinding recommended examples; final subordinate texts remain pending. No human review claimed."
 }
