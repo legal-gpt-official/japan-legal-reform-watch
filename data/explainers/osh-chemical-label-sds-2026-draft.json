@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "dossier_id": "osh-chemical-label-sds-2026-draft",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 draft chemical-hazard labeling and SDS revisions",
+  "quick_take": {
+    "what_changed": "MHLW is consulting on draft changes to the Industrial Safety and Health Act Enforcement Order and Ordinance that would update substances subject to hazard labels and safety data sheet notification.",
+    "who_is_affected": "Manufacturers, importers, distributors and employers handling chemical substances potentially added to or removed from the covered lists.",
+    "what_to_do_now": "Check the proposed substance annexes against inventories and supplier documentation. Comments close on 18 November 2026 at 16:00 JST. The draft's 1 April 2029 start is not yet a binding commencement date."
+  },
+  "instrument_type": "cabinet_order",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-bbe3073b46935614"
+  ],
+  "instruments": [
+    {
+      "number": "昭和四十七年政令第三百十八号",
+      "name_ja": "労働安全衛生法施行令",
+      "name_en": "Industrial Safety and Health Act Enforcement Order (existing order proposed for amendment)"
+    },
+    {
+      "number": "昭和四十七年労働省令第三十二号",
+      "name_ja": "労働安全衛生規則",
+      "name_en": "Industrial Safety and Health Ordinance (existing ordinance proposed for amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "e-Gov consultation case 495260226 and attachments",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260226"
+    },
+    {
+      "label": "e-Gov public comment list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    },
+    {
+      "label": "MHLW chemical safety policy information",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/index.html"
+    },
+    {
+      "label": "e-Gov Industrial Safety and Health Act Enforcement Order revision history",
+      "url": "https://laws.e-gov.go.jp/law/347CO0000000318"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Existing Japanese occupational-safety law requires hazard labeling on containers or packaging when specified hazardous chemicals are transferred or supplied, and requires notification of prescribed information through safety data sheets or equivalent means for designated substances. These existing duties must not be confused with the draft expansion of covered substances.",
+      "MHLW proposes to update the reference point for national GHS-based chemical classifications from 31 March 2025 to 31 March 2026, and to revise the annex of substances covered by labeling and SDS duties. The companion ordinance outline describes additions, removals and name changes in the substance list.",
+      "The draft Order outline proposes a 1 April 2029 commencement and a transitional rule for labeling of newly added substances already in existence on that date. The transitional rule concerns labeling for one year after the proposed commencement, not a general waiver of all SDS duties."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "On 20 October 2026, MHLW opened consultation on a draft Cabinet Order and ministerial ordinance amending the chemical-substance scope of the Industrial Safety and Health rules.",
+      "The official Order and Ordinance outlines describe the proposed classification cutoff, changes to the listed substances, a planned February 2027 promulgation and a planned 1 April 2029 commencement. These dates appear in draft outlines and are not evidence of a promulgated instrument."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-11-18",
+        "text": "Public comments on the draft instruments are due by 18 November 2026 at 16:00 JST.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "expected": [
+      "The ministry ordinarily considers comments and publishes the result and final instruments if adopted; this is a general procedural description, not a forecast."
+    ],
+    "uncertainties": [
+      "The draft proposes promulgation in February 2027 and commencement on 1 April 2029, but neither date is confirmed by an enacted amendment.",
+      "The final additions, deletions and renamed chemical substances, as well as any transitional provisions, may change during the rulemaking process."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Chemical manufacturers, importers and distributors should identify which products may fall within the proposed updated lists and prepare to revise labels and safety data sheets if the changes are adopted. Existing duties continue to apply under current law.",
+      "Employers using affected chemicals should assess potential changes to hazard communication and inventory controls. The proposed labeling transition for existing stocks should not be read as suspending SDS notification requirements."
+    ],
+    "checklist": [
+      "Compare the official proposed substance annexes with current chemical inventories and supplier SDS records.",
+      "Separate duties already in force from duties that would arise only if the draft amendments are adopted.",
+      "Review the proposed labeling transition for newly covered existing stocks without assuming a blanket SDS exemption.",
+      "Consider comments before the deadline and monitor the final promulgation, effective dates and annex wording."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-20",
+      "label": "MHLW opened consultation on the draft Order and Ordinance",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-18",
+      "label": "Deadline for public comments at 16:00 JST",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare / e-Gov",
+      "title": "Public comment case 495260226: draft Industrial Safety and Health Order and Ordinance",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260226",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "20 October 2026 consultation memorandum",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322605",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Draft Cabinet Order outline: GHS classifications, proposed dates and labeling transition",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322606",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Draft ministerial ordinance outline: additions, deletions and renaming of substances",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322607",
+      "accessed_at": "2026-10-26"
+    }
+  ],
+  "verified_at": "2026-10-26",
+  "source_fingerprint": "sha256:b48acd9ef8b346892635f5055189eab6",
+  "author": "chatgpt",
+  "review_notes": "AI checked 2026-10-26 against e-Gov/MHLW consultation and Order/Ordinance outlines. Separates existing mandatory labeling/SDS duties from proposed substance changes, and planned from confirmed dates. No human review claimed."
+}
