@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "dossier_id": "export-control-2026-october-draft",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's October 2026 draft export-control revisions: goods, technology and payment exceptions",
+  "quick_take": {
+    "what_changed": "METI opened consultation on draft amendments to the Foreign Exchange Order and Export Trade Control Order, with related ministerial and administrative texts. The proposals are not yet enacted rules.",
+    "who_is_affected": "Exporters, manufacturers of controlled equipment, technology providers, research institutions and businesses screening cross-border transactions.",
+    "what_to_do_now": "Compare affected products and technologies with the proposed schedules and technical specifications. Comments are due by 18 November 2026 at 17:00 JST; do not apply draft requirements as current law."
+  },
+  "instrument_type": "cabinet_order",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-e45e78485c5b4613"
+  ],
+  "instruments": [
+    {
+      "number": "昭和五十五年政令第二百六十号",
+      "name_ja": "外国為替令",
+      "name_en": "Foreign Exchange Order (existing order proposed for amendment)"
+    },
+    {
+      "number": "昭和二十四年政令第三百七十八号",
+      "name_ja": "輸出貿易管理令",
+      "name_en": "Export Trade Control Order (existing order proposed for amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "e-Gov export-control draft consultation and attachments",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320041"
+    },
+    {
+      "label": "e-Gov public comment results and new consultations",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    },
+    {
+      "label": "METI Security Export Control information",
+      "url": "https://www.meti.go.jp/policy/anpo/index.html"
+    },
+    {
+      "label": "e-Gov Foreign Exchange Order revision history",
+      "url": "https://laws.e-gov.go.jp/law/355CO0000000260"
+    },
+    {
+      "label": "e-Gov Export Trade Control Order revision history",
+      "url": "https://laws.e-gov.go.jp/law/324CO0000000378"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's Foreign Exchange and Foreign Trade Act provides the legal basis for controls on exports of specified goods and certain cross-border technology transactions. METI's October 2026 consultation concerns proposed changes to the implementing Cabinet Orders, a ministerial ordinance, a notice and related administrative circulars.",
+      "The draft Export Trade Control Order revises the treatment of nucleic-acid synthesis and joining equipment, adds certain additive-manufacturing equipment used for explosive-related products, replaces a sampling-oscilloscope category with a real-time-oscilloscope category, and removes an underwater-lighting category. Detailed technical coverage depends on the companion ministerial ordinance.",
+      "The draft Foreign Exchange Order also proposes changes to controlled technology categories, an additional exception concerning payments before required approvals for specified exports, and a revised definition of foreign-bound temporarily landed cargo. These are proposed changes, not current compliance exemptions or obligations."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "On 19 October 2026, METI published the consultation on draft Cabinet Order, ministerial ordinance, notice and circular changes. The e-Gov record lists the Foreign Exchange and Foreign Trade Act as the statutory basis.",
+      "METI's consultation memorandum describes the proposed goods and technology revisions and the payment and temporary-landing provisions. The draft comparison tables show proposed wording against existing provisions. As of 26 October 2026, the consultation remains open and no final promulgation or commencement date is established by the reviewed materials."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-11-18",
+        "text": "Public comments must be received by 18 November 2026 at 17:00 JST.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "expected": [
+      "After consultation, the competent ministry ordinarily considers submissions and may publish final instruments and the consultation results; this is a procedural description, not a prediction of adoption."
+    ],
+    "uncertainties": [
+      "Final controlled-item wording, detailed specifications and the scope of any exceptions may differ from the draft. No proposed amendment should be treated as already in force.",
+      "The reviewed consultation materials do not establish a final promulgation or commencement date for the proposed revisions."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Businesses exporting equipment or providing technology in the affected categories should compare their classification matrices with the draft Cabinet Order and ministerial specifications, documenting any potential change without prematurely revising the current legal classification.",
+      "Export-control and payment teams should separately assess proposed goods controls, technology controls, payment-related exceptions and temporary-landing definitions. A proposed exception is not yet an available legal basis for a transaction."
+    ],
+    "checklist": [
+      "Identify goods and technologies potentially affected by the draft category additions, removals or wording changes.",
+      "Compare the draft Cabinet Order and ministerial specifications with current classification decisions; retain a dated comparison.",
+      "Review whether the proposed payment and temporary-landing provisions would affect internal procedures, without applying them before enactment.",
+      "Consider submitting evidence-based comments before the stated deadline and monitor e-Gov for results, final instruments and commencement dates."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-19",
+      "label": "METI opened consultation on the draft instruments",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-18",
+      "label": "Public comment deadline at 17:00 JST",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry / e-Gov",
+      "title": "Public comment case 595320041: proposed Foreign Exchange and Export Trade Control Order amendments",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320041",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry",
+      "title": "19 October 2026 consultation memorandum and proposed changes",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322500",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry",
+      "title": "Draft Cabinet Order: side-by-side comparison of proposed and current text",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322501",
+      "accessed_at": "2026-10-26"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry",
+      "title": "Draft ministerial ordinance: proposed technical specifications and comparison",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322502",
+      "accessed_at": "2026-10-26"
+    }
+  ],
+  "verified_at": "2026-10-26",
+  "source_fingerprint": "sha256:93032ac86ced1d78646a35b716dc7329",
+  "author": "chatgpt",
+  "review_notes": "AI checked 2026-10-26 against METI/e-Gov case 595320041 and the official memorandum and draft Cabinet Order and ordinance comparisons. Distinguishes proposed changes from binding current requirements; final date not established. No human review claimed."
+}
