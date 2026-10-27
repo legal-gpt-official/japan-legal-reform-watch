@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "total_items": 4767,
+  "total_items": 4828,
   "latest_period": "2026",
   "periods": [
     {
       "value": "2026",
       "label": "2026",
       "file": "./data/archive/2026.json",
-      "count": 4057
+      "count": 4084
     },
     {
       "value": "2025",
@@ -19,37 +19,37 @@
       "value": "2024",
       "label": "2024",
       "file": "./data/archive/2024.json",
-      "count": 57
+      "count": 58
     },
     {
       "value": "2023",
       "label": "2023",
       "file": "./data/archive/2023.json",
-      "count": 28
+      "count": 34
     },
     {
       "value": "2022",
       "label": "2022",
       "file": "./data/archive/2022.json",
-      "count": 21
+      "count": 25
     },
     {
       "value": "2021",
       "label": "2021",
       "file": "./data/archive/2021.json",
-      "count": 12
+      "count": 15
     },
     {
       "value": "2020",
       "label": "2020",
       "file": "./data/archive/2020.json",
-      "count": 11
+      "count": 13
     },
     {
       "value": "2019",
       "label": "2019",
       "file": "./data/archive/2019.json",
-      "count": 16
+      "count": 23
     },
     {
       "value": "2018",
@@ -61,7 +61,13 @@
       "value": "2017",
       "label": "2017",
       "file": "./data/archive/2017.json",
-      "count": 11
+      "count": 17
+    },
+    {
+      "value": "2016",
+      "label": "2016",
+      "file": "./data/archive/2016.json",
+      "count": 1
     },
     {
       "value": "2011",
@@ -79,7 +85,7 @@
       "value": "undated",
       "label": "Undated",
       "file": "./data/archive/undated.json",
-      "count": 165
+      "count": 169
     }
   ]
 }
