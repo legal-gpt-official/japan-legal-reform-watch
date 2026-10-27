@@ -740,8 +740,10 @@ def validate(
             kinds.get(i) == "primary" for i in entry.get("source_ids") or [] if isinstance(i, str)
         ):
             errors.append(f"{where}: a {kind} date must cite a primary government source")
+        # A comment deadline is fixed when the consultation opens, so an open
+        # consultation legitimately states one after verified_at.
         if kind in ("bill_submitted", "passed_house_of_representatives", "passed_house_of_councillors",
-                    "enacted", "promulgated", "comment_opened", "comment_deadline",
+                    "enacted", "promulgated", "comment_opened",
                     "comment_results_published") and verified and when > verified:
             errors.append(f"{where}: a past-event date ({kind}) cannot be after verified_at")
         parsed_dates.append((str(kind), when, number))
