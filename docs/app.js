@@ -1928,7 +1928,11 @@
             <div class="source-actions">
               ${/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(u.id || "") ?
                 '<a class="source-button" href="./u/' + encodeURIComponent(u.id) + '/?lang=' +
-                encodeURIComponent(filters.lang) + '">' +
+                encodeURIComponent(filters.lang) + '"' +
+                (filters.lang === "ja" || filters.lang === "zh-Hans"
+                  ? ' data-localized-detail="./u/' + encodeURIComponent(u.id) + '/' +
+                    (filters.lang === "ja" ? "ja" : "zh") + '/"'
+                  : '') + '>' +
                 escapeHtml(I18N.t("card_detail_page")) + '</a>' : ''}
               <a class="source-button" href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">
                 ${escapeHtml(I18N.t("card_view_source"))}
@@ -2274,6 +2278,24 @@
         handleLanguageChange(e.target.value);
       });
     }
+    // Navigate directly to the localized static page when it exists. Most records
+    // have no hand-written explainer; those must still fall back to English.
+    // Checking on click avoids relying on the English page's JS redirect.
+    cardsEl.addEventListener("click", async (event) => {
+      const link = event.target.closest("a[data-localized-detail]");
+      if (!link || !cardsEl.contains(link) || event.defaultPrevented ||
+          event.button !== 0 || event.metaKey || event.ctrlKey ||
+          event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const localized = link.getAttribute("data-localized-detail");
+      const fallback = link.href;
+      try {
+        const response = await fetch(localized, { method: "HEAD" });
+        window.location.assign(response.ok ? localized : fallback);
+      } catch (_) {
+        window.location.assign(fallback);
+      }
+    });
     cardsEl.addEventListener("click", handleCopyAction);
     window.addEventListener("popstate", async () => {
       try {
