@@ -29,7 +29,7 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
 CACHE_BUSTER = "trilingual-20261021"
-APP_CACHE_BUSTER = "qa-20261021"
+APP_CACHE_BUSTER = "localized-detail-20261028"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
 I18N_CACHE_BUSTER = "qa-20261021"
@@ -43,6 +43,13 @@ def object_body(name: str) -> str:
 
 
 class TestAppJsUrlState(unittest.TestCase):
+    def test_localized_detail_navigation_prefers_existing_pages(self):
+        self.assertIn('data-localized-detail="./u/', APP_JS)
+        self.assertIn('(filters.lang === "ja" ? "ja" : "zh")', APP_JS)
+        self.assertIn('method: "HEAD"', APP_JS)
+        self.assertIn('requestedPath === deliveredPath', APP_JS)
+        self.assertIn('window.location.assign(fallback)', APP_JS)
+
     def test_source_slug_mapping_exists(self):
         self.assertIn("const SOURCE_SLUGS", APP_JS)
         self.assertIn("function getSourceSlug", APP_JS)
