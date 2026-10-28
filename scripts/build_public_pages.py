@@ -1216,7 +1216,7 @@ def render_item_page(
         # The script only switches to complete localized summaries, never to a
         # partial translation, and preserves direct static pages for full dossiers.
         parts.append(
-            '<script>(function(){var l=new URLSearchParams(location.search).get("lang");'
+            '<script>document.addEventListener("DOMContentLoaded",function(){var l=new URLSearchParams(location.search).get("lang");'
             'if(l!=="ja"&&l!=="zh-Hans")return;'
             'var p=document.getElementById("localized-summary-"+l);'
             'if(!p)return;var en=document.getElementById("item-english-summary");'
@@ -1225,7 +1225,7 @@ def render_item_page(
             'var t=p.getAttribute("data-localized-title");'
             'var h=document.querySelector("h1.area-page-title");if(h)h.textContent=t;'
             'document.title=t+" — Japan Legal Reform Watch";'
-            '})();</script>'
+            '});</script>'
         )
 
     if not translated:
