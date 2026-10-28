@@ -115,6 +115,47 @@ class TestStaticBlock(unittest.TestCase):
                     bpp.replace_static_block(broken, "NEW")
 
 
+class TestLocalizedOrdinaryDetail(unittest.TestCase):
+    def test_japanese_and_chinese_summaries_follow_dashboard_language(self):
+        translated = item(
+            "localized",
+            summary_ja="日本語の要約",
+            business_impact_ja="日本語の影響",
+            recommended_action_ja="日本語の対応",
+            translations={"zh-Hans": {
+                "title": "中文标题", "summary": "中文摘要",
+                "business_impact": "中文影响", "recommended_action": "中文建议"
+            }},
+        )
+        html = bpp.render_item_page(translated)
+        self.assertIn('id="localized-summary-ja"', html)
+        self.assertIn('id="localized-summary-zh-Hans"', html)
+        self.assertIn("日本語の要約", html)
+        self.assertIn("中文摘要", html)
+        self.assertIn('id="item-english-summary"', html)
+        self.assertIn('new URLSearchParams(location.search).get("lang")', html)
+        self.assertIn('document.addEventListener("DOMContentLoaded"', html)
+        self.assertIn('document.documentElement.lang=l', html)
+
+    def test_missing_or_partial_translation_is_not_misrepresented(self):
+        partial = item("partial", summary_ja="一部のみ", translations={
+            "zh-Hans": {"title": "中文标题", "summary": "摘要"}
+        })
+        html = bpp.render_item_page(partial)
+        self.assertNotIn('id="localized-summary-ja"', html)
+        self.assertNotIn('id="localized-summary-zh-Hans"', html)
+        self.assertIn('id="item-english-summary"', html)
+
+    def test_untrusted_localized_text_is_escaped(self):
+        hostile = item(
+            "hostile", summary_ja="<img src=x onerror=alert(1)>",
+            business_impact_ja="影響", recommended_action_ja="対応",
+        )
+        html = bpp.render_item_page(hostile)
+        self.assertIn("&lt;img src=x onerror=alert(1)&gt;", html)
+        self.assertNotIn('<img src=x onerror=alert(1)>', html)
+
+
 class TestBuild(unittest.TestCase):
     def test_build_writes_every_page_and_is_idempotent(self):
         with tempfile.TemporaryDirectory() as tmp:
