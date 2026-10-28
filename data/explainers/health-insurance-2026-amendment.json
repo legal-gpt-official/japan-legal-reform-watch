@@ -66,16 +66,23 @@
   "background": {
     "paragraphs": [
       "Act No. 31 of 2026 aims to make Japanese health insurance benefits and cost-sharing more sustainable and equitable. It amends multiple laws and its provisions do not all commence on the same date.",
+      "Before this amendment, people buying over-the-counter medicines without insurance and people receiving medically prescribed medicines through insured care could face different public cost-sharing treatment even where products were substitutable. MHLW identifies this difference, alongside pressure on working-age premium contributions, as a reason to introduce partial non-insurance treatment for specifically designated OTC-equivalent medicines; it is not a blanket withdrawal of insurance coverage from prescription medicines.",
+      "Another problem arose in older-person healthcare: listed-share dividends and other financial income could affect premiums and patient copayments differently depending on whether the recipient filed a tax return or relied on withholding. MHLW presents the new statutory-reporting channel as a way to reduce this disparity, while acknowledging the need for information-system and data-quality arrangements among financial institutions and insurers.",
+      "The package also reflects competing policy objectives. MHLW describes childbirth support and wider reductions in per-person national health insurance premiums for children as ways to ease family burdens, while revising medicine cost-sharing and income assessment to address sustainability and perceived fairness. The reform therefore combines targeted benefit support with changes in how particular costs and income are allocated.",
       "The Act introduces partially non-insured treatment for certain medicines considered particularly substitutable by over-the-counter products. It also provides for online submission by financial institutions of statutory reports on listed-share dividends and other financial income to the regional insurers for older people, for use in premium and patient cost-sharing assessments.",
       "The reform revises childbirth-related benefits, expands the national health insurance reduction in per-person premiums for children from preschool age to high-school age, and establishes support for hospital efficiency and working-condition improvements. Statutory reporting duties must be distinguished from duties merely to make efforts."
     ],
     "source_ids": [
       "s1",
-      "s2"
+      "s2",
+      "s7",
+      "s8",
+      "s9"
     ]
   },
   "history": {
     "paragraphs": [
+      "During 2025, the Medical Insurance Council debated the treatment of OTC-equivalent medicines, childbirth support and the recognition of financial income, including hearings from patient representatives on medicine coverage. Its year-end summary informed the policy discussion leading to the Cabinet bill; the council's deliberations were not themselves legally binding commencement decisions.",
       "The Cabinet submitted the bill on 13 March 2026. The House of Representatives passed it on 28 April and the House of Councillors on 29 May. The Act was promulgated on 5 June 2026 as Act No. 31 of 2026.",
       "MHLW presented the enacted Act to the Medical Insurance Council on 18 June 2026. The council’s 16 October 2026 materials considered the implementation timetable for reflecting financial income in older-person healthcare and the systems changes required of financial institutions and public bodies.",
       "MHLW identifies the main commencement as 1 April 2027, with exceptions including provisions effective on promulgation and on 1 August 2026. Cabinet Order No. 320 of 2026, promulgated on 30 September 2026, fixed 1 March 2027 for the provisions on partially non-insured treatment for certain OTC-equivalent medicines. Commencement dates for childbirth and financial-income reporting measures remain subject to separate designation."
@@ -86,7 +93,8 @@
       "s3",
       "s4",
       "s5",
-      "s6"
+      "s6",
+      "s8"
     ]
   },
   "next_steps": {
@@ -125,7 +133,8 @@
   "business_impact": {
     "paragraphs": [
       "Financial institutions covered by the new statutory-reporting provisions should plan secure electronic transmission and data-quality controls. MHLW’s timetable materials discuss systems work by financial institutions, municipalities and insurance administrators; the binding commencement date must be verified separately.",
-      "Insurers, healthcare providers and employers communicating employee benefits should review which measures affect their processes. Providers and insurers should prepare communications and billing controls for the fixed 1 March 2027 start of partially non-insured treatment for certain OTC-equivalent medicines. Hospital efficiency provisions must not be characterized as universal mandatory certification."
+      "Insurers, healthcare providers and employers communicating employee benefits should review which measures affect their processes. Providers and insurers should prepare communications and billing controls for the fixed 1 March 2027 start of partially non-insured treatment for certain OTC-equivalent medicines. Hospital efficiency provisions must not be characterized as universal mandatory certification.",
+      "For pharmacies and insurers, the change in medicine cost-sharing turns on which prescription products are designated as particularly substitutable by OTC products, rather than on every prescription medicine with an OTC counterpart. Patient notices and billing specifications should distinguish the designated products and any applicable exceptions from the wider prescription-drug market."
     ],
     "checklist": [
       "Map the affected insurance, financial-reporting and employee-benefit processes and the applicable legal provisions.",
@@ -139,7 +148,8 @@
       "s2",
       "s4",
       "s5",
-      "s6"
+      "s6",
+      "s9"
     ]
   },
   "key_dates": [
@@ -281,10 +291,34 @@
       "title": "Health Insurance Amendment implementation schedule by measure",
       "url": "https://www.mhlw.go.jp/content/12401000/001676383.pdf",
       "accessed_at": "2026-10-25"
+    },
+    {
+      "id": "s7",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Medical insurance reform: official explanation of policy objectives, medicine cost-sharing, financial income and childbirth support",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/newpage_00014.html",
+      "accessed_at": "2026-10-28"
+    },
+    {
+      "id": "s8",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Medical Insurance Council: summary of deliberations issued in December 2025",
+      "url": "https://www.mhlw.go.jp/stf/newpage_68039.html",
+      "accessed_at": "2026-10-28"
+    },
+    {
+      "id": "s9",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "OTC-equivalent medicines: official implementation information (updated September 2026)",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index_00001.html",
+      "accessed_at": "2026-10-28"
     }
   ],
-  "verified_at": "2026-10-25",
+  "verified_at": "2026-10-28",
   "source_fingerprint": "sha256:67bfc22c29487bdf672ff392c196eeba",
   "author": "chatgpt",
-  "review_notes": "AI rechecked 2026-10-25 against MHLW Cabinet Order No. 320 (promulgated 30 September 2026), which fixes 1 March 2027 for partially non-insured OTC-equivalent medicine provisions. Other childbirth/financial-income Cabinet Order dates remain separate. Existing Diet, e-Gov and council sources retained. No human review claimed."
+  "review_notes": "AI policy-context review on 2026-10-28: checked MHLW's reform overview, OTC implementation guidance, Medical Insurance Council meeting list and its late-2025 summary; added causal explanations of OTC-versus-prescription cost sharing, tax-return asymmetry in financial income, and the balance between family support and insurance sustainability. No new legal commencement date inferred; existing fingerprint retained because the daily queue did not flag changed official records. No human review claimed."
 }
