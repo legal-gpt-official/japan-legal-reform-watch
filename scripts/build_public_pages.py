@@ -1169,8 +1169,67 @@ def render_item_page(
     parts.append(f'      <a class="area-page-action" href="{prefix}?lang={escape(locale)}">Search all updates in the dashboard</a>')
     parts.append("    </p>")
 
+    # The dashboard already has Japanese and Chinese short summaries for many
+    # records without a separately authored reform explainer. Make those
+    # translations available on their detail page as well; formerly the
+    # dashboard link inevitably displayed English for these records.
+    if locale == "en" and explainer is None:
+        local_summaries = {}
+        if all(clean_text(item.get(key)) for key in (
+            "summary_ja", "business_impact_ja", "recommended_action_ja"
+        )):
+            local_summaries["ja"] = (
+                title_ja or title_en,
+                ("要約", "summary_ja"),
+                ("事業への影響", "business_impact_ja"),
+                ("推奨対応", "recommended_action_ja"),
+            )
+        zh = (item.get("translations") or {}).get("zh-Hans") or {}
+        if isinstance(zh, Mapping) and all(clean_text(zh.get(key)) for key in (
+            "title", "summary", "business_impact", "recommended_action"
+        )):
+            local_summaries["zh-Hans"] = (
+                clean_text(zh["title"]),
+                ("摘要", "summary"),
+                ("对企业的影响", "business_impact"),
+                ("建议采取的措施", "recommended_action"),
+            )
+        for code, contents in local_summaries.items():
+            title, *sections = contents
+            parts.append(
+                f'    <section id="localized-summary-{escape(code)}" '
+                f'class="area-page-section" lang="{escape(code)}" '
+                f'data-localized-title="{escape(title, quote=True)}" hidden>'
+            )
+            parts.append(
+                '<p class="static-latest-note">' +
+                ("日本語の要約です。詳しい法改正解説がない場合、原文もご確認ください。" if code == "ja"
+                 else "这是该更新的中文摘要，并非完整法改解读；请同时核实日文官方原文。") +
+                '</p>'
+            )
+            for label, key in sections:
+                content = item.get(key) if code == "ja" else zh.get(key)
+                parts.append(f'      <h3>{escape(label)}</h3>')
+                parts.append(f'      <p class="area-page-intro">{escape(clean_text(content))}</p>')
+            parts.append('    </section>')
+        # Plain English remains the fallback when a summary is absent or invalid.
+        # The script only switches to complete localized summaries, never to a
+        # partial translation, and preserves direct static pages for full dossiers.
+        parts.append(
+            '<script>(function(){var l=new URLSearchParams(location.search).get("lang");'
+            'if(l!=="ja"&&l!=="zh-Hans")return;'
+            'var p=document.getElementById("localized-summary-"+l);'
+            'if(!p)return;var en=document.getElementById("item-english-summary");'
+            'if(en)en.hidden=true;p.hidden=false;'
+            'document.documentElement.lang=l;'
+            'var t=p.getAttribute("data-localized-title");'
+            'var h=document.querySelector("h1.area-page-title");if(h)h.textContent=t;'
+            'document.title=t+" — Japan Legal Reform Watch";'
+            '})();</script>'
+        )
+
     if not translated:
-        parts.append('    <section class="area-page-section" aria-labelledby="item-summary-title">')
+        parts.append('    <section id="item-english-summary" class="area-page-section" aria-labelledby="item-summary-title">')
     if ai and not translated:
         parts += [
             '      <h2 id="item-summary-title">AI summary</h2>',
