@@ -2291,7 +2291,9 @@
       const fallback = link.href;
       try {
         const response = await fetch(localized, { method: "HEAD" });
-        window.location.assign(response.ok ? localized : fallback);
+        const requestedPath = new URL(localized, window.location.href).pathname;
+        const deliveredPath = new URL(response.url, window.location.href).pathname;
+        window.location.assign(response.ok && requestedPath === deliveredPath ? localized : fallback);
       } catch (_) {
         window.location.assign(fallback);
       }
