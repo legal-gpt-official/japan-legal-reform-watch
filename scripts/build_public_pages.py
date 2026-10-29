@@ -14,8 +14,10 @@ does not run JavaScript sees an empty page. This stage writes:
   and a cross-area page of open public comments under
   ``docs/public-comments/``;
 * one static page per published item under ``docs/u/<id>/`` -- only an
-  item with an AI summary is indexable; a rule-based item's page is
-  ``noindex`` because its body would be the template every such item shares;
+  item with enough substance to be worth a search visit is indexable and
+  listed (see ``item_search_value``); every other item page is ``noindex,
+  follow`` (a rule-based item's body would be the template every such item
+  shares, a thin AI summary says little beyond the title);
 * ``docs/sitemap.xml`` listing the indexable pages.
 
 An item page also shows a factual timeline of related official records
@@ -71,6 +73,7 @@ from alert_common import (  # noqa: E402
 import explainers as ex  # noqa: E402
 import explainer_locales as el  # noqa: E402
 from law_timeline import Dossier  # noqa: E402
+from summarize_updates import source_evidence  # noqa: E402
 from law_timeline import summarize as summarize_timelines  # noqa: E402
 
 REPO_ROOT = SCRIPTS_DIR.parent
@@ -271,9 +274,95 @@ def item_page_path(item: Mapping[str, Any]) -> str:
     return f"{ITEM_DIR_NAME}/{item_id}/" if item_id and clean_text(item.get("title_en")) else ""
 
 
-def item_is_indexable(item: Mapping[str, Any], explainer: "ex.Published | None" = None) -> bool:
-    """AI-summarized items, and any item whose reform has a published explainer."""
-    return bool(item_page_path(item)) and (summary_is_ai(item) or explainer is not None)
+# --- Which item pages deserve search visibility (owner policy 2026-10-29) ---
+#
+# Only pages worth landing on from a search result are listed in the sitemap;
+# every other item page is ``noindex, follow`` (crawling stays allowed, so
+# Google can read the tag; robots.txt must never disallow ``/u/``). A page
+# qualifies when it carries a published explainer, or when ALL of these hold:
+#
+# * an AI summary (``summary_source: "claude"``) with confidence above ``low``;
+# * source evidence beyond a bare title: structured metadata or descriptive
+#   text, never ``title_only`` (the model had nothing to say about the item);
+# * a summary of at least ``MIN_SUMMARY_CHARS`` and a business impact of at
+#   least ``MIN_IMPACT_CHARS`` characters, neither of which admits that the
+#   substance is not known (``THIN_PHRASES``);
+# * at least ``MIN_DISTINCT_FACTS`` distinct dates, instrument numbers or
+#   amounts in the summary, so the page states something a reader can look up;
+# * a summary not already used by an earlier qualifying page (near-duplicate
+#   pages keep only the earliest published one).
+MIN_SUMMARY_CHARS = 280
+MIN_IMPACT_CHARS = 180
+MIN_DISTINCT_FACTS = 2
+THIN_EVIDENCE = "title_only"
+THIN_PHRASES = re.compile(
+    r"not (described|specified|stated|provided|detailed|identified|clear|disclosed|included|available|known)"
+    r"|no (further |specific |additional |detailed )?(detail|information)"
+    r"|unclear|unspecified"
+    r"|(?:does|do) not (state|specify|describe|provide|indicate|identify|explain|establish|clarify)"
+    r"|cannot be (determined|assessed)|limited information"
+    r"|without (further|additional) detail|not (yet )?(known|disclosed)"
+    r"|the (available|provided) (information|metadata)"
+    r"|depend(?:s|ed)? on the (specific|content|details|text|provisions|final)|until the (text|details)",
+    re.IGNORECASE,
+)
+FACT_TOKENS = re.compile(
+    r"\b(?:19|20)\d\d(?:-\d\d(?:-\d\d)?)?\b|No\.\s?\d+|\bArt(?:icle)?\.?\s?\d+|\d[\d,]*\s?(?:yen|%|percent)"
+)
+
+
+def item_search_value(
+    item: Mapping[str, Any],
+    explainer: "ex.Published | None" = None,
+    evidence: str | None = None,
+) -> bool:
+    """Whether the item's own page is worth showing in search results.
+
+    ``evidence`` is ``summarize_updates.source_evidence`` for the item; when it
+    is unknown the item is treated as thin, never as rich. Duplicate summaries
+    are resolved across items by ``select_indexable``, not here.
+    """
+    if not item_page_path(item):
+        return False
+    if explainer is not None:
+        return True
+    if not summary_is_ai(item) or item.get("confidence") == "low":
+        return False
+    if evidence is None or evidence == THIN_EVIDENCE:
+        return False
+    summary = clean_text(item.get("summary_en"))
+    impact = clean_text(item.get("business_impact_en"))
+    if len(summary) < MIN_SUMMARY_CHARS or len(impact) < MIN_IMPACT_CHARS:
+        return False
+    if THIN_PHRASES.search(summary) or THIN_PHRASES.search(impact):
+        return False
+    return len(set(FACT_TOKENS.findall(summary))) >= MIN_DISTINCT_FACTS
+
+
+def duplicate_key(item: Mapping[str, Any]) -> str:
+    return re.sub(r"\W+", " ", clean_text(item.get("summary_en")).lower())[:120].strip()
+
+
+def select_indexable(
+    items: Sequence[Mapping[str, Any]],
+    explained: Mapping[str, "ex.Published"],
+    evidence: Mapping[str, str],
+) -> set[str]:
+    """Ids of the item pages to list and index; deterministic, order-independent."""
+    chosen: set[str] = set()
+    taken: dict[str, tuple[str, str]] = {}
+    for item in sorted(items, key=lambda it: (strict_iso_date(it.get("published_at")) or date.max, item_page_id(it))):
+        item_id = item_page_id(item)
+        explainer = explained.get(item_id)
+        if not item_search_value(item, explainer, evidence.get(item_id)):
+            continue
+        if explainer is None:
+            key = duplicate_key(item)
+            if key in taken:
+                continue
+            taken[key] = (item_id, key)
+        chosen.add(item_id)
+    return chosen
 
 
 def page_items(items: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
@@ -1084,6 +1173,7 @@ def render_item_page(
     page_status: Mapping[str, Any] | None = None,
     locale: str = "en",
     available_locales: Sequence[str] = (),
+    indexable: bool | None = None,
 ) -> str:
     """The standalone page for one published item.
 
@@ -1105,7 +1195,9 @@ def render_item_page(
     area = clean_text(item.get("area"))
     stage = clean_text(item.get("stage"))
     ai = summary_is_ai(item)
-    indexable = ai or explainer is not None
+    # ``build`` decides with ``select_indexable``; a direct call without a decision
+    # is indexable only with a published explainer.
+    indexable = explainer is not None if indexable is None else indexable
     area_page = AREA_PAGE_BY_AREA.get(area)
     area_label = CHANNEL_BY_VALUE[area_page.channel].label if area_page else ""
 
@@ -1337,6 +1429,13 @@ def build(
 
     with_pages = page_items(items)
     page_ids = {item_page_id(item) for item in with_pages}
+    raw_by_id = {r.get("id"): r for r in load_items(raw_path)} if index is not None else {}
+    evidence = {
+        item_page_id(item): source_evidence(item, raw_by_id.get(item_page_id(item), {}))
+        for item in with_pages
+        if item_page_id(item) in raw_by_id
+    }
+    indexable_ids = select_indexable(with_pages, explained, evidence)
     item_pages_changed = 0
     timeline_pages = 0
     explainer_pages = 0
@@ -1360,6 +1459,7 @@ def build(
                 item, dossier, page_ids, explainer,
                 index.page_status(item_page_id(item)) if explainer is not None and index else None,
                 available_locales=tuple(local_entries),
+                indexable=item_page_id(item) in indexable_ids,
             ),
         )
         for lang in el.LOCALES:
@@ -1378,7 +1478,7 @@ def build(
             )
             localized_pages += 1
             sitemap_entries.append((SITE_URL + local_path, item_lastmod(item, dossier, explainer)))
-        if item_is_indexable(item, explainer):
+        if item_page_id(item) in indexable_ids:
             sitemap_entries.append((SITE_URL + path, item_lastmod(item, dossier, explainer)))
     removed = prune_item_pages(site_dir / ITEM_DIR_NAME, {item_page_id(item) for item in with_pages})
     changed["sitemap"] = write_if_changed(sitemap_path, render_sitemap(sitemap_entries))
@@ -1386,9 +1486,7 @@ def build(
     return {
         "pages_written": len(AREA_PAGES) + 1,
         "item_pages": len(with_pages),
-        "item_pages_indexable": sum(
-            1 for item in with_pages if item_is_indexable(item, explained.get(item_page_id(item)))
-        ),
+        "item_pages_indexable": len(indexable_ids),
         "item_pages_changed": item_pages_changed,
         "item_pages_removed": removed,
         "item_pages_with_timeline": timeline_pages,
