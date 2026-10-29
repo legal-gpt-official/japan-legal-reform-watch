@@ -304,14 +304,15 @@ class TestPublishedSite(unittest.TestCase):
             workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u"), 2
         )
 
-    def test_every_published_item_has_a_page_and_ai_items_are_in_the_sitemap(self):
+    def test_every_published_item_has_a_page_and_only_indexable_ones_are_in_the_sitemap(self):
         items = bpp.load_items(DOCS / "data" / "legal_updates.json")
         sitemap = (DOCS / "sitemap.xml").read_text(encoding="utf-8")
         for record in bpp.page_items(items):
             path = bpp.item_page_path(record)
             self.assertTrue((DOCS / path / "index.html").is_file(), path)
             listed = f"<loc>{ac.SITE_URL}{path}</loc>" in sitemap
-            self.assertEqual(listed, bpp.item_is_indexable(record), path)
+            page_html = (DOCS / path / "index.html").read_text(encoding="utf-8")
+            self.assertEqual(listed, 'name="robots" content="noindex' not in page_html, path)
         published = {bpp.item_page_id(record) for record in items}
         on_disk = {child.name for child in (DOCS / bpp.ITEM_DIR_NAME).iterdir()}
         self.assertEqual(on_disk - published, set(), "pages of unpublished items should be pruned")
@@ -326,10 +327,71 @@ AI_ITEM = dict(
     impact_level="Medium",
 )
 
+RICH_ITEM = dict(
+    AI_ITEM,
+    confidence="medium",
+    summary_en=(
+        "Ministerial Ordinance No. 89 of 2026 partially amends the Industrial Safety and Health Regulations. "
+        "The listing records a promulgation date of 2026-04-28 and an effective date of 2026-10-01, and names the "
+        "Ordinance on Prevention of Hazards Due to Specified Chemical Substances as an amended instrument."
+    ),
+    business_impact_en=(
+        "Employers that handle specified chemical substances should check whether the amended requirements change "
+        "their workplace practices, record keeping and the training they give to workers in affected processes."
+    ),
+)
+
+
+class TestSearchValue(unittest.TestCase):
+    def rich(self, item_id="raw-r", **overrides):
+        return item(item_id, **{**RICH_ITEM, **overrides})
+
+    def test_rich_item_with_more_than_a_title_qualifies(self):
+        self.assertTrue(bpp.item_search_value(self.rich(), None, "title_and_structured_metadata"))
+        self.assertTrue(bpp.item_search_value(self.rich(), None, "descriptive_text"))
+
+    def test_each_requirement_is_needed(self):
+        cases = {
+            "title only": (self.rich(), "title_only"),
+            "unknown evidence": (self.rich(), None),
+            "low confidence": (self.rich(confidence="low"), "descriptive_text"),
+            "rule based": (self.rich(summary_source="rule_based"), "descriptive_text"),
+            "short summary": (self.rich(summary_en="Ordinance No. 89 of 2026 took effect on 2026-10-01."), "descriptive_text"),
+            "short impact": (self.rich(business_impact_en="Employers may be affected."), "descriptive_text"),
+            "no facts": (self.rich(summary_en="x" * 300), "descriptive_text"),
+            "admits unknown impact": (
+                self.rich(business_impact_en=RICH_ITEM["business_impact_en"] + " The text does not describe the changes."),
+                "descriptive_text",
+            ),
+            "hedged summary": (
+                self.rich(summary_en=RICH_ITEM["summary_en"] + " The provisions are not specified in the listing."),
+                "descriptive_text",
+            ),
+        }
+        for name, (record, evidence) in cases.items():
+            self.assertFalse(bpp.item_search_value(record, None, evidence), name)
+
+    def test_published_explainer_always_qualifies(self):
+        self.assertTrue(bpp.item_search_value(item("raw-x"), object(), None))
+
+    def test_duplicate_summaries_keep_only_the_earliest_page(self):
+        first = self.rich("raw-b", published_at="2026-01-01")
+        later = self.rich("raw-a", published_at="2026-02-01")
+        other = self.rich("raw-c", published_at="2026-03-01", summary_en="Different. " + RICH_ITEM["summary_en"])
+        evidence = {"raw-a": "descriptive_text", "raw-b": "descriptive_text", "raw-c": "descriptive_text"}
+        chosen = bpp.select_indexable([later, other, first], {}, evidence)
+        self.assertEqual(chosen, {"raw-b", "raw-c"})
+        self.assertEqual(chosen, bpp.select_indexable([first, other, later], {}, evidence))
+
+    def test_robots_txt_does_not_block_crawling_of_noindex_pages(self):
+        robots = (DOCS / "robots.txt").read_text(encoding="utf-8")
+        self.assertNotRegex(robots, r"(?im)^\s*disallow:\s*\S")
+        self.assertIn("Allow: /", robots)
+
 
 class TestItemPages(unittest.TestCase):
     def test_ai_item_page_shows_summary_attribution_and_notices(self):
-        html = bpp.render_item_page(item("raw-abc", **AI_ITEM))
+        html = bpp.render_item_page(item("raw-abc", **AI_ITEM), indexable=True)
         self.assertIn(f'<link rel="canonical" href="{ac.SITE_URL}u/raw-abc/" />', html)
         self.assertNotIn("noindex", html)
         self.assertIn('<h1 class="area-page-title">Title raw-abc</h1>', html)
@@ -357,8 +419,13 @@ class TestItemPages(unittest.TestCase):
         self.assertIn('<meta name="robots" content="noindex, follow" />', html)
         self.assertNotIn("Template sentence", html)
         self.assertIn("not yet available", html)
-        self.assertFalse(bpp.item_is_indexable(item("raw-rule")))
-        self.assertTrue(bpp.item_is_indexable(item("raw-ai", **AI_ITEM)))
+        self.assertFalse(bpp.item_search_value(item("raw-rule"), None, "descriptive_text"))
+        self.assertTrue(bpp.item_search_value(item("raw-ai", **RICH_ITEM), None, "descriptive_text"))
+
+    def test_a_thin_ai_page_is_noindex_unless_it_is_told_to_be_indexable(self):
+        html = bpp.render_item_page(item("raw-abc", **AI_ITEM))
+        self.assertIn('<meta name="robots" content="noindex, follow" />', html)
+        self.assertIn("Draft amendment published for comment.", html)
 
     def test_untrusted_fields_are_escaped_and_unsafe_urls_are_not_links(self):
         hostile = item(
@@ -400,7 +467,7 @@ class TestItemPages(unittest.TestCase):
         block = bpp.render_static_latest([item("raw-a")], None)
         self.assertIn('href="./u/raw-a/"', block)
 
-    def test_build_lists_only_ai_pages_in_the_sitemap_and_prunes_stale_pages(self):
+    def test_build_lists_only_rich_pages_in_the_sitemap_and_prunes_stale_pages(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             data = tmp_path / "data.json"
@@ -415,10 +482,23 @@ class TestItemPages(unittest.TestCase):
             (foreign / "index.html").write_text("x", encoding="utf-8")
             (foreign / "notes.txt").write_text("not ours", encoding="utf-8")
             data.write_text(
-                json.dumps([item("raw-ai", summarized_at="2026-10-05T01:00:00Z", **AI_ITEM), item("raw-rule")]),
+                json.dumps([
+                    item("raw-ai", summarized_at="2026-10-05T01:00:00Z", **RICH_ITEM),
+                    item("raw-thin", **AI_ITEM),
+                    item("raw-rule"),
+                ]),
                 encoding="utf-8",
             )
-            result = bpp.build(data, index, sitemap, TODAY)
+            raw = tmp_path / "raw.json"
+            long_text = "The ordinance text describes the amended provisions in some detail. " * 3
+            raw.write_text(
+                json.dumps([
+                    {"id": "raw-ai", "title_ja": "下水道法施行令の一部を改正する政令（案）", "raw_summary": long_text},
+                    {"id": "raw-thin", "title_ja": "下水道法施行令の一部を改正する政令（案）", "raw_summary": ""},
+                ]),
+                encoding="utf-8",
+            )
+            result = bpp.build(data, index, sitemap, TODAY, raw_path=raw)
             root = ET.fromstring(sitemap.read_text(encoding="utf-8"))
             self.assertFalse(stale.exists())
             self.assertTrue(foreign.exists())
@@ -427,7 +507,8 @@ class TestItemPages(unittest.TestCase):
         self.assertIn(ac.SITE_URL + "u/raw-ai/", rows)
         self.assertEqual(rows[ac.SITE_URL + "u/raw-ai/"].text, "2026-10-05")
         self.assertNotIn(ac.SITE_URL + "u/raw-rule/", rows)
-        self.assertEqual(result["item_pages"], 2)
+        self.assertNotIn(ac.SITE_URL + "u/raw-thin/", rows)
+        self.assertEqual(result["item_pages"], 3)
         self.assertEqual(result["item_pages_indexable"], 1)
         self.assertEqual(result["item_pages_removed"], 1)
 
