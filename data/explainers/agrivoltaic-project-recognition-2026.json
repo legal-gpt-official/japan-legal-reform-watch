@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "dossier_id": "agrivoltaic-project-recognition-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 agrivoltaic project-recognition rules: farm plans and decommissioning",
+  "quick_take": {
+    "what_changed": "Joint Ordinance No. 8 of 2026 updated the application and recognition framework for rural renewable-energy installation plans, including agrivoltaic farming and removal arrangements, effective October 2026.",
+    "who_is_affected": "Agrivoltaic developers, farmers, municipal plan reviewers and financing parties relying on project recognition may be affected.",
+    "what_to_do_now": "Use the revised project-plan forms and verify cultivation, removal-cost and reporting materials before seeking municipal recognition."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "in_force",
+  "related_item_ids": [
+    "raw-171c6b76652b80f4",
+    "raw-401823533f403f43"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年農林水産省・環境省令第八号",
+      "name_ja": "農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律に基づく設備整備計画の認定等に関する省令の一部を改正する省令",
+      "name_en": "MAFF-MOE Joint Ordinance No. 8 of 2026 on recognition of renewable-energy installation plans"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MAFF project recognition and guidance",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/houritu.html"
+    },
+    {
+      "label": "MAFF application forms",
+      "url": "https://www.maff.go.jp/j/shokusan/saiene/youshiki_word.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's rural renewable-energy scheme was designed to make renewable electricity compatible with the healthy development of agriculture, forestry and fisheries. In agrivoltaics, the key challenge is verifying that crop production continues beneath solar equipment and that the installation does not leave farmland with an unresolved removal burden.",
+      "The 2026 joint ordinance addresses this implementation problem through the information and undertakings accompanying a municipal project-recognition application. Its revised framework requires attention to the farming plan below the panels, removal and site restoration, and reporting of implementation. It complements, but is legally distinct from, the separate 2026 MAFF ordinance that changes the farmland permission rules."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "A draft of the joint ordinance was published for consultation in July 2026. Joint Ordinance No. 8 was promulgated on 9 October 2026, and the e-Gov record shows commencement on that date. The Ministry has published revised application forms and its October operational guidance for municipalities and project sponsors.",
+      "The administrative focus has moved from merely identifying the generating equipment to demonstrating how the project fits the municipal plan, keeps cultivation viable and addresses its eventual removal. The updated form set includes farming-plan and decommissioning-related materials."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The revised recognition ordinance is in force from 9 October 2026; the Ministry provides current application forms and operational guidance.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ]
+      }
+    ],
+    "expected": [
+      "Municipalities will assess individual applications under the applicable statutory recognition criteria and local basic plans."
+    ],
+    "uncertainties": [
+      "Recognition of a specific project and any related farmland permission remain case-specific; this ordinance does not guarantee approval or replace other required authorizations."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Developers seeking municipal recognition should budget for agronomic documentation, agreements on equipment removal and continuing reporting. Lenders and offtakers can use the recognized plan and undertakings as due-diligence evidence, but should not treat them as proof that every other permit has been obtained.",
+      "Municipalities gain more structured information about the cultivation and removal dimensions of a project. The mechanism seeks to reduce the risk that solar installations remain in place while the underlying farming obligation becomes ineffective."
+    ],
+    "checklist": [
+      "Use the current municipal project-recognition application and agrivoltaic farming-plan attachments.",
+      "Identify the party responsible for decommissioning and demonstrate how removal costs will be secured.",
+      "Check reporting commitments and separately verify any farmland conversion or other permits."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-07-24",
+      "label": "Draft joint ordinance consultation opened",
+      "source_ids": [
+        "s4"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-10-09",
+      "label": "Joint Ordinance No. 8 of 2026 promulgated",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2026-10-09",
+      "label": "Revised project-recognition ordinance entered into force",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Project-recognition ordinance, October 2026 revision",
+      "url": "https://laws.e-gov.go.jp/law/426M60001200001/20261009_508M60001200008",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+      "title": "Rural renewable-energy law and current implementing ordinances",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/houritu.html",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+      "title": "Current project-recognition forms including farming and removal documents",
+      "url": "https://www.maff.go.jp/j/shokusan/saiene/youshiki_word.html",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Draft project-recognition ordinance consultation",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004382&Mode=0",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+      "title": "Operational guidance revised 27 October 2026",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/attach/pdf/houritu-42.pdf",
+      "accessed_at": "2026-10-29"
+    }
+  ],
+  "verified_at": "2026-10-29",
+  "source_fingerprint": "sha256:9e588c28bcec36cc5d9fed51a96e0c95",
+  "author": "chatgpt",
+  "review_notes": "Primary sources checked on 2026-10-29: e-Gov revision, MAFF ordinance and form pages, July consultation, October 27 operational guidance. Distinct ordinance number and function from MAFF Ordinance No. 72."
+}

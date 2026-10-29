@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "dossier_id": "agrivoltaic-farmland-permits-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 agrivoltaics reform: farmland permission and municipal planning",
+  "quick_take": {
+    "what_changed": "MAFF Ordinance No. 72 of 2026 revised the framework for agrivoltaic projects; some rural-energy provisions took effect in October 2026 while farmland-rule changes are scheduled for April 2027.",
+    "who_is_affected": "Developers, farmers, landowners and municipalities involved in solar installations above actively cultivated farmland are most directly affected.",
+    "what_to_do_now": "Review the municipal basic-plan and project-recognition pathway early; do not apply the April 2027 farmland changes as though already in force."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "partially_in_force",
+  "related_item_ids": [
+    "raw-029a319ce5243d22",
+    "raw-02e20eb5225a2907",
+    "raw-d33f5a28b7d14dca",
+    "raw-e972a054a0395ad5"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年農林水産省令第七十二号",
+      "name_ja": "農地法施行規則及び農林漁業の健全な発展と調和のとれた再生可能エネルギー電気の発電の促進に関する法律施行規則の一部を改正する省令",
+      "name_en": "MAFF Ordinance No. 72 of 2026 amending farmland and rural renewable-energy regulations"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MAFF rural renewable-energy legislation and guidance",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/houritu.html"
+    },
+    {
+      "label": "MAFF renewable-energy policy updates",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/index.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Agrivoltaics promises both electricity generation and continuing crop production, but placing structures above agricultural land creates a persistent tension between renewable-energy development and protection of productive farmland. Japan's rural renewable-energy law already uses municipal basic plans and project recognition to coordinate energy development with agricultural interests.",
+      "The 2026 changes move the assessment of solar sharing more explicitly into that local planning and recognition structure. The Ministry's revised guidance asks municipalities to articulate how agrivoltaic projects preserve farming, and it addresses the relationship between the proposed installation, cultivation and surrounding agricultural land. The policy choice is to evaluate farming continuity and local land use rather than treating electricity production alone as sufficient."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Ministry opened consultation on the draft ordinance in July 2026. MAFF Ordinance No. 72 was promulgated on 9 October 2026. e-Gov records show amendments to the rural renewable-energy enforcement regulation effective that day, while amendments affecting the Farmland Act enforcement regulation have a later effective date of 1 April 2027.",
+      "On 27 October 2026, the Ministry updated its operational guidance for the municipal planning system. That guidance discusses how municipal basic plans should address agrivoltaic installations, crop-production performance and evidence for exceptional configurations. The ordinance's different commencement dates must be tracked by amended regulation, not treated as a single blanket date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The rural renewable-energy regulation amendments are in force; the farmland-rule provisions recorded by e-Gov are scheduled for 1 April 2027.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ]
+      }
+    ],
+    "expected": [
+      "Municipalities and developers preparing projects for the later farmland-rule commencement should align the municipal basic plan and recognition materials with the applicable new requirements."
+    ],
+    "uncertainties": [
+      "Project eligibility and transitional treatment must be assessed against the final ordinance, current municipal plan and any case-specific administrative guidance; a general approval cannot be inferred from the ordinance's publication."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Project developers may need to plan earlier for municipal engagement, cultivation evidence and a recognized project plan before relying on the farmland permission route after the scheduled commencement. Timing can affect land acquisition, financing conditions and construction sequencing.",
+      "Municipalities must balance solar deployment with agricultural production and efficient land use. The revised guidance permits evidence-based exceptions in some configurations; it does not support treating every agrivoltaic proposal as automatically acceptable."
+    ],
+    "checklist": [
+      "Identify whether the relevant application falls before or after the 1 April 2027 farmland-rule commencement.",
+      "Check whether the municipality's basic plan covers the proposed agrivoltaic site and farming arrangement.",
+      "Prepare the cultivation plan and supporting evidence in line with the Ministry's October 2026 operational guidance."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-07-24",
+      "label": "Draft ordinance public consultation opened",
+      "source_ids": [
+        "s4"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-10-09",
+      "label": "MAFF Ordinance No. 72 promulgated",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "partially_effective",
+      "date": "2026-10-09",
+      "label": "Rural renewable-energy enforcement regulation amended",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-04-01",
+      "label": "Farmland Act enforcement regulation amendment scheduled to commence",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Farmland Act Enforcement Regulation, 2027 revision",
+      "url": "https://laws.e-gov.go.jp/law/327M50010000079/20270401_508M60000200072",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Rural Renewable Energy Act Enforcement Regulation, 2026 revision",
+      "url": "https://laws.e-gov.go.jp/law/426M60000200033/20261009_508M60000200072",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+      "title": "Rural renewable-energy legislation, ordinances and 2026 guidance",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/houritu.html",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Draft farmland and rural renewable-energy ordinance consultation",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004381&Mode=0",
+      "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of Agriculture, Forestry and Fisheries",
+      "title": "Operational guidance revised on 27 October 2026",
+      "url": "https://www.maff.go.jp/j/shokusan/renewable/energy/attach/pdf/houritu-42.pdf",
+      "accessed_at": "2026-10-29"
+    }
+  ],
+  "verified_at": "2026-10-29",
+  "source_fingerprint": "sha256:1a42c0eb7f1a751b8a08255778beeec4",
+  "author": "chatgpt",
+  "review_notes": "Primary sources checked on 2026-10-29: e-Gov amendment versions, MAFF current legislation page and October 27 guidance, and the public consultation record. Effective dates differ by amended regulation; no blanket earlier effect is asserted."
+}
