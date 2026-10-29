@@ -140,6 +140,17 @@ class TestValidation(Base):
         report = self.report(stamped(self.index, data))
         self.assertTrue(any("comment deadline" in e for e in report.errors), report.errors)
 
+    def test_a_scheduled_comment_deadline_may_follow_verification(self):
+        data = explainer()
+        data["key_dates"].append({"kind": "comment_deadline", "date": "2026-11-18", "label": "Deadline",
+                                  "source_ids": ["s1"]})
+        report = self.report(stamped(self.index, data))
+        self.assertFalse(any("past-event" in e for e in report.errors), report.errors)
+        data["key_dates"][-1]["kind"] = "comment_results_published"
+        report = self.report(stamped(self.index, data))
+        self.assertTrue(any("past-event date (comment_results_published)" in e for e in report.errors),
+                        report.errors)
+
     def test_stage_contradicting_the_records_is_an_error(self):
         cases = [
             (dict(current_stage="public_comment_closed"), "records a promulgation"),

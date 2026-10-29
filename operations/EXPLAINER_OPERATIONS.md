@@ -118,7 +118,7 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 | `quick_take` | `what_changed` / `who_is_affected` / `what_to_do_now` の3点を、各360字以内の簡潔な英語で必須記載（公開する解説）。事実・影響・今行う準備を区別し、未施行の義務を施行済みと書かない |
 | `background` / `history` / `business_impact` | `paragraphs`（平文）と `source_ids` |
 | `next_steps` | `confirmed`（出典つき・日付任意）、`expected`、`uncertainties`（必須） |
-| `key_dates` | 種別・日付・説明・出典。法的事実の日付は `primary` 出典が必須 |
+| `key_dates` | 種別・日付・説明・出典。法的事実の日付は `primary` 出典が必須。意見募集中の締切は確認日より後でも `comment_deadline` で書く（`other` にしない。締切の記録照合と締切後の再確認が働かなくなる） |
 | `official_sources` | `id`（s1…）・`kind`・発行者・題名・URL・アクセス日 |
 | `verified_at` / `source_fingerprint` | `stamp` が設定する |
 
