@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "dossier_id": "organized-theft-prosecution-2026-bill",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's proposed organized-theft reform: group crime and cooperation agreements",
+  "quick_take": {
+    "what_changed": "A members' bill would add specified organized theft and paid handling of stolen goods to the organized-crime statute, and extend the criminal cooperation-agreement scheme to related offenses. It is still a bill.",
+    "who_is_affected": "Individuals suspected of organized theft or paid dealing in stolen goods, investigators and criminal-defense practitioners would be most directly affected if enacted.",
+    "what_to_do_now": "Do not treat the proposed penalties or expanded cooperation-agreement scope as current law; follow the House Justice Committee's consideration."
+  },
+  "instrument_type": "statute",
+  "current_stage": "diet_deliberation",
+  "related_item_ids": [
+    "raw-a2614e5a78c243b5",
+    "raw-d1140be12d6dc15b"
+  ],
+  "instruments": [
+    {
+      "number": "平成十一年法律第百三十六号",
+      "name_ja": "組織的な犯罪の処罰及び犯罪収益の規制等に関する法律",
+      "name_en": "Act on Punishment of Organized Crimes and Control of Proceeds of Crime, existing statute proposed for amendment"
+    },
+    {
+      "number": "昭和二十三年法律第百三十一号",
+      "name_ja": "刑事訴訟法",
+      "name_en": "Code of Criminal Procedure, existing statute proposed for amendment"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House legislative progress",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D3A.htm"
+    },
+    {
+      "label": "Ministry of Justice legislation",
+      "url": "https://www.moj.go.jp/"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The existing organized-crime statute addresses offenses committed through an organized group's activities and the proceeds of serious crime. Ordinary theft and paid handling of stolen goods already have criminal-law provisions, but the members' bill seeks a more specific response when those acts are carried out by an organization as a group activity.",
+      "The proposal combines a substantive criminal-law change with a procedural one. It would introduce organized forms of the specified theft and stolen-property offenses and make those offenses eligible for the Code of Criminal Procedure's cooperation and prosecution agreement system. This pairing reflects the practical investigative difficulty of establishing responsibility within organized groups; that rationale is an analytical reading of the bill's structure, not a claimed finding by an unpublished committee."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The bill's published outline specifies the underlying Criminal Code theft and paid-stolen-property offenses, the proposed organized variants, and the extension of cooperation agreements. It does not establish that the proposed changes are already in force.",
+      "House Bill No. 21 of the 221st Diet continued into the current parliamentary record and was referred to the House Justice Committee on 5 October 2026. The House's current record contains no completed vote or promulgation date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The House referred the bill to its Justice Committee on 5 October 2026; passage is not recorded.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The bill may be debated, revised or discontinued; the stated post-promulgation commencement rule applies only if it becomes law."
+    ],
+    "uncertainties": [
+      "Whether the Diet will enact the proposed offense categories or extend the cooperation-agreement scheme remains undecided."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "The proposal is principally about criminal enforcement rather than a new routine compliance duty for every company. Businesses facing organized theft of inventory, vehicles or materials may have an interest in how prosecutors could investigate a coordinated group, but a bill does not change current reporting or internal-control obligations.",
+      "The draft would also raise safeguards questions about cooperation agreements and proof of an organized group's role. Those procedural questions require attention if the bill advances; they should not be mistaken for an enacted expansion of investigative powers."
+    ],
+    "checklist": [
+      "For theft-related incident response, continue to apply the criminal law currently in force rather than the bill's proposed penalties.",
+      "Separate any prospective changes to cooperation agreements from existing investigative and evidence-preservation practices.",
+      "Monitor the House Justice Committee's progress before updating internal legal-reference materials."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "other",
+      "date": "2026-10-05",
+      "label": "Referred to the House Justice Committee",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Current proceedings for House Bill 21 of the 221st Diet",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D3A.htm",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Official outline of the organized-crime and criminal-procedure amendment bill",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/youkou/g22105021.htm",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Justice",
+      "title": "Organized Crime Punishment Act legal background",
+      "url": "https://www.moj.go.jp/houan1/houan_soshikiho_orgcrime_refer01.html",
+      "accessed_at": "2026-10-30"
+    }
+  ],
+  "verified_at": "2026-10-30",
+  "source_fingerprint": "sha256:cc53048021e3cd34df37e1658adde19b",
+  "author": "chatgpt",
+  "review_notes": "Read Diet bill outline and current proceedings; no enacted penalty or procedural duty asserted."
+}

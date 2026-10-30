@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "dossier_id": "privacy-security-guidance-2026-draft",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 privacy-security guidance draft: breaches, zero trust and clearer safeguards",
+  "quick_take": {
+    "what_changed": "The Personal Information Protection Commission is consulting on updated examples of security safeguards, including multifactor authentication, access controls and containment of intrusions. The draft does not itself create new legal duties.",
+    "who_is_affected": "Personal-information handlers and organizations handling Individual Numbers should assess the proposed examples against their data risks; existing statutory safeguard duties continue.",
+    "what_to_do_now": "Review privileged access, permitted devices, authentication and breach detection, and submit evidence-based comments by the published consultation deadline if needed."
+  },
+  "instrument_type": "guideline",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-a8b165651fe15430"
+  ],
+  "instruments": [
+    {
+      "number": "平成二十八年個人情報保護委員会告示第六号",
+      "name_ja": "個人情報の保護に関する法律についてのガイドライン（通則編）",
+      "name_en": "General Guidelines under the Act on the Protection of Personal Information, existing notice proposed for amendment"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "PPC public consultations",
+      "url": "https://www.ppc.go.jp/news/public-comment/"
+    },
+    {
+      "label": "PPC meeting materials",
+      "url": "https://www.ppc.go.jp/enforcement/minutes/2026/"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The Personal Information Protection Act already requires businesses to take necessary and appropriate security-control measures according to their risks. The Commission's guidelines explain required measures and provide non-exclusive examples of methods; an example is not automatically a universally compulsory technology.",
+      "The Commission points to increasingly complex attacks, expanding cloud and device use, and intrusions that spread inside a network. In its 2026 review it identified the limits of a perimeter-only security model, the need for zero-trust concepts and lateral-movement containment, and the need to distinguish mandatory safeguards from illustrative implementation methods.",
+      "After recent large-scale unauthorized-access incidents involving businesses holding extensive personal data, the Commission proposed accelerating a timetable that had previously envisaged implementation in April 2027. This is an announced policy intention, not a confirmed effective date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Commission's 16 September 2026 meeting set out a direction for revising safeguard examples. Its 28 October meeting examined draft updates to the general guideline and related Individual Number guidance, with materials explaining the relationship between obligations and examples.",
+      "Public consultation opened on 29 October 2026 and is scheduled to close on 27 November. The proposal includes multifactor authentication, restrictions on privileged accounts and permitted devices, log retention, dynamic access evaluation and limiting the spread of an intrusion; the Commission expressly says the illustrative additions do not establish new regulatory duties."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The PPC's public-comment period closes on 27 November 2026.",
+        "date": "2026-11-27",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The Commission will consider comments before deciding final wording and any implementation date; continued technical revisions are possible."
+    ],
+    "uncertainties": [
+      "The final examples and implementation date have not been established; applicability of a particular method depends on the organization's risk context."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "For companies using outsourced cloud services or federated identity systems, the draft clarifies what regulators may view as practical means of meeting existing security duties. The legal duty remains risk-sensitive: it is inaccurate to present every listed control as a newly mandatory requirement for every data handler.",
+      "The proposed emphasis on privileged-account limits, access verification and containment could affect vendor oversight, security architecture and evidence of reasonable safeguards. Contract and audit teams can use the draft as a benchmark while distinguishing the Commission's examples from statutory obligations."
+    ],
+    "checklist": [
+      "Inventory privileged accounts and third-party cloud access paths, then assess whether multifactor authentication and device controls address the actual risk.",
+      "Confirm logging, incident detection and lateral-movement containment responsibilities across vendors and internal teams.",
+      "For material operational concerns, review the draft text and consider comments before the consultation deadline."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-29",
+      "label": "PPC opened consultation on revised security-safeguard examples",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-27",
+      "label": "Deadline for public comments",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "Current public-comment register and deadline",
+      "url": "https://www.ppc.go.jp/news/public-comment/",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "374th meeting: draft guideline consultation and supporting materials",
+      "url": "https://www.ppc.go.jp/aboutus/minutes/2026/20261028/",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "Draft security safeguard examples and rationale",
+      "url": "https://www.ppc.go.jp/files/pdf/261028_shiryou-2-1.pdf",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Personal Information Protection Commission",
+      "title": "369th meeting: earlier security review direction",
+      "url": "https://www.ppc.go.jp/aboutus/minutes/2026/20260916/",
+      "accessed_at": "2026-10-30"
+    }
+  ],
+  "verified_at": "2026-10-30",
+  "source_fingerprint": "sha256:1dc182daf29d59269795b97b8f6a1648",
+  "author": "chatgpt",
+  "review_notes": "Read PPC 28 October materials and 29 October public-comment listing; examples distinguished from existing statutory duty."
+}
