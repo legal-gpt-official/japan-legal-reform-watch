@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "dossier_id": "energy-cargo-marine-insurance-2026-bill",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 energy-shipping insurance bill: why a reinsurance gap prompted a state backstop",
+  "quick_take": {
+    "what_changed": "A Cabinet bill proposes conditional government payment agreements with qualifying marine cargo and vessel insurers when foreign reinsurance restrictions threaten imports of specified oil, petroleum products or LNG. It is not yet law.",
+    "who_is_affected": "Potentially affected parties include eligible insurers, energy importers, shipping operators and traders whose routes and cargo meet future statutory and Cabinet Order conditions.",
+    "what_to_do_now": "Review marine insurance and reinsurance continuity for affected cargoes, but do not treat the proposed state backstop as available or automatic."
+  },
+  "instrument_type": "statute",
+  "current_stage": "diet_deliberation",
+  "related_item_ids": [
+    "raw-b87e83d9a75a72e8"
+  ],
+  "instruments": [
+    {
+      "number": "平成七年法律第百五号",
+      "name_ja": "保険業法",
+      "name_en": "Insurance Business Act (existing statute governing insurers and authorized reinsurance arrangements, cited in the proposed standalone bill)"
+    },
+    {
+      "number": "明治三十二年法律第四十八号",
+      "name_ja": "商法",
+      "name_en": "Commercial Code (existing statute defining marine cargo and vessel insurance contracts, cited in the proposed standalone bill)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House status of Cabinet Bill No. 12 in the 222nd Diet",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE350A.htm"
+    },
+    {
+      "label": "House official bulletin",
+      "url": "https://www.shugiin.go.jp/internet/itdb_kouhou.nsf/html/kouhou/index.htm"
+    },
+    {
+      "label": "METI announcements",
+      "url": "https://www.meti.go.jp/press/"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Energy security depends not only on obtaining oil, petroleum products and liquefied natural gas but also on ships being able to carry them under viable insurance. Marine insurers normally spread large cargo and vessel risks through reinsurance. The Cabinet bill's stated trigger is a restriction imposed by foreign governments or specified international bodies on underwriting reinsurance for shipments linked to countries designated under the proposed law. Such restrictions can make otherwise needed insurance difficult to obtain or maintain.",
+      "The proposed response is a narrow public backstop rather than a general guarantee for every voyage. For specified cargoes and voyages, the government could enter into fee-paying agreements with eligible insurers whose collective reinsurance arrangements have the requisite authorization. Government payments would arise only under the bill's conditions when aggregate insurer payments exceed specified amounts, subject to limits and the contract terms. The design aims to bridge a gap in private risk capacity without treating all commercial losses as public liabilities.",
+      "The legislation leaves important operational boundaries to later Cabinet Orders and ministerial rules, including the designated origin or loading countries and specified financial amounts. This is consequential for energy importers and their counterparties: neither a commodity name nor an insurance policy alone establishes eligibility. The proposal also sits alongside separate energy-transport legislation, but its legal mechanism is an insurance-payment agreement, not an import permission or exemption from foreign sanctions."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "On 13 October 2026 the Cabinet approved and submitted the proposed Special Measures Act as Cabinet Bill No. 12 in the 222nd Diet. The bill's statement of reasons specifically identifies foreign reinsurance-underwriting prohibitions as the risk to continuity of insurance for selected energy shipments.",
+      "The House referred the bill to its Economy, Trade and Industry Committee on 22 October. Its official bulletin records that the Minister of Economy, Trade and Industry explained the purpose of the bill on 23 October; the committee record and legislative progress checked on 30 October did not establish enactment.",
+      "The proposed mechanism would require the insurer to pay a fee, provide specified notices, and comply with reporting requests and contract conditions. It also provides for government recovery rights in certain circumstances. These are proposed terms for a future state-insurer agreement, not obligations currently imposed by this unpassed bill."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The bill was referred to the House Economy, Trade and Industry Committee on 22 October 2026; the minister explained its purpose on 23 October.",
+        "source_ids": [
+          "s1",
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Further Diet consideration is required. If enacted, the proposed commencement is a date set by Cabinet Order within three months after promulgation; this is not a confirmed commencement date."
+    ],
+    "uncertainties": [
+      "Passage, the designated countries, the implementing financial thresholds and the availability of any government-insurer agreements remain undecided."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "For a qualifying insurer, the proposed state agreement could reduce exposure above the collective reinsurance payment amount, but only where the detailed eligibility, authorization, fee and payment conditions are met. It would not remove ordinary underwriting, sanctions-screening or policy obligations.",
+      "For energy importers and ship operators, the commercial relevance is whether cargo, loading country, voyage and insurer arrangements could continue if overseas reinsurance is restricted. The bill offers no immediate statutory entitlement to coverage, and counterparties should not assume a government payment would flow directly to a shipowner or cargo buyer."
+    ],
+    "checklist": [
+      "Map cargo origin or loading country, insurance carrier and reinsurance counterparties for critical oil, petroleum-product and LNG routes.",
+      "Identify the policy and contractual consequences of a foreign reinsurance prohibition without assuming a state agreement is already available.",
+      "Track committee progress and later Cabinet Orders specifying countries, payment limits and fees before assessing eligibility."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-10-13",
+      "label": "Cabinet Bill No. 12 approved and submitted",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-22",
+      "label": "Referred to the House Economy, Trade and Industry Committee",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-23",
+      "label": "Minister explained the bill in committee",
+      "source_ids": [
+        "s4"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Current proceedings for Cabinet Bill No. 12 of the 222nd Diet",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE350A.htm",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Full proposed Special Measures Act on marine cargo and vessel insurance",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209012.htm",
+      "accessed_at": "2026-10-30"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Official committee proceedings of 23 October 2026",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_kouhou.nsf/html/kouhou/658C02_2221023.htm",
+      "accessed_at": "2026-10-30"
+    }
+  ],
+  "verified_at": "2026-10-30",
+  "source_fingerprint": "sha256:80f47d97a13bcc6b2c51e2f400e72850",
+  "author": "chatgpt",
+  "review_notes": "Verified 2026-10-30 against the full House bill, current status and 23 October committee proceedings. Cabinet bill not enacted; commencement is conditional and unspecified. The Cabinet's decision listing was identified but could not be opened directly; statutory submission is independently verified by House records."
+}
