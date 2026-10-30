@@ -5,4 +5,22 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Tax / Stamp Duty
 X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VEVENT
+UID:jlrw-raw-fd0f01c4c244d324-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261030T000000Z
+DTSTART;VALUE=DATE:20261128
+DTEND;VALUE=DATE:20261129
+SUMMARY:Public comment closes: Draft amendments to Corporation Tax Basic Ci
+ rcular and one other circular
+DESCRIPTION:Closes 2026-11-28 23:59 JST.\nOriginal title: 「法人税基
+ 本通達の制定について」（法令解釈通達）ほか１件の
+ 一部改正（案）に対する意見公募手続の実施について\n
+ e-Gov Public Comment\nOfficial source: https://public-comment.e-gov.go.jp/
+ servlet/Public?CLASSNAME=PCMMSTDETAIL&id=410080069&Mode=0\nMonitoring aid 
+ only\; not legal advice or an official translation. Original Japanese offi
+ cial sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=410080069&Mode=0
+END:VEVENT
 END:VCALENDAR
