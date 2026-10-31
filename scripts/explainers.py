@@ -819,8 +819,12 @@ def _consistency(
         errors.append("stage in_force but e-Gov Law Search lists a provision whose effective date is not yet fixed")
     stated_effective = sorted(when for kind, when, _ in key_dates if kind in ("effective", "partially_effective"))
     passed = [d for d in stated_effective if d <= today]
+    # A passed first-phase date is expected for a partially-in-force reform.
+    # It does not establish that treaty-dependent or otherwise undated later
+    # provisions have commenced. Only a stage still awaiting *any* commencement
+    # should be flagged solely because a listed effective date has passed.
     overtaken = (stage == "promulgated" and passed) or (
-        stage in ("partially_in_force", "published") and passed and not future_effective and not pending
+        stage == "published" and passed and not future_effective and not pending
     )
     if overtaken:
         warnings.append("stage_overtaken:effective_date_passed")
