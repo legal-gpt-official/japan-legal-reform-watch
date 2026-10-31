@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "dossier_id": "youth-harmful-advertising-platforms-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Why Japan's youth internet-safety bill targets harmful advertisements on major platforms",
+  "quick_take": {
+    "what_changed": "A 2026 members' bill proposed designation of large digital platforms and duties concerning harmful information embedded in advertisements. The 221st Diet proposal did not become law.",
+    "who_is_affected": "If revived and enacted, designated large platforms, including overseas providers, could face notices, public measures and reporting requirements; ordinary advertisers are not automatically designated.",
+    "what_to_do_now": "Keep the proposed platform duties separate from existing youth-filtering law. Review ad moderation and Japan-facing platform exposure without treating this lapsed proposal as binding."
+  },
+  "instrument_type": "statute",
+  "current_stage": "lapsed",
+  "related_item_ids": [
+    "raw-528dc420ddae884d"
+  ],
+  "instruments": [
+    {
+      "number": "平成二十年法律第七十九号",
+      "name_ja": "青少年が安全に安心してインターネットを利用できる環境の整備等に関する法律",
+      "name_en": "Act on Development of an Environment that Provides Safe and Secure Internet Use for Young People (existing Act proposed to be amended)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House legislative progress of the youth platform-advertising bill",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2CC2.htm"
+    },
+    {
+      "label": "Children and Families Agency youth internet research and review",
+      "url": "https://www.cfa.go.jp/policies/youth-kankyou/internet_research/details"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's youth internet-safety framework grew around filtering services, device access and education. That model does not by itself resolve harmful content appearing inside advertisements served through large online platforms. The bill's stated rationale identifies the spread of advertising containing material harmful to young people and the increased opportunities to encounter it.",
+      "Rather than banning every advertisement or setting a blanket minimum age for social media, the proposal would designate platform providers exceeding business-size thresholds to be specified by Cabinet Order. It would require a published policy for preventing youth exposure to harmful ad content, a public reporting channel and annual disclosure of implementation. A separate category of comparably harmful content would attract a duty to make efforts, not the same mandatory rule.",
+      "The proposed use of platform designation shifts attention from a child's device to the intermediary controlling ad placement. The underlying policy trade-off is whether the largest platforms can reduce exposure while leaving the scope of covered platforms, prohibited content and practical moderation methods to later instruments. Those parameters were not finalised because the bill was not enacted."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The existing youth internet law and the Children and Families Agency's regular internet-use surveys provide the baseline for policy review. The agency's 2026 work examined harmful information and digital literacy, but those discussions should not be presented as formal endorsement of this particular members' bill.",
+      "A member of the House of Councillors submitted Bill No. 19 in the 221st Diet on 15 July 2026. Its text proposed ministerial designation of large platform providers, notification of a Japan-based representative or agent for foreign providers, a published prevention policy, reporting channels and annual implementation disclosures. Failure to make certain notifications would be punishable under the proposal.",
+      "The House's published legislative record lists the bill without an enacted law or promulgation date, and the source record classifies its 221st Diet disposition as unfinished. No duties under the proposed new provisions have commenced; a fresh legislative step would be needed to revive them."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The bill was submitted to the House of Councillors on 15 July 2026; the 221st Diet record does not show enactment.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "A new submission or other legislative action would be needed before the proposed platform-specific requirements could become binding."
+    ],
+    "uncertainties": [
+      "Whether lawmakers will reintroduce the proposal, and what size thresholds or implementing details any future law would use, is unknown."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "For a large advertising-supported platform, the proposal signals a possible move toward auditable content-moderation processes: designation, a Japanese contact point, published prevention methods, complaints intake and periodic transparency. It does not currently create those statutory duties.",
+      "Advertising buyers and smaller platforms should distinguish commercial brand-safety measures from the proposed statutory designation regime. A platform's future classification and technical measures cannot be assumed from the text of a lapsed bill."
+    ],
+    "checklist": [
+      "Separate current youth filtering and consumer-advertising obligations from the unpassed platform-advertising provisions in legal trackers.",
+      "Identify which Japan-facing ad services could fall within a future designated-platform category, without assuming an unissued threshold.",
+      "Monitor the parliamentary record and any reintroduced text for changes to mandatory duties, effort obligations and sanctions."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-07-15",
+      "label": "House of Councillors Bill No. 19 submitted in the 221st Diet",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Legislative progress of House of Councillors Bill No. 19 in the 221st Diet",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2CC2.htm",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Full text and reasons for the youth internet safety amendment bill",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22106019.htm",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Children and Families Agency",
+      "title": "Youth internet environment survey and legislative framework, updated October 2026",
+      "url": "https://www.cfa.go.jp/policies/youth-kankyou/internet_research/details",
+      "accessed_at": "2026-10-31"
+    }
+  ],
+  "verified_at": "2026-10-31",
+  "source_fingerprint": "sha256:11dd87228b0ef2bd25ed4aeea6de068e",
+  "author": "chatgpt",
+  "review_notes": "Primary legislative text and parliamentary record checked 2026-10-31. The source-record disposition is unfinished, and the bill is not enacted. Separate statutory duties from effort obligations and from existing filtering law."
+}

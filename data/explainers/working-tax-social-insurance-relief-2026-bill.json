@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "dossier_id": "working-tax-social-insurance-relief-2026-bill",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's working-income tax and social-insurance relief bill: the gap between deductions and benefits",
+  "quick_take": {
+    "what_changed": "A members' bill proposes higher income-tax and local-tax deductions and complementary benefits for workers paying social insurance contributions. These are proposals, not enacted tax rules.",
+    "who_is_affected": "If enacted, wage earners, low-income workers, employers administering payroll and local governments could face future tax and benefit changes.",
+    "what_to_do_now": "Keep existing withholding and local tax rules in force. Analyse the proposed deduction and transfer mechanisms separately; do not implement the proposed thresholds in payroll."
+  },
+  "instrument_type": "statute",
+  "current_stage": "bill_submitted",
+  "related_item_ids": [
+    "raw-66ad06863627386b"
+  ],
+  "instruments": [
+    {
+      "number": "昭和四十年法律第三十三号",
+      "name_ja": "所得税法",
+      "name_en": "Income Tax Act (existing statute whose deductions the proposal would address)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House progress of the working-income tax and social insurance relief bill",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/keika/1DE36B6.htm"
+    },
+    {
+      "label": "House Legislation Bureau's current-session members' bills",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_annai.nsf/html/statics/housei/html/h-shuhou222.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The bill's sponsors argue that higher prices and insufficient wage growth leave workers exposed to both taxes and social insurance contributions. Raising income-tax deductions may help taxpayers who owe tax, but it cannot fully relieve workers with little taxable income who nevertheless pay social contributions.",
+      "The proposed design therefore combines two tools: deductions for income tax and individual inhabitant tax, and payments to certain workers to supplement tax relief. It also aims to reduce work-hour disincentives associated with contribution burdens. The proposal's rationale is distinct from a finding that every current deduction or insurance contribution is unlawful.",
+      "The bill would seek to protect local-government finances against revenue losses caused by changing inhabitant-tax deductions. This reveals a fiscal trade-off: relieving households without transferring the cost of national tax policy to municipalities. Precise payment eligibility and amounts would depend on subsequent legal measures."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "Debate over the income threshold for taxation and the interaction of taxes, social insurance and working hours formed the background to the proposal. The bill's text frames relief as a response to living-cost pressure rather than as a standalone reduction of social insurance contribution rates.",
+      "Four members submitted House Bill No. 1 in the 222nd Diet on 20 October 2026. It proposes a combined maximum basic and minimum employment-income deduction of at least 1,780,000 yen for income tax, with related individual inhabitant-tax reforms and a payment mechanism for workers.",
+      "The House's legislative progress record checked on 31 October shows submission but no enactment or promulgation. The proposed 2027 and 2028 tax-year measures and payments remain legislative objectives, not instructions to employers to change withholding today."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The House received members' Bill No. 1 on 20 October 2026.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The bill may be referred for parliamentary deliberation and amended; implementing tax and benefit rules would be necessary if adopted."
+    ],
+    "uncertainties": [
+      "Whether the proposed deduction levels, payments, eligibility and local revenue compensation will be enacted is not established."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Payroll operators should distinguish current income-tax withholding, social insurance contribution calculations and inhabitant-tax collection from the proposed future reforms. A proposal for a 1,780,000 yen combined deduction is not itself a current tax-free salary threshold for every worker.",
+      "If enacted, employers might need to adjust payroll communications and systems, while municipalities would have to administer changes subject to compensation arrangements. The business impact depends on subsequent legislation and detailed payment procedures."
+    ],
+    "checklist": [
+      "Do not change current payroll withholding or social insurance deductions on the basis of the unpassed bill.",
+      "Model income-tax deductions, inhabitant-tax deductions and cash transfers as separate mechanisms rather than a single uniform threshold.",
+      "Monitor the House record and any enacted implementing tax legislation before updating employee-facing guidance."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-10-20",
+      "label": "House members' Bill No. 1 submitted in the 222nd Diet",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "222nd Diet House Bill No. 1 legislative progress",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/keika/1DE36B6.htm",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Full text of the working-income tax and social-insurance relief bill",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/honbun/houan/g22205001.htm",
+      "accessed_at": "2026-10-31"
+    }
+  ],
+  "verified_at": "2026-10-31",
+  "source_fingerprint": "sha256:b26cc29e0bc59e8249c3424ef08a40d6",
+  "author": "chatgpt",
+  "review_notes": "Checked House text and current legislative progress. Distinguish income-tax deductions, inhabitant tax, and social-insurance-related transfers; no existing employer duty changed."
+}

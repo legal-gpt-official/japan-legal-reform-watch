@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "dossier_id": "ventilator-economic-security-supply-plan-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's ventilator supply-security rules: why medical resilience became economic security",
+  "quick_take": {
+    "what_changed": "A joint MHLW-METI ministerial ordinance was amended and took effect on 18 September 2026, providing procedures linked to supply-security plans for critical ventilators.",
+    "who_is_affected": "Ventilator manufacturers and suppliers seeking recognition and support under Japan's economic-security framework may need to prepare qualifying plans and documentation.",
+    "what_to_do_now": "Applicants should check the current joint ordinance, the ministry's ventilator policy and plan forms; recognition and financial support are conditional, not automatic."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "in_force",
+  "related_item_ids": [
+    "raw-5d8de6de8c85584b",
+    "raw-c01e65232a373e59"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年厚生労働省・経済産業省令第一号",
+      "name_ja": "厚生労働省・経済産業省関係経済施策を一体的に講ずることによる安全保障の確保の推進に関する法律に基づく供給確保計画の認定等に関する省令の一部を改正する省令",
+      "name_en": "2026 joint MHLW-METI amendment to the ministerial ordinance on recognition of supply-security plans"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MHLW ventilator supply security programme",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryou/keizaianpo_ventilator.html"
+    },
+    {
+      "label": "Current joint ordinance in e-Gov law search",
+      "url": "https://laws.e-gov.go.jp/law/507M60000500001/20260918_508M60000500001"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Medical equipment supply is a security issue when disruption can directly affect life-saving treatment. Japan's economic-security legislation allows specified critical products to be supported through recognised supply-security plans. The government designated ventilators as critical products in December 2025, extending supply resilience policy to an essential medical technology.",
+      "Recognition of a supply-security plan is not simply a subsidy application. The joint ordinance requires supporting corporate and financial documents, evidence of planned investments and measures for supply shortages, and procedures for amendments and reporting. This seeks to connect public support to a credible capacity to maintain supply in emergencies.",
+      "The 2026 amendment and the new application process are best understood as operationalising the designated-product framework. The policy balances the public interest in emergency access to ventilators against the cost of investing in domestic production and maintaining documented contingency arrangements."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Economic Security Promotion Act established the supply-security planning framework. Following the government's December 2025 designation of ventilators, MHLW and METI published a joint ordinance and arrangements for recognition and support.",
+      "The ministries consulted on an amendment from 24 August to 4 September 2026, using a shortened consultation period explained by the need to prepare the scheme quickly for a critical product. The official consultation identified the recognition framework and the new statutory mechanism for requesting cooperation where supply is at risk.",
+      "e-Gov's amendment history records the 2026 joint ordinance amendment as promulgated and effective on 18 September 2026. The Ministry's current ventilator page explains that support requires a recognised plan and that application arrangements depend on the designation of a support organisation."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The joint ministerial ordinance amendment was promulgated and came into force on 18 September 2026.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The ministries and designated support organisation will administer plan applications and related recognition, monitoring and assistance according to the published scheme."
+    ],
+    "uncertainties": [
+      "The timing of individual applications and the availability or amount of assistance for a particular applicant must be confirmed against current ministry notices and budgets."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Ventilator manufacturers considering a supply-security plan may need to document production investment, alternate sourcing and supply-shortage response, together with corporate and financial records. Recognition can make specified assistance available, but the ordinance does not guarantee funding for every applicant.",
+      "Approved operators should distinguish material changes requiring fresh recognition from minor changes requiring notification, and monitor reporting duties. Purchasers of ventilators are not automatically required to submit supply-security plans merely because the product is designated."
+    ],
+    "checklist": [
+      "Confirm that the proposed ventilator production or supply activity falls within the current MHLW programme and recognition policy.",
+      "Prepare plan evidence for capacity investment, shortage response, finances and required permits before seeking recognition.",
+      "For recognised plans, distinguish changes requiring approval from minor notifications and scheduled implementation reports."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "other",
+      "date": "2026-08-24",
+      "label": "Public consultation on the joint ordinance amendment opened",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-09-18",
+      "label": "2026 joint ordinance amendment promulgated",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2026-09-18",
+      "label": "Joint ordinance amendment came into force",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Joint MHLW-METI ordinance and September 2026 amendment history",
+      "url": "https://laws.e-gov.go.jp/law/507M60000500001/20260918_508M60000500001",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment / MHLW",
+      "title": "Public consultation on joint supply-security plan ordinance amendment, case 495260155",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260155",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Ventilator supply security under the Economic Security Promotion Act",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryou/keizaianpo_ventilator.html",
+      "accessed_at": "2026-10-31"
+    }
+  ],
+  "verified_at": "2026-10-31",
+  "source_fingerprint": "sha256:5a37b72e05021b5a02495ac75a10cd2a",
+  "author": "chatgpt",
+  "review_notes": "Checked current e-Gov ordinance, official consultation and MHLW ventilator programme. Distinguishes conditional plan recognition from automatic support; effective September 2026."
+}

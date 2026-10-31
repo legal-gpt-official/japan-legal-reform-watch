@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Why Japan proposes a temporary food consumption-tax cut before income-linked relief",
+  "quick_take": {
+    "what_changed": "The Cabinet submitted a bill for a temporary 1% consumption-tax rate on eligible food and transitional worker support, as a bridge toward income-linked benefits. The bill is not enacted.",
+    "who_is_affected": "If enacted, food retailers, restaurants, distributors, invoicing and point-of-sale providers, workers and tax administrators would need to assess different consequences.",
+    "what_to_do_now": "Do not change tax rates or invoices yet. Identify eligible food transactions and system dependencies, while tracking the bill's parliamentary status and implementing rules."
+  },
+  "instrument_type": "statute",
+  "current_stage": "diet_deliberation",
+  "related_item_ids": [
+    "raw-e99b922033c552b4"
+  ],
+  "instruments": [
+    {
+      "number": "昭和六十三年法律第百八号",
+      "name_ja": "消費税法",
+      "name_en": "Consumption Tax Act (existing statute proposed to be amended)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "Cabinet Secretariat's food consumption tax and refundable credit policy",
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html"
+    },
+    {
+      "label": "House progress for 222nd Diet Cabinet Bill No. 1",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm"
+    },
+    {
+      "label": "Ministry of Finance food consumption tax policy",
+      "url": "https://www.mof.go.jp/tax_policy/20260915shouhizei.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's consumption tax applies to purchases rather than income, so rising food prices can strain household budgets even where income-tax deductions provide little relief. The government identifies the net burden on low- and middle-income working households and work disincentives as reasons for an income-linked support system.",
+      "The Cabinet's approach uses a temporary food consumption-tax reduction as a bridge while a more targeted income-linked payment system is developed. Its stated policy envisages a 1% rate for qualifying food for two years from 1 April 2027, alongside transitional support, before a longer-term income-linked benefit from fiscal 2029. These dates and rates are proposals, not current law.",
+      "The two tools distribute relief differently. A lower food tax changes transaction pricing and invoicing for businesses and benefits consumers regardless of their exact income, whereas targeted payments require income information and administration. The choice therefore creates both an implementation burden for retail systems and questions about targeting and fiscal cost."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Cabinet Secretariat reports that the Social Security National Council's interim findings of 29 July 2026 informed an August policy decision on income-linked benefits. On 15 September the Cabinet approved an outline for a temporary food tax reduction and worker support.",
+      "On 9 October 2026 the Cabinet approved and submitted Cabinet Bill No. 1 to the 222nd Diet. The House referred it to the Financial Affairs Committee on 20 October; the government explained its purpose in plenary on the same day.",
+      "The House's record checked on 31 October does not show enactment or promulgation. Retailers must therefore continue applying the legally effective tax rates rather than the proposed temporary rate."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The Cabinet submitted Bill No. 1 on 9 October 2026; the House referred it to the Financial Affairs Committee on 20 October 2026.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      }
+    ],
+    "expected": [
+      "Parliamentary consideration and, if enacted, tax administration guidance and implementing arrangements would follow before a temporary rate could be applied."
+    ],
+    "uncertainties": [
+      "Whether the proposed rate, duration, transitional support and later income-linked benefit will pass unchanged, and how business systems must implement them, remains uncertain."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Food retailers, wholesalers and software providers would need to classify eligible transactions, adjust tax calculations and invoices, test price displays and coordinate with suppliers if a new rate takes effect. Those costs arise only if and when a valid legal change is enacted and effective.",
+      "Employers and households should not confuse the proposed food tax rate with the separate worker-support payment. Its income tests and administration would depend on enacted provisions and implementing details, not the mere announcement of the policy."
+    ],
+    "checklist": [
+      "Inventory tax codes for food, dining and mixed supplies without changing live tax rates before enactment and commencement.",
+      "Assess invoicing, POS, ERP, pricing and supplier contract dependencies for a possible temporary food-rate change.",
+      "Track Cabinet Bill No. 1 and later tax-agency implementation notices; distinguish enacted rules from Cabinet policy objectives."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-10-09",
+      "label": "Cabinet Bill No. 1 submitted to the 222nd Diet",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "other",
+      "date": "2026-10-20",
+      "label": "House referral to the Financial Affairs Committee",
+      "source_ids": [
+        "s2",
+        "s4"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Cabinet Secretariat",
+      "title": "Food consumption tax reduction and income-linked tax credit policy; bill materials",
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "222nd Diet Cabinet Bill No. 1 legislative progress",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of Finance",
+      "title": "Temporary reduction of food consumption tax for fiscal 2027 and 2028",
+      "url": "https://www.mof.go.jp/tax_policy/20260915shouhizei.html",
+      "accessed_at": "2026-10-31"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Plenary proceedings of 20 October 2026",
+      "url": "https://www.shugiin.go.jp/Internet/itdb_honkaigi.nsf/html/honkai/keika20261020.htm",
+      "accessed_at": "2026-10-31"
+    }
+  ],
+  "verified_at": "2026-10-31",
+  "source_fingerprint": "sha256:3075c9ca12758e9555878a482265b099",
+  "author": "chatgpt",
+  "review_notes": "Checked Cabinet Secretariat policy, Ministry of Finance summary and House legislative status. 1% rate from 2027 is proposed and not operative as of verification."
+}
