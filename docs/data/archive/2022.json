@@ -2900,6 +2900,12 @@
     "ai_notes": "Based on the title and structured metadata, not the substantive provisions; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:37Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "一般職の職員の給与に関する法律等の一部を改正する法律（令和四年法律第十七号）は、一般職の職員の給与に関する法律（昭和二十五年法律第九十五号）を改正するものです。メタデータには、公布日・施行日はいずれも2022年4月13日、更新一覧日は2026年10月28日と記載されています。",
+    "business_impact_ja": "対象となる職員の給与に関係する業務に影響する可能性がありますが、具体的な改正内容や事業への影響は、このメタデータだけでは確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索の日本語本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《一般职职员工资相关法律等部分修订法》",
@@ -2907,13 +2913,7 @@
         "business_impact": "一般职职员可能受到其工资法定框架变更的影响；列表未指明具体变更。",
         "recommended_action": "建议查阅日文官方来源，了解修订后的工资条款及任何过渡安排。"
       }
-    },
-    "summary_ja": "一般職の職員の給与に関する法律等の一部を改正する法律（令和四年法律第十七号）は、一般職の職員の給与に関する法律（昭和二十五年法律第九十五号）を改正するものです。メタデータには、公布日・施行日はいずれも2022年4月13日、更新一覧日は2026年10月28日と記載されています。",
-    "business_impact_ja": "対象となる職員の給与に関係する業務に影響する可能性がありますが、具体的な改正内容や事業への影響は、このメタデータだけでは確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索の日本語本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:42Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-0bfbcf8a23ea844a",
@@ -2936,6 +2936,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; the relationship between the election-related title and the listed target law requires verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:37Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令とし、改正法令として「国会議員の選挙等の執行経費の基準に関する法律及び公職選挙法の一部を改正する法律」（令和四年法律第十六号）が記載されています。公布日・施行日はともに2022年4月6日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "改正内容によっては関係業務への影響が生じる可能性がありますが、このメタデータだけでは影響の対象や範囲を判断することは困難と考えられます。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、対象法令と改正法令の関係、改正内容及び施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《国会议员选举等执行经费标准法及公职选举法部分修正法》",
@@ -2943,13 +2949,7 @@
         "business_impact": "地方政府可能受到所列《地方自治法》修订的影响，尽管标题涉及选举管理经费和公职选举。所提供的信息未明确地方政府相关条款中哪些发生了变化，也未明确其实际影响。",
         "recommended_action": "建议查阅日文官方文本，以确认2022年第16号法律如何修订《地方自治法》，以及哪些条款于2022-04-06生效。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令とし、改正法令として「国会議員の選挙等の執行経費の基準に関する法律及び公職選挙法の一部を改正する法律」（令和四年法律第十六号）が記載されています。公布日・施行日はともに2022年4月6日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "改正内容によっては関係業務への影響が生じる可能性がありますが、このメタデータだけでは影響の対象や範囲を判断することは困難と考えられます。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、対象法令と改正法令の関係、改正内容及び施行に関する規定を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:42Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-27227cc2445ef011",
@@ -2972,6 +2972,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:37Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新情報には、地方自治法（昭和二十二年法律第六十七号）を対象とする改正法令として、地方税法等の一部を改正する法律（令和四年法律第一号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日、更新一覧日は2026年10月28日とされています。",
+    "business_impact_ja": "改正内容によっては、地方自治法に関係する事業実務への影響が生じる可能性がありますが、提供情報だけでは具体的な変更点や適用対象は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で、改正内容と施行・適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《地方税法等部分修正法》：《地方自治法》更新",
@@ -2979,13 +2985,7 @@
         "business_impact": "地方政府可能受到《地方自治法》修订的影响，而不仅仅是标题所暗示的地方税变更。元数据未指明修订条款或具体的运作影响。",
         "recommended_action": "查阅日文官方来源可能有助于明确《地方自治法》的哪些条款已被修订，以及是否适用过渡条款。"
       }
-    },
-    "summary_ja": "法令更新情報には、地方自治法（昭和二十二年法律第六十七号）を対象とする改正法令として、地方税法等の一部を改正する法律（令和四年法律第一号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日、更新一覧日は2026年10月28日とされています。",
-    "business_impact_ja": "改正内容によっては、地方自治法に関係する事業実務への影響が生じる可能性がありますが、提供情報だけでは具体的な変更点や適用対象は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として参照し、e-Gov法令検索などの日本語の公式情報源で、改正内容と施行・適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:42Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-aab3cdb9625e3c06",
@@ -3008,6 +3008,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:37Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "地方自治法に関係する業務への影響が考えられますが、提供されたメタデータだけでは、影響する業務や必要な対応の有無を判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で、改正条文、施行日および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《所得税法等部分修订法》：《地方自治法》更新",
@@ -3015,13 +3021,7 @@
         "business_impact": "尽管修订法的标题涉及所得税，地方政府仍可能受到《地方自治法》修订的影响。该列表未说明修订的条款，也未明确具体业务影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《地方自治法》的哪些条款得到修订，以及是否适用过渡条款。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "地方自治法に関係する業務への影響が考えられますが、提供されたメタデータだけでは、影響する業務や必要な対応の有無を判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で、改正条文、施行日および適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:42Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-c85829650044b4c8",
@@ -3044,6 +3044,12 @@
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:37Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、相続税法（昭和二十五年法律第七十三号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日とされ、更新一覧日は2026年10月28日です。",
+    "business_impact_ja": "相続税に関係する税務処理等に影響する可能性がありますが、このメタデータだけでは具体的な改正内容や適用範囲は確認できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、e-Gov等の日本語の公式情報源で改正条文、附則および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:42Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《所得税法等部分修订法》：《继承税法》更新",
@@ -3051,13 +3057,7 @@
         "business_impact": "继承税纳税人可能受到《继承税法》修订的影响，但该列表未说明变更的条款或其实际影响。",
         "recommended_action": "查阅日文官方来源可能有助于厘清《继承税法》修订后的条款及所列生效日期的适用情况。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、相続税法（昭和二十五年法律第七十三号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。公布日は2022年3月31日、施行日は2022年4月1日とされ、更新一覧日は2026年10月28日です。",
-    "business_impact_ja": "相続税に関係する税務処理等に影響する可能性がありますが、このメタデータだけでは具体的な改正内容や適用範囲は確認できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒にとどめ、e-Gov等の日本語の公式情報源で改正条文、附則および適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:42Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-8135a988386f45b3",
@@ -3080,6 +3080,12 @@
     "ai_notes": "Based on the title and structured listing details, not the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧の2026年10月28日付の情報には、税理士法（昭和二十六年法律第二百三十七号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。原文には、公布日が2022年3月31日、施行日が2023年4月1日と記載されていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "税理士法に関わる業務に影響する可能性がありますが、提供情報だけでは具体的な影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語法令本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:46Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《所得税法等部分修订法》：《税理士法》更新",
@@ -3087,13 +3093,7 @@
         "business_impact": "税理士可能受到此次规范其职业的法律修订的影响，但该条目未指明变更的条款或其实际影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《税理士法》的修订条款以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧の2026年10月28日付の情報には、税理士法（昭和二十六年法律第二百三十七号）を対象とする改正法令として、所得税法等の一部を改正する法律（令和四年法律第四号）が記載されています。原文には、公布日が2022年3月31日、施行日が2023年4月1日と記載されていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "税理士法に関わる業務に影響する可能性がありますが、提供情報だけでは具体的な影響範囲は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語法令本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:46Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-13160680094b5798",
@@ -3116,6 +3116,12 @@
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）には、税理士法（昭和二十六年法律第二百三十七号）を対象とする、所得税法等の一部を改正する法律（令和四年法律第四号）による改正が記載されています。原文には、公布日が2022年3月31日、施行日が2022年4月1日と記載されています。",
+    "business_impact_ja": "税理士法に関係する業務に影響する可能性がありますが、提供されたメタデータには具体的な改正内容がなく、影響の範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:46Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《所得税法等部分修正法》：修订《税理士法》",
@@ -3123,13 +3129,7 @@
         "business_impact": "税理士可能受到规范其职业的法律修订的影响；该列表未列明实质性变更内容。",
         "recommended_action": "查阅日文官方来源或可明确《税理士法》的哪些条款发生了变更，以及所载生效日期如何适用。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）には、税理士法（昭和二十六年法律第二百三十七号）を対象とする、所得税法等の一部を改正する法律（令和四年法律第四号）による改正が記載されています。原文には、公布日が2022年3月31日、施行日が2022年4月1日と記載されています。",
-    "business_impact_ja": "税理士法に関係する業務に影響する可能性がありますが、提供されたメタデータには具体的な改正内容がなく、影響の範囲は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で、改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:46Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-166de355c0f57f70",
@@ -3152,6 +3152,12 @@
     "ai_notes": "Based on the title and structured metadata; the amended provisions were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:19Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「金融商品取引法第二条に規定する定義に関する内閣府令の一部を改正する内閣府令」（令和四年内閣府令第五十三号）は、2022年9月12日に公布され、2022年10月3日に施行されました。改正対象は「金融商品取引法第二条に規定する定義に関する内閣府令」（平成五年大蔵省令第十四号）であり、提供情報には具体的な改正内容は記載されていません。",
+    "business_impact_ja": "金融商品取引法上の定義に関わる改正として、事業や取引の法令上の取扱いに影響する可能性がありますが、提供情報のみでは具体的な影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:11Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "修订《金融商品交易法》第二条规定的定义相关内阁府令的内阁府令",
@@ -3159,13 +3165,7 @@
         "business_impact": "金融商品交易业者可能受到《金融商品交易法》定义变更的影响，但所提供的信息未指明哪些定义发生了变更，也未说明其实际影响。",
         "recommended_action": "查阅日文官方文本将有助于确定第二条中的哪些定义已被修订，以及是否适用任何过渡规定。"
       }
-    },
-    "summary_ja": "「金融商品取引法第二条に規定する定義に関する内閣府令の一部を改正する内閣府令」（令和四年内閣府令第五十三号）は、2022年9月12日に公布され、2022年10月3日に施行されました。改正対象は「金融商品取引法第二条に規定する定義に関する内閣府令」（平成五年大蔵省令第十四号）であり、提供情報には具体的な改正内容は記載されていません。",
-    "business_impact_ja": "金融商品取引法上の定義に関わる改正として、事業や取引の法令上の取扱いに影響する可能性がありますが、提供情報のみでは具体的な影響範囲は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索などの日本語の公式情報源で改正条文と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:11Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-d855ca7a2588bb77",
@@ -3188,6 +3188,12 @@
     "ai_notes": "Based on the title and structured metadata; the amended provisions were not provided, and the amendment title differs from the listed target instrument. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:19Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新情報には、金融商品取引法第二条に規定する定義に関する内閣府令（平成五年大蔵省令第十四号）を対象とする改正法令として、金融商品取引業等に関する内閣府令の一部を改正する内閣府令（令和四年内閣府令第四十二号）が記載されています。公布日は2022年6月30日、施行日は2022年7月1日とされていますが、改正内容の詳細は本メタデータには示されていません。",
+    "business_impact_ja": "金融商品取引法上の定義に関わる業務について、取扱いの確認が必要となる可能性がありますが、具体的な影響は本メタデータだけでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:11Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "修订《金融商品交易业等相关内阁府令》的内阁府令",
@@ -3195,13 +3201,7 @@
         "business_impact": "金融商品交易业经营者可能受到《金融商品交易法》第二条相关定义变更的影响；所列修订对象为定义府令，而非修订标题中所称的业务府令。",
         "recommended_action": "查阅日文官方来源或可明确哪些定义经过修订、其范围以及任何过渡性规定。"
       }
-    },
-    "summary_ja": "法令更新情報には、金融商品取引法第二条に規定する定義に関する内閣府令（平成五年大蔵省令第十四号）を対象とする改正法令として、金融商品取引業等に関する内閣府令の一部を改正する内閣府令（令和四年内閣府令第四十二号）が記載されています。公布日は2022年6月30日、施行日は2022年7月1日とされていますが、改正内容の詳細は本メタデータには示されていません。",
-    "business_impact_ja": "金融商品取引法上の定義に関わる業務について、取扱いの確認が必要となる可能性がありますが、具体的な影響は本メタデータだけでは判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索等の日本語の公式情報源で改正条文や適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:11Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-0e83fb9073a3b923",
@@ -3224,6 +3224,12 @@
     "ai_notes": "Based on the title and structured listing information; the headline names the amending Act, while the listed target is the Local Autonomy Act. This unofficial English summary must be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:47Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、地方自治法（昭和二十二年法律第六十七号）を対象に、環境と調和のとれた食料システムの確立のための環境負荷低減事業活動の促進等に関する法律（令和四年法律第三十七号）による改正が記載されています。原文記載の公布日は2022年5月2日、施行日は2022年7月1日で、更新一覧日は2026年10月28日です。",
+    "business_impact_ja": "地方自治法の改正内容によっては、自治体との関係を有する事業に影響する可能性がありますが、提供情報だけでは具体的な変更点や事業への適用範囲は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文、施行日および関連規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:24Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《为建立与环境相协调的食品系统促进降低环境负荷事业活动等相关法律》对《地方自治法》的修订",
@@ -3231,13 +3237,7 @@
         "business_impact": "地方政府可能受到影响，因为所列修订涉及《地方自治法》，而非直接明确食品系统企业的义务。元数据未说明经修订的条款及其实际影响。",
         "recommended_action": "建议查阅日文官方来源，以确定2022年第37号法律修订的《地方自治法》条款，并确认其范围及生效日期规定。"
       }
-    },
-    "summary_ja": "法令更新一覧には、地方自治法（昭和二十二年法律第六十七号）を対象に、環境と調和のとれた食料システムの確立のための環境負荷低減事業活動の促進等に関する法律（令和四年法律第三十七号）による改正が記載されています。原文記載の公布日は2022年5月2日、施行日は2022年7月1日で、更新一覧日は2026年10月28日です。",
-    "business_impact_ja": "地方自治法の改正内容によっては、自治体との関係を有する事業に影響する可能性がありますが、提供情報だけでは具体的な変更点や事業への適用範囲は確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文、施行日および関連規定を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:24Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-ec8d36491a37de04",
@@ -3296,6 +3296,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:56Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令とし、困難な問題を抱える女性への支援に関する法律（令和四年法律第五十二号）を改正法令とする情報が記載されています。更新一覧日は2026年10月28日、公布日および施行日は2022年5月25日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "地方自治体との関係業務や女性支援に関わる事業では、関連規定の確認が必要となる可能性がありますが、このメタデータだけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索等で対象条文、改正内容および施行日の適用範囲を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:33Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《面临困难问题女性支援法》：修订《地方自治法》",
@@ -3303,13 +3309,7 @@
         "business_impact": "地方政府可能受到《地方自治法》修订的影响；元数据未明确具体变更，也未明确这些变更对面临困难问题女性支援工作的实际影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《地方自治法》的哪些条款经过修订，以及所述生效日期的适用范围。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令とし、困難な問題を抱える女性への支援に関する法律（令和四年法律第五十二号）を改正法令とする情報が記載されています。更新一覧日は2026年10月28日、公布日および施行日は2022年5月25日とされていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "地方自治体との関係業務や女性支援に関わる事業では、関連規定の確認が必要となる可能性がありますが、このメタデータだけでは具体的な事業影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索等で対象条文、改正内容および施行日の適用範囲を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:33Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-ca0b47b3e2a70a7a",
@@ -3332,6 +3332,12 @@
     "ai_notes": "Based on the title and structured listing information, not the statutory text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:56Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、児童福祉法（昭和二十二年法律第百六十四号）を対象法令、困難な問題を抱える女性への支援に関する法律（令和四年法律第五十二号）を改正法令として、更新一覧日が2026年10月28日と記載されています。公布日・施行日はともに2022年5月25日と記載されていますが、具体的な改正内容や施行範囲は、このメタデータからは確認できません。",
+    "business_impact_ja": "児童福祉や女性支援に関わる事業では、関連規定の確認が必要となる可能性がありますが、具体的な事業上の影響は、このメタデータだけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報としての本要約を確認の端緒とし、e-Govの日本語法令本文や附則で、改正内容と施行日・適用範囲を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:33Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《面临困难问题女性支援法》：修订《儿童福利法》",
@@ -3339,13 +3345,7 @@
         "business_impact": "儿童及儿童福利服务提供者可能受到影响，因为本条目中被修订的法律是《儿童福利法》，而非仅涉及面临困难问题女性支援的法律。元数据未说明服务或义务的具体变化。",
         "recommended_action": "建议查阅日文官方来源，了解2022年第52号法律所修订的《儿童福利法》条款，以及所述生效日期的适用范围。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、児童福祉法（昭和二十二年法律第百六十四号）を対象法令、困難な問題を抱える女性への支援に関する法律（令和四年法律第五十二号）を改正法令として、更新一覧日が2026年10月28日と記載されています。公布日・施行日はともに2022年5月25日と記載されていますが、具体的な改正内容や施行範囲は、このメタデータからは確認できません。",
-    "business_impact_ja": "児童福祉や女性支援に関わる事業では、関連規定の確認が必要となる可能性がありますが、具体的な事業上の影響は、このメタデータだけでは判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報としての本要約を確認の端緒とし、e-Govの日本語法令本文や附則で、改正内容と施行日・適用範囲を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:33Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-3f124a81abf4f331",
@@ -3368,6 +3368,12 @@
     "ai_notes": "Based on the title and structured listing details, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:56Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）に、地方自治法（昭和二十二年法律第六十七号）を対象とする改正情報が掲載されています。改正法令は「地域の自主性及び自立性を高めるための改革の推進を図るための関係法律の整備に関する法律」（令和四年法律第四十四号）で、公布日は2022年5月20日、施行日は2022年8月20日と記載されています。",
+    "business_impact_ja": "地方自治法に関係する事業や自治体との取引について、改正内容の確認が必要となる可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Govの法令本文や改正内容を確認し、関係する規定への影響を検討することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:33Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《关于完善相关法律以推动提高地方自主性及自立性改革的法律》修订《地方自治法》",
@@ -3375,13 +3381,7 @@
         "business_impact": "地方政府可能受到《地方自治法》变更的影响，但该列表未指明修订的条款及其实际影响。",
         "recommended_action": "查阅日文官方来源或可明确《地方自治法》的哪些条款已被修订，以及是否适用过渡条款。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）に、地方自治法（昭和二十二年法律第六十七号）を対象とする改正情報が掲載されています。改正法令は「地域の自主性及び自立性を高めるための改革の推進を図るための関係法律の整備に関する法律」（令和四年法律第四十四号）で、公布日は2022年5月20日、施行日は2022年8月20日と記載されています。",
-    "business_impact_ja": "地方自治法に関係する事業や自治体との取引について、改正内容の確認が必要となる可能性がありますが、提供情報には具体的な改正内容がなく、影響の範囲は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語の公式情報源であるe-Govの法令本文や改正内容を確認し、関係する規定への影響を検討することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:33Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-e6cfc4e2e2d8146c",
@@ -3399,14 +3399,6 @@
     "last_checked": "2026-10-29",
     "relevance_score": 5.0,
     "first_seen_at": "2026-10-29",
-    "translations": {
-      "zh-Hans": {
-        "title": "《关于完善相关法律以推动提高地方自主性及自立性改革的法律》修订《地方自治法》",
-        "summary": "2022年第44号法律《为推进提高地方自主性及自立性的改革而整备相关法律的法律》修订了《地方自治法》（1947年第67号法律）。该列表将公布日期和生效日期均列为2022-05-20。",
-        "business_impact": "地方政府可能受到《地方自治法》变更的影响，但该列表未指明修订的条款及其实际影响。",
-        "recommended_action": "查阅日文官方来源可能有助于明确《地方自治法》的哪些条款已被修订，以及是否有任何过渡安排。"
-      }
-    },
     "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary requires verification against the authoritative Japanese source.",
@@ -3417,7 +3409,15 @@
     "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語公式情報で改正条文、施行日及び適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-30T00:41:33Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "《关于完善相关法律以推动提高地方自主性及自立性改革的法律》修订《地方自治法》",
+        "summary": "2022年第44号法律《为推进提高地方自主性及自立性的改革而整备相关法律的法律》修订了《地方自治法》（1947年第67号法律）。该列表将公布日期和生效日期均列为2022-05-20。",
+        "business_impact": "地方政府可能受到《地方自治法》变更的影响，但该列表未指明修订的条款及其实际影响。",
+        "recommended_action": "查阅日文官方来源可能有助于明确《地方自治法》的哪些条款已被修订，以及是否有任何过渡安排。"
+      }
+    }
   },
   {
     "id": "raw-99160b9ea8a634cc",
@@ -3435,14 +3435,6 @@
     "last_checked": "2026-10-29",
     "relevance_score": 5.0,
     "first_seen_at": "2026-10-29",
-    "translations": {
-      "zh-Hans": {
-        "title": "《关于完善相关法律以推进提高地方自主性及自立性改革的法律》修订《儿童福利法》",
-        "summary": "《关于完善相关法律以推进提高地方自主性及自立性改革的法律》（2022年第44号法律）修订了《儿童福利法》（1947年第164号法律）。该列表将公布日期和生效日期均列为2022-05-20。",
-        "business_impact": "儿童福利服务提供者及《儿童福利法》涵盖的儿童可能受到影响，但该列表未指明修订的条款或其实际影响。",
-        "recommended_action": "建议查阅日文官方来源，以确定《儿童福利法》中经修订的条款，并核实其适用范围及生效日期安排。"
-      }
-    },
     "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
@@ -3453,7 +3445,15 @@
     "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令本文や関係官公庁の公式資料で、改正内容、施行関係および事業との関連をご確認いただくことが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-30T00:41:33Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "《关于完善相关法律以推进提高地方自主性及自立性改革的法律》修订《儿童福利法》",
+        "summary": "《关于完善相关法律以推进提高地方自主性及自立性改革的法律》（2022年第44号法律）修订了《儿童福利法》（1947年第164号法律）。该列表将公布日期和生效日期均列为2022-05-20。",
+        "business_impact": "儿童福利服务提供者及《儿童福利法》涵盖的儿童可能受到影响，但该列表未指明修订的条款或其实际影响。",
+        "recommended_action": "建议查阅日文官方来源，以确定《儿童福利法》中经修订的条款，并核实其适用范围及生效日期安排。"
+      }
+    }
   },
   {
     "id": "raw-c5c96a1816ed0da8",
@@ -3471,14 +3471,6 @@
     "last_checked": "2026-10-29",
     "relevance_score": 5.0,
     "first_seen_at": "2026-10-29",
-    "translations": {
-      "zh-Hans": {
-        "title": "《推进提高地方自主性及自立性改革相关法律整备法》：修订《儿童福利法》",
-        "summary": "《推进提高地方自主性及自立性改革相关法律整备法》（2022年第44号法律）修订《儿童福利法》（1947年第164号法律）。该列表记载，此次修订的公布日期为2022-05-20，生效日期为2022-08-20。",
-        "business_impact": "儿童福利服务提供者及负责儿童福利管理的主管机关可能受到此次修订的影响，但该列表未指明变更的条款或其对业务运作的影响。",
-        "recommended_action": "查阅日文官方来源可能有助于明确《儿童福利法》修订条款、其适用范围及任何过渡安排。"
-      }
-    },
     "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
@@ -3489,7 +3481,15 @@
     "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で、改正条文や適用関係を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-30T00:41:37Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "《推进提高地方自主性及自立性改革相关法律整备法》：修订《儿童福利法》",
+        "summary": "《推进提高地方自主性及自立性改革相关法律整备法》（2022年第44号法律）修订《儿童福利法》（1947年第164号法律）。该列表记载，此次修订的公布日期为2022-05-20，生效日期为2022-08-20。",
+        "business_impact": "儿童福利服务提供者及负责儿童福利管理的主管机关可能受到此次修订的影响，但该列表未指明变更的条款或其对业务运作的影响。",
+        "recommended_action": "查阅日文官方来源可能有助于明确《儿童福利法》修订条款、其适用范围及任何过渡安排。"
+      }
+    }
   },
   {
     "id": "raw-0827cafb0d6a5c50",
@@ -3507,14 +3507,6 @@
     "last_checked": "2026-10-29",
     "relevance_score": 5.0,
     "first_seen_at": "2026-10-29",
-    "translations": {
-      "zh-Hans": {
-        "title": "废止《东日本大地震受灾者普通护照签发特例法》的法律",
-        "summary": "2022年第34号法律废止《东日本大地震受灾者普通护照签发特例法》。该列表将《地方自治法》（1947年第67号法律）列为对象法律，并将公布日期和生效日期均列为2022-04-27；未说明对该法的具体修改。",
-        "business_impact": "适用普通护照签发特例规定的东日本大地震受灾者可能受到这些规定被废止的影响。该列表还涉及《地方自治法》，但未说明对地方政府的影响。",
-        "recommended_action": "查阅日文官方文本或可明确此次废止的范围、是否存在过渡性规定，以及对《地方自治法》的相关修改。"
-      }
-    },
     "summary_source": "claude",
     "confidence": "medium",
     "ai_notes": "Based on the title and structured listing details; the relationship between the passport-related repeal and the listed target law is unexplained. This unofficial English summary requires verification against the authoritative Japanese source.",
@@ -3525,6 +3517,14 @@
     "recommended_action_ja": "非公式のモニタリング情報として扱い、e-Gov法令検索などの日本語の公式情報源で、両法令の本文、改正関係および施行日を確認することが考えられます。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-10-30T00:41:37Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "废止《东日本大地震受灾者普通护照签发特例法》的法律",
+        "summary": "2022年第34号法律废止《东日本大地震受灾者普通护照签发特例法》。该列表将《地方自治法》（1947年第67号法律）列为对象法律，并将公布日期和生效日期均列为2022-04-27；未说明对该法的具体修改。",
+        "business_impact": "适用普通护照签发特例规定的东日本大地震受灾者可能受到这些规定被废止的影响。该列表还涉及《地方自治法》，但未说明对地方政府的影响。",
+        "recommended_action": "查阅日文官方文本或可明确此次废止的范围、是否存在过渡性规定，以及对《地方自治法》的相关修改。"
+      }
+    }
   }
 ]

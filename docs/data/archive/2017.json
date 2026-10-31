@@ -596,6 +596,12 @@
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:57Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、刑事訴訟法（昭和二十三年法律第百三十一号）を対象とする改正法令として、刑法の一部を改正する法律（平成二十九年法律第七十二号）が記載されています。公布日は2017年6月23日、施行日は2017年7月13日とされ、更新一覧日は2026年10月28日と記載されています。",
+    "business_impact_ja": "刑事手続に関係する社内対応に影響する可能性がありますが、提供されたメタデータには具体的な改正内容がなく、事業への影響は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索の日本語条文や改正履歴で、具体的な改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《刑法部分修正法》：更新《刑事诉讼法》",
@@ -603,13 +609,7 @@
         "business_impact": "参与刑事诉讼的人员可能受到《刑事诉讼法》修订的影响，而不仅仅是标题所示的《刑法》变更的影响；该列表未指明具体的程序变更。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《刑事诉讼法》的哪些条款经过修订，以及所述生效日期如何适用。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、刑事訴訟法（昭和二十三年法律第百三十一号）を対象とする改正法令として、刑法の一部を改正する法律（平成二十九年法律第七十二号）が記載されています。公布日は2017年6月23日、施行日は2017年7月13日とされ、更新一覧日は2026年10月28日と記載されています。",
-    "business_impact_ja": "刑事手続に関係する社内対応に影響する可能性がありますが、提供されたメタデータには具体的な改正内容がなく、事業への影響は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索の日本語条文や改正履歴で、具体的な改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:54Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-624da51872547ffe",
@@ -632,6 +632,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text. This unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:57Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）に、地方独立行政法人法（平成十五年法律第百十八号）を対象とする、地方自治法等の一部を改正する法律（平成二十九年法律第五十四号）の情報が掲載されています。メタデータには、公布日・施行日ともに2017年6月9日と記載されています。",
+    "business_impact_ja": "地方独立行政法人に関係する事業では、改正内容が業務に影響する可能性がありますが、提供情報だけでは具体的な変更点や影響範囲は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語法令本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《地方自治法等部分修订法》",
@@ -639,13 +645,7 @@
         "business_impact": "地方独立行政法人可能受到其所依据法律修订的影响；该列表未说明实质性变更。",
         "recommended_action": "查阅日文官方来源或可明确《地方独立行政法人法》的修订条款，以及这些条款自所列生效日期起的适用情况。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧（更新一覧日：2026年10月28日）に、地方独立行政法人法（平成十五年法律第百十八号）を対象とする、地方自治法等の一部を改正する法律（平成二十九年法律第五十四号）の情報が掲載されています。メタデータには、公布日・施行日ともに2017年6月9日と記載されています。",
-    "business_impact_ja": "地方独立行政法人に関係する事業では、改正内容が業務に影響する可能性がありますが、提供情報だけでは具体的な変更点や影響範囲は確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Govの日本語法令本文や改正履歴で、改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:54Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-32a8c6b79f8133cc",
@@ -740,6 +740,12 @@
     "ai_notes": "Based on the title and structured metadata, not the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:57Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "地方交付税法（昭和二十五年法律第二百十一号）を対象とする「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）について、公布日は2017年3月31日、施行日は2017年4月1日と記載されています。法令更新一覧日は2026年10月28日ですが、提供情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "具体的な改正内容が示されていないため、事業への影響は提供情報のみでは判断が難しく、改正条文の確認が必要となる可能性があります。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正内容と施行に関する規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《地方交付税法等部分修订法》",
@@ -747,13 +753,7 @@
         "business_impact": "地方政府可能受到《地方交付税法》修订的影响，但元数据未说明修订条款，也未明确任何具体业务影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确修订条款、其适用范围以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "地方交付税法（昭和二十五年法律第二百十一号）を対象とする「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）について、公布日は2017年3月31日、施行日は2017年4月1日と記載されています。法令更新一覧日は2026年10月28日ですが、提供情報には具体的な改正内容は示されていません。",
-    "business_impact_ja": "具体的な改正内容が示されていないため、事業への影響は提供情報のみでは判断が難しく、改正条文の確認が必要となる可能性があります。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正内容と施行に関する規定を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:54Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-0b06efdbac1d8d07",
@@ -776,6 +776,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; this unofficial English summary and the translated statute titles should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:57Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）は、2017年3月31日に公布され、2017年4月1日に施行されたと記載されています。更新一覧日が2026年10月28日の情報では、対象法令として「地方特例交付金等の地方財政の特別措置に関する法律」（平成十一年法律第十七号）が示されています。",
+    "business_impact_ja": "地方財政に関する制度の改正が事業に関係する可能性がありますが、提供情報には具体的な改正内容がなく、影響の有無や範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《地方交付税法等部分修订法》",
@@ -783,13 +789,7 @@
         "business_impact": "地方政府可能因特别交付金或相关地方财政措施的变更而受到影响；所提供的信息未说明实质性变更内容。",
         "recommended_action": "建议查阅日文官方来源，了解1999年第17号法律的修订条文及所载生效日期的适用范围。"
       }
-    },
-    "summary_ja": "「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）は、2017年3月31日に公布され、2017年4月1日に施行されたと記載されています。更新一覧日が2026年10月28日の情報では、対象法令として「地方特例交付金等の地方財政の特別措置に関する法律」（平成十一年法律第十七号）が示されています。",
-    "business_impact_ja": "地方財政に関する制度の改正が事業に関係する可能性がありますが、提供情報には具体的な改正内容がなく、影響の有無や範囲は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索などの日本語の公式情報源で改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:54Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-fea6cd343ced77d2",
@@ -812,6 +812,12 @@
     "ai_notes": "Based on the title and structured metadata, not the substantive amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:57Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、関税暫定措置法（昭和三十五年法律第三十六号）を対象とする改正法令として、関税定率法等の一部を改正する法律（平成二十九年法律第十三号）が記載されています。メタデータ上の公布日は2017年3月31日、施行日は2017年4月1日で、更新一覧日は2026年10月28日とされています。",
+    "business_impact_ja": "関税に関わる事業では、改正内容が関税の取扱いに影響する可能性がありますが、提供情報だけでは具体的な変更点や適用範囲は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索などの日本語の公式情報源で改正内容、適用範囲および施行関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《关税定率法等部分修正法》",
@@ -819,13 +825,7 @@
         "business_impact": "进口商可能受到《关税暂定措施法》修订的影响，但该列表未明确涉及的货物、关税税率或条款。",
         "recommended_action": "查阅日文官方来源可能有助于明确修订后的关税条款、其适用范围及任何过渡安排。"
       }
-    },
-    "summary_ja": "法令更新一覧には、関税暫定措置法（昭和三十五年法律第三十六号）を対象とする改正法令として、関税定率法等の一部を改正する法律（平成二十九年法律第十三号）が記載されています。メタデータ上の公布日は2017年3月31日、施行日は2017年4月1日で、更新一覧日は2026年10月28日とされています。",
-    "business_impact_ja": "関税に関わる事業では、改正内容が関税の取扱いに影響する可能性がありますが、提供情報だけでは具体的な変更点や適用範囲は確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、e-Gov法令検索などの日本語の公式情報源で改正内容、適用範囲および施行関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:54Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-a2f0c9018378cd1e",
@@ -848,6 +848,12 @@
     "ai_notes": "Based on the title and structured metadata, without the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:05Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "地方交付税法（昭和二十五年法律第二百十一号）を改正対象とする「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）について、公布日は2017年3月31日、施行日は2018年4月1日と記載されています。法令更新一覧の日付は2026年10月28日ですが、提供情報には具体的な改正内容は示されていません。",
+    "business_impact_ja": "地方交付税に関係する業務への影響が考えられますが、提供情報のみでは具体的な影響や対象範囲を判断することは困難です。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索の日本語原文で改正内容と適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:58Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《地方交付税法等部分修正法》",
@@ -855,12 +861,6 @@
         "business_impact": "地方政府可能受到地方交付税框架变更的影响，但该列表未指明修订条款及其财政影响。",
         "recommended_action": "查阅日文官方来源可能有助于明确修订条款、其自2018-04-01起的适用情况以及任何过渡安排。"
       }
-    },
-    "summary_ja": "地方交付税法（昭和二十五年法律第二百十一号）を改正対象とする「地方交付税法等の一部を改正する法律」（平成二十九年法律第三号）について、公布日は2017年3月31日、施行日は2018年4月1日と記載されています。法令更新一覧の日付は2026年10月28日ですが、提供情報には具体的な改正内容は示されていません。",
-    "business_impact_ja": "地方交付税に関係する業務への影響が考えられますが、提供情報のみでは具体的な影響や対象範囲を判断することは困難です。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索の日本語原文で改正内容と適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:58Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   }
 ]

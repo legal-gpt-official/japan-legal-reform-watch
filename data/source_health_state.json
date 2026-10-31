@@ -58,10 +58,10 @@
       "last_recovered_at": "2026-10-22T23:54:42Z"
     },
     "courts-supreme": {
-      "consecutive_zero_runs": 0,
+      "consecutive_zero_runs": 1,
       "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": null,
+      "last_status": "warning_zero",
+      "last_problem_at": "2026-10-31T00:29:11Z",
       "last_recovered_at": null
     },
     "sesc": {

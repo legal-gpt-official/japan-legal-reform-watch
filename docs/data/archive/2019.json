@@ -1100,6 +1100,12 @@
     "ai_notes": "Based on the title and structured metadata, not the amendment text; the substantive changes are unspecified. This is an unofficial English summary requiring verification against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:43:56Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、税理士法（昭和二十六年法律第二百三十七号）を対象とする改正法令として、法科大学院の教育と司法試験等との連携等に関する法律等の一部を改正する法律（令和元年法律第四十四号）が記載されています。メタデータ上の公布日は2019年6月26日、施行日は2022年10月1日、更新一覧日は2026年10月28日です。",
+    "business_impact_ja": "税理士法に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容が示されておらず、影響範囲は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索の日本語原文で改正内容や施行日、関連する経過措置の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:41:29Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《法科大学院教育与司法考试等衔接等相关法律》：税理士法修订",
@@ -1107,13 +1113,7 @@
         "business_impact": "税理士可能受到其适用的《税理士法》修订的影响，而不仅仅涉及标题中强调的法科大学院与司法考试事项。该列表未说明哪些条款发生变更及其实际影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《税理士法》的修订条款及任何适用的过渡安排。"
       }
-    },
-    "summary_ja": "法令更新一覧には、税理士法（昭和二十六年法律第二百三十七号）を対象とする改正法令として、法科大学院の教育と司法試験等との連携等に関する法律等の一部を改正する法律（令和元年法律第四十四号）が記載されています。メタデータ上の公布日は2019年6月26日、施行日は2022年10月1日、更新一覧日は2026年10月28日です。",
-    "business_impact_ja": "税理士法に関係する業務に影響する可能性がありますが、提供情報には具体的な改正内容が示されておらず、影響範囲は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、e-Gov法令検索の日本語原文で改正内容や施行日、関連する経過措置の有無を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:41:29Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-4d8b4151d2f929f9",

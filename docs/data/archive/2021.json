@@ -560,6 +560,12 @@
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧の2026年10月28日付の情報には、船員保険法（昭和十四年法律第七十三号）を対象とする改正法令として、全世代対応型の社会保障制度を構築するための健康保険法等の一部を改正する法律（令和三年法律第六十六号）が記載されています。原文には、公布日が2021年6月11日、施行日が2022年10月1日と示されています。",
+    "business_impact_ja": "船員保険に関係する事業では、改正内容が保険関連の実務に影響する可能性がありますが、このメタデータだけでは具体的な変更内容や影響範囲は確認できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文、適用範囲および施行関係の規定を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:46Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《为构建面向所有世代的社会保障制度而部分修订健康保险法等的法律》：对《船员保险法》的修订",
@@ -567,13 +573,7 @@
         "business_impact": "《船员保险法》下的保险人和被保险人可能受到所列修订的影响，但所提供的信息未说明实质性变更内容。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《船员保险法》中经修订的条款及所载2022-10-01生效日期的适用范围。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧の2026年10月28日付の情報には、船員保険法（昭和十四年法律第七十三号）を対象とする改正法令として、全世代対応型の社会保障制度を構築するための健康保険法等の一部を改正する法律（令和三年法律第六十六号）が記載されています。原文には、公布日が2021年6月11日、施行日が2022年10月1日と示されています。",
-    "business_impact_ja": "船員保険に関係する事業では、改正内容が保険関連の実務に影響する可能性がありますが、このメタデータだけでは具体的な変更内容や影響範囲は確認できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であり、e-Gov法令検索などの日本語の公式情報源で、改正条文、適用範囲および施行関係の規定を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:46Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-70166f6d1aba864d",
@@ -632,6 +632,12 @@
     "ai_notes": "Based on the title and structured metadata; the amendment text was not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令として、子ども・子育て支援法及び児童手当法の一部を改正する法律（令和三年法律第五十号）が記載されています。公布日は2021年5月28日、施行日は2022年6月1日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
+    "business_impact_ja": "具体的な改正内容が示されていないため、このメタデータだけでは事業への影響を判断することは難しく、対象条文や業務との関係を確認する必要があると考えられます。",
+    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索で対象法令と改正法令の関係、改正内容及び施行日の適用範囲を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:46Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《儿童及育儿支援法及儿童津贴法部分修正法》：对《地方自治法》的关联修订",
@@ -639,13 +645,7 @@
         "business_impact": "地方政府可能受到所列《地方自治法》修订的影响，而不仅仅受到标题中儿童支援事项的影响。这些元数据未明确具体的运作影响。",
         "recommended_action": "查阅日文官方来源有助于厘清《地方自治法》的哪些条款被修订，以及所述生效日期如何适用。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、地方自治法（昭和二十二年法律第六十七号）を対象法令として、子ども・子育て支援法及び児童手当法の一部を改正する法律（令和三年法律第五十号）が記載されています。公布日は2021年5月28日、施行日は2022年6月1日、更新一覧日は2026年10月28日とされていますが、具体的な改正内容は示されていません。",
-    "business_impact_ja": "具体的な改正内容が示されていないため、このメタデータだけでは事業への影響を判断することは難しく、対象条文や業務との関係を確認する必要があると考えられます。",
-    "recommended_action_ja": "非公式のモニタリング情報として、日本語のe-Gov法令検索で対象法令と改正法令の関係、改正内容及び施行日の適用範囲を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:46Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-f97e99ff73e25d80",
@@ -668,6 +668,12 @@
     "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:44Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令更新一覧のメタデータには、意匠法（昭和三十四年法律第百二十五号）を対象とする改正法令として、特許法等の一部を改正する法律（令和三年法律第四十二号）が記載されています。公布日は2021年5月21日、施行日は2022年10月1日とされ、更新一覧日は2026年10月28日です。",
+    "business_impact_ja": "意匠に関する権利管理や手続に影響する可能性がありますが、提供情報には具体的な改正内容がなく、事業への影響範囲は判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語本文で改正内容、適用関係および施行日を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:46Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《特许法等部分修正法》：《意匠法》更新",
@@ -675,13 +681,7 @@
         "business_impact": "意匠权申请人和权利人可能受到《意匠法》修订的影响，但该列表未指明变更的条款或其实际影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确《意匠法》修订条款、其适用范围，以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "e-Gov法令更新一覧のメタデータには、意匠法（昭和三十四年法律第百二十五号）を対象とする改正法令として、特許法等の一部を改正する法律（令和三年法律第四十二号）が記載されています。公布日は2021年5月21日、施行日は2022年10月1日とされ、更新一覧日は2026年10月28日です。",
-    "business_impact_ja": "意匠に関する権利管理や手続に影響する可能性がありますが、提供情報には具体的な改正内容がなく、事業への影響範囲は判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報であるため、e-Gov法令検索の日本語本文で改正内容、適用関係および施行日を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:46Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-ada9b5078646bbb3",
@@ -704,6 +704,12 @@
     "ai_notes": "Based on the title and structured listing information, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:48Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "e-Gov法令検索の更新一覧（2026年10月28日）には、意匠法（昭和三十四年法律第百二十五号）を対象とする「特許法等の一部を改正する法律」（令和三年法律第四十二号）の情報が記載されています。メタデータには、公布日が2021年5月21日、施行日が2023年4月1日と示されていますが、具体的な改正内容は記載されていません。",
+    "business_impact_ja": "意匠に関わる事業や知的財産管理に影響する可能性がありますが、具体的な影響範囲は、このメタデータだけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、日本語の公式情報源であるe-Gov法令検索で、改正内容、施行日及び適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:50Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《专利法等部分修正法》：《外观设计法》更新",
@@ -711,13 +717,7 @@
         "business_impact": "外观设计申请人及外观设计权人可能受到《外观设计法》修订的影响，但该列表未说明实质性变更。",
         "recommended_action": "查阅日文官方来源或可明确经修订的《外观设计法》条款，以及与所述生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "e-Gov法令検索の更新一覧（2026年10月28日）には、意匠法（昭和三十四年法律第百二十五号）を対象とする「特許法等の一部を改正する法律」（令和三年法律第四十二号）の情報が記載されています。メタデータには、公布日が2021年5月21日、施行日が2023年4月1日と示されていますが、具体的な改正内容は記載されていません。",
-    "business_impact_ja": "意匠に関わる事業や知的財産管理に影響する可能性がありますが、具体的な影響範囲は、このメタデータだけでは判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、日本語の公式情報源であるe-Gov法令検索で、改正内容、施行日及び適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:50Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-6bf390dd094ab5a8",
@@ -740,6 +740,12 @@
     "ai_notes": "Based on the title and structured listing metadata, not the amendment text; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-10-29T00:42:48Z",
     "summary_model": "gpt-6.1-sol",
+    "summary_ja": "法令更新一覧には、相続税法（昭和二十五年法律第七十三号）を対象とする改正法令として、民法等の一部を改正する法律（令和三年法律第二十四号）が記載されています。メタデータ上の公布日は2021年4月28日、施行日は2023年4月1日、更新一覧日は2026年10月28日です。",
+    "business_impact_ja": "相続税に関係する業務で改正内容の確認が必要となる可能性がありますが、具体的な変更内容や適用範囲は、このメタデータだけでは判断できません。",
+    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で、改正条文、施行日および適用関係を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-30T00:40:50Z",
+    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "《民法等部分修订法》：修订《相续税法》",
@@ -747,13 +753,7 @@
         "business_impact": "相续税纳税人可能受到《相续税法》修订的影响，而不仅仅是标题中所述的《民法》变更的影响。该列表未说明修订后的税法条款及其实际影响。",
         "recommended_action": "可考虑查阅日文官方来源，以明确修订后的《相续税法》条款，以及与所载生效日期相关的任何过渡安排。"
       }
-    },
-    "summary_ja": "法令更新一覧には、相続税法（昭和二十五年法律第七十三号）を対象とする改正法令として、民法等の一部を改正する法律（令和三年法律第二十四号）が記載されています。メタデータ上の公布日は2021年4月28日、施行日は2023年4月1日、更新一覧日は2026年10月28日です。",
-    "business_impact_ja": "相続税に関係する業務で改正内容の確認が必要となる可能性がありますが、具体的な変更内容や適用範囲は、このメタデータだけでは判断できません。",
-    "recommended_action_ja": "本要約は非公式のモニタリング情報として、日本語の公式情報源であるe-Gov法令検索で、改正条文、施行日および適用関係を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-30T00:40:50Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    }
   },
   {
     "id": "raw-11c99010811a07ea",
