@@ -29,6 +29,10 @@
     {
       "label": "Ministry of the Environment press releases",
       "url": "https://www.env.go.jp/press/"
+    },
+    {
+      "label": "Ministry of the Environment 2026 Antarctic amendment and commencement guidance",
+      "url": "https://www.env.go.jp/nature/nankyoku/page_00529.html"
     }
   ],
   "background": {
@@ -63,16 +67,17 @@
       {
         "text": "Advance procedures for the newly covered sea-only activities have applied since 30 June 2026.",
         "source_ids": [
-          "s3"
+          "s3",
+          "s7"
         ]
       }
     ],
     "expected": [
-      "The Annex VI-dependent provisions will commence according to the statutory commencement mechanism once the relevant treaty conditions are fulfilled; the date cannot be inferred from the earlier procedural commencement."
+      "The Annex VI-dependent provisions take effect one month after Annex VI enters into force for Japan under the statute's commencement clause. The Ministry confirms that this commencement date remains undetermined."
     ],
     "uncertainties": [
-      "A confirmed effective date for the main Annex VI emergency-liability provisions was not established in the primary materials checked.",
-      "Whether a particular foreign-organized voyage requires confirmation or notification depends on the operator and participant arrangements."
+      "As of 31 October 2026, no commencement date for the Annex VI emergency-response and liability provisions has been confirmed by the Ministry.",
+      "Whether a particular foreign-organized voyage requires confirmation or notification depends on the organizer and participant arrangements."
     ]
   },
   "business_impact": {
@@ -178,10 +183,18 @@
       "title": "October 2026 consultation on Antarctic protected areas",
       "url": "https://www.env.go.jp/press/press_05622.html",
       "accessed_at": "2026-10-29"
+    },
+    {
+      "id": "s7",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "2026 Antarctic Act amendment: commencement of sea-only procedures and Annex VI-dependent provisions",
+      "url": "https://www.env.go.jp/nature/nankyoku/page_00529.html",
+      "accessed_at": "2026-10-31"
     }
   ],
-  "verified_at": "2026-10-29",
+  "verified_at": "2026-10-31",
   "source_fingerprint": "sha256:4d3d00d27ac734c30e00147d4c547142",
   "author": "chatgpt",
-  "review_notes": "Primary sources checked on 2026-10-29: Council advice, 2026 amendment and June commencement announcement, House of Councillors record and October consultation. No unsupported assertion that Annex VI is already effective."
+  "review_notes": "Rechecked 2026-10-31 against the Ministry's current dedicated amendment page: the sea-only procedures commenced on 30 June 2026, while the Annex VI-related emergency provisions commence one month after Annex VI enters into force for Japan, with no confirmed date. The October protected-area consultation is separate."
 }
