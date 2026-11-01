@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "dossier_id": "osh-skin-hazard-chemicals-2026-draft",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's evolving skin and eye hazard list: the 2026 draft based on updated GHS classifications",
+  "quick_take": {
+    "what_changed": "MHLW proposes revising the list of skin- and eye-hazardous chemicals as national GHS classifications change. The proposed update includes removals and a later classification-based scope; it is not yet promulgated.",
+    "who_is_affected": "Employers manufacturing or handling designated hazardous chemicals, including industrial laboratories and manufacturers, should assess potential changes to protective-equipment requirements.",
+    "what_to_do_now": "Compare substances used at each site with the current designation and the proposed GHS-based revisions, while continuing to apply existing protective-equipment duties."
+  },
+  "instrument_type": "notice",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-08b316bd494b648e"
+  ],
+  "instruments": [
+    {
+      "number": "令和七年厚生労働省告示第三百一号",
+      "name_ja": "労働安全衛生規則第五百九十四条の二第一項の規定に基づき皮膚若しくは眼に障害を与えるおそれ又は皮膚から吸収され、若しくは皮膚に侵入して、健康障害を生ずるおそれがあることが明らかな物として厚生労働大臣が定めるもの",
+      "name_en": "MHLW designation of substances presenting skin, eye or skin-absorption hazards (proposed amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MHLW chemical safety regulation and substance lists",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000099121_00005.html"
+    },
+    {
+      "label": "MHLW press releases",
+      "url": "https://www.mhlw.go.jp/stf/houdou/index.html"
+    },
+    {
+      "label": "e-Gov consultation list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's occupational chemical controls increasingly rely on risk assessment and hazard communication rather than only the substances covered by older, substance-specific regulations. Under the current Industrial Safety and Health Regulation, employers handling designated substances that can harm skin or eyes or enter through the skin must, subject to stated exceptions, ensure appropriate impermeable protective equipment is used.",
+      "The ministry explains that national GHS classifications are updated as hazard evidence changes. Its proposal would remove four substances, including lead(II) chloride, whose classifications no longer meet the relevant category 1 criteria, and would refresh the scope using later national classification results. The change reflects evidence-based updating, not a declaration that all listed chemicals have become safe."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The MHLW's broader chemical-management reform strengthened workplace risk assessment, safety-data-sheet communication and controls for dermal exposure. The 2025 ministerial notice designated substances using national GHS classification results; a static list can become inaccurate as those classifications are revised.",
+      "On 20 October 2026 the ministry opened consultation on a staged revision. Its outline proposes one set of exclusions from the date of the eventual notice, and a later update based on classifications through March 2026 to apply on 1 April 2028. The ministry links the later date to allowing time for safety-data-sheet preparation and other business adjustments."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The consultation on the draft notice closes on 18 November 2026.",
+        "date": "2026-11-18",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The ministry may finalize and publish a notice after reviewing submissions; the staged application dates require confirmation in the final text."
+    ],
+    "uncertainties": [
+      "The final list of substances, date of promulgation and whether the proposed 1 April 2028 application date will be retained are not yet confirmed."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Manufacturers, laboratories and maintenance operators should use the current legally designated list for present protective-equipment duties, while mapping the proposed changes to their inventories and safety-data sheets. A removal from this particular designation does not necessarily eliminate obligations under other occupational chemical rules.",
+      "The proposed two-stage approach may change which substances trigger the specific impermeable protective-equipment duty at different times. Businesses should avoid assuming that a new GHS classification instantly amends the legally designated list before the relevant notice applies."
+    ],
+    "checklist": [
+      "Cross-check the current workplace chemical inventory against the existing skin/eye hazard designation and the draft exclusions.",
+      "Identify any substances likely to enter the later classification-based scope, and schedule SDS and protective-equipment reviews without treating proposed dates as enacted."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-20",
+      "label": "Consultation on revised skin and eye hazard designation opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-18",
+      "label": "Deadline for comments on draft designation",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "MHLW / e-Gov",
+      "title": "Public comment 495260227 on the skin and eye hazard designation",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260227",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "MHLW",
+      "title": "Official outline of the proposed skin and eye hazardous substance designation amendment",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322578",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "MHLW",
+      "title": "New occupational chemical management controls and current lists",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000099121_00005.html",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "verified_at": "2026-11-01",
+  "source_fingerprint": "sha256:96898ed7d2040832be5b5c01d56f6c4a",
+  "author": "chatgpt",
+  "review_notes": "Checked draft notice, MHLW overview and current chemical-management page on 2026-11-01. Distinguishes existing PPE duty, draft removal and proposed future GHS update."
+}
