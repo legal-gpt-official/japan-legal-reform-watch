@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "dossier_id": "dc-pension-digital-procedures-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Digital claims and notices in Japan's defined-contribution pensions: the 2026 draft rules",
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-0f915389da50170d"
+  ],
+  "instruments": [
+    {
+      "number": "平成十三年厚生労働省令第百七十五号",
+      "name_ja": "確定拠出年金法施行規則",
+      "name_en": "Enforcement Regulation of the Defined Contribution Pension Act (proposed amendment)"
+    }
+  ],
+  "quick_take": {
+    "what_changed": "The ministry proposes electronic pension-claim and record-management submissions and removes the paper-only wording for certain benefit notices; the proposal is not yet in force.",
+    "who_is_affected": "Defined-contribution pension recordkeepers, plan administrators and participants seeking old-age or withdrawal benefits would be affected if the proposal is adopted.",
+    "what_to_do_now": "Review which forms and identity checks could move online, while keeping existing legally prescribed processes until the amended regulation takes effect."
+  },
+  "watch_pages": [
+    {
+      "label": "MHLW defined-contribution pension system and revisions",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/kyoshutsu/index.html"
+    },
+    {
+      "label": "MHLW new laws and notices",
+      "url": "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html"
+    },
+    {
+      "label": "e-Gov public-comment listings",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's defined-contribution pension system relies on recordkeeping and benefit-claim processes that historically specified documents or paper notices. The Ministry of Health, Labour and Welfare identifies the administrative burden on recordkeeping administrators and related institutions as the immediate reason for this draft, rather than a change in pension eligibility or contribution limits.",
+      "The proposal would permit electronic submission of record-management requests, transfers of individually managed assets, old-age benefit claims and specified withdrawal claims. It would also remove the express paper requirement for certain benefit notifications and waive separate proof-of-birth-date attachments where a signature electronic certificate has verified the date. These are proposed procedural options, not already-effective entitlements."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The ministry has separately maintained the defined-contribution pension system's operational interpretations and Q&A, including materials current as of October 2026. The latest proposal targets transaction-level friction in the existing administration, so its rationale should not be confused with the broader 2025 pension reform.",
+      "On 26 October 2026, the ministry opened consultation on amendments to the 2001 enforcement regulation. Its official outline proposes promulgation in late December 2026 and commencement on 1 January 2027; both remain plans pending final adoption and publication."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The public-comment period is scheduled to close on 24 November 2026.",
+        "date": "2026-11-24",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The ministry will review submissions, finalize the text and publish the ordinance and any implementation guidance if adopted."
+    ],
+    "uncertainties": [
+      "The final wording, availability of each electronic channel and promulgation date have not yet been confirmed. The proposed commencement is not proof that the ordinance is enacted."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Recordkeeping administrators may need to revise participant portals, electronic-signature validation, notice delivery and audit trails. The draft would allow electronic methods for specified transactions, but does not establish that every administrator must offer every channel immediately.",
+      "Employers sponsoring corporate plans should distinguish the administrator's operational changes from the employer's existing plan-document and communication duties. Participants may gain less paper-intensive procedures only after the relevant systems and final rules are in place."
+    ],
+    "checklist": [
+      "Map each proposed electronic claim, transfer and notification to the current paper workflow and responsible recordkeeper.",
+      "Check whether signature electronic certificates can verify birth dates without an extra document, and assess retention and security controls."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-26",
+      "label": "Public consultation on digital pension procedures opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-24",
+      "label": "Public-comment deadline",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment / MHLW",
+      "title": "Consultation 495260238 on the Defined Contribution Pension Act Enforcement Regulation",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260238",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "MHLW",
+      "title": "Outline of proposed changes to defined-contribution pension procedures",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322880",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "MHLW",
+      "title": "Defined-contribution pension system, current interpretations and 2025 reform",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/kyoshutsu/index.html",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "verified_at": "2026-11-01",
+  "source_fingerprint": "sha256:1c1ebe8d8ef064f921408b20a1a20e0d",
+  "author": "chatgpt",
+  "review_notes": "Verified MHLW consultation and original outline on 2026-11-01. The future commencement and promulgation are proposals, not current law."
+}
