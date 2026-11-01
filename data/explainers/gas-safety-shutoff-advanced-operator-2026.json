@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "dossier_id": "gas-safety-shutoff-advanced-operator-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 gas-safety draft: emergency shutoff maintenance and certified advanced operators",
+  "quick_take": {
+    "what_changed": "A draft package would revise gas business and technical safety rules and clarify maintenance of emergency shutoff devices, including flexibility for certified advanced-safety operators. Consultation has closed; final rules are unconfirmed.",
+    "who_is_affected": "Gas retailers, pipeline operators, manufacturers and certified advanced-safety operators may be affected depending on their facilities and certification status.",
+    "what_to_do_now": "Review emergency shutoff maintenance and gas safety engineer arrangements against the draft, but do not apply proposed exemptions before final enactment."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "public_comment_closed",
+  "related_item_ids": [
+    "raw-d388e6a8b2ad9674"
+  ],
+  "instruments": [
+    {
+      "number": "昭和四十五年通商産業省令第九十七号",
+      "name_ja": "ガス事業法施行規則",
+      "name_en": "Enforcement Regulation of the Gas Business Act (proposed amendment)"
+    },
+    {
+      "number": "平成十二年通商産業省令第百十一号",
+      "name_ja": "ガス工作物の技術上の基準を定める省令",
+      "name_en": "Technical Standards for Gas Facilities (proposed amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "METI press releases",
+      "url": "https://www.meti.go.jp/press/index.html"
+    },
+    {
+      "label": "e-Gov consultation list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Emergency gas shutoff devices are designed to stop gas flow in dangerous conditions; a safety device is only useful if it will close reliably when needed. Existing operational guidance already addresses maintenance, while gas operators differ in technical capability and regulatory certification.",
+      "The 2026 draft package seeks to connect practical maintenance standards with the regulatory treatment of operators certified to conduct advanced safety management. It would describe periodic visual and functional checks and recognize a risk- and condition-based schedule for qualifying certified operators. This is a proposed distinction, not an exemption for every gas business."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "Japan's Gas Business Act provides a framework for technical standards, safety supervision and recognition of advanced safety-management operators. The ministry prepared a package covering the Gas Business Act Enforcement Regulation, technical standards, interpretative guidance and a separate operational notice on emergency shutoff maintenance.",
+      "On 18 September 2026, the Ministry of Economy, Trade and Industry opened consultation, which closed on 19 October. The draft operational notice describes at least annual visual and function checks as a baseline, while certified advanced-safety operators may set suitable inspection timing by considering operating hours and equipment condition. No final adopted text or commencement date was established in the sources reviewed."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [],
+    "expected": [
+      "METI may publish consultation results and finalize the ordinances and operational guidance after considering submissions."
+    ],
+    "uncertainties": [
+      "Whether the final rules preserve the proposed inspection frequencies and certification-specific flexibility, and their commencement dates, remains unconfirmed."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Gas utilities and facilities teams should distinguish equipment maintenance obligations from any separate exemption for certified advanced-safety operators. The draft notice envisages annual checks as the general baseline, while permitting qualifying operators to determine appropriate timing using equipment operating hours and condition.",
+      "The package also addresses gas safety engineer appointment arrangements for certified operators. Operators considering shared or non-resident appointments should verify certification and the exact final conditions rather than infer a general right to combine supervisory roles."
+    ],
+    "checklist": [
+      "Inventory emergency shutoff devices and compare current visual, functional and preventive maintenance intervals with the draft notice.",
+      "For any advanced-safety exemption, document certification status, responsible safety engineers, operating conditions and the inspection decision trail."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-09-18",
+      "label": "Consultation opened on gas safety ordinances and guidance",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-10-19",
+      "label": "Consultation on gas safety package closed",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "METI / e-Gov",
+      "title": "Public comment 595320032 on Gas Business Act safety rule amendments",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320032",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "METI",
+      "title": "Draft amendment to Gas Business Act Enforcement Regulation",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000321275",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "METI",
+      "title": "Draft operational guidance for emergency gas shutoff device maintenance",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000321278",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "METI / e-Gov",
+      "title": "Draft technical standards and interpretation listed in consultation 595320032",
+      "url": "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320032",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "verified_at": "2026-11-01",
+  "source_fingerprint": "sha256:61978f51db25a8512b633eec3a514da3",
+  "author": "chatgpt",
+  "review_notes": "Read METI draft ordinance and emergency shutoff operational notice and e-Gov case 595320032 on 2026-11-01. Consultation closed; no final promulgation established."
+}
