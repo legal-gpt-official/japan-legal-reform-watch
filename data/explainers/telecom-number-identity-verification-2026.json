@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "dossier_id": "telecom-number-identity-verification-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Why Japan is tightening identity verification for fixed-number call forwarding",
+  "quick_take": {
+    "what_changed": "A draft amendment to the Telecommunications Numbering Plan would tighten identity verification for fixed-number call-forwarding customers, aligning with anti-money-laundering reforms. Consultation has closed; adoption is unconfirmed.",
+    "who_is_affected": "Telecommunications operators providing call forwarding that uses fixed telephone numbers, and customers using those services, would be affected.",
+    "what_to_do_now": "Identify affected fixed-number forwarding services and review onboarding methods against the draft, without treating the unadopted change as current law."
+  },
+  "instrument_type": "notice",
+  "current_stage": "public_comment_closed",
+  "related_item_ids": [
+    "raw-2616b405bc16798e"
+  ],
+  "instruments": [
+    {
+      "number": "令和元年総務省告示第六号",
+      "name_ja": "電気通信番号計画",
+      "name_en": "Telecommunications Numbering Plan (proposed amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "MIC press releases",
+      "url": "https://www.soumu.go.jp/menu_news/s-news/index.html"
+    },
+    {
+      "label": "e-Gov public-comment list",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Telephone call forwarding can allow a user to present a fixed geographic number without operating at the apparent location. Identity checks are therefore significant to the integrity of number use and to controls against impersonation. The ministry explicitly links the draft to stronger customer verification under the amended anti-money-laundering rules, rather than to a general redesign of telephone numbers.",
+      "The related anti-money-laundering implementing order is scheduled to change non-face-to-face verification from 1 April 2027. The ministry explains that image uploads and copies of identity documents can be vulnerable to forgery or impersonation. The draft would align the numbering plan's checks for fixed-number forwarding, while preserving specified alternative routes for people without chip-equipped identity documents."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The existing Telecommunications Numbering Plan specifies methods for verifying the identity of end users of particular forwarding services. A separate amendment to anti-money-laundering implementing rules prompted the Ministry of Internal Affairs and Communications to propose corresponding adjustments for telecom providers.",
+      "The ministry announced the proposed amendment on 24 September 2026 and accepted comments from 25 September to 26 October 2026. The consultation has ended, but the official materials reviewed do not establish a final amended notice or its effective date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [],
+    "expected": [
+      "The ministry intends to consider submitted comments and then amend the numbering plan if it proceeds with the draft."
+    ],
+    "uncertainties": [
+      "The final wording and commencement date of the numbering-plan amendment were not confirmed as of 1 November 2026. The separate anti-money-laundering commencement does not by itself enact this draft."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Fixed-number call-forwarding operators may need to revise remote onboarding, chip-reading workflows, accepted identity documents and the evidential record of verification. The proposed approach is more restrictive than reliance on an uploaded copy alone, but final obligations depend on the published notice.",
+      "Business customers using forwarded fixed numbers may face changed identification procedures at service sign-up or review. The proposal is not a blanket rule for every mobile or broadband customer: the official explanation specifies forwarding services using fixed numbers."
+    ],
+    "checklist": [
+      "Identify customer-verification methods used for call-forwarding services that employ fixed telephone numbers.",
+      "Compare chip-based and non-chip verification routes with the draft and document operational dependencies before final adoption."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-09-25",
+      "label": "Consultation opened on the numbering-plan amendment",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-10-26",
+      "label": "Consultation closed",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "MIC / e-Gov",
+      "title": "Public comment on amendment to the Telecommunications Numbering Plan, case 145210780",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&Mode=0&id=145210780",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "MIC",
+      "title": "Press release explaining call-forwarding identity-verification changes",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000321425",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "MIC",
+      "title": "Draft amendments to the Telecommunications Numbering Plan",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000321424",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "verified_at": "2026-11-01",
+  "source_fingerprint": "sha256:bf7cf0b34385d37e30ffdca80217137f",
+  "author": "chatgpt",
+  "review_notes": "Reviewed MIC consultation, original draft and press release on 2026-11-01. No final notice was established; separate AML commencement is not the numbering-plan commencement."
+}
