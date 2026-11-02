@@ -748,7 +748,7 @@ def validate(
             errors.append(f"{where}: a past-event date ({kind}) cannot be after verified_at")
         parsed_dates.append((str(kind), when, number))
 
-    _consistency(report, stage, related, parsed_dates, index, today)
+    _consistency(report, stage, related, parsed_dates, index, today, verified)
     recorded = index.instruments(related)
     for entry in instruments:
         if not isinstance(entry, Mapping) or not isinstance(entry.get("number"), str):
@@ -768,6 +768,7 @@ def _consistency(
     key_dates: Sequence[tuple[str, date, str]],
     index: OfficialIndex,
     today: date,
+    verified: date | None,
 ) -> None:
     """Contradictions with the official records are errors; dates overtaken since verification are warnings."""
     errors, warnings = report.errors, report.warnings
