@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "dossier_id": "high-pressure-gas-qualification-cards-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan updates high-pressure gas qualification cards and technical references in 2026",
+  "quick_take": {
+    "what_changed": "METI Ordinance No. 72 of 2026 amended high-pressure gas examination and LP gas rules. The official records show promulgation on 30 September and commencement on 1 October 2026.",
+    "who_is_affected": "Qualification applicants, licensing administrators, gas-safety training bodies and operators relying on technical standards may be affected in different ways.",
+    "what_to_do_now": "Check current certificate application and reissuance instructions and distinguish ordinance changes from separately revised technical notices."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "in_force",
+  "related_item_ids": [
+    "raw-22524fb54e7ce1d5",
+    "raw-34739d4bbcd9d40f",
+    "raw-d87f04fe789a07b0"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年経済産業省令第七十二号",
+      "name_ja": "高圧ガス保安法に基づく高圧ガス製造保安責任者試験等に関する規則及び液化石油ガスの保安の確保及び取引の適正化に関する法律施行規則の一部を改正する省令",
+      "name_en": "2026 ordinance amending high-pressure gas qualification examinations and LP gas regulations"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "METI industrial safety notices",
+      "url": "https://www.meti.go.jp/policy/safety_security/industrial_safety/"
+    },
+    {
+      "label": "e-Gov Law Search",
+      "url": "https://laws.e-gov.go.jp/law/341M50000400054"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Paper-style certificates and older application formats created an administrative obstacle to plastic-card issuance and reuse of photographs already submitted with examination applications. The Ministry's consultation identified certificate-format modernization and procedural consistency as direct objectives.",
+      "The package also reflects revised industry technical standards for seismic evaluation and composite gas cylinders. These technical-reference changes are distinct from the certificate rules and should not be conflated with a wholesale change to plant operating permits."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "METI opened consultation on 22 July 2026, explaining proposed plastic-card issuance for gas safety qualifications, use of examination photographs, reissuance after name changes and updated technical-standard references.",
+      "The ordinance was promulgated on 30 September 2026 and the e-Gov law history records its entry into force on 1 October 2026. The associated technical notices and interpretations must be checked on their own terms rather than assumed to have identical legal status."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The amended ordinance has been in force since 1 October 2026.",
+        "source_ids": [
+          "s3",
+          "s4"
+        ]
+      }
+    ],
+    "expected": [
+      "Issuing bodies may update operational guidance and forms to reflect the amended rules."
+    ],
+    "uncertainties": [
+      "The detailed implementation of each card format and the legal status of separately revised notices must be checked with the issuing authority."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Applicants and certificate issuers may use updated processes for plastic-card credentials, photograph handling and reissuance. Whether a particular certificate is issued in a given format depends on the implementing procedures, not merely the fact of promulgation.",
+      "Engineering and safety teams should separately review the updated seismic and cylinder standards referenced by technical notices when designing or inspecting affected equipment. The ordinance alone should not be described as changing every technical standard for high-pressure gas installations."
+    ],
+    "checklist": [
+      "Check the issuing body's current application, photograph and name-change reissuance instructions for the relevant gas qualification.",
+      "Identify which seismic or cylinder standards are cited in the facility's design basis and check separately issued METI interpretations."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-07-22",
+      "label": "Consultation on gas-safety procedural changes opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-09-30",
+      "label": "METI Ordinance No. 72 promulgated",
+      "source_ids": [
+        "s3",
+        "s4"
+      ],
+      "instrument_number": "令和八年経済産業省令第七十二号"
+    },
+    {
+      "kind": "effective",
+      "date": "2026-10-01",
+      "label": "Amended gas qualification rules commenced",
+      "source_ids": [
+        "s3",
+        "s4"
+      ],
+      "instrument_number": "令和八年経済産業省令第七十二号"
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Consultation on high-pressure gas and LP gas qualification rules (case 595126111)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126111&Mode=0",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry",
+      "title": "Official outline of gas qualification card and technical standard changes",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000318209",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "2026 METI Ordinance No. 72: amended high-pressure gas examination rules",
+      "url": "https://laws.e-gov.go.jp/law/341M50000400054/20261001_508M60000400072",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "2026 METI Ordinance No. 72: amended LP gas regulations",
+      "url": "https://laws.e-gov.go.jp/law/409M50000400011/20261001_508M60000400072",
+      "accessed_at": "2026-11-02"
+    }
+  ],
+  "verified_at": "2026-11-02",
+  "source_fingerprint": "sha256:90a26371a2b2824af2d5f981f4ea5703",
+  "author": "chatgpt",
+  "review_notes": "Primary official consultation, Ministry outline and e-Gov status checked 2026-11-02. Draft and in-force duties kept distinct; translation meaning checked section by section."
+}

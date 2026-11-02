@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "dossier_id": "lithium-battery-waste-fire-standards-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's proposed waste rules respond to lithium-ion battery fires in collection and disposal",
+  "quick_take": {
+    "what_changed": "A draft Cabinet Order would introduce fire-prevention handling standards for discarded lithium-ion batteries and products containing them. It is not yet enacted.",
+    "who_is_affected": "Municipal waste operators, industrial waste contractors, collection and transfer facilities, and businesses disposing of battery-containing equipment may be affected.",
+    "what_to_do_now": "Map battery-containing waste streams and assess segregation, impact prevention and heat-source controls; do not present the draft as a current legal duty."
+  },
+  "instrument_type": "cabinet_order",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-fb3733c298e4f4aa"
+  ],
+  "instruments": [
+    {
+      "number": "昭和四十六年政令第三百号",
+      "name_ja": "廃棄物の処理及び清掃に関する法律施行令",
+      "name_en": "Enforcement Order of the Waste Management and Public Cleansing Act (draft amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "Ministry of the Environment press releases",
+      "url": "https://www.env.go.jp/press/"
+    },
+    {
+      "label": "e-Gov public comment listing",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Fires involving discarded lithium-ion batteries and products with built-in batteries have repeatedly occurred in waste collection vehicles and processing facilities. The Ministry identifies ignition and spread during ordinary handling as the immediate problem behind the proposed amendment.",
+      "A general waste-handling framework does not by itself describe the battery-specific precautions needed when damaged cells are mixed with other refuse. The proposal therefore addresses collection, transfer and storage conditions rather than merely calling for voluntary public awareness."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "On 29 October 2026 the Ministry opened a public consultation on amending the Waste Management and Public Cleansing Act Enforcement Order. The draft covers both municipal waste and industrial waste containing lithium-ion batteries.",
+      "The official outline proposes segregation from other waste to prevent fires, avoidance of dropping or rough handling, partitions or equivalent safeguards at transfer sites, and protection from flames, sparks, high temperatures and overheating during storage. The proposal indicates promulgation in late December 2026 and commencement on 1 April 2027, subject to change."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The public-comment period runs through 29 November 2026.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The Ministry may revise the draft after comments before deciding whether to promulgate the order."
+    ],
+    "uncertainties": [
+      "The final wording and the proposed 1 April 2027 commencement are not yet legally fixed."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Waste operators would need to identify battery-bearing loads and adjust sorting, vehicle loading, transfer-site layouts and storage practices if the order is adopted. The same draft principles would apply to both municipal and industrial waste, while the precise operational requirements remain subject to the final text.",
+      "Businesses disposing of portable electronics or battery-backed equipment may face changes in waste contractor acceptance rules and separation instructions. These are foreseeable contractual and operational effects, not a claim that the proposed handling rules already bind waste generators."
+    ],
+    "checklist": [
+      "Inventory waste streams containing loose batteries or battery-equipped devices and identify where they are mixed with other materials.",
+      "Review collection, transfer and storage contracts for segregation, impact protection and heat-source controls before any final effective date."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-10-29",
+      "label": "Draft waste-handling consultation opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-11-29",
+      "label": "Public-comment deadline",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Consultation on draft Waste Management Enforcement Order amendment (case 195260074)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260074&Mode=0",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "Draft order outline: fire prevention for discarded lithium-ion batteries",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323060",
+      "accessed_at": "2026-11-02"
+    }
+  ],
+  "verified_at": "2026-11-02",
+  "source_fingerprint": "sha256:02ff7223d1e62577d42f051801cf2768",
+  "author": "chatgpt",
+  "review_notes": "Primary official consultation, Ministry outline and e-Gov status checked 2026-11-02. Draft and in-force duties kept distinct; translation meaning checked section by section."
+}
