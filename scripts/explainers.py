@@ -748,7 +748,7 @@ def validate(
             errors.append(f"{where}: a past-event date ({kind}) cannot be after verified_at")
         parsed_dates.append((str(kind), when, number))
 
-    _consistency(report, stage, related, parsed_dates, index, today)
+    _consistency(report, stage, related, parsed_dates, index, today, verified)
     recorded = index.instruments(related)
     for entry in instruments:
         if not isinstance(entry, Mapping) or not isinstance(entry.get("number"), str):
@@ -768,6 +768,7 @@ def _consistency(
     key_dates: Sequence[tuple[str, date, str]],
     index: OfficialIndex,
     today: date,
+    verified: date | None,
 ) -> None:
     """Contradictions with the official records are errors; dates overtaken since verification are warnings."""
     errors, warnings = report.errors, report.warnings
@@ -819,8 +820,14 @@ def _consistency(
         errors.append("stage in_force but e-Gov Law Search lists a provision whose effective date is not yet fixed")
     stated_effective = sorted(when for kind, when, _ in key_dates if kind in ("effective", "partially_effective"))
     passed = [d for d in stated_effective if d <= today]
+    # A partially effective reform can legitimately remain in that stage after
+    # its first commencement (for example, treaty-dependent remaining duties).
+    # Do not keep re-queuing it merely because the *already reviewed* partial
+    # effective date is in the past. Only flag a date that passed after review.
     overtaken = (stage == "promulgated" and passed) or (
-        stage in ("partially_in_force", "published") and passed and not future_effective and not pending
+        stage in ("partially_in_force", "published")
+        and passed and not future_effective and not pending
+        and (verified is None or any(d > verified for d in passed))
     )
     if overtaken:
         warnings.append("stage_overtaken:effective_date_passed")
