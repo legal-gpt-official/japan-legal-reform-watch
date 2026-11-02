@@ -181,6 +181,22 @@ class TestValidation(Base):
         report = ex.validate(data["dossier_id"], data, index, date(2027, 5, 1))
         self.assertTrue(any("not yet fixed" in e for e in report.errors), report.errors)
 
+    def test_partial_commencement_already_reviewed_does_not_warn_again(self):
+        # The first tranche is in force, while later treaty-linked provisions
+        # have no fixed date in the official records.
+        data = explainer(current_stage="partially_in_force")
+        data["key_dates"] = [row for row in data["key_dates"] if row["kind"] != "effective"]
+        data["next_steps"]["confirmed"] = []
+        data = stamped(self.index, data)
+        report = self.report(data)
+        self.assertNotIn("stage_overtaken:effective_date_passed", report.warnings)
+        self.assertEqual(report.errors, [])
+
+        # An effective date that has passed *since* the last check still warns.
+        data["verified_at"] = "2026-09-30"
+        report = self.report(data)
+        self.assertIn("stage_overtaken:effective_date_passed", report.warnings)
+
     def test_dates_overtaken_since_verification_warn_and_notify(self):
         data = stamped(self.index, explainer(current_stage="promulgated"))
         report = self.report(data)
