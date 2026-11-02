@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "dossier_id": "long-chain-pfas-firefighting-foam-2026-draft",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan proposes extending firefighting-foam handling rules to additional long-chain PFAS",
+  "quick_take": {
+    "what_changed": "A multi-ministry draft would extend technical handling standards for firefighting foam and extinguishers to products containing newly listed long-chain perfluoroalkanoic acids and related substances. It remains a proposal.",
+    "who_is_affected": "Industrial facilities, fire-protection contractors, foam stockholders and professional handlers of affected extinguishing agents may be concerned.",
+    "what_to_do_now": "Identify foam inventories and chemical content; follow existing PFOS rules while checking whether the proposed expansion is formally promulgated."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "public_comment_closed",
+  "related_item_ids": [
+    "raw-9ae05cd3f553ee1c"
+  ],
+  "instruments": [
+    {
+      "number": "平成二十二年総務省・厚生労働省・経済産業省・国土交通省・環境省・防衛省令第一号",
+      "name_ja": "化学物質の審査及び製造等の規制に関する法律施行令附則第四項の表ＰＦＯＳ又はその塩の項等に規定する消火器、消火器用消火薬剤及び泡消火薬剤に関する技術上の基準を定める省令",
+      "name_en": "Technical Standards Ordinance for Fire Extinguishers and Foam Containing Listed PFAS (proposed amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "Ministry of the Environment PFOS and foam guidance",
+      "url": "https://www.env.go.jp/chemi/kagaku/pfos.html"
+    },
+    {
+      "label": "Ministry of the Environment press releases",
+      "url": "https://www.env.go.jp/press/"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Persistent fluorinated chemicals have been used in firefighting foams because of their performance, but their environmental persistence creates contamination concerns. Japan already regulates handling and disposal of foam containing listed PFOS-related substances, including storage, inspections and information on transfer.",
+      "The 2026 draft responds to a Cabinet Order adding long-chain perfluoroalkanoic acids, their salts and related substances to the controlled category. Without corresponding technical standards for extinguishing products, the expanded chemical designation would not be fully reflected in day-to-day professional handling requirements."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The existing firefighting-foam ordinance has been revised as new PFAS categories were regulated. In September 2026 the relevant ministries opened consultation on another amendment, relying on the 2026 Cabinet Order that designates additional long-chain substances.",
+      "The consultation closed on 1 October 2026. The official outline envisaged promulgation in early November and commencement on 22 November 2026, but the materials reviewed do not establish that this draft ordinance has actually been promulgated."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The public consultation closed on 1 October 2026.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "The ministries may publish the final ordinance and accompanying implementation guidance after considering submissions."
+    ],
+    "uncertainties": [
+      "The final promulgation date, exact amended wording and whether the proposed 22 November 2026 commencement is retained remain unconfirmed."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Fire-protection service companies and industrial operators may need to classify foam stocks by chemical composition, update handling procedures and plan substitution or disposal. The proposed addition does not mean that every fluorinated foam is automatically within the same legal category.",
+      "Existing chemical-control obligations remain applicable independently of this pending amendment. Businesses should separate current duties from future product coverage, particularly when outsourcing inspection, transfer or disposal of extinguishing agents."
+    ],
+    "checklist": [
+      "Request product composition information for stored foams and compare it with the listed long-chain PFAS categories.",
+      "Review storage, inspection, transfer labeling and waste disposal arrangements under the current rules before updating them for any final amendment."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-09-01",
+      "label": "Long-chain PFAS foam consultation opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-10-01",
+      "label": "Public-comment period closed",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Consultation on PFAS firefighting foam technical standards (case 195260054)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260054&Mode=0",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Government ministries",
+      "title": "Official outline of proposed long-chain perfluoroalkanoic acid controls",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000320185",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "Guidance on handling PFOS-containing fire extinguishers and foam",
+      "url": "https://www.env.go.jp/chemi/kagaku/pfos.html",
+      "accessed_at": "2026-11-02"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "Existing technical standards ordinance for PFAS firefighting foam",
+      "url": "https://laws.e-gov.go.jp/law/422M60003D08001",
+      "accessed_at": "2026-11-02"
+    }
+  ],
+  "verified_at": "2026-11-02",
+  "source_fingerprint": "sha256:8740b38dc30e9101b652dc0c2009f901",
+  "author": "chatgpt",
+  "review_notes": "Verified 2026-11-02 against current government/e-Gov sources, official outlines and statutory stages. All translated sections reviewed for semantic and numeric alignment."
+}
