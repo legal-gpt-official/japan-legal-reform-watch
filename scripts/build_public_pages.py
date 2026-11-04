@@ -72,6 +72,8 @@ from alert_common import (  # noqa: E402
 )
 import explainers as ex  # noqa: E402
 import explainer_locales as el  # noqa: E402
+import page_l10n as pl  # noqa: E402
+import law_timeline as lt  # noqa: E402
 from law_timeline import Dossier  # noqa: E402
 from summarize_updates import source_evidence  # noqa: E402
 from law_timeline import summarize as summarize_timelines  # noqa: E402
@@ -544,6 +546,45 @@ def json_ld(data: Mapping[str, Any], *, compact: bool = False) -> str:
     return text.replace("<", "\\u003c").replace(">", "\\u003e")
 
 
+def l10n_attrs(values: Mapping[str, str] | None) -> str:
+    """``data-l10n-ja`` / ``data-l10n-zh-hans`` attributes carrying an element's other wordings."""
+    return "".join(
+        f' data-l10n-{code.lower()}="{escape(value, quote=True)}"'
+        for code, value in (values or {}).items()
+        if value
+    )
+
+
+def phrase(key: str, locale: str, swap: bool, **params: Any) -> str:
+    """The rest of an opening tag plus its text: ``' data-l10n-…="…">Text'``.
+
+    The text is the fixed phrase in ``locale``; with ``swap`` the tag also
+    carries the Japanese and Chinese wording for the locale switch.
+    """
+    attrs = l10n_attrs({code: pl.text(key, code, **params) for code in pl.LOCALES}) if swap else ""
+    return f"{attrs}>{escape(pl.text(key, locale, **params))}"
+
+
+# Runs at the end of an English item page opened from the Japanese or Chinese
+# dashboard. It only moves text the build already escaped into attributes
+# (textContent, never HTML), shows a complete localized summary when there is
+# one, and keeps the language on links back to the dashboard and other pages.
+LOCALE_SWAP_SCRIPT = (
+    '<script>(function(){var l=new URLSearchParams(location.search).get("lang");'
+    'if(l!=="ja"&&l!=="zh-Hans")return;var d=document,c=l.toLowerCase(),a="data-l10n-"+c,i,e;'
+    'document.documentElement.lang=l;'
+    'e=d.querySelectorAll("["+a+"]");for(i=0;i<e.length;i++)e[i].textContent=e[i].getAttribute(a);'
+    'e=d.querySelectorAll("[data-l10n-hide-"+c+"]");for(i=0;i<e.length;i++)e[i].hidden=true;'
+    'e=d.querySelectorAll("a[data-l10n-keep-lang]");for(i=0;i<e.length;i++){'
+    'var u=new URL(e[i].href);u.searchParams.set("lang",l);e[i].href=u.href;}'
+    'var p=d.getElementById("localized-summary-"+l),en=d.getElementById("item-english-summary"),'
+    'm=d.getElementById("localized-summary-missing");'
+    'if(p){p.hidden=false;if(en)en.hidden=true;}else if(m){m.hidden=false;}'
+    'var h=d.querySelector("h1.area-page-title");if(h)d.title=h.textContent+" — Japan Legal Reform Watch";'
+    '})();</script>'
+)
+
+
 def render_page(
     *,
     path: str,
@@ -559,6 +600,10 @@ def render_page(
     area_nav: bool = True,
     lang: str = "en",
     alternates: Mapping[str, str] | None = None,
+    swap: bool = False,
+    heading_l10n: Mapping[str, str] | None = None,
+    breadcrumb_l10n: Mapping[str, str] | None = None,
+    parent_l10n: Mapping[str, str] | None = None,
 ) -> str:
     """A complete static page at ``SITE_URL + path`` (one or two directories deep).
 
@@ -566,8 +611,18 @@ def render_page(
     root); ``indexable=False`` adds ``noindex`` while keeping links followable.
     ``area_nav=False`` leaves out the list of every area and compacts the
     JSON-LD, which keeps the thousands of item pages small.
+
+    The fixed page text is in ``lang``. ``swap=True`` (an English item page)
+    also carries the Japanese and Chinese wording as ``data-l10n-*``
+    attributes, with ``*_l10n`` for the heading and breadcrumbs, and a script
+    that switches to it for ``?lang=ja`` / ``?lang=zh-Hans``.
     """
     prefix = "../" * len(path.rstrip("/").split("/"))
+
+    def fixed(key: str) -> str:
+        return phrase(key, lang, swap)
+
+    keep_lang = " data-l10n-keep-lang" if swap else ""
     url = SITE_URL + path
     crumbs = [("Japan Legal Reform Watch", SITE_URL)]
     if parent:
@@ -578,7 +633,9 @@ def render_page(
         f'\n  <link rel="alternate" hreflang="{escape(code)}" href="{escape(SITE_URL + target)}" />'
         for code, target in (alternates or {}).items()
     )
-    parent_crumb = f' &rsaquo; <a href="{prefix}{parent[1]}">{escape(parent[0])}</a>' if parent else ""
+    parent_crumb = (
+        f' &rsaquo; <a href="{prefix}{parent[1]}"{l10n_attrs(parent_l10n)}>{escape(parent[0])}</a>' if parent else ""
+    )
     nav = (
         '    <nav class="area-nav" aria-labelledby="area-nav-title">\n'
         '      <h2 id="area-nav-title" class="area-nav-title">Other areas</h2>\n'
@@ -644,11 +701,11 @@ def render_page(
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <p class="area-page-brand"><a href="{prefix}">Japan Legal Reform Watch <span class="brand-by">by LegalOS</span></a></p>
-        <p class="tagline">Free Japan Legal &amp; Regulatory Update Monitor</p>
+        <p class="area-page-brand"><a href="{prefix}"{keep_lang}>Japan Legal Reform Watch <span class="brand-by">by LegalOS</span></a></p>
+        <p class="tagline"{fixed("tagline")}</p>
       </div>
       <div class="header-actions">
-        <a class="header-link" href="{prefix}">Open the dashboard</a>
+        <a class="header-link" href="{prefix}"{keep_lang}{fixed("open_dashboard")}</a>
       </div>
     </div>
   </header>
@@ -656,17 +713,17 @@ def render_page(
   <section class="trust-section" aria-label="Reliability notice">
     <div class="container">
       <div class="trust-notice" role="note">
-        <strong>Reliability note</strong>
-        <p>{escape(MONITORING_NOTICE)}</p>
+        <strong{fixed("trust_title")}</strong>
+        <p{fixed("trust_body")}</p>
       </div>
     </div>
   </section>
 
   <main class="container area-page-main">
     <nav class="area-breadcrumb" aria-label="Breadcrumb">
-      <a href="{prefix}">Japan Legal Reform Watch</a>{parent_crumb} &rsaquo; <span aria-current="page">{escape(breadcrumb)}</span>
+      <a href="{prefix}"{keep_lang}>Japan Legal Reform Watch</a>{parent_crumb} &rsaquo; <span aria-current="page"{l10n_attrs(breadcrumb_l10n)}>{escape(breadcrumb)}</span>
     </nav>
-    <h1 class="area-page-title">{escape(heading)}</h1>
+    <h1 class="area-page-title"{l10n_attrs(heading_l10n)}>{escape(heading)}</h1>
 {body}
 {nav}  </main>
 
@@ -674,27 +731,26 @@ def render_page(
     <div class="container footer-inner">
       <div class="footer-brand">
         <strong>Japan Legal Reform Watch by LegalOS</strong>
-        <p>Created by Legal GPT. Explore more Japan legal updates and legal-tech tools.</p>
+        <p{fixed("footer_brand_p")}</p>
       </div>
       <div class="footer-navs">
         <nav class="footer-links footer-product-links" aria-label="Legal GPT links">
           <a href="https://legal-gpt.com/" target="_blank" rel="noopener noreferrer">Legal GPT</a>
-          <a href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer">Learn more about Japan Legal Reform Watch</a>
+          <a href="https://legal-gpt.com/japan-legal-update-monitor/" target="_blank" rel="noopener noreferrer"{fixed("footer_learn_more")}</a>
         </nav>
         <nav class="footer-links footer-legal-links" aria-label="Legal">
-          <a href="{prefix}legal/disclaimer_en.html">Legal Notice / Disclaimer (EN)</a>
+          <a href="{prefix}legal/disclaimer_en.html"{fixed("footer_legal_en")}</a>
           <a href="{prefix}legal/disclaimer_ja.html">免責事項 (JA)</a>
         </nav>
       </div>
     </div>
     <div class="container footer-bottom">
-      <small>This site provides English summaries for informational purposes only. It is not an official
-        translation and not legal advice. See the full Legal Notice for details.</small>
+      <small{fixed("footer_bottom")}</small>
     </div>
   </footer>
 
   <script src="{prefix}analytics.js?v={ANALYTICS_CACHE_BUSTER}"></script>
-  {lang_redirect}
+  {lang_redirect}{LOCALE_SWAP_SCRIPT if swap else ""}
 
 </body>
 </html>
@@ -803,50 +859,65 @@ def render_public_comments_page(items: Sequence[Mapping[str, Any]], today: date)
     )
 
 
-TIMELINE_NOTICE = (
-    "Related official records are linked only when names and instrument numbers match exactly, so this "
-    "timeline may be incomplete. Dates are as stated by the official sources. It is a monitoring aid, not "
-    "legal advice; the original Japanese sources are authoritative."
-)
+TIMELINE_NOTICE = pl.text("timeline_notice")
 
 
-def render_timeline(item_id: str, dossier: Dossier, page_ids: set[str]) -> list[str]:
-    """The timeline section of an item page. Every source-derived value is escaped."""
+def render_timeline(
+    item_id: str, dossier: Dossier, page_ids: set[str], locale: str = "en", swap: bool = False,
+    prefix: str = "../../",
+) -> list[str]:
+    """The timeline section of an item page. Every source-derived value is escaped.
+
+    Fixed text is in ``locale``; ``swap`` adds the Japanese and Chinese wording
+    for the English page's language switch (see ``LOCALE_SWAP_SCRIPT``).
+    """
+    keep_lang = " data-l10n-keep-lang" if swap else ""
+    # A translated explainer page links other records' (English) pages in its own language.
+    lang_query = "" if locale == "en" else "?" + urlencode({"lang": locale})
     parts = [
         '    <section class="area-page-section" aria-labelledby="item-timeline-title">',
-        '      <h2 id="item-timeline-title">Timeline of related official records</h2>',
-        f'      <p class="static-latest-note">{escape(TIMELINE_NOTICE)}</p>',
+        f'      <h2 id="item-timeline-title"{phrase("timeline_title", locale, swap)}</h2>',
+        f'      <p class="static-latest-note"{phrase("timeline_notice", locale, swap)}</p>',
         '      <ol class="static-latest-list">',
     ]
     for event in dossier.events:
-        when = event.when.isoformat() if event.when else "Date not stated by the source"
+        def heading(code: str) -> str:
+            when = event.when.isoformat() if event.when else pl.text("timeline_no_date", code)
+            return f"{when} — {event.localized_label(code)}"
+
+        swapped = l10n_attrs({code: heading(code) for code in pl.LOCALES}) if swap else ""
         lines = ['        <li class="static-latest-item">']
-        lines.append(f'          <span class="static-latest-title">{escape(when)} — {escape(event.label)}</span>')
+        lines.append(f'          <span class="static-latest-title"{swapped}>{escape(heading(locale))}</span>')
         if event.detail_ja:
             lines.append(f'          <span class="static-latest-meta" lang="ja">{escape(event.detail_ja)}</span>')
         links = []
         other_pages = [other for other in event.item_ids if other in page_ids and other != item_id]
         if item_id in event.item_ids:
-            links.append('<span class="static-latest-meta">(this update)</span>')
+            links.append(f'<span class="static-latest-meta"{phrase("timeline_this_update", locale, swap)}</span>')
         elif other_pages:
             links.append(
-                f'<a class="static-latest-meta" href="../../{ITEM_DIR_NAME}/{escape(other_pages[0])}/">'
-                "Dashboard page</a>"
+                f'<a class="static-latest-meta" href="{prefix}{ITEM_DIR_NAME}/{escape(other_pages[0])}/{escape(lang_query)}"{keep_lang}'
+                f'{phrase("timeline_dashboard_page", locale, swap)}</a>'
             )
         url = safe_http_url(event.source_url)
         if url:
             links.append(
                 f'<a class="static-latest-meta" href="{escape(url)}" target="_blank" '
-                'rel="noopener noreferrer">Original Japanese source</a>'
+                f'rel="noopener noreferrer"{phrase("timeline_source", locale, swap)}</a>'
             )
         lines += [f"          {link}" for link in links]
         lines.append("        </li>")
         parts += lines
     parts.append("      </ol>")
     if dossier.next_step:
+        swapped = (
+            l10n_attrs({code: lt.localized_next_step(dossier.next_step, code) for code in pl.LOCALES})
+            if swap else ""
+        )
         parts += [
-            "      <h3>What happens next</h3>",
-            f'      <p class="area-page-intro">{escape(dossier.next_step)}</p>',
+            f'      <h3{phrase("timeline_next", locale, swap)}</h3>',
+            f'      <p class="area-page-intro"{swapped}>'
+            f"{escape(lt.localized_next_step(dossier.next_step, locale))}</p>",
         ]
     parts.append("    </section>")
     return parts
@@ -1200,21 +1271,45 @@ def render_item_page(
     indexable = explainer is not None if indexable is None else indexable
     area_page = AREA_PAGE_BY_AREA.get(area)
     area_label = CHANNEL_BY_VALUE[area_page.channel].label if area_page else ""
+    # An ordinary English page switches its fixed text for ?lang=ja / ?lang=zh-Hans.
+    swap = locale == "en" and explainer is None
+    keep_lang = " data-l10n-keep-lang" if swap else ""
 
     published = strict_iso_date(item.get("published_at"))
-    facts = [("Published", published.isoformat() if published else "not stated by the source")]
     impact = clean_text(item.get("impact_level"))
-    facts += [
-        (label, value)
-        for label, value in (("Source", source), ("Stage", stage), ("Area", area), ("Impact (preliminary)", impact))
-        if value
-    ]
     deadline = comment_deadline_display(item.get("comment_deadline"))
-    if deadline:
-        facts.append(("Comment deadline", deadline))
     first_seen = strict_iso_date(item.get("first_seen_at"))
-    if first_seen:
-        facts.append(("First detected by this dashboard", first_seen.isoformat()))
+
+    def facts_text(code: str) -> str:
+        facts = [("fact_published", published.isoformat() if published else pl.text("fact_not_stated", code))]
+        facts += [
+            (key, value)
+            for key, value in (
+                ("fact_source", pl.source_label(clean_text(item.get("source_name")), source, code) if source else ""),
+                ("fact_stage", pl.stage_label(stage, code) if stage else ""),
+                ("fact_area", pl.area_label(area, code) if area else ""),
+                ("fact_impact", pl.impact_label(impact, code) if impact else ""),
+            )
+            if value
+        ]
+        if deadline:
+            facts.append(("fact_deadline", pl.deadline_display(deadline, code)))
+        if first_seen:
+            facts.append(("fact_first_seen", first_seen.isoformat()))
+        separator = ": " if code == "en" else "："
+        return " · ".join(f"{pl.text(key, code)}{separator}{value}" for key, value in facts)
+
+    def per_locale(make) -> Mapping[str, str] | None:
+        return {code: make(code) for code in pl.LOCALES} if swap else None
+
+    def area_action(code: str) -> str:
+        return pl.text("action_area", code, area=area_label if code == "en" else pl.area_label(area, code))
+
+    zh = (item.get("translations") or {}).get("zh-Hans") or {}
+    zh_complete = isinstance(zh, Mapping) and all(
+        clean_text(zh.get(key)) for key in ("title", "summary", "business_impact", "recommended_action")
+    )
+    localized_titles = {"ja": title_ja, "zh-Hans": clean_text(zh["title"]) if zh_complete else ""}
 
     if translated:
         description = shorten(clean_text((explainer.data.get("quick_take") or {}).get("what_changed")),
@@ -1243,22 +1338,28 @@ def render_item_page(
         parts.append('<nav class="explainer-langs" aria-label="Language / 言語 / 语言">' +
                      " ".join(switch_links) + "</nav>")
     if title_ja and locale != "ja":
-        parts.append(f'    <p class="area-page-intro" lang="ja">{escape(title_ja)}</p>')
-    facts_text = " · ".join(f"{label}: {value}" for label, value in facts)
-    parts.append(f'    <p class="area-page-stats">{escape(facts_text)}</p>')
+        # In Japanese the heading already is the original title.
+        hide = " data-l10n-hide-ja" if swap else ""
+        parts.append(f'    <p class="area-page-intro" lang="ja"{hide}>{escape(title_ja)}</p>')
+    parts.append(
+        f'    <p class="area-page-stats"{l10n_attrs(per_locale(facts_text))}>{escape(facts_text(locale))}</p>'
+    )
     parts.append('    <p class="area-page-actions">')
     url = safe_http_url(item.get("source_url"))
     if url:
         parts.append(
             f'      <a class="area-page-action" href="{escape(url)}" target="_blank" '
-            'rel="noopener noreferrer">View the original Japanese source</a>'
+            f'rel="noopener noreferrer"{phrase("action_source", locale, swap)}</a>'
         )
     if area_page:
         parts.append(
-            f'      <a class="area-page-action" href="{prefix}{area_page_path(area_page)}">'
-            f"More {escape(area_label)} updates</a>"
+            f'      <a class="area-page-action" href="{prefix}{area_page_path(area_page)}"'
+            f'{l10n_attrs(per_locale(area_action))}>{escape(area_action(locale))}</a>'
         )
-    parts.append(f'      <a class="area-page-action" href="{prefix}?lang={escape(locale)}">Search all updates in the dashboard</a>')
+    parts.append(
+        f'      <a class="area-page-action" href="{prefix}?lang={escape(locale)}"{keep_lang}'
+        f'{phrase("action_dashboard", locale, swap)}</a>'
+    )
     parts.append("    </p>")
 
     # The dashboard already has Japanese and Chinese short summaries for many
@@ -1276,10 +1377,7 @@ def render_item_page(
                 ("事業への影響", "business_impact_ja"),
                 ("推奨対応", "recommended_action_ja"),
             )
-        zh = (item.get("translations") or {}).get("zh-Hans") or {}
-        if isinstance(zh, Mapping) and all(clean_text(zh.get(key)) for key in (
-            "title", "summary", "business_impact", "recommended_action"
-        )):
+        if zh_complete:
             local_summaries["zh-Hans"] = (
                 clean_text(zh["title"]),
                 ("摘要", "summary"),
@@ -1304,21 +1402,14 @@ def render_item_page(
                 parts.append(f'      <h3>{escape(label)}</h3>')
                 parts.append(f'      <p class="area-page-intro">{escape(clean_text(content))}</p>')
             parts.append('    </section>')
-        # Plain English remains the fallback when a summary is absent or invalid.
-        # The script only switches to complete localized summaries, never to a
-        # partial translation, and preserves direct static pages for full dossiers.
-        parts.append(
-            '<script>document.addEventListener("DOMContentLoaded",function(){var l=new URLSearchParams(location.search).get("lang");'
-            'if(l!=="ja"&&l!=="zh-Hans")return;'
-            'var p=document.getElementById("localized-summary-"+l);'
-            'if(!p)return;var en=document.getElementById("item-english-summary");'
-            'if(en)en.hidden=true;p.hidden=false;'
-            'document.documentElement.lang=l;'
-            'var t=p.getAttribute("data-localized-title");'
-            'var h=document.querySelector("h1.area-page-title");if(h)h.textContent=t;'
-            'document.title=t+" — Japan Legal Reform Watch";'
-            '});</script>'
-        )
+        # Plain English remains the fallback when a summary is absent or invalid:
+        # LOCALE_SWAP_SCRIPT only shows a complete localized summary, never a
+        # partial translation, and otherwise says that English follows.
+        if len(local_summaries) < len(pl.LOCALES):
+            parts.append(
+                '    <p id="localized-summary-missing" class="static-latest-note"'
+                f'{l10n_attrs({code: pl.text("summary_missing", code) for code in pl.LOCALES})} hidden></p>'
+            )
 
     if not translated:
         parts.append('    <section id="item-english-summary" class="area-page-section" aria-labelledby="item-summary-title">')
@@ -1349,8 +1440,8 @@ def render_item_page(
         parts.append("    </section>")
     if explainer is not None:
         parts += render_explainer(explainer, page_status, locale)
-    if dossier is not None and locale == "en":
-        parts += render_timeline(item_page_id(item), dossier, page_ids or set())
+    if dossier is not None:
+        parts += render_timeline(item_page_id(item), dossier, page_ids or set(), locale, swap, prefix)
 
     return render_page(
         path=path,
@@ -1361,11 +1452,20 @@ def render_item_page(
         body="\n".join(parts),
         current="",
         page_type="WebPage",
-        parent=(area_label, area_page_path(area_page)) if area_page else None,
+        parent=(
+            (area_label if locale == "en" else pl.area_label(area, locale), area_page_path(area_page))
+            if area_page else None
+        ),
         indexable=indexable,
         area_nav=False,
         lang=locale,
         alternates=alternates if explainer is not None else None,
+        swap=swap,
+        heading_l10n={code: title for code, title in localized_titles.items() if title} if swap else None,
+        breadcrumb_l10n=(
+            {code: shorten(title, 60) for code, title in localized_titles.items() if title} if swap else None
+        ),
+        parent_l10n=per_locale(lambda code: pl.area_label(area, code)) if area_page else None,
     )
 
 

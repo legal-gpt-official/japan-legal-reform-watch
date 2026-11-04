@@ -45,6 +45,43 @@ class TestArchivePayload(unittest.TestCase):
             ],
         )
 
+    def test_preview_holds_whole_newest_days_of_the_latest_period_in_ranked_order(self):
+        items = [item(f"old-{i}", "2026-01-01") for i in range(bpa.PREVIEW_MIN_ITEMS)]
+        items += [item(f"new-{i}", f"2026-03-{1 + i % 2:02d}") for i in range(bpa.PREVIEW_MIN_ITEMS - 1)]
+        items.append(item("tie", "2026-01-01"))
+        items.append(item("prev-year", "2025-12-31"))
+        manifest, shards = bpa.build_archive_payload(items)
+        preview = shards["preview"]
+        # The 100th newest is dated 2026-01-01, so every item of that day is in.
+        self.assertEqual(len(preview), len(shards["2026"]))
+        self.assertEqual(manifest["preview"], {"period": "2026", "file": "./data/archive/preview.json",
+                                               "count": len(preview)})
+        self.assertNotIn("preview", [entry["value"] for entry in manifest["periods"]])
+
+        manifest, shards = bpa.build_archive_payload(
+            [item(f"new-{i}", "2026-03-01") for i in range(bpa.PREVIEW_MIN_ITEMS)]
+            + [item(f"old-{i}", "2026-01-01") for i in range(50)]
+        )
+        self.assertEqual([row["id"] for row in shards["preview"]],
+                         [f"new-{i}" for i in range(bpa.PREVIEW_MIN_ITEMS)])
+
+    def test_dashboard_reads_none_of_the_omitted_fields(self):
+        app_js = (REPO_ROOT / "docs" / "app.js").read_text(encoding="utf-8")
+        for field in bpa.BROWSER_OMITTED_FIELDS:
+            self.assertNotIn(field, app_js)
+
+    def test_small_latest_period_has_no_preview(self):
+        manifest, shards = bpa.build_archive_payload([item("a", "2026-01-01")])
+        self.assertNotIn("preview", manifest)
+        self.assertNotIn("preview", shards)
+
+    def test_browser_files_leave_out_pipeline_only_fields(self):
+        row = dict(item("a", "2026-01-01"), ai_notes="n", confidence="high", summary_model="m",
+                   relevance_score=3, summary_ja="要約")
+        _, shards = bpa.build_archive_payload([row])
+        self.assertEqual(shards["2026"], [{"id": "a", "published_at": "2026-01-01", "title_en": "a",
+                                           "relevance_score": 3, "summary_ja": "要約"}])
+
     def test_no_per_year_cap(self):
         items = [item(f"id-{index}", "2026-01-01") for index in range(3001)]
         manifest, shards = bpa.build_archive_payload(items)

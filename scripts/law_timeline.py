@@ -210,6 +210,16 @@ class Event:
     detail_ja: str  # Japanese official name(s); untrusted, escape on render
     item_ids: tuple[str, ...]  # the raw records behind the fact, sorted
     source_url: str  # untrusted; pass through safe_http_url on render
+    # The label in Japanese and Simplified Chinese, from the same fixed phrases.
+    label_ja: str = ""
+    label_zh: str = ""
+
+    def localized_label(self, locale: str) -> str:
+        if locale == "ja":
+            return self.label_ja or self.label
+        if locale == "zh-Hans":
+            return self.label_zh or self.label
+        return self.label
 
 
 @dataclass
@@ -350,11 +360,14 @@ def _instrument_events(instrument: _Instrument) -> list[Event]:
     names = sorted(instrument.names)
     records = sorted(instrument.records, key=lambda r: (r.get("id") or ""))
     first = records[0]
+    statute = is_statute(instrument.number)
     events.append(
         Event(
             when=instrument.promulgated,
             rank=2,
-            label=f"Promulgated ({'statute' if is_statute(instrument.number) else 'instrument'} recorded by e-Gov Law Search)",
+            label=f"Promulgated ({'statute' if statute else 'instrument'} recorded by e-Gov Law Search)",
+            label_ja=f"公布（e-Gov法令検索に記録された{'法律' if statute else '法令'}）",
+            label_zh=f"公布（e-Gov法令检索记录的{'法律' if statute else '法令'}）",
             detail_ja=f"{names[0]}（{instrument.number}）",
             item_ids=tuple(r["id"] for r in records),
             source_url=first.get("source_url") or "",
@@ -378,6 +391,8 @@ def _instrument_events(instrument: _Instrument) -> list[Event]:
                 when=when,
                 rank=3,
                 label="Effective date stated by e-Gov Law Search",
+                label_ja="施行日（e-Gov法令検索の記載）",
+                label_zh="施行日期（e-Gov法令检索所载）",
                 detail_ja=shown,
                 item_ids=tuple(sorted(r["id"] for r in records)),
                 source_url=record.get("source_url") or "",
@@ -392,6 +407,8 @@ def _comment_events(comment: Mapping[str, Any]) -> list[Event]:
             when=public_comment_publication_date(comment.get("raw_summary")),
             rank=0,
             label="Draft published for public comment (e-Gov)",
+            label_ja="意見募集のため案を公示（e-Gov）",
+            label_zh="草案公开征求意见（e-Gov）",
             detail_ja=_text(comment.get("title_ja")),
             item_ids=(comment["id"],),
             source_url=comment.get("source_url") or "",
@@ -401,11 +418,16 @@ def _comment_events(comment: Mapping[str, Any]) -> list[Event]:
         comment.get("raw_summary"), comment.get("source_type")
     )
     if deadline:
+        shown = comment_deadline_display(deadline)
+        shown_ja = shown.replace(" (end of day, JST)", "・日本時間当日中")
+        shown_zh = shown.replace(" (end of day, JST)", "，日本时间当日截止")
         events.append(
             Event(
                 when=parse_date(deadline),
                 rank=1,
-                label=f"Public comment deadline ({comment_deadline_display(deadline)})",
+                label=f"Public comment deadline ({shown})",
+                label_ja=f"意見募集の締切（{shown_ja}）",
+                label_zh=f"公开征求意见截止（{shown_zh}）",
                 detail_ja="",
                 item_ids=(comment["id"],),
                 source_url=comment.get("source_url") or "",
@@ -419,12 +441,18 @@ def _bill_event(bill: Mapping[str, Any]) -> Event:
     session = fields.get("提出回次", "")
     status = fields.get("審議状況", "")
     label = "Bill listed by the House of Representatives"
+    label_ja = "衆議院の議案一覧に掲載"
+    label_zh = "众议院议案列表所载"
     if session.isdigit():
         label += f" (Diet session {session})"
+        label_ja += f"（第{session}回国会）"
+        label_zh += f"（第{session}次国会）"
     return Event(
         when=None,
         rank=1,
         label=label,
+        label_ja=label_ja,
+        label_zh=label_zh,
         detail_ja=_text(bill.get("title_ja")) + (f"（審議状況：{status}）" if status else ""),
         item_ids=(bill["id"],),
         source_url=bill.get("source_url") or "",
@@ -454,6 +482,59 @@ NEXT_STEP_DRAFT = (
     "dashboard has not yet matched a promulgated instrument with exactly this name. This is not a "
     "forecast of the outcome."
 )
+
+
+# The four next-step notes in Japanese and Simplified Chinese, keyed by the
+# English text a dossier carries. Same content: procedure only, no forecast.
+NEXT_STEP_TRANSLATIONS: dict[str, dict[str, str]] = {
+    NEXT_STEP_BILL_PENDING: {
+        "ja": (
+            "一般的な手続：法律案は衆議院と参議院の両院で可決されて初めて法律として成立します。成立した法律は"
+            "その後公布され、施行日は法律自体または後の政令で定められます。これはこの法案が成立するかどうかの"
+            "予測ではありません。現在の審議状況は衆議院のページでご確認ください。"
+        ),
+        "zh-Hans": (
+            "一般程序：法案须经国会两院通过方能成为法律；制定的法律随后公布，其施行日期由法律本身或此后的政令"
+            "确定。这并非对该法案能否通过的预测。当前审议状况请查阅众议院页面。"
+        ),
+    },
+    NEXT_STEP_BILL_ENACTED: {
+        "ja": (
+            "衆議院はこの法案を「成立」と掲載しています。成立した法律の公布は、本ダッシュボードではまだ照合"
+            "できていません。官報およびe-Gov法令検索が正式な情報源です。"
+        ),
+        "zh-Hans": (
+            "众议院将该法案列为已通过（成立）。本仪表板尚未匹配到由此产生的法律的公布记录；"
+            "应以官报和e-Gov法令检索为准。"
+        ),
+    },
+    NEXT_STEP_BILL_ENDED: {
+        "ja": (
+            "衆議院はこの法案を「未了」または「撤回」と掲載しています。この状態の法案はこのままの形では法律に"
+            "なりませんが、後に別の法案が提出される場合があります。詳細は衆議院のページでご確認ください。"
+        ),
+        "zh-Hans": (
+            "众议院将该法案列为审议未完成（未了）或已撤回（撤回）。处于该状态的法案不会以现有形式成为法律；"
+            "之后可能会提出新的法案。详情请查阅众议院页面。"
+        ),
+    },
+    NEXT_STEP_DRAFT: {
+        "ja": (
+            "一般的な手続：意見募集の終了後、所管省庁は通常、寄せられた意見とそれに対する考え方を公表し、"
+            "その後、案を（修正のうえ）制定する場合も、制定しない場合もあります。本ダッシュボードでは、"
+            "同じ名称の公布済み法令をまだ照合できていません。これは結果の予測ではありません。"
+        ),
+        "zh-Hans": (
+            "一般程序：征求意见结束后，主管省厅通常会公布收到的意见及其回应，之后可能（经修改后）制定该法令，"
+            "也可能不予制定。本仪表板尚未匹配到名称完全相同的已公布法令。这并非对结果的预测。"
+        ),
+    },
+}
+
+
+def localized_next_step(next_step: str, locale: str) -> str:
+    """A dossier's next-step note in ``locale``, falling back to English."""
+    return NEXT_STEP_TRANSLATIONS.get(next_step, {}).get(locale, next_step)
 
 
 def bill_next_step(status: str) -> str:

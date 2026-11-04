@@ -49,6 +49,7 @@
       ds_unknown: "Unknown",
       ds_status: "Data status",
       ds_unavailable: "Unavailable",
+      ds_loading: "Loading...",
 
       controls_filters_search: "Filters & Search",
       controls_hide_filters: "Hide filters",
@@ -79,6 +80,7 @@
       period_all: "All years (slower)",
       period_undated: "Undated",
       period_loading: "Loading selected period...",
+      preview_loading: "Showing the newest updates while all of {period} loads...",
 
       export_button: "Export CSV",
       export_none: "No matching updates to export",
@@ -346,6 +348,7 @@
       ds_unknown: "不明",
       ds_status: "データ状況",
       ds_unavailable: "利用不可",
+      ds_loading: "読み込み中…",
 
       controls_filters_search: "絞り込み・検索",
       controls_hide_filters: "絞り込みを閉じる",
@@ -376,6 +379,7 @@
       period_all: "全期間（読み込みに時間がかかります）",
       period_undated: "日付不明",
       period_loading: "選択した期間を読み込んでいます…",
+      preview_loading: "最新の更新を先に表示しています。{period}の全件を読み込み中です…",
 
       export_button: "CSVを出力",
       export_none: "出力できる該当データがありません",
@@ -604,6 +608,7 @@
       ds_unknown: "未知",
       ds_status: "数据状态",
       ds_unavailable: "不可用",
+      ds_loading: "加载中……",
 
       controls_filters_search: "筛选与搜索",
       controls_hide_filters: "隐藏筛选",
@@ -634,6 +639,7 @@
       period_all: "全部年份（加载较慢）",
       period_undated: "日期不明",
       period_loading: "正在加载所选期间……",
+      preview_loading: "正在加载{period}的全部动态，先显示最新动态……",
 
       export_button: "导出CSV",
       export_none: "没有可导出的匹配更新",

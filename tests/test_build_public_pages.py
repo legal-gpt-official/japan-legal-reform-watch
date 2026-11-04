@@ -134,8 +134,37 @@ class TestLocalizedOrdinaryDetail(unittest.TestCase):
         self.assertIn("中文摘要", html)
         self.assertIn('id="item-english-summary"', html)
         self.assertIn('new URLSearchParams(location.search).get("lang")', html)
-        self.assertIn('document.addEventListener("DOMContentLoaded"', html)
         self.assertIn('document.documentElement.lang=l', html)
+        # The heading and breadcrumb carry the original Japanese and the Chinese title.
+        self.assertIn('<h1 class="area-page-title" data-l10n-ja="日本語タイトル" data-l10n-zh-hans="中文标题">', html)
+        # Both summaries exist, so there is no "English follows" note.
+        self.assertNotIn('id="localized-summary-missing"', html)
+
+    def test_fixed_page_text_follows_dashboard_language(self):
+        html = bpp.render_item_page(item("fixed", impact_level="Medium", comment_deadline="2026-12-04",
+                                         stage="Public Comment Open"))
+        # English stays the visible, canonical text.
+        self.assertIn(">Reliability note</strong>", html)
+        self.assertIn(">View the original Japanese source</a>", html)
+        for ja in ("情報の信頼性について", "日本語の公式情報源を見る", "ダッシュボードですべての更新を検索",
+                   "段階：意見募集中", "影響度（暫定）：中", "意見募集の締切：2026-12-04（日本時間・当日中）",
+                   "情報源：金融庁（FSA）", "分野：金融・マネーロンダリング対策"):
+            self.assertIn(f"{ja}", html)
+        for zh in ("可靠性说明", "查看日文官方来源", "阶段：公开征求意见中", "领域：金融 / 反洗钱"):
+            self.assertIn(zh, html)
+        # Links back to the dashboard keep the language; the Japanese line hides in Japanese.
+        self.assertIn('href="../../?lang=en" data-l10n-keep-lang', html)
+        self.assertIn('lang="ja" data-l10n-hide-ja>', html)
+        # Without localized summaries the page says that English follows.
+        self.assertIn('id="localized-summary-missing"', html)
+        # The script only moves text (textContent), never markup.
+        self.assertIn("e[i].textContent=e[i].getAttribute(a)", bpp.LOCALE_SWAP_SCRIPT)
+        self.assertNotIn("innerHTML", bpp.LOCALE_SWAP_SCRIPT)
+
+    def test_area_pages_carry_no_language_switch(self):
+        html = bpp.render_area_page(bpp.AREA_PAGES[0], [], date(2026, 11, 4))
+        self.assertNotIn("data-l10n-", html)
+        self.assertNotIn("data-l10n-keep-lang", html)
 
     def test_missing_or_partial_translation_is_not_misrepresented(self):
         partial = item("partial", summary_ja="一部のみ", translations={
@@ -394,8 +423,8 @@ class TestItemPages(unittest.TestCase):
         html = bpp.render_item_page(item("raw-abc", **AI_ITEM), indexable=True)
         self.assertIn(f'<link rel="canonical" href="{ac.SITE_URL}u/raw-abc/" />', html)
         self.assertNotIn("noindex", html)
-        self.assertIn('<h1 class="area-page-title">Title raw-abc</h1>', html)
-        self.assertIn('lang="ja">下水道法施行令の一部を改正する政令（案）</p>', html)
+        self.assertIn('>Title raw-abc</h1>', html)
+        self.assertIn('lang="ja" data-l10n-hide-ja>下水道法施行令の一部を改正する政令（案）</p>', html)
         self.assertIn('href="https://www.fsa.go.jp/raw-abc" target="_blank" rel="noopener noreferrer"', html)
         self.assertIn("Source: Financial Services Agency (FSA)", html)
         self.assertIn("Published: 2026-10-01", html)
@@ -408,7 +437,8 @@ class TestItemPages(unittest.TestCase):
         self.assertIn('href="../../legal/disclaimer_en.html"', html)
         self.assertIn('href="../../legal/disclaimer_ja.html"', html)
         # Breadcrumb goes through the item's area page.
-        self.assertIn('<a href="../../areas/finance-aml/">Finance / AML</a>', html)
+        self.assertIn('<a href="../../areas/finance-aml/" data-l10n-ja="金融・マネーロンダリング対策" '
+                      'data-l10n-zh-hans="金融 / 反洗钱">Finance / AML</a>', html)
         self.assertIn('href="../../style.css?v=' + bpp.STYLE_CACHE_BUSTER + '"', html)
         self.assertIn('src="../../analytics.js?v=' + bpp.ANALYTICS_CACHE_BUSTER + '"', html)
         self.assertNotIn("app.js", html)

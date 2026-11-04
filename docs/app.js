@@ -136,6 +136,9 @@
 
   // -------- State --------
   let allUpdates = [];
+  // True while the newest-items preview is shown and the full period is still
+  // loading: counts, export and saved searches wait for the full dataset.
+  let previewActive = false;
   let archiveManifest = null;
   const datasetCache = new Map();
   let visibleCount = PAGE_SIZE;
@@ -344,8 +347,11 @@
   }
 
   // -------- Data loading --------
-  async function fetchJson(url) {
-    const res = await fetch(url, { cache: "no-store" });
+  // The manifest is always fetched fresh. Archive files are revalidated
+  // ("no-cache"): an unchanged file costs a 304 instead of a full download,
+  // and a changed one can never be served stale against a newer manifest.
+  async function fetchJson(url, cacheMode) {
+    const res = await fetch(url, { cache: cacheMode || "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     return res.json();
   }
@@ -382,6 +388,20 @@
       (value.periods.length > 0 && !seen.has(value.latest_period))
     ) {
       throw new Error("Invalid archive manifest totals.");
+    }
+    // The optional preview is a subset of the latest period; an unexpected
+    // shape only disables it, never the dashboard.
+    const preview = value.preview;
+    if (
+      preview &&
+      !(
+        preview.period === value.latest_period &&
+        preview.file === "./data/archive/preview.json" &&
+        Number.isInteger(preview.count) &&
+        preview.count > 0
+      )
+    ) {
+      delete value.preview;
     }
     return value;
   }
@@ -425,7 +445,7 @@
     const entry = period === ALL_PERIODS ? null : periodEntry(period);
     const url = period === ALL_PERIODS ? DATA_URL : entry && entry.file;
     if (!url) throw new Error("Archive period is unavailable: " + period);
-    const data = await fetchJson(url);
+    const data = await fetchJson(url, period === ALL_PERIODS ? "no-store" : "no-cache");
     if (!Array.isArray(data)) {
       throw new Error("Unexpected data shape: expected an array.");
     }
@@ -480,12 +500,65 @@
     }
   }
 
+  // The preview holds every latest-period item published on or after the date
+  // of its newest ~100th item, so the first cards of the default view (newest
+  // first, no filters) are exactly the ones the full period will show.
+  function previewApplies() {
+    const preview = archiveManifest && archiveManifest.preview;
+    if (!preview || filters.period !== preview.period || datasetCache.has(preview.period)) {
+      return false;
+    }
+    const params = new URLSearchParams(window.location.search);
+    for (const key of params.keys()) {
+      if (key === "lang") continue;
+      if (key === "year" && params.get("year") === preview.period) continue;
+      return false;
+    }
+    return true;
+  }
+
+  async function showPreview() {
+    const preview = archiveManifest.preview;
+    let data;
+    try {
+      data = await fetchJson(preview.file, "no-cache");
+    } catch (err) {
+      return false;
+    }
+    if (!Array.isArray(data) || data.length !== preview.count || datasetCache.has(preview.period)) {
+      return false;
+    }
+    previewActive = true;
+    allUpdates = data;
+    populateFilterOptions();
+    restoreFiltersFromUrl();
+    applyLanguageDom();
+    renderDataStatusLoading();
+    render();
+    return true;
+  }
+
+  function renderDataStatusLoading() {
+    if (!dataStatusList) return;
+    dataStatusList.innerHTML = "";
+    dataStatusList.appendChild(makeStatusChip(I18N.t("ds_status"), I18N.t("ds_loading")));
+  }
+
   async function loadData() {
     try {
       archiveManifest = validateArchiveManifest(await fetchJson(DATA_MANIFEST_URL));
       filters.period = requestedPeriodFromUrl();
       populatePeriodOptions();
+      if (previewApplies()) {
+        setPeriodLoading(true);
+        // The full period downloads in parallel with the small preview.
+        const full = datasetForPeriod(filters.period);
+        full.catch(() => {});
+        await showPreview();
+        await full;
+      }
       await installPeriodDataset(filters.period);
+      previewActive = false;
       restoreFiltersFromUrl(); // resolves language (URL > localStorage > English)
       applyLanguageDom(); // localize chrome, filter options, <title>, <html lang>
       renderDataStatus();
@@ -2157,6 +2230,11 @@
     }
     updateLoadMore(filtered.length);
     renderResultsMeta(filtered);
+    if (previewActive) {
+      // Counts and export would describe only the preview.
+      updateExportState([]);
+      metaEl.textContent = I18N.t("preview_loading", { period: periodDisplayLabel(filters.period) });
+    }
   }
 
   // -------- Events --------

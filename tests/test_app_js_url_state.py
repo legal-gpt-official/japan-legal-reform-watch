@@ -29,10 +29,10 @@ THANK_YOU_CSS = (REPO_ROOT / "docs" / "alerts" / "thank-you.css").read_text(enco
 # so dynamic-string assertions search app.js + i18n.js together.
 UI_JS = APP_JS + I18N_JS
 CACHE_BUSTER = "trilingual-20261021"
-APP_CACHE_BUSTER = "localized-detail-20261028"
+APP_CACHE_BUSTER = "fast-load-20261104"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "qa-20261021"
+I18N_CACHE_BUSTER = "fast-load-20261104"
 
 
 def object_body(name: str) -> str:
@@ -40,6 +40,23 @@ def object_body(name: str) -> str:
     if not match:
         raise AssertionError(f"{name} object not found in docs/app.js")
     return match.group("body")
+
+
+class TestFastFirstLoad(unittest.TestCase):
+    def test_archive_files_are_revalidated_and_the_manifest_is_fresh(self):
+        self.assertIn('fetch(url, { cache: cacheMode || "no-store" })', APP_JS)
+        self.assertIn('period === ALL_PERIODS ? "no-store" : "no-cache"', APP_JS)
+        self.assertNotIn('fetch(url, { cache: "no-store" })', APP_JS)
+
+    def test_preview_is_used_only_for_the_default_view(self):
+        self.assertIn("function previewApplies()", APP_JS)
+        self.assertIn('if (key === "lang") continue;', APP_JS)
+        self.assertIn('preview.file === "./data/archive/preview.json"', APP_JS)
+        # While it is shown, export and counts wait for the full period.
+        self.assertIn("if (previewActive) {", APP_JS)
+        self.assertIn("updateExportState([]);", APP_JS)
+        for key in ("preview_loading", "ds_loading"):
+            self.assertEqual(I18N_JS.count(key + ":"), 3, key)
 
 
 class TestAppJsUrlState(unittest.TestCase):
