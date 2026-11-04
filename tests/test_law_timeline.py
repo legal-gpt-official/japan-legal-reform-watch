@@ -269,6 +269,31 @@ class TestItemPageTimeline(unittest.TestCase):
         self.assertIn('lang="ja"', html)
         self.assertNotIn("What happens next", html)
 
+    def test_timeline_carries_japanese_and_chinese_wording(self):
+        html = bpp.render_item_page(
+            self.published("raw-order-b"), self.by_item["raw-order-b"], {"raw-order-a", "raw-order-b", "raw-pc-order"}
+        )
+        for text in ("関連する公式記録の経過", "相关官方记录时间线", "（このページの記録）", "日本語の公式情報源",
+                     "意見募集のため案を公示（e-Gov）", "草案公开征求意见（e-Gov）", "公布（e-Gov法令検索に記録された法令）"):
+            self.assertIn(text, html)
+        self.assertIn('href="../../u/raw-pc-order/" data-l10n-keep-lang', html)
+
+    def test_every_next_step_and_label_is_translated(self):
+        for note in (lt.NEXT_STEP_BILL_PENDING, lt.NEXT_STEP_BILL_ENACTED, lt.NEXT_STEP_BILL_ENDED, lt.NEXT_STEP_DRAFT):
+            for locale in ("ja", "zh-Hans"):
+                self.assertNotEqual(lt.localized_next_step(note, locale), note)
+        for dossier in self.by_item.values():
+            for event in dossier.events:
+                self.assertTrue(event.label_ja and event.label_zh, event.label)
+
+    def test_translated_explainer_page_shows_the_timeline_in_its_language(self):
+        html = bpp.render_timeline("raw-order-b", self.by_item["raw-order-b"], {"raw-pc-order"}, "ja",
+                                   prefix="../../../")
+        text = "".join(html)
+        self.assertIn(">関連する公式記録の経過</h2>", text)
+        self.assertNotIn("data-l10n-", text)
+        self.assertIn('href="../../../u/raw-pc-order/?lang=ja"', text)
+
     def test_no_dossier_means_no_timeline(self):
         html = bpp.render_item_page(self.published("raw-x"))
         self.assertNotIn("Timeline of related official records", html)
