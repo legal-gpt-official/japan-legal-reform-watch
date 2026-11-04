@@ -58,10 +58,10 @@
       "last_recovered_at": "2026-10-22T23:54:42Z"
     },
     "courts-supreme": {
-      "consecutive_zero_runs": 4,
+      "consecutive_zero_runs": 5,
       "consecutive_error_runs": 0,
       "last_status": "warning_zero",
-      "last_problem_at": "2026-11-03T02:47:35Z",
+      "last_problem_at": "2026-11-04T01:04:55Z",
       "last_recovered_at": null
     },
     "sesc": {
@@ -115,9 +115,9 @@
     },
     "jftc": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": "2026-06-27T22:05:05Z",
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-11-04T01:04:55Z",
       "last_recovered_at": "2026-06-28T22:04:57Z"
     },
     "moj": {
