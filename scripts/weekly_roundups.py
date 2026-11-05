@@ -151,7 +151,13 @@ def one_line(item: Mapping[str, Any]) -> str:
     return bpp.shorten(first, LINE_MAX_CHARS)
 
 
-def select(ranked: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
+def select(
+    ranked: Sequence[Mapping[str, Any]],
+    *,
+    per_area: int = PER_AREA,
+    other_per_area: int = OTHER_PER_AREA,
+    page_max: int = PAGE_MAX,
+) -> list[Mapping[str, Any]]:
     """Round-robin across areas (largest first, Other last) up to the caps; grouped by area.
 
     A record whose English title repeats a higher-ranked one is skipped.
@@ -169,10 +175,10 @@ def select(ranked: Sequence[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
     order = sorted(groups, key=lambda area: (area == OTHER_AREA, -len(groups[area]), area))
     picked: dict[str, list[Mapping[str, Any]]] = {area: [] for area in order}
     total = 0
-    for rank in range(PER_AREA):
+    for rank in range(per_area):
         for area in order:
-            cap = OTHER_PER_AREA if area == OTHER_AREA else PER_AREA
-            if total < PAGE_MAX and rank < min(cap, len(groups[area])):
+            cap = other_per_area if area == OTHER_AREA else per_area
+            if total < page_max and rank < min(cap, len(groups[area])):
                 picked[area].append(groups[area][rank])
                 total += 1
     return [item for area in order for item in picked[area]]
