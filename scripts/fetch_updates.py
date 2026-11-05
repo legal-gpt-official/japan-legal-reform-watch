@@ -675,7 +675,38 @@ def fetch_source_entries(source: dict, timeout: int) -> tuple[list[dict], str]:
     content, effective_url = follow_meta_refresh_if_requested(content, source, timeout)
     parse_source = dict(source)
     parse_source["url"] = effective_url
-    return parse_source_entries(content, parse_source), effective_url
+    parsed = parse_source_entries(content, parse_source)
+    if not parsed and is_maintenance_page(content):
+        raise SourceMaintenanceError("official site served a maintenance page instead of its listing")
+    return parsed, effective_url
+
+
+class SourceMaintenanceError(RuntimeError):
+    """The official host answered with its maintenance page, not the listing.
+
+    Reported as a source error (not a zero-result success) so the Source Health
+    report names the real cause. It changes no gate rule.
+    """
+
+
+_HTML_TITLE_RE = re.compile(r"<title\b[^>]*>(?P<body>.*?)</title>", re.IGNORECASE | re.DOTALL)
+_MAINTENANCE_TITLE_MARKERS = ("メンテナンス", "maintenance")
+
+
+def is_maintenance_page(content: bytes) -> bool:
+    """True when the page <title> announces maintenance.
+
+    Only the title is read, and the caller asks only when nothing was parsed, so a
+    real listing that mentions maintenance in its body can never be misclassified.
+    (The Courts case-law search 307-redirects every request to
+    /error_document/sorry.html titled 「メンテナンス中 / Maintenance」.)
+    """
+    text = content[:20000].decode("utf-8", errors="replace")
+    match = _HTML_TITLE_RE.search(text)
+    if match is None:
+        return False
+    title = clean_text(match.group("body")).lower()
+    return any(marker in title for marker in _MAINTENANCE_TITLE_MARKERS)
 
 
 def parse_html_source(content: bytes, source: dict) -> list[dict]:

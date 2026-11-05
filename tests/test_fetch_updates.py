@@ -471,6 +471,52 @@ class TestHtmlParsers(unittest.TestCase):
         self.assertEqual(items[0]["stage_hint"], "Court Decision")
         self.assertEqual(items[0]["link"], "https://www.courts.go.jp/hanrei/96798/detail2/index.html")
 
+    COURTS_MAINTENANCE_PAGE = """<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8" /><title>メンテナンス中 / Maintenance</title></head>
+        <body><h1>現在メンテナンス中です。</h1></body></html>""".encode("utf-8")
+
+    def _courts_source(self):
+        return next(s for s in fu.SOURCES if s.get("key") == "courts-supreme")
+
+    def test_maintenance_page_is_reported_as_error_not_zero_success(self):
+        # 2026-11-02..: the Courts case-law search redirected every request to
+        # its maintenance page, which was reported as a 0-item success.
+        with mock.patch.object(fu, "http_get", return_value=self.COURTS_MAINTENANCE_PAGE):
+            with self.assertRaises(fu.SourceMaintenanceError):
+                fu.fetch_source_entries(self._courts_source(), 30)
+
+    def test_listing_that_parses_is_never_treated_as_maintenance(self):
+        page = """<html><head><title>メンテナンス情報 | 裁判所</title></head><body>
+        <table><tr><th><a href="./../96798/detail2/index.html">最高裁判例</a></th>
+        <td><p>令和6(オ)720 損害賠償請求事件</p>
+        <p>令和8年7月16日 最高裁判所第一小法廷 判決</p></td></tr></table>
+        </body></html>""".encode("utf-8")
+        with mock.patch.object(fu, "http_get", return_value=page):
+            entries, _ = fu.fetch_source_entries(self._courts_source(), 30)
+        self.assertEqual(len(entries), 1)
+
+    def test_empty_listing_without_maintenance_title_stays_zero_success(self):
+        page = "<html><head><title>最近の最高裁判例</title></head><body>メンテナンス</body></html>"
+        with mock.patch.object(fu, "http_get", return_value=page.encode("utf-8")):
+            entries, _ = fu.fetch_source_entries(self._courts_source(), 30)
+        self.assertEqual(entries, [])
+
+    def test_run_reports_maintenance_as_source_error(self):
+        captured = {}
+        with mock.patch.object(fu, "SOURCES", [self._courts_source()]), \
+                mock.patch.object(fu, "load_existing", return_value=[]), \
+                mock.patch.object(fu, "save_json"), \
+                mock.patch.object(
+                    fu, "save_json_document",
+                    side_effect=lambda path, doc: captured.setdefault("report", doc),
+                ), \
+                mock.patch.object(fu, "http_get", return_value=self.COURTS_MAINTENANCE_PAGE):
+            fu.run(timeout=30, dry_run=True)
+        row = captured["report"]["sources"][0]
+        self.assertEqual(row["status"], "error")
+        self.assertEqual(row["error_type"], "SourceMaintenanceError")
+        self.assertEqual(row["fetched_count"], 0)
+
     def test_jpx_public_comment_parser_carries_structured_deadline(self):
         html_text = """
         <table><tr><th>募集開始日</th><th>募集終了日</th><th>法人</th><th>案件名</th></tr>
