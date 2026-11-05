@@ -205,7 +205,7 @@ class TestBuild(unittest.TestCase):
         self.assertEqual(html.count(bpp.STATIC_START), 1)
         self.assertIn('href="./areas/finance-aml/"', html)
         expected = sorted(
-            ["index.html", "public-comments/index.html", "u/a/index.html", "u/b/index.html"]
+            ["index.html", "public-comments/index.html", "u/a/index.html", "u/b/index.html", "weekly/index.html"]
             + [f"areas/{area.slug}/index.html" for area in bpp.AREA_PAGES]
         )
         self.assertEqual(pages, expected)
@@ -330,7 +330,7 @@ class TestPublishedSite(unittest.TestCase):
         )
         self.assertLess(workflow.index("python scripts/build_public_pages.py"), workflow.index("name: Check data changes"))
         self.assertEqual(
-            workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u"), 2
+            workflow.count("docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u"), 2
         )
 
     def test_every_published_item_has_a_page_and_only_indexable_ones_are_in_the_sitemap(self):
