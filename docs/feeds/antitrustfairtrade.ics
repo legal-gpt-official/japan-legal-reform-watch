@@ -5,4 +5,21 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Antitrust / Fair Trade
 X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VEVENT
+UID:jlrw-raw-d61f4e22684deddb-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261105T000000Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+SUMMARY:Public comment closes: Regulatory proposal open for comment (2026-1
+ 1-05)
+DESCRIPTION:Closes 2026-12-04 23:59 JST.\nOriginal title: 中小企業等
+ の経営強化に関する基本方針の一部を改正する告示に
+ ついて\ne-Gov Public Comment\nOfficial source: https://public-comment.e
+ -gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=640230105&Mode=0\nMoni
+ toring aid only\; not legal advice or an official translation. Original Ja
+ panese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=640230105&Mode=0
+END:VEVENT
 END:VCALENDAR

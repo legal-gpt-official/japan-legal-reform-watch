@@ -197,6 +197,80 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:solar-pv-waste-recycling-2026",
+      "kind": "update",
+      "explainer_id": "solar-pv-waste-recycling-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-21",
+      "watch_pages": [
+        "https://www.env.go.jp/recycle/recycling/renewable/page_00345.html",
+        "https://www.env.go.jp/news/recycle/",
+        "https://www.env.go.jp/press/",
+        "https://laws.e-gov.go.jp/law/508AC0000000033"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-98218145b7662d49"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:a290f62d4c81f218c1d134a1c139131e",
+      "first_queued_on": "2026-11-05"
+    },
+    {
+      "queue_id": "explainer:waste-management-scrap-yards-2026",
+      "kind": "update",
+      "explainer_id": "waste-management-scrap-yards-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-21",
+      "watch_pages": [
+        "https://www.env.go.jp/recycle/waste/laws.html",
+        "https://www.env.go.jp/news/recycle/",
+        "https://www.env.go.jp/press/",
+        "https://laws.e-gov.go.jp/law/345AC0000000137",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 16,
+      "item_ids": [
+        "raw-0489b13983f0d612",
+        "raw-29a426c7a0785dab",
+        "raw-36416d3dba316184",
+        "raw-4037c23b6f27fd8a",
+        "raw-440dceb5328c648f",
+        "raw-490d2a4a4961bf18",
+        "raw-5c02100f63461b2c",
+        "raw-8b449ee4f515b733",
+        "raw-97b4af0d0e54c6f8",
+        "raw-9b16168323a5693c",
+        "raw-b1055aeb0207dd3f",
+        "raw-cddcea65a1019eae"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:591f790e09b106006823e1a81e35f578",
+      "first_queued_on": "2026-11-05"
+    },
+    {
       "queue_id": "explainer:workers-compensation-2026-amendment",
       "kind": "update",
       "explainer_id": "workers-compensation-2026-amendment",
