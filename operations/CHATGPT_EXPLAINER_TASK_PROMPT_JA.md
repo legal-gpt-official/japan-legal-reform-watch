@@ -40,6 +40,11 @@
 
 各候補の `kind`、`reasons`、`priority`、`item_ids` を確認します。
 
+### 2A. 日次データ更新の判定と接続済みGitHubの活用
+
+- 毎日の解説タスクは11:00 JSTに開始する。GitHub Actionsの日次`update`ジョブの各ステップ（キュー/ページ生成、コミット・プッシュ、Pagesビルド要求）とmain当日反映を確認する。裁判所等の`Source health gate`の独立した失敗でワークフロー全体がfailureでも、更新済みデータがコミット・公開済みなら有効な当日キューとして処理し、外部取得元の重大警告は別途報告する。未取得のソースは最新扱いしない。
+- git clone不可でもGitHub接続のfetch_file・create_branch・update_file・create_pull_request・CI確認・merge_pull_request等の利用可否を必ず確認する。利用可能な書込手段を試さず『GitHub書込不可』と結論しない。Pythonを直接動かせなければ必須PR CIに検証を委ね、成功までマージしない。
+
 ### 3. 対象の選定（候補15〜20件、原則新規5件/日・最大10件/日）
 
 次の順で選びます。
