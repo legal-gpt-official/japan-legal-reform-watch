@@ -1,0 +1,85 @@
+name: Weekly blog post
+
+# Posts last week's roundup to the Legal GPT WordPress blog (English and
+# Japanese) every Monday at 01:00 UTC (10:00 JST), after the 06:00 JST daily
+# update. Read-only on the repository; no AI calls. Posts are drafts unless the
+# WP_POST_STATUS variable says otherwise. The log is public: the script prints
+# no credentials, response bodies or account details.
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week slug such as 2026-w45 (empty = latest completed week)"
+        required: false
+        default: ""
+      languages:
+        description: "Languages to post"
+        required: false
+        default: "en,ja"
+        type: choice
+        options: ["en,ja", "en", "ja"]
+      dry_run:
+        description: "Render only (uploads a preview artifact; never contacts WordPress)"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+# Wait for a data-writing run (the daily update) so the newest data is posted.
+concurrency:
+  group: japan-legal-reform-data-writer
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install requests
+
+      - name: Compile scripts
+        run: python -m py_compile scripts/post_weekly_blog.py scripts/weekly_roundups.py scripts/build_public_pages.py
+
+      - name: Post weekly roundup
+        env:
+          WP_BASE_URL: ${{ vars.WP_BASE_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          WP_POST_STATUS: ${{ vars.WP_POST_STATUS }}
+          WP_CATEGORY_IDS_EN: ${{ vars.WP_CATEGORY_IDS_EN }}
+          WP_CATEGORY_IDS_JA: ${{ vars.WP_CATEGORY_IDS_JA }}
+          WP_TAG_IDS_EN: ${{ vars.WP_TAG_IDS_EN }}
+          WP_TAG_IDS_JA: ${{ vars.WP_TAG_IDS_JA }}
+          INPUT_WEEK: ${{ github.event.inputs.week }}
+          INPUT_LANGUAGES: ${{ github.event.inputs.languages || 'en,ja' }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          args=(--languages "$INPUT_LANGUAGES" --preview-dir weekly_blog_preview)
+          if [ -n "$INPUT_WEEK" ]; then args+=(--week "$INPUT_WEEK"); fi
+          if [ "$INPUT_DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python scripts/post_weekly_blog.py "${args[@]}"
+
+      - name: Upload rendered posts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-blog-preview
+          path: weekly_blog_preview
+          if-no-files-found: ignore
+          retention-days: 14
