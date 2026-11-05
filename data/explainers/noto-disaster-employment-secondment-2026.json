@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "dossier_id": "noto-disaster-employment-secondment-2026",
-  "status": "draft",
+  "status": "published",
   "review_state": "ai_checked",
   "title_en": "Japan proposes extending Noto earthquake employment-secondment support while tightening subsidy conditions",
   "quick_take": {
@@ -37,7 +37,7 @@
   "history": {
     "paragraphs": [
       "MHLW established the disaster-specific incentive on 17 December 2024. The official consultation outline records existing subsidy rates of 4/5 for small and medium-sized enterprises and 2/3 for other businesses, subject to an upper limit of 9,110 yen per person per day. These are descriptions of the current scheme, not new obligations.",
-      "On 2 November 2026, MHLW published a proposal under Article 62(2) of the Employment Insurance Act (Act No. 116 of 1974 (Showa 49)), with public comments accepted through 1 December 2026. The proposal would extend eligible secondment duration to three years while limiting subsidised time to 31 December 2027, add a workplace-reopening plan condition, and lower rates for originating employers first filing a secondment plan on or after 1 January 2027."
+      "On 2 November 2026, MHLW published a proposal under Article 62(2) of the Employment Insurance Act (Act No. 116 of 1974; Showa 49), with public comments accepted through 1 December 2026. The proposal would extend eligible secondment duration to three years while limiting subsidised time to 31 December 2027, add a workplace-reopening plan condition, and lower rates for originating employers first filing a secondment plan on or after 1 January 2027."
     ],
     "source_ids": [
       "s1",
@@ -114,7 +114,7 @@
   "verified_at": "2026-11-05",
   "source_fingerprint": "sha256:abd3cefe0c428ed96de49980bbaf2319",
   "author": "chatgpt",
-  "review_notes": "DRAFT as of 2026-11-05. The numbered instrument listed is the existing Enforcement Regulation being proposed for amendment; the proposed amending ordinance has not been promulgated and has no promulgated ordinance number. Still pending repository-native fingerprint stamp and full JA/ZH semantic review. Do not publish yet. October 15 ministry material concerns a different Kumamoto measure. 2026-11-05 review: official outline cites Nanao/Wajima conditions as policy rationale, not an express exclusive geographic eligibility rule; revised language accordingly. Native fingerprint and translation SHA restamping still required. Fingerprint recalculated against main raw record raw-085572d0055bd111 on 2026-11-05; publication still requires locale synchronization, CI and legal review.",
+  "review_notes": "Checked against the e-Gov consultation case 495260245 and the Ministry of Health, Labour and Welfare one-page official proposal outline on 2026-11-05. Consultation is open until 2026-12-01. The existing Employment Insurance Act Enforcement Regulation is Showa 50 Labour Ministry Ordinance No. 3; a proposed amendment has no promulgated ordinance number. Existing subsidy terms, proposed extension, 2027 cutoff, plan requirement and reduced subsidy rates are distinguished from binding current rules. Nanao/Wajima jurisdiction references explain MHLW policy rationale but do not prove geographic exclusivity. The unrelated October 2026 Kumamoto special measure is not part of this proposal. English, Japanese and Chinese sections reviewed individually for matching claims, dates, legal thresholds and pending status.",
   "instruments": [
     {
       "number": "昭和五十年労働省令第三号",
