@@ -40,7 +40,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/page_l10n.py scripts/law_timeline.py scripts/explainers.py scripts/explainer_locales.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/weekly_roundups.py scripts/page_l10n.py scripts/law_timeline.py scripts/explainers.py scripts/explainer_locales.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
 
       - name: Run offline regression tests
         # Live repository-state explainer checks (official records drifting away
@@ -301,7 +301,7 @@ jobs:
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u; then
+          if git diff --quiet -- data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -313,7 +313,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u
+          git add data/raw_items.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

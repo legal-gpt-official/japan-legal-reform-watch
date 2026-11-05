@@ -32,7 +32,7 @@ CACHE_BUSTER = "trilingual-20261021"
 APP_CACHE_BUSTER = "fast-load-20261104"
 # i18n.js is busted independently so dictionary-only changes ship without
 # re-fetching app.js / style.css.
-I18N_CACHE_BUSTER = "fast-load-20261104"
+I18N_CACHE_BUSTER = "weekly-20261105"
 
 
 def object_body(name: str) -> str:

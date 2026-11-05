@@ -14,6 +14,7 @@ on:
       - "scripts/explainer_facts.py"
       - "scripts/law_timeline.py"
       - "scripts/build_public_pages.py"
+      - "scripts/weekly_roundups.py"
       - "docs/style.css"
       - ".github/workflows/publish-explainer-pages.yml"
   workflow_dispatch:
@@ -79,7 +80,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/u
+          git add docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/feeds/weekly.xml docs/u
           if git diff --cached --quiet; then
             echo "Generated static pages already match the published corpus."
           else

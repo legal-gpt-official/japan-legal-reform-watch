@@ -18,6 +18,8 @@ does not run JavaScript sees an empty page. This stage writes:
   listed (see ``item_search_value``); every other item page is ``noindex,
   follow`` (a rule-based item's body would be the template every such item
   shares, a thin AI summary says little beyond the title);
+* weekly roundup pages under ``docs/weekly/`` and their RSS feed
+  ``docs/feeds/weekly.xml`` (``weekly_roundups.py``);
 * ``docs/sitemap.xml`` listing the indexable pages.
 
 An item page also shows a factual timeline of related official records
@@ -101,6 +103,7 @@ ANALYTICS_CACHE_BUSTER = "analytics-20261006"
 
 AREAS_DIR_NAME = "areas"
 PUBLIC_COMMENTS_DIR_NAME = "public-comments"
+WEEKLY_DIR_NAME = "weekly"  # must equal weekly_roundups.WEEKLY_DIR_NAME (tested)
 # One page per item at ``u/<id>/``. The id is the stable published id, so the
 # URL survives title changes; never rename this directory.
 ITEM_DIR_NAME = "u"
@@ -510,6 +513,10 @@ def render_area_links(prefix: str, current: str = "") -> str:
         links.append('<li><span aria-current="page">Open public comments</span></li>')
     else:
         links.append(f'<li><a href="{prefix}{PUBLIC_COMMENTS_DIR_NAME}/">Open public comments</a></li>')
+    if current == WEEKLY_DIR_NAME:
+        links.append('<li><span aria-current="page">Weekly roundup</span></li>')
+    else:
+        links.append(f'<li><a href="{prefix}{WEEKLY_DIR_NAME}/">Weekly roundup</a></li>')
     return "\n".join("          " + link for link in links)
 
 
@@ -1526,6 +1533,10 @@ def build(
     changed[path] = write_if_changed(site_dir / path / "index.html", render_public_comments_page(items, today))
     sitemap_entries.append((SITE_URL + path, updated))
     sitemap_entries += [(SITE_URL + path, None) for path in STATIC_SITEMAP_PATHS]
+    import weekly_roundups  # noqa: PLC0415 -- it imports this module's renderers
+
+    weekly_summary, weekly_entries = weekly_roundups.build(items, site_dir, today)
+    sitemap_entries += weekly_entries
 
     with_pages = page_items(items)
     page_ids = {item_page_id(item) for item in with_pages}
@@ -1585,6 +1596,7 @@ def build(
 
     return {
         "pages_written": len(AREA_PAGES) + 1,
+        **weekly_summary,
         "item_pages": len(with_pages),
         "item_pages_indexable": len(indexable_ids),
         "item_pages_changed": item_pages_changed,
