@@ -197,6 +197,67 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:jogmec-2026-october-bill",
+      "kind": "update",
+      "explainer_id": "jogmec-2026-october-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-22",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm",
+        "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367",
+        "https://www.meti.go.jp/intro/law/index.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-5a08ed933c98e331"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
+      "first_queued_on": "2026-11-06"
+    },
+    {
+      "queue_id": "explainer:pcb-waste-2026-low-concentration-amendment",
+      "kind": "update",
+      "explainer_id": "pcb-waste-2026-low-concentration-amendment",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-22",
+      "watch_pages": [
+        "https://policies.env.go.jp/recycle/pcb/teinoudo-soukishori/",
+        "https://www.env.go.jp/recycle/poly/confs/tekisei/40pcb_00001.html",
+        "https://www.env.go.jp/press/"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-19673549af343a4f",
+        "raw-209f659b2a8bb31a"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:7c7cfc71eaa8f5a757a06eed3f3e54da",
+      "first_queued_on": "2026-11-06"
+    },
+    {
       "queue_id": "explainer:solar-pv-waste-recycling-2026",
       "kind": "update",
       "explainer_id": "solar-pv-waste-recycling-2026",
@@ -405,27 +466,6 @@
       "first_queued_on": "2026-10-20"
     },
     {
-      "queue_id": "draft:raw-085572d0055bd111",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-085572d0055bd111"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "雇用保険法施行規則の一部を改正する省令案に関する御意見の募集について",
-      "stage": "Public Comment Open",
-      "newest_record_first_seen": "2026-11-02",
-      "suggested_seed_item_id": "raw-085572d0055bd111",
-      "first_queued_on": "2026-11-02"
-    },
-    {
       "queue_id": "draft:raw-2632b152e1b19b63",
       "kind": "new",
       "explainer_id": null,
@@ -571,6 +611,27 @@
       "newest_record_first_seen": "2026-09-20",
       "suggested_seed_item_id": "raw-9b23b040d93ee91a",
       "first_queued_on": "2026-11-01"
+    },
+    {
+      "queue_id": "draft:raw-9fd50fb384946b39",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-9fd50fb384946b39"
+      ],
+      "areas": [
+        "Energy / Environment"
+      ],
+      "title_ja": "「環境影響評価法施行令の一部を改正する政令案」等に関する意見の募集（パブリックコメント）について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-08-26",
+      "suggested_seed_item_id": "raw-9fd50fb384946b39",
+      "first_queued_on": "2026-11-06"
     },
     {
       "queue_id": "draft:raw-b2af6417a4c9ab61",
