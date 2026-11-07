@@ -109,7 +109,7 @@ jobs:
                   continue
               locale = json.loads(bundle_path.read_text(encoding="utf-8"))["translations"]
               body = english_file.read_bytes()
-              blob_sha = hashlib.sha1(f"blob {len(body)}\\0".encode() + body).hexdigest()
+              blob_sha = hashlib.sha1(f"blob {len(body)}\0".encode() + body).hexdigest()
               for lang in ("ja", "zh-Hans"):
                   tr = locale.get(lang) or {}
                   if (tr.get("english_verified_at") != en.get("verified_at")
