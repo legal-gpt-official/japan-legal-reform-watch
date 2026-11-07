@@ -38,49 +38,53 @@
   "background": {
     "paragraphs": [
       "The Cabinet Legislation Bureau explains that international conditions have increased the importance of secure energy and metal mineral supplies. The government proposes to strengthen the support available for Japanese companies to secure those resources.",
-      "The bill would expand JOGMEC's functions to include investment relating to oil transportation and grants for funding carbon dioxide capture, transport and storage. These are proposed public support functions; they do not themselves impose new obligations on private project sponsors.",
-      "The proposal also sits alongside Japan's existing carbon storage policy, but it is a separate legislative initiative. METI reported in June 2024 that JOGMEC had selected nine advanced CCS projects aimed at developing replicable business models and starting operations by 2030. That earlier project selection illustrates the policy context; it does not establish eligibility for the new grants contemplated by the October 2026 bill."
+      "The submitted text would expand JOGMEC's equity-investment authority to specified oil and natural-gas transport operations, including overseas pipelines and certain rail, road and maritime transport. It would also cover specified carbon dioxide capture, transport, storage and related geological exploration projects through investment and other support powers. These are proposed public support functions, not immediately binding obligations on private sponsors.",
+      "The proposal also sits alongside Japan's existing carbon storage policy, but it is a separate legislative initiative. METI reported in June 2024 that JOGMEC had selected nine advanced CCS projects aimed at developing replicable business models and starting operations by 2030. That earlier project selection illustrates the policy context; it does not establish eligibility for the new grants contemplated by the October 2026 bill.",
+      "The proposed new CCS grant authority is narrower than an unconditional subsidy: Article 11(1)(7-2) would cover funds necessary to continue specified capture, transport and storage projects where their particular business environment makes continuation difficult. Proposed Articles 18-2 and 18-3 would require METI to establish and publish grant criteria and JOGMEC to determine recipients and amounts under those criteria, subject to ministerial approval. The precise grant criteria have not yet been established."
     ],
     "source_ids": [
       "s1",
       "s2",
       "s3",
-      "s4"
+      "s4",
+      "s5"
     ]
   },
   "history": {
     "paragraphs": [
-      "The Cabinet approved and submitted the proposal on 13 October 2026 as Cabinet Bill No. 13 in the 222nd Diet. The House of Representatives' official record does not show enactment or promulgation as of this verification."
+      "The Cabinet approved and submitted Cabinet Bill No. 13 to the 222nd Diet on 13 October 2026. The House of Representatives' legislative record reviewed on 7 November 2026 lists no completed enactment or promulgation entry; the absence of an entry is not, by itself, conclusive proof of non-enactment."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "next_steps": {
     "confirmed": [],
     "expected": [
-      "The Diet may examine and amend the bill before voting. If both Houses pass it, an enacted Act is promulgated and enters into force according to its supplementary provisions or an implementing order. This is not a forecast of passage."
+      "The Diet may deliberate on and amend the bill. If enacted and promulgated, the proposed supplementary Article 1 would bring the main provisions into force on a date designated by Cabinet Order within three months after promulgation; the delegated transitional-measures provision would take effect on promulgation. Neither the three-month outer limit nor the bill's submission date is a fixed commencement date."
     ],
     "uncertainties": [
       "The bill has no enacted amendment Act number or confirmed commencement date.",
-      "Funding eligibility, grant conditions and implementation budgets are not established by the materials reviewed."
+      "The proposed grant criteria, individual recipient and amount decisions, ministerial approvals, and implementation budgets are not established by the bill text. No entitlement to a grant follows merely from submitting a project."
     ]
   },
   "business_impact": {
     "paragraphs": [
-      "Energy transport and carbon capture project sponsors may assess whether the proposed functions would create a future funding opportunity. A submitted bill alone provides no right to apply for those proposed new functions."
+      "Sponsors of qualifying oil and gas transport and CCS projects may evaluate possible future JOGMEC investment or grants. In particular, the proposed CCS grant targets continuity risks in specified projects and would depend on published ministerial criteria and approvals; the submitted bill creates no present right to funding."
     ],
     "checklist": [
       "Check the official Diet status and amendments to the bill.",
-      "Map any planned oil transportation or carbon capture, transport and storage investment to the proposed functions.",
-      "Wait for enacted legislation and implementing rules before assuming that new JOGMEC support is available."
+      "Assess whether planned oil and gas transport, or CCS capture, transport and storage, matches the geographically and operationally defined proposed functions.",
+      "Track enactment, any commencement Cabinet Order, and the proposed METI grant criteria and ministerial approvals before assuming support is available."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "key_dates": [
@@ -126,10 +130,18 @@
       "title": "Advanced CCS projects selected by JOGMEC (28 June 2024)",
       "url": "https://www.meti.go.jp/press/2024/06/20240628011/20240628011.html",
       "accessed_at": "2026-11-07"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "Full submitted text of Cabinet Bill No. 13 (222nd Diet), including proposed Articles 11, 18-2, 18-3 and Supplementary Article 1",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209013.htm",
+      "accessed_at": "2026-11-07"
     }
   ],
-  "verified_at": "2026-10-22",
+  "verified_at": "2026-11-07",
   "source_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
   "author": "chatgpt",
-  "review_notes": "Cabinet Legislation Bureau and House legislative progress pages rechecked 2026-11-07; no affirmative enactment or promulgation shown. METI's 2024 advanced CCS project announcement independently checked as contextual evidence only, not proof of the 2026 bill's detailed terms. METI 2026 bill text and latest ministry release remain to be verified; do not claim full verification or change verified_at."
+  "review_notes": "On 2026-11-07 directly verified Cabinet Legislation Bureau proposal and rationale, House legislative progress and full submitted bill text (proposed Arts. 11, 18-2, 18-3 and supplementary provisions). The earlier METI 2024 CCS project announcement is context only, not evidence of grant entitlement. METI 2026 site fetch returned 403; no unsupported claim about ministry release or grant implementation. Source fingerprint retains the recorded OfficialIndex value for the unchanged linked official record; CI must confirm."
 }
