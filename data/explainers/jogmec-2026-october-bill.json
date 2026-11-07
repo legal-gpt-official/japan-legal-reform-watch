@@ -38,12 +38,14 @@
   "background": {
     "paragraphs": [
       "The Cabinet Legislation Bureau explains that international conditions have increased the importance of secure energy and metal mineral supplies. The government proposes to strengthen the support available for Japanese companies to secure those resources.",
-      "The bill would expand JOGMEC's functions to include investment relating to oil transportation and grants for funding carbon dioxide capture, transport and storage. These are proposed public support functions; they do not themselves impose new obligations on private project sponsors."
+      "The bill would expand JOGMEC's functions to include investment relating to oil transportation and grants for funding carbon dioxide capture, transport and storage. These are proposed public support functions; they do not themselves impose new obligations on private project sponsors.",
+      "The proposal also sits alongside Japan's existing carbon storage policy, but it is a separate legislative initiative. METI reported in June 2024 that JOGMEC had selected nine advanced CCS projects aimed at developing replicable business models and starting operations by 2030. That earlier project selection illustrates the policy context; it does not establish eligibility for the new grants contemplated by the October 2026 bill."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s3"
+      "s3",
+      "s4"
     ]
   },
   "history": {
@@ -99,7 +101,7 @@
       "publisher": "Cabinet Legislation Bureau",
       "title": "JOGMEC amendment bill, Cabinet bill 13, 222nd Diet",
       "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367",
-      "accessed_at": "2026-10-22"
+      "accessed_at": "2026-11-07"
     },
     {
       "id": "s2",
@@ -107,7 +109,7 @@
       "publisher": "House of Representatives",
       "title": "Official legislative status of Cabinet bill 13 in the 222nd Diet",
       "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm",
-      "accessed_at": "2026-10-22"
+      "accessed_at": "2026-11-07"
     },
     {
       "id": "s3",
@@ -116,10 +118,18 @@
       "title": "Existing JOGMEC Act (Act No. 94 of 2002)",
       "url": "https://laws.e-gov.go.jp/law/414AC0000000094",
       "accessed_at": "2026-10-22"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Ministry of Economy, Trade and Industry",
+      "title": "Advanced CCS projects selected by JOGMEC (28 June 2024)",
+      "url": "https://www.meti.go.jp/press/2024/06/20240628011/20240628011.html",
+      "accessed_at": "2026-11-07"
     }
   ],
   "verified_at": "2026-10-22",
   "source_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
   "author": "chatgpt",
-  "review_notes": "Checked Cabinet Legislation Bureau and House of Representatives primary source pages on 2026-10-22; e-Gov Law Search link was accessible but its body could not be retrieved in this execution. The instruments entry identifies the existing JOGMEC Act, not an invented 2026 amendment number."
+  "review_notes": "Cabinet Legislation Bureau and House legislative progress pages rechecked 2026-11-07; no affirmative enactment or promulgation shown. METI's 2024 advanced CCS project announcement independently checked as contextual evidence only, not proof of the 2026 bill's detailed terms. METI 2026 bill text and latest ministry release remain to be verified; do not claim full verification or change verified_at."
 }
