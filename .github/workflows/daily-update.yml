@@ -58,6 +58,16 @@ jobs:
           SOURCE_HEALTH_PERSIST_STATE: ${{ github.event_name == 'schedule' && '1' || '0' }}
         run: python scripts/source_health.py evaluate
 
+      # The source-health gate runs in a separate job/runner. Pass the raw
+      # fetch evidence explicitly; logs/ is not checked into the repository.
+      - name: Upload source fetch report for independent health gate
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-fetch-report-${{ github.run_id }}
+          path: logs/source_fetch_report.json
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Build public data
         run: python scripts/build_public_data.py
 
@@ -369,6 +379,13 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+      - name: Restore source fetch report from update job
+        uses: actions/download-artifact@v4
+        with:
+          name: source-fetch-report-${{ github.run_id }}
+          path: logs
+      - name: Check source fetch report exists
+        run: test -s logs/source_fetch_report.json
       - name: Enforce source health gate
         env:
           SOURCE_HEALTH_PERSIST_STATE: ${{ github.event_name == 'schedule' && '1' || '0' }}
