@@ -18,6 +18,11 @@ on:
       - "docs/style.css"
       - ".github/workflows/publish-explainer-pages.yml"
   workflow_dispatch:
+  # Nightly catch-up: recover a missed push-triggered publication and request
+  # fresh Pages deployment even when no new explainer PR was merged today.
+  # GitHub cron is UTC; 11:40 UTC = 20:40 JST (no daylight saving).
+  schedule:
+    - cron: "40 11 * * *"
 
 permissions:
   contents: write
@@ -75,6 +80,56 @@ jobs:
         env:
           EXPLAINER_PUBLISH_POLICY: ${{ vars.EXPLAINER_PUBLISH_POLICY }}
         run: python scripts/build_public_pages.py
+
+      - name: Verify recent explainers have generated EN, JA and ZH pages
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from datetime import datetime, timedelta
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          cutoff = (datetime.now(ZoneInfo("Asia/Tokyo")).date() - timedelta(days=2)).isoformat()
+          checked = 0
+          failures = []
+          for english_file in sorted(Path("data/explainers").glob("*.json")):
+              en = json.loads(english_file.read_text(encoding="utf-8"))
+              if en.get("status") != "published" or en.get("verified_at", "") < cutoff:
+                  continue
+              checked += 1
+              dossier = en["dossier_id"]
+              item_ids = en.get("related_item_ids") or []
+              if not item_ids:
+                  failures.append(f"{dossier}: no source items")
+                  continue
+              bundle_path = Path("data/explainer_locales") / (dossier + ".json")
+              if not bundle_path.exists():
+                  failures.append(f"{dossier}: no JA/ZH locale file")
+                  continue
+              locale = json.loads(bundle_path.read_text(encoding="utf-8"))["translations"]
+              body = english_file.read_bytes()
+              blob_sha = hashlib.sha1(f"blob {len(body)}\0".encode() + body).hexdigest()
+              for lang in ("ja", "zh-Hans"):
+                  tr = locale.get(lang) or {}
+                  if (tr.get("english_verified_at") != en.get("verified_at")
+                          or tr.get("english_source_fingerprint") != en.get("source_fingerprint")
+                          or tr.get("english_file_sha") != blob_sha):
+                      failures.append(f"{dossier}: {lang} not synced to English")
+              for item in item_ids:
+                  for segment in ("", "ja", "zh"):
+                      page = Path("docs/u") / item / segment / "index.html"
+                      if not page.is_file():
+                          failures.append(f"{dossier}: missing {page}")
+                          continue
+                      if "explainer-title" not in page.read_text(encoding="utf-8"):
+                          failures.append(f"{dossier}: explainer missing in {page}")
+          print(f"Recent published dossiers checked: {checked} (since {cutoff}, JST)")
+          if failures:
+              for failure in failures:
+                  print(f"::error::{failure}")
+              raise SystemExit(1)
+          PY
 
       - name: Commit regenerated static pages
         run: |
