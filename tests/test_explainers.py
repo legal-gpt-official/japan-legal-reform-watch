@@ -205,6 +205,15 @@ class TestValidation(Base):
         self.assertTrue(report.notices)
         self.assertTrue(ex.publishable(data, report, AI_POLICY))
 
+    def test_partial_commencement_does_not_imply_full_commencement(self):
+        data = explainer(current_stage="partially_in_force")
+        data["key_dates"] = [data["key_dates"][1]]
+        data["next_steps"]["confirmed"] = []
+        data = stamped(self.index, data)
+        with mock.patch.object(self.index, "instruments", return_value={}):
+            report = self.report(data)
+        self.assertNotIn("stage_overtaken:effective_date_passed", report.warnings)
+
     def test_one_reform_one_explainer(self):
         first = stamped(self.index, explainer("first-one"))
         second = stamped(self.index, explainer("second-one", related=("raw-order-b",)))
