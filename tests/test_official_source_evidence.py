@@ -97,6 +97,47 @@ class TestExtract(unittest.TestCase):
         )
         self.assertIn("届出期限を変更", excerpt)
 
+    def test_egov_download_links_without_pdf_suffix_are_selected(self):
+        html = """<html><main>
+        <h1>電気工事士法施行令の一部を改正する政令案</h1>
+        <p>施行令を改正する意見募集について、改正概要を公表します。</p>
+        <a href="/pcm/download?seqNo=0000323737">意見公募要領</a>
+        <a href="/pcm/download?seqNo=0000323739">概要</a>
+        <a href="/pcm/download?seqNo=0000323740">案文・理由</a>
+        <a href="/pcm/download?seqNo=0000323741">新旧対照表</a>
+        </main></html>"""
+        url = "https://public-comment.e-gov.go.jp/servlet/Public?id=595320122"
+        excerpt, pdfs = evidence.html_documents(html.encode(), url)
+        self.assertIn("施行令を改正", excerpt)
+        self.assertEqual(pdfs, [
+            "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323739",
+            "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323741",
+        ])
+        self.assertTrue(evidence.is_pdf_attachment_url(pdfs[0]))
+        self.assertFalse(evidence.is_pdf_attachment_url(
+            "https://public-comment.e-gov.go.jp/servlet/Public?id=595320122"))
+        self.assertFalse(evidence.is_pdf_attachment_url(
+            "https://evil.example.com/pcm/download?seqNo=123"))
+
+    def test_egov_pdf_mime_is_checked_not_assumed(self):
+        url = "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323739"
+        sample = "この政令案では受験手数料を14400円から17000円に改めます。" * 9
+        with mock.patch.object(evidence, "fetch_bounded", return_value=(
+                b"%PDF test", "application/pdf", url)) as fetch, \
+             mock.patch.object(evidence, "pdf_text", return_value=sample):
+            docs = evidence.gather(url)
+        fetch.assert_called_once_with(url, evidence.MAX_PDF_BYTES)
+        self.assertEqual(docs[0]["format"], "pdf")
+        self.assertIn("17000円", docs[0]["excerpt"])
+
+    def test_large_consumer_affairs_order_pdf_has_bounded_exception(self):
+        order = "https://www.caa.go.jp/notice/assets/representation_cms210_261106_01.pdf"
+        self.assertGreater(evidence.pdf_fetch_limit(order), 14_700_000)
+        self.assertEqual(evidence.pdf_fetch_limit("https://www.caa.go.jp/other.pdf"),
+                         evidence.MAX_PDF_BYTES)
+        self.assertEqual(evidence.pdf_fetch_limit("https://evil.example.com/notice/assets/representation_1.pdf"),
+                         evidence.MAX_PDF_BYTES)
+
     def test_gather_keeps_page_and_pdf_provenance(self):
         html = """<html><main><h1>省令案</h1><p>""".encode("utf-8")
         html += ("手続の対象が変わり、施行日は2027年4月1日です。" * 15).encode()

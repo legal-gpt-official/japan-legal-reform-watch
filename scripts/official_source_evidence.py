@@ -32,6 +32,7 @@ CACHE_PATH = ROOT / "data" / "official_source_evidence.json"
 
 MAX_HTML_BYTES = 1_500_000
 MAX_PDF_BYTES = 4_000_000
+MAX_CAA_ORDER_PDF_BYTES = 17_000_000  # enforcement PDFs (e.g., 14.7 MB) are often larger
 MAX_TOTAL_CHARS = 4500
 MAX_HTML_CHARS = 2300
 MAX_PDF_CHARS = 2400
@@ -39,7 +40,7 @@ MAX_PDF_PAGES = 8
 MAX_PDF_LINKS = 2
 MIN_DOCUMENT_CHARS = 180
 DEFAULT_LIMIT = 12
-EXTRACTION_VERSION = 2  # re-fetch pre-filter evidence that may contain menus
+EXTRACTION_VERSION = 3  # re-fetch to discover e-Gov PDF downloads without .pdf paths
 NEGATIVE_RETRY_HOURS = 72  # blocked/empty pages must not starve the queue
 
 # No HTTP or arbitrary internet hosts, even if introduced by a compromised feed.
@@ -71,6 +72,35 @@ def safe_official_url(value: str) -> bool:
         )
     except ValueError:
         return False
+
+
+def is_pdf_attachment_url(url: str) -> bool:
+    """Treat official e-Gov /pcm/download?seqNo=... as a PDF link.
+
+    e-Gov serves real public-comment PDFs without a '.pdf' suffix. Requiring
+    that extension made the collector miss the actual draft and before/after
+    tables, even when the HTML summary listed those attachments.
+    """
+    if not safe_official_url(url):
+        return False
+    u = urlsplit(url)
+    if u.path.lower().endswith(".pdf"):
+        return True
+    return (
+        (u.hostname or "").lower() == "public-comment.e-gov.go.jp"
+        and u.path.rstrip("/").lower() == "/pcm/download"
+        and bool(re.search(r"(?:^|&)seqno=\d+(?:&|$)", u.query, re.I))
+    )
+
+
+def pdf_fetch_limit(url: str) -> int:
+    """Use a bounded higher cap only for Consumer Affairs enforcement PDFs."""
+    u = urlsplit(url)
+    if (safe_official_url(url)
+            and (u.hostname or "").lower().endswith(".caa.go.jp")
+            and re.search(r"/notice/assets/representation_[^/]+\.pdf$", u.path, re.I)):
+        return MAX_CAA_ORDER_PDF_BYTES
+    return MAX_PDF_BYTES
 
 
 def fetch_bounded(url: str, limit: int) -> tuple[bytes, str, str]:
@@ -152,21 +182,25 @@ def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
             lines.append(value)
             last = value
     text = normalize_text(" ".join(lines))
-    pdfs: list[tuple[int, str]] = []
-    for link in root.select("a[href]"):
+    pdfs: list[tuple[int, int, str]] = []
+    for position, link in enumerate(root.select("a[href]")):
         href = str(link.get("href") or "")
         full = urljoin(url, href)
-        if not safe_official_url(full):
-            continue
-        if not re.search(r"\.pdf(?:$|[?#])", urlsplit(full).path + "?" + urlsplit(full).query, re.I):
+        if not is_pdf_attachment_url(full):
             continue
         label = normalize_text(link.get_text(" ", strip=True))
         if not PDF_LABEL.search(label):
             continue
-        score = 4 if re.search(r"新旧対照|概要|改正内容|案文|命令書", label) else 1
-        pdfs.append((score, full))
+        # A short overview and a before/after table generally reveal more
+        # concrete legal changes than procedural submission instructions.
+        score = (
+            10 if re.search(r"概要|命令書|改正内容", label) else
+            8 if re.search(r"新旧対照", label) else
+            7 if re.search(r"案文|本文|要綱", label) else 1
+        )
+        pdfs.append((score, position, full))
     selected: list[str] = []
-    for _, link in sorted(pdfs, reverse=True):
+    for _, _, link in sorted(pdfs, key=lambda entry: (-entry[0], entry[1])):
         if link not in selected:
             selected.append(link)
         if len(selected) >= MAX_PDF_LINKS:
@@ -206,7 +240,9 @@ def related_to_title(title: str, documents: list[dict]) -> bool:
 
 def gather(url: str) -> list[dict]:
     """Return only bounded, substantive extracted excerpts with their exact URLs."""
-    data, mime, final_url = fetch_bounded(url, MAX_HTML_BYTES if not urlsplit(url).path.lower().endswith(".pdf") else MAX_PDF_BYTES)
+    data, mime, final_url = fetch_bounded(
+        url, pdf_fetch_limit(url) if is_pdf_attachment_url(url) else MAX_HTML_BYTES
+    )
     documents: list[dict] = []
     pdf_urls: list[str] = []
     if data.startswith(b"%PDF"):
@@ -221,7 +257,7 @@ def gather(url: str) -> list[dict]:
         if sum(len(d["excerpt"]) for d in documents) >= MAX_TOTAL_CHARS:
             break
         try:
-            pdf, _, pdf_final_url = fetch_bounded(pdf_url, MAX_PDF_BYTES)
+            pdf, _, pdf_final_url = fetch_bounded(pdf_url, pdf_fetch_limit(pdf_url))
             excerpt = pdf_text(pdf)
             if len(excerpt) >= MIN_DOCUMENT_CHARS:
                 documents.append({"url": pdf_final_url, "format": "pdf", "excerpt": excerpt})

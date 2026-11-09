@@ -88,6 +88,17 @@ jobs:
         run: |
           python scripts/official_source_evidence.py --limit 20
 
+      # One-time case-study backfill targets previously thin summaries. A source
+      # can still fail safely; the regular 20-item pilot remains independent.
+      # These ids can be removed after the result is reviewed.
+      - name: Refresh three previously thin legal summaries
+        continue-on-error: true
+        run: |
+          python scripts/official_source_evidence.py --limit 3 \
+            --id raw-8c978345296c5267 \
+            --id raw-7be62dc11cd227d4 \
+            --id raw-fda3cc30ac4a875f
+
       # Snapshot the actual routine summaries BEFORE regenerating them. The
       # independent comparison later in this run is diagnostic, not an accuracy
       # certification, and is exported as a read-only Actions artifact.
