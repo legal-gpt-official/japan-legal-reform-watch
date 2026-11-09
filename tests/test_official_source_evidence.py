@@ -140,6 +140,24 @@ class TestSummaryIntegration(unittest.TestCase):
             self.assertEqual(payload["official_source_documents"], raw["official_documents"])
         self.assertIn("official_source_documents", su.build_user_content(item, raw))
 
+    def test_stale_or_unsafe_evidence_is_not_loaded(self):
+        raw = {
+            "raw-test": {"source_url": "https://www.meti.go.jp/a", "raw_content_hash": "abc"},
+        }
+        long_excerpt = "省令についての具体的な改正内容です。" * 20
+        bad_source = {"raw-test": {
+            "source_url": "https://www.meti.go.jp/a", "raw_hash": "old",
+            "documents": [{"url": "https://www.meti.go.jp/a", "format": "html", "excerpt": long_excerpt}],
+        }}
+        self.assertEqual(su.attach_official_documents(raw, bad_source), 0)
+        self.assertNotIn("official_documents", raw["raw-test"])
+        bad_source["raw-test"]["raw_hash"] = "abc"
+        bad_source["raw-test"]["documents"][0]["url"] = "https://evil.example.com/"
+        self.assertEqual(su.attach_official_documents(raw, bad_source), 0)
+        bad_source["raw-test"]["documents"][0]["url"] = "https://www.meti.go.jp/a"
+        self.assertEqual(su.attach_official_documents(raw, bad_source), 1)
+        self.assertEqual(raw["raw-test"]["official_documents"][0]["excerpt"], long_excerpt)
+
     def test_only_successful_enrichment_invalidates_existing_cache(self):
         item = {"id": "raw-test", "title_ja": "一部改正", "source_url": "https://www.meti.go.jp/a"}
         old = {"raw_content_hash": "abc", "raw_summary": "一部改正"}
