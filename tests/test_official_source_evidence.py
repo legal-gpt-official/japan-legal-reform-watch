@@ -141,6 +141,7 @@ class TestExtract(unittest.TestCase):
         failed = {
             "source_url": raw["source_url"], "raw_hash": "abc",
             "status": "no_evidence", "documents": [],
+            "extraction_version": evidence.EXTRACTION_VERSION,
             "checked_at": now.isoformat(timespec="seconds"),
         }
         self.assertTrue(evidence.recently_failed(raw, failed))
