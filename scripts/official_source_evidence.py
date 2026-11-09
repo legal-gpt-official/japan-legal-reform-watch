@@ -39,6 +39,7 @@ MAX_PDF_PAGES = 8
 MAX_PDF_LINKS = 2
 MIN_DOCUMENT_CHARS = 180
 DEFAULT_LIMIT = 12
+EXTRACTION_VERSION = 2  # re-fetch pre-filter evidence that may contain menus
 NEGATIVE_RETRY_HOURS = 72  # blocked/empty pages must not starve the queue
 
 # No HTTP or arbitrary internet hosts, even if introduced by a compromised feed.
@@ -247,6 +248,7 @@ def eligible_cached(raw: dict, record: dict | None) -> bool:
     return bool(
         isinstance(record, dict)
         and record.get("source_url") == raw.get("source_url")
+        and record.get("extraction_version") == EXTRACTION_VERSION
         and record.get("raw_hash") == raw.get("raw_content_hash")
         and isinstance(record.get("documents"), list)
         and record["documents"]
@@ -256,6 +258,8 @@ def eligible_cached(raw: dict, record: dict | None) -> bool:
 def recently_failed(raw: dict, record: dict | None) -> bool:
     """Do not spend every day's quota retrying the same blocked official pages."""
     if not isinstance(record, dict) or not record.get("status") in ("no_evidence", "error"):
+        return False
+    if record.get("extraction_version") != EXTRACTION_VERSION:
         return False
     if record.get("source_url") != raw.get("source_url") or record.get("raw_hash") != raw.get("raw_content_hash"):
         return False
@@ -307,6 +311,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                     cache[item["id"]] = {
                         "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
                         "documents": [], "status": "no_evidence",
+                        "extraction_version": EXTRACTION_VERSION,
                         "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                     }
                     changed = True
@@ -317,6 +322,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                     "source_url": url,
                     "raw_hash": record.get("raw_content_hash", ""),
                     "documents": docs,
+                    "extraction_version": EXTRACTION_VERSION,
                     "extracted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 }
                 changed = True
@@ -327,6 +333,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                 cache[item["id"]] = {
                     "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
                     "documents": [], "status": "error",
+                    "extraction_version": EXTRACTION_VERSION,
                     "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 }
                 changed = True
