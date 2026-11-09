@@ -40,7 +40,7 @@ MAX_PDF_PAGES = 8
 MAX_PDF_LINKS = 2
 MIN_DOCUMENT_CHARS = 180
 DEFAULT_LIMIT = 12
-EXTRACTION_VERSION = 3  # re-fetch to discover e-Gov PDF downloads without .pdf paths
+EXTRACTION_VERSION = 4  # page-aware PDF excerpts preserve operative provisions beyond covers
 NEGATIVE_RETRY_HOURS = 72  # blocked/empty pages must not starve the queue
 
 # No HTTP or arbitrary internet hosts, even if introduced by a compromised feed.
@@ -208,16 +208,69 @@ def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
     return text[:MAX_HTML_CHARS], selected
 
 
+# Legal attachments often start with a cover and long table of contents.
+# Blindly truncating the first 2,400 characters loses the operative amendment.
+# Work only with extracted text; these are not verified clause comparisons.
+PDF_SUBSTANCE_CUES = (
+    "改正概要", "改正の概要", "主な改正", "改正内容", "改正点",
+    "適用対象", "適用範囲", "施行期日", "施行日", "経過措置",
+    "新設", "義務付け", "届出", "許可", "認可", "基準", "要件",
+)
+PDF_CLAUSE_CUE = re.compile(r"第[0-9０-９一二三四五六七八九十百千]+条")
+
+
+def select_pdf_page_excerpts(pages: list[str], limit: int = MAX_PDF_CHARS) -> str:
+    """Keep the overview plus selected substantive pages, with page provenance.
+
+    A page-level score is a *selection heuristic*, not evidence that a new
+    requirement exists. It never rewrites text or assigns old/new columns.
+    Short documents are left intact; the longer ones are explicitly excerpts.
+    """
+    cleaned = [(index + 1, normalize_text(value)) for index, value in enumerate(pages)
+               if normalize_text(value)]
+    if not cleaned:
+        return ""
+    full = normalize_text(" ".join(value for _, value in cleaned))
+    if len(full) <= limit:
+        return full
+
+    def score(value: str) -> int:
+        count = sum(3 if cue in value else 0 for cue in PDF_SUBSTANCE_CUES)
+        count += min(4, len(PDF_CLAUSE_CUE.findall(value)))
+        if "目次" in value[:100]:
+            count -= 8
+        return count
+
+    first = cleaned[0]
+    # Prefer two later pages with actual operative detail, not the table of
+    # contents, while preserving their original order in the final excerpt.
+    later = sorted(cleaned[1:], key=lambda pair: (-score(pair[1]), pair[0]))
+    chosen = [first] + sorted(later[:2], key=lambda pair: pair[0])
+    result = []
+    remaining = limit
+    for pos, (page_no, body) in enumerate(chosen):
+        marker = f"[PDF page {page_no}; excerpt] "
+        # Reserve space for later pages instead of spending the entire budget
+        # on the opening page's cover, background, or table of contents.
+        reserved = sum(min(600, len(page)) + 25 for _, page in chosen[pos + 1:])
+        take = min(len(body), max(0, remaining - len(marker) - reserved))
+        if take < 100:
+            continue
+        part = marker + body[:take]
+        result.append(part)
+        remaining -= len(part) + 1
+    return " ".join(result)[:limit]
+
+
 def pdf_text(data: bytes) -> str:
     if not data.startswith(b"%PDF"):
         return ""
     reader = PdfReader(io.BytesIO(data), strict=False)
     if reader.is_encrypted:
         return ""
-    pieces = []
-    for index in range(min(len(reader.pages), MAX_PDF_PAGES)):
-        pieces.append(reader.pages[index].extract_text() or "")
-    return normalize_text(" ".join(pieces))[:MAX_PDF_CHARS]
+    pages = [reader.pages[index].extract_text() or ""
+             for index in range(min(len(reader.pages), MAX_PDF_PAGES))]
+    return select_pdf_page_excerpts(pages)
 
 
 def related_to_title(title: str, documents: list[dict]) -> bool:
