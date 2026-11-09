@@ -155,6 +155,25 @@ class TestExtract(unittest.TestCase):
         self.assertIn("施行日", docs[0]["excerpt"])
         self.assertTrue(all(d["url"].startswith("https://www.caa.go.jp/") for d in docs))
 
+    def test_long_pdf_keeps_operational_amendment_beyond_contents_page(self):
+        cover = ("改正案の概要。新たな対象事業者の基準は検討中です。" * 45)
+        contents = ("目次 各章の見出し 第１条 第２条 第３条 " * 85)
+        change = ("改正内容：申請の期限を2027年4月1日に変更する。"
+                  "施行期日及び経過措置を別途規定する。" * 40)
+        appendix = ("届出義務の対象となる事業者及び許可基準の詳細。" * 50)
+        text = evidence.select_pdf_page_excerpts([cover, contents, change, appendix])
+        self.assertLessEqual(len(text), evidence.MAX_PDF_CHARS)
+        self.assertIn("[PDF page 1; excerpt]", text)
+        self.assertIn("[PDF page 3; excerpt]", text)
+        self.assertIn("2027年4月1日", text)
+        self.assertNotIn("[PDF page 2; excerpt]", text)
+
+    def test_short_pdf_keeps_full_content_without_page_selection(self):
+        self.assertEqual(
+            evidence.select_pdf_page_excerpts(["第１条 改正内容", "附則 施行日"]),
+            "第１条 改正内容 附則 施行日"
+        )
+
     def test_invalid_pdf_without_text_never_accepted(self):
         self.assertEqual(evidence.pdf_text(b"<html>bad</html>"), "")
 
