@@ -76,6 +76,7 @@ from pathlib import Path
 import alert_common
 import build_public_data as public_data
 import openai_provider
+import official_source_evidence as ose
 import requeue
 from anthropic_batch import (
     DEFAULT_TIMEOUT_SECONDS,
@@ -563,6 +564,49 @@ def cache_key(item: dict, raw_by_id: dict) -> str:
 # --------------------------------------------------------------------------- #
 # Claude call (patchable for testing)
 # --------------------------------------------------------------------------- #
+
+def attach_official_documents(raw_by_id: dict, evidence_entries: dict) -> int:
+    """Attach only current, safe, bounded evidence to in-memory source records.
+
+    Does not mutate the raw-source file. The same helper is shared with the
+    independent semantic reviewer so claims from excerpts can be audited.
+    """
+    if not isinstance(evidence_entries, dict):
+        return 0
+    count = 0
+    for item_id, entry in evidence_entries.items():
+        raw = raw_by_id.get(item_id)
+        if not isinstance(entry, dict) or not isinstance(raw, dict):
+            continue
+        if (entry.get("source_url") != raw.get("source_url")
+                or entry.get("raw_hash") != raw.get("raw_content_hash")
+                or not ose.safe_official_url(raw.get("source_url"))):
+            continue
+        docs = entry.get("documents")
+        if not isinstance(docs, list):
+            continue
+        remaining = ose.MAX_TOTAL_CHARS
+        accepted = []
+        for doc in docs[:3]:
+            if not isinstance(doc, dict):
+                continue
+            excerpt = doc.get("excerpt")
+            if (not isinstance(excerpt, str) or len(excerpt) < ose.MIN_DOCUMENT_CHARS
+                    or not ose.safe_official_url(doc.get("url"))
+                    or doc.get("format") not in ("html", "pdf")):
+                continue
+            value = excerpt[:remaining]
+            if len(value) < ose.MIN_DOCUMENT_CHARS:
+                break
+            accepted.append({"url": doc["url"], "format": doc["format"], "excerpt": value})
+            remaining -= len(value)
+            if remaining < ose.MIN_DOCUMENT_CHARS:
+                break
+        if accepted:
+            raw["official_documents"] = accepted
+            count += 1
+    return count
+
 
 def source_payload(item: dict, raw: dict) -> dict:
     """Return only source metadata shared by the English and Japanese prompts."""
@@ -1635,26 +1679,9 @@ def main(argv: list[str] | None = None) -> int:
 
     raw_list = load_json(RAW_PATH, [])  # requirement 7: optional auxiliary input
     raw_by_id = {r.get("id"): r for r in raw_list if isinstance(r, dict) and r.get("id")}
-    # The collector is independent of Stage 1: validate both the original URL
-    # and its raw-content hash before consuming saved official excerpts.
-    saved_evidence = load_json(EVIDENCE_PATH, {})
-    if isinstance(saved_evidence, dict):
-        for item_id, entry in saved_evidence.items():
-            raw = raw_by_id.get(item_id)
-            if not isinstance(entry, dict) or raw is None:
-                continue
-            if (entry.get("source_url") != raw.get("source_url")
-                    or entry.get("raw_hash") != raw.get("raw_content_hash")):
-                continue
-            docs = entry.get("documents")
-            if isinstance(docs, list):
-                valid_docs = [d for d in docs[:3] if isinstance(d, dict)
-                              and isinstance(d.get("excerpt"), str)
-                              and 180 <= len(d["excerpt"]) <= 4500
-                              and isinstance(d.get("url"), str) and d["url"].startswith("https://")
-                              and d.get("format") in ("html", "pdf")]
-                if valid_docs:
-                    raw["official_documents"] = valid_docs
+    # The collector is separate from raw ingestion. Reuse only exact source
+    # URL/hash matches and safe official-document URLs.
+    attach_official_documents(raw_by_id, load_json(EVIDENCE_PATH, {}))
     # Audit-requested one-shot English regeneration (data/requeue.json). Only
     # listed items whose cached summary predates the request are redone.
     requeue_request = requeue.load()
