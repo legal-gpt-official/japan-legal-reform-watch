@@ -160,8 +160,8 @@ def pdf_text(data: bytes) -> str:
     if reader.is_encrypted:
         return ""
     pieces = []
-    for page in list(reader.pages)[:MAX_PDF_PAGES]:
-        pieces.append(page.extract_text() or "")
+    for index in range(min(len(reader.pages), MAX_PDF_PAGES)):
+        pieces.append(reader.pages[index].extract_text() or "")
     return normalize_text(" ".join(pieces))[:MAX_PDF_CHARS]
 
 
