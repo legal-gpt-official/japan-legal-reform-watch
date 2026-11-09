@@ -63,6 +63,11 @@ def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, str]], list[str]]
             "ja": (translations.get("ja") or {}).get("title", ""),
             "zh": (translations.get("zh-Hans") or {}).get("title", ""),
         }
+        quick = {
+            "en": (en.get("quick_take") or {}).get("what_changed", ""),
+            "ja": ((translations.get("ja") or {}).get("quick_take") or {}).get("what_changed", ""),
+            "zh": ((translations.get("zh-Hans") or {}).get("quick_take") or {}).get("what_changed", ""),
+        }
         item_ids = en.get("related_item_ids") or []
         if not item_ids:
             failures.append(f"{dossier}: no related_item_ids")
@@ -74,16 +79,20 @@ def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, str]], list[str]]
             for lang, suffix in (("en", ""), ("ja", "/ja"), ("zh", "/zh")):
                 title = titles[lang]
                 marker = '<h2 id="explainer-title">' + html.escape(title, quote=True) + "</h2>"
+                # The title can stay unchanged after a substantive update.
+                # Require the canonical/newest quick-take sentence AND
+                # verification date on the live site, not just the title.
+                expected = (marker, html.escape(quick[lang], quote=True), str(en.get("verified_at", "")))
                 rel = f"u/{raw_id}{suffix}/"
                 local = DOCS_DIR / raw_id / ("" if lang == "en" else lang) / "index.html"
-                if not title or not local.is_file():
+                if not title or not quick[lang] or not local.is_file():
                     failures.append(f"{dossier}: missing title or generated page {local}")
                     continue
                 source = local.read_text(encoding="utf-8")
-                if marker not in source or str(en.get("verified_at", "")) not in source:
+                if not all(part in source for part in expected):
                     failures.append(f"{dossier}: generated HTML is stale/missing explainer {rel}")
                     continue
-                targets.append((HOST + "/" + rel, marker))
+                targets.append((HOST + "/" + rel, "\n".join(expected)))
     return targets, failures
 
 
@@ -96,8 +105,8 @@ def fetch_and_match(target: tuple[str, str]) -> tuple[str, str | None]:
             body = response.read(1_500_000).decode("utf-8", errors="replace")
             if status != 200:
                 return url, f"HTTP {status}"
-            if marker not in body:
-                return url, "HTTP 200 but expected explainer title is missing or stale"
+            if not all(part in body for part in marker.split("\n")):
+                return url, "HTTP 200 but current title, quick take or verified date is missing"
             return url, None
     except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError) as exc:
         return url, f"{type(exc).__name__}: {exc}"

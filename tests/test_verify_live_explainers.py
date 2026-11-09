@@ -23,16 +23,25 @@ class LiveExplainerTests(unittest.TestCase):
             en = {
                 "dossier_id": dossier, "status": "published",
                 "title_en": titles["en"], "verified_at": "2026-11-09",
+                "quick_take": {"what_changed": "A substantive change to the English legal explanation."},
                 "related_item_ids": ["raw-0123456789abcdef"],
             }
             (locales / f"{dossier}.json").write_text(json.dumps({
-                "translations": {"ja": {"title": titles["ja"]}, "zh-Hans": {"title": titles["zh"]}}
+                "translations": {
+                    "ja": {"title": titles["ja"], "quick_take": {"what_changed": "日本語の重要な改正"}},
+                    "zh-Hans": {"title": titles["zh"], "quick_take": {"what_changed": "中文的重要修订"}}
+                }
             }), encoding="utf-8")
             for lang in ("en", "ja", "zh"):
                 path = docs / "raw-0123456789abcdef" / ("" if lang == "en" else lang) / "index.html"
                 path.parent.mkdir(parents=True, exist_ok=True)
                 marker = '<h2 id="explainer-title">' + html.escape(titles[lang], quote=True) + "</h2>"
-                path.write_text(f"<html>{marker} 2026-11-09</html>", encoding="utf-8")
+                take = {
+                    "en": "A substantive change to the English legal explanation.",
+                    "ja": "日本語の重要な改正",
+                    "zh": "中文的重要修订",
+                }[lang]
+                path.write_text(f"<html>{marker} {html.escape(take)} 2026-11-09</html>", encoding="utf-8")
             with mock.patch.object(live, "LOCALE_DIR", locales), mock.patch.object(live, "DOCS_DIR", docs):
                 targets, errors = live.page_checks([en])
                 self.assertEqual(len(targets), 3)
