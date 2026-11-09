@@ -1208,9 +1208,9 @@
     "area": "Other",
     "stage": "Public Comment Open",
     "impact_level": "Medium",
-    "summary_en": "The Ministry of Internal Affairs and Communications proposed amending its 2015 guidelines on measuring actual speeds of internet access services provided by mobile telecommunications operators and supplying information to users. The proposed revision follows technical confirmation that the number of measurement locations could be reduced to some extent without lowering the reliability of results; the supplied excerpts do not establish the proposed location count. The announcement is dated 2026-11-06, and the public-comment period was specified as 2026-11-07 through 2026-12-07, with a stated deadline of 2026-12-07 23:59 JST. The consultation is voluntary because the draft does not constitute an order or similar instrument under Article 2(8) of the Administrative Procedure Act; the ministry stated that it planned to revise the guidelines after considering comments.",
-    "business_impact_en": "Mobile telecommunications operators providing internet access services may be able to reduce measurement locations if the proposed revision is adopted, potentially affecting speed-testing arrangements. The guidelines also concern how actual-speed results are communicated to users, but specific changes to those information practices are not established by the supplied excerpts.",
-    "recommended_action_en": "Operators could review the draft's measurement-location provisions against their existing testing arrangements, checking the proposed count and conditions for maintaining reliability. Any implementation timing would also need verification, as no commencement date is established in the supplied excerpts.",
+    "summary_en": "The Ministry of Internal Affairs and Communications proposed amending its guidelines on measuring actual speeds of internet access services provided by mobile telecommunications operators and informing users. The proposal would reduce the number of measurement locations, following technical confirmation that some reduction is possible without lowering measurement reliability; the excerpts do not establish the precise revised count. The announcement is dated November 6, 2026, and the stated consultation period was November 7 to December 7, 2026, with a deadline of 2026-12-07 23:59 JST. The ministry describes this as a voluntary consultation because the draft does not constitute an order or similar instrument under Article 2, paragraph 8 of the Administrative Procedure Act.",
+    "business_impact_en": "Mobile telecommunications operators providing internet access services may be able to reduce measurement work if the proposed revision is adopted. The guidelines concern comparable actual-speed measurements and information supplied to users choosing internet access services.",
+    "recommended_action_en": "Operators could review the complete draft's measurement-location provisions to confirm the proposed sample counts and their implications for measurement plans, rather than relying on the partially extracted comparison text.",
     "source_name": "e-Gov Public Comment (意見募集案件一覧)",
     "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210795&Mode=0",
     "published_at": "2026-11-07",
@@ -1224,20 +1224,20 @@
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：移动通信运营商互联网接入服务实际速度测量及用户信息提供方法等指南修订草案",
-        "summary": "总务省提议修订其2015年关于移动通信运营商提供的互联网接入服务实际速度测量方法及向用户提供信息的方法等的指南。此次修订提议是在技术确认可在不降低结果可靠性的情况下适度减少测量地点数量后提出的；所提供的摘录未明确拟议的地点数量。公告日期为2026-11-06，公开征求意见期间规定为2026-11-07至2026-12-07，明确的截止时间为2026-12-07日本标准时间23:59。由于该草案不属于《行政程序法》第2条第8项规定的命令等文件，此次征求意见属自愿开展；总务省表示，计划在考虑所收意见后修订指南。",
-        "business_impact": "如果拟议修订获采纳，提供互联网接入服务的移动通信运营商可能能够减少测量地点，从而可能影响速度测试安排。该指南也涉及如何向用户传达实际速度结果，但所提供的摘录未明确这些信息提供做法的具体变更。",
-        "recommended_action": "运营商可考虑对照现有测试安排审阅草案中的测量地点条款，核查拟议的地点数量及维持可靠性的条件。任何实施时间也需核实，因为所提供的摘录未明确施行日期。"
+        "summary": "总务省提议修订《移动通信运营商提供的互联网接入服务实际速度测量方法及向用户提供信息的方法等相关指南》。经技术确认，在不降低测量可靠性的情况下可以适当减少测量地点数量，因此该提案拟减少测量地点数量；摘录内容未明确修订后的具体数量。公告日期为2026-11-06，所列征求意见期间为2026-11-07至2026-12-07，截止时间为2026-12-07 23:59（日本标准时间）。总务省表示，此次征求意见属自愿开展，因为该草案不属于《行政程序法》第2条第8款所指的命令或类似文件。",
+        "business_impact": "如果拟议修订获得采纳，提供互联网接入服务的移动通信运营商可能能够减少测量工作。该指南涉及具有可比性的实际速度测量，以及向选择互联网接入服务的用户提供的信息。",
+        "recommended_action": "运营商可考虑查阅完整草案中有关测量地点的规定，以确认拟议的样本数量及其对测量计划的影响，而非依赖仅摘录部分内容的对照文本。"
       }
     },
     "confidence": "high",
-    "ai_notes": "Based on official descriptive excerpts, including the consultation announcement and part of the draft guidelines. Exact revised measurement requirements and implementation timing are unconfirmed; this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-11-09T08:46:54Z",
+    "ai_notes": "Based on official descriptive excerpts. The extracted comparison text does not reliably distinguish old and proposed measurement counts, and no effective date is stated. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-11-09T08:55:07Z",
     "summary_model": "gpt-6.1-sol",
-    "summary_ja": "総務省は、2026年11月7日に「移動系通信事業者が提供するインターネット接続サービスの実効速度計測手法及び利用者への情報提供手法等に関するガイドライン」の改正案を公示し、意見募集を行いました（受付締切：2026年12月7日23:59 JST）。改正案は、実効速度の計測結果の信頼性を低下させない範囲で測定地点数を一定程度削減できるとの技術的な確認と、情報通信審議会の消費者保護政策委員会での議論等を踏まえたものです。本案は行政手続法第２条第８号に定める命令等には該当せず、任意の意見募集とされています。総務省は寄せられた意見を踏まえて改正する予定としていますが、提供された抜粋では、具体的な測定地点数や改正後の適用開始日は確認できません。",
-    "business_impact_ja": "移動系通信事業者では、実効速度の測定地点の選定や計測業務の運用に影響する可能性があります。ただし、改正案の段階であり、測定地点数の具体的な削減幅や、利用者への情報提供・広告表示への変更内容は、提供された抜粋からは確認できません。",
-    "recommended_action_ja": "改正案の全文で、測定地点数・選定条件、計測結果の集計方法、利用者向け情報提供や広告表示への適用に関する変更の有無を確認することが考えられます。併せて、最終的な改正内容、適用開始日・経過措置の有無、各記載の義務・推奨としての位置付けを日本語の公式資料で確認することが望まれます。",
+    "summary_ja": "総務省は、2026年11月7日に「移動系通信事業者が提供するインターネット接続サービスの実効速度計測手法及び利用者への情報提供手法等に関するガイドライン」の改正案を公示し、意見募集を行いました（受付締切：2026年12月7日23:59 JST）。改正案は、計測結果の信頼性を低下させない範囲で測定地点数を一定程度削減できるとの技術的確認と、情報通信審議会の消費者保護政策委員会での議論を踏まえたものです。同ガイドラインは、移動系通信事業者のインターネット接続サービスについて、事業者共通の実効速度計測手法と利用者への情報提供手法等を定めるものですが、提供された抜粋では改正前後の具体的な測定地点数を確実に判別できません。本案は行政手続法第２条第８号に定める命令等には該当せず、任意の意見募集とされており、寄せられた意見を踏まえて改正する予定とされています。",
+    "business_impact_ja": "移動系通信事業者では、改正内容によって実効速度の測定地点の設定や計測業務の負担に影響する可能性があります。ただし、現段階の資料は改正案であり、測定地点数の確定値、適用時期、新たな法的義務の発生は確認できません。",
+    "recommended_action_ja": "改正案全文で測定地点数・都市別の配分・地点選定条件の変更箇所を確認し、現行の計測計画や委託仕様との相違を整理することが考えられます。併せて、実効速度の公表や広告表示に関する変更の有無、適用時期・経過措置を確認し、改正結果の公表を追跡することが有用です。",
     "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-11-09T08:47:10Z",
+    "ja_summarized_at": "2026-11-09T08:55:20Z",
     "ja_summary_model": "gpt-6.1-sol"
   },
   {
@@ -8271,14 +8271,6 @@
     "comment_deadline_source": "source_metadata",
     "comment_deadline_inherited": false,
     "summary_source": "claude",
-    "translations": {
-      "zh-Hans": {
-        "title": "公开征求意见：危险物规制规则修订省令及告示草案，涉及储罐检查、洒水喷头和灭火泡沫",
-        "summary": "总务省消防厅于2026-11-07发布了就一项省令草案及两项告示修订草案公开征求意见的信息；所列意见提交截止时间为2026-12-07日本标准时间23:59。草案拟修订《危险物规制规则》（1959年总理府令第55号）、《规定危险物规制技术细则的告示》（1974年自治省告示第99号）及《规定制造所等泡沫灭火设备技术细则的告示》（2011年总务省告示第559号）。草案拟允许对特定室外储罐的底部焊缝采用交流电磁场测量检测，并允许室内锂离子电池储存设施使用符合规定条件的闭式洒水喷头。对于自助加油站的成套固定式泡沫灭火设备，草案拟允许使用经验证具有规定灭火性能的任何类型灭火剂，而非仅限于水成膜或机械泡沫灭火剂。拟定生效日为公布次日；未载明公布日期。",
-        "business_impact": "特定室外储罐、室内锂离子电池储存设施及自助加油站的运营者可能获得更多检查或消防防护选项。能否采用拟议的替代方案，将取决于适用的检测、设备及灭火性能标准。",
-        "recommended_action": "受影响的运营者可考虑查阅第20条之8及告示第4条之37至第4条之39中拟议的储罐检测规定、第35条之2中的洒水喷头规定，以及泡沫灭火设备告示第18条中的泡沫灭火剂规定，以评估其设备或检查计划是否可能符合条件。"
-      }
-    },
     "confidence": "high",
     "ai_notes": "Based on official descriptive excerpts, including the proposal overview and consultation announcement. The excerpts do not establish all qualifying technical criteria or confirm final adoption; this unofficial English summary should be verified against the authoritative Japanese source.",
     "summarized_at": "2026-11-09T08:46:54Z",
@@ -8288,7 +8280,15 @@
     "recommended_action_ja": "対象施設の有無を整理し、改正案本文で交流電磁場測定法の適用条件、閉鎖型スプリンクラーヘッドの基準、泡消火薬剤の消火性能確認条件を確認することが考えられます。採用を検討する場合は、最終的な公布内容と施行日、既存設備への適用及び経過措置の有無を確認することが適切です。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-11-09T08:47:10Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：危险物规制规则修订省令及告示草案，涉及储罐检查、洒水喷头和灭火泡沫",
+        "summary": "总务省消防厅于2026-11-07发布了就一项省令草案及两项告示修订草案公开征求意见的信息；所列意见提交截止时间为2026-12-07日本标准时间23:59。草案拟修订《危险物规制规则》（1959年总理府令第55号）、《规定危险物规制技术细则的告示》（1974年自治省告示第99号）及《规定制造所等泡沫灭火设备技术细则的告示》（2011年总务省告示第559号）。草案拟允许对特定室外储罐的底部焊缝采用交流电磁场测量检测，并允许室内锂离子电池储存设施使用符合规定条件的闭式洒水喷头。对于自助加油站的成套固定式泡沫灭火设备，草案拟允许使用经验证具有规定灭火性能的任何类型灭火剂，而非仅限于水成膜或机械泡沫灭火剂。拟定生效日为公布次日；未载明公布日期。",
+        "business_impact": "特定室外储罐、室内锂离子电池储存设施及自助加油站的运营者可能获得更多检查或消防防护选项。能否采用拟议的替代方案，将取决于适用的检测、设备及灭火性能标准。",
+        "recommended_action": "受影响的运营者可考虑查阅第20条之8及告示第4条之37至第4条之39中拟议的储罐检测规定、第35条之2中的洒水喷头规定，以及泡沫灭火设备告示第18条中的泡沫灭火剂规定，以评估其设备或检查计划是否可能符合条件。"
+      }
+    }
   },
   {
     "id": "raw-01f22c152339052b",
@@ -11682,14 +11682,6 @@
     "comment_deadline_source": "source_metadata",
     "comment_deadline_inherited": false,
     "summary_source": "claude",
-    "translations": {
-      "zh-Hans": {
-        "title": "公开征求意见：拟提高电气工事士考试费用的政令草案",
-        "summary": "经济产业省于2026-11-06公布了修订《电气工事士法施行令》的政令草案，公开征求意见；所载截止时间为2026-12-06 20:00（日本标准时间）。对于第一种电气工事士考试，草案拟将邮寄申请费用从14,400日元提高至17,000日元，将电子申请费用从13,000日元提高至15,500日元。对于第二种电气工事士考试，相应费用拟分别从12,500日元提高至13,800日元，以及从11,100日元提高至12,300日元。说明文件将费用上涨归因于人员、场地及实操考试材料成本上升，并称按现行收费水平，2027财年将难以继续举办考试。拟议日程计划于2026年12月获内阁批准，并于2027年1月上旬公布及施行；这些日期属于计划，尚未确定。",
-        "business_impact": "如果草案获采纳，第一种及第二种电气工事士考试的申请人通过邮寄或电子方式申请时，均可能面临更高的考试费用。",
-        "recommended_action": "拟参加考试的申请人可考虑根据其考试类别和申请方式查阅拟议的第13条费用表，并在编制申请预算前核查最终的施行条款。"
-      }
-    },
     "confidence": "high",
     "ai_notes": "Based on descriptive official-page and PDF excerpts, including the explanatory fee comparison. The listed contact is the Electricity Safety Division, Industrial Safety and Security Group, Ministry of Economy, Trade and Industry. This is an unofficial English summary; the Japanese source is authoritative, and final adoption and commencement are not established by the excerpts.",
     "summarized_at": "2026-11-09T08:46:54Z",
@@ -11699,7 +11691,15 @@
     "recommended_action_ja": "受験料を負担する企業では、試験区分・申請方法別の改定額と受験予定人数を照合し、予算への影響を確認することが考えられます。最終的な改正条文と附則で施行日、適用される受験申請の範囲、経過措置の有無を確認し、意見提出を検討する場合は募集要領と案文全体を参照してください。",
     "summary_ja_source": "claude",
     "ja_summarized_at": "2026-11-09T08:47:10Z",
-    "ja_summary_model": "gpt-6.1-sol"
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "公开征求意见：拟提高电气工事士考试费用的政令草案",
+        "summary": "经济产业省于2026-11-06公布了修订《电气工事士法施行令》的政令草案，公开征求意见；所载截止时间为2026-12-06 20:00（日本标准时间）。对于第一种电气工事士考试，草案拟将邮寄申请费用从14,400日元提高至17,000日元，将电子申请费用从13,000日元提高至15,500日元。对于第二种电气工事士考试，相应费用拟分别从12,500日元提高至13,800日元，以及从11,100日元提高至12,300日元。说明文件将费用上涨归因于人员、场地及实操考试材料成本上升，并称按现行收费水平，2027财年将难以继续举办考试。拟议日程计划于2026年12月获内阁批准，并于2027年1月上旬公布及施行；这些日期属于计划，尚未确定。",
+        "business_impact": "如果草案获采纳，第一种及第二种电气工事士考试的申请人通过邮寄或电子方式申请时，均可能面临更高的考试费用。",
+        "recommended_action": "拟参加考试的申请人可考虑根据其考试类别和申请方式查阅拟议的第13条费用表，并在编制申请预算前核查最终的施行条款。"
+      }
+    }
   },
   {
     "id": "raw-43b49edc463c3a0c",
@@ -56764,9 +56764,9 @@
     "area": "Transport / Infrastructure",
     "stage": "Public Comment Open",
     "impact_level": "Low",
-    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism announced a public consultation on 2026-11-09 concerning Keisei Electric Railway Co., Ltd.'s application, dated 2026-11-06, to change its passenger fare caps. The proposal would increase average fares paid by 14.1% overall: 14.3% for ordinary fares and 13.7% for season tickets, comprising a 16.9% increase for commuter passes and an 11.5% reduction for student passes. These comparisons include the existing railway-station accessibility surcharge, which the company proposes to abolish alongside the fare revision. Under Article 16 of the Railway Business Act, fare-cap changes require ministerial approval following review of appropriate costs and profit under efficient management; the announcement also describes planned referral to the Transport Council under Article 64-2. The stated consultation period was 2026-11-09 to 2026-11-23, with comments required to arrive by the deadline; the excerpts do not confirm approval or an implementation date.",
-    "business_impact_en": "Keisei Electric Railway and its passengers could be affected by the proposed fare-cap changes and abolition of the accessibility surcharge. Commuter-pass and student-pass users may face different effects, as the proposal raises average commuter-pass fares but reduces average student-pass fares.",
-    "recommended_action_en": "Potentially affected passengers could review the proposed ordinary, commuter-pass and student-pass fares separately, including how abolition of the accessibility surcharge affects comparisons. Any planning could distinguish the application figures from subsequently approved fares and their implementation date.",
+    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism announced a public consultation on 2026-11-09 concerning Keisei Electric Railway Co., Ltd.'s application, dated 2026-11-06, to change passenger fare caps. The proposed average fare increases are 14.3% for ordinary fares and 13.7% for season tickets, comprising a 16.9% increase for commuter tickets and an 11.5% decrease for student tickets; the overall increase is 14.1%. These comparisons include the existing station accessibility surcharge, which the proposal would abolish alongside the fare revision. Under Article 16(1) of the Railway Business Act (Act No. 92 of 1986), fare-cap changes require ministerial approval; the announcement describes planned referral to the Transport Council, not an approval already granted. The stated consultation period was 2026-11-09 to 2026-11-23, with comments required to arrive by the latter date.",
+    "business_impact_en": "Keisei Electric Railway and its passengers could be affected by the proposed fare-cap changes, with different effects for ordinary-fare passengers, commuters and students. The quoted percentages represent average fare changes, rather than a uniform increase for every journey.",
+    "recommended_action_en": "A review could compare the application’s fare categories and surcharge treatment with relevant Keisei journeys or season tickets, and check any subsequent approval for the final caps and implementation date.",
     "source_name": "国土交通省 (MLIT) 報道発表",
     "source_url": "https://www.mlit.go.jp/report/press/tetsudo02_hh_000223.html",
     "published_at": "2026-11-09",
@@ -56774,24 +56774,24 @@
     "relevance_score": 15.0,
     "first_seen_at": "2026-11-09",
     "summary_source": "claude",
-    "confidence": "high",
-    "ai_notes": "Based on substantive official announcement and PDF excerpts. This is an unofficial English summary; the authoritative Japanese source should be used to verify details, and the excerpts do not establish approval.",
-    "summarized_at": "2026-11-09T07:38:41Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "国土交通省は、2026年11月9日、京成電鉄株式会社が同月6日付けで提出した旅客運賃の上限変更認可申請について、適正な審査のため利用者の意見を聴く意見募集を公表しました（募集期間：2026年11月9日～11月23日、必着。抽出資料に締切時刻の記載はありません）。申請上の改定率（平均支払い運賃額の増加率）は、現在の鉄道駅バリアフリー料金加算後の運賃との比較で、普通運賃14.3％、定期運賃13.7％（通勤16.9％、通学は11.5％減）、全体14.1％であり、同料金は運賃改定に合わせて廃止する計画です。同料金を除いた比較では、普通運賃16.8％、定期運賃18.4％（通勤22.4％、通学は11.5％減）、全体17.3％とされています。鉄道事業法（昭和６１年法律第９２号）第16条第1項・第2項及び第64条の2に基づき、上限変更には国土交通大臣の認可が必要で、適正な原価と利潤に関する審査及び運輸審議会への諮問を要します。今後、運輸審議会に諮問し、提出意見を審議時に報告する予定とされており、提供資料では認可の決定や運賃改定の実施日は確認できません。",
-    "business_impact_ja": "申請が認可され実際の運賃が改定される場合、京成電鉄を利用する従業員の通勤費や業務交通費に影響する可能性があります。示された改定率は平均支払い運賃額の増加率であり、個別区間の運賃や各企業の費用増加率を直接示すものではありません。",
-    "recommended_action_ja": "利用区間別の申請運賃、通勤定期の改定額、鉄道駅バリアフリー料金廃止の扱いを確認し、今後の認可結果及び実施日と照合して交通費への影響を検討することが考えられます。本情報は非公式のモニタリング情報であり、判断に当たっては日本語の公式申請資料・認可情報を優先して確認することが適切です。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-11-09T07:39:08Z",
-    "ja_summary_model": "gpt-6.1-sol",
     "translations": {
       "zh-Hans": {
         "title": "公开征求意见：京成电铁拟变更旅客票价上限",
-        "summary": "国土交通省于2026-11-09宣布，就京成电铁株式会社于2026-11-06提出的变更旅客票价上限申请公开征求意见。该方案拟将实际支付的平均票价总体提高14.1%：普通票价提高14.3%，定期票票价提高13.7%，其中通勤定期票提高16.9%，学生定期票降低11.5%。这些比较包含现行的铁路车站无障碍设施附加费，该公司拟在调整票价的同时取消此项附加费。根据《铁路事业法》第16条，票价上限变更须在对高效经营下的适当成本和利润进行审查后，获得大臣批准；公告还说明了依据第64条之2拟提交运输审议会审议的安排。所述征求意见期间为2026-11-09至2026-11-23，意见须在截止日期前送达；摘录未确认是否获批或实施日期。",
-        "business_impact": "京成电铁及其乘客可能受到拟议票价上限变更及取消无障碍设施附加费的影响。通勤定期票和学生定期票用户可能受到不同影响，因为该方案提高通勤定期票平均票价，但降低学生定期票平均票价。",
-        "recommended_action": "可能受影响的乘客可考虑分别查看拟议的普通票价、通勤定期票票价和学生定期票票价，包括取消无障碍设施附加费对比较结果的影响。任何规划均可考虑区分申请中的数值与随后获批的票价及其实施日期。"
+        "summary": "国土交通省于2026-11-09宣布，就京成电铁株式会社于2026-11-06提出的旅客票价上限变更申请公开征求意见。拟议的平均票价调整为：普通票价上涨14.3%，定期票上涨13.7%，其中通勤定期票上涨16.9%，学生定期票下调11.5%；整体上涨14.1%。上述比较包含现行车站无障碍设施附加费，方案拟在调整票价的同时取消该附加费。根据《铁道事业法》（1986年第92号法律）第16条第1款，票价上限变更须经国土交通大臣批准；公告所述为计划提交运输审议会审议，并非已经获得批准。公告载明的意见征集期为2026-11-09至2026-11-23，意见须于后一个日期之前或当日送达。",
+        "business_impact": "京成电铁及其乘客可能受到拟议票价上限变更的影响，普通票价乘客、通勤者和学生所受影响各不相同。所列百分比表示平均票价变动，而非每段行程均按相同比例上涨。",
+        "recommended_action": "可考虑将申请中的票价类别及附加费处理方式与相关京成线路行程或定期票进行比较，并核查后续批准情况，以确认最终票价上限及实施日期。"
       }
-    }
+    },
+    "confidence": "high",
+    "ai_notes": "Based on official announcement and PDF excerpts. Approval and an implementation date are not established by the supplied text. This is an unofficial English summary; the official Japanese source is authoritative.",
+    "summarized_at": "2026-11-09T08:55:07Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "国土交通省は2026年11月9日、京成電鉄株式会社が同月6日付けで提出した旅客運賃の上限変更認可申請について、意見募集を公表しました（受付締切：2026年11月23日必着。提供資料に締切時刻の記載はありません）。申請上の改定率（平均支払い運賃額の増加率）は、現在の鉄道駅バリアフリー料金加算後の運賃との比較で、普通運賃14.3％、定期運賃13.7％（通勤16.9％、通学は11.5％減）、全体14.1％です。鉄道駅バリアフリー料金は運賃改定に合わせて廃止する計画で、同料金を除いた改定率は普通運賃16.8％、定期運賃18.4％（通勤22.4％、通学は11.5％減）、全体17.3％とされています。鉄道事業法（昭和６１年法律第９２号）第16条第1項・第2項に基づく上限認可では、能率的な経営の下での適正な原価に適正な利潤を加えた額を超えないかが審査され、第64条の2に基づき運輸審議会への諮問が必要です。本件は認可申請の審査に向けた意見募集の段階であり、今後、運輸審議会へ諮問し、提出意見を審議の際に報告する予定とされています。",
+    "business_impact_ja": "申請内容が認可され実際の運賃に反映された場合、京成電鉄を利用する企業の通勤費・出張旅費が増加する可能性があります。ただし、示された改定率は平均支払い運賃額の増加率であり、個別区間の値上げ率や実施日は提供資料から確認できません。",
+    "recommended_action_ja": "利用区間別の申請運賃、通勤定期の金額、鉄道駅バリアフリー料金廃止後の負担額を確認し、認可結果と実施日が明らかになった段階で交通費予算・精算設定への影響を検討することが考えられます。意見提出を検討する場合は、募集要領の提出方法・必着条件を確認し、電子メールでは添付ファイルではなく本文に意見を記載する指定に留意する必要があります。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-11-09T08:55:20Z",
+    "ja_summary_model": "gpt-6.1-sol"
   },
   {
     "id": "raw-d48ab783939d48b6",
@@ -131002,42 +131002,6 @@
     }
   },
   {
-    "id": "raw-989d97e7e9d9b4d9",
-    "title_en": "PMDA posts MHLW notice on revising package insert precautions for drugs (Oct 2, 2026)",
-    "title_ja": "使用上の注意の改訂指示通知（医薬品）2026年10月2日付（厚生労働省より発出）を掲載しました",
-    "area": "Healthcare / Pharmaceuticals",
-    "stage": "Government Announcement",
-    "impact_level": "Medium",
-    "summary_en": "The PMDA Safety Updates page announced that it has posted a notice instructing revisions to the 'precautions for use' (package insert precautions) of pharmaceutical products, issued by the Ministry of Health, Labour and Welfare and dated October 2, 2026. This is a government announcement; the metadata does not identify which drugs or which precautions are affected.",
-    "business_impact_en": "Marketing authorization holders and distributors of the affected drugs may need to update package inserts or related product information, and healthcare providers could see changes to labeling. The scope and timing of any obligations cannot be determined from the provided metadata.",
-    "recommended_action_en": "Review the official Japanese notice on the linked PMDA page to confirm which products are covered and what revisions are instructed.",
-    "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
-    "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/revision-of-precautions/0375.html",
-    "published_at": "2026-10-02",
-    "last_checked": "2026-10-03",
-    "relevance_score": 8.0,
-    "first_seen_at": "2026-10-03",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and a brief source summary; the specific drugs, revisions, and deadlines are not provided and are unverified. Rule-based labels (area, stage, impact level) are preliminary triage aids only.",
-    "summarized_at": "2026-10-03T23:36:36Z",
-    "summary_model": "claude-sonnet-5-5",
-    "summary_ja": "PMDAの安全対策業務に関する新着情報として、「使用上の注意の改訂指示通知（医薬品）2026年10月2日付（厚生労働省より発出）」が掲載されたとされています。入力メタデータからは、改訂指示の対象となる医薬品や具体的な改訂内容は確認できません。公表日は2026年10月2日とされています。",
-    "business_impact_ja": "医薬品の添付文書等における使用上の注意の改訂に関係する可能性があり、該当する医薬品を取り扱う事業者では、情報提供や社内文書の見直しに影響が及ぶことも考えられます。ただし、対象や具体的な影響は本メタデータからは判断できません。",
-    "recommended_action_ja": "対象医薬品および改訂内容については、PMDAおよび厚生労働省の日本語の公式掲載ページで原文をご確認いただくことが望ましいと考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-09T01:09:44Z",
-    "ja_summary_model": "claude-sonnet-5-5",
-    "translations": {
-      "zh-Hans": {
-        "title": "PMDA发布厚生劳动省关于修订药品使用注意事项的通知（2026-10-02）",
-        "summary": "PMDA安全性更新页面宣布，已发布厚生劳动省发出的指示修订药品“使用上注意事项”（说明书注意事项）的通知，日期为2026年10月2日。这是一项政府公告；元数据中未说明涉及哪些药品或哪些注意事项。",
-        "business_impact": "相关药品的上市许可持有者及经销商可能需要更新说明书或相关产品信息，医疗机构也可能看到标签内容的变化。具体义务的范围和时间无法从所提供的元数据中确定。",
-        "recommended_action": "建议查阅PMDA页面链接中的日文官方通知，以确认涉及哪些产品及所指示的具体修订内容。"
-      }
-    }
-  },
-  {
     "id": "raw-ae7525daa9470e10",
     "title_en": "Cabinet Secretariat Ordinance amending national public employee early-retirement and allowance rules",
     "title_ja": "国家公務員退職手当法の規定による早期退職希望者の募集及び認定の制度に係る書面の様式等を定める内閣官房令及び国家公務員退職手当法附則第十二項、第十四項及び第十六項の規定による退職手当の基本額の特例等に関する内閣官房令の一部を改正する内閣官房令",
@@ -131178,6 +131142,42 @@
         "summary": "2026年第10号内阁官房令于2026-10-22公布，生效日期为2026-11-02。该令修订了规定《国家公务员退职津贴法》所涉提前退休申请人募集及认定制度文书格式等事项的内阁官房令，以及规定该法附则第12项、第14项及第16项所涉退职津贴基本金额特例等事项的内阁官房令；后者为2022年第3号内阁官房令。",
         "business_impact": "申请提前退休或适用指定退职津贴条款的国家公务员，可能受到文书格式或津贴基本金额特别规则变更的影响。该列表未列明具体变更内容。",
         "recommended_action": "建议考虑查阅日文官方修订文本，以核查修订后的格式、退职津贴条款，以及与2026-11-02生效日期相关的任何过渡安排。"
+      }
+    }
+  },
+  {
+    "id": "raw-989d97e7e9d9b4d9",
+    "title_en": "PMDA posts MHLW notice on revising package insert precautions for drugs (Oct 2, 2026)",
+    "title_ja": "使用上の注意の改訂指示通知（医薬品）2026年10月2日付（厚生労働省より発出）を掲載しました",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Government Announcement",
+    "impact_level": "Medium",
+    "summary_en": "The PMDA Safety Updates page announced that it has posted a notice instructing revisions to the 'precautions for use' (package insert precautions) of pharmaceutical products, issued by the Ministry of Health, Labour and Welfare and dated October 2, 2026. This is a government announcement; the metadata does not identify which drugs or which precautions are affected.",
+    "business_impact_en": "Marketing authorization holders and distributors of the affected drugs may need to update package inserts or related product information, and healthcare providers could see changes to labeling. The scope and timing of any obligations cannot be determined from the provided metadata.",
+    "recommended_action_en": "Review the official Japanese notice on the linked PMDA page to confirm which products are covered and what revisions are instructed.",
+    "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
+    "source_url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/revision-of-precautions/0375.html",
+    "published_at": "2026-10-02",
+    "last_checked": "2026-10-03",
+    "relevance_score": 8.0,
+    "first_seen_at": "2026-10-03",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a brief source summary; the specific drugs, revisions, and deadlines are not provided and are unverified. Rule-based labels (area, stage, impact level) are preliminary triage aids only.",
+    "summarized_at": "2026-10-03T23:36:36Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "PMDAの安全対策業務に関する新着情報として、「使用上の注意の改訂指示通知（医薬品）2026年10月2日付（厚生労働省より発出）」が掲載されたとされています。入力メタデータからは、改訂指示の対象となる医薬品や具体的な改訂内容は確認できません。公表日は2026年10月2日とされています。",
+    "business_impact_ja": "医薬品の添付文書等における使用上の注意の改訂に関係する可能性があり、該当する医薬品を取り扱う事業者では、情報提供や社内文書の見直しに影響が及ぶことも考えられます。ただし、対象や具体的な影響は本メタデータからは判断できません。",
+    "recommended_action_ja": "対象医薬品および改訂内容については、PMDAおよび厚生労働省の日本語の公式掲載ページで原文をご確認いただくことが望ましいと考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "PMDA发布厚生劳动省关于修订药品使用注意事项的通知（2026-10-02）",
+        "summary": "PMDA安全性更新页面宣布，已发布厚生劳动省发出的指示修订药品“使用上注意事项”（说明书注意事项）的通知，日期为2026年10月2日。这是一项政府公告；元数据中未说明涉及哪些药品或哪些注意事项。",
+        "business_impact": "相关药品的上市许可持有者及经销商可能需要更新说明书或相关产品信息，医疗机构也可能看到标签内容的变化。具体义务的范围和时间无法从所提供的元数据中确定。",
+        "recommended_action": "建议查阅PMDA页面链接中的日文官方通知，以确认涉及哪些产品及所指示的具体修订内容。"
       }
     }
   },
@@ -135265,42 +135265,6 @@
     }
   },
   {
-    "id": "raw-7d50872f36342c1d",
-    "title_en": "MOE announcement: CBD-COP17, Cartagena Protocol MOP12 and Nagoya Protocol MOP6 outcomes",
-    "title_ja": "生物多様性条約第17回締約国会議（CBD-COP17）、カルタヘナ議定書第12回締約国会合（CP-MOP12）及び名古屋議定書第６回締約国会合（NP-MOP6）の結果概要について",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "On 2026-11-02, the Ministry of the Environment announced an overview of the outcomes of the 17th Conference of the Parties to the Convention on Biological Diversity (CBD-COP17). The announcement also covers the 12th meeting of the Parties to the Cartagena Protocol (CP-MOP12) and the sixth meeting of the Parties to the Nagoya Protocol (NP-MOP6).",
-    "business_impact_en": "The outcomes may be relevant to businesses whose activities fall within the Convention or either Protocol, but the title does not identify specific business categories, decisions or operational implications.",
-    "recommended_action_en": "Review of the official announcement could clarify the decisions reported for each meeting and any implications identified by the ministry.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_05696.html",
-    "published_at": "2026-11-02",
-    "last_checked": "2026-11-03",
-    "relevance_score": 3.0,
-    "first_seen_at": "2026-11-03",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; meeting outcomes were not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-11-04T01:05:12Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "環境省は2026年11月2日、生物多様性条約第17回締約国会議（CBD-COP17）、カルタヘナ議定書第12回締約国会合（CP-MOP12）及び名古屋議定書第6回締約国会合（NP-MOP6）の結果概要について公表しました。提供されたメタデータには、具体的な決定内容や国内制度への影響は記載されていません。",
-    "business_impact_ja": "各会議の決定内容によっては、生物多様性に関係する事業への影響を検討する材料となる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として参照し、会議結果の詳細や事業との関係については、環境省の日本語の公式発表本文と関連資料を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-11-04T01:06:25Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "环境省公布《生物多样性公约》第17次缔约方大会及《卡塔赫纳议定书》第12次、《名古屋议定书》第6次缔约方会议成果",
-        "summary": "2026-11-02，环境省公布了《生物多样性公约》第17次缔约方大会（CBD-COP17）的成果概要。该公告还涵盖《卡塔赫纳议定书》第12次缔约方会议（CP-MOP12）及《名古屋议定书》第6次缔约方会议（NP-MOP6）的成果。",
-        "business_impact": "这些成果可能与活动属于该公约或任一议定书范围的企业有关，但标题未指明具体业务类别、决定或运营影响。",
-        "recommended_action": "查阅官方公告或可明确各次会议所报告的决定，以及环境省指出的任何影响。"
-      }
-    }
-  },
-  {
     "id": "raw-ee703e5744d224dc",
     "title_en": "PMDA Notice: Heparinoid Lotion 0.3% 'NIT' Nitrosamine Detection, Voluntary Recall (Class II)",
     "title_ja": "「ヘパリン類似物質ローション0.3％「NIT」ニトロソアミン化合物検出及び自主回収（クラスⅡ）に関するお知らせ」を掲載しました",
@@ -135333,6 +135297,42 @@
         "summary": "PMDA安全信息页面列出了一则新发布的通知（日期为2026-10-13），内容涉及肝素类似物洗剂0.3%“NIT”。根据标题，该通知与检出亚硝胺化合物以及被归类为Ⅱ类的自主回收有关。由于未提供通知正文内容，受影响批次、数量或回收范围等具体信息目前从该元数据中无法得知。",
         "business_impact": "经手该产品的药品生产企业、经销商、药店及医疗机构可能需要确认其库存是否受此次回收影响。具体处理方式及范围可能取决于官方通知的内容。",
         "recommended_action": "建议考虑查阅来源网址中的PMDA原始通知，以确认受影响产品的详情、回收范围及其中列明的处理说明。"
+      }
+    }
+  },
+  {
+    "id": "raw-7d50872f36342c1d",
+    "title_en": "MOE announcement: CBD-COP17, Cartagena Protocol MOP12 and Nagoya Protocol MOP6 outcomes",
+    "title_ja": "生物多様性条約第17回締約国会議（CBD-COP17）、カルタヘナ議定書第12回締約国会合（CP-MOP12）及び名古屋議定書第６回締約国会合（NP-MOP6）の結果概要について",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "On 2026-11-02, the Ministry of the Environment announced an overview of the outcomes of the 17th Conference of the Parties to the Convention on Biological Diversity (CBD-COP17). The announcement also covers the 12th meeting of the Parties to the Cartagena Protocol (CP-MOP12) and the sixth meeting of the Parties to the Nagoya Protocol (NP-MOP6).",
+    "business_impact_en": "The outcomes may be relevant to businesses whose activities fall within the Convention or either Protocol, but the title does not identify specific business categories, decisions or operational implications.",
+    "recommended_action_en": "Review of the official announcement could clarify the decisions reported for each meeting and any implications identified by the ministry.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_05696.html",
+    "published_at": "2026-11-02",
+    "last_checked": "2026-11-03",
+    "relevance_score": 3.0,
+    "first_seen_at": "2026-11-03",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; meeting outcomes were not provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-11-04T01:05:12Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "環境省は2026年11月2日、生物多様性条約第17回締約国会議（CBD-COP17）、カルタヘナ議定書第12回締約国会合（CP-MOP12）及び名古屋議定書第6回締約国会合（NP-MOP6）の結果概要について公表しました。提供されたメタデータには、具体的な決定内容や国内制度への影響は記載されていません。",
+    "business_impact_ja": "各会議の決定内容によっては、生物多様性に関係する事業への影響を検討する材料となる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、会議結果の詳細や事業との関係については、環境省の日本語の公式発表本文と関連資料を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-11-04T01:06:25Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省公布《生物多样性公约》第17次缔约方大会及《卡塔赫纳议定书》第12次、《名古屋议定书》第6次缔约方会议成果",
+        "summary": "2026-11-02，环境省公布了《生物多样性公约》第17次缔约方大会（CBD-COP17）的成果概要。该公告还涵盖《卡塔赫纳议定书》第12次缔约方会议（CP-MOP12）及《名古屋议定书》第6次缔约方会议（NP-MOP6）的成果。",
+        "business_impact": "这些成果可能与活动属于该公约或任一议定书范围的企业有关，但标题未指明具体业务类别、决定或运营影响。",
+        "recommended_action": "查阅官方公告或可明确各次会议所报告的决定，以及环境省指出的任何影响。"
       }
     }
   },
@@ -135949,42 +135949,6 @@
     }
   },
   {
-    "id": "raw-53ceebbe269b9284",
-    "title_en": "CAA publishes materials for ninth public-private council on digital transaction platforms",
-    "title_ja": "第9回取引デジタルプラットフォーム官民協議会の資料を掲載いたしました。",
-    "area": "Consumer / Advertising",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Consumer Affairs Agency announced on 2026-10-22 that it had published materials for the ninth meeting of the Public-Private Council on Digital Transaction Platforms. The announcement does not describe the materials' contents.",
-    "business_impact_en": "Digital transaction platform operators may find the materials relevant to discussions concerning their sector, but the title does not establish any specific operational or compliance implications.",
-    "recommended_action_en": "Reviewing the official meeting materials could clarify the topics discussed and any implications for digital transaction platform operators.",
-    "source_name": "消費者庁 (CAA) 新着情報",
-    "source_url": "https://www.caa.go.jp/notice/entry/047834/",
-    "published_at": "2026-10-22",
-    "last_checked": "2026-10-22",
-    "relevance_score": 4.0,
-    "first_seen_at": "2026-10-23",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and announcement date only; the meeting materials were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-22T23:56:22Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "消費者庁は、2026年10月22日、第9回取引デジタルプラットフォーム官民協議会の資料を掲載したと公表しました。提供された情報には、資料の具体的な内容や制度変更に関する記載はありません。",
-    "business_impact_ja": "取引デジタルプラットフォームに関わる事業者にとって、協議内容を把握するための参考情報となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
-    "recommended_action_ja": "確認の端緒となる非公式のモニタリング情報として参照し、消費者庁の日本語公式ページに掲載された資料の内容を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-23T23:49:57Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "消费者厅发布第九次交易数字平台官民协议会资料",
-        "summary": "消费者厅于2026-10-22宣布，已发布第九次交易数字平台官民协议会会议资料。该公告未说明资料内容。",
-        "business_impact": "数字交易平台运营商可能会认为这些资料与其行业相关讨论有关，但该标题并未明确任何具体的运营或合规影响。",
-        "recommended_action": "查阅官方会议资料可能有助于明确所讨论的议题及其对数字交易平台运营商的影响。"
-      }
-    }
-  },
-  {
     "id": "raw-ae27685e19dd1dd0",
     "title_en": "Recall Notification: Citroen Berlingo and Other Vehicles",
     "title_ja": "リコールの届出について（シトロエン ベルランゴ 他）",
@@ -136057,6 +136021,42 @@
     }
   },
   {
+    "id": "raw-53ceebbe269b9284",
+    "title_en": "CAA publishes materials for ninth public-private council on digital transaction platforms",
+    "title_ja": "第9回取引デジタルプラットフォーム官民協議会の資料を掲載いたしました。",
+    "area": "Consumer / Advertising",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Consumer Affairs Agency announced on 2026-10-22 that it had published materials for the ninth meeting of the Public-Private Council on Digital Transaction Platforms. The announcement does not describe the materials' contents.",
+    "business_impact_en": "Digital transaction platform operators may find the materials relevant to discussions concerning their sector, but the title does not establish any specific operational or compliance implications.",
+    "recommended_action_en": "Reviewing the official meeting materials could clarify the topics discussed and any implications for digital transaction platform operators.",
+    "source_name": "消費者庁 (CAA) 新着情報",
+    "source_url": "https://www.caa.go.jp/notice/entry/047834/",
+    "published_at": "2026-10-22",
+    "last_checked": "2026-10-22",
+    "relevance_score": 4.0,
+    "first_seen_at": "2026-10-23",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and announcement date only; the meeting materials were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-22T23:56:22Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "消費者庁は、2026年10月22日、第9回取引デジタルプラットフォーム官民協議会の資料を掲載したと公表しました。提供された情報には、資料の具体的な内容や制度変更に関する記載はありません。",
+    "business_impact_ja": "取引デジタルプラットフォームに関わる事業者にとって、協議内容を把握するための参考情報となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "確認の端緒となる非公式のモニタリング情報として参照し、消費者庁の日本語公式ページに掲載された資料の内容を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-23T23:49:57Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "消费者厅发布第九次交易数字平台官民协议会资料",
+        "summary": "消费者厅于2026-10-22宣布，已发布第九次交易数字平台官民协议会会议资料。该公告未说明资料内容。",
+        "business_impact": "数字交易平台运营商可能会认为这些资料与其行业相关讨论有关，但该标题并未明确任何具体的运营或合规影响。",
+        "recommended_action": "查阅官方会议资料可能有助于明确所讨论的议题及其对数字交易平台运营商的影响。"
+      }
+    }
+  },
+  {
     "id": "raw-2d54dd965d271c27",
     "title_en": "Digital Agency announces planned Oct 20, 2026 start of Android My Number Card service",
     "title_ja": "2026年10月20日から「Androidのマイナンバーカード」を開始予定です（デジタル庁ウェブサービス・アプリケーション）",
@@ -136093,42 +136093,6 @@
     }
   },
   {
-    "id": "raw-7e915c067f39dd91",
-    "title_en": "PMDA posts notice: 86th Report of Medical Accident Information Collection Project published",
-    "title_ja": "「医療事故情報収集等事業第86回報告書の公表について」を掲載しました",
-    "area": "Healthcare / Pharmaceuticals",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The PMDA Safety Updates page lists a new entry stating that the 86th report of the Medical Accident Information Collection Project (as translated from the Japanese title) has been published. The item is a government announcement dated 2026-10-02; the provided metadata does not include the report's contents or findings.",
-    "business_impact_en": "The report may contain medical safety information relevant to healthcare providers, medical device makers, or pharmaceutical companies, but its relevance cannot be determined from the available metadata. Any practical impact is unclear without reviewing the report itself.",
-    "recommended_action_en": "Review the official Japanese PMDA page and the linked report to determine whether any content is relevant to your organization.",
-    "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
-    "source_url": "https://www.pmda.go.jp/safety/info-services/medical-safety-info/0005.html",
-    "published_at": "2026-10-02",
-    "last_checked": "2026-10-03",
-    "relevance_score": 7.0,
-    "first_seen_at": "2026-10-03",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and brief metadata; the report's contents were not provided and are unverified. The English title is an unofficial translation. The preliminary labels (Low impact) are keyword-based and not authoritative.",
-    "summarized_at": "2026-10-04T23:53:19Z",
-    "summary_model": "claude-sonnet-5-5",
-    "summary_ja": "PMDA(医薬品医療機器総合機構)の安全対策業務に関する新着情報として、「医療事故情報収集等事業第86回報告書の公表について」が掲載されました。掲載日は2026年10月2日と記録されています。提供されたメタデータからは、報告書の具体的な内容や記載事項までは確認できません。",
-    "business_impact_ja": "医療機関や医薬品・医療機器関連事業者にとって、医療事故情報に関する報告内容が安全管理や社内の情報収集の参考となる可能性があります。ただし、現時点のメタデータからは法令上の義務や規制変更を伴うかは判断できず、影響は限定的と考えられます。",
-    "recommended_action_ja": "報告書の具体的な内容や自社業務との関連性については、PMDAの公式ウェブサイトに掲載された原文をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-09T01:09:44Z",
-    "ja_summary_model": "claude-sonnet-5-5",
-    "translations": {
-      "zh-Hans": {
-        "title": "PMDA公告：医疗事故信息收集等事业第86回报告书已公布",
-        "summary": "PMDA安全信息更新页面列出一条新条目，内容为医疗事故信息收集等事业第86回报告书（根据日文标题翻译）已公布。该条目为一则日期为2026-10-02的政府公告；所提供的元数据不包含该报告的具体内容或结论。",
-        "business_impact": "该报告可能包含与医疗机构、医疗器械制造商或制药公司相关的医疗安全信息，但其相关性无法仅凭现有元数据确定。若不审阅报告本身，其实际影响尚不明确。",
-        "recommended_action": "建议查阅PMDA日文官方页面及相关链接的报告，以确定其中内容是否与您的机构相关。"
-      }
-    }
-  },
-  {
     "id": "raw-75a82bc32684bda1",
     "title_en": "METI announces request to corrugated board industry federation on fair trading",
     "title_ja": "全国段ボール工業組合連合会に対して取引適正化に向けた要請を行いました",
@@ -136161,6 +136125,42 @@
         "summary": "2026-10-22，经济产业省（METI）宣布，已向全国瓦楞纸板工业组合联合会提出请求，以促进公平交易惯例。标题未说明所请求的具体措施。",
         "business_impact": "该请求涉及该行业的交易惯例，因此可能与该联合会及其代表的瓦楞纸板企业有关；标题并未确立任何具体义务。",
         "recommended_action": "查阅日文官方新闻稿或可明确所请求的措施、预期适用范围及任何已说明的后续安排。"
+      }
+    }
+  },
+  {
+    "id": "raw-7e915c067f39dd91",
+    "title_en": "PMDA posts notice: 86th Report of Medical Accident Information Collection Project published",
+    "title_ja": "「医療事故情報収集等事業第86回報告書の公表について」を掲載しました",
+    "area": "Healthcare / Pharmaceuticals",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The PMDA Safety Updates page lists a new entry stating that the 86th report of the Medical Accident Information Collection Project (as translated from the Japanese title) has been published. The item is a government announcement dated 2026-10-02; the provided metadata does not include the report's contents or findings.",
+    "business_impact_en": "The report may contain medical safety information relevant to healthcare providers, medical device makers, or pharmaceutical companies, but its relevance cannot be determined from the available metadata. Any practical impact is unclear without reviewing the report itself.",
+    "recommended_action_en": "Review the official Japanese PMDA page and the linked report to determine whether any content is relevant to your organization.",
+    "source_name": "Pharmaceuticals and Medical Devices Agency (PMDA) Safety Updates",
+    "source_url": "https://www.pmda.go.jp/safety/info-services/medical-safety-info/0005.html",
+    "published_at": "2026-10-02",
+    "last_checked": "2026-10-03",
+    "relevance_score": 7.0,
+    "first_seen_at": "2026-10-03",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and brief metadata; the report's contents were not provided and are unverified. The English title is an unofficial translation. The preliminary labels (Low impact) are keyword-based and not authoritative.",
+    "summarized_at": "2026-10-04T23:53:19Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "PMDA(医薬品医療機器総合機構)の安全対策業務に関する新着情報として、「医療事故情報収集等事業第86回報告書の公表について」が掲載されました。掲載日は2026年10月2日と記録されています。提供されたメタデータからは、報告書の具体的な内容や記載事項までは確認できません。",
+    "business_impact_ja": "医療機関や医薬品・医療機器関連事業者にとって、医療事故情報に関する報告内容が安全管理や社内の情報収集の参考となる可能性があります。ただし、現時点のメタデータからは法令上の義務や規制変更を伴うかは判断できず、影響は限定的と考えられます。",
+    "recommended_action_ja": "報告書の具体的な内容や自社業務との関連性については、PMDAの公式ウェブサイトに掲載された原文をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "PMDA公告：医疗事故信息收集等事业第86回报告书已公布",
+        "summary": "PMDA安全信息更新页面列出一条新条目，内容为医疗事故信息收集等事业第86回报告书（根据日文标题翻译）已公布。该条目为一则日期为2026-10-02的政府公告；所提供的元数据不包含该报告的具体内容或结论。",
+        "business_impact": "该报告可能包含与医疗机构、医疗器械制造商或制药公司相关的医疗安全信息，但其相关性无法仅凭现有元数据确定。若不审阅报告本身，其实际影响尚不明确。",
+        "recommended_action": "建议查阅PMDA日文官方页面及相关链接的报告，以确定其中内容是否与您的机构相关。"
       }
     }
   },
@@ -139579,42 +139579,6 @@
     }
   },
   {
-    "id": "raw-c033ba67f0b0b249",
-    "title_en": "METI: IAEA report on 4th inter-laboratory comparison of ALPS treated water analysis published",
-    "title_ja": "国際原子力機関（IAEA）による「ALPS処理水の放射性核種分析における第4回分析機関間比較」に関する報告書が公表されました",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Ministry of Economy, Trade and Industry (METI) issued a news release dated 2026-10-06 stating that a report by the International Atomic Energy Agency (IAEA) on the fourth inter-laboratory comparison concerning radionuclide analysis of ALPS-treated water has been published. This is a government announcement; the metadata provided contains no further detail on the report's findings or methodology.",
-    "business_impact_en": "This appears to be an informational announcement and may be of interest to organizations following ALPS-treated water monitoring or related energy and environmental topics. No direct regulatory obligations are indicated in the provided metadata.",
-    "recommended_action_en": "Review the official METI release and the underlying IAEA report in the original sources to confirm the details and assess any relevance to your organization.",
-    "source_name": "経済産業省 (METI) ニュースリリース",
-    "source_url": "https://www.meti.go.jp/press/2026/10/20261006003.html",
-    "published_at": "2026-10-06",
-    "last_checked": "2026-10-07",
-    "relevance_score": 6.0,
-    "first_seen_at": "2026-10-07",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'news release'); report contents and findings are not provided and are unverified. Rule-based labels are weak triage context only.",
-    "summarized_at": "2026-10-07T00:27:15Z",
-    "summary_model": "claude-sonnet-5-5",
-    "summary_ja": "経済産業省は2026年10月6日付のニュースリリースとして、国際原子力機関（IAEA）による「ALPS処理水の放射性核種分析における第4回分析機関間比較」に関する報告書が公表された旨を掲載しています。提供されたメタデータには本文の詳細が含まれておらず、報告書の具体的な内容や結論は確認できません。",
-    "business_impact_ja": "ALPS処理水に関する情報であることから、エネルギー・環境分野の関係者の情報収集に関連する可能性があります。ただし、メタデータからは新たな規制や義務の有無は読み取れず、事業への直接的な影響は限定的と考えられます。",
-    "recommended_action_ja": "報告書の内容や位置づけについては、経済産業省の公式ページ（掲載URL）および関係機関の原文をご確認いただくことをお勧めします。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-09T01:09:44Z",
-    "ja_summary_model": "claude-sonnet-5-5",
-    "translations": {
-      "zh-Hans": {
-        "title": "经济产业省：IAEA关于ALPS处理水放射性核素分析第4次实验室间比对的报告公布",
-        "summary": "日本经济产业省（METI）发布了一则日期为2026-10-06的新闻稿，宣布国际原子能机构（IAEA）关于ALPS处理水放射性核素分析的第4次机构间比对报告已公布。此为政府公告，所提供的元数据未包含该报告具体研究结果或方法的更多细节。",
-        "business_impact": "这似乎是一项信息性公告，可能对关注ALPS处理水监测或相关能源与环境议题的机构有参考意义。所提供的元数据未显示存在直接的监管义务。",
-        "recommended_action": "建议查阅经济产业省的官方新闻稿及IAEA报告原文，以确认具体细节并评估其与本机构的相关性。"
-      }
-    }
-  },
-  {
     "id": "raw-4c1978bca8450e53",
     "title_en": "MLIT announcement on International Oil Pollution Compensation Funds assembly results",
     "title_ja": "奈良平博史氏がトップ当選しました！ ～国際油濁補償基金第31回総会等の結果概要～",
@@ -139683,6 +139647,42 @@
         "summary": "国土交通省于2026-10-26发布政府公告，介绍2026年冬季航班时刻表的国际定期航班概况。所提供的标题未列明航线、航班频次或时刻表日期。",
         "business_impact": "运营国际定期航班的航空公司可能会发现，该概况与其2026年冬季运营有关，但所提供的标题未指明具体运营变化。",
         "recommended_action": "查阅官方公告可能有助于明确该概况涵盖的航线、航班频次及时刻表适用期间。"
+      }
+    }
+  },
+  {
+    "id": "raw-c033ba67f0b0b249",
+    "title_en": "METI: IAEA report on 4th inter-laboratory comparison of ALPS treated water analysis published",
+    "title_ja": "国際原子力機関（IAEA）による「ALPS処理水の放射性核種分析における第4回分析機関間比較」に関する報告書が公表されました",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Ministry of Economy, Trade and Industry (METI) issued a news release dated 2026-10-06 stating that a report by the International Atomic Energy Agency (IAEA) on the fourth inter-laboratory comparison concerning radionuclide analysis of ALPS-treated water has been published. This is a government announcement; the metadata provided contains no further detail on the report's findings or methodology.",
+    "business_impact_en": "This appears to be an informational announcement and may be of interest to organizations following ALPS-treated water monitoring or related energy and environmental topics. No direct regulatory obligations are indicated in the provided metadata.",
+    "recommended_action_en": "Review the official METI release and the underlying IAEA report in the original sources to confirm the details and assess any relevance to your organization.",
+    "source_name": "経済産業省 (METI) ニュースリリース",
+    "source_url": "https://www.meti.go.jp/press/2026/10/20261006003.html",
+    "published_at": "2026-10-06",
+    "last_checked": "2026-10-07",
+    "relevance_score": 6.0,
+    "first_seen_at": "2026-10-07",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'news release'); report contents and findings are not provided and are unverified. Rule-based labels are weak triage context only.",
+    "summarized_at": "2026-10-07T00:27:15Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "経済産業省は2026年10月6日付のニュースリリースとして、国際原子力機関（IAEA）による「ALPS処理水の放射性核種分析における第4回分析機関間比較」に関する報告書が公表された旨を掲載しています。提供されたメタデータには本文の詳細が含まれておらず、報告書の具体的な内容や結論は確認できません。",
+    "business_impact_ja": "ALPS処理水に関する情報であることから、エネルギー・環境分野の関係者の情報収集に関連する可能性があります。ただし、メタデータからは新たな規制や義務の有無は読み取れず、事業への直接的な影響は限定的と考えられます。",
+    "recommended_action_ja": "報告書の内容や位置づけについては、経済産業省の公式ページ（掲載URL）および関係機関の原文をご確認いただくことをお勧めします。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-09T01:09:44Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "经济产业省：IAEA关于ALPS处理水放射性核素分析第4次实验室间比对的报告公布",
+        "summary": "日本经济产业省（METI）发布了一则日期为2026-10-06的新闻稿，宣布国际原子能机构（IAEA）关于ALPS处理水放射性核素分析的第4次机构间比对报告已公布。此为政府公告，所提供的元数据未包含该报告具体研究结果或方法的更多细节。",
+        "business_impact": "这似乎是一项信息性公告，可能对关注ALPS处理水监测或相关能源与环境议题的机构有参考意义。所提供的元数据未显示存在直接的监管义务。",
+        "recommended_action": "建议查阅经济产业省的官方新闻稿及IAEA报告原文，以确认具体细节并评估其与本机构的相关性。"
       }
     }
   },
@@ -140155,42 +140155,6 @@
     }
   },
   {
-    "id": "raw-2050ad126d3269c9",
-    "title_en": "Announcement of the 9th Public-Private Council on Transaction Digital Platforms",
-    "title_ja": "第9回取引デジタルプラットフォーム官民協議会の開催について",
-    "area": "Consumer / Advertising",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Consumer Affairs Agency published an announcement on 2026-10-16 concerning the holding of the 9th Public-Private Council on Transaction Digital Platforms. The title does not specify the meeting date or agenda.",
-    "business_impact_en": "Transaction digital platform operators may find the meeting relevant to their activities, but the title does not identify any proposed measures or operational changes.",
-    "recommended_action_en": "Reviewing the official announcement may clarify the meeting date, agenda and any accompanying materials.",
-    "source_name": "消費者庁 (CAA) 新着情報",
-    "source_url": "https://www.caa.go.jp/notice/entry/047783/",
-    "published_at": "2026-10-16",
-    "last_checked": "2026-10-16",
-    "relevance_score": 4.0,
-    "first_seen_at": "2026-10-16",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; meeting content is unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T08:29:54Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "消費者庁は、第9回取引デジタルプラットフォーム官民協議会の開催について公表しました。提供された件名と概要には、開催日時や議題、具体的な検討内容の記載はありません。",
-    "business_impact_ja": "取引デジタルプラットフォームに関わる事業者にとって、協議会の検討内容が参考となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
-    "recommended_action_ja": "消費者庁の日本語の公式公表ページで、開催概要や議題、関連資料の有無を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-16T08:30:13Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "关于召开第9次交易数字平台官民协议会的公告",
-        "summary": "消费者厅于2026-10-16发布了关于召开第9次交易数字平台官民协议会的公告。标题未注明会议日期或议程。",
-        "business_impact": "交易数字平台运营者可能认为该会议与其业务活动相关，但标题未指明任何拟议措施或运营变更。",
-        "recommended_action": "查阅官方公告可能有助于明确会议日期、议程及任何随附材料。"
-      }
-    }
-  },
-  {
     "id": "raw-65b68bfe1f75f0e9",
     "title_en": "Ministry of the Environment reports participation in 23rd Paris Agreement Article 6.4 meeting",
     "title_ja": "第23回パリ協定６条４項監督機関会合に参加しました",
@@ -140331,6 +140295,42 @@
         "summary": "2026-10-23，国土交通省宣布，将有更多航空公司在大阪国际机场运营国内航班。该公告涉及使用拥挤机场开展运营的许可；标题未指明航空公司名称或开始运营的日期。",
         "business_impact": "在大阪国际机场运营国内航班的航空公司，可能受到新增航空公司准入及相关拥挤机场使用许可的影响。",
         "recommended_action": "查阅日文官方公告可能有助于明确哪些航空公司获得了许可、许可范围以及预计何时开始运营。"
+      }
+    }
+  },
+  {
+    "id": "raw-2050ad126d3269c9",
+    "title_en": "Announcement of the 9th Public-Private Council on Transaction Digital Platforms",
+    "title_ja": "第9回取引デジタルプラットフォーム官民協議会の開催について",
+    "area": "Consumer / Advertising",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Consumer Affairs Agency published an announcement on 2026-10-16 concerning the holding of the 9th Public-Private Council on Transaction Digital Platforms. The title does not specify the meeting date or agenda.",
+    "business_impact_en": "Transaction digital platform operators may find the meeting relevant to their activities, but the title does not identify any proposed measures or operational changes.",
+    "recommended_action_en": "Reviewing the official announcement may clarify the meeting date, agenda and any accompanying materials.",
+    "source_name": "消費者庁 (CAA) 新着情報",
+    "source_url": "https://www.caa.go.jp/notice/entry/047783/",
+    "published_at": "2026-10-16",
+    "last_checked": "2026-10-16",
+    "relevance_score": 4.0,
+    "first_seen_at": "2026-10-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; meeting content is unknown, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T08:29:54Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "消費者庁は、第9回取引デジタルプラットフォーム官民協議会の開催について公表しました。提供された件名と概要には、開催日時や議題、具体的な検討内容の記載はありません。",
+    "business_impact_ja": "取引デジタルプラットフォームに関わる事業者にとって、協議会の検討内容が参考となる可能性がありますが、提供情報だけでは具体的な事業影響は判断できません。",
+    "recommended_action_ja": "消費者庁の日本語の公式公表ページで、開催概要や議題、関連資料の有無を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-16T08:30:13Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "关于召开第9次交易数字平台官民协议会的公告",
+        "summary": "消费者厅于2026-10-16发布了关于召开第9次交易数字平台官民协议会的公告。标题未注明会议日期或议程。",
+        "business_impact": "交易数字平台运营者可能认为该会议与其业务活动相关，但标题未指明任何拟议措施或运营变更。",
+        "recommended_action": "查阅官方公告可能有助于明确会议日期、议程及任何随附材料。"
       }
     }
   },
@@ -140983,6 +140983,42 @@
     }
   },
   {
+    "id": "raw-ad3632307efab513",
+    "title_en": "Corrective-measure notification for Sumitomo HA60W-10 and other models",
+    "title_ja": "改善対策の届出について（住友 ＨＡ６０Ｗ－１０ 他）",
+    "area": "Transport / Infrastructure",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism published an announcement on 2026-10-21 concerning a corrective-measure notification for Sumitomo HA60W-10 and other models. The title does not identify the other models or describe the defect or corrective measures.",
+    "business_impact_en": "Owners and operators of Sumitomo HA60W-10 and the other covered models may be affected by the notified corrective measures, whose scope is not specified in the supplied title.",
+    "recommended_action_en": "Reviewing the official announcement may help establish the covered models, the issue reported and the corrective measures described.",
+    "source_name": "国土交通省 (MLIT) 報道発表",
+    "source_url": "https://www.mlit.go.jp/report/press/jidosha08_hh_005868.html",
+    "published_at": "2026-10-21",
+    "last_checked": "2026-10-21",
+    "relevance_score": 3.0,
+    "first_seen_at": "2026-10-22",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication metadata only; notification details were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-21T23:56:30Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "国土交通省は、2026年10月21日付で「改善対策の届出について（住友 ＨＡ６０Ｗ－１０ 他）」と題する報道発表を公表しました。提供されたメタデータには、改善対策の内容や対象範囲の詳細は記載されていません。",
+    "business_impact_ja": "対象機種を保有・使用する事業者には、改善対策の内容に応じて運用や保守への影響が生じる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、国土交通省の日本語の公式発表で対象機種や改善対策の詳細を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-24T22:57:54Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "住友HA60W-10及其他型号的改善措施申报",
+        "summary": "国土交通省于2026-10-21发布了关于住友HA60W-10及其他型号改善措施申报的公告。标题未列明其他型号，也未说明缺陷或改善措施。",
+        "business_impact": "住友HA60W-10及其他涵盖型号的所有者和运营者可能受到所申报改善措施的影响，所提供的标题未明确其范围。",
+        "recommended_action": "查阅官方公告可能有助于确定所涵盖的型号、所报告的问题及所述改善措施。"
+      }
+    }
+  },
+  {
     "id": "raw-e578594cf1d9c370",
     "title_en": "MLIT Press Release: Report on Japan Transocean Air's Osaka Itami Airport Operation Permit Application",
     "title_ja": "「日本トランスオーシャン航空株式会社からの混雑空港 （大阪国際空港）運航許可申請事案」に関する答申について",
@@ -141051,42 +141087,6 @@
         "summary": "这是国土交通省（MLIT）于2026-10-01发布的一则新闻稿，涉及针对横滨市提出的一般乘合旅客汽车运输事业（固定路线公交车）上限运费变更许可申请事案的“答申”（咨询报告或回复）。由于仅提供了日文标题和一行标签（“新闻稿”），报告的具体内容和结果无法从元数据中得知。",
         "business_impact": "这可能会引起公交运营商或地方公共交通运费制定相关利益方的关注，但根据所提供的元数据无法确定其实际影响。初步的“低”影响级别是基于关键词且未经核实的。",
         "recommended_action": "建议查阅来源网址上的国土交通省日文官方新闻稿原文，以确认具体细节、结论及后续步骤。"
-      }
-    }
-  },
-  {
-    "id": "raw-ad3632307efab513",
-    "title_en": "Corrective-measure notification for Sumitomo HA60W-10 and other models",
-    "title_ja": "改善対策の届出について（住友 ＨＡ６０Ｗ－１０ 他）",
-    "area": "Transport / Infrastructure",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Ministry of Land, Infrastructure, Transport and Tourism published an announcement on 2026-10-21 concerning a corrective-measure notification for Sumitomo HA60W-10 and other models. The title does not identify the other models or describe the defect or corrective measures.",
-    "business_impact_en": "Owners and operators of Sumitomo HA60W-10 and the other covered models may be affected by the notified corrective measures, whose scope is not specified in the supplied title.",
-    "recommended_action_en": "Reviewing the official announcement may help establish the covered models, the issue reported and the corrective measures described.",
-    "source_name": "国土交通省 (MLIT) 報道発表",
-    "source_url": "https://www.mlit.go.jp/report/press/jidosha08_hh_005868.html",
-    "published_at": "2026-10-21",
-    "last_checked": "2026-10-21",
-    "relevance_score": 3.0,
-    "first_seen_at": "2026-10-22",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication metadata only; notification details were not provided, and this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-21T23:56:30Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "国土交通省は、2026年10月21日付で「改善対策の届出について（住友 ＨＡ６０Ｗ－１０ 他）」と題する報道発表を公表しました。提供されたメタデータには、改善対策の内容や対象範囲の詳細は記載されていません。",
-    "business_impact_ja": "対象機種を保有・使用する事業者には、改善対策の内容に応じて運用や保守への影響が生じる可能性がありますが、提供情報だけでは具体的な影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として確認の端緒とし、国土交通省の日本語の公式発表で対象機種や改善対策の詳細を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-24T22:57:54Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "住友HA60W-10及其他型号的改善措施申报",
-        "summary": "国土交通省于2026-10-21发布了关于住友HA60W-10及其他型号改善措施申报的公告。标题未列明其他型号，也未说明缺陷或改善措施。",
-        "business_impact": "住友HA60W-10及其他涵盖型号的所有者和运营者可能受到所申报改善措施的影响，所提供的标题未明确其范围。",
-        "recommended_action": "查阅官方公告可能有助于确定所涵盖的型号、所报告的问题及所述改善措施。"
       }
     }
   },
@@ -144939,42 +144939,6 @@
     }
   },
   {
-    "id": "raw-fbe1c9e7247fa257",
-    "title_en": "JFTC Press Release: Antimonopoly Act Class for High School Students in Kumamoto City",
-    "title_ja": "熊本市における「高校生向け独占禁止法教室」の開催について",
-    "area": "Antitrust / Fair Trade",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Japan Fair Trade Commission (JFTC) issued a press release dated 2026-10-07 about holding an 'Antimonopoly Act class for high school students' in Kumamoto City. Based only on the title and metadata, this appears to be an educational outreach event announcement rather than a new rule or enforcement action.",
-    "business_impact_en": "This item appears to be public-education outreach and may have little direct impact on business compliance obligations.",
-    "recommended_action_en": "If relevant, review the official Japanese press release on the JFTC website to confirm the event details and any related information.",
-    "source_name": "公正取引委員会 (JFTC) 報道発表",
-    "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/oct/261007_kyuusyuu_shokeikoukou.html",
-    "published_at": "2026-10-07",
-    "last_checked": "2026-10-08",
-    "relevance_score": 5.0,
-    "first_seen_at": "2026-10-08",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); event date, venue, and participant details are not provided and are unverified. The URL slug hints at a Kyushu-area context, but this is not confirmed. Labels are keyword-based triage only.",
-    "summarized_at": "2026-10-08T00:49:17Z",
-    "summary_model": "claude-sonnet-5-5",
-    "summary_ja": "公正取引委員会の報道発表として、「熊本市における『高校生向け独占禁止法教室』の開催について」と題する情報が2026年10月7日付で公表されています。提供されたメタデータからは、開催の詳細(日時、対象、内容など)は確認できず、報道発表であることのみが示されています。",
-    "business_impact_ja": "高校生向けの独占禁止法に関する教育・普及啓発の取組とみられ、事業者の義務や規制内容に直接影響する可能性は低いと考えられます。",
-    "recommended_action_ja": "開催内容や位置づけの詳細については、公正取引委員会の公式サイトに掲載された原文をご確認いただくのが適切と考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-10T00:35:58Z",
-    "ja_summary_model": "claude-sonnet-5-5",
-    "translations": {
-      "zh-Hans": {
-        "title": "公正交易委员会新闻发布：在熊本市举办高中生《反垄断法》课堂",
-        "summary": "日本公正交易委员会（JFTC）发布了一份日期为2026-10-07的新闻稿，内容是在熊本市举办“高中生反垄断法课堂”。仅根据标题和元数据来看，这似乎是一项教育推广活动的公告，而非新的规则或执法行动。",
-        "business_impact": "该项目看起来属于公众教育推广活动，可能对企业合规义务没有直接影响。",
-        "recommended_action": "如有相关需要，建议考虑查阅公正交易委员会官网上的日文官方新闻稿，以确认活动详情及相关信息。"
-      }
-    }
-  },
-  {
     "id": "raw-dadf9d5b1308688a",
     "title_en": "MLIT announces panel meeting on revising minimum wages in bonito and tuna fisheries",
     "title_ja": "漁業（かつお・まぐろ）の最低賃金の改正について審議を行います ～交通政策審議会海事分科会船員部会第２回漁業（かつお・まぐろ）最低賃金専門部会の開催～",
@@ -145191,6 +145155,42 @@
     }
   },
   {
+    "id": "raw-fbe1c9e7247fa257",
+    "title_en": "JFTC Press Release: Antimonopoly Act Class for High School Students in Kumamoto City",
+    "title_ja": "熊本市における「高校生向け独占禁止法教室」の開催について",
+    "area": "Antitrust / Fair Trade",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Japan Fair Trade Commission (JFTC) issued a press release dated 2026-10-07 about holding an 'Antimonopoly Act class for high school students' in Kumamoto City. Based only on the title and metadata, this appears to be an educational outreach event announcement rather than a new rule or enforcement action.",
+    "business_impact_en": "This item appears to be public-education outreach and may have little direct impact on business compliance obligations.",
+    "recommended_action_en": "If relevant, review the official Japanese press release on the JFTC website to confirm the event details and any related information.",
+    "source_name": "公正取引委員会 (JFTC) 報道発表",
+    "source_url": "https://www.jftc.go.jp/houdou/pressrelease/2026/oct/261007_kyuusyuu_shokeikoukou.html",
+    "published_at": "2026-10-07",
+    "last_checked": "2026-10-08",
+    "relevance_score": 5.0,
+    "first_seen_at": "2026-10-08",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and minimal metadata (raw summary is just 'press release'); event date, venue, and participant details are not provided and are unverified. The URL slug hints at a Kyushu-area context, but this is not confirmed. Labels are keyword-based triage only.",
+    "summarized_at": "2026-10-08T00:49:17Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "公正取引委員会の報道発表として、「熊本市における『高校生向け独占禁止法教室』の開催について」と題する情報が2026年10月7日付で公表されています。提供されたメタデータからは、開催の詳細(日時、対象、内容など)は確認できず、報道発表であることのみが示されています。",
+    "business_impact_ja": "高校生向けの独占禁止法に関する教育・普及啓発の取組とみられ、事業者の義務や規制内容に直接影響する可能性は低いと考えられます。",
+    "recommended_action_ja": "開催内容や位置づけの詳細については、公正取引委員会の公式サイトに掲載された原文をご確認いただくのが適切と考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-10T00:35:58Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "公正交易委员会新闻发布：在熊本市举办高中生《反垄断法》课堂",
+        "summary": "日本公正交易委员会（JFTC）发布了一份日期为2026-10-07的新闻稿，内容是在熊本市举办“高中生反垄断法课堂”。仅根据标题和元数据来看，这似乎是一项教育推广活动的公告，而非新的规则或执法行动。",
+        "business_impact": "该项目看起来属于公众教育推广活动，可能对企业合规义务没有直接影响。",
+        "recommended_action": "如有相关需要，建议考虑查阅公正交易委员会官网上的日文官方新闻稿，以确认活动详情及相关信息。"
+      }
+    }
+  },
+  {
     "id": "raw-ba22e42a9d9767be",
     "title_en": "Government announcement on postponement of mandatory halal certification in Indonesia",
     "title_ja": "インドネシア・ハラール認証義務化の延期について",
@@ -145227,42 +145227,6 @@
     }
   },
   {
-    "id": "raw-3cb26fb9a197db84",
-    "title_en": "MIC announcement: Seventh study group meeting on people and digital technology in a future society",
-    "title_ja": "未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第7回）",
-    "area": "Data / Privacy / AI",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Ministry of Internal Affairs and Communications published an announcement on 2026-10-27 concerning the seventh meeting of the Study Group on the Relationship Between People and Digital Technology with a View to a Future Society. The title provides no details of the discussions or outcomes.",
-    "business_impact_en": "The subject may concern people in their relationship with digital technology, but the title does not identify specific business sectors or indicate any regulatory implications.",
-    "recommended_action_en": "Reviewing the official Japanese meeting materials may clarify the topics discussed and any reported outcomes.",
-    "source_name": "総務省 (MIC) 新着情報",
-    "source_url": "https://www.soumu.go.jp/main_sosiki/kenkyu/miraishakaiomisueta/07_siryou.html",
-    "published_at": "2026-10-27",
-    "last_checked": "2026-10-28",
-    "relevance_score": 2.0,
-    "first_seen_at": "2026-10-28",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title only, with the publication date supplied separately; this unofficial English summary must be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-28T00:18:04Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "総務省は、2026年10月27日に「未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第7回）」に関する情報を公表しました。提供されたメタデータには、具体的な議論の内容や決定事項は記載されていません。",
-    "business_impact_ja": "人とデジタルの関係に関する検討動向を把握する参考となる可能性がありますが、提供情報だけでは具体的な事業への影響は判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報として参照し、議論の内容や事業との関連については総務省の日本語公式掲載ページで確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-28T00:18:43Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "总务省公告：着眼未来社会的人与数字技术关系研究会第七次会议",
-        "summary": "总务省于2026-10-27发布了关于着眼未来社会的人与数字技术关系研究会第七次会议的公告。标题未提供讨论内容或成果的详细信息。",
-        "business_impact": "该主题可能涉及人与数字技术的关系，但标题未指明具体业务领域，也未说明任何监管影响。",
-        "recommended_action": "查阅日文官方会议资料可能有助于了解所讨论的议题及已报告的成果。"
-      }
-    }
-  },
-  {
     "id": "raw-1eb0d89f81408d7c",
     "title_en": "MIC Announces 6th Meeting of Study Group on Human-Digital Relationship for Future Society",
     "title_ja": "未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第6回）開催案内",
@@ -145295,6 +145259,42 @@
         "summary": "总务省（MIC）发布了关于面向未来社会的人与数字关系研究会第6次会议的召开通知。元数据仅提供公告标题及发布日期2026-10-07，未提供议程、会议日期或具体内容细节。",
         "business_impact": "研究会会议通知并非法规，所提供信息中未显示任何直接的合规义务。该研究会的讨论可能会对未来有关数字、数据或人工智能相关议题的政策产生影响，但根据现有元数据无法确定这一点。",
         "recommended_action": "建议在得出任何结论前，查阅总务省官方日文页面以确认会议详情、议程及相关资料。"
+      }
+    }
+  },
+  {
+    "id": "raw-3cb26fb9a197db84",
+    "title_en": "MIC announcement: Seventh study group meeting on people and digital technology in a future society",
+    "title_ja": "未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第7回）",
+    "area": "Data / Privacy / AI",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Ministry of Internal Affairs and Communications published an announcement on 2026-10-27 concerning the seventh meeting of the Study Group on the Relationship Between People and Digital Technology with a View to a Future Society. The title provides no details of the discussions or outcomes.",
+    "business_impact_en": "The subject may concern people in their relationship with digital technology, but the title does not identify specific business sectors or indicate any regulatory implications.",
+    "recommended_action_en": "Reviewing the official Japanese meeting materials may clarify the topics discussed and any reported outcomes.",
+    "source_name": "総務省 (MIC) 新着情報",
+    "source_url": "https://www.soumu.go.jp/main_sosiki/kenkyu/miraishakaiomisueta/07_siryou.html",
+    "published_at": "2026-10-27",
+    "last_checked": "2026-10-28",
+    "relevance_score": 2.0,
+    "first_seen_at": "2026-10-28",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title only, with the publication date supplied separately; this unofficial English summary must be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-28T00:18:04Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "総務省は、2026年10月27日に「未来社会を見据えた人とデジタルの関係の在り方に関する研究会（第7回）」に関する情報を公表しました。提供されたメタデータには、具体的な議論の内容や決定事項は記載されていません。",
+    "business_impact_ja": "人とデジタルの関係に関する検討動向を把握する参考となる可能性がありますが、提供情報だけでは具体的な事業への影響は判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報として参照し、議論の内容や事業との関連については総務省の日本語公式掲載ページで確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-28T00:18:43Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "总务省公告：着眼未来社会的人与数字技术关系研究会第七次会议",
+        "summary": "总务省于2026-10-27发布了关于着眼未来社会的人与数字技术关系研究会第七次会议的公告。标题未提供讨论内容或成果的详细信息。",
+        "business_impact": "该主题可能涉及人与数字技术的关系，但标题未指明具体业务领域，也未说明任何监管影响。",
+        "recommended_action": "查阅日文官方会议资料可能有助于了解所讨论的议题及已报告的成果。"
       }
     }
   },
@@ -146385,6 +146385,42 @@
     }
   },
   {
+    "id": "raw-b15ab9e7fcbdb7b7",
+    "title_en": "METI announces results of FY2025 electronic commerce market survey",
+    "title_ja": "令和7年度電子商取引に関する市場調査の結果を取りまとめました",
+    "area": "Consumer / Advertising",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Ministry of Economy, Trade and Industry announced on 2026-10-21 that it had compiled the results of its FY2025 market survey on electronic commerce. This is a government announcement of survey results; the supplied title does not describe the findings.",
+    "business_impact_en": "The results may provide market information relevant to businesses engaged in electronic commerce, but the title does not establish any specific business implications.",
+    "recommended_action_en": "Reviewing the official release and survey results could help clarify the market coverage, findings and their relevance to electronic commerce activities.",
+    "source_name": "経済産業省 (METI) ニュースリリース",
+    "source_url": "https://www.meti.go.jp/press/2026/10/20261021001.html",
+    "published_at": "2026-10-21",
+    "last_checked": "2026-10-21",
+    "relevance_score": 2.0,
+    "first_seen_at": "2026-10-22",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; survey findings were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-21T23:56:30Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "経済産業省は、2026年10月21日、令和7年度電子商取引に関する市場調査の結果を取りまとめた旨を公表しました。提供されたメタデータには、調査結果の具体的な数値や内容は記載されていません。",
+    "business_impact_ja": "電子商取引に関わる事業者にとって、市場動向を検討する際の参考情報となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
+    "recommended_action_ja": "非公式のモニタリング情報としての本要約を端緒に、経済産業省の日本語ニュースリリースで調査結果の詳細を確認することが考えられます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-24T22:58:25Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "经济产业省公布2025财年电子商务市场调查结果",
+        "summary": "经济产业省于2026-10-21宣布，已汇总2025财年电子商务市场调查结果。这是政府发布的调查结果公告；所提供的标题并未说明调查发现。",
+        "business_impact": "调查结果可能为从事电子商务的企业提供相关市场信息，但该标题并未明确任何具体的业务影响。",
+        "recommended_action": "可考虑查阅官方公告和调查结果，以帮助了解调查的市场覆盖范围、调查发现及其与电子商务活动的相关性。"
+      }
+    }
+  },
+  {
     "id": "raw-ad2c29884d8f1f11",
     "title_en": "NPA Rule 16-0 (Employee Disaster Compensation) Amendment; Affects Rule 16-2 (Overseas/Seafarers)",
     "title_ja": "人事院規則一六―〇（職員の災害補償）の一部を改正する人事院規則",
@@ -146777,42 +146813,6 @@
         "summary": "2026年第90号内阁府令修订了《儿童福利设施设备及运营标准》（1948年第63号厚生省令）和《课后儿童健全育成事业设备及运营标准》。所载公布日期为2026-10-01，所载生效日期为2027-04-01。",
         "business_impact": "儿童福利设施及课后儿童健全育成事业的运营者可能受到设备及运营标准变更的影响；元数据未说明修订后的具体要求。",
         "recommended_action": "可考虑在所载生效日期前查阅日文官方府令，以明确修订后的要求、其对各类服务的适用情况以及任何过渡规定。"
-      }
-    }
-  },
-  {
-    "id": "raw-b15ab9e7fcbdb7b7",
-    "title_en": "METI announces results of FY2025 electronic commerce market survey",
-    "title_ja": "令和7年度電子商取引に関する市場調査の結果を取りまとめました",
-    "area": "Consumer / Advertising",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Ministry of Economy, Trade and Industry announced on 2026-10-21 that it had compiled the results of its FY2025 market survey on electronic commerce. This is a government announcement of survey results; the supplied title does not describe the findings.",
-    "business_impact_en": "The results may provide market information relevant to businesses engaged in electronic commerce, but the title does not establish any specific business implications.",
-    "recommended_action_en": "Reviewing the official release and survey results could help clarify the market coverage, findings and their relevance to electronic commerce activities.",
-    "source_name": "経済産業省 (METI) ニュースリリース",
-    "source_url": "https://www.meti.go.jp/press/2026/10/20261021001.html",
-    "published_at": "2026-10-21",
-    "last_checked": "2026-10-21",
-    "relevance_score": 2.0,
-    "first_seen_at": "2026-10-22",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; survey findings were not provided, and this unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-21T23:56:30Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "経済産業省は、2026年10月21日、令和7年度電子商取引に関する市場調査の結果を取りまとめた旨を公表しました。提供されたメタデータには、調査結果の具体的な数値や内容は記載されていません。",
-    "business_impact_ja": "電子商取引に関わる事業者にとって、市場動向を検討する際の参考情報となる可能性がありますが、具体的な事業への影響は提供情報だけでは判断できません。",
-    "recommended_action_ja": "非公式のモニタリング情報としての本要約を端緒に、経済産業省の日本語ニュースリリースで調査結果の詳細を確認することが考えられます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-24T22:58:25Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "经济产业省公布2025财年电子商务市场调查结果",
-        "summary": "经济产业省于2026-10-21宣布，已汇总2025财年电子商务市场调查结果。这是政府发布的调查结果公告；所提供的标题并未说明调查发现。",
-        "business_impact": "调查结果可能为从事电子商务的企业提供相关市场信息，但该标题并未明确任何具体的业务影响。",
-        "recommended_action": "可考虑查阅官方公告和调查结果，以帮助了解调查的市场覆盖范围、调查发现及其与电子商务活动的相关性。"
       }
     }
   },
@@ -155081,42 +155081,6 @@
     }
   },
   {
-    "id": "raw-08b0f99859234bad",
-    "title_en": "MAFF announcement on 2026-crop rice negotiated transaction prices and volumes for September 2026",
-    "title_ja": "令和8年産米の相対取引価格・数量について（令和8年9月）",
-    "area": "Food / Agriculture",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "The Ministry of Agriculture, Forestry and Fisheries (MAFF) published an announcement on 2026-10-16 concerning negotiated transaction prices and volumes for 2026-crop rice in September 2026. The title does not provide the reported figures.",
-    "business_impact_en": "The reported prices and volumes may provide market reference information for producers and traders of 2026-crop rice.",
-    "recommended_action_en": "Reviewing the official announcement would help confirm the reported prices, volumes and coverage of the rice transactions.",
-    "source_name": "農林水産省 (MAFF) 報道発表",
-    "source_url": "https://www.maff.go.jp/j/press/nousan/kikaku/261016.html",
-    "published_at": "2026-10-16",
-    "last_checked": "2026-10-16",
-    "relevance_score": 2.0,
-    "first_seen_at": "2026-10-16",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based on the title and publication details only; no figures or underlying report text were provided. This unofficial English summary should be verified against the authoritative Japanese source.",
-    "summarized_at": "2026-10-16T08:29:54Z",
-    "summary_model": "gpt-6.1-sol",
-    "summary_ja": "令和8年産米の相対取引価格・数量について、令和8年9月分を対象とする公表情報です。提供された情報には具体的な価格・数量や増減の記載がなく、その動向は確認できません。",
-    "business_impact_ja": "米の調達・販売に関わる事業では、価格や取引数量を把握するための参考情報となる可能性があります。",
-    "recommended_action_ja": "具体的な数値や集計対象については、農林水産省の日本語公式公表資料をご確認ください。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-16T08:30:13Z",
-    "ja_summary_model": "gpt-6.1-sol",
-    "translations": {
-      "zh-Hans": {
-        "title": "农林水产省公布2026年9月2026年产大米协议交易价格及数量",
-        "summary": "农林水产省（MAFF）于2026-10-16发布公告，涉及2026年9月2026年产大米的协议交易价格及数量。标题未提供所报告的具体数据。",
-        "business_impact": "所报告的价格及数量可能为2026年产大米的生产者和贸易商提供市场参考信息。",
-        "recommended_action": "可考虑查阅官方公告，以帮助确认所报告的价格、数量及大米交易的涵盖范围。"
-      }
-    }
-  },
-  {
     "id": "raw-bb14cb9f30f0bc12",
     "title_en": "Supreme Court judgment on a challenge to public assistance reductions",
     "title_ja": "令和6(行ヒ)339 生活保護引下げ処分取消請求事件",
@@ -155221,6 +155185,42 @@
         "summary": "2026-10-23，最高法院第三小法庭就令和7年(Gyo-Hi)第205号案件作出判决，该案请求撤销变更生活保护的行政决定。法院撤销原审判决并自行作出裁判；案件列表将原审案件标示为福冈高等法院令和4年(Gyo-Ko)第34号。",
         "business_impact": "该判决可能与受生活保护变更决定影响的生活保护领取者有关，但所提供的说明并未明确判决理由或更广泛的影响。",
         "recommended_action": "查阅日文官方判决将有助于厘清撤销原审判决的理由，以及对受到争议的生活保护变更所作的裁判。"
+      }
+    }
+  },
+  {
+    "id": "raw-08b0f99859234bad",
+    "title_en": "MAFF announcement on 2026-crop rice negotiated transaction prices and volumes for September 2026",
+    "title_ja": "令和8年産米の相対取引価格・数量について（令和8年9月）",
+    "area": "Food / Agriculture",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "The Ministry of Agriculture, Forestry and Fisheries (MAFF) published an announcement on 2026-10-16 concerning negotiated transaction prices and volumes for 2026-crop rice in September 2026. The title does not provide the reported figures.",
+    "business_impact_en": "The reported prices and volumes may provide market reference information for producers and traders of 2026-crop rice.",
+    "recommended_action_en": "Reviewing the official announcement would help confirm the reported prices, volumes and coverage of the rice transactions.",
+    "source_name": "農林水産省 (MAFF) 報道発表",
+    "source_url": "https://www.maff.go.jp/j/press/nousan/kikaku/261016.html",
+    "published_at": "2026-10-16",
+    "last_checked": "2026-10-16",
+    "relevance_score": 2.0,
+    "first_seen_at": "2026-10-16",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based on the title and publication details only; no figures or underlying report text were provided. This unofficial English summary should be verified against the authoritative Japanese source.",
+    "summarized_at": "2026-10-16T08:29:54Z",
+    "summary_model": "gpt-6.1-sol",
+    "summary_ja": "令和8年産米の相対取引価格・数量について、令和8年9月分を対象とする公表情報です。提供された情報には具体的な価格・数量や増減の記載がなく、その動向は確認できません。",
+    "business_impact_ja": "米の調達・販売に関わる事業では、価格や取引数量を把握するための参考情報となる可能性があります。",
+    "recommended_action_ja": "具体的な数値や集計対象については、農林水産省の日本語公式公表資料をご確認ください。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-16T08:30:13Z",
+    "ja_summary_model": "gpt-6.1-sol",
+    "translations": {
+      "zh-Hans": {
+        "title": "农林水产省公布2026年9月2026年产大米协议交易价格及数量",
+        "summary": "农林水产省（MAFF）于2026-10-16发布公告，涉及2026年9月2026年产大米的协议交易价格及数量。标题未提供所报告的具体数据。",
+        "business_impact": "所报告的价格及数量可能为2026年产大米的生产者和贸易商提供市场参考信息。",
+        "recommended_action": "可考虑查阅官方公告，以帮助确认所报告的价格、数量及大米交易的涵盖范围。"
       }
     }
   },
@@ -156020,42 +156020,6 @@
     }
   },
   {
-    "id": "raw-a54607213d1a0058",
-    "title_en": "MOE announces establishment of 'Japan GHG Center' for greenhouse gas information",
-    "title_ja": "温室効果ガスに関する情報と知見を集約する「日本GHGセンター」を設立します ～関係機関の連携・協力を強化し、気候変動対策の加速と早期の脱炭素化達成に貢献～",
-    "area": "Energy / Environment",
-    "stage": "Government Announcement",
-    "impact_level": "Low",
-    "summary_en": "According to a Ministry of the Environment press release, a 'Japan GHG Center' will be established to consolidate information and knowledge on greenhouse gases. The announcement states the aim is to strengthen coordination and cooperation among relevant organizations, accelerate climate change measures, and contribute to achieving early decarbonization. This is a government announcement; only the title and a brief category tag were provided.",
-    "business_impact_en": "The center could become a reference point for greenhouse gas data and related information in Japan, which may be relevant to companies involved in emissions reporting or climate strategy. Any concrete effect on businesses is not stated in the provided metadata.",
-    "recommended_action_en": "Review the official Japanese press release on the Ministry of the Environment website to confirm the center's scope, functions, and any implications for your organization.",
-    "source_name": "環境省 (MOE) 報道発表",
-    "source_url": "https://www.env.go.jp/press/press_05602.html",
-    "published_at": "2026-10-01",
-    "last_checked": "2026-10-02",
-    "relevance_score": 4.0,
-    "first_seen_at": "2026-10-02",
-    "summary_source": "claude",
-    "confidence": "medium",
-    "ai_notes": "Based only on the Japanese title and a one-word category tag; details such as the center's legal form, operator, start date, and functions are unverified. The rule-based labels are preliminary and not authoritative.",
-    "summarized_at": "2026-10-09T01:04:11Z",
-    "summary_model": "claude-sonnet-5-5",
-    "summary_ja": "環境省の報道発表(2026年10月1日付)として、温室効果ガスに関する情報と知見を集約する「日本GHGセンター」を設立する旨が公表されています。題名によれば、関係機関の連携・協力を強化し、気候変動対策の加速と早期の脱炭素化達成に貢献することが目的とされています。提供されたメタデータには本文の詳細が含まれておらず、センターの具体的な業務内容や体制、法的な位置づけは確認できません。",
-    "business_impact_ja": "温室効果ガスに関する情報や知見の集約が進むことで、排出量の算定・開示や気候変動対策に関する今後の情報提供のあり方に関わる可能性があります。ただし、現時点のメタデータからは企業への具体的な義務や手続の有無は読み取れず、影響の程度は限定的である可能性も考えられます。",
-    "recommended_action_ja": "設立の目的や具体的な業務内容、事業者との関わりについては、環境省が公表している原文の報道発表資料(https://www.env.go.jp/press/press_05602.html)をご確認いただくことが望まれます。",
-    "summary_ja_source": "claude",
-    "ja_summarized_at": "2026-10-12T00:20:26Z",
-    "ja_summary_model": "claude-sonnet-5-5",
-    "translations": {
-      "zh-Hans": {
-        "title": "环境省设立“日本GHG中心”汇集温室气体信息与知识",
-        "summary": "根据环境省的新闻发布，将设立“日本GHG中心”以汇集有关温室气体的信息与知识。公告称其目的是加强相关机构间的协调与合作，加速气候变化对策，并为实现早期脱碳做出贡献。这是一项政府公告，仅提供了标题及简要分类标签。",
-        "business_impact": "该中心可能成为日本温室气体数据及相关信息的参考点，这可能与从事排放报告或气候战略的企业相关。所提供的元数据中未说明对企业的具体影响。",
-        "recommended_action": "建议查阅环境省网站上的日文官方新闻发布，以确认该中心的范围、职能以及对贵机构可能产生的影响。"
-      }
-    }
-  },
-  {
     "id": "raw-5c35e9e70a537dc3",
     "title_en": "PMDA announcement: precautions for use of avacopan preparations",
     "title_ja": "「アバコパン製剤の使用に当たっての留意事項について」を掲載しました",
@@ -156088,6 +156052,42 @@
         "summary": "医药品医疗器械综合机构（PMDA）于2026-10-21宣布，已发布题为《阿伐可泮制剂使用注意事项》的信息。该标题未说明具体注意事项。",
         "business_impact": "使用阿伐可泮制剂的医疗专业人员可能受到影响，因为所发布的信息涉及其使用注意事项；仅凭标题无法确定处方或给药是否有任何变化。",
         "recommended_action": "查阅日文官方发布内容将有助于明确具体注意事项及其预期适用范围。"
+      }
+    }
+  },
+  {
+    "id": "raw-a54607213d1a0058",
+    "title_en": "MOE announces establishment of 'Japan GHG Center' for greenhouse gas information",
+    "title_ja": "温室効果ガスに関する情報と知見を集約する「日本GHGセンター」を設立します ～関係機関の連携・協力を強化し、気候変動対策の加速と早期の脱炭素化達成に貢献～",
+    "area": "Energy / Environment",
+    "stage": "Government Announcement",
+    "impact_level": "Low",
+    "summary_en": "According to a Ministry of the Environment press release, a 'Japan GHG Center' will be established to consolidate information and knowledge on greenhouse gases. The announcement states the aim is to strengthen coordination and cooperation among relevant organizations, accelerate climate change measures, and contribute to achieving early decarbonization. This is a government announcement; only the title and a brief category tag were provided.",
+    "business_impact_en": "The center could become a reference point for greenhouse gas data and related information in Japan, which may be relevant to companies involved in emissions reporting or climate strategy. Any concrete effect on businesses is not stated in the provided metadata.",
+    "recommended_action_en": "Review the official Japanese press release on the Ministry of the Environment website to confirm the center's scope, functions, and any implications for your organization.",
+    "source_name": "環境省 (MOE) 報道発表",
+    "source_url": "https://www.env.go.jp/press/press_05602.html",
+    "published_at": "2026-10-01",
+    "last_checked": "2026-10-02",
+    "relevance_score": 4.0,
+    "first_seen_at": "2026-10-02",
+    "summary_source": "claude",
+    "confidence": "medium",
+    "ai_notes": "Based only on the Japanese title and a one-word category tag; details such as the center's legal form, operator, start date, and functions are unverified. The rule-based labels are preliminary and not authoritative.",
+    "summarized_at": "2026-10-09T01:04:11Z",
+    "summary_model": "claude-sonnet-5-5",
+    "summary_ja": "環境省の報道発表(2026年10月1日付)として、温室効果ガスに関する情報と知見を集約する「日本GHGセンター」を設立する旨が公表されています。題名によれば、関係機関の連携・協力を強化し、気候変動対策の加速と早期の脱炭素化達成に貢献することが目的とされています。提供されたメタデータには本文の詳細が含まれておらず、センターの具体的な業務内容や体制、法的な位置づけは確認できません。",
+    "business_impact_ja": "温室効果ガスに関する情報や知見の集約が進むことで、排出量の算定・開示や気候変動対策に関する今後の情報提供のあり方に関わる可能性があります。ただし、現時点のメタデータからは企業への具体的な義務や手続の有無は読み取れず、影響の程度は限定的である可能性も考えられます。",
+    "recommended_action_ja": "設立の目的や具体的な業務内容、事業者との関わりについては、環境省が公表している原文の報道発表資料(https://www.env.go.jp/press/press_05602.html)をご確認いただくことが望まれます。",
+    "summary_ja_source": "claude",
+    "ja_summarized_at": "2026-10-12T00:20:26Z",
+    "ja_summary_model": "claude-sonnet-5-5",
+    "translations": {
+      "zh-Hans": {
+        "title": "环境省设立“日本GHG中心”汇集温室气体信息与知识",
+        "summary": "根据环境省的新闻发布，将设立“日本GHG中心”以汇集有关温室气体的信息与知识。公告称其目的是加强相关机构间的协调与合作，加速气候变化对策，并为实现早期脱碳做出贡献。这是一项政府公告，仅提供了标题及简要分类标签。",
+        "business_impact": "该中心可能成为日本温室气体数据及相关信息的参考点，这可能与从事排放报告或气候战略的企业相关。所提供的元数据中未说明对企业的具体影响。",
+        "recommended_action": "建议查阅环境省网站上的日文官方新闻发布，以确认该中心的范围、职能以及对贵机构可能产生的影响。"
       }
     }
   },
