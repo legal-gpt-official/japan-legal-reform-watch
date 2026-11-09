@@ -112,7 +112,15 @@ def normalize_text(value: str) -> str:
 def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
     """Prefer article/main text to navigation; choose at most two labeled PDFs."""
     soup = BeautifulSoup(data, "html.parser")
-    for node in soup.select("script, style, nav, footer, header, aside, form, noscript, iframe"):
+    # Official portals often put enormous navigation link lists INSIDE <main>.
+    # They used to fill the 2,300-character budget before the substantive
+    # announcement, causing AI to summarize a menu rather than a legal change.
+    for node in soup.select(
+        "script, style, nav, footer, header, aside, form, noscript, iframe, "
+        "[role='navigation'], [aria-label='breadcrumb'], "
+        ".breadcrumb, .breadcrumbs, .pankuzu, .global-nav, .gnav, "
+        "#gnav, #global-nav, #header, #footer"
+    ):
         node.decompose()
     root = (
         soup.select_one("main, [role='main'], article, #main, #contents, #content, #mainContents, .main-content")
@@ -127,6 +135,17 @@ def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
         # Skip text already represented by a child list/table element.
         if tag.name in ("li", "p") and tag.find(("li", "p")):
             continue
+        # Lists of navigation links are not explanatory primary-source text.
+        # Count descendant anchors, not merely whether there is any inline
+        # reference: a substantive paragraph may link to an Act or an annex.
+        anchors = tag.find_all("a")
+        if anchors:
+            linked = sum(len(normalize_text(a.get_text(" ", strip=True))) for a in anchors)
+            plain = len(normalize_text(tag.get_text(" ", strip=True)))
+            if len(anchors) >= 2 and (not plain or linked / plain >= 0.65):
+                continue
+            if tag.name in ("li", "dt", "dd") and len(anchors) == 1 and linked >= 0.9 * max(plain, 1):
+                continue
         value = normalize_text(tag.get_text(" ", strip=True))
         if 10 <= len(value) <= 1800 and value != last:
             lines.append(value)
