@@ -70,6 +70,33 @@ class TestExtract(unittest.TestCase):
         self.assertNotIn("UNRELATED MENU", text)
         self.assertEqual(pdfs, ["https://www.meti.go.jp/files/old-new.pdf"])
 
+    def test_navigation_inside_main_does_not_consume_source_excerpt(self):
+        navigation = "".join(
+            f'<li><a href="/menu/{n}">各種制度の紹介や手続についての案内{n}</a></li>'
+            for n in range(200)
+        )
+        substantive = ("今回の省令案では申請書の提出先を地方局から本省へ変更し、"
+                       "施行期日を2027年4月1日とする。" * 9)
+        html = (f"<html><body><main><ul>{navigation}</ul>"
+                f"<h1>省令案の概要</h1><p>{substantive}</p>"
+                f'<a href="/amendment.pdf">新旧対照表</a>'
+                f"</main></body></html>")
+        excerpt, links = evidence.html_documents(
+            html.encode("utf-8"), "https://www.meti.go.jp/press/test.html"
+        )
+        self.assertIn("提出先を地方局から本省へ変更", excerpt)
+        self.assertNotIn("各種制度の紹介", excerpt)
+        self.assertEqual(links, ["https://www.meti.go.jp/amendment.pdf"])
+
+    def test_keep_substantive_paragraph_with_inline_source_link(self):
+        html = ('<html><main><p>この改正では'
+                '<a href="/law">対象となる事業者</a>の届出期限を変更します。</p>'
+                '</main></html>')
+        excerpt, _ = evidence.html_documents(
+            html.encode("utf-8"), "https://www.meti.go.jp/press/test.html"
+        )
+        self.assertIn("届出期限を変更", excerpt)
+
     def test_gather_keeps_page_and_pdf_provenance(self):
         html = """<html><main><h1>省令案</h1><p>""".encode("utf-8")
         html += ("手続の対象が変わり、施行日は2027年4月1日です。" * 15).encode()
