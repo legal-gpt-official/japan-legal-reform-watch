@@ -71,7 +71,7 @@ class TestExtract(unittest.TestCase):
         self.assertEqual(pdfs, ["https://www.meti.go.jp/files/old-new.pdf"])
 
     def test_gather_keeps_page_and_pdf_provenance(self):
-        html = b"""<html><main><h1>省令案</h1><p>"""
+        html = """<html><main><h1>省令案</h1><p>""".encode("utf-8")
         html += ("手続の対象が変わり、施行日は2027年4月1日です。" * 15).encode()
         html += b"""</p><a href="/a.pdf">新旧対照表</a></main></html>"""
         async_values = [
