@@ -1,0 +1,59 @@
+name: Verify live reform explainers
+
+# Networked, read-only check: a successful Pages deployment alone is not proof
+# the custom domain serves the newest English, Japanese and Chinese HTML.
+on:
+  workflow_dispatch:
+    inputs:
+      dossiers:
+        description: "Optional comma-separated dossier IDs; default is last 2 JST days"
+        required: false
+        type: string
+  workflow_run:
+    workflows: ["Publish reform explainer pages"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - "scripts/verify_live_explainers.py"
+      - ".github/workflows/verify-live-explainers.yml"
+  schedule:
+    # 20:55 JST = 11:55 UTC, after 20:40 JST nightly publish recovery.
+    - cron: "55 11 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reform-live-verification
+  cancel-in-progress: true
+
+jobs:
+  live:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Verify current published HTML over the custom-domain HTTPS origin
+        run: |
+          python scripts/verify_live_explainers.py \
+            --days 2 \
+            --dossiers "${{ github.event.inputs.dossiers || '' }}" \
+            --attempts 6 \
+            --delay 15
+
+      - name: Publish a diagnostic note for failures
+        if: failure()
+        run: |
+          echo "::error::Live verification failed; see the LIVE_FAILED or INTEGRITY_FAILED URLs in this run. Do not count them as LIVE_VERIFIED."
+          echo "This is a network/content check, not an explainer generator; do not bypass PR checks or force a deployment." >> "$GITHUB_STEP_SUMMARY"

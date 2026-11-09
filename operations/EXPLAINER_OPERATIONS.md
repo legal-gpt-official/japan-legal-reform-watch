@@ -249,3 +249,13 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 - `scripts/build_public_pages.py` が同一法改正の各記録ページに `/u/<id>/`（英語）、`/u/<id>/ja/`（日本語）、`/u/<id>/zh/`（簡体字中国語）を生成し、相互言語リンクと `hreflang` を付ける。該当言語の翻訳が未整備または英語版変更により失効した場合は、その言語ページを生成せず旧ページも削除する。日本語・中国語版の法改正解説本文は静的HTMLとして読める。法律の原記録・時系列は英語版に引き続き掲載する。
 - 毎日の解説作成タスクでは原則として**英・日・中国語の3言語が揃った段階でPRを出す**。英語版更新後は、変更部分だけを両言語に反映し、英語版一致キー（確認日・公式記録fingerprint・英語本文のgit blob SHA）も更新する。翻訳が追いつかない場合はその理由を報告し、古い翻訳の公開を避ける。
 - 翻訳ファイル単体のPRのマージでも `publish-explainer-pages.yml` が静的ページを再生成する。GitHub Pagesの更新完了前に公開済みと報告しない。
+
+
+### 公開量の停滞を防ぐ運用（2026-11-09追記）
+
+- **なぜ5件に達しなかったか。** 日次GitHub Actionsは既存データを収集・翻訳・公開用に組み立てるが、詳細な法改正解説を執筆しない。定期ChatGPTタスクが同じマージ済みPRのサイトHTTP確認を繰り返し、新しい案件に着手しなかった。GitHub Pages自体はPR #115/#116に対応するPublish/Pagesが成功していた。タスク実行環境のDNS失敗をGitHub Pages失敗や原稿未公開と同一視してはならない。
+- **各作問実行の最優先順序。** (1) 未マージPRの最新head CI・マージ (2) 失敗した必須検証の修復 (3) その日の公開済みユニークdossier数を確認 (4) 5件に満たない場合は未着手の**別の新規dossier**を最低1件、一次資料確認→EN/JA/zh-Hans→SHA同期→PR/CI→マージ→Publishまで実行 (5) その後、サイト到達性検査を照会。マージ済みのPRを未完了PRとして何度も引き継がない。
+- **重複排除。** `data/explainer_queue.json` の`bill:raw-...`など同一`item_ids`/closureに属する行は同一dossierとして1件だけ計上。main、未マージPR、別ブランチ、`data/explainers/`と照合してから起稿する。旧案件の再確認は更新件数へ分け、新規件数を水増ししない。
+- **公開事実の独立した2つの確認。** `PAGES_DEPLOYED`は必須CI・マージ・Publish成功・最終docsコミットに対するPages deploy成功・EN/JA/zh-Hans HTMLの存在と本文を意味する。`LIVE_VERIFIED`はさらにHTTP 200と新しい3言語の解説タイトルの一致が必要。ChatGPTのDNSが遮断される場合、ネットワークがあるGitHub-hosted runnerの `.github/workflows/verify-live-explainers.yml`（`scripts/verify_live_explainers.py`）で確認し、失敗URLを記録する。ChatGPT側のDNSエラーのみを理由に次の記事の執筆を止めない。この検査は読取専用であり、公開ゲートを緩和しない。
+- **日次の生産目標と優先度。** 11/12/13/14/15時など昼の各定時実行は、一次資料が充足する新規案件を1件以上完了する作業枠とし、21時はCI・Pages・HTTP公開取りこぼし回収枠とする。新規5件/日は目標であり、根拠未確認の法的事実、未同期翻訳、CI失敗を理由に例外を作らない。作業が止まる案件は具体的事実をPRに残し、**同じ調査を再反復せず**別の一次資料が揃う候補に移る。
+- **報告と再開点。** 新規dossierの `CI_PASSED / MERGED / PAGES_DEPLOYED / LIVE_VERIFIED` を区別し、いずれも日時・対象head SHA・workflow run IDを残す。Pages成功の古い実行IDだけを根拠に最新デプロイ済とせず、最終docs SHAに対応するものを確認する。0件の時は調査説明だけで終わらず、具体的なブランチコミットか、PR上の修復コミットと次工程を残す。
