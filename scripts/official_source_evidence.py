@@ -171,8 +171,8 @@ def related_to_title(title: str, documents: list[dict]) -> bool:
     This is only a conservative relevance filter, NOT legal fact verification.
     Check normalized contiguous n-grams instead of fuzzy semantic guesses.
     """
-    title = re.sub(r"[^\\w]+", "", unicodedata.normalize("NFKC", title or "")).lower()
-    combined = re.sub(r"[^\\w]+", "", unicodedata.normalize(
+    title = re.sub(r"[^\w]+", "", unicodedata.normalize("NFKC", title or "")).lower()
+    combined = re.sub(r"[^\w]+", "", unicodedata.normalize(
         "NFKC", " ".join(d.get("excerpt", "") for d in documents))).lower()
     if not title or not combined:
         return False
