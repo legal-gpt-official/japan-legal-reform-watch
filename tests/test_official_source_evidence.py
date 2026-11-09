@@ -90,6 +90,13 @@ class TestExtract(unittest.TestCase):
     def test_invalid_pdf_without_text_never_accepted(self):
         self.assertEqual(evidence.pdf_text(b"<html>bad</html>"), "")
 
+    def test_title_relevance_filters_unrelated_index_content(self):
+        docs = [{"url": "https://www.meti.go.jp/a", "format": "html",
+                 "excerpt": "電気工事士法施行令の改正案に関する概要を説明します。" * 8}]
+        self.assertTrue(evidence.related_to_title("電気工事士法施行令の改正案", docs))
+        self.assertFalse(evidence.related_to_title("医療保険に関する行政処分", docs))
+        self.assertFalse(evidence.related_to_title("", docs))
+
     def test_public_entries_cached_and_not_retried_on_same_source_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
@@ -102,6 +109,7 @@ class TestExtract(unittest.TestCase):
             }]), encoding="utf-8")
             public.write_text(json.dumps([{
                 "id": "raw-test", "published_at": "2026-11-09", "relevance_score": 10,
+                "title_ja": "具体的な改正内容について",
             }]), encoding="utf-8")
             cache.write_text("{}\n", encoding="utf-8")
             doc = [{"url": "https://www.meti.go.jp/a", "format": "html", "excerpt": "具体的な改正内容" * 20}]
