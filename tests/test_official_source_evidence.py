@@ -73,7 +73,7 @@ class TestExtract(unittest.TestCase):
     def test_gather_keeps_page_and_pdf_provenance(self):
         html = """<html><main><h1>省令案</h1><p>""".encode("utf-8")
         html += ("手続の対象が変わり、施行日は2027年4月1日です。" * 15).encode()
-        html += b"""</p><a href="/a.pdf">新旧対照表</a></main></html>"""
+        html += """</p><a href="/a.pdf">新旧対照表</a></main></html>""".encode("utf-8")
         async_values = [
             (html, "text/html; charset=utf-8", "https://www.caa.go.jp/a"),
             (b"%PDF FAKED", "application/pdf", "https://www.caa.go.jp/a.pdf"),
