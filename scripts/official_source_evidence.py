@@ -17,7 +17,7 @@ import io
 import json
 import re
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
@@ -39,6 +39,7 @@ MAX_PDF_PAGES = 8
 MAX_PDF_LINKS = 2
 MIN_DOCUMENT_CHARS = 180
 DEFAULT_LIMIT = 12
+NEGATIVE_RETRY_HOURS = 72  # blocked/empty pages must not starve the queue
 
 # No HTTP or arbitrary internet hosts, even if introduced by a compromised feed.
 OFFICIAL_SUFFIXES = (
@@ -233,6 +234,19 @@ def eligible_cached(raw: dict, record: dict | None) -> bool:
     )
 
 
+def recently_failed(raw: dict, record: dict | None) -> bool:
+    """Do not spend every day's quota retrying the same blocked official pages."""
+    if not isinstance(record, dict) or not record.get("status") in ("no_evidence", "error"):
+        return False
+    if record.get("source_url") != raw.get("source_url") or record.get("raw_hash") != raw.get("raw_content_hash"):
+        return False
+    try:
+        previous = datetime.fromisoformat(record["checked_at"])
+        return previous.tzinfo is not None and datetime.now(timezone.utc) - previous < timedelta(hours=NEGATIVE_RETRY_HOURS)
+    except (KeyError, ValueError, TypeError):
+        return False
+
+
 def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False) -> dict:
     """Enrich bounded public items. Existing successful evidence is reused."""
     raw = {r["id"]: r for r in read_json(RAW_PATH, []) if isinstance(r, dict) and r.get("id")}
@@ -245,7 +259,9 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
     selected.sort(key=lambda i: (i.get("published_at") or i.get("first_seen_at") or "", i.get("relevance_score") or 0), reverse=True)
     if item_ids:
         selected = [i for i in selected if i.get("id") in item_ids]
-    counts = {"attempted": 0, "enriched": 0, "cached": 0, "no_evidence": 0, "errors": 0}
+    counts = {"attempted": 0, "enriched": 0, "cached": 0, "negatively_cached": 0,
+              "no_evidence": 0, "errors": 0}
+    changed = False
     for item in selected:
         record = raw[item["id"]]
         url = record.get("source_url", "")
@@ -258,6 +274,9 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
         if eligible_cached(record, cache.get(item["id"])):
             counts["cached"] += 1
             continue
+        if recently_failed(record, cache.get(item["id"])):
+            counts["negatively_cached"] += 1
+            continue
         if counts["attempted"] >= limit:
             break
         counts["attempted"] += 1
@@ -265,6 +284,13 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
             docs = gather(url)
             if not docs or not related_to_title(item.get("title_ja", ""), docs):
                 counts["no_evidence"] += 1
+                if not dry_run:
+                    cache[item["id"]] = {
+                        "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
+                        "documents": [], "status": "no_evidence",
+                        "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                    }
+                    changed = True
                 continue
             counts["enriched"] += 1
             if not dry_run:
@@ -274,10 +300,18 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                     "documents": docs,
                     "extracted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 }
+                changed = True
         except (requests.RequestException, ValueError, OSError) as exc:
             counts["errors"] += 1
             print(f"source {item['id']} skipped ({type(exc).__name__})")
-    if not dry_run and counts["enriched"]:
+            if not dry_run:
+                cache[item["id"]] = {
+                    "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
+                    "documents": [], "status": "error",
+                    "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                }
+                changed = True
+    if not dry_run and changed:
         CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
         temp = CACHE_PATH.with_suffix(".tmp")
         temp.write_text(json.dumps(cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
