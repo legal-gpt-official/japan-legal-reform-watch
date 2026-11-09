@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "total_items": 5368,
+  "total_items": 5375,
   "latest_period": "2026",
   "periods": [
     {
       "value": "2026",
       "label": "2026",
       "file": "./data/archive/2026.json",
-      "count": 4474
+      "count": 4476
     },
     {
       "value": "2025",
@@ -85,12 +85,12 @@
       "value": "undated",
       "label": "Undated",
       "file": "./data/archive/undated.json",
-      "count": 180
+      "count": 185
     }
   ],
   "preview": {
     "period": "2026",
     "file": "./data/archive/preview.json",
-    "count": 141
+    "count": 143
   }
 }
