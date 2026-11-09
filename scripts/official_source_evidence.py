@@ -39,6 +39,7 @@ MAX_PDF_PAGES = 8
 MAX_PDF_LINKS = 2
 MIN_DOCUMENT_CHARS = 180
 DEFAULT_LIMIT = 12
+EXTRACTION_VERSION = 2  # re-fetch pre-filter evidence that may contain menus
 NEGATIVE_RETRY_HOURS = 72  # blocked/empty pages must not starve the queue
 
 # No HTTP or arbitrary internet hosts, even if introduced by a compromised feed.
@@ -112,7 +113,15 @@ def normalize_text(value: str) -> str:
 def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
     """Prefer article/main text to navigation; choose at most two labeled PDFs."""
     soup = BeautifulSoup(data, "html.parser")
-    for node in soup.select("script, style, nav, footer, header, aside, form, noscript, iframe"):
+    # Official portals often put enormous navigation link lists INSIDE <main>.
+    # They used to fill the 2,300-character budget before the substantive
+    # announcement, causing AI to summarize a menu rather than a legal change.
+    for node in soup.select(
+        "script, style, nav, footer, header, aside, form, noscript, iframe, "
+        "[role='navigation'], [aria-label='breadcrumb'], "
+        ".breadcrumb, .breadcrumbs, .pankuzu, .global-nav, .gnav, "
+        "#gnav, #global-nav, #header, #footer"
+    ):
         node.decompose()
     root = (
         soup.select_one("main, [role='main'], article, #main, #contents, #content, #mainContents, .main-content")
@@ -127,6 +136,17 @@ def html_documents(data: bytes, url: str) -> tuple[str, list[str]]:
         # Skip text already represented by a child list/table element.
         if tag.name in ("li", "p") and tag.find(("li", "p")):
             continue
+        # Lists of navigation links are not explanatory primary-source text.
+        # Count descendant anchors, not merely whether there is any inline
+        # reference: a substantive paragraph may link to an Act or an annex.
+        anchors = tag.find_all("a")
+        if anchors:
+            linked = sum(len(normalize_text(a.get_text(" ", strip=True))) for a in anchors)
+            plain = len(normalize_text(tag.get_text(" ", strip=True)))
+            if len(anchors) >= 2 and (not plain or linked / plain >= 0.65):
+                continue
+            if tag.name in ("li", "dt", "dd") and len(anchors) == 1 and linked >= 0.9 * max(plain, 1):
+                continue
         value = normalize_text(tag.get_text(" ", strip=True))
         if 10 <= len(value) <= 1800 and value != last:
             lines.append(value)
@@ -228,6 +248,7 @@ def eligible_cached(raw: dict, record: dict | None) -> bool:
     return bool(
         isinstance(record, dict)
         and record.get("source_url") == raw.get("source_url")
+        and record.get("extraction_version") == EXTRACTION_VERSION
         and record.get("raw_hash") == raw.get("raw_content_hash")
         and isinstance(record.get("documents"), list)
         and record["documents"]
@@ -237,6 +258,8 @@ def eligible_cached(raw: dict, record: dict | None) -> bool:
 def recently_failed(raw: dict, record: dict | None) -> bool:
     """Do not spend every day's quota retrying the same blocked official pages."""
     if not isinstance(record, dict) or not record.get("status") in ("no_evidence", "error"):
+        return False
+    if record.get("extraction_version") != EXTRACTION_VERSION:
         return False
     if record.get("source_url") != raw.get("source_url") or record.get("raw_hash") != raw.get("raw_content_hash"):
         return False
@@ -288,6 +311,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                     cache[item["id"]] = {
                         "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
                         "documents": [], "status": "no_evidence",
+                        "extraction_version": EXTRACTION_VERSION,
                         "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                     }
                     changed = True
@@ -298,6 +322,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                     "source_url": url,
                     "raw_hash": record.get("raw_content_hash", ""),
                     "documents": docs,
+                    "extraction_version": EXTRACTION_VERSION,
                     "extracted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 }
                 changed = True
@@ -308,6 +333,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
                 cache[item["id"]] = {
                     "source_url": url, "raw_hash": record.get("raw_content_hash", ""),
                     "documents": [], "status": "error",
+                    "extraction_version": EXTRACTION_VERSION,
                     "checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 }
                 changed = True
