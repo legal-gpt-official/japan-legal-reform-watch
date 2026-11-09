@@ -124,6 +124,16 @@ class TestExtract(unittest.TestCase):
         self.assertFalse(evidence.related_to_title("医療保険に関する行政処分", docs))
         self.assertFalse(evidence.related_to_title("", docs))
 
+    def test_old_extraction_version_is_refetched(self):
+        raw = {"source_url": "https://www.meti.go.jp/a", "raw_content_hash": "abc"}
+        old = {"source_url": raw["source_url"], "raw_hash": "abc",
+               "documents": [{"url": raw["source_url"], "format": "html",
+                              "excerpt": "navigation " * 40}]}
+        self.assertFalse(evidence.eligible_cached(raw, old))
+        self.assertTrue(evidence.eligible_cached(
+            raw, {**old, "extraction_version": evidence.EXTRACTION_VERSION}
+        ))
+
     def test_failed_source_is_retried_only_after_cooldown_or_source_change(self):
         from datetime import datetime, timedelta, timezone
         raw = {"source_url": "https://www.meti.go.jp/a", "raw_content_hash": "abc"}
