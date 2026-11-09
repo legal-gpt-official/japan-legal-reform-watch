@@ -363,6 +363,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     items = json.loads(PUBLISHED_PATH.read_text(encoding="utf-8"))
     raw_by_id = {r.get("id"): r for r in json.loads(RAW_PATH.read_text(encoding="utf-8")) if isinstance(r, dict)}
+    su.attach_official_documents(raw_by_id, su.load_json(su.EVIDENCE_PATH, {}))
     cache = json.loads(CACHE_PATH.read_text(encoding="utf-8")) if CACHE_PATH.exists() else {}
     result = audit(items, raw_by_id, cache)
     text, high = report(result)
