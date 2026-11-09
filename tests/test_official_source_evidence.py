@@ -97,6 +97,20 @@ class TestExtract(unittest.TestCase):
         self.assertFalse(evidence.related_to_title("医療保険に関する行政処分", docs))
         self.assertFalse(evidence.related_to_title("", docs))
 
+    def test_failed_source_is_retried_only_after_cooldown_or_source_change(self):
+        from datetime import datetime, timedelta, timezone
+        raw = {"source_url": "https://www.meti.go.jp/a", "raw_content_hash": "abc"}
+        now = datetime.now(timezone.utc)
+        failed = {
+            "source_url": raw["source_url"], "raw_hash": "abc",
+            "status": "no_evidence", "documents": [],
+            "checked_at": now.isoformat(timespec="seconds"),
+        }
+        self.assertTrue(evidence.recently_failed(raw, failed))
+        self.assertFalse(evidence.recently_failed({**raw, "raw_content_hash": "changed"}, failed))
+        old = dict(failed, checked_at=(now - timedelta(days=4)).isoformat(timespec="seconds"))
+        self.assertFalse(evidence.recently_failed(raw, old))
+
     def test_public_entries_cached_and_not_retried_on_same_source_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
