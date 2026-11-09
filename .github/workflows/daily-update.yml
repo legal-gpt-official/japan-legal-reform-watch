@@ -48,7 +48,7 @@ jobs:
       # A failure here stops the job, so fetch/build/summarize never run on a
       # broken pipeline. No ANTHROPIC_API_KEY is exposed to these steps.
       - name: Compile pipeline scripts
-        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/weekly_roundups.py scripts/page_l10n.py scripts/law_timeline.py scripts/explainers.py scripts/explainer_locales.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py
+        run: python -m py_compile scripts/fetch_updates.py scripts/build_public_data.py scripts/build_public_archives.py scripts/summarize_updates.py scripts/translate_updates.py scripts/anthropic_batch.py scripts/source_health.py scripts/alert_common.py scripts/build_public_feeds.py scripts/build_public_pages.py scripts/weekly_roundups.py scripts/page_l10n.py scripts/law_timeline.py scripts/explainers.py scripts/explainer_locales.py scripts/send_alert_digests.py scripts/setup_alert_billing.py scripts/quality_audit.py scripts/quality_gate.py scripts/requeue.py scripts/official_source_evidence.py scripts/summary_value_audit.py
 
       - name: Run offline regression tests
         # Live repository-state explainer checks (official records drifting away
@@ -86,7 +86,13 @@ jobs:
       - name: Extract official source evidence (bounded)
         continue-on-error: true
         run: |
-          python scripts/official_source_evidence.py --limit 12
+          python scripts/official_source_evidence.py --limit 20
+
+      # Snapshot the actual routine summaries BEFORE regenerating them. The
+      # independent comparison later in this run is diagnostic, not an accuracy
+      # certification, and is exported as a read-only Actions artifact.
+      - name: Capture 20-item source-backed summary baseline
+        run: python scripts/summary_value_audit.py --snapshot logs/summary_value_before.json --limit 20
 
       # gpt-6.1-sol on OpenAI Flex since 2026-10-16, after the English prompt
       # gained deterministic law numbers and a confidence cap and a 54-item
@@ -261,6 +267,33 @@ jobs:
           set -o pipefail
           python scripts/quality_gate.py --mode "$QUALITY_GATE_MODE" | tee quality_audit.log
           { echo "### Quality audit"; sed -n '1,240p' quality_audit.log | grep -v '^::warning::'; } >> "$GITHUB_STEP_SUMMARY"
+
+      # Compare exact before/after text for 20 reproducibly chosen items,
+      # preferring recently enriched official-source records. No API or data
+      # writes. This diagnoses bland, unchanged results but is not a legal
+      # correctness verdict; use the source URLs/excerpts for human review.
+      - name: Compare 20 source-backed summaries
+        run: |
+          python scripts/summary_value_audit.py \
+            --report logs/summary_value_before.json \
+            --markdown logs/summary_value_comparison.md
+          {
+            echo "### Routine summary quality (20-item pilot)"
+            sed -n '1,27p' logs/summary_value_comparison.md
+            echo "Full source excerpts and before/after EN/JA texts: see the uploaded artifact."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload 20-item summary comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: routine-summary-content-20
+          path: |
+            logs/summary_value_before.json
+            logs/summary_value_comparison.json
+            logs/summary_value_comparison.md
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Build yearly public archives
         run: python scripts/build_public_archives.py
