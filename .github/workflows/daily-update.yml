@@ -71,6 +71,15 @@ jobs:
       - name: Build public data
         run: python scripts/build_public_data.py
 
+      # Read a small bounded set of the real official pages/PDFs before
+      # summarization. Failure must not suppress the daily legal-data update.
+      # Cache entries are content-addressed, so only successfully enriched
+      # items enter a new EN/JA summary cache key and dependent ZH refresh.
+      - name: Extract official source evidence (bounded)
+        continue-on-error: true
+        run: |
+          python scripts/official_source_evidence.py --limit 12
+
       # gpt-6.1-sol on OpenAI Flex since 2026-10-16, after the English prompt
       # gained deterministic law numbers and a confidence cap and a 54-item
       # re-evaluation found it equal to Sonnet 5.5 on law numbers, key dates,
