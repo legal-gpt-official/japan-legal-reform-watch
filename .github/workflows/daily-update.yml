@@ -2,6 +2,14 @@ name: Daily update legal reform data
 
 on:
   workflow_dispatch:
+  # A code merge gets one immediate refresh. Data-only commits never loop.
+  push:
+    branches: [main]
+    paths:
+      - "scripts/official_source_evidence.py"
+      - "scripts/summarize_updates.py"
+      - "requirements.txt"
+      - ".github/workflows/daily-update.yml"
   schedule:
     - cron: "0 21 * * *"
 
