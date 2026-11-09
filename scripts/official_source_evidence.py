@@ -13,10 +13,10 @@ hash change triggers regeneration only for successfully enriched items.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import io
 import json
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
@@ -165,6 +165,24 @@ def pdf_text(data: bytes) -> str:
     return normalize_text(" ".join(pieces))[:MAX_PDF_CHARS]
 
 
+def related_to_title(title: str, documents: list[dict]) -> bool:
+    """Reject apparent indexes/menus whose excerpt cannot be tied to this item.
+
+    This is only a conservative relevance filter, NOT legal fact verification.
+    Check normalized contiguous n-grams instead of fuzzy semantic guesses.
+    """
+    title = re.sub(r"[^\\w]+", "", unicodedata.normalize("NFKC", title or "")).lower()
+    combined = re.sub(r"[^\\w]+", "", unicodedata.normalize(
+        "NFKC", " ".join(d.get("excerpt", "") for d in documents))).lower()
+    if not title or not combined:
+        return False
+    if len(title) < 9:
+        return title in combined
+    width = 7 if len(title) >= 18 else 5
+    ngrams = {title[i:i + width] for i in range(len(title) - width + 1)}
+    return sum(gram in combined for gram in ngrams) >= min(3, len(ngrams))
+
+
 def gather(url: str) -> list[dict]:
     """Return only bounded, substantive extracted excerpts with their exact URLs."""
     data, mime, final_url = fetch_bounded(url, MAX_HTML_BYTES if not urlsplit(url).path.lower().endswith(".pdf") else MAX_PDF_BYTES)
@@ -231,6 +249,10 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
     for item in selected:
         record = raw[item["id"]]
         url = record.get("source_url", "")
+        # An unchanged full-law page or a Parliament-wide bill index is not
+        # evidence of what changed in this particular event.
+        if record.get("source_type") == "law_api" or urlsplit(url).path.endswith("/menu.htm"):
+            continue
         if not safe_official_url(url):
             continue
         if eligible_cached(record, cache.get(item["id"])):
@@ -241,7 +263,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
         counts["attempted"] += 1
         try:
             docs = gather(url)
-            if not docs:
+            if not docs or not related_to_title(item.get("title_ja", ""), docs):
                 counts["no_evidence"] += 1
                 continue
             counts["enriched"] += 1
