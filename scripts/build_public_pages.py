@@ -77,7 +77,7 @@ import explainer_locales as el  # noqa: E402
 import page_l10n as pl  # noqa: E402
 import law_timeline as lt  # noqa: E402
 from law_timeline import Dossier  # noqa: E402
-from summarize_updates import source_evidence  # noqa: E402
+from summarize_updates import source_evidence, attach_official_documents, EVIDENCE_PATH, load_json  # noqa: E402
 from law_timeline import summarize as summarize_timelines  # noqa: E402
 
 REPO_ROOT = SCRIPTS_DIR.parent
@@ -1541,6 +1541,7 @@ def build(
     with_pages = page_items(items)
     page_ids = {item_page_id(item) for item in with_pages}
     raw_by_id = {r.get("id"): r for r in load_items(raw_path)} if index is not None else {}
+    attach_official_documents(raw_by_id, load_json(EVIDENCE_PATH, {}))
     evidence = {
         item_page_id(item): source_evidence(item, raw_by_id.get(item_page_id(item), {}))
         for item in with_pages
