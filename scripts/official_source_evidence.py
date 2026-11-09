@@ -270,6 +270,25 @@ def recently_failed(raw: dict, record: dict | None) -> bool:
         return False
 
 
+def diversify_sources(candidates: list[dict], *, per_source: int = 2, window: int = 80) -> list[dict]:
+    """Ensure a burst of parliamentary procedural records does not use all fetches.
+
+    Apply the source cap to a recent candidate window, then revisit the deferred
+    candidates. No record is discarded. Keep a bounded window so very old items
+    from unrelated feeds cannot displace the newest news indefinitely.
+    """
+    promoted, deferred = [], []
+    source_counts: dict[str, int] = {}
+    for item in candidates[:window]:
+        source = str(item.get("source_name") or "")
+        if source_counts.get(source, 0) < per_source:
+            promoted.append(item)
+            source_counts[source] = source_counts.get(source, 0) + 1
+        else:
+            deferred.append(item)
+    return promoted + deferred + candidates[window:]
+
+
 def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False) -> dict:
     """Enrich bounded public items. Existing successful evidence is reused."""
     raw = {r["id"]: r for r in read_json(RAW_PATH, []) if isinstance(r, dict) and r.get("id")}
@@ -284,7 +303,7 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
         selected = [i for i in selected if i.get("id") in item_ids]
     counts = {"attempted": 0, "enriched": 0, "cached": 0, "negatively_cached": 0,
               "no_evidence": 0, "errors": 0}
-    changed = False
+    pending = []
     for item in selected:
         record = raw[item["id"]]
         url = record.get("source_url", "")
@@ -300,8 +319,14 @@ def collect(limit: int, item_ids: set[str] | None = None, dry_run: bool = False)
         if recently_failed(record, cache.get(item["id"])):
             counts["negatively_cached"] += 1
             continue
+        pending.append(item)
+
+    changed = False
+    for item in diversify_sources(pending):
         if counts["attempted"] >= limit:
             break
+        record = raw[item["id"]]
+        url = record.get("source_url", "")
         counts["attempted"] += 1
         try:
             docs = gather(url)

@@ -149,6 +149,27 @@ class TestExtract(unittest.TestCase):
         old = dict(failed, checked_at=(now - timedelta(days=4)).isoformat(timespec="seconds"))
         self.assertFalse(evidence.recently_failed(raw, old))
 
+    def test_source_diversification_does_not_discard_or_duplicate_candidates(self):
+        items = [
+            {"id": f"parliament-{n}", "source_name": "Diet"} for n in range(8)
+        ] + [
+            {"id": "fsa", "source_name": "FSA"},
+            {"id": "meti", "source_name": "METI"},
+            {"id": "caa", "source_name": "CAA"},
+        ]
+        ranked = evidence.diversify_sources(items)
+        self.assertEqual(len(ranked), len(items))
+        self.assertEqual({x["id"] for x in ranked}, {x["id"] for x in items})
+        self.assertEqual([x["id"] for x in ranked[:5]],
+                         ["parliament-0", "parliament-1", "fsa", "meti", "caa"])
+        self.assertEqual([x["id"] for x in ranked[5:]],
+                         [f"parliament-{n}" for n in range(2, 8)])
+
+    def test_source_diversification_keeps_outside_window_at_tail(self):
+        items = [{"id": str(i), "source_name": "Same"} for i in range(6)]
+        ranked = evidence.diversify_sources(items, window=4, per_source=1)
+        self.assertEqual([r["id"] for r in ranked], ["0", "1", "2", "3", "4", "5"])
+
     def test_public_entries_cached_and_not_retried_on_same_source_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
