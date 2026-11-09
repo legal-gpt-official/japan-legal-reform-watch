@@ -15,6 +15,10 @@ anthropic>=0.102.0      # Stages 3-4 Claude SDK (Message Batches, 1h prompt-cach
 openai>=2.0             # Optional: only for an explicitly selected gpt-* model
                         # (provider A/B evaluation; Responses API, direct calls)
 
+# Official-source excerpt extraction (bounded HTML and text PDFs)
+beautifulsoup4>=4.12
+pypdf>=5.0
+
 # --- Reserved for later iterations (NOT used yet) ---
 # beautifulsoup4>=4.12   # HTML parsing for non-RSS source pages
 # lxml>=5.2              # Fast XML/HTML backend for bs4

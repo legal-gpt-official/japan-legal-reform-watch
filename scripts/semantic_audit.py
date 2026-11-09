@@ -48,7 +48,9 @@ RISK_MARKERS = ("経過措置", "案", "成立", "施行", "義務", "しなけ�
 SYSTEM_PROMPT = (
     "You audit ONE item of a compliance-triage dashboard that summarizes Japanese government legal, "
     "regulatory and public-comment announcements in English, Japanese and Simplified Chinese. You are "
-    "given the Japanese official metadata (authoritative) and the published texts. Report only errors "
+    "given the Japanese official metadata and, when available, extracted excerpts from its "
+    "official page/PDFs, plus the published texts. Excerpts are partial and may not "
+    "contain the whole instrument. Report only errors "
     "that change legal meaning or would mislead a compliance reader:\n"
     "- obligation_misstated: an obligation, prohibition, deadline, penalty or legal effect the source "
     "does not state, or a stated one weakened or dropped.\n"
@@ -210,6 +212,7 @@ def build_user(item: dict, raw: dict) -> str:
             "title_ja": item.get("title_ja", ""), "raw_summary": raw.get("raw_summary", ""),
             "source_name": item.get("source_name", ""), "published_at": item.get("published_at", ""),
             "stage_label_rule_based": item.get("stage", ""),
+            "official_source_documents": raw.get("official_documents") or [],
         },
         "english": {k: item.get(k, "") for k in su.AI_TEXT_FIELDS},
         "japanese_summary": {k: item.get(k, "") for k in su.JA_AI_FIELDS},
@@ -247,6 +250,7 @@ def main(argv: list[str] | None = None) -> int:
 
     items = load(su.INPUT_PATH, [])
     raw_by_id = {r.get("id"): r for r in load(su.RAW_PATH, []) if isinstance(r, dict)}
+    su.attach_official_documents(raw_by_id, load(su.EVIDENCE_PATH, {}))
     chosen = sample(items, raw_by_id, args.size, args.today)
     canaries = seed_canaries(items, {i["id"] for i in chosen}, args.canaries, args.today)
     print(f"model {args.model} | sample {len(chosen)} of {sum(1 for i in items if i.get('summary_source') == 'claude')}"
