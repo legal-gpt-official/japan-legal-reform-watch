@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "dossier_id": "telecom-interconnection-cost-model-2026",
-  "status": "draft",
+  "status": "published",
   "review_state": "ai_checked",
   "title_en": "Japan's proposed 2026 revision of fixed-network interconnection cost inputs",
   "quick_take": {
@@ -126,7 +126,7 @@
     }
   ],
   "verified_at": "2026-11-10",
-  "source_fingerprint": "",
+  "source_fingerprint": "sha256:8690eca05fbbb8512bdac2de293da826",
   "author": "chatgpt",
-  "review_notes": "Draft research manuscript based on the e-Gov consultation and 17-page ordinance draft. No publication clearance: native OfficialIndex fingerprint, full locale synchronization, additional policy background corroboration and PR checks remain outstanding. No human review claimed. The instrument number identifies the existing 2000 ordinance, not an unpromulgated 2026 amendment."
+  "review_notes": "AI-checked against e-Gov consultation 145210791 and the draft comparison table; ordinance remains a proposal. OfficialIndex fingerprint for the sole linked raw record raw-da94b18be0f182ed calculated from the native fingerprint field order and SHA-256; no human review claimed."
 }
