@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "dossier_id": "telecom-interconnection-cost-model-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's proposed 2026 revision of fixed-network interconnection cost inputs",
+  "quick_take": {
+    "what_changed": "The MIC is consulting on amendments to cost-model numerical inputs in the Type I Designated Telecommunications Facilities Interconnection Charges Rules. This is a draft, not an enacted tariff change.",
+    "who_is_affected": "Operators of Type I designated telecommunications facilities and carriers using regulated interconnection arrangements.",
+    "what_to_do_now": "Review proposed cost inputs and the transitional rules; comments close on 2 December 2026. Do not treat draft numerical inputs as binding."
+  },
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "public_comment_open",
+  "related_item_ids": [
+    "raw-da94b18be0f182ed"
+  ],
+  "instruments": [
+    {
+      "number": "平成十二年郵政省令第六十四号",
+      "name_ja": "第一種指定電気通信設備接続料規則",
+      "name_en": "Type I Designated Telecommunications Facilities Interconnection Charges Rules (existing ordinance proposed for amendment)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "e-Gov public-comment listings",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    },
+    {
+      "label": "MIC press releases",
+      "url": "https://www.soumu.go.jp/menu_news/s-news/index.html"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "Japan's regulated interconnection framework addresses the relationship between a carrier controlling designated fixed-network facilities and other carriers seeking access. Under Article 33 of the Telecommunications Business Act, interconnection terms are subject to a statutory framework rather than left solely to bilateral bargaining. The proposed amendment updates numerical inputs in the rules used to calculate regulated interconnection charges; it does not itself announce a new general obligation for all telecommunications businesses.",
+      "The consultation's 17-page draft replaces figures for network lengths, asset valuation, facility-maintenance costs, land-price adjustment factors, network-equipment ratios and economic useful lives. For example, the feeder conduit total changes from 118,639 km to 116,822 km, the QoS control coefficient from 1.27 to 1.26, and the IP data packet factor from 108 to 116 packets per second per Mbps. These are proposed model inputs, not direct retail price changes.",
+      "The regulatory logic is to maintain cost-based access calculations using specified assumptions. The draft tables demonstrate changes to those assumptions, but the consultation materials reviewed here do not establish the empirical cause of each adjustment or quantify its aggregate effect on individual carriers' interconnection charges. Any claim of a net increase or decrease requires calculation using the complete model."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The underlying Interconnection Charges Rules were adopted as Ministry of Posts and Telecommunications Ordinance No. 64 of 2000 (Heisei 12) under the Telecommunications Business Act. The current proposal relies expressly on Article 33(4)(ii), which concerns the regulatory basis for calculating interconnection charges.",
+      "On 3 November 2026, MIC opened public consultation on a further amendment to the rules, with comments due by 2 December 2026. The proposal consists predominantly of detailed numerical revisions in attached tables, rather than a wholesale replacement of the interconnection regime.",
+      "The draft supplementary provisions envisage a general commencement on 1 April 2027, while provisions allowing advance procedural steps would commence on promulgation. Before commencement, the designated operator could seek approval to amend existing interconnection terms; where a pre-commencement application remains undecided after commencement, the draft contains a temporary deeming rule pending the decision."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-12-02",
+        "text": "The public-comment period closes at 23:59 Japan time.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "MIC may revise and promulgate a final ordinance following consultation; the final text and any published responses should be checked before relying on the figures.",
+      "If promulgated as drafted, the main commencement date would be 1 April 2027, with preparatory provisions commencing on promulgation."
+    ],
+    "uncertainties": [
+      "The ordinance has not been promulgated; the final numbers, commencement wording and any modifications following comments are not yet established.",
+      "The aggregate cost and charge impact on individual interconnecting carriers has not been quantified from the complete calculation model.",
+      "The official rationale for each numerical change and the relationship to previous annual model updates require additional primary-source corroboration."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "The designated fixed-network operator would need to test its cost-model calculations and approved interconnection terms against the proposed numerical inputs. Changes to facility lengths, maintenance ratios and economic useful lives can alter calculated cost allocation, but direction and magnitude cannot be inferred from selected figures alone.",
+      "Interconnecting operators should evaluate the impact on their regulated wholesale charges and contract economics without assuming the draft has immediate legal effect. The supplementary provisions are relevant to the timing of approval applications and temporary treatment of existing terms."
+    ],
+    "checklist": [
+      "Recalculate the complete interconnection model using both current and proposed numerical tables; retain a traceable comparison.",
+      "Identify any existing approved interconnection terms requiring an amendment application if the final rules follow the draft.",
+      "Consider submitting evidence-based comments by 2 December 2026 on cost assumptions or transitional arrangements.",
+      "Check the promulgated text and the applicable approval decision before treating new rates or inputs as effective."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-11-03",
+      "label": "MIC consultation opened",
+      "source_ids": [
+        "s1"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-12-02",
+      "label": "Deadline for comments on draft ordinance",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of Internal Affairs and Communications / e-Gov",
+      "title": "Consultation 145210791, published 3 November 2026",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&Mode=0&id=145210791",
+      "accessed_at": "2026-11-10"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Ministry of Internal Affairs and Communications / e-Gov",
+      "title": "Draft amendment, comparison tables and supplementary provisions (17 pages)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323543",
+      "accessed_at": "2026-11-10"
+    }
+  ],
+  "verified_at": "2026-11-10",
+  "source_fingerprint": "sha256:8690eca05fbbb8512bdac2de293da826",
+  "author": "chatgpt",
+  "review_notes": "AI-checked against e-Gov consultation 145210791 and the draft comparison table; ordinance remains a proposal. OfficialIndex fingerprint for the sole linked raw record raw-da94b18be0f182ed calculated from the native fingerprint field order and SHA-256; no human review claimed."
+}
