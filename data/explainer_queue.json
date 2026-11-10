@@ -163,6 +163,38 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "explainer:export-control-2026-october-draft",
+      "kind": "update",
+      "explainer_id": "export-control-2026-october-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-26",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320041",
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.meti.go.jp/policy/anpo/index.html",
+        "https://laws.e-gov.go.jp/law/355CO0000000260",
+        "https://laws.e-gov.go.jp/law/324CO0000000378"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-e45e78485c5b4613"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:93032ac86ced1d78646a35b716dc7329",
+      "first_queued_on": "2026-11-10"
+    },
+    {
       "queue_id": "explainer:fefta-2026-inward-investment-screening",
       "kind": "update",
       "explainer_id": "fefta-2026-inward-investment-screening",
@@ -264,6 +296,37 @@
       ],
       "current_fingerprint": "sha256:c28839caf9c79a1da8b8a4dfb0228cff",
       "first_queued_on": "2026-11-04"
+    },
+    {
+      "queue_id": "explainer:osh-chemical-label-sds-2026-draft",
+      "kind": "update",
+      "explainer_id": "osh-chemical-label-sds-2026-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-26",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260226",
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/index.html",
+        "https://laws.e-gov.go.jp/law/347CO0000000318"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-bbe3073b46935614"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:b48acd9ef8b346892635f5055189eab6",
+      "first_queued_on": "2026-11-10"
     },
     {
       "queue_id": "explainer:pcb-waste-2026-low-concentration-amendment",
