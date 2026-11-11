@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "dossier_id": "eia-repowering-thresholds-2026-order",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 EIA repowering order: 300-metre proximity and output-ratio rules for power plants",
+  "quick_take": {
+    "what_changed": "Cabinet Order No. 327 of 2026 was promulgated on 15 October 2026 to implement parts of the 2025 Environmental Impact Assessment Act amendment. Effective 1 April 2027, it defines qualifying repowering projects and related dam-reconstruction assessment categories; it is no longer a mere consultation draft.",
+    "who_is_affected": "Developers replacing thermal, geothermal and wind generation facilities near existing sites, dam-project proponents, EIA consultants and permitting authorities.",
+    "what_to_do_now": "For projects starting under the revised framework, check whether the new facilities lie within 300 metres of the old site's boundary and satisfy the output-ratio conditions (thermal 2.0, geothermal 1.3, wind 1.1), and separately assess applicable EIA thresholds and transitional provisions."
+  },
+  "instrument_type": "cabinet_order",
+  "current_stage": "promulgated",
+  "related_item_ids": [
+    "raw-9fd50fb384946b39",
+    "raw-f0a92074502e8bab"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年政令第三百二十七号",
+      "name_ja": "環境影響評価法施行令の一部を改正する政令",
+      "name_en": "Cabinet Order Amending the Enforcement Order of the Environmental Impact Assessment Act (2026 Order No. 327)"
+    },
+    {
+      "number": "令和七年法律第七十三号",
+      "name_ja": "環境影響評価法の一部を改正する法律",
+      "name_en": "2025 Act Amending the Environmental Impact Assessment Act (underlying enabling reform)"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "Ministry of the Environment EIA announcements",
+      "url": "https://www.env.go.jp/press/"
+    },
+    {
+      "label": "e-Gov EIA Enforcement Order (2027 effective revision)",
+      "url": "https://laws.e-gov.go.jp/law/409CO0000000346/20270401_508CO0000000327"
+    },
+    {
+      "label": "e-Gov public consultation and results",
+      "url": "https://public-comment.e-gov.go.jp/pcm/list"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The 2025 amendment to Japan's Environmental Impact Assessment Act was designed, among other things, to clarify environmental assessment for repowering: removal or decommissioning of an existing facility followed by construction of a similar facility on the original or a nearby site. This responds to the practical difficulty of applying a framework chiefly designed around greenfield development to replacement projects, while preserving scrutiny of environmental impacts. The Ministry of the Environment's October 2026 briefing expressly links the implementing order to this 2025 legislative choice.",
+      "Under amended Article 3-3(2), the geographic and relative-size limits for the special repowering planning-stage consideration document are set by Cabinet Order. Order No. 327 of 2026 fixes 300 metres from the existing site's boundary for thermal, geothermal and wind power plant construction or modification, alongside a new-to-existing generating-capacity ratio no greater than 2.0 for thermal, 1.3 for geothermal and 1.1 for wind. These are conditions for the specified repowering category, not universal limits on all generation upgrades or substitutes for other EIA triggers.",
+      "The order also defines first- and second-category project criteria for dam reconstruction. Developers must distinguish this October 2026 repowering implementation order from the different July 2026 Order No. 230 concerning the same base Enforcement Order: sharing a parent statute does not make the separate legal amendments one dossier."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Diet enacted the Environmental Impact Assessment Act amendment as Act No. 73 of 2025 in June 2025. In October 2025 the Ministry began technical discussions on applying the new repowering provisions, including geographic proximity and relative capacity; those discussions informed the draft implementing rules.",
+      "From 25 August to 23 September 2026, the Ministry consulted the public on the proposed Enforcement Order and an associated basic-guidance notice (consultation 195260051). The Ministry publicly released the consultation results, including 71 submitted comments, on 9 October 2026, when it also announced Cabinet approval of the Order and the separate commencement-date order.",
+      "The EIA Enforcement Order amendment was promulgated as Cabinet Order No. 327 of 2026 on 15 October 2026; e-Gov's revision record states that it enters into force on 1 April 2027. The Ministry's 9 October press release alone documents Cabinet approval rather than promulgation; the latter is confirmed separately by the e-Gov law-revision record. Promulgation and future commencement must not be conflated."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-10-15",
+        "text": "Cabinet Order No. 327 was promulgated, according to e-Gov Law Search.",
+        "source_ids": [
+          "s2"
+        ]
+      },
+      {
+        "date": "2027-04-01",
+        "text": "e-Gov records 1 April 2027 as the scheduled commencement date for Order No. 327.",
+        "source_ids": [
+          "s2",
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "Project proponents should assess whether future replacement work falls within the statutory repowering category and its 300-metre and 2.0/1.3/1.1 output conditions, and should prepare the applicable environmental review and consultations under the provisions that take effect on 1 April 2027.",
+      "The Ministry may issue additional technical guidance and implementation materials. Any such publications, and the enacted text rather than the August draft, should be used when determining actual procedural treatment."
+    ],
+    "uncertainties": [
+      "Whether an individual project qualifies depends on the statutory description, site boundaries, same-kind facility test, generation output calculation, other EIA thresholds and any applicable transitional rules; the distance/ratio figures alone do not conclusively decide a project's required EIA procedure.",
+      "The effects on a specific dam reconstruction project require checking its first- or second-category classification under the amended tables; no blanket exemption or permit approval follows merely from this order.",
+      "Future ministerial guidance may elaborate evidence required for project screening; it cannot be assumed from the cited sources."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Wind, geothermal and thermal developers planning to replace existing equipment should map original and replacement site boundaries, calculate comparable nameplate generating capacity and document why a project qualifies, or does not qualify, for the repowering provisions. The 1.1 wind ratio is materially narrower than the 2.0 thermal ratio; using a single threshold across technologies would distort project screening.",
+      "EIA advisors and project-finance teams should reflect the 1 April 2027 commencement in permit schedules, land documentation and due-diligence assumptions. For dam reconstruction, confirm first/second-category classification separately. The new order does not dispense with other licensing, nature-conservation, land or grid requirements."
+    ],
+    "checklist": [
+      "Map the existing facility boundary and proposed project layout; assess the 300-metre limit under the amended statutory definition.",
+      "Compute the new-to-existing output ratio using the applicable thermal 2.0, geothermal 1.3 or wind 1.1 threshold; record source data and methodology.",
+      "Check project classification, any planning-stage consideration document requirements, other EIA triggers and transitional provisions against the promulgated texts effective 1 April 2027.",
+      "Confirm dam-reconstruction first/second-category thresholds if relevant; monitor Ministry technical guidance without mistaking guidance for a new legal duty."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "comment_opened",
+      "date": "2026-08-25",
+      "label": "Consultation 195260051 opened",
+      "source_ids": [
+        "s3"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-09-24",
+      "label": "Consultation closed at 00:00 JST",
+      "source_ids": [
+        "s3"
+      ]
+    },
+    {
+      "kind": "comment_results_published",
+      "date": "2026-10-09",
+      "label": "Consultation results released and Cabinet approval announced",
+      "source_ids": [
+        "s1",
+        "s4"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-10-15",
+      "label": "Cabinet Order No. 327 promulgated",
+      "source_ids": [
+        "s2"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2027-04-01",
+      "label": "Scheduled commencement of Order No. 327",
+      "source_ids": [
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "Cabinet approval of EIA Enforcement Order amendments and consultation results (9 October 2026)",
+      "url": "https://www.env.go.jp/press/press_05649.html",
+      "accessed_at": "2026-11-11"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "e-Gov Law Search",
+      "title": "EIA Enforcement Order revision effective 1 April 2027 under Cabinet Order No. 327 of 2026",
+      "url": "https://laws.e-gov.go.jp/law/409CO0000000346/20270401_508CO0000000327",
+      "accessed_at": "2026-11-11"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Consultation 195260051 on EIA Enforcement Order amendment (25 August to 23 September 2026)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&Mode=0&id=195260051",
+      "accessed_at": "2026-11-11"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "e-Gov Public Comment",
+      "title": "Environment Ministry consultation-result listings, case 195260051, 71 submissions reported 9 October 2026",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTLIST&Husho=0000000051&Mode=1&fromPCMMSTLIST=true",
+      "accessed_at": "2026-11-11"
+    }
+  ],
+  "verified_at": "2026-11-11",
+  "source_fingerprint": "sha256:9c2a6022c409f7f375613cab06768911",
+  "author": "chatgpt",
+  "review_notes": "AI-reviewed against Ministry of Environment 9 Oct 2026 briefing, e-Gov promulgated law-revision record and consultation results. Explicitly differentiates earlier July 2026 Order 230, Cabinet approval, 15 Oct promulgation and 1 Apr 2027 future effect. Native OfficialIndex fingerprint calculated from e-Gov consultation raw-9fd50fb384946b39 and enactment raw-f0a92074502e8bab. No human review claimed."
+}
