@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "dossier_id": "inhabitant-tax-inflation-relief-2026-bill",
+  "status": "draft",
+  "review_state": "unreviewed",
+  "title_en": "Proposed inhabitant-tax relief amid inflation and wage growth: a 2026 members' bill",
+  "quick_take": {
+    "what_changed": "A House members' bill proposes future increases in individual inhabitant-tax deductions and restoring dependent deductions for children under 16. It is not enacted law.",
+    "who_is_affected": "If enacted through subsequent legislation, wage earners, households with children, payroll administrators and municipalities could be affected.",
+    "what_to_do_now": "Continue applying current inhabitant-tax rules. Track the bill and any subsequent amendments rather than applying the proposed 1.78 million yen benchmark now."
+  },
+  "instrument_type": "statute",
+  "current_stage": "bill_submitted",
+  "related_item_ids": [
+    "raw-5daf6c3c7e93d898",
+    "raw-767cc2bab97288a9",
+    "raw-fb57afab75ff2e47"
+  ],
+  "instruments": [
+    {
+      "number": "昭和二十五年法律第二百二十六号",
+      "name_ja": "地方税法",
+      "name_en": "Local Tax Act, the existing framework addressed by the proposal"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "House bill progress, 221st Diet, House Bill No. 31",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2BEE.htm"
+    },
+    {
+      "label": "House members' bills and legislation information",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/index.htm"
+    }
+  ],
+  "background": {
+    "paragraphs": [
+      "The bill's sponsors identify a mismatch between rising living costs, nominal wages and the design of individual inhabitant tax. Their stated concern is that nominal wage growth can increase local tax burdens more quickly than pay, while thresholds and dependent-deduction rules may discourage additional work. These are the sponsors' policy claims, not findings that existing tax assessments are unlawful.",
+      "The proposed response would raise the maximum basic deduction so that its sum with the minimum employment-income deduction reaches 1.78 million yen for the inhabitant-tax income levy from fiscal 2027. The benchmark is linked in the bill to changes in average regional minimum wages since fiscal 1995; it is not a blanket exemption from all taxes or social insurance.",
+      "A second proposal would include children younger than 16 among eligible dependants for the inhabitant-tax dependent deduction from fiscal 2028. The sponsors also call for examining expanded exemptions for specified vulnerable groups and for central-government measures to compensate municipalities for lost revenue. The local-finance safeguard matters because inhabitant tax funds subnational public services."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "Four House members introduced House Bill No. 31 in the 221st Diet on 15 July 2026. The bill was referred to the House Committee on Internal Affairs and Communications on 23 July 2026. The House progress record shows no promulgation or enacted statute.",
+      "The bill proposes a framework obliging the government, if the proposal becomes law, to take further legislative measures. Its stated dates for fiscal 2027 and fiscal 2028 describe intended reforms; the bill itself would take effect on promulgation if enacted. These distinct stages must not be conflated.",
+      "The proposal also calls for broader reconsideration of personal deductions by the end of 2028. The official progress record does not establish that these reforms have been adopted or that a timetable for final parliamentary approval is fixed."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "text": "The House received the members' bill on 15 July 2026 and referred it to committee on 23 July 2026.",
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ],
+    "expected": [
+      "Parliamentary scrutiny, possible amendment and votes would precede enactment; separate tax-law amendments would be needed to implement the contemplated deductions."
+    ],
+    "uncertainties": [
+      "Whether the bill will be enacted, withdrawn or amended, and whether the proposed fiscal-year targets and revenue compensation will survive, remains unconfirmed.",
+      "The exact tax-law amendments and administrative arrangements needed for implementation are not yet established by this framework proposal."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "Employers should not interpret the proposed combined deduction figure as an immediately effective payroll threshold. Individual inhabitant tax, national income tax and social insurance contributions have distinct legal bases and calculation rules.",
+      "If the proposed reforms are enacted and implemented, municipalities would need to administer revised income-levy deductions and associated funding measures, while employers and payroll providers may need to update employee guidance and data flows after the applicable implementing rules are published."
+    ],
+    "checklist": [
+      "Keep current inhabitant-tax withholding and collection arrangements unchanged pending enacted implementing law.",
+      "Separate modelling of the proposed fiscal 2027 deduction benchmark from the proposed fiscal 2028 under-16 dependent deduction.",
+      "Monitor the House bill record and any future implementing local-tax amendments before communicating new thresholds to employees."
+    ],
+    "source_ids": [
+      "s1",
+      "s2"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "bill_submitted",
+      "date": "2026-07-15",
+      "label": "House Bill No. 31 received in the 221st Diet",
+      "source_ids": [
+        "s1"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "221st Diet House Bill No. 31: legislative progress",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2BEE.htm",
+      "accessed_at": "2026-11-11"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "House of Representatives",
+      "title": "221st Diet House Bill No. 31: official bill outline",
+      "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/youkou/g22105031.htm",
+      "accessed_at": "2026-11-11"
+    }
+  ],
+  "verified_at": "2026-11-11",
+  "source_fingerprint": "",
+  "author": "chatgpt",
+  "review_notes": "Initial substantive English draft based on official House bill progress and outline. DRAFT ONLY: verify current 222nd Diet carry-over/withdrawal, canonical OfficialIndex fingerprint, item closure, and translate JA/zh-Hans with blob SHA before release. Do not publish or merge without required CI."
+}
