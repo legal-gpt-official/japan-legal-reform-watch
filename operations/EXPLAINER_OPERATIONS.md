@@ -43,6 +43,12 @@ python scripts/explainers.py preview <dossier-id> --out page.html   # ローカ�
 - 裁判所等の公式取得元の異常を検出する`Source health gate`ジョブは独立して失敗を維持する。**ワークフロー全体のfailureだけで、成功した`update`ジョブのデータを旧データと誤認しない。** 取得元の異常・欠落は重大な警告として報告し、当該情報を最新と偽らない。ヘルスゲートの閾値を緩和しない。
 - git cloneできない実行環境でも、接続済みGitHubのファイル読取・ブランチ作成・更新・PR・CI・マージ操作の可否を確認する。権限のある方法を使用し、必須CIを回避しない。
 
+### GitHub接続から公式記録を読む場合（2026-11-12）
+
+`data/raw_items.json` は容量が大きく、接続ツールの `fetch_file` が空文字を返す場合がある。**これを一次資料が存在しない証拠と解釈しない。** 日次更新の `Build bounded explainer research packets` が `data/explainer_research/raw-<16桁>.json` を候補ごとに生成する。キューの `suggested_seed_item_id`、なければ `item_ids[0]` をファイル名にして取得する。
+
+各ファイルには全closureのraw ID、OfficialIndexのfingerprint、公式記録からの法令題名・日付・段階ヒント・一次資料のURL、e-Gov法令API候補を収録する。長い `raw_summary` は明示的に省略されるため、**出典URL本文・改正履歴・直近の結果公示や施行期日政令を必ず改めて読む。** これは調査の入口であり、一次資料検証、英語原稿作成、翻訳・CIを代行しない。キューとpacketのfingerprintや関連IDが矛盾する場合はその候補を隔離し、正常な別候補へ移る。検索で記録が取れなかったことだけを理由に、同じ試行を各スロットで繰り返さない。
+
 ## 2. 解説候補の抽出（自動）
 
 日次ワークフローの `Build explainer queue` ステップが `data/explainer_queue.json` を更新する。追加の API 呼び出しはしない。

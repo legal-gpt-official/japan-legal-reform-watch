@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - "scripts/official_source_evidence.py"
+      - "scripts/build_explainer_research_context.py"
       - "scripts/summarize_updates.py"
       - "requirements.txt"
       - ".github/workflows/daily-update.yml"
@@ -334,6 +335,13 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      # Small per-queue official-record contexts: bypass connector response-size limits.
+      # If an unexpected source/queue mismatch occurs, report it without
+      # suppressing the main legal-data update or its independent source gate.
+      - name: Build bounded explainer research packets
+        continue-on-error: true
+        run: python scripts/build_explainer_research_context.py
+
       # Crawlable pages: the static latest-updates list and area navigation in
       # docs/index.html, the area landing pages, the open public comments page,
       # and docs/sitemap.xml, all derived only from the published JSON.
@@ -372,7 +380,7 @@ jobs:
       - name: Check data changes
         id: changes
         run: |
-          if git diff --quiet -- data/raw_items.json data/official_source_evidence.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u; then
+          if git diff --quiet -- data/raw_items.json data/official_source_evidence.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u && [ -z "$(git status --porcelain -- data/explainer_research)" ]; then
             echo "data_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "data_changed=true" >> "$GITHUB_OUTPUT"
@@ -384,6 +392,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data/explainer_research
           git add data/raw_items.json data/official_source_evidence.json data/summary_cache.json data/translation_cache.json data/source_health_state.json data/alert_digest_state.json data/quality_state.json data/requeue_auto.json data/explainer_queue.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive docs/feeds docs/index.html docs/sitemap.xml docs/areas docs/public-comments docs/weekly docs/u
           if git diff --cached --quiet; then
             echo "No staged data changes to commit."
