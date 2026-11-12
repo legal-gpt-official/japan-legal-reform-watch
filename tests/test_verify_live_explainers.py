@@ -95,6 +95,28 @@ class LiveExplainerTests(unittest.TestCase):
             errors = live.verify([("https://example.test/a", "expected-title")], attempts=1, delay=0)
         self.assertEqual(set(errors), {"https://example.test/a"})
 
+    def test_http_200_rejects_stale_body_even_if_title_and_quick_take_match(self):
+        class Response:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self, n):
+                return b"<html>current title current quick_take OLD legal history</html>"
+
+        with mock.patch.object(live.urllib.request, "urlopen", return_value=Response()):
+            url, error = live.fetch_and_match((
+                "https://example.test/u/raw-0123456789abcdef/",
+                ("current title", "current quick_take", "NEW legal history"),
+            ))
+        self.assertEqual(url, "https://example.test/u/raw-0123456789abcdef/")
+        self.assertIn("full canonical explainer prose", error)
+
+
     def test_recent_dossier_selection_uses_jst_verification_and_status(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp)
