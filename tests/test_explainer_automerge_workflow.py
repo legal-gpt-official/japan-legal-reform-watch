@@ -63,6 +63,9 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
           const calls = [];
           const head = "1111111111111111111111111111111111111111";
+          let ciHead = head;
+          let ciConclusion = "success";
+          let changedFiles = [{filename:"data/explainers/mock.json"}];
           const pr = {
             number: 999, draft: false, state: "open",
             base: {ref:"main"}, head: {sha:head, repo:{full_name:"unit/repo"}},
@@ -79,10 +82,10 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
             },
             paginate:async function(action) {
               if(action===this.rest.pulls.list)return [pr];
-              if(action===this.rest.pulls.listFiles)return [{filename:"data/explainers/mock.json"}];
+              if(action===this.rest.pulls.listFiles)return changedFiles;
               if(action===this.rest.actions.listWorkflowRunsForRepo)return [{
-                id:777,name:"Pull request checks",head_sha:head,
-                conclusion:"success",status:"completed",created_at:"2026-11-12T00:00:00Z"
+                id:777,name:"Pull request checks",head_sha:ciHead,
+                conclusion:ciConclusion,status:"completed",created_at:"2026-11-12T00:00:00Z"
               }];
               if(action===this.rest.actions.listJobsForWorkflowRun)return [{name:"tests",conclusion:"success"}];
               throw Error("Unexpected API");
@@ -104,6 +107,18 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           pr.head.repo.full_name="fork/repo";
           await run();
           if(calls.length)throw Error("Foreign PR merged");
+          pr.head.repo.full_name="unit/repo";
+          ciHead="2222222222222222222222222222222222222222";
+          await run();
+          if(calls.length)throw Error("Stale-head CI was accepted");
+          ciHead=head;
+          ciConclusion="failure";
+          await run();
+          if(calls.length)throw Error("Failed CI was accepted");
+          ciConclusion="success";
+          changedFiles=[{filename:"data/explainers/mock.json"},{filename:".github/workflows/unsafe.yml"}];
+          await run();
+          if(calls.length)throw Error("Mixed code and dossier files were accepted");
         """.replace("SCRIPT_SOURCE", json.dumps(source))
         result = subprocess.run(
             ["node", "--input-type=module"],
