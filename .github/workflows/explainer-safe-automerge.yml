@@ -6,7 +6,14 @@ on:
   workflow_run:
     workflows: ["Pull request checks"]
     types: [completed]
+  # Catch PRs that become eligible only after CI has finished: label or
+  # ready-for-review events must re-evaluate the *same* current head.
+  pull_request_target:
+    types: [labeled, ready_for_review, reopened, synchronize]
   workflow_dispatch:
+  # Catch missed webhooks without needing another user-initiated chat turn.
+  schedule:
+    - cron: "10 * * * *"
 
 permissions:
   contents: write
@@ -18,7 +25,7 @@ concurrency:
 
 jobs:
   merge:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -30,6 +37,8 @@ jobs:
             const pulls = await github.paginate(github.rest.pulls.list, {owner, repo, state:'open', per_page:100});
             for (const pr of pulls) {
               if (pr.draft || pr.base.ref !== 'main') continue;
+              // No privileged workflow may accept fork-authored code for merge.
+              if (pr.head.repo?.full_name !== `${owner}/${repo}`) continue;
               const labels = new Set(pr.labels.map(x => x.name));
               // An explicit human/agent content-verification label is required.
               // Never infer legal accuracy from passing CI alone.
@@ -37,11 +46,13 @@ jobs:
               const files = await github.paginate(github.rest.pulls.listFiles, {owner, repo, pull_number:pr.number, per_page:100});
               if (!files.some(f => f.filename.startsWith('data/explainers/'))) continue;
               // Do not auto-merge mixed operational changes or non-explainer data.
-              if (files.some(f => !f.filename.startsWith('data/explainers/') && !f.filename.startsWith('data/explainer_locales/'))) continue;
+              if (files.some(f => !f.filename.endsWith('.json') ||
+                  (!f.filename.startsWith('data/explainers/') && !f.filename.startsWith('data/explainer_locales/')))) continue;
               const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {owner, repo, head_sha:pr.head.sha, event:'pull_request', per_page:100});
               const checks = runs.filter(r => r.name === 'Pull request checks' && r.head_sha === pr.head.sha);
               checks.sort((a,b) => new Date(b.created_at)-new Date(a.created_at));
               if (!checks.length || checks[0].status !== 'completed' || checks[0].conclusion !== 'success') continue;
+              core.info(`Current-head CI for PR #${pr.number}: run ${checks[0].id}, ${pr.head.sha}`);
               // Validate that the required tests job for this exact run passed.
               const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {owner, repo, run_id:checks[0].id, per_page:100});
               if (!jobs.some(j => j.name === 'tests' && j.conclusion === 'success')) continue;
@@ -49,7 +60,7 @@ jobs:
               if (current.head.sha !== pr.head.sha || current.draft || current.state !== 'open') continue;
               try {
                 await github.rest.pulls.merge({owner,repo,pull_number:pr.number,sha:pr.head.sha,merge_method:'squash'});
-                core.info('Merged verified explainer PR #'+pr.number+' at '+pr.head.sha);
+                core.info('Merged verified explainer PR #'+pr.number+' at '+pr.head.sha+'; CI run '+checks[0].id);
               } catch (e) {
                 core.warning('PR #'+pr.number+' not merged: '+e.message);
               }
