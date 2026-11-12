@@ -313,6 +313,63 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:health-insurance-2026-amendment",
+      "kind": "update",
+      "explainer_id": "health-insurance-2026-amendment",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-28",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/newpage_28708.html",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/index.html",
+        "https://www.mhlw.go.jp/stf/houdou/index.html",
+        "https://laws.e-gov.go.jp/law/211AC0000000070",
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html"
+      ],
+      "record_count": 60,
+      "item_ids": [
+        "raw-033b98709c8ed991",
+        "raw-089158bbd3890087",
+        "raw-08db2824125e3248",
+        "raw-0c8e5ad97103d9a1",
+        "raw-1504cca087ac57f6",
+        "raw-191bb96e80d3be31",
+        "raw-1af36eabac6b71b1",
+        "raw-2ce1d574cf658f71",
+        "raw-2e34e3e0b6cb2ac4",
+        "raw-2ed70488665fe711",
+        "raw-392b5ac8fd50e3a0",
+        "raw-43002bd63af612d0"
+      ],
+      "new_related_item_ids": [
+        "raw-4631f341c3c2d290",
+        "raw-46d0092450a63ed1",
+        "raw-48786364f18abf7f",
+        "raw-4bbcd54da1cf8434",
+        "raw-4dce7ee7e49d35e4",
+        "raw-50c130a10b647579",
+        "raw-523bc6f1c33ad857",
+        "raw-57df69165f1b0d42",
+        "raw-617646e7de41cfc3",
+        "raw-62c7a26b0109bae6",
+        "raw-656857617606f402",
+        "raw-676b4606b200dd0b"
+      ],
+      "current_fingerprint": "sha256:67bfc22c29487bdf672ff392c196eeba",
+      "first_queued_on": "2026-11-12"
+    },
+    {
       "queue_id": "explainer:industrial-competitiveness-2026-amendment",
       "kind": "update",
       "explainer_id": "industrial-competitiveness-2026-amendment",
@@ -580,97 +637,7 @@
       "first_queued_on": "2026-11-04"
     },
     {
-      "queue_id": "bill:raw-5daf6c3c7e93d898",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 20,
-      "reasons": [
-        "diet_bill"
-      ],
-      "record_count": 3,
-      "item_ids": [
-        "raw-5daf6c3c7e93d898",
-        "raw-767cc2bab97288a9",
-        "raw-fb57afab75ff2e47"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
-      "stage": "Bill Submitted",
-      "newest_record_first_seen": "2026-08-06",
-      "suggested_seed_item_id": "raw-5daf6c3c7e93d898",
-      "first_queued_on": "2026-10-20"
-    },
-    {
-      "queue_id": "bill:raw-6f6ba33df6f6f458",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 20,
-      "reasons": [
-        "diet_bill"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-6f6ba33df6f6f458"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "少額投資非課税制度における国債に係る所得に対する所得税の非課税に関する措置等に関する法律案",
-      "stage": "Government Announcement",
-      "newest_record_first_seen": "2026-08-06",
-      "suggested_seed_item_id": "raw-6f6ba33df6f6f458",
-      "first_queued_on": "2026-10-20"
-    },
-    {
-      "queue_id": "bill:raw-767cc2bab97288a9",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 20,
-      "reasons": [
-        "diet_bill"
-      ],
-      "record_count": 3,
-      "item_ids": [
-        "raw-5daf6c3c7e93d898",
-        "raw-767cc2bab97288a9",
-        "raw-fb57afab75ff2e47"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
-      "stage": "Government Announcement",
-      "newest_record_first_seen": "2026-10-24",
-      "suggested_seed_item_id": "raw-767cc2bab97288a9",
-      "first_queued_on": "2026-10-24"
-    },
-    {
-      "queue_id": "bill:raw-fb57afab75ff2e47",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 20,
-      "reasons": [
-        "diet_bill"
-      ],
-      "record_count": 3,
-      "item_ids": [
-        "raw-5daf6c3c7e93d898",
-        "raw-767cc2bab97288a9",
-        "raw-fb57afab75ff2e47"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
-      "stage": "Bill Submitted",
-      "newest_record_first_seen": "2026-10-06",
-      "suggested_seed_item_id": "raw-fb57afab75ff2e47",
-      "first_queued_on": "2026-10-20"
-    },
-    {
-      "queue_id": "draft:raw-2632b152e1b19b63",
+      "queue_id": "draft:raw-0549bdaf78bfe729",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -679,16 +646,58 @@
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-2632b152e1b19b63"
+        "raw-0549bdaf78bfe729"
       ],
       "areas": [
         "Energy / Environment"
       ],
-      "title_ja": "建築物における衛生的環境の確保に関する法律施行規則の一部を改正する省令案に関する意見募集について",
+      "title_ja": "租税特別措置法施行令第二十五条の十七第七項第二号イ、ロ⑵、ホ及びヘの規定に基づき、 内閣総理大臣、総務大臣、財務大臣、文部科学大臣、厚生労働大臣、農林水産大臣、経済産業大臣、国土交通大臣及び環境大臣が財務大臣と協議して定める業務、事業、事務、方法及び所轄庁を定める件の一部を改正する告示案についての意見・情報の募集について",
       "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-09-17",
-      "suggested_seed_item_id": "raw-2632b152e1b19b63",
-      "first_queued_on": "2026-11-01"
+      "newest_record_first_seen": "2026-08-20",
+      "suggested_seed_item_id": "raw-0549bdaf78bfe729",
+      "first_queued_on": "2026-11-12"
+    },
+    {
+      "queue_id": "draft:raw-056b16304cad2bfc",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-056b16304cad2bfc"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-07-30",
+      "suggested_seed_item_id": "raw-056b16304cad2bfc",
+      "first_queued_on": "2026-11-12"
+    },
+    {
+      "queue_id": "draft:raw-1123e5757d1ade6f",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-1123e5757d1ade6f"
+      ],
+      "areas": [
+        "Labor / Employment"
+      ],
+      "title_ja": "雇用保険法施行規則の一部を改正する省令案に関する御意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-08-16",
+      "suggested_seed_item_id": "raw-1123e5757d1ade6f",
+      "first_queued_on": "2026-11-12"
     },
     {
       "queue_id": "draft:raw-2d71845be9e54563",
@@ -754,7 +763,7 @@
       "first_queued_on": "2026-11-09"
     },
     {
-      "queue_id": "draft:raw-4affbbedc8612bb8",
+      "queue_id": "draft:raw-65580538b2985c30",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -763,16 +772,16 @@
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-4affbbedc8612bb8"
+        "raw-65580538b2985c30"
       ],
       "areas": [
         "Energy / Environment"
       ],
-      "title_ja": "「廃棄物の処理及び清掃に関する法律施行規則の一部を改正する省令案」に対する御意見の募集（パブリック・コメント）について",
-      "stage": "Public Comment Open",
-      "newest_record_first_seen": "2026-11-04",
-      "suggested_seed_item_id": "raw-4affbbedc8612bb8",
-      "first_queued_on": "2026-11-04"
+      "title_ja": "「廃棄物の処理及び清掃に関する法律施行令の一部を改正する政令案」に対する意見の募集（パブリック・コメント）について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-07-26",
+      "suggested_seed_item_id": "raw-65580538b2985c30",
+      "first_queued_on": "2026-11-12"
     },
     {
       "queue_id": "draft:raw-7bf14a11616c78fd",
@@ -796,6 +805,27 @@
       "first_queued_on": "2026-11-03"
     },
     {
+      "queue_id": "draft:raw-829e6e5e3e709150",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-829e6e5e3e709150"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "健康保険法等の一部を改正する法律の一部の施行に伴う関係政令の整備等に関する政令案に関するご意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-08-09",
+      "suggested_seed_item_id": "raw-829e6e5e3e709150",
+      "first_queued_on": "2026-11-12"
+    },
+    {
       "queue_id": "draft:raw-9b23b040d93ee91a",
       "kind": "new",
       "explainer_id": null,
@@ -815,27 +845,6 @@
       "newest_record_first_seen": "2026-09-20",
       "suggested_seed_item_id": "raw-9b23b040d93ee91a",
       "first_queued_on": "2026-11-01"
-    },
-    {
-      "queue_id": "draft:raw-9fd50fb384946b39",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-9fd50fb384946b39"
-      ],
-      "areas": [
-        "Energy / Environment"
-      ],
-      "title_ja": "「環境影響評価法施行令の一部を改正する政令案」等に関する意見の募集（パブリックコメント）について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-26",
-      "suggested_seed_item_id": "raw-9fd50fb384946b39",
-      "first_queued_on": "2026-11-06"
     },
     {
       "queue_id": "draft:raw-aff984222acf65c3",
@@ -899,6 +908,48 @@
       "newest_record_first_seen": "2026-08-28",
       "suggested_seed_item_id": "raw-c30223bca43e30a3",
       "first_queued_on": "2026-11-03"
+    },
+    {
+      "queue_id": "draft:raw-cfdcf910c315e827",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-cfdcf910c315e827"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "健康保険法等の一部を改正する法律の一部の施行に伴う関係省令の整備に関する省令案に関する御意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-08-15",
+      "suggested_seed_item_id": "raw-cfdcf910c315e827",
+      "first_queued_on": "2026-11-12"
+    },
+    {
+      "queue_id": "draft:raw-d85227cfd20f3234",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-d85227cfd20f3234"
+      ],
+      "areas": [
+        "Data / Privacy / AI"
+      ],
+      "title_ja": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第二条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める内閣府令の一部を改正する内閣府令（案）に関する御意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-07-26",
+      "suggested_seed_item_id": "raw-d85227cfd20f3234",
+      "first_queued_on": "2026-11-12"
     },
     {
       "queue_id": "draft:raw-e4c43bb30b365821",
@@ -967,7 +1018,7 @@
       "first_queued_on": "2026-10-31"
     },
     {
-      "queue_id": "instrument:令和八年厚生労働省令第百四十号",
+      "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -978,17 +1029,17 @@
       ],
       "record_count": 2,
       "item_ids": [
-        "raw-b89b90af15734114",
-        "raw-ebfc02a316ec59ba"
+        "raw-15b5c5a72bfae0a1",
+        "raw-d38230df21e2f625"
       ],
       "areas": [
         "Labor / Employment"
       ],
-      "title_ja": "「厚生労働省関係経済施策を一体的に講ずることによる安全保障の確保の推進に関する法律に基づく供給確保計画の認定等に関する省令の一部を改正する省令案」に関する御意見の募集について",
+      "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
       "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-10-07",
-      "suggested_seed_item_id": "raw-b89b90af15734114",
-      "first_queued_on": "2026-10-31"
+      "newest_record_first_seen": "2026-08-19",
+      "suggested_seed_item_id": "raw-15b5c5a72bfae0a1",
+      "first_queued_on": "2026-11-12"
     },
     {
       "queue_id": "instrument:令和八年政令第三百十号",

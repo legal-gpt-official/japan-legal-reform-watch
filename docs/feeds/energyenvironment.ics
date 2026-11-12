@@ -6,23 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Energy / Environment
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-2052a6d95a4fa906-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20261014T000000Z
-DTSTART;VALUE=DATE:20261111
-DTEND;VALUE=DATE:20261112
-SUMMARY:Public comment closes: MOE Public Comment: Draft Cabinet Order Amen
- ding Invasive Alien Species Act Enforcement Order
-DESCRIPTION:Closes 2026-11-12 00:00 JST.\nOriginal title: 特定外来生
- 物による生態系等に係る被害の防止に関する法律施行
- 令の一部を改正する政令案等に対する意見の募集（パ
- ブリック・コメント）について\nMinistry of the Environment (M
- OE)\nOfficial source: https://www.env.go.jp/press/press_05684.html\nMonito
- ring aid only\; not legal advice or an official translation. Original Japa
- nese official sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://www.env.go.jp/press/press_05684.html
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-7dd0cd6394b02928-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20261016T000000Z
 DTSTART;VALUE=DATE:20261116
@@ -240,5 +223,44 @@ DESCRIPTION:Closes 2026-12-04 00:00 JST.\nOriginal title: 環境物品等
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=195260076&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-e14da2d10a60c317-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261112T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:Public comment closes: Draft Notice Amendment on Forest-Absorption 
+ J-Credits for Greenhouse Gas Reporting
+DESCRIPTION:Closes 2026-12-12 00:00 JST.\nOriginal title: 「温室効果
+ ガス算定排出量等の報告等に関する命令第一条第五号
+ に規定する環境大臣及び経済産業大臣が定める国内認
+ 証排出削減量の一部を改正する件（案）」に対する意
+ 見募集について\ne-Gov Public Comment\nOfficial source: https://publ
+ ic-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260081&
+ Mode=0\nMonitoring aid only\; not legal advice or an official translation.
+  Original Japanese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=195260081&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-7bea34379e36930b-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261112T000000Z
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+SUMMARY:Public comment closes: Draft Notice amending greenhouse gas reporti
+ ng calculations for forest-related domestic credits
+DESCRIPTION:Closes 2026-12-12 00:00 JST.\nOriginal title: 「温室効果
+ ガス算定排出量等の報告等に関する命令第四条第五項
+ 及び第十三条第三項の規定に基づき環境大臣及び経済
+ 産業大臣が定める算定方法の一部を改正する件（案）
+ 」に対する意見募集について\ne-Gov Public Comment\nOfficial so
+ urce: https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDE
+ TAIL&id=195260082&Mode=0\nMonitoring aid only\; not legal advice or an off
+ icial translation. Original Japanese official sources remain authoritative
+ .
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=195260082&Mode=0
 END:VEVENT
 END:VCALENDAR
