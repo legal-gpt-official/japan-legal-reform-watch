@@ -50,6 +50,8 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
             "sha:pr.head.sha",
             "pr.draft",
             "pr.head.repo?.full_name",
+            "createWorkflowDispatch",
+            "publish-explainer-pages.yml",
         ):
             self.assertIn(fragment, source)
 
@@ -62,6 +64,7 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const source = SCRIPT_SOURCE;
           const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
           const calls = [];
+          const dispatches = [];
           const head = "1111111111111111111111111111111111111111";
           let ciHead = head;
           let ciConclusion = "success";
@@ -76,9 +79,12 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
               pulls:{
                 list:()=>{},listFiles:()=>{},
                 get:async()=>({data:pr}),
-                merge:async(args)=>{calls.push(args);}
+                merge:async(args)=>{calls.push(args);return {data:{merged:true}};}
               },
-              actions:{listWorkflowRunsForRepo:()=>{},listJobsForWorkflowRun:()=>{}}
+              actions:{
+                listWorkflowRunsForRepo:()=>{},listJobsForWorkflowRun:()=>{},
+                createWorkflowDispatch:async(args)=>{dispatches.push(args);}
+              }
             },
             paginate:async function(action) {
               if(action===this.rest.pulls.list)return [pr];
@@ -95,30 +101,32 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const run=async()=>fn(github,{repo:{owner:"unit",repo:"repo"}},{info:()=>{},warning:()=>{}});
           await run();
           if(calls.length!==1 || calls[0].sha!==head)throw Error("Valid PR should merge once at exact head");
+          if(dispatches.length!==1 || dispatches[0].workflow_id!=="publish-explainer-pages.yml")throw Error("Successful merge must dispatch Publish exactly once");
+          dispatches.length=0;
           calls.length=0;
           pr.labels=[];
           await run();
-          if(calls.length)throw Error("Unlabelled PR merged");
+          if(calls.length || dispatches.length)throw Error("Unlabelled PR merged or published");
           pr.labels=[{name:"legal-content-verified"}];
           pr.draft=true;
           await run();
-          if(calls.length)throw Error("Draft PR merged");
+          if(calls.length || dispatches.length)throw Error("Draft PR merged or published");
           pr.draft=false;
           pr.head.repo.full_name="fork/repo";
           await run();
-          if(calls.length)throw Error("Foreign PR merged");
+          if(calls.length || dispatches.length)throw Error("Foreign PR merged or published");
           pr.head.repo.full_name="unit/repo";
           ciHead="2222222222222222222222222222222222222222";
           await run();
-          if(calls.length)throw Error("Stale-head CI was accepted");
+          if(calls.length || dispatches.length)throw Error("Stale-head CI was accepted");
           ciHead=head;
           ciConclusion="failure";
           await run();
-          if(calls.length)throw Error("Failed CI was accepted");
+          if(calls.length || dispatches.length)throw Error("Failed CI was accepted");
           ciConclusion="success";
           changedFiles=[{filename:"data/explainers/mock.json"},{filename:".github/workflows/unsafe.yml"}];
           await run();
-          if(calls.length)throw Error("Mixed code and dossier files were accepted");
+          if(calls.length || dispatches.length)throw Error("Mixed code and dossier files were accepted");
         """.replace("SCRIPT_SOURCE", json.dumps(source))
         result = subprocess.run(
             ["node", "--input-type=module"],

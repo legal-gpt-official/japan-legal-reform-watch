@@ -18,6 +18,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: explainer-safe-merge
@@ -35,6 +36,7 @@ jobs:
           script: |
             const {owner, repo} = context.repo;
             const pulls = await github.paginate(github.rest.pulls.list, {owner, repo, state:'open', per_page:100});
+            const mergedPRs = [];
             for (const pr of pulls) {
               if (pr.draft || pr.base.ref !== 'main') continue;
               // No privileged workflow may accept fork-authored code for merge.
@@ -59,9 +61,24 @@ jobs:
               const current = (await github.rest.pulls.get({owner,repo,pull_number:pr.number})).data;
               if (current.head.sha !== pr.head.sha || current.draft || current.state !== 'open') continue;
               try {
-                await github.rest.pulls.merge({owner,repo,pull_number:pr.number,sha:pr.head.sha,merge_method:'squash'});
-                core.info('Merged verified explainer PR #'+pr.number+' at '+pr.head.sha+'; CI run '+checks[0].id);
+                const response = await github.rest.pulls.merge({owner,repo,pull_number:pr.number,sha:pr.head.sha,merge_method:'squash'});
+                if (response.data.merged) {
+                  mergedPRs.push(pr.number);
+                  core.info('Merged verified explainer PR #'+pr.number+' at '+pr.head.sha+'; CI run '+checks[0].id);
+                } else {
+                  core.warning('GitHub did not confirm merge of PR #'+pr.number);
+                }
               } catch (e) {
                 core.warning('PR #'+pr.number+' not merged: '+e.message);
               }
+            }
+            // GitHub's GITHUB_TOKEN-generated merge pushes do NOT trigger push
+            // workflows. Dispatch explicitly after real merges; otherwise a
+            // successful merge can wait until tomorrow's nightly recovery.
+            if (mergedPRs.length > 0) {
+              core.info('Dispatching Publish reform explainer pages for PRs: '+mergedPRs.join(','));
+              await github.rest.actions.createWorkflowDispatch({
+                owner, repo, workflow_id:'publish-explainer-pages.yml', ref:'main'
+              });
+              core.info('Publish reform explainer pages dispatched');
             }
