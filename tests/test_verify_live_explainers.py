@@ -12,45 +12,83 @@ import verify_live_explainers as live
 
 
 class LiveExplainerTests(unittest.TestCase):
-    def test_page_checks_require_three_languages_and_exact_titles(self):
+    def test_page_checks_require_full_three_language_prose(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             locales = root / "locales"
             docs = root / "docs"
             locales.mkdir()
             dossier = "example-reform"
-            titles = {"en": "English law & rule", "ja": "法律の解説", "zh": "法律解读"}
+            item_id = "raw-0123456789abcdef"
             en = {
-                "dossier_id": dossier, "status": "published",
-                "title_en": titles["en"], "verified_at": "2026-11-09",
-                "quick_take": {"what_changed": "A substantive change to the English legal explanation."},
-                "related_item_ids": ["raw-0123456789abcdef"],
+                "dossier_id": dossier, "status": "published", "title_en": "English law & rule",
+                "verified_at": "2026-11-09", "related_item_ids": [item_id],
+                "quick_take": {
+                    "what_changed": "Change in legal scope.", "who_is_affected": "Affected employers.",
+                    "what_to_do_now": "Check compliance."
+                },
+                "background": {"paragraphs": ["Evidence-based policy background & limits."]},
+                "history": {"paragraphs": ["Council examined alternatives."]},
+                "next_steps": {
+                    "confirmed": [{"text": "Gazette published."}], "expected": ["Review final rule."],
+                    "uncertainties": ["Commencement unresolved."]
+                },
+                "business_impact": {
+                    "paragraphs": ["Contracts may change."], "checklist": ["Check applicable scope."]
+                },
+                "key_dates": [{"label": "Consultation closed."}]
             }
-            (locales / f"{dossier}.json").write_text(json.dumps({
-                "translations": {
-                    "ja": {"title": titles["ja"], "quick_take": {"what_changed": "日本語の重要な改正"}},
-                    "zh-Hans": {"title": titles["zh"], "quick_take": {"what_changed": "中文的重要修订"}}
-                }
-            }), encoding="utf-8")
+            tr = {
+                "ja": {
+                    "title": "法律の解説", "quick_take": {
+                        "what_changed": "重要な改正", "who_is_affected": "対象事業者",
+                        "what_to_do_now": "適用範囲を確認"
+                    },
+                    "background": ["政策背景と旧制度の限界"], "history": ["審議会の検討"],
+                    "next_steps": {
+                        "confirmed": ["官報で公表"], "expected": ["最終省令を確認"],
+                        "uncertainties": ["施行期日未確定"]
+                    },
+                    "business_impact": ["委託契約への影響"], "checklist": ["対象を確認"],
+                    "key_dates": ["意見募集終了"]
+                },
+                "zh-Hans": {
+                    "title": "法律解读", "quick_take": {
+                        "what_changed": "重要修订", "who_is_affected": "适用企业",
+                        "what_to_do_now": "确认适用范围"
+                    },
+                    "background": ["政策背景和旧法限制"], "history": ["专家审议"],
+                    "next_steps": {
+                        "confirmed": ["官报公布"], "expected": ["核对最终规则"],
+                        "uncertainties": ["施行日未定"]
+                    },
+                    "business_impact": ["合同或受影响"], "checklist": ["确认范围"],
+                    "key_dates": ["征求意见结束"]
+                },
+            }
+            (locales / f"{dossier}.json").write_text(
+                json.dumps({"translations": tr}, ensure_ascii=False), encoding="utf-8"
+            )
             for lang in ("en", "ja", "zh"):
-                path = docs / "raw-0123456789abcdef" / ("" if lang == "en" else lang) / "index.html"
+                path = docs / item_id / ("" if lang == "en" else lang) / "index.html"
                 path.parent.mkdir(parents=True, exist_ok=True)
-                marker = '<h2 id="explainer-title">' + html.escape(titles[lang], quote=True) + "</h2>"
-                take = {
-                    "en": "A substantive change to the English legal explanation.",
-                    "ja": "日本語の重要な改正",
-                    "zh": "中文的重要修订",
-                }[lang]
-                path.write_text(f"<html>{marker} {html.escape(take)} 2026-11-09</html>", encoding="utf-8")
+                phrases = live.content_fragments(en, None if lang == "en" else tr["ja" if lang == "ja" else "zh-Hans"])
+                path.write_text("<html>" + " ".join(phrases) + "</html>", encoding="utf-8")
             with mock.patch.object(live, "LOCALE_DIR", locales), mock.patch.object(live, "DOCS_DIR", docs):
                 targets, errors = live.page_checks([en])
-                self.assertEqual(len(targets), 3)
-                self.assertEqual(errors, [])
-                (docs / "raw-0123456789abcdef" / "zh" / "index.html").write_text("STALE", encoding="utf-8")
+                self.assertEqual((len(targets), errors), (3, []))
+                self.assertGreater(len(targets[0][1]), 10)
+                # A stale history paragraph must fail despite unchanged title and quick take.
+                ja_path = docs / item_id / "ja" / "index.html"
+                ja_path.write_text(
+                    ja_path.read_text(encoding="utf-8").replace("審議会の検討", "旧審議会の記載"),
+                    encoding="utf-8",
+                )
                 targets, errors = live.page_checks([en])
                 self.assertEqual(len(targets), 2)
                 self.assertEqual(len(errors), 1)
                 self.assertIn("stale", errors[0])
+
 
     def test_verify_never_accepts_http_200_with_wrong_article(self):
         with mock.patch.object(live, "fetch_and_match", side_effect=lambda item: (item[0], "HTTP 200 but expected title missing")):
