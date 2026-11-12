@@ -64,3 +64,4 @@ jobs:
               } catch (e) {
                 core.warning('PR #'+pr.number+' not merged: '+e.message);
               }
+            }
