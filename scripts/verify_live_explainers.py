@@ -47,7 +47,56 @@ def recent_dossiers(days: int, requested: set[str] | None = None) -> list[dict]:
     return out
 
 
-def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, str]], list[str]]:
+def content_fragments(en: dict, tr: dict | None) -> tuple[str, ...]:
+    """Return each canonical substantive statement to match in generated and live HTML."""
+    is_en = tr is None
+    data = en if is_en else tr
+    title = data.get("title_en" if is_en else "title")
+    if not isinstance(title, str) or not title:
+        raise ValueError("Missing localized title")
+    verified = en.get("verified_at")
+    if not isinstance(verified, str) or not verified:
+        raise ValueError("Missing verified_at")
+    parts = ['<h2 id="explainer-title">' + html.escape(title, quote=True) + "</h2>", verified]
+    quick = data.get("quick_take") or {}
+    for key in ("what_changed", "who_is_affected", "what_to_do_now"):
+        statement = quick.get(key)
+        if not isinstance(statement, str) or not statement:
+            raise ValueError("Missing quick_take." + key)
+        parts.append(html.escape(statement, quote=True))
+
+    def push(values, label, key=None):
+        if not isinstance(values, list):
+            raise ValueError("Missing list: " + label)
+        for obj in values:
+            value = obj.get(key) if key and isinstance(obj, dict) else obj
+            if not isinstance(value, str) or not value:
+                raise ValueError("Invalid value in " + label)
+            parts.append(html.escape(value, quote=True))
+
+    for section in ("background", "history"):
+        values = data.get(section)
+        if is_en:
+            values = values.get("paragraphs") if isinstance(values, dict) else None
+        push(values, section)
+    steps = data.get("next_steps") or {}
+    push(steps.get("confirmed"), "confirmed", "text" if is_en else None)
+    for section in ("expected", "uncertainties"):
+        push(steps.get(section), section)
+    impact = data.get("business_impact")
+    if is_en:
+        if not isinstance(impact, dict):
+            raise ValueError("Missing English business_impact")
+        push(impact.get("paragraphs"), "business_impact.paragraphs")
+        push(impact.get("checklist"), "business_impact.checklist")
+    else:
+        push(impact, "business_impact")
+        push(data.get("checklist"), "checklist")
+    push(data.get("key_dates"), "key_dates", "label" if is_en else None)
+    return tuple(parts)
+
+
+def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, tuple[str, ...]]], list[str]]:
     """Return verified targets from GitHub-generated HTML and integrity errors."""
     targets = []
     failures = []
@@ -58,16 +107,15 @@ def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, str]], list[str]]
             failures.append(f"{dossier}: missing locale bundle")
             continue
         translations = json.loads(bundle.read_text(encoding="utf-8")).get("translations", {})
-        titles = {
-            "en": en.get("title_en", ""),
-            "ja": (translations.get("ja") or {}).get("title", ""),
-            "zh": (translations.get("zh-Hans") or {}).get("title", ""),
-        }
-        quick = {
-            "en": (en.get("quick_take") or {}).get("what_changed", ""),
-            "ja": ((translations.get("ja") or {}).get("quick_take") or {}).get("what_changed", ""),
-            "zh": ((translations.get("zh-Hans") or {}).get("quick_take") or {}).get("what_changed", ""),
-        }
+        try:
+            by_lang = {
+                "en": content_fragments(en, None),
+                "ja": content_fragments(en, translations.get("ja")),
+                "zh": content_fragments(en, translations.get("zh-Hans")),
+            }
+        except (AttributeError, ValueError) as exc:
+            failures.append(f"{dossier}: invalid source content: {exc}")
+            continue
         item_ids = en.get("related_item_ids") or []
         if not item_ids:
             failures.append(f"{dossier}: no related_item_ids")
@@ -77,26 +125,21 @@ def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, str]], list[str]]
                 failures.append(f"{dossier}: invalid raw ID {raw_id!r}")
                 continue
             for lang, suffix in (("en", ""), ("ja", "/ja"), ("zh", "/zh")):
-                title = titles[lang]
-                marker = '<h2 id="explainer-title">' + html.escape(title, quote=True) + "</h2>"
-                # The title can stay unchanged after a substantive update.
-                # Require the canonical/newest quick-take sentence AND
-                # verification date on the live site, not just the title.
-                expected = (marker, html.escape(quick[lang], quote=True), str(en.get("verified_at", "")))
+                expected = by_lang[lang]
                 rel = f"u/{raw_id}{suffix}/"
                 local = DOCS_DIR / raw_id / ("" if lang == "en" else lang) / "index.html"
-                if not title or not quick[lang] or not local.is_file():
+                if not local.is_file():
                     failures.append(f"{dossier}: missing title or generated page {local}")
                     continue
                 source = local.read_text(encoding="utf-8")
                 if not all(part in source for part in expected):
-                    failures.append(f"{dossier}: generated HTML is stale/missing explainer {rel}")
+                    failures.append(f"{dossier}: generated HTML has stale/missing full explainer prose {rel}")
                     continue
-                targets.append((HOST + "/" + rel, "\n".join(expected)))
+                targets.append((HOST + "/" + rel, expected))
     return targets, failures
 
 
-def fetch_and_match(target: tuple[str, str]) -> tuple[str, str | None]:
+def fetch_and_match(target: tuple[str, tuple[str, ...] | str]) -> tuple[str, str | None]:
     url, marker = target
     req = urllib.request.Request(url, headers=HEADER)
     try:
@@ -105,14 +148,14 @@ def fetch_and_match(target: tuple[str, str]) -> tuple[str, str | None]:
             body = response.read(1_500_000).decode("utf-8", errors="replace")
             if status != 200:
                 return url, f"HTTP {status}"
-            if not all(part in body for part in marker.split("\n")):
-                return url, "HTTP 200 but current title, quick take or verified date is missing"
+            if not all(part in body for part in (marker.split("\n") if isinstance(marker, str) else marker)):
+                return url, "HTTP 200 but full canonical explainer prose is missing or stale"
             return url, None
     except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError) as exc:
         return url, f"{type(exc).__name__}: {exc}"
 
 
-def verify(targets: list[tuple[str, str]], attempts: int, delay: int) -> dict[str, str]:
+def verify(targets: list[tuple[str, tuple[str, ...] | str]], attempts: int, delay: int) -> dict[str, str]:
     pending = {url: marker for url, marker in targets}
     errors: dict[str, str] = {}
     for attempt in range(1, attempts + 1):
