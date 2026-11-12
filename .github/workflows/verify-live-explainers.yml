@@ -10,7 +10,9 @@ on:
         required: false
         type: string
   workflow_run:
-    workflows: ["Publish reform explainer pages"]
+    # Also verify after the independently completed Pages deployment.
+    # The Publish job can finish before GitHub Pages serves its new HTML.
+    workflows: ["Publish reform explainer pages", "pages build and deployment"]
     types: [completed]
   push:
     branches: [main]
@@ -49,8 +51,8 @@ jobs:
           python scripts/verify_live_explainers.py \
             --days 2 \
             --dossiers "${{ github.event.inputs.dossiers || '' }}" \
-            --attempts 6 \
-            --delay 15
+            --attempts 12 \
+            --delay 20
 
       - name: Publish a diagnostic note for failures
         if: failure()
