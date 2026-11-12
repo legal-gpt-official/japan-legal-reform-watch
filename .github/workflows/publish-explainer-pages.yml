@@ -151,6 +151,7 @@ jobs:
           fi
 
       - name: Request GitHub Pages build
+        id: pages_request
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -158,3 +159,18 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             --header "X-GitHub-Api-Version: 2022-11-28" \
             "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+
+      # Record the exact docs/main commit used for this recovery build. A
+      # queued Pages build is not proof of deploy or live content freshness.
+      - name: Record generated docs commit and Pages handoff
+        if: always()
+        run: |
+          {
+            echo '### Publish handoff provenance'
+            echo "Publisher checkout HEAD: $(git rev-parse HEAD)"
+            echo "Current origin/main: $(git ls-remote origin refs/heads/main | cut -f1)"
+            echo "Pages request step: ${{ steps.pages_request.conclusion }}"
+            echo "Do not count as PAGES_DEPLOYED until the GitHub Pages run succeeds against generated docs SHA."
+            echo "Do not count as LIVE_VERIFIED until 3-language HTTP/body comparison succeeds."
+          } >> "$GITHUB_STEP_SUMMARY"
