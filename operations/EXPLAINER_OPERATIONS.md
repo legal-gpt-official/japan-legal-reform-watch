@@ -211,7 +211,7 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 
 ### 法的確認ラベルと条件付き自動マージ（2026-11-12）
 
-法的内容の一次資料照合、英日中の意味・日付・法令番号の整合、最新headの必須CIを、執筆担当AIが実際に確認してからのみ、対象の非Draft PRへ `legal-content-verified` ラベルを付ける。ラベルは法的確認の完了記録であり、CI成功だけから自動付与しない。`human_reviewed` を意味しない。
+法的内容の一次資料照合、英日中の意味・日付・法令番号の整合を執筆担当AIが実際に完了した時点で、対象の非Draft PRへ `legal-content-verified` ラベルを付ける。**CI完了を待ってラベルを付ける必要はない**。マージ側が最新headの必須CI成功を別途確認する。ラベルは法的確認の完了記録であり、CI成功だけから自動付与しない。`human_reviewed` を意味しない。
 
 `Safely merge verified reform explainer PRs` は、CI完了だけでなくPRのラベル付与・Draft解除・再オープン・head更新および定期救済実行で再判定する。マージは最新head SHAの `Pull request checks` 成功、`tests` ジョブ成功、同一リポジトリ内の英語/翻訳JSONのみの変更、非Draft、上記ラベルをすべて満たした場合のみ実行する。GitHubの保護規則を迂回しない。作業者は必要な検証を終えるまでラベルを付けない。CI待ちで会話が終わっても、確認済みラベルがある場合だけ自動継続できる。
 
