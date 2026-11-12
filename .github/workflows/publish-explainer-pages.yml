@@ -27,6 +27,7 @@ on:
 permissions:
   contents: write
   pages: write
+  actions: write
 
 # Coordinate with daily data publishing; never race updates to docs/u or index.
 concurrency:
@@ -150,6 +151,10 @@ jobs:
             done
           fi
 
+      - name: Capture exact generated docs commit SHA
+        id: docs_sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Request GitHub Pages build
         id: pages_request
         env:
@@ -174,3 +179,51 @@ jobs:
             echo "Do not count as PAGES_DEPLOYED until the GitHub Pages run succeeds against generated docs SHA."
             echo "Do not count as LIVE_VERIFIED until 3-language HTTP/body comparison succeeds."
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # GITHUB_TOKEN-created workflow runs may not emit a new workflow_run
+      # trigger for the LIVE verifier. Wait for Pages to deploy the *generated*
+      # docs SHA, then explicitly dispatch a read-only three-language check.
+      # Do not accept the initial Pages build for the PR merge commit.
+      - name: Dispatch strict LIVE verification after matching Pages success
+        uses: actions/github-script@v7
+        env:
+          DOCS_SHA: ${{ steps.docs_sha.outputs.sha }}
+        with:
+          script: |
+            const {owner, repo} = context.repo;
+            const docsSha = process.env.DOCS_SHA;
+            if (!/^[0-9a-f]{40}$/.test(docsSha || '')) {
+              core.setFailed('Invalid generated docs SHA; refuse to dispatch LIVE');
+              return;
+            }
+            let success = null;
+            for (let attempt = 1; attempt <= 36; attempt++) {
+              const response = await github.rest.actions.listWorkflowRunsForRepo({
+                owner, repo, head_sha: docsSha, per_page: 100
+              });
+              const pages = (response.data.workflow_runs || []).filter(run =>
+                run.name === 'pages build and deployment' &&
+                run.head_sha === docsSha);
+              success = pages.find(run =>
+                run.status === 'completed' && run.conclusion === 'success');
+              if (success) break;
+              const failed = pages.filter(run =>
+                run.status === 'completed' && run.conclusion === 'failure');
+              if (failed.length) {
+                core.warning('Pages has failed run(s) for docs SHA ' + docsSha);
+              }
+              core.info('Pages deployment not yet verified for ' + docsSha +
+                ' (attempt ' + attempt + '/36)');
+              await new Promise(resolve => setTimeout(resolve, 15000));
+            }
+            if (!success) {
+              core.setFailed('No successful Pages deployment for generated docs SHA ' + docsSha);
+              return;
+            }
+            core.info('Pages deploy run ' + success.id + ' succeeded for ' + docsSha);
+            await github.rest.actions.createWorkflowDispatch({
+              owner, repo, workflow_id: 'verify-live-explainers.yml',
+              ref: 'main', inputs: {dossiers: ''}
+            });
+            core.info('Dispatched strict LIVE verification after Pages deploy ' +
+              success.id + ' for docs SHA ' + docsSha);
