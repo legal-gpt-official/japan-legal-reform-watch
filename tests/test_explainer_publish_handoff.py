@@ -37,9 +37,12 @@ def handoff_script() -> str:
 
 class PublishHandoffTests(unittest.TestCase):
     def test_syntax(self):
+        # actions/github-script executes this body inside an AsyncFunction.
+        # Parsing it as a bare module would reject its valid top-level return.
+        wrapped = "async function githubScriptBody() {\n" + handoff_script() + "\n}\n"
         result = subprocess.run(
             ["node", "--input-type=module", "--check"],
-            input=handoff_script(), capture_output=True, text=True, check=False,
+            input=wrapped, capture_output=True, text=True, check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
