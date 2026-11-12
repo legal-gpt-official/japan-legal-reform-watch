@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-11-12",
+  "seed_item_id": "raw-15b5c5a72bfae0a1",
+  "related_item_ids": [
+    "raw-15b5c5a72bfae0a1",
+    "raw-d38230df21e2f625"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:b10a860da8d3cb299e595643549a85ad",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/335M50000100012",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000100121"
+  ],
+  "records": [
+    {
+      "id": "raw-15b5c5a72bfae0a1",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
+      "published_at": "2026-06-08T15:00:00Z",
+      "first_seen_at": null,
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260082&Mode=0",
+      "raw_summary": "案の公示日：2026/06/09 受付締切日時：2026/07/08 19:00 カテゴリー：社会保険 問合せ先（所管省庁・部局名等）：厚生労働省年金局事業管理課",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-d38230df21e2f625",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "国民年金法施行規則の一部を改正する省令",
+      "published_at": "2026-07-31",
+      "first_seen_at": "2026-08-19",
+      "stage_hint": "Scheduled to Take Effect",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=335M50000100012_20261001_508M60000100121",
+      "raw_summary": "更新一覧日: 20260818; 対象法令: 国民年金法施行規則; 法令番号: 昭和三十五年厚生省令第十二号; 改正法令: 国民年金法施行規則の一部を改正する省令; 改正法令番号: 令和八年厚生労働省令第百二十一号; 公布日: 2026-07-31; 施行日: 2026-10-01",
+      "raw_summary_truncated": false
+    }
+  ]
+}

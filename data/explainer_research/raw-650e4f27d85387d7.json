@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年総務省令第百八号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-11-02",
+  "seed_item_id": "raw-650e4f27d85387d7",
+  "related_item_ids": [
+    "raw-650e4f27d85387d7",
+    "raw-b71fb7e92c54bb72"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:4c3057e69e430983649bdefc2d14ed1b",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008051",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008108"
+  ],
+  "records": [
+    {
+      "id": "raw-650e4f27d85387d7",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令（案）等」についての意見・情報の募集について",
+      "published_at": "2026-07-16T15:00:00Z",
+      "first_seen_at": "2026-07-18",
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210753&Mode=0",
+      "raw_summary": "案の公示日：2026/07/17 受付締切日時：2026/08/20 23:59 カテゴリー：地方財政、地方税 問合せ先（所管省庁・部局名等）：総務省自治税務局企画課電子化推進室",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-b71fb7e92c54bb72",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令",
+      "published_at": "2026-08-31",
+      "first_seen_at": "2026-09-17",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=508M60000008051_20260831_508M60000008108",
+      "raw_summary": "更新一覧日: 20260916; 対象法令: 地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令; 法令番号: 令和八年総務省令第五十一号; 改正法令: 地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令; 改正法令番号: 令和八年総務省令第百八号; 公布日: 2026-08-31; 施行日: 2026-08-31",
+      "raw_summary_truncated": false
+    }
+  ]
+}

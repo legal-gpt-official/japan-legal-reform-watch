@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年環境省令第二十三号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-11-02",
+  "seed_item_id": "raw-b116141db6cb37a4",
+  "related_item_ids": [
+    "raw-b116141db6cb37a4",
+    "raw-c58c1ff88590212b"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:15adc261cc591f137c3830d862659707",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/359M50000100017",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60001000023"
+  ],
+  "records": [
+    {
+      "id": "raw-b116141db6cb37a4",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "環境省関係浄化槽法施行規則の一部を改正する省令",
+      "published_at": "2026-08-31",
+      "first_seen_at": "2026-09-15",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=359M50000100017_20260831_508M60001000023",
+      "raw_summary": "更新一覧日: 20260914; 対象法令: 環境省関係浄化槽法施行規則; 法令番号: 昭和五十九年厚生省令第十七号; 改正法令: 環境省関係浄化槽法施行規則の一部を改正する省令; 改正法令番号: 令和八年環境省令第二十三号; 公布日: 2026-08-31; 施行日: 2026-08-31",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-c58c1ff88590212b",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "環境省関係浄化槽法施行規則の一部を改正する省令（案）に対する意見募集（パブリックコメント）について",
+      "published_at": "2026-07-05T15:00:00Z",
+      "first_seen_at": "2026-07-07",
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260039&Mode=0",
+      "raw_summary": "案の公示日：2026/07/06 受付締切日時：2026/08/05 00:00 カテゴリー：環境保全 問合せ先（所管省庁・部局名等）：環境省環境再生・資源循環局 廃棄物適正処理推進課浄化槽推進室 電話：０３－５５０１－３１５５",
+      "raw_summary_truncated": false
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年経済産業省令第六十四号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-11-11",
+  "seed_item_id": "raw-1087de7d2a09a138",
+  "related_item_ids": [
+    "raw-1087de7d2a09a138",
+    "raw-7b7aa9727a6ff549"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:936ef11d24c8507130a8fa5e41cdd686",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/413M60000400105",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000400064"
+  ],
+  "records": [
+    {
+      "id": "raw-1087de7d2a09a138",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "「貿易保険法施行規則の一部を改正する省令（案）」等に関する意見募集について",
+      "published_at": "2026-06-21T15:00:00Z",
+      "first_seen_at": "2026-06-23",
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=595126106&Mode=0",
+      "raw_summary": "案の公示日：2026/06/22 受付締切日時：2026/07/21 23:59 カテゴリー：外国為替、貿易 問合せ先（所管省庁・部局名等）：経済産業省通商政策局通商金融課",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-7b7aa9727a6ff549",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "貿易保険法施行規則の一部を改正する省令",
+      "published_at": "2026-07-31",
+      "first_seen_at": "2026-08-21",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=413M60000400105_20260731_508M60000400064",
+      "raw_summary": "更新一覧日: 20260820; 対象法令: 貿易保険法施行規則; 法令番号: 平成十三年経済産業省令第百五号; 改正法令: 貿易保険法施行規則の一部を改正する省令; 改正法令番号: 令和八年経済産業省令第六十四号; 公布日: 2026-07-31; 施行日: 2026-07-31",
+      "raw_summary_truncated": false
+    }
+  ]
+}

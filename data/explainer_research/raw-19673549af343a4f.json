@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "explainer:pcb-waste-2026-low-concentration-amendment",
+  "kind": "update",
+  "priority": 20,
+  "first_queued_on": "2026-11-06",
+  "seed_item_id": "raw-19673549af343a4f",
+  "related_item_ids": [
+    "raw-19673549af343a4f",
+    "raw-209f659b2a8bb31a"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:7c7cfc71eaa8f5a757a06eed3f3e54da",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/322AC0000000067",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508AC0000000044"
+  ],
+  "records": [
+    {
+      "id": "raw-19673549af343a4f",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "ポリ塩化ビフェニル廃棄物の適正な処理の推進に関する特別措置法及び中間貯蔵・環境安全事業株式会社法の一部を改正する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-08-06",
+      "stage_hint": "Enacted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE27C6.htm",
+      "raw_summary": "閣法; 審議状況: 成立; 提出回次: 221; 番号: 60",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-209f659b2a8bb31a",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "ポリ塩化ビフェニル廃棄物の適正な処理の推進に関する特別措置法及び中間貯蔵・環境安全事業株式会社法の一部を改正する法律",
+      "published_at": "2026-06-19",
+      "first_seen_at": "2026-08-06",
+      "stage_hint": "Scheduled to Take Effect",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=322AC0000000067_20270401_508AC0000000044",
+      "raw_summary": "更新一覧日: 20260731; 対象法令: 地方自治法; 法令番号: 昭和二十二年法律第六十七号; 改正法令: ポリ塩化ビフェニル廃棄物の適正な処理の推進に関する特別措置法及び中間貯蔵・環境安全事業株式会社法の一部を改正する法律; 改正法令番号: 令和八年法律第四十四号; 公布日: 2026-06-19; 施行日: 2027-04-01",
+      "raw_summary_truncated": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "explainer:working-tax-social-insurance-relief-2026-bill",
+  "kind": "update",
+  "priority": 40,
+  "first_queued_on": "2026-11-09",
+  "seed_item_id": "raw-66ad06863627386b",
+  "related_item_ids": [
+    "raw-66ad06863627386b",
+    "raw-7d12032b91bd7e97"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:e1f547e3d4fa10947501b99a510052ff",
+  "e_gov_law_api": [],
+  "records": [
+    {
+      "id": "raw-66ad06863627386b",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-10-22",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE36B6.htm",
+      "raw_summary": "衆法; 審議状況: 衆議院で審議中; 提出回次: 222; 番号: 1",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-7d12032b91bd7e97",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-11-09",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE36B6.htm",
+      "raw_summary": "衆法; 審議状況: 本院議了; 提出回次: 222; 番号: 1",
+      "raw_summary_truncated": false
+    }
+  ]
+}

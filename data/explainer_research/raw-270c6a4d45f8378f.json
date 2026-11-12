@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年政令第二百八十二号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-10-31",
+  "seed_item_id": "raw-270c6a4d45f8378f",
+  "related_item_ids": [
+    "raw-270c6a4d45f8378f",
+    "raw-4b776d6639292c2c"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:eef4eed0a0bc5a2a3e5830055fa8ca68",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/212IO0000000369",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508CO0000000282"
+  ],
+  "records": [
+    {
+      "id": "raw-270c6a4d45f8378f",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "恩給給与規則及び国会議員互助年金法施行令を廃止する等の政令附則第二項の規定によりなおその効力を有するものとされた同令第一条の規定による廃止前の国会議員互助年金法施行令の一部を改正する政令",
+      "published_at": "2026-09-16",
+      "first_seen_at": "2026-10-06",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=212IO0000000369_20261001_508CO0000000282",
+      "raw_summary": "更新一覧日: 20261005; 対象法令: 恩給給与規則; 法令番号: 大正十二年勅令第三百六十九号; 改正法令: 恩給給与規則及び国会議員互助年金法施行令を廃止する等の政令附則第二項の規定によりなおその効力を有するものとされた同令第一条の規定による廃止前の国会議員互助年金法施行令の一部を改正する政令; 改正法令番号: 令和八年政令第二百八十二号; 公布日: 2026-09-16; 施行日: 2026-10-01",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-4b776d6639292c2c",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "恩給給与規則及び国会議員互助年金法施行令を廃止する等の政令附則第二項の規定によりなおその効力を有するものとされた同令第一条の規定による廃止前の国会議員互助年金法施行令の一部を改正する政令（案）に関する意見募集について",
+      "published_at": "2026-07-23T15:00:00Z",
+      "first_seen_at": "2026-07-25",
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210736&Mode=0",
+      "raw_summary": "案の公示日：2026/07/24 受付締切日時：2026/08/27 23:59 カテゴリー：国民生活の安全・安心の確保 問合せ先（所管省庁・部局名等）：総務省政策統括官（恩給担当）恩給管理官室 (TEL:03-5273-1306)",
+      "raw_summary_truncated": false
+    }
+  ]
+}

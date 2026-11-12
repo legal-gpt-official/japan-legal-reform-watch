@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
+  "kind": "new",
+  "priority": 15,
+  "first_queued_on": "2026-10-31",
+  "seed_item_id": "raw-a774a90138a1dcf2",
+  "related_item_ids": [
+    "raw-a774a90138a1dcf2",
+    "raw-e99fb5d75f52ac7d"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:dfbb377f039bc0fc7879866b99d2375f",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/341M50010040002",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000202012"
+  ],
+  "records": [
+    {
+      "id": "raw-a774a90138a1dcf2",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "農業信用保証保険法施行規則の一部を改正する命令",
+      "published_at": "2026-09-18",
+      "first_seen_at": "2026-10-07",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=341M50010040002_20261001_508M60000202012",
+      "raw_summary": "更新一覧日: 20261006; 対象法令: 農業信用保証保険法施行規則; 法令番号: 昭和四十一年大蔵省・農林省令第二号; 改正法令: 農業信用保証保険法施行規則の一部を改正する命令; 改正法令番号: 令和八年内閣府・農林水産省令第十二号; 公布日: 2026-09-18; 施行日: 2026-10-01",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-e99fb5d75f52ac7d",
+      "source_name": "e-Gov Public Comment (意見募集案件一覧)",
+      "title_ja": "農業信用保証保険法施行規則の一部を改正する命令案についての意見・情報の募集について",
+      "published_at": "2026-07-09T15:00:00Z",
+      "first_seen_at": "2026-07-10",
+      "stage_hint": null,
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004376&Mode=0",
+      "raw_summary": "案の公示日：2026/07/10 受付締切日時：2026/08/08 23:59 カテゴリー：農業 問合せ先（所管省庁・部局名等）：農林水産省経営局金融調整課 電話：03-3502-8111（内線5247）",
+      "raw_summary_truncated": false
+    }
+  ]
+}
