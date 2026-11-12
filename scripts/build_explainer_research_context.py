@@ -108,10 +108,24 @@ def main() -> int:
     queue = json.loads(args.queue.read_text(encoding="utf-8"))
     if not isinstance(raw, list) or not isinstance(queue, dict):
         raise ValueError("Unexpected raw-items or queue structure")
-    items = packets(OfficialIndex.build(raw), queue)
+    index = OfficialIndex.build(raw)
+    items: dict[str, dict] = {}
+    invalid = 0
+    # An inconsistent source for one candidate must not suppress all others.
+    for entry in queue.get("entries", []):
+        try:
+            packet = packets(index, {"entries": [entry]})
+            if any(seed in items for seed in packet):
+                raise ValueError("Two queued dossiers share the same seed")
+            items.update(packet)
+        except (ValueError, KeyError, TypeError) as exc:
+            invalid += 1
+            print(f"::warning::Explainer research packet skipped: {exc}")
     changed, removed = write_packets(items, args.out)
-    print(f"research_packets={len(items)} changed={changed} stale_removed={removed}")
-    return 0
+    print(f"research_packets={len(items)} invalid={invalid} changed={changed} stale_removed={removed}")
+    # Leave source-health gating and publication unchanged. Invalid records
+    # must never produce plausible-looking research evidence.
+    return 0 if items or not queue.get("entries") else 1
 
 
 if __name__ == "__main__":
