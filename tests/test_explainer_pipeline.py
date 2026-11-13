@@ -265,6 +265,17 @@ class ReconcileTests(unittest.TestCase):
         later, _ = ep.reconcile(scn.snapshot(), again, now=merged_at + timedelta(days=4, minutes=10), **kw)
         self.assertEqual(later["dossiers"][NEW_ID]["stage"], "PAGES_DEPLOYED")
 
+    def test_late_live_verification_counts_on_the_merge_day_not_today(self):
+        # Regression (production 2026-11-14): 16 dossiers merged on 10-31..11-08 were first
+        # LIVE-verified on 11-14; counting them on 11-14 showed today's target as met.
+        entry = {"kind": "new", "introduced": {"pr": 99, "drafted_at": "2026-10-31T00:59:00Z",
+                 "ci_passed_at": "2026-10-31T01:05:00Z", "merged_at": "2026-10-31T01:16:00Z",
+                 "pages_at": "2026-10-31T01:18:00Z", "live_at": "2026-11-13T22:12:00Z"}}
+        daily = ep.daily_counts({"x": entry}, date(2026, 11, 13))
+        self.assertEqual(daily["2026-11-13"]["new"]["live_verified"], 0)
+        self.assertEqual(daily["2026-11-14"]["new"]["live_verified"] if "2026-11-14" in daily else 0, 0)
+        self.assertEqual(daily["2026-10-31"]["new"]["live_verified"], 1)
+
     def test_fallback_never_credits_a_run_before_the_current_stamp(self):
         run = {"created_at": "2026-11-09T03:00:00Z"}
         self.assertTrue(ep.live_covers(run, "x", "2026-11-08"))

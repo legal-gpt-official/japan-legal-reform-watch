@@ -583,8 +583,13 @@ def daily_counts(dossiers: Mapping[str, Mapping[str, Any]], today: date) -> dict
         history = entry.get("stage_history") or {}
         for label, stage in milestones:
             # A published dossier counts as new on the days ITS introducing PR reached each
-            # milestone; an unmerged new dossier counts from its own stage history.
-            when = intro.get(intro_keys[label]) if intro else (history.get(stage) if entry.get("kind") == "new" else None)
+            # milestone; an unmerged new dossier counts from its own stage history. Pages and
+            # LIVE count on the MERGE day (the day's cohort reached publication), so verifying
+            # older dossiers later never inflates today's count against the target.
+            if intro and label in ("pages_deployed", "live_verified"):
+                when = intro.get("merged_at") if intro.get(intro_keys[label]) else None
+            else:
+                when = intro.get(intro_keys[label]) if intro else (history.get(stage) if entry.get("kind") == "new" else None)
             day = jst_day(when)
             if day in out:
                 out[day]["new"][label] += 1
