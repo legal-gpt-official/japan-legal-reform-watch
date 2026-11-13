@@ -314,6 +314,25 @@ class SlotPlanTests(unittest.TestCase):
         self.assertIn("Next slot plan", text)
 
 
+class ResearchNotesAndCauseTests(unittest.TestCase):
+    def test_new_candidate_points_to_prior_research_issue(self):
+        queue = {"entries": [{"kind": "new", "queue_id": "draft:raw-056b16304cad2bfc",
+                              "suggested_seed_item_id": "raw-056b16304cad2bfc"}]}
+        ledger = {"dossiers": {}, "research_notes": {"raw-056b16304cad2bfc": [147]}}
+        plan = ep.slot_plan(ledger, queue, index=INDEX, research_dir=es.RESEARCH_DIR, today=TODAY)
+        self.assertEqual(plan[0]["prior_research_issues"], [147])
+        self.assertTrue(plan[0]["action"].startswith("Prior research exists in issue(s) #147"))
+
+    def test_ci_failure_causes_count_only_dossier_pr_runs(self):
+        scn = Scenario()
+        led, _ = run(scn, None, scn.t0)
+        runs = [{"conclusion": "failure", "status": "completed"},  # an ops PR: no failed_steps collected
+                {"conclusion": "failure", "status": "completed", "failed_steps": ["Dossier preflight (changed explainers)"]}]
+        text = ep.report_markdown(led, [], [], runs, scn.t0)
+        self.assertIn("Dossier preflight (changed explainers) 1", text)
+        self.assertNotIn("unknown", text)
+
+
 class WorkflowTests(unittest.TestCase):
     def scripts(self, name):
         lines = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8").splitlines()
@@ -351,6 +370,9 @@ class WorkflowTests(unittest.TestCase):
         for forbidden in ("pulls.merge", "addLabels", "legal-content-verified"):
             self.assertNotIn(forbidden, text)
         self.assertIn('"50 1,2,3,4,5,11 * * *"', text)
+        # A LIVE re-run names its dossiers: the verifier's default 2-day window never covers older ones.
+        self.assertIn("{dossiers: a.dossiers.filter(", text)
+        self.assertNotIn("{dossiers: ''}", text)
 
     def test_automerge_accepts_case_files_only_beside_dossier_files(self):
         text = (ROOT / ".github/workflows/explainer-safe-automerge.yml").read_text(encoding="utf-8")
@@ -386,6 +408,7 @@ const rest = {
   repos: {getContent: async ({path, ref}) => ({data: {encoding: 'base64', size: 10,
           content: Buffer.from(JSON.stringify({path, ref})).toString('base64')}})},
   actions: {listWorkflowRuns: 'runs', listJobsForWorkflowRun: 'jobs'},
+  issues: {listForRepo: 'issues'},
 };
 const github = {rest, paginate: async (fn, params, mapFn) => {
   if (fn === 'pulls.list') {
@@ -405,6 +428,11 @@ const github = {rest, paginate: async (fn, params, mapFn) => {
   if (fn === 'runs') return params.workflow_id === 'pr-checks.yml'
       ? [{id: 9, status: 'completed', conclusion: 'failure', head_sha: 'h5', created_at: now, updated_at: now,
           run_started_at: now, pull_requests: [{number: 5}]}] : [];
+  if (fn === 'issues') return [
+    {number: 147, title: 'Research handoff', body: 'Queue seed `raw-056b16304cad2bfc` checked.'},
+    {number: 151, title: 'Explainer pipeline status (auto-updated)', body: 'raw-0000000000000009'},
+    {number: 150, title: 'a PR', body: 'raw-0000000000000008', pull_request: {}},
+  ];
   if (fn === 'jobs') return [{name: 'tests', conclusion: 'failure', steps: [{name: 'Dossier preflight (changed explainers)', conclusion: 'failure'}]}];
   throw new Error('unexpected ' + fn);
 }};
@@ -422,6 +450,8 @@ new AsyncFunction('github', 'context', 'core', 'require', SOURCE)(github, contex
         self.assertIn("data/explainer_state/x.json", snap["pulls"][0]["contents"])
         self.assertEqual(snap["ci_runs"][0]["failed_steps"], ["Dossier preflight (changed explainers)"])
         self.assertEqual(snap["ci_runs"][0]["pull_requests"], [5])
+        self.assertEqual(snap["issues"], [{"number": 147, "raw_ids": ["raw-056b16304cad2bfc"]}])
         led, _ = ep.reconcile(snap, None, index=INDEX, main_explainers={}, main_bundles={}, main_states={},
                               now=datetime.now(timezone.utc))
         self.assertEqual(led["dossiers"]["x"]["stage"], "RESEARCH_REQUIRED")
+        self.assertEqual(led["research_notes"], {"raw-056b16304cad2bfc": [147]})

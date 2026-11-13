@@ -129,8 +129,16 @@ jobs:
               }
               ci.push(s);
             }
+            // Research handoffs still kept in issues (before case files): raw ids they name.
+            const issues = [];
+            for (const i of await github.paginate(github.rest.issues.listForRepo, {owner, repo, state: 'open', per_page: 100})) {
+              if (i.pull_request || i.title === 'Explainer pipeline status (auto-updated)') continue;
+              const raw = [...new Set(((i.title || '') + ' ' + (i.body || '')).match(/raw-[0-9a-f]{16}/g) || [])];
+              if (raw.length) issues.push({number: i.number, raw_ids: raw});
+            }
             const snapshot = {
               collected_at: new Date().toISOString(),
+              issues,
               pulls,
               ci_runs: ci,
               publish_runs: (await runs('publish-explainer-pages.yml')).map(slim),
@@ -166,7 +174,10 @@ jobs:
             const allowed = new Set(['publish-explainer-pages.yml', 'verify-live-explainers.yml']);
             for (const a of actions) {
               if (!allowed.has(a.workflow)) { core.warning('Refusing unknown workflow ' + a.workflow); continue; }
-              const inputs = a.workflow === 'verify-live-explainers.yml' ? {dossiers: ''} : undefined;
+              // Name the dossiers: the verifier's default window (verified_at within 2 days)
+              // never covers an older dossier, so a default run could not verify it.
+              const inputs = a.workflow === 'verify-live-explainers.yml'
+                ? {dossiers: a.dossiers.filter(d => /^[a-z0-9][a-z0-9-]{2,79}$/.test(d)).join(',')} : undefined;
               await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: a.workflow, ref: 'main', inputs});
               core.warning(`Re-dispatched ${a.workflow} for ${a.dossiers.join(', ')}: ${a.reasons.join('; ')}`);
             }

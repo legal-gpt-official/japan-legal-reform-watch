@@ -456,8 +456,22 @@ def reconcile(
         "daily_target": DAILY_TARGET,
         "dossiers": dossiers,
         "daily": daily_counts(dossiers, today),
+        "research_notes": research_notes(snapshot.get("issues") or []),
     }
     return ledger, list(merged_actions.values())
+
+
+def research_notes(issues: Sequence[Mapping[str, Any]]) -> dict[str, list[int]]:
+    """raw id -> open issue numbers that hold research on it (handoffs written before case files)."""
+    notes: dict[str, set[int]] = {}
+    for issue in issues:
+        number = issue.get("number")
+        if not isinstance(number, int):
+            continue
+        for raw in issue.get("raw_ids") or []:
+            if isinstance(raw, str) and raw.startswith("raw-"):
+                notes.setdefault(raw, set()).add(number)
+    return {raw: sorted(nums) for raw, nums in sorted(notes.items())}
 
 
 def next_action(entry: Mapping[str, Any], state: Mapping[str, Any] | None) -> str:
@@ -574,11 +588,15 @@ def slot_plan(
         if closure & claimed:
             continue
         packet = research_dir / f"{seed}.json"
+        notes = sorted({n for raw in closure for n in (ledger.get("research_notes") or {}).get(raw, [])})
+        prior = (f"Prior research exists in issue(s) {', '.join('#' + str(n) for n in notes)}: read it first, "
+                 "carry its verified sources into the case file, and do not repeat what it already established. ") if notes else ""
         plan.append({
             "tier": "new", "queue_id": q.get("queue_id"), "seed_item_id": seed, "priority": q.get("priority"),
             "title_ja": q.get("title_ja"), "branch": f"explainer/{seed}",
             "research_packet": f"data/explainer_research/{seed}.json" if packet.is_file() else None,
-            "action": (f"Claim by pushing branch explainer/{seed} with a case file "
+            "prior_research_issues": notes,
+            "action": prior + (f"Claim by pushing branch explainer/{seed} with a case file "
                        f"(python scripts/explainer_state.py init <dossier-id> --seed {seed} --queue-id {q.get('queue_id')}) "
                        "and opening a draft PR at once; then fetch and confirm the sources."),
         })
@@ -635,7 +653,9 @@ def report_markdown(ledger: Mapping[str, Any], plan: Sequence[Mapping[str, Any]]
     ci_d = sorted(int((_ts(r.get("updated_at")) - _ts(r.get("run_started_at") or r.get("created_at"))).total_seconds())
                   for r in ci_runs if r.get("status") == "completed" and _ts(r.get("updated_at"))
                   and _ts(r.get("run_started_at") or r.get("created_at")))
-    ci_fail = Counter(step for r in ci_runs if r.get("conclusion") == "failure" for step in (r.get("failed_steps") or ["unknown"]))
+    # Only runs of dossier PRs carry failed_steps (the collector reads their jobs); ops PRs are not counted.
+    ci_fail = Counter(step for r in ci_runs if r.get("conclusion") == "failure" and "failed_steps" in r
+                      for step in (r.get("failed_steps") or ["unknown"]))
 
     def med(values):
         values = sorted(values)
