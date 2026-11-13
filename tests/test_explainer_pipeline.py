@@ -266,6 +266,46 @@ class ReconcileTests(unittest.TestCase):
         self.assertEqual(day["updates_merged"], 1)
         self.assertEqual(set(led["dossiers"]), {NEW_ID})
 
+    def test_follow_up_update_pr_keeps_the_dossier_new_on_its_first_publication_day(self):
+        # Regression (first production ledger): PR #131 added a dossier on 11-11 and PR #140
+        # updated it on 11-12; the ledger called it an update dated 11-12 and undercounted 11-11.
+        scn = Scenario()
+        day1 = datetime(2026, 11, 11, 8, 0, tzinfo=timezone.utc)
+        day2 = datetime(2026, 11, 12, 8, 0, tzinfo=timezone.utc)
+        intro = {"number": 131, "state": "closed", "created_at": iso(day1 - timedelta(minutes=5)),
+                 "merged_at": iso(day1), "head_sha": "a" * 40, "labels": [],
+                 "files": [{"filename": f"data/explainers/{NEW_ID}.json", "status": "added"}]}
+        update = {"number": 140, "state": "closed", "created_at": iso(day2 - timedelta(minutes=5)),
+                  "merged_at": iso(day2), "head_sha": "b" * 40, "labels": [],
+                  "files": [{"filename": f"data/explainers/{NEW_ID}.json", "status": "modified"}]}
+        snap = {"pulls": [update, intro],
+                "ci_runs": [{"id": 1, "head_sha": "a" * 40, "status": "completed", "conclusion": "success",
+                             "created_at": iso(day1 - timedelta(minutes=3)), "updated_at": iso(day1 - timedelta(minutes=2)),
+                             "pull_requests": [131], "tests_ok": True, "failed_steps": []}],
+                "publish_runs": [{"id": 5, "status": "completed", "conclusion": "success",
+                                  "created_at": iso(day1 + timedelta(minutes=1)), "updated_at": iso(day1 + timedelta(minutes=8))},
+                                 {"id": 7, "status": "completed", "conclusion": "success",
+                                  "created_at": iso(day2 + timedelta(minutes=1)), "updated_at": iso(day2 + timedelta(minutes=8))}],
+                "live_runs": [{"id": 6, "status": "completed", "conclusion": "success",
+                               "created_at": iso(day1 + timedelta(minutes=9)), "updated_at": iso(day1 + timedelta(minutes=10)),
+                               "dossiers": [NEW_ID]},
+                              {"id": 8, "status": "completed", "conclusion": "success",
+                               "created_at": iso(day2 + timedelta(minutes=9)), "updated_at": iso(day2 + timedelta(minutes=10)),
+                               "dossiers": [NEW_ID]}]}
+        led, _ = ep.reconcile(snap, None, index=INDEX, main_explainers={NEW_ID: scn.en}, main_bundles={},
+                              main_states={}, now=day2 + timedelta(hours=1))
+        e = led["dossiers"][NEW_ID]
+        self.assertEqual((e["kind"], e["pr"], e["introduced"]["pr"]), ("new", 140, 131))
+        self.assertEqual((e["stage"], e["live"]["run_id"], e["introduced"]["live_at"]),
+                         ("LIVE_VERIFIED", 8, iso(day1 + timedelta(minutes=10))))
+        d1, d2 = led["daily"]["2026-11-11"], led["daily"]["2026-11-12"]
+        self.assertEqual(d1["new"], {"drafted": 1, "ci_passed": 1, "merged": 1, "pages_deployed": 1, "live_verified": 1})
+        self.assertEqual((d1["updates_merged"], d2["updates_merged"]), (0, 1))
+        self.assertEqual(d2["new"]["merged"], 0)
+        again, _ = ep.reconcile(snap, led, index=INDEX, main_explainers={NEW_ID: scn.en}, main_bundles={},
+                                main_states={}, now=day2 + timedelta(hours=2))
+        self.assertEqual(ep.dump(again), ep.dump(led))
+
     def test_blocked_candidate_is_remembered_after_pr_closes_and_released_by_new_records(self):
         scn = Scenario()
         held = scn.research_state()
