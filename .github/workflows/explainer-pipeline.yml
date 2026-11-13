@@ -1,0 +1,211 @@
+name: Explainer pipeline ledger
+
+# Records where every reform-explainer dossier is (RESEARCH_REQUIRED ... LIVE_VERIFIED),
+# counts unique NEW dossiers per JST day, plans the next writing slot, and re-runs a
+# failed publication step (bounded). Stages are computed from evidence: dossier files
+# checked exactly as CI checks them, the CI run on the exact head SHA, the merge, a
+# successful Publish after it (which itself requires the matching Pages deploy) and a
+# successful LIVE verification after that. Never merges, labels or edits explainers,
+# and never weakens a gate. See operations/EXPLAINER_OPERATIONS.md.
+on:
+  schedule:
+    # 10 minutes before each writing slot (11/12/13/14/15 and 21 JST) so the slot
+    # starts from a fresh plan. GitHub cron is UTC (JST = UTC+9).
+    - cron: "50 1,2,3,4,5,11 * * *"
+  workflow_run:
+    workflows:
+      - "Pull request checks"
+      - "Publish reform explainer pages"
+      - "Verify live reform explainers"
+      - "Safely merge verified reform explainer PRs"
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+  pull-requests: read
+
+# Its own group: joining the data-writer group would let a pending ledger run
+# replace a pending Publish run. Only this workflow writes the ledger file.
+concurrency:
+  group: explainer-pipeline-ledger
+  cancel-in-progress: false
+
+jobs:
+  ledger:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      # PR file contents are read as JSON data only and checked by the same
+      # offline validators CI uses; no pull-request code is ever executed here.
+      - name: Collect GitHub facts (PRs, CI, Publish, LIVE)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const {owner, repo} = context.repo;
+            const WINDOW_MS = 14 * 24 * 3600 * 1000;
+            const since = new Date(Date.now() - WINDOW_MS);
+            const sinceDay = since.toISOString().slice(0, 10);
+            const DIRS = ['data/explainers/', 'data/explainer_locales/', 'data/explainer_state/'];
+            const isDossierFile = name => DIRS.some(d => name.startsWith(d)) && name.endsWith('.json');
+            const pulls = [];
+            const list = await github.paginate(github.rest.pulls.list,
+              {owner, repo, state: 'all', sort: 'updated', direction: 'desc', per_page: 100},
+              (response, done) => {
+                const fresh = response.data.filter(p => new Date(p.updated_at) >= since);
+                if (fresh.length < response.data.length) done();
+                return fresh;
+              });
+            for (const pr of list) {
+              if (pr.base.ref !== 'main') continue;
+              const files = await github.paginate(github.rest.pulls.listFiles,
+                {owner, repo, pull_number: pr.number, per_page: 100});
+              if (!files.some(f => isDossierFile(f.filename))) continue;
+              const sameRepo = pr.head.repo?.full_name === `${owner}/${repo}`;
+              const contents = {};
+              if (pr.state === 'open' && sameRepo) {
+                for (const f of files) {
+                  if (!isDossierFile(f.filename) || f.status === 'removed') continue;
+                  try {
+                    const res = await github.rest.repos.getContent({owner, repo, path: f.filename, ref: pr.head.sha});
+                    if (res.data && res.data.encoding === 'base64' && res.data.size <= 900000) {
+                      contents[f.filename] = Buffer.from(res.data.content, 'base64').toString('utf8');
+                    }
+                  } catch (e) {
+                    core.warning(`PR #${pr.number}: could not read ${f.filename}: ${e.status || e.message}`);
+                  }
+                }
+              }
+              pulls.push({
+                number: pr.number, state: pr.state, draft: pr.draft, title: pr.title,
+                created_at: pr.created_at, merged_at: pr.merged_at, closed_at: pr.closed_at,
+                head_ref: pr.head.ref, head_sha: pr.head.sha, same_repo: sameRepo,
+                labels: pr.labels.map(l => l.name),
+                files: files.map(f => ({filename: f.filename, status: f.status})),
+                contents,
+              });
+            }
+            const tracked = new Set(pulls.map(p => p.number));
+            const heads = new Set(pulls.map(p => p.head_sha));
+            async function runs(workflow_id) {
+              return await github.paginate(github.rest.actions.listWorkflowRuns,
+                {owner, repo, workflow_id, created: `>=${sinceDay}`, per_page: 100});
+            }
+            const slim = r => ({
+              id: r.id, status: r.status, conclusion: r.conclusion, event: r.event,
+              head_sha: r.head_sha, created_at: r.created_at, updated_at: r.updated_at,
+              run_started_at: r.run_started_at,
+              pull_requests: (r.pull_requests || []).map(p => p.number),
+            });
+            const ci = [];
+            for (const r of await runs('pr-checks.yml')) {
+              const s = slim(r);
+              const relevant = s.pull_requests.some(n => tracked.has(n)) || heads.has(s.head_sha);
+              if (relevant && r.status === 'completed') {
+                const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun,
+                  {owner, repo, run_id: r.id, per_page: 100});
+                s.tests_ok = jobs.some(j => j.name === 'tests' && j.conclusion === 'success');
+                s.failed_steps = [];
+                for (const j of jobs) for (const st of (j.steps || []))
+                  if (st.conclusion === 'failure') s.failed_steps.push(st.name);
+              }
+              ci.push(s);
+            }
+            const snapshot = {
+              collected_at: new Date().toISOString(),
+              pulls,
+              ci_runs: ci,
+              publish_runs: (await runs('publish-explainer-pages.yml')).map(slim),
+              live_runs: (await runs('verify-live-explainers.yml')).map(slim),
+            };
+            fs.writeFileSync('snapshot.json', JSON.stringify(snapshot));
+            core.info(`snapshot: ${pulls.length} dossier PRs, ${ci.length} CI runs`);
+
+      - name: Download per-dossier LIVE result of the triggering run
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Verify live reform explainers'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: live-verification-report
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+          path: live-report
+
+      - name: Reconcile ledger and plan the next slot
+        run: |
+          args=""
+          if [ -f live-report/live-verification.json ]; then args="--live-report live-report/live-verification.json"; fi
+          python scripts/explainer_pipeline.py reconcile --snapshot snapshot.json $args \
+            --actions-out actions.json --report-out pipeline-report.md
+
+      - name: Re-run a failed publication step (bounded per dossier)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const {owner, repo} = context.repo;
+            const actions = JSON.parse(fs.readFileSync('actions.json', 'utf8'));
+            const allowed = new Set(['publish-explainer-pages.yml', 'verify-live-explainers.yml']);
+            for (const a of actions) {
+              if (!allowed.has(a.workflow)) { core.warning('Refusing unknown workflow ' + a.workflow); continue; }
+              const inputs = a.workflow === 'verify-live-explainers.yml' ? {dossiers: ''} : undefined;
+              await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: a.workflow, ref: 'main', inputs});
+              core.warning(`Re-dispatched ${a.workflow} for ${a.dossiers.join(', ')}: ${a.reasons.join('; ')}`);
+            }
+
+      - name: Commit the ledger when it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/explainer_pipeline.json
+          if git diff --cached --quiet; then
+            echo "Ledger unchanged."
+            exit 0
+          fi
+          git commit -m "Update explainer pipeline ledger"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            if [ "$attempt" = 3 ]; then echo "::error::ledger push failed after 3 attempts"; exit 1; fi
+            git pull --rebase origin main || { git rebase --abort; echo "::error::ledger rebase conflict; the next run recomputes it"; exit 1; }
+          done
+
+      # One issue holds the current status, the next slot plan and the reasons a
+      # target is missed, so the cause and the next operation stay on GitHub.
+      - name: Update the pipeline status issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const {owner, repo} = context.repo;
+            const title = 'Explainer pipeline status (auto-updated)';
+            const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            let body = fs.readFileSync('pipeline-report.md', 'utf8');
+            body = body.slice(0, 60000) + `\n---\nUpdated by [explainer-pipeline run](${run}). ` +
+              'Stages are computed from files and GitHub runs; change a dossier via its case file ' +
+              '(data/explainer_state/<id>.json), not this issue.\n';
+            const issues = await github.paginate(github.rest.issues.listForRepo,
+              {owner, repo, state: 'open', per_page: 100});
+            const existing = issues.find(i => i.title === title && !i.pull_request);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body});
+            }

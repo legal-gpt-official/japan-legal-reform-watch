@@ -1515,7 +1515,12 @@ def build(
     explained: dict[str, ex.Published] = {}
     reports: dict[str, ex.Report] = {}
     if index is not None and explainers_dir is not None:
-        explained, reports = ex.published_by_item(ex.load_explainers(explainers_dir), index, today)
+        import explainer_state as es
+
+        explained, reports = ex.published_by_item(
+            ex.load_explainers(explainers_dir), index, today,
+            case_files=es.load_states(explainers_dir.parent / "explainer_state"),
+        )
     locale_bundles = el.load_locales(explainers_dir.parent / "explainer_locales") if explainers_dir else {}
     updated = latest_checked(items)
 

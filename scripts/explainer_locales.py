@@ -98,7 +98,33 @@ def local_texts(tr: Mapping[str, Any]) -> list[str]:
     return [s for s in out if isinstance(s, str)]
 
 
-def translation_problems(en: Mapping[str, Any], bundle: Mapping[str, Any], lang: str) -> list[str]:
+def local_texts_with_paths(tr: Mapping[str, Any]) -> list[tuple[str, str]]:
+    """``local_texts`` with the JSON path of each string (for actionable error reports)."""
+    out: list[tuple[str, str]] = []
+    if isinstance(tr.get("title"), str):
+        out.append(("title", tr["title"]))
+    quick = tr.get("quick_take") if isinstance(tr.get("quick_take"), Mapping) else {}
+    out += [(f"quick_take.{k}", v) for k, v in quick.items() if isinstance(v, str)]
+    for key in ("background", "history", "business_impact", "checklist", "key_dates"):
+        values = tr.get(key) if isinstance(tr.get(key), list) else []
+        out += [(f"{key}[{n}]", v) for n, v in enumerate(values) if isinstance(v, str)]
+    steps = tr.get("next_steps") if isinstance(tr.get("next_steps"), Mapping) else {}
+    for key in ("confirmed", "expected", "uncertainties"):
+        values = steps.get(key) if isinstance(steps.get(key), list) else []
+        out += [(f"next_steps.{key}[{n}]", v) for n, v in enumerate(values) if isinstance(v, str)]
+    return out
+
+
+def blob_sha(raw: bytes) -> str:
+    """Git blob SHA-1 of bytes, CRLF folded to LF exactly as ``canonical_file_sha`` does."""
+    raw = raw.replace(b"\r\n", b"\n")
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + bytes([0]) + raw).hexdigest()
+
+
+def translation_problems(
+    en: Mapping[str, Any], bundle: Mapping[str, Any], lang: str, *, english_sha: str | None = None
+) -> list[str]:
+    """``english_sha`` lets a caller check English content that is not on disk (a PR head)."""
     problems = []
     if lang not in LOCALES:
         return ["unsupported locale"]
@@ -113,7 +139,7 @@ def translation_problems(en: Mapping[str, Any], bundle: Mapping[str, Any], lang:
         problems.append("stale English verification date")
     if tr.get("english_source_fingerprint") != en.get("source_fingerprint"):
         problems.append("stale official-record fingerprint")
-    expected_blob = canonical_file_sha(str(en.get("dossier_id", "")))
+    expected_blob = english_sha if english_sha is not None else canonical_file_sha(str(en.get("dossier_id", "")))
     if not expected_blob or tr.get("english_file_sha") != expected_blob:
         problems.append("stale canonical English file SHA")
     if not _good_text(tr.get("title")):

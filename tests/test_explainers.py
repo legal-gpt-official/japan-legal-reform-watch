@@ -29,6 +29,26 @@ AI_POLICY = {c: "ai_checked" for c in ex.CATEGORIES}
 AI_POLICY_ENV = {ex.POLICY_ENV: ",".join(f"{c}=ai_checked" for c in ex.CATEGORIES)}
 
 
+def confirmed_case_file(data):
+    """A case file settling every critical fact from one fetched official source."""
+    import explainer_state as es
+
+    facts = []
+    for n, category in enumerate(es.FACT_CATEGORIES, start=1):
+        fact = {"id": f"f{n}", "category": category, "status": "confirmed",
+                "statement": "Confirmed from the official text.", "source_ids": ["s1"]}
+        if category == "instrument_form":
+            fact["value"] = "promulgated_instrument"
+        if category == "obligation_type":
+            fact["value"] = ["obligation"]
+        facts.append(fact)
+    return {"schema_version": 1, "dossier_id": data["dossier_id"], "kind": "new",
+            "seed_item_id": data["related_item_ids"][0], "hold": None, "facts": facts, "unresolved": [],
+            "sources": [{"id": "s1", "url": "https://laws.e-gov.go.jp/law/x", "kind": "egov_law",
+                         "status": "fetched", "fetched_at": "2026-10-20T00:00:00Z", "sha256": "c" * 64,
+                         "error_class": None, "attempts": 1}]}
+
+
 def explainer(dossier_id="export-control-order", related=("raw-order-a", "raw-pc-order"), **overrides):
     data = {
         "schema_version": 1,
@@ -360,6 +380,14 @@ class TestRendering(Base):
                 f'<div id="cards">{bpp.STATIC_START}{bpp.STATIC_END}</div>{bpp.AREA_NAV_START}{bpp.AREA_NAV_END}',
                 encoding="utf-8",
             )
+            # A dossier created after case files existed is withheld from the pages
+            # until its case file confirms the critical legal facts (defence in depth
+            # behind the PR checks).
+            gated = bpp.build(data_path, index_path, sitemap, TODAY, raw_path=raw_path, explainers_dir=explainers_dir)
+            self.assertEqual(gated["explainers"]["published"], 0)
+            state_dir = tmp / "explainer_state"
+            state_dir.mkdir()
+            (state_dir / f"{good['dossier_id']}.json").write_text(json.dumps(confirmed_case_file(good)), encoding="utf-8")
             first = bpp.build(data_path, index_path, sitemap, TODAY, raw_path=raw_path, explainers_dir=explainers_dir)
             second = bpp.build(data_path, index_path, sitemap, TODAY, raw_path=raw_path, explainers_dir=explainers_dir)
             self.assertEqual(first["explainers"]["published"], 1)

@@ -33,6 +33,16 @@
 
 (d) ができない場合は、調査をせずに終了し、その旨を報告してください。(a)〜(c) の一部ができない場合は、手順 7 の代替手順に従ってください。
 
+### 1A. スロット開始時の再開点（2026-11-13、最優先）
+
+- 最初に最新mainの `data/explainer_pipeline.json`（工程台帳）を読む。読めなければIssue「Explainer pipeline status (auto-updated)」を読む。(b) ができる場合は `python scripts/explainer_pipeline.py next` を実行する。工程はファイルとGitHubの実行結果から自動計算されている。PR本文の自由記述やメモを再開点にしない。
+- 計画の上から処理する：`resume`（未完了で最も進んだdossierを、前回の最終成功工程から続ける）→ `investigate` → `repair` → `new` → `update`。`ON HOLD` の案件は再調査しない（公式記録が変わるか指定日に自動解除される）。
+- 新規に着手するときは、ブランチ `explainer/<seed_item_id>` を作り、`python scripts/explainer_state.py init <dossier-id> --seed <seed_item_id> --queue-id <queue_id>` で作った案件ファイル `data/explainer_state/<dossier-id>.json` だけを最初にコミットして**Draft PRを開き、着手を宣言する**。同名ブランチが既にあれば他の実行が着手済みなので、それを再開する。
+- 一次資料は `python scripts/explainer_sources.py fetch <dossier-id>` で取得・記録する（取得日時・ハッシュ・エラー分類が残り、恒久的エラーは自動で再試行されない）。Pythonもネットワークも使えない環境では、ブラウザで読んだ資料を案件ファイルの `sources` に記録し、`fetched_at` と内容のSHA-256を書けない場合は `status: "not_fetched"` のままにする（その資料を根拠に `confirmed` にはできない）。
+- 法的事実は案件ファイルの `facts` に区分ごとに記録する（`confirmed` は取得済み資料の `source_ids` 必須、`inference` は政策背景・企業影響だけ）。重要区分が確認できなければ `python scripts/explainer_state.py hold <dossier-id> --state BLOCKED --reason "<具体的な不足>"` で保留して**別の候補へ移る**。新規dossierは重要区分が確認済みでないと公開できない（CIとページ生成が止める）。
+- 翻訳の同期キーは手で計算せず、各言語を英語と照合した後に `python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang zh-Hans` で書く。push前に `python scripts/explainer_preflight.py check <dossier-id>` を実行する（エラーは項目と該当文つき）。Pythonが使えない場合は、PRチェックの「Dossier preflight」の出力を見て直す。
+- マージ後のPublish・Pages・LIVE検証は自動で進み、失敗時は回数制限つきで自動再実行される。マージ済みPRのHTTP確認をスロットごとに繰り返さない。
+
 ### 2. 候補の取得
 
 - (b) ができる場合：`python scripts/explainers.py queue --top 15` を実行します。
@@ -151,7 +161,7 @@
 
 ### 9. 報告
 
-作業の最後に、日本語で次を報告します。
+作業の最後に、日本語で次を報告します。件数は工程台帳 `data/explainer_pipeline.json` の `daily` と各dossierの工程（実行IDつき）を根拠にし、自分の申告で数えません。
 
 1. 実行環境で可能だった操作（(a)〜(d)）
 2. 処理した案件（`dossier_id`、新規か更新か、理由、PR の URL または JSON 出力の有無）

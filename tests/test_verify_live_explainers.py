@@ -132,5 +132,16 @@ class LiveExplainerTests(unittest.TestCase):
                     live.recent_dossiers(3, {"draft"})
 
 
+class DossierResultTests(unittest.TestCase):
+    def test_dossier_verified_only_when_every_language_url_passed(self):
+        dossiers = [{"dossier_id": "a", "related_item_ids": ["raw-0000000000000001"]},
+                    {"dossier_id": "b", "related_item_ids": ["raw-0000000000000002"]}]
+        targets = [(f"{live.HOST}/u/raw-000000000000000{n}/{s}", ()) for n in (1, 2) for s in ("", "ja/", "zh/")]
+        errors = {f"{live.HOST}/u/raw-0000000000000002/zh/": "HTTP 404"}
+        self.assertEqual(live.dossier_results(dossiers, targets, errors, []),
+                         {"dossiers_verified": ["a"], "dossiers_failed": ["b"]})
+        self.assertEqual(live.dossier_results(dossiers, targets, {}, ["a: missing locale bundle"])["dossiers_failed"], ["a"])
+
+
 if __name__ == "__main__":
     unittest.main()

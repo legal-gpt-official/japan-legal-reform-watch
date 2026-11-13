@@ -182,3 +182,22 @@ def unsupported_facts(english_texts: Iterable[str], local_texts: Iterable[str]) 
             if number >= 2 and number not in en_numbers:
                 problems.append(f"number {number}")
     return sorted(set(problems))
+
+
+def unsupported_fact_locations(
+    english_texts: Iterable[str], located_texts: Iterable[tuple[str, str]]
+) -> list[tuple[str, str, str]]:
+    """Like ``unsupported_facts`` but says WHERE: (fact, field path, text snippet).
+
+    Used by the preflight report so a writer can fix the exact sentence instead
+    of searching a whole translation for "number 12" after a failed CI run.
+    """
+    english = list(english_texts)
+    out: list[tuple[str, str, str]] = []
+    for path, text in located_texts:
+        for fact in unsupported_facts(english, [text]):
+            token = fact.split(" ", 1)[1]
+            at = text.find(token.split("-")[0]) if token else -1
+            start = max(0, at - 40) if at >= 0 else 0
+            out.append((fact, path, text[start:start + 120]))
+    return out

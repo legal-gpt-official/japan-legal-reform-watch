@@ -915,19 +915,36 @@ class Published:
 
 
 def validate_all(
-    explainers: Mapping[str, Mapping[str, Any]], index: OfficialIndex, today: date
+    explainers: Mapping[str, Mapping[str, Any]],
+    index: OfficialIndex,
+    today: date,
+    case_files: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> dict[str, Report]:
-    """Validate every explainer; an item may be covered by one non-decision explainer only."""
+    """Validate every explainer; an item may be covered by one non-decision explainer only.
+
+    With ``case_files`` (``data/explainer_state``), a dossier created after case
+    files existed is also held to its publication gate: its critical legal facts
+    must be confirmed from official sources (``explainer_state.publication_gate``).
+    The gate only adds errors; it can never make an explainer publishable.
+    """
     claimed: dict[str, str] = {}
     for dossier_id in sorted(explainers):
         data = explainers[dossier_id]
         if data.get("status") in ("draft", "published") and isinstance(data.get("related_item_ids"), list):
             for item_id in index.closure(i for i in data["related_item_ids"] if isinstance(i, str)):
                 claimed.setdefault(item_id, dossier_id)
-    return {
+    reports = {
         dossier_id: validate(dossier_id, explainers[dossier_id], index, today, claimed=claimed)
         for dossier_id in sorted(explainers)
     }
+    if case_files is not None:
+        import explainer_state  # local import: explainer_state imports this module
+
+        for dossier_id, report in reports.items():
+            report.errors.extend(
+                explainer_state.publication_gate(dossier_id, explainers[dossier_id], case_files.get(dossier_id))
+            )
+    return reports
 
 
 def published_by_item(
@@ -935,6 +952,7 @@ def published_by_item(
     index: OfficialIndex,
     today: date,
     policy: Mapping[str, str] | None = None,
+    case_files: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> tuple[dict[str, Published], dict[str, Report]]:
     """Item id -> publishable explainer, plus every validation report.
 
@@ -943,7 +961,7 @@ def published_by_item(
     "official records changed" notice until the explainer is re-verified.
     """
     policy = policy or publish_policy()
-    reports = validate_all(explainers, index, today)
+    reports = validate_all(explainers, index, today, case_files)
     by_item: dict[str, Published] = {}
     for dossier_id, report in reports.items():
         data = explainers[dossier_id]
@@ -1304,7 +1322,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(path)
         return 0
     if args.command == "validate":
-        reports = validate_all(explainers, index, today)
+        import explainer_state
+
+        reports = validate_all(explainers, index, today, explainer_state.load_states(args.dir.parent / "explainer_state"))
         policy = publish_policy()
         print("policy: " + ", ".join(f"{c}>={policy[c]}" for c in CATEGORIES))
         wanted = {p.stem for p in args.paths} if args.paths else set(reports)

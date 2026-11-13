@@ -11,7 +11,11 @@
 | `scripts/law_timeline.py` | 公式記録の保守的な関連付け（PR #64 のタイムライン） |
 | `scripts/build_public_pages.py` | 個別ページ `docs/u/<id>/` への解説・タイムラインの描画 |
 | `data/explainer_queue.json` | 解説候補・再確認候補（日次で自動更新） |
-| `.github/workflows/pr-checks.yml` | PR ごとの全テストと解説検証（読み取り専用・秘密情報なし） |
+| `data/explainer_state/<dossier_id>.json` | 案件ファイル：一次資料台帳・構造化した法的事実・保留（BLOCKED等）・次の操作。dossierのPRと一緒に移動する |
+| `data/explainer_pipeline.json` | 工程台帳（自動生成）：dossierごとの現在工程・最終成功工程・PR/CI/Publish/LIVEの実行ID・日次件数 |
+| `scripts/explainer_state.py` / `explainer_sources.py` / `explainer_preflight.py` / `explainer_pipeline.py` | 案件ファイル、一次資料取得、事前検査、工程台帳とスロット計画 |
+| `.github/workflows/explainer-pipeline.yml` | スロット開始10分前と各CI/Publish/LIVE完了時に台帳を更新し、状況Issueを書き換え、失敗した公開工程を回数制限つきで再実行 |
+| `.github/workflows/pr-checks.yml` | PR ごとの事前検査・全テストと解説検証（読み取り専用・秘密情報なし） |
 | `operations/CHATGPT_EXPLAINER_TASK_PROMPT_JA.md` | ChatGPT 等の定期作業に登録するプロンプト |
 
 ## 1. コマンド一覧
@@ -24,9 +28,38 @@ python scripts/explainers.py scaffold <item-id> --id <dossier-id>   # 下書き�
 python scripts/explainers.py validate                 # 全解説の検証（エラーなら exit 1）
 python scripts/explainers.py stamp <dossier-id> --verified-on YYYY-MM-DD   # 再確認の記録
 python scripts/explainers.py preview <dossier-id> --out page.html   # ローカルで表示確認（全セクション表示）
+python scripts/explainer_pipeline.py next              # 次スロットの計画（工程台帳から）
+python scripts/explainer_state.py init <dossier-id> --seed <raw-id> [--queue-id <id>]   # 案件ファイル作成
+python scripts/explainer_state.py hold <dossier-id> --state BLOCKED --reason "..."      # 保留（release で解除）
+python scripts/explainer_state.py validate            # 全案件ファイルと公開ゲート
+python scripts/explainer_sources.py fetch <dossier-id> [--url URL --kind KIND] [--refresh|--force]   # 一次資料取得
+python scripts/explainer_preflight.py check <dossier-id>|--changed-from origin/main   # 事前検査（該当文つき）
+python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang zh-Hans   # 翻訳の同期キー記入
 ```
 
 `--today YYYY-MM-DD` で基準日（JST）を指定できる。
+
+### スロットの進め方：状態管理と自動再開（2026-11-13）
+
+**なぜ必要か（実測）。** 新規dossierは10/29〜11/2に5件/日公開されたが、11/3〜11/12は0〜1件/日（11/6〜11/12の7日間で9件）に落ちた。同期間に運用改善PRが20件以上あり、公開連鎖（CI→マージ→Publish→Pages→LIVE）はLIVE検証25回中23回成功と安定していた。滞留は上流にあった。(1) 案件の進捗がPR本文の自由記述（例：PR #149「STATE: JA_ZH_READY…」）や `operations/resume_*.md` のメモにしかなく、各スロットが状況を読み直していた。PR #98は10/31〜11/8の8日間滞留した。(2) 11/10〜12の解説PRのCI失敗8件中7件は、翻訳が英語にない数値を書いた（5件）、quick_takeの360字超過（1件）、法令番号の書式（1件）という機械的に判定できる誤りで、約60秒の全テストの差分表示でしか分からず、1回ごとにpushと待ちが発生していた。(3) 一次資料が読めず止まった候補を記録する手段（`status: "blocked"`）は一度も使われず、止まった候補を次のスロットが再調査していた。
+
+**仕組み。**
+
+- `data/explainer_state/<dossier_id>.json`（案件ファイル）に、読んだ一次資料（URL・取得日時・SHA-256・HTTP結果・エラー分類・抜粋・e-Gov改正履歴の版）と、法的事実を区分ごとに記録する。区分は `instrument_form`（法案／成立法／公布法令／施行法令／案／ガイドライン）、`promulgation_date`、`effective_date`、`partial_effective_date`、`amended_provisions`、`old_vs_new`、`scope`、`obligation_type`（義務／禁止／努力義務／推奨）、`transitional_measures`、`delegation`、`policy_background`、`business_impact`。各事実は `confirmed`（取得済み公式資料の `source_ids` 必須）・`not_applicable`（理由を記載）・`unconfirmed`・`inference`（`policy_background` と `business_impact` だけに許される）のいずれか。
+- **公開ゲート（緩和なし、追加のみ）。** 2026-11-13以降に作る新規dossierは、案件ファイルの重要区分（`instrument_form`、`promulgation_date`、`effective_date`、`amended_provisions`、`old_vs_new`、`scope`、`obligation_type`、`transitional_measures`、`delegation`）がすべて `confirmed` か `not_applicable` でなければ `published` にできない（PRチェックとページ生成の両方で検査）。`current_stage` が確認済みの `instrument_form` と矛盾してもエラー。BLOCKED/REVIEW_REQUIREDの保留中も公開不可。既存51件は従来どおり（`GRANDFATHERED`）。
+- `data/explainer_pipeline.json`（工程台帳）は `explainer-pipeline.yml` が自動生成する。工程は `RESEARCH_REQUIRED → SOURCES_VERIFIED → EN_READY → JA_ZH_READY → STAMPED_AND_SYNCED → CI_RUNNING → CI_PASSED → MERGED → PAGES_DEPLOYED → LIVE_VERIFIED`。**工程は書き手の申告ではなく証拠から計算する**：ファイル内容をCIと同じ検査にかけた結果、最新head SHAのCI、マージ、マージ後に成功したPublish（Publishは生成docs SHAのPages成功を確認しないと成功しない）、その後に成功したLIVE検証（dossier単位の結果）。台帳は各工程の初回到達日時、保留と設定時のfingerprint、再実行回数だけを保持する。同じ入力で再実行しても同一内容（冪等）。
+- 状況はIssue「Explainer pipeline status (auto-updated)」とActionsのStep Summaryに出る：当日の新規dossier件数（原稿作成＝PR作成、CI_PASSED、MERGED、PAGES_DEPLOYED、LIVE_VERIFIED。既存dossierの更新・運用PR・HTMLページ数は数えない）、直近7日、工程別滞留、CI失敗の工程別件数、PR滞留時間・CI所要時間・マージ→LIVE時間、目標未達の理由、次スロットの計画。
+- マージ後20分たってもPublishが成功していなければPublishを、Pages後15分たってもLIVE検証が成功していなければLIVE検証を、dossierごとに最大3回まで自動で再実行する（実行中なら待つ）。上限に達したら計画に「investigate」として出る。
+
+**各スロット（11/12/13/14/15時。21時は回収と更新）の手順。**
+
+1. 最新mainの `data/explainer_pipeline.json`（またはIssue）を読む。Python可なら `python scripts/explainer_pipeline.py next`。
+2. 計画の上から処理する。`resume`（未完了の最も進んだdossier。前回の成功工程からやり直さずに続ける）→ `investigate` → `repair`（公開中の解説の検証エラー）→ `new`（未着手・未保留の新規候補）→ `update`。`ON HOLD` の案件には手を付けない。
+3. 新規候補は、**ブランチ `explainer/<seed_item_id>` を作って案件ファイルだけを先にpushし、Draft PRを開いて着手を宣言する**（`python scripts/explainer_state.py init <dossier-id> --seed <seed> --queue-id <queue_id>` が研究パケットの公式URLを入れて作る）。同名ブランチが既にあれば他の実行が着手済みなので、そのブランチを再開する。台帳は開いているPRの関連記録を着手済みとして新規候補から外す。
+4. 一次資料は `python scripts/explainer_sources.py fetch <dossier-id>`（URL追加は `--url <URL> --kind <種別>`）で取得する。公式ドメインのみ、リダイレクトも再検査、サイズ上限あり。一時的な失敗（タイムアウト、429、5xx）は合計3回まで再試行し、恒久的な失敗（403・WAF、404、JavaScript必須、画像PDF）は1回記録して以後自動では再試行しない（`--force` で明示的に再試行）。7日以内に取得した資料は再利用し、再取得で内容ハッシュが変われば `changed_since_previous` を立て、その資料を根拠にした事実の再確認を求める。**取得できない資料の内容を推測で補わない。** 公開前に、確認した資料の取得日が `verified_at` より14日以上古ければ事前検査が警告する（施行状況・改正の有無を再確認する）。
+5. 事実を案件ファイルに記録する（引用 `quote` は600字以内）。重要区分が確認できない場合は `python scripts/explainer_state.py hold <dossier-id> --state BLOCKED --reason "<具体的な不足>" [--until date --retry-after YYYY-MM-DD]` で保留し、**別の候補へ移る**。保留は公式記録のfingerprintが変わる（新しい官報・e-Gov記録・国会の状況など）か指定日が来ると自動で解除され、それまで計画に出ない。PRを閉じても台帳が保留を覚えている。
+6. 英語正本 → `python scripts/explainers.py stamp` → 日本語・中国語の全文 → 各言語を英語と照合 → `python scripts/explainer_preflight.py sync-stamps <id> --lang ja --lang zh-Hans`（同期キーを自動で書く。照合済みの言語だけを指定する。内容検査に通らない言語は拒否される）→ `python scripts/explainer_preflight.py check <id>`（エラーは項目と該当文つきで表示）→ push。Pythonが使えない環境では、PRチェックの最初の手順「Dossier preflight」の出力（Step Summary）を見て直す。
+7. 実質的な法的確認と3言語照合が終わったらDraftを解除し `legal-content-verified` を付ける（従来どおり。運用改善PRには付けない）。マージ・Publish・LIVEは自動で進み、台帳に記録される。
 
 ### 日次処理量を増やす運用（2026-10-28 オーナー決定）
 
@@ -270,4 +303,5 @@ fingerprint は、解説の `related_item_ids` から次の範囲（closure）�
 - **重複排除。** `data/explainer_queue.json` の`bill:raw-...`など同一`item_ids`/closureに属する行は同一dossierとして1件だけ計上。main、未マージPR、別ブランチ、`data/explainers/`と照合してから起稿する。旧案件の再確認は更新件数へ分け、新規件数を水増ししない。
 - **公開事実の独立した2つの確認。** `PAGES_DEPLOYED`は必須CI・マージ・Publish成功・最終docsコミットに対するPages deploy成功・EN/JA/zh-Hans HTMLの存在と本文を意味する。`LIVE_VERIFIED`はさらにHTTP 200と新しい3言語の解説タイトルの一致が必要。ChatGPTのDNSが遮断される場合、ネットワークがあるGitHub-hosted runnerの `.github/workflows/verify-live-explainers.yml`（`scripts/verify_live_explainers.py`）で確認し、失敗URLを記録する。ChatGPT側のDNSエラーのみを理由に次の記事の執筆を止めない。この検査は読取専用であり、公開ゲートを緩和しない。
 - **日次の生産目標と優先度。** 11/12/13/14/15時など昼の各定時実行は、一次資料が充足する新規案件を1件以上完了する作業枠とし、21時はCI・Pages・HTTP公開取りこぼし回収枠とする。新規5件/日は目標であり、根拠未確認の法的事実、未同期翻訳、CI失敗を理由に例外を作らない。作業が止まる案件は具体的事実をPRに残し、**同じ調査を再反復せず**別の一次資料が揃う候補に移る。
+- **（2026-11-13）上記の再開点・報告は工程台帳 `data/explainer_pipeline.json` と案件ファイルに置き換えた。** PR本文や `operations/resume_*.md` の自由記述を再開点にしない（「スロットの進め方」参照）。
 - **報告と再開点。** 新規dossierの `CI_PASSED / MERGED / PAGES_DEPLOYED / LIVE_VERIFIED` を区別し、いずれも日時・対象head SHA・workflow run IDを残す。Pages成功の古い実行IDだけを根拠に最新デプロイ済とせず、最終docs SHAに対応するものを確認する。0件の時は調査説明だけで終わらず、具体的なブランチコミットか、PR上の修復コミットと次工程を残す。

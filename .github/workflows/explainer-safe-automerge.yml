@@ -48,8 +48,10 @@ jobs:
               const files = await github.paginate(github.rest.pulls.listFiles, {owner, repo, pull_number:pr.number, per_page:100});
               if (!files.some(f => f.filename.startsWith('data/explainers/'))) continue;
               // Do not auto-merge mixed operational changes or non-explainer data.
+              // A dossier's case file (data/explainer_state) travels with it.
               if (files.some(f => !f.filename.endsWith('.json') ||
-                  (!f.filename.startsWith('data/explainers/') && !f.filename.startsWith('data/explainer_locales/')))) continue;
+                  (!f.filename.startsWith('data/explainers/') && !f.filename.startsWith('data/explainer_locales/') &&
+                   !f.filename.startsWith('data/explainer_state/')))) continue;
               const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {owner, repo, head_sha:pr.head.sha, event:'pull_request', per_page:100});
               const checks = runs.filter(r => r.name === 'Pull request checks' && r.head_sha === pr.head.sha);
               checks.sort((a,b) => new Date(b.created_at)-new Date(a.created_at));
