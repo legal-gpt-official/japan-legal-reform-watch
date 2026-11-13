@@ -235,9 +235,17 @@ def automerge_eligible_files(files: Iterable[Mapping[str, Any]]) -> bool:
 # ------------------------------------------------------------------ reconcile
 
 
-def _cycles(pulls: Sequence[Mapping[str, Any]]) -> dict[str, tuple[Mapping[str, Any], dict[str, bool]]]:
-    """dossier id -> (current PR, file flags). An open PR wins over merged ones; newest wins otherwise."""
+def _cycles(
+    pulls: Sequence[Mapping[str, Any]],
+) -> tuple[dict[str, tuple[Mapping[str, Any], dict[str, bool]]], dict[str, Mapping[str, Any]]]:
+    """(dossier id -> (current PR, file flags), dossier id -> merged PR that first added its English).
+
+    The current PR drives the stage: an open PR wins over merged ones, newest wins otherwise.
+    The introducing PR drives the NEW-dossier counts, so a later update PR to the same
+    dossier neither turns it into an "update" nor moves its first-publication date.
+    """
     best: dict[str, tuple[Mapping[str, Any], dict[str, bool]]] = {}
+    introduced: dict[str, Mapping[str, Any]] = {}
 
     def key(pr: Mapping[str, Any]) -> tuple:
         return (pr.get("state") == "open", str(pr.get("merged_at") or pr.get("created_at") or ""), int(pr.get("number") or 0))
@@ -260,7 +268,22 @@ def _cycles(pulls: Sequence[Mapping[str, Any]]) -> dict[str, tuple[Mapping[str, 
         for dossier, fl in flags.items():
             if dossier not in best or key(pr) > key(best[dossier][0]):
                 best[dossier] = (pr, fl)
-    return best
+            if fl["en_added"] and pr.get("merged_at"):
+                old = introduced.get(dossier)
+                if old is None or str(pr["merged_at"]) < str(old.get("merged_at")):
+                    introduced[dossier] = pr
+    return best, introduced
+
+
+def first_live_after(live_runs: Sequence[Mapping[str, Any]], done: datetime | None, dossier_id: str,
+                     verified_at: str | None) -> Mapping[str, Any] | None:
+    if done is None:
+        return None
+    for run in sorted(live_runs, key=lambda r: (str(r.get("created_at")), int(r.get("id") or 0))):
+        if run.get("status") == "completed" and run.get("conclusion") == "success" \
+                and (_ts(run.get("created_at")) or done) >= done and live_covers(run, dossier_id, verified_at):
+            return run
+    return None
 
 
 def reconcile(
@@ -288,14 +311,16 @@ def reconcile(
     publish_busy = any(r.get("status") in ("queued", "in_progress", "waiting", "requested") for r in publish_runs)
     live_busy = any(r.get("status") in ("queued", "in_progress", "waiting", "requested") for r in live_runs)
 
-    cycles = _cycles(snapshot.get("pulls") or [])
+    cycles, introduced = _cycles(snapshot.get("pulls") or [])
     dossiers: dict[str, Any] = {}
     actions: list[dict[str, Any]] = []
     ids = set(cycles) | set(prev_dossiers) | {d for d, s in main_states.items() if s.get("hold")}
     for dossier_id in sorted(ids):
         prev = prev_dossiers.get(dossier_id) or {}
         pr, flags = cycles.get(dossier_id, (None, None))
-        if flags is None:
+        if dossier_id in introduced or prev.get("introduced"):
+            kind = "new"
+        elif flags is None:
             kind = prev.get("kind") or "new"
         elif flags["en_added"]:
             kind = "new"
@@ -373,11 +398,7 @@ def reconcile(
                 entry["publish"] = {"run_id": publish.get("id"), "completed_at": publish.get("updated_at")}
                 history.setdefault("PAGES_DEPLOYED", publish.get("updated_at"))
                 verified_at = (main_explainers.get(dossier_id) or {}).get("verified_at")
-                done = _ts(publish.get("updated_at"))
-                live = next((r for r in sorted(live_runs, key=lambda r: (str(r.get("created_at")), int(r.get("id") or 0)))
-                             if r.get("status") == "completed" and r.get("conclusion") == "success"
-                             and done and (_ts(r.get("created_at")) or done) >= done
-                             and live_covers(r, dossier_id, verified_at)), None)
+                live = first_live_after(live_runs, _ts(publish.get("updated_at")), dossier_id, verified_at)
                 if live:
                     stage = "LIVE_VERIFIED"
                     entry["live"] = {"run_id": live.get("id"), "completed_at": live.get("updated_at")}
@@ -387,6 +408,28 @@ def reconcile(
             top = min(RANK.get(stage, 0), RANK["STAMPED_AND_SYNCED"])
             for s in STAGES[: top + 1]:
                 history.setdefault(s, history.get("DRAFTED") if s == "RESEARCH_REQUIRED" and history.get("DRAFTED") else _iso(now))
+        intro_pr = introduced.get(dossier_id)
+        intro: dict[str, Any] = dict(prev.get("introduced") or {})
+        if intro_pr and intro.get("pr") not in (None, intro_pr.get("number")):
+            intro = {}
+        if intro_pr:
+            merged = _ts(intro_pr.get("merged_at"))
+            ici = ci_facts(intro_pr, ci_runs)
+            pub = first_success_after(publish_runs, merged)
+            lv = first_live_after(live_runs, _ts((pub or {}).get("updated_at")), dossier_id,
+                                  (main_explainers.get(dossier_id) or {}).get("verified_at")) if pub else None
+            facts = {
+                "pr": intro_pr.get("number"), "drafted_at": intro_pr.get("created_at"),
+                "ci_passed_at": ici.get("completed_at") if ici.get("conclusion") == "success" else None,
+                "merged_at": intro_pr.get("merged_at"),
+                "pages_at": (pub or {}).get("updated_at"), "live_at": (lv or {}).get("updated_at"),
+            }
+            for k, v in facts.items():
+                if v is not None and intro.get(k) is None:
+                    intro[k] = v
+        if intro:
+            entry["introduced"] = {k: intro[k] for k in ("pr", "drafted_at", "ci_passed_at", "merged_at", "pages_at", "live_at")
+                                   if intro.get(k) is not None}
         entry["stage"] = stage
         best = max([RANK.get(prev.get("last_success_stage"), -1), RANK.get(stage, 0)])
         entry["last_success_stage"] = STAGES[best] if best >= 0 else stage
@@ -525,15 +568,24 @@ def daily_counts(dossiers: Mapping[str, Mapping[str, Any]], today: date) -> dict
                   ("pages_deployed", "PAGES_DEPLOYED"), ("live_verified", "LIVE_VERIFIED"))
     days = [(today - timedelta(days=n)).isoformat() for n in range(WINDOW_DAYS - 1, -1, -1)]
     out: dict[str, Any] = {d: {"new": {m: 0 for m, _ in milestones}, "updates_merged": 0} for d in days}
+    intro_keys = {"drafted": "drafted_at", "ci_passed": "ci_passed_at", "merged": "merged_at",
+                  "pages_deployed": "pages_at", "live_verified": "live_at"}
     for entry in dossiers.values():
+        intro = entry.get("introduced")
         history = entry.get("stage_history") or {}
         for label, stage in milestones:
-            day = jst_day(history.get(stage))
+            # A published dossier counts as new on the days ITS introducing PR reached each
+            # milestone; an unmerged new dossier counts from its own stage history.
+            when = intro.get(intro_keys[label]) if intro else (history.get(stage) if entry.get("kind") == "new" else None)
+            day = jst_day(when)
             if day in out:
-                if entry.get("kind") == "new":
-                    out[day]["new"][label] += 1
-                elif label == "merged":
-                    out[day]["updates_merged"] += 1
+                out[day]["new"][label] += 1
+        # The current cycle is an update when it is not the PR that introduced the dossier.
+        if entry.get("pr_state") == "merged" and entry.get("merged_at") and (
+                entry.get("kind") != "new" or (intro and intro.get("pr") != entry.get("pr"))):
+            day = jst_day(entry["merged_at"])
+            if day in out:
+                out[day]["updates_merged"] += 1
     return out
 
 
