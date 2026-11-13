@@ -121,6 +121,7 @@ def content_stage(
     index: ex.OfficialIndex,
     main_explainers: Mapping[str, Mapping[str, Any]],
     today: date,
+    seed: str | None = None,
 ) -> tuple[str, list[str]]:
     """Highest pre-CI stage the dossier's files reach, with the problems blocking the next one.
 
@@ -140,7 +141,7 @@ def content_stage(
             return "RESEARCH_REQUIRED", blockers
     elif es.requires_case_file(dossier_id):
         return "RESEARCH_REQUIRED", [
-            f"no case file: python scripts/explainer_state.py init {dossier_id} --seed <raw-id>, "
+            f"no case file: python scripts/explainer_state.py init {dossier_id} --seed {seed or '<raw-id>'}, "
             "then confirm the critical facts from official sources"
         ]
     en = _json(en_text)
@@ -351,6 +352,7 @@ def reconcile(
             stage, blockers = content_stage(
                 dossier_id, en_text=en_text, bundle=bundle, state=state, index=index,
                 main_explainers={k: v for k, v in main_explainers.items() if k != dossier_id}, today=today,
+                seed=seed,
             )
             ci = entry["ci"]
             if stage == "STAMPED_AND_SYNCED" and ci.get("run_id"):
