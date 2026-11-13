@@ -47,7 +47,7 @@
     "paragraphs": [
       "The underlying amendment to the Trade Insurance Act formed part of the industrial-competitiveness reform legislation passed on 29 May 2026, according to METI's official consultation overview. That overview explicitly connected the new underwriting category with government-to-government arrangements judged particularly necessary for Japanese supply-chain resilience.",
       "On 22 June 2026, METI opened consultation on five connected instruments: amendments to the Trade Insurance Act enforcement regulation, amendments to NEXI's accounting regulation, a ministerial notice designating an arrangement, a special-underwriting business guideline, and special-underwriting standards. The consultation closed on 21 July 2026.",
-      "The e-Gov law-update record identifies METI Ordinance No. 64 as promulgated and effective on 31 July 2026. The consultation's forecast of that date was not itself promulgation. The final text and any consultation-result modifications still need independent verification before the draft can be released."
+      "The e-Gov consultation results published on 31 July 2026 identify five promulgated instruments: METI Ordinances Nos. 64 and 65, and METI Notices Nos. 96, 97 and 98. Two submissions were received. METI reported no changes in response to comments, while noting technical revisions without substantive effect. The e-Gov law-update record identifies Ordinance No. 64 as effective on 31 July 2026. These records establish promulgation and consultation outcome, but do not by themselves establish the detailed wording of each final provision."
     ],
     "source_ids": [
       "s1",
@@ -68,13 +68,19 @@
         "source_ids": [
           "s3"
         ]
+      },
+      {
+        "text": "On 31 July 2026 METI published consultation results identifying two submitted opinions, no changes in response to opinions, and non-substantive technical revisions to the five instruments.",
+        "source_ids": [
+          "s4"
+        ]
       }
     ],
     "expected": [
       "Before publication, compare the final ordinance and related ministerial notices against the June draft, and identify any transitional provisions."
     ],
     "uncertainties": [
-      "The complete final ordinance, related final notices and consultation results have not yet been inspected in this drafting pass; the draft's details cannot be represented as confirmed final requirements.",
+      "The results notice identifies the five promulgated instruments and the absence of substantive consultation-driven changes, but the complete final operative text of each instrument and any transitional provisions still require article-by-article inspection before publication.",
       "Whether the 2025 Japan–US memorandum is designated in the final notice and whether any exceptions or transitional rules apply remains to be confirmed."
     ]
   },
@@ -151,10 +157,18 @@
       "title": "Trade Insurance Act Enforcement Regulation, amendment by METI Ordinance No. 64",
       "url": "https://elaws.e-gov.go.jp/document?lawid=413M60000400105_20260731_508M60000400064",
       "accessed_at": "2026-11-13"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Digital Agency / METI",
+      "title": "Results of consultation on five Trade Insurance Act implementing instruments (31 July 2026)",
+      "url": "https://public-comment.e-gov.go.jp/pcm/1040?CLASSNAME=PCM1040&Mode=1&id=595126106",
+      "accessed_at": "2026-11-13"
     }
   ],
   "verified_at": "2026-11-13",
   "source_fingerprint": "sha256:936ef11d24c8507130a8fa5e41cdd686",
   "author": "chatgpt",
-  "review_notes": "DRAFT ONLY. Official June consultation and three-page METI overview were read. e-Gov law-update metadata indicates promulgation and effectiveness but the final operative ordinance, results notice and related notices were not retrievable for text-level comparison. Do not mark AI-checked or publish until verified and JA/ZH are fully aligned."
+  "review_notes": "DRAFT ONLY. The 31 July 2026 official e-Gov results notice has now been inspected: five final instrument numbers, two opinions, no opinion-driven amendments, technical-only revisions. Final operative text, transitional provisions, and alignment of JA/ZH translations remain unverified. Do not mark AI-checked or publish yet."
 }
