@@ -68,6 +68,38 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "explainer:agrivoltaic-farmland-permits-2026",
+      "kind": "update",
+      "explainer_id": "agrivoltaic-farmland-permits-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-29",
+      "watch_pages": [
+        "https://www.maff.go.jp/j/shokusan/renewable/energy/houritu.html",
+        "https://www.maff.go.jp/j/shokusan/renewable/energy/index.html"
+      ],
+      "record_count": 4,
+      "item_ids": [
+        "raw-029a319ce5243d22",
+        "raw-02e20eb5225a2907",
+        "raw-d33f5a28b7d14dca",
+        "raw-e972a054a0395ad5"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:1a42c0eb7f1a751b8a08255778beeec4",
+      "first_queued_on": "2026-11-13"
+    },
+    {
       "queue_id": "explainer:appi-2026-amendment",
       "kind": "update",
       "explainer_id": "appi-2026-amendment",
@@ -973,6 +1005,27 @@
       "first_queued_on": "2026-11-01"
     },
     {
+      "queue_id": "draft:raw-f150fec31e34aa29",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-f150fec31e34aa29"
+      ],
+      "areas": [
+        "Data / Privacy / AI"
+      ],
+      "title_ja": "個人情報の保護に関する法律施行規則第八条第三項第一号及び第二号並びに第四十四条第三項並びに行政手続における特定の個人を識別するための番号の利用等に関する法律第二十九条の四第一項及び第二項に基づく特定個人情報の漏えい等に関する報告等に関する規則第三条第三項に規定する個人情報保護委員会が別に定める場合及びその方法を定める件の一部を改正する告示（案）に関する意見募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-07-17",
+      "suggested_seed_item_id": "raw-f150fec31e34aa29",
+      "first_queued_on": "2026-11-13"
+    },
+    {
       "queue_id": "draft:raw-ff15fcfddb634b01",
       "kind": "new",
       "explainer_id": null,
@@ -1065,31 +1118,6 @@
       "newest_record_first_seen": "2026-10-16",
       "suggested_seed_item_id": "raw-2c967ad9dce42ad4",
       "first_queued_on": "2026-10-30"
-    },
-    {
-      "queue_id": "instrument:令和八年政令第三百号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft",
-        "instrument_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 3,
-      "item_ids": [
-        "raw-357b583af33ff561",
-        "raw-609d9ceecca25409",
-        "raw-d4f75cfa0cac9439"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "農業近代化資金融通法施行令の一部を改正する政令",
-      "stage": "In Force",
-      "newest_record_first_seen": "2026-10-14",
-      "suggested_seed_item_id": "raw-357b583af33ff561",
-      "first_queued_on": "2026-10-31"
     },
     {
       "queue_id": "instrument:令和八年政令第二百八十二号",
