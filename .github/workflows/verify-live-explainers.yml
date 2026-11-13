@@ -52,7 +52,19 @@ jobs:
             --days 2 \
             --dossiers "${{ github.event.inputs.dossiers || '' }}" \
             --attempts 12 \
-            --delay 20
+            --delay 20 \
+            --report live-verification.json
+
+      # Per-dossier result for explainer-pipeline.yml (LIVE_VERIFIED is
+      # recorded only for dossiers whose every EN/JA/ZH URL passed).
+      - name: Upload per-dossier LIVE result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-verification-report
+          path: live-verification.json
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Publish a diagnostic note for failures
         if: failure()

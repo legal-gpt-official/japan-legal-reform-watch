@@ -176,12 +176,26 @@ def verify(targets: list[tuple[str, tuple[str, ...] | str]], attempts: int, dela
     return errors
 
 
+def dossier_results(dossiers: list[dict], targets: list, errors: dict[str, str], failures: list[str]) -> dict:
+    """Per-dossier outcome: verified only when every EN/JA/ZH URL of every related item passed."""
+    by_raw = {raw: d["dossier_id"] for d in dossiers for raw in d.get("related_item_ids") or []}
+    urls: dict[str, list[str]] = {d["dossier_id"]: [] for d in dossiers}
+    for url, _ in targets:
+        match = re.search(r"/u/(raw-[a-f0-9]{16})/", url)
+        if match and match.group(1) in by_raw:
+            urls[by_raw[match.group(1)]].append(url)
+    local_bad = {m.split(":", 1)[0] for m in failures}
+    verified = sorted(d for d, u in urls.items() if u and d not in local_bad and not any(x in errors for x in u))
+    return {"dossiers_verified": verified, "dossiers_failed": sorted(set(urls) - set(verified))}
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--days", type=int, default=2, help="JST verified_at age (default: 2 days)")
     p.add_argument("--dossiers", default="", help="optional comma-separated dossier IDs")
     p.add_argument("--attempts", type=int, default=6)
     p.add_argument("--delay", type=int, default=15)
+    p.add_argument("--report", default="", help="optional JSON path for per-dossier results")
     args = p.parse_args(argv)
     if args.days < 0 or not 1 <= args.attempts <= 15 or not 0 <= args.delay <= 120:
         p.error("invalid days, attempts or delay")
@@ -200,6 +214,10 @@ def main(argv: list[str] | None = None) -> int:
         "failed_http": len(errors), "failed_local": len(failures),
     }
     print("LIVE_CHECK_SUMMARY " + json.dumps(summary))
+    if args.report:
+        result = dossier_results(dossiers, targets, errors, failures)
+        result["run_id"] = __import__("os").environ.get("GITHUB_RUN_ID")
+        Path(args.report).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     if "GITHUB_STEP_SUMMARY" in __import__("os").environ:
         with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
             out.write("### Live explainer verification\n")

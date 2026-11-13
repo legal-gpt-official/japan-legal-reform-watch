@@ -23,6 +23,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          # The PR merge commit and its first parent (the base it merges into),
+          # so the dossier preflight can list exactly the files this PR changes.
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -35,6 +39,15 @@ jobs:
 
       - name: Compile pipeline scripts
         run: python -m py_compile scripts/*.py
+
+      # Fast, actionable dossier gate (seconds, before the full suite): prints the
+      # field and sentence to fix. The same rules also run in the tests below.
+      - name: Dossier preflight (changed explainers)
+        if: github.event_name == 'pull_request'
+        run: python scripts/explainer_preflight.py check --changed-from HEAD^1
+
+      - name: Validate dossier case files
+        run: python scripts/explainer_state.py validate
 
       - name: Run offline regression tests
         run: python -m unittest discover -s tests
