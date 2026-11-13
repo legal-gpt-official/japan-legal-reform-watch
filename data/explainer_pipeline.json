@@ -91,11 +91,7 @@
         "run_id": 42444755226,
         "completed_at": "2026-11-08T03:57:23Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-10-31T00:59:46Z",
@@ -105,12 +101,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "antibiotic-supply-security-plans-2026-ordinance": {
       "dossier_id": "antibiotic-supply-security-plans-2026-ordinance",
@@ -250,11 +246,7 @@
         "run_id": 42159985368,
         "completed_at": "2026-11-06T04:02:46Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-06T02:06:14Z",
@@ -264,12 +256,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "dc-pension-digital-procedures-2026": {
       "dossier_id": "dc-pension-digital-procedures-2026",
@@ -304,11 +296,7 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-01T01:00:39Z",
@@ -318,12 +306,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "eia-repowering-thresholds-2026-order": {
       "dossier_id": "eia-repowering-thresholds-2026-order",
@@ -462,11 +450,7 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-01T01:00:39Z",
@@ -476,12 +460,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
@@ -517,11 +501,7 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-10-31T01:06:15Z",
@@ -531,12 +511,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "high-pressure-gas-qualification-cards-2026": {
       "dossier_id": "high-pressure-gas-qualification-cards-2026",
@@ -573,11 +553,7 @@
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-02T01:24:46Z",
@@ -587,12 +563,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "inhabitant-tax-inflation-relief-2026-bill": {
       "dossier_id": "inhabitant-tax-inflation-relief-2026-bill",
@@ -684,11 +660,7 @@
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-02T01:24:46Z",
@@ -698,12 +670,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "jogmec-2026-october-bill": {
       "dossier_id": "jogmec-2026-october-bill",
@@ -841,11 +813,7 @@
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-02T01:24:46Z",
@@ -855,12 +823,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "national-health-insurance-child-levy-2026-draft": {
       "dossier_id": "national-health-insurance-child-levy-2026-draft",
@@ -895,11 +863,7 @@
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-02T01:24:46Z",
@@ -909,12 +873,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "nisa-government-bond-exemption-2026-bill": {
       "dossier_id": "nisa-government-bond-exemption-2026-bill",
@@ -1000,11 +964,7 @@
         "run_id": 41984911628,
         "completed_at": "2026-11-05T07:08:05Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-05T03:18:02Z",
@@ -1014,12 +974,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "osh-skin-hazard-chemicals-2026-draft": {
       "dossier_id": "osh-skin-hazard-chemicals-2026-draft",
@@ -1054,11 +1014,7 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-01T01:00:39Z",
@@ -1068,12 +1024,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "social-welfare-local-support-rules-2026": {
       "dossier_id": "social-welfare-local-support-rules-2026",
@@ -1108,11 +1064,7 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-01T01:00:39Z",
@@ -1122,12 +1074,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "telecom-interconnection-cost-model-2026": {
       "dossier_id": "telecom-interconnection-cost-model-2026",
@@ -1213,11 +1165,7 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-01T01:00:39Z",
@@ -1227,12 +1175,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "trade-insurance-special-underwriting-2026": {
       "dossier_id": "trade-insurance-special-underwriting-2026",
@@ -1363,11 +1311,7 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-10-31T01:06:15Z",
@@ -1377,12 +1321,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "working-tax-social-insurance-relief-2026-bill": {
       "dossier_id": "working-tax-social-insurance-relief-2026-bill",
@@ -1418,11 +1362,7 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-10-31T01:06:15Z",
@@ -1432,12 +1372,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     },
     "youth-harmful-advertising-platforms-2026": {
       "dossier_id": "youth-harmful-advertising-platforms-2026",
@@ -1472,11 +1412,7 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
-      "live": {
-        "run_id": 43515442178,
-        "completed_at": "2026-11-13T21:59:31Z"
-      },
-      "stage": "LIVE_VERIFIED",
+      "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-10-31T01:06:15Z",
@@ -1486,12 +1422,12 @@
         "LIVE_VERIFIED": "2026-11-13T21:59:31Z"
       },
       "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
+      "next_action": "LIVE verification pending: the pipeline re-dispatches it if it has not succeeded within 15 minutes.",
       "dispatches": {
         "live": 3
       },
-      "updated_at": "2026-11-13T22:00:31Z",
-      "run_id": "43515484314"
+      "updated_at": "2026-11-13T22:06:01Z",
+      "run_id": "43516295296"
     }
   },
   "daily": {
