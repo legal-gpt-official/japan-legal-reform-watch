@@ -223,7 +223,9 @@ def live_covers(run: Mapping[str, Any], dossier_id: str, verified_at: str | None
     day = jst_day(run.get("created_at"))
     if not day or not verified_at:
         return False
-    return verified_at >= (date.fromisoformat(day) - timedelta(days=LIVE_WINDOW_DAYS)).isoformat()
+    # Only the version stamped by then can have been checked: a later re-stamp gets no
+    # credit from an earlier run (its content may differ), so history is never back-dated.
+    return (date.fromisoformat(day) - timedelta(days=LIVE_WINDOW_DAYS)).isoformat() <= verified_at <= day
 
 
 def automerge_eligible_files(files: Iterable[Mapping[str, Any]]) -> bool:
@@ -399,6 +401,12 @@ def reconcile(
                 history.setdefault("PAGES_DEPLOYED", publish.get("updated_at"))
                 verified_at = (main_explainers.get(dossier_id) or {}).get("verified_at")
                 live = first_live_after(live_runs, _ts(publish.get("updated_at")), dossier_id, verified_at)
+                # A per-dossier LIVE report is read only by the run its LIVE workflow triggers;
+                # keep that evidence while it postdates this cycle's Publish.
+                prev_live = prev.get("live") or {}
+                if live is None and _ts(prev_live.get("completed_at")) and \
+                        _ts(prev_live["completed_at"]) >= _ts(publish.get("updated_at")):
+                    live = {"id": prev_live.get("run_id"), "updated_at": prev_live["completed_at"]}
                 if live:
                     stage = "LIVE_VERIFIED"
                     entry["live"] = {"run_id": live.get("id"), "completed_at": live.get("updated_at")}
