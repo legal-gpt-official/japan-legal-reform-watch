@@ -5,7 +5,7 @@
   "dossiers": {
     "agricultural-modernisation-loan-order-300-2026": {
       "dossier_id": "agricultural-modernisation-loan-order-300-2026",
-      "kind": "update",
+      "kind": "new",
       "queue_id": null,
       "seed_item_id": "raw-357b583af33ff561",
       "related_item_ids": [
@@ -43,6 +43,14 @@
       "live": {
         "run_id": 43286983316,
         "completed_at": "2026-11-12T19:08:13Z"
+      },
+      "introduced": {
+        "pr": 144,
+        "drafted_at": "2026-11-12T13:37:21Z",
+        "ci_passed_at": "2026-11-12T13:42:35Z",
+        "merged_at": "2026-11-12T13:42:44Z",
+        "pages_at": "2026-11-12T13:44:12Z",
+        "live_at": "2026-11-12T13:57:40Z"
       },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -146,6 +154,14 @@
         "run_id": 42993184303,
         "completed_at": "2026-11-11T09:12:43Z"
       },
+      "introduced": {
+        "pr": 129,
+        "drafted_at": "2026-11-11T08:41:23Z",
+        "ci_passed_at": "2026-11-11T08:45:43Z",
+        "merged_at": "2026-11-11T09:10:49Z",
+        "pages_at": "2026-11-11T09:12:11Z",
+        "live_at": "2026-11-11T09:12:43Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -162,7 +178,7 @@
     },
     "building-pfas-drinking-water-tests-2026-draft": {
       "dossier_id": "building-pfas-drinking-water-tests-2026-draft",
-      "kind": "update",
+      "kind": "new",
       "queue_id": null,
       "seed_item_id": "raw-2632b152e1b19b63",
       "related_item_ids": [
@@ -198,6 +214,14 @@
       "live": {
         "run_id": 43221490164,
         "completed_at": "2026-11-12T12:50:17Z"
+      },
+      "introduced": {
+        "pr": 131,
+        "drafted_at": "2026-11-11T09:15:59Z",
+        "ci_passed_at": "2026-11-11T09:17:22Z",
+        "merged_at": "2026-11-11T09:17:43Z",
+        "pages_at": "2026-11-11T09:19:14Z",
+        "live_at": "2026-11-11T09:20:05Z"
       },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -245,6 +269,13 @@
       "publish": {
         "run_id": 42159985368,
         "completed_at": "2026-11-06T04:02:46Z"
+      },
+      "introduced": {
+        "pr": 111,
+        "drafted_at": "2026-11-06T02:06:14Z",
+        "ci_passed_at": "2026-11-06T04:00:45Z",
+        "merged_at": "2026-11-06T04:01:21Z",
+        "pages_at": "2026-11-06T04:02:46Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -295,6 +326,13 @@
       "publish": {
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
+      },
+      "introduced": {
+        "pr": 100,
+        "drafted_at": "2026-11-01T01:00:39Z",
+        "ci_passed_at": "2026-11-01T01:01:54Z",
+        "merged_at": "2026-11-01T01:02:25Z",
+        "pages_at": "2026-11-01T01:03:48Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -351,6 +389,14 @@
         "run_id": 42988234312,
         "completed_at": "2026-11-11T08:36:05Z"
       },
+      "introduced": {
+        "pr": 127,
+        "drafted_at": "2026-11-11T08:30:49Z",
+        "ci_passed_at": "2026-11-11T08:33:38Z",
+        "merged_at": "2026-11-11T08:33:53Z",
+        "pages_at": "2026-11-11T08:35:17Z",
+        "live_at": "2026-11-11T08:36:05Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -367,7 +413,7 @@
     },
     "food-consumption-tax-temporary-cut-2026-bill": {
       "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
-      "kind": "update",
+      "kind": "new",
       "queue_id": null,
       "seed_item_id": "raw-bde3c2d447cd0b2f",
       "related_item_ids": [
@@ -402,6 +448,14 @@
       "live": {
         "run_id": 42575428018,
         "completed_at": "2026-11-09T06:49:42Z"
+      },
+      "introduced": {
+        "pr": 99,
+        "drafted_at": "2026-10-31T01:06:15Z",
+        "ci_passed_at": "2026-10-31T01:16:27Z",
+        "merged_at": "2026-10-31T01:16:52Z",
+        "pages_at": "2026-10-31T01:18:16Z",
+        "live_at": "2026-11-09T06:49:42Z"
       },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -449,6 +503,13 @@
       "publish": {
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
+      },
+      "introduced": {
+        "pr": 100,
+        "drafted_at": "2026-11-01T01:00:39Z",
+        "ci_passed_at": "2026-11-01T01:01:54Z",
+        "merged_at": "2026-11-01T01:02:25Z",
+        "pages_at": "2026-11-01T01:03:48Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -501,6 +562,13 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
+      "introduced": {
+        "pr": 99,
+        "drafted_at": "2026-10-31T01:06:15Z",
+        "ci_passed_at": "2026-10-31T01:16:27Z",
+        "merged_at": "2026-10-31T01:16:52Z",
+        "pages_at": "2026-10-31T01:18:16Z"
+      },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -552,6 +620,13 @@
       "publish": {
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
+      },
+      "introduced": {
+        "pr": 102,
+        "drafted_at": "2026-11-02T01:24:46Z",
+        "ci_passed_at": "2026-11-02T01:25:55Z",
+        "merged_at": "2026-11-02T01:26:02Z",
+        "pages_at": "2026-11-02T01:27:30Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -609,6 +684,14 @@
         "run_id": 42985888705,
         "completed_at": "2026-11-11T08:18:11Z"
       },
+      "introduced": {
+        "pr": 125,
+        "drafted_at": "2026-11-11T02:57:21Z",
+        "ci_passed_at": "2026-11-11T08:16:04Z",
+        "merged_at": "2026-11-11T08:16:16Z",
+        "pages_at": "2026-11-11T08:17:39Z",
+        "live_at": "2026-11-11T08:18:11Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -659,6 +742,13 @@
       "publish": {
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
+      },
+      "introduced": {
+        "pr": 102,
+        "drafted_at": "2026-11-02T01:24:46Z",
+        "ci_passed_at": "2026-11-02T01:25:55Z",
+        "merged_at": "2026-11-02T01:26:02Z",
+        "pages_at": "2026-11-02T01:27:30Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -730,7 +820,7 @@
     },
     "lithium-battery-waste-fire-standards-2026": {
       "dossier_id": "lithium-battery-waste-fire-standards-2026",
-      "kind": "update",
+      "kind": "new",
       "queue_id": null,
       "seed_item_id": "raw-4affbbedc8612bb8",
       "related_item_ids": [
@@ -765,6 +855,14 @@
       "live": {
         "run_id": 42987047633,
         "completed_at": "2026-11-11T08:27:10Z"
+      },
+      "introduced": {
+        "pr": 102,
+        "drafted_at": "2026-11-02T01:24:46Z",
+        "ci_passed_at": "2026-11-02T01:25:55Z",
+        "merged_at": "2026-11-02T01:26:02Z",
+        "pages_at": "2026-11-02T01:27:30Z",
+        "live_at": "2026-11-09T06:49:42Z"
       },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -812,6 +910,13 @@
       "publish": {
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
+      },
+      "introduced": {
+        "pr": 102,
+        "drafted_at": "2026-11-02T01:24:46Z",
+        "ci_passed_at": "2026-11-02T01:25:55Z",
+        "merged_at": "2026-11-02T01:26:02Z",
+        "pages_at": "2026-11-02T01:27:30Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -862,6 +967,13 @@
       "publish": {
         "run_id": 41372467432,
         "completed_at": "2026-11-02T01:27:30Z"
+      },
+      "introduced": {
+        "pr": 102,
+        "drafted_at": "2026-11-02T01:24:46Z",
+        "ci_passed_at": "2026-11-02T01:25:55Z",
+        "merged_at": "2026-11-02T01:26:02Z",
+        "pages_at": "2026-11-02T01:27:30Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -917,6 +1029,14 @@
         "run_id": 42988772616,
         "completed_at": "2026-11-11T08:40:00Z"
       },
+      "introduced": {
+        "pr": 128,
+        "drafted_at": "2026-11-11T08:36:29Z",
+        "ci_passed_at": "2026-11-11T08:37:29Z",
+        "merged_at": "2026-11-11T08:37:48Z",
+        "pages_at": "2026-11-11T08:39:27Z",
+        "live_at": "2026-11-11T08:40:00Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -963,6 +1083,13 @@
       "publish": {
         "run_id": 41984911628,
         "completed_at": "2026-11-05T07:08:05Z"
+      },
+      "introduced": {
+        "pr": 107,
+        "drafted_at": "2026-11-05T03:18:02Z",
+        "ci_passed_at": "2026-11-05T07:05:27Z",
+        "merged_at": "2026-11-05T07:06:32Z",
+        "pages_at": "2026-11-05T07:08:05Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -1014,6 +1141,13 @@
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
       },
+      "introduced": {
+        "pr": 100,
+        "drafted_at": "2026-11-01T01:00:39Z",
+        "ci_passed_at": "2026-11-01T01:01:54Z",
+        "merged_at": "2026-11-01T01:02:25Z",
+        "pages_at": "2026-11-01T01:03:48Z"
+      },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -1063,6 +1197,13 @@
       "publish": {
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
+      },
+      "introduced": {
+        "pr": 100,
+        "drafted_at": "2026-11-01T01:00:39Z",
+        "ci_passed_at": "2026-11-01T01:01:54Z",
+        "merged_at": "2026-11-01T01:02:25Z",
+        "pages_at": "2026-11-01T01:03:48Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -1118,6 +1259,14 @@
         "run_id": 42879144165,
         "completed_at": "2026-11-10T18:50:09Z"
       },
+      "introduced": {
+        "pr": 124,
+        "drafted_at": "2026-11-10T01:58:04Z",
+        "ci_passed_at": "2026-11-10T15:45:02Z",
+        "merged_at": "2026-11-10T15:45:27Z",
+        "pages_at": "2026-11-10T15:46:51Z",
+        "live_at": "2026-11-10T18:50:09Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -1164,6 +1313,13 @@
       "publish": {
         "run_id": 41259365907,
         "completed_at": "2026-11-01T01:03:48Z"
+      },
+      "introduced": {
+        "pr": 100,
+        "drafted_at": "2026-11-01T01:00:39Z",
+        "ci_passed_at": "2026-11-01T01:01:54Z",
+        "merged_at": "2026-11-01T01:02:25Z",
+        "pages_at": "2026-11-01T01:03:48Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -1263,6 +1419,14 @@
         "run_id": 42575428018,
         "completed_at": "2026-11-09T06:49:42Z"
       },
+      "introduced": {
+        "pr": 116,
+        "drafted_at": "2026-11-09T02:12:46Z",
+        "ci_passed_at": "2026-11-09T02:14:09Z",
+        "merged_at": "2026-11-09T02:14:25Z",
+        "pages_at": "2026-11-09T02:15:41Z",
+        "live_at": "2026-11-09T06:49:42Z"
+      },
       "stage": "LIVE_VERIFIED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -1310,6 +1474,13 @@
       "publish": {
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
+      },
+      "introduced": {
+        "pr": 99,
+        "drafted_at": "2026-10-31T01:06:15Z",
+        "ci_passed_at": "2026-10-31T01:16:27Z",
+        "merged_at": "2026-10-31T01:16:52Z",
+        "pages_at": "2026-10-31T01:18:16Z"
       },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
@@ -1362,6 +1533,13 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
+      "introduced": {
+        "pr": 99,
+        "drafted_at": "2026-10-31T01:06:15Z",
+        "ci_passed_at": "2026-10-31T01:16:27Z",
+        "merged_at": "2026-10-31T01:16:52Z",
+        "pages_at": "2026-10-31T01:18:16Z"
+      },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -1412,6 +1590,13 @@
         "run_id": 41154574728,
         "completed_at": "2026-10-31T01:18:16Z"
       },
+      "introduced": {
+        "pr": 99,
+        "drafted_at": "2026-10-31T01:06:15Z",
+        "ci_passed_at": "2026-10-31T01:16:27Z",
+        "merged_at": "2026-10-31T01:16:52Z",
+        "pages_at": "2026-10-31T01:18:16Z"
+      },
       "stage": "PAGES_DEPLOYED",
       "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
@@ -1443,10 +1628,10 @@
     },
     "2026-11-02": {
       "new": {
-        "drafted": 4,
-        "ci_passed": 4,
-        "merged": 4,
-        "pages_deployed": 4,
+        "drafted": 5,
+        "ci_passed": 5,
+        "merged": 5,
+        "pages_deployed": 5,
         "live_verified": 0
       },
       "updates_merged": 0
@@ -1517,7 +1702,7 @@
         "ci_passed": 1,
         "merged": 1,
         "pages_deployed": 1,
-        "live_verified": 1
+        "live_verified": 3
       },
       "updates_merged": 1
     },
@@ -1533,21 +1718,21 @@
     },
     "2026-11-11": {
       "new": {
-        "drafted": 4,
-        "ci_passed": 5,
-        "merged": 5,
-        "pages_deployed": 5,
-        "live_verified": 5
+        "drafted": 5,
+        "ci_passed": 6,
+        "merged": 6,
+        "pages_deployed": 6,
+        "live_verified": 6
       },
       "updates_merged": 1
     },
     "2026-11-12": {
       "new": {
-        "drafted": 0,
-        "ci_passed": 0,
-        "merged": 0,
-        "pages_deployed": 0,
-        "live_verified": 0
+        "drafted": 1,
+        "ci_passed": 1,
+        "merged": 1,
+        "pages_deployed": 1,
+        "live_verified": 1
       },
       "updates_merged": 2
     },
@@ -1567,7 +1752,7 @@
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
-        "live_verified": 15
+        "live_verified": 0
       },
       "updates_merged": 0
     }
