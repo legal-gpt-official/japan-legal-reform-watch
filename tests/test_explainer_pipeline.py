@@ -239,6 +239,38 @@ class ReconcileTests(unittest.TestCase):
         day = led["daily"]["2026-11-13"]["new"]
         self.assertEqual(day, {"drafted": 1, "ci_passed": 1, "merged": 1, "pages_deployed": 1, "live_verified": 1})
 
+    def test_live_evidence_from_a_report_persists_on_later_runs(self):
+        # Regression (production 2026-11-14): a named LIVE report verified 16 older dossiers,
+        # and the next ledger run, which had no report, recomputed them as PAGES_DEPLOYED.
+        scn = Scenario()
+        scn.add_files()
+        merged_at = scn.t0
+        scn.pr.update({"state": "closed", "merged_at": iso(merged_at), "contents": {}})
+        scn.publish.append({"id": 21, "status": "completed", "conclusion": "success",
+                            "created_at": iso(merged_at + timedelta(minutes=1)), "updated_at": iso(merged_at + timedelta(minutes=5))})
+        scn.live.append({"id": 31, "status": "completed", "conclusion": "success",
+                         "created_at": iso(merged_at + timedelta(days=3)), "updated_at": iso(merged_at + timedelta(days=3, minutes=1))})
+        old_en = dict(scn.en, verified_at="2026-11-01")  # far outside the verifier's default window
+        kw = dict(index=INDEX, main_explainers={NEW_ID: old_en}, main_bundles={}, main_states={})
+        led, _ = ep.reconcile(scn.snapshot(), None, now=merged_at + timedelta(days=3, minutes=2),
+                              live_report={"run_id": 31, "dossiers_verified": [NEW_ID]}, **kw)
+        self.assertEqual(led["dossiers"][NEW_ID]["stage"], "LIVE_VERIFIED")
+        again, actions = ep.reconcile(scn.snapshot(), led, now=merged_at + timedelta(days=3, minutes=30), **kw)
+        self.assertEqual(again["dossiers"][NEW_ID]["stage"], "LIVE_VERIFIED")
+        self.assertEqual(actions, [])
+        # A later Publish (new content) needs new LIVE evidence.
+        scn.publish.append({"id": 22, "status": "completed", "conclusion": "success",
+                            "created_at": iso(merged_at + timedelta(days=4)), "updated_at": iso(merged_at + timedelta(days=4, minutes=5))})
+        scn.pr["merged_at"] = iso(merged_at + timedelta(days=4) - timedelta(minutes=1))
+        later, _ = ep.reconcile(scn.snapshot(), again, now=merged_at + timedelta(days=4, minutes=10), **kw)
+        self.assertEqual(later["dossiers"][NEW_ID]["stage"], "PAGES_DEPLOYED")
+
+    def test_fallback_never_credits_a_run_before_the_current_stamp(self):
+        run = {"created_at": "2026-11-09T03:00:00Z"}
+        self.assertTrue(ep.live_covers(run, "x", "2026-11-08"))
+        self.assertFalse(ep.live_covers(run, "x", "2026-11-12"), "re-stamped after the run")
+        self.assertFalse(ep.live_covers(run, "x", "2026-11-01"), "outside the verifier window")
+
     def test_live_report_listing_other_dossiers_does_not_count(self):
         scn = Scenario()
         scn.add_files()
