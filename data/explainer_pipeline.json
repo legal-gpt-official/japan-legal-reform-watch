@@ -1757,16 +1757,6 @@
     }
   },
   "daily": {
-    "2026-11-01": {
-      "new": {
-        "drafted": 5,
-        "ci_passed": 5,
-        "merged": 5,
-        "pages_deployed": 5,
-        "live_verified": 5
-      },
-      "updates_merged": 0
-    },
     "2026-11-02": {
       "new": {
         "drafted": 5,
@@ -1890,6 +1880,16 @@
     "2026-11-14": {
       "new": {
         "drafted": 1,
+        "ci_passed": 0,
+        "merged": 0,
+        "pages_deployed": 0,
+        "live_verified": 0
+      },
+      "updates_merged": 0
+    },
+    "2026-11-15": {
+      "new": {
+        "drafted": 0,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
