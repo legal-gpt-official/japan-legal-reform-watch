@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "explainer:organized-theft-prosecution-2026-bill",
+  "kind": "update",
+  "priority": 20,
+  "first_queued_on": "2026-11-14",
+  "seed_item_id": "raw-a2614e5a78c243b5",
+  "related_item_ids": [
+    "raw-a2614e5a78c243b5",
+    "raw-d1140be12d6dc15b"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:cc53048021e3cd34df37e1658adde19b",
+  "e_gov_law_api": [],
+  "records": [
+    {
+      "id": "raw-a2614e5a78c243b5",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "組織的な犯罪の処罰及び犯罪収益の規制等に関する法律及び刑事訴訟法の一部を改正する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-10-06",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D3A.htm",
+      "raw_summary": "衆法; 審議状況: 衆議院で審議中; 提出回次: 221; 番号: 21",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-d1140be12d6dc15b",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "組織的な犯罪の処罰及び犯罪収益の規制等に関する法律及び刑事訴訟法の一部を改正する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-08-06",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE29E2.htm",
+      "raw_summary": "衆法; 審議状況: 衆議院で閉会中審査; 提出回次: 221; 番号: 21",
+      "raw_summary_truncated": false
+    }
+  ]
+}

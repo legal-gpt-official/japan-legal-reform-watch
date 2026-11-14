@@ -7,9 +7,10 @@
       "kind": "update",
       "explainer_id": "energy-cargo-marine-insurance-2026-bill",
       "explainer_status": "published",
-      "priority": 40,
+      "priority": 60,
       "reasons": [
-        "official_records_changed"
+        "official_records_changed",
+        "scheduled_recheck"
       ],
       "errors": [],
       "review": {
@@ -133,6 +134,37 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:6101706f662fb6d1a7870737dc10e93e",
       "first_queued_on": "2026-11-04"
+    },
+    {
+      "queue_id": "explainer:automotive-decarbonization-2026-bill",
+      "kind": "update",
+      "explainer_id": "automotive-decarbonization-2026-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-30",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2DDE.htm",
+        "https://www.meti.go.jp/press/",
+        "https://www.env.go.jp/earth/ondanka/ghg-mrv/emissions/index.html"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-859c5835b1fa20da",
+        "raw-ced36a8ee43ef4df"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:c7c69513bfa2379ed2213c05695b22cd",
+      "first_queued_on": "2026-11-14"
     },
     {
       "queue_id": "explainer:building-energy-2026-lifecycle-carbon",
@@ -457,6 +489,36 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:organized-theft-prosecution-2026-bill",
+      "kind": "update",
+      "explainer_id": "organized-theft-prosecution-2026-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-30",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2D3A.htm",
+        "https://www.moj.go.jp/"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-a2614e5a78c243b5",
+        "raw-d1140be12d6dc15b"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:cc53048021e3cd34df37e1658adde19b",
+      "first_queued_on": "2026-11-14"
+    },
+    {
       "queue_id": "explainer:osh-chemical-label-sds-2026-draft",
       "kind": "update",
       "explainer_id": "osh-chemical-label-sds-2026-draft",
@@ -517,6 +579,65 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:7c7cfc71eaa8f5a757a06eed3f3e54da",
       "first_queued_on": "2026-11-06"
+    },
+    {
+      "queue_id": "explainer:privacy-security-guidance-2026-draft",
+      "kind": "update",
+      "explainer_id": "privacy-security-guidance-2026-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-30",
+      "watch_pages": [
+        "https://www.ppc.go.jp/news/public-comment/",
+        "https://www.ppc.go.jp/enforcement/minutes/2026/"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-a8b165651fe15430"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:1dc182daf29d59269795b97b8f6a1648",
+      "first_queued_on": "2026-11-14"
+    },
+    {
+      "queue_id": "explainer:sme-subcontractor-support-2026-bill",
+      "kind": "update",
+      "explainer_id": "sme-subcontractor-support-2026-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-30",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2DC6.htm",
+        "https://www.chusho.meti.go.jp/"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-997dc603adb86181",
+        "raw-c58dade62c4a08eb"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:322a5b232dcb88cd0134d7823653de1f",
+      "first_queued_on": "2026-11-14"
     },
     {
       "queue_id": "explainer:solar-pv-waste-recycling-2026",
@@ -795,6 +916,27 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "draft:raw-48d7dfe44637ea30",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-48d7dfe44637ea30"
+      ],
+      "areas": [
+        "Labor / Employment"
+      ],
+      "title_ja": "社会福祉法等の一部を改正する法律の施行に伴う厚生労働省関係省令の整備に関する省令案に関する御意見の募集について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-14",
+      "suggested_seed_item_id": "raw-48d7dfe44637ea30",
+      "first_queued_on": "2026-11-14"
+    },
+    {
       "queue_id": "draft:raw-65580538b2985c30",
       "kind": "new",
       "explainer_id": null,
@@ -963,7 +1105,7 @@
       "first_queued_on": "2026-11-12"
     },
     {
-      "queue_id": "draft:raw-d85227cfd20f3234",
+      "queue_id": "draft:raw-d27cba12376a209e",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -972,16 +1114,16 @@
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-d85227cfd20f3234"
+        "raw-d27cba12376a209e"
       ],
       "areas": [
-        "Data / Privacy / AI"
+        "Finance / AML"
       ],
-      "title_ja": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第二条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める内閣府令の一部を改正する内閣府令（案）に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-07-26",
-      "suggested_seed_item_id": "raw-d85227cfd20f3234",
-      "first_queued_on": "2026-11-12"
+      "title_ja": "介護保険法施行令等の一部を改正する政令案に関する御意見の募集について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-14",
+      "suggested_seed_item_id": "raw-d27cba12376a209e",
+      "first_queued_on": "2026-11-14"
     },
     {
       "queue_id": "draft:raw-e4c43bb30b365821",
@@ -1003,27 +1145,6 @@
       "newest_record_first_seen": "2026-09-19",
       "suggested_seed_item_id": "raw-e4c43bb30b365821",
       "first_queued_on": "2026-11-01"
-    },
-    {
-      "queue_id": "draft:raw-f150fec31e34aa29",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-f150fec31e34aa29"
-      ],
-      "areas": [
-        "Data / Privacy / AI"
-      ],
-      "title_ja": "個人情報の保護に関する法律施行規則第八条第三項第一号及び第二号並びに第四十四条第三項並びに行政手続における特定の個人を識別するための番号の利用等に関する法律第二十九条の四第一項及び第二項に基づく特定個人情報の漏えい等に関する報告等に関する規則第三条第三項に規定する個人情報保護委員会が別に定める場合及びその方法を定める件の一部を改正する告示（案）に関する意見募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-07-17",
-      "suggested_seed_item_id": "raw-f150fec31e34aa29",
-      "first_queued_on": "2026-11-13"
     },
     {
       "queue_id": "draft:raw-ff15fcfddb634b01",
