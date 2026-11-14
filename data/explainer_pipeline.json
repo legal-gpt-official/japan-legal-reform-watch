@@ -1281,6 +1281,68 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
+    "tax-special-measures-research-designation-notice-2026": {
+      "dossier_id": "tax-special-measures-research-designation-notice-2026",
+      "kind": "new",
+      "queue_id": "draft:raw-0549bdaf78bfe729",
+      "seed_item_id": "raw-0549bdaf78bfe729",
+      "related_item_ids": [
+        "raw-0549bdaf78bfe729"
+      ],
+      "source_fingerprint": "sha256:3f51bc7f7e99fdcda9bc2d2059ed7c02",
+      "pr": 156,
+      "branch": "explainer/raw-0549bdaf78bfe729",
+      "head_sha": "d62d0ca79bd35c51dabe4dd7bad2d1bd6eb1696a",
+      "pr_state": "open",
+      "pr_draft": true,
+      "labels": [],
+      "pr_created_at": "2026-11-14T05:04:48Z",
+      "automerge_eligible_files": false,
+      "ci": {
+        "failed_runs": 0,
+        "run_id": 43559757312,
+        "head_sha": "d62d0ca79bd35c51dabe4dd7bad2d1bd6eb1696a",
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
+        "failed_steps": [],
+        "completed_at": "2026-11-14T05:06:14Z",
+        "duration_s": 83
+      },
+      "stage": "RESEARCH_REQUIRED",
+      "last_success_stage": "RESEARCH_REQUIRED",
+      "stage_history": {
+        "DRAFTED": "2026-11-14T05:04:48Z",
+        "RESEARCH_REQUIRED": "2026-11-14T05:04:48Z"
+      },
+      "sources": {
+        "fetched": 0,
+        "failed": 0,
+        "not_fetched": 1,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [
+        "instrument_form",
+        "promulgation_date",
+        "effective_date",
+        "amended_provisions",
+        "old_vs_new",
+        "scope",
+        "obligation_type",
+        "transitional_measures",
+        "delegation"
+      ],
+      "unresolved": [
+        "Whether the draft notice was finalized and published, and its final legal text and effective date are not yet verified.",
+        "The relationship to the current version of Article 25-17(7) of the Enforcement Order of the Act on Special Measures Concerning Taxation requires source verification."
+      ],
+      "blockers": [
+        "confirm critical facts: instrument_form, promulgation_date, effective_date, amended_provisions, old_vs_new, scope, obligation_type, transitional_measures, delegation"
+      ],
+      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch tax-special-measures-research-designation-notice-2026). First: confirm critical facts: instrument_form, promulgation_date, effective_date, amended_provisions, old_vs_new, scope, obligation_type, transitional_measures, delegation Writer note: Read the original e-Gov public-comment draft and subsequent result notice; obtain promulgated notice and current tax ordinance before drafting any legal conclusion. Check overlap with existing dossiers.",
+      "updated_at": "2026-11-14T05:07:09Z",
+      "run_id": "43559881560"
+    },
     "telecom-interconnection-cost-model-2026": {
       "dossier_id": "telecom-interconnection-cost-model-2026",
       "kind": "new",
@@ -1827,7 +1889,7 @@
     },
     "2026-11-14": {
       "new": {
-        "drafted": 0,
+        "drafted": 1,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
