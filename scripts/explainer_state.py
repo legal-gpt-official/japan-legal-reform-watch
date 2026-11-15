@@ -418,7 +418,22 @@ def publication_gate(dossier_id: str, explainer: Mapping[str, Any], state: Mappi
     seed = state.get("seed_item_id")
     if seed and related and seed not in related:
         errors.append(f"case file seed {seed} is not among the explainer's related_item_ids")
+    errors += evidence_errors(explainer, state)
     return errors
+
+
+def evidence_errors(explainer: Mapping[str, Any], state: Mapping[str, Any] | None,
+                    directory: Path | None = None) -> list[str]:
+    """Contradictions with the dossier's e-Gov evidence pack (data/explainer_evidence), if one exists."""
+    import explainer_evidence as ev  # local import: explainer_evidence imports this module
+
+    pack = ev.pack_for_dossier(explainer, state, directory or ev.EVIDENCE_DIR)
+    if pack is None:
+        return []
+    out = [f"evidence: {m}" for m in ev.explainer_conflicts(explainer, pack)]
+    if state is not None:
+        out += [f"evidence: {m}" for m in ev.case_file_conflicts(state, pack)]
+    return out
 
 
 def citation_warnings(explainer: Mapping[str, Any], state: Mapping[str, Any]) -> list[str]:

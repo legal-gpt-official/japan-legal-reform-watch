@@ -14,6 +14,9 @@
 | `data/explainer_state/<dossier_id>.json` | 案件ファイル：一次資料台帳・構造化した法的事実・保留（BLOCKED等）・次の操作。dossierのPRと一緒に移動する |
 | `data/explainer_pipeline.json` | 工程台帳（自動生成）：dossierごとの現在工程・最終成功工程・PR/CI/Publish/LIVEの実行ID・日次件数 |
 | `scripts/explainer_state.py` / `explainer_sources.py` / `explainer_preflight.py` / `explainer_pipeline.py` | 案件ファイル、一次資料取得、事前検査、工程台帳とスロット計画 |
+| `data/explainer_evidence/<seed>.json` | 証拠パック（自動生成）：e-Gov法令API v2から取得した改正前後の条文差分、改正法令の附則（施行期日・経過措置）、施行段階、委任・義務表現の文、意見募集案の確定版特定結果、案件ファイルのひな形 |
+| `scripts/explainer_evidence.py` / `.github/workflows/explainer-evidence.yml` | 証拠パックの生成（GitHubランナー上、日次更新完了後と10:20・20:20 JST） |
+| `scripts/explainer_meaning.py` | 3言語の法的概念（義務・禁止・努力義務・未施行等）の区画別レビュー一覧（ブロックしない） |
 | `.github/workflows/explainer-pipeline.yml` | スロット開始10分前と各CI/Publish/LIVE完了時に台帳を更新し、状況Issueを書き換え、失敗した公開工程を回数制限つきで再実行 |
 | `.github/workflows/pr-checks.yml` | PR ごとの事前検査・全テストと解説検証（読み取り専用・秘密情報なし） |
 | `operations/CHATGPT_EXPLAINER_TASK_PROMPT_JA.md` | ChatGPT 等の定期作業に登録するプロンプト |
@@ -39,6 +42,26 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 
 `--today YYYY-MM-DD` で基準日（JST）を指定できる。
 
+### 一次資料の証拠パック：取得は書き手ではなくGitHubランナーが行う（2026-11-15）
+
+**なぜ必要か（実測）。** 案件ファイル導入後の2日間（11/14・11/15）に新規公開は0件、着手した2件（PR #156、#157）はいずれも「公布本文を確認できない」でBLOCKEDになった。案件ファイルを調べると、資料の取得は一度も行われていなかった（一方は資料2件が `not_fetched`・試行0回、もう一方は資料台帳が空）。書き手のAI環境はネットワークのあるPythonを実行できず、Web検索だけで判断して止まっていた。ところがe-Gov法令API v2を使えば、一方の厚生労働省令第121号は、新設条文（第73条の8〜第73条の11）、改正条文（第73条の7）、附則（2026年10月1日施行・経過措置なし）まで機械的に取得できた。公式に機械可読な一次資料があるのに、取得できない環境に取得作業を任せていたことが滞留の主因である。なお、e-Govパブコメのページは環境によってアクセスがブロックされる（この作業環境では403）が、GitHubのランナーからは取得できている（証拠収集で19件成功）。アクセス制限は回避しない。
+
+**仕組み（決定論的処理とAI判断の分離）。**
+
+| 工程 | 担当 | 内容 |
+|---|---|---|
+| 取得・版管理・差分 | `explainer_evidence.py`（GitHubランナー、AI・有料APIなし） | 記録の `lawid=<法令ID>_<施行日>_<改正法令ID>`（e-Govのリビジョン ID）から改正履歴を取得し、改正後とその直前の版の全文で条単位の新旧差分（引用法令番号の削除だけの変更は区別）、改正法令自身の附則（施行期日・経過措置の文）、同じ改正法令の全施行日（一部施行の判定）、政令委任による施行日未定（e-Govの仮日付は「最終期限」として記録し確定日として扱わない）、変更条文中の委任文（「委任を受けて定める規定」と「さらに委任する規定」を区別）と義務・禁止・努力義務・例外の文を抽出する。各項目に取得URL・リビジョンID・応答のSHA-256・取得日時を付ける |
+| 意見募集案の確定版特定 | 同上 | 案の題名から法令名を抽出し、(1) リポジトリのe-Gov更新履歴で改正法令名の完全一致・公示日以後の公布を探し、(2) なければe-Gov APIで改正対象法令の改正履歴を探す。同名の改正が複数あれば締切日以後に絞り、さらに案の資料が引用する条番号と差分の条番号の一致で絞る。一意でなければ `ambiguous`（候補ごとの差分を収録）、見つからなければ `not_found_in_egov`（告示の多くはe-Govにないため、未公布や廃案の証拠にはしない） |
+| 記録データの事実 | 同上（`machine_confirmed`） | 法形式・段階、公布日、施行日・一部施行日、改正条文の一覧、附則に経過措置がないこと |
+| 意味の判断 | 書き手のAI | 適用対象、義務の種類、新旧制度の差異、委任の意味、政策背景、企業への影響（パックの引用文を根拠にする） |
+| 照合 | CI（決定論的） | 案件ファイルがパックを引用する事実の一致、解説の `key_dates`（公布日・施行日）と `current_stage`（`verified_at` 時点で判定）とe-Gov記録の一致。新規dossierはエラー、既存51件は警告 |
+
+検証（2026-11-15）：実キューの25件中10件が `ready`（公布本文・差分・日付・附則が揃う）。BLOCKEDだった2件はいずれも `ready` になり、投資信託・廃棄物・健康保険の3件は意見募集案から確定版を新たに特定した。公開済み17件のdossierで照合すると誤検出0件、`key_dates` 36件と `current_stage` 17件を書き換えた写しはすべて検出した。
+
+**書き手の手順（ネットワーク不要）。** 計画の `new` 候補は `ready` が先頭に並ぶ。`data/explainer_evidence/<seed>.json` の `case_file_template` を `data/explainer_state/<dossier-id>.json` に写し（`dossier_id` を書き換える）、記録データの事実は確認済みのまま使い、解釈が必要な区分（`scope`、`obligation_type`、`old_vs_new`、`delegation`、`policy_background`、`business_impact`）をパックの引用文から判断して記録する。パックで分からないことは推測せず `unresolved` に書く。`draft_only` の候補は案として解説するか、結果公示まで保留する。保留は、公式記録のfingerprintが変わるか、**証拠パックの内容が変わる（e-Govに確定版が載る等）と自動で解除される**。
+
+**3言語の意味の照合。** `explainer_meaning.py` は英日中の同じ位置の区画で法的概念（義務・禁止・努力義務・未施行・成立・施行・公布・案）の有無を比べ、事前検査に「meaning review」として表示する。公開済み2,274区画で較正したところ、どの概念も0.4〜14%の区画で反応し、その多くは忠実な言い換えだった（「should not describe…」→「…してはならない」など）。語彙による判定では法的な同一性を決められないため、ブロックはせずレビュー一覧とする。ブロックするのは精度が実証された照合（日付・数値、構造・同期キー、e-Gov記録データ）だけである。
+
 ### スロットの進め方：状態管理と自動再開（2026-11-13）
 
 **なぜ必要か（実測）。** 新規dossierは10/29〜11/2に5件/日公開されたが、11/3〜11/12は0〜1件/日（11/6〜11/12の7日間で9件）に落ちた。同期間に運用改善PRが20件以上あり、公開連鎖（CI→マージ→Publish→Pages→LIVE）はLIVE検証25回中23回成功と安定していた。滞留は上流にあった。(1) 案件の進捗がPR本文の自由記述（例：PR #149「STATE: JA_ZH_READY…」）や `operations/resume_*.md` のメモにしかなく、各スロットが状況を読み直していた。PR #98は10/31〜11/8の8日間滞留した。(2) 11/10〜12の解説PRのCI失敗8件中7件は、翻訳が英語にない数値を書いた（5件）、quick_takeの360字超過（1件）、法令番号の書式（1件）という機械的に判定できる誤りで、約60秒の全テストの差分表示でしか分からず、1回ごとにpushと待ちが発生していた。(3) 一次資料が読めず止まった候補を記録する手段（`status: "blocked"`）は一度も使われず、止まった候補を次のスロットが再調査していた。
@@ -56,7 +79,7 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 1. 最新mainの `data/explainer_pipeline.json`（またはIssue）を読む。Python可なら `python scripts/explainer_pipeline.py next`。
 2. 計画の上から処理する。`resume`（未完了の最も進んだdossier。前回の成功工程からやり直さずに続ける）→ `investigate` → `repair`（公開中の解説の検証エラー）→ `new`（未着手・未保留の新規候補）→ `update`。`ON HOLD` の案件には手を付けない。
 3. 新規候補は、**ブランチ `explainer/<seed_item_id>` を作って案件ファイルだけを先にpushし、Draft PRを開いて着手を宣言する**（`python scripts/explainer_state.py init <dossier-id> --seed <seed> --queue-id <queue_id>` が研究パケットの公式URLを入れて作る）。同名ブランチが既にあれば他の実行が着手済みなので、そのブランチを再開する。台帳は開いているPRの関連記録を着手済みとして新規候補から外す。調査の引継ぎはIssueではなく案件ファイルに書く。既存のIssue（例：#137、#147、#148）が候補のraw IDに触れている場合、計画はそのIssue番号を `prior_research_issues` として示すので、確認済みの資料を案件ファイルへ移し、同じ調査を繰り返さない。
-4. 一次資料は `python scripts/explainer_sources.py fetch <dossier-id>`（URL追加は `--url <URL> --kind <種別>`）で取得する。公式ドメインのみ、リダイレクトも再検査、サイズ上限あり。一時的な失敗（タイムアウト、429、5xx）は合計3回まで再試行し、恒久的な失敗（403・WAF、404、JavaScript必須、画像PDF）は1回記録して以後自動では再試行しない（`--force` で明示的に再試行）。7日以内に取得した資料は再利用し、再取得で内容ハッシュが変われば `changed_since_previous` を立て、その資料を根拠にした事実の再確認を求める。**取得できない資料の内容を推測で補わない。** 公開前に、確認した資料の取得日が `verified_at` より14日以上古ければ事前検査が警告する（施行状況・改正の有無を再確認する）。
+4. まず `data/explainer_evidence/<seed>.json`（証拠パック）を読む。e-Govにある法令の本文・差分・日付は取得済みである。それ以外の一次資料（所管省庁の資料等）は `python scripts/explainer_sources.py fetch <dossier-id>`（URL追加は `--url <URL> --kind <種別>`）で取得する。公式ドメインのみ、リダイレクトも再検査、サイズ上限あり。一時的な失敗（タイムアウト、429、5xx）は合計3回まで再試行し、恒久的な失敗（403・WAF、404、JavaScript必須、画像PDF）は1回記録して以後自動では再試行しない（`--force` で明示的に再試行）。7日以内に取得した資料は再利用し、再取得で内容ハッシュが変われば `changed_since_previous` を立て、その資料を根拠にした事実の再確認を求める。**取得できない資料の内容を推測で補わない。** 公開前に、確認した資料の取得日が `verified_at` より14日以上古ければ事前検査が警告する（施行状況・改正の有無を再確認する）。
 5. 事実を案件ファイルに記録する（引用 `quote` は600字以内）。重要区分が確認できない場合は `python scripts/explainer_state.py hold <dossier-id> --state BLOCKED --reason "<具体的な不足>" [--until date --retry-after YYYY-MM-DD]` で保留し、**別の候補へ移る**。保留は公式記録のfingerprintが変わる（新しい官報・e-Gov記録・国会の状況など）か指定日が来ると自動で解除され、それまで計画に出ない。PRを閉じても台帳が保留を覚えている。
 6. 英語正本 → `python scripts/explainers.py stamp` → 日本語・中国語の全文 → 各言語を英語と照合 → `python scripts/explainer_preflight.py sync-stamps <id> --lang ja --lang zh-Hans`（同期キーを自動で書く。照合済みの言語だけを指定する。内容検査に通らない言語は拒否される）→ `python scripts/explainer_preflight.py check <id>`（エラーは項目と該当文つきで表示）→ push。Pythonが使えない環境では、PRチェックの最初の手順「Dossier preflight」の出力（Step Summary）を見て直す。
 7. 実質的な法的確認と3言語照合が終わったらDraftを解除し `legal-content-verified` を付ける（従来どおり。運用改善PRには付けない）。マージ・Publish・LIVEは自動で進み、台帳に記録される。

@@ -299,6 +299,7 @@ def reconcile(
     now: datetime,
     run_id: str | None = None,
     live_report: Mapping[str, Any] | None = None,
+    packs: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     """Return (ledger, recovery actions). Deterministic for the same inputs and ``now``."""
     today = now.astimezone(JST).date()
@@ -356,6 +357,11 @@ def reconcile(
             "related_item_ids": closure[:40],
             "source_fingerprint": index.fingerprint(closure) if closure else None,
         })
+        pack = (packs or {}).get(seed) if seed else None
+        if pack:
+            import explainer_evidence as ev
+            entry["evidence"] = {"status": pack.get("status"), "digest": ev.evidence_digest(pack),
+                                 "pack": f"data/explainer_evidence/{seed}.json"}
         if not pr:  # out of the snapshot window: keep the last known GitHub facts
             for k in ("pr", "branch", "head_sha", "pr_state", "pr_draft", "labels", "pr_created_at",
                       "automerge_eligible_files", "ci", "merged_at", "publish", "live"):
@@ -453,6 +459,16 @@ def reconcile(
             held["fingerprint_at_hold"] = at_hold
             held["active"] = es.hold_active(hold, today=today, fingerprint_now=entry["source_fingerprint"],
                                             fingerprint_at_hold=at_hold)
+            # New official evidence (e.g. e-Gov now lists the promulgated text of a held draft)
+            # releases an official_records_change hold just like a new record does.
+            digest_now = (entry.get("evidence") or {}).get("digest")
+            digest_at = prev_hold.get("evidence_digest_at_hold") if same else digest_now
+            if digest_at:
+                held["evidence_digest_at_hold"] = digest_at
+            if held["active"] and hold.get("unblock_condition") == "official_records_change" \
+                    and digest_now and digest_at and digest_now != digest_at:
+                held["active"] = False
+                held["released_by"] = "evidence_changed"
             entry["hold"] = held
         if state:
             entry["sources"] = es.source_summary(state)
@@ -508,8 +524,25 @@ def reconcile(
         "dossiers": dossiers,
         "daily": daily_counts(dossiers, today),
         "research_notes": research_notes(snapshot.get("issues") or []),
+        "evidence_index": evidence_index(packs or {}),
     }
     return ledger, list(merged_actions.values())
+
+
+EVIDENCE_RANK = {"ready": 0, "partial": 1, "draft_only": 2, None: 3, "ambiguous": 4, "unresolved": 5}
+
+
+def evidence_index(packs: Mapping[str, Mapping[str, Any]]) -> dict[str, dict[str, Any]]:
+    """seed -> evidence status, for planning (the packs themselves stay in data/explainer_evidence)."""
+    out = {}
+    for seed, pack in sorted(packs.items()):
+        drafts = [d for d in pack.get("drafts") or [] if isinstance(d, Mapping)]
+        out[seed] = {
+            "status": pack.get("status"),
+            "instruments": len([i for i in pack.get("instruments") or [] if i.get("status") == "ok"]),
+            "draft_documents": any(d.get("document_excerpt") for d in drafts),
+        }
+    return out
 
 
 def research_notes(issues: Sequence[Mapping[str, Any]]) -> dict[str, list[int]]:
@@ -609,6 +642,23 @@ WORK_ORDER = ("CI_PASSED", "CI_RUNNING", "STAMPED_AND_SYNCED", "JA_ZH_READY", "E
               "RESEARCH_REQUIRED")
 
 
+def new_candidate_action(seed: str, queue_id: Any, evidence: Mapping[str, Any]) -> str:
+    claim = (f"Claim by pushing branch explainer/{seed} with the case file and opening a draft PR at once. ")
+    status = evidence.get("status")
+    if status in ("ready", "partial"):
+        return claim + (f"Copy case_file_template from data/explainer_evidence/{seed}.json into "
+                        "data/explainer_state/<dossier-id>.json (record-data facts are already confirmed from e-Gov), "
+                        "then interpret scope, obligation type, old vs new and delegation from the quoted texts.")
+    if status == "ambiguous":
+        return claim + (f"data/explainer_evidence/{seed}.json lists several promulgated candidates for this draft; "
+                        "identify the right one from the quoted texts and record why, or hold it.")
+    if status == "draft_only":
+        return claim + ("e-Gov lists no promulgated instrument for this draft (notices are mostly not in e-Gov): "
+                        "explain it as a draft from the consultation documents, or hold it until results appear.")
+    return claim + (f"Create the case file (python scripts/explainer_state.py init <dossier-id> --seed {seed} "
+                    f"--queue-id {queue_id}) and confirm the sources.")
+
+
 def slot_plan(
     ledger: Mapping[str, Any],
     queue: Mapping[str, Any],
@@ -653,6 +703,7 @@ def slot_plan(
         if closure & claimed:
             continue
         packet = research_dir / f"{seed}.json"
+        evidence = (ledger.get("evidence_index") or {}).get(seed) or {}
         notes = sorted({n for raw in closure for n in (ledger.get("research_notes") or {}).get(raw, [])})
         prior = (f"Prior research exists in issue(s) {', '.join('#' + str(n) for n in notes)}: read it first, "
                  "carry its verified sources into the case file, and do not repeat what it already established. ") if notes else ""
@@ -661,11 +712,16 @@ def slot_plan(
             "title_ja": q.get("title_ja"), "branch": f"explainer/{seed}",
             "research_packet": f"data/explainer_research/{seed}.json" if packet.is_file() else None,
             "prior_research_issues": notes,
-            "action": prior + (f"Claim by pushing branch explainer/{seed} with a case file "
-                       f"(python scripts/explainer_state.py init <dossier-id> --seed {seed} --queue-id {q.get('queue_id')}) "
-                       "and opening a draft PR at once; then fetch and confirm the sources."),
+            "evidence_status": evidence.get("status"),
+            "evidence_pack": f"data/explainer_evidence/{seed}.json" if evidence else None,
+            "action": prior + new_candidate_action(seed, q.get("queue_id"), evidence),
         })
         claimed |= closure
+    # Candidates whose official text is already in hand come first: a writer can finish
+    # them without any network access. Queue order breaks ties.
+    news = [p for p in plan if p["tier"] == "new"]
+    news.sort(key=lambda p: EVIDENCE_RANK.get(p.get("evidence_status"), 3))
+    plan = [p for p in plan if p["tier"] != "new"] + news
     for q in queue.get("entries") or []:
         reasons = q.get("reasons") or []
         if q.get("kind") != "update" or "validation_errors" in reasons:
@@ -681,6 +737,24 @@ def slot_plan(
 
 
 # ------------------------------------------------------------------ report
+
+
+def capacity_lines(ledger: Mapping[str, Any], plan: Sequence[Mapping[str, Any]], now: datetime) -> list[str]:
+    """Measured capacity: what can be finished without network access, and the recent rate."""
+    daily = ledger.get("daily") or {}
+    today = now.astimezone(JST).date()
+    last7 = [(today - timedelta(days=n)).isoformat() for n in range(1, 8)]
+    live7 = sum(((daily.get(d) or {}).get("new") or {}).get("live_verified", 0) for d in last7)
+    news = [p for p in plan if p.get("tier") == "new"]
+    by = Counter(p.get("evidence_status") or "no_pack" for p in news)
+    wip = Counter(e.get("stage") for e in (ledger.get("dossiers") or {}).values()
+                  if e.get("stage") in WORK_ORDER and not (e.get("hold") or {}).get("active"))
+    return ["", "### Capacity", "",
+            f"- New dossiers LIVE-verified in the last 7 days: {live7} ({live7 / 7:.1f}/day; target {DAILY_TARGET}/day).",
+            "- Unclaimed new candidates by evidence: " + (", ".join(f"{k} {v}" for k, v in sorted(by.items())) or "none")
+            + " (ready = promulgated text, diff, dates and supplementary provisions already in "
+              "data/explainer_evidence; no network needed to write).",
+            "- Work in progress: " + (", ".join(f"{k} {v}" for k, v in sorted(wip.items())) or "none") + "."]
 
 
 def report_markdown(ledger: Mapping[str, Any], plan: Sequence[Mapping[str, Any]], actions: Sequence[Mapping[str, Any]],
@@ -730,6 +804,7 @@ def report_markdown(ledger: Mapping[str, Any], plan: Sequence[Mapping[str, Any]]
                  if dwell and to_live and ci_d else "**Durations:** not enough data in the window yet.")
     if ci_fail:
         lines.append("**CI failures by step (14 days):** " + ", ".join(f"{k} {v}" for k, v in ci_fail.most_common()))
+    lines += capacity_lines(ledger, plan, now)
     lines += ["", "### Unfinished dossiers", "", "| dossier | stage | last success | PR | CI fails | next action |", "|---|---|---|---|---|---|"]
     for e in sorted(dossiers.values(), key=lambda e: (-RANK.get(e.get("stage"), 0), e["dossier_id"])):
         if e.get("stage") == "LIVE_VERIFIED":
@@ -765,6 +840,19 @@ def dump(data: Any) -> str:
     return json.dumps(data, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
 
 
+def load_packs(directory: Path | None = None) -> dict[str, dict]:
+    import explainer_evidence as ev
+
+    directory = directory or ev.EVIDENCE_DIR
+    out = {}
+    if directory.is_dir():
+        for path in sorted(directory.glob("raw-*.json")):
+            pack = ev.load_pack(path.stem, directory)
+            if pack is not None:
+                out[path.stem] = pack
+    return out
+
+
 def _load_repo(raw_path: Path) -> tuple[ex.OfficialIndex, dict, dict, dict]:
     index = ex.OfficialIndex.build(ex.load_json(raw_path))
     return index, ex.load_explainers(), el.load_locales(), es.load_states()
@@ -797,7 +885,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         live_report = ex.load_json(args.live_report) if args.live_report and args.live_report.is_file() else None
         ledger, actions = reconcile(snapshot, previous, index=index, main_explainers=explainers,
                                     main_bundles=bundles, main_states=states, now=now,
-                                    run_id=os.environ.get("GITHUB_RUN_ID"), live_report=live_report)
+                                    run_id=os.environ.get("GITHUB_RUN_ID"), live_report=live_report,
+                                    packs=load_packs())
         changed = ex.write_if_changed(args.ledger, dump(ledger))
         plan = slot_plan(ledger, queue, index=index, research_dir=es.RESEARCH_DIR, today=now.astimezone(JST).date())
         text = report_markdown(ledger, plan, actions, snapshot.get("ci_runs") or [], now)
