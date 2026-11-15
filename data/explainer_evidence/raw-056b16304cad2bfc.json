@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-056b16304cad2bfc",
+  "queue_id": "draft:raw-056b16304cad2bfc",
+  "title_ja": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について",
+  "related_item_ids": [
+    "raw-056b16304cad2bfc"
+  ],
+  "source_fingerprint": "sha256:d3fc61268617b3c3e0058ba52bd0d6b9",
+  "status": "ready",
+  "instruments": [
+    {
+      "status": "ok",
+      "law_id": "412M50000002129",
+      "law_title": "投資信託及び投資法人に関する法律施行規則",
+      "law_num": "平成十二年総理府令第百二十九号",
+      "revision_id": "412M50000002129_20260918_508M60000002082",
+      "previous_revision_id": "412M50000002129_20260625_508M60000002057",
+      "amendment_law_id": "508M60000002082",
+      "amendment_law_num": "令和八年内閣府令第八十二号",
+      "amendment_law_title": "投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令",
+      "promulgation_date": "2026-09-18",
+      "effective_stages": [
+        {
+          "revision_id": "412M50000002129_20260918_508M60000002082",
+          "effective_date": "2026-09-18",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/412M50000002129",
+        "sha256": "7e57486f5e4008680b6fdf39c9a62b8d31ae9e09d185a45432a73555caa44c3a",
+        "fetched_at": "2026-11-15T13:46:58Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260918_508M60000002082?response_format=json&law_full_text_format=json",
+        "sha256": "26426e34f17f25b9420b6b546aaf4c5c37ffbf42f1cc6b7a22dd1bb157f509ba",
+        "fetched_at": "2026-11-15T13:46:59Z"
+      },
+      "supplementary_provisions": "附 則この府令は、公布の日から施行する。",
+      "effective_sentences": [
+        "附 則この府令は、公布の日から施行する。"
+      ],
+      "transitional_sentences": [],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260625_508M60000002057?response_format=json&law_full_text_format=json",
+        "sha256": "759ea4907744b397accaba1b8997725c37859584bf9692bd64414713523bfdd0",
+        "fetched_at": "2026-11-15T13:46:59Z"
+      },
+      "diff": {
+        "added": [],
+        "changed": [
+          {
+            "path": "本則/第19条",
+            "label": "第19条",
+            "old": "（金銭信託以外の委託者指図型投資信託の禁止の適用除外） 第十九条 令第十二条第一号に規定する内閣府令で定める指標は、当該指標に係る投資信託の受益証券をその開設する取引所金融商品市場（金融商品取引法第二条第十七項に規定する取引所金融商品市場をいう。以下同じ。）に上場しようとする金融商品取引所（同法第二条第十六項に規定する金融商品取引所をいう。以下同じ。）又はその開設する店頭売買有価証券市場（同法第六十七条第二項に規定する店頭売買有価証券市場をいう。以下同じ。）において売買を行わせようとする認可金融商品取引業協会（同法第二条第十三項に規定する認可金融商品取引業協会をいう。以下同じ。）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。一 指標の算出方法が客観的なものであり、かつ、公正を欠くものでないこと。\n二 有価証券（金融商品取引法第百六十三条第一項に規定する特定有価証券等に限る。）の価格に係る指標にあっては、多数の銘柄の価格の水準を総合的に表すものであること。\n三 有価証券その他の資産の価格に係る指標で、その構成銘柄（当該有価証券その他の資産の銘柄又は種類をいう。以下同じ。）の変更があり得るものにあっては、変更の基準及び方法が公正を欠くものでないこと。\n四 指標及びその算出方法が公表されているものであること。\n五 有価証券その他の資産の価格に係る指標にあっては、その構成銘柄（その変更があり得る場合には、その基準及び方法を含む。）が公表されているものであること。\n六 有価証券又は商品（商品先物取引法（昭和二十五年法律第二百三十九号）第二条第一項に規定する商品をいう。以下同じ。）の価格に係る指標にあっては、当該投資信託の投資信託財産の一口当たりの純資産額の変動率を当該指標の変動率に一致させるために必要な有価証券又は商品の売買が円滑に行われると見込まれる銘柄又は種類で構成されているものであること（その構成銘柄の有価証券又は商品に対する投資として運用する場合に限る。）。\n２ 令第十二条第一号及び第二号に規定する内閣府令で定める投資信託は、その受益証券の内容に照らして、当該受益証券の市場価格が連動対象指標（その投資信託財産の一口当たりの純資産額の変動率をその変動率に一致させようとする指標をいう。第九十四条及び第二百五十九条第一号において同じ。）の変動を適正に反映して形成されるために十分な流通性を確保する措置その他の措置が必要なものであって当該措置が講じられていないもの以外のものとする。\n３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。一 次に掲げる有価証券又は金融商品取引法第二条第一項第二十号に掲げる有価証券（次に掲げる有価証券に該当するものを除く。）であって次に掲げる有価証券に係る権利を表示するものイ 金融商品取引所又は外国金融商品市場（金融商品取引法第二条第八項第三号ロに規定する外国金融商品市場をいう。以下同じ。）に上場されている有価証券\nロ 店頭売買有価証券（金融商品取引法第二条第八項第十号ハに規定する店頭売買有価証券をいう。以下同じ。）\nハ イ又はロに掲げる有価証券以外の有価証券で次に掲げるもの（１） 金融商品取引法第二条第一項第一号から第五号までに掲げる有価証券（同項第十七号に掲げる有価証券でこれらの有価証券の性質を有するものを含む。）\n（２） 金融商品取引法第二条第一項第九号に掲げる有価証券（同項第十七号に掲げる有価証券で当該有価証券の性質を有するものを含む。）のうち、そ",
+            "new": "（金銭信託以外の委託者指図型投資信託の禁止の適用除外） 第十九条 令第十二条第一号に規定する内閣府令で定める指標は、当該指標に係る投資信託の受益証券をその開設する取引所金融商品市場（金融商品取引法第二条第十七項に規定する取引所金融商品市場をいう。以下同じ。）に上場しようとする金融商品取引所（同法第二条第十六項に規定する金融商品取引所をいう。以下同じ。）又はその開設する店頭売買有価証券市場（同法第六十七条第二項に規定する店頭売買有価証券市場をいう。以下同じ。）において売買を行わせようとする認可金融商品取引業協会（同法第二条第十三項に規定する認可金融商品取引業協会をいう。以下同じ。）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。一 指標の算出方法が客観的なものであり、かつ、公正を欠くものでないこと。\n二 有価証券（金融商品取引法第百六十三条第一項に規定する特定有価証券等に限る。）の価格に係る指標にあっては、多数の銘柄の価格の水準を総合的に表すものであること。\n三 有価証券その他の資産の価格に係る指標で、その構成銘柄（当該有価証券その他の資産の銘柄又は種類をいう。以下同じ。）の変更があり得るものにあっては、変更の基準及び方法が公正を欠くものでないこと。\n四 指標及びその算出方法が公表されているものであること。\n五 有価証券その他の資産の価格に係る指標にあっては、その構成銘柄（その変更があり得る場合には、その基準及び方法を含む。）が公表されているものであること。\n六 有価証券又は商品（商品先物取引法（昭和二十五年法律第二百三十九号）第二条第一項に規定する商品をいう。以下同じ。）の価格に係る指標にあっては、当該投資信託の投資信託財産の一口当たりの純資産額の変動率を当該指標の変動率に一致させるために必要な有価証券又は商品の売買が円滑に行われると見込まれる銘柄又は種類で構成されているものであること（その構成銘柄の有価証券又は商品に対する投資として運用する場合に限る。）。\n２ 令第十二条第一号及び第二号に規定する内閣府令で定める投資信託は、その受益証券の内容に照らして、当該受益証券の市場価格が連動対象指標（その投資信託財産の一口当たりの純資産額の変動率をその変動率に一致させようとする指標をいう。第九十四条及び第二百五十九条第一号において同じ。）の変動を適正に反映して形成されるために十分な流通性を確保する措置その他の措置が必要なものであって当該措置が講じられていないもの以外のものとする。\n３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。一 次に掲げる有価証券又は金融商品取引法第二条第一項第二十号に掲げる有価証券（次に掲げる有価証券に該当するものを除く。）であって次に掲げる有価証券に係る権利を表示するものイ 金融商品取引所又は外国金融商品市場（金融商品取引法第二条第八項第三号ロに規定する外国金融商品市場をいう。以下同じ。）に上場されている有価証券\nロ 店頭売買有価証券（金融商品取引法第二条第八項第十号ハに規定する店頭売買有価証券をいう。以下同じ。）\nハ イ又はロに掲げる有価証券以外の有価証券で次に掲げるもの（１） 金融商品取引法第二条第一項第一号から第五号までに掲げる有価証券（同項第十七号に掲げる有価証券でこれらの有価証券の性質を有するものを含む。）\n（２） 金融商品取引法第二条第一項第九号に掲げる有価証券（同項第十七号に掲げる有価証券で当該有価証券の性質を有するものを含む。）のうち、そ",
+            "citation_only": false,
+            "spans": [
+              {
+                "op": "replace",
+                "before": "証券又は商品（以下「各銘柄の有価証券等」という。）として運用の指図を行う投資信託委託会社が指定するものに相当する一定口数の受益証券（以下この項及び次項において「一定口数の受益証券」という。）を単位として取得するものであること。ただし、次のイ",
+                "old": "又はロ",
+                "new": "からハまで",
+                "after": "に掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証"
+              },
+              {
+                "op": "replace",
+                "before": "価証券等」という。）として運用の指図を行う投資信託委託会社が指定するものに相当する一定口数の受益証券（以下この項及び次項において「一定口数の受益証券」という。）を単位として取得するものであること。ただし、次のイ又はロに掲げる場合には、当該イ",
+                "old": "又はロ",
+                "new": "からハまで",
+                "after": "に定める金銭をもって取得することができる。イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証券の受渡しが行われることとなる有価"
+              },
+              {
+                "op": "insert",
+                "before": "募集に応じる者が発行した株式又はその親会社（会社法（平成十七年法律第八十六号）第二条第四号に規定する親会社をいう。次項第一号イにおいて同じ。）が発行した株式が含まれる場合当該株式に相当する金銭（評価額により算出したものに限る。）及び当該株式",
+                "old": "",
+                "new": "を当該投資信託財産において取得するため必要な経費に相当する金銭\nハ 当該各銘柄の有価証券等に、その募集に応じるために株券等（金融商品取引法第二十七条の二第一項に規定する株券等をいう。ハにおいて同じ。）の買付け等（同項に規定する買付け等をいう。ハにおいて同じ。）を行うとすれば当該買付け等の後における当該募集に応じる者の所有（同項第一号に規定する所有をいう。ハにおいて同じ。）に係る株券等の株券等所有割合（同号に規定する株券等所有割合をいう。）が百分の三十を超えることとなる場合又はその募集に応じる前における当該募集に応じる者の所有に係る株券等の株券等所有割合（当該募集に応じる者を当該株券等の買付け等を行う者とみなして同条第八項の規定の例により計算した同号に規定する株券等所有割合をいう。）が既に百分の三十を超えている場合におけるこれらの株券等が含まれる場合当該株券等に相当する金銭（評価額により算出したものに限る。）及び当該株券等",
+                "after": "を当該投資信託財産において取得するため必要な経費に相当する金銭\n二 当該各銘柄の有価証券等について、評価額をもって、それに相当する一定口数の受益証券を取得するものであること。ただし、当該各銘柄の有価証券等の評価額が取得する当該一定口数の受益"
+              }
+            ],
+            "full_length": {
+              "old": 4446,
+              "new": 4866
+            }
+          }
+        ],
+        "removed": [],
+        "counts": {
+          "added": 0,
+          "changed": 1,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "（金銭信託以外の委託者指図型投資信託の禁止の適用除外） 第十九条 令第十二条第一号に規定する内閣府令で定める指標は、当該指標に係る投資信託の受益証券をその開設する取引所金融商品市場（金融商品取引法第二条第十七項に規定する取引所金融商品市場をいう。"
+        },
+        {
+          "label": "第19条",
+          "kind": "further",
+          "sentence": "）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "２ 令第十二条第一号及び第二号に規定する内閣府令で定める投資信託は、その受益証券の内容に照らして、当該受益証券の市場価格が連動対象指標（その投資信託財産の一口当たりの純資産額の変動率をその変動率に一致させようとする指標をいう。"
+        },
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。"
+        }
+      ],
+      "modality_sentences": [
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "）の変動を適正に反映して形成されるために十分な流通性を確保する措置その他の措置が必要なものであって当該措置が講じられていないもの以外のものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "exception",
+          "sentence": "一 次に掲げる有価証券又は金融商品取引法第二条第一項第二十号に掲げる有価証券（次に掲げる有価証券に該当するものを除く。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "ただし、次のイからハまでに掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証価証券等」という。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "ただし、次のイ又はロに掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証券の受渡しが行われることとなる有価募集に応じる者が発行した株式又はその親会社（会社法（平成十七年法律第八十六号）第二条第四号に規定する親会社をいう。"
+        }
+      ],
+      "raw_id": "raw-bb3eef67ff07d7d4"
+    }
+  ],
+  "drafts": [
+    {
+      "raw_id": "raw-056b16304cad2bfc",
+      "title": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について",
+      "draft_name": "投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=225026053&Mode=0",
+      "published": "2026-07-28",
+      "deadline": "2026-08-28",
+      "resolution": {
+        "status": "resolved",
+        "method": "repository_egov_history_exact_title",
+        "candidates": [
+          {
+            "revision_id": "412M50000002129_20260918_508M60000002082",
+            "amendment_law_num": "令和八年内閣府令第八十二号",
+            "law_title": "投資信託及び投資法人に関する法律施行規則"
+          }
+        ],
+        "candidate_count": 1
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {
+    "instrument_form": {
+      "status": "machine_confirmed",
+      "value": "in_force_instrument",
+      "stage": "in_force",
+      "evidence": [
+        "412M50000002129_20260918_508M60000002082"
+      ]
+    },
+    "promulgation_date": {
+      "status": "machine_confirmed",
+      "value": "2026-09-18",
+      "evidence": [
+        "412M50000002129_20260918_508M60000002082"
+      ]
+    },
+    "effective_date": {
+      "status": "machine_confirmed",
+      "value": "2026-09-18",
+      "delegated": [],
+      "evidence": [
+        "412M50000002129_20260918_508M60000002082"
+      ]
+    },
+    "partial_effective_date": {
+      "status": "machine_confirmed",
+      "value": null,
+      "note": "single commencement stage"
+    },
+    "amended_provisions": {
+      "status": "machine_confirmed",
+      "value": [
+        "第19条"
+      ],
+      "evidence": [
+        "412M50000002129_20260918_508M60000002082"
+      ]
+    },
+    "old_vs_new": {
+      "status": "requires_ai",
+      "note": "diff below is exact; describe its legal effect from the quoted texts"
+    },
+    "transitional_measures": {
+      "status": "machine_confirmed",
+      "value": [],
+      "note": "the amending instrument's supplementary provisions contain no transitional sentence"
+    },
+    "delegation": {
+      "status": "requires_ai",
+      "value": [
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "（金銭信託以外の委託者指図型投資信託の禁止の適用除外） 第十九条 令第十二条第一号に規定する内閣府令で定める指標は、当該指標に係る投資信託の受益証券をその開設する取引所金融商品市場（金融商品取引法第二条第十七項に規定する取引所金融商品市場をいう。"
+        },
+        {
+          "label": "第19条",
+          "kind": "further",
+          "sentence": "）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "２ 令第十二条第一号及び第二号に規定する内閣府令で定める投資信託は、その受益証券の内容に照らして、当該受益証券の市場価格が連動対象指標（その投資信託財産の一口当たりの純資産額の変動率をその変動率に一致させようとする指標をいう。"
+        },
+        {
+          "label": "第19条",
+          "kind": "implements",
+          "sentence": "３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。"
+        }
+      ],
+      "note": "'implements' = the changed provision is itself the rule a higher instrument delegated; 'further' = it leaves a matter to yet another instrument"
+    },
+    "scope": {
+      "status": "requires_ai"
+    },
+    "obligation_type": {
+      "status": "requires_ai",
+      "hints": [
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "）が、その規則で定めるところにより、次に掲げる要件の全てを満たすものとして指定しているものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "）の変動を適正に反映して形成されるために十分な流通性を確保する措置その他の措置が必要なものであって当該措置が講じられていないもの以外のものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "obligation",
+          "sentence": "３ 令第十二条第一号イに規定する内閣府令で定めるものは、次に掲げるものとする。"
+        },
+        {
+          "label": "第19条",
+          "kind": "exception",
+          "sentence": "一 次に掲げる有価証券又は金融商品取引法第二条第一項第二十号に掲げる有価証券（次に掲げる有価証券に該当するものを除く。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "ただし、次のイからハまでに掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証価証券等」という。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "ただし、次のイ又はロに掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。"
+        },
+        {
+          "label": "第19条",
+          "kind": "permission",
+          "sentence": "イ 当該各銘柄の有価証券等に、その配当落ち又は権利落ち後、当該配当を受け又は当該権利を取得することができる者が確定する日又はその前営業日に取得の申込みに応じて受益証券の受渡しが行われることとなる有価募集に応じる者が発行した株式又はその親会社（会社法（平成十七年法律第八十六号）第二条第四号に規定する親会社をいう。"
+        }
+      ]
+    },
+    "policy_background": {
+      "status": "requires_ai"
+    },
+    "business_impact": {
+      "status": "requires_ai"
+    }
+  },
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "draft:raw-056b16304cad2bfc",
+    "seed_item_id": "raw-056b16304cad2bfc",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [
+      {
+        "id": "s1",
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/412M50000002129",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:46:58Z",
+        "sha256": "7e57486f5e4008680b6fdf39c9a62b8d31ae9e09d185a45432a73555caa44c3a",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-056b16304cad2bfc"
+      },
+      {
+        "id": "s2",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260918_508M60000002082?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:46:59Z",
+        "sha256": "26426e34f17f25b9420b6b546aaf4c5c37ffbf42f1cc6b7a22dd1bb157f509ba",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-056b16304cad2bfc"
+      },
+      {
+        "id": "s3",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260625_508M60000002057?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:46:59Z",
+        "sha256": "759ea4907744b397accaba1b8997725c37859584bf9692bd64414713523bfdd0",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-056b16304cad2bfc"
+      }
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "confirmed",
+        "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#instrument_form",
+        "value": "in_force_instrument"
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "confirmed",
+        "statement": "Promulgated 2026-09-18 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#promulgation_date"
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "confirmed",
+        "statement": "Effective 2026-09-18 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#effective_date"
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "not_applicable",
+        "statement": "Single commencement stage.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#partial_effective_date"
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "confirmed",
+        "statement": "Provisions changed (e-Gov old/new text): 第19条",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#amended_provisions"
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "not_applicable",
+        "statement": "The amending instrument's supplementary provisions contain no transitional provision.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-056b16304cad2bfc#transitional_measures"
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}

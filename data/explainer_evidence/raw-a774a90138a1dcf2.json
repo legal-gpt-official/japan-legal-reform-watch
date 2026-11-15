@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-a774a90138a1dcf2",
+  "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
+  "title_ja": "農業信用保証保険法施行規則の一部を改正する命令",
+  "related_item_ids": [
+    "raw-a774a90138a1dcf2",
+    "raw-e99fb5d75f52ac7d"
+  ],
+  "source_fingerprint": "sha256:dfbb377f039bc0fc7879866b99d2375f",
+  "status": "ready",
+  "instruments": [
+    {
+      "status": "ok",
+      "law_id": "341M50010040002",
+      "law_title": "農業信用保証保険法施行規則",
+      "law_num": "昭和四十一年大蔵省・農林省令第二号",
+      "revision_id": "341M50010040002_20261001_508M60000202012",
+      "previous_revision_id": "341M50010040002_20231228_505M60000202006",
+      "amendment_law_id": "508M60000202012",
+      "amendment_law_num": "令和八年内閣府・農林水産省令第十二号",
+      "amendment_law_title": "農業信用保証保険法施行規則の一部を改正する命令",
+      "promulgation_date": "2026-09-18",
+      "effective_stages": [
+        {
+          "revision_id": "341M50010040002_20261001_508M60000202012",
+          "effective_date": "2026-10-01",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/341M50010040002",
+        "sha256": "1d73dee23ac6dcc7d9789a52e01e58d95c003a71447cafed90a952231b8b4e6f",
+        "fetched_at": "2026-11-15T13:47:26Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20261001_508M60000202012?response_format=json&law_full_text_format=json",
+        "sha256": "2a9b7c2f3dddf380366ace8714347fac9ac0c2e1565ee63c896b77b7588947d2",
+        "fetched_at": "2026-11-15T13:47:27Z"
+      },
+      "supplementary_provisions": "附 則この命令は、令和八年十月一日から施行する。",
+      "effective_sentences": [
+        "附 則この命令は、令和八年十月一日から施行する。"
+      ],
+      "transitional_sentences": [],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20231228_505M60000202006?response_format=json&law_full_text_format=json",
+        "sha256": "9be2bd60c0c52b60f17d93681c0605209d5800be6bf8fb634bf86db89ba9d574",
+        "fetched_at": "2026-11-15T13:47:27Z"
+      },
+      "diff": {
+        "added": [
+          {
+            "path": "本則/第3_2条",
+            "label": "第3条の2",
+            "new": "（保証業務に係る損失の処理） 第三条の二 法第十一条第一号から第三号までに掲げる業務に関する経理において決算上の不足金を生じたときは、法第十条第一項の準備金を取り崩してこれに充て、なお不足があるときは、同条第二項の規定による繰入金を取り崩してこれに充てることができる。\n２ 法第十一条第一号から第三号までに掲げる業務に関する経理において前事業年度から繰り越された不足金があるときは、前項の繰入金を取り崩してこれに充てることができる。"
+          }
+        ],
+        "changed": [],
+        "removed": [],
+        "counts": {
+          "added": 1,
+          "changed": 0,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [],
+      "modality_sentences": [
+        {
+          "label": "第3条の2",
+          "kind": "permission",
+          "sentence": "（保証業務に係る損失の処理） 第三条の二 法第十一条第一号から第三号までに掲げる業務に関する経理において決算上の不足金を生じたときは、法第十条第一項の準備金を取り崩してこれに充て、なお不足があるときは、同条第二項の規定による繰入金を取り崩してこれに充てることができる。"
+        },
+        {
+          "label": "第3条の2",
+          "kind": "permission",
+          "sentence": "２ 法第十一条第一号から第三号までに掲げる業務に関する経理において前事業年度から繰り越された不足金があるときは、前項の繰入金を取り崩してこれに充てることができる。"
+        }
+      ],
+      "raw_id": "raw-a774a90138a1dcf2"
+    }
+  ],
+  "drafts": [
+    {
+      "raw_id": "raw-e99fb5d75f52ac7d",
+      "title": "農業信用保証保険法施行規則の一部を改正する命令案についての意見・情報の募集について",
+      "draft_name": "農業信用保証保険法施行規則の一部を改正する命令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004376&Mode=0",
+      "published": "2026-07-10",
+      "deadline": "2026-08-08",
+      "resolution": {
+        "status": "resolved",
+        "method": "repository_egov_history_exact_title",
+        "candidates": [
+          {
+            "revision_id": "341M50010040002_20261001_508M60000202012",
+            "amendment_law_num": "令和八年内閣府・農林水産省令第十二号",
+            "law_title": "農業信用保証保険法施行規則"
+          }
+        ],
+        "candidate_count": 1
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {
+    "instrument_form": {
+      "status": "machine_confirmed",
+      "value": "in_force_instrument",
+      "stage": "in_force",
+      "evidence": [
+        "341M50010040002_20261001_508M60000202012"
+      ]
+    },
+    "promulgation_date": {
+      "status": "machine_confirmed",
+      "value": "2026-09-18",
+      "evidence": [
+        "341M50010040002_20261001_508M60000202012"
+      ]
+    },
+    "effective_date": {
+      "status": "machine_confirmed",
+      "value": "2026-10-01",
+      "delegated": [],
+      "evidence": [
+        "341M50010040002_20261001_508M60000202012"
+      ]
+    },
+    "partial_effective_date": {
+      "status": "machine_confirmed",
+      "value": null,
+      "note": "single commencement stage"
+    },
+    "amended_provisions": {
+      "status": "machine_confirmed",
+      "value": [
+        "第3条の2"
+      ],
+      "evidence": [
+        "341M50010040002_20261001_508M60000202012"
+      ]
+    },
+    "old_vs_new": {
+      "status": "requires_ai",
+      "note": "diff below is exact; describe its legal effect from the quoted texts"
+    },
+    "transitional_measures": {
+      "status": "machine_confirmed",
+      "value": [],
+      "note": "the amending instrument's supplementary provisions contain no transitional sentence"
+    },
+    "delegation": {
+      "status": "requires_ai",
+      "value": [],
+      "note": "'implements' = the changed provision is itself the rule a higher instrument delegated; 'further' = it leaves a matter to yet another instrument"
+    },
+    "scope": {
+      "status": "requires_ai"
+    },
+    "obligation_type": {
+      "status": "requires_ai",
+      "hints": [
+        {
+          "label": "第3条の2",
+          "kind": "permission",
+          "sentence": "（保証業務に係る損失の処理） 第三条の二 法第十一条第一号から第三号までに掲げる業務に関する経理において決算上の不足金を生じたときは、法第十条第一項の準備金を取り崩してこれに充て、なお不足があるときは、同条第二項の規定による繰入金を取り崩してこれに充てることができる。"
+        },
+        {
+          "label": "第3条の2",
+          "kind": "permission",
+          "sentence": "２ 法第十一条第一号から第三号までに掲げる業務に関する経理において前事業年度から繰り越された不足金があるときは、前項の繰入金を取り崩してこれに充てることができる。"
+        }
+      ]
+    },
+    "policy_background": {
+      "status": "requires_ai"
+    },
+    "business_impact": {
+      "status": "requires_ai"
+    }
+  },
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
+    "seed_item_id": "raw-a774a90138a1dcf2",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [
+      {
+        "id": "s1",
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/341M50010040002",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:26Z",
+        "sha256": "1d73dee23ac6dcc7d9789a52e01e58d95c003a71447cafed90a952231b8b4e6f",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-a774a90138a1dcf2"
+      },
+      {
+        "id": "s2",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20261001_508M60000202012?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:27Z",
+        "sha256": "2a9b7c2f3dddf380366ace8714347fac9ac0c2e1565ee63c896b77b7588947d2",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-a774a90138a1dcf2"
+      },
+      {
+        "id": "s3",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20231228_505M60000202006?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:27Z",
+        "sha256": "9be2bd60c0c52b60f17d93681c0605209d5800be6bf8fb634bf86db89ba9d574",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-a774a90138a1dcf2"
+      }
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "confirmed",
+        "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#instrument_form",
+        "value": "in_force_instrument"
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "confirmed",
+        "statement": "Promulgated 2026-09-18 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#promulgation_date"
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "confirmed",
+        "statement": "Effective 2026-10-01 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#effective_date"
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "not_applicable",
+        "statement": "Single commencement stage.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#partial_effective_date"
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "confirmed",
+        "statement": "Provisions changed (e-Gov old/new text): 第3条の2",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#amended_provisions"
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "not_applicable",
+        "statement": "The amending instrument's supplementary provisions contain no transitional provision.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-a774a90138a1dcf2#transitional_measures"
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}

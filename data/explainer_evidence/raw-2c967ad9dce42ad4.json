@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-2c967ad9dce42ad4",
+  "queue_id": "instrument:令和八年政令第三百十号",
+  "title_ja": "国家公務員共済組合法施行令及び国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令の一部を改正する政令",
+  "related_item_ids": [
+    "raw-2c967ad9dce42ad4",
+    "raw-36006c670f405183",
+    "raw-c57c1263218b1927"
+  ],
+  "source_fingerprint": "sha256:72bdc3f4ee03e06c97942812f3ded93c",
+  "status": "ready",
+  "instruments": [
+    {
+      "status": "ok",
+      "law_id": "333CO0000000207",
+      "law_title": "国家公務員共済組合法施行令",
+      "law_num": "昭和三十三年政令第二百七号",
+      "revision_id": "333CO0000000207_20261001_508CO0000000310",
+      "previous_revision_id": "333CO0000000207_20261001_508CO0000000308",
+      "amendment_law_id": "508CO0000000310",
+      "amendment_law_num": "令和八年政令第三百十号",
+      "amendment_law_title": "国家公務員共済組合法施行令及び国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令の一部を改正する政令",
+      "promulgation_date": "2026-09-30",
+      "effective_stages": [
+        {
+          "revision_id": "333CO0000000207_20271001_508CO0000000310",
+          "effective_date": "2027-10-01",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "UnEnforced"
+        },
+        {
+          "revision_id": "333CO0000000207_20261001_508CO0000000310",
+          "effective_date": "2026-10-01",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "partially_in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333CO0000000207",
+        "sha256": "4e1fd32addbba9062d5ff04f24972370dec565cdfa54c5eaa44e3b11d08a988b",
+        "fetched_at": "2026-11-15T13:47:27Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20261001_508CO0000000310?response_format=json&law_full_text_format=json",
+        "sha256": "beef8549fc4d7d0410cb08beae73240a25a22b5d1b06c671352dc49fbd639732",
+        "fetched_at": "2026-11-15T13:47:28Z"
+      },
+      "supplementary_provisions": "附 則この政令は、令和八年十月一日から施行する。ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。）、同条第二項の改正規定（「特定法人」を「令和十七年九月三十日までの間、特定法人」に改める部分を除く。）及び同条第八項の改正規定を除く。）は、令和九年十月一日から施行する。",
+      "effective_sentences": [
+        "附 則この政令は、令和八年十月一日から施行する。",
+        "）は、令和九年十月一日から施行する。"
+      ],
+      "transitional_sentences": [
+        "ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。"
+      ],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20261001_508CO0000000308?response_format=json&law_full_text_format=json",
+        "sha256": "228cc8f58c6beb65464ca975eac8c901c980c427d5bbc207af6ea8d33af4d0e4",
+        "fetched_at": "2026-11-15T13:47:28Z"
+      },
+      "diff": {
+        "added": [],
+        "changed": [
+          {
+            "path": "本則/第2条",
+            "label": "第2条",
+            "old": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。）とする。ただし、第七号から第九号までに掲げる者にあつては、地方の組合の組合員又は私学共済制度の加入者であるものを除く。一 国家公務員法（昭和二十二年法律第百二十号）第七十九条又は第八十二条の規定による休職又は停職の処分を受けた者\n二 国家公務員法第百八条の六第五項又は行政執行法人の労働関係に関する法律（昭和二十三年法律第二百五十七号）第七条第五項の規定により休職者とされた者\n三 国際機関等に派遣される一般職の国家公務員の処遇等に関する法律（昭和四十五年法律第百十七号）第二条第一項の規定により派遣された者\n四 国家公務員の育児休業等に関する法律（平成三年法律第百九号）第三条第一項の規定により育児休業をしている者又は同法第十三条第一項に規定する育児短時間勤務職員（同法第二十二条の規定による勤務をしている者を含む。）\n四の二 国と民間企業との間の人事交流に関する法律（平成十一年法律第二百二十四号）第八条第二項に規定する交流派遣職員\n四の三 法科大学院への裁判官及び検察官その他の一般職の国家公務員の派遣に関する法律（平成十五年法律第四十号）第十一条第一項の規定により派遣された者（地方の組合の組合員となつた者を除く。）\n四の四 判事補及び検事の弁護士職務経験に関する法律（平成十六年法律第百二十一号）第二条第七項に規定する弁護士職務従事職員\n四の五 国家公務員の自己啓発等休業に関する法律（平成十九年法律第四十五号）第二条第五項に規定する自己啓発等休業をしている者\n四の六 国家公務員の配偶者同行休業に関する法律（平成二十五年法律第七十八号）第二条第四項に規定する配偶者同行休業をしている者\n五 国家公務員法第二条第三項第十号、第十三号、第十四号又は第十六号に掲げる者で第一号から第四号の二まで又は前二号に掲げる者に準ずるもの\n六 国の一般会計又は特別会計の歳出予算の常勤職員給与の目から俸給が支給される者\n七 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、財務大臣の定めるところにより、常勤職員について定められている勤務時間により勤務することを要することとされているもの\n八 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、その一週間の所定勤務時間及び一月間の所定勤務日数が、常勤職員について定められている一週間の勤務時間及び一月間の勤務日数の四分の三以上であるもの\n九 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、次のいずれにも該当するものイ 一週間の所定勤務時間が二十時間以上であること。\nロ 報酬月額（最低賃金法（昭和三十四年法律第百三十七号）第四条第三項各号に掲げる賃金に相当するものとして財務省令で定めるものを除く。）について、法第四十条第八項及びこの政令第十一条の二の二の規定の例により算定した額が、八万八千円以上であること。\nハ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。\n２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者とする。一 国家公務員法第六十条第一項の規定により臨時的に任用された者であつて次のイ又はロのいずれかに該当するものイ 二月以内の期間を定めて任",
+            "new": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。）とする。ただし、第七号から第九号までに掲げる者にあつては、地方の組合の組合員又は私学共済制度の加入者であるものを除く。一 国家公務員法（昭和二十二年法律第百二十号）第七十九条又は第八十二条の規定による休職又は停職の処分を受けた者\n二 国家公務員法第百八条の六第五項又は行政執行法人の労働関係に関する法律（昭和二十三年法律第二百五十七号）第七条第五項の規定により休職者とされた者\n三 国際機関等に派遣される一般職の国家公務員の処遇等に関する法律（昭和四十五年法律第百十七号）第二条第一項の規定により派遣された者\n四 国家公務員の育児休業等に関する法律（平成三年法律第百九号）第三条第一項の規定により育児休業をしている者又は同法第十三条第一項に規定する育児短時間勤務職員（同法第二十二条の規定による勤務をしている者を含む。）\n四の二 国と民間企業との間の人事交流に関する法律（平成十一年法律第二百二十四号）第八条第二項に規定する交流派遣職員\n四の三 法科大学院への裁判官及び検察官その他の一般職の国家公務員の派遣に関する法律（平成十五年法律第四十号）第十一条第一項の規定により派遣された者（地方の組合の組合員となつた者を除く。）\n四の四 判事補及び検事の弁護士職務経験に関する法律（平成十六年法律第百二十一号）第二条第七項に規定する弁護士職務従事職員\n四の五 国家公務員の自己啓発等休業に関する法律（平成十九年法律第四十五号）第二条第五項に規定する自己啓発等休業をしている者\n四の六 国家公務員の配偶者同行休業に関する法律（平成二十五年法律第七十八号）第二条第四項に規定する配偶者同行休業をしている者\n五 国家公務員法第二条第三項第十号、第十三号、第十四号又は第十六号に掲げる者で第一号から第四号の二まで又は前二号に掲げる者に準ずるもの\n六 国の一般会計又は特別会計の歳出予算の常勤職員給与の目から俸給が支給される者\n七 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、財務大臣の定めるところにより、常勤職員について定められている勤務時間により勤務することを要することとされているもの\n八 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、その一週間の所定勤務時間及び一月間の所定勤務日数が、常勤職員について定められている一週間の勤務時間及び一月間の勤務日数の四分の三以上であるもの\n九 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、次のいずれにも該当するものイ 一週間の所定勤務時間が二十時間以上であること。\nロ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。\n２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者とする。一 国家公務員法第六十条第一項の規定により臨時的に任用された者であつて次のイ又はロのいずれかに該当するものイ 二月以内の期間を定めて任用された者であつて財務大臣が定めるもの\nロ 地方の組合の組合員又は私学共済制度の加入者であるもの\n二 国家公務員の育児休業等に関する法律第七条第一項又は国家公務員の配偶者同行休業に関する法律第七条第一項の規定により臨時的に任用された者であつて次の",
+            "citation_only": false,
+            "spans": [
+              {
+                "op": "delete",
+                "before": "について定められている一週間の勤務時間及び一月間の勤務日数の四分の三以上であるもの\n九 前各号に掲げる者以外の常時勤務に服することを要しない国家公務員のうち、次のいずれにも該当するものイ 一週間の所定勤務時間が二十時間以上であること。\nロ ",
+                "old": "報酬月額（最低賃金法（昭和三十四年法律第百三十七号）第四条第三項各号に掲げる賃金に相当するものとして財務省令で定めるものを除く。）について、法第四十条第八項及びこの政令第十一条の二の二の規定の例により算定した額が、八万八千円以上であること。\nハ ",
+                "new": "",
+                "after": "学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。\n２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者と"
+              }
+            ],
+            "full_length": {
+              "old": 1850,
+              "new": 1727
+            }
+          }
+        ],
+        "removed": [],
+        "counts": {
+          "added": 0,
+          "changed": 1,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [
+        {
+          "label": "第2条",
+          "kind": "further",
+          "sentence": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "ロ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者とする。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "ロ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者と"
+        }
+      ],
+      "modality_sentences": [
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "ただし、第七号から第九号までに掲げる者にあつては、地方の組合の組合員又は私学共済制度の加入者であるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "）四の二 国と民間企業との間の人事交流に関する法律（平成十一年法律第二百二十四号）第八条第二項に規定する交流派遣職員四の三 法科大学院への裁判官及び検察官その他の一般職の国家公務員の派遣に関する法律（平成十五年法律第四十号）第十一条第一項の規定により派遣された者（地方の組合の組合員となつた者を除く。"
+        }
+      ],
+      "raw_id": "raw-2c967ad9dce42ad4"
+    },
+    {
+      "status": "ok",
+      "law_id": "333CO0000000207",
+      "law_title": "国家公務員共済組合法施行令",
+      "law_num": "昭和三十三年政令第二百七号",
+      "revision_id": "333CO0000000207_20271001_508CO0000000310",
+      "previous_revision_id": "333CO0000000207_20270801_508CO0000000240",
+      "amendment_law_id": "508CO0000000310",
+      "amendment_law_num": "令和八年政令第三百十号",
+      "amendment_law_title": "国家公務員共済組合法施行令及び国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令の一部を改正する政令",
+      "promulgation_date": "2026-09-30",
+      "effective_stages": [
+        {
+          "revision_id": "333CO0000000207_20271001_508CO0000000310",
+          "effective_date": "2027-10-01",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "UnEnforced"
+        },
+        {
+          "revision_id": "333CO0000000207_20261001_508CO0000000310",
+          "effective_date": "2026-10-01",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "partially_in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333CO0000000207",
+        "sha256": "4e1fd32addbba9062d5ff04f24972370dec565cdfa54c5eaa44e3b11d08a988b",
+        "fetched_at": "2026-11-15T13:47:27Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20271001_508CO0000000310?response_format=json&law_full_text_format=json",
+        "sha256": "44235c6f1a9cf7c82970b608a4dfd6facfbf79dd844c74bc886283441d9b8a80",
+        "fetched_at": "2026-11-15T13:47:29Z"
+      },
+      "supplementary_provisions": "附 則この政令は、令和八年十月一日から施行する。ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。）、同条第二項の改正規定（「特定法人」を「令和十七年九月三十日までの間、特定法人」に改める部分を除く。）及び同条第八項の改正規定を除く。）は、令和九年十月一日から施行する。",
+      "effective_sentences": [
+        "附 則この政令は、令和八年十月一日から施行する。",
+        "）は、令和九年十月一日から施行する。"
+      ],
+      "transitional_sentences": [
+        "ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。"
+      ],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20270801_508CO0000000240?response_format=json&law_full_text_format=json",
+        "sha256": "0b4ef1c1495e0c86d9f55b7510bbe921fa88bf1233b057196de66f4eae35f38d",
+        "fetched_at": "2026-11-15T13:47:29Z"
+      },
+      "diff": {
+        "added": [],
+        "changed": [],
+        "removed": [],
+        "counts": {
+          "added": 0,
+          "changed": 0,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [],
+      "modality_sentences": [],
+      "raw_id": "raw-36006c670f405183"
+    }
+  ],
+  "drafts": [
+    {
+      "raw_id": "raw-c57c1263218b1927",
+      "title": "国家公務員共済組合法施行令及び国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令の一部を改正する政令案に対する意見募集について",
+      "draft_name": "国家公務員共済組合法施行令及び国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令の一部を改正する政令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=395081961&Mode=0",
+      "published": "2026-08-20",
+      "deadline": "2026-09-19",
+      "resolution": {
+        "status": "resolved",
+        "method": "repository_egov_history_exact_title",
+        "candidates": [
+          {
+            "revision_id": "333CO0000000207_20261001_508CO0000000310",
+            "amendment_law_num": "令和八年政令第三百十号",
+            "law_title": "国家公務員共済組合法施行令"
+          },
+          {
+            "revision_id": "333CO0000000207_20271001_508CO0000000310",
+            "amendment_law_num": "令和八年政令第三百十号",
+            "law_title": "国家公務員共済組合法施行令"
+          }
+        ],
+        "candidate_count": 1
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {
+    "instrument_form": {
+      "status": "machine_confirmed",
+      "value": "in_force_instrument",
+      "stage": "partially_in_force",
+      "evidence": [
+        "333CO0000000207_20261001_508CO0000000310"
+      ]
+    },
+    "promulgation_date": {
+      "status": "machine_confirmed",
+      "value": "2026-09-30",
+      "evidence": [
+        "333CO0000000207_20261001_508CO0000000310",
+        "333CO0000000207_20271001_508CO0000000310"
+      ]
+    },
+    "effective_date": {
+      "status": "machine_confirmed",
+      "value": [
+        "2026-10-01",
+        "2027-10-01"
+      ],
+      "delegated": [],
+      "evidence": [
+        "333CO0000000207_20261001_508CO0000000310",
+        "333CO0000000207_20271001_508CO0000000310"
+      ]
+    },
+    "partial_effective_date": {
+      "status": "machine_confirmed",
+      "value": [
+        "2026-10-01",
+        "2027-10-01"
+      ],
+      "note": "several commencement stages"
+    },
+    "amended_provisions": {
+      "status": "machine_confirmed",
+      "value": [
+        "第2条"
+      ],
+      "evidence": [
+        "333CO0000000207_20261001_508CO0000000310",
+        "333CO0000000207_20271001_508CO0000000310"
+      ]
+    },
+    "old_vs_new": {
+      "status": "requires_ai",
+      "note": "diff below is exact; describe its legal effect from the quoted texts"
+    },
+    "transitional_measures": {
+      "status": "requires_ai",
+      "value": [
+        "ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。",
+        "ただし、第二条の規定（国家公務員共済組合法施行令及び被用者年金制度の一元化等を図るための厚生年金保険法等の一部を改正する法律の施行及び国家公務員の退職給付の給付水準の見直し等のための国家公務員退職手当法等の一部を改正する法律の一部の施行に伴う国家公務員共済組合法による長期給付等に関する経過措置に関する政令の一部を改正する政令附則第二条第一項の改正規定、同令附則第三条第一項の改正規定（「当分の間」を「令和十七年九月三十日までの間」に改める部分を除く。"
+      ],
+      "note": "transitional sentences found in the amending instrument's supplementary provisions"
+    },
+    "delegation": {
+      "status": "requires_ai",
+      "value": [
+        {
+          "label": "第2条",
+          "kind": "further",
+          "sentence": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "ロ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者とする。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "ロ 学校教育法（昭和二十二年法律第二十六号）第五十条に規定する高等学校の生徒、同法第八十三条に規定する大学の学生その他の財務省令で定める者でないこと。"
+        },
+        {
+          "label": "第2条",
+          "kind": "implements",
+          "sentence": "２ 法第二条第一項第一号に規定する臨時に使用される者その他の政令で定める者は、次に掲げる者と"
+        }
+      ],
+      "note": "'implements' = the changed provision is itself the rule a higher instrument delegated; 'further' = it leaves a matter to yet another instrument"
+    },
+    "scope": {
+      "status": "requires_ai"
+    },
+    "obligation_type": {
+      "status": "requires_ai",
+      "hints": [
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "（職員） 第二条 法第二条第一項第一号に規定する常時勤務に服することを要しない国家公務員で政令で定めるものは、次に掲げる者（二月以内の期間を定めて使用される者であつて財務大臣が定めるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "ただし、第七号から第九号までに掲げる者にあつては、地方の組合の組合員又は私学共済制度の加入者であるものを除く。"
+        },
+        {
+          "label": "第2条",
+          "kind": "exception",
+          "sentence": "）四の二 国と民間企業との間の人事交流に関する法律（平成十一年法律第二百二十四号）第八条第二項に規定する交流派遣職員四の三 法科大学院への裁判官及び検察官その他の一般職の国家公務員の派遣に関する法律（平成十五年法律第四十号）第十一条第一項の規定により派遣された者（地方の組合の組合員となつた者を除く。"
+        }
+      ]
+    },
+    "policy_background": {
+      "status": "requires_ai"
+    },
+    "business_impact": {
+      "status": "requires_ai"
+    }
+  },
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "instrument:令和八年政令第三百十号",
+    "seed_item_id": "raw-2c967ad9dce42ad4",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [
+      {
+        "id": "s1",
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333CO0000000207",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:27Z",
+        "sha256": "4e1fd32addbba9062d5ff04f24972370dec565cdfa54c5eaa44e3b11d08a988b",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-2c967ad9dce42ad4"
+      },
+      {
+        "id": "s2",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20261001_508CO0000000310?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:28Z",
+        "sha256": "beef8549fc4d7d0410cb08beae73240a25a22b5d1b06c671352dc49fbd639732",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-2c967ad9dce42ad4"
+      },
+      {
+        "id": "s3",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20261001_508CO0000000308?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:28Z",
+        "sha256": "228cc8f58c6beb65464ca975eac8c901c980c427d5bbc207af6ea8d33af4d0e4",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-2c967ad9dce42ad4"
+      },
+      {
+        "id": "s4",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20271001_508CO0000000310?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:29Z",
+        "sha256": "44235c6f1a9cf7c82970b608a4dfd6facfbf79dd844c74bc886283441d9b8a80",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-2c967ad9dce42ad4"
+      },
+      {
+        "id": "s5",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/333CO0000000207_20270801_508CO0000000240?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:29Z",
+        "sha256": "0b4ef1c1495e0c86d9f55b7510bbe921fa88bf1233b057196de66f4eae35f38d",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-2c967ad9dce42ad4"
+      }
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "confirmed",
+        "statement": "e-Gov records the amendment as partially_in_force (in_force_instrument) as of the evidence date.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-2c967ad9dce42ad4#instrument_form",
+        "value": "in_force_instrument"
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "confirmed",
+        "statement": "Promulgated 2026-09-30 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5"
+        ],
+        "evidence_ref": "raw-2c967ad9dce42ad4#promulgation_date"
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "confirmed",
+        "statement": "Effective ['2026-10-01', '2027-10-01'] (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5"
+        ],
+        "evidence_ref": "raw-2c967ad9dce42ad4#effective_date"
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "confirmed",
+        "statement": "Several commencement stages: 2026-10-01, 2027-10-01",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-2c967ad9dce42ad4#partial_effective_date"
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "confirmed",
+        "statement": "Provisions changed (e-Gov old/new text): 第2条",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5"
+        ],
+        "evidence_ref": "raw-2c967ad9dce42ad4#amended_provisions"
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}

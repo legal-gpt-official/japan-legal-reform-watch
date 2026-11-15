@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-1123e5757d1ade6f",
+  "queue_id": "draft:raw-1123e5757d1ade6f",
+  "title_ja": "雇用保険法施行規則の一部を改正する省令案に関する御意見の募集について",
+  "related_item_ids": [
+    "raw-1123e5757d1ade6f"
+  ],
+  "source_fingerprint": "sha256:4872a35d316ae072dab98cbe2403879d",
+  "status": "ambiguous",
+  "instruments": [],
+  "drafts": [
+    {
+      "raw_id": "raw-1123e5757d1ade6f",
+      "title": "雇用保険法施行規則の一部を改正する省令案に関する御意見の募集について",
+      "draft_name": "雇用保険法施行規則の一部を改正する省令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260147&Mode=0",
+      "published": "2026-08-15",
+      "deadline": "2026-09-13",
+      "target_law_title": "雇用保険法施行規則",
+      "target_law_id": "350M50002000003",
+      "resolution": {
+        "status": "ambiguous",
+        "method": null,
+        "candidates": [
+          {
+            "status": "ok",
+            "law_id": "350M50002000003",
+            "law_title": "雇用保険法施行規則",
+            "law_num": "昭和五十年労働省令第三号",
+            "revision_id": "350M50002000003_20261022_508M60000100149",
+            "previous_revision_id": "350M50002000003_20261001_508M60000100147",
+            "amendment_law_id": "508M60000100149",
+            "amendment_law_num": "令和八年厚生労働省令第百四十九号",
+            "amendment_law_title": "雇用保険法施行規則の一部を改正する省令",
+            "promulgation_date": "2026-10-22",
+            "effective_stages": [
+              {
+                "revision_id": "350M50002000003_20261022_508M60000100149",
+                "effective_date": "2026-10-22",
+                "delegated": false,
+                "enforcement_comment": null,
+                "outer_limit": null,
+                "status": "CurrentEnforced"
+              }
+            ],
+            "instrument_form": "in_force_instrument",
+            "stage": "in_force",
+            "revisions_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_revisions/350M50002000003",
+              "sha256": "53a875830e416a3bfc194f78879017b9b2e469df62cae1f6f5b86326b7d81668",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20261022_508M60000100149?response_format=json&law_full_text_format=json",
+              "sha256": "f17b989a942c216f68b089db69d0d682d5a72b487b9682fad6486f1d63a84e8b",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "supplementary_provisions": "附 則この省令は、公布の日から施行し、この省令による改正後の雇用保険法施行規則附則第十五条の四の六の規定は、令和八年十月一日以降の出向について適用する。",
+            "effective_sentences": [
+              "附 則この省令は、公布の日から施行し、この省令による改正後の雇用保険法施行規則附則第十五条の四の六の規定は、令和八年十月一日以降の出向について適用する。"
+            ],
+            "transitional_sentences": [],
+            "previous_law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20261001_508M60000100147?response_format=json&law_full_text_format=json",
+              "sha256": "a95e0d1fd2fb2ed73089c5fe6b1f18d7b4e5382ba8b2bf2886cad33a7833218e",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "diff": {
+              "added": [],
+              "changed": [],
+              "removed": [],
+              "counts": {
+                "added": 0,
+                "changed": 0,
+                "citation_only": 0,
+                "removed": 0
+              }
+            },
+            "text_status": "ok",
+            "delegation_sentences": [],
+            "modality_sentences": []
+          },
+          {
+            "status": "ok",
+            "law_id": "350M50002000003",
+            "law_title": "雇用保険法施行規則",
+            "law_num": "昭和五十年労働省令第三号",
+            "revision_id": "350M50002000003_20261001_508M60000100147",
+            "previous_revision_id": "350M50002000003_20260930_508M60000100145",
+            "amendment_law_id": "508M60000100147",
+            "amendment_law_num": "令和八年厚生労働省令第百四十七号",
+            "amendment_law_title": "雇用保険法施行規則の一部を改正する省令",
+            "promulgation_date": "2026-10-01",
+            "effective_stages": [
+              {
+                "revision_id": "350M50002000003_20261001_508M60000100147",
+                "effective_date": "2026-10-01",
+                "delegated": false,
+                "enforcement_comment": null,
+                "outer_limit": null,
+                "status": "PreviousEnforced"
+              }
+            ],
+            "instrument_form": "in_force_instrument",
+            "stage": "in_force",
+            "revisions_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_revisions/350M50002000003",
+              "sha256": "53a875830e416a3bfc194f78879017b9b2e469df62cae1f6f5b86326b7d81668",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20261001_508M60000100147?response_format=json&law_full_text_format=json",
+              "sha256": "a95e0d1fd2fb2ed73089c5fe6b1f18d7b4e5382ba8b2bf2886cad33a7833218e",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "supplementary_provisions": "附 則（施行期日） １ この省令は、公布の日から施行する。\n（経過措置） ２ この省令の施行の日前にこの省令による改正前の第百十八条第二項第一号ハ（３）に規定する就労環境整備計画を都道府県労働局長に提出した事業主に対する人材確保等支援助成コース助成金の支給については、なお従前の例による。",
+            "effective_sentences": [
+              "附 則（施行期日） １ この省令は、公布の日から施行する。"
+            ],
+            "transitional_sentences": [
+              "（経過措置） ２ この省令の施行の日前にこの省令による改正前の第百十八条第二項第一号ハ（３）に規定する就労環境整備計画を都道府県労働局長に提出した事業主に対する人材確保等支援助成コース助成金の支給については、なお従前の例による。"
+            ],
+            "previous_law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20260930_508M60000100145?response_format=json&law_full_text_format=json",
+              "sha256": "b159a6e56e67272ab41244f96c9a8a2f4e3c7af604b0b60a072daf13ffa33bef",
+              "fetched_at": "2026-11-15T13:47:02Z"
+            },
+            "diff": {
+              "added": [],
+              "changed": [
+                {
+                  "path": "本則/第118条",
+                  "label": "第118条",
+                  "old": "（人材確保等支援助成金） 第百十八条 人材確保等支援助成金は、人材確保等支援助成コース助成金、建設キャリアアップシステム等活用促進コース助成金、建設分野若年者及び女性に魅力ある職場づくり事業コース助成金及び建設分野作業員宿舎等設置助成コース助成金とする。\n２ 人材確保等支援助成コース助成金は、第一号に該当する認定組合等又は事業主に対して、第二号に定める額を支給するものとする。一 次のいずれかに該当する認定組合等又は事業主であること。イ 次のいずれにも該当する認定組合等であること。（１） 中小企業労働力確保法第四条第一項に規定する改善事業であつて、次の（ｉ）及び（ｉｉ）に掲げるもの（以下この項において「中小企業労働環境向上事業」という。）を行う認定組合等であること。（ｉ） その構成員である中小企業者（以下この項において「構成中小企業者」という。）における労働力の確保及び職場への定着に資する雇用管理の改善に関する事業\n（ｉｉ） （ｉ）の事業の実施による構成中小企業者における雇用管理の改善の状況に関する調査及び当該構成中小企業者に対する当該調査に基づく指導その他の援助\n（２） 中小企業労働環境向上事業の実施に関する計画を作成し、都道府県労働局長に提出した認定組合等であること。\nロ 次の（１）から（７）までのいずれにも該当する事業主であること。（１） 次の（ｉ）又は（ｉｉ）に該当する事業主であること。（ｉ） 労働協約又は就業規則に定めるところにより、次に掲げる措置（（２）において「雇用管理制度の整備」という。）のうち、次の（イ）から（ホ）までのいずれかに該当するものを実施し、かつ、労働者に適用した事業主（（イ）を実施し、かつ、労働者に適用する場合においては、中小企業事業主に限る。）であること。（イ） 職務等に応じて賃金を決定するための制度を整備する措置（ロ） 職業安定局長が定める手当、賞与又は退職金制度を導入する措置（ハ） 生産性向上に資する人事評価制度を整備する措置（ニ） 医師による健康診断（労働安全衛生法第六十六条第一項、第二項及び第四項に規定する健康診断を除く。）等の措置（ホ） キャリア形成上の課題及び職場における問題の解決を支援するための措置\n（ｉｉ） 雇用管理の改善に資する機器又は設備として職業安定局長が定めるもの（（２）において「雇用管理改善機器等」という。）を導入し、かつ、適切な運用を行つた事業主であること。\n（２） 雇用管理制度の整備又は雇用管理改善機器等の導入（以下この号において「雇用管理制度の整備等」という。）を行う場合に、都道府県労働局長に対して当該雇用管理制度の整備等に係る計画（以下この号及び次項において「雇用管理制度整備等計画」という。）を提出し、認定を受けた事業主であること。\n（３） 当該雇用管理制度の整備等に係る事業所に雇用されていた者であつて雇用管理制度整備等計画の期間の初日の前日から起算して六箇月前の日から都道府県労働局長に対する人材確保等支援助成コース助成金（雇用管理制度の整備等についての助成に係るものに限る。）の受給についての申請書を提出するまでの間（以下この（３）において「基準期間」という。）に離職したもののうち、当該基準期間に特定受給資格者として受給資格の決定がなされたものの数等から判断して、適正な雇用管理を行つていると認められる事業主であること。\n（４） 当該雇用管理制度の整備等及びその運用に要した費用の負担の状況並びに当該雇用管理制度の整備等に係る事業所の労働者の離職の状況を明らかにする書類を整備している事業",
+                  "new": "（人材確保等支援助成金） 第百十八条 人材確保等支援助成金は、人材確保等支援助成コース助成金、建設キャリアアップシステム等活用促進コース助成金、建設分野若年者及び女性に魅力ある職場づくり事業コース助成金及び建設分野作業員宿舎等設置助成コース助成金とする。\n２ 人材確保等支援助成コース助成金は、第一号に該当する認定組合等又は事業主に対して、第二号に定める額を支給するものとする。一 次のいずれかに該当する認定組合等又は事業主であること。イ 次のいずれにも該当する認定組合等であること。（１） 中小企業労働力確保法第四条第一項に規定する改善事業であつて、次の（ｉ）及び（ｉｉ）に掲げるもの（以下この項において「中小企業労働環境向上事業」という。）を行う認定組合等であること。（ｉ） その構成員である中小企業者（以下この項において「構成中小企業者」という。）における労働力の確保及び職場への定着に資する雇用管理の改善に関する事業\n（ｉｉ） （ｉ）の事業の実施による構成中小企業者における雇用管理の改善の状況に関する調査及び当該構成中小企業者に対する当該調査に基づく指導その他の援助\n（２） 中小企業労働環境向上事業の実施に関する計画を作成し、都道府県労働局長に提出した認定組合等であること。\nロ 次の（１）から（７）までのいずれにも該当する事業主であること。（１） 次の（ｉ）又は（ｉｉ）に該当する事業主であること。（ｉ） 労働協約又は就業規則に定めるところにより、次に掲げる措置（（２）において「雇用管理制度の整備」という。）のうち、次の（イ）から（ホ）までのいずれかに該当するものを実施し、かつ、労働者に適用した事業主（（イ）を実施し、かつ、労働者に適用する場合においては、中小企業事業主に限る。）であること。（イ） 職務等に応じて賃金を決定するための制度を整備する措置（ロ） 職業安定局長が定める手当、賞与又は退職金制度を導入する措置（ハ） 生産性向上に資する人事評価制度を整備する措置（ニ） 医師による健康診断（労働安全衛生法第六十六条第一項、第二項及び第四項に規定する健康診断を除く。）等の措置（ホ） キャリア形成上の課題及び職場における問題の解決を支援するための措置\n（ｉｉ） 雇用管理の改善に資する機器又は設備として職業安定局長が定めるもの（（２）において「雇用管理改善機器等」という。）を導入し、かつ、適切な運用を行つた事業主であること。\n（２） 雇用管理制度の整備又は雇用管理改善機器等の導入（以下この号において「雇用管理制度の整備等」という。）を行う場合に、都道府県労働局長に対して当該雇用管理制度の整備等に係る計画（以下この号及び次項において「雇用管理制度整備等計画」という。）を提出し、認定を受けた事業主であること。\n（３） 当該雇用管理制度の整備等に係る事業所に雇用されていた者であつて雇用管理制度整備等計画の期間の初日の前日から起算して六箇月前の日から都道府県労働局長に対する人材確保等支援助成コース助成金（雇用管理制度の整備等についての助成に係るものに限る。）の受給についての申請書を提出するまでの間（以下この（３）において「基準期間」という。）に離職したもののうち、当該基準期間に特定受給資格者として受給資格の決定がなされたものの数等から判断して、適正な雇用管理を行つていると認められる事業主であること。\n（４） 当該雇用管理制度の整備等及びその運用に要した費用の負担の状況並びに当該雇用管理制度の整備等に係る事業所の労働者の離職の状況を明らかにする書類を整備している事業",
+                  "citation_only": false,
+                  "spans": [
+                    {
+                      "op": "replace",
+                      "before": "ハ その雇用する労働者について労働施策の総合的な推進並びに労働者の雇用の安定及び職業生活の充実等に関する法律第二十八条第一項の規定による届出であつて雇入れに係るもの（（１）において「外国人雇用状況届出」という。）を行つている事業主であつて、",
+                      "old": "（１）から（６）まで（職業安定局長が定める証明書を提出した事業主であり、かつ、就労環境の整備を実施した日の前日から起算して六箇月前の日から当該前日までの期間において、当該就労環境の整備に係る事業所の外国人労働者が離職した事業主（天災その他やむを得ない理由のために事業の継続が不可能となつたこと又は労働者の責めに帰すべき理由により解雇した事業主を除く。）以外の事業主にあつては、（６）を除く。）",
+                      "new": "次",
+                      "after": "のいずれにも該当するものであること。（１） 次の（ｉ）又は（ｉｉ）のいずれかに該当する事業主であること。（ｉ） 次の（イ）及び（ロ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象"
+                    },
+                    {
+                      "op": "insert",
+                      "before": "働者が離職した事業主（天災その他やむを得ない理由のために事業の継続が不可能となつたこと又は労働者の責めに帰すべき理由により解雇した事業主を除く。）以外の事業主にあつては、（６）を除く。）のいずれにも該当するものであること。（１） 次の（ｉ）",
+                      "old": "",
+                      "new": "又は（ｉｉ）のいずれかに該当する事業主であること。（ｉ） 次の（イ）",
+                      "after": "及び（ロ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主（（ｉｉ）に該当する事業主を除く。）（イ） 外国人労働者を"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "離職した事業主（天災その他やむを得ない理由のために事業の継続が不可能となつたこと又は労働者の責めに帰すべき理由により解雇した事業主を除く。）以外の事業主にあつては、（６）を除く。）のいずれにも該当するものであること。（１） 次の（ｉ）及び（",
+                      "old": "ｉｉ",
+                      "new": "ロ",
+                      "after": "）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主（（ｉｉ）に該当する事業主を除く。）（イ） 外国人労働者を雇用する"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "）のいずれにも該当するものであること。（１） 次の（ｉ）及び（ｉｉ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主",
+                      "old": "であること。",
+                      "new": "（",
+                      "after": "（ｉｉ）に該当する事業主を除く。）（イ） 外国人労働者を雇用する事業所ごとに、外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任したこと及び当該雇用労務責任者が外国人労働者からの苦情又は相談に応ずることについて"
+                    },
+                    {
+                      "op": "insert",
+                      "before": "当するものであること。（１） 次の（ｉ）及び（ｉｉ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ",
+                      "old": "",
+                      "new": "ｉ）に該当する事業主を除く。）（イ",
+                      "after": "） 外国人労働者を雇用する事業所ごとに、外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任したこと及び当該雇用労務責任者が外国人労働者からの苦情又は相談に応ずることについて、事業所に掲示する等により周知する措置"
+                    },
+                    {
+                      "op": "insert",
+                      "before": "）及び（ｉｉ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに",
+                      "old": "",
+                      "new": "、",
+                      "after": "外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任したこと及び当該雇用労務責任者が外国人労働者からの苦情又は相談に応ずることについて、事業所に掲示する等により周知する措置（ロ） 労働協約、就業規則その他の職業安"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "当該事業主に係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し",
+                      "old": "、かつ、",
+                      "new": "たこと及び",
+                      "after": "当該雇用労務責任者が外国人労働者からの苦情又は相談に応ずることについて、事業所に掲示する等により周知する措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用す"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "係る外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し、かつ、当該",
+                      "old": "選",
+                      "new": "雇用労務責",
+                      "after": "任者が外国人労働者からの苦情又は相談に応ずることについて、事業所に掲示する等により周知する措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用する言語又は平易"
+                    },
+                    {
+                      "op": "insert",
+                      "before": "外国人雇用状況届出の対象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し、かつ、当該選任",
+                      "old": "",
+                      "new": "者が外国人労働者からの苦情又は相談に応ずること",
+                      "after": "について、事業所に掲示する等により周知する措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用する言語又は平易な日本語を用いて記載すること等の措置\n（ｉｉ） "
+                    },
+                    {
+                      "op": "insert",
+                      "before": "象となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し、かつ、当該選任について、事業所に掲示",
+                      "old": "",
+                      "new": "する",
+                      "after": "等により周知する措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用する言語又は平易な日本語を用いて記載すること等の措置\n（ｉｉ） （ｉ）（イ）及び（ロ）に掲"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "となつている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し、かつ、当該選任について、事業所に掲示等",
+                      "old": "の",
+                      "new": "により",
+                      "after": "周知する措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用する言語又は平易な日本語を用いて記載すること等の措置\n（ｉｉ） （ｉ）（イ）及び（ロ）に掲げる措置"
+                    },
+                    {
+                      "op": "replace",
+                      "before": "ている者をいう。以下このハにおいて同じ。）に適用した事業主であること。（ｉ） 外国人労働者を雇用する事業所ごとに外国人労働者の雇用管理の改善等に関する事項を管理する者を雇用労務責任者として選任し、かつ、当該選任について、事業所に掲示等の周知",
+                      "old": "を行つてい",
+                      "new": "す",
+                      "after": "る措置（ロ） 労働協約、就業規則その他の職業安定局長が定める文書について、その雇用する外国人労働者の母国語その他の当該外国人労働者が使用する言語又は平易な日本語を用いて記載すること等の措置\n（ｉｉ） （ｉ）（イ）及び（ロ）に掲げる措置に加え"
+                    }
+                  ],
+                  "full_length": {
+                    "old": 6101,
+                    "new": 5474
+                  }
+                }
+              ],
+              "removed": [],
+              "counts": {
+                "added": 0,
+                "changed": 1,
+                "citation_only": 0,
+                "removed": 0
+              }
+            },
+            "text_status": "ok",
+            "delegation_sentences": [],
+            "modality_sentences": [
+              {
+                "label": "第118条",
+                "kind": "obligation",
+                "sentence": "２ 人材確保等支援助成コース助成金は、第一号に該当する認定組合等又は事業主に対して、第二号に定める額を支給するものとする。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "（イ） 職務等に応じて賃金を決定するための制度を整備する措置（ロ） 職業安定局長が定める手当、賞与又は退職金制度を導入する措置（ハ） 生産性向上に資する人事評価制度を整備する措置（ニ） 医師による健康診断（労働安全衛生法第六十六条第一項、第二項及び第四項に規定する健康診断を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "（ｉ） 次の（イ）及び（ロ）に掲げる措置を実施し、かつ、外国人労働者（現に当該事業主に雇用され、当該事業主に係る外国人雇用状況届出の対象働者が離職した事業主（天災その他やむを得ない理由のために事業の継続が不可能となつたこと又は労働者の責めに帰すべき理由により解雇した事業主を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）以外の事業主にあつては、（６）を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）に適用した事業主（（ｉｉ）に該当する事業主を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）（イ） 外国人労働者を離職した事業主（天災その他やむを得ない理由のために事業の継続が不可能となつたこと又は労働者の責めに帰すべき理由により解雇した事業主を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）以外の事業主にあつては、（６）を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）に適用した事業主（（ｉｉ）に該当する事業主を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "）に適用した事業主（（ｉｉ）に該当する事業主を除く。"
+              },
+              {
+                "label": "第118条",
+                "kind": "exception",
+                "sentence": "（ｉｉ）に該当する事業主を除く。"
+              }
+            ]
+          },
+          {
+            "status": "ok",
+            "law_id": "350M50002000003",
+            "law_title": "雇用保険法施行規則",
+            "law_num": "昭和五十年労働省令第三号",
+            "revision_id": "350M50002000003_20260930_508M60000100145",
+            "previous_revision_id": "350M50002000003_20260825_508M60000100134",
+            "amendment_law_id": "508M60000100145",
+            "amendment_law_num": "令和八年厚生労働省令第百四十五号",
+            "amendment_law_title": "雇用保険法施行規則の一部を改正する省令",
+            "promulgation_date": "2026-09-30",
+            "effective_stages": [
+              {
+                "revision_id": "350M50002000003_20260930_508M60000100145",
+                "effective_date": "2026-09-30",
+                "delegated": false,
+                "enforcement_comment": null,
+                "outer_limit": null,
+                "status": "PreviousEnforced"
+              }
+            ],
+            "instrument_form": "in_force_instrument",
+            "stage": "in_force",
+            "revisions_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_revisions/350M50002000003",
+              "sha256": "53a875830e416a3bfc194f78879017b9b2e469df62cae1f6f5b86326b7d81668",
+              "fetched_at": "2026-11-15T13:47:01Z"
+            },
+            "law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20260930_508M60000100145?response_format=json&law_full_text_format=json",
+              "sha256": "b159a6e56e67272ab41244f96c9a8a2f4e3c7af604b0b60a072daf13ffa33bef",
+              "fetched_at": "2026-11-15T13:47:02Z"
+            },
+            "supplementary_provisions": "附 則この省令は、公布の日から施行する。",
+            "effective_sentences": [
+              "附 則この省令は、公布の日から施行する。"
+            ],
+            "transitional_sentences": [],
+            "previous_law_data_source": {
+              "url": "https://laws.e-gov.go.jp/api/2/law_data/350M50002000003_20260825_508M60000100134?response_format=json&law_full_text_format=json",
+              "sha256": "7de4440f4d60d31feb406d0b4573e69d46c6fb512a80c761b0f68eed8bd8292b",
+              "fetched_at": "2026-11-15T13:47:03Z"
+            },
+            "diff": {
+              "added": [],
+              "changed": [],
+              "removed": [],
+              "counts": {
+                "added": 0,
+                "changed": 0,
+                "citation_only": 0,
+                "removed": 0
+              }
+            },
+            "text_status": "ok",
+            "delegation_sentences": [],
+            "modality_sentences": []
+          }
+        ],
+        "candidate_count": 3
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {},
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "draft:raw-1123e5757d1ade6f",
+    "seed_item_id": "raw-1123e5757d1ade6f",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}

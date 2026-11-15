@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-b116141db6cb37a4",
+  "queue_id": "instrument:令和八年環境省令第二十三号",
+  "title_ja": "環境省関係浄化槽法施行規則の一部を改正する省令",
+  "related_item_ids": [
+    "raw-b116141db6cb37a4",
+    "raw-c58c1ff88590212b"
+  ],
+  "source_fingerprint": "sha256:15adc261cc591f137c3830d862659707",
+  "status": "ready",
+  "instruments": [
+    {
+      "status": "ok",
+      "law_id": "359M50000100017",
+      "law_title": "環境省関係浄化槽法施行規則",
+      "law_num": "昭和五十九年厚生省令第十七号",
+      "revision_id": "359M50000100017_20260831_508M60001000023",
+      "previous_revision_id": "359M50000100017_20250401_507M60001000010",
+      "amendment_law_id": "508M60001000023",
+      "amendment_law_num": "令和八年環境省令第二十三号",
+      "amendment_law_title": "環境省関係浄化槽法施行規則の一部を改正する省令",
+      "promulgation_date": "2026-08-31",
+      "effective_stages": [
+        {
+          "revision_id": "359M50000100017_20260831_508M60001000023",
+          "effective_date": "2026-08-31",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/359M50000100017",
+        "sha256": "ed63cdb4983f3391f0073c0ddf9721e48d22e0551fad761a97c13e96306046c6",
+        "fetched_at": "2026-11-15T13:47:31Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20260831_508M60001000023?response_format=json&law_full_text_format=json",
+        "sha256": "a7996b7c09bf66bf10e46b0ed6e1da8745b778f53416ebc1a098c2e193f2afaf",
+        "fetched_at": "2026-11-15T13:47:31Z"
+      },
+      "supplementary_provisions": "附 則（施行期日） １ この省令は、公布の日から施行する。\n（経過措置） ２ この省令の施行の際現にあるこの省令による改正前の様式（次項において「旧様式」という。）により使用されている書類は、この省令による改正後の様式によるものとみなす。\n３ この省令の施行の際現にある旧様式による用紙については、当分の間、これを取り繕って使用することができる。",
+      "effective_sentences": [
+        "附 則（施行期日） １ この省令は、公布の日から施行する。"
+      ],
+      "transitional_sentences": [
+        "（経過措置） ２ この省令の施行の際現にあるこの省令による改正前の様式（次項において「旧様式」という。",
+        "３ この省令の施行の際現にある旧様式による用紙については、当分の間、これを取り繕って使用することができる。"
+      ],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20250401_507M60001000010?response_format=json&law_full_text_format=json",
+        "sha256": "bcf4df3d4a1ca41f102447cce6d2b16e464d48300159f4b164f67ef45792474c",
+        "fetched_at": "2026-11-15T13:47:31Z"
+      },
+      "diff": {
+        "added": [],
+        "changed": [
+          {
+            "path": "本則/第15条",
+            "label": "第15条",
+            "old": "（免状の申請手続） 第十五条 法第四十五条第一項の規定により浄化槽管理士免状（以下「免状」という。）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。一 戸籍の謄本若しくは抄本若しくは本籍の記載のある住民票の写し又はこれらに代わる書面\n二 法第四十五条第一項第一号に掲げる者にあつては、浄化槽管理士試験の合格証書の写し\n三 法第四十五条第一項第二号に掲げる者にあつては、同号に規定する指定講習機関（以下「指定講習機関」という。）が行う浄化槽の保守点検に関して必要な知識及び技能に関する講習（以下「講習」という。）の修了証書の写し",
+            "new": "（免状の申請手続） 第十五条 法第四十五条第一項の規定により浄化槽管理士免状（以下「免状」という。）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。一 戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等（住民基本台帳法（昭和四十二年法律第八十一号）第三十条の四十五に規定する国籍等をいう。以下同じ。））の記載のある住民票の写し又はこれらに代わる書面\n二 法第四十五条第一項第一号に掲げる者にあつては、浄化槽管理士試験の合格証書の写し\n三 法第四十五条第一項第二号に掲げる者にあつては、同号に規定する指定講習機関（以下「指定講習機関」という。）が行う浄化槽の保守点検に関して必要な知識及び技能に関する講習（以下「講習」という。）の修了証書の写し",
+            "citation_only": false,
+            "spans": [
+              {
+                "op": "insert",
+                "before": "続） 第十五条 法第四十五条第一項の規定により浄化槽管理士免状（以下「免状」という。）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。一 戸籍の謄本若しくは抄本若しくは本籍",
+                "old": "",
+                "new": "（日本の国籍を有しない者にあつては、その国籍等（住民基本台帳法（昭和四十二年法律第八十一号）第三十条の四十五に規定する国籍等をいう。以下同じ。））",
+                "after": "の記載のある住民票の写し又はこれらに代わる書面\n二 法第四十五条第一項第一号に掲げる者にあつては、浄化槽管理士試験の合格証書の写し\n三 法第四十五条第一項第二号に掲げる者にあつては、同号に規定する指定講習機関（以下「指定講習機関」という。）"
+              }
+            ],
+            "full_length": {
+              "old": 297,
+              "new": 370
+            }
+          },
+          {
+            "path": "本則/第18条",
+            "label": "第18条",
+            "old": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。\n２ 前項の免状の書換えの申請書の様式は、様式第五号による。",
+            "new": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等）の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。\n２ 前項の免状の書換えの申請書の様式は、様式第五号による。",
+            "citation_only": false,
+            "spans": [
+              {
+                "op": "insert",
+                "before": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍",
+                "old": "",
+                "new": "（日本の国籍を有しない者にあつては、その国籍等）",
+                "after": "の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。\n２ 前項の免状の書換えの申請書の様式は、様式第五号による。"
+              }
+            ],
+            "full_length": {
+              "old": 147,
+              "new": 171
+            }
+          }
+        ],
+        "removed": [],
+        "counts": {
+          "added": 0,
+          "changed": 2,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [],
+      "modality_sentences": [
+        {
+          "label": "第15条",
+          "kind": "obligation",
+          "sentence": "）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。"
+        },
+        {
+          "label": "第15条",
+          "kind": "obligation",
+          "sentence": "）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。"
+        },
+        {
+          "label": "第18条",
+          "kind": "permission",
+          "sentence": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等）の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。"
+        },
+        {
+          "label": "第18条",
+          "kind": "permission",
+          "sentence": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等）の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。"
+        }
+      ],
+      "raw_id": "raw-b116141db6cb37a4"
+    }
+  ],
+  "drafts": [
+    {
+      "raw_id": "raw-c58c1ff88590212b",
+      "title": "環境省関係浄化槽法施行規則の一部を改正する省令（案）に対する意見募集（パブリックコメント）について",
+      "draft_name": "環境省関係浄化槽法施行規則の一部を改正する省令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=195260039&Mode=0",
+      "published": "2026-07-06",
+      "deadline": "2026-08-05",
+      "resolution": {
+        "status": "resolved",
+        "method": "repository_egov_history_exact_title",
+        "candidates": [
+          {
+            "revision_id": "359M50000100017_20260831_508M60001000023",
+            "amendment_law_num": "令和八年環境省令第二十三号",
+            "law_title": "環境省関係浄化槽法施行規則"
+          }
+        ],
+        "candidate_count": 1
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {
+    "instrument_form": {
+      "status": "machine_confirmed",
+      "value": "in_force_instrument",
+      "stage": "in_force",
+      "evidence": [
+        "359M50000100017_20260831_508M60001000023"
+      ]
+    },
+    "promulgation_date": {
+      "status": "machine_confirmed",
+      "value": "2026-08-31",
+      "evidence": [
+        "359M50000100017_20260831_508M60001000023"
+      ]
+    },
+    "effective_date": {
+      "status": "machine_confirmed",
+      "value": "2026-08-31",
+      "delegated": [],
+      "evidence": [
+        "359M50000100017_20260831_508M60001000023"
+      ]
+    },
+    "partial_effective_date": {
+      "status": "machine_confirmed",
+      "value": null,
+      "note": "single commencement stage"
+    },
+    "amended_provisions": {
+      "status": "machine_confirmed",
+      "value": [
+        "第15条",
+        "第18条"
+      ],
+      "evidence": [
+        "359M50000100017_20260831_508M60001000023"
+      ]
+    },
+    "old_vs_new": {
+      "status": "requires_ai",
+      "note": "diff below is exact; describe its legal effect from the quoted texts"
+    },
+    "transitional_measures": {
+      "status": "requires_ai",
+      "value": [
+        "（経過措置） ２ この省令の施行の際現にあるこの省令による改正前の様式（次項において「旧様式」という。",
+        "３ この省令の施行の際現にある旧様式による用紙については、当分の間、これを取り繕って使用することができる。"
+      ],
+      "note": "transitional sentences found in the amending instrument's supplementary provisions"
+    },
+    "delegation": {
+      "status": "requires_ai",
+      "value": [],
+      "note": "'implements' = the changed provision is itself the rule a higher instrument delegated; 'further' = it leaves a matter to yet another instrument"
+    },
+    "scope": {
+      "status": "requires_ai"
+    },
+    "obligation_type": {
+      "status": "requires_ai",
+      "hints": [
+        {
+          "label": "第15条",
+          "kind": "obligation",
+          "sentence": "）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。"
+        },
+        {
+          "label": "第15条",
+          "kind": "obligation",
+          "sentence": "）の交付を受けようとする者は、様式第二号による申請書に次に掲げる書類を添えて、これを環境大臣に提出しなければならない。"
+        },
+        {
+          "label": "第18条",
+          "kind": "permission",
+          "sentence": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等）の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。"
+        },
+        {
+          "label": "第18条",
+          "kind": "permission",
+          "sentence": "（免状の書換え） 第十八条 免状の交付を受けている者は、免状の記載事項に変更を生じたときは、免状に戸籍の謄本若しくは抄本若しくは本籍（日本の国籍を有しない者にあつては、その国籍等）の記載のある住民票の写し又はこれらに代わる書面を添えて、環境大臣に免状の書換えを申請することができる。"
+        }
+      ]
+    },
+    "policy_background": {
+      "status": "requires_ai"
+    },
+    "business_impact": {
+      "status": "requires_ai"
+    }
+  },
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "instrument:令和八年環境省令第二十三号",
+    "seed_item_id": "raw-b116141db6cb37a4",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [
+      {
+        "id": "s1",
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/359M50000100017",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:31Z",
+        "sha256": "ed63cdb4983f3391f0073c0ddf9721e48d22e0551fad761a97c13e96306046c6",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-b116141db6cb37a4"
+      },
+      {
+        "id": "s2",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20260831_508M60001000023?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:31Z",
+        "sha256": "a7996b7c09bf66bf10e46b0ed6e1da8745b778f53416ebc1a098c2e193f2afaf",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-b116141db6cb37a4"
+      },
+      {
+        "id": "s3",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20250401_507M60001000010?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:31Z",
+        "sha256": "bcf4df3d4a1ca41f102447cce6d2b16e464d48300159f4b164f67ef45792474c",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-b116141db6cb37a4"
+      }
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "confirmed",
+        "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-b116141db6cb37a4#instrument_form",
+        "value": "in_force_instrument"
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "confirmed",
+        "statement": "Promulgated 2026-08-31 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-b116141db6cb37a4#promulgation_date"
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "confirmed",
+        "statement": "Effective 2026-08-31 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-b116141db6cb37a4#effective_date"
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "not_applicable",
+        "statement": "Single commencement stage.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-b116141db6cb37a4#partial_effective_date"
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "confirmed",
+        "statement": "Provisions changed (e-Gov old/new text): 第15条, 第18条",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-b116141db6cb37a4#amended_provisions"
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}

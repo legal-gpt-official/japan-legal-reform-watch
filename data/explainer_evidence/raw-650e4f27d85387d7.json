@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "seed_item_id": "raw-650e4f27d85387d7",
+  "queue_id": "instrument:令和八年総務省令第百八号",
+  "title_ja": "「地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令（案）等」についての意見・情報の募集について",
+  "related_item_ids": [
+    "raw-650e4f27d85387d7",
+    "raw-b71fb7e92c54bb72"
+  ],
+  "source_fingerprint": "sha256:4c3057e69e430983649bdefc2d14ed1b",
+  "status": "ready",
+  "instruments": [
+    {
+      "status": "ok",
+      "law_id": "508M60000008051",
+      "law_title": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令",
+      "law_num": "令和八年総務省令第五十一号",
+      "revision_id": "508M60000008051_20260831_508M60000008108",
+      "previous_revision_id": "508M60000008051_20260401_000000000000000",
+      "amendment_law_id": "508M60000008108",
+      "amendment_law_num": "令和八年総務省令第百八号",
+      "amendment_law_title": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令",
+      "promulgation_date": "2026-08-31",
+      "effective_stages": [
+        {
+          "revision_id": "508M60000008051_20260831_508M60000008108",
+          "effective_date": "2026-08-31",
+          "delegated": false,
+          "enforcement_comment": null,
+          "outer_limit": null,
+          "status": "CurrentEnforced"
+        }
+      ],
+      "instrument_form": "in_force_instrument",
+      "stage": "in_force",
+      "revisions_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008051",
+        "sha256": "d540409d05201b28f7e94a0a50599670301906eecde80ffe4971d482f72de7e1",
+        "fetched_at": "2026-11-15T13:47:32Z"
+      },
+      "law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260831_508M60000008108?response_format=json&law_full_text_format=json",
+        "sha256": "5282b051d1f06278ded4656e10926e1c2eb12d6d640e31c6d338b66e48b85adf",
+        "fetched_at": "2026-11-15T13:47:33Z"
+      },
+      "supplementary_provisions": "附 則この省令は、公布の日から施行する。",
+      "effective_sentences": [
+        "附 則この省令は、公布の日から施行する。"
+      ],
+      "transitional_sentences": [],
+      "previous_law_data_source": {
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260401_000000000000000?response_format=json&law_full_text_format=json",
+        "sha256": "85ed780f817fdc4c45668d8961664d1aef0dd92ef3a02957cb7ba659c635a120",
+        "fetched_at": "2026-11-15T13:47:33Z"
+      },
+      "diff": {
+        "added": [
+          {
+            "path": "別表等[様式第六十三号の二の二]",
+            "label": "別表等[様式第六十三号の二の二]",
+            "new": "様式第六十三号の二の二 （第十三条第三百六号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第六十四号の二の二]",
+            "label": "別表等[様式第六十四号の二の二]",
+            "new": "様式第六十四号の二の二 （第十三条第三百十号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第六十五号の二の二]",
+            "label": "別表等[様式第六十五号の二の二]",
+            "new": "様式第六十五号の二の二 （第十三条第三百十四号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第六十六号の二の二]",
+            "label": "別表等[様式第六十六号の二の二]",
+            "new": "様式第六十六号の二の二 （第十三条第三百三十四号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第六十七号の二の二]",
+            "label": "別表等[様式第六十七号の二の二]",
+            "new": "様式第六十七号の二の二 （第十三条第三百三十六号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第七十九号の二]",
+            "label": "別表等[様式第七十九号の二]",
+            "new": "様式第七十九号の二 （第十三条第四百四十一号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十一号の三]",
+            "label": "別表等[様式第八十一号の三]",
+            "new": "様式第八十一号の三 （第十三条第四百四十四号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十四号の三]",
+            "label": "別表等[様式第八十四号の三]",
+            "new": "様式第八十四号の三 （第十四条第四十七号及び第四十八号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十五号の二]",
+            "label": "別表等[様式第八十五号の二]",
+            "new": "様式第八十五号の二 （第十四条第六十七号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十六号の二]",
+            "label": "別表等[様式第八十六号の二]",
+            "new": "様式第八十六号の二 （第十四条第六十八号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十七号の二]",
+            "label": "別表等[様式第八十七号の二]",
+            "new": "様式第八十七号の二 （第十四条第六十九号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第八十九号の二]",
+            "label": "別表等[様式第八十九号の二]",
+            "new": "様式第八十九号の二 （第十四条第九十四号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第九十一号の二]",
+            "label": "別表等[様式第九十一号の二]",
+            "new": "様式第九十一号の二 （第十四条第二百十二号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第百十三号の二]",
+            "label": "別表等[様式第百十三号の二]",
+            "new": "様式第百十三号の二 （第十六条第五十八号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第百二十一号の二]",
+            "label": "別表等[様式第百二十一号の二]",
+            "new": "様式第百二十一号の二 （第十六条第六十九号関係）（適合基準日：令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第百二十二号の二]",
+            "label": "別表等[様式第百二十二号の二]",
+            "new": "様式第百二十二号の二 （第十六条第七十号関係）（適合基準日令和十年四月一日）"
+          },
+          {
+            "path": "別表等[様式第百三十四号の二]",
+            "label": "別表等[様式第百三十四号の二]",
+            "new": "様式第百三十四号の二 （第十六条第百二号の二関係）"
+          }
+        ],
+        "changed": [
+          {
+            "path": "別表等[様式第八十二号]",
+            "label": "別表等[様式第八十二号]",
+            "old": "様式第八十二号 （第十三条第四百七十二号関係）（適合基準日：令和八年四月一日）",
+            "new": "様式第八十二号 （第十三条第四百七十二号関係）（適合基準日：令和九年四月一日）",
+            "citation_only": false,
+            "spans": [
+              {
+                "op": "replace",
+                "before": "様式第八十二号 （第十三条第四百七十二号関係）（適合基準日：令和",
+                "old": "八",
+                "new": "九",
+                "after": "年四月一日）"
+              }
+            ],
+            "full_length": {
+              "old": 39,
+              "new": 39
+            }
+          }
+        ],
+        "removed": [],
+        "counts": {
+          "added": 17,
+          "changed": 1,
+          "citation_only": 0,
+          "removed": 0
+        }
+      },
+      "text_status": "ok",
+      "delegation_sentences": [],
+      "modality_sentences": [],
+      "raw_id": "raw-b71fb7e92c54bb72"
+    }
+  ],
+  "drafts": [
+    {
+      "raw_id": "raw-650e4f27d85387d7",
+      "title": "「地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令（案）等」についての意見・情報の募集について",
+      "draft_name": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令の一部を改正する省令",
+      "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=145210753&Mode=0",
+      "published": "2026-07-17",
+      "deadline": "2026-08-20",
+      "resolution": {
+        "status": "resolved",
+        "method": "repository_egov_history_exact_title",
+        "candidates": [
+          {
+            "revision_id": "508M60000008051_20260831_508M60000008108",
+            "amendment_law_num": "令和八年総務省令第百八号",
+            "law_title": "地方公共団体情報システムの標準化に関する法律第二条第一項に規定する標準化対象事務を定める政令に規定するデジタル庁令・総務省令で定める事務を定める命令第六条各号に規定する事務の処理に係るシステムに必要とされる機能等に関する標準化基準を定める省令"
+          }
+        ],
+        "candidate_count": 1
+      }
+    }
+  ],
+  "fetch_errors": [],
+  "notice": "Machine-extracted from official e-Gov data. Dates, numbers and the list of changed provisions are record data; what a provision means for any party is NOT interpreted here. Absence from e-Gov is not evidence that a step did not happen.",
+  "facts": {
+    "instrument_form": {
+      "status": "machine_confirmed",
+      "value": "in_force_instrument",
+      "stage": "in_force",
+      "evidence": [
+        "508M60000008051_20260831_508M60000008108"
+      ]
+    },
+    "promulgation_date": {
+      "status": "machine_confirmed",
+      "value": "2026-08-31",
+      "evidence": [
+        "508M60000008051_20260831_508M60000008108"
+      ]
+    },
+    "effective_date": {
+      "status": "machine_confirmed",
+      "value": "2026-08-31",
+      "delegated": [],
+      "evidence": [
+        "508M60000008051_20260831_508M60000008108"
+      ]
+    },
+    "partial_effective_date": {
+      "status": "machine_confirmed",
+      "value": null,
+      "note": "single commencement stage"
+    },
+    "amended_provisions": {
+      "status": "machine_confirmed",
+      "value": [
+        "別表等[様式第七十九号の二]",
+        "別表等[様式第九十一号の二]",
+        "別表等[様式第八十一号の三]",
+        "別表等[様式第八十七号の二]",
+        "別表等[様式第八十九号の二]",
+        "別表等[様式第八十二号]",
+        "別表等[様式第八十五号の二]",
+        "別表等[様式第八十六号の二]",
+        "別表等[様式第八十四号の三]",
+        "別表等[様式第六十七号の二の二]",
+        "別表等[様式第六十三号の二の二]",
+        "別表等[様式第六十五号の二の二]",
+        "別表等[様式第六十六号の二の二]",
+        "別表等[様式第六十四号の二の二]",
+        "別表等[様式第百三十四号の二]",
+        "別表等[様式第百二十一号の二]",
+        "別表等[様式第百二十二号の二]",
+        "別表等[様式第百十三号の二]"
+      ],
+      "evidence": [
+        "508M60000008051_20260831_508M60000008108"
+      ]
+    },
+    "old_vs_new": {
+      "status": "requires_ai",
+      "note": "diff below is exact; describe its legal effect from the quoted texts"
+    },
+    "transitional_measures": {
+      "status": "machine_confirmed",
+      "value": [],
+      "note": "the amending instrument's supplementary provisions contain no transitional sentence"
+    },
+    "delegation": {
+      "status": "requires_ai",
+      "value": [],
+      "note": "'implements' = the changed provision is itself the rule a higher instrument delegated; 'further' = it leaves a matter to yet another instrument"
+    },
+    "scope": {
+      "status": "requires_ai"
+    },
+    "obligation_type": {
+      "status": "requires_ai",
+      "hints": []
+    },
+    "policy_background": {
+      "status": "requires_ai"
+    },
+    "business_impact": {
+      "status": "requires_ai"
+    }
+  },
+  "case_file_template": {
+    "schema_version": 1,
+    "dossier_id": "REPLACE-WITH-DOSSIER-ID",
+    "kind": "new",
+    "queue_id": "instrument:令和八年総務省令第百八号",
+    "seed_item_id": "raw-650e4f27d85387d7",
+    "hold": null,
+    "next_action": "Interpret scope, obligation type, old vs new and delegation from the evidence pack quotes; then write the English explainer.",
+    "sources": [
+      {
+        "id": "s1",
+        "url": "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008051",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:32Z",
+        "sha256": "d540409d05201b28f7e94a0a50599670301906eecde80ffe4971d482f72de7e1",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-650e4f27d85387d7"
+      },
+      {
+        "id": "s2",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260831_508M60000008108?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:33Z",
+        "sha256": "5282b051d1f06278ded4656e10926e1c2eb12d6d640e31c6d338b66e48b85adf",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-650e4f27d85387d7"
+      },
+      {
+        "id": "s3",
+        "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260401_000000000000000?response_format=json&law_full_text_format=json",
+        "kind": "egov_law",
+        "status": "fetched",
+        "fetched_at": "2026-11-15T13:47:33Z",
+        "sha256": "85ed780f817fdc4c45668d8961664d1aef0dd92ef3a02957cb7ba659c635a120",
+        "error_class": null,
+        "attempts": 1,
+        "evidence_pack": "raw-650e4f27d85387d7"
+      }
+    ],
+    "facts": [
+      {
+        "id": "f1",
+        "category": "instrument_form",
+        "status": "confirmed",
+        "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#instrument_form",
+        "value": "in_force_instrument"
+      },
+      {
+        "id": "f2",
+        "category": "promulgation_date",
+        "status": "confirmed",
+        "statement": "Promulgated 2026-08-31 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#promulgation_date"
+      },
+      {
+        "id": "f3",
+        "category": "effective_date",
+        "status": "confirmed",
+        "statement": "Effective 2026-08-31 (e-Gov revision record).",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#effective_date"
+      },
+      {
+        "id": "f4",
+        "category": "partial_effective_date",
+        "status": "not_applicable",
+        "statement": "Single commencement stage.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#partial_effective_date"
+      },
+      {
+        "id": "f5",
+        "category": "amended_provisions",
+        "status": "confirmed",
+        "statement": "Provisions changed (e-Gov old/new text): 別表等[様式第七十九号の二], 別表等[様式第九十一号の二], 別表等[様式第八十一号の三], 別表等[様式第八十七号の二], 別表等[様式第八十九号の二], 別表等[様式第八十二号], 別表等[様式第八十五号の二], 別表等[様式第八十六号の二], 別表等[様式第八十四号の三], 別表等[様式第六十七号の二の二], 別表等[様式第六十三号の二の二], 別表等[様式第六十五号の二の二], 別表等[様式第六十六号の二の二], 別表等[様式第六十四号の二の二], 別表等[様式第百三十四号の二], 別表等[様式第百二十一号の二], 別表等[様式第百二十二号の二], 別表等[様式第百十三号の二]",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#amended_provisions"
+      },
+      {
+        "id": "f6",
+        "category": "old_vs_new",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f7",
+        "category": "scope",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f8",
+        "category": "obligation_type",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f9",
+        "category": "transitional_measures",
+        "status": "not_applicable",
+        "statement": "The amending instrument's supplementary provisions contain no transitional provision.",
+        "source_ids": [
+          "s1"
+        ],
+        "evidence_ref": "raw-650e4f27d85387d7#transitional_measures"
+      },
+      {
+        "id": "f10",
+        "category": "delegation",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f11",
+        "category": "policy_background",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      },
+      {
+        "id": "f12",
+        "category": "business_impact",
+        "status": "unconfirmed",
+        "statement": "To be confirmed by the writer from the quoted official text.",
+        "source_ids": []
+      }
+    ],
+    "unresolved": []
+  }
+}
