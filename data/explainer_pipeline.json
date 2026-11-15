@@ -462,14 +462,24 @@
         "duration_s": 89
       },
       "merged_at": "2026-11-15T14:48:14Z",
+      "publish": {
+        "run_id": 43727614040,
+        "completed_at": "2026-11-15T15:04:41Z"
+      },
+      "live": {
+        "run_id": 43727837870,
+        "completed_at": "2026-11-15T15:05:01Z"
+      },
       "introduced": {
         "pr": 164,
         "drafted_at": "2026-11-15T14:46:17Z",
         "ci_passed_at": "2026-11-15T14:47:50Z",
-        "merged_at": "2026-11-15T14:48:14Z"
+        "merged_at": "2026-11-15T14:48:14Z",
+        "pages_at": "2026-11-15T15:04:41Z",
+        "live_at": "2026-11-15T15:05:01Z"
       },
-      "stage": "MERGED",
-      "last_success_stage": "MERGED",
+      "stage": "LIVE_VERIFIED",
+      "last_success_stage": "LIVE_VERIFIED",
       "stage_history": {
         "DRAFTED": "2026-11-15T14:46:17Z",
         "RESEARCH_REQUIRED": "2026-11-15T14:46:17Z",
@@ -478,7 +488,9 @@
         "JA_ZH_READY": "2026-11-15T14:46:51Z",
         "STAMPED_AND_SYNCED": "2026-11-15T14:46:51Z",
         "CI_PASSED": "2026-11-15T14:47:50Z",
-        "MERGED": "2026-11-15T14:48:14Z"
+        "MERGED": "2026-11-15T14:48:14Z",
+        "PAGES_DEPLOYED": "2026-11-15T15:04:41Z",
+        "LIVE_VERIFIED": "2026-11-15T15:05:01Z"
       },
       "sources": {
         "fetched": 9,
@@ -492,9 +504,9 @@
         "Exchange rules and individual trust deeds that govern how each ETF applies item (c) were not reviewed."
       ],
       "blockers": [],
-      "next_action": "Publish pending: the pipeline re-dispatches Publish if it has not succeeded within 20 minutes.",
-      "updated_at": "2026-11-15T14:48:49Z",
-      "run_id": "43726319636"
+      "next_action": "Done (LIVE_VERIFIED).",
+      "updated_at": "2026-11-15T15:05:35Z",
+      "run_id": "43727837849"
     },
     "food-consumption-tax-temporary-cut-2026-bill": {
       "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
@@ -2048,8 +2060,8 @@
         "drafted": 2,
         "ci_passed": 1,
         "merged": 1,
-        "pages_deployed": 0,
-        "live_verified": 0
+        "pages_deployed": 1,
+        "live_verified": 1
       },
       "updates_merged": 0
     },
