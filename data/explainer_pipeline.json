@@ -1046,6 +1046,11 @@
         "raw-d38230df21e2f625"
       ],
       "source_fingerprint": "sha256:b10a860da8d3cb299e595643549a85ad",
+      "evidence": {
+        "status": "ready",
+        "digest": "sha256:4e24c7a0f1a9c501adfdca6e215dcf00",
+        "pack": "data/explainer_evidence/raw-15b5c5a72bfae0a1.json"
+      },
       "pr": 157,
       "branch": "explainer/national-pension-childcare-exemption-2026",
       "head_sha": "d88e2aa6120c3466e9bdd962fb3ec4a09339c0d6",
@@ -1362,6 +1367,11 @@
         "raw-0549bdaf78bfe729"
       ],
       "source_fingerprint": "sha256:3f51bc7f7e99fdcda9bc2d2059ed7c02",
+      "evidence": {
+        "status": "draft_only",
+        "digest": "sha256:3439797d07620518124ce9e2f22232d4",
+        "pack": "data/explainer_evidence/raw-0549bdaf78bfe729.json"
+      },
       "pr": 156,
       "branch": "explainer/raw-0549bdaf78bfe729",
       "head_sha": "5ff75a93a9447c224e8152e0d119b504fab8ff7a",
@@ -1554,6 +1564,11 @@
         "raw-7b7aa9727a6ff549"
       ],
       "source_fingerprint": "sha256:936ef11d24c8507130a8fa5e41cdd686",
+      "evidence": {
+        "status": "ready",
+        "digest": "sha256:e43e567c13a8ae6df567b14a2c5d6d73",
+        "pack": "data/explainer_evidence/raw-1087de7d2a09a138.json"
+      },
       "pr": 149,
       "branch": "explainer/trade-insurance-special-underwriting-2026",
       "head_sha": "de276ce88ce954ae2fd58715621a7a4ea557323c",
@@ -2002,5 +2017,131 @@
       137
     ]
   },
-  "evidence_index": {}
+  "evidence_index": {
+    "raw-0549bdaf78bfe729": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-056b16304cad2bfc": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-1087de7d2a09a138": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-1123e5757d1ade6f": {
+      "status": "ambiguous",
+      "instruments": 0,
+      "draft_documents": false
+    },
+    "raw-15b5c5a72bfae0a1": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-270c6a4d45f8378f": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-2c967ad9dce42ad4": {
+      "status": "ready",
+      "instruments": 2,
+      "draft_documents": false
+    },
+    "raw-2d71845be9e54563": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": false
+    },
+    "raw-2f0cae05538055e0": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": false
+    },
+    "raw-37f8e60f31a1169b": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-48d7dfe44637ea30": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-650e4f27d85387d7": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-65580538b2985c30": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-7bf14a11616c78fd": {
+      "status": "ready",
+      "instruments": 4,
+      "draft_documents": false
+    },
+    "raw-829e6e5e3e709150": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-9b23b040d93ee91a": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-a774a90138a1dcf2": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-aff984222acf65c3": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-b116141db6cb37a4": {
+      "status": "ready",
+      "instruments": 1,
+      "draft_documents": false
+    },
+    "raw-b2af6417a4c9ab61": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-c30223bca43e30a3": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": false
+    },
+    "raw-cfdcf910c315e827": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-d27cba12376a209e": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-e4c43bb30b365821": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-ff15fcfddb634b01": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    }
+  }
 }
