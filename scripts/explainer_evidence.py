@@ -205,6 +205,33 @@ def article_label(path: str) -> str:
     return "第" + parts[0] + "条" + "".join("の" + p for p in parts[1:])
 
 
+MAX_SPANS = 12
+SPAN_CONTEXT = 120
+SPAN_TEXT = 700
+
+
+def change_spans(old: str, new: str) -> list[dict[str, str]]:
+    """The exact changed passages of a provision with a little context, so a change deep inside a
+    long article is never hidden by truncating the full text."""
+    import difflib
+
+    matcher = difflib.SequenceMatcher(None, old, new, autojunk=False)
+    spans = []
+    for op, a1, a2, b1, b2 in matcher.get_opcodes():
+        if op == "equal":
+            continue
+        spans.append({
+            "op": op,
+            "before": old[max(0, a1 - SPAN_CONTEXT):a1],
+            "old": old[a1:a2][:SPAN_TEXT],
+            "new": new[b1:b2][:SPAN_TEXT],
+            "after": new[b2:b2 + SPAN_CONTEXT],
+        })
+        if len(spans) >= MAX_SPANS:
+            break
+    return spans
+
+
 def diff_provisions(old: Mapping[str, str], new: Mapping[str, str]) -> dict[str, list[dict[str, Any]]]:
     added, changed, removed = [], [], []
     for key, text in new.items():
@@ -214,7 +241,9 @@ def diff_provisions(old: Mapping[str, str], new: Mapping[str, str]) -> dict[str,
             added.append({"path": key, "label": article_label(key), "new": text[:MAX_TEXT]})
         elif old[key] != text:
             changed.append({"path": key, "label": article_label(key), "old": old[key][:MAX_TEXT],
-                            "new": text[:MAX_TEXT], "citation_only": citation_only(old[key], text)})
+                            "new": text[:MAX_TEXT], "citation_only": citation_only(old[key], text),
+                            "spans": change_spans(old[key], text),
+                            "full_length": {"old": len(old[key]), "new": len(text)}})
     for key, text in old.items():
         if key not in new and not key.startswith("附則["):
             removed.append({"path": key, "label": article_label(key), "old": text[:MAX_TEXT]})
@@ -268,7 +297,9 @@ def tag_sentences(items: Iterable[Mapping[str, Any]]) -> tuple[list[dict], list[
     for item in items:
         if item.get("citation_only"):
             continue
-        for sentence in sentences(item.get("new") or ""):
+        span_text = "".join(sp.get("before", "") + sp.get("new", "") + sp.get("after", "")
+                            for sp in item.get("spans") or [])
+        for sentence in sentences((item.get("new") or "") + "。" + span_text):
             kind = delegation_kind(sentence)
             if kind and len(delegations) < MAX_SENTENCES:
                 delegations.append({"label": item["label"], "kind": kind, "sentence": sentence[:400]})

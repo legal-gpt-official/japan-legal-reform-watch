@@ -74,6 +74,17 @@ class TextTests(unittest.TestCase):
         self.assertNotIn("この限りでない", substantive[0]["old"])
         self.assertTrue(next(c for c in diff["changed"] if c["label"] == "第77条の6")["citation_only"])
 
+    def test_a_change_deep_inside_a_long_article_is_never_hidden_by_truncation(self):
+        # Regression (2026-11-15, Cabinet Office Ordinance 82): Article 19's change sat past the
+        # first 1,500 characters, so the truncated old and new texts were identical.
+        head = "甲" * 3000
+        old = {"本則/第19条": head + "次のイ又はロに掲げる場合"}
+        new = {"本則/第19条": head + "次のイからハまでに掲げる場合"}
+        item = ev.diff_provisions(old, new)["changed"][0]
+        self.assertEqual(item["old"], item["new"], "the truncated texts alone show no change")
+        self.assertEqual([(sp["old"], sp["new"]) for sp in item["spans"]], [("又はロ", "からハまで")])
+        self.assertEqual(item["full_length"], {"old": 3012, "new": 3014})
+
     def test_amending_instruments_own_supplementary_provision(self):
         suppl = ev.suppl_for(self.new, "令和八年厚生労働省令第百二十一号")
         self.assertIn("令和八年十月一日から施行する", suppl)
