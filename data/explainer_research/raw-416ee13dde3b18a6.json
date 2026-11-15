@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "explainer:high-cost-medical-care-patient-protection-2026-bill",
+  "kind": "update",
+  "priority": 20,
+  "first_queued_on": "2026-11-15",
+  "seed_item_id": "raw-416ee13dde3b18a6",
+  "related_item_ids": [
+    "raw-416ee13dde3b18a6",
+    "raw-761dc16694bf720c"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:d6838128b2d749744e0fb9196a6f6819",
+  "e_gov_law_api": [],
+  "records": [
+    {
+      "id": "raw-416ee13dde3b18a6",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "全ての国民が安心して医療を受けられる環境の整備を図るための高額療養費等の制度の在り方に係る措置に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-10-06",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE2DBE.htm",
+      "raw_summary": "衆法; 審議状況: 衆議院で審議中; 提出回次: 221; 番号: 7",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-761dc16694bf720c",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "全ての国民が安心して医療を受けられる環境の整備を図るための高額療養費等の制度の在り方に係る措置に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-08-06",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE280A.htm",
+      "raw_summary": "衆法; 審議状況: 衆議院で閉会中審査; 提出回次: 221; 番号: 7",
+      "raw_summary_truncated": false
+    }
+  ]
+}

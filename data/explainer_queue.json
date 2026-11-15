@@ -41,9 +41,10 @@
       "kind": "update",
       "explainer_id": "working-tax-social-insurance-relief-2026-bill",
       "explainer_status": "published",
-      "priority": 40,
+      "priority": 60,
       "reasons": [
-        "official_records_changed"
+        "official_records_changed",
+        "scheduled_recheck"
       ],
       "errors": [],
       "review": {
@@ -99,6 +100,36 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:1a42c0eb7f1a751b8a08255778beeec4",
       "first_queued_on": "2026-11-13"
+    },
+    {
+      "queue_id": "explainer:antarctic-environmental-emergencies-2026",
+      "kind": "update",
+      "explainer_id": "antarctic-environmental-emergencies-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-31",
+      "watch_pages": [
+        "https://www.env.go.jp/nature/nankyoku/law_index.html",
+        "https://www.env.go.jp/press/",
+        "https://www.env.go.jp/nature/nankyoku/page_00529.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-c0242242e59b6dea"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:4d3d00d27ac734c30e00147d4c547142",
+      "first_queued_on": "2026-11-15"
     },
     {
       "queue_id": "explainer:appi-2026-amendment",
@@ -432,6 +463,37 @@
       ],
       "current_fingerprint": "sha256:67bfc22c29487bdf672ff392c196eeba",
       "first_queued_on": "2026-11-12"
+    },
+    {
+      "queue_id": "explainer:high-cost-medical-care-patient-protection-2026-bill",
+      "kind": "update",
+      "explainer_id": "high-cost-medical-care-patient-protection-2026-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-31",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE280A.htm",
+        "https://www.mhlw.go.jp/stf/shingi/other-hoken_474087_00004.html",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-416ee13dde3b18a6",
+        "raw-761dc16694bf720c"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:d6838128b2d749744e0fb9196a6f6819",
+      "first_queued_on": "2026-11-15"
     },
     {
       "queue_id": "explainer:industrial-competitiveness-2026-amendment",
@@ -1162,7 +1224,7 @@
         "Labor / Employment"
       ],
       "title_ja": "健康保険法等の一部を改正する法律の施行に伴う厚生労働省関係告示の整備に関する告示案に関する御意見の募集について",
-      "stage": "Public Comment Open",
+      "stage": "Public Comment Closed",
       "newest_record_first_seen": "2026-10-16",
       "suggested_seed_item_id": "raw-ff15fcfddb634b01",
       "first_queued_on": "2026-10-30"
