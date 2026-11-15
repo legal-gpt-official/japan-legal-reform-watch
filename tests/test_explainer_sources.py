@@ -125,6 +125,45 @@ class FetchTests(unittest.TestCase):
         self.assertEqual(version["revisions"][0]["amendment_enforcement_date"], "2027-04-01")
         self.assertIn("as_of", version)
 
+    def test_egov_law_data_records_its_revision(self):
+        # Regression (2026-11-15): law_data JSON was rejected as parse_error.
+        body = json.dumps({
+            "law_info": {"law_id": "323AC0000000025", "law_num": "昭和二十三年法律第二十五号"},
+            "revision_info": {"law_revision_id": "323AC0000000025_20260501_506AC0000000032",
+                              "law_title": "金融商品取引法", "amendment_law_num": "令和六年法律第三十二号",
+                              "amendment_promulgate_date": "2024-05-22", "amendment_enforcement_date": "2026-05-01"},
+            "law_full_text": {"tag": "Law", "attr": {}, "children": [
+                {"tag": "Sentence", "attr": {}, "children": ["株券等所有割合が百分の三十を超えることとなる場合"]}]},
+        }).encode("utf-8")
+        url = "https://laws.e-gov.go.jp/api/2/law_data/323AC0000000025_20260501_506AC0000000032"
+        s = state(url=url, kind="egov_law")
+        src.run_fetch(s, fetcher=Fetcher((body, "application/json", url)), log=lambda _: None)
+        source = s["sources"][0]
+        self.assertEqual(source["status"], "fetched")
+        self.assertEqual(source["version"]["law_revision_id"], "323AC0000000025_20260501_506AC0000000032")
+        self.assertEqual(source["version"]["amendment_enforcement_date"], "2026-05-01")
+        self.assertIn("百分の三十", source["excerpt"])
+
+    def test_egov_api_has_its_own_size_limit(self):
+        self.assertTrue(src.is_egov_api("https://laws.e-gov.go.jp/api/2/law_data/x"))
+        self.assertFalse(src.is_egov_api("https://laws.e-gov.go.jp/law/x"))
+        self.assertGreater(src.MAX_EGOV_API_BYTES, src.MAX_HTML_BYTES)
+
+    def test_egov_error_page_is_a_withdrawn_record_not_javascript(self):
+        # Regression (2026-11-15): a withdrawn consultation's call view (HTTP 200 system error
+        # page whose scripts mention JavaScript) was recorded as js_required.
+        page = ("<html><head><title>ご迷惑をお掛けします｜e-Gov</title><script>var javascript=1</script></head>"
+                "<body><p>システムエラーが発生しました。</p></body></html>").encode("utf-8")
+        s = state()
+        src.run_fetch(s, fetcher=Fetcher((page, "text/html", URL)), log=lambda _: None)
+        self.assertEqual(s["sources"][0]["error_class"], "http_4xx")
+
+    def test_script_text_alone_is_not_a_javascript_hint(self):
+        page = b"<html><head><script>enable javascript</script></head><body><p>short</p></body></html>"
+        s = state()
+        src.run_fetch(s, fetcher=Fetcher((page, "text/html", URL)), log=lambda _: None)
+        self.assertEqual(s["sources"][0]["error_class"], "empty_or_scanned")
+
     def test_only_official_urls_can_be_added(self):
         with self.assertRaises(SystemExit):
             src.run_fetch(state(), url="https://news.example.com/x", log=lambda _: None)

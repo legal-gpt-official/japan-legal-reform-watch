@@ -781,11 +781,60 @@ def describe_page(data: bytes, mime: str, final_url: str) -> str:
 
 
 ERROR_PAGE_TITLE = "ご迷惑をお掛けします"
+# Labels of the documents on an e-Gov results page (結果概要, 意見募集結果, 提出意見と考え方 ...)
+# and the draft documents some ministries keep there.
+RESULT_DOC_LABEL = re.compile(r"結果|考え方|概要|新旧対照|案文|命令等|公布")
+MAX_RESULT_PDFS = 2
+
+
+def results_url(url: str) -> str | None:
+    """The e-Gov results view of a consultation: same case id, CLASSNAME=PCM1040, Mode=1.
+
+    This is the URL e-Gov's own results feed (rss/pcm_result.xml) links. Once results are
+    published, the call-for-comments view (PCMMSTDETAIL) is withdrawn and serves e-Gov's
+    system error page (measured 2026-11-15 on 14 of 25 drafts), so the results view is
+    where the record, its result summary and the stated legal basis remain."""
+    u = urlsplit(url)
+    if (u.hostname or "").lower() != "public-comment.e-gov.go.jp":
+        return None
+    query = parse_qs(u.query)
+    case_id = (query.get("id") or [""])[0]
+    if (query.get("CLASSNAME") or [""])[0] != "PCMMSTDETAIL" or not case_id.isdigit():
+        return None
+    return f"https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id={case_id}&Mode=1"
+
+
+def results_documents(url: str, fetch: Callable[..., tuple[bytes, str, str]]) -> list[dict[str, str]]:
+    """Page text and up to two result / draft PDFs of an e-Gov results view."""
+    import official_source_evidence as ose
+    from bs4 import BeautifulSoup
+
+    data, mime, final_url = fetch(url, ose.MAX_HTML_BYTES)
+    if ERROR_PAGE_TITLE in describe_page(data, mime, final_url):
+        return []
+    text, _ = ose.html_documents(data, final_url)
+    docs = [{"url": final_url, "format": "html", "excerpt": text}] if len(text) >= 60 else []
+    pdfs: list[str] = []
+    for link in BeautifulSoup(data, "html.parser").select("a[href]"):
+        target = urljoin(final_url, str(link.get("href") or ""))
+        label = " ".join(link.get_text(" ", strip=True).split())
+        if ose.is_pdf_attachment_url(target) and RESULT_DOC_LABEL.search(label) and target not in pdfs:
+            pdfs.append(target)
+    for target in pdfs[:MAX_RESULT_PDFS]:
+        try:
+            pdf, _, pdf_url = fetch(target, ose.pdf_fetch_limit(target))
+            excerpt = ose.pdf_text(pdf) if pdf.startswith(b"%PDF") else ""
+        except Exception as exc:  # noqa: BLE001 - optional attachment; never inferred
+            print(f"result attachment skipped ({type(exc).__name__})")
+            continue
+        if len(excerpt) >= ose.MIN_DOCUMENT_CHARS:
+            docs.append({"url": pdf_url, "format": "pdf", "excerpt": excerpt})
+    return docs
 
 
 def consultation_documents(url: str, title: str, *, gather: Callable[[str], list],
-                           fetch: Callable[..., tuple[bytes, str, str]]) -> tuple[str, str]:
-    """(text, status) for a draft's official consultation page.
+                           fetch: Callable[..., tuple[bytes, str, str]]) -> tuple[str, str, str]:
+    """(text, status, url used) for a draft's official consultation record.
 
     The status says why documents are missing, so a gap is diagnosable from the
     committed pack. Text that cannot be tied to the draft's own title
@@ -795,8 +844,7 @@ def consultation_documents(url: str, title: str, *, gather: Callable[[str], list
     import explainer_sources as src
     import official_source_evidence as ose
 
-    def attempt(target: str) -> tuple[str, str]:
-        found = gather(target)
+    def joined(found: list) -> tuple[str, str]:
         text = " ".join(d.get("excerpt", "") for d in found)
         formats = ",".join(sorted({d.get("format", "?") for d in found}))
         if text and title and not ose.related_to_title(title, found):
@@ -804,25 +852,30 @@ def consultation_documents(url: str, title: str, *, gather: Callable[[str], list
         return text, formats
 
     try:
-        text, formats = attempt(url)
+        text, formats = joined(gather(url))
     except Exception as exc:  # noqa: BLE001 - optional narrowing only
         err = src.classify_exception(exc)
         print(f"documents unavailable for {url}: {err.error_class}")
-        return "", f"error:{err.error_class}"
+        return "", f"error:{err.error_class}", url
     if text:
-        return text, f"ok:{formats}"
+        return text, f"ok:{formats}", url
     try:
         data, mime, final_url = fetch(url, ose.MAX_HTML_BYTES)
         described = describe_page(data, mime, final_url)
     except Exception as exc:  # noqa: BLE001 - diagnostics only
-        return "", f"empty: describe failed ({src.classify_exception(exc).error_class})"
-    if ERROR_PAGE_TITLE in described:
-        # Measured 2026-11-15: every consultation whose draft is already promulgated
-        # (14 of 25) serves this page for the feed's URL, and the same record id under
-        # Mode=1 / Mode=2 does too. Record e-Gov's own message rather than guess another
-        # URL; the promulgated text itself comes from the Law API.
-        return "", "unavailable: e-Gov error page for the consultation URL [" + described + "]"
-    return "", "empty: " + described
+        return "", f"empty: describe failed ({src.classify_exception(exc).error_class})", url
+    if ERROR_PAGE_TITLE not in described:
+        return "", "empty: " + described, url
+    alt = results_url(url)
+    if not alt:
+        return "", "unavailable: e-Gov error page [" + described + "]", url
+    try:
+        text, formats = joined(results_documents(alt, fetch))
+    except Exception as exc:  # noqa: BLE001
+        return "", f"unavailable: call view withdrawn; results view error:{src.classify_exception(exc).error_class}", url
+    if text:
+        return text, f"ok:{formats} (results view; the call view is withdrawn)", alt
+    return "", f"unavailable: call view withdrawn; results view {formats or 'empty'}", url
 
 
 # ------------------------------------------------------------------ pack
@@ -843,14 +896,20 @@ def pack_for(seed: str, index: ex.OfficialIndex, client: EgovClient, today: date
             ev["raw_id"] = item_id
             instruments.append(ev)
         elif "public-comment.e-gov.go.jp" in str(url):
-            docs, doc_status = "", "not_requested"
+            docs, doc_status, docs_url = "", "not_requested", url
             if documents:
                 got = documents(url)
-                docs, doc_status = got if isinstance(got, tuple) else (got, "ok" if got else "empty")
+                if isinstance(got, tuple):
+                    docs, doc_status = got[0], got[1]
+                    docs_url = got[2] if len(got) > 2 else url
+                else:
+                    docs, doc_status = got, ("ok" if got else "empty")
             res = resolve_draft(client, raw, today, docs, index)
             res["documents_status"] = doc_status
             if docs:
                 res["document_excerpt"] = docs[:2500]
+                if docs_url != url:
+                    res["documents_url"] = docs_url
             drafts.append(res)
     resolved_from_drafts = [ev for d in drafts if (d.get("resolution") or {}).get("status") == "resolved"
                             for ev in d["resolution"]["candidates"]]
@@ -1180,7 +1239,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         titles = {str(r.get("source_url")): str(r.get("title_ja") or "") for r in index.raw_by_id.values()}
 
-        def documents(url: str) -> tuple[str, str]:
+        def documents(url: str) -> tuple[str, str, str]:
             return consultation_documents(url, titles.get(url, ""), gather=ose.gather, fetch=ose.fetch_bounded)
     client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls)
     counts: dict[str, int] = {}

@@ -44,6 +44,10 @@ import explainers as ex  # noqa: E402
 
 MAX_HTML_BYTES = 2_000_000
 MAX_PDF_BYTES = 6_000_000
+# e-Gov Law API v2 law_data returns a whole statute as JSON: the Financial Instruments and
+# Exchange Act exceeded the HTML limit (2026-11-15), so official API responses get their own.
+MAX_EGOV_API_BYTES = 40_000_000
+EGOV_ERROR_TITLE = "ご迷惑をお掛けします"
 RETRY_BACKOFF_SECONDS = (2, 6)
 DEFAULT_MAX_AGE_DAYS = 7
 JS_HINTS = ("javascript", "enable javascript", "javascriptを有効", "javascript を有効")
@@ -93,8 +97,16 @@ def classify_exception(exc: BaseException) -> FetchError:
 def _default_fetch(url: str) -> tuple[bytes, str, str]:
     import official_source_evidence as ose
 
-    limit = MAX_PDF_BYTES if ose.is_pdf_attachment_url(url) else MAX_HTML_BYTES
+    if is_egov_api(url):
+        limit = MAX_EGOV_API_BYTES
+    else:
+        limit = MAX_PDF_BYTES if ose.is_pdf_attachment_url(url) else MAX_HTML_BYTES
     return ose.fetch_bounded(url, limit)
+
+
+def is_egov_api(url: str) -> bool:
+    u = urlsplit(url)
+    return (u.hostname or "").lower() == "laws.e-gov.go.jp" and u.path.startswith("/api/")
 
 
 def egov_revisions(data: bytes) -> dict[str, Any] | None:
@@ -121,12 +133,41 @@ def egov_revisions(data: bytes) -> dict[str, Any] | None:
     return {"law_id": info.get("law_id"), "law_num": info.get("law_num"), "revisions": out}
 
 
+def egov_law_data(data: bytes) -> tuple[str, dict[str, Any]] | None:
+    """Summarise an e-Gov Law API v2 ``law_data`` response: which revision it is, and its opening text."""
+    import explainer_evidence as ev
+
+    try:
+        doc = json.loads(data.decode("utf-8"))
+    except (UnicodeDecodeError, ValueError):
+        return None
+    if not isinstance(doc, Mapping) or not isinstance(doc.get("law_full_text"), Mapping):
+        return None
+    info = doc.get("law_info") if isinstance(doc.get("law_info"), Mapping) else {}
+    rev = doc.get("revision_info") if isinstance(doc.get("revision_info"), Mapping) else {}
+    version = {key: value for key, value in {
+        "law_id": info.get("law_id"), "law_num": info.get("law_num"),
+        "law_revision_id": rev.get("law_revision_id"), "law_title": rev.get("law_title"),
+        "amendment_law_num": rev.get("amendment_law_num"),
+        "amendment_promulgate_date": rev.get("amendment_promulgate_date"),
+        "amendment_enforcement_date": rev.get("amendment_enforcement_date"),
+    }.items() if value not in (None, "")}
+    text = " ".join(ev.node_text(doc["law_full_text"]).split())
+    return text, version
+
+
 def extract(data: bytes, content_type: str, url: str) -> tuple[str, dict[str, Any] | None]:
     """Plain-text excerpt and optional version info. Raises FetchError when nothing is readable."""
     import official_source_evidence as ose
 
     host = (urlsplit(url).hostname or "").lower()
     if host.startswith("laws.e-gov.go.jp") and "/api/" in urlsplit(url).path:
+        law = egov_law_data(data)
+        if law is not None:
+            text, version = law
+            if not text:
+                raise FetchError("empty_or_scanned", "e-Gov law_data without text")
+            return text[: es.MAX_EXCERPT], version
         version = egov_revisions(data)
         if version is None:
             raise FetchError("parse_error", "e-Gov API response not understood")
@@ -143,9 +184,19 @@ def extract(data: bytes, content_type: str, url: str) -> tuple[str, dict[str, An
             raise FetchError("empty_or_scanned", "no extractable PDF text")
         return text[: es.MAX_EXCERPT], None
     if "html" in content_type or data.lstrip()[:15].lower().startswith((b"<!doctype", b"<html", b"<?xml")):
+        from bs4 import BeautifulSoup
+
+        soup = BeautifulSoup(data[:2_000_000], "html.parser")
+        title = soup.title.get_text(" ", strip=True) if soup.title else ""
+        if EGOV_ERROR_TITLE in title:
+            # e-Gov answers a withdrawn record (a consultation's call view once results are
+            # published) with this system error page and HTTP 200: permanent for the URL.
+            raise FetchError("http_4xx", "e-Gov system error page (record moved or withdrawn)")
         text, _ = ose.html_documents(data, url)
         if len(text) < ose.MIN_DOCUMENT_CHARS:
-            lowered = data[:200_000].decode("utf-8", errors="ignore").lower()
+            for node in soup.select("script, style"):
+                node.decompose()
+            lowered = soup.get_text(" ", strip=True).lower()
             if any(h in lowered for h in JS_HINTS):
                 raise FetchError("js_required", "page renders its content with JavaScript")
             raise FetchError("empty_or_scanned", "no substantive page text")
