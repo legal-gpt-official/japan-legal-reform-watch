@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "dossier_id": "etf-in-kind-creation-tender-offer-threshold-2026",
+  "status": "published",
+  "review_state": "ai_checked",
+  "title_en": "Japan's 2026 ETF creation rule: cash in place of shares where a creation would cross the 30% tender-offer threshold",
+  "instrument_type": "ministerial_ordinance",
+  "current_stage": "in_force",
+  "related_item_ids": [
+    "raw-056b16304cad2bfc",
+    "raw-bb3eef67ff07d7d4"
+  ],
+  "instruments": [
+    {
+      "number": "令和八年内閣府令第八十二号",
+      "name_ja": "投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令",
+      "name_en": "Cabinet Office Ordinance No. 82 of 2026 amending the Regulation for Enforcement of the Act on Investment Trusts and Investment Corporations"
+    }
+  ],
+  "watch_pages": [
+    {
+      "label": "e-Gov revision history of the Regulation for Enforcement of the Act on Investment Trusts and Investment Corporations",
+      "url": "https://laws.e-gov.go.jp/law/412M50000002129"
+    },
+    {
+      "label": "e-Gov revision history of the Financial Instruments and Exchange Act",
+      "url": "https://laws.e-gov.go.jp/law/323AC0000000025"
+    },
+    {
+      "label": "e-Gov public comment results page for the Cabinet Office Ordinance",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=225026053&Mode=1"
+    }
+  ],
+  "quick_take": {
+    "what_changed": "Cabinet Office Ordinance No. 82, promulgated and effective on 18 September 2026, added item (c) to Article 19(5) of the investment trust regulation: when units of an in-kind ETF are created, the fund may take cash instead of a constituent's shares where buying those shares for the creation would leave the subscriber holding more than 30%.",
+    "who_is_affected": "Managers of exchange-traded investment trusts that create units in kind under Article 12(ii)(b) of the Enforcement Order, and subscribers who create units in kind whose holdings in a constituent company, counted with those of persons in a special relationship, are near or above 30%.",
+    "what_to_do_now": "ETF managers can check whether their trust deeds and creation procedures provide for the item (c) cash alternative. Creating participants can check, constituent by constituent, whether their ownership ratio as defined in Article 27-2 of the Financial Instruments and Exchange Act could exceed 30%."
+  },
+  "background": {
+    "paragraphs": [
+      "Article 8(1) of the Act on Investment Trusts and Investment Corporations requires a manager-directed investment trust to be a money trust, so a fund normally receives cash, not securities, from investors. Trusts specified by Cabinet Order are excepted, and Article 12 of the Enforcement Order specifies them. Under Article 12(ii), an index-tracking fund qualifies if, among other things, its trust deed provides that subscribers must acquire units with a basket of the constituent securities in their index proportions, in the manner set by Cabinet Office Ordinance (item (ii)(b)). Article 19(5) of the Regulation for Enforcement sets that manner: the subscriber delivers the basket designated by the manager and receives a fixed number of units in return.",
+      "Article 19(5)(i) has long allowed limited exceptions in which cash may be delivered instead of particular securities. Item (a) covers shares or investment securities for which the units would be delivered on the dividend or rights record date or on the business day before it. Item (b) covers shares issued by the subscriber itself or by its parent company. In each case the cash is the valuation amount of the securities concerned plus the costs the trust incurs in acquiring them.",
+      "The change in the takeover rules gave rise to a new problem. Under Article 27-2(1) of the Financial Instruments and Exchange Act as in force until 30 April 2026, a mandatory tender offer applied mainly to purchases outside the exchange market, for example purchases leaving the buyer above 5% or, from a very small number of sellers, above one third. Act No. 32 of 2024 restructured that paragraph with effect from 1 May 2026. Under its new item (i), a purchase, including an ordinary purchase on the exchange, that leaves the buyer's ownership ratio above 30%, or a purchase by a person already above 30%, must in principle be made by tender offer; an exception, set by Cabinet Order, covers very small purchases by a person already above 30%.",
+      "In-kind creation can require the subscriber first to buy the constituent shares it will deliver. The new item (c) refers to exactly that situation: it applies where, if the subscriber were to purchase the shares in order to subscribe, its ownership ratio under Article 27-2 would exceed 30% after the purchase, or where the ratio, calculated as if the subscriber were the purchaser under paragraph 8 of that article, already exceeds 30%. The Financial Services Agency described the purpose as allowing the part of an in-kind ETF's basket corresponding to constituents in which the subscriber's ownership ratio exceeds 30% to be created with cash. Its announcement does not mention the tender-offer rules; read together with Article 27-2, the provision indicates, as an editorial reading, that the exception keeps in-kind creation workable without requiring a subscriber to make purchases that the 30% threshold now reaches."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "s8",
+      "s9"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      "The Financial Instruments and Exchange Act and the Act on Investment Trusts and Investment Corporations were amended together by Act No. 32 of 2024, promulgated on 22 May 2024. e-Gov records several commencement stages for that Act. The stage that changed Article 27-2(1), including the 30% threshold for purchases on the exchange, took effect on 1 May 2026.",
+      "The draft amendment to the Regulation for Enforcement was published for public comment on e-Gov on 28 July 2026, with the Market Division of the Financial Services Agency's Planning and Markets Bureau listed as the contact, and the consultation closed on 28 August 2026. Cabinet Office Ordinance No. 82 of 2026 was promulgated on 18 September 2026. Its supplementary provision states that it took effect on the day of promulgation, and it contains no transitional provision. The same day the Agency published the results of the consultation: it received 10 comments, and it published its summary of the comments and its responses as an annex, which was not reviewed for this explainer.",
+      "Comparing the e-Gov text in force before 18 September 2026 with the text after it shows a single change in Article 19: item (c) was added to paragraph 5(i), and the references to the cash exceptions now read items (a) to (c) instead of items (a) and (b). The exchange of units for securities under paragraphs 4 and 6 and the other conditions of Article 19 were not amended by this ordinance."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s9"
+    ]
+  },
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-09-18",
+        "text": "Cabinet Office Ordinance No. 82 was promulgated and took effect the same day, without transitional provisions.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "date": "2026-09-18",
+        "text": "The Financial Services Agency published the consultation results, reporting 10 comments.",
+        "source_ids": [
+          "s6",
+          "s9"
+        ]
+      }
+    ],
+    "expected": [
+      "Any further change to the conditions in Article 19 would require a new Cabinet Office Ordinance, normally preceded by public consultation on e-Gov.",
+      "Exchange rules and individual trust deeds govern how a particular ETF applies the cash alternative in practice."
+    ],
+    "uncertainties": [
+      "The Financial Services Agency's summary of the 10 comments and its responses, published as an annex to its announcement, was not reviewed for this explainer, so the points raised in the consultation are not described here.",
+      "Item (c) permits cash; whether a particular ETF accepts cash for an affected constituent depends on its trust deed and creation procedures, which were not reviewed.",
+      "The small-purchase exceptions and other details that Cabinet Orders set under Article 27-2 of the Financial Instruments and Exchange Act were not examined; the ownership ratio for a given constituent depends on the subscriber's holdings, including those of persons in a special relationship with it."
+    ]
+  },
+  "business_impact": {
+    "paragraphs": [
+      "The amendment creates a permitted alternative; it imposes no new obligation on managers or subscribers. Its practical effect falls on in-kind ETFs whose baskets include companies in which a creating participant, together with persons in a special relationship with it, holds or would come to hold a large stake. Without item (c), assembling the basket for such a constituent could require purchases that the 30% tender-offer threshold reaches. With it, the fund may accept cash for that constituent, together with the costs of acquiring the shares in the fund.",
+      "Where cash is accepted, the fund itself buys the affected shares, and the subscriber bears those acquisition costs. Managers may therefore see a different cost and execution profile for creations that use the exception than for fully in-kind creations, and creating participants may need constituent-level monitoring of their ownership ratio before submitting a creation."
+    ],
+    "checklist": [
+      "ETF managers: confirm whether the trust deed and creation procedures provide for cash under Article 19(5)(i)(c) and how the acquisition costs are calculated.",
+      "Creating participants: identify constituents where the ownership ratio under Article 27-2 of the Financial Instruments and Exchange Act, including holdings of persons in a special relationship, could exceed 30% after the basket purchases.",
+      "Distinguish item (c) from the existing cash exceptions for record-date shares (item (a)) and for the subscriber's or its parent's own shares (item (b))."
+    ],
+    "source_ids": [
+      "s2",
+      "s4"
+    ]
+  },
+  "key_dates": [
+    {
+      "kind": "other",
+      "date": "2026-05-01",
+      "label": "The 30% tender-offer threshold for purchases including on-exchange purchases took effect under Act No. 32 of 2024.",
+      "source_ids": [
+        "s4",
+        "s5"
+      ],
+      "instrument_number": "令和六年法律第三十二号"
+    },
+    {
+      "kind": "comment_opened",
+      "date": "2026-07-28",
+      "label": "The draft amendment to the investment trust regulation was published for public comment.",
+      "source_ids": [
+        "s6"
+      ]
+    },
+    {
+      "kind": "comment_deadline",
+      "date": "2026-08-28",
+      "label": "The public consultation closed.",
+      "source_ids": [
+        "s6"
+      ]
+    },
+    {
+      "kind": "comment_results_published",
+      "date": "2026-09-18",
+      "label": "The Financial Services Agency published the consultation results, reporting 10 comments.",
+      "source_ids": [
+        "s6",
+        "s9"
+      ]
+    },
+    {
+      "kind": "promulgated",
+      "date": "2026-09-18",
+      "label": "Cabinet Office Ordinance No. 82 was promulgated.",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "kind": "effective",
+      "date": "2026-09-18",
+      "label": "Cabinet Office Ordinance No. 82 took effect on promulgation.",
+      "source_ids": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Regulation for Enforcement of the Act on Investment Trusts and Investment Corporations",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/412M50000002129",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Text of the Regulation as amended by Cabinet Office Ordinance No. 82 of 2026 (in force 18 September 2026)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260918_508M60000002082?response_format=json&law_full_text_format=json",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Text of the Regulation in force immediately before Cabinet Office Ordinance No. 82 of 2026",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260625_508M60000002057?response_format=json&law_full_text_format=json",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Text of the Financial Instruments and Exchange Act as in force from 1 May 2026 (Article 27-2)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/323AC0000000025_20260501_506AC0000000032?response_format=json&law_full_text_format=json",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Financial Instruments and Exchange Act, including the commencement stages of Act No. 32 of 2024",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/323AC0000000025",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Financial Services Agency via e-Gov",
+      "title": "e-Gov public comment results for the Cabinet Office Ordinance amending the Regulation for Enforcement of the Act on Investment Trusts and Investment Corporations (consultation 28 July to 28 August 2026; results 18 September 2026)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=225026053&Mode=1",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s7",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Current text of the Enforcement Order of the Act on Investment Trusts and Investment Corporations (Article 12)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412CO0000000480_20250501_507CO0000000101?response_format=json&law_full_text_format=json",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s8",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Current text of the Act on Investment Trusts and Investment Corporations (Article 8)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/326AC0100000198_20260812_508AC0000000064?response_format=json&law_full_text_format=json",
+      "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s9",
+      "kind": "primary",
+      "publisher": "Financial Services Agency via e-Gov",
+      "title": "Financial Services Agency announcement of 18 September 2026 on the promulgation of the Cabinet Office Ordinance and the results of the public consultation",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322261",
+      "accessed_at": "2026-11-15"
+    }
+  ],
+  "verified_at": "2026-11-15",
+  "source_fingerprint": "sha256:c920f9f6ee68f0d10de2172e50b22842",
+  "author": "claude-code",
+  "review_notes": "AI review completed 15 Nov 2026 from official e-Gov data. Compared the full text of Article 19 before (revision 20260625_508M60000002057) and after (20260918_508M60000002082) Cabinet Office Ordinance No. 82: the only change is the new paragraph 5(i)(c) and the consequential references to items (a) to (c); paragraphs 4 and 6 (exchanges of units for securities) are unchanged. Read the ordinance's supplementary provision (effective on promulgation, no transitional provision), Article 27-2(1) of the Financial Instruments and Exchange Act as in force from the 1 May 2026 stage of Act No. 32 of 2024 (promulgated 22 May 2024), Article 8(1) of the Act and Article 12 of the Enforcement Order. Read the e-Gov results page and the Financial Services Agency's announcement of 18 September 2026 (10 comments, stated purpose, legal basis Enforcement Order Article 12(ii)(b)). Not reviewed: the Agency's annex summarising the comments and its responses, exchange rules and individual trust deeds."
+}
