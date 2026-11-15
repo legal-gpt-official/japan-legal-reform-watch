@@ -425,6 +425,66 @@
       "updated_at": "2026-11-13T21:54:15Z",
       "run_id": "43514621875"
     },
+    "etf-in-kind-creation-tender-offer-threshold-2026": {
+      "dossier_id": "etf-in-kind-creation-tender-offer-threshold-2026",
+      "kind": "new",
+      "queue_id": "draft:raw-056b16304cad2bfc",
+      "seed_item_id": "raw-056b16304cad2bfc",
+      "related_item_ids": [
+        "raw-056b16304cad2bfc",
+        "raw-bb3eef67ff07d7d4"
+      ],
+      "source_fingerprint": "sha256:c920f9f6ee68f0d10de2172e50b22842",
+      "evidence": {
+        "status": "ready",
+        "digest": "sha256:fa1604daaa0d9ca65487c0be64831729",
+        "pack": "data/explainer_evidence/raw-056b16304cad2bfc.json"
+      },
+      "pr": 164,
+      "branch": "claude/legal-reform-watch-system-redesign-tvei94",
+      "head_sha": "a6428b6555cd40d8e8ae2902a1e05250c86be50c",
+      "pr_state": "open",
+      "pr_draft": true,
+      "labels": [],
+      "pr_created_at": "2026-11-15T14:46:17Z",
+      "automerge_eligible_files": true,
+      "ci": {
+        "failed_runs": 0,
+        "run_id": 43726166493,
+        "head_sha": "a6428b6555cd40d8e8ae2902a1e05250c86be50c",
+        "status": "in_progress",
+        "conclusion": null,
+        "tests_ok": false,
+        "failed_steps": [],
+        "completed_at": null,
+        "duration_s": null
+      },
+      "stage": "CI_RUNNING",
+      "last_success_stage": "CI_RUNNING",
+      "stage_history": {
+        "DRAFTED": "2026-11-15T14:46:17Z",
+        "RESEARCH_REQUIRED": "2026-11-15T14:46:17Z",
+        "SOURCES_VERIFIED": "2026-11-15T14:46:51Z",
+        "EN_READY": "2026-11-15T14:46:51Z",
+        "JA_ZH_READY": "2026-11-15T14:46:51Z",
+        "STAMPED_AND_SYNCED": "2026-11-15T14:46:51Z"
+      },
+      "sources": {
+        "fetched": 9,
+        "failed": 0,
+        "not_fetched": 0,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [],
+      "unresolved": [
+        "The Financial Services Agency's annex summarising the 10 comments and its responses was not reviewed.",
+        "Exchange rules and individual trust deeds that govern how each ETF applies item (c) were not reviewed."
+      ],
+      "blockers": [],
+      "next_action": "Wait for Pull request checks run 43726166493 on a6428b6555cd.",
+      "updated_at": "2026-11-15T14:46:51Z",
+      "run_id": "43726098098"
+    },
     "food-consumption-tax-temporary-cut-2026-bill": {
       "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
       "kind": "new",
@@ -1984,7 +2044,7 @@
     },
     "2026-11-15": {
       "new": {
-        "drafted": 1,
+        "drafted": 2,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
