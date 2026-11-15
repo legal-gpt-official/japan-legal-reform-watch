@@ -196,6 +196,21 @@ jobs:
               core.setFailed('Invalid generated docs SHA; refuse to dispatch LIVE');
               return;
             }
+            // GitHub Pages cancels an in-progress build when a newer commit lands, and the
+            // ledger bot commits data/ files seconds after this publish (2026-11-15: both
+            // builds for the docs SHA cancelled, the next commit's build succeeded, the
+            // dossier was live, yet this step failed). A successful build of a LATER main
+            // commit therefore also counts, but only when that commit contains the docs SHA
+            // and changed nothing under docs/ since it, so what was deployed is exactly the
+            // generated docs. LIVE verification still compares the served pages.
+            async function containsDocsUnchanged(headSha) {
+              const cmp = await github.rest.repos.compareCommits({owner, repo, base: docsSha, head: headSha});
+              const status = cmp.data.status;
+              if (status !== 'ahead' && status !== 'identical') return false;
+              const files = cmp.data.files || [];
+              if (files.length >= 300) return false;  // truncated list: cannot prove docs/ untouched
+              return !files.some(f => (f.filename || '').startsWith('docs/'));
+            }
             let success = null;
             for (let attempt = 1; attempt <= 36; attempt++) {
               const response = await github.rest.actions.listWorkflowRunsForRepo({
@@ -206,6 +221,21 @@ jobs:
                 run.head_sha === docsSha);
               success = pages.find(run =>
                 run.status === 'completed' && run.conclusion === 'success');
+              if (success) break;
+              const recent = await github.rest.actions.listWorkflowRunsForRepo({
+                owner, repo, branch: 'main', per_page: 50
+              });
+              const later = (recent.data.workflow_runs || []).filter(run =>
+                run.name === 'pages build and deployment' && run.head_sha !== docsSha &&
+                run.status === 'completed' && run.conclusion === 'success');
+              for (const run of later) {
+                if (await containsDocsUnchanged(run.head_sha)) {
+                  success = run;
+                  core.info('Pages run ' + run.id + ' deployed ' + run.head_sha +
+                    ', which contains docs SHA ' + docsSha + ' with docs/ unchanged');
+                  break;
+                }
+              }
               if (success) break;
               const failed = pages.filter(run =>
                 run.status === 'completed' && run.conclusion === 'failure');
@@ -220,7 +250,8 @@ jobs:
               core.setFailed('No successful Pages deployment for generated docs SHA ' + docsSha);
               return;
             }
-            core.info('Pages deploy run ' + success.id + ' succeeded for ' + docsSha);
+            core.info('Pages deploy run ' + success.id + ' succeeded for ' + success.head_sha +
+              ' (generated docs SHA ' + docsSha + ')');
             await github.rest.actions.createWorkflowDispatch({
               owner, repo, workflow_id: 'verify-live-explainers.yml',
               ref: 'main', inputs: {dossiers: ''}
