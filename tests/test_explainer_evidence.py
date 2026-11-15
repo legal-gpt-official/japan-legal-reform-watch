@@ -64,6 +64,28 @@ class TextTests(unittest.TestCase):
         self.new = ev.provisions(json.loads(fixture_bytes("law_data_new.json"))["law_full_text"])
         self.old = ev.provisions(json.loads(fixture_bytes("law_data_old.json"))["law_full_text"])
 
+    def test_parenthetical_definitions_do_not_split_a_sentence(self):
+        text = "一 甲（乙をいう。以下同じ。）は、「丙。」を丁とするものとする。\n二 戊。"
+        self.assertEqual(ev.sentences(text), ["一 甲（乙をいう。以下同じ。）は、「丙。」を丁とするものとする。", "二 戊。"])
+        start = text.index("丁")
+        self.assertEqual(ev.enclosing_sentences(text, start, start + 1), ev.sentences(text)[0])
+
+    def test_tagged_sentences_are_whole_sentences_of_the_new_text(self):
+        # Regression (2026-11-15, Cabinet Office Ordinance No. 82): two changes in one long
+        # provision had their cut context windows joined, producing spliced "sentences".
+        head = "第十九条 甲は、次の要件を満たすものとする。" + "これは長い説明の文である。" * 30
+        old = head + "ただし、次のイ又はロに掲げる場合には、金銭をもって取得することができる。イ 配当落ちの場合。"
+        new = head + "ただし、次のイからハまでに掲げる場合には、金銭をもって取得することができる。イ 配当落ちの場合。ハ 自社株の場合。"
+        item = {"path": "本則/第19条", "label": "第19条", "old": old, "new": new[:200],
+                "spans": ev.change_spans(old, new), "citation_only": False}
+        _, modalities = ev.tag_sentences([item])
+        quoted = [m["sentence"] for m in modalities]
+        self.assertIn("ただし、次のイからハまでに掲げる場合には、金銭をもって取得することができる。", quoted)
+        for sentence in quoted:
+            self.assertIn(sentence, new)
+        for span in item["spans"]:
+            self.assertIn(span["sentence"], new)
+
     def test_article_diff_separates_substance_from_citation_edits(self):
         diff = ev.diff_provisions(self.old, self.new)
         self.assertEqual(diff["counts"], {"added": 1, "changed": 1, "citation_only": 1, "removed": 0})

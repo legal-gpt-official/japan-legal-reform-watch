@@ -210,6 +210,14 @@ SPAN_CONTEXT = 120
 SPAN_TEXT = 700
 
 
+def enclosing_sentences(text: str, start: int, end: int) -> str:
+    """The complete 。-terminated sentence(s) of ``text`` overlapping [start, end)."""
+    ends = sentence_ends(text)
+    left = max([e for e in ends if e <= start], default=0)
+    right = min([e for e in ends if e >= max(end, start + 1)], default=len(text))
+    return text[left:right].strip()
+
+
 def change_spans(old: str, new: str) -> list[dict[str, str]]:
     """The exact changed passages of a provision with a little context, so a change deep inside a
     long article is never hidden by truncating the full text."""
@@ -226,6 +234,9 @@ def change_spans(old: str, new: str) -> list[dict[str, str]]:
             "old": old[a1:a2][:SPAN_TEXT],
             "new": new[b1:b2][:SPAN_TEXT],
             "after": new[b2:b2 + SPAN_CONTEXT],
+            # The whole sentence(s) of the NEW text the change sits in: the context windows
+            # above are cut mid-sentence, so quoting or tagging them would splice fragments.
+            "sentence": enclosing_sentences(new, b1, b2)[:SPAN_TEXT],
         })
         if len(spans) >= MAX_SPANS:
             break
@@ -257,7 +268,6 @@ def diff_provisions(old: Mapping[str, str], new: Mapping[str, str]) -> dict[str,
     }
 
 
-_SENT_SPLIT = re.compile(r"(?<=。)")
 EFFECTIVE_CUES = ("から施行する", "施行期日", "政令で定める日から施行", "公布の日から施行")
 TRANSITIONAL_CUES = ("経過措置", "なお従前の例", "従前の例による", "この省令の施行の際", "この政令の施行の際",
                      "この法律の施行の際", "施行日前", "施行の日前", "なお効力を有する", "適用しない", "適用する")
@@ -271,8 +281,36 @@ MODALITY = (
 )
 
 
+_OPEN, _CLOSE = "（(「『", "）)」』"
+
+
+def sentence_ends(text: str) -> list[int]:
+    """Index after each sentence-final 。 -- one outside brackets, so a parenthetical
+    definition ('（…をいう。）') or a quoted name never splits a statutory sentence. A
+    line break also ends a sentence (items and headings), and depth resets there so an
+    unbalanced bracket cannot swallow the rest of a provision."""
+    ends, depth = [], 0
+    for i, ch in enumerate(text):
+        if ch in _OPEN:
+            depth += 1
+        elif ch in _CLOSE:
+            depth = max(0, depth - 1)
+        elif ch == "\n":
+            depth = 0
+            ends.append(i + 1)
+        elif ch == "。" and depth == 0:
+            ends.append(i + 1)
+    return ends
+
+
 def sentences(text: str) -> list[str]:
-    return [s.strip() for s in _SENT_SPLIT.split(text.replace("\n", "")) if s.strip()]
+    out, start = [], 0
+    for end in sentence_ends(text) + [len(text)]:
+        piece = text[start:end].replace("\n", "").strip()
+        if piece:
+            out.append(piece)
+        start = end
+    return out
 
 
 IMPLEMENTS = re.compile(r"に規定する[^、。]{0,16}(?:政令|内閣府令|省令|規則|告示)で定め|"
@@ -297,9 +335,13 @@ def tag_sentences(items: Iterable[Mapping[str, Any]]) -> tuple[list[dict], list[
     for item in items:
         if item.get("citation_only"):
             continue
-        span_text = "".join(sp.get("before", "") + sp.get("new", "") + sp.get("after", "")
-                            for sp in item.get("spans") or [])
-        for sentence in sentences((item.get("new") or "") + "。" + span_text):
+        found, seen = [], set()
+        for sentence in sentences(item.get("new") or "") + [
+                x for sp in item.get("spans") or [] for x in sentences(sp.get("sentence") or "")]:
+            if sentence not in seen:
+                seen.add(sentence)
+                found.append(sentence)
+        for sentence in found:
             kind = delegation_kind(sentence)
             if kind and len(delegations) < MAX_SENTENCES:
                 delegations.append({"label": item["label"], "kind": kind, "sentence": sentence[:400]})
@@ -868,6 +910,9 @@ def fit(pack: dict[str, Any]) -> dict[str, Any]:
                     for key in ("old", "new"):
                         if isinstance(item.get(key), str) and len(item[key]) > limit:
                             item[key] = item[key][:limit] + "…[truncated; see the e-Gov source]"
+                    for span in item.get("spans") or []:
+                        if isinstance(span.get("sentence"), str) and len(span["sentence"]) > limit:
+                            span["sentence"] = span["sentence"][:limit] + "…[truncated; see the e-Gov source]"
         pack["truncated_texts"] = limit
     return pack
 
