@@ -474,6 +474,43 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("fetch-depth: 2", text)
 
 
+class EvidenceIntegrationTests(unittest.TestCase):
+    def test_new_evidence_releases_an_official_records_hold(self):
+        scn = Scenario()
+        held = scn.research_state()
+        held["hold"] = {"state": "BLOCKED", "reason": "Operative text not available.",
+                        "unblock_condition": "official_records_change"}
+        scn.pr["contents"] = {f"data/explainer_state/{NEW_ID}.json": ex.dump(held)}
+        seed = held["seed_item_id"]
+        pack = {"status": "draft_only", "instruments": [], "drafts": [{"resolution": {"status": "not_found_in_egov", "method": None}}]}
+        led, _ = run(scn, None, scn.t0, packs={seed: pack})
+        self.assertTrue(led["dossiers"][NEW_ID]["hold"]["active"])
+        again, _ = run(scn, led, scn.t0 + timedelta(hours=1), packs={seed: pack})
+        self.assertTrue(again["dossiers"][NEW_ID]["hold"]["active"], "unchanged evidence keeps the hold")
+        found = {"status": "ready", "instruments": [{"status": "ok", "law_data_source": {"sha256": "a" * 64}}], "drafts": []}
+        released, _ = run(scn, again, scn.t0 + timedelta(hours=2), packs={seed: found})
+        hold = released["dossiers"][NEW_ID]["hold"]
+        self.assertEqual((hold["active"], hold.get("released_by")), (False, "evidence_changed"))
+
+    def test_plan_puts_evidence_ready_candidates_first(self):
+        queue = {"entries": [
+            {"kind": "new", "queue_id": "q1", "suggested_seed_item_id": "raw-0000000000000001"},
+            {"kind": "new", "queue_id": "q2", "suggested_seed_item_id": "raw-0000000000000002"},
+            {"kind": "new", "queue_id": "q3", "suggested_seed_item_id": "raw-0000000000000003"},
+        ]}
+        ledger = {"dossiers": {}, "evidence_index": {
+            "raw-0000000000000001": {"status": "draft_only"},
+            "raw-0000000000000002": {"status": "ready"},
+            "raw-0000000000000003": {"status": "ambiguous"},
+        }}
+        plan = ep.slot_plan(ledger, queue, index=INDEX, research_dir=es.RESEARCH_DIR, today=TODAY, top=0)
+        self.assertEqual([p["queue_id"] for p in plan], ["q2", "q1", "q3"])
+        self.assertIn("Copy case_file_template", plan[0]["action"])
+        text = "\n".join(ep.capacity_lines(ledger, plan, datetime(2026, 11, 15, tzinfo=timezone.utc)))
+        self.assertIn("ready 1", text)
+        self.assertIn("target 5/day", text)
+
+
 if __name__ == "__main__":
     unittest.main()
 

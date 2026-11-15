@@ -123,6 +123,9 @@ def check_dossier(
             errors.append(f"quick_take.{key}: {len(value)} characters, limit {QUICK_TAKE_LIMIT} "
                           f"(cut {len(value) - QUICK_TAKE_LIMIT})")
     errors += es.publication_gate(dossier_id, data, state)
+    if not es.requires_case_file(dossier_id):
+        # Existing dossiers: e-Gov evidence contradictions are reported, not blocking.
+        warnings += es.evidence_errors(data, state)
     if state is not None:
         warnings += es.citation_warnings(data, state)
         verified = data.get("verified_at")
@@ -139,6 +142,18 @@ def check_dossier(
                     warnings.append(f"{fact.get('id')} cites {sid} fetched {fetched}, more than {STALE_SOURCE_DAYS} days "
                                     "before verified_at: refetch to confirm current status and later amendments")
 
+    if data.get("status") == "published" and bundles.get(dossier_id):
+        import explainer_meaning as em
+
+        review = []
+        for lang in el.LOCALES:
+            tr = (bundles[dossier_id].get("translations") or {}).get(lang)
+            if isinstance(tr, Mapping):
+                review += [(lang, f) for f in em.findings(data, tr, lang)]
+        review.sort(key=lambda x: em.REVIEW_PRIORITY.index(x[1]["concept"]))
+        for lang, f in review[:12]:
+            warnings.append(f"meaning review {lang} {f['path']}: '{f['concept']}' {f['direction'].replace('_', ' ')} "
+                            "-> compare the two sentences")
     if data.get("status") == "published":
         bundle = bundles.get(dossier_id)
         if bundle is None:
