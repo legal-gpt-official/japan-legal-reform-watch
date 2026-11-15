@@ -68,12 +68,17 @@ class PublishHandoffTests(unittest.TestCase):
           const sha = "f".repeat(40);
           const other = "a".repeat(40);
           let runs = [];
+          let compare = {status:"diverged", files:[]};
           const dispatched = [];
           const failures = [];
-          const github = { rest: { actions: {
-            listWorkflowRunsForRepo:async args=>({data:{workflow_runs:runs}}),
-            createWorkflowDispatch:async args=>{dispatched.push(args);}
-          }}};
+          const github = { rest: {
+            actions: {
+              listWorkflowRunsForRepo:async args=>({data:{workflow_runs:
+                args.head_sha ? runs.filter(r=>r.head_sha===args.head_sha) : runs}}),
+              createWorkflowDispatch:async args=>{dispatched.push(args);}
+            },
+            repos: { compareCommits:async args=>({data:compare}) }
+          }};
           const core={
             info:()=>{},warning:()=>{},
             setFailed:message=>{failures.push(message);}
@@ -99,6 +104,32 @@ class PublishHandoffTests(unittest.TestCase):
           if(dispatched.length!==1||failures.length!==0||
              dispatched[0].workflow_id!=="verify-live-explainers.yml")
             throw Error("Matching successful Pages must dispatch LIVE exactly once");
+          // 2026-11-15 race: the docs SHA's builds were cancelled by a later bot commit.
+          dispatched.length=0;
+          const cancelled={id:4,name:"pages build and deployment",head_sha:sha,
+                 status:"completed",conclusion:"cancelled"};
+          const later={id:5,name:"pages build and deployment",head_sha:other,
+                 status:"completed",conclusion:"success"};
+          runs=[cancelled,later];
+          compare={status:"ahead",files:[{filename:"data/explainer_pipeline.json"}]};
+          await run();
+          if(dispatched.length!==1||failures.length!==0)
+            throw Error("A later deploy containing the docs SHA with docs/ unchanged must count");
+          dispatched.length=0;
+          compare={status:"ahead",files:[{filename:"docs/u/x/index.html"}]};
+          await run();
+          if(dispatched.length!==0||failures.length!==1)
+            throw Error("A later deploy that changed docs/ must not count");
+          failures.length=0;
+          compare={status:"diverged",files:[]};
+          await run();
+          if(dispatched.length!==0||failures.length!==1)
+            throw Error("A deploy not containing the docs SHA must not count");
+          failures.length=0;
+          compare={status:"ahead",files:new Array(300).fill({filename:"data/x.json"})};
+          await run();
+          if(dispatched.length!==0||failures.length!==1)
+            throw Error("A truncated compare cannot prove docs/ unchanged");
         """.replace("JS_SOURCE", json.dumps(js))
         result = subprocess.run(
             ["node", "--input-type=module"],
