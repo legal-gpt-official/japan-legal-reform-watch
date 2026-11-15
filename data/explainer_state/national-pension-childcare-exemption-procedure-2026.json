@@ -78,9 +78,9 @@
     "Produce full English dossier JSON and aligned JA/zh-Hans locale JSON, then compute native fingerprint and English blob SHA, run mandatory CI and substantive review."
   ],
   "hold": {
-    "state": "RESEARCH_REQUIRED",
-    "reason": "Substantive official consultation result reviewed; promulgated operative amendment text and precise eligibility rules not yet independently compared. No publish approval.",
-    "unblock_condition": "operative_text_verified"
+    "state": "BLOCKED",
+    "reason": "Promulgated operative text of MHLW Ordinance 121, amended provisions, precise eligibility and transitional measures have not been independently compared. Policy analysis is draft only; publication prohibited.",
+    "unblock_condition": "official_records_change"
   },
-  "next_action": "Retrieve and compare final Ordinance No.121 amended articles, confirm exemption eligibility and transitional provisions, then turn policy_analysis_draft into complete EN/JA/zh-Hans dossier on this branch."
+  "next_action": "BLOCKED pending official operative-text verification; do not recheck unchanged records. Select a separate verified new candidate for publication."
 }
