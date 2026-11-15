@@ -4,13 +4,24 @@
   "kind": "new",
   "queue_id": "draft:raw-0549bdaf78bfe729",
   "seed_item_id": "raw-0549bdaf78bfe729",
-  "hold": null,
-  "next_action": "Read the original e-Gov public-comment draft and subsequent result notice; obtain promulgated notice and current tax ordinance before drafting any legal conclusion. Check overlap with existing dossiers.",
+  "hold": {
+    "state": "BLOCKED",
+    "reason": "2026-11-15: The e-Gov public-comment seed identifies only an August 2026 draft; final promulgated multi-ministerial notice, result publication, final effective date and precise changes to the designation remain unverified. Do not treat draft effective date as enacted. An e-Gov current enforcement-order page alone cannot prove the final ministerial notice. Switch to another candidate until official result/gazette changes.",
+    "unblock_condition": "official_records_change"
+  },
+  "next_action": "On a new official results/gazette record, verify final notice text and effective date against the August draft and current Article 25-17(7); otherwise skip this held dossier and draft a distinct source-verified candidate.",
   "sources": [
     {
       "id": "s1",
       "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=550004393&Mode=0",
       "kind": "egov_public_comment",
+      "status": "not_fetched",
+      "attempts": 0
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/law/332CO0000000043",
+      "kind": "egov_law",
       "status": "not_fetched",
       "attempts": 0
     }
@@ -103,7 +114,8 @@
   ],
   "unresolved": [
     "Whether the draft notice was finalized and published, and its final legal text and effective date are not yet verified.",
-    "The relationship to the current version of Article 25-17(7) of the Enforcement Order of the Act on Special Measures Concerning Taxation requires source verification."
+    "The relationship to the current version of Article 25-17(7) of the Enforcement Order of the Act on Special Measures Concerning Taxation requires source verification.",
+    "As of 2026-11-15, a public web search and repository research packet did not establish the promulgated final notice; the existing draft cannot be represented as enacted."
   ],
   "created_on": "2026-11-14"
 }
