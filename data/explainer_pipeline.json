@@ -431,9 +431,10 @@
       "queue_id": "draft:raw-056b16304cad2bfc",
       "seed_item_id": "raw-056b16304cad2bfc",
       "related_item_ids": [
-        "raw-056b16304cad2bfc"
+        "raw-056b16304cad2bfc",
+        "raw-bb3eef67ff07d7d4"
       ],
-      "source_fingerprint": "sha256:d3fc61268617b3c3e0058ba52bd0d6b9",
+      "source_fingerprint": "sha256:c920f9f6ee68f0d10de2172e50b22842",
       "evidence": {
         "status": "ready",
         "digest": "sha256:fa1604daaa0d9ca65487c0be64831729",
@@ -479,6 +480,17 @@
         "CI_PASSED": "2026-11-15T14:47:50Z",
         "MERGED": "2026-11-15T14:48:14Z"
       },
+      "sources": {
+        "fetched": 9,
+        "failed": 0,
+        "not_fetched": 0,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [],
+      "unresolved": [
+        "The Financial Services Agency's annex summarising the 10 comments and its responses was not reviewed.",
+        "Exchange rules and individual trust deeds that govern how each ETF applies item (c) were not reviewed."
+      ],
       "blockers": [],
       "next_action": "Publish pending: the pipeline re-dispatches Publish if it has not succeeded within 20 minutes.",
       "updated_at": "2026-11-15T14:48:49Z",
