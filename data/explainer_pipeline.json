@@ -1036,6 +1036,75 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
+    "national-pension-childcare-exemption-procedure-2026": {
+      "dossier_id": "national-pension-childcare-exemption-procedure-2026",
+      "kind": "new",
+      "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
+      "seed_item_id": "raw-15b5c5a72bfae0a1",
+      "related_item_ids": [
+        "raw-15b5c5a72bfae0a1",
+        "raw-d38230df21e2f625"
+      ],
+      "source_fingerprint": "sha256:b10a860da8d3cb299e595643549a85ad",
+      "pr": 157,
+      "branch": "explainer/national-pension-childcare-exemption-2026",
+      "head_sha": "7c9b6a8dc47662aef2143a3289c1f9f55cea72df",
+      "pr_state": "open",
+      "pr_draft": true,
+      "labels": [],
+      "pr_created_at": "2026-11-15T05:05:45Z",
+      "automerge_eligible_files": false,
+      "ci": {
+        "failed_runs": 1,
+        "run_id": 43679581847,
+        "head_sha": "7c9b6a8dc47662aef2143a3289c1f9f55cea72df",
+        "status": "completed",
+        "conclusion": "failure",
+        "tests_ok": false,
+        "failed_steps": [
+          "Dossier preflight (changed explainers)"
+        ],
+        "completed_at": "2026-11-15T05:06:16Z",
+        "duration_s": 28
+      },
+      "stage": "RESEARCH_REQUIRED",
+      "last_success_stage": "RESEARCH_REQUIRED",
+      "stage_history": {
+        "DRAFTED": "2026-11-15T05:05:45Z",
+        "RESEARCH_REQUIRED": "2026-11-15T05:05:45Z"
+      },
+      "sources": {
+        "fetched": 0,
+        "failed": 0,
+        "not_fetched": 0,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [
+        "instrument_form",
+        "promulgation_date",
+        "effective_date",
+        "amended_provisions",
+        "old_vs_new",
+        "scope",
+        "obligation_type",
+        "transitional_measures",
+        "delegation"
+      ],
+      "unresolved": [
+        "Inspect the complete promulgated Ordinance No.121 and the exact amended articles and forms; compare previous and current text before finalizing the explainer.",
+        "Confirm the precise eligibility rules, parent categories, months of exemption, transitional rules and any exceptions directly against operative law and the Child and Child-Rearing Support Act amendment.",
+        "Review any official explanatory materials on policy background and ensure three-language text aligns with each exact operative provision.",
+        "Produce full English dossier JSON and aligned JA/zh-Hans locale JSON, then compute native fingerprint and English blob SHA, run mandatory CI and substantive review."
+      ],
+      "blockers": [
+        "case file: hold.state must be one of BLOCKED, RETRY_WAIT, REVIEW_REQUIRED",
+        "case file: hold.unblock_condition must be one of official_records_change, date, manual",
+        "confirm critical facts: instrument_form, promulgation_date, effective_date, amended_provisions, old_vs_new, scope, obligation_type, transitional_measures, delegation"
+      ],
+      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch national-pension-childcare-exemption-procedure-2026). First: case file: hold.state must be one of BLOCKED, RETRY_WAIT, REVIEW_REQUIRED Writer note: Retrieve and compare final Ordinance No.121 amended articles, confirm exemption eligibility and transitional provisions, then turn policy_analysis_draft into complete EN/JA/zh-Hans dossier on this branch.",
+      "updated_at": "2026-11-15T05:07:18Z",
+      "run_id": "43679617198"
+    },
     "nisa-government-bond-exemption-2026-bill": {
       "dossier_id": "nisa-government-bond-exemption-2026-bill",
       "kind": "new",
@@ -1897,7 +1966,7 @@
     },
     "2026-11-15": {
       "new": {
-        "drafted": 0,
+        "drafted": 1,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
