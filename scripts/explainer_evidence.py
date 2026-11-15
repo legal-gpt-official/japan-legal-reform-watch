@@ -210,6 +210,14 @@ SPAN_CONTEXT = 120
 SPAN_TEXT = 700
 
 
+def enclosing_sentences(text: str, start: int, end: int) -> str:
+    """The complete 。-terminated sentence(s) of ``text`` overlapping [start, end)."""
+    ends = sentence_ends(text)
+    left = max([e for e in ends if e <= start], default=0)
+    right = min([e for e in ends if e >= max(end, start + 1)], default=len(text))
+    return text[left:right].strip()
+
+
 def change_spans(old: str, new: str) -> list[dict[str, str]]:
     """The exact changed passages of a provision with a little context, so a change deep inside a
     long article is never hidden by truncating the full text."""
@@ -226,6 +234,9 @@ def change_spans(old: str, new: str) -> list[dict[str, str]]:
             "old": old[a1:a2][:SPAN_TEXT],
             "new": new[b1:b2][:SPAN_TEXT],
             "after": new[b2:b2 + SPAN_CONTEXT],
+            # The whole sentence(s) of the NEW text the change sits in: the context windows
+            # above are cut mid-sentence, so quoting or tagging them would splice fragments.
+            "sentence": enclosing_sentences(new, b1, b2)[:SPAN_TEXT],
         })
         if len(spans) >= MAX_SPANS:
             break
@@ -257,7 +268,6 @@ def diff_provisions(old: Mapping[str, str], new: Mapping[str, str]) -> dict[str,
     }
 
 
-_SENT_SPLIT = re.compile(r"(?<=。)")
 EFFECTIVE_CUES = ("から施行する", "施行期日", "政令で定める日から施行", "公布の日から施行")
 TRANSITIONAL_CUES = ("経過措置", "なお従前の例", "従前の例による", "この省令の施行の際", "この政令の施行の際",
                      "この法律の施行の際", "施行日前", "施行の日前", "なお効力を有する", "適用しない", "適用する")
@@ -271,8 +281,36 @@ MODALITY = (
 )
 
 
+_OPEN, _CLOSE = "（(「『", "）)」』"
+
+
+def sentence_ends(text: str) -> list[int]:
+    """Index after each sentence-final 。 -- one outside brackets, so a parenthetical
+    definition ('（…をいう。）') or a quoted name never splits a statutory sentence. A
+    line break also ends a sentence (items and headings), and depth resets there so an
+    unbalanced bracket cannot swallow the rest of a provision."""
+    ends, depth = [], 0
+    for i, ch in enumerate(text):
+        if ch in _OPEN:
+            depth += 1
+        elif ch in _CLOSE:
+            depth = max(0, depth - 1)
+        elif ch == "\n":
+            depth = 0
+            ends.append(i + 1)
+        elif ch == "。" and depth == 0:
+            ends.append(i + 1)
+    return ends
+
+
 def sentences(text: str) -> list[str]:
-    return [s.strip() for s in _SENT_SPLIT.split(text.replace("\n", "")) if s.strip()]
+    out, start = [], 0
+    for end in sentence_ends(text) + [len(text)]:
+        piece = text[start:end].replace("\n", "").strip()
+        if piece:
+            out.append(piece)
+        start = end
+    return out
 
 
 IMPLEMENTS = re.compile(r"に規定する[^、。]{0,16}(?:政令|内閣府令|省令|規則|告示)で定め|"
@@ -297,9 +335,13 @@ def tag_sentences(items: Iterable[Mapping[str, Any]]) -> tuple[list[dict], list[
     for item in items:
         if item.get("citation_only"):
             continue
-        span_text = "".join(sp.get("before", "") + sp.get("new", "") + sp.get("after", "")
-                            for sp in item.get("spans") or [])
-        for sentence in sentences((item.get("new") or "") + "。" + span_text):
+        found, seen = [], set()
+        for sentence in sentences(item.get("new") or "") + [
+                x for sp in item.get("spans") or [] for x in sentences(sp.get("sentence") or "")]:
+            if sentence not in seen:
+                seen.add(sentence)
+                found.append(sentence)
+        for sentence in found:
             kind = delegation_kind(sentence)
             if kind and len(delegations) < MAX_SENTENCES:
                 delegations.append({"label": item["label"], "kind": kind, "sentence": sentence[:400]})
@@ -729,37 +771,26 @@ def describe_page(data: bytes, mime: str, final_url: str) -> str:
     links = [urljoin(final_url, str(a.get("href") or "")) for a in soup.select("a[href]")]
     attachments = sum(ose.is_pdf_attachment_url(link) for link in links)
     scripts = len(soup.select("script"))
-    return (f"{head} title={title!r} text_blocks={len(blocks)} links={len(links)} "
+    line = (f"{head} title={title!r} text_blocks={len(blocks)} links={len(links)} "
             f"attachment_links={attachments} scripts={scripts}")
+    if ERROR_PAGE_TITLE in title:
+        # The site's own error message (not consultation text) says why the record is not served.
+        message = " / ".join(" ".join(b.get_text(" ", strip=True).split())[:80] for b in blocks[:6])
+        line += f" message={message[:300]!r}"
+    return line
 
 
 ERROR_PAGE_TITLE = "ご迷惑をお掛けします"
-# e-Gov serves one consultation under several views of the same record. The feed links
-# the call-for-comments view (Mode=0); once results are published that view returns the
-# e-Gov error page and the record (draft, its attachments, the results) is served under
-# another mode. Same official host, same record id: an alternative official URL, not a
-# way around an access restriction.
-CONSULTATION_ALT_MODES = ("2", "1")
-
-
-def consultation_alternatives(url: str) -> list[tuple[str, str]]:
-    u = urlsplit(url)
-    if (u.hostname or "").lower() != "public-comment.e-gov.go.jp":
-        return []
-    query = parse_qs(u.query, keep_blank_values=True)
-    if "id" not in query or query.get("Mode") != ["0"]:
-        return []
-    return [(mode, re.sub(r"([?&])Mode=0(?=&|$)", rf"\g<1>Mode={mode}", url)) for mode in CONSULTATION_ALT_MODES]
 
 
 def consultation_documents(url: str, title: str, *, gather: Callable[[str], list],
-                           fetch: Callable[..., tuple[bytes, str, str]]) -> tuple[str, str, str]:
-    """(text, status, url used) for a draft's official consultation page.
+                           fetch: Callable[..., tuple[bytes, str, str]]) -> tuple[str, str]:
+    """(text, status) for a draft's official consultation page.
 
     The status says why documents are missing, so a gap is diagnosable from the
-    committed pack. An alternative view is accepted only when its text can be tied
-    to the draft's own title (``official_source_evidence.related_to_title``), so a
-    different consultation or a menu never stands in for this one.
+    committed pack. Text that cannot be tied to the draft's own title
+    (``official_source_evidence.related_to_title``) is not used, so a different
+    consultation or a menu never stands in for this one.
     """
     import explainer_sources as src
     import official_source_evidence as ose
@@ -777,28 +808,21 @@ def consultation_documents(url: str, title: str, *, gather: Callable[[str], list
     except Exception as exc:  # noqa: BLE001 - optional narrowing only
         err = src.classify_exception(exc)
         print(f"documents unavailable for {url}: {err.error_class}")
-        return "", f"error:{err.error_class}", url
+        return "", f"error:{err.error_class}"
     if text:
-        return text, f"ok:{formats}", url
+        return text, f"ok:{formats}"
     try:
         data, mime, final_url = fetch(url, ose.MAX_HTML_BYTES)
         described = describe_page(data, mime, final_url)
     except Exception as exc:  # noqa: BLE001 - diagnostics only
-        return "", f"empty: describe failed ({src.classify_exception(exc).error_class})", url
-    if ERROR_PAGE_TITLE not in described:
-        return "", "empty: " + described, url
-    tried = []
-    for mode, alt in consultation_alternatives(url):
-        try:
-            text, formats = attempt(alt)
-        except Exception as exc:  # noqa: BLE001
-            tried.append(f"Mode={mode} {src.classify_exception(exc).error_class}")
-            continue
-        if text:
-            return text, f"ok:{formats} via Mode={mode} (Mode=0 served the e-Gov error page)", alt
-        tried.append(f"Mode={mode} {formats or 'empty'}")
-    return "", "empty: Mode=0 served the e-Gov error page; " + ("; ".join(tried) or "no alternative view") + \
-        f" [{described}]", url
+        return "", f"empty: describe failed ({src.classify_exception(exc).error_class})"
+    if ERROR_PAGE_TITLE in described:
+        # Measured 2026-11-15: every consultation whose draft is already promulgated
+        # (14 of 25) serves this page for the feed's URL, and the same record id under
+        # Mode=1 / Mode=2 does too. Record e-Gov's own message rather than guess another
+        # URL; the promulgated text itself comes from the Law API.
+        return "", "unavailable: e-Gov error page for the consultation URL [" + described + "]"
+    return "", "empty: " + described
 
 
 # ------------------------------------------------------------------ pack
@@ -819,20 +843,14 @@ def pack_for(seed: str, index: ex.OfficialIndex, client: EgovClient, today: date
             ev["raw_id"] = item_id
             instruments.append(ev)
         elif "public-comment.e-gov.go.jp" in str(url):
-            docs, doc_status, docs_url = "", "not_requested", url
+            docs, doc_status = "", "not_requested"
             if documents:
                 got = documents(url)
-                if isinstance(got, tuple):
-                    docs, doc_status = got[0], got[1]
-                    docs_url = got[2] if len(got) > 2 else url
-                else:
-                    docs, doc_status, docs_url = got, ("ok" if got else "empty"), url
+                docs, doc_status = got if isinstance(got, tuple) else (got, "ok" if got else "empty")
             res = resolve_draft(client, raw, today, docs, index)
             res["documents_status"] = doc_status
             if docs:
                 res["document_excerpt"] = docs[:2500]
-                if docs_url != url:
-                    res["documents_url"] = docs_url
             drafts.append(res)
     resolved_from_drafts = [ev for d in drafts if (d.get("resolution") or {}).get("status") == "resolved"
                             for ev in d["resolution"]["candidates"]]
@@ -892,6 +910,9 @@ def fit(pack: dict[str, Any]) -> dict[str, Any]:
                     for key in ("old", "new"):
                         if isinstance(item.get(key), str) and len(item[key]) > limit:
                             item[key] = item[key][:limit] + "…[truncated; see the e-Gov source]"
+                    for span in item.get("spans") or []:
+                        if isinstance(span.get("sentence"), str) and len(span["sentence"]) > limit:
+                            span["sentence"] = span["sentence"][:limit] + "…[truncated; see the e-Gov source]"
         pack["truncated_texts"] = limit
     return pack
 
@@ -1159,7 +1180,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         titles = {str(r.get("source_url")): str(r.get("title_ja") or "") for r in index.raw_by_id.values()}
 
-        def documents(url: str) -> tuple[str, str, str]:
+        def documents(url: str) -> tuple[str, str]:
             return consultation_documents(url, titles.get(url, ""), gather=ose.gather, fetch=ose.fetch_bounded)
     client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls)
     counts: dict[str, int] = {}

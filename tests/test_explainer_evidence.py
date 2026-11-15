@@ -64,6 +64,28 @@ class TextTests(unittest.TestCase):
         self.new = ev.provisions(json.loads(fixture_bytes("law_data_new.json"))["law_full_text"])
         self.old = ev.provisions(json.loads(fixture_bytes("law_data_old.json"))["law_full_text"])
 
+    def test_parenthetical_definitions_do_not_split_a_sentence(self):
+        text = "一 甲（乙をいう。以下同じ。）は、「丙。」を丁とするものとする。\n二 戊。"
+        self.assertEqual(ev.sentences(text), ["一 甲（乙をいう。以下同じ。）は、「丙。」を丁とするものとする。", "二 戊。"])
+        start = text.index("丁")
+        self.assertEqual(ev.enclosing_sentences(text, start, start + 1), ev.sentences(text)[0])
+
+    def test_tagged_sentences_are_whole_sentences_of_the_new_text(self):
+        # Regression (2026-11-15, Cabinet Office Ordinance No. 82): two changes in one long
+        # provision had their cut context windows joined, producing spliced "sentences".
+        head = "第十九条 甲は、次の要件を満たすものとする。" + "これは長い説明の文である。" * 30
+        old = head + "ただし、次のイ又はロに掲げる場合には、金銭をもって取得することができる。イ 配当落ちの場合。"
+        new = head + "ただし、次のイからハまでに掲げる場合には、金銭をもって取得することができる。イ 配当落ちの場合。ハ 自社株の場合。"
+        item = {"path": "本則/第19条", "label": "第19条", "old": old, "new": new[:200],
+                "spans": ev.change_spans(old, new), "citation_only": False}
+        _, modalities = ev.tag_sentences([item])
+        quoted = [m["sentence"] for m in modalities]
+        self.assertIn("ただし、次のイからハまでに掲げる場合には、金銭をもって取得することができる。", quoted)
+        for sentence in quoted:
+            self.assertIn(sentence, new)
+        for span in item["spans"]:
+            self.assertIn(span["sentence"], new)
+
     def test_article_diff_separates_substance_from_citation_edits(self):
         diff = ev.diff_provisions(self.old, self.new)
         self.assertEqual(diff["counts"], {"added": 1, "changed": 1, "citation_only": 1, "removed": 0})
@@ -249,21 +271,6 @@ class PackTests(unittest.TestCase):
         self.assertEqual(pack["drafts"][0]["documents_status"], "error:blocked_or_waf")
         self.assertNotIn("document_excerpt", pack["drafts"][0])
 
-    def test_documents_from_an_alternative_view_record_their_url(self):
-        url = "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=1&Mode=0"
-
-        class Index(self.Index):
-            raw_by_id = {"raw-00000000000000d1": {
-                "id": "raw-00000000000000d1", "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
-                "raw_summary": "案の公示日：2026/06/09 受付締切日時：2026/07/20 19:00", "source_url": url}}
-        alt = url.replace("Mode=0", "Mode=2")
-        pack = ev.pack_for("raw-00000000000000d1", Index(), client(), date(2026, 11, 15),
-                           documents=lambda u: ("案の本文", "ok:html via Mode=2", alt))
-        draft = pack["drafts"][0]
-        self.assertEqual(draft["documents_url"], alt)
-        self.assertEqual(draft["source_url"], url)
-        self.assertEqual(draft["document_excerpt"], "案の本文")
-
     def test_rebuild_is_byte_identical_and_digest_ignores_fetch_times(self):
         first = self.build()
         later = self.build(previous=first)
@@ -348,45 +355,34 @@ class ConsultationDocumentTests(unittest.TestCase):
     def fetch(self, url, limit):
         return self.SORRY, "text/html", "/servlet/Public"
 
-    def test_alternatives_only_for_call_view(self):
-        alts = ev.consultation_alternatives(self.URL)
-        self.assertEqual([m for m, _ in alts], ["2", "1"])
-        self.assertTrue(alts[0][1].endswith("id=225026053&Mode=2"))
-        self.assertEqual(ev.consultation_alternatives(self.URL.replace("Mode=0", "Mode=2")), [])
-        self.assertEqual(ev.consultation_alternatives("https://www.fsa.go.jp/x?id=1&Mode=0"), [])
-
-    def test_open_page_used_directly(self):
-        text, status, used = ev.consultation_documents(
+    def test_page_used_directly(self):
+        text, status = ev.consultation_documents(
             self.URL, self.TITLE, gather=lambda u: [{"format": "html", "excerpt": self.BODY}], fetch=self.fetch)
-        self.assertEqual((status, used), ("ok:html", self.URL))
-
-    def test_results_view_after_error_page(self):
-        calls = []
-
-        def gather(u):
-            calls.append(u)
-            return [{"format": "html", "excerpt": self.BODY}] if u.endswith("Mode=2") else []
-        text, status, used = ev.consultation_documents(self.URL, self.TITLE, gather=gather, fetch=self.fetch)
-        self.assertTrue(status.startswith("ok:html via Mode=2"))
-        self.assertTrue(used.endswith("Mode=2"))
+        self.assertEqual(status, "ok:html")
         self.assertIn("定めようとする命令", text)
 
-    def test_unrelated_alternative_rejected(self):
-        gather = lambda u: [] if u.endswith("Mode=0") else [{"format": "html", "excerpt": "全く別の案件の案内 " * 40}]
-        text, status, used = ev.consultation_documents(self.URL, self.TITLE, gather=gather, fetch=self.fetch)
-        self.assertEqual(text, "")
-        self.assertIn("Mode=2 unrelated", status)
-        self.assertEqual(used, self.URL)
-
-    def test_no_fallback_when_page_is_not_the_error_page(self):
-        page = b"<html><head><title>x</title></head><body></body></html>"
+    def test_error_page_records_the_sites_message_and_guesses_no_url(self):
         calls = []
         gather = lambda u: calls.append(u) or []
-        _, status, _ = ev.consultation_documents(self.URL, self.TITLE, gather=gather,
-                                                 fetch=lambda u, n: (page, "text/html", "/x"))
-        self.assertEqual(calls, [self.URL])
+        text, status = ev.consultation_documents(self.URL, self.TITLE, gather=gather, fetch=self.fetch)
+        self.assertEqual((text, calls), ("", [self.URL]))
+        self.assertTrue(status.startswith("unavailable: e-Gov error page"))
+        self.assertIn("お探しのページは見つかりませんでした", status)
+
+    def test_unrelated_text_rejected(self):
+        gather = lambda u: [{"format": "html", "excerpt": "全く別の案件の案内 " * 40}]
+        page = b"<html><head><title>x</title></head><body></body></html>"
+        text, status = ev.consultation_documents(self.URL, self.TITLE, gather=gather,
+                                                    fetch=lambda u, n: (page, "text/html", "/x"))
+        self.assertEqual(text, "")
         self.assertTrue(status.startswith("empty: text/html"))
 
+    def test_other_empty_page_is_described(self):
+        page = b"<html><head><title>x</title></head><body></body></html>"
+        _, status = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [],
+                                                 fetch=lambda u, n: (page, "text/html", "/x"))
+        self.assertTrue(status.startswith("empty: text/html"))
+        self.assertNotIn("message=", status)
 
 if __name__ == "__main__":
     unittest.main()
