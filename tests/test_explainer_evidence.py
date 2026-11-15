@@ -303,6 +303,25 @@ class CheckTests(unittest.TestCase):
         self.assertEqual(len(problems), 2, problems)
 
 
+
+class DescribePageTests(unittest.TestCase):
+    def test_reports_structure_without_page_text(self):
+        html = ("<html><head><title>パブリックコメント：意見募集中案件詳細</title></head><body>"
+                "<div id='app'></div><script>x()</script><p>短い</p>"
+                "<a href='/pcm/download?seqNo=0000123'>案</a></body></html>").encode()
+        line = ev.describe_page(html, "text/html; charset=UTF-8",
+                                "https://public-comment.e-gov.go.jp/pcm/detail?id=1")
+        self.assertIn("text/html", line)
+        self.assertIn("final=/pcm/detail", line)
+        self.assertIn("text_blocks=0", line)
+        self.assertIn("attachment_links=1", line)
+        self.assertIn("scripts=1", line)
+        self.assertNotIn("短い", line)
+
+    def test_pdf(self):
+        self.assertTrue(ev.describe_page(b"%PDF-1.7", "application/pdf",
+                                         "https://www.fsa.go.jp/a.pdf").endswith(" pdf"))
+
 if __name__ == "__main__":
     unittest.main()
 

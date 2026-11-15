@@ -53,7 +53,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
-from urllib.parse import quote, urlsplit, parse_qs
+from urllib.parse import quote, urlsplit, urljoin, parse_qs
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
@@ -708,6 +708,31 @@ def resolve_draft(client: EgovClient, raw: Mapping[str, Any], today: date,
     return out
 
 
+def describe_page(data: bytes, mime: str, final_url: str) -> str:
+    """One line saying what an official page actually served when no text was extracted.
+
+    Facts only (type, size, final path, <title>, how many text blocks and attachment
+    links the HTML holds), so a gap can be diagnosed from the committed pack without
+    re-fetching from an environment the site blocks. Never page text beyond the title.
+    """
+    from bs4 import BeautifulSoup
+    import official_source_evidence as ose
+
+    path = urlsplit(final_url).path or "/"
+    head = f"{(mime or '?').split(';')[0]} {len(data)} bytes final={path}"
+    if data.startswith(b"%PDF"):
+        return head + " pdf"
+    soup = BeautifulSoup(data, "html.parser")
+    title = " ".join((soup.title.get_text(" ", strip=True) if soup.title else "").split())[:80]
+    blocks = [t for t in soup.select("h1, h2, h3, h4, p, li, dt, dd, th, td")
+              if len(" ".join(t.get_text(" ", strip=True).split())) >= 10]
+    links = [urljoin(final_url, str(a.get("href") or "")) for a in soup.select("a[href]")]
+    attachments = sum(ose.is_pdf_attachment_url(link) for link in links)
+    scripts = len(soup.select("script"))
+    return (f"{head} title={title!r} text_blocks={len(blocks)} links={len(links)} "
+            f"attachment_links={attachments} scripts={scripts}")
+
+
 # ------------------------------------------------------------------ pack
 
 
@@ -1070,7 +1095,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                 return "", f"error:{err.error_class}"
             text = " ".join(d.get("excerpt", "") for d in found)
             formats = ",".join(sorted({d.get("format", "?") for d in found}))
-            return text, (f"ok:{formats}" if text else "empty: no substantive page text or labelled PDF")
+            if text:
+                return text, f"ok:{formats}"
+            try:
+                data, mime, final_url = ose.fetch_bounded(url, ose.MAX_HTML_BYTES)
+                return "", "empty: " + describe_page(data, mime, final_url)
+            except Exception as exc:  # noqa: BLE001 - diagnostics only
+                return "", f"empty: describe failed ({src.classify_exception(exc).error_class})"
     client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls)
     counts: dict[str, int] = {}
     written, kept = 0, set()
