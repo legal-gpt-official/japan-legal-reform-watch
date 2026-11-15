@@ -431,10 +431,9 @@
       "queue_id": "draft:raw-056b16304cad2bfc",
       "seed_item_id": "raw-056b16304cad2bfc",
       "related_item_ids": [
-        "raw-056b16304cad2bfc",
-        "raw-bb3eef67ff07d7d4"
+        "raw-056b16304cad2bfc"
       ],
-      "source_fingerprint": "sha256:c920f9f6ee68f0d10de2172e50b22842",
+      "source_fingerprint": "sha256:d3fc61268617b3c3e0058ba52bd0d6b9",
       "evidence": {
         "status": "ready",
         "digest": "sha256:fa1604daaa0d9ca65487c0be64831729",
@@ -443,47 +442,47 @@
       "pr": 164,
       "branch": "claude/legal-reform-watch-system-redesign-tvei94",
       "head_sha": "a6428b6555cd40d8e8ae2902a1e05250c86be50c",
-      "pr_state": "open",
-      "pr_draft": true,
-      "labels": [],
+      "pr_state": "merged",
+      "pr_draft": false,
+      "labels": [
+        "legal-content-verified"
+      ],
       "pr_created_at": "2026-11-15T14:46:17Z",
       "automerge_eligible_files": true,
       "ci": {
         "failed_runs": 0,
         "run_id": 43726166493,
         "head_sha": "a6428b6555cd40d8e8ae2902a1e05250c86be50c",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-15T14:47:50Z",
+        "duration_s": 89
       },
-      "stage": "CI_RUNNING",
-      "last_success_stage": "CI_RUNNING",
+      "merged_at": "2026-11-15T14:48:14Z",
+      "introduced": {
+        "pr": 164,
+        "drafted_at": "2026-11-15T14:46:17Z",
+        "ci_passed_at": "2026-11-15T14:47:50Z",
+        "merged_at": "2026-11-15T14:48:14Z"
+      },
+      "stage": "MERGED",
+      "last_success_stage": "MERGED",
       "stage_history": {
         "DRAFTED": "2026-11-15T14:46:17Z",
         "RESEARCH_REQUIRED": "2026-11-15T14:46:17Z",
         "SOURCES_VERIFIED": "2026-11-15T14:46:51Z",
         "EN_READY": "2026-11-15T14:46:51Z",
         "JA_ZH_READY": "2026-11-15T14:46:51Z",
-        "STAMPED_AND_SYNCED": "2026-11-15T14:46:51Z"
+        "STAMPED_AND_SYNCED": "2026-11-15T14:46:51Z",
+        "CI_PASSED": "2026-11-15T14:47:50Z",
+        "MERGED": "2026-11-15T14:48:14Z"
       },
-      "sources": {
-        "fetched": 9,
-        "failed": 0,
-        "not_fetched": 0,
-        "failed_by_error": {}
-      },
-      "unconfirmed": [],
-      "unresolved": [
-        "The Financial Services Agency's annex summarising the 10 comments and its responses was not reviewed.",
-        "Exchange rules and individual trust deeds that govern how each ETF applies item (c) were not reviewed."
-      ],
       "blockers": [],
-      "next_action": "Wait for Pull request checks run 43726166493 on a6428b6555cd.",
-      "updated_at": "2026-11-15T14:46:51Z",
-      "run_id": "43726098098"
+      "next_action": "Publish pending: the pipeline re-dispatches Publish if it has not succeeded within 20 minutes.",
+      "updated_at": "2026-11-15T14:48:49Z",
+      "run_id": "43726319636"
     },
     "food-consumption-tax-temporary-cut-2026-bill": {
       "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
@@ -2045,8 +2044,8 @@
     "2026-11-15": {
       "new": {
         "drafted": 2,
-        "ci_passed": 0,
-        "merged": 0,
+        "ci_passed": 1,
+        "merged": 1,
         "pages_deployed": 0,
         "live_verified": 0
       },
