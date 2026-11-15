@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "dossier_id": "etf-in-kind-creation-tender-offer-threshold-2026",
+  "kind": "new",
+  "queue_id": "draft:raw-056b16304cad2bfc",
+  "seed_item_id": "raw-056b16304cad2bfc",
+  "hold": null,
+  "next_action": "Open the dossier PR (EN/JA/ZH + case file) and pass CI; legal review label after reading the three versions.",
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/412M50000002129",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:46:58Z",
+      "sha256": "7e57486f5e4008680b6fdf39c9a62b8d31ae9e09d185a45432a73555caa44c3a",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-056b16304cad2bfc"
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260918_508M60000002082?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:46:59Z",
+      "sha256": "26426e34f17f25b9420b6b546aaf4c5c37ffbf42f1cc6b7a22dd1bb157f509ba",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-056b16304cad2bfc"
+    },
+    {
+      "id": "s3",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412M50000002129_20260625_508M60000002057?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:46:59Z",
+      "sha256": "759ea4907744b397accaba1b8997725c37859584bf9692bd64414713523bfdd0",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-056b16304cad2bfc"
+    },
+    {
+      "id": "s4",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/323AC0000000025_20260501_506AC0000000032?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:20Z",
+      "sha256": "0e2c22eb2ca23ab091f8841f7ee427e625a98c1961cc11f92ae7523a688bde2d",
+      "final_url": "https://laws.e-gov.go.jp/api/2/law_data/323AC0000000025_20260501_506AC0000000032?response_format=json&law_full_text_format=json",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "昭和二十三年法律第二十五号 金融商品取引法 目次第一章 総則 （第一条―第二条の二）第二章 企業内容等の開示 （第二条の三―第二十七条）第二章の二 公開買付けに関する開示 第一節 発行者以外の者による株券等の公開買付け （第二十七条の二―第二十七条の二十二）第二節 発行者による上場株券等の公開買付け （第二十七条の二十二の二―第二十七条の二十二の四）第二章の三 株券等の大量保有の状況に関する開示 （第二十七条の二十三―第二十七条の三十）第二章の四 開示用電子情報処理組織による手続の特例等 （第二十七条の三十の二―第二十七条の三十の十一）第二章の五 特定証券情報等の提供又は公表 （第二十七条の三十一―第二十七条の三十五）第二章の六 重要情報の公表 （第二十七条の三十六―第二十七条の三十八）第三章 金融商品取引業者等 第一節 総則 第一款 通則 （第二十八条）第二款 金融商品取引業者 （第二十九条―第三十一条の五）第三款 主要株主 （第三十二条―第三十二条の四）第四款 登録金融機関 （第三十三条―第三十三条の八）第五款 特定投資家 （第三十四条―第三十四条の五）第二節 業務 第一款 通則 （第三十五条―第四十条の七）第二款 投資助言業務に関する特則 （第四十一条―第四十一条の五）第三款 投資運用業に関する特則 （第四十二条―第四十二条の八）第四款 有価証券等管理業務に関する特則 （第四十三条―第四十三条の四）第五款 電子募集業務及び電子募集取扱業務に関する特則 （第四十三条の五）第六款 暗号等資産関連業務に関する特則 （第四十三条の六）第七款 弊害防止措置等 （第四十四条―第四十四条の四）第八款 雑則 （第四十五条）第三節 経理 第一款 第一種金融商品取引業を行う金融商品取引業者 （第四十六条―第四十六条の六）第二款 第一種金融商品取引業を行わない金融商品取引業者 （第四十七条―第四十七条の三）第三款 登録金融機関 （第四十八条―第四十八条の三）第四款 外国法人等に対する特例 （第四十九条―第四十九条の五）第四節 監督 （第五十条―第五十七条）第四節の二 特別金融商品取引業者等に関する特則 第一款 特別金融商品取引業者 （第五十七条の二―第五十七条の十一）第二款 指定親会社 （第五十七条の十二―第五十七条の二十五）第三款 雑則 （第五十七条の二十六・第五十七条の二十七）第五節 外国業者に関する特例 第一款 外国証券業者 （第五十八条・第五十八条の二）第二款 引受業務の一部の許可 （第五十九条―第五十九条の六）第三款 取引所取引業務の許可 （第六十条―第六十条の十三）第四款 電子店頭デリバティブ取引等業務の許可 （第六十条の十四）第五款 外国において投資助言業務又は投資運用業を行う者 （第六十一条）第六款 情報収集のための施設の設置 （第六十二条）第六節 適格機関投資家等特例業務に関する特例 （第六十三条―第六十三条の七）第六節の二 海外投資家等特例業務に関する特例 （第六十三条の八―第六十三条の十五）第七節 外務員 （第六十四条―第六十四条の九）第八節 雑則 （第六十五条―第六十五条の六）第三章の二 金融商品仲介業者 第一節 総則 （第六十六条―第六十六条の六）第二節 業務 （第六十六条の七―第六十六条の十五）第三節 経理 （第六十六条の十六―第六十六条の十八）第四節 監督 （第六十六条の十九―第六十六条の二十三）第五節 雑則 （第六十六条の二十四―第六十六条の二十六）第三章の三 信用格付業者 第一節 総則 （第六十六条の二十七―第六十六条の三十一）",
+      "version": {
+        "law_id": "323AC0000000025",
+        "law_num": "昭和二十三年法律第二十五号",
+        "law_revision_id": "323AC0000000025_20260501_506AC0000000032",
+        "law_title": "金融商品取引法",
+        "amendment_law_num": "令和六年法律第三十二号",
+        "amendment_promulgate_date": "2024-05-22",
+        "amendment_enforcement_date": "2026-05-01",
+        "as_of": "2026-11-15"
+      }
+    },
+    {
+      "id": "s5",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/323AC0000000025",
+      "kind": "egov_law",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:21Z",
+      "sha256": "e632bb9ea88f0b48b30feb9c2907ef13c01a0af6dd212384983e26398ae5e94f",
+      "final_url": "https://laws.e-gov.go.jp/api/2/law_revisions/323AC0000000025",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2028-06-13 / 民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律（令和五年法律第五十三号）の施行の日 | 民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律 / 2023-06-14 / 2028-06-13 / 公布の日から起算して五年を超えない範囲内において政令で定める日 | 金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2028-01-01 / 所得税法等の一部を改正する法律（令和八年法律第十二号）附則第一条第十号に掲げる規定の施行の日 | 金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2027-10-01 | 金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2027-07-22 / 公布の日から起算して一年を超えない範囲内において政令で定める日 | 金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2027-04-01 | 金融商品取引法及び資金決済に関する法律の一部を改正する法律 / 2026-07-23 / 2027-03-31 / 情報通信技術の進展等に対応するための刑事訴訟法等の一部を改正する法律（令和七年法律第三十九号）の施行の日 | 金融商品取引法等の一部を改正する法律 / 2023-11-29 / 2026-11-30",
+      "version": {
+        "law_id": "323AC0000000025",
+        "law_num": "昭和二十三年法律第二十五号",
+        "revisions": [
+          {
+            "law_revision_id": "323AC0000000025_20280613_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2028-06-13",
+            "amendment_enforcement_comment": "民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律（令和五年法律第五十三号）の施行の日",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20280613_505AC0000000053",
+            "amendment_law_title": "民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律",
+            "amendment_law_num": "令和五年法律第五十三号",
+            "amendment_promulgate_date": "2023-06-14",
+            "amendment_enforcement_date": "2028-06-13",
+            "amendment_enforcement_comment": "公布の日から起算して五年を超えない範囲内において政令で定める日",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20280101_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2028-01-01",
+            "amendment_enforcement_comment": "所得税法等の一部を改正する法律（令和八年法律第十二号）附則第一条第十号に掲げる規定の施行の日",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20271001_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2027-10-01",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20270722_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2027-07-22",
+            "amendment_enforcement_comment": "公布の日から起算して一年を超えない範囲内において政令で定める日",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20270401_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2027-04-01",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20270331_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2027-03-31",
+            "amendment_enforcement_comment": "情報通信技術の進展等に対応するための刑事訴訟法等の一部を改正する法律（令和七年法律第三十九号）の施行の日",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20261130_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2026-11-30",
+            "current_revision_status": "UnEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260812_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2026-08-12",
+            "current_revision_status": "CurrentEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260723_508AC0000000064",
+            "amendment_law_title": "金融商品取引法及び資金決済に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和八年法律第六十四号",
+            "amendment_promulgate_date": "2026-07-23",
+            "amendment_enforcement_date": "2026-07-23",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260525_506AC0000000052",
+            "amendment_law_title": "事業性融資の推進等に関する法律",
+            "amendment_law_num": "令和六年法律第五十二号",
+            "amendment_promulgate_date": "2024-06-14",
+            "amendment_enforcement_date": "2026-05-25",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260521_504AC0000000048",
+            "amendment_law_title": "民事訴訟法等の一部を改正する法律",
+            "amendment_law_num": "令和四年法律第四十八号",
+            "amendment_promulgate_date": "2022-05-25",
+            "amendment_enforcement_date": "2026-05-21",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260501_506AC0000000032",
+            "amendment_law_title": "金融商品取引法及び投資信託及び投資法人に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和六年法律第三十二号",
+            "amendment_promulgate_date": "2024-05-22",
+            "amendment_enforcement_date": "2026-05-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20260101_506AC0000000056",
+            "amendment_law_title": "地球温暖化対策の推進に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和六年法律第五十六号",
+            "amendment_promulgate_date": "2024-06-19",
+            "amendment_enforcement_date": "2026-01-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20251001_505AC0000000053",
+            "amendment_law_title": "民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律",
+            "amendment_law_num": "令和五年法律第五十三号",
+            "amendment_promulgate_date": "2023-06-14",
+            "amendment_enforcement_date": "2025-10-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20250601_504AC0000000068",
+            "amendment_law_title": "刑法等の一部を改正する法律の施行に伴う関係法律の整理等に関する法律　抄",
+            "amendment_law_num": "令和四年法律第六十八号",
+            "amendment_promulgate_date": "2022-06-17",
+            "amendment_enforcement_date": "2025-06-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20250501_506AC0000000032",
+            "amendment_law_title": "金融商品取引法及び投資信託及び投資法人に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和六年法律第三十二号",
+            "amendment_promulgate_date": "2024-05-22",
+            "amendment_enforcement_date": "2025-05-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20250401_505AC0000000086",
+            "amendment_law_title": "官報の発行に関する法律の施行に伴う関係法律の整備に関する法律",
+            "amendment_law_num": "令和五年法律第八十六号",
+            "amendment_promulgate_date": "2023-12-13",
+            "amendment_enforcement_date": "2025-04-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20250401_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2025-04-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20241121_506AC0000000032",
+            "amendment_law_title": "金融商品取引法及び投資信託及び投資法人に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和六年法律第三十二号",
+            "amendment_promulgate_date": "2024-05-22",
+            "amendment_enforcement_date": "2024-11-21",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20241101_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2024-11-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20240614_506AC0000000052",
+            "amendment_law_title": "事業性融資の推進等に関する法律",
+            "amendment_law_num": "令和六年法律第五十二号",
+            "amendment_promulgate_date": "2024-06-14",
+            "amendment_enforcement_date": "2024-06-14",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20240522_506AC0000000032",
+            "amendment_law_title": "金融商品取引法及び投資信託及び投資法人に関する法律の一部を改正する法律",
+            "amendment_law_num": "令和六年法律第三十二号",
+            "amendment_promulgate_date": "2024-05-22",
+            "amendment_enforcement_date": "2024-05-22",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20240401_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2024-04-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20240201_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2024-02-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20231129_505AC0000000079",
+            "amendment_law_title": "金融商品取引法等の一部を改正する法律",
+            "amendment_law_num": "令和五年法律第七十九号",
+            "amendment_promulgate_date": "2023-11-29",
+            "amendment_enforcement_date": "2023-11-29",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20230614_505AC0000000053",
+            "amendment_law_title": "民事関係手続等における情報通信技術の活用等の推進を図るための関係法律の整備に関する法律",
+            "amendment_law_num": "令和五年法律第五十三号",
+            "amendment_promulgate_date": "2023-06-14",
+            "amendment_enforcement_date": "2023-06-14",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20230601_504AC0000000061",
+            "amendment_law_title": "安定的かつ効率的な資金決済制度の構築を図るための資金決済に関する法律等の一部を改正する法律",
+            "amendment_law_num": "令和四年法律第六十一号",
+            "amendment_promulgate_date": "2022-06-10",
+            "amendment_enforcement_date": "2023-06-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20230401_504AC0000000041",
+            "amendment_law_title": "公認会計士法及び金融商品取引法の一部を改正する法律",
+            "amendment_law_num": "令和四年法律第四十一号",
+            "amendment_promulgate_date": "2022-05-18",
+            "amendment_enforcement_date": "2023-04-01",
+            "current_revision_status": "PreviousEnforced"
+          },
+          {
+            "law_revision_id": "323AC0000000025_20221101_502AC0000000033",
+            "amendment_law_title": "外国弁護士による法律事務の取扱いに関する特別措置法の一部を改正する法律",
+            "amendment_law_num": "令和二年法律第三十三号",
+            "amendment_promulgate_date": "2020-05-29",
+            "amendment_enforcement_date": "2022-11-01",
+            "current_revision_status": "PreviousEnforced"
+          }
+        ],
+        "as_of": "2026-11-15"
+      }
+    },
+    {
+      "id": "s6",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=225026053&Mode=1",
+      "kind": "egov_public_comment",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:22Z",
+      "sha256": "9608b50c40ffd12be10e7b98c3979b50f9301c4bdd4d5ed474ad8117910b8292",
+      "final_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=225026053&Mode=1",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令」の公布及びパブリックコメントの結果について 定めようとする命令などの題名 投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令 ・投資信託及び投資法人に関する法律施行令第12条第２号ロ 行政手続法に基づく手続か 行政手続法に基づく手続 2026年7月28日 2026年8月28日17時0分 2026年9月18日 提出意見を踏まえた案の修正の有無 結果概要 提出意見 意見の考慮 結果・理由等 問合せ先 （所管省庁・部局名等） 電話受付 受付時間：平日10時00分〜17時00分 電話番号：０５７０－０１６８１１（ＩＰ電話からは０３－５２５１－６８１１） 企画市場局市場課（庁内用：2644、5490）"
+    },
+    {
+      "id": "s7",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/412CO0000000480_20250501_507CO0000000101?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:23Z",
+      "sha256": "bc33159cbe91b94158304fb3099dd917ebeea5d6ccc74f1c45d66b95c93f65bf",
+      "final_url": "https://laws.e-gov.go.jp/api/2/law_data/412CO0000000480_20250501_507CO0000000101?response_format=json&law_full_text_format=json",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "平成十二年政令第四百八十号 投資信託及び投資法人に関する法律施行令 内閣は、投資信託及び投資法人に関する法律（昭和二十六年法律第百九十八号）の規定に基づき、証券投資信託及び証券投資法人に関する法律施行令（平成十年政令第三百七十号）の全部を改正するこの政令を制定する。目次第一章 総則 （第一条―第八条）第二章 投資信託制度 （第九条―第五十三条）第三章 投資法人制度 （第五十四条―第百二十八条）第四章 雑則 （第百二十九条―第百三十六条）附則第一章 総則 （定義） 第一条 この政令において、「委託者指図型投資信託」、「委託者非指図型投資信託」、「投資信託」、「証券投資信託」、「有価証券」、「デリバティブ取引」、「受益証券」、「公募」、「投資信託委託会社」、「投資法人」、「登録投資法人」、「投資口」、「投資証券」、「投資主」、「新投資口予約権」、「新投資口予約権証券」、「投資法人債」、「投資法人債券」、「資産運用会社」、「資産保管会社」、「一般事務受託者」、「外国投資信託」又は「外国投資法人」とは、それぞれ投資信託及び投資法人に関する法律（以下「法」という。）第二条に規定する委託者指図型投資信託、委託者非指図型投資信託、投資信託、証券投資信託、有価証券、デリバティブ取引、受益証券、公募、投資信託委託会社、投資法人、登録投資法人、投資口、投資証券、投資主、新投資口予約権、新投資口予約権証券、投資法人債、投資法人債券、資産運用会社、資産保管会社、一般事務受託者、外国投資信託又は外国投資法人をいい、「投資法人債権者」とは、法第百三十九条の三第一項第七号に規定する投資法人債権者をいう。 （委託者指図型投資信託における運用指図権限の委託先の範囲） 第二条 法第二条第一項に規定する政令で定める者は、次に掲げる者（委託者がその指図に係る権限の全部又は一部を委託しようとする投資信託財産（法第三条第二号に規定する投資信託財産をいう。以下同じ。）の受託者である信託会社等（法第四十七条第一項に規定する信託会社等をいう。以下同じ。）を除く。）とする。一 金融商品取引法施行令（昭和四十年政令第三百二十一号）第十六条の十二各号に掲げる者 二 信託会社等（前号に掲げる者に該当するものを除き、当該信託会社等による運用の指図が有価証券又はデリバティブ取引に係る権利以外の資産のみに対する投資として行われる場合に限る。） 三 商品投資に係る事業の規制に関する法律（平成三年法律第六十六号）第二条第四項に規定する商品投資顧問業者又は外国の法令の規定により当該外国において同法第三条の許可と同種の許可（当該許可に類する登録その他の行政処分を含む。）を受けている法人（第一号に掲げる者に該当するものを除き、当該商品投資顧問業者による運用の指図が次条第九号又は第十号に掲げる資産のみに対する投資として行われる場合に限る。） （特定資産の範囲） 第三条 法第二条第一項に規定する政令で定める資産は、次に掲げるものとする。一 有価証券 二 デリバティブ取引（暗号等資産（金融商品取引法（昭和二十三年法律第二十五号）第二条第二十四項第三号の二に規定する暗号等資産をいう。第十九条第五項第二号において同じ。）及び暗号等資産関連金融指標（同法第百八十五条の二十二第一項第一号に規定する暗号等資産関連金融指標をいう。第十号ハ及び第十九条第五項第二号において同じ。）に係るものを除く。第十号ハ及びニ、第百十七条第四号並びに第百二十五条第一項第二号において同じ。）に係る権利 三 不動産 四 不動産の賃借権 五 地上権 六 約束手",
+      "version": {
+        "law_id": "412CO0000000480",
+        "law_num": "平成十二年政令第四百八十号",
+        "law_revision_id": "412CO0000000480_20250501_507CO0000000101",
+        "law_title": "投資信託及び投資法人に関する法律施行令",
+        "amendment_law_num": "令和七年政令第百一号",
+        "amendment_promulgate_date": "2025-03-28",
+        "amendment_enforcement_date": "2025-05-01",
+        "as_of": "2026-11-15"
+      }
+    },
+    {
+      "id": "s8",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/326AC0100000198_20260812_508AC0000000064?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:24Z",
+      "sha256": "bd84a4e3840b5cb2246a9f7d6287971c616ffedae5932ca2f698a1641b398298",
+      "final_url": "https://laws.e-gov.go.jp/api/2/law_data/326AC0100000198_20260812_508AC0000000064?response_format=json&law_full_text_format=json",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "昭和二十六年法律第百九十八号 投資信託及び投資法人に関する法律 目次第一編 総則 （第一条・第二条）第二編 投資信託制度 第一章 委託者指図型投資信託 （第三条―第四十六条）第二章 委託者非指図型投資信託 （第四十七条―第五十七条）第三章 外国投資信託 （第五十八条―第六十条）第三編 投資法人制度 第一章 投資法人 第一節 通則 （第六十一条―第六十五条）第二節 設立 （第六十六条―第七十五条）第三節 投資口及び投資証券 （第七十六条―第八十八条）第三節の二 新投資口予約権及び新投資口予約権証券 （第八十八条の二―第八十八条の二十三）第四節 機関 第一款 投資主総会 （第八十九条―第九十四条）第二款 投資主総会以外の機関の設置 （第九十五条）第三款 役員及び会計監査人の選任及び解任 （第九十六条―第百八条）第四款 執行役員 （第百九条・第百十条）第五款 監督役員 （第百十一条）第六款 役員会 （第百十二条―第百十五条）第七款 会計監査人 （第百十五条の二―第百十五条の五）第八款 役員等の損害賠償責任 （第百十五条の六―第百十六条）第九款 補償契約及び役員等のために締結される保険契約 （第百十六条の二・第百十六条の三）第五節 事務の委託 （第百十七条―第百二十三条）第六節 投資口の払戻し （第百二十四条―第百二十七条）第七節 計算等 第一款 会計の原則 （第百二十八条）第二款 会計帳簿等 第一目 会計帳簿 （第百二十八条の二―第百二十八条の四）第二目 計算書類等 （第百二十九条―第百三十四条）第三款 出資剰余金等 （第百三十五条・第百三十六条）第四款 金銭の分配等 （第百三十七条―第百三十九条）第八節 投資法人債 （第百三十九条の二―第百三十九条の十三）第九節 規約の変更 （第百四十条―第百四十二条）第十節 解散 （第百四十三条―第百四十四条）第十一節 合併 第一款 通則 （第百四十五条・第百四十六条）第二款 吸収合併 （第百四十七条・第百四十七条の二）第三款 新設合併 （第百四十八条・第百四十八条の二）第四款 吸収合併の手続 第一目 吸収合併消滅法人の手続 （第百四十九条―第百四十九条の五）第二目 吸収合併存続法人の手続 （第百四十九条の六―第百四十九条の十）第五款 新設合併の手続 第一目 新設合併消滅法人の手続 （第百四十九条の十一―第百四十九条の十四）第二目 新設合併設立法人の手続 （第百四十九条の十五・第百四十九条の十六）第六款 雑則 （第百四十九条の十七・第百五十条）第十二節 清算 第一款 通則 （第百五十条の二―第百六十三条）第二款 特別清算 （第百六十四条）第十三節 登記 （第百六十五条―第百八十二条）第十四節 雑則 （第百八十三条―第百八十六条の二）第二章 投資法人の業務 第一節 登録 （第百八十七条―第百九十二条）第二節 業務 第一款 業務の範囲 （第百九十三条―第百九十七条）第二款 業務の委託 （第百九十八条―第二百十条）第三節 監督 （第二百十一条―第二百十九条）第三章 外国投資法人 （第二百二十条―第二百二十三条）第四編 雑則 （第二百二十三条の二―第二百二十七条）第五編 罰則 （第二百二十八条―第二百五十二条）第六編 没収に関する手続等の特例 （第二百五十三条―第二百五十五条）附則第一編 総則 （目的） 第一条 この法律は、投資信託又は投資法人を用いて投資者以外の者が投資者の資金を主として有価証券等に対する投資として集合して運用し、その成果を投資者に分配する制度を確立し、これらを用いた資金の運用が適正に行われることを確保す",
+      "version": {
+        "law_id": "326AC0100000198",
+        "law_num": "昭和二十六年法律第百九十八号",
+        "law_revision_id": "326AC0100000198_20260812_508AC0000000064",
+        "law_title": "投資信託及び投資法人に関する法律",
+        "amendment_law_num": "令和八年法律第六十四号",
+        "amendment_promulgate_date": "2026-07-23",
+        "amendment_enforcement_date": "2026-08-12",
+        "as_of": "2026-11-15"
+      }
+    },
+    {
+      "id": "s9",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322261",
+      "kind": "egov_public_comment",
+      "status": "fetched",
+      "attempts": 1,
+      "fetched_at": "2026-11-15T14:20:25Z",
+      "sha256": "4bc1d081473700fc205dd9d9ed57e4fc4662fdf5527d0900c50311f57381d19f",
+      "final_url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322261",
+      "http_status": 200,
+      "error_class": null,
+      "excerpt": "⽂字サイズ ⼤ 中 ⼩ Language サイト内検索 ホーム ⾦融庁について 報道‧広報 政策‧審議会 法令‧指針等 ⾦融機関情報 国際関係情報 アクセスＦＳＡ （広報誌） ポスト 令和８年９⽉18⽇ ⾦融庁 「投資信託及び投資法⼈に関する法律施⾏規則の⼀部を改正 する内閣府令」の公布及びパブリックコメントの結果につい て ⾦融庁では、「投資信託及び投資法⼈に関する法律施⾏規則の⼀部を改正する内閣府令（案）」につきまして、令 和８年７⽉28⽇（⽕曜）から令和８年８⽉28⽇（⾦曜）にかけて公表し、広く意⾒の募集を⾏いました。 その結果、10件のコメントをいただきました。本件について御検討いただいた皆様におかれましては、御協⼒い ただきありがとうございました。 本件に関してお寄せいただいたコメントの概要及びコメントに対する⾦融庁の考え⽅は、（別紙１）を御覧くださ い。 現物拠出型ETFの構成銘柄のうち、ETFの設定を申し込む者の所有割合が30％を超える銘柄に相当する部分につい て、⾦銭で設定することができるよう、規定の整備を⾏うものです。 具体的な改正の内容については、（別紙２）を御参照ください。 本件に係る内閣府令は、本⽇公布・施⾏されております。 （別紙１） コメントの概要及びコメントに対する⾦融庁の考え⽅ （別紙２） 投資信託及び投資法⼈に関する法律施⾏規則の⼀部を改正する内閣府令 問合せ先 （注）⾦融⾏政等に関する⼀般的なご質問等は⾦融サービス利⽤者相談室で承ります。 ⾦融庁の⾏政相談においては、「業務の範 囲や程度を明らかに超える苦情相談」への 対応について⽅針を定めています。 ホーム > 報道発表資料 > 「投資信託及び投資法⼈に関する法律施⾏規則の⼀部を改正する内閣府令」の公布及びパブリックコメントの結果について １．改正の概要 ２．公布・施⾏⽇ 電話受付 受付時間︓平⽇10時00分〜17時00分 電話番号︓０５７０－０１６８１１（ＩＰ電話からは０３－５２５１－６８１１） ウェブサイト受付 相談・⼿続・採⽤情報 各種窓⼝のご案内 ⾦融サービス利⽤者相談室 ⾦融⾏政モニター 情報公開等 パブリックコメント 申請・届出・照会 オンライン⾏政⼿続 ⼊札公告等 採⽤情報 新着情報配信サービス ⾦融事業者⼀括検索機能 ⾦融庁チャットボット （よくある質問） ⾦融庁ソーシャルメディア アカウント 関連リンク ⾦融庁⾦融研究センター 証券取引等監視委員会 公認会計⼠・監査審査会 ⾦融庁/Financial Services Agency, The Japanese Government （法⼈番号6000012010023） Copyright(C) 2017 ⾦融庁 All Rights Reserved. 〒100-8967 東京都千代⽥区霞が関3－2－1 中央合同庁舎第７号館 電話番号︓03-3506-6000 所管 企画市場局市場課（庁内⽤2644、5490） サイトマップ ⾦融庁について 組織 ⼤⾂・副⼤⾂・政 務官 ⾦融庁の概要 ⾦融庁の改⾰ 所管の法⼈ 予算・決算 政策評価 採⽤情報 報道・広報 報道対応 報道発表資料 記者会⾒ ⼤⾂談話等 広報活動 アクセスＦＳＡ （広報誌） ⽩書・年次報告 職員による講演 等 職員による寄稿 等 利⽤者の⽅へ 注意喚起情報 業界団体との意 ⾒交換会におい て⾦融庁が提起 した主な論点 よく閲覧されて いるページ 政策・審議会 基本⽅針等 ⾦融⾏政⽅針 政府⽅針におけ る⾦融庁関連の 施策 政策テー"
+    }
+  ],
+  "facts": [
+    {
+      "id": "f1",
+      "category": "instrument_form",
+      "status": "confirmed",
+      "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#instrument_form",
+      "value": "in_force_instrument"
+    },
+    {
+      "id": "f2",
+      "category": "promulgation_date",
+      "status": "confirmed",
+      "statement": "Promulgated 2026-09-18 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#promulgation_date"
+    },
+    {
+      "id": "f3",
+      "category": "effective_date",
+      "status": "confirmed",
+      "statement": "Effective 2026-09-18 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#effective_date"
+    },
+    {
+      "id": "f4",
+      "category": "partial_effective_date",
+      "status": "not_applicable",
+      "statement": "Single commencement stage.",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#partial_effective_date"
+    },
+    {
+      "id": "f5",
+      "category": "amended_provisions",
+      "status": "confirmed",
+      "statement": "Provisions changed (e-Gov old/new text): 第19条",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#amended_provisions"
+    },
+    {
+      "id": "f6",
+      "category": "old_vs_new",
+      "status": "confirmed",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "statement": "Before 18 September 2026, Article 19(5)(i) allowed cash in place of basket securities only in items (a) (shares or investment securities whose units would be delivered on the record date or the business day before it) and (b) (shares issued by the subscriber or its parent). Ordinance No. 82 added item (c) for shares covered by FIEA Article 27-2 where the subscriber's ownership ratio would exceed 30% after purchasing them to subscribe, or already exceeds 30% calculated as if it were the purchaser under Article 27-2(8); the cross-references changed from 'イ又はロ' to 'イからハまで'. No other provision changed.",
+      "quote": "ハ 当該各銘柄の有価証券等に、その募集に応じるために株券等…の買付け等を行うとすれば当該買付け等の後における当該募集に応じる者の所有…に係る株券等の株券等所有割合…が百分の三十を超えることとなる場合又は…既に百分の三十を超えている場合におけるこれらの株券等が含まれる場合"
+    },
+    {
+      "id": "f7",
+      "category": "scope",
+      "status": "confirmed",
+      "source_ids": [
+        "s2",
+        "s7"
+      ],
+      "statement": "Article 19(5) governs the acquisition of units of the index-tracking investment trusts described in Enforcement Order Article 12(ii)(b), i.e. creation with a basket of constituent securities designated by the manager. Item (c) concerns the subscriber (募集に応じる者) and the trust; the exchanges under paragraphs 4 and 6 are unchanged.",
+      "quote": "５ 令第十二条第二号ロに定める受益証券の取得は、次に掲げる要件の全てを満たして行うものとする。"
+    },
+    {
+      "id": "f8",
+      "category": "obligation_type",
+      "status": "confirmed",
+      "source_ids": [
+        "s2"
+      ],
+      "value": [
+        "none"
+      ],
+      "statement": "Item (c) is a permission: the units may be acquired with the cash it defines. It creates no duty, prohibition or effort duty for managers or subscribers.",
+      "quote": "ただし、次のイからハまでに掲げる場合には、当該イからハまでに定める金銭をもって取得することができる。"
+    },
+    {
+      "id": "f9",
+      "category": "transitional_measures",
+      "status": "not_applicable",
+      "statement": "The amending instrument's supplementary provisions contain no transitional provision.",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-056b16304cad2bfc#transitional_measures"
+    },
+    {
+      "id": "f10",
+      "category": "delegation",
+      "status": "confirmed",
+      "source_ids": [
+        "s2",
+        "s6",
+        "s7"
+      ],
+      "statement": "Article 19(5) is the rule delegated by Enforcement Order Article 12(ii)(b) (the manner of acquisition set by Cabinet Office Ordinance); the e-Gov results page names that provision as the legal basis. Item (c) delegates nothing further; the ownership ratio is defined by reference to FIEA Article 27-2.",
+      "quote": "・投資信託及び投資法人に関する法律施行令第12条第２号ロ"
+    },
+    {
+      "id": "f11",
+      "category": "policy_background",
+      "status": "confirmed",
+      "source_ids": [
+        "s9"
+      ],
+      "statement": "The Financial Services Agency stated the purpose as allowing the part of an in-kind ETF's basket corresponding to constituents in which the subscriber's ownership ratio exceeds 30% to be created with cash. It received 10 comments. Its announcement does not mention the tender-offer rules.",
+      "quote": "現物拠出型ETFの構成銘柄のうち、ETFの設定を申し込む者の所有割合が30％を超える銘柄に相当する部分について、金銭で設定することができるよう、規定の整備を行うものです。"
+    },
+    {
+      "id": "f12",
+      "category": "business_impact",
+      "status": "inference",
+      "source_ids": [
+        "s2",
+        "s4"
+      ],
+      "statement": "Editorial assessment: read with FIEA Article 27-2(1)(i) as in force from 1 May 2026 (30% threshold reaching on-exchange purchases), the cash alternative lets in-kind creation continue without the subscriber making purchases that the threshold reaches; managers may see different cost and execution for such creations, and creating participants may need constituent-level ownership monitoring."
+    }
+  ],
+  "unresolved": [
+    "The Financial Services Agency's annex summarising the 10 comments and its responses was not reviewed.",
+    "Exchange rules and individual trust deeds that govern how each ETF applies item (c) were not reviewed."
+  ]
+}
