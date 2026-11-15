@@ -1058,12 +1058,12 @@
         "failed_runs": 1,
         "run_id": 43683225244,
         "head_sha": "d88e2aa6120c3466e9bdd962fb3ec4a09339c0d6",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-15T05:57:59Z",
+        "duration_s": 73
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -1105,8 +1105,8 @@
         "confirm critical facts: instrument_form, promulgation_date, effective_date, amended_provisions, old_vs_new, scope, obligation_type, transitional_measures, delegation"
       ],
       "next_action": "ON HOLD (BLOCKED): Promulgated operative text of MHLW Ordinance 121, amended provisions, precise eligibility and transitional measures have not been independently compared. Policy analysis is draft only; publication prohibited. Skip until its official records change; work on another candidate.",
-      "updated_at": "2026-11-15T05:57:48Z",
-      "run_id": "43683235844"
+      "updated_at": "2026-11-15T05:58:50Z",
+      "run_id": "43683307930"
     },
     "nisa-government-bond-exemption-2026-bill": {
       "dossier_id": "nisa-government-bond-exemption-2026-bill",
