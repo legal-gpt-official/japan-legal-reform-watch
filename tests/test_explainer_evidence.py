@@ -238,6 +238,17 @@ class PackTests(unittest.TestCase):
         # Interpretation is never pre-filled: the gate still blocks publication.
         self.assertTrue(es.critical_gaps(template))
 
+    def test_missing_draft_documents_record_why(self):
+        class Index(self.Index):
+            raw_by_id = {"raw-00000000000000d1": {
+                "id": "raw-00000000000000d1", "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
+                "raw_summary": "案の公示日：2026/06/09 受付締切日時：2026/07/20 19:00",
+                "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=1&Mode=0"}}
+        pack = ev.pack_for("raw-00000000000000d1", Index(), client(), date(2026, 11, 15),
+                           documents=lambda url: ("", "error:blocked_or_waf"))
+        self.assertEqual(pack["drafts"][0]["documents_status"], "error:blocked_or_waf")
+        self.assertNotIn("document_excerpt", pack["drafts"][0])
+
     def test_rebuild_is_byte_identical_and_digest_ignores_fetch_times(self):
         first = self.build()
         later = self.build(previous=first)

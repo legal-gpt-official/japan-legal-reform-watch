@@ -726,8 +726,12 @@ def pack_for(seed: str, index: ex.OfficialIndex, client: EgovClient, today: date
             ev["raw_id"] = item_id
             instruments.append(ev)
         elif "public-comment.e-gov.go.jp" in str(url):
-            docs = documents(url) if documents else ""
+            docs, doc_status = "", "not_requested"
+            if documents:
+                got = documents(url)
+                docs, doc_status = got if isinstance(got, tuple) else (got, "ok" if got else "empty")
             res = resolve_draft(client, raw, today, docs, index)
+            res["documents_status"] = doc_status
             if docs:
                 res["document_excerpt"] = docs[:2500]
             drafts.append(res)
@@ -1054,12 +1058,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.with_documents:
         import official_source_evidence as ose
 
-        def documents(url: str) -> str:
+        def documents(url: str) -> tuple[str, str]:
+            """(text, status): status says why a draft's documents are missing, so a gap is diagnosable."""
+            import explainer_sources as src
+
             try:
-                return " ".join(d.get("excerpt", "") for d in ose.gather(url))
+                found = ose.gather(url)
             except Exception as exc:  # noqa: BLE001 - optional narrowing only
-                print(f"documents unavailable for {url}: {type(exc).__name__}")
-                return ""
+                err = src.classify_exception(exc)
+                print(f"documents unavailable for {url}: {err.error_class}")
+                return "", f"error:{err.error_class}"
+            text = " ".join(d.get("excerpt", "") for d in found)
+            formats = ",".join(sorted({d.get("format", "?") for d in found}))
+            return text, (f"ok:{formats}" if text else "empty: no substantive page text or labelled PDF")
     client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls)
     counts: dict[str, int] = {}
     written, kept = 0, set()
