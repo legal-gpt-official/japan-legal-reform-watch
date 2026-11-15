@@ -5,6 +5,7 @@ import copy
 import json
 import sys
 import unittest
+from unittest import mock
 from datetime import date
 from pathlib import Path
 
@@ -271,6 +272,20 @@ class PackTests(unittest.TestCase):
         self.assertEqual(pack["drafts"][0]["documents_status"], "error:blocked_or_waf")
         self.assertNotIn("document_excerpt", pack["drafts"][0])
 
+    def test_documents_from_the_results_view_record_their_url(self):
+        url = "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=1&Mode=0"
+
+        class Index(self.Index):
+            raw_by_id = {"raw-00000000000000d1": {
+                "id": "raw-00000000000000d1", "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
+                "raw_summary": "案の公示日：2026/06/09 受付締切日時：2026/07/20 19:00", "source_url": url}}
+        alt = ev.results_url(url)
+        pack = ev.pack_for("raw-00000000000000d1", Index(), client(), date(2026, 11, 15),
+                           documents=lambda u: ("結果の本文", "ok:html (results view)", alt))
+        draft = pack["drafts"][0]
+        self.assertEqual((draft["documents_url"], draft["source_url"]), (alt, url))
+        self.assertEqual(draft["document_excerpt"], "結果の本文")
+
     def test_rebuild_is_byte_identical_and_digest_ignores_fetch_times(self):
         first = self.build()
         later = self.build(previous=first)
@@ -347,42 +362,72 @@ class DescribePageTests(unittest.TestCase):
 
 class ConsultationDocumentTests(unittest.TestCase):
     URL = "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=225026053&Mode=0"
+    RESULTS = "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=225026053&Mode=1"
     TITLE = "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について"
     SORRY = ("<html><head><title>ご迷惑をお掛けします｜e-Gov</title></head><body>"
-             "<p>お探しのページは見つかりませんでした。</p></body></html>").encode()
+             "<p>システムエラーが発生しました。</p><p>移動または削除されている場合があります。</p></body></html>").encode()
     BODY = "投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案） 定めようとする命令などの題名 " * 3
+    RESULTS_PAGE = ("<html><head><title>「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令」の公布及び"
+                    "パブリックコメントの結果について｜e-Govパブリック・コメント</title></head><body><main>"
+                    "<h1>「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令」の公布及びパブリックコメントの結果について</h1>"
+                    "<p>定めようとする命令などの題名 投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令</p>"
+                    "<p>・投資信託及び投資法人に関する法律施行令第12条第２号ロ</p>"
+                    "<a href='/pcm/download?seqNo=0000322261'>結果概要</a><a href='/other'>ホーム</a></main></body></html>").encode()
 
-    def fetch(self, url, limit):
-        return self.SORRY, "text/html", "/servlet/Public"
+    def site(self, pages):
+        calls = []
+
+        def fetch(url, limit):
+            calls.append(url)
+            if url not in pages:
+                raise AssertionError(f"unexpected fetch {url}")
+            return pages[url], ("application/pdf" if pages[url].startswith(b"%PDF") else "text/html"), url
+        return fetch, calls
 
     def test_page_used_directly(self):
-        text, status = ev.consultation_documents(
-            self.URL, self.TITLE, gather=lambda u: [{"format": "html", "excerpt": self.BODY}], fetch=self.fetch)
-        self.assertEqual(status, "ok:html")
+        fetch, _ = self.site({})
+        text, status, used = ev.consultation_documents(
+            self.URL, self.TITLE, gather=lambda u: [{"format": "html", "excerpt": self.BODY}], fetch=fetch)
+        self.assertEqual((status, used), ("ok:html", self.URL))
         self.assertIn("定めようとする命令", text)
 
-    def test_error_page_records_the_sites_message_and_guesses_no_url(self):
-        calls = []
-        gather = lambda u: calls.append(u) or []
-        text, status = ev.consultation_documents(self.URL, self.TITLE, gather=gather, fetch=self.fetch)
-        self.assertEqual((text, calls), ("", [self.URL]))
-        self.assertTrue(status.startswith("unavailable: e-Gov error page"))
-        self.assertIn("お探しのページは見つかりませんでした", status)
+    def test_results_url_is_the_feeds_results_view(self):
+        self.assertEqual(ev.results_url(self.URL), self.RESULTS)
+        self.assertIsNone(ev.results_url(self.RESULTS))
+        self.assertIsNone(ev.results_url("https://www.fsa.go.jp/x?CLASSNAME=PCMMSTDETAIL&id=1"))
 
-    def test_unrelated_text_rejected(self):
-        gather = lambda u: [{"format": "html", "excerpt": "全く別の案件の案内 " * 40}]
-        page = b"<html><head><title>x</title></head><body></body></html>"
-        text, status = ev.consultation_documents(self.URL, self.TITLE, gather=gather,
-                                                    fetch=lambda u, n: (page, "text/html", "/x"))
+    def test_withdrawn_call_view_reads_the_results_view(self):
+        # Measured 2026-11-15: once results are published the call view serves the e-Gov
+        # error page and the record (with the result summary) is at CLASSNAME=PCM1040.
+        pdf_url = "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000322261"
+        fetch, calls = self.site({self.URL: self.SORRY, self.RESULTS: self.RESULTS_PAGE, pdf_url: b"%PDF-1.4"})
+        with mock.patch("official_source_evidence.pdf_text", return_value="その結果、10件のコメントをいただきました。" * 10):
+            text, status, used = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [], fetch=fetch)
+        self.assertEqual(used, self.RESULTS)
+        self.assertTrue(status.startswith("ok:html,pdf (results view"))
+        self.assertIn("施行令第12条第２号ロ", text)
+        self.assertIn("10件のコメント", text)
+        self.assertNotIn("https://public-comment.e-gov.go.jp/other", calls)
+
+    def test_unrelated_results_view_rejected(self):
+        other = b"<html><head><title>x</title></head><body><main><p>" + ("全く別の案件の案内です。" * 30).encode() + b"</p></main></body></html>"
+        fetch, _ = self.site({self.URL: self.SORRY, self.RESULTS: other})
+        text, status, used = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [], fetch=fetch)
+        self.assertEqual((text, used), ("", self.URL))
+        self.assertIn("results view unrelated", status)
+
+    def test_both_views_withdrawn(self):
+        fetch, _ = self.site({self.URL: self.SORRY, self.RESULTS: self.SORRY})
+        text, status, _ = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [], fetch=fetch)
         self.assertEqual(text, "")
-        self.assertTrue(status.startswith("empty: text/html"))
+        self.assertIn("results view empty", status)
 
     def test_other_empty_page_is_described(self):
         page = b"<html><head><title>x</title></head><body></body></html>"
-        _, status = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [],
-                                                 fetch=lambda u, n: (page, "text/html", "/x"))
+        fetch, calls = self.site({self.URL: page})
+        _, status, _ = ev.consultation_documents(self.URL, self.TITLE, gather=lambda u: [], fetch=fetch)
         self.assertTrue(status.startswith("empty: text/html"))
-        self.assertNotIn("message=", status)
+        self.assertEqual(calls, [self.URL])
 
 if __name__ == "__main__":
     unittest.main()
