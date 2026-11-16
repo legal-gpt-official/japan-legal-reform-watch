@@ -625,6 +625,65 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
+    "health-insurance-ordinance-151-2026": {
+      "dossier_id": "health-insurance-ordinance-151-2026",
+      "kind": "new",
+      "queue_id": "draft:raw-7bf14a11616c78fd",
+      "seed_item_id": "raw-7bf14a11616c78fd",
+      "related_item_ids": [
+        "raw-7bf14a11616c78fd"
+      ],
+      "source_fingerprint": "sha256:1d0fe5b2351996314676b305afa5f501",
+      "evidence": {
+        "status": "ready",
+        "digest": "sha256:e7c167f67a4d60daf12766781b5a9ff1",
+        "pack": "data/explainer_evidence/raw-7bf14a11616c78fd.json"
+      },
+      "pr": 166,
+      "branch": "explainer/raw-7bf14a11616c78fd",
+      "head_sha": "e4345f9ee613231257f2e25263643de600c9b592",
+      "pr_state": "open",
+      "pr_draft": true,
+      "labels": [],
+      "pr_created_at": "2026-11-16T01:56:43Z",
+      "automerge_eligible_files": false,
+      "ci": {
+        "failed_runs": 0,
+        "run_id": 43789187834,
+        "head_sha": "e4345f9ee613231257f2e25263643de600c9b592",
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
+        "failed_steps": [],
+        "completed_at": "2026-11-16T01:57:58Z",
+        "duration_s": 72
+      },
+      "stage": "RESEARCH_REQUIRED",
+      "last_success_stage": "RESEARCH_REQUIRED",
+      "stage_history": {
+        "DRAFTED": "2026-11-16T01:56:43Z",
+        "RESEARCH_REQUIRED": "2026-11-16T01:56:43Z"
+      },
+      "sources": {
+        "fetched": 10,
+        "failed": 0,
+        "not_fetched": 0,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [
+        "old_vs_new",
+        "scope",
+        "obligation_type",
+        "transitional_measures",
+        "delegation"
+      ],
+      "blockers": [
+        "confirm critical facts: old_vs_new, scope, obligation_type, transitional_measures, delegation"
+      ],
+      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, transitional_measures, delegation Writer note: Verify full promulgated MHLW Ordinance No. 151 against version-specific e-Gov text, including two commencement stages (2026-10-28 and 2027-08-01), substantive changes, scope and transitions. Evidence excerpts may be truncated; do not infer unverified provisions.",
+      "updated_at": "2026-11-16T01:58:58Z",
+      "run_id": "43789300680"
+    },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
       "kind": "new",
@@ -2062,7 +2121,7 @@
     },
     "2026-11-16": {
       "new": {
-        "drafted": 0,
+        "drafted": 1,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
