@@ -5,7 +5,7 @@
   "queue_id": "draft:raw-7bf14a11616c78fd",
   "seed_item_id": "raw-7bf14a11616c78fd",
   "hold": null,
-  "next_action": "Confirm the substantive old/new changes and regulated scope for each affected health-insurance scheme, distinguish the 2026-10-28 stage from the 2027-08-01 stage, and classify obligations and delegation. The 2027-08-01 old-form transitional rules are verified from e-Gov evidence; do not infer the 2026 stage from them.",
+  "next_action": "Continue full old/new verification for Ordinance 151: determine whether Art. 27-12-2 and Art. 26-6-4 cross-reference renumbering changes legal scope or merely aligns with an Enforcement Order restructuring; inspect other changed articles and both commencement stages. Confirm obligations, delegation, policy rationale, and business impact before marking facts confirmed or drafting publishable EN/JA/zh-Hans. Existing 2027-08-01 old-form transitional measures remain confirmed only for that stage.",
   "sources": [
     {
       "id": "s1",
@@ -203,8 +203,12 @@
       "id": "f6",
       "category": "old_vs_new",
       "status": "unconfirmed",
-      "statement": "To be confirmed by the writer from the quoted official text.",
-      "source_ids": []
+      "statement": "Partial article-level comparison verified from e-Gov evidence: National Health Insurance Enforcement Regulation Art. 27-12-2 changes the cross-reference for persons deemed to have received municipal/association recognition from Enforcement Order Art. 29-3(4)(1) or (2) to (1) or (10). Art. 26-6-4 changes the cited Art. 29-3(1)(5) to (13). These are verified cross-reference changes, not proof that eligibility or benefit amounts changed. The complete substantive effects across the three insurance schemes and both commencement stages remain UNCONFIRMED; do not publish based on these excerpts.",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instruments[0].diff.changed"
     },
     {
       "id": "f7",
