@@ -651,12 +651,12 @@
         "failed_runs": 0,
         "run_id": 43801123555,
         "head_sha": "ac1627e3acc0dc0b83d4146efd12589362733c86",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-16T03:58:10Z",
+        "duration_s": 74
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -680,8 +680,8 @@
         "confirm critical facts: old_vs_new, scope, obligation_type, delegation"
       ],
       "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, delegation Writer note: Continue full old/new verification for Ordinance 151: determine whether Art. 27-12-2 and Art. 26-6-4 cross-reference renumbering changes legal scope or merely aligns with an Enforcement Order restructuring; inspect other changed articles and both commencement stages. Confirm obligations, delegation, policy rationale, and business impact before marking facts confirmed or drafting publishable EN/JA/zh-Hans. Existing 2027-08-01 old-form transitional measures remain confirmed only for that stage.",
-      "updated_at": "2026-11-16T03:58:09Z",
-      "run_id": "43801144934"
+      "updated_at": "2026-11-16T03:59:08Z",
+      "run_id": "43801236894"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
