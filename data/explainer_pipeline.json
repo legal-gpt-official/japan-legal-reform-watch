@@ -435,11 +435,6 @@
         "raw-bb3eef67ff07d7d4"
       ],
       "source_fingerprint": "sha256:c920f9f6ee68f0d10de2172e50b22842",
-      "evidence": {
-        "status": "ready",
-        "digest": "sha256:fa1604daaa0d9ca65487c0be64831729",
-        "pack": "data/explainer_evidence/raw-056b16304cad2bfc.json"
-      },
       "pr": 164,
       "branch": "claude/legal-reform-watch-system-redesign-tvei94",
       "head_sha": "a6428b6555cd40d8e8ae2902a1e05250c86be50c",
@@ -2106,15 +2101,15 @@
       "instruments": 0,
       "draft_documents": true
     },
-    "raw-056b16304cad2bfc": {
-      "status": "ready",
-      "instruments": 1,
-      "draft_documents": true
-    },
     "raw-1087de7d2a09a138": {
       "status": "ready",
       "instruments": 1,
       "draft_documents": true
+    },
+    "raw-108fca84c6fa8aa6": {
+      "status": "unresolved",
+      "instruments": 0,
+      "draft_documents": false
     },
     "raw-1123e5757d1ade6f": {
       "status": "ambiguous",
