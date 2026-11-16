@@ -641,7 +641,7 @@
       },
       "pr": 166,
       "branch": "explainer/raw-7bf14a11616c78fd",
-      "head_sha": "ac1627e3acc0dc0b83d4146efd12589362733c86",
+      "head_sha": "8bb465aebd198ce3126567ec98c0136972f5ef55",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
@@ -649,14 +649,14 @@
       "automerge_eligible_files": false,
       "ci": {
         "failed_runs": 0,
-        "run_id": 43801123555,
-        "head_sha": "ac1627e3acc0dc0b83d4146efd12589362733c86",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
+        "run_id": 43807511281,
+        "head_sha": "8bb465aebd198ce3126567ec98c0136972f5ef55",
+        "status": "in_progress",
+        "conclusion": null,
+        "tests_ok": false,
         "failed_steps": [],
-        "completed_at": "2026-11-16T03:58:10Z",
-        "duration_s": 74
+        "completed_at": null,
+        "duration_s": null
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -679,9 +679,9 @@
       "blockers": [
         "confirm critical facts: old_vs_new, scope, obligation_type, delegation"
       ],
-      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, delegation Writer note: Continue full old/new verification for Ordinance 151: determine whether Art. 27-12-2 and Art. 26-6-4 cross-reference renumbering changes legal scope or merely aligns with an Enforcement Order restructuring; inspect other changed articles and both commencement stages. Confirm obligations, delegation, policy rationale, and business impact before marking facts confirmed or drafting publishable EN/JA/zh-Hans. Existing 2027-08-01 old-form transitional measures remain confirmed only for that stage.",
-      "updated_at": "2026-11-16T03:59:08Z",
-      "run_id": "43801236894"
+      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, delegation Writer note: Compare full 2027-08-01 Art. 26-2 and Art. 27-12-2 against both underlying Enforcement Orders (including the meaning of old/new referenced items), then separately verify the 2026-10-28 changes to Health Insurance and Seafarers Insurance regulations. Resolve scope, obligation_type, delegation and policy background with primary-text citations; do not infer eligibility changes from renumbering. The 2027 old-form transitional clause is confirmed only for that stage. Once complete, draft full EN/JA/zh-Hans and run preflight/CI.",
+      "updated_at": "2026-11-16T05:02:07Z",
+      "run_id": "43807533861"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
