@@ -70,6 +70,37 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "explainer:social-welfare-local-support-rules-2026",
+      "kind": "update",
+      "explainer_id": "social-welfare-local-support-rules-2026",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/shingi/shingi-hosho_126700.html",
+        "https://www.mhlw.go.jp/stf/topics/bukyoku/soumu/houritu/221.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-d1acfbf3bf956d83"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:59b49f5f01f30c14db6ce29c1b043d9e",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "explainer:agrivoltaic-farmland-permits-2026",
       "kind": "update",
       "explainer_id": "agrivoltaic-farmland-permits-2026",
@@ -254,6 +285,36 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:dc-pension-digital-procedures-2026",
+      "kind": "update",
+      "explainer_id": "dc-pension-digital-procedures-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/kyoshutsu/index.html",
+        "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-0f915389da50170d"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:1c1ebe8d8ef064f921408b20a1a20e0d",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "explainer:economic-security-jbic-2026-amendment",
       "kind": "update",
       "explainer_id": "economic-security-jbic-2026-amendment",
@@ -406,6 +467,35 @@
       ],
       "current_fingerprint": "sha256:dc350dd89c279e546c7ec9c6604f63c3",
       "first_queued_on": "2026-11-04"
+    },
+    {
+      "queue_id": "explainer:gas-safety-shutoff-advanced-operator-2026",
+      "kind": "update",
+      "explainer_id": "gas-safety-shutoff-advanced-operator-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.meti.go.jp/press/index.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-d388e6a8b2ad9674"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:61978f51db25a8512b633eec3a514da3",
+      "first_queued_on": "2026-11-16"
     },
     {
       "queue_id": "explainer:health-insurance-2026-amendment",
@@ -612,6 +702,36 @@
       "first_queued_on": "2026-11-10"
     },
     {
+      "queue_id": "explainer:osh-skin-hazard-chemicals-2026-draft",
+      "kind": "update",
+      "explainer_id": "osh-skin-hazard-chemicals-2026-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000099121_00005.html",
+        "https://www.mhlw.go.jp/stf/houdou/index.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-08b316bd494b648e"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:96898ed7d2040832be5b5c01d56f6c4a",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "explainer:pcb-waste-2026-low-concentration-amendment",
       "kind": "update",
       "explainer_id": "pcb-waste-2026-low-concentration-amendment",
@@ -733,6 +853,35 @@
       "first_queued_on": "2026-11-05"
     },
     {
+      "queue_id": "explainer:telecom-number-identity-verification-2026",
+      "kind": "update",
+      "explainer_id": "telecom-number-identity-verification-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.soumu.go.jp/menu_news/s-news/index.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-2616b405bc16798e"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:bf7cf0b34385d37e30ffdca80217137f",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "explainer:waste-management-scrap-yards-2026",
       "kind": "update",
       "explainer_id": "waste-management-scrap-yards-2026",
@@ -852,6 +1001,27 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "bill:raw-108fca84c6fa8aa6",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 20,
+      "reasons": [
+        "diet_bill"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-108fca84c6fa8aa6"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+      "stage": "Bill Submitted",
+      "newest_record_first_seen": "2026-11-16",
+      "suggested_seed_item_id": "raw-108fca84c6fa8aa6",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "draft:raw-0549bdaf78bfe729",
       "kind": "new",
       "explainer_id": null,
@@ -870,27 +1040,6 @@
       "stage": "Public Comment Closed",
       "newest_record_first_seen": "2026-08-20",
       "suggested_seed_item_id": "raw-0549bdaf78bfe729",
-      "first_queued_on": "2026-11-12"
-    },
-    {
-      "queue_id": "draft:raw-056b16304cad2bfc",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-056b16304cad2bfc"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "「投資信託及び投資法人に関する法律施行規則の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-07-30",
-      "suggested_seed_item_id": "raw-056b16304cad2bfc",
       "first_queued_on": "2026-11-12"
     },
     {
