@@ -5,7 +5,7 @@
   "queue_id": "draft:raw-7bf14a11616c78fd",
   "seed_item_id": "raw-7bf14a11616c78fd",
   "hold": null,
-  "next_action": "Continue full old/new verification for Ordinance 151: determine whether Art. 27-12-2 and Art. 26-6-4 cross-reference renumbering changes legal scope or merely aligns with an Enforcement Order restructuring; inspect other changed articles and both commencement stages. Confirm obligations, delegation, policy rationale, and business impact before marking facts confirmed or drafting publishable EN/JA/zh-Hans. Existing 2027-08-01 old-form transitional measures remain confirmed only for that stage.",
+  "next_action": "Compare full 2027-08-01 Art. 26-2 and Art. 27-12-2 against both underlying Enforcement Orders (including the meaning of old/new referenced items), then separately verify the 2026-10-28 changes to Health Insurance and Seafarers Insurance regulations. Resolve scope, obligation_type, delegation and policy background with primary-text citations; do not infer eligibility changes from renumbering. The 2027 old-form transitional clause is confirmed only for that stage. Once complete, draft full EN/JA/zh-Hans and run preflight/CI.",
   "sources": [
     {
       "id": "s1",
@@ -203,7 +203,7 @@
       "id": "f6",
       "category": "old_vs_new",
       "status": "unconfirmed",
-      "statement": "Partial article-level comparison verified from e-Gov evidence: National Health Insurance Enforcement Regulation Art. 27-12-2 changes the cross-reference for persons deemed to have received municipal/association recognition from Enforcement Order Art. 29-3(4)(1) or (2) to (1) or (10). Art. 26-6-4 changes the cited Art. 29-3(1)(5) to (13). These are verified cross-reference changes, not proof that eligibility or benefit amounts changed. The complete substantive effects across the three insurance schemes and both commencement stages remain UNCONFIRMED; do not publish based on these excerpts.",
+      "statement": "Partial article-level comparison verified from e-Gov evidence: National Health Insurance Enforcement Regulation Art. 27-12-2 changes the cross-reference for persons deemed to have received municipal/association recognition from Enforcement Order Art. 29-3(4)(1) or (2) to (1) or (10). Art. 26-6-4 changes the cited Art. 29-3(1)(5) to (13). These are verified cross-reference changes, not proof that eligibility or benefit amounts changed. The complete substantive effects across the three insurance schemes and both commencement stages remain UNCONFIRMED; do not publish based on these excerpts. Further 2027-08-01 stage evidence: National Health Insurance Enforcement Regulation Art. 26-2 (meal-cost standard copayment reduction) changes cross-references to Health Insurance Enforcement Order Art. 43(1)(1) from ホ to ワ and to National Health Insurance Enforcement Order Art. 29-3(1) from item 5 to item 13, alongside other kana renumbering. The evidence pack classifies this as a non-citation-only article change; that classification alone does not establish substantive entitlement expansion or contraction. Full provisions and underlying orders must be compared before concluding legal effects.",
       "source_ids": [
         "s2",
         "s3"
