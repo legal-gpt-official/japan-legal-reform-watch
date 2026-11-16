@@ -651,12 +651,12 @@
         "failed_runs": 0,
         "run_id": 43807511281,
         "head_sha": "8bb465aebd198ce3126567ec98c0136972f5ef55",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-16T05:02:01Z",
+        "duration_s": 65
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -680,8 +680,8 @@
         "confirm critical facts: old_vs_new, scope, obligation_type, delegation"
       ],
       "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, delegation Writer note: Compare full 2027-08-01 Art. 26-2 and Art. 27-12-2 against both underlying Enforcement Orders (including the meaning of old/new referenced items), then separately verify the 2026-10-28 changes to Health Insurance and Seafarers Insurance regulations. Resolve scope, obligation_type, delegation and policy background with primary-text citations; do not infer eligibility changes from renumbering. The 2027 old-form transitional clause is confirmed only for that stage. Once complete, draft full EN/JA/zh-Hans and run preflight/CI.",
-      "updated_at": "2026-11-16T05:02:07Z",
-      "run_id": "43807533861"
+      "updated_at": "2026-11-16T05:02:58Z",
+      "run_id": "43807630227"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
