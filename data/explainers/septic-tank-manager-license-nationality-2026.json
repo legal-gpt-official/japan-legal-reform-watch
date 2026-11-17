@@ -35,25 +35,27 @@
   "background": {
     "paragraphs": [
       "The septic-tank manager certificate application procedure is governed by Article 15 of the ministerial regulation, which implements the certificate framework in Article 45(1) of the Septic Tank Act. Applicants must submit the prescribed application and supporting documents to the Minister of the Environment.",
-      "Previously, the identity-document provision referred to a family-register extract, a resident record showing registered domicile, or an equivalent document. The revised wording expressly recognizes nationality or equivalent particulars on a resident record for an applicant without Japanese nationality. This is a change to the description of acceptable documentary evidence; the amendment alone does not establish a new entitlement to a certificate or waive examination or training requirements.",
+      "Earlier Article 15 and Article 18 procedures already allowed a family-register extract, a resident record showing registered domicile, or equivalent documentary evidence. An Environment Ministry circular dated 28 September 2001 expressly identified an alien-registration certificate as an example of substitute evidence. The 2026 amendment expressly refers to a resident record showing nationality or equivalent particulars for a person without Japanese nationality. It must not be characterized as the first recognition of documentary alternatives for foreign applicants; nor does it itself establish new certificate eligibility or waive examination or training requirements.",
       "The text is consistent with clarifying how the procedure works for applicants who do not have a Japanese registered domicile. That policy rationale is an inference from the amendment, not a verified quotation from the ministry's explanation."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "history": {
     "paragraphs": [
-      "A draft was opened for public comment in July 2026. The official e-Gov results record identifies the final instrument as Environment Ministry Ordinance No. 23 of 2026 and records its promulgation on 31 August 2026.",
-      "The e-Gov amendment history and the amending ordinance's supplementary provisions identify 31 August 2026 as the commencement date. The revision changes Article 15 on applications for certificate issuance and Article 18 on applications for replacement of certificates.",
-      "Article 15 continues to require submission of the prescribed application with supporting documentation. Article 18 continues to allow, rather than compel, a certificate holder to request replacement after the particulars recorded on the certificate change."
+      "The historical baseline is important: the Environment Ministry's 28 September 2001 circular explained that substitute identity documents could already be used for issuance and replacement applications under Articles 15 and 18, including the then-existing alien-registration certificate. That circular concerns the 2001 regime and does not itself state the purpose of the 2026 amendment.",
+      "A draft was opened for public comment in July 2026. The e-Gov results record identifies the final instrument as Environment Ministry Ordinance No. 23 of 2026, promulgated on 31 August 2026 and effective the same day. The amendment changes Article 15 on certificate issuance and Article 18 on certificate replacement.",
+      "Article 15 continues to require the prescribed application and supporting documents. Article 18 continues to permit, rather than compel, a certificate holder to seek replacement after recorded particulars change."
     ],
     "source_ids": [
       "s1",
       "s2",
-      "s3"
+      "s3",
+      "s5"
     ]
   },
   "next_steps": {
@@ -74,7 +76,7 @@
     ],
     "expected": [],
     "uncertainties": [
-      "The evidence pack establishes the statutory wording, but the full ministry explanation and any detailed administrative instructions should be checked before describing the policy rationale as an official government finding.",
+      "The ministry's 2001 circular confirms that substitute evidence predated the 2026 amendment, but does not establish the ministry's specific policy rationale in 2026. That rationale and any current administrative instructions require separate confirmation.",
       "The amendment does not itself demonstrate that certificate eligibility, examination requirements, or substantive qualification criteria changed."
     ]
   },
@@ -157,10 +159,18 @@
       "title": "Results of public consultation on the 2026 ordinance",
       "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=195260039&Mode=1",
       "accessed_at": "2026-11-15"
+    },
+    {
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment",
+      "title": "Circular on the partial amendment of the Septic Tank Act (28 September 2001), Part IV.3(2): certificate application procedures",
+      "url": "https://www.env.go.jp/hourei/11/000240.html",
+      "accessed_at": "2026-11-17"
     }
   ],
   "verified_at": "2026-11-17",
   "source_fingerprint": "sha256:15adc261cc591f137c3830d862659707",
   "author": "chatgpt",
-  "review_notes": "Draft prepared from the repository's e-Gov evidence pack and the quoted old/new provisions. Independent full-text retrieval and three-language substantive review remain incomplete. No human review claimed; not approved for publication."
+  "review_notes": "Draft updated using the Environment Ministry's 2001 circular to distinguish pre-existing alternative documentation from the 2026 express resident-record wording. Independent full promulgated 2026 ordinance and complete substantive three-language review remain outstanding; not approved for publication."
 }
