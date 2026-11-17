@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "dossier_id": "septic-tank-manager-license-nationality-2026",
+  "kind": "new",
+  "queue_id": "instrument:令和八年環境省令第二十三号",
+  "seed_item_id": "raw-b116141db6cb37a4",
+  "hold": null,
+  "next_action": "Source-backed case file drafted with all critical categories interpreted. NEXT: independently read official full ordinance and any ministry explanatory material; write substantive EN and aligned JA/zh-Hans JSON using current schema, preflight and CI. Do not release before substantive review.",
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/359M50000100017",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:31Z",
+      "sha256": "ed63cdb4983f3391f0073c0ddf9721e48d22e0551fad761a97c13e96306046c6",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-b116141db6cb37a4"
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20260831_508M60001000023?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:31Z",
+      "sha256": "a7996b7c09bf66bf10e46b0ed6e1da8745b778f53416ebc1a098c2e193f2afaf",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-b116141db6cb37a4"
+    },
+    {
+      "id": "s3",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/359M50000100017_20250401_507M60001000010?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:31Z",
+      "sha256": "bcf4df3d4a1ca41f102447cce6d2b16e464d48300159f4b164f67ef45792474c",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-b116141db6cb37a4"
+    }
+  ],
+  "facts": [
+    {
+      "id": "f1",
+      "category": "instrument_form",
+      "status": "confirmed",
+      "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instrument_form",
+      "value": "in_force_instrument"
+    },
+    {
+      "id": "f2",
+      "category": "promulgation_date",
+      "status": "confirmed",
+      "statement": "Promulgated 2026-08-31 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#promulgation_date"
+    },
+    {
+      "id": "f3",
+      "category": "effective_date",
+      "status": "confirmed",
+      "statement": "Effective 2026-08-31 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#effective_date"
+    },
+    {
+      "id": "f4",
+      "category": "partial_effective_date",
+      "status": "not_applicable",
+      "statement": "Single commencement stage.",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#partial_effective_date"
+    },
+    {
+      "id": "f5",
+      "category": "amended_provisions",
+      "status": "confirmed",
+      "statement": "Provisions changed (e-Gov old/new text): 第15条, 第18条",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#amended_provisions"
+    },
+    {
+      "id": "f6",
+      "category": "old_vs_new",
+      "status": "confirmed",
+      "statement": "Articles 15 and 18 now expressly allow a resident record showing nationality etc. for a person without Japanese nationality, instead of only referring to a resident record showing registered domicile. Article 15 retains mandatory submission of application and supporting documents; Article 18 retains optional application for replacement after changes.",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f7",
+      "category": "scope",
+      "status": "confirmed",
+      "statement": "Applicants for septic-tank manager certificates under Article 15, and existing certificate holders seeking replacement following a change in recorded particulars under Article 18, including non-Japanese nationals.",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f8",
+      "category": "obligation_type",
+      "status": "confirmed",
+      "statement": "Article 15 continues to require submission of the specified application and supporting documents to the Environment Minister; Article 18 permits, but does not require, an application for replacement when certificate particulars change.",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f9",
+      "category": "transitional_measures",
+      "status": "confirmed",
+      "statement": "Supplementary provisions paragraph 2 deems existing documents in old forms compliant with the amended forms; paragraph 3 allows remaining old-form paper to be adapted and used for the time being.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f10",
+      "category": "delegation",
+      "status": "confirmed",
+      "statement": "The ministerial regulation prescribes application documentation pursuant to Septic Tank Act Article 45(1); the amendments concern the evidentiary documentation in Articles 15 and 18, not a new general delegation of powers.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f11",
+      "category": "policy_background",
+      "status": "inference",
+      "statement": "The express nationality-record alternative appears intended to clarify document submission for applicants without Japanese nationality; a specific ministry policy rationale has not yet been independently established.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    },
+    {
+      "id": "f12",
+      "category": "business_impact",
+      "status": "inference",
+      "statement": "Certificate applicants and organizations assisting them should check that the resident record contains the appropriate nationality particulars, and that old forms are handled under the supplementary provisions.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+    }
+  ],
+  "unresolved": []
+}
