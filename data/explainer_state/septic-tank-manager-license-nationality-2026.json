@@ -5,7 +5,7 @@
   "queue_id": "instrument:令和八年環境省令第二十三号",
   "seed_item_id": "raw-b116141db6cb37a4",
   "hold": null,
-  "next_action": "Source-backed case file drafted with all critical categories interpreted. NEXT: independently read official full ordinance and any ministry explanatory material; write substantive EN and aligned JA/zh-Hans JSON using current schema, preflight and CI. Do not release before substantive review.",
+  "next_action": "EN draft exists; fix CI schema, complete independent official-source review and JA/zh-Hans translations; do not publish until substantive review.",
   "sources": [
     {
       "id": "s1",
@@ -132,7 +132,11 @@
         "s2",
         "s3"
       ],
-      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]"
+      "evidence_ref": "raw-b116141db6cb37a4#instruments[0]",
+      "value": [
+        "obligation",
+        "none"
+      ]
     },
     {
       "id": "f9",
