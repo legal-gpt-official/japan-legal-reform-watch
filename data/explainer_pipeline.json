@@ -1449,24 +1449,24 @@
       },
       "pr": 167,
       "branch": "explainer/raw-b116141db6cb37a4",
-      "head_sha": "8dc8d6f0dbd17f1bd8671d959c4e0401612b145c",
+      "head_sha": "b7b713dbdde74f4fc16734c24cfc6aed4c6dc377",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
       "pr_created_at": "2026-11-17T01:56:53Z",
-      "automerge_eligible_files": false,
+      "automerge_eligible_files": true,
       "ci": {
-        "failed_runs": 1,
-        "run_id": 43999357359,
-        "head_sha": "8dc8d6f0dbd17f1bd8671d959c4e0401612b145c",
+        "failed_runs": 2,
+        "run_id": 44006563974,
+        "head_sha": "b7b713dbdde74f4fc16734c24cfc6aed4c6dc377",
         "status": "completed",
         "conclusion": "failure",
         "tests_ok": false,
         "failed_steps": [
           "Dossier preflight (changed explainers)"
         ],
-        "completed_at": "2026-11-17T01:57:17Z",
-        "duration_s": 21
+        "completed_at": "2026-11-17T02:56:33Z",
+        "duration_s": 22
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -1485,8 +1485,8 @@
         "case file: facts[7].value must list one or more of obligation, prohibition, effort_duty, recommendation, none"
       ],
       "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch septic-tank-manager-license-nationality-2026). First: case file: facts[7].value must list one or more of obligation, prohibition, effort_duty, recommendation, none Writer note: Source-backed case file drafted with all critical categories interpreted. NEXT: independently read official full ordinance and any ministry explanatory material; write substantive EN and aligned JA/zh-Hans JSON using current schema, preflight and CI. Do not release before substantive review.",
-      "updated_at": "2026-11-17T01:58:18Z",
-      "run_id": "43999400458"
+      "updated_at": "2026-11-17T02:57:29Z",
+      "run_id": "44006589868"
     },
     "social-welfare-local-support-rules-2026": {
       "dossier_id": "social-welfare-local-support-rules-2026",
