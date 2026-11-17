@@ -1449,7 +1449,7 @@
       },
       "pr": 167,
       "branch": "explainer/raw-b116141db6cb37a4",
-      "head_sha": "aa4134235ec3992118d427dae06e75d3e1848349",
+      "head_sha": "442a57b5d462d0af27b6bd9af4588455395a5f53",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
@@ -1457,22 +1457,23 @@
       "automerge_eligible_files": true,
       "ci": {
         "failed_runs": 2,
-        "run_id": 44013646789,
-        "head_sha": "aa4134235ec3992118d427dae06e75d3e1848349",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
+        "run_id": 44021521130,
+        "head_sha": "442a57b5d462d0af27b6bd9af4588455395a5f53",
+        "status": "in_progress",
+        "conclusion": null,
+        "tests_ok": false,
         "failed_steps": [],
-        "completed_at": "2026-11-17T03:57:17Z",
-        "duration_s": 65
+        "completed_at": null,
+        "duration_s": null
       },
-      "stage": "EN_READY",
-      "last_success_stage": "EN_READY",
+      "stage": "JA_ZH_READY",
+      "last_success_stage": "JA_ZH_READY",
       "stage_history": {
         "DRAFTED": "2026-11-17T01:56:53Z",
         "RESEARCH_REQUIRED": "2026-11-17T01:56:53Z",
         "SOURCES_VERIFIED": "2026-11-17T03:57:24Z",
-        "EN_READY": "2026-11-17T03:57:24Z"
+        "EN_READY": "2026-11-17T03:57:24Z",
+        "JA_ZH_READY": "2026-11-17T05:06:02Z"
       },
       "sources": {
         "fetched": 3,
@@ -1482,12 +1483,11 @@
       },
       "unconfirmed": [],
       "blockers": [
-        "English status is not 'published'",
-        "add data/explainer_locales/septic-tank-manager-license-nationality-2026.json (ja and zh-Hans)"
+        "English status is not 'published'"
       ],
-      "next_action": "Complete the ja and zh-Hans translations (every section, same counts). First: English status is not 'published'",
-      "updated_at": "2026-11-17T03:58:35Z",
-      "run_id": "44013770463"
+      "next_action": "Stamp English (explainers.py stamp septic-tank-manager-license-nationality-2026 --verified-on <date>), check each language against it, then explainer_preflight.py sync-stamps septic-tank-manager-license-nationality-2026 --lang ja --lang zh-Hans. First: English status is not 'published'",
+      "updated_at": "2026-11-17T05:06:02Z",
+      "run_id": "44021550307"
     },
     "social-welfare-local-support-rules-2026": {
       "dossier_id": "social-welfare-local-support-rules-2026",
