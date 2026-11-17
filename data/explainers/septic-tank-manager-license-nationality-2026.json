@@ -58,8 +58,19 @@
   },
   "next_steps": {
     "confirmed": [
-      "The revised documentary wording applies from 31 August 2026.",
-      "Existing documents using the former forms are deemed to use the revised forms under supplementary provision paragraph 2; paragraph 3 permits existing old-form paper to be adapted and used for the time being."
+      {
+        "text": "The revised documentary wording applies from 31 August 2026.",
+        "source_ids": [
+          "s1",
+          "s2"
+        ]
+      },
+      {
+        "text": "Existing documents using the former forms are deemed to use the revised forms under supplementary provision paragraph 2; paragraph 3 permits existing old-form paper to be adapted and used for the time being.",
+        "source_ids": [
+          "s2"
+        ]
+      }
     ],
     "expected": [],
     "uncertainties": [
