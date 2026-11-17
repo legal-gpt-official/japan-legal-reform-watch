@@ -6,24 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Labor / Employment
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-237c045f4860379f-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20261017T000000Z
-DTSTART;VALUE=DATE:20261116
-DTEND;VALUE=DATE:20261117
-SUMMARY:Public comment closes: Draft revised guidelines for funds transfer 
- service providers on wage payments to their accounts
-DESCRIPTION:Closes 2026-11-16 23:59 JST.\nOriginal title: 資金移動業
- 者の口座への賃金支払に関する資金移動業者向けガイ
- ドライン（改正案）に関する御意見の募集について\ne-G
- ov Public Comment\nOfficial source: https://public-comment.e-gov.go.jp/ser
- vlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260213&Mode=0\nMonitoring aid onl
- y\; not legal advice or an official translation. Original Japanese officia
- l sources remain authoritative.
-TRANSP:TRANSPARENT
-URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
- L&id=495260213&Mode=0
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-bbe3073b46935614-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20261021T000000Z
 DTSTART;VALUE=DATE:20261118
@@ -207,5 +189,24 @@ DESCRIPTION:Closes 2026-12-13 16:00 JST.\nOriginal title: 社会福祉法
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=495260262&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-4ce23364bd81184a-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261217
+SUMMARY:Public comment closes: Draft Cabinet Order amending Great East Japa
+ n Earthquake financial assistance implementation rules
+DESCRIPTION:Closes 2026-12-16 23:59 JST.\nOriginal title: 東日本大震
+ 災に対処するための特別の財政援助及び助成に関する
+ 法律の厚生労働省関係規定の施行等に関する政令の一
+ 部を改正する政令案に関する御意見募集（パブリック
+ コメント）について\ne-Gov Public Comment\nOfficial source: https:
+ //public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=2912
+ 60010&Mode=0\nMonitoring aid only\; not legal advice or an official transl
+ ation. Original Japanese official sources remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=291260010&Mode=0
 END:VEVENT
 END:VCALENDAR

@@ -641,6 +641,64 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:long-chain-pfas-firefighting-foam-2026-draft",
+      "kind": "update",
+      "explainer_id": "long-chain-pfas-firefighting-foam-2026-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-02",
+      "watch_pages": [
+        "https://www.env.go.jp/chemi/kagaku/pfos.html",
+        "https://www.env.go.jp/press/"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-9ae05cd3f553ee1c"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:8740b38dc30e9101b652dc0c2009f901",
+      "first_queued_on": "2026-11-17"
+    },
+    {
+      "queue_id": "explainer:national-health-insurance-child-levy-2026-draft",
+      "kind": "update",
+      "explainer_id": "national-health-insurance-child-levy-2026-draft",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-02",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/koukikourei/index_00002.html",
+        "https://www.mhlw.go.jp/stf/houdou/"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-0a26803b7f7d2536"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:01d19d0fcfe7e9facf254d10275e5a75",
+      "first_queued_on": "2026-11-17"
+    },
+    {
       "queue_id": "explainer:organized-theft-prosecution-2026-bill",
       "kind": "update",
       "explainer_id": "organized-theft-prosecution-2026-bill",
@@ -1148,7 +1206,7 @@
       "first_queued_on": "2026-11-14"
     },
     {
-      "queue_id": "draft:raw-65580538b2985c30",
+      "queue_id": "draft:raw-4ce23364bd81184a",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -1157,16 +1215,16 @@
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-65580538b2985c30"
+        "raw-4ce23364bd81184a"
       ],
       "areas": [
-        "Energy / Environment"
+        "Labor / Employment"
       ],
-      "title_ja": "「廃棄物の処理及び清掃に関する法律施行令の一部を改正する政令案」に対する意見の募集（パブリック・コメント）について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-07-26",
-      "suggested_seed_item_id": "raw-65580538b2985c30",
-      "first_queued_on": "2026-11-12"
+      "title_ja": "東日本大震災に対処するための特別の財政援助及び助成に関する法律の厚生労働省関係規定の施行等に関する政令の一部を改正する政令案に関する御意見募集（パブリックコメント）について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-17",
+      "suggested_seed_item_id": "raw-4ce23364bd81184a",
+      "first_queued_on": "2026-11-17"
     },
     {
       "queue_id": "draft:raw-7bf14a11616c78fd",
