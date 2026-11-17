@@ -1459,12 +1459,12 @@
         "failed_runs": 2,
         "run_id": 44013646789,
         "head_sha": "aa4134235ec3992118d427dae06e75d3e1848349",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-17T03:57:17Z",
+        "duration_s": 65
       },
       "stage": "EN_READY",
       "last_success_stage": "EN_READY",
@@ -1486,8 +1486,8 @@
         "add data/explainer_locales/septic-tank-manager-license-nationality-2026.json (ja and zh-Hans)"
       ],
       "next_action": "Complete the ja and zh-Hans translations (every section, same counts). First: English status is not 'published'",
-      "updated_at": "2026-11-17T03:57:24Z",
-      "run_id": "44013664229"
+      "updated_at": "2026-11-17T03:58:35Z",
+      "run_id": "44013770463"
     },
     "social-welfare-local-support-rules-2026": {
       "dossier_id": "social-welfare-local-support-rules-2026",
