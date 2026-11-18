@@ -1459,12 +1459,12 @@
         "failed_runs": 3,
         "run_id": 44241719327,
         "head_sha": "30319e1dc4b25bc850ee4351bbed3ad4fc35e50d",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-18T05:06:22Z",
+        "duration_s": 81
       },
       "stage": "JA_ZH_READY",
       "last_success_stage": "JA_ZH_READY",
@@ -1486,8 +1486,8 @@
         "English status is not 'published'"
       ],
       "next_action": "Stamp English (explainers.py stamp septic-tank-manager-license-nationality-2026 --verified-on <date>), check each language against it, then explainer_preflight.py sync-stamps septic-tank-manager-license-nationality-2026 --lang ja --lang zh-Hans. First: English status is not 'published'",
-      "updated_at": "2026-11-18T05:06:07Z",
-      "run_id": "44241739509"
+      "updated_at": "2026-11-18T05:07:18Z",
+      "run_id": "44241885295"
     },
     "social-welfare-local-support-rules-2026": {
       "dossier_id": "social-welfare-local-support-rules-2026",
