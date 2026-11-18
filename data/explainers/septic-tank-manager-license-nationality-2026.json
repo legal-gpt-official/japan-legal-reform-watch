@@ -48,14 +48,15 @@
   "history": {
     "paragraphs": [
       "The historical baseline is important: the Environment Ministry's 28 September 2001 circular explained that substitute identity documents could already be used for issuance and replacement applications under Articles 15 and 18, including the then-existing alien-registration certificate. That circular concerns the 2001 regime and does not itself state the purpose of the 2026 amendment.",
-      "A draft was opened for public comment in July 2026. The e-Gov results record identifies the final instrument as Environment Ministry Ordinance No. 23 of 2026, promulgated on 31 August 2026 and effective the same day. The amendment changes Article 15 on certificate issuance and Article 18 on certificate replacement.",
+      "A draft was opened for public comment in July 2026. The e-Gov results record identifies the final instrument as Environment Ministry Ordinance No. 23 of 2026, promulgated on 31 August 2026 and effective the same day. The amendment changes Article 15 on certificate issuance and Article 18 on certificate replacement. The ministry received eight comments; its published responses confirm that a drafting-parenthesis defect in Article 15 was corrected and that underlining was added to the amended form provisions. The results also identify the new nationality and specified-region entries alongside registered domicile; these are procedural documentation changes, not new professional qualification criteria.",
       "Article 15 continues to require the prescribed application and supporting documents. Article 18 continues to permit, rather than compel, a certificate holder to seek replacement after recorded particulars change."
     ],
     "source_ids": [
       "s1",
       "s2",
       "s3",
-      "s5"
+      "s5",
+      "s6"
     ]
   },
   "next_steps": {
@@ -76,7 +77,7 @@
     ],
     "expected": [],
     "uncertainties": [
-      "The ministry's 2001 circular confirms that substitute evidence predated the 2026 amendment, but does not establish the ministry's specific policy rationale in 2026. That rationale and any current administrative instructions require separate confirmation.",
+      "The 2001 circular confirms earlier substitute evidence. The ministry's 2026 consultation response confirms the introduction of nationality and specified-region entries, but does not provide a comprehensive substantive policy rationale or a detailed example of how to adapt every old form. Suggestions for multilingual guidance and old-form examples were taken under advisement, not promised as binding measures.",
       "The amendment does not itself demonstrate that certificate eligibility, examination requirements, or substantive qualification criteria changed."
     ]
   },
@@ -167,10 +168,18 @@
       "title": "Circular on the partial amendment of the Septic Tank Act (28 September 2001), Part IV.3(2): certificate application procedures",
       "url": "https://www.env.go.jp/hourei/11/000240.html",
       "accessed_at": "2026-11-17"
+    },
+    {
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Ministry of the Environment / e-Gov",
+      "title": "2026 public consultation responses (Annex), including corrections to Article 15 and amended forms",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000320181",
+      "accessed_at": "2026-11-18"
     }
   ],
   "verified_at": "2026-11-17",
   "source_fingerprint": "sha256:15adc261cc591f137c3830d862659707",
   "author": "chatgpt",
-  "review_notes": "Draft updated using the Environment Ministry's 2001 circular to distinguish pre-existing alternative documentation from the 2026 express resident-record wording. Independent full promulgated 2026 ordinance and complete substantive three-language review remain outstanding; not approved for publication."
+  "review_notes": "Draft updated using the Environment Ministry's 2001 circular to distinguish pre-existing alternative documentation from the 2026 express resident-record wording. Independent full promulgated 2026 ordinance and complete substantive three-language review remain outstanding; not approved for publication. On 2026-11-18, reviewed ministry's published consultation annex: 8 comments, corrected Article 15 parenthesis and added underlines to forms; policy rationale remains partially unverified."
 }
