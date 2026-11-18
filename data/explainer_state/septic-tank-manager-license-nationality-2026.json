@@ -5,7 +5,7 @@
   "queue_id": "instrument:令和八年環境省令第二十三号",
   "seed_item_id": "raw-b116141db6cb37a4",
   "hold": null,
-  "next_action": "EN draft exists; fix CI schema, complete independent official-source review and JA/zh-Hans translations; do not publish until substantive review.",
+  "next_action": "Latest head 7d4af67fa07195f25010bac816483eb78849aa18 passed mandatory Pull request checks run 44220569300. EN/JA/zh-Hans drafts exist. Complete independent comparison of the promulgated 2026 Ordinance No. 23 (Articles 15 and 18 and Supplementary Provisions 2-3) with the e-Gov evidence pack; check all three languages for legal equivalence. The Environment Ministry's 2001 circular confirms pre-existing substitute evidence but does not prove the 2026 policy rationale. Only after substantive verification, set publication status and sync language stamps, rerun required CI on new head, remove Draft and apply legal-content-verified. If primary text remains inaccessible, record BLOCKED and switch to a different queue candidate.",
   "sources": [
     {
       "id": "s1",
