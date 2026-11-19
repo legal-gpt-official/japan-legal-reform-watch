@@ -4,8 +4,11 @@
   "kind": "new",
   "queue_id": "instrument:令和八年環境省令第二十三号",
   "seed_item_id": "raw-b116141db6cb37a4",
-  "hold": null,
-  "next_action": "CI 44234712848 failed on head 8ac2ed40 solely because next_action exceeded 600 characters; shortened here. Recheck new-head CI. Then independently verify 2026 Ordinance 23 Articles 15/18 and Supplementary Provisions 2–3 against official promulgated text and compare EN/JA/zh-Hans paragraph by paragraph. The 2001 Environment Ministry notice proves prior substitute-document practice, not the 2026 policy purpose. Keep Draft and no legal-content-verified until substantive verification. If primary text remains unavailable, mark BLOCKED and move to another candidate.",
+  "hold": {
+    "state": "BLOCKED",
+    "reason": "Promulgated Forms 2–5 have not been independently checked against the full official final forms. Article 15/18 and supplementary clauses are supported by e-Gov, but public-comment summaries alone do not establish every final form field. Substantive EN/JA/zh-Hans review is incomplete."
+  },
+  "next_action": "BLOCKED pending full official Forms 2–5 and independent EN/JA/zh-Hans comparison. Keep Draft; do not add legal-content-verified. Switch to a distinct queue candidate now rather than repeat the same incomplete source review.",
   "sources": [
     {
       "id": "s1",
