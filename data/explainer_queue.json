@@ -37,6 +37,62 @@
       "first_queued_on": "2026-11-11"
     },
     {
+      "queue_id": "explainer:industrial-competitiveness-2026-amendment",
+      "kind": "update",
+      "explainer_id": "industrial-competitiveness-2026-amendment",
+      "explainer_status": "published",
+      "priority": 60,
+      "reasons": [
+        "official_records_changed",
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-20",
+      "watch_pages": [
+        "https://www.meti.go.jp/policy/economy/kyosoryoku_kyoka/index.html",
+        "https://www.meti.go.jp/press/index.html",
+        "https://laws.e-gov.go.jp/law/425AC0000000098",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 32,
+      "item_ids": [
+        "raw-004953ff35f66fe2",
+        "raw-0969ec0eca59988f",
+        "raw-11c84b8a5954d4b0",
+        "raw-1341efb73ac4da6d",
+        "raw-15eb56a61753dba0",
+        "raw-1ba11f9f588dd95b",
+        "raw-23d90cb70d5a607e",
+        "raw-25ade374ca57e9ec",
+        "raw-2bd6056a2433bb10",
+        "raw-37f2b9764d1bed86",
+        "raw-3deec5ddc1bf007a",
+        "raw-5500deefc977e115"
+      ],
+      "new_related_item_ids": [
+        "raw-004953ff35f66fe2",
+        "raw-0969ec0eca59988f",
+        "raw-11c84b8a5954d4b0",
+        "raw-1341efb73ac4da6d",
+        "raw-15eb56a61753dba0",
+        "raw-1ba11f9f588dd95b",
+        "raw-37f2b9764d1bed86",
+        "raw-3deec5ddc1bf007a",
+        "raw-5500deefc977e115",
+        "raw-5cf92e99aabe2f34",
+        "raw-75a744f4c4a2d898",
+        "raw-7c4119c042a56d1c"
+      ],
+      "current_fingerprint": "sha256:bed7c312503167a929899595f00f27fb",
+      "first_queued_on": "2026-11-04"
+    },
+    {
       "queue_id": "explainer:working-tax-social-insurance-relief-2026-bill",
       "kind": "update",
       "explainer_id": "working-tax-social-insurance-relief-2026-bill",
@@ -68,6 +124,102 @@
       ],
       "current_fingerprint": "sha256:e1f547e3d4fa10947501b99a510052ff",
       "first_queued_on": "2026-11-09"
+    },
+    {
+      "queue_id": "explainer:export-control-2026-october-draft",
+      "kind": "update",
+      "explainer_id": "export-control-2026-october-draft",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-26",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320041",
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.meti.go.jp/policy/anpo/index.html",
+        "https://laws.e-gov.go.jp/law/355CO0000000260",
+        "https://laws.e-gov.go.jp/law/324CO0000000378"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-e45e78485c5b4613"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:93032ac86ced1d78646a35b716dc7329",
+      "first_queued_on": "2026-11-10"
+    },
+    {
+      "queue_id": "explainer:osh-chemical-label-sds-2026-draft",
+      "kind": "update",
+      "explainer_id": "osh-chemical-label-sds-2026-draft",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-26",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260226",
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/index.html",
+        "https://laws.e-gov.go.jp/law/347CO0000000318"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-bbe3073b46935614"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:b48acd9ef8b346892635f5055189eab6",
+      "first_queued_on": "2026-11-10"
+    },
+    {
+      "queue_id": "explainer:osh-skin-hazard-chemicals-2026-draft",
+      "kind": "update",
+      "explainer_id": "osh-skin-hazard-chemicals-2026-draft",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000099121_00005.html",
+        "https://www.mhlw.go.jp/stf/houdou/index.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-08b316bd494b648e"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:96898ed7d2040832be5b5c01d56f6c4a",
+      "first_queued_on": "2026-11-16"
     },
     {
       "queue_id": "explainer:social-welfare-local-support-rules-2026",
@@ -389,38 +541,6 @@
       "first_queued_on": "2026-11-09"
     },
     {
-      "queue_id": "explainer:export-control-2026-october-draft",
-      "kind": "update",
-      "explainer_id": "export-control-2026-october-draft",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-10-26",
-      "watch_pages": [
-        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=595320041",
-        "https://public-comment.e-gov.go.jp/pcm/list",
-        "https://www.meti.go.jp/policy/anpo/index.html",
-        "https://laws.e-gov.go.jp/law/355CO0000000260",
-        "https://laws.e-gov.go.jp/law/324CO0000000378"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-e45e78485c5b4613"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:93032ac86ced1d78646a35b716dc7329",
-      "first_queued_on": "2026-11-10"
-    },
-    {
       "queue_id": "explainer:fefta-2026-inward-investment-screening",
       "kind": "update",
       "explainer_id": "fefta-2026-inward-investment-screening",
@@ -586,61 +706,6 @@
       "first_queued_on": "2026-11-15"
     },
     {
-      "queue_id": "explainer:industrial-competitiveness-2026-amendment",
-      "kind": "update",
-      "explainer_id": "industrial-competitiveness-2026-amendment",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-10-20",
-      "watch_pages": [
-        "https://www.meti.go.jp/policy/economy/kyosoryoku_kyoka/index.html",
-        "https://www.meti.go.jp/press/index.html",
-        "https://laws.e-gov.go.jp/law/425AC0000000098",
-        "https://public-comment.e-gov.go.jp/pcm/list"
-      ],
-      "record_count": 23,
-      "item_ids": [
-        "raw-004953ff35f66fe2",
-        "raw-1341efb73ac4da6d",
-        "raw-15eb56a61753dba0",
-        "raw-23d90cb70d5a607e",
-        "raw-25ade374ca57e9ec",
-        "raw-2bd6056a2433bb10",
-        "raw-37f2b9764d1bed86",
-        "raw-7c4119c042a56d1c",
-        "raw-7d57965ea33c2b1c",
-        "raw-844080984a8b3116",
-        "raw-8c9c21118c62aa65",
-        "raw-94a5abcf9d179f39"
-      ],
-      "new_related_item_ids": [
-        "raw-004953ff35f66fe2",
-        "raw-1341efb73ac4da6d",
-        "raw-15eb56a61753dba0",
-        "raw-37f2b9764d1bed86",
-        "raw-7c4119c042a56d1c",
-        "raw-844080984a8b3116",
-        "raw-8c9c21118c62aa65",
-        "raw-a2dbec9954450cfe",
-        "raw-b045f57c621a2c7c",
-        "raw-c01eddaa774f428d",
-        "raw-c176b2f4eaaba655",
-        "raw-df376882d8164750"
-      ],
-      "current_fingerprint": "sha256:c28839caf9c79a1da8b8a4dfb0228cff",
-      "first_queued_on": "2026-11-04"
-    },
-    {
       "queue_id": "explainer:long-chain-pfas-firefighting-foam-2026-draft",
       "kind": "update",
       "explainer_id": "long-chain-pfas-firefighting-foam-2026-draft",
@@ -727,67 +792,6 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:cc53048021e3cd34df37e1658adde19b",
       "first_queued_on": "2026-11-14"
-    },
-    {
-      "queue_id": "explainer:osh-chemical-label-sds-2026-draft",
-      "kind": "update",
-      "explainer_id": "osh-chemical-label-sds-2026-draft",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-10-26",
-      "watch_pages": [
-        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=495260226",
-        "https://public-comment.e-gov.go.jp/pcm/list",
-        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/index.html",
-        "https://laws.e-gov.go.jp/law/347CO0000000318"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-bbe3073b46935614"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:b48acd9ef8b346892635f5055189eab6",
-      "first_queued_on": "2026-11-10"
-    },
-    {
-      "queue_id": "explainer:osh-skin-hazard-chemicals-2026-draft",
-      "kind": "update",
-      "explainer_id": "osh-skin-hazard-chemicals-2026-draft",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-11-01",
-      "watch_pages": [
-        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000099121_00005.html",
-        "https://www.mhlw.go.jp/stf/houdou/index.html",
-        "https://public-comment.e-gov.go.jp/pcm/list"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-08b316bd494b648e"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:96898ed7d2040832be5b5c01d56f6c4a",
-      "first_queued_on": "2026-11-16"
     },
     {
       "queue_id": "explainer:pcb-waste-2026-low-concentration-amendment",
