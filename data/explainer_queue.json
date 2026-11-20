@@ -60,20 +60,20 @@
         "https://laws.e-gov.go.jp/law/425AC0000000098",
         "https://public-comment.e-gov.go.jp/pcm/list"
       ],
-      "record_count": 32,
+      "record_count": 41,
       "item_ids": [
         "raw-004953ff35f66fe2",
         "raw-0969ec0eca59988f",
         "raw-11c84b8a5954d4b0",
         "raw-1341efb73ac4da6d",
         "raw-15eb56a61753dba0",
+        "raw-189c056bad67fafc",
         "raw-1ba11f9f588dd95b",
+        "raw-1fbfebac209835be",
         "raw-23d90cb70d5a607e",
         "raw-25ade374ca57e9ec",
-        "raw-2bd6056a2433bb10",
-        "raw-37f2b9764d1bed86",
-        "raw-3deec5ddc1bf007a",
-        "raw-5500deefc977e115"
+        "raw-27cd30f78fd72c98",
+        "raw-2bd6056a2433bb10"
       ],
       "new_related_item_ids": [
         "raw-004953ff35f66fe2",
@@ -81,15 +81,15 @@
         "raw-11c84b8a5954d4b0",
         "raw-1341efb73ac4da6d",
         "raw-15eb56a61753dba0",
+        "raw-189c056bad67fafc",
         "raw-1ba11f9f588dd95b",
+        "raw-1fbfebac209835be",
+        "raw-27cd30f78fd72c98",
         "raw-37f2b9764d1bed86",
         "raw-3deec5ddc1bf007a",
-        "raw-5500deefc977e115",
-        "raw-5cf92e99aabe2f34",
-        "raw-75a744f4c4a2d898",
-        "raw-7c4119c042a56d1c"
+        "raw-49d6c915a68f7f8c"
       ],
-      "current_fingerprint": "sha256:bed7c312503167a929899595f00f27fb",
+      "current_fingerprint": "sha256:44fb2694a1518b07b8c7495b387af358",
       "first_queued_on": "2026-11-04"
     },
     {
@@ -764,6 +764,35 @@
       "first_queued_on": "2026-11-17"
     },
     {
+      "queue_id": "explainer:noto-disaster-employment-secondment-2026",
+      "kind": "update",
+      "explainer_id": "noto-disaster-employment-secondment-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-05",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260245",
+        "https://www.mhlw.go.jp/stf/shingi/shingi-rousei_126979.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-085572d0055bd111"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:abd3cefe0c428ed96de49980bbaf2319",
+      "first_queued_on": "2026-11-20"
+    },
+    {
       "queue_id": "explainer:organized-theft-prosecution-2026-bill",
       "kind": "update",
       "explainer_id": "organized-theft-prosecution-2026-bill",
@@ -1252,27 +1281,6 @@
       "first_queued_on": "2026-11-03"
     },
     {
-      "queue_id": "draft:raw-829e6e5e3e709150",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-829e6e5e3e709150"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "健康保険法等の一部を改正する法律の一部の施行に伴う関係政令の整備等に関する政令案に関するご意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-09",
-      "suggested_seed_item_id": "raw-829e6e5e3e709150",
-      "first_queued_on": "2026-11-12"
-    },
-    {
       "queue_id": "draft:raw-9b23b040d93ee91a",
       "kind": "new",
       "explainer_id": null,
@@ -1336,6 +1344,27 @@
       "first_queued_on": "2026-11-01"
     },
     {
+      "queue_id": "draft:raw-bf2a03e94c5f01b1",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-bf2a03e94c5f01b1"
+      ],
+      "areas": [
+        "Energy / Environment"
+      ],
+      "title_ja": "「水質汚濁防止法施行規則等の一部を改正する省令の一部を改正する省令案」に関する意見募集（パブリック・コメント）について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-20",
+      "suggested_seed_item_id": "raw-bf2a03e94c5f01b1",
+      "first_queued_on": "2026-11-20"
+    },
+    {
       "queue_id": "draft:raw-c30223bca43e30a3",
       "kind": "new",
       "explainer_id": null,
@@ -1357,7 +1386,7 @@
       "first_queued_on": "2026-11-03"
     },
     {
-      "queue_id": "draft:raw-cfdcf910c315e827",
+      "queue_id": "draft:raw-caf083e983e7ac19",
       "kind": "new",
       "explainer_id": null,
       "priority": 15,
@@ -1366,16 +1395,16 @@
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-cfdcf910c315e827"
+        "raw-caf083e983e7ac19"
       ],
       "areas": [
-        "Finance / AML"
+        "Energy / Environment"
       ],
-      "title_ja": "健康保険法等の一部を改正する法律の一部の施行に伴う関係省令の整備に関する省令案に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-15",
-      "suggested_seed_item_id": "raw-cfdcf910c315e827",
-      "first_queued_on": "2026-11-12"
+      "title_ja": "特定放射性廃棄物の最終処分に関する法律第十一条第三項の単位数量当たりの第一種最終処分業務に必要な金額及び同法第十一条の二第三項の単位数量当たりの第二種最終処分業務に必要な金額を定める省令の一部を改正する省令（案）に対する意見募集について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-20",
+      "suggested_seed_item_id": "raw-caf083e983e7ac19",
+      "first_queued_on": "2026-11-20"
     },
     {
       "queue_id": "draft:raw-d27cba12376a209e",
