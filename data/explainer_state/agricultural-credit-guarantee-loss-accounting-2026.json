@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "dossier_id": "agricultural-credit-guarantee-loss-accounting-2026",
+  "kind": "new",
+  "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
+  "seed_item_id": "raw-a774a90138a1dcf2",
+  "hold": null,
+  "next_action": "Draft full English explanation and Japanese/Chinese locales; verify parent Act Articles 10 and 11 and consultation replies; then run preflight and latest-head CI.",
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/341M50010040002",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:26Z",
+      "sha256": "1d73dee23ac6dcc7d9789a52e01e58d95c003a71447cafed90a952231b8b4e6f",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-a774a90138a1dcf2"
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20261001_508M60000202012?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:27Z",
+      "sha256": "2a9b7c2f3dddf380366ace8714347fac9ac0c2e1565ee63c896b77b7588947d2",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-a774a90138a1dcf2"
+    },
+    {
+      "id": "s3",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/341M50010040002_20231228_505M60000202006?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:27Z",
+      "sha256": "9be2bd60c0c52b60f17d93681c0605209d5800be6bf8fb634bf86db89ba9d574",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-a774a90138a1dcf2"
+    }
+  ],
+  "facts": [
+    {
+      "id": "f1",
+      "category": "instrument_form",
+      "status": "confirmed",
+      "statement": "e-Gov records the amendment as in_force (in_force_instrument) as of the evidence date.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#instrument_form",
+      "value": "in_force_instrument"
+    },
+    {
+      "id": "f2",
+      "category": "promulgation_date",
+      "status": "confirmed",
+      "statement": "Promulgated 2026-09-18 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#promulgation_date"
+    },
+    {
+      "id": "f3",
+      "category": "effective_date",
+      "status": "confirmed",
+      "statement": "Effective 2026-10-01 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#effective_date"
+    },
+    {
+      "id": "f4",
+      "category": "partial_effective_date",
+      "status": "not_applicable",
+      "statement": "Single commencement stage.",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#partial_effective_date"
+    },
+    {
+      "id": "f5",
+      "category": "amended_provisions",
+      "status": "confirmed",
+      "statement": "Provisions changed (e-Gov old/new text): 第3条の2",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#amended_provisions"
+    },
+    {
+      "id": "f6",
+      "category": "old_vs_new",
+      "status": "confirmed",
+      "statement": "The prior version of the enforcement regulation had no Article 3-2; the 2026 order adds a two-paragraph rule for covering shortfalls in accounts for guarantee operations under Act Article 11(1)-(3).",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#old_vs_new"
+    },
+    {
+      "id": "f7",
+      "category": "scope",
+      "status": "confirmed",
+      "statement": "Accounting for guarantee activities specified in Agricultural Credit Guarantee Insurance Act Article 11 items 1-3, not a general change to borrowers' loan eligibility.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#scope"
+    },
+    {
+      "id": "f8",
+      "category": "obligation_type",
+      "status": "confirmed",
+      "statement": "Article 3-2 permits (できる) specified reserve drawdowns for current-year and carried-forward deficits; it does not command automatic drawdowns.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#obligation_type"
+    },
+    {
+      "id": "f9",
+      "category": "transitional_measures",
+      "status": "not_applicable",
+      "statement": "The amending instrument's supplementary provisions contain no transitional provision.",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#transitional_measures"
+    },
+    {
+      "id": "f10",
+      "category": "delegation",
+      "status": "confirmed",
+      "statement": "Article 3-2 implements the Act's Article 10 reserve and transfer-in framework for the operations in Article 11 items 1-3; no further subdelegation appears in the added provision.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#delegation"
+    },
+    {
+      "id": "f11",
+      "category": "policy_background",
+      "status": "inference",
+      "statement": "MAFF's September 18 consultation response states the purpose is stable operation of agricultural credit guarantee insurance and smooth farm financing; it rejected the suggestion that the rule encourages credit tightening.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#policy_background"
+    },
+    {
+      "id": "f12",
+      "category": "business_impact",
+      "status": "inference",
+      "statement": "Agricultural credit guarantee institutions receive express accounting authority to apply reserves and transfers in the specified sequence; farm borrowers do not obtain a new statutory right to guaranteed lending.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-a774a90138a1dcf2#business_impact"
+    }
+  ],
+  "unresolved": [
+    "Independently compare Agricultural Credit Guarantee Insurance Act Articles 10 and 11 with the new regulation and review full consultation replies before publication."
+  ]
+}
