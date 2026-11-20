@@ -4,8 +4,8 @@
   "kind": "new",
   "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
   "seed_item_id": "raw-a774a90138a1dcf2",
-  "hold": null,
-  "next_action": "Draft full English explanation and Japanese/Chinese locales; verify parent Act Articles 10 and 11 and consultation replies; then run preflight and latest-head CI.",
+  "hold": "Parent Act Article 10(2) terminology and relationship to the ordinance's 繰入金 remain unverified against authoritative current law; do not approve draft or translations until resolved.",
+  "next_action": "Read current e-Gov parent Act Articles 10 and 11; reconcile Article 10(1) 準備金 and Article 10(2) 繰入金 references with amended Article 3-2; verify full MAFF responses, then correct EN and translate JA/zh-Hans.",
   "sources": [
     {
       "id": "s1",
@@ -185,6 +185,7 @@
     }
   ],
   "unresolved": [
-    "Independently compare Agricultural Credit Guarantee Insurance Act Articles 10 and 11 with the new regulation and review full consultation replies before publication."
+    "Potential substantive mismatch: available parent Act Article 10(2) text concerns permitted uses of reserve, whereas new regulation refers to Article 10(2) 繰入金. Confirm exact current text and institutional scope against official law before publication.",
+    "Full MAFF consultation response and its implications require independent review."
   ]
 }
