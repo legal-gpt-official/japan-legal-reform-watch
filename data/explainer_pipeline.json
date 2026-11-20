@@ -20,7 +20,7 @@
       },
       "pr": 168,
       "branch": "explainer/raw-a774a90138a1dcf2",
-      "head_sha": "f49d1bfcc14703442a6c6dc909374e8cbf77aab2",
+      "head_sha": "375826a7f385c21ff3ea0c3e3316cea227289028",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
@@ -28,16 +28,14 @@
       "automerge_eligible_files": true,
       "ci": {
         "failed_runs": 2,
-        "run_id": 44664204898,
-        "head_sha": "f49d1bfcc14703442a6c6dc909374e8cbf77aab2",
-        "status": "completed",
-        "conclusion": "failure",
+        "run_id": 44671148020,
+        "head_sha": "375826a7f385c21ff3ea0c3e3316cea227289028",
+        "status": "in_progress",
+        "conclusion": null,
         "tests_ok": false,
-        "failed_steps": [
-          "Dossier preflight (changed explainers)"
-        ],
-        "completed_at": "2026-11-20T02:56:10Z",
-        "duration_s": 22
+        "failed_steps": [],
+        "completed_at": null,
+        "duration_s": null
       },
       "stage": "RESEARCH_REQUIRED",
       "last_success_stage": "RESEARCH_REQUIRED",
@@ -45,24 +43,33 @@
         "DRAFTED": "2026-11-20T02:04:05Z",
         "RESEARCH_REQUIRED": "2026-11-20T02:04:05Z"
       },
+      "hold": {
+        "state": "BLOCKED",
+        "reason": "The current parent Act Article 10(2) and the added regulation's reference to 繰入金 have not been independently reconciled. Do not release this dossier until the authoritative parent statute and MAFF consultation response are fully checked.",
+        "unblock_condition": "manual",
+        "fingerprint_at_hold": "sha256:dfbb377f039bc0fc7879866b99d2375f",
+        "active": true,
+        "evidence_digest_at_hold": "sha256:97fed17b6296f0597226761416ee49e4"
+      },
       "sources": {
         "fetched": 3,
         "failed": 0,
         "not_fetched": 0,
         "failed_by_error": {}
       },
-      "unconfirmed": [],
+      "unconfirmed": [
+        "delegation"
+      ],
       "unresolved": [
         "Potential substantive mismatch: available parent Act Article 10(2) text concerns permitted uses of reserve, whereas new regulation refers to Article 10(2) 繰入金. Confirm exact current text and institutional scope against official law before publication.",
         "Full MAFF consultation response and its implications require independent review."
       ],
       "blockers": [
-        "case file: hold must be an object or null",
-        "case file: facts[7].value must list one or more of obligation, prohibition, effort_duty, recommendation, none"
+        "confirm critical facts: delegation"
       ],
-      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch agricultural-credit-guarantee-loss-accounting-2026). First: case file: hold must be an object or null Writer note: Read current e-Gov parent Act Articles 10 and 11; reconcile Article 10(1) 準備金 and Article 10(2) 繰入金 references with amended Article 3-2; verify full MAFF responses, then correct EN and translate JA/zh-Hans.",
-      "updated_at": "2026-11-20T02:57:04Z",
-      "run_id": "44664227993"
+      "next_action": "ON HOLD (BLOCKED): The current parent Act Article 10(2) and the added regulation's reference to 繰入金 have not been independently reconciled. Do not release this dossier until the authoritative parent statute and MAFF consultation response are fully checked. Skip until someone releases it; work on another candidate.",
+      "updated_at": "2026-11-20T03:58:39Z",
+      "run_id": "44671173960"
     },
     "agricultural-modernisation-loan-order-300-2026": {
       "dossier_id": "agricultural-modernisation-loan-order-300-2026",
