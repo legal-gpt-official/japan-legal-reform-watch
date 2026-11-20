@@ -2122,16 +2122,6 @@
     }
   },
   "daily": {
-    "2026-11-07": {
-      "new": {
-        "drafted": 0,
-        "ci_passed": 0,
-        "merged": 0,
-        "pages_deployed": 0,
-        "live_verified": 0
-      },
-      "updates_merged": 1
-    },
     "2026-11-08": {
       "new": {
         "drafted": 0,
@@ -2255,6 +2245,16 @@
     "2026-11-20": {
       "new": {
         "drafted": 1,
+        "ci_passed": 0,
+        "merged": 0,
+        "pages_deployed": 0,
+        "live_verified": 0
+      },
+      "updates_merged": 0
+    },
+    "2026-11-21": {
+      "new": {
+        "drafted": 0,
         "ci_passed": 0,
         "merged": 0,
         "pages_deployed": 0,
