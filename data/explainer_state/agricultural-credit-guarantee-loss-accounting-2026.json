@@ -4,7 +4,11 @@
   "kind": "new",
   "queue_id": "instrument:令和八年内閣府・農林水産省令第十二号",
   "seed_item_id": "raw-a774a90138a1dcf2",
-  "hold": "Parent Act Article 10(2) terminology and relationship to the ordinance's 繰入金 remain unverified against authoritative current law; do not approve draft or translations until resolved.",
+  "hold": {
+    "state": "BLOCKED",
+    "reason": "The current parent Act Article 10(2) and the added regulation's reference to 繰入金 have not been independently reconciled. Do not release this dossier until the authoritative parent statute and MAFF consultation response are fully checked.",
+    "unblock_condition": "manual"
+  },
   "next_action": "Read current e-Gov parent Act Articles 10 and 11; reconcile Article 10(1) 準備金 and Article 10(2) 繰入金 references with amended Article 3-2; verify full MAFF responses, then correct EN and translate JA/zh-Hans.",
   "sources": [
     {
@@ -135,7 +139,10 @@
         "s2",
         "s3"
       ],
-      "evidence_ref": "raw-a774a90138a1dcf2#obligation_type"
+      "evidence_ref": "raw-a774a90138a1dcf2#obligation_type",
+      "value": [
+        "none"
+      ]
     },
     {
       "id": "f9",
@@ -150,14 +157,9 @@
     {
       "id": "f10",
       "category": "delegation",
-      "status": "confirmed",
-      "statement": "Article 3-2 implements the Act's Article 10 reserve and transfer-in framework for the operations in Article 11 items 1-3; no further subdelegation appears in the added provision.",
-      "source_ids": [
-        "s1",
-        "s2",
-        "s3"
-      ],
-      "evidence_ref": "raw-a774a90138a1dcf2#delegation"
+      "status": "unconfirmed",
+      "statement": "Parent Act Article 10(1)/(2) legal basis and the regulation's reference to transfer-in funds require authoritative reconciliation before confirmation.",
+      "source_ids": []
     },
     {
       "id": "f11",
