@@ -437,6 +437,35 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:chemical-trade-secret-record-custodian-2026",
+      "kind": "update",
+      "explainer_id": "chemical-trade-secret-record-custodian-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-06",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260225",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/an-eihou/index_00001.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-26ca5feb3b6108b6"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:119e902e0f2537003f8229e54d1a83e0",
+      "first_queued_on": "2026-11-21"
+    },
+    {
       "queue_id": "explainer:dc-pension-digital-procedures-2026",
       "kind": "update",
       "explainer_id": "dc-pension-digital-procedures-2026",

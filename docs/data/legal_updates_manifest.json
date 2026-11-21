@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "total_items": 5757,
+  "total_items": 5788,
   "latest_period": "2026",
   "periods": [
     {
       "value": "2026",
       "label": "2026",
       "file": "./data/archive/2026.json",
-      "count": 4835
+      "count": 4863
     },
     {
       "value": "2025",
       "label": "2025",
       "file": "./data/archive/2025.json",
-      "count": 391
+      "count": 392
     },
     {
       "value": "2024",
@@ -70,6 +70,12 @@
       "count": 10
     },
     {
+      "value": "2014",
+      "label": "2014",
+      "file": "./data/archive/2014.json",
+      "count": 1
+    },
+    {
       "value": "2011",
       "label": "2011",
       "file": "./data/archive/2011.json",
@@ -91,12 +97,12 @@
       "value": "undated",
       "label": "Undated",
       "file": "./data/archive/undated.json",
-      "count": 204
+      "count": 205
     }
   ],
   "preview": {
     "period": "2026",
     "file": "./data/archive/preview.json",
-    "count": 100
+    "count": 114
   }
 }

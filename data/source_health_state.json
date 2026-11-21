@@ -3,9 +3,9 @@
   "sources": {
     "egov": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": null,
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-11-21T02:00:27Z",
       "last_recovered_at": null
     },
     "shugiin-bills": {
@@ -115,9 +115,9 @@
     },
     "jftc": {
       "consecutive_zero_runs": 0,
-      "consecutive_error_runs": 0,
-      "last_status": "healthy",
-      "last_problem_at": "2026-11-05T01:19:35Z",
+      "consecutive_error_runs": 1,
+      "last_status": "error",
+      "last_problem_at": "2026-11-21T02:00:27Z",
       "last_recovered_at": "2026-11-06T01:24:36Z"
     },
     "moj": {
