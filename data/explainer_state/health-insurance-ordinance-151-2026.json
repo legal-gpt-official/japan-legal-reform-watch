@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "dossier_id": "health-insurance-ordinance-151-2026",
+  "kind": "new",
+  "queue_id": "draft:raw-7bf14a11616c78fd",
+  "seed_item_id": "raw-7bf14a11616c78fd",
+  "hold": null,
+  "next_action": "Compare full 2027-08-01 Art. 26-2 and Art. 27-12-2 against both underlying Enforcement Orders (including the meaning of old/new referenced items), then separately verify the 2026-10-28 changes to Health Insurance and Seafarers Insurance regulations. Resolve scope, obligation_type, delegation and policy background with primary-text citations; do not infer eligibility changes from renumbering. The 2027 old-form transitional clause is confirmed only for that stage. Once complete, draft full EN/JA/zh-Hans and run preflight/CI.",
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333M50000100053",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:04Z",
+      "sha256": "02fc112087494ce43f7ba8b0fdd2dabeb5a1ccf88f2c389b5547b113a5efc68d",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "d3f2bd3913cb69eed33b1b941ae8c45a9f1a02279bac4d3e3206fb4f220e6a9f",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s3",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "ef0a005bd1427bf746bc6dbb5b83c90e651cc0a06ae02710ddbe4fd02f374835",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s4",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/215M10000008036",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "19875ea0f3aefad065a76792bbb325d5c4c66eb9a4c2157d2d21860d7d569e24",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s5",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:11Z",
+      "sha256": "0161d10fa53f0087f4b833c69e4b1d4ae160a6bf0c7b64188887dbbadf954af3",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s6",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261028_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:11Z",
+      "sha256": "8d087f7ad7f22e61ed647a38c6db4525954160c8613a1d62fead4ac1d3cbd143",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s7",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "f1d0375b6763551025c57f62545e286babab9a5c866e8965d3b75fa4090a3474",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s8",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/315M10000100005",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "cdb37530184a7650a5ed3553f667a37f6e0be827d71ce82d0a7f95197227b520",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s9",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "1b952a178bbdaa7a425efd30f126ff7e69eec38f34e558f758ce05a21f57e16f",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s10",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:13Z",
+      "sha256": "66bc9501ea06f6b7d72b43613392eac8de240f47cb2ba43a623be4f12008e6d3",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    }
+  ],
+  "facts": [
+    {
+      "id": "f1",
+      "category": "instrument_form",
+      "status": "confirmed",
+      "statement": "e-Gov records the amendment as promulgated (in_force_instrument) as of the evidence date.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instrument_form",
+      "value": "in_force_instrument"
+    },
+    {
+      "id": "f2",
+      "category": "promulgation_date",
+      "status": "confirmed",
+      "statement": "Promulgated 2026-10-28 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#promulgation_date"
+    },
+    {
+      "id": "f3",
+      "category": "effective_date",
+      "status": "confirmed",
+      "statement": "Effective ['2026-10-28', '2027-08-01'] (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#effective_date"
+    },
+    {
+      "id": "f4",
+      "category": "partial_effective_date",
+      "status": "confirmed",
+      "statement": "Several commencement stages: 2026-10-28, 2027-08-01",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#partial_effective_date"
+    },
+    {
+      "id": "f5",
+      "category": "amended_provisions",
+      "status": "confirmed",
+      "statement": "Provisions changed (e-Gov old/new text): 別表等[様式第十三号の二], 第100条, 第101条, 第102条, 第103条, 第103条の3, 第103条の4, 第103条の5, 第103条の6, 第103条の7, 第104条, 第105条, 第109条, 第109条の2の2の2, 第109条の3, 第129条の2, 第129条の3, 第26条の2, 第26条の3, 第26条の6の3, 第26条の6の4, 第27条の12の2, 第27条の13の7, 第27条の14, 第27条の14の2, 第27条の14の3, 第27条の14の4, 第27条の14の5, 第27条の16, 第27条の17の4, 第27条の19, 第35条, 第47条, 第58条, 第62条の3, 第87条, 第89条, 第90条, 第91条, 第92条, 第92条の2, 第92条の3, 第92条の4, 第92条の5, 第92条の6, 第93条, 第94条, 第95条, 第98条の2, 第99条, 第99条の3の2",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#amended_provisions"
+    },
+    {
+      "id": "f6",
+      "category": "old_vs_new",
+      "status": "unconfirmed",
+      "statement": "Partial article-level comparison verified from e-Gov evidence: National Health Insurance Enforcement Regulation Art. 27-12-2 changes the cross-reference for persons deemed to have received municipal/association recognition from Enforcement Order Art. 29-3(4)(1) or (2) to (1) or (10). Art. 26-6-4 changes the cited Art. 29-3(1)(5) to (13). These are verified cross-reference changes, not proof that eligibility or benefit amounts changed. The complete substantive effects across the three insurance schemes and both commencement stages remain UNCONFIRMED; do not publish based on these excerpts. Further 2027-08-01 stage evidence: National Health Insurance Enforcement Regulation Art. 26-2 (meal-cost standard copayment reduction) changes cross-references to Health Insurance Enforcement Order Art. 43(1)(1) from ホ to ワ and to National Health Insurance Enforcement Order Art. 29-3(1) from item 5 to item 13, alongside other kana renumbering. The evidence pack classifies this as a non-citation-only article change; that classification alone does not establish substantive entitlement expansion or contraction. Full provisions and underlying orders must be compared before concluding legal effects.",
+      "source_ids": [
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instruments[0].diff.changed"
+    },
+    {
+      "id": "f7",
+      "category": "scope",
+      "status": "unconfirmed",
+      "statement": "To be confirmed by the writer from the quoted official text.",
+      "source_ids": []
+    },
+    {
+      "id": "f8",
+      "category": "obligation_type",
+      "status": "unconfirmed",
+      "statement": "To be confirmed by the writer from the quoted official text.",
+      "source_ids": []
+    },
+    {
+      "id": "f9",
+      "category": "transitional_measures",
+      "status": "confirmed",
+      "statement": "For the 2027-08-01 commencement provisions, Article 2 of the promulgated MHLW Ordinance No. 151 supplementary provisions deems documents already in use under old forms to comply with the amended forms, and permits remaining old-form paper to be adapted and used for the time being. This does not establish transitional treatment for any separate 2026-10-28 stage.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instruments[0].supplementary_provisions"
+    },
+    {
+      "id": "f10",
+      "category": "delegation",
+      "status": "unconfirmed",
+      "statement": "To be confirmed by the writer from the quoted official text.",
+      "source_ids": []
+    },
+    {
+      "id": "f11",
+      "category": "policy_background",
+      "status": "unconfirmed",
+      "statement": "To be confirmed by the writer from the quoted official text.",
+      "source_ids": []
+    },
+    {
+      "id": "f12",
+      "category": "business_impact",
+      "status": "unconfirmed",
+      "statement": "To be confirmed by the writer from the quoted official text.",
+      "source_ids": []
+    }
+  ],
+  "unresolved": []
+}
