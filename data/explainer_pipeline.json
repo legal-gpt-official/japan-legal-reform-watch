@@ -1023,20 +1023,12 @@
       "pr_created_at": "2026-11-06T04:57:20Z",
       "automerge_eligible_files": false,
       "ci": {
-        "failed_runs": 0,
-        "run_id": 42341119589,
-        "head_sha": "6f465ce17856be512fb5b1d1eee9b284f1355a28",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-07T05:05:11Z",
-        "duration_s": 70
+        "failed_runs": 0
       },
       "merged_at": "2026-11-07T05:58:48Z",
       "publish": {
-        "run_id": 42344963541,
-        "completed_at": "2026-11-07T06:00:06Z"
+        "run_id": 42444755226,
+        "completed_at": "2026-11-08T03:57:23Z"
       },
       "live": {
         "run_id": 42575428018,
@@ -1053,8 +1045,8 @@
       },
       "blockers": [],
       "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
+      "updated_at": "2026-11-22T01:05:07Z",
+      "run_id": "44969670624"
     },
     "lithium-battery-waste-fire-standards-2026": {
       "dossier_id": "lithium-battery-waste-fire-standards-2026",
@@ -2303,11 +2295,6 @@
       "instruments": 0,
       "draft_documents": false
     },
-    "raw-1123e5757d1ade6f": {
-      "status": "ambiguous",
-      "instruments": 0,
-      "draft_documents": true
-    },
     "raw-15b5c5a72bfae0a1": {
       "status": "ready",
       "instruments": 1,
@@ -2389,6 +2376,11 @@
       "draft_documents": true
     },
     "raw-c30223bca43e30a3": {
+      "status": "draft_only",
+      "instruments": 0,
+      "draft_documents": true
+    },
+    "raw-c8d78951b3642645": {
       "status": "draft_only",
       "instruments": 0,
       "draft_documents": true
