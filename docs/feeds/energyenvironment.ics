@@ -6,23 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:JLRW public comment deadlines — Energy / Environment
 X-WR-TIMEZONE:Asia/Tokyo
 BEGIN:VEVENT
-UID:jlrw-raw-fb5f4733154c3b2a-comment-deadline@legal-gpt-official.github.io
-DTSTAMP:20261023T000000Z
-DTSTART;VALUE=DATE:20261121
-DTEND;VALUE=DATE:20261122
-SUMMARY:Public comment closes: Public consultation on proposed Kushiro Shit
- sugen National Park boundary and plan changes
-DESCRIPTION:Closes 2026-11-22 00:00 JST.\nOriginal title: 釧路湿原国
- 立公園の公園区域及び公園計画の変更［第２次点検］
- に関する意見の募集（パブリック・コメント）につい
- て\nMinistry of the Environment (MOE)\nOfficial source: https://www.env.g
- o.jp/press/press_05727.html\nMonitoring aid only\; not legal advice or an 
- official translation. Original Japanese official sources remain authoritat
- ive.
-TRANSP:TRANSPARENT
-URL:https://www.env.go.jp/press/press_05727.html
-END:VEVENT
-BEGIN:VEVENT
 UID:jlrw-raw-c639bd3763354508-comment-deadline@legal-gpt-official.github.io
 DTSTAMP:20261030T000000Z
 DTSTART;VALUE=DATE:20261127
@@ -206,6 +189,25 @@ DESCRIPTION:Closes 2026-12-20 00:00 JST.\nOriginal title: 「水質汚濁
 TRANSP:TRANSPARENT
 URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
  L&id=195260084&Mode=0
+END:VEVENT
+BEGIN:VEVENT
+UID:jlrw-raw-c8d78951b3642645-comment-deadline@legal-gpt-official.github.io
+DTSTAMP:20261122T000000Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:Public comment closes: Draft ministerial ordinance to preserve mach
+ inery-safety protections for interns and volunteers
+DESCRIPTION:Closes 2026-12-19 15:00 JST.\nOriginal title: 労働安全衛
+ 生法及び作業環境測定法の一部を改正する法律の一部
+ の施行に伴う関係省令の整備等に関する省令の一部を
+ 改正する省令案に関する御意見の募集について\ne-Gov Pub
+ lic Comment\nOfficial source: https://public-comment.e-gov.go.jp/servlet/P
+ ublic?CLASSNAME=PCMMSTDETAIL&id=495260271&Mode=0\nMonitoring aid only\; no
+ t legal advice or an official translation. Original Japanese official sour
+ ces remain authoritative.
+TRANSP:TRANSPARENT
+URL:https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAI
+ L&id=495260271&Mode=0
 END:VEVENT
 BEGIN:VEVENT
 UID:jlrw-raw-caf083e983e7ac19-comment-deadline@legal-gpt-official.github.io
