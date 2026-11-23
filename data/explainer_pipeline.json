@@ -571,66 +571,6 @@
       "updated_at": "2026-11-15T15:05:35Z",
       "run_id": "43727837849"
     },
-    "food-consumption-tax-temporary-cut-2026-bill": {
-      "dossier_id": "food-consumption-tax-temporary-cut-2026-bill",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-bde3c2d447cd0b2f",
-      "related_item_ids": [
-        "raw-bde3c2d447cd0b2f",
-        "raw-e99b922033c552b4"
-      ],
-      "source_fingerprint": "sha256:b87709d126cde2fbe4c2bff325afe213",
-      "pr": 115,
-      "branch": "explainers/2026-11-09-food-tax-house-passage",
-      "head_sha": "90d5fdb8a93b40be59b55132f6125d9c41c5d0cc",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-09T02:03:12Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42548775558,
-        "head_sha": "90d5fdb8a93b40be59b55132f6125d9c41c5d0cc",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-09T02:04:35Z",
-        "duration_s": 79
-      },
-      "merged_at": "2026-11-09T02:05:06Z",
-      "publish": {
-        "run_id": 42548947661,
-        "completed_at": "2026-11-09T02:06:45Z"
-      },
-      "live": {
-        "run_id": 42575428018,
-        "completed_at": "2026-11-09T06:49:42Z"
-      },
-      "introduced": {
-        "pr": 99,
-        "drafted_at": "2026-10-31T01:06:15Z",
-        "ci_passed_at": "2026-10-31T01:16:27Z",
-        "merged_at": "2026-10-31T01:16:52Z",
-        "pages_at": "2026-10-31T01:18:16Z",
-        "live_at": "2026-11-09T06:49:42Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-09T02:03:12Z",
-        "CI_PASSED": "2026-11-09T02:04:35Z",
-        "MERGED": "2026-11-09T02:05:06Z",
-        "PAGES_DEPLOYED": "2026-11-09T02:06:45Z",
-        "LIVE_VERIFIED": "2026-11-09T06:49:42Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "gas-safety-shutoff-advanced-operator-2026": {
       "dossier_id": "gas-safety-shutoff-advanced-operator-2026",
       "kind": "new",
@@ -1004,49 +944,6 @@
       },
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
-    },
-    "jogmec-2026-october-bill": {
-      "dossier_id": "jogmec-2026-october-bill",
-      "kind": "update",
-      "queue_id": null,
-      "seed_item_id": "raw-5a08ed933c98e331",
-      "related_item_ids": [
-        "raw-5a08ed933c98e331"
-      ],
-      "source_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
-      "pr": 112,
-      "branch": "work/jogmec-recheck-20261106",
-      "head_sha": "6f465ce17856be512fb5b1d1eee9b284f1355a28",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-06T04:57:20Z",
-      "automerge_eligible_files": false,
-      "ci": {
-        "failed_runs": 0
-      },
-      "merged_at": "2026-11-07T05:58:48Z",
-      "publish": {
-        "run_id": 42548947661,
-        "completed_at": "2026-11-09T02:06:45Z"
-      },
-      "live": {
-        "run_id": 42575428018,
-        "completed_at": "2026-11-09T06:49:42Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-06T04:57:20Z",
-        "CI_PASSED": "2026-11-07T05:05:11Z",
-        "MERGED": "2026-11-07T05:58:48Z",
-        "PAGES_DEPLOYED": "2026-11-07T06:00:06Z",
-        "LIVE_VERIFIED": "2026-11-09T06:49:42Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-22T01:05:07Z",
-      "run_id": "44969670624"
     },
     "lithium-battery-waste-fire-standards-2026": {
       "dossier_id": "lithium-battery-waste-fire-standards-2026",
@@ -1860,67 +1757,6 @@
         "no case file: python scripts/explainer_state.py init trade-insurance-special-underwriting-2026 --seed raw-1087de7d2a09a138, then confirm the critical facts from official sources"
       ],
       "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch trade-insurance-special-underwriting-2026). First: no case file: python scripts/explainer_state.py init trade-insurance-special-underwriting-2026 --seed raw-1087de7d2a09a138, then confirm the critical facts from official sources",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
-    "truck-relay-transport-authority-2026-order": {
-      "dossier_id": "truck-relay-transport-authority-2026-order",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-180c89bd9d8d2c66",
-      "related_item_ids": [
-        "raw-180c89bd9d8d2c66",
-        "raw-bf4602f0dd240628",
-        "raw-e50c4f2bb52d26c1"
-      ],
-      "source_fingerprint": "sha256:0c6ffe49fe8e62461f1c09bbcee14639",
-      "pr": 116,
-      "branch": "explainers/2026-11-09-truck-relay-order",
-      "head_sha": "6c2e58e604d78c1841d8e0ddeac8a8ee93165a9b",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-09T02:12:46Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42549662601,
-        "head_sha": "6c2e58e604d78c1841d8e0ddeac8a8ee93165a9b",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-09T02:14:09Z",
-        "duration_s": 80
-      },
-      "merged_at": "2026-11-09T02:14:25Z",
-      "publish": {
-        "run_id": 42549817342,
-        "completed_at": "2026-11-09T02:15:41Z"
-      },
-      "live": {
-        "run_id": 42575428018,
-        "completed_at": "2026-11-09T06:49:42Z"
-      },
-      "introduced": {
-        "pr": 116,
-        "drafted_at": "2026-11-09T02:12:46Z",
-        "ci_passed_at": "2026-11-09T02:14:09Z",
-        "merged_at": "2026-11-09T02:14:25Z",
-        "pages_at": "2026-11-09T02:15:41Z",
-        "live_at": "2026-11-09T06:49:42Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-09T02:12:46Z",
-        "CI_PASSED": "2026-11-09T02:14:09Z",
-        "MERGED": "2026-11-09T02:14:25Z",
-        "PAGES_DEPLOYED": "2026-11-09T02:15:41Z",
-        "LIVE_VERIFIED": "2026-11-09T06:49:42Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
       "updated_at": "2026-11-13T21:54:15Z",
       "run_id": "43514621875"
     },
