@@ -35,13 +35,13 @@
       "stage": "in_force",
       "revisions_source": {
         "url": "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008051",
-        "sha256": "d540409d05201b28f7e94a0a50599670301906eecde80ffe4971d482f72de7e1",
-        "fetched_at": "2026-11-15T13:47:32Z"
+        "sha256": "bb31060e5f5256d2fb46e10fa5b3f8245f228d64531f2dac8421b5cafde4a3c5",
+        "fetched_at": "2026-11-24T11:05:47Z"
       },
       "law_data_source": {
         "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260831_508M60000008108?response_format=json&law_full_text_format=json",
-        "sha256": "5282b051d1f06278ded4656e10926e1c2eb12d6d640e31c6d338b66e48b85adf",
-        "fetched_at": "2026-11-15T13:47:33Z"
+        "sha256": "4d4408f7c81adb91c9a9c651f84fb54da1f31aa171eb0d374abc8e6bfc428985",
+        "fetched_at": "2026-11-24T11:05:47Z"
       },
       "supplementary_provisions": "附 則この省令は、公布の日から施行する。",
       "effective_sentences": [
@@ -302,8 +302,8 @@
         "url": "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000008051",
         "kind": "egov_law",
         "status": "fetched",
-        "fetched_at": "2026-11-15T13:47:32Z",
-        "sha256": "d540409d05201b28f7e94a0a50599670301906eecde80ffe4971d482f72de7e1",
+        "fetched_at": "2026-11-24T11:05:47Z",
+        "sha256": "bb31060e5f5256d2fb46e10fa5b3f8245f228d64531f2dac8421b5cafde4a3c5",
         "error_class": null,
         "attempts": 1,
         "evidence_pack": "raw-650e4f27d85387d7"
@@ -313,8 +313,8 @@
         "url": "https://laws.e-gov.go.jp/api/2/law_data/508M60000008051_20260831_508M60000008108?response_format=json&law_full_text_format=json",
         "kind": "egov_law",
         "status": "fetched",
-        "fetched_at": "2026-11-15T13:47:33Z",
-        "sha256": "5282b051d1f06278ded4656e10926e1c2eb12d6d640e31c6d338b66e48b85adf",
+        "fetched_at": "2026-11-24T11:05:47Z",
+        "sha256": "4d4408f7c81adb91c9a9c651f84fb54da1f31aa171eb0d374abc8e6bfc428985",
         "error_class": null,
         "attempts": 1,
         "evidence_pack": "raw-650e4f27d85387d7"
