@@ -1592,65 +1592,6 @@
       "updated_at": "2026-11-15T03:58:43Z",
       "run_id": "43674635104"
     },
-    "telecom-interconnection-cost-model-2026": {
-      "dossier_id": "telecom-interconnection-cost-model-2026",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-da94b18be0f182ed",
-      "related_item_ids": [
-        "raw-da94b18be0f182ed"
-      ],
-      "source_fingerprint": "sha256:8690eca05fbbb8512bdac2de293da826",
-      "pr": 124,
-      "branch": "explainers/20261110-telecom-interconnection-costs",
-      "head_sha": "362cc914e60faa847f243cfe6f14bbd8a37fa801",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-10T01:58:04Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42847431751,
-        "head_sha": "362cc914e60faa847f243cfe6f14bbd8a37fa801",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-10T15:45:02Z",
-        "duration_s": 58
-      },
-      "merged_at": "2026-11-10T15:45:27Z",
-      "publish": {
-        "run_id": 42847683953,
-        "completed_at": "2026-11-10T15:46:51Z"
-      },
-      "live": {
-        "run_id": 42879144165,
-        "completed_at": "2026-11-10T18:50:09Z"
-      },
-      "introduced": {
-        "pr": 124,
-        "drafted_at": "2026-11-10T01:58:04Z",
-        "ci_passed_at": "2026-11-10T15:45:02Z",
-        "merged_at": "2026-11-10T15:45:27Z",
-        "pages_at": "2026-11-10T15:46:51Z",
-        "live_at": "2026-11-10T18:50:09Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-10T01:58:04Z",
-        "CI_PASSED": "2026-11-10T15:45:02Z",
-        "MERGED": "2026-11-10T15:45:27Z",
-        "PAGES_DEPLOYED": "2026-11-10T15:46:51Z",
-        "LIVE_VERIFIED": "2026-11-10T18:50:09Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "telecom-number-identity-verification-2026": {
       "dossier_id": "telecom-number-identity-verification-2026",
       "kind": "new",
