@@ -618,6 +618,37 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:food-consumption-tax-temporary-cut-2026-bill",
+      "kind": "update",
+      "explainer_id": "food-consumption-tax-temporary-cut-2026-bill",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-09",
+      "watch_pages": [
+        "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+        "https://www.shugiin.go.jp/Internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm",
+        "https://www.mof.go.jp/tax_policy/20260915shouhizei.html"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-bde3c2d447cd0b2f",
+        "raw-e99b922033c552b4"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:b87709d126cde2fbe4c2bff325afe213",
+      "first_queued_on": "2026-11-24"
+    },
+    {
       "queue_id": "explainer:gas-safety-shutoff-advanced-operator-2026",
       "kind": "update",
       "explainer_id": "gas-safety-shutoff-advanced-operator-2026",

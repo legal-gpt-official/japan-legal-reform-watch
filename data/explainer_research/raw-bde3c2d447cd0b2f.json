@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
+  "queue_id": "explainer:food-consumption-tax-temporary-cut-2026-bill",
+  "kind": "update",
+  "priority": 20,
+  "first_queued_on": "2026-11-24",
+  "seed_item_id": "raw-bde3c2d447cd0b2f",
+  "related_item_ids": [
+    "raw-bde3c2d447cd0b2f",
+    "raw-e99b922033c552b4"
+  ],
+  "record_count": 2,
+  "source_fingerprint": "sha256:b87709d126cde2fbe4c2bff325afe213",
+  "e_gov_law_api": [],
+  "records": [
+    {
+      "id": "raw-bde3c2d447cd0b2f",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-11-09",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm",
+      "raw_summary": "閣法; 審議状況: 参議院で審議中; 提出回次: 222; 番号: 1",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-e99b922033c552b4",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-10-13",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm",
+      "raw_summary": "閣法; 審議状況: 衆議院で審議中; 提出回次: 222; 番号: 1",
+      "raw_summary_truncated": false
+    }
+  ]
+}
