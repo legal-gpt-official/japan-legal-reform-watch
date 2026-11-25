@@ -188,66 +188,6 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
-    "antibiotic-supply-security-plans-2026-ordinance": {
-      "dossier_id": "antibiotic-supply-security-plans-2026-ordinance",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-b89b90af15734114",
-      "related_item_ids": [
-        "raw-b89b90af15734114",
-        "raw-ebfc02a316ec59ba"
-      ],
-      "source_fingerprint": "sha256:9a1531153e83f08da9b9b604f7745bb9",
-      "pr": 129,
-      "branch": "explainers/20261111-antibiotic-supply-security-order",
-      "head_sha": "8dd7ff1dfa140710d413c72951aa04e8ee059fe6",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-11T08:41:23Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42989427847,
-        "head_sha": "8dd7ff1dfa140710d413c72951aa04e8ee059fe6",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-11T08:45:43Z",
-        "duration_s": 73
-      },
-      "merged_at": "2026-11-11T09:10:49Z",
-      "publish": {
-        "run_id": 42992985440,
-        "completed_at": "2026-11-11T09:12:11Z"
-      },
-      "live": {
-        "run_id": 42993184303,
-        "completed_at": "2026-11-11T09:12:43Z"
-      },
-      "introduced": {
-        "pr": 129,
-        "drafted_at": "2026-11-11T08:41:23Z",
-        "ci_passed_at": "2026-11-11T08:45:43Z",
-        "merged_at": "2026-11-11T09:10:49Z",
-        "pages_at": "2026-11-11T09:12:11Z",
-        "live_at": "2026-11-11T09:12:43Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-11T08:41:23Z",
-        "CI_PASSED": "2026-11-11T08:45:43Z",
-        "MERGED": "2026-11-11T09:10:49Z",
-        "PAGES_DEPLOYED": "2026-11-11T09:12:11Z",
-        "LIVE_VERIFIED": "2026-11-11T09:12:43Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "building-pfas-drinking-water-tests-2026-draft": {
       "dossier_id": "building-pfas-drinking-water-tests-2026-draft",
       "kind": "new",
@@ -432,66 +372,6 @@
       },
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
-    },
-    "eia-repowering-thresholds-2026-order": {
-      "dossier_id": "eia-repowering-thresholds-2026-order",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-9fd50fb384946b39",
-      "related_item_ids": [
-        "raw-9fd50fb384946b39",
-        "raw-f0a92074502e8bab"
-      ],
-      "source_fingerprint": "sha256:9c2a6022c409f7f375613cab06768911",
-      "pr": 127,
-      "branch": "explainers/20261111-eia-repowering-order-327",
-      "head_sha": "e26d03ada28477cacda680046754092562869953",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-11T08:30:49Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42987821987,
-        "head_sha": "e26d03ada28477cacda680046754092562869953",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-11T08:33:38Z",
-        "duration_s": 81
-      },
-      "merged_at": "2026-11-11T08:33:53Z",
-      "publish": {
-        "run_id": 42988038578,
-        "completed_at": "2026-11-11T08:35:17Z"
-      },
-      "live": {
-        "run_id": 42988234312,
-        "completed_at": "2026-11-11T08:36:05Z"
-      },
-      "introduced": {
-        "pr": 127,
-        "drafted_at": "2026-11-11T08:30:49Z",
-        "ci_passed_at": "2026-11-11T08:33:38Z",
-        "merged_at": "2026-11-11T08:33:53Z",
-        "pages_at": "2026-11-11T08:35:17Z",
-        "live_at": "2026-11-11T08:36:05Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-11T08:30:49Z",
-        "CI_PASSED": "2026-11-11T08:33:38Z",
-        "MERGED": "2026-11-11T08:33:53Z",
-        "PAGES_DEPLOYED": "2026-11-11T08:35:17Z",
-        "LIVE_VERIFIED": "2026-11-11T08:36:05Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
     },
     "etf-in-kind-creation-tender-offer-threshold-2026": {
       "dossier_id": "etf-in-kind-creation-tender-offer-threshold-2026",
@@ -818,67 +698,6 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
-    "inhabitant-tax-inflation-relief-2026-bill": {
-      "dossier_id": "inhabitant-tax-inflation-relief-2026-bill",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-5daf6c3c7e93d898",
-      "related_item_ids": [
-        "raw-5daf6c3c7e93d898",
-        "raw-767cc2bab97288a9",
-        "raw-fb57afab75ff2e47"
-      ],
-      "source_fingerprint": "sha256:6739b87be5f6affcb67981d9b5cefbbc",
-      "pr": 125,
-      "branch": "explainers/2026-11-11-inhabitant-tax-bill",
-      "head_sha": "77fc92fcd737dde53135da0b380dd33c649d44d0",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-11T02:57:21Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42985562185,
-        "head_sha": "77fc92fcd737dde53135da0b380dd33c649d44d0",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-11T08:16:04Z",
-        "duration_s": 53
-      },
-      "merged_at": "2026-11-11T08:16:16Z",
-      "publish": {
-        "run_id": 42985714214,
-        "completed_at": "2026-11-11T08:17:39Z"
-      },
-      "live": {
-        "run_id": 42985888705,
-        "completed_at": "2026-11-11T08:18:11Z"
-      },
-      "introduced": {
-        "pr": 125,
-        "drafted_at": "2026-11-11T02:57:21Z",
-        "ci_passed_at": "2026-11-11T08:16:04Z",
-        "merged_at": "2026-11-11T08:16:16Z",
-        "pages_at": "2026-11-11T08:17:39Z",
-        "live_at": "2026-11-11T08:18:11Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-11T02:57:21Z",
-        "CI_PASSED": "2026-11-11T08:16:04Z",
-        "MERGED": "2026-11-11T08:16:16Z",
-        "PAGES_DEPLOYED": "2026-11-11T08:17:39Z",
-        "LIVE_VERIFIED": "2026-11-11T08:18:11Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "jbic-economic-security-overseas-investment-2026": {
       "dossier_id": "jbic-economic-security-overseas-investment-2026",
       "kind": "new",
@@ -944,66 +763,6 @@
       },
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
-    },
-    "lithium-battery-waste-fire-standards-2026": {
-      "dossier_id": "lithium-battery-waste-fire-standards-2026",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-4affbbedc8612bb8",
-      "related_item_ids": [
-        "raw-4affbbedc8612bb8",
-        "raw-fb3733c298e4f4aa"
-      ],
-      "source_fingerprint": "sha256:8361178c8ea52bdeac7e257201634d52",
-      "pr": 126,
-      "branch": "explainers/20261111-lithium-waste-safety",
-      "head_sha": "e60f4c32f325f0df0dc785c2c34b6a8e2575a76a",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-11T08:20:57Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42986648415,
-        "head_sha": "e60f4c32f325f0df0dc785c2c34b6a8e2575a76a",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-11T08:24:45Z",
-        "duration_s": 77
-      },
-      "merged_at": "2026-11-11T08:25:04Z",
-      "publish": {
-        "run_id": 42986868086,
-        "completed_at": "2026-11-11T08:26:25Z"
-      },
-      "live": {
-        "run_id": 42987047633,
-        "completed_at": "2026-11-11T08:27:10Z"
-      },
-      "introduced": {
-        "pr": 102,
-        "drafted_at": "2026-11-02T01:24:46Z",
-        "ci_passed_at": "2026-11-02T01:25:55Z",
-        "merged_at": "2026-11-02T01:26:02Z",
-        "pages_at": "2026-11-02T01:27:30Z",
-        "live_at": "2026-11-09T06:49:42Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-11T08:20:57Z",
-        "CI_PASSED": "2026-11-11T08:24:45Z",
-        "MERGED": "2026-11-11T08:25:04Z",
-        "PAGES_DEPLOYED": "2026-11-11T08:26:25Z",
-        "LIVE_VERIFIED": "2026-11-11T08:27:10Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
     },
     "long-chain-pfas-firefighting-foam-2026-draft": {
       "dossier_id": "long-chain-pfas-firefighting-foam-2026-draft",
@@ -1205,65 +964,6 @@
       "next_action": "ON HOLD (BLOCKED): Promulgated operative text of MHLW Ordinance 121, amended provisions, precise eligibility and transitional measures have not been independently compared. Policy analysis is draft only; publication prohibited. Skip until its official records change; work on another candidate.",
       "updated_at": "2026-11-15T05:58:50Z",
       "run_id": "43683307930"
-    },
-    "nisa-government-bond-exemption-2026-bill": {
-      "dossier_id": "nisa-government-bond-exemption-2026-bill",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-6f6ba33df6f6f458",
-      "related_item_ids": [
-        "raw-6f6ba33df6f6f458"
-      ],
-      "source_fingerprint": "sha256:e748b316e91c53faf96dd744d0e7602c",
-      "pr": 128,
-      "branch": "explainers/20261111-nisa-government-bond-bill",
-      "head_sha": "9153d8505be0ebbce957b0116c86a2a2cf49c2d4",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [],
-      "pr_created_at": "2026-11-11T08:36:29Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 42988395383,
-        "head_sha": "9153d8505be0ebbce957b0116c86a2a2cf49c2d4",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-11T08:37:29Z",
-        "duration_s": 56
-      },
-      "merged_at": "2026-11-11T08:37:48Z",
-      "publish": {
-        "run_id": 42988565222,
-        "completed_at": "2026-11-11T08:39:27Z"
-      },
-      "live": {
-        "run_id": 42988772616,
-        "completed_at": "2026-11-11T08:40:00Z"
-      },
-      "introduced": {
-        "pr": 128,
-        "drafted_at": "2026-11-11T08:36:29Z",
-        "ci_passed_at": "2026-11-11T08:37:29Z",
-        "merged_at": "2026-11-11T08:37:48Z",
-        "pages_at": "2026-11-11T08:39:27Z",
-        "live_at": "2026-11-11T08:40:00Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-11T08:36:29Z",
-        "CI_PASSED": "2026-11-11T08:37:29Z",
-        "MERGED": "2026-11-11T08:37:48Z",
-        "PAGES_DEPLOYED": "2026-11-11T08:39:27Z",
-        "LIVE_VERIFIED": "2026-11-11T08:40:00Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
     },
     "noto-disaster-employment-secondment-2026": {
       "dossier_id": "noto-disaster-employment-secondment-2026",
