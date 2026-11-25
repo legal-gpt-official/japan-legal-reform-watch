@@ -93,6 +93,40 @@
       "first_queued_on": "2026-11-04"
     },
     {
+      "queue_id": "explainer:jogmec-2026-october-bill",
+      "kind": "update",
+      "explainer_id": "jogmec-2026-october-bill",
+      "explainer_status": "published",
+      "priority": 60,
+      "reasons": [
+        "official_records_changed",
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-07",
+      "watch_pages": [
+        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm",
+        "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367",
+        "https://www.meti.go.jp/intro/law/index.html"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-5a08ed933c98e331",
+        "raw-d3ccd54b53c6b9d3"
+      ],
+      "new_related_item_ids": [
+        "raw-d3ccd54b53c6b9d3"
+      ],
+      "current_fingerprint": "sha256:aae1be3f9f60925a45f12ed107e537b3",
+      "first_queued_on": "2026-11-22"
+    },
+    {
       "queue_id": "explainer:working-tax-social-insurance-relief-2026-bill",
       "kind": "update",
       "explainer_id": "working-tax-social-insurance-relief-2026-bill",
@@ -126,6 +160,37 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "explainer:dc-pension-digital-procedures-2026",
+      "kind": "update",
+      "explainer_id": "dc-pension-digital-procedures-2026",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-01",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/kyoshutsu/index.html",
+        "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-0f915389da50170d"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:1c1ebe8d8ef064f921408b20a1a20e0d",
+      "first_queued_on": "2026-11-16"
+    },
+    {
       "queue_id": "explainer:export-control-2026-october-draft",
       "kind": "update",
       "explainer_id": "export-control-2026-october-draft",
@@ -157,6 +222,36 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:93032ac86ced1d78646a35b716dc7329",
       "first_queued_on": "2026-11-10"
+    },
+    {
+      "queue_id": "explainer:national-health-insurance-child-levy-2026-draft",
+      "kind": "update",
+      "explainer_id": "national-health-insurance-child-levy-2026-draft",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-02",
+      "watch_pages": [
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/koukikourei/index_00002.html",
+        "https://www.mhlw.go.jp/stf/houdou/"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-0a26803b7f7d2536"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:01d19d0fcfe7e9facf254d10275e5a75",
+      "first_queued_on": "2026-11-17"
     },
     {
       "queue_id": "explainer:osh-chemical-label-sds-2026-draft",
@@ -466,36 +561,6 @@
       "first_queued_on": "2026-11-21"
     },
     {
-      "queue_id": "explainer:dc-pension-digital-procedures-2026",
-      "kind": "update",
-      "explainer_id": "dc-pension-digital-procedures-2026",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-11-01",
-      "watch_pages": [
-        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/kyoshutsu/index.html",
-        "https://www.mhlw.go.jp/hourei/new/hourei/newindex.html",
-        "https://public-comment.e-gov.go.jp/pcm/list"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-0f915389da50170d"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:1c1ebe8d8ef064f921408b20a1a20e0d",
-      "first_queued_on": "2026-11-16"
-    },
-    {
       "queue_id": "explainer:economic-security-jbic-2026-amendment",
       "kind": "update",
       "explainer_id": "economic-security-jbic-2026-amendment",
@@ -766,36 +831,6 @@
       "first_queued_on": "2026-11-15"
     },
     {
-      "queue_id": "explainer:jogmec-2026-october-bill",
-      "kind": "update",
-      "explainer_id": "jogmec-2026-october-bill",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-11-07",
-      "watch_pages": [
-        "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE351E.htm",
-        "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367",
-        "https://www.meti.go.jp/intro/law/index.html"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-5a08ed933c98e331"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:8daab1f64ce25579b92535236157d685",
-      "first_queued_on": "2026-11-22"
-    },
-    {
       "queue_id": "explainer:long-chain-pfas-firefighting-foam-2026-draft",
       "kind": "update",
       "explainer_id": "long-chain-pfas-firefighting-foam-2026-draft",
@@ -822,35 +857,6 @@
       ],
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:8740b38dc30e9101b652dc0c2009f901",
-      "first_queued_on": "2026-11-17"
-    },
-    {
-      "queue_id": "explainer:national-health-insurance-child-levy-2026-draft",
-      "kind": "update",
-      "explainer_id": "national-health-insurance-child-levy-2026-draft",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-11-02",
-      "watch_pages": [
-        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/koukikourei/index_00002.html",
-        "https://www.mhlw.go.jp/stf/houdou/"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-0a26803b7f7d2536"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:01d19d0fcfe7e9facf254d10275e5a75",
       "first_queued_on": "2026-11-17"
     },
     {
@@ -1032,6 +1038,35 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:a290f62d4c81f218c1d134a1c139131e",
       "first_queued_on": "2026-11-05"
+    },
+    {
+      "queue_id": "explainer:telecom-interconnection-cost-model-2026",
+      "kind": "update",
+      "explainer_id": "telecom-interconnection-cost-model-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-10",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/list",
+        "https://www.soumu.go.jp/menu_news/s-news/index.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-da94b18be0f182ed"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:8690eca05fbbb8512bdac2de293da826",
+      "first_queued_on": "2026-11-25"
     },
     {
       "queue_id": "explainer:telecom-number-identity-verification-2026",
