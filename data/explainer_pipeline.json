@@ -1381,22 +1381,23 @@
         "failed_runs": 0,
         "run_id": 45770207891,
         "head_sha": "aed0762040039210f0148178c22e4e5fec539b6e",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-26T06:45:21Z",
+        "duration_s": 94
       },
-      "stage": "CI_RUNNING",
-      "last_success_stage": "CI_RUNNING",
+      "stage": "CI_PASSED",
+      "last_success_stage": "CI_PASSED",
       "stage_history": {
         "DRAFTED": "2026-11-13T03:57:41Z",
         "RESEARCH_REQUIRED": "2026-11-13T03:57:41Z",
         "SOURCES_VERIFIED": "2026-11-26T06:44:54Z",
         "EN_READY": "2026-11-26T06:44:54Z",
         "JA_ZH_READY": "2026-11-26T06:44:54Z",
-        "STAMPED_AND_SYNCED": "2026-11-26T06:44:54Z"
+        "STAMPED_AND_SYNCED": "2026-11-26T06:44:54Z",
+        "CI_PASSED": "2026-11-26T06:45:21Z"
       },
       "sources": {
         "fetched": 5,
@@ -1409,9 +1410,9 @@
         "The operative texts of METI Notices Nos. 96, 97 and 98 of 2026 were not separately re-inspected article by article in this slot. The e-Gov results publication of 31 July 2026 records their promulgation, two submitted comments, no comment-driven changes and only non-substantive technical revisions to the five instruments; the explainer states the designation of the Japan-United States memorandum only as what the consultation proposed and METI designed for, and flags the point in its uncertainties."
       ],
       "blockers": [],
-      "next_action": "Wait for Pull request checks run 45770207891 on aed076204003.",
-      "updated_at": "2026-11-26T06:44:54Z",
-      "run_id": "45770231059"
+      "next_action": "Finish the substantive legal and three-language review against the official sources; then mark the PR ready and add legal-content-verified.",
+      "updated_at": "2026-11-26T06:46:19Z",
+      "run_id": "45770399512"
     },
     "ventilator-economic-security-supply-plan-2026": {
       "dossier_id": "ventilator-economic-security-supply-plan-2026",
@@ -1736,7 +1737,7 @@
     "2026-11-26": {
       "new": {
         "drafted": 0,
-        "ci_passed": 0,
+        "ci_passed": 1,
         "merged": 0,
         "pages_deployed": 0,
         "live_verified": 0
