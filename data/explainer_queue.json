@@ -598,6 +598,37 @@
       "first_queued_on": "2026-11-11"
     },
     {
+      "queue_id": "explainer:eia-repowering-thresholds-2026-order",
+      "kind": "update",
+      "explainer_id": "eia-repowering-thresholds-2026-order",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-11",
+      "watch_pages": [
+        "https://www.env.go.jp/press/",
+        "https://laws.e-gov.go.jp/law/409CO0000000346/20270401_508CO0000000327",
+        "https://public-comment.e-gov.go.jp/pcm/list"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-9fd50fb384946b39",
+        "raw-f0a92074502e8bab"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:9c2a6022c409f7f375613cab06768911",
+      "first_queued_on": "2026-11-26"
+    },
+    {
       "queue_id": "explainer:election-online-ai-2026-amendment",
       "kind": "update",
       "explainer_id": "election-online-ai-2026-amendment",
@@ -829,6 +860,37 @@
       "new_related_item_ids": [],
       "current_fingerprint": "sha256:d6838128b2d749744e0fb9196a6f6819",
       "first_queued_on": "2026-11-15"
+    },
+    {
+      "queue_id": "explainer:lithium-battery-waste-fire-standards-2026",
+      "kind": "update",
+      "explainer_id": "lithium-battery-waste-fire-standards-2026",
+      "explainer_status": "published",
+      "priority": 20,
+      "reasons": [
+        "scheduled_recheck"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-11",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=195260077",
+        "https://public-comment.e-gov.go.jp/pcm/detail?CLASSNAME=PCMMSTDETAIL&Mode=0&id=195260074",
+        "https://www.env.go.jp/press/"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-4affbbedc8612bb8",
+        "raw-fb3733c298e4f4aa"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:8361178c8ea52bdeac7e257201634d52",
+      "first_queued_on": "2026-11-26"
     },
     {
       "queue_id": "explainer:long-chain-pfas-firefighting-foam-2026-draft",
@@ -1238,6 +1300,27 @@
       "first_queued_on": "2026-11-16"
     },
     {
+      "queue_id": "bill:raw-68b09080402081b7",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 20,
+      "reasons": [
+        "diet_bill"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-68b09080402081b7"
+      ],
+      "areas": [
+        "Energy / Environment"
+      ],
+      "title_ja": "フュージョンエネルギーの研究開発及び利用の推進に関する法律案",
+      "stage": "Bill Submitted",
+      "newest_record_first_seen": "2026-11-26",
+      "suggested_seed_item_id": "raw-68b09080402081b7",
+      "first_queued_on": "2026-11-26"
+    },
+    {
       "queue_id": "draft:raw-0549bdaf78bfe729",
       "kind": "new",
       "explainer_id": null,
@@ -1617,30 +1700,6 @@
       "newest_record_first_seen": "2026-10-07",
       "suggested_seed_item_id": "raw-a774a90138a1dcf2",
       "first_queued_on": "2026-10-31"
-    },
-    {
-      "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft",
-        "instrument_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 2,
-      "item_ids": [
-        "raw-15b5c5a72bfae0a1",
-        "raw-d38230df21e2f625"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-19",
-      "suggested_seed_item_id": "raw-15b5c5a72bfae0a1",
-      "first_queued_on": "2026-11-12"
     },
     {
       "queue_id": "instrument:令和八年政令第三百十号",
