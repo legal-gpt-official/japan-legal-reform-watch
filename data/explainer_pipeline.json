@@ -71,69 +71,6 @@
       "updated_at": "2026-11-20T03:59:49Z",
       "run_id": "44671279107"
     },
-    "agricultural-modernisation-loan-order-300-2026": {
-      "dossier_id": "agricultural-modernisation-loan-order-300-2026",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-357b583af33ff561",
-      "related_item_ids": [
-        "raw-357b583af33ff561",
-        "raw-609d9ceecca25409",
-        "raw-d4f75cfa0cac9439"
-      ],
-      "source_fingerprint": "sha256:0ec5fd9751fab3da202212c94bf1d4a6",
-      "pr": 146,
-      "branch": "explainer/agri-finance-order-300-disaster-clause-20261112",
-      "head_sha": "81d8a233b1ca90956f3099f74a0da621095f5bb2",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [
-        "legal-content-verified"
-      ],
-      "pr_created_at": "2026-11-12T13:57:12Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 43232244786,
-        "head_sha": "81d8a233b1ca90956f3099f74a0da621095f5bb2",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-12T13:58:45Z",
-        "duration_s": 89
-      },
-      "merged_at": "2026-11-12T13:58:58Z",
-      "publish": {
-        "run_id": 43232523717,
-        "completed_at": "2026-11-12T14:01:13Z"
-      },
-      "live": {
-        "run_id": 43286983316,
-        "completed_at": "2026-11-12T19:08:13Z"
-      },
-      "introduced": {
-        "pr": 144,
-        "drafted_at": "2026-11-12T13:37:21Z",
-        "ci_passed_at": "2026-11-12T13:42:35Z",
-        "merged_at": "2026-11-12T13:42:44Z",
-        "pages_at": "2026-11-12T13:44:12Z",
-        "live_at": "2026-11-12T13:57:40Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-12T13:57:12Z",
-        "CI_PASSED": "2026-11-12T13:58:45Z",
-        "MERGED": "2026-11-12T13:58:58Z",
-        "PAGES_DEPLOYED": "2026-11-12T14:01:13Z",
-        "LIVE_VERIFIED": "2026-11-12T19:08:13Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "antarctic-environmental-emergencies-2026": {
       "dossier_id": "antarctic-environmental-emergencies-2026",
       "kind": "update",
@@ -462,8 +399,8 @@
       ],
       "source_fingerprint": "sha256:1d0fe5b2351996314676b305afa5f501",
       "evidence": {
-        "status": "partial",
-        "digest": "sha256:77921fe294a4a867eefee39062fed9e8",
+        "status": "ready",
+        "digest": "sha256:064d14598294228a87fa61959ed85c9d",
         "pack": "data/explainer_evidence/raw-7bf14a11616c78fd.json"
       },
       "pr": 166,
@@ -1765,7 +1702,7 @@
       "draft_documents": true
     },
     "raw-2d71845be9e54563": {
-      "status": "partial",
+      "status": "ready",
       "instruments": 1,
       "draft_documents": true
     },
@@ -1800,7 +1737,7 @@
       "draft_documents": false
     },
     "raw-7bf14a11616c78fd": {
-      "status": "partial",
+      "status": "ready",
       "instruments": 4,
       "draft_documents": true
     },
