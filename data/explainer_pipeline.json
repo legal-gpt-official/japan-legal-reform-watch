@@ -188,67 +188,6 @@
       "updated_at": "2026-11-13T22:13:16Z",
       "run_id": "43517249088"
     },
-    "building-pfas-drinking-water-tests-2026-draft": {
-      "dossier_id": "building-pfas-drinking-water-tests-2026-draft",
-      "kind": "new",
-      "queue_id": null,
-      "seed_item_id": "raw-2632b152e1b19b63",
-      "related_item_ids": [
-        "raw-2632b152e1b19b63"
-      ],
-      "source_fingerprint": "sha256:33b87eed54837a79337a2bd80521da12",
-      "pr": 140,
-      "branch": "explainer/clarify-building-pfas-water-source-scope-20261112",
-      "head_sha": "96f4e6399878673defa9c3413fad596dc6f0893d",
-      "pr_state": "merged",
-      "pr_draft": false,
-      "labels": [
-        "legal-content-verified"
-      ],
-      "pr_created_at": "2026-11-12T12:38:30Z",
-      "automerge_eligible_files": true,
-      "ci": {
-        "failed_runs": 0,
-        "run_id": 43219771593,
-        "head_sha": "96f4e6399878673defa9c3413fad596dc6f0893d",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
-        "failed_steps": [],
-        "completed_at": "2026-11-12T12:40:00Z",
-        "duration_s": 85
-      },
-      "merged_at": "2026-11-12T12:40:11Z",
-      "publish": {
-        "run_id": 43221265043,
-        "completed_at": "2026-11-12T12:49:41Z"
-      },
-      "live": {
-        "run_id": 43221490164,
-        "completed_at": "2026-11-12T12:50:17Z"
-      },
-      "introduced": {
-        "pr": 131,
-        "drafted_at": "2026-11-11T09:15:59Z",
-        "ci_passed_at": "2026-11-11T09:17:22Z",
-        "merged_at": "2026-11-11T09:17:43Z",
-        "pages_at": "2026-11-11T09:19:14Z",
-        "live_at": "2026-11-11T09:20:05Z"
-      },
-      "stage": "LIVE_VERIFIED",
-      "last_success_stage": "LIVE_VERIFIED",
-      "stage_history": {
-        "DRAFTED": "2026-11-12T12:38:30Z",
-        "CI_PASSED": "2026-11-12T12:40:00Z",
-        "MERGED": "2026-11-12T12:40:11Z",
-        "PAGES_DEPLOYED": "2026-11-12T12:49:41Z",
-        "LIVE_VERIFIED": "2026-11-12T12:50:17Z"
-      },
-      "blockers": [],
-      "next_action": "Done (LIVE_VERIFIED).",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
-    },
     "chemical-trade-secret-record-custodian-2026": {
       "dossier_id": "chemical-trade-secret-record-custodian-2026",
       "kind": "new",
@@ -1629,16 +1568,6 @@
     }
   },
   "daily": {
-    "2026-11-13": {
-      "new": {
-        "drafted": 1,
-        "ci_passed": 0,
-        "merged": 0,
-        "pages_deployed": 0,
-        "live_verified": 0
-      },
-      "updates_merged": 0
-    },
     "2026-11-14": {
       "new": {
         "drafted": 1,
@@ -1766,6 +1695,16 @@
         "merged": 1,
         "pages_deployed": 1,
         "live_verified": 1
+      },
+      "updates_merged": 0
+    },
+    "2026-11-27": {
+      "new": {
+        "drafted": 0,
+        "ci_passed": 0,
+        "merged": 0,
+        "pages_deployed": 0,
+        "live_verified": 0
       },
       "updates_merged": 0
     }
