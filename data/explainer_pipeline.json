@@ -523,8 +523,8 @@
       ],
       "source_fingerprint": "sha256:1d0fe5b2351996314676b305afa5f501",
       "evidence": {
-        "status": "ready",
-        "digest": "sha256:e7c167f67a4d60daf12766781b5a9ff1",
+        "status": "partial",
+        "digest": "sha256:77921fe294a4a867eefee39062fed9e8",
         "pack": "data/explainer_evidence/raw-7bf14a11616c78fd.json"
       },
       "pr": 166,
@@ -1788,8 +1788,8 @@
       "draft_documents": true
     },
     "raw-2d71845be9e54563": {
-      "status": "draft_only",
-      "instruments": 0,
+      "status": "partial",
+      "instruments": 1,
       "draft_documents": true
     },
     "raw-2f0cae05538055e0": {
@@ -1817,8 +1817,13 @@
       "instruments": 1,
       "draft_documents": true
     },
+    "raw-68b09080402081b7": {
+      "status": "unresolved",
+      "instruments": 0,
+      "draft_documents": false
+    },
     "raw-7bf14a11616c78fd": {
-      "status": "ready",
+      "status": "partial",
       "instruments": 4,
       "draft_documents": true
     },
