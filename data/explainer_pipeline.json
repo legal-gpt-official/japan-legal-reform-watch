@@ -1357,7 +1357,7 @@
     "trade-insurance-special-underwriting-2026": {
       "dossier_id": "trade-insurance-special-underwriting-2026",
       "kind": "new",
-      "queue_id": null,
+      "queue_id": "instrument:令和八年経済産業省令第六十四号",
       "seed_item_id": "raw-1087de7d2a09a138",
       "related_item_ids": [
         "raw-1087de7d2a09a138",
@@ -1371,7 +1371,7 @@
       },
       "pr": 149,
       "branch": "explainer/trade-insurance-special-underwriting-2026",
-      "head_sha": "de276ce88ce954ae2fd58715621a7a4ea557323c",
+      "head_sha": "aed0762040039210f0148178c22e4e5fec539b6e",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
@@ -1379,27 +1379,39 @@
       "automerge_eligible_files": true,
       "ci": {
         "failed_runs": 0,
-        "run_id": 43376276613,
-        "head_sha": "de276ce88ce954ae2fd58715621a7a4ea557323c",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
+        "run_id": 45770207891,
+        "head_sha": "aed0762040039210f0148178c22e4e5fec539b6e",
+        "status": "in_progress",
+        "conclusion": null,
+        "tests_ok": false,
         "failed_steps": [],
-        "completed_at": "2026-11-13T06:06:40Z",
-        "duration_s": 70
+        "completed_at": null,
+        "duration_s": null
       },
-      "stage": "RESEARCH_REQUIRED",
-      "last_success_stage": "RESEARCH_REQUIRED",
+      "stage": "CI_RUNNING",
+      "last_success_stage": "CI_RUNNING",
       "stage_history": {
         "DRAFTED": "2026-11-13T03:57:41Z",
-        "RESEARCH_REQUIRED": "2026-11-13T03:57:41Z"
+        "RESEARCH_REQUIRED": "2026-11-13T03:57:41Z",
+        "SOURCES_VERIFIED": "2026-11-26T06:44:54Z",
+        "EN_READY": "2026-11-26T06:44:54Z",
+        "JA_ZH_READY": "2026-11-26T06:44:54Z",
+        "STAMPED_AND_SYNCED": "2026-11-26T06:44:54Z"
       },
-      "blockers": [
-        "no case file: python scripts/explainer_state.py init trade-insurance-special-underwriting-2026 --seed raw-1087de7d2a09a138, then confirm the critical facts from official sources"
+      "sources": {
+        "fetched": 5,
+        "failed": 0,
+        "not_fetched": 0,
+        "failed_by_error": {}
+      },
+      "unconfirmed": [],
+      "unresolved": [
+        "The operative texts of METI Notices Nos. 96, 97 and 98 of 2026 were not separately re-inspected article by article in this slot. The e-Gov results publication of 31 July 2026 records their promulgation, two submitted comments, no comment-driven changes and only non-substantive technical revisions to the five instruments; the explainer states the designation of the Japan-United States memorandum only as what the consultation proposed and METI designed for, and flags the point in its uncertainties."
       ],
-      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch trade-insurance-special-underwriting-2026). First: no case file: python scripts/explainer_state.py init trade-insurance-special-underwriting-2026 --seed raw-1087de7d2a09a138, then confirm the critical facts from official sources",
-      "updated_at": "2026-11-13T21:54:15Z",
-      "run_id": "43514621875"
+      "blockers": [],
+      "next_action": "Wait for Pull request checks run 45770207891 on aed076204003.",
+      "updated_at": "2026-11-26T06:44:54Z",
+      "run_id": "45770231059"
     },
     "ventilator-economic-security-supply-plan-2026": {
       "dossier_id": "ventilator-economic-security-supply-plan-2026",
