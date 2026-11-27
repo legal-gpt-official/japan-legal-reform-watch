@@ -1,4 +1,5 @@
 name: Publish reform explainer pages
+run-name: Publish evidence v2
 
 # Rebuild static pages promptly after a validated explainer PR is merged.
 # No AI API calls, Stripe/Resend secrets, raw-data fetches or translations.
@@ -33,6 +34,7 @@ permissions:
 concurrency:
   group: japan-legal-reform-data-writer
   cancel-in-progress: false
+  queue: max
 
 jobs:
   publish:

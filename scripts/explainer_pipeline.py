@@ -204,9 +204,13 @@ def ci_facts(pr: Mapping[str, Any], ci_runs: Sequence[Mapping[str, Any]]) -> dic
 def first_success_after(runs: Sequence[Mapping[str, Any]], after: datetime | None) -> Mapping[str, Any] | None:
     if after is None:
         return None
+    def began(r):
+        key = ("checkout_started_at" if str(r.get("display_title") or "").startswith("Publish evidence v2")
+               else "created_at")
+        return _ts(r.get(key)) or datetime.min.replace(tzinfo=timezone.utc)
     ok = [r for r in runs if r.get("status") == "completed" and r.get("conclusion") == "success"
-          and (_ts(r.get("created_at")) or datetime.min.replace(tzinfo=timezone.utc)) >= after]
-    ok.sort(key=lambda r: (str(r.get("created_at")), int(r.get("id") or 0)))
+          and began(r) >= after]
+    ok.sort(key=lambda r: (began(r), int(r.get("id") or 0)))
     return ok[0] if ok else None
 
 
@@ -323,8 +327,8 @@ def reconcile(
                 continue  # v2 reports are validated and attached by the collector
             if str(run.get("id")) == str(live_report["run_id"]) and isinstance(live_report.get("dossiers_verified"), list):
                 run["dossiers"] = list(live_report["dossiers_verified"])
-    publish_busy = any(r.get("status") in ("queued", "in_progress", "waiting", "requested") for r in publish_runs)
-    live_busy = any(r.get("status") in ("queued", "in_progress", "waiting", "requested") for r in live_runs)
+    publish_busy = any(r.get("status") in ("queued", "pending", "in_progress", "waiting", "requested") for r in publish_runs)
+    live_busy = any(r.get("status") in ("queued", "pending", "in_progress", "waiting", "requested") for r in live_runs)
 
     cycles, introduced = _cycles(snapshot.get("pulls") or [])
     dossiers: dict[str, Any] = {}

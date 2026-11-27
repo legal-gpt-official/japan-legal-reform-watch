@@ -136,12 +136,33 @@ jobs:
               const raw = [...new Set(((i.title || '') + ' ' + (i.body || '')).match(/raw-[0-9a-f]{16}/g) || [])];
               if (raw.length) issues.push({number: i.number, raw_ids: raw});
             }
+            // The new publisher may be queued BEFORE a later merge. Use the
+            // actual successful checkout step's start, not dispatch time, to
+            // establish that it could include the merge. Missing facts fail closed.
+            const publish = [];
+            for (const r of await runs('publish-explainer-pages.yml')) {
+              const s = slim(r);
+              if (r.status === 'completed' && r.conclusion === 'success' &&
+                  String(r.display_title || '').startsWith('Publish evidence v2')) {
+                try {
+                  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun,
+                    {owner, repo, run_id:r.id, filter:'latest', per_page:100});
+                  const job = jobs.find(j => j.name === 'publish' && j.conclusion === 'success');
+                  const checkout = (job?.steps || []).find(st =>
+                    st.name === 'Check out repository' && st.conclusion === 'success');
+                  if (checkout?.started_at) s.checkout_started_at = checkout.started_at;
+                } catch (e) {
+                  core.warning('Could not read publisher checkout evidence for ' + r.id);
+                }
+              }
+              publish.push(s);
+            }
             const snapshot = {
               collected_at: new Date().toISOString(),
               issues,
               pulls,
               ci_runs: ci,
-              publish_runs: (await runs('publish-explainer-pages.yml')).map(slim),
+              publish_runs: publish,
               live_runs: (await runs('verify-live-explainers.yml')).map(slim),
             };
             fs.writeFileSync('snapshot.json', JSON.stringify(snapshot));

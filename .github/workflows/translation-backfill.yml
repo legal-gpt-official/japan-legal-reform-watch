@@ -33,14 +33,18 @@ permissions:
 concurrency:
   group: japan-legal-reform-data-writer
   cancel-in-progress: false
+  queue: max
 
 jobs:
   backfill:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v6

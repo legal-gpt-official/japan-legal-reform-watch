@@ -68,6 +68,8 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const head = "1111111111111111111111111111111111111111";
           let ciHead = head;
           let failPublish = false;
+          let pending = [];
+          let lookupFails = false;
           let revokeBeforeMerge = false;
           let ciConclusion = "success";
           let changedFiles = [{filename:"data/explainers/mock.json"}];
@@ -85,6 +87,7 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
               },
               actions:{
                 listWorkflowRunsForRepo:()=>{},listJobsForWorkflowRun:()=>{},
+                listWorkflowRuns:async()=>{if(lookupFails)throw Error("lookup failed");return {data:{workflow_runs:pending}};},
                 createWorkflowDispatch:async(args)=>{dispatches.push(args); if(failPublish && args.workflow_id==="publish-explainer-pages.yml")throw Error("publish dispatch failed");}
               }
             },
@@ -111,6 +114,21 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           try { await run(); } catch(e) { failed=true; }
           if(!failed || calls.length!==1 || dispatches.length!==2 || dispatches[1].workflow_id!=="explainer-pipeline.yml")throw Error("Failed Publish dispatch must still trigger ledger recovery");
           failPublish=false;
+          dispatches.length=0;
+          calls.length=0;
+          pending=[{status:"pending",head_branch:"main",path:".github/workflows/publish-explainer-pages.yml"}];
+          await run();
+          if(calls.length!==1||dispatches.length!==1||dispatches[0].workflow_id!=="explainer-pipeline.yml")
+            throw Error("Pending publisher should coalesce while preserving ledger");
+          dispatches.length=0; calls.length=0;
+          pending[0].status="in_progress";
+          await run();
+          if(dispatches.length!==2)throw Error("Active publisher may have checked out before merge");
+          dispatches.length=0; calls.length=0;
+          lookupFails=true;
+          await run();
+          if(dispatches.length!==2)throw Error("Uncertain publisher lookup must not suppress dispatch");
+          lookupFails=false; pending=[];
           dispatches.length=0;
           calls.length=0;
           pr.labels=[];
