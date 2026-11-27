@@ -398,11 +398,6 @@
         "raw-7bf14a11616c78fd"
       ],
       "source_fingerprint": "sha256:1d0fe5b2351996314676b305afa5f501",
-      "evidence": {
-        "status": "ready",
-        "digest": "sha256:064d14598294228a87fa61959ed85c9d",
-        "pack": "data/explainer_evidence/raw-7bf14a11616c78fd.json"
-      },
       "pr": 166,
       "branch": "explainer/raw-7bf14a11616c78fd",
       "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
@@ -1267,11 +1262,6 @@
         "raw-7b7aa9727a6ff549"
       ],
       "source_fingerprint": "sha256:936ef11d24c8507130a8fa5e41cdd686",
-      "evidence": {
-        "status": "ready",
-        "digest": "sha256:e43e567c13a8ae6df567b14a2c5d6d73",
-        "pack": "data/explainer_evidence/raw-1087de7d2a09a138.json"
-      },
       "pr": 149,
       "branch": "explainer/trade-insurance-special-underwriting-2026",
       "head_sha": "aed0762040039210f0148178c22e4e5fec539b6e",
@@ -1703,11 +1693,6 @@
       "instruments": 0,
       "draft_documents": true
     },
-    "raw-1087de7d2a09a138": {
-      "status": "ready",
-      "instruments": 1,
-      "draft_documents": true
-    },
     "raw-108fca84c6fa8aa6": {
       "status": "unresolved",
       "instruments": 0,
@@ -1730,7 +1715,7 @@
     },
     "raw-2d71845be9e54563": {
       "status": "ready",
-      "instruments": 1,
+      "instruments": 3,
       "draft_documents": true
     },
     "raw-2f0cae05538055e0": {
@@ -1763,11 +1748,6 @@
       "instruments": 0,
       "draft_documents": false
     },
-    "raw-7bf14a11616c78fd": {
-      "status": "ready",
-      "instruments": 4,
-      "draft_documents": true
-    },
     "raw-9b23b040d93ee91a": {
       "status": "draft_only",
       "instruments": 0,
@@ -1782,6 +1762,11 @@
       "status": "draft_only",
       "instruments": 0,
       "draft_documents": true
+    },
+    "raw-b0ae3fe675f5911a": {
+      "status": "unresolved",
+      "instruments": 0,
+      "draft_documents": false
     },
     "raw-b116141db6cb37a4": {
       "status": "ready",
