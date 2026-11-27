@@ -160,6 +160,36 @@
       "first_queued_on": "2026-11-09"
     },
     {
+      "queue_id": "explainer:chemical-trade-secret-record-custodian-2026",
+      "kind": "update",
+      "explainer_id": "chemical-trade-secret-record-custodian-2026",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-11-06",
+      "watch_pages": [
+        "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260225",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/an-eihou/index_00001.html"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-26ca5feb3b6108b6"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:119e902e0f2537003f8229e54d1a83e0",
+      "first_queued_on": "2026-11-21"
+    },
+    {
       "queue_id": "explainer:dc-pension-digital-procedures-2026",
       "kind": "update",
       "explainer_id": "dc-pension-digital-procedures-2026",
@@ -532,9 +562,9 @@
       "first_queued_on": "2026-11-04"
     },
     {
-      "queue_id": "explainer:chemical-trade-secret-record-custodian-2026",
+      "queue_id": "explainer:building-pfas-drinking-water-tests-2026-draft",
       "kind": "update",
-      "explainer_id": "chemical-trade-secret-record-custodian-2026",
+      "explainer_id": "building-pfas-drinking-water-tests-2026-draft",
       "explainer_status": "published",
       "priority": 20,
       "reasons": [
@@ -547,18 +577,20 @@
         "outlook": "ai_checked",
         "assessment": "ai_checked"
       },
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-12",
       "watch_pages": [
-        "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260225",
-        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/anzen/an-eihou/index_00001.html"
+        "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260188&Mode=0",
+        "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000132620.html",
+        "https://www.mhlw.go.jp/stf/shingi/shingi-kousei_127756_00013.html",
+        "https://laws.e-gov.go.jp/law/346M50000100002"
       ],
       "record_count": 1,
       "item_ids": [
-        "raw-26ca5feb3b6108b6"
+        "raw-2632b152e1b19b63"
       ],
       "new_related_item_ids": [],
-      "current_fingerprint": "sha256:119e902e0f2537003f8229e54d1a83e0",
-      "first_queued_on": "2026-11-21"
+      "current_fingerprint": "sha256:33b87eed54837a79337a2bd80521da12",
+      "first_queued_on": "2026-11-27"
     },
     {
       "queue_id": "explainer:economic-security-jbic-2026-amendment",
@@ -1307,9 +1339,10 @@
       "reasons": [
         "diet_bill"
       ],
-      "record_count": 1,
+      "record_count": 2,
       "item_ids": [
-        "raw-68b09080402081b7"
+        "raw-68b09080402081b7",
+        "raw-b0ae3fe675f5911a"
       ],
       "areas": [
         "Energy / Environment"
@@ -1319,6 +1352,28 @@
       "newest_record_first_seen": "2026-11-26",
       "suggested_seed_item_id": "raw-68b09080402081b7",
       "first_queued_on": "2026-11-26"
+    },
+    {
+      "queue_id": "bill:raw-b0ae3fe675f5911a",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 20,
+      "reasons": [
+        "diet_bill"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-68b09080402081b7",
+        "raw-b0ae3fe675f5911a"
+      ],
+      "areas": [
+        "Energy / Environment"
+      ],
+      "title_ja": "フュージョンエネルギーの研究開発及び利用の推進に関する法律案",
+      "stage": "Bill Submitted",
+      "newest_record_first_seen": "2026-11-27",
+      "suggested_seed_item_id": "raw-b0ae3fe675f5911a",
+      "first_queued_on": "2026-11-27"
     },
     {
       "queue_id": "draft:raw-0549bdaf78bfe729",
@@ -1340,27 +1395,6 @@
       "newest_record_first_seen": "2026-08-20",
       "suggested_seed_item_id": "raw-0549bdaf78bfe729",
       "first_queued_on": "2026-11-12"
-    },
-    {
-      "queue_id": "draft:raw-2d71845be9e54563",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-2d71845be9e54563"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "国民健康保険法施行規則等の一部を改正する省令案に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-09-06",
-      "suggested_seed_item_id": "raw-2d71845be9e54563",
-      "first_queued_on": "2026-11-02"
     },
     {
       "queue_id": "draft:raw-2f0cae05538055e0",
@@ -1445,27 +1479,6 @@
       "newest_record_first_seen": "2026-11-17",
       "suggested_seed_item_id": "raw-4ce23364bd81184a",
       "first_queued_on": "2026-11-17"
-    },
-    {
-      "queue_id": "draft:raw-7bf14a11616c78fd",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-7bf14a11616c78fd"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "健康保険法施行規則等の一部を改正する省令案に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-29",
-      "suggested_seed_item_id": "raw-7bf14a11616c78fd",
-      "first_queued_on": "2026-11-03"
     },
     {
       "queue_id": "draft:raw-9b23b040d93ee91a",
@@ -1702,6 +1715,56 @@
       "first_queued_on": "2026-10-31"
     },
     {
+      "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft",
+        "instrument_promulgated",
+        "linked_across_sources"
+      ],
+      "record_count": 2,
+      "item_ids": [
+        "raw-15b5c5a72bfae0a1",
+        "raw-d38230df21e2f625"
+      ],
+      "areas": [
+        "Labor / Employment"
+      ],
+      "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-08-19",
+      "suggested_seed_item_id": "raw-15b5c5a72bfae0a1",
+      "first_queued_on": "2026-11-27"
+    },
+    {
+      "queue_id": "instrument:令和八年厚生労働省令第百五十三号",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft",
+        "instrument_promulgated",
+        "linked_across_sources"
+      ],
+      "record_count": 4,
+      "item_ids": [
+        "raw-2d71845be9e54563",
+        "raw-2ff3290d52a0f2da",
+        "raw-5275f09c0f6eaf11",
+        "raw-f7fe8cea0ae39996"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "国民健康保険法施行規則等の一部を改正する省令案に関する御意見の募集について",
+      "stage": "Public Comment Closed",
+      "newest_record_first_seen": "2026-11-27",
+      "suggested_seed_item_id": "raw-2d71845be9e54563",
+      "first_queued_on": "2026-11-27"
+    },
+    {
       "queue_id": "instrument:令和八年政令第三百十号",
       "kind": "new",
       "explainer_id": null,
@@ -1773,30 +1836,6 @@
       "newest_record_first_seen": "2026-09-15",
       "suggested_seed_item_id": "raw-b116141db6cb37a4",
       "first_queued_on": "2026-11-02"
-    },
-    {
-      "queue_id": "instrument:令和八年経済産業省令第六十四号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft",
-        "instrument_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 2,
-      "item_ids": [
-        "raw-1087de7d2a09a138",
-        "raw-7b7aa9727a6ff549"
-      ],
-      "areas": [
-        "Finance / AML"
-      ],
-      "title_ja": "「貿易保険法施行規則の一部を改正する省令（案）」等に関する意見募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-21",
-      "suggested_seed_item_id": "raw-1087de7d2a09a138",
-      "first_queued_on": "2026-11-11"
     },
     {
       "queue_id": "instrument:令和八年総務省令第百八号",

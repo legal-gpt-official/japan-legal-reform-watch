@@ -7,10 +7,11 @@
   "first_queued_on": "2026-11-26",
   "seed_item_id": "raw-68b09080402081b7",
   "related_item_ids": [
-    "raw-68b09080402081b7"
+    "raw-68b09080402081b7",
+    "raw-b0ae3fe675f5911a"
   ],
-  "record_count": 1,
-  "source_fingerprint": "sha256:8bcc07c0373254c55981835948e41e85",
+  "record_count": 2,
+  "source_fingerprint": "sha256:70d9415972a944d9841c3c3c98a2292b",
   "e_gov_law_api": [],
   "records": [
     {
@@ -22,6 +23,17 @@
       "stage_hint": "Bill Submitted",
       "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE3866.htm",
       "raw_summary": "衆法; 審議状況: 衆議院で審議中; 提出回次: 222; 番号: 4",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-b0ae3fe675f5911a",
+      "source_name": "House of Representatives (衆議院) 議案情報",
+      "title_ja": "フュージョンエネルギーの研究開発及び利用の推進に関する法律案",
+      "published_at": "",
+      "first_seen_at": "2026-11-27",
+      "stage_hint": "Bill Submitted",
+      "source_url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE3866.htm",
+      "raw_summary": "衆法; 審議状況: 参議院で審議中; 提出回次: 222; 番号: 4",
       "raw_summary_truncated": false
     }
   ]

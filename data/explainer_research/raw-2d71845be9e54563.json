@@ -1,17 +1,25 @@
 {
   "schema_version": 1,
   "notice": "Repository-derived context ONLY, not independently verified. Reopen and read original government/Diet/e-Gov sources, including later results and enforcement instruments. A truncated raw_summary is never evidence that its omitted portion is unimportant.",
-  "queue_id": "draft:raw-2d71845be9e54563",
+  "queue_id": "instrument:令和八年厚生労働省令第百五十三号",
   "kind": "new",
   "priority": 15,
-  "first_queued_on": "2026-11-02",
+  "first_queued_on": "2026-11-27",
   "seed_item_id": "raw-2d71845be9e54563",
   "related_item_ids": [
-    "raw-2d71845be9e54563"
+    "raw-2d71845be9e54563",
+    "raw-2ff3290d52a0f2da",
+    "raw-5275f09c0f6eaf11",
+    "raw-f7fe8cea0ae39996"
   ],
-  "record_count": 1,
-  "source_fingerprint": "sha256:a9b41f2be715c1d39d95c28777aa5808",
-  "e_gov_law_api": [],
+  "record_count": 4,
+  "source_fingerprint": "sha256:498b45b695a937c82da2270e2d383f15",
+  "e_gov_law_api": [
+    "https://laws.e-gov.go.jp/api/2/law_revisions/333M50000100053",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/411M50000100036",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/419M60000100129",
+    "https://laws.e-gov.go.jp/api/2/law_revisions/508M60000100153"
+  ],
   "records": [
     {
       "id": "raw-2d71845be9e54563",
@@ -22,6 +30,39 @@
       "stage_hint": null,
       "source_url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCMMSTDETAIL&id=495260179&Mode=0",
       "raw_summary": "案の公示日：2026/09/05 受付締切日時：2026/10/04 23:59 カテゴリー：社会保険 問合せ先（所管省庁・部局名等）：厚生労働省保険局高齢者医療課 電話：03-5253-1111（内線3199）",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-2ff3290d52a0f2da",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "国民健康保険法施行規則等の一部を改正する省令",
+      "published_at": "2026-11-12",
+      "first_seen_at": "2026-11-27",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=333M50000100053_20261112_508M60000100153",
+      "raw_summary": "更新一覧日: 20261126; 対象法令: 国民健康保険法施行規則; 法令番号: 昭和三十三年厚生省令第五十三号; 改正法令: 国民健康保険法施行規則等の一部を改正する省令; 改正法令番号: 令和八年厚生労働省令第百五十三号; 公布日: 2026-11-12; 施行日: 2026-11-12",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-5275f09c0f6eaf11",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "国民健康保険法施行規則等の一部を改正する省令",
+      "published_at": "2026-11-12",
+      "first_seen_at": "2026-11-27",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=411M50000100036_20261112_508M60000100153",
+      "raw_summary": "更新一覧日: 20261126; 対象法令: 介護保険法施行規則; 法令番号: 平成十一年厚生省令第三十六号; 改正法令: 国民健康保険法施行規則等の一部を改正する省令; 改正法令番号: 令和八年厚生労働省令第百五十三号; 公布日: 2026-11-12; 施行日: 2026-11-12",
+      "raw_summary_truncated": false
+    },
+    {
+      "id": "raw-f7fe8cea0ae39996",
+      "source_name": "e-Gov Law Search (法令更新一覧)",
+      "title_ja": "国民健康保険法施行規則等の一部を改正する省令",
+      "published_at": "2026-11-12",
+      "first_seen_at": "2026-11-27",
+      "stage_hint": "In Force",
+      "source_url": "https://elaws.e-gov.go.jp/document?lawid=419M60000100129_20261112_508M60000100153",
+      "raw_summary": "更新一覧日: 20261126; 対象法令: 高齢者の医療の確保に関する法律施行規則; 法令番号: 平成十九年厚生労働省令第百二十九号; 改正法令: 国民健康保険法施行規則等の一部を改正する省令; 改正法令番号: 令和八年厚生労働省令第百五十三号; 公布日: 2026-11-12; 施行日: 2026-11-12",
       "raw_summary_truncated": false
     }
   ]
