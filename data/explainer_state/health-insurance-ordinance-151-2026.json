@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "dossier_id": "health-insurance-ordinance-151-2026",
+  "kind": "new",
+  "queue_id": "draft:raw-7bf14a11616c78fd",
+  "seed_item_id": "raw-7bf14a11616c78fd",
+  "hold": null,
+  "next_action": "Push the completed English, Japanese and Chinese drafts to branch explainer/raw-7bf14a11616c78fd, update PR #166, confirm latest-head mandatory CI, then remove Draft and add the legal-content-verified label, and verify Publish, Pages deploy and LIVE.",
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333M50000100053",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:04Z",
+      "sha256": "02fc112087494ce43f7ba8b0fdd2dabeb5a1ccf88f2c389b5547b113a5efc68d",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s2",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "d3f2bd3913cb69eed33b1b941ae8c45a9f1a02279bac4d3e3206fb4f220e6a9f",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s3",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "ef0a005bd1427bf746bc6dbb5b83c90e651cc0a06ae02710ddbe4fd02f374835",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s4",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/215M10000008036",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:10Z",
+      "sha256": "19875ea0f3aefad065a76792bbb325d5c4c66eb9a4c2157d2d21860d7d569e24",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s5",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:11Z",
+      "sha256": "0161d10fa53f0087f4b833c69e4b1d4ae160a6bf0c7b64188887dbbadf954af3",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s6",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261028_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:11Z",
+      "sha256": "8d087f7ad7f22e61ed647a38c6db4525954160c8613a1d62fead4ac1d3cbd143",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s7",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "f1d0375b6763551025c57f62545e286babab9a5c866e8965d3b75fa4090a3474",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s8",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/315M10000100005",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "cdb37530184a7650a5ed3553f667a37f6e0be827d71ce82d0a7f95197227b520",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s9",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20270801_508M60000100151?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:12Z",
+      "sha256": "1b952a178bbdaa7a425efd30f126ff7e69eec38f34e558f758ce05a21f57e16f",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s10",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20261001_508M60000100144?response_format=json&law_full_text_format=json",
+      "kind": "egov_law",
+      "status": "fetched",
+      "fetched_at": "2026-11-15T13:47:13Z",
+      "sha256": "66bc9501ea06f6b7d72b43613392eac8de240f47cb2ba43a623be4f12008e6d3",
+      "error_class": null,
+      "attempts": 1,
+      "evidence_pack": "raw-7bf14a11616c78fd"
+    },
+    {
+      "id": "s11",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "kind": "ministry",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "MHLW high-cost medical care page (updated 2026-07-31), read in the browser 2026-11-27: two-stage review; sustainability with protection for low-income and long-term patients; annual cap from 2026-08-01; 13-band subdivision and 25% lower multiple-occurrence amount for income below about 2 million yen from 2027-08-01."
+    },
+    {
+      "id": "s12",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=495260169&Mode=1",
+      "kind": "egov_public_comment",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "e-Gov public comment results page for case 495260169, read in the browser 2026-11-27: draft published 2026-08-29, comments closed 2026-09-27, results published 2026-10-28, no revision to the draft (修正無)."
+    },
+    {
+      "id": "s13",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323077",
+      "kind": "egov_public_comment",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "Results PDF (4 pages, MHLW Insurance Bureau, 2026-10-28), read in the browser 2026-11-27: 2,758 comments received including comments unrelated to the draft; the draft was not revised in response to comments."
+    },
+    {
+      "id": "s14",
+      "url": "https://www.mhlw.go.jp/hourei/doc/hourei/H261028S0010.pdf",
+      "kind": "ministry",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "Promulgated ordinance text (MHLW ordinance database, Official Gazette special issue No. 236 of 28 October 2026, 131 pages), read in the browser 2026-11-27: Articles 1-4 amend the four enforcement regulations; supplementary Article 1 (main body from 2027-08-01, supplementary Article 3 from promulgation day), Article 2 (transitional measures), Article 3 (Form 13-2 reference Article 103-2 to Article 103-7). Article 4 amends the late-stage elderly medical care regulation (Articles 35, 40, 61-2, 62-71 and forms)."
+    },
+    {
+      "id": "s15",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/419M60000100129",
+      "kind": "egov_law",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "e-Gov revision history of the Enforcement Regulation of the Act on Assurance of Medical Care for Elderly People, read in the browser 2026-11-27: revision 419M60000100129_20270801_508M60000100151 by Ordinance No. 151 of 2026, promulgated 2026-10-28, effective 2027-08-01."
+    },
+    {
+      "id": "s16",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/211AC0000000070",
+      "kind": "egov_law",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "e-Gov revision history of the Health Insurance Act, read in the browser 2026-11-27: Act No. 31 of 2026 (Act Partially Amending the Health Insurance Act, etc.), promulgated 2026-06-05, with high-cost medical care provisions effective 2026-08-01."
+    },
+    {
+      "id": "s17",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/215IO0000000243",
+      "kind": "egov_law",
+      "status": "not_fetched",
+      "fetched_at": null,
+      "sha256": null,
+      "error_class": null,
+      "attempts": 0,
+      "evidence_pack": null,
+      "excerpt": "e-Gov revision history of the Health Insurance Act Enforcement Order, read in the browser 2026-11-27: Cabinet Order No. 240 of 2026, promulgated 2026-07-29, effective in stages 2026-07-29, 2026-08-01 and 2027-08-01."
+    }
+  ],
+  "facts": [
+    {
+      "id": "f1",
+      "category": "instrument_form",
+      "status": "confirmed",
+      "statement": "e-Gov records the amendment as promulgated (in_force_instrument) as of the evidence date.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instrument_form",
+      "value": "in_force_instrument"
+    },
+    {
+      "id": "f2",
+      "category": "promulgation_date",
+      "status": "confirmed",
+      "statement": "Promulgated 2026-10-28 (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#promulgation_date"
+    },
+    {
+      "id": "f3",
+      "category": "effective_date",
+      "status": "confirmed",
+      "statement": "Effective ['2026-10-28', '2027-08-01'] (e-Gov revision record).",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#effective_date"
+    },
+    {
+      "id": "f4",
+      "category": "partial_effective_date",
+      "status": "confirmed",
+      "statement": "Several commencement stages: 2026-10-28, 2027-08-01",
+      "source_ids": [
+        "s1"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#partial_effective_date"
+    },
+    {
+      "id": "f5",
+      "category": "amended_provisions",
+      "status": "confirmed",
+      "statement": "Provisions changed (e-Gov old/new text): 別表等[様式第十三号の二], 第100条, 第101条, 第102条, 第103条, 第103条の3, 第103条の4, 第103条の5, 第103条の6, 第103条の7, 第104条, 第105条, 第109条, 第109条の2の2の2, 第109条の3, 第129条の2, 第129条の3, 第26条の2, 第26条の3, 第26条の6の3, 第26条の6の4, 第27条の12の2, 第27条の13の7, 第27条の14, 第27条の14の2, 第27条の14の3, 第27条の14の4, 第27条の14の5, 第27条の16, 第27条の17の4, 第27条の19, 第35条, 第47条, 第58条, 第62条の3, 第87条, 第89条, 第90条, 第91条, 第92条, 第92条の2, 第92条の3, 第92条の4, 第92条の5, 第92条の6, 第93条, 第94条, 第95条, 第98条の2, 第99条, 第99条の3の2. Additionally, under Article 4 of the ordinance the Enforcement Regulation of the Act on Assurance of Medical Care for Elderly People Articles 35, 40, 61-2, 62, 63, 64, 65, 65-3, 65-4, 66, 67, 68, 69, 70 and 71 and its forms are amended (read from the promulgated ordinance text in the MHLW ordinance database; not covered by the e-Gov evidence pack).",
+      "source_ids": [
+        "s1",
+        "s10",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#amended_provisions"
+    },
+    {
+      "id": "f6",
+      "category": "old_vs_new",
+      "status": "confirmed",
+      "statement": "Old vs new compared from the e-Gov texts: Health Insurance Enforcement Order Article 43(1)(i) expands from 5 items (i)-(ho) to 13 items (i)-(wa); National Health Insurance Enforcement Order Article 29-3(1) item 5 becomes item 13; Health Insurance Enforcement Regulation Articles 58 and 62-3 update their references from items (ho)/(he) to (wa)/(ka); National Health Insurance Enforcement Regulation Articles 26-2 and 26-3 update Article 29-3(1) item 5 to item 13 and Article 43(1)(i) item (ho) to (wa); Article 27-12-2 updates Article 29-3(4) item 2 to item 10; Health Insurance Enforcement Regulation Form 13-2 updates its reference from Article 103-2 to Article 103-7 (effective 28 October 2026); the late-stage elderly medical care regulation updates cross-references to Enforcement Order Articles 14, 15 and 16. No benefit amount is set by the ordinance itself; amounts are set by Cabinet Order No. 240.",
+      "source_ids": [
+        "s2",
+        "s3",
+        "s5",
+        "s6",
+        "s7",
+        "s9",
+        "s10"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#old_vs_new",
+      "quote": "（食事療養標準負担額の減額の対象者） 第五十八条 法第八十五条第二項の厚生労働省令で定める者は、次の各号のいずれかに該当する者とする。一 令第四十三条第一項第一号ワの規定の適用を受ける者"
+    },
+    {
+      "id": "f7",
+      "category": "scope",
+      "status": "confirmed",
+      "statement": "The ordinance amends the enforcement regulations of all four public medical insurance schemes — employees' health insurance, seamen's insurance, national health insurance and late-stage elderly medical care — for high-cost medical care limit-application certification, meal and life-care standard-copayment-reduction certification, specified-disease certification and eligibility confirmation certificate forms. It applies to insurers (health insurance societies, the Japan Health Insurance Association, municipalities, national health insurance associations, the seamen's insurance association and late-stage elderly medical care wide-area unions) and to insured persons and their dependants. It does not change who is insured and sets no benefit amount.",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s5",
+        "s9"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#scope"
+    },
+    {
+      "id": "f8",
+      "category": "obligation_type",
+      "status": "confirmed",
+      "statement": "The ordinance itself adds no new duty for insured persons; it updates the references that existing duties point to. The amended regulations carry forward insurer and municipal certification duties: for example, National Health Insurance Enforcement Regulation Article 26-3 requires the municipality or association, when the conditions are met, to certify meal-cost reduction eligibility with a validity period. The certification duties are therefore obligations on insurers and municipalities, not new obligations created by this ordinance.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#obligation_type",
+      "value": [
+        "obligation"
+      ],
+      "quote": "第二十六条の三 市町村又は組合は、被保険者が、令第二十九条の三第一項第十三号イ及びロの区分に従い、それぞれ同号イ及びロに定める者（第三項第一号において「食事療養減額認定世帯員」という。）の全てについて前条の規定により読み替えて適用する健康保険法施行規則第五十八条第一号に定める者であるときは、有効期限を定めて、健康保険法第八十五条第二項に規定する厚生労働省令で定める者として"
+    },
+    {
+      "id": "f9",
+      "category": "transitional_measures",
+      "status": "confirmed",
+      "statement": "For the 2027-08-01 commencement, supplementary Article 2 of Ordinance No. 151 deems documents already in use under old forms to comply with the amended forms, and permits remaining old-form paper to be adapted and used for the time being. The only 2026-10-28 change is supplementary Article 3 (Form 13-2 reference, Article 103-2 to Article 103-7); it has no transitional provision of its own.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#instruments[0].supplementary_provisions",
+      "quote": "（経過措置） 第二条 この省令の施行の際現にあるこの省令による改正前の様式（次項において「旧様式」という。）により使用されている書類は、この省令による改正後の様式によるものとみなす。２ この省令の施行の際現にある旧様式による用紙については、当分の間、これを取り繕って使用することができる。"
+    },
+    {
+      "id": "f10",
+      "category": "delegation",
+      "status": "confirmed",
+      "statement": "The amended regulations implement ordinance-level rules that the statutes delegate to MHLW ordinances: National Health Insurance Enforcement Regulation Article 26-3, for example, provides municipal or association certification of meal-cost reduction eligibility for a person specified by MHLW ordinance under Health Insurance Act Article 85(2), and this ordinance updates those rules to the renumbered enforcement-order items. The ordinance's own preamble and cited bases were read from the MHLW ordinance database PDF (browser read, not a fetched source); see unresolved.",
+      "source_ids": [
+        "s2"
+      ],
+      "evidence_ref": "raw-7bf14a11616c78fd#delegation",
+      "quote": "第二十六条の三 市町村又は組合は、被保険者が、令第二十九条の三第一項第十三号イ及びロの区分に従い、それぞれ同号イ及びロに定める者（第三項第一号において「食事療養減額認定世帯員」という。）の全てについて前条の規定により読み替えて適用する健康保険法施行規則第五十八条第一号に定める者であるときは、有効期限を定めて、健康保険法第八十五条第二項に規定する厚生労働省令で定める者として"
+    },
+    {
+      "id": "f11",
+      "category": "policy_background",
+      "status": "inference",
+      "statement": "MHLW presents the 2026 review as keeping the high-cost medical care system sustainable while protecting low-income and long-term patients: monthly caps rise and a new annual cap is introduced from 1 August 2026, the income bands are subdivided from 1 August 2027, and the multiple-occurrence amount for income below about 2 million yen is reduced by 25%. The review follows the expert committee's basic approach of 16 December 2025 and the Social Security Council Medical Insurance Subcommittee's deliberations. The consultation drew 2,758 comments and the draft was promulgated without change.",
+      "source_ids": [
+        "s11",
+        "s12",
+        "s13"
+      ]
+    },
+    {
+      "id": "f12",
+      "category": "business_impact",
+      "status": "inference",
+      "statement": "Insurers, municipalities, national health insurance associations and wide-area unions must update certification systems and forms to the 13-band references by 1 August 2027; insured persons face no change from this ordinance before then. From 1 August 2027 the applicable monthly cap follows the finer bands and the multiple-occurrence amount for income below about 2 million yen falls 25% (to 34,500 yen per the MHLW tables). Old-form documents are deemed compliant and old paper may be adapted and used for the time being.",
+      "source_ids": [
+        "s11",
+        "s12",
+        "s14"
+      ]
+    }
+  ],
+  "unresolved": [
+    "Cabinet Order No. 347 of 2026 (promulgated 11 November 2026, effective 1 April 2027) also amends the National Health Insurance Enforcement Order; whether it touches Article 29-3 and how it interacts with this ordinance's 1 August 2027 revision was not verified.",
+    "Article titles for late-stage elderly medical care regulation Articles 62, 63, 64, 68, 69 and 71 were read as article numbers from the ordinance PDF (small print); headings were not re-verified verbatim.",
+    "The ordinance's own cited legal bases (including Health Insurance Act Article 51-3(1)) are stated in the consultation summary; the promulgated ordinance's preamble was read from the MHLW ordinance database PDF (browser read, not a fetched source).",
+    "The 2026-08-01 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; the ordinance's role for stage 1 is limited to supplementary Article 3."
+  ]
+}
