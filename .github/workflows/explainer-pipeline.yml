@@ -17,7 +17,6 @@ on:
       - "Pull request checks"
       - "Publish reform explainer pages"
       - "Verify live reform explainers"
-      - "Safely merge verified reform explainer PRs"
     types: [completed]
   workflow_dispatch:
 
@@ -149,7 +148,7 @@ jobs:
             core.info(`snapshot: ${pulls.length} dossier PRs, ${ci.length} CI runs`);
 
       - name: Download per-dossier LIVE result of the triggering run
-        if: github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Verify live reform explainers'
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.path == '.github/workflows/verify-live-explainers.yml'
         continue-on-error: true
         uses: actions/download-artifact@v4
         with:
@@ -261,15 +260,20 @@ jobs:
             const {owner, repo} = context.repo;
             const title = 'Explainer pipeline status (auto-updated)';
             const run = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
-            let body = fs.readFileSync('pipeline-report.md', 'utf8');
-            body = body.slice(0, 60000) + `\n---\nUpdated by [explainer-pipeline run](${run}). ` +
+            const report = fs.readFileSync('pipeline-report.md', 'utf8').slice(0, 60000);
+            const body = report + `\n---\nUpdated by [explainer-pipeline run](${run}). ` +
               'Stages are computed from files and GitHub runs; change a dossier via its case file ' +
               '(data/explainer_state/<id>.json), not this issue.\n';
             const issues = await github.paginate(github.rest.issues.listForRepo,
               {owner, repo, state: 'open', per_page: 100});
             const existing = issues.find(i => i.title === title && !i.pull_request);
             if (existing) {
-              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+              const previous = (existing.body || '').split('\n---\nUpdated by [explainer-pipeline run](')[0];
+              if (previous !== report) {
+                await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+              } else {
+                core.info('Status issue unchanged; no write needed.');
+              }
             } else {
               await github.rest.issues.create({owner, repo, title, body});
             }
