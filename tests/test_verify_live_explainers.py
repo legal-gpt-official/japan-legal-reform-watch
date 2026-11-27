@@ -117,6 +117,12 @@ class LiveExplainerTests(unittest.TestCase):
         self.assertIn("full canonical explainer prose", error)
 
 
+    def test_version_digest_covers_both_translations(self):
+        self.assertEqual(live.dossier_version({"a": 1, "b": 2}, {"ja": "a", "zh": "b"}),
+                         live.dossier_version({"b": 2, "a": 1}, {"zh": "b", "ja": "a"}))
+        self.assertNotEqual(live.dossier_version({"a": 1}, {"ja": "a", "zh": "b"}),
+                            live.dossier_version({"a": 1}, {"ja": "a", "zh": "c"}))
+
     def test_no_work_is_success_but_verifies_no_dossiers(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = Path(tmp) / "report.json"

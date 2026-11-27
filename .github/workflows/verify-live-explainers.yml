@@ -1,5 +1,5 @@
 name: Verify live reform explainers
-run-name: LIVE evidence v2
+run-name: LIVE evidence v3
 
 # Networked, read-only check: a successful Pages deployment alone is not proof
 # the custom domain serves the newest English, Japanese and Chinese HTML.
@@ -10,37 +10,85 @@ on:
         description: "Optional comma-separated dossier IDs; default is last 2 JST days"
         required: false
         type: string
-  workflow_run:
-    # Also verify after the independently completed Pages deployment.
-    # The Publish job can finish before GitHub Pages serves its new HTML.
-    workflows: ["Publish reform explainer pages", "pages build and deployment"]
-    types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - "scripts/verify_live_explainers.py"
-      - ".github/workflows/verify-live-explainers.yml"
+      docs_sha:
+        description: "Generated docs commit (publisher handoff only)"
+        required: false
+        type: string
+      publish_run_id:
+        description: "Publisher run ID (publisher handoff only)"
+        required: false
+        type: string
+      pages_run_id:
+        description: "Successful Pages run ID (publisher handoff only)"
+        required: false
+        type: string
+  # The publisher explicitly dispatches after a matching Pages success.
+  # Do not also trigger on every Pages build or publisher completion.
   schedule:
     # 20:55 JST = 11:55 UTC, after 20:40 JST nightly publish recovery.
     - cron: "55 11 * * *"
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
-  group: reform-live-verification
-  cancel-in-progress: true
+  group: reform-live-verification-${{ inputs.docs_sha || (inputs.dossiers != '' && github.run_id) || 'catchup' }}
+  cancel-in-progress: false
 
 jobs:
   live:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - name: Check out latest main
+      - name: Validate publisher handoff before checking out a pinned main revision
+        id: handoff
+        uses: actions/github-script@v7
+        env:
+          DOCS_SHA: ${{ inputs.docs_sha }}
+          PUBLISH_RUN_ID: ${{ inputs.publish_run_id }}
+          PAGES_RUN_ID: ${{ inputs.pages_run_id }}
+        with:
+          script: |
+            const {owner, repo} = context.repo;
+            const sha = process.env.DOCS_SHA || '';
+            const pub = process.env.PUBLISH_RUN_ID || '';
+            const page = process.env.PAGES_RUN_ID || '';
+            if (!sha && !pub && !page) { core.setOutput('ref', 'main'); return; }
+            if (!/^[a-f0-9]{40}$/.test(sha) || !/^\d+$/.test(pub) || !/^\d+$/.test(page)) {
+              throw Error('Incomplete or invalid publisher handoff');
+            }
+            const getRun = async id => (await github.rest.actions.getWorkflowRun({owner,repo,run_id:Number(id)})).data;
+            let publisher;
+            for (let i=0; i<12; i++) {
+              publisher = await getRun(pub);
+              if (publisher.path !== '.github/workflows/publish-explainer-pages.yml' || publisher.head_branch !== 'main')
+                throw Error('Wrong publisher workflow or branch');
+              if (publisher.status === 'completed') break;
+              await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+            if (publisher.status !== 'completed' || publisher.conclusion !== 'success')
+              throw Error('Publisher did not complete successfully');
+            const deployed = await getRun(page);
+            if (deployed.name !== 'pages build and deployment' || deployed.path !== 'dynamic/pages/pages-build-deployment' || deployed.head_branch !== 'main' ||
+                deployed.status !== 'completed' || deployed.conclusion !== 'success')
+              throw Error('Wrong or unsuccessful Pages deployment');
+            const comparison = async head => (await github.rest.repos.compareCommits({owner,repo,base:sha,head})).data;
+            if (deployed.head_sha !== sha) {
+              const cmp = await comparison(deployed.head_sha);
+              if (!['ahead','identical'].includes(cmp.status) || !Array.isArray(cmp.files) ||
+                  cmp.files.length >= 300 || cmp.files.some(f => f.filename.startsWith('docs/') || (f.previous_filename || '').startsWith('docs/')))
+                throw Error('Pages deployment does not contain identical generated docs');
+            }
+            const main = await comparison('main');
+            if (!['ahead','identical'].includes(main.status)) throw Error('Docs SHA is not on trusted main history');
+            core.setOutput('ref', sha);
+
+      - name: Check out verified main revision
         uses: actions/checkout@v5
         with:
-          ref: main
+          ref: ${{ steps.handoff.outputs.ref }}
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -48,10 +96,17 @@ jobs:
           python-version: "3.11"
 
       - name: Verify current published HTML over the custom-domain HTTPS origin
+        env:
+          DOSSIERS: ${{ inputs.dossiers }}
+          DOCS_SHA: ${{ inputs.docs_sha }}
+          PUBLISH_RUN_ID: ${{ inputs.publish_run_id }}
+          PAGES_RUN_ID: ${{ inputs.pages_run_id }}
         run: |
+          export LIVE_SOURCE_SHA="$(git rev-parse HEAD)"
+          if [ -n "$DOCS_SHA" ] && [ "$LIVE_SOURCE_SHA" != "$DOCS_SHA" ]; then exit 1; fi
           python scripts/verify_live_explainers.py \
             --days 2 \
-            --dossiers "${{ github.event.inputs.dossiers || '' }}" \
+            --dossiers "$DOSSIERS" \
             --attempts 12 \
             --delay 20 \
             --report live-verification.json

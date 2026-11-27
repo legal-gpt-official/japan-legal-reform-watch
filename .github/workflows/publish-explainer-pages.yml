@@ -207,9 +207,9 @@ jobs:
               const cmp = await github.rest.repos.compareCommits({owner, repo, base: docsSha, head: headSha});
               const status = cmp.data.status;
               if (status !== 'ahead' && status !== 'identical') return false;
-              const files = cmp.data.files || [];
-              if (files.length >= 300) return false;  // truncated list: cannot prove docs/ untouched
-              return !files.some(f => (f.filename || '').startsWith('docs/'));
+              const files = cmp.data.files;
+              if (!Array.isArray(files) || files.length >= 300) return false;  // cannot prove docs/ untouched
+              return !files.some(f => (f.filename || '').startsWith('docs/') || (f.previous_filename || '').startsWith('docs/'));
             }
             let success = null;
             for (let attempt = 1; attempt <= 36; attempt++) {
@@ -254,7 +254,7 @@ jobs:
               ' (generated docs SHA ' + docsSha + ')');
             await github.rest.actions.createWorkflowDispatch({
               owner, repo, workflow_id: 'verify-live-explainers.yml',
-              ref: 'main', inputs: {dossiers: ''}
+              ref: 'main', inputs: {dossiers: '', docs_sha: docsSha, publish_run_id: String(context.runId), pages_run_id: String(success.id)}
             });
             core.info('Dispatched strict LIVE verification after Pages deploy ' +
               success.id + ' for docs SHA ' + docsSha);

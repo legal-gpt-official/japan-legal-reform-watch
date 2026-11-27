@@ -288,6 +288,18 @@ class ReconcileTests(unittest.TestCase):
         self.assertFalse(ep.live_covers(dict(run, dossiers=[]), "x", "2026-11-08"))
         self.assertTrue(ep.live_covers(dict(run, dossiers=["x"]), "x", "2026-11-08"))
 
+    def test_v3_live_proof_requires_current_version_and_actual_check_time(self):
+        done = datetime(2026, 11, 9, 10, 1, tzinfo=timezone.utc)
+        r = {"id": 1, "display_title": "LIVE evidence v3", "status": "completed",
+             "conclusion": "success", "created_at": "2026-11-09T10:00:00Z",
+             "checked_started_at": "2026-11-09T10:02:00Z", "dossiers": ["x"],
+             "dossier_versions": {"x": "a"*64}}
+        self.assertEqual(ep.first_live_after([r], done, "x", "2026-11-09", "a"*64), r)
+        self.assertIsNone(ep.first_live_after([r], done, "x", "2026-11-09", "b"*64))
+        self.assertIsNone(ep.first_live_after([dict(r, checked_started_at="2026-11-09T09:59:00Z")],
+                                              done, "x", "2026-11-09", "a"*64))
+        self.assertIsNone(ep.first_live_after([dict(r, dossier_versions={})], done, "x", "2026-11-09", "a"*64))
+
     def test_live_report_listing_other_dossiers_does_not_count(self):
         scn = Scenario()
         scn.add_files()

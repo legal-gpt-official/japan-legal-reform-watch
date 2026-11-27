@@ -84,7 +84,7 @@ class PublishHandoffTests(unittest.TestCase):
             setFailed:message=>{failures.push(message);}
           };
           const fn=new AsyncFunction("github","context","core","process","setTimeout",source);
-          const run=()=>fn(github,{repo:{owner:"unit",repo:"repo"}},core,
+          const run=()=>fn(github,{repo:{owner:"unit",repo:"repo"},runId:123},core,
             {env:{DOCS_SHA:sha}},callback=>callback());
           runs=[{id:1,name:"pages build and deployment",head_sha:other,
                  status:"completed",conclusion:"success"}];
@@ -102,7 +102,9 @@ class PublishHandoffTests(unittest.TestCase):
                  status:"completed",conclusion:"success"}];
           await run();
           if(dispatched.length!==1||failures.length!==0||
-             dispatched[0].workflow_id!=="verify-live-explainers.yml")
+             dispatched[0].workflow_id!=="verify-live-explainers.yml" ||
+             dispatched[0].inputs.docs_sha!==sha || dispatched[0].inputs.publish_run_id!=="123" ||
+             dispatched[0].inputs.pages_run_id!=="3")
             throw Error("Matching successful Pages must dispatch LIVE exactly once");
           // 2026-11-15 race: the docs SHA's builds were cancelled by a later bot commit.
           dispatched.length=0;
@@ -135,6 +137,56 @@ class PublishHandoffTests(unittest.TestCase):
             ["node", "--input-type=module"],
             input=harness, capture_output=True, text=True, check=False,
         )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+
+    def test_live_handoff_validates_success_and_trusted_main_before_checkout(self):
+        w = (ROOT / ".github/workflows/verify-live-explainers.yml").read_text(encoding="utf-8")
+        self.assertNotIn("  workflow_run:", w)
+        self.assertNotIn("  push:", w)
+        self.assertIn("cancel-in-progress: false", w)
+        lines = w.splitlines()
+        start = next(i for i, line in enumerate(lines) if line.strip() == "script: |")
+        js = []
+        for line in lines[start + 1:]:
+            if not line.strip():
+                js.append("")
+            elif line.startswith("            "):
+                js.append(line[12:])
+            else:
+                break
+        harness = """
+          const source = JS_SOURCE;
+          const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+          const sha = "f".repeat(40), other = "a".repeat(40);
+          const pub = {path:".github/workflows/publish-explainer-pages.yml",head_branch:"main",status:"completed",conclusion:"success"};
+          const page = {name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",
+                        head_sha:sha,status:"completed",conclusion:"success"};
+          let main = {status:"ahead"}, compared = {status:"ahead",files:[]};
+          let out;
+          const github = {rest:{
+            actions:{getWorkflowRun:async ({run_id})=>({data:run_id===123?pub:page})},
+            repos:{compareCommits:async ({head})=>({data:head==="main"?main:compared})}
+          }};
+          const fn = new AsyncFunction("github","context","core","process","setTimeout",source);
+          const run = async (env, expected) => {
+            out = undefined; let failed = false;
+            try {await fn(github,{repo:{owner:"unit",repo:"repo"}},{setOutput:(k,v)=>out=v},
+                       {env},callback=>callback());} catch(e){failed=true;}
+            if(expected===null ? !failed||out!==undefined : failed||out!==expected)
+              throw Error("Unexpected handoff outcome: "+out+" "+failed);
+          };
+          const env={DOCS_SHA:sha,PUBLISH_RUN_ID:"123",PAGES_RUN_ID:"456"};
+          await run({}, "main");
+          await run({DOCS_SHA:sha}, null);
+          await run(env,sha);
+          pub.conclusion="failure"; await run(env,null); pub.conclusion="success";
+          page.conclusion="failure"; await run(env,null); page.conclusion="success";
+          page.head_sha=other; await run(env,sha);
+          compared.files=[{filename:"other/x",previous_filename:"docs/u/x"}]; await run(env,null);
+          compared.files=[]; main.status="diverged"; await run(env,null);
+        """.replace("JS_SOURCE", json.dumps("\n".join(js)))
+        result = subprocess.run(["node", "--input-type=module"], input=harness, text=True, capture_output=True)
         self.assertEqual(result.returncode, 0, result.stderr)
 
 

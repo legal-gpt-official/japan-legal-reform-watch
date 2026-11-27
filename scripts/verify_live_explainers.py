@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import hashlib
 import json
 import re
 import sys
@@ -16,7 +17,7 @@ import time
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -107,6 +108,9 @@ def page_checks(dossiers: list[dict]) -> tuple[list[tuple[str, tuple[str, ...]]]
             failures.append(f"{dossier}: missing locale bundle")
             continue
         translations = json.loads(bundle.read_text(encoding="utf-8")).get("translations", {})
+        if not isinstance(translations, dict) or not all(isinstance(translations.get(lang), dict) for lang in ("ja", "zh-Hans")):
+            failures.append(f"{dossier}: missing required JA/ZH translation")
+            continue
         try:
             by_lang = {
                 "en": content_fragments(en, None),
@@ -189,7 +193,14 @@ def dossier_results(dossiers: list[dict], targets: list, errors: dict[str, str],
     return {"dossiers_verified": verified, "dossiers_failed": sorted(set(urls) - set(verified))}
 
 
+def dossier_version(en: dict, bundle: dict) -> str:
+    """Canonical digest of the English source and both complete translations."""
+    payload = json.dumps([en, bundle], ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def main(argv: list[str] | None = None) -> int:
+    checked_started_at = datetime.now(timezone.utc).isoformat()
     p = argparse.ArgumentParser()
     p.add_argument("--days", type=int, default=2, help="JST verified_at age (default: 2 days)")
     p.add_argument("--dossiers", default="", help="optional comma-separated dossier IDs")
@@ -222,6 +233,15 @@ def main(argv: list[str] | None = None) -> int:
         result["outcome"] = outcome
         result["run_id"] = __import__("os").environ.get("GITHUB_RUN_ID")
         result["run_attempt"] = __import__("os").environ.get("GITHUB_RUN_ATTEMPT")
+        result["checked_started_at"] = checked_started_at
+        result["source_sha"] = __import__("os").environ.get("LIVE_SOURCE_SHA")
+        result["publish_run_id"] = __import__("os").environ.get("PUBLISH_RUN_ID") or None
+        result["pages_run_id"] = __import__("os").environ.get("PAGES_RUN_ID") or None
+        result["dossier_versions"] = {
+            d["dossier_id"]: dossier_version(d, json.loads(
+                (LOCALE_DIR / (d["dossier_id"] + ".json")).read_text(encoding="utf-8")))
+            for d in dossiers if d["dossier_id"] in result["dossiers_verified"]
+        }
         Path(args.report).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     if "GITHUB_STEP_SUMMARY" in __import__("os").environ:
         with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:

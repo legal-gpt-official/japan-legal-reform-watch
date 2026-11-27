@@ -172,13 +172,18 @@ jobs:
           index = {}
           missing = []
           for run in snapshot.get("live_runs", []):
-              if run.get("conclusion") != "success" or not str(run.get("display_title") or "").startswith("LIVE evidence v2"):
+              if run.get("conclusion") != "success" or not str(run.get("display_title") or "").startswith(("LIVE evidence v2", "LIVE evidence v3")):
                   continue
               rid = str(run["id"])
               key = f"{rid}:{run.get('run_attempt') or 1}"
-              if key in cache and isinstance(cache[key], list):
-                  index[key] = cache[key]
-                  run["dossiers"] = cache[key]
+              v3 = str(run.get("display_title") or "").startswith("LIVE evidence v3")
+              saved = cache.get(key)
+              if not v3 and isinstance(saved, list):
+                  index[key] = saved
+                  run["dossiers"] = saved
+              elif v3 and isinstance(saved, dict) and isinstance(saved.get("dossier_versions"), dict):
+                  index[key] = saved
+                  run.update(saved)
               else:
                   missing.append(run)
           # The triggering artifact is already downloaded; recover other recent
@@ -201,8 +206,29 @@ jobs:
                           raise ValueError("invalid LIVE report")
                       if report.get("outcome") not in ("NO_WORK", "VERIFIED") or (report["outcome"] == "NO_WORK" and names):
                           raise ValueError("invalid LIVE outcome")
-                      index[key] = names
-                      run["dossiers"] = names
+                      if str(run.get("display_title") or "").startswith("LIVE evidence v3"):
+                          import re
+                          from datetime import datetime
+                          versions = report.get("dossier_versions")
+                          started = report.get("checked_started_at")
+                          sha = report.get("source_sha")
+                          if (not isinstance(versions, dict) or set(versions) != set(names)
+                                  or not all(isinstance(v, str) and re.fullmatch(r"[a-f0-9]{64}", v) for v in versions.values())
+                                  or not isinstance(sha, str) or not re.fullmatch(r"[a-f0-9]{40}", sha)
+                                  or not isinstance(started, str)):
+                              raise ValueError("invalid version-bound LIVE report")
+                          parsed = datetime.fromisoformat(started)
+                          if parsed.tzinfo is None:
+                              raise ValueError("LIVE timestamp lacks timezone")
+                          facts = {"dossiers": names, "dossier_versions": versions,
+                                   "checked_started_at": started, "source_sha": sha,
+                                   "publish_run_id": report.get("publish_run_id"),
+                                   "pages_run_id": report.get("pages_run_id")}
+                          index[key] = facts
+                          run.update(facts)
+                      else:
+                          index[key] = names
+                          run["dossiers"] = names
               except (OSError, ValueError, subprocess.SubprocessError) as exc:
                   print(f"::warning::Exact LIVE report unavailable for run {rid}: {type(exc).__name__}")
           snapshot["live_report_index"] = index
