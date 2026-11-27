@@ -90,10 +90,30 @@ jobs:
             if (mergedPRs.length > 0) {
               core.info('Dispatching Publish reform explainer pages for PRs: '+mergedPRs.join(','));
               try {
-                await github.rest.actions.createWorkflowDispatch({
-                  owner, repo, workflow_id:'publish-explainer-pages.yml', ref:'main'
-                });
-                core.info('Publish reform explainer pages dispatched');
+                // A concurrency-pending publisher has not acquired the writer
+                // lock. It checks out latest main when it starts and can cover
+                // every merge just made. An in-progress/queued run is not enough
+                // proof of that; dispatch normally in ambiguous cases.
+                let pending = false;
+                try {
+                  const res = await github.rest.actions.listWorkflowRuns({
+                    owner, repo, workflow_id:'publish-explainer-pages.yml',
+                    branch:'main', status:'pending', per_page:100
+                  });
+                  pending = (res.data.workflow_runs || []).some(r =>
+                    r.status === 'pending' && r.head_branch === 'main' &&
+                    r.path === '.github/workflows/publish-explainer-pages.yml');
+                } catch (e) {
+                  core.warning('Could not prove pending publisher; dispatching normally');
+                }
+                if (pending) {
+                  core.info('Coalesced merged PRs into pending publisher (latest main checkout)');
+                } else {
+                  await github.rest.actions.createWorkflowDispatch({
+                    owner, repo, workflow_id:'publish-explainer-pages.yml', ref:'main'
+                  });
+                  core.info('Publish reform explainer pages dispatched');
+                }
               } finally {
                 // A merge is a state change even if Publish dispatch failed.
                 // Do not trigger a full ledger reconciliation for no-op scans.

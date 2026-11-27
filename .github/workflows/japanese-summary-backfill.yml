@@ -45,6 +45,7 @@ permissions:
 concurrency:
   group: japan-legal-reform-data-writer
   cancel-in-progress: false
+  queue: max
 
 jobs:
   backfill:
@@ -54,6 +55,8 @@ jobs:
     steps:
       - name: Check out requested branch
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Set up Python
         uses: actions/setup-python@v6

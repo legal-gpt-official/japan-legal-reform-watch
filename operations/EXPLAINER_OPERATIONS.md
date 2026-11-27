@@ -66,6 +66,8 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 
 ### 起動効率化（2026-11-27）
 
+- 共有writerグループ（日次、解説公開、補完3種、週次投稿）はGitHub Actionsのqueue: maxを使用し、最大100待機まで直列処理する。自動マージ直後にmainのPublishがpendingならその待機実行に集約し、実行中・不明なら通常起動する。Publish evidence v2は実際のcheckout開始時刻がマージ後である成功runだけ台帳に認定し、pendingは復旧回数に算入しない。日次と手動補完は取得時点の最新対象ブランチで処理する。mainへ書く英語/中国語補完はmain起動のみ許可する。既存法務・CI・LIVEゲートは維持する。
+
 - AI提供元：日次EN/JA要約・ZH翻訳と手動補完3経路は既存の日次運用と同じOpenAI gpt-6.1-sol / Flex / lowを明示指定する。AI_SUMMARY_MODEL / AI_TRANSLATION_MODELを新しい設定名とし、CLIと旧環境変数は互換性のため残す。既存キャッシュのschemaや歴史的なsummary_source値は変更せず、再要約・再翻訳を強制しない。手動評価用Claude経路は別用途として維持し、起動しない。料金上限・品質ゲートを変更しない。
 
 - 日次の有料要約・翻訳処理は定時・明示手動実行に限定し、保守コードのmainマージでは起動しない。日次と解説公開は現在のPages方式の最新デプロイが成功し、公開docsが同一であることを証明できた場合だけ再デプロイを省略する。不明・失敗・旧方式・変更ありなら正規のデプロイを要求する。公開検証は引き続き必要。既存の共通writer排他と台帳復旧は維持する。

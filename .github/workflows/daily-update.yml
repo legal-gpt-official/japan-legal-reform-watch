@@ -17,6 +17,7 @@ permissions:
 concurrency:
   group: japan-legal-reform-data-writer
   cancel-in-progress: false
+  queue: max
 
 jobs:
   update:

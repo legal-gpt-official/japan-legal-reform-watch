@@ -239,6 +239,31 @@ class ReconcileTests(unittest.TestCase):
         day = led["daily"]["2026-11-13"]["new"]
         self.assertEqual(day, {"drafted": 1, "ci_passed": 1, "merged": 1, "pages_deployed": 1, "live_verified": 1})
 
+    def test_pending_publisher_does_not_consume_recovery_budget(self):
+        scn = Scenario()
+        scn.add_files()
+        scn.pr.update({"state": "closed", "merged_at": iso(scn.t0), "contents": {}})
+        scn.publish = [{"id": 21, "status": "pending", "created_at": iso(scn.t0 - timedelta(minutes=5))}]
+        led, actions = run(scn, None, scn.t0 + timedelta(minutes=45))
+        self.assertEqual(led["dossiers"][NEW_ID]["stage"], "MERGED")
+        self.assertEqual(actions, [])
+        self.assertFalse(led["dossiers"][NEW_ID].get("dispatches"))
+
+    def test_batched_publisher_must_checkout_after_merge(self):
+        done = datetime(2026, 11, 13, 2, 0, tzinfo=timezone.utc)
+        r = {"id": 21, "status": "completed", "conclusion": "success",
+             "display_title": "Publish evidence v2", "created_at": iso(done - timedelta(minutes=5)),
+             "checkout_started_at": iso(done + timedelta(minutes=2))}
+        self.assertEqual(ep.first_success_after([r], done), r)
+        self.assertIsNone(ep.first_success_after([dict(r, checkout_started_at=iso(done-timedelta(minutes=1)))], done))
+        self.assertIsNone(ep.first_success_after([dict(r, checkout_started_at=None)], done))
+
+    def test_writer_group_preserves_pending_runs_without_parallel_writers(self):
+        for name in ("daily-update.yml", "publish-explainer-pages.yml", "weekly-blog-post.yml",
+                     "english-summary-backfill.yml", "japanese-summary-backfill.yml", "translation-backfill.yml"):
+            w = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")
+            self.assertIn("group: japan-legal-reform-data-writer\n  cancel-in-progress: false\n  queue: max", w)
+
     def test_live_evidence_from_a_report_persists_on_later_runs(self):
         # Regression (production 2026-11-14): a named LIVE report verified 16 older dossiers,
         # and the next ledger run, which had no report, recomputed them as PAGES_DEPLOYED.
