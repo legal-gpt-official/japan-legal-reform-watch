@@ -87,9 +87,11 @@ jobs:
       - name: Backfill English and refresh zh-Hans checkpoint
         id: checkpoint
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
-          ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_SUMMARY_MODEL: gpt-6.1-sol
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
+          AI_TRANSLATION_MODEL: gpt-6.1-sol
           BATCH_SIZE: ${{ inputs.batch_size }}
           PARALLELISM: ${{ inputs.parallelism }}
           SUMMARY_MAX_COST_USD: ${{ inputs.summary_max_cost_usd }}
@@ -190,7 +192,7 @@ jobs:
           translation_status=${PIPESTATUS[0]}
           set -e
 
-          # Every abort path from here on runs AFTER paid Opus English calls, so
+          # Every abort path from here on runs AFTER paid OpenAI English calls, so
           # discarding the workspace would throw those responses away with the
           # runner and a rerun would pay for exactly the same work again. Keep the
           # public corpus and Chinese cache exactly as dispatched, but preserve the

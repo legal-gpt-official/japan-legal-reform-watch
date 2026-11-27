@@ -1833,7 +1833,7 @@ class TestBackfillWorkflow(unittest.TestCase):
         self.assertIn("python scripts/build_public_archives.py", self.backfill)
 
     def test_backfill_sets_translation_model(self):
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.backfill)
+        self.assertIn("AI_TRANSLATION_MODEL: gpt-6.1-sol", self.backfill)
 
     def test_backfill_presync_and_no_force_push(self):
         self.assertIn("git fetch origin main", self.backfill)
@@ -2085,7 +2085,7 @@ class TestProviderFailureWorkflowPolicy(unittest.TestCase):
         self.assertNotIn("--batch", backfill_command)
 
     def test_daily_sets_translation_model(self):
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
+        self.assertIn("AI_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
 
     def test_backfill_remains_translate_only(self):
         for forbidden in ("fetch_updates", "build_public_data", "summarize_updates", "source_health"):
@@ -2352,9 +2352,9 @@ class TestTranslationModelOverride(unittest.TestCase):
 
     def test_translation_models_per_workflow(self):
         """Daily moved to gpt-6.1-sol on Flex (2026-10-16); the manual backfill
-        stays on Sonnet 5."""
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
-        self.assertIn("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5", self.backfill)
+        uses the same model."""
+        self.assertIn("AI_TRANSLATION_MODEL: gpt-6.1-sol", self.daily)
+        self.assertIn("AI_TRANSLATION_MODEL: gpt-6.1-sol", self.backfill)
 
     def test_both_workflows_use_direct_mode_to_avoid_checkpoint_timeout(self):
         for name, wf in (("daily", self.daily), ("backfill", self.backfill)):
@@ -2369,8 +2369,8 @@ class TestTranslationModelOverride(unittest.TestCase):
         # The model-override *assignment* appears exactly once per workflow (the
         # translate step), so summarization is not switched to Sonnet. (The bare
         # token also appears in an explanatory comment, hence matching the value.)
-        self.assertEqual(self.daily.count("ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol"), 1)
-        self.assertEqual(self.backfill.count("ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5"), 1)
+        self.assertEqual(self.daily.count("AI_TRANSLATION_MODEL: gpt-6.1-sol"), 1)
+        self.assertEqual(self.backfill.count("AI_TRANSLATION_MODEL: gpt-6.1-sol"), 1)
 
     def test_switch_is_env_only(self):
         # The Sonnet-5 switch is env-only: the translation code default is

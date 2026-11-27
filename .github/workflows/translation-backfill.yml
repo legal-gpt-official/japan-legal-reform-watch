@@ -79,7 +79,7 @@ jobs:
           # ANTHROPIC_API_KEY + ANTHROPIC_TRANSLATION_MODEL: claude-sonnet-5 and
           # drop --parallel.
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+          AI_TRANSLATION_MODEL: gpt-6.1-sol
           OPENAI_SERVICE_TIER: flex
           OPENAI_REASONING_EFFORT: low
         # Direct calls persist a completed checkpoint without depending on one

@@ -95,17 +95,22 @@ class TestProviderSelection(unittest.TestCase):
         for model in ("claude-sonnet-5-5", "claude-sonnet-5", "", None):
             self.assertFalse(op.is_openai_model(model))
 
-    def test_code_defaults_and_summary_backfills_stay_on_claude(self):
-        """Workflows opt in by env; the code defaults and the summary backfills
-        still route to Claude. The translation backfill moved with the daily
-        zh-Hans step (see test_translation_backfill_matches_the_daily_zh_step)."""
+    def test_legacy_code_defaults_and_explicit_openai_summary_backfills(self):
+        """Keep legacy CLI compatibility, but operational backfills use OpenAI."""
         self.assertFalse(op.is_openai_model(su.DEFAULT_MODEL))
         self.assertFalse(op.is_openai_model(tu.DEFAULT_TRANSLATION_MODEL))
         for name in ("japanese-summary-backfill.yml", "english-summary-backfill.yml"):
             text = (REPO_ROOT / ".github" / "workflows" / name).read_text(encoding="utf-8")
             with self.subTest(name):
-                self.assertNotIn("gpt-", text)
-                self.assertNotIn("OPENAI_API_KEY", text)
+                self.assertEqual(text.count("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}"), 1)
+                self.assertNotRegex(text, r"(?m)^\s*ANTHROPIC_API_KEY:")
+                self.assertRegex(text, r"(?m)^\s*AI_SUMMARY_MODEL: gpt-6.1-sol\s*$")
+                self.assertIn("OPENAI_SERVICE_TIER: flex", text)
+                self.assertIn("OPENAI_REASONING_EFFORT: low", text)
+                self.assertNotIn("  schedule:", text)
+                self.assertNotIn("  push:", text)
+                if name.startswith("english"):
+                    self.assertRegex(text, r"(?m)^\s*AI_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
 
     def test_translation_backfill_matches_the_daily_zh_step(self):
         """A backfill must produce what the daily run would, and must not depend
@@ -113,7 +118,7 @@ class TestProviderSelection(unittest.TestCase):
         text = (REPO_ROOT / ".github" / "workflows" / "translation-backfill.yml").read_text(encoding="utf-8")
         self.assertEqual(text.count("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}"), 1)
         self.assertNotIn("ANTHROPIC_API_KEY: ${{", text)
-        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
+        self.assertRegex(text, r"(?m)^\s*AI_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
         self.assertIn("OPENAI_SERVICE_TIER: flex", text)
         self.assertIn("OPENAI_REASONING_EFFORT: low", text)
         command = text[text.index("python scripts/translate_updates.py"):].split("2>&1")[0]

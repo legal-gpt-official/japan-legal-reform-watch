@@ -221,7 +221,7 @@ class TestWorkflow(unittest.TestCase):
         text = self.WORKFLOW.read_text(encoding="utf-8")
         baseline = re.search(r'baseline:.*?default:\s*"([^"]+)"', text, re.S).group(1)
         daily = (REPO_ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
-        self.assertIn(f"ANTHROPIC_TRANSLATION_MODEL: {baseline}", daily)
+        self.assertIn(f"AI_TRANSLATION_MODEL: {baseline}", daily)
 
     def test_workflow_is_read_only_and_keeps_the_key_in_one_step(self):
         text = self.WORKFLOW.read_text(encoding="utf-8")
