@@ -405,47 +405,50 @@
       },
       "pr": 166,
       "branch": "explainer/raw-7bf14a11616c78fd",
-      "head_sha": "8bb465aebd198ce3126567ec98c0136972f5ef55",
+      "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
       "pr_state": "open",
       "pr_draft": true,
       "labels": [],
       "pr_created_at": "2026-11-16T01:56:43Z",
-      "automerge_eligible_files": false,
+      "automerge_eligible_files": true,
       "ci": {
         "failed_runs": 0,
-        "run_id": 43807511281,
-        "head_sha": "8bb465aebd198ce3126567ec98c0136972f5ef55",
-        "status": "completed",
-        "conclusion": "success",
-        "tests_ok": true,
+        "run_id": 45922506788,
+        "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
+        "status": "in_progress",
+        "conclusion": null,
+        "tests_ok": false,
         "failed_steps": [],
-        "completed_at": "2026-11-16T05:02:01Z",
-        "duration_s": 65
+        "completed_at": null,
+        "duration_s": null
       },
-      "stage": "RESEARCH_REQUIRED",
-      "last_success_stage": "RESEARCH_REQUIRED",
+      "stage": "CI_RUNNING",
+      "last_success_stage": "CI_RUNNING",
       "stage_history": {
         "DRAFTED": "2026-11-16T01:56:43Z",
-        "RESEARCH_REQUIRED": "2026-11-16T01:56:43Z"
+        "RESEARCH_REQUIRED": "2026-11-16T01:56:43Z",
+        "SOURCES_VERIFIED": "2026-11-27T01:26:37Z",
+        "EN_READY": "2026-11-27T01:26:37Z",
+        "JA_ZH_READY": "2026-11-27T01:26:37Z",
+        "STAMPED_AND_SYNCED": "2026-11-27T01:26:37Z"
       },
       "sources": {
         "fetched": 10,
         "failed": 0,
-        "not_fetched": 0,
+        "not_fetched": 7,
         "failed_by_error": {}
       },
-      "unconfirmed": [
-        "old_vs_new",
-        "scope",
-        "obligation_type",
-        "delegation"
+      "unconfirmed": [],
+      "unresolved": [
+        "Cabinet Order No. 347 of 2026 (promulgated 11 November 2026, effective 1 April 2027) also amends the National Health Insurance Enforcement Order; whether it touches Article 29-3 and how it interacts with this ordinance's 1 August 2027 revision was not verified.",
+        "Article titles for late-stage elderly medical care regulation Articles 62, 63, 64, 68, 69 and 71 were read as article numbers from the ordinance PDF (small print); headings were not re-verified verbatim.",
+        "The ordinance's own cited legal bases (including Health Insurance Act Article 51-3(1)) are stated in the consultation summary; the promulgated ordinance's preamble was read from the MHLW ordinance database PDF (browser read, not a fetched source).",
+        "The 2026-08-01 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; the ordinance's role for stage 1 is limited to supplementary Article 3."
       ],
-      "blockers": [
-        "confirm critical facts: old_vs_new, scope, obligation_type, delegation"
-      ],
-      "next_action": "Confirm the critical legal facts from official sources (python scripts/explainer_sources.py fetch health-insurance-ordinance-151-2026). First: confirm critical facts: old_vs_new, scope, obligation_type, delegation Writer note: Compare full 2027-08-01 Art. 26-2 and Art. 27-12-2 against both underlying Enforcement Orders (including the meaning of old/new referenced items), then separately verify the 2026-10-28 changes to Health Insurance and Seafarers Insurance regulations. Resolve scope, obligation_type, delegation and policy background with primary-text citations; do not infer eligibility changes from renumbering. The 2027 old-form transitional clause is confirmed only for that stage. Once complete, draft full EN/JA/zh-Hans and run preflight/CI.",
-      "updated_at": "2026-11-16T05:02:58Z",
-      "run_id": "43807630227"
+      "blockers": [],
+      "next_action": "Wait for Pull request checks run 45922506788 on bfe44fdca57a.",
+      "updated_at": "2026-11-27T01:26:37Z",
+      "run_id": "45922529383"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
