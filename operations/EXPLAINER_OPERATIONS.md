@@ -17,7 +17,7 @@
 | `data/explainer_evidence/<seed>.json` | 証拠パック（自動生成）：e-Gov法令API v2から取得した改正前後の条文差分、改正法令の附則（施行期日・経過措置）、施行段階、委任・義務表現の文、意見募集案の確定版特定結果、案件ファイルのひな形 |
 | `scripts/explainer_evidence.py` / `.github/workflows/explainer-evidence.yml` | 証拠パックの生成（GitHubランナー上、日次更新完了後と10:20・20:20 JST） |
 | `scripts/explainer_meaning.py` | 3言語の法的概念（義務・禁止・努力義務・未施行等）の区画別レビュー一覧（ブロックしない） |
-| `.github/workflows/explainer-pipeline.yml` | スロット開始10分前と各CI/Publish/LIVE完了時に台帳を更新し、状況Issueを書き換え、失敗した公開工程を回数制限つきで再実行 |
+| `.github/workflows/explainer-pipeline.yml` | スロット開始10分前、CI/Publish/LIVE完了時、実際の自動マージ後に台帳を更新し、状況Issueは内容変更時のみ書き換え、失敗した公開工程を回数制限つきで再実行 |
 | `.github/workflows/pr-checks.yml` | PR ごとの事前検査・全テストと解説検証（読み取り専用・秘密情報なし） |
 | `operations/CHATGPT_EXPLAINER_TASK_PROMPT_JA.md` | ChatGPT 等の定期作業に登録するプロンプト |
 
@@ -63,6 +63,12 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 **書き手の手順（ネットワーク不要）。** 計画の `new` 候補は `ready` が先頭に並ぶ。`data/explainer_evidence/<seed>.json` の `case_file_template` を `data/explainer_state/<dossier-id>.json` に写し（`dossier_id` を書き換える）、記録データの事実は確認済みのまま使い、解釈が必要な区分（`scope`、`obligation_type`、`old_vs_new`、`delegation`、`policy_background`、`business_impact`）をパックの引用文から判断して記録する。パックで分からないことは推測せず `unresolved` に書く。`draft_only` の候補は案として解説するか、結果公示まで保留する。保留は、公式記録のfingerprintが変わるか、**証拠パックの内容が変わる（e-Govに確定版が載る等）と自動で解除される**。
 
 **3言語の意味の照合。** `explainer_meaning.py` は英日中の同じ位置の区画で法的概念（義務・禁止・努力義務・未施行・成立・施行・公布・案）の有無を比べ、事前検査に「meaning review」として表示する。公開済み2,274区画で較正したところ、どの概念も0.4〜14%の区画で反応し、その多くは忠実な言い換えだった（「should not describe…」→「…してはならない」など）。語彙による判定では法的な同一性を決められないため、ブロックはせずレビュー一覧とする。ブロックするのは精度が実証された照合（日付・数値、構造・同期キー、e-Gov記録データ）だけである。
+
+### 起動効率化（2026-11-27）
+
+- 自動マージの通常経路はCI成功・法務審査済みラベル・Draft解除のイベントを維持する。対象外のPRイベントはランナーを起動しない。取りこぼし回収の定時実行は4時間ごととし、実際にマージした場合だけ公開と台帳更新を明示的に起動する。公開起動が失敗しても台帳による回収経路を維持する。
+- 台帳の執筆スロット前の定時実行、CI/公開/LIVE完了による更新、回数制限つき復旧は維持する。状況Issueは報告本文が変化した場合だけ更新する。
+- LIVE v2の対象なしはNO_WORKであり、公開完了件数には算入しない。成功ステータスだけで案件の公開を推定せず、実行ID・試行番号に結びついた検証結果を使う。
 
 ### スロットの進め方：状態管理と自動再開（2026-11-13）
 

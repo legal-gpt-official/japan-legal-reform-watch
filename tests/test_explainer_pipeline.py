@@ -473,6 +473,20 @@ class WorkflowTests(unittest.TestCase):
         self.assertFalse(ep.automerge_eligible_files([{"filename": "data/explainers/a.json"},
                                                        {"filename": "scripts/x.py"}]))
 
+    def test_idle_merge_scan_does_not_trigger_ledger(self):
+        ledger = (ROOT / ".github/workflows/explainer-pipeline.yml").read_text(encoding="utf-8")
+        merge = (ROOT / ".github/workflows/explainer-safe-automerge.yml").read_text(encoding="utf-8")
+        self.assertNotIn('"Safely merge verified reform explainer PRs"', ledger)
+        self.assertIn('10 */4 * * *', merge)
+        self.assertIn("github.event.label.name == 'legal-content-verified'", merge)
+        self.assertIn("current.labels.some", merge)
+        self.assertGreater(merge.index("workflow_id:'explainer-pipeline.yml'"),
+                           merge.index("if (mergedPRs.length > 0)"))
+        source = self.scripts("explainer-safe-automerge.yml")[0]
+        result = subprocess.run(["node", "--check", "-"], input="(async () => {\n" + source + "\n})();\n",
+                                text=True, capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_pr_checks_run_preflight_before_the_suite(self):
         text = (ROOT / ".github/workflows/pr-checks.yml").read_text(encoding="utf-8")
         self.assertLess(text.index("explainer_preflight.py check"), text.index("unittest discover"))

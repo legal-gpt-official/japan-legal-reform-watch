@@ -67,6 +67,8 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const dispatches = [];
           const head = "1111111111111111111111111111111111111111";
           let ciHead = head;
+          let failPublish = false;
+          let revokeBeforeMerge = false;
           let ciConclusion = "success";
           let changedFiles = [{filename:"data/explainers/mock.json"}];
           const pr = {
@@ -78,12 +80,12 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
             rest: {
               pulls:{
                 list:()=>{},listFiles:()=>{},
-                get:async()=>({data:pr}),
+                get:async()=>({data:revokeBeforeMerge ? {...pr, labels:[]} : pr}),
                 merge:async(args)=>{calls.push(args);return {data:{merged:true}};}
               },
               actions:{
                 listWorkflowRunsForRepo:()=>{},listJobsForWorkflowRun:()=>{},
-                createWorkflowDispatch:async(args)=>{dispatches.push(args);}
+                createWorkflowDispatch:async(args)=>{dispatches.push(args); if(failPublish && args.workflow_id==="publish-explainer-pages.yml")throw Error("publish dispatch failed");}
               }
             },
             paginate:async function(action) {
@@ -101,13 +103,24 @@ class SafeAutoMergeWorkflowTests(unittest.TestCase):
           const run=async()=>fn(github,{repo:{owner:"unit",repo:"repo"}},{info:()=>{},warning:()=>{}});
           await run();
           if(calls.length!==1 || calls[0].sha!==head)throw Error("Valid PR should merge once at exact head");
-          if(dispatches.length!==1 || dispatches[0].workflow_id!=="publish-explainer-pages.yml")throw Error("Successful merge must dispatch Publish exactly once");
+          if(dispatches.length!==2 || dispatches[0].workflow_id!=="publish-explainer-pages.yml" || dispatches[1].workflow_id!=="explainer-pipeline.yml")throw Error("Successful merge must dispatch Publish and ledger exactly once each");
+          dispatches.length=0;
+          calls.length=0;
+          failPublish=true;
+          let failed=false;
+          try { await run(); } catch(e) { failed=true; }
+          if(!failed || calls.length!==1 || dispatches.length!==2 || dispatches[1].workflow_id!=="explainer-pipeline.yml")throw Error("Failed Publish dispatch must still trigger ledger recovery");
+          failPublish=false;
           dispatches.length=0;
           calls.length=0;
           pr.labels=[];
           await run();
           if(calls.length || dispatches.length)throw Error("Unlabelled PR merged or published");
           pr.labels=[{name:"legal-content-verified"}];
+          revokeBeforeMerge=true;
+          await run();
+          if(calls.length || dispatches.length)throw Error("Revoked review label accepted");
+          revokeBeforeMerge=false;
           pr.draft=true;
           await run();
           if(calls.length || dispatches.length)throw Error("Draft PR merged or published");
