@@ -185,6 +185,7 @@ jobs:
           python - <<'PY'
           import json, subprocess, tempfile
           from pathlib import Path
+          from scripts.live_report_evidence import validated_names, validated_v3
           snapshot_path = Path("snapshot.json")
           snapshot = json.loads(snapshot_path.read_text())
           previous_path = Path("data/explainer_pipeline.json")
@@ -199,13 +200,16 @@ jobs:
               key = f"{rid}:{run.get('run_attempt') or 1}"
               v3 = str(run.get("display_title") or "").startswith("LIVE evidence v3")
               saved = cache.get(key)
-              if not v3 and isinstance(saved, list):
-                  index[key] = saved
-                  run["dossiers"] = saved
-              elif v3 and isinstance(saved, dict) and isinstance(saved.get("dossier_versions"), dict):
-                  index[key] = saved
-                  run.update(saved)
-              else:
+              try:
+                  if v3:
+                      facts = validated_v3(saved)
+                      index[key] = facts
+                      run.update(facts)
+                  else:
+                      names = validated_names(saved)
+                      index[key] = names
+                      run["dossiers"] = names
+              except (ValueError, TypeError):
                   missing.append(run)
           # The triggering artifact is already downloaded; recover other recent
           # reports too, so a missed event or a race cannot falsely credit a run.
@@ -222,29 +226,13 @@ jobs:
                           subprocess.run(["gh", "run", "download", rid, "-n", "live-verification-report", "-D", tmp],
                                          check=True, timeout=20, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                           report = json.loads((Path(tmp) / "live-verification.json").read_text())
-                      names = report.get("dossiers_verified")
-                      if str(report.get("run_id")) != rid or str(report.get("run_attempt")) != attempt or not isinstance(names, list) or not all(isinstance(n, str) for n in names):
+                      names = validated_names(report.get("dossiers_verified"))
+                      if str(report.get("run_id")) != rid or str(report.get("run_attempt")) != attempt:
                           raise ValueError("invalid LIVE report")
-                      if report.get("outcome") not in ("NO_WORK", "VERIFIED") or (report["outcome"] == "NO_WORK" and names):
+                      if report.get("outcome") != ("VERIFIED" if names else "NO_WORK") or report.get("dossiers_failed") != []:
                           raise ValueError("invalid LIVE outcome")
                       if str(run.get("display_title") or "").startswith("LIVE evidence v3"):
-                          import re
-                          from datetime import datetime
-                          versions = report.get("dossier_versions")
-                          started = report.get("checked_started_at")
-                          sha = report.get("source_sha")
-                          if (not isinstance(versions, dict) or set(versions) != set(names)
-                                  or not all(isinstance(v, str) and re.fullmatch(r"[a-f0-9]{64}", v) for v in versions.values())
-                                  or not isinstance(sha, str) or not re.fullmatch(r"[a-f0-9]{40}", sha)
-                                  or not isinstance(started, str)):
-                              raise ValueError("invalid version-bound LIVE report")
-                          parsed = datetime.fromisoformat(started)
-                          if parsed.tzinfo is None:
-                              raise ValueError("LIVE timestamp lacks timezone")
-                          facts = {"dossiers": names, "dossier_versions": versions,
-                                   "checked_started_at": started, "source_sha": sha,
-                                   "publish_run_id": report.get("publish_run_id"),
-                                   "pages_run_id": report.get("pages_run_id")}
+                          facts = validated_v3({**report, "dossiers": names})
                           index[key] = facts
                           run.update(facts)
                       else:

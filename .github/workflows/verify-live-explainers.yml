@@ -119,6 +119,7 @@ jobs:
           if [ -n "$DOCS_SHA" ] && [ "$LIVE_SOURCE_SHA" != "$DOCS_SHA" ]; then exit 1; fi
           python scripts/verify_live_explainers.py \
             --days 2 \
+            --allow-no-work \
             --dossiers "$DOSSIERS" \
             --attempts 12 \
             --delay 20 \

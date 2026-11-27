@@ -66,6 +66,8 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 
 ### 起動効率化（2026-11-27）
 
+- 総合安全点検：LIVEのNO_WORKは証跡対応workflowの明示opt-inのみ成功（認定0件）。各dossierの全関連raw IDについてEN/JA/ZH全URLが必要で、重複帰属・不足URLは失敗。台帳は新規/キャッシュ双方の証跡を同一形式で検証し、run ID・conclusionなどの実行メタデータをキャッシュで上書きしない。既存の版ハッシュ・公式資料・法務ゲートを維持する。
+
 - 共有writerグループ（日次、解説公開、補完3種、週次投稿）はGitHub Actionsのqueue: maxを使用し、最大100待機まで直列処理する。自動マージ直後にmainのPublishがpendingならその待機実行に集約し、実行中・不明なら通常起動する。Publish evidence v2は実際のcheckout開始時刻がマージ後である成功runだけ台帳に認定し、pendingは復旧回数に算入しない。日次と手動補完は取得時点の最新対象ブランチで処理する。mainへ書く英語/中国語補完はmain起動のみ許可する。既存法務・CI・LIVEゲートは維持する。
 
 - AI提供元：日次EN/JA要約・ZH翻訳と手動補完3経路は既存の日次運用と同じOpenAI gpt-6.1-sol / Flex / lowを明示指定する。AI_SUMMARY_MODEL / AI_TRANSLATION_MODELを新しい設定名とし、CLIと旧環境変数は互換性のため残す。既存キャッシュのschemaや歴史的なsummary_source値は変更せず、再要約・再翻訳を強制しない。手動評価用Claude経路は別用途として維持し、起動しない。料金上限・品質ゲートを変更しない。

@@ -127,7 +127,9 @@ class LiveExplainerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             report = Path(tmp) / "report.json"
             with mock.patch.object(live, "EN_DIR", Path(tmp)):
-                self.assertEqual(live.main(["--report", str(report)]), 0)
+                self.assertEqual(live.main(["--report", str(report)]), 1)
+                self.assertEqual(json.loads(report.read_text())["outcome"], "FAILED")
+                self.assertEqual(live.main(["--allow-no-work", "--report", str(report)]), 0)
                 data = json.loads(report.read_text())
                 self.assertEqual(data["outcome"], "NO_WORK")
                 self.assertEqual(data["dossiers_verified"], [])
@@ -163,6 +165,18 @@ class DossierResultTests(unittest.TestCase):
         self.assertEqual(live.dossier_results(dossiers, targets, errors, []),
                          {"dossiers_verified": ["a"], "dossiers_failed": ["b"]})
         self.assertEqual(live.dossier_results(dossiers, targets, {}, ["a: missing locale bundle"])["dossiers_failed"], ["a"])
+        self.assertEqual(live.dossier_results(dossiers, targets[:-1], {}, [])["dossiers_verified"], ["a"])
+        duplicate = [{"dossier_id": "a", "related_item_ids": ["raw-0000000000000001"]},
+                     {"dossier_id": "b", "related_item_ids": ["raw-0000000000000001"]}]
+        self.assertEqual(live.dossier_results(duplicate, targets, {}, [])["dossiers_verified"], [])
+
+    def test_main_fails_when_a_language_target_is_absent(self):
+        dossier = {"dossier_id": "a", "related_item_ids": ["raw-0000000000000001"]}
+        targets = [(f"{live.HOST}/u/raw-0000000000000001/{suffix}", ()) for suffix in ("", "ja/")]
+        with mock.patch.object(live, "recent_dossiers", return_value=[dossier]), \
+                mock.patch.object(live, "page_checks", return_value=(targets, [])), \
+                mock.patch.object(live, "verify", return_value={}):
+            self.assertEqual(live.main(["--allow-no-work"]), 1)
 
 
 if __name__ == "__main__":
