@@ -2,15 +2,8 @@ name: Daily update legal reform data
 
 on:
   workflow_dispatch:
-  # A code merge gets one immediate refresh. Data-only commits never loop.
-  push:
-    branches: [main]
-    paths:
-      - "scripts/official_source_evidence.py"
-      - "scripts/build_explainer_research_context.py"
-      - "scripts/summarize_updates.py"
-      - "requirements.txt"
-      - ".github/workflows/daily-update.yml"
+  # Paid summary/translation stages run on the daily schedule or an explicit
+  # operator request, never merely because a maintenance PR was merged.
   schedule:
     - cron: "0 21 * * *"
 
@@ -36,6 +29,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -416,7 +411,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python scripts/request_pages_deployment.py
+          python scripts/request_pages_deployment.py --reuse-current
 
       - name: Report explainer data readiness
         if: always()

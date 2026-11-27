@@ -160,7 +160,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python scripts/request_pages_deployment.py
+          python scripts/request_pages_deployment.py --reuse-current
 
 
       # Record the exact docs/main commit used for this recovery build. A
@@ -185,6 +185,7 @@ jobs:
         uses: actions/github-script@v7
         env:
           DOCS_SHA: ${{ steps.docs_sha.outputs.sha }}
+          PAGES_MODE: ${{ steps.pages_request.outputs.mode }}
         with:
           script: |
             const {owner, repo} = context.repo;
@@ -201,7 +202,10 @@ jobs:
             // and changed nothing under docs/ since it, so what was deployed is exactly the
             // generated docs. LIVE verification still compares the served pages.
             async function containsDocsUnchanged(headSha) {
-              const cmp = await github.rest.repos.compareCommits({owner, repo, base: docsSha, head: headSha});
+              let cmp = await github.rest.repos.compareCommits({owner, repo, base: docsSha, head: headSha});
+              if (cmp.data.status === 'behind') {
+                cmp = await github.rest.repos.compareCommits({owner, repo, base: headSha, head: docsSha});
+              }
               const status = cmp.data.status;
               if (status !== 'ahead' && status !== 'identical') return false;
               const files = cmp.data.files;
@@ -209,8 +213,14 @@ jobs:
               return !files.some(f => (f.filename || '').startsWith('docs/') || (f.previous_filename || '').startsWith('docs/'));
             }
             // A successful migration no-op is not a deployment.
-            const isPages = run => run.name === 'pages build and deployment' ||
-              run.path === '.github/workflows/deploy-static-pages.yml';
+            const mode = process.env.PAGES_MODE;
+            if (!['legacy','workflow'].includes(mode)) {
+              core.setFailed('Unknown Pages mode; refuse to credit deployment');
+              return;
+            }
+            const isPages = run => mode === 'legacy'
+              ? run.name === 'pages build and deployment' && run.path === 'dynamic/pages/pages-build-deployment'
+              : run.path === '.github/workflows/deploy-static-pages.yml';
             async function deployedSuccessfully(run) {
               if (run.status !== 'completed' || run.conclusion !== 'success') return false;
               if (run.path !== '.github/workflows/deploy-static-pages.yml')
