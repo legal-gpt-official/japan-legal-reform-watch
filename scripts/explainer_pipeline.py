@@ -210,7 +210,8 @@ def first_success_after(runs: Sequence[Mapping[str, Any]], after: datetime | Non
     return ok[0] if ok else None
 
 
-def live_covers(run: Mapping[str, Any], dossier_id: str, verified_at: str | None) -> bool:
+def live_covers(run: Mapping[str, Any], dossier_id: str, verified_at: str | None,
+                version: str | None = None) -> bool:
     """A successful LIVE run verified this dossier.
 
     Exact when the run's report lists dossiers. Otherwise the verifier's own
@@ -218,6 +219,10 @@ def live_covers(run: Mapping[str, Any], dossier_id: str, verified_at: str | None
     LIVE_WINDOW_DAYS (JST) of the run and fails if any one of them fails.
     """
     listed = run.get("dossiers")
+    if str(run.get("display_title") or "").startswith("LIVE evidence v3"):
+        versions = run.get("dossier_versions")
+        return bool(version and isinstance(versions, dict) and versions.get(dossier_id) == version
+                    and isinstance(listed, list) and dossier_id in listed)
     if isinstance(listed, list):
         return dossier_id in listed
     # V2 permits successful NO_WORK runs; never infer coverage from success/date.
@@ -281,12 +286,14 @@ def _cycles(
 
 
 def first_live_after(live_runs: Sequence[Mapping[str, Any]], done: datetime | None, dossier_id: str,
-                     verified_at: str | None) -> Mapping[str, Any] | None:
+                     verified_at: str | None, version: str | None = None) -> Mapping[str, Any] | None:
     if done is None:
         return None
     for run in sorted(live_runs, key=lambda r: (str(r.get("created_at")), int(r.get("id") or 0))):
+        v3 = str(run.get("display_title") or "").startswith("LIVE evidence v3")
+        checked = _ts(run.get("checked_started_at")) if v3 else _ts(run.get("created_at"))
         if run.get("status") == "completed" and run.get("conclusion") == "success" \
-                and (_ts(run.get("created_at")) or done) >= done and live_covers(run, dossier_id, verified_at):
+                and checked is not None and checked >= done and live_covers(run, dossier_id, verified_at, version):
             return run
     return None
 
@@ -312,7 +319,7 @@ def reconcile(
     live_runs = [dict(r) for r in snapshot.get("live_runs") or []]
     if live_report and live_report.get("run_id") is not None:
         for run in live_runs:
-            if str(run.get("display_title") or "").startswith("LIVE evidence v2"):
+            if str(run.get("display_title") or "").startswith(("LIVE evidence v2", "LIVE evidence v3")):
                 continue  # v2 reports are validated and attached by the collector
             if str(run.get("id")) == str(live_report["run_id"]) and isinstance(live_report.get("dossiers_verified"), list):
                 run["dossiers"] = list(live_report["dossiers_verified"])
@@ -337,6 +344,9 @@ def reconcile(
         else:  # case file / translations only: new unless the English already exists on main
             kind = (prev.get("kind") or "update") if dossier_id in main_explainers else "new"
         entry: dict[str, Any] = {"dossier_id": dossier_id, "kind": kind}
+        from verify_live_explainers import dossier_version
+        version = (dossier_version(main_explainers[dossier_id], main_bundles[dossier_id])
+                   if dossier_id in main_explainers and dossier_id in main_bundles else None)
         contents = (pr or {}).get("contents") or {}
         is_open = bool(pr) and pr.get("state") == "open"
         if is_open:
@@ -411,16 +421,20 @@ def reconcile(
                 entry["publish"] = {"run_id": publish.get("id"), "completed_at": publish.get("updated_at")}
                 history.setdefault("PAGES_DEPLOYED", publish.get("updated_at"))
                 verified_at = (main_explainers.get(dossier_id) or {}).get("verified_at")
-                live = first_live_after(live_runs, _ts(publish.get("updated_at")), dossier_id, verified_at)
+                live = first_live_after(live_runs, _ts(publish.get("updated_at")), dossier_id, verified_at, version)
                 # A per-dossier LIVE report is read only by the run its LIVE workflow triggers;
                 # keep that evidence while it postdates this cycle's Publish.
                 prev_live = prev.get("live") or {}
                 if live is None and _ts(prev_live.get("completed_at")) and \
-                        _ts(prev_live["completed_at"]) >= _ts(publish.get("updated_at")):
-                    live = {"id": prev_live.get("run_id"), "updated_at": prev_live["completed_at"]}
+                        _ts(prev_live["completed_at"]) >= _ts(publish.get("updated_at")) and \
+                        (not prev_live.get("version") or prev_live.get("version") == version):
+                    live = {"id": prev_live.get("run_id"), "updated_at": prev_live["completed_at"],
+                            "dossier_versions": {dossier_id: prev_live["version"]} if prev_live.get("version") else {}}
                 if live:
                     stage = "LIVE_VERIFIED"
                     entry["live"] = {"run_id": live.get("id"), "completed_at": live.get("updated_at")}
+                    if (live.get("dossier_versions") or {}).get(dossier_id):
+                        entry["live"]["version"] = live["dossier_versions"][dossier_id]
                     history.setdefault("LIVE_VERIFIED", live.get("updated_at"))
         # Content stages of open work get a first-observed time; merged history is never back-filled.
         if is_open:
@@ -436,7 +450,7 @@ def reconcile(
             ici = ci_facts(intro_pr, ci_runs)
             pub = first_success_after(publish_runs, merged)
             lv = first_live_after(live_runs, _ts((pub or {}).get("updated_at")), dossier_id,
-                                  (main_explainers.get(dossier_id) or {}).get("verified_at")) if pub else None
+                                  (main_explainers.get(dossier_id) or {}).get("verified_at"), version) if pub else None
             facts = {
                 "pr": intro_pr.get("number"), "drafted_at": intro_pr.get("created_at"),
                 "ci_passed_at": ici.get("completed_at") if ici.get("conclusion") == "success" else None,
