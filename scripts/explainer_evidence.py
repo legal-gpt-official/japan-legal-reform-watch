@@ -43,6 +43,9 @@ bounded bodies, a bounded number of API calls per run, no retries of 4xx.
 from __future__ import annotations
 
 import argparse
+import binascii
+import base64
+import os
 import hashlib
 import json
 import re
@@ -50,7 +53,7 @@ import sys
 import time
 import unicodedata
 from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 from urllib.parse import quote, urlsplit, urljoin, parse_qs
@@ -74,6 +77,8 @@ MAX_SENTENCES = 30
 DEFAULT_MAX_API_CALLS = 160
 LAW_DATA_LIMIT = 8_000_000
 SMALL_LIMIT = 1_500_000
+HISTORICAL_CACHE_TTL = timedelta(hours=24)
+HISTORICAL_CACHE_MAX_BYTES = 48_000_000
 USER_AGENT = "JapanLegalReformWatch/1.0 (explainer evidence; +https://updates.legal-gpt.com/)"
 
 # ------------------------------------------------------------------ numbers and law numbers
@@ -377,6 +382,76 @@ class Fetched:
     fetched_at: str
 
 
+class HistoricalLawCache:
+    """Short-lived cache of exact official response bytes for previous revisions only.
+
+    Reuse requires a fresh revision-list row with the same revision ID and
+    updated timestamp. No cache for current/future law, missing timestamps,
+    searches, errors, or public-comment documents. A bad cache is a miss.
+    """
+    def __init__(self, directory: Path):
+        self.directory = directory
+
+    def path(self, url: str) -> Path:
+        return self.directory / (hashlib.sha256(url.encode()).hexdigest() + ".json")
+
+    @staticmethod
+    def valid_body(body: bytes, revision_id: str) -> bool:
+        try:
+            data = json.loads(body)
+            return (isinstance(data, dict)
+                    and isinstance(data.get("revision_info"), dict)
+                    and data["revision_info"].get("law_revision_id") == revision_id
+                    and bool(data.get("law_full_text")))
+        except (ValueError, UnicodeError):
+            return False
+
+    def read(self, url: str, revision_id: str, updated: str, now: datetime) -> Fetched | None:
+        try:
+            path = self.path(url)
+            if path.stat().st_size > LAW_DATA_LIMIT * 2:
+                return None
+            item = json.loads(path.read_text(encoding="utf-8"))
+            if item["url"] != url or item["revision_id"] != revision_id or item["updated"] != updated:
+                return None
+            age = now - datetime.fromisoformat(item["fetched_at"].replace("Z", "+00:00"))
+            if age < timedelta(0) or age >= HISTORICAL_CACHE_TTL:
+                return None
+            body = base64.b64decode(item["body"], validate=True)
+            if len(body) > LAW_DATA_LIMIT or hashlib.sha256(body).hexdigest() != item["sha256"]:
+                return None
+            if not self.valid_body(body, revision_id):
+                return None
+            return Fetched(url, json.loads(body), item["sha256"], item["fetched_at"])
+        except (OSError, ValueError, KeyError, TypeError, AttributeError, binascii.Error):
+            return None
+
+    def write(self, fetched: Fetched, body: bytes, revision_id: str, updated: str) -> None:
+        if not self.valid_body(body, revision_id):
+            return
+        try:
+            self.directory.mkdir(parents=True, exist_ok=True)
+            path = self.path(fetched.url)
+            payload = json.dumps({"url": fetched.url, "revision_id": revision_id, "updated": updated,
+                                  "fetched_at": fetched.fetched_at, "sha256": fetched.sha256,
+                                  "body": base64.b64encode(body).decode("ascii")})
+            if len(payload) > HISTORICAL_CACHE_MAX_BYTES:
+                return
+            files = sorted((p for p in self.directory.glob("*.json") if p != path),
+                           key=lambda p: p.stat().st_mtime)
+            total = sum(p.stat().st_size for p in files)
+            while files and total + len(payload) > HISTORICAL_CACHE_MAX_BYTES:
+                victim = files.pop(0)
+                total -= victim.stat().st_size
+                victim.unlink()
+            tmp = path.with_suffix(".tmp")
+            tmp.write_text(payload, encoding="utf-8")
+            os.replace(tmp, path)
+        except OSError:
+            # Cache storage is optional; official data has already been fetched.
+            return
+
+
 @dataclass
 class EgovClient:
     """Bounded, cached, official-host-only fetcher. ``fetch`` returns (bytes, final_url)."""
@@ -385,15 +460,23 @@ class EgovClient:
     calls: int = 0
     cache: dict[str, Fetched] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
+    historical_cache: HistoricalLawCache | None = None
+    historical_hits: int = 0
 
-    def get_json(self, url: str, limit: int = SMALL_LIMIT) -> Fetched | None:
+    def get_json(self, url: str, limit: int = SMALL_LIMIT, *, historical: tuple[str, str] | None = None) -> Fetched | None:
         if url in self.cache:
             return self.cache[url]
-        if self.calls >= self.max_calls:
-            raise FetchBudgetExceeded(url)
         if not es.official_url(url):
             self.errors.append(f"non_official_url {url}")
             return None
+        if historical and self.historical_cache:
+            saved = self.historical_cache.read(url, *historical, datetime.now(timezone.utc))
+            if saved is not None:
+                self.cache[url] = saved
+                self.historical_hits += 1
+                return saved
+        if self.calls >= self.max_calls:
+            raise FetchBudgetExceeded(url)
         self.calls += 1
         try:
             body, final = self.fetch(url, limit)
@@ -413,14 +496,21 @@ class EgovClient:
         fetched = Fetched(url, data, hashlib.sha256(body).hexdigest(),
                           datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"))
         self.cache[url] = fetched
+        if historical and self.historical_cache:
+            self.historical_cache.write(fetched, body, *historical)
         return fetched
 
     def revisions(self, law_id: str) -> Fetched | None:
         return self.get_json(f"{API}/law_revisions/{quote(law_id)}")
 
-    def law_data(self, revision_id: str) -> Fetched | None:
+    def law_data(self, revision_id: str, *, revision_row: Mapping[str, Any] | None = None) -> Fetched | None:
+        row = revision_row or {}
+        updated = row.get("updated")
+        historical = ((revision_id, updated) if row.get("law_revision_id") == revision_id
+                      and row.get("current_revision_status") == "PreviousEnforced"
+                      and isinstance(updated, str) and updated.strip() else None)
         return self.get_json(f"{API}/law_data/{quote(revision_id)}?response_format=json&law_full_text_format=json",
-                             LAW_DATA_LIMIT)
+                             LAW_DATA_LIMIT, historical=historical)
 
     def search_title(self, title: str) -> Fetched | None:
         return self.get_json(f"{API}/laws?law_title={quote(title)}")
@@ -530,8 +620,9 @@ def amendment_evidence(client: EgovClient, law_id: str, revision_id: str, today:
         "stage": stage,
         "revisions_source": {"url": revs.url, "sha256": revs.sha256, "fetched_at": revs.fetched_at},
     }
-    new = client.law_data(revision_id)
-    old = client.law_data(previous) if previous else None
+    new = client.law_data(revision_id, revision_row=row)
+    previous_row = next((r for r in rows if r.get("law_revision_id") == previous), None)
+    old = client.law_data(previous, revision_row=previous_row) if previous else None
     if new is None:
         out["text_status"] = "unavailable"
         return out
@@ -1213,6 +1304,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     b.add_argument("--with-documents", action="store_true",
                    help="also read the public-comment page and its PDFs (official_source_evidence) to narrow drafts")
     b.add_argument("--prune", action="store_true", help="delete packs no longer wanted")
+    b.add_argument("--historical-cache", type=Path, default=None,
+                   help="optional 24-hour cache for unchanged PreviousEnforced revisions")
     s = sub.add_parser("show")
     s.add_argument("seed")
     args = parser.parse_args(argv)
@@ -1239,9 +1332,17 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         titles = {str(r.get("source_url")): str(r.get("title_ja") or "") for r in index.raw_by_id.values()}
 
+        document_cache: dict[str, tuple[str, str, str]] = {}
+
         def documents(url: str) -> tuple[str, str, str]:
-            return consultation_documents(url, titles.get(url, ""), gather=ose.gather, fetch=ose.fetch_bounded)
-    client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls)
+            if url in document_cache:
+                return document_cache[url]
+            result = consultation_documents(url, titles.get(url, ""), gather=ose.gather, fetch=ose.fetch_bounded)
+            if result[0] and result[1].startswith("ok:"):
+                document_cache[url] = result
+            return result
+    client = EgovClient(fetch=http_fetch, max_calls=args.max_api_calls,
+                        historical_cache=HistoricalLawCache(args.historical_cache) if args.historical_cache else None)
     counts: dict[str, int] = {}
     written, kept = 0, set()
     for seed, entry in targets:
@@ -1263,7 +1364,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         for path in args.dir.glob("raw-*.json"):
             if path.stem not in kept and path.stem not in {t[0] for t in targets}:
                 path.unlink()
-    print("evidence " + json.dumps({"packs": len(kept), "changed": written, "api_calls": client.calls, **counts}))
+    print("evidence " + json.dumps({"packs": len(kept), "changed": written, "api_calls": client.calls, "historical_cache_hits": client.historical_hits, **counts}))
     return 0
 
 

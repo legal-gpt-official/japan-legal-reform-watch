@@ -4,9 +4,10 @@ from __future__ import annotations
 import copy
 import json
 import sys
+import tempfile
 import unittest
 from unittest import mock
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -164,6 +165,65 @@ class AmendmentTests(unittest.TestCase):
         c = ev.EgovClient(fetch=FakeFetch(), max_calls=1)
         with self.assertRaises(ev.FetchBudgetExceeded):
             ev.amendment_evidence(c, LAW_ID, NEW, date(2026, 11, 15))
+
+
+class HistoricalCacheTests(unittest.TestCase):
+    def test_only_previous_revision_reused_and_fresh_revisions_always_read(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = ev.HistoricalLawCache(Path(tmp))
+            first = ev.EgovClient(fetch=FakeFetch(), historical_cache=cache)
+            a = ev.amendment_evidence(first, LAW_ID, NEW, date(2026, 11, 15))
+            second = ev.EgovClient(fetch=FakeFetch(), historical_cache=cache)
+            b = ev.amendment_evidence(second, LAW_ID, NEW, date(2026, 11, 15))
+            self.assertEqual((first.calls, second.calls, second.historical_hits), (3, 2, 1))
+            self.assertEqual(a["diff"], b["diff"])
+            self.assertEqual(a["previous_law_data_source"], b["previous_law_data_source"])
+            self.assertIn(f"{ev.API}/law_revisions/{LAW_ID}", second.fetch.calls)
+            self.assertTrue(any(NEW in url for url in second.fetch.calls))
+            self.assertFalse(any(OLD in url for url in second.fetch.calls))
+
+    def test_updated_revision_invalidates_cache_and_forced_run_reads_all(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = ev.HistoricalLawCache(Path(tmp))
+            first = ev.EgovClient(fetch=FakeFetch(), historical_cache=cache)
+            ev.amendment_evidence(first, LAW_ID, NEW, date(2026, 11, 15))
+            revs = json.loads(fixture_bytes("law_revisions.json"))
+            revs["revisions"][1]["updated"] = "2026-11-27T00:00:00+09:00"
+            second = ev.EgovClient(fetch=FakeFetch({f"{ev.API}/law_revisions/{LAW_ID}": json.dumps(revs).encode()}),
+                                   historical_cache=cache)
+            ev.amendment_evidence(second, LAW_ID, NEW, date(2026, 11, 15))
+            self.assertEqual((second.calls, second.historical_hits), (3, 0))
+            forced = ev.EgovClient(fetch=FakeFetch())
+            ev.amendment_evidence(forced, LAW_ID, NEW, date(2026, 11, 15))
+            self.assertEqual(forced.calls, 3)
+
+    def test_expired_tampered_and_wrong_revision_never_reused(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = ev.HistoricalLawCache(Path(tmp))
+            first = ev.EgovClient(fetch=FakeFetch(), historical_cache=cache)
+            ev.amendment_evidence(first, LAW_ID, NEW, date(2026, 11, 15))
+            path = next(Path(tmp).glob("*.json"))
+            item = json.loads(path.read_text())
+            now = datetime.now(timezone.utc)
+            for patch in ({"fetched_at": (now-timedelta(hours=25)).isoformat()},
+                          {"sha256": "0"*64}, {"revision_id": NEW},
+                          {"fetched_at": (now+timedelta(hours=1)).isoformat()}):
+                path.write_text(json.dumps({**item, **patch}))
+                self.assertIsNone(cache.read(item["url"], OLD, item["updated"], now))
+            path.write_text("broken")
+            self.assertIsNone(cache.read(item["url"], OLD, item["updated"], now))
+
+    def test_no_stale_fallback_when_fresh_revision_list_is_unavailable(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = ev.HistoricalLawCache(Path(tmp))
+            first = ev.EgovClient(fetch=FakeFetch(), historical_cache=cache)
+            ev.amendment_evidence(first, LAW_ID, NEW, date(2026, 11, 15))
+            fetch = FakeFetch()
+            del fetch.routes[f"{ev.API}/law_revisions/{LAW_ID}"]
+            second = ev.EgovClient(fetch=fetch, historical_cache=cache)
+            result = ev.amendment_evidence(second, LAW_ID, NEW, date(2026, 11, 15))
+            self.assertEqual(result["status"], "error")
+            self.assertEqual(second.historical_hits, 0)
 
 
 class DraftTests(unittest.TestCase):
