@@ -183,7 +183,8 @@ jobs:
       # trigger for the LIVE verifier. Wait for Pages to deploy the *generated*
       # docs SHA, then explicitly dispatch a read-only three-language check.
       # Do not accept the initial Pages build for the PR merge commit.
-      - name: Dispatch strict LIVE verification after matching Pages success
+      - name: Select successful matching Pages deployment
+        id: matching_pages
         uses: actions/github-script@v7
         env:
           DOCS_SHA: ${{ steps.docs_sha.outputs.sha }}
@@ -224,7 +225,8 @@ jobs:
               ? run.name === 'pages build and deployment' && run.path === 'dynamic/pages/pages-build-deployment'
               : run.path === '.github/workflows/deploy-static-pages.yml';
             async function deployedSuccessfully(run) {
-              if (run.status !== 'completed' || run.conclusion !== 'success') return false;
+              if (run.status !== 'completed' || run.conclusion !== 'success' ||
+                  run.head_branch !== 'main') return false;
               if (run.path !== '.github/workflows/deploy-static-pages.yml')
                 return run.name === 'pages build and deployment';
               if (run.head_branch !== 'main') return false;
@@ -278,9 +280,46 @@ jobs:
             }
             core.info('Pages deploy run ' + success.id + ' succeeded for ' + success.head_sha +
               ' (generated docs SHA ' + docsSha + ')');
-            await github.rest.actions.createWorkflowDispatch({
-              owner, repo, workflow_id: 'verify-live-explainers.yml',
-              ref: 'main', inputs: {dossiers: '', docs_sha: docsSha, publish_run_id: String(context.runId), pages_run_id: String(success.id)}
-            });
-            core.info('Dispatched strict LIVE verification after Pages deploy ' +
-              success.id + ' for docs SHA ' + docsSha);
+            core.setOutput('pages_run_id', String(success.id));
+
+      - name: Record immutable publisher handoff
+        env:
+          DOCS_SHA: ${{ steps.docs_sha.outputs.sha }}
+          PAGES_RUN_ID: ${{ steps.matching_pages.outputs.pages_run_id }}
+          PAGES_MODE: ${{ steps.pages_request.outputs.mode }}
+        run: |
+          python - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          record = {
+              "schema_version": 1,
+              "publish_run_id": os.environ["GITHUB_RUN_ID"],
+              "publish_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "docs_sha": os.environ["DOCS_SHA"],
+              "pages_run_id": os.environ["PAGES_RUN_ID"],
+              "pages_mode": os.environ["PAGES_MODE"],
+          }
+          if not re.fullmatch(r"[a-f0-9]{40}", record["docs_sha"]) or not all(
+              re.fullmatch(r"[0-9]+", record[k]) for k in ("publish_run_id", "publish_run_attempt", "pages_run_id")
+          ) or record["pages_mode"] not in ("legacy", "workflow"):
+              raise SystemExit("Invalid publisher handoff")
+          Path("publisher-handoff.json").write_text(json.dumps(record) + "\n", encoding="utf-8")
+          PY
+
+      - name: Upload exact publisher handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: publisher-handoff-${{ github.run_attempt }}
+          path: publisher-handoff.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Dispatch strict LIVE verification after matching Pages success
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DOCS_SHA: ${{ steps.docs_sha.outputs.sha }}
+          PAGES_RUN_ID: ${{ steps.matching_pages.outputs.pages_run_id }}
+        run: |
+          gh workflow run verify-live-explainers.yml --repo "$GITHUB_REPOSITORY" --ref main \
+            -f dossiers='' -f docs_sha="$DOCS_SHA" -f publish_run_id="$GITHUB_RUN_ID" -f pages_run_id="$PAGES_RUN_ID"
+          echo "Dispatched strict LIVE verification after Pages deploy $PAGES_RUN_ID for docs SHA $DOCS_SHA"

@@ -66,6 +66,8 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 
 ### 起動効率化（2026-11-27）
 
+- 公開引継ぎ：成功Pages run選択後、Publishのrun ID・attempt・生成docs commit・Pages run ID・方式を14日間保持するimmutable artifactに保存してからLIVEを起動する。LIVEは成功したmainのPublishとPagesを確認し、その正確なattemptのartifactと全項目が一致しなければcheckout前に失敗する。手動/定時の独立LIVEは既存経路を維持。移行前のartifact未作成handoffが残った場合は新しいPublishで復旧する。custom Pagesは公開docs/.nojekyllを含め、他の隠しファイルは拒否する。
+
 - 総合安全点検：LIVEのNO_WORKは証跡対応workflowの明示opt-inのみ成功（認定0件）。各dossierの全関連raw IDについてEN/JA/ZH全URLが必要で、重複帰属・不足URLは失敗。台帳は新規/キャッシュ双方の証跡を同一形式で検証し、run ID・conclusionなどの実行メタデータをキャッシュで上書きしない。既存の版ハッシュ・公式資料・法務ゲートを維持する。
 
 - 共有writerグループ（日次、解説公開、補完3種、週次投稿）はGitHub Actionsのqueue: maxを使用し、最大100待機まで直列処理する。自動マージ直後にmainのPublishがpendingならその待機実行に集約し、実行中・不明なら通常起動する。Publish evidence v2は実際のcheckout開始時刻がマージ後である成功runだけ台帳に認定し、pendingは復旧回数に算入しない。日次と手動補完は取得時点の最新対象ブランチで処理する。mainへ書く英語/中国語補完はmain起動のみ許可する。既存法務・CI・LIVEゲートは維持する。
