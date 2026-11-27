@@ -88,20 +88,20 @@ class PublishHandoffTests(unittest.TestCase):
           };
           const fn=new AsyncFunction("github","context","core","process","setTimeout",source);
           const run=()=>fn(github,{repo:{owner:"unit",repo:"repo"},runId:123},core,
-            {env:{DOCS_SHA:sha}},callback=>callback());
-          runs=[{id:1,name:"pages build and deployment",head_sha:other,
+            {env:{DOCS_SHA:sha,PAGES_MODE:runs.some(r=>r.path===".github/workflows/deploy-static-pages.yml")?"workflow":"legacy"}},callback=>callback());
+          runs=[{id:1,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:other,
                  status:"completed",conclusion:"success"}];
           await run();
           if(dispatched.length!==0||failures.length!==1)
             throw Error("Other SHA must not authorize LIVE");
           failures.length=0;
-          runs=[{id:2,name:"pages build and deployment",head_sha:sha,
+          runs=[{id:2,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
                  status:"completed",conclusion:"failure"}];
           await run();
           if(dispatched.length!==0||failures.length!==1)
             throw Error("Failed Pages must not authorize LIVE");
           failures.length=0;
-          runs=[{id:3,name:"pages build and deployment",head_sha:sha,
+          runs=[{id:3,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
                  status:"completed",conclusion:"success"}];
           await run();
           if(dispatched.length!==1||failures.length!==0||
@@ -111,9 +111,9 @@ class PublishHandoffTests(unittest.TestCase):
             throw Error("Matching successful Pages must dispatch LIVE exactly once");
           // 2026-11-15 race: the docs SHA's builds were cancelled by a later bot commit.
           dispatched.length=0;
-          const cancelled={id:4,name:"pages build and deployment",head_sha:sha,
+          const cancelled={id:4,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
                  status:"completed",conclusion:"cancelled"};
-          const later={id:5,name:"pages build and deployment",head_sha:other,
+          const later={id:5,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:other,
                  status:"completed",conclusion:"success"};
           runs=[cancelled,later];
           compare={status:"ahead",files:[{filename:"data/explainer_pipeline.json"}]};

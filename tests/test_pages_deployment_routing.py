@@ -30,6 +30,52 @@ class PagesRoutingTests(unittest.TestCase):
                 routing.request_deployment("unit/repo")
             run.assert_not_called()
 
+    def test_only_latest_successful_matching_deployment_reused(self):
+        sha, old = "a"*40, "b"*40
+        row = {"id": 1, "path": "dynamic/pages/pages-build-deployment", "head_branch": "main",
+               "status": "completed", "conclusion": "success", "head_sha": old, "created_at": "2026-11-27T01:00:00Z"}
+        with mock.patch.object(routing, "_api", side_effect=[
+            {"workflow_runs": [row]}, {"status": "ahead", "files": [{"filename": "data/ledger.json"}]}
+        ]):
+            self.assertEqual(routing.reusable_deployment("unit/repo", "legacy", sha), 1)
+        with mock.patch.object(routing, "_api", return_value={"workflow_runs": [
+            row, dict(row, id=2, status="in_progress", created_at="2026-11-27T02:00:00Z")
+        ]}):
+            self.assertIsNone(routing.reusable_deployment("unit/repo", "legacy", sha))
+        with mock.patch.object(routing, "_api", side_effect=[
+            {"workflow_runs": [row]}, {"status": "ahead", "files": [{"filename": "docs/index.html"}]}
+        ]):
+            self.assertIsNone(routing.reusable_deployment("unit/repo", "legacy", sha))
+        with mock.patch.object(routing, "_api", return_value={"workflow_runs": [row]}):
+            self.assertIsNone(routing.reusable_deployment("unit/repo", "workflow", sha))
+
+    def test_reuse_requires_actual_deploy_and_no_truncated_compare(self):
+        sha = "a"*40
+        row = {"id": 3, "path": ".github/workflows/deploy-static-pages.yml", "head_branch": "main",
+               "status": "completed", "conclusion": "success", "head_sha": sha}
+        for step, expected in (("skipped", None), ("success", 3)):
+            with mock.patch.object(routing, "_api", side_effect=[
+                {"workflow_runs": [row]}, {"jobs": [{"name": "deploy", "conclusion": "success",
+                    "steps": [{"name": "Deploy to GitHub Pages", "conclusion": step}]}]}
+            ]):
+                self.assertEqual(routing.reusable_deployment("unit/repo", "workflow", sha), expected)
+        with mock.patch.object(routing, "_api", return_value={"status": "ahead", "files": [{}]*300}):
+            self.assertFalse(routing.same_docs("unit/repo", sha, "b"*40))
+
+    def test_request_does_not_dispatch_if_latest_deployment_is_reusable(self):
+        with mock.patch.object(subprocess, "check_output", side_effect=["legacy", "a"*40]), \
+                mock.patch.object(routing, "reusable_deployment", return_value=42), \
+                mock.patch.object(subprocess, "run") as run:
+            self.assertEqual(routing.request_deployment("unit/repo", reuse_current=True), "legacy")
+            run.assert_not_called()
+
+    def test_daily_paid_pipeline_is_schedule_or_manual_only(self):
+        w = (ROOT / ".github/workflows/daily-update.yml").read_text()
+        self.assertNotIn("  push:", w)
+        self.assertIn("  schedule:", w)
+        self.assertIn("  workflow_dispatch:", w)
+        self.assertIn("scripts/request_pages_deployment.py --reuse-current", w)
+
     def test_every_writer_routes_to_configured_mode(self):
         for name in ("daily-update.yml", "publish-explainer-pages.yml", "english-summary-backfill.yml",
                      "japanese-summary-backfill.yml", "translation-backfill.yml"):

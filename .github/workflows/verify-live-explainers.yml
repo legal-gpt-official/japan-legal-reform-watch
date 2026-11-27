@@ -85,7 +85,10 @@ jobs:
             }
             const comparison = async head => (await github.rest.repos.compareCommits({owner,repo,base:sha,head})).data;
             if (deployed.head_sha !== sha) {
-              const cmp = await comparison(deployed.head_sha);
+              let cmp = await comparison(deployed.head_sha);
+              if (cmp.status === 'behind') {
+                cmp = (await github.rest.repos.compareCommits({owner,repo,base:deployed.head_sha,head:sha})).data;
+              }
               if (!['ahead','identical'].includes(cmp.status) || !Array.isArray(cmp.files) ||
                   cmp.files.length >= 300 || cmp.files.some(f => f.filename.startsWith('docs/') || (f.previous_filename || '').startsWith('docs/')))
                 throw Error('Pages deployment does not contain identical generated docs');
