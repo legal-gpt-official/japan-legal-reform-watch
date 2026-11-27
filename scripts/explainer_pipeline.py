@@ -220,6 +220,9 @@ def live_covers(run: Mapping[str, Any], dossier_id: str, verified_at: str | None
     listed = run.get("dossiers")
     if isinstance(listed, list):
         return dossier_id in listed
+    # V2 permits successful NO_WORK runs; never infer coverage from success/date.
+    if str(run.get("display_title") or "").startswith("LIVE evidence v2"):
+        return False
     day = jst_day(run.get("created_at"))
     if not day or not verified_at:
         return False
@@ -309,6 +312,8 @@ def reconcile(
     live_runs = [dict(r) for r in snapshot.get("live_runs") or []]
     if live_report and live_report.get("run_id") is not None:
         for run in live_runs:
+            if str(run.get("display_title") or "").startswith("LIVE evidence v2"):
+                continue  # v2 reports are validated and attached by the collector
             if str(run.get("id")) == str(live_report["run_id"]) and isinstance(live_report.get("dossiers_verified"), list):
                 run["dossiers"] = list(live_report["dossiers_verified"])
     publish_busy = any(r.get("status") in ("queued", "in_progress", "waiting", "requested") for r in publish_runs)
@@ -526,6 +531,8 @@ def reconcile(
         "research_notes": research_notes(snapshot.get("issues") or []),
         "evidence_index": evidence_index(packs or {}),
     }
+    if "live_report_index" in snapshot:
+        ledger["live_report_index"] = snapshot["live_report_index"]
     return ledger, list(merged_actions.values())
 
 

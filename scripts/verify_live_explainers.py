@@ -208,7 +208,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"LIVE_FAILED {url}: {message}", file=sys.stderr)
     for message in failures:
         print(f"INTEGRITY_FAILED {message}", file=sys.stderr)
+    no_work = not dossiers and requested is None and not targets and not errors and not failures
+    outcome = "NO_WORK" if no_work else ("VERIFIED" if dossiers and targets and not errors and not failures else "FAILED")
     summary = {
+        "outcome": outcome,
         "dossiers_checked": len(dossiers), "live_urls_checked": len(targets),
         "live_urls_verified": len(targets) - len(errors),
         "failed_http": len(errors), "failed_local": len(failures),
@@ -216,7 +219,9 @@ def main(argv: list[str] | None = None) -> int:
     print("LIVE_CHECK_SUMMARY " + json.dumps(summary))
     if args.report:
         result = dossier_results(dossiers, targets, errors, failures)
+        result["outcome"] = outcome
         result["run_id"] = __import__("os").environ.get("GITHUB_RUN_ID")
+        result["run_attempt"] = __import__("os").environ.get("GITHUB_RUN_ATTEMPT")
         Path(args.report).write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     if "GITHUB_STEP_SUMMARY" in __import__("os").environ:
         with open(__import__("os").environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
@@ -225,7 +230,7 @@ def main(argv: list[str] | None = None) -> int:
             out.write(f"{len(dossiers)} dossiers, {len(failures)} local integrity issues.\n")
             for url, message in sorted(errors.items()):
                 out.write(f"- FAILED: {url} — {message}\n")
-    return 0 if dossiers and targets and not errors and not failures else 1
+    return 0 if outcome in ("NO_WORK", "VERIFIED") else 1
 
 
 if __name__ == "__main__":

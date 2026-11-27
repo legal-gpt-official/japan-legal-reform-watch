@@ -282,6 +282,12 @@ class ReconcileTests(unittest.TestCase):
         self.assertFalse(ep.live_covers(run, "x", "2026-11-12"), "re-stamped after the run")
         self.assertFalse(ep.live_covers(run, "x", "2026-11-01"), "outside the verifier window")
 
+    def test_v2_success_without_exact_report_cannot_credit_any_dossier(self):
+        run = {"display_title": "LIVE evidence v2", "created_at": "2026-11-09T10:00:00Z"}
+        self.assertFalse(ep.live_covers(run, "x", "2026-11-08"))
+        self.assertFalse(ep.live_covers(dict(run, dossiers=[]), "x", "2026-11-08"))
+        self.assertTrue(ep.live_covers(dict(run, dossiers=["x"]), "x", "2026-11-08"))
+
     def test_live_report_listing_other_dossiers_does_not_count(self):
         scn = Scenario()
         scn.add_files()
