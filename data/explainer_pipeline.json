@@ -406,7 +406,7 @@
       "pr": 166,
       "branch": "explainer/raw-7bf14a11616c78fd",
       "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
-      "pr_state": "open",
+      "pr_state": "merged",
       "pr_draft": false,
       "labels": [
         "legal-content-verified"
@@ -424,8 +424,15 @@
         "completed_at": "2026-11-27T01:26:58Z",
         "duration_s": 81
       },
-      "stage": "CI_PASSED",
-      "last_success_stage": "CI_PASSED",
+      "merged_at": "2026-11-27T02:40:31Z",
+      "introduced": {
+        "pr": 166,
+        "drafted_at": "2026-11-16T01:56:43Z",
+        "ci_passed_at": "2026-11-27T01:26:58Z",
+        "merged_at": "2026-11-27T02:40:31Z"
+      },
+      "stage": "MERGED",
+      "last_success_stage": "MERGED",
       "stage_history": {
         "DRAFTED": "2026-11-16T01:56:43Z",
         "RESEARCH_REQUIRED": "2026-11-16T01:56:43Z",
@@ -433,7 +440,8 @@
         "EN_READY": "2026-11-27T01:26:37Z",
         "JA_ZH_READY": "2026-11-27T01:26:37Z",
         "STAMPED_AND_SYNCED": "2026-11-27T01:26:37Z",
-        "CI_PASSED": "2026-11-27T01:26:58Z"
+        "CI_PASSED": "2026-11-27T01:26:58Z",
+        "MERGED": "2026-11-27T02:40:31Z"
       },
       "sources": {
         "fetched": 10,
@@ -449,9 +457,9 @@
         "The 2026-08-01 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; the ordinance's role for stage 1 is limited to supplementary Article 3."
       ],
       "blockers": [],
-      "next_action": "Automerge will merge on the next event or the hourly safety run (:10).",
-      "updated_at": "2026-11-27T02:40:55Z",
-      "run_id": "45929668188"
+      "next_action": "Publish pending: the pipeline re-dispatches Publish if it has not succeeded within 20 minutes.",
+      "updated_at": "2026-11-27T02:41:51Z",
+      "run_id": "45929727830"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
@@ -1645,7 +1653,7 @@
       "new": {
         "drafted": 0,
         "ci_passed": 1,
-        "merged": 0,
+        "merged": 1,
         "pages_deployed": 0,
         "live_verified": 0
       },
@@ -1809,9 +1817,6 @@
     }
   },
   "live_report_index": {
-    "45926630626:1": [
-      "trade-insurance-special-underwriting-2026"
-    ],
     "45929659174:1": {
       "dossiers": [
         "trade-insurance-special-underwriting-2026"
@@ -1823,6 +1828,9 @@
       "source_sha": "0456b0d58605ada6cdd0fecb9404227ec0a84c3c",
       "publish_run_id": "45929507895",
       "pages_run_id": "45929507248"
-    }
+    },
+    "45926630626:1": [
+      "trade-insurance-special-underwriting-2026"
+    ]
   }
 }
