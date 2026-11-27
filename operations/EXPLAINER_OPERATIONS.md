@@ -70,6 +70,8 @@ python scripts/explainer_preflight.py sync-stamps <dossier-id> --lang ja --lang 
 - 台帳の執筆スロット前の定時実行、CI/公開/LIVE完了による更新、回数制限つき復旧は維持する。状況Issueは報告本文が変化した場合だけ更新する。
 - LIVE v2以降の対象なしはNO_WORKであり、公開完了件数には算入しない。成功ステータスだけで案件の公開を推定せず、実行ID・試行番号に結びついた検証結果を使う。
 - LIVE v3は通常の公開からの明示的な起動に統一する。生成docs SHA・Publish実行ID・Pages実行IDを検証し、信頼できるmainの当該版から確認する。公開処理が成功してから検証を開始し、英語正本と翻訳バンドルの版ハッシュを台帳で照合する。手動・定時の回収は残す。
+- Pages移行準備：`deploy-static-pages.yml` はmainのdocs/変更または明示dispatchのみで起動し、Pages設定がGitHub Actionsの場合だけ実際にデプロイする。日次・公開・手動backfillは共通ルータで現在の設定に従う。台帳・証拠パック等の更新はcustomデプロイの対象外。設定変更はPRのCI合格・main反映・既存公開経路確認の後に所有者が実施する。CNAME・HTTPS設定は変更しない。
+- 移行直後は既存mainのdocs/をcustomワークフローで公開し、実際のdeployステップ成功とLIVE照合を確認する。失敗時はSettings > Pages > Sourceを「Deploy from a branch」に戻し、main /docsを指定する。legacy経路も引き続きサポートする。
 
 ### スロットの進め方：状態管理と自動再開（2026-11-13）
 

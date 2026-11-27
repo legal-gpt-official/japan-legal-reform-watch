@@ -506,7 +506,7 @@ class TestFetchReportingAndWorkflow(unittest.TestCase):
         self.assertIn("id: data_commit", workflow)
         self.assertIn("steps.data_commit.outputs.committed == 'true'", workflow)
         self.assertIn("GH_TOKEN: ${{ github.token }}", workflow)
-        self.assertIn('"repos/${GITHUB_REPOSITORY}/pages/builds"', workflow)
+        self.assertIn("python scripts/request_pages_deployment.py", workflow)
         self.assertIn("data/source_health_state.json", workflow)
 
 

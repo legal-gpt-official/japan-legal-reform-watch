@@ -1,0 +1,85 @@
+name: Deploy static Pages
+
+# Migration-compatible: until Pages Source is GitHub Actions, never deploy.
+# No data/ or workflow-only push requests a build.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: jlrw-static-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Read configured Pages publishing mode
+        id: mode
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mode="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq .build_type)"
+          case "$mode" in
+            workflow) echo "active=true" >> "$GITHUB_OUTPUT" ;;
+            legacy) echo "active=false" >> "$GITHUB_OUTPUT"; echo "Legacy publishing still active; no custom deploy." ;;
+            *) echo "::error::Unexpected Pages publishing mode"; exit 1 ;;
+          esac
+
+      - name: Check out exact trusted main revision
+        if: steps.mode.outputs.active == 'true'
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Check site root and reject superseded content
+        if: steps.mode.outputs.active == 'true'
+        run: |
+          set -euo pipefail
+          test -s docs/index.html
+          test -s docs/CNAME
+          test -f docs/.nojekyll
+          git fetch --no-tags --depth=1 origin main
+          if [ "$(git rev-parse HEAD:docs)" != "$(git rev-parse FETCH_HEAD:docs)" ]; then
+            echo "::error::A newer docs revision exists; refusing to deploy superseded content."
+            exit 1
+          fi
+          echo "Exact source commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Exact docs tree: $(git rev-parse HEAD:docs)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Configure Pages
+        if: steps.mode.outputs.active == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload only the public docs tree
+        if: steps.mode.outputs.active == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+      - name: Recheck current docs before deployment
+        if: steps.mode.outputs.active == 'true'
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin main
+          test "$(git rev-parse HEAD:docs)" = "$(git rev-parse FETCH_HEAD:docs)"
+
+      - name: Deploy to GitHub Pages
+        if: steps.mode.outputs.active == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
