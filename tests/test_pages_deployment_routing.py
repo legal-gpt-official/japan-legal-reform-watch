@@ -97,6 +97,8 @@ class PagesRoutingTests(unittest.TestCase):
         self.assertIn("HEAD:docs", w)
         self.assertIn("FETCH_HEAD:docs", w)
         self.assertIn("path: docs", w)
+        self.assertIn("include-hidden-files: true", w)
+        self.assertIn("! -path 'docs/.nojekyll'", w)
         self.assertIn("id-token: write", w)
         self.assertIn("pages: write", w)
         self.assertIn("name: Deploy to GitHub Pages\n        if: steps.mode.outputs.active == 'true'", w)

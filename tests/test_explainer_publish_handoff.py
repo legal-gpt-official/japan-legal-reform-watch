@@ -14,7 +14,7 @@ def handoff_script() -> str:
     lines = WORKFLOW.read_text(encoding="utf-8").splitlines()
     candidates = [
         i for i, line in enumerate(lines)
-        if "Dispatch strict LIVE verification after matching Pages success" in line
+        if "Select successful matching Pages deployment" in line
     ]
     if len(candidates) != 1:
         raise AssertionError("Exactly one strict LIVE handoff expected")
@@ -55,10 +55,12 @@ class PublishHandoffTests(unittest.TestCase):
         for required in (
             "run.head_sha === docsSha",
             "run.conclusion === 'success'",
-            "verify-live-explainers.yml",
-            "createWorkflowDispatch",
+            "core.setOutput('pages_run_id'",
         ):
             self.assertIn(required, js)
+        self.assertIn("gh workflow run verify-live-explainers.yml", w)
+        self.assertLess(w.index("Upload exact publisher handoff"), w.index("Dispatch strict LIVE verification"))
+        self.assertIn("publisher-handoff-${{ github.run_attempt }}", w)
 
     def test_real_javascript_only_dispatches_matching_success(self):
         js = handoff_script()
@@ -84,36 +86,35 @@ class PublishHandoffTests(unittest.TestCase):
           }};
           const core={
             info:()=>{},warning:()=>{},
-            setFailed:message=>{failures.push(message);}
+            setFailed:message=>{failures.push(message);},
+            setOutput:(key,value)=>{if(key==="pages_run_id")dispatched.push(value);}
           };
           const fn=new AsyncFunction("github","context","core","process","setTimeout",source);
           const run=()=>fn(github,{repo:{owner:"unit",repo:"repo"},runId:123},core,
             {env:{DOCS_SHA:sha,PAGES_MODE:runs.some(r=>r.path===".github/workflows/deploy-static-pages.yml")?"workflow":"legacy"}},callback=>callback());
-          runs=[{id:1,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:other,
+          runs=[{id:1,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",head_sha:other,
                  status:"completed",conclusion:"success"}];
           await run();
           if(dispatched.length!==0||failures.length!==1)
             throw Error("Other SHA must not authorize LIVE");
           failures.length=0;
-          runs=[{id:2,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
+          runs=[{id:2,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",head_sha:sha,
                  status:"completed",conclusion:"failure"}];
           await run();
           if(dispatched.length!==0||failures.length!==1)
             throw Error("Failed Pages must not authorize LIVE");
           failures.length=0;
-          runs=[{id:3,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
+          runs=[{id:3,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",head_sha:sha,
                  status:"completed",conclusion:"success"}];
           await run();
           if(dispatched.length!==1||failures.length!==0||
-             dispatched[0].workflow_id!=="verify-live-explainers.yml" ||
-             dispatched[0].inputs.docs_sha!==sha || dispatched[0].inputs.publish_run_id!=="123" ||
-             dispatched[0].inputs.pages_run_id!=="3")
+             dispatched[0]!=="3")
             throw Error("Matching successful Pages must dispatch LIVE exactly once");
           // 2026-11-15 race: the docs SHA's builds were cancelled by a later bot commit.
           dispatched.length=0;
-          const cancelled={id:4,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:sha,
+          const cancelled={id:4,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",head_sha:sha,
                  status:"completed",conclusion:"cancelled"};
-          const later={id:5,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_sha:other,
+          const later={id:5,name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",head_sha:other,
                  status:"completed",conclusion:"success"};
           runs=[cancelled,later];
           compare={status:"ahead",files:[{filename:"data/explainer_pipeline.json"}]};
@@ -144,7 +145,7 @@ class PublishHandoffTests(unittest.TestCase):
           failures.length=0;
           customStep="success";
           await run();
-          if(dispatched.length!==1||failures.length!==0||dispatched[0].inputs.pages_run_id!=="6")
+          if(dispatched.length!==1||failures.length!==0||dispatched[0]!=="6")
             throw Error("An actual custom deployment must authorize LIVE");
         """.replace("JS_SOURCE", json.dumps(js))
         result = subprocess.run(
@@ -153,6 +154,30 @@ class PublishHandoffTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
+
+    def test_immutable_handoff_mismatch_is_blocked_before_checkout(self):
+        import os
+        import tempfile
+        w = (ROOT / ".github/workflows/verify-live-explainers.yml").read_text(encoding="utf-8")
+        self.assertLess(w.index("Download exact publisher handoff"), w.index("Check out verified main revision"))
+        self.assertIn("publisher-handoff-${{ steps.handoff.outputs.publisher_attempt }}", w)
+        start = w.index("          python - <<'PY'", w.index("Validate immutable handoff before checkout"))
+        script = w[start:].split("\n", 1)[1].split("          PY\n", 1)[0]
+        script = "\n".join(line[10:] for line in script.splitlines())
+        env = {"DOCS_SHA": "a"*40, "PUBLISH_RUN_ID": "123", "PUBLISH_RUN_ATTEMPT": "2",
+               "PAGES_RUN_ID": "456", "PAGES_MODE": "legacy"}
+        record = {"schema_version": 1, "docs_sha": env["DOCS_SHA"], "publish_run_id": "123",
+                  "publish_run_attempt": "2", "pages_run_id": "456", "pages_mode": "legacy"}
+        with tempfile.TemporaryDirectory() as tmp:
+            proof = Path(tmp) / "jlrw-publisher-proof" / "publisher-handoff.json"
+            proof.parent.mkdir()
+            for patch, valid in (({}, True), ({"docs_sha": "b"*40}, False),
+                                 ({"pages_run_id": "999"}, False), ({"publish_run_attempt": "1"}, False),
+                                 ({"pages_mode": "workflow"}, False)):
+                proof.write_text(json.dumps({**record, **patch}))
+                result = subprocess.run(["python", "-c", script], capture_output=True,
+                                        env={**os.environ, **env, "RUNNER_TEMP": tmp})
+                self.assertEqual(result.returncode == 0, valid, result.stderr)
 
     def test_live_handoff_validates_success_and_trusted_main_before_checkout(self):
         w = (ROOT / ".github/workflows/verify-live-explainers.yml").read_text(encoding="utf-8")
@@ -173,7 +198,7 @@ class PublishHandoffTests(unittest.TestCase):
           const source = JS_SOURCE;
           const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
           const sha = "f".repeat(40), other = "a".repeat(40);
-          const pub = {path:".github/workflows/publish-explainer-pages.yml",head_branch:"main",status:"completed",conclusion:"success"};
+          const pub = {path:".github/workflows/publish-explainer-pages.yml",head_branch:"main",status:"completed",conclusion:"success",run_attempt:1};
           const page = {name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",
                         head_sha:sha,status:"completed",conclusion:"success"};
           let main = {status:"ahead"}, compared = {status:"ahead",files:[]};
@@ -197,6 +222,7 @@ class PublishHandoffTests(unittest.TestCase):
           await run({}, "main");
           await run({DOCS_SHA:sha}, null);
           await run(env,sha);
+          pub.run_attempt=undefined; await run(env,null); pub.run_attempt=1;
           pub.conclusion="failure"; await run(env,null); pub.conclusion="success";
           page.conclusion="failure"; await run(env,null); page.conclusion="success";
           page.head_sha=other; await run(env,sha);

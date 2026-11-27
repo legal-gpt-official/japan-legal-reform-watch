@@ -54,6 +54,8 @@ jobs:
           test -s docs/index.html
           test -s docs/CNAME
           test -f docs/.nojekyll
+          # Only the known public marker may be hidden; fail closed on new dotfiles.
+          test -z "$(find docs -mindepth 1 -name '.*' ! -path 'docs/.nojekyll' -print -quit)"
           git fetch --no-tags --depth=1 origin main
           if [ "$(git rev-parse HEAD:docs)" != "$(git rev-parse FETCH_HEAD:docs)" ]; then
             echo "::error::A newer docs revision exists; refusing to deploy superseded content."
@@ -71,6 +73,7 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: docs
+          include-hidden-files: true
 
       - name: Recheck current docs before deployment
         if: steps.mode.outputs.active == 'true'

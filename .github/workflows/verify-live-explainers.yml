@@ -38,6 +38,7 @@ concurrency:
 
 jobs:
   live:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -95,7 +96,45 @@ jobs:
             }
             const main = await comparison('main');
             if (!['ahead','identical'].includes(main.status)) throw Error('Docs SHA is not on trusted main history');
+            if (!Number.isSafeInteger(publisher.run_attempt) || publisher.run_attempt < 1)
+              throw Error('Missing publisher run attempt');
+            core.setOutput('publisher_attempt', String(publisher.run_attempt));
+            core.setOutput('pages_mode', legacy ? 'legacy' : 'workflow');
             core.setOutput('ref', sha);
+
+      - name: Download exact publisher handoff
+        if: inputs.publish_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: publisher-handoff-${{ steps.handoff.outputs.publisher_attempt }}
+          run-id: ${{ inputs.publish_run_id }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/jlrw-publisher-proof
+
+      - name: Validate immutable handoff before checkout
+        if: inputs.publish_run_id != ''
+        env:
+          DOCS_SHA: ${{ inputs.docs_sha }}
+          PUBLISH_RUN_ID: ${{ inputs.publish_run_id }}
+          PUBLISH_RUN_ATTEMPT: ${{ steps.handoff.outputs.publisher_attempt }}
+          PAGES_RUN_ID: ${{ inputs.pages_run_id }}
+          PAGES_MODE: ${{ steps.handoff.outputs.pages_mode }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          proof = Path(os.environ["RUNNER_TEMP"]) / "jlrw-publisher-proof" / "publisher-handoff.json"
+          expected = {
+              "schema_version": 1,
+              "publish_run_id": os.environ["PUBLISH_RUN_ID"],
+              "publish_run_attempt": os.environ["PUBLISH_RUN_ATTEMPT"],
+              "docs_sha": os.environ["DOCS_SHA"],
+              "pages_run_id": os.environ["PAGES_RUN_ID"],
+              "pages_mode": os.environ["PAGES_MODE"],
+          }
+          if json.loads(proof.read_text(encoding="utf-8")) != expected:
+              raise SystemExit("Publisher handoff does not match the exact run/attempt/commit/deployment")
+          PY
 
       - name: Check out verified main revision
         uses: actions/checkout@v5
