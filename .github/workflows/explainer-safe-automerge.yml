@@ -13,7 +13,8 @@ on:
   workflow_dispatch:
   # Catch missed webhooks without needing another user-initiated chat turn.
   schedule:
-    - cron: "10 * * * *"
+    # Event-driven fast path stays enabled; this is missed-event recovery only.
+    - cron: "10 */4 * * *"
 
 permissions:
   contents: write
@@ -26,7 +27,14 @@ concurrency:
 
 jobs:
   merge:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: >-
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') &&
+      (github.event_name != 'pull_request_target' ||
+        (!github.event.pull_request.draft &&
+         github.event.pull_request.base.ref == 'main' &&
+         github.event.pull_request.head.repo.full_name == github.repository &&
+         contains(github.event.pull_request.labels.*.name, 'legal-content-verified') &&
+         (github.event.action != 'labeled' || github.event.label.name == 'legal-content-verified')))
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -61,7 +69,9 @@ jobs:
               const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {owner, repo, run_id:checks[0].id, per_page:100});
               if (!jobs.some(j => j.name === 'tests' && j.conclusion === 'success')) continue;
               const current = (await github.rest.pulls.get({owner,repo,pull_number:pr.number})).data;
-              if (current.head.sha !== pr.head.sha || current.draft || current.state !== 'open') continue;
+              if (current.head.sha !== pr.head.sha || current.draft || current.state !== 'open' ||
+                  current.base.ref !== 'main' || current.head.repo?.full_name !== `${owner}/${repo}` ||
+                  !current.labels.some(l => l.name === 'legal-content-verified')) continue;
               try {
                 const response = await github.rest.pulls.merge({owner,repo,pull_number:pr.number,sha:pr.head.sha,merge_method:'squash'});
                 if (response.data.merged) {
@@ -79,8 +89,16 @@ jobs:
             // successful merge can wait until tomorrow's nightly recovery.
             if (mergedPRs.length > 0) {
               core.info('Dispatching Publish reform explainer pages for PRs: '+mergedPRs.join(','));
-              await github.rest.actions.createWorkflowDispatch({
-                owner, repo, workflow_id:'publish-explainer-pages.yml', ref:'main'
-              });
-              core.info('Publish reform explainer pages dispatched');
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner, repo, workflow_id:'publish-explainer-pages.yml', ref:'main'
+                });
+                core.info('Publish reform explainer pages dispatched');
+              } finally {
+                // A merge is a state change even if Publish dispatch failed.
+                // Do not trigger a full ledger reconciliation for no-op scans.
+                await github.rest.actions.createWorkflowDispatch({
+                  owner, repo, workflow_id:'explainer-pipeline.yml', ref:'main'
+                });
+              }
             }
