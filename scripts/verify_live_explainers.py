@@ -182,15 +182,23 @@ def verify(targets: list[tuple[str, tuple[str, ...] | str]], attempts: int, dela
 
 def dossier_results(dossiers: list[dict], targets: list, errors: dict[str, str], failures: list[str]) -> dict:
     """Per-dossier outcome: verified only when every EN/JA/ZH URL of every related item passed."""
-    by_raw = {raw: d["dossier_id"] for d in dossiers for raw in d.get("related_item_ids") or []}
-    urls: dict[str, list[str]] = {d["dossier_id"]: [] for d in dossiers}
-    for url, _ in targets:
-        match = re.search(r"/u/(raw-[a-f0-9]{16})/", url)
-        if match and match.group(1) in by_raw:
-            urls[by_raw[match.group(1)]].append(url)
+    expected: dict[str, set[str]] = {}
+    owners: dict[str, set[str]] = {}
+    for d in dossiers:
+        name = d["dossier_id"]
+        expected.setdefault(name, set())
+        for raw in d.get("related_item_ids") or []:
+            for suffix in ("", "ja/", "zh/"):
+                url = f"{HOST}/u/{raw}/{suffix}"
+                expected[name].add(url)
+                owners.setdefault(url, set()).add(name)
+    checked = {url for url, _ in targets}
     local_bad = {m.split(":", 1)[0] for m in failures}
-    verified = sorted(d for d, u in urls.items() if u and d not in local_bad and not any(x in errors for x in u))
-    return {"dossiers_verified": verified, "dossiers_failed": sorted(set(urls) - set(verified))}
+    verified = sorted(d for d, urls in expected.items()
+                      if urls and d not in local_bad and urls <= checked
+                      and not urls.intersection(errors)
+                      and all(len(owners[url]) == 1 for url in urls))
+    return {"dossiers_verified": verified, "dossiers_failed": sorted(set(expected) - set(verified))}
 
 
 def dossier_version(en: dict, bundle: dict) -> str:
@@ -207,6 +215,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--attempts", type=int, default=6)
     p.add_argument("--delay", type=int, default=15)
     p.add_argument("--report", default="", help="optional JSON path for per-dossier results")
+    p.add_argument("--allow-no-work", action="store_true",
+                   help="only for evidence-aware workflows; zero dossiers is not verified content")
     args = p.parse_args(argv)
     if args.days < 0 or not 1 <= args.attempts <= 15 or not 0 <= args.delay <= 120:
         p.error("invalid days, attempts or delay")
@@ -220,7 +230,11 @@ def main(argv: list[str] | None = None) -> int:
     for message in failures:
         print(f"INTEGRITY_FAILED {message}", file=sys.stderr)
     no_work = not dossiers and requested is None and not targets and not errors and not failures
-    outcome = "NO_WORK" if no_work else ("VERIFIED" if dossiers and targets and not errors and not failures else "FAILED")
+    result = dossier_results(dossiers, targets, errors, failures)
+    complete = (len(result["dossiers_verified"]) == len(dossiers)
+                and not result["dossiers_failed"])
+    outcome = ("NO_WORK" if no_work and args.allow_no_work else
+               "VERIFIED" if dossiers and targets and not errors and not failures and complete else "FAILED")
     summary = {
         "outcome": outcome,
         "dossiers_checked": len(dossiers), "live_urls_checked": len(targets),
@@ -229,7 +243,6 @@ def main(argv: list[str] | None = None) -> int:
     }
     print("LIVE_CHECK_SUMMARY " + json.dumps(summary))
     if args.report:
-        result = dossier_results(dossiers, targets, errors, failures)
         result["outcome"] = outcome
         result["run_id"] = __import__("os").environ.get("GITHUB_RUN_ID")
         result["run_attempt"] = __import__("os").environ.get("GITHUB_RUN_ATTEMPT")
