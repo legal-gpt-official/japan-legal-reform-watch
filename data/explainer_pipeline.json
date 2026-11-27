@@ -408,7 +408,9 @@
       "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
       "pr_state": "open",
       "pr_draft": false,
-      "labels": [],
+      "labels": [
+        "legal-content-verified"
+      ],
       "pr_created_at": "2026-11-16T01:56:43Z",
       "automerge_eligible_files": true,
       "ci": {
@@ -447,9 +449,9 @@
         "The 2026-08-01 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; the ordinance's role for stage 1 is limited to supplementary Article 3."
       ],
       "blockers": [],
-      "next_action": "Add legal-content-verified only after the substantive legal review is complete.",
-      "updated_at": "2026-11-27T01:32:24Z",
-      "run_id": "45923052227"
+      "next_action": "Automerge will merge on the next event or the hourly safety run (:10).",
+      "updated_at": "2026-11-27T02:40:55Z",
+      "run_id": "45929668188"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
@@ -1809,6 +1811,18 @@
   "live_report_index": {
     "45926630626:1": [
       "trade-insurance-special-underwriting-2026"
-    ]
+    ],
+    "45929659174:1": {
+      "dossiers": [
+        "trade-insurance-special-underwriting-2026"
+      ],
+      "dossier_versions": {
+        "trade-insurance-special-underwriting-2026": "ef2f76b499f3afae8ad16199aa30c3cfe8c922f266160376eadc15b2b1a7d1ec"
+      },
+      "checked_started_at": "2026-11-27T02:40:15.884336+00:00",
+      "source_sha": "0456b0d58605ada6cdd0fecb9404227ec0a84c3c",
+      "publish_run_id": "45929507895",
+      "pages_run_id": "45929507248"
+    }
   }
 }
