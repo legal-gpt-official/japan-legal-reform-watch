@@ -72,8 +72,10 @@ jobs:
 
       - name: Backfill and checkpoint Japanese summaries
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_SUMMARY_MODEL: gpt-6.1-sol
+          OPENAI_SERVICE_TIER: flex
+          OPENAI_REASONING_EFFORT: low
           BATCH_SIZE: ${{ inputs.batch_size }}
           PARALLELISM: ${{ inputs.parallelism }}
           MAX_COST_USD: ${{ inputs.max_cost_usd }}

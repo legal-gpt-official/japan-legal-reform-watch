@@ -413,7 +413,7 @@ Options:
     --no-api       Never call the API; only apply valid cached translations and
                    remove stale ones. Exit 0.
     --model ID     Override the model (precedence: --model >
-                   ANTHROPIC_TRANSLATION_MODEL > default).
+                   AI_TRANSLATION_MODEL > ANTHROPIC_TRANSLATION_MODEL > default).
     --max-cost-usd USD
                    Stop scheduling direct calls after measured estimated cost
                    reaches the positive cap. Requires configured model pricing.
@@ -1216,6 +1216,7 @@ def provider_api_key_available(model: str) -> bool:
 def resolve_model(cli_model: str | None) -> str:
     return (
         cli_model
+        or os.environ.get("AI_TRANSLATION_MODEL")
         or os.environ.get("ANTHROPIC_TRANSLATION_MODEL")
         or DEFAULT_TRANSLATION_MODEL
     )
@@ -2359,7 +2360,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--locale", default=DEFAULT_LOCALE, help="Target locale (default zh-Hans).")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="Max NEW API calls this run (default 30). Cache hits are free.")
     parser.add_argument("--no-api", action="store_true", help="Apply valid cache only; never call the API. Exit 0.")
-    parser.add_argument("--model", default=None, help="Override model (precedence: --model > ANTHROPIC_TRANSLATION_MODEL > default).")
+    parser.add_argument("--model", default=None, help="Override model (precedence: --model > AI_TRANSLATION_MODEL > ANTHROPIC_TRANSLATION_MODEL > default).")
     parser.add_argument(
         "--omit-title-ja-reference",
         action="store_true",
