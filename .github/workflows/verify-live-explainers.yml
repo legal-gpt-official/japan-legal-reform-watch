@@ -70,9 +70,19 @@ jobs:
             if (publisher.status !== 'completed' || publisher.conclusion !== 'success')
               throw Error('Publisher did not complete successfully');
             const deployed = await getRun(page);
-            if (deployed.name !== 'pages build and deployment' || deployed.path !== 'dynamic/pages/pages-build-deployment' || deployed.head_branch !== 'main' ||
+            const legacy = deployed.name === 'pages build and deployment' && deployed.path === 'dynamic/pages/pages-build-deployment';
+            const custom = deployed.path === '.github/workflows/deploy-static-pages.yml';
+            if ((!legacy && !custom) || deployed.head_branch !== 'main' ||
                 deployed.status !== 'completed' || deployed.conclusion !== 'success')
               throw Error('Wrong or unsuccessful Pages deployment');
+            if (custom) {
+              const jobs = (await github.rest.actions.listJobsForWorkflowRun({
+                owner, repo, run_id:Number(page), per_page:100, filter:'latest'
+              })).data.jobs || [];
+              if (!jobs.some(job => job.name === 'deploy' && job.conclusion === 'success' &&
+                  (job.steps || []).some(step => step.name === 'Deploy to GitHub Pages' && step.conclusion === 'success')))
+                throw Error('Custom Pages deployment did not actually deploy');
+            }
             const comparison = async head => (await github.rest.repos.compareCommits({owner,repo,base:sha,head})).data;
             if (deployed.head_sha !== sha) {
               const cmp = await comparison(deployed.head_sha);

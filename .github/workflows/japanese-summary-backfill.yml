@@ -38,6 +38,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  actions: write
 
 # Serialize every workflow that can commit pipeline data.
 concurrency:
@@ -75,6 +77,7 @@ jobs:
           BATCH_SIZE: ${{ inputs.batch_size }}
           PARALLELISM: ${{ inputs.parallelism }}
           MAX_COST_USD: ${{ inputs.max_cost_usd }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -129,6 +132,9 @@ jobs:
           git add data/summary_cache.json docs/data/legal_updates.json docs/data/legal_updates_manifest.json docs/data/archive
           git commit -m "Backfill Japanese summaries (${after}/${total})"
           git push origin "HEAD:${GITHUB_REF_NAME}"
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            python scripts/request_pages_deployment.py
+          fi
           if [ "$after" -ne "$total" ]; then
             echo "Checkpoint complete: ${after}/${total}. Rerun only after reviewing measured cost." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 1

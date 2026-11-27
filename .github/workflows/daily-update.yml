@@ -17,6 +17,7 @@ on:
 permissions:
   contents: write
   pages: write
+  actions: write
 
 # Serialize against the manual translation-backfill workflow so the two never
 # write data concurrently (avoids non-fast-forward pushes / lost writes).
@@ -415,10 +416,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api --method POST \
-            --header "Accept: application/vnd.github+json" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
+          python scripts/request_pages_deployment.py
 
       - name: Report explainer data readiness
         if: always()

@@ -69,13 +69,16 @@ class PublishHandoffTests(unittest.TestCase):
           const other = "a".repeat(40);
           let runs = [];
           let compare = {status:"diverged", files:[]};
+          let customStep = "skipped";
           const dispatched = [];
           const failures = [];
           const github = { rest: {
             actions: {
               listWorkflowRunsForRepo:async args=>({data:{workflow_runs:
                 args.head_sha ? runs.filter(r=>r.head_sha===args.head_sha) : runs}}),
-              createWorkflowDispatch:async args=>{dispatched.push(args);}
+              createWorkflowDispatch:async args=>{dispatched.push(args);},
+              listJobsForWorkflowRun:async args=>({data:{jobs:[{name:"deploy",conclusion:"success",
+                steps:[{name:"Deploy to GitHub Pages",conclusion:customStep}]}]}})
             },
             repos: { compareCommits:async args=>({data:compare}) }
           }};
@@ -132,6 +135,17 @@ class PublishHandoffTests(unittest.TestCase):
           await run();
           if(dispatched.length!==0||failures.length!==1)
             throw Error("A truncated compare cannot prove docs/ unchanged");
+          failures.length=0;
+          runs=[{id:6,name:"Deploy static Pages",path:".github/workflows/deploy-static-pages.yml",
+                 head_branch:"main",head_sha:sha,status:"completed",conclusion:"success"}];
+          await run();
+          if(dispatched.length!==0||failures.length!==1)
+            throw Error("A migration no-op cannot authorize LIVE");
+          failures.length=0;
+          customStep="success";
+          await run();
+          if(dispatched.length!==1||failures.length!==0||dispatched[0].inputs.pages_run_id!=="6")
+            throw Error("An actual custom deployment must authorize LIVE");
         """.replace("JS_SOURCE", json.dumps(js))
         result = subprocess.run(
             ["node", "--input-type=module"],
@@ -163,9 +177,12 @@ class PublishHandoffTests(unittest.TestCase):
           const page = {name:"pages build and deployment",path:"dynamic/pages/pages-build-deployment",head_branch:"main",
                         head_sha:sha,status:"completed",conclusion:"success"};
           let main = {status:"ahead"}, compared = {status:"ahead",files:[]};
+          let deployStep = "skipped";
           let out;
           const github = {rest:{
-            actions:{getWorkflowRun:async ({run_id})=>({data:run_id===123?pub:page})},
+            actions:{getWorkflowRun:async ({run_id})=>({data:run_id===123?pub:page}),
+              listJobsForWorkflowRun:async()=>({data:{jobs:[{name:"deploy",conclusion:"success",
+                steps:[{name:"Deploy to GitHub Pages",conclusion:deployStep}]}]}})},
             repos:{compareCommits:async ({head})=>({data:head==="main"?main:compared})}
           }};
           const fn = new AsyncFunction("github","context","core","process","setTimeout",source);
@@ -185,6 +202,10 @@ class PublishHandoffTests(unittest.TestCase):
           page.head_sha=other; await run(env,sha);
           compared.files=[{filename:"other/x",previous_filename:"docs/u/x"}]; await run(env,null);
           compared.files=[]; main.status="diverged"; await run(env,null);
+          main.status="ahead"; page.head_sha=sha; page.name="Deploy static Pages";
+          page.path=".github/workflows/deploy-static-pages.yml";
+          await run(env,null);
+          deployStep="success"; await run(env,sha);
         """.replace("JS_SOURCE", json.dumps("\n".join(js)))
         result = subprocess.run(["node", "--input-type=module"], input=harness, text=True, capture_output=True)
         self.assertEqual(result.returncode, 0, result.stderr)

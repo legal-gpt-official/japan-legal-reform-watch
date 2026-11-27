@@ -160,10 +160,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api --method POST \
-            --header "Accept: application/vnd.github+json" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            "repos/${GITHUB_REPOSITORY}/pages/builds"
+          python scripts/request_pages_deployment.py
 
 
       # Record the exact docs/main commit used for this recovery build. A
@@ -211,25 +208,42 @@ jobs:
               if (!Array.isArray(files) || files.length >= 300) return false;  // cannot prove docs/ untouched
               return !files.some(f => (f.filename || '').startsWith('docs/') || (f.previous_filename || '').startsWith('docs/'));
             }
+            // A successful migration no-op is not a deployment.
+            const isPages = run => run.name === 'pages build and deployment' ||
+              run.path === '.github/workflows/deploy-static-pages.yml';
+            async function deployedSuccessfully(run) {
+              if (run.status !== 'completed' || run.conclusion !== 'success') return false;
+              if (run.path !== '.github/workflows/deploy-static-pages.yml')
+                return run.name === 'pages build and deployment';
+              if (run.head_branch !== 'main') return false;
+              const result = await github.rest.actions.listJobsForWorkflowRun({
+                owner, repo, run_id: run.id, per_page: 100, filter: 'latest'
+              });
+              return (result.data.jobs || []).some(job => job.name === 'deploy' &&
+                job.conclusion === 'success' && (job.steps || []).some(step =>
+                  step.name === 'Deploy to GitHub Pages' && step.conclusion === 'success'));
+            }
             let success = null;
             for (let attempt = 1; attempt <= 36; attempt++) {
               const response = await github.rest.actions.listWorkflowRunsForRepo({
                 owner, repo, head_sha: docsSha, per_page: 100
               });
               const pages = (response.data.workflow_runs || []).filter(run =>
-                run.name === 'pages build and deployment' &&
-                run.head_sha === docsSha);
-              success = pages.find(run =>
-                run.status === 'completed' && run.conclusion === 'success');
+                isPages(run) && run.head_sha === docsSha);
+              for (const run of pages) {
+                if (run.conclusion === 'success' && await deployedSuccessfully(run)) {
+                  success = run; break;
+                }
+              }
               if (success) break;
               const recent = await github.rest.actions.listWorkflowRunsForRepo({
                 owner, repo, branch: 'main', per_page: 50
               });
               const later = (recent.data.workflow_runs || []).filter(run =>
-                run.name === 'pages build and deployment' && run.head_sha !== docsSha &&
+                isPages(run) && run.head_sha !== docsSha &&
                 run.status === 'completed' && run.conclusion === 'success');
               for (const run of later) {
-                if (await containsDocsUnchanged(run.head_sha)) {
+                if (await containsDocsUnchanged(run.head_sha) && await deployedSuccessfully(run)) {
                   success = run;
                   core.info('Pages run ' + run.id + ' deployed ' + run.head_sha +
                     ', which contains docs SHA ' + docsSha + ' with docs/ unchanged');

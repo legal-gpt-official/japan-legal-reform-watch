@@ -1797,7 +1797,7 @@ class TestBackfillWorkflow(unittest.TestCase):
             "steps.translation_commit.outputs.committed == 'true'", self.backfill
         )
         self.assertIn("GH_TOKEN: ${{ github.token }}", self.backfill)
-        self.assertIn('"repos/${GITHUB_REPOSITORY}/pages/builds"', self.backfill)
+        self.assertIn("python scripts/request_pages_deployment.py", self.backfill)
 
     def test_backfill_integrity_gate_allows_cache_only_history(self):
         self.assertIn("cache-only stale/history entries allowed", self.backfill)
