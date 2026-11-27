@@ -21,9 +21,8 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    # Phase 3A: the three Claude stages now use Message Batches. Each waits up
-    # to --batch-timeout-seconds (1h) for its own batch, so give the job an
-    # explicit ceiling rather than relying on the platform default.
+    # Direct OpenAI Flex calls are bounded by the existing per-stage caps.
+    # Keep the job ceiling for collection and recovery.
     timeout-minutes: 300
 
     steps:
@@ -119,7 +118,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           # Pin the model explicitly: relying on DEFAULT_MODEL let a
           # repository-level ANTHROPIC_MODEL silently change the billed model.
-          ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
+          AI_SUMMARY_MODEL: gpt-6.1-sol
           OPENAI_SERVICE_TIER: flex
           OPENAI_REASONING_EFFORT: low
         run: |
@@ -151,7 +150,7 @@ jobs:
       - name: Maintain Japanese summaries
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol
+          AI_SUMMARY_MODEL: gpt-6.1-sol
           OPENAI_SERVICE_TIER: flex
           OPENAI_REASONING_EFFORT: low
         run: |
@@ -220,10 +219,10 @@ jobs:
           # zh-Hans translation runs on gpt-6.1-sol via OpenAI Flex since
           # 2026-10-16 (A/B eval: better title-gate and naming results at 70-74%
           # of Sonnet 5's per-item cost; canary run 38835823697). Precedence is
-          # --model > ANTHROPIC_TRANSLATION_MODEL > DEFAULT_TRANSLATION_MODEL.
+          # --model > AI_TRANSLATION_MODEL > legacy override > default.
           # Revert: ANTHROPIC_API_KEY + ANTHROPIC_TRANSLATION_MODEL:
           # claude-sonnet-5 and `--batch` in place of `--parallel 5`.
-          ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol
+          AI_TRANSLATION_MODEL: gpt-6.1-sol
           OPENAI_SERVICE_TIER: flex
           OPENAI_REASONING_EFFORT: low
         # warn mode: a provider-wide error (e.g.

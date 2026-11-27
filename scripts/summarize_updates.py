@@ -472,7 +472,8 @@ Options:
     --dry-run     Do everything except write the output file, backup, and cache.
 
 Optional:
-    ANTHROPIC_SUMMARY_MODEL can override the default model without changing code.
+    AI_SUMMARY_MODEL can override the default model without changing code.
+    ANTHROPIC_SUMMARY_MODEL remains a compatibility alias.
     ANTHROPIC_MODEL is still accepted as a lower-priority legacy override.
 
 The key is read only from the ANTHROPIC_API_KEY environment variable; it is
@@ -1342,6 +1343,7 @@ def request_japanese_summary_batch(
 def resolve_model(cli_model: str | None) -> str:
     return (
         cli_model
+        or os.environ.get("AI_SUMMARY_MODEL")
         or os.environ.get("ANTHROPIC_SUMMARY_MODEL")
         or os.environ.get("ANTHROPIC_MODEL")
         or DEFAULT_MODEL
@@ -1576,7 +1578,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--model",
         default=None,
-        help="Claude model id (default claude-sonnet-5-5; can also use ANTHROPIC_SUMMARY_MODEL).",
+        help="Model ID (CLI > AI_SUMMARY_MODEL > legacy overrides > default).",
     )
     parser.add_argument(
         "--batch",

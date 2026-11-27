@@ -1372,7 +1372,7 @@ class TestDailyBudgetCoversItsCallLimit(unittest.TestCase):
 
     def _rates(self) -> dict:
         model = re.search(
-            r"ANTHROPIC_SUMMARY_MODEL:\s*(\S+)", self._daily()
+            r"AI_SUMMARY_MODEL:\s*(\S+)", self._daily()
         ).group(1)
         rates = su.model_pricing(model)
         self.assertIsNotNone(rates, f"{model} is not in MODEL_PRICING_USD_PER_MTOK")
@@ -1555,7 +1555,7 @@ class TestModelPricingLookup(unittest.TestCase):
         workflow = (
             Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-update.yml"
         ).read_text(encoding="utf-8")
-        self.assertIn("ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5", workflow)
+        self.assertIn("AI_SUMMARY_MODEL: gpt-6.1-sol", workflow)
         self.assertNotIn("claude-opus-5-5", workflow)
         self.assertEqual(su.DEFAULT_MODEL, "claude-sonnet-5-5")
 

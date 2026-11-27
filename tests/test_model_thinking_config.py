@@ -115,21 +115,21 @@ class TestSummaryModelAdoption(unittest.TestCase):
     """Sonnet 5.5 was adopted for Stage 3 after the 2026-09-30 A/B evaluation.
 
     Since 2026-10-16 the daily Japanese-summary and zh-Hans steps run on
-    gpt-6.1-sol (OpenAI Flex); English summaries and every backfill stay on
-    Claude."""
+    gpt-6.1-sol (OpenAI Flex); English and all operational backfills now use
+    the same OpenAI model."""
 
     WORKFLOWS = Path(__file__).resolve().parents[1] / ".github" / "workflows"
 
-    def test_every_summary_workflow_pins_sonnet_5_5(self):
-        # The daily workflow has moved both summary steps to gpt-6.1-sol; the
-        # backfills stay on Sonnet 5.5. Count env lines, not revert comments.
-        for name, expected in (("daily-update.yml", 0), ("english-summary-backfill.yml", 1),
+    def test_every_summary_workflow_pins_openai_flex(self):
+        for name, expected in (("daily-update.yml", 2), ("english-summary-backfill.yml", 1),
                                ("japanese-summary-backfill.yml", 1)):
             with self.subTest(workflow=name):
                 text = (self.WORKFLOWS / name).read_text(encoding="utf-8")
                 self.assertEqual(
-                    len(re.findall(r"(?m)^\s*ANTHROPIC_SUMMARY_MODEL: claude-sonnet-5-5\s*$", text)), expected)
-                self.assertNotIn("ANTHROPIC_SUMMARY_MODEL: claude-opus", text)
+                    len(re.findall(r"(?m)^\s*AI_SUMMARY_MODEL: gpt-6.1-sol\s*$", text)), expected)
+                self.assertNotRegex(text, r"(?m)^\s*ANTHROPIC_API_KEY:")
+                self.assertIn("OPENAI_SERVICE_TIER: flex", text)
+                self.assertIn("OPENAI_REASONING_EFFORT: low", text)
 
     def test_daily_english_and_japanese_summaries_run_on_openai_flex(self):
         """English moved on 2026-10-16 after the 54-item re-evaluation (PR #47)."""
@@ -137,14 +137,34 @@ class TestSummaryModelAdoption(unittest.TestCase):
         english = text[text.index("name: Maintain English summaries"):text.index("name: Maintain Japanese summaries")]
         japanese = text[text.index("name: Maintain Japanese summaries"):text.index("name: Translate Simplified Chinese updates")]
         for step in (english, japanese):
-            self.assertIn("ANTHROPIC_SUMMARY_MODEL: gpt-6.1-sol", step)
+            self.assertIn("AI_SUMMARY_MODEL: gpt-6.1-sol", step)
             self.assertIn("OPENAI_SERVICE_TIER: flex", step)
             self.assertIn("OPENAI_REASONING_EFFORT: low", step)
             self.assertNotIn("--batch", step[step.index("python scripts/"):].split("2>&1")[0])
 
     def test_translation_model_is_gpt_6_1_sol_on_flex(self):
         text = (self.WORKFLOWS / "daily-update.yml").read_text(encoding="utf-8")
-        self.assertRegex(text, r"(?m)^\s*ANTHROPIC_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
+        self.assertRegex(text, r"(?m)^\s*AI_TRANSLATION_MODEL: gpt-6.1-sol\s*$")
+
+    def test_provider_neutral_model_override_precedence(self):
+        from unittest import mock
+        for module, new, legacy in ((su, "AI_SUMMARY_MODEL", "ANTHROPIC_SUMMARY_MODEL"),
+                                    (tu, "AI_TRANSLATION_MODEL", "ANTHROPIC_TRANSLATION_MODEL")):
+            with mock.patch.dict("os.environ", {new: "gpt-6.1-sol", legacy: "claude-sonnet-5"}, clear=True):
+                self.assertEqual(module.resolve_model(None), "gpt-6.1-sol")
+                self.assertEqual(module.resolve_model("explicit"), "explicit")
+            with mock.patch.dict("os.environ", {legacy: "claude-sonnet-5"}, clear=True):
+                self.assertEqual(module.resolve_model(None), "claude-sonnet-5")
+
+    def test_operational_backfills_do_not_require_anthropic_credentials(self):
+        for name in ("english-summary-backfill.yml", "japanese-summary-backfill.yml",
+                     "translation-backfill.yml"):
+            text = (self.WORKFLOWS / name).read_text(encoding="utf-8")
+            self.assertNotRegex(text, r"(?m)^\s*ANTHROPIC_API_KEY:")
+            self.assertIn("OPENAI_API_KEY:", text)
+            self.assertNotIn("  schedule:", text)
+        english = (self.WORKFLOWS / "english-summary-backfill.yml").read_text(encoding="utf-8")
+        self.assertIn("AI_TRANSLATION_MODEL: gpt-6.1-sol", english)
 
     def test_title_prompt_targets_below_the_display_cap(self):
         # Titles over TITLE_MAX_CHARS are cut mid-title; the prompt aims 10 below it.
