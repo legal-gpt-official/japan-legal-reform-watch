@@ -1815,6 +1815,20 @@
     }
   },
   "live_report_index": {
+    "46062844219:1": {
+      "dossiers": [
+        "health-insurance-ordinance-151-2026",
+        "trade-insurance-special-underwriting-2026"
+      ],
+      "dossier_versions": {
+        "health-insurance-ordinance-151-2026": "a974af094b7e8f373b319762036a704a5547a57d0c9b382099a3ac668a1847b1",
+        "trade-insurance-special-underwriting-2026": "ef2f76b499f3afae8ad16199aa30c3cfe8c922f266160376eadc15b2b1a7d1ec"
+      },
+      "checked_started_at": "2026-11-27T20:19:44.330451+00:00",
+      "source_sha": "c5963ecbd10fc4b3ca99b48969f92161a39bfefb",
+      "publish_run_id": "46062549515",
+      "pages_run_id": "46062743335"
+    },
     "45935680802:1": {
       "dossiers": [
         "health-insurance-ordinance-151-2026",
@@ -1899,20 +1913,6 @@
     },
     "45926630626:1": [
       "trade-insurance-special-underwriting-2026"
-    ],
-    "46062844219:1": {
-      "dossiers": [
-        "health-insurance-ordinance-151-2026",
-        "trade-insurance-special-underwriting-2026"
-      ],
-      "dossier_versions": {
-        "health-insurance-ordinance-151-2026": "a974af094b7e8f373b319762036a704a5547a57d0c9b382099a3ac668a1847b1",
-        "trade-insurance-special-underwriting-2026": "ef2f76b499f3afae8ad16199aa30c3cfe8c922f266160376eadc15b2b1a7d1ec"
-      },
-      "checked_started_at": "2026-11-27T20:19:44.330451+00:00",
-      "source_sha": "c5963ecbd10fc4b3ca99b48969f92161a39bfefb",
-      "publish_run_id": "46062549515",
-      "pages_run_id": "46062743335"
-    }
+    ]
   }
 }
