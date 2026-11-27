@@ -49,12 +49,27 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
+      # Restore only trusted main-branch cache data. Never write response bodies to git.
+      - name: Restore bounded historical law cache
+        if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/jlrw-historical-law
+          key: jlrw-historical-law-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            jlrw-historical-law-v1-
+
       - name: Build evidence packs from official e-Gov data
         env:
           SEEDS: ${{ github.event.inputs.seeds || '' }}
         run: |
+          set -o pipefail
+          cache_args=()
+          if [ -z "$SEEDS" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            cache_args=(--historical-cache "$RUNNER_TEMP/jlrw-historical-law")
+          fi
           python scripts/explainer_evidence.py build --from-queue 25 --include-ledger --with-documents \
-            --prune --max-api-calls 220 --seeds "$SEEDS" | tee evidence.log
+            --prune --max-api-calls 220 --seeds "$SEEDS" "${cache_args[@]}" | tee evidence.log
           {
             echo '### Explainer evidence packs'
             echo '```'
