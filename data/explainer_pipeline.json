@@ -415,22 +415,23 @@
         "failed_runs": 0,
         "run_id": 45922506788,
         "head_sha": "bfe44fdca57a71c4159450654d442a82072093c3",
-        "status": "in_progress",
-        "conclusion": null,
-        "tests_ok": false,
+        "status": "completed",
+        "conclusion": "success",
+        "tests_ok": true,
         "failed_steps": [],
-        "completed_at": null,
-        "duration_s": null
+        "completed_at": "2026-11-27T01:26:58Z",
+        "duration_s": 81
       },
-      "stage": "CI_RUNNING",
-      "last_success_stage": "CI_RUNNING",
+      "stage": "CI_PASSED",
+      "last_success_stage": "CI_PASSED",
       "stage_history": {
         "DRAFTED": "2026-11-16T01:56:43Z",
         "RESEARCH_REQUIRED": "2026-11-16T01:56:43Z",
         "SOURCES_VERIFIED": "2026-11-27T01:26:37Z",
         "EN_READY": "2026-11-27T01:26:37Z",
         "JA_ZH_READY": "2026-11-27T01:26:37Z",
-        "STAMPED_AND_SYNCED": "2026-11-27T01:26:37Z"
+        "STAMPED_AND_SYNCED": "2026-11-27T01:26:37Z",
+        "CI_PASSED": "2026-11-27T01:26:58Z"
       },
       "sources": {
         "fetched": 10,
@@ -446,9 +447,9 @@
         "The 2026-08-01 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; the ordinance's role for stage 1 is limited to supplementary Article 3."
       ],
       "blockers": [],
-      "next_action": "Wait for Pull request checks run 45922506788 on bfe44fdca57a.",
-      "updated_at": "2026-11-27T01:26:37Z",
-      "run_id": "45922529383"
+      "next_action": "Finish the substantive legal and three-language review against the official sources; then mark the PR ready and add legal-content-verified.",
+      "updated_at": "2026-11-27T01:27:49Z",
+      "run_id": "45922636855"
     },
     "high-cost-medical-care-patient-protection-2026-bill": {
       "dossier_id": "high-cost-medical-care-patient-protection-2026-bill",
@@ -1641,7 +1642,7 @@
     "2026-11-27": {
       "new": {
         "drafted": 0,
-        "ci_passed": 0,
+        "ci_passed": 1,
         "merged": 0,
         "pages_deployed": 0,
         "live_verified": 0
