@@ -117,6 +117,22 @@ class LiveExplainerTests(unittest.TestCase):
         self.assertIn("full canonical explainer prose", error)
 
 
+    def test_no_work_is_success_but_verifies_no_dossiers(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report = Path(tmp) / "report.json"
+            with mock.patch.object(live, "EN_DIR", Path(tmp)):
+                self.assertEqual(live.main(["--report", str(report)]), 0)
+                data = json.loads(report.read_text())
+                self.assertEqual(data["outcome"], "NO_WORK")
+                self.assertEqual(data["dossiers_verified"], [])
+                with self.assertRaises(ValueError):
+                    live.main(["--dossiers", "missing", "--report", str(report)])
+
+    def test_existing_dossier_without_targets_is_failure(self):
+        with mock.patch.object(live, "recent_dossiers", return_value=[{"dossier_id": "a"}]), \
+                mock.patch.object(live, "page_checks", return_value=([], ["a: no generated pages"])):
+            self.assertEqual(live.main([]), 1)
+
     def test_recent_dossier_selection_uses_jst_verification_and_status(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp)

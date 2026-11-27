@@ -51,10 +51,13 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: python -m pip install requests
+        run: python -m pip install -r requirements.txt
 
       - name: Compile scripts
         run: python -m py_compile scripts/post_weekly_blog.py scripts/weekly_roundups.py scripts/build_public_pages.py
+
+      - name: Verify runtime imports without posting
+        run: python scripts/post_weekly_blog.py --help
 
       - name: Post weekly roundup
         env:

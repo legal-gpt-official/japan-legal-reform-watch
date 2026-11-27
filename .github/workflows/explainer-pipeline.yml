@@ -111,6 +111,7 @@ jobs:
             }
             const slim = r => ({
               id: r.id, status: r.status, conclusion: r.conclusion, event: r.event,
+              display_title: r.display_title, run_attempt: r.run_attempt,
               head_sha: r.head_sha, created_at: r.created_at, updated_at: r.updated_at,
               run_started_at: r.run_started_at,
               pull_requests: (r.pull_requests || []).map(p => p.number),
@@ -156,6 +157,58 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
           path: live-report
+
+      - name: Recover exact LIVE reports for successful v2 runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, subprocess, tempfile
+          from pathlib import Path
+          snapshot_path = Path("snapshot.json")
+          snapshot = json.loads(snapshot_path.read_text())
+          previous_path = Path("data/explainer_pipeline.json")
+          previous = json.loads(previous_path.read_text()) if previous_path.exists() else {}
+          cache = previous.get("live_report_index") or {}
+          index = {}
+          missing = []
+          for run in snapshot.get("live_runs", []):
+              if run.get("conclusion") != "success" or not str(run.get("display_title") or "").startswith("LIVE evidence v2"):
+                  continue
+              rid = str(run["id"])
+              key = f"{rid}:{run.get('run_attempt') or 1}"
+              if key in cache and isinstance(cache[key], list):
+                  index[key] = cache[key]
+                  run["dossiers"] = cache[key]
+              else:
+                  missing.append(run)
+          # The triggering artifact is already downloaded; recover other recent
+          # reports too, so a missed event or a race cannot falsely credit a run.
+          missing.sort(key=lambda run: run.get("created_at") or "", reverse=True)
+          for run in missing[:20]:
+              rid = str(run["id"])
+              attempt = str(run.get("run_attempt") or 1)
+              key = f"{rid}:{attempt}"
+              try:
+                  with tempfile.TemporaryDirectory() as tmp:
+                      local = Path("live-report/live-verification.json")
+                      report = json.loads(local.read_text()) if local.exists() else {}
+                      if str(report.get("run_id")) != rid or str(report.get("run_attempt")) != attempt:
+                          subprocess.run(["gh", "run", "download", rid, "-n", "live-verification-report", "-D", tmp],
+                                         check=True, timeout=20, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                          report = json.loads((Path(tmp) / "live-verification.json").read_text())
+                      names = report.get("dossiers_verified")
+                      if str(report.get("run_id")) != rid or str(report.get("run_attempt")) != attempt or not isinstance(names, list) or not all(isinstance(n, str) for n in names):
+                          raise ValueError("invalid LIVE report")
+                      if report.get("outcome") not in ("NO_WORK", "VERIFIED") or (report["outcome"] == "NO_WORK" and names):
+                          raise ValueError("invalid LIVE outcome")
+                      index[key] = names
+                      run["dossiers"] = names
+              except (OSError, ValueError, subprocess.SubprocessError) as exc:
+                  print(f"::warning::Exact LIVE report unavailable for run {rid}: {type(exc).__name__}")
+          snapshot["live_report_index"] = index
+          snapshot_path.write_text(json.dumps(snapshot))
+          PY
 
       - name: Reconcile ledger and plan the next slot
         run: |
