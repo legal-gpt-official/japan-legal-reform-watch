@@ -1,0 +1,388 @@
+{
+  "author": "claude-code",
+  "background": {
+    "paragraphs": [
+      "Japan's high-cost medical care system (kogaku ryoyohi) caps what a patient pays at a medical institution: any amount above a monthly limit set by age and income is reimbursed. The 2026 review of the system, decided after deliberations in the Social Security Council's Medical Insurance Subcommittee and its expert committee on the future of the system, proceeds in two stages. From 1 August 2026, monthly caps rose and a new annual cap was introduced; from 1 August 2027, the income bands are subdivided and the multiple-occurrence amount for people with annual income below about 2 million yen is reduced by 25%. The Ministry of Health, Labour and Welfare presents the review as keeping the system sustainable while protecting low-income and long-term patients and asking mainly short-term patients for additional contributions.",
+      "Ordinance No. 151 of 2026 is the regulation-level follow-up to the second stage. Its four articles amend the enforcement regulations for employees' health insurance, seamen's insurance, national health insurance and late-stage elderly medical care, updating cross-references to the subdivided income bands in the underlying enforcement orders — for example, the five items (i) to (ho) of Health Insurance Enforcement Order Article 43(1)(i) become thirteen items (i) to (wa), and item 5 of National Health Insurance Enforcement Order Article 29-3(1) becomes item 13. The benefit amounts themselves are set by Cabinet Order No. 240 of 2026, not by this ordinance: from 1 August 2027 the monthly cap for people under 70 runs from 61,500 yen at the lowest band to 342,000 yen plus 1% of medical costs above 1,140,000 yen at the highest band, with annual caps from 410,000 yen to 1,680,000 yen.",
+      "Only one part of the ordinance is already in force. Supplementary Article 3, effective on the promulgation day, 28 October 2026, corrects a single form reference: Form 13-2 of the Health Insurance Enforcement Regulation now cites Article 103-7 instead of Article 103-2, matching the renumbering of that article in the main body. Everything else — the cross-reference updates in all four regulations — takes effect on 1 August 2027. The ordinance's transitional provisions deem documents already in use under old forms to comply with the amended forms and allow remaining old-form paper to be adapted and used for the time being."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s4",
+      "s5",
+      "s11",
+      "s12",
+      "s15",
+      "s18"
+    ]
+  },
+  "business_impact": {
+    "checklist": [
+      "Map certification systems and forms to the 13 income bands and the new item numbers before 1 August 2027.",
+      "Update limit-application and standard-copayment-reduction certification references, including Health Insurance Enforcement Order Article 43(1)(i) items (i) to (wa) and National Health Insurance Enforcement Order Article 29-3(1) item 13.",
+      "Update eligibility confirmation certificate forms; Form 13-2's reference to Article 103-7 is already in force since 28 October 2026.",
+      "Check late-stage elderly medical care forms and limit-category codes against the subdivided bands.",
+      "Treat documents already in use under old forms as compliant under the transitional provisions; adapt remaining old-form paper only as permitted.",
+      "Take benefit amounts from the enforcement orders (Cabinet Order No. 240), not from this ordinance's text.",
+      "Confirm the applicable cap for each insured person from the order tables; do not infer entitlement changes from renumbering alone."
+    ],
+    "paragraphs": [
+      "For insurers, municipalities, national health insurance associations and late-stage elderly medical care wide-area unions, the practical work is a reference update, not a policy change. Limit-application certifications (Health Insurance Enforcement Regulation Articles 103-7 and 129-2, National Health Insurance Enforcement Regulation Articles 27-14-2 and 27-14-4, and the corresponding seamen's and late-stage elderly provisions), meal and life-care standard-copayment-reduction certifications, specified-disease certifications and eligibility confirmation certificate forms must all point at the new item numbers by 1 August 2027. The ordinance creates no new filing duty for insured persons and no new benefit; it keeps the existing certification machinery working after the underlying orders renumber their bands.",
+      "For insured persons and employers, nothing changes before 1 August 2027 as a result of this ordinance. From that date, the applicable monthly cap follows the finer income bands, and the multiple-occurrence amount — the reduced cap that applies from the fourth month in a year with three or more high-cost months — falls by 25% for people with annual income below about 2 million yen, to 34,500 yen. Documents already in use under old forms are deemed to comply with the amended forms, and remaining old-form paper may be adapted and used for the time being, so the changeover does not invalidate certificates already issued."
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s5",
+      "s9",
+      "s11",
+      "s12",
+      "s15",
+      "s16",
+      "s18"
+    ]
+  },
+  "current_stage": "partially_in_force",
+  "dossier_id": "health-insurance-ordinance-151-2026",
+  "history": {
+    "paragraphs": [
+      "The reform began with the Act Partially Amending the Health Insurance Act, etc. (Act No. 31 of 2026), promulgated on 5 June 2026, whose high-cost medical care provisions took effect on 1 August 2026. Cabinet Order No. 240 of 2026, promulgated on 29 July 2026, then set the two-stage schedule: the first stage raised monthly caps and added the annual cap from 1 August 2026, and the second stage subdivides the income bands from 1 August 2027. The expert committee's basic approach of 16 December 2025 framed the review as preserving the safety-net function of the system for long-term and low-income patients while keeping it sustainable.",
+      "The Ministry consulted on the draft ordinance from 29 August to 27 September 2026 and published the results on 28 October 2026: 2,758 comments were received, including comments unrelated to the draft, and the draft was promulgated without change. The ordinance was promulgated the same day, 28 October 2026, in Official Gazette special issue No. 236, with its supplementary Article 3 taking effect that day and the main body to follow on 1 August 2027."
+    ],
+    "source_ids": [
+      "s11",
+      "s12",
+      "s13",
+      "s14",
+      "s15",
+      "s17",
+      "s19"
+    ]
+  },
+  "instrument_type": "ministerial_ordinance",
+  "instruments": [
+    {
+      "name_en": "Ordinance Partially Amending the Health Insurance Act Enforcement Regulation, etc.",
+      "name_ja": "健康保険法施行規則等の一部を改正する省令",
+      "number": "令和八年厚生労働省令第百五十一号"
+    }
+  ],
+  "key_dates": [
+    {
+      "date": "2026-06-05",
+      "instrument_number": "令和八年法律第三十一号",
+      "kind": "promulgated",
+      "label": "Act No. 31 of 2026 (Act Partially Amending the Health Insurance Act, etc.) promulgated",
+      "source_ids": [
+        "s17"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "instrument_number": "令和八年政令第二百四十号",
+      "kind": "promulgated",
+      "label": "Cabinet Order No. 240 of 2026 promulgated",
+      "source_ids": [
+        "s19"
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "kind": "other",
+      "label": "First stage of the high-cost medical care review took effect: monthly caps rose and a new annual cap was introduced",
+      "source_ids": [
+        "s11",
+        "s12"
+      ]
+    },
+    {
+      "date": "2026-08-29",
+      "kind": "comment_opened",
+      "label": "Public consultation on the draft ordinance opened",
+      "source_ids": [
+        "s13"
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "kind": "comment_deadline",
+      "label": "Public consultation on the draft ordinance closed",
+      "source_ids": [
+        "s13"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "kind": "comment_results_published",
+      "label": "Consultation results published: 2,758 comments received; the draft was not changed",
+      "source_ids": [
+        "s13",
+        "s14"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "instrument_number": "令和八年厚生労働省令第百五十一号",
+      "kind": "promulgated",
+      "label": "Ordinance No. 151 of 2026 promulgated",
+      "source_ids": [
+        "s1",
+        "s4",
+        "s15"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "instrument_number": "令和八年厚生労働省令第百五十一号",
+      "kind": "partially_effective",
+      "label": "Supplementary Article 3 took effect: Form 13-2 now cites Article 103-7",
+      "source_ids": [
+        "s5",
+        "s6",
+        "s15"
+      ]
+    },
+    {
+      "date": "2027-08-01",
+      "instrument_number": "令和八年厚生労働省令第百五十一号",
+      "kind": "effective",
+      "label": "Main body of Ordinance No. 151 takes effect: four enforcement regulations updated to the 13-band scale",
+      "source_ids": [
+        "s1",
+        "s2",
+        "s5",
+        "s9",
+        "s16"
+      ]
+    }
+  ],
+  "next_steps": {
+    "confirmed": [
+      {
+        "date": "2026-10-28",
+        "source_ids": [
+          "s5",
+          "s6",
+          "s15"
+        ],
+        "text": "Supplementary Article 3 of the ordinance is in force: Form 13-2 of the Health Insurance Enforcement Regulation now cites Article 103-7 instead of Article 103-2."
+      },
+      {
+        "date": "2027-08-01",
+        "source_ids": [
+          "s1",
+          "s2",
+          "s5",
+          "s9",
+          "s16"
+        ],
+        "text": "The main body of the ordinance takes effect, updating the four enforcement regulations to the subdivided income bands."
+      },
+      {
+        "source_ids": [
+          "s13",
+          "s14"
+        ],
+        "text": "The public consultation drew 2,758 comments, including comments unrelated to the draft, and the draft was promulgated without change."
+      }
+    ],
+    "expected": [
+      "Insurers and municipalities are expected to update certification systems and forms for the 13-band scale before 1 August 2027.",
+      "From 1 August 2027, the applicable monthly cap follows the finer income bands, and the multiple-occurrence amount for income below about 2 million yen is 25% lower."
+    ],
+    "uncertainties": [
+      "Cabinet Order No. 347 of 2026 (promulgated 11 November 2026, effective 1 April 2027) also amends the National Health Insurance Enforcement Order; whether it touches Article 29-3, and how it interacts with this ordinance's 1 August 2027 revision, was not verified.",
+      "The 2026 stage-1 amounts and annual caps are set by Cabinet Order No. 240, not by this ordinance; this explainer states them only as the context the ordinance implements.",
+      "Article titles for some late-stage elderly medical care provisions (Articles 62, 63, 64, 68, 69 and 71) were read as article numbers from the ordinance text; their headings were not re-verified verbatim.",
+      "The ordinance's own cited legal bases (including Health Insurance Act Article 51-3(1)) are stated in the consultation summary; the promulgated ordinance's preamble was read from the MHLW ordinance database PDF."
+    ]
+  },
+  "official_sources": [
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s1",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the National Health Insurance Act Enforcement Regulation",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/333M50000100053"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s2",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the National Health Insurance Act Enforcement Regulation as amended by Ordinance No. 151 of 2026",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20270801_508M60000100151?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s3",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the National Health Insurance Act Enforcement Regulation as amended by Ordinance No. 153 of 2026 (previous revision)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/333M50000100053_20261112_508M60000100153?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s4",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Health Insurance Act Enforcement Regulation",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/215M10000008036"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s5",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the Health Insurance Act Enforcement Regulation as amended by Ordinance No. 151 of 2026",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20270801_508M60000100151?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s6",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the Health Insurance Act Enforcement Regulation as amended by the 28 October 2026 stage of Ordinance No. 151 of 2026",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261028_508M60000100151?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s7",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the Health Insurance Act Enforcement Regulation as amended by Ordinance No. 144 of 2026 (previous revision)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/215M10000008036_20261001_508M60000100144?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s8",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Seamen's Insurance Act Enforcement Regulation",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/315M10000100005"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s9",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the Seamen's Insurance Act Enforcement Regulation as amended by Ordinance No. 151 of 2026",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20270801_508M60000100151?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s10",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Full text of the Seamen's Insurance Act Enforcement Regulation as amended by Ordinance No. 144 of 2026 (previous revision)",
+      "url": "https://laws.e-gov.go.jp/api/2/law_data/315M10000100005_20261001_508M60000100144?response_format=json&law_full_text_format=json"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s11",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Information on the high-cost medical care system and its 2026 review",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s12",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "The 2026 review of the high-cost medical care system (from August 2026 medical care)",
+      "url": "https://www.mhlw.go.jp/content/001726232.pdf"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s13",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare (e-Gov Public Comment)",
+      "title": "Public comment results for the draft Ordinance No. 151 of 2026 (case 495260169)",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=495260169&Mode=1"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s14",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare Insurance Bureau (e-Gov Public Comment)",
+      "title": "Results of the public comment on the draft Ordinance No. 151 of 2026",
+      "url": "https://public-comment.e-gov.go.jp/pcm/download?seqNo=0000323077"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s15",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare (Ordinance Database)",
+      "title": "Full text of MHLW Ordinance No. 151 of 2026 (Official Gazette special issue No. 236 of 28 October 2026)",
+      "url": "https://www.mhlw.go.jp/hourei/doc/hourei/H261028S0010.pdf"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s16",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Enforcement Regulation of the Act on Assurance of Medical Care for Elderly People",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/419M60000100129"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s17",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Health Insurance Act",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/211AC0000000070"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s18",
+      "kind": "primary",
+      "publisher": "Ministry of Health, Labour and Welfare",
+      "title": "Reference tables for the high-cost medical care caps from August 2027",
+      "url": "https://www.mhlw.go.jp/content/001729632.pdf"
+    },
+    {
+      "accessed_at": "2026-11-27",
+      "id": "s19",
+      "kind": "primary",
+      "publisher": "Digital Agency (e-Gov Law API)",
+      "title": "Revision history of the Health Insurance Act Enforcement Order",
+      "url": "https://laws.e-gov.go.jp/api/2/law_revisions/215IO0000000243"
+    }
+  ],
+  "quick_take": {
+    "what_changed": "MHLW Ordinance No. 151 of 2026, promulgated on 28 October 2026, updates four enforcement regulations — employees' health insurance, seamen's insurance, national health insurance and late-stage elderly medical care — to follow the high-cost medical care income bands that Cabinet Order No. 240 brings in from 1 August 2027. It sets no benefit amount itself.",
+    "what_to_do_now": "Administrators should map certification systems and forms to the 13 income bands and the new item numbers — for example, Health Insurance Enforcement Order Article 43(1)(i) now runs from item (i) to item (wa) — before 1 August 2027, and keep using old-form paper only as the transitional provisions allow.",
+    "who_is_affected": "Insurers, municipalities, national health insurance associations and late-stage elderly medical care wide-area unions must update limit-application and standard-copayment-reduction certifications and forms by 1 August 2027. Insured persons see no change from this ordinance before then, apart from a corrected form reference in force since 28 October 2026."
+  },
+  "related_item_ids": [
+    "raw-7bf14a11616c78fd"
+  ],
+  "review_notes": "AI-assisted check on 27 November 2026 against the e-Gov old and new texts of the three enforcement regulations in the evidence pack, the e-Gov revision record of the late-stage elderly medical care regulation, the MHLW high-cost medical care page and review documents, the e-Gov consultation page and results (2,758 comments, no change), and the promulgated ordinance text in the MHLW ordinance database (Official Gazette special issue No. 236 of 28 October 2026). Article titles for some late-stage elderly provisions were not re-verified verbatim and are flagged in the uncertainties. This is an AI check, not a review by a qualified legal professional.",
+  "review_state": "ai_checked",
+  "schema_version": 1,
+  "source_fingerprint": "sha256:1d0fe5b2351996314676b305afa5f501",
+  "status": "published",
+  "title_en": "High-cost medical care: MHLW Ordinance No. 151 aligns insurance rules with the 13-band income scale from August 2027",
+  "verified_at": "2026-11-27",
+  "watch_pages": [
+    {
+      "label": "e-Gov page of the Health Insurance Act Enforcement Regulation",
+      "url": "https://laws.e-gov.go.jp/law/215M10000008036"
+    },
+    {
+      "label": "e-Gov page of the National Health Insurance Act Enforcement Regulation",
+      "url": "https://laws.e-gov.go.jp/law/333M50000100053"
+    },
+    {
+      "label": "MHLW high-cost medical care system page",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+    },
+    {
+      "label": "e-Gov Public Comment results page for draft Ordinance No. 151 of 2026",
+      "url": "https://public-comment.e-gov.go.jp/servlet/Public?CLASSNAME=PCM1040&id=495260169&Mode=1"
+    }
+  ]
+}
