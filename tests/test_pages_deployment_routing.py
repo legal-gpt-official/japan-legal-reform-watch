@@ -98,6 +98,7 @@ class PagesRoutingTests(unittest.TestCase):
         self.assertIn("FETCH_HEAD:docs", w)
         self.assertIn("path: docs", w)
         self.assertIn("include-hidden-files: true", w)
+        self.assertIn("actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9", w)
         self.assertIn("! -path 'docs/.nojekyll'", w)
         self.assertIn("id-token: write", w)
         self.assertIn("pages: write", w)
