@@ -347,6 +347,36 @@
       "first_queued_on": "2026-11-16"
     },
     {
+      "queue_id": "explainer:privacy-security-guidance-2026-draft",
+      "kind": "update",
+      "explainer_id": "privacy-security-guidance-2026-draft",
+      "explainer_status": "published",
+      "priority": 50,
+      "reasons": [
+        "scheduled_recheck",
+        "stage_overtaken:comment_closed"
+      ],
+      "errors": [],
+      "review": {
+        "facts": "ai_checked",
+        "procedure": "ai_checked",
+        "outlook": "ai_checked",
+        "assessment": "ai_checked"
+      },
+      "verified_at": "2026-10-30",
+      "watch_pages": [
+        "https://www.ppc.go.jp/news/public-comment/",
+        "https://www.ppc.go.jp/enforcement/minutes/2026/"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-a8b165651fe15430"
+      ],
+      "new_related_item_ids": [],
+      "current_fingerprint": "sha256:1dc182daf29d59269795b97b8f6a1648",
+      "first_queued_on": "2026-11-14"
+    },
+    {
       "queue_id": "explainer:social-welfare-local-support-rules-2026",
       "kind": "update",
       "explainer_id": "social-welfare-local-support-rules-2026",
@@ -1044,35 +1074,6 @@
       "first_queued_on": "2026-11-06"
     },
     {
-      "queue_id": "explainer:privacy-security-guidance-2026-draft",
-      "kind": "update",
-      "explainer_id": "privacy-security-guidance-2026-draft",
-      "explainer_status": "published",
-      "priority": 20,
-      "reasons": [
-        "scheduled_recheck"
-      ],
-      "errors": [],
-      "review": {
-        "facts": "ai_checked",
-        "procedure": "ai_checked",
-        "outlook": "ai_checked",
-        "assessment": "ai_checked"
-      },
-      "verified_at": "2026-10-30",
-      "watch_pages": [
-        "https://www.ppc.go.jp/news/public-comment/",
-        "https://www.ppc.go.jp/enforcement/minutes/2026/"
-      ],
-      "record_count": 1,
-      "item_ids": [
-        "raw-a8b165651fe15430"
-      ],
-      "new_related_item_ids": [],
-      "current_fingerprint": "sha256:1dc182daf29d59269795b97b8f6a1648",
-      "first_queued_on": "2026-11-14"
-    },
-    {
       "queue_id": "explainer:sme-subcontractor-support-2026-bill",
       "kind": "update",
       "explainer_id": "sme-subcontractor-support-2026-bill",
@@ -1397,6 +1398,27 @@
       "first_queued_on": "2026-11-12"
     },
     {
+      "queue_id": "draft:raw-2b9e935fe1dbc7d5",
+      "kind": "new",
+      "explainer_id": null,
+      "priority": 15,
+      "reasons": [
+        "public_comment_on_draft"
+      ],
+      "record_count": 1,
+      "item_ids": [
+        "raw-2b9e935fe1dbc7d5"
+      ],
+      "areas": [
+        "Finance / AML"
+      ],
+      "title_ja": "「金融庁関係国家戦略特別区域法第二十六条に規定する政令等規制事業に係る内閣府令の特例に関する措置を定める内閣府令の一部を改正する内閣府令（案）」に対するパブリックコメントの実施について",
+      "stage": "Public Comment Open",
+      "newest_record_first_seen": "2026-11-28",
+      "suggested_seed_item_id": "raw-2b9e935fe1dbc7d5",
+      "first_queued_on": "2026-11-28"
+    },
+    {
       "queue_id": "draft:raw-2f0cae05538055e0",
       "kind": "new",
       "explainer_id": null,
@@ -1713,30 +1735,6 @@
       "newest_record_first_seen": "2026-10-07",
       "suggested_seed_item_id": "raw-a774a90138a1dcf2",
       "first_queued_on": "2026-10-31"
-    },
-    {
-      "queue_id": "instrument:令和八年厚生労働省令第百二十一号",
-      "kind": "new",
-      "explainer_id": null,
-      "priority": 15,
-      "reasons": [
-        "public_comment_on_draft",
-        "instrument_promulgated",
-        "linked_across_sources"
-      ],
-      "record_count": 2,
-      "item_ids": [
-        "raw-15b5c5a72bfae0a1",
-        "raw-d38230df21e2f625"
-      ],
-      "areas": [
-        "Labor / Employment"
-      ],
-      "title_ja": "国民年金法施行規則の一部を改正する省令案に関する御意見の募集について",
-      "stage": "Public Comment Closed",
-      "newest_record_first_seen": "2026-08-19",
-      "suggested_seed_item_id": "raw-15b5c5a72bfae0a1",
-      "first_queued_on": "2026-11-27"
     },
     {
       "queue_id": "instrument:令和八年厚生労働省令第百五十三号",
